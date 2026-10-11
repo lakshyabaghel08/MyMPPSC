@@ -7,7 +7,7 @@
 
 /* 1. Critical reset — MUST remain the very first rule in the stylesheet.
    An author `display` rule beats the browser's UA `[hidden]` declaration;
-   keeping this first with `!important` guarantees no hidden overlay or panel
+   keeping this first with highest priority guarantees no hidden overlay or panel
    is ever laid out. */
 [hidden] { display: none !important; }
 
@@ -448,7 +448,6 @@ blockquote.passage {
 .row.tight { gap: 6px; }
 .spread { display: flex; justify-content: space-between; align-items: center; gap: var(--space-3); flex-wrap: wrap; }
 .grow { flex: 1 1 auto; min-width: 0; }
-.hide { display: none !important; }
 
 /* Inline SVG icon wrapper */
 .icon {

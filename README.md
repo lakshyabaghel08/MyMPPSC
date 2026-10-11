@@ -18,8 +18,9 @@ Then open <http://localhost:8080/>. On an empty database the app offers to load 
 Any static file server works — the app is plain HTML/CSS/ES modules. To run it offline as a PWA, serve it over `http(s)` (the service worker cannot register on `file://`).
 
 ```bash
-npm test             # 101 tests: services, end-to-end journey and UI journey tests
-npm run check        # 585 static integrity checks (imports, routes, assets, data, shell)
+npm test             # 107 tests: services, end-to-end journey and UI journey tests
+npm run check        # 729 static integrity checks (imports, routes, assets, contrast, tokens, shell)
+npm run audit:ui     # alias for npm run check (static UI + contrast + token audit)
 python3 tools/make-icons.py   # regenerate the PWA icons (no dependencies)
 node tools/build-bank.mjs --help
 ```
@@ -33,7 +34,7 @@ working, and `npm run check` fails if any of them is undone:
 
 * **Stay relative.** A project site lives at `https://<user>.github.io/<repo>/`, so a leading slash resolves to the domain root and 404s. Every URL in `index.html`, `sw.js`, `manifest.webmanifest` and `css/app.css` is relative (`css/app.css`, `./js/app.js`), the service worker is registered as `'sw.js'` with `scope: './'`, and its precache list uses `./` prefixes. The same files therefore also work on a custom domain or from `npm run serve` with no changes.
 * **Keep an empty `.nojekyll` at the repository root.** Without it Pages runs the tree through Jekyll, which ignores paths that start with an underscore and adds a rebuild step that can drop files.
-* **Bump the service-worker cache version** (`const VERSION = 'v1.0.0-3';` in `sw.js`) in the same commit as any change to a precached file — HTML, CSS, JS, icons, demo data. The old caches are deleted on `activate`, which is how a browser that cached a broken shell drops it. If the version did not change, that browser would keep serving the broken files.
+* **Bump the service-worker cache version** (`const VERSION = 'v1.1.0-5';` in `sw.js`) in the same commit as any change to a precached file — HTML, CSS, JS, icons, demo data. The old caches are deleted on `activate`, which is how a browser that cached a broken shell drops it. If the version did not change, that browser would keep serving the broken files.
 * **Verify after deploying:** load the site, check the console for a failed request, then reload once (or unregister the old worker in DevTools → Application → Service Workers) to confirm the new build is the one being served.
 
 ## What it does
@@ -99,11 +100,12 @@ Layering is strict: `core → services → ui`. Views are HTML strings plus dele
 
 | Document | Contents |
 | --- | --- |
+| `docs/UI.md` | The design system: colour tokens (Light/Dark/Forced-colors) and contrast ratios, Devanagari typography, provenance components, accessibility contract, enumerated `!important` rules, and automated UI guards. |
 | `docs/SCHEMA.md` | The question-bank JSON schema: every field, versioning rules, validation behaviour. |
 | `docs/DATA_PIPELINE.md` | How to produce banks outside the app, with the intake format and worked example. |
 | `docs/TESTING.md` | What the test suite covers, what it does not, and a manual verification checklist. |
 | `docs/LIMITATIONS.md` | Honest list of what this build does not do or cannot guarantee. |
-| `docs/IMPLEMENTATION_REPORT.md` | Feature-by-feature report against the original specification, the tests actually run and their results, and the remaining gaps. |
+| `docs/IMPLEMENTATION_REPORT.md` | Feature-by-feature report against the original specification, the UI overhaul before/after measurements, the tests actually run and their results, and the remaining gaps. |
 
 ## Privacy and durability
 

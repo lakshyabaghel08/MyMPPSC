@@ -3,8 +3,9 @@
 Everything here has actually been run. No test in this document is aspirational.
 
 ```bash
-npm test          # 101 tests, all passing
-npm run check     # 585 static integrity checks, all passing
+npm test          # 107 tests, all passing
+npm run check     # 729 static integrity checks, all passing
+npm run audit:ui  # alias for npm run check (static UI + contrast + token audit)
 ```
 
 Requirements: Node 20+ (developed on Node 22). `npm install` fetches
@@ -22,7 +23,7 @@ Requirements: Node 20+ (developed on Node 22). `npm install` fetches
 | `tests/smart.test.js` | 11 | Smart practice: bucket sizes and allocation, unseen-ratio preference, cooldown behaviour, paper order preservation, explainability lines, and the near-duplicate similarity blend. |
 | `tests/backup.test.js` | 8 | Backup and restore: payload contents and counts, SHA-256 integrity, validation of a corrupted file, merge without duplicates, preference for newer local classifications, live settings preserved on merge, and a full round-trip. |
 | `tests/e2e.test.js` | 14 | A complete journey through the services: import the demo bank → an incomplete paper is labelled → take a full simulation in the original order with the source duration → autosave and resume across an interruption → deterministic scoring → report distinguishes outcomes and weak areas → mistake escalation, auto-resolution and reopening → revision scheduling and queue → analytics from recorded attempts only → custom test with custom scoring and shuffled options (matching never shuffled) → a classification correction being reversible → syllabus import and manual progress separate from bank data → backup and restore → no-network behaviour. |
-| `tests/ui.test.js` | 10 | The **real UI in jsdom**: `index.html` boots with IndexedDB, the first-run prompt offers the demonstration bank and says it is synthetic, every route renders without an error notice, the Import screen analyses the demo bank and imports it through the actual buttons, a **full paper simulation is started, answered, autosaved, submitted and reported through the DOM**, topic and smart sessions start from the shared configuration form, an unfinished session is offered for resume and returns with its answers, and **leaving the test screen stops its background timer** so the clock cannot keep ticking and writing while another screen is open, the mistake book / revision centre / analytics reflect that submission, a setting persists, the backup round-trip self-test passes, the `?` shortcut opens the help dialog, the offline notice toggles, and the **stylesheet regression** suite below holds. |
+| `tests/ui.test.js` | 16 | The **real UI in jsdom**: `index.html` boots with IndexedDB, the first-run prompt offers the demonstration bank and says it is synthetic, every route renders without an error notice, the Import screen analyses the demo bank and imports it through the actual buttons, a **full paper simulation is started, answered, autosaved, submitted and reported through the DOM**, topic and smart sessions start from the shared configuration form, an unfinished session is offered for resume and returns with its answers, and **leaving the test screen stops its background timer** so the clock cannot keep ticking and writing while another screen is open, the mistake book / revision centre / analytics reflect that submission, a setting persists, the backup round-trip self-test passes, the `?` shortcut opens the help dialog, **every route renders with one `<h1>`, no skipped heading levels (`h1 -> h2 -> h3`), and updates `document.title`**, **dialogs move focus inside, mark `#main` `inert`, trap `Tab`/`Shift+Tab` at boundaries, close on `Escape`, and restore focus to the trigger**, **off-canvas navigation is `inert` / non-focusable when closed and closes on scrim click or `Escape`**, **tabs implement WAI-ARIA APG roving `tabindex` (`ArrowRight`, `ArrowLeft`, `Home`, `End`)**, **theme setting and header toggle update `html[data-theme]` and `<meta name="theme-color">`**, **the test runner supports distraction-free focus mode, keyboard hint bar, `aria-keyshortcuts`, Hindi `lang="hi"` tagging, and provenance chips**, the offline notice toggles, and the **stylesheet regression** suite below holds. |
 | `tests/tools.test.js` | 3 | The pipeline bridge: `tools/build-bank.mjs` expands intake shorthand correctly, produces a bank that passes the app's own validator with no unexpected warnings, writes a file that imports cleanly into a real database, never invents an answer key or scoring rules, and refuses an intake file with no questions. |
 
 `tests/helpers.mjs` is the shared harness: it installs an in-memory IndexedDB
@@ -62,17 +63,20 @@ app's reset. `#toastStack` is styled through an *id* selector, which does beat
 that rule, so the toast-stack assertion is the one that reproduces the real
 failure inside jsdom (in a real browser both were broken).
 
-## Static checks (`npm run check`)
+## Static checks (`npm run check` / `npm run audit:ui`)
 
-585 cheap checks that catch what unit tests cannot see:
+729 cheap checks that catch what unit tests cannot see (see [`docs/UI.md`](UI.md) for the full design-system and guard documentation):
 
 * every relative import and dynamic import resolves to a real file;
 * no module imports from a URL (no CDN dependency);
 * each file in `js/ui/views/` satisfies the router contract (`title`, `render`);
 * every route registered in `js/app.js` has a view file, every navigation entry has a route, and the ten required destinations plus the custom-test builder are present;
 * every `getElementById` in `js/app.js` matches an id in `index.html`;
-* `sw.js`, the manifest, the stylesheet and the icons exist; the manifest has 192/512 and maskable icons; the service worker precaches the shell and every view module;
+* `sw.js`, the manifest, the stylesheet, `docs/UI.md`, and the icons exist; the manifest has 192/512 and maskable icons; the service worker precaches the shell and every view module;
 * the shell cannot cover itself: the `[hidden] { display: none !important; }` reset exists **as the first rule** of `css/app.css`, `#modalRoot` ships with `hidden` in `index.html`, the toast layer sets `pointer-events: none` and its toasts get `pointer-events: auto` back;
+* **theme & pre-paint bootstrap**: `index.html` applies `data-theme` from saved settings before first paint, declares `<meta name="color-scheme" content="light dark">`, and exposes `#themeColorMeta`; `css/app.css` defines `:root, :root[data-theme="light"]`, `:root[data-theme="dark"]`, `@media (forced-colors: active)`, `@media (prefers-reduced-motion: reduce)`, and `@media print`;
+* **WCAG 2.1 contrast audit**: parses Light and Dark hex token maps from `css/app.css` and computes relative luminance contrast ratios across **40 text/surface token pairs** (requiring `≥ 4.5:1`) and **9 non-text border/focus pairs** (requiring `≥ 3.0:1`) in each theme (98 contrast assertions in total);
+* **token-only colours & zero inline styles**: strips root token blocks and verifies zero `#hex`, `rgb()`, or `hsl()` colour literals appear elsewhere in `css/app.css`, and verifies zero inline `style="..."` attributes appear in `js/**`;
 * GitHub Pages and subpath hosting: an empty `.nojekyll` exists at the root, no absolute path (`="/…"`, `url(/…)`, scheme- or protocol-relative URLs) appears in `index.html`, `sw.js`, `manifest.webmanifest` or `css/app.css`, every entry in the `sw.js` precache list is `./`-relative, `js/app.js` registers `'sw.js'` relatively, and the service-worker cache `VERSION` constant is present;
 * the data files parse, the demonstration bank declares `is_demonstration: true` and says in its provenance that it is synthetic and not genuine;
 * no question content, localhost URL or external `fetch` appears in the app's JavaScript.

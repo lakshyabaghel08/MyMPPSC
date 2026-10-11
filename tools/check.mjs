@@ -118,7 +118,7 @@ check(html.includes('css/app.css'), 'index.html must link css/app.css');
 
 /* ------------------------------------------------------------ project files */
 
-for (const file of ['sw.js', 'manifest.webmanifest', 'css/app.css', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/icon-maskable-512.png']) {
+for (const file of ['sw.js', 'manifest.webmanifest', 'css/app.css', 'docs/UI.md', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/icon-maskable-512.png']) {
   check(await exists(file), `${file} is missing`);
 }
 
