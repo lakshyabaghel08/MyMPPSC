@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>MyMPPSC — MPPSC Prelims Preparation</title>
+    <meta name="description" content="Local-first MPPSC State Service Preliminary Examination preparation app: previous-year paper simulations, topic practice, mistake book, adaptive revision, analytics and syllabus planning. Works offline." />
+    <meta name="theme-color" content="#1f2a44" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" href="icons/icon-192.png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="icons/icon-192.png" />
+    <link rel="stylesheet" href="css/app.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="app-header">
+      <button class="btn btn-icon nav-toggle" id="navToggle" type="button" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">MP</span>
+        <div class="brand-text">
+          <strong>MyMPPSC</strong>
+          <span class="brand-sub">Prelims preparation · local-first</span>
+        </div>
+      </div>
+      <div class="header-actions">
+        <span class="offline-pill" id="offlinePill" hidden>Offline — all features still work</span>
+        <span class="bank-pill" id="bankPill" title="Questions stored locally">Bank: —</span>
+        <button class="btn btn-quiet" id="quickStartBtn" type="button">Quick practice</button>
+        <button class="btn btn-quiet" id="helpBtn" type="button" aria-label="Help and limitations">?</button>
+      </div>
+    </header>
+
+    <div class="app-body">
+      <nav class="app-nav" id="appNav" aria-label="Main navigation">
+        <ul id="navList"></ul>
+        <div class="nav-footer">
+          <div class="nav-foot-item"><span class="muted">Data</span><strong id="navDataSummary">—</strong></div>
+          <button class="btn btn-quiet btn-block" id="navBackupBtn" type="button">Backup now</button>
+        </div>
+      </nav>
+
+      <main class="app-main" id="main" tabindex="-1">
+        <div class="view" id="view" aria-live="polite">
+          <div class="loading-block">Loading local data…</div>
+        </div>
+      </main>
+    </div>
+
+    <div class="toast-stack" id="toastStack" aria-live="polite" aria-atomic="false"></div>
+    <div class="modal-root" id="modalRoot" hidden></div>
+
+    <noscript>
+      <p class="noscript">MyMPPSC needs JavaScript: all study features run locally in your browser.</p>
+    </noscript>
+
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>

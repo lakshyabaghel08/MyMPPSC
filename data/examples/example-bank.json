@@ -1,0 +1,132 @@
+{
+  "schema_version": "1.0.0",
+  "bank_id": "EXAMPLE-BANK-001",
+  "bank_name": "MyMPPSC schema example (synthetic structure example, not a PYQ set)",
+  "generated_at": "2026-01-15T09:00:00Z",
+  "generator": { "name": "hand-written example", "version": "1.0.0", "notes": "Shows the expected structure only." },
+  "is_demonstration": true,
+  "provenance": { "kind": "synthetic_demo", "verified": false, "notes": "Structure example. Never present these as previous-year questions.", "sources": [] },
+  "default_language": "en",
+  "papers": [
+    {
+      "paper_id": "EXAMPLE-P1",
+      "exam": "Structure Example Examination",
+      "year": 2025,
+      "paper_name": "Example Paper",
+      "set_code": "A",
+      "language": "bilingual",
+      "original_question_count": 2,
+      "duration_minutes": 4,
+      "total_marks": 4,
+      "scoring": {
+        "rules_known": true,
+        "marks_per_correct": 2,
+        "negative_marks_per_incorrect": 0,
+        "negative_marking_enabled": false,
+        "marks_for_unanswered": 0,
+        "rules_source": "Example rules for documentation only",
+        "notes": null
+      },
+      "question_order": ["EXAMPLE-001", "EXAMPLE-002"],
+      "answer_key": { "source": "Example key", "status": "final", "published_at": null, "notes": null },
+      "source_files": [{ "path": "synthetic://example-paper", "pages": null, "sha256": null }],
+      "import_validation": { "status": "valid", "checked_at": null, "notes": null },
+      "is_demonstration": true,
+      "metadata": {}
+    }
+  ],
+  "questions": [
+    {
+      "id": "EXAMPLE-001",
+      "exam": "Structure Example Examination",
+      "year": 2025,
+      "paper_id": "EXAMPLE-P1",
+      "set_code": "A",
+      "question_number": 1,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "Placeholder English question text for the structure example?",
+          "options": [
+            { "key": "A", "text": "First option" },
+            { "key": "B", "text": "Second option" },
+            { "key": "C", "text": "Third option" },
+            { "key": "D", "text": "Fourth option" }
+          ]
+        },
+        "hi": {
+          "question_text": "संरचना उदाहरण हेतु हिंदी में प्रश्न का पाठ?",
+          "options": [
+            { "key": "A", "text": "पहला विकल्प" },
+            { "key": "B", "text": "दूसरा विकल्प" },
+            { "key": "C", "text": "तीसरा विकल्प" },
+            { "key": "D", "text": "चौथा विकल्प" }
+          ]
+        }
+      },
+      "subject": "Example Subject",
+      "topic": "Example Topic",
+      "subtopic": "Example Subtopic",
+      "classification_confidence": 0.9,
+      "classification_source": "example",
+      "supplied_answer": { "answer": ["B"], "status": "final", "source": "Example key", "notes": null },
+      "answer_key_status": "final",
+      "verified_answer": null,
+      "verification_evidence": [],
+      "dispute": null,
+      "explanation": {
+        "language": "en",
+        "status": "reviewed",
+        "correct_reasoning": "Example reasoning text supplied by the external pipeline.",
+        "option_explanations": [{ "key": "B", "text": "Example option explanation.", "is_correct": true }],
+        "key_concepts": ["example concept"],
+        "revision_takeaways": ["example takeaway"],
+        "sources": [{ "title": "Example source", "citation": "Example citation", "url": null }],
+        "generated_by": "external-pipeline",
+        "reviewed_by": "external-reviewer",
+        "generated_at": "2026-01-15T09:01:00Z",
+        "reviewed_at": "2026-01-15T09:02:00Z"
+      },
+      "explanation_status": "reviewed",
+      "source_reference": { "file": "synthetic://example-paper", "page": 1, "question_location": "Q1", "note": null },
+      "validation_status": "valid",
+      "is_demonstration": true,
+      "metadata": {}
+    },
+    {
+      "id": "EXAMPLE-002",
+      "exam": "Structure Example Examination",
+      "year": 2025,
+      "paper_id": "EXAMPLE-P1",
+      "set_code": "A",
+      "question_number": 2,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "Second placeholder question showing an English-only variant?",
+          "options": [
+            { "key": "A", "text": "First option" },
+            { "key": "B", "text": "Second option" }
+          ]
+        }
+      },
+      "subject": null,
+      "topic": null,
+      "subtopic": null,
+      "classification_confidence": null,
+      "classification_source": null,
+      "supplied_answer": { "answer": null, "status": "missing", "source": null, "notes": "Answer key entry absent in the source." },
+      "answer_key_status": "missing",
+      "verified_answer": null,
+      "verification_evidence": [],
+      "dispute": null,
+      "explanation": null,
+      "explanation_status": "missing",
+      "source_reference": { "file": "synthetic://example-paper", "page": 2, "question_location": "Q2", "note": null },
+      "validation_status": "valid_with_warnings",
+      "validation_notes": ["Unclassified question and missing answer key entry; both are allowed and shown explicitly in the app."],
+      "is_demonstration": true,
+      "metadata": {}
+    }
+  ]
+}

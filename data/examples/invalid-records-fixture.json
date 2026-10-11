@@ -1,0 +1,157 @@
+{
+  "schema_version": "1.0.0",
+  "bank_id": "FIXTURE-INVALID-RECORDS",
+  "bank_name": "Import validation fixture — contains deliberately broken records",
+  "is_demonstration": true,
+  "provenance": { "kind": "synthetic_demo", "verified": false, "notes": "Test fixture for import validation. Not a PYQ set.", "sources": [] },
+  "papers": [
+    {
+      "paper_id": "FIX-P1",
+      "exam": "Fixture Examination",
+      "year": 2025,
+      "original_question_count": 4,
+      "duration_minutes": 10,
+      "total_marks": 8,
+      "scoring": { "rules_known": true, "marks_per_correct": 2, "negative_marks_per_incorrect": 0.5, "negative_marking_enabled": true, "marks_for_unanswered": 0, "rules_source": "fixture", "notes": null },
+      "question_order": ["FIX-001", "FIX-002", "FIX-003", "FIX-004"],
+      "answer_key": { "source": "Fixture key", "status": "provisional", "published_at": null, "notes": null },
+      "source_files": [],
+      "import_validation": { "status": "valid_with_warnings", "checked_at": null, "notes": null },
+      "is_demonstration": true,
+      "metadata": {}
+    }
+  ],
+  "questions": [
+    {
+      "id": "FIX-001",
+      "exam": "Fixture Examination",
+      "year": 2025,
+      "paper_id": "FIX-P1",
+      "set_code": "A",
+      "question_number": 1,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "Valid fixture question?",
+          "options": [
+            { "key": "A", "text": "One" },
+            { "key": "B", "text": "Two" }
+          ]
+        }
+      },
+      "subject": "Fixture",
+      "topic": "Fixture topic",
+      "subtopic": null,
+      "supplied_answer": { "answer": ["A"], "status": "provisional", "source": "Fixture key", "notes": null },
+      "answer_key_status": "provisional",
+      "is_demonstration": true,
+      "metadata": {}
+    },
+    {
+      "id": "FIX-001",
+      "exam": "Fixture Examination",
+      "year": 2025,
+      "paper_id": "FIX-P1",
+      "set_code": "A",
+      "question_number": 2,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "Duplicate identifier fixture (same id as FIX-001)?",
+          "options": [
+            { "key": "A", "text": "One" },
+            { "key": "B", "text": "Two" }
+          ]
+        }
+      },
+      "supplied_answer": { "answer": ["B"], "status": "provisional", "source": "Fixture key", "notes": null },
+      "is_demonstration": true,
+      "metadata": {}
+    },
+    {
+      "id": "FIX-003",
+      "exam": "Fixture Examination",
+      "year": 2025,
+      "paper_id": "FIX-P1",
+      "set_code": "A",
+      "question_number": 3,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "Question whose supplied answer points at an option key that does not exist?",
+          "options": [
+            { "key": "A", "text": "One" },
+            { "key": "B", "text": "Two" }
+          ]
+        }
+      },
+      "subject": "Fixture",
+      "topic": "Fixture topic",
+      "supplied_answer": { "answer": ["Z"], "status": "final", "source": "Fixture key", "notes": null },
+      "answer_key_status": "final",
+      "is_demonstration": true,
+      "metadata": {}
+    },
+    {
+      "id": "FIX-004",
+      "exam": "Fixture Examination",
+      "year": 2025,
+      "paper_id": "FIX-P1",
+      "set_code": "A",
+      "question_number": 4,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "Question with only one option (invalid) and no answer key?",
+          "options": [{ "key": "A", "text": "Only option" }]
+        }
+      },
+      "subject": null,
+      "topic": null,
+      "supplied_answer": null,
+      "answer_key_status": "missing",
+      "is_demonstration": true,
+      "metadata": {}
+    },
+    {
+      "id": "FIX-005",
+      "exam": "Fixture Examination",
+      "year": 2025,
+      "paper_id": "FIX-MISSING-PAPER",
+      "question_number": 1,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "Question that references a paper id absent from the papers array?",
+          "options": [
+            { "key": "A", "text": "One" },
+            { "key": "B", "text": "Two" }
+          ]
+        }
+      },
+      "subject": "Fixture",
+      "supplied_answer": { "answer": ["A"], "status": "unknown", "source": null, "notes": null },
+      "is_demonstration": true,
+      "metadata": {}
+    },
+    {
+      "id": "FIX-006",
+      "exam": "Fixture Examination",
+      "year": 2025,
+      "paper_id": "FIX-P1",
+      "question_number": 5,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": null,
+          "options": [
+            { "key": "A", "text": "One" },
+            { "key": "B", "text": "Two" }
+          ]
+        }
+      },
+      "is_demonstration": true,
+      "metadata": {}
+    }
+  ]
+}

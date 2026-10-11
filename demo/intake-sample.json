@@ -1,0 +1,175 @@
+{
+  "intake_version": "1.0.0",
+  "bank_id": "sample-intake-2024",
+  "bank_name": "Sample intake build (illustrative filler content)",
+  "exam_default": "Illustrative practice paper (not an official examination)",
+  "is_demonstration": true,
+  "default_language": "en",
+  "provenance": {
+    "kind": "synthetic_demo",
+    "verified": false,
+    "notes": "Filler content shipped only to demonstrate tools/build-bank.mjs. These are NOT real examination questions and the 'answer' entries are illustrative. Replace this file with your own intake data.",
+    "sources": []
+  },
+  "papers": [
+    {
+      "paper_id": "SAMPLE-2024-P1",
+      "year": 2024,
+      "paper_name": "Illustrative Paper 1",
+      "paper_code": "GS-I",
+      "set_code": "A",
+      "language": "bilingual",
+      "original_question_count": 3,
+      "duration_minutes": 10,
+      "total_marks": 6,
+      "scoring": {
+        "rules_known": true,
+        "marks_per_correct": 2,
+        "negative_marks_per_incorrect": 0.66,
+        "negative_marking_enabled": true,
+        "marks_for_unanswered": 0,
+        "rules_source": "Illustrative rule set used by the sample intake file."
+      },
+      "answer_key": {
+        "source": "Illustrative key (sample intake file)",
+        "status": "final",
+        "published_at": "2026-01-01",
+        "notes": "Not an official answer key."
+      },
+      "source_files": [{ "path": "synthetic://sample-intake-p1", "pages": null, "sha256": null }]
+    },
+    {
+      "paper_id": "SAMPLE-2024-P2",
+      "year": 2024,
+      "paper_name": "Illustrative Paper 2",
+      "paper_code": "GS-II",
+      "set_code": "A",
+      "language": "en",
+      "original_question_count": 2,
+      "duration_minutes": 6,
+      "total_marks": 4
+    }
+  ],
+  "questions": [
+    {
+      "id": "SAMPLE-2024-P1-001",
+      "paper_id": "SAMPLE-2024-P1",
+      "question_number": 1,
+      "question_type": "single_correct",
+      "en": {
+        "question_text": "Illustrative filler question one: which option is marked as the illustrative answer?",
+        "options": [
+          { "key": "A", "text": "Filler option A" },
+          { "key": "B", "text": "Filler option B" },
+          { "key": "C", "text": "Filler option C" },
+          { "key": "D", "text": "Filler option D" }
+        ]
+      },
+      "hi": {
+        "question_text": "उदाहरणात्मक प्रश्न एक: किस विकल्प को उदाहरणात्मक उत्तर के रूप में चिह्नित किया गया है?",
+        "options": [
+          { "key": "A", "text": "उदाहरण विकल्प A" },
+          { "key": "B", "text": "उदाहरण विकल्प B" },
+          { "key": "C", "text": "उदाहरण विकल्प C" },
+          { "key": "D", "text": "उदाहरण विकल्प D" }
+        ]
+      },
+      "subject": "Illustration",
+      "topic": "Sample topic",
+      "subtopic": "Sample subtopic",
+      "classification_confidence": 1,
+      "classification_source": "sample-intake",
+      "answer": ["B"],
+      "answer_status": "final",
+      "answer_source": "Illustrative key (sample intake file)",
+      "explanation": {
+        "status": "reviewed",
+        "correct_reasoning": "This is filler text: the useful part of this file is the shape of the records, not their content.",
+        "option_explanations": [
+          { "key": "B", "text": "Marked as the illustrative answer.", "is_correct": true }
+        ]
+      },
+      "source_reference": { "file": "synthetic://sample-intake-p1", "page": 1, "url": null, "retrieved_at": "2026-01-01T00:00:00Z" },
+      "provenance": { "kind": "synthetic_demo", "verified": false, "notes": "Illustrative record." }
+    },
+    {
+      "id": "SAMPLE-2024-P1-002",
+      "paper_id": "SAMPLE-2024-P1",
+      "question_number": 2,
+      "question_type": "multiple_correct",
+      "en": {
+        "question_text": "Illustrative filler question two with two marked options.",
+        "options": [
+          { "key": "A", "text": "First filler option" },
+          { "key": "B", "text": "Second filler option" },
+          { "key": "C", "text": "Third filler option" }
+        ]
+      },
+      "subject": "Illustration",
+      "topic": "Sample topic",
+      "classification_confidence": 0.8,
+      "classification_source": "sample-intake",
+      "answer": ["A", "C"],
+      "answer_status": "provisional",
+      "answer_source": "Illustrative key (sample intake file)",
+      "explanation_status": "unreviewed",
+      "explanation": "Filler explanation that has not been reviewed; the app will label it as unreviewed."
+    },
+    {
+      "id": "SAMPLE-2024-P1-003",
+      "paper_id": "SAMPLE-2024-P1",
+      "question_number": 3,
+      "question_type": "assertion_reason",
+      "en": {
+        "question_text": "Illustrative filler question three.",
+        "passage": "Assertion (A): this file is filler. Reason (R): the sample exists to show the intake format.",
+        "options": [
+          { "key": "A", "text": "Both are true, and R explains A" },
+          { "key": "B", "text": "Both are true, but R does not explain A" },
+          { "key": "C", "text": "A is true, R is false" },
+          { "key": "D", "text": "A is false, R is true" }
+        ]
+      },
+      "subject": "Illustration",
+      "topic": "Sample topic",
+      "answer": ["A"],
+      "answer_status": "final",
+      "answer_source": "Illustrative key (sample intake file)"
+    },
+    {
+      "id": "SAMPLE-2024-P2-001",
+      "paper_id": "SAMPLE-2024-P2",
+      "question_number": 1,
+      "question_type": "single_correct",
+      "en": {
+        "question_text": "Illustrative filler question four, on a paper with no stated scoring rules.",
+        "options": [
+          { "key": "A", "text": "Filler option A" },
+          { "key": "B", "text": "Filler option B" },
+          { "key": "C", "text": "Filler option C" }
+        ]
+      },
+      "subject": "Illustration",
+      "topic": "Second sample topic",
+      "answer": ["C"],
+      "answer_status": "final",
+      "answer_source": "Illustrative key (sample intake file)"
+    },
+    {
+      "id": "SAMPLE-2024-P2-002",
+      "paper_id": "SAMPLE-2024-P2",
+      "question_number": 2,
+      "question_type": "single_correct",
+      "en": {
+        "question_text": "Illustrative filler question five, with no answer recorded in the intake file.",
+        "options": [
+          { "key": "A", "text": "Filler option A" },
+          { "key": "B", "text": "Filler option B" }
+        ]
+      },
+      "subject": "Illustration",
+      "topic": "Second sample topic",
+      "answer_status": "missing"
+    }
+  ]
+}

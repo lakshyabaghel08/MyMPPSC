@@ -1,0 +1,2942 @@
+{
+  "schema_version": "1.0.0",
+  "bank_id": "DEMO-SYNTHETIC-001",
+  "bank_name": "MyMPPSC Demonstration Bank (synthetic, not a genuine PYQ set)",
+  "generated_at": "2026-01-15T09:00:00Z",
+  "generator": {
+    "name": "MyMPPSC demonstration fixture",
+    "version": "1.0.0",
+    "notes": "Hand-written demonstration data used to exercise import validation, bilingual pairing, answer-key integrity, scoring and revision flows. It is NOT an MPPSC previous-year paper."
+  },
+  "is_demonstration": true,
+  "provenance": {
+    "kind": "synthetic_demo",
+    "verified": false,
+    "notes": "Every record in this file is synthetic demonstration content written for this app. It is NOT genuine MPPSC previous-year content and must never be presented as such. The facts used are ordinary general-knowledge facts so that the app has testable content.",
+    "sources": []
+  },
+  "default_language": "en",
+  "papers": [
+    {
+      "paper_id": "DEMO-P1",
+      "exam": "MPPSC State Service Preliminary Examination (DEMONSTRATION)",
+      "year": 2024,
+      "paper_name": "General Studies - Demonstration Paper A",
+      "paper_code": "GS-I",
+      "set_code": "A",
+      "language": "bilingual",
+      "original_question_count": 18,
+      "duration_minutes": 36,
+      "total_marks": 36,
+      "scoring": {
+        "rules_known": true,
+        "marks_per_correct": 2,
+        "negative_marks_per_incorrect": 0.6666666667,
+        "negative_marking_enabled": true,
+        "marks_for_unanswered": 0,
+        "rules_source": "Synthetic demonstration rule set (not an MPPSC rule). 2 marks per correct answer, 1/3 negative for incorrect.",
+        "notes": "Chosen only to exercise negative-marking behaviour."
+      },
+      "question_order": [
+        "DEMO-P1-001",
+        "DEMO-P1-002",
+        "DEMO-P1-003",
+        "DEMO-P1-004",
+        "DEMO-P1-005",
+        "DEMO-P1-006",
+        "DEMO-P1-007",
+        "DEMO-P1-008",
+        "DEMO-P1-009",
+        "DEMO-P1-010",
+        "DEMO-P1-011",
+        "DEMO-P1-012",
+        "DEMO-P1-013",
+        "DEMO-P1-014",
+        "DEMO-P1-015",
+        "DEMO-P1-016",
+        "DEMO-P1-017",
+        "DEMO-P1-018"
+      ],
+      "answer_key": {
+        "source": "Synthetic demonstration key",
+        "status": "final",
+        "published_at": "2026-01-15",
+        "notes": "Demonstration key. Not an official MPPSC answer key."
+      },
+      "source_files": [
+        {
+          "path": "synthetic://demo-paper-a",
+          "pages": null,
+          "sha256": null
+        }
+      ],
+      "import_validation": {
+        "status": "valid",
+        "checked_at": "2026-01-15T09:00:00Z",
+        "notes": "Fixtures validated by tests/fixtures-check."
+      },
+      "is_demonstration": true,
+      "metadata": {
+        "demo": true,
+        "note": "Synthetic demonstration paper."
+      }
+    },
+    {
+      "paper_id": "DEMO-P2",
+      "exam": "MPPSC State Service Preliminary Examination (DEMONSTRATION)",
+      "year": 2023,
+      "paper_name": "General Studies - Demonstration Paper B (unknown rules)",
+      "paper_code": "GS-I",
+      "set_code": "B",
+      "language": "bilingual",
+      "original_question_count": 10,
+      "duration_minutes": null,
+      "total_marks": null,
+      "scoring": {
+        "rules_known": false,
+        "marks_per_correct": null,
+        "negative_marks_per_incorrect": null,
+        "negative_marking_enabled": null,
+        "marks_for_unanswered": null,
+        "rules_source": null,
+        "notes": "Used to test that the app refuses to score a simulation until the user configures the rules."
+      },
+      "question_order": [
+        "DEMO-P2-001",
+        "DEMO-P2-002",
+        "DEMO-P2-003",
+        "DEMO-P2-004",
+        "DEMO-P2-005",
+        "DEMO-P2-006",
+        "DEMO-P2-007",
+        "DEMO-P2-008",
+        "DEMO-P2-009",
+        "DEMO-P2-010"
+      ],
+      "answer_key": {
+        "source": "Synthetic demonstration key (mixed status)",
+        "status": "provisional",
+        "published_at": null,
+        "notes": "Contains deliberately missing and disputed key entries for validation testing."
+      },
+      "source_files": [
+        {
+          "path": "synthetic://demo-paper-b",
+          "pages": null,
+          "sha256": null
+        }
+      ],
+      "import_validation": {
+        "status": "valid_with_warnings",
+        "checked_at": "2026-01-15T09:00:00Z",
+        "notes": "One missing key, one disputed key by design."
+      },
+      "is_demonstration": true,
+      "metadata": {
+        "demo": true,
+        "note": "Synthetic demonstration paper with incomplete key."
+      }
+    },
+    {
+      "paper_id": "DEMO-P3",
+      "exam": "MPPSC State Service Preliminary Examination (DEMONSTRATION)",
+      "year": 2022,
+      "paper_name": "General Studies - Demonstration Paper C (incomplete import)",
+      "paper_code": "GS-I",
+      "set_code": null,
+      "language": "bilingual",
+      "original_question_count": 15,
+      "duration_minutes": 30,
+      "total_marks": 30,
+      "scoring": {
+        "rules_known": true,
+        "marks_per_correct": 2,
+        "negative_marks_per_incorrect": 0,
+        "negative_marking_enabled": false,
+        "marks_for_unanswered": 0,
+        "rules_source": "Synthetic demonstration rule set (no negative marking).",
+        "notes": null
+      },
+      "question_order": [
+        "DEMO-P3-001",
+        "DEMO-P3-002",
+        "DEMO-P3-003",
+        "DEMO-P3-004",
+        "DEMO-P3-005",
+        "DEMO-P3-006"
+      ],
+      "answer_key": {
+        "source": "Synthetic demonstration key",
+        "status": "final",
+        "published_at": "2026-01-15",
+        "notes": "Demonstration key."
+      },
+      "source_files": [
+        {
+          "path": "synthetic://demo-paper-c",
+          "pages": null,
+          "sha256": null
+        }
+      ],
+      "import_validation": {
+        "status": "valid_with_warnings",
+        "checked_at": "2026-01-15T09:00:00Z",
+        "notes": "Declares 15 original questions but only 6 are present; used to test the incomplete-paper warning."
+      },
+      "is_demonstration": true,
+      "metadata": {
+        "demo": true,
+        "note": "Synthetic demonstration paper, intentionally incomplete."
+      }
+    }
+  ],
+  "questions": [
+    {
+      "id": "DEMO-P1-001",
+      "exam": "MPPSC State Service Preliminary Examination (DEMONSTRATION)",
+      "year": 2024,
+      "paper_id": "DEMO-P1",
+      "set_code": "A",
+      "question_number": 1,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "Which river is popularly known as the lifeline of Madhya Pradesh?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Tapti"
+            },
+            {
+              "key": "B",
+              "text": "Narmada"
+            },
+            {
+              "key": "C",
+              "text": "Chambal"
+            },
+            {
+              "key": "D",
+              "text": "Betwa"
+            }
+          ]
+        },
+        "hi": {
+          "question_text": "मध्य प्रदेश की जीवन-रेखा कही जाने वाली नदी कौन-सी है?",
+          "options": [
+            {
+              "key": "A",
+              "text": "ताप्ती"
+            },
+            {
+              "key": "B",
+              "text": "नर्मदा"
+            },
+            {
+              "key": "C",
+              "text": "चंबल"
+            },
+            {
+              "key": "D",
+              "text": "बेतवा"
+            }
+          ]
+        }
+      },
+      "subject": "Geography",
+      "topic": "Rivers of Madhya Pradesh",
+      "subtopic": "Narmada basin",
+      "classification_confidence": 0.96,
+      "classification_source": "pipeline-ai",
+      "supplied_answer": {
+        "answer": [
+          "B"
+        ],
+        "status": "final",
+        "source": "Synthetic demonstration key",
+        "notes": null
+      },
+      "answer_key_status": "final",
+      "verified_answer": null,
+      "verification_evidence": [],
+      "dispute": {
+        "is_disputed": false,
+        "status": null,
+        "reason": null,
+        "raised_by": null
+      },
+      "explanation": {
+        "language": "en",
+        "status": "reviewed",
+        "correct_reasoning": "The Narmada rises from the Amarkantak plateau and drains the largest part of Madhya Pradesh, which is why it is described as the state's lifeline.",
+        "option_explanations": [
+          {
+            "key": "A",
+            "text": "The Tapti flows mainly through the southern districts and does not drain the central plateau.",
+            "is_correct": false
+          },
+          {
+            "key": "B",
+            "text": "Correct. The Narmada is the principal west-flowing river of Madhya Pradesh.",
+            "is_correct": true
+          },
+          {
+            "key": "C",
+            "text": "The Chambal forms part of the northern boundary and drains only the northern districts.",
+            "is_correct": false
+          },
+          {
+            "key": "D",
+            "text": "The Betwa is a Yamuna tributary flowing through the north-eastern districts.",
+            "is_correct": false
+          }
+        ],
+        "key_concepts": [
+          "Narmada rift valley",
+          "Amarkantak",
+          "west-flowing rivers of India"
+        ],
+        "revision_takeaways": [
+          "Narmada is west-flowing; Chambal and Betwa belong to the Ganga basin.",
+          "Narmada is the longest west-flowing river of peninsular India."
+        ],
+        "sources": [
+          {
+            "title": "General geography reference",
+            "citation": "Standard Indian geography text",
+            "url": null
+          }
+        ],
+        "generated_by": "pipeline-demo",
+        "reviewed_by": "reviewer-demo",
+        "generated_at": "2026-01-15T09:10:00Z",
+        "reviewed_at": "2026-01-15T11:00:00Z"
+      },
+      "explanation_status": "reviewed",
+      "source_reference": {
+        "file": "synthetic://demo-paper-a",
+        "page": null,
+        "question_location": "Q1",
+        "note": "Synthetic demonstration content; no source document exists."
+      },
+      "validation_status": "valid",
+      "is_demonstration": true,
+      "metadata": {
+        "demo": true
+      }
+    },
+    {
+      "id": "DEMO-P1-002",
+      "exam": "MPPSC State Service Preliminary Examination (DEMONSTRATION)",
+      "year": 2024,
+      "paper_id": "DEMO-P1",
+      "set_code": "A",
+      "question_number": 2,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "Dhupgarh, the highest peak of Madhya Pradesh, is located at which place?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Amarkantak"
+            },
+            {
+              "key": "B",
+              "text": "Pachmarhi"
+            },
+            {
+              "key": "C",
+              "text": "Tamia"
+            },
+            {
+              "key": "D",
+              "text": "Chitrakoot"
+            }
+          ]
+        },
+        "hi": {
+          "question_text": "मध्य प्रदेश की सर्वोच्च चोटी धूपगढ़ किस स्थान पर स्थित है?",
+          "options": [
+            {
+              "key": "A",
+              "text": "अमरकंटक"
+            },
+            {
+              "key": "B",
+              "text": "पचमढ़ी"
+            },
+            {
+              "key": "C",
+              "text": "तमिया"
+            },
+            {
+              "key": "D",
+              "text": "चित्रकूट"
+            }
+          ]
+        }
+      },
+      "subject": "Geography",
+      "topic": "Physiography of Madhya Pradesh",
+      "subtopic": "Satpura range",
+      "classification_confidence": 0.93,
+      "classification_source": "pipeline-ai",
+      "supplied_answer": {
+        "answer": [
+          "B"
+        ],
+        "status": "final",
+        "source": "Synthetic demonstration key",
+        "notes": null
+      },
+      "answer_key_status": "final",
+      "verified_answer": null,
+      "verification_evidence": [],
+      "dispute": {
+        "is_disputed": false,
+        "status": null,
+        "reason": null,
+        "raised_by": null
+      },
+      "explanation": {
+        "language": "en",
+        "status": "approved",
+        "correct_reasoning": "Dhupgarh (about 1,352 m) stands in the Satpura range at Pachmarhi and is the highest point in Madhya Pradesh.",
+        "option_explanations": [],
+        "key_concepts": [
+          "Satpura range",
+          "Pachmarhi biosphere reserve"
+        ],
+        "revision_takeaways": [
+          "Pachmarhi is in the Satpura range and is also a biosphere reserve."
+        ],
+        "sources": [],
+        "generated_by": "pipeline-demo",
+        "reviewed_by": "reviewer-demo",
+        "generated_at": "2026-01-15T09:12:00Z",
+        "reviewed_at": "2026-01-15T12:00:00Z"
+      },
+      "explanation_status": "approved",
+      "source_reference": {
+        "file": "synthetic://demo-paper-a",
+        "page": null,
+        "question_location": "Q2",
+        "note": "Synthetic demonstration content."
+      },
+      "validation_status": "valid",
+      "is_demonstration": true,
+      "metadata": {
+        "demo": true
+      }
+    },
+    {
+      "id": "DEMO-P1-003",
+      "exam": "MPPSC State Service Preliminary Examination (DEMONSTRATION)",
+      "year": 2024,
+      "paper_id": "DEMO-P1",
+      "set_code": "A",
+      "question_number": 3,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "Which animal is the state animal of Madhya Pradesh?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Tiger"
+            },
+            {
+              "key": "B",
+              "text": "Hard-ground barasingha"
+            },
+            {
+              "key": "C",
+              "text": "Leopard"
+            },
+            {
+              "key": "D",
+              "text": "Chital"
+            }
+          ]
+        },
+        "hi": {
+          "question_text": "मध्य प्रदेश का राज्य पशु कौन-सा है?",
+          "options": [
+            {
+              "key": "A",
+              "text": "बाघ"
+            },
+            {
+              "key": "B",
+              "text": "हार्ड-ग्राउंड बारहसिंगा"
+            },
+            {
+              "key": "C",
+              "text": "तेंदुआ"
+            },
+            {
+              "key": "D",
+              "text": "चीतल"
+            }
+          ]
+        }
+      },
+      "subject": "Environment",
+      "topic": "Wildlife of Madhya Pradesh",
+      "subtopic": "State symbols",
+      "classification_confidence": 0.9,
+      "classification_source": "pipeline-ai",
+      "supplied_answer": {
+        "answer": [
+          "B"
+        ],
+        "status": "final",
+        "source": "Synthetic demonstration key",
+        "notes": null
+      },
+      "answer_key_status": "final",
+      "verified_answer": null,
+      "verification_evidence": [],
+      "dispute": null,
+      "explanation": {
+        "language": "en",
+        "status": "reviewed",
+        "correct_reasoning": "The hard-ground barasingha is the state animal of Madhya Pradesh; the tiger is the national animal.",
+        "option_explanations": [],
+        "key_concepts": [
+          "state symbols",
+          "Kanha National Park"
+        ],
+        "revision_takeaways": [
+          "Do not confuse the state animal (barasingha) with the national animal (tiger)."
+        ],
+        "sources": [],
+        "generated_by": "pipeline-demo",
+        "reviewed_by": "reviewer-demo",
+        "generated_at": "2026-01-15T09:14:00Z",
+        "reviewed_at": "2026-01-15T12:05:00Z"
+      },
+      "explanation_status": "reviewed",
+      "source_reference": {
+        "file": "synthetic://demo-paper-a",
+        "page": null,
+        "question_location": "Q3",
+        "note": "Synthetic demonstration content."
+      },
+      "validation_status": "valid",
+      "is_demonstration": true,
+      "metadata": {
+        "demo": true
+      }
+    },
+    {
+      "id": "DEMO-P1-004",
+      "exam": "MPPSC State Service Preliminary Examination (DEMONSTRATION)",
+      "year": 2024,
+      "paper_id": "DEMO-P1",
+      "set_code": "A",
+      "question_number": 4,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "Which bird is the state bird of Madhya Pradesh?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Indian paradise flycatcher (dudhraj)"
+            },
+            {
+              "key": "B",
+              "text": "Indian peafowl"
+            },
+            {
+              "key": "C",
+              "text": "Sarus crane"
+            },
+            {
+              "key": "D",
+              "text": "Indian roller"
+            }
+          ]
+        }
+      },
+      "subject": "Environment",
+      "topic": "Wildlife of Madhya Pradesh",
+      "subtopic": "State symbols",
+      "classification_confidence": 0.88,
+      "classification_source": "pipeline-ai",
+      "supplied_answer": {
+        "answer": [
+          "A"
+        ],
+        "status": "final",
+        "source": "Synthetic demonstration key",
+        "notes": null
+      },
+      "answer_key_status": "final",
+      "verified_answer": null,
+      "verification_evidence": [],
+      "dispute": null,
+      "explanation": null,
+      "explanation_status": "missing",
+      "source_reference": {
+        "file": "synthetic://demo-paper-a",
+        "page": null,
+        "question_location": "Q4",
+        "note": "Synthetic demonstration content; English-only variant."
+      },
+      "validation_status": "valid",
+      "is_demonstration": true,
+      "metadata": {
+        "demo": true
+      }
+    },
+    {
+      "id": "DEMO-P1-005",
+      "exam": "MPPSC State Service Preliminary Examination (DEMONSTRATION)",
+      "year": 2024,
+      "paper_id": "DEMO-P1",
+      "set_code": "A",
+      "question_number": 5,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "In which year was the state of Chhattisgarh carved out of Madhya Pradesh?",
+          "options": [
+            {
+              "key": "A",
+              "text": "1998"
+            },
+            {
+              "key": "B",
+              "text": "2000"
+            },
+            {
+              "key": "C",
+              "text": "2001"
+            },
+            {
+              "key": "D",
+              "text": "2003"
+            }
+          ]
+        },
+        "hi": {
+          "question_text": "मध्य प्रदेश से छत्तीसगढ़ राज्य किस वर्ष अलग किया गया?",
+          "options": [
+            {
+              "key": "A",
+              "text": "1998"
+            },
+            {
+              "key": "B",
+              "text": "2000"
+            },
+            {
+              "key": "C",
+              "text": "2001"
+            },
+            {
+              "key": "D",
+              "text": "2003"
+            }
+          ]
+        }
+      },
+      "subject": "Madhya Pradesh Special",
+      "topic": "Formation of Madhya Pradesh",
+      "subtopic": "State reorganisation",
+      "classification_confidence": 0.95,
+      "classification_source": "pipeline-ai",
+      "supplied_answer": {
+        "answer": [
+          "B"
+        ],
+        "status": "final",
+        "source": "Synthetic demonstration key",
+        "notes": null
+      },
+      "answer_key_status": "final",
+      "verified_answer": null,
+      "verification_evidence": [],
+      "dispute": null,
+      "explanation": {
+        "language": "en",
+        "status": "generated",
+        "correct_reasoning": "Chhattisgarh was formed on 1 November 2000 by the Madhya Pradesh Reorganisation Act, 2000.",
+        "option_explanations": [],
+        "key_concepts": [
+          "Madhya Pradesh Reorganisation Act 2000"
+        ],
+        "revision_takeaways": [
+          "Madhya Pradesh itself was reorganised on 1 November 1956."
+        ],
+        "sources": [],
+        "generated_by": "pipeline-demo",
+        "reviewed_by": null,
+        "generated_at": "2026-01-15T09:20:00Z",
+        "reviewed_at": null
+      },
+      "explanation_status": "generated",
+      "source_reference": {
+        "file": "synthetic://demo-paper-a",
+        "page": null,
+        "question_location": "Q5",
+        "note": "Synthetic demonstration content. Explanation not yet reviewed."
+      },
+      "validation_status": "valid_with_warnings",
+      "validation_notes": [
+        "Explanation exists but has not passed human review."
+      ],
+      "is_demonstration": true,
+      "metadata": {
+        "demo": true
+      }
+    },
+    {
+      "id": "DEMO-P1-006",
+      "exam": "MPPSC State Service Preliminary Examination (DEMONSTRATION)",
+      "year": 2024,
+      "paper_id": "DEMO-P1",
+      "set_code": "A",
+      "question_number": 6,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "Who was the first Chief Minister of the reorganised state of Madhya Pradesh in 1956?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Ravishankar Shukla"
+            },
+            {
+              "key": "B",
+              "text": "Bhagwantrao Mandloi"
+            },
+            {
+              "key": "C",
+              "text": "Dwarka Prasad Mishra"
+            },
+            {
+              "key": "D",
+              "text": "Kailash Nath Katju"
+            }
+          ]
+        },
+        "hi": {
+          "question_text": "1956 में पुनर्गठित मध्य प्रदेश के प्रथम मुख्यमंत्री कौन थे?",
+          "options": [
+            {
+              "key": "A",
+              "text": "रविशंकर शुक्ल"
+            },
+            {
+              "key": "B",
+              "text": "भगवंतराव मंडलोई"
+            },
+            {
+              "key": "C",
+              "text": "द्वारका प्रसाद मिश्र"
+            },
+            {
+              "key": "D",
+              "text": "कैलाश नाथ काटजू"
+            }
+          ]
+        }
+      },
+      "subject": "Madhya Pradesh Special",
+      "topic": "Formation of Madhya Pradesh",
+      "subtopic": "Chief Ministers",
+      "classification_confidence": 0.8,
+      "classification_source": "pipeline-ai",
+      "supplied_answer": {
+        "answer": [
+          "A"
+        ],
+        "status": "provisional",
+        "source": "Synthetic demonstration key",
+        "notes": "Marked provisional to exercise key-status handling."
+      },
+      "answer_key_status": "provisional",
+      "verified_answer": null,
+      "verification_evidence": [],
+      "dispute": null,
+      "explanation": null,
+      "explanation_status": "missing",
+      "source_reference": {
+        "file": "synthetic://demo-paper-a",
+        "page": null,
+        "question_location": "Q6",
+        "note": "Synthetic demonstration content."
+      },
+      "validation_status": "valid",
+      "is_demonstration": true,
+      "metadata": {
+        "demo": true
+      }
+    },
+    {
+      "id": "DEMO-P1-007",
+      "exam": "MPPSC State Service Preliminary Examination (DEMONSTRATION)",
+      "year": 2024,
+      "paper_id": "DEMO-P1",
+      "set_code": "A",
+      "question_number": 7,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "The Bhimbetka rock shelters are located in which district of Madhya Pradesh?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Raisen"
+            },
+            {
+              "key": "B",
+              "text": "Sehore"
+            },
+            {
+              "key": "C",
+              "text": "Vidisha"
+            },
+            {
+              "key": "D",
+              "text": "Narmadapuram"
+            }
+          ]
+        },
+        "hi": {
+          "question_text": "भीमबेटका शैलाश्रय मध्य प्रदेश के किस जिले में स्थित हैं?",
+          "options": [
+            {
+              "key": "A",
+              "text": "रायसेन"
+            },
+            {
+              "key": "B",
+              "text": "सीहोर"
+            },
+            {
+              "key": "C",
+              "text": "विदिशा"
+            },
+            {
+              "key": "D",
+              "text": "नर्मदापुरम"
+            }
+          ]
+        }
+      },
+      "subject": "History",
+      "topic": "Prehistory and Art",
+      "subtopic": "Rock shelters",
+      "classification_confidence": 0.94,
+      "classification_source": "pipeline-ai",
+      "supplied_answer": {
+        "answer": [
+          "A"
+        ],
+        "status": "final",
+        "source": "Synthetic demonstration key",
+        "notes": null
+      },
+      "answer_key_status": "final",
+      "verified_answer": null,
+      "verification_evidence": [],
+      "dispute": null,
+      "explanation": {
+        "language": "en",
+        "status": "reviewed",
+        "correct_reasoning": "The Bhimbetka rock shelters lie in the Raisen district and were inscribed as a UNESCO World Heritage Site in 2003.",
+        "option_explanations": [],
+        "key_concepts": [
+          "Bhimbetka",
+          "UNESCO World Heritage Sites in Madhya Pradesh"
+        ],
+        "revision_takeaways": [
+          "Madhya Pradesh UNESCO sites: Khajuraho, Sanchi, Bhimbetka."
+        ],
+        "sources": [],
+        "generated_by": "pipeline-demo",
+        "reviewed_by": "reviewer-demo",
+        "generated_at": "2026-01-15T09:25:00Z",
+        "reviewed_at": "2026-01-15T12:30:00Z"
+      },
+      "explanation_status": "reviewed",
+      "source_reference": {
+        "file": "synthetic://demo-paper-a",
+        "page": null,
+        "question_location": "Q7",
+        "note": "Synthetic demonstration content."
+      },
+      "validation_status": "valid",
+      "is_demonstration": true,
+      "metadata": {
+        "demo": true
+      }
+    },
+    {
+      "id": "DEMO-P1-008",
+      "exam": "MPPSC State Service Preliminary Examination (DEMONSTRATION)",
+      "year": 2024,
+      "paper_id": "DEMO-P1",
+      "set_code": "A",
+      "question_number": 8,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "The Great Stupa at Sanchi was originally commissioned by which ruler?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Ashoka"
+            },
+            {
+              "key": "B",
+              "text": "Kanishka"
+            },
+            {
+              "key": "C",
+              "text": "Harshavardhana"
+            },
+            {
+              "key": "D",
+              "text": "Samudragupta"
+            }
+          ]
+        }
+      },
+      "subject": "History",
+      "topic": "Ancient India",
+      "subtopic": "Mauryan art and architecture",
+      "classification_confidence": 0.92,
+      "classification_source": "pipeline-ai",
+      "supplied_answer": {
+        "answer": [
+          "A"
+        ],
+        "status": "final",
+        "source": "Synthetic demonstration key",
+        "notes": null
+      },
+      "answer_key_status": "final",
+      "verified_answer": null,
+      "verification_evidence": [],
+      "dispute": null,
+      "explanation": null,
+      "explanation_status": "missing",
+      "source_reference": {
+        "file": "synthetic://demo-paper-a",
+        "page": null,
+        "question_location": "Q8",
+        "note": "Synthetic demonstration content; English-only variant."
+      },
+      "validation_status": "valid",
+      "is_demonstration": true,
+      "metadata": {
+        "demo": true
+      }
+    },
+    {
+      "id": "DEMO-P1-009",
+      "exam": "MPPSC State Service Preliminary Examination (DEMONSTRATION)",
+      "year": 2024,
+      "paper_id": "DEMO-P1",
+      "set_code": "A",
+      "question_number": 9,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "The Khajuraho group of temples was built by which dynasty?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Chandela"
+            },
+            {
+              "key": "B",
+              "text": "Paramara"
+            },
+            {
+              "key": "C",
+              "text": "Kalachuri"
+            },
+            {
+              "key": "D",
+              "text": "Tomara"
+            }
+          ]
+        },
+        "hi": {
+          "question_text": "खजुराहो के मंदिर समूह का निर्माण किस राजवंश ने कराया?",
+          "options": [
+            {
+              "key": "A",
+              "text": "चंदेल"
+            },
+            {
+              "key": "B",
+              "text": "परमार"
+            },
+            {
+              "key": "C",
+              "text": "कलचुरि"
+            },
+            {
+              "key": "D",
+              "text": "तोमर"
+            }
+          ]
+        }
+      },
+      "subject": "History",
+      "topic": "Medieval India",
+      "subtopic": "Temple architecture",
+      "classification_confidence": 0.91,
+      "classification_source": "pipeline-ai",
+      "supplied_answer": {
+        "answer": [
+          "A"
+        ],
+        "status": "final",
+        "source": "Synthetic demonstration key",
+        "notes": null
+      },
+      "answer_key_status": "final",
+      "verified_answer": null,
+      "verification_evidence": [],
+      "dispute": null,
+      "explanation": {
+        "language": "en",
+        "status": "reviewed",
+        "correct_reasoning": "The Khajuraho temples were built under the Chandela rulers between roughly the 10th and 12th centuries.",
+        "option_explanations": [],
+        "key_concepts": [
+          "Chandela dynasty",
+          "Nagara temple style"
+        ],
+        "revision_takeaways": [
+          "Khajuraho = Chandela; Bhojshala at Dhar = Paramara."
+        ],
+        "sources": [],
+        "generated_by": "pipeline-demo",
+        "reviewed_by": "reviewer-demo",
+        "generated_at": "2026-01-15T09:28:00Z",
+        "reviewed_at": "2026-01-15T12:35:00Z"
+      },
+      "explanation_status": "reviewed",
+      "source_reference": {
+        "file": "synthetic://demo-paper-a",
+        "page": null,
+        "question_location": "Q9",
+        "note": "Synthetic demonstration content."
+      },
+      "validation_status": "valid",
+      "is_demonstration": true,
+      "metadata": {
+        "demo": true
+      }
+    },
+    {
+      "id": "DEMO-P1-010",
+      "exam": "MPPSC State Service Preliminary Examination (DEMONSTRATION)",
+      "year": 2024,
+      "paper_id": "DEMO-P1",
+      "set_code": "A",
+      "question_number": 10,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "Mahakaleshwar, one of the twelve jyotirlingas, is situated at which place?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Omkareshwar"
+            },
+            {
+              "key": "B",
+              "text": "Ujjain"
+            },
+            {
+              "key": "C",
+              "text": "Maheshwar"
+            },
+            {
+              "key": "D",
+              "text": "Amarkantak"
+            }
+          ]
+        },
+        "hi": {
+          "question_text": "बारह ज्योतिर्लिंगों में से एक महाकालेश्वर किस स्थान पर स्थित है?",
+          "options": [
+            {
+              "key": "A",
+              "text": "ओंकारेश्वर"
+            },
+            {
+              "key": "B",
+              "text": "उज्जैन"
+            },
+            {
+              "key": "C",
+              "text": "महेश्वर"
+            },
+            {
+              "key": "D",
+              "text": "अमरकंटक"
+            }
+          ]
+        }
+      },
+      "subject": "Art and Culture",
+      "topic": "Temples of Madhya Pradesh",
+      "subtopic": "Jyotirlingas",
+      "classification_confidence": 0.9,
+      "classification_source": "pipeline-ai",
+      "supplied_answer": {
+        "answer": [
+          "B"
+        ],
+        "status": "final",
+        "source": "Synthetic demonstration key",
+        "notes": null
+      },
+      "answer_key_status": "final",
+      "verified_answer": null,
+      "verification_evidence": [],
+      "dispute": null,
+      "explanation": null,
+      "explanation_status": "missing",
+      "source_reference": {
+        "file": "synthetic://demo-paper-a",
+        "page": null,
+        "question_location": "Q10",
+        "note": "Synthetic demonstration content."
+      },
+      "validation_status": "valid",
+      "is_demonstration": true,
+      "metadata": {
+        "demo": true
+      }
+    },
+    {
+      "id": "DEMO-P1-011",
+      "exam": "MPPSC State Service Preliminary Examination (DEMONSTRATION)",
+      "year": 2024,
+      "paper_id": "DEMO-P1",
+      "set_code": "A",
+      "question_number": 11,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "The Tawa river, on which a major reservoir in Madhya Pradesh is built, is a tributary of which river?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Narmada"
+            },
+            {
+              "key": "B",
+              "text": "Tapti"
+            },
+            {
+              "key": "C",
+              "text": "Chambal"
+            },
+            {
+              "key": "D",
+              "text": "Sone"
+            }
+          ]
+        },
+        "hi": {
+          "question_text": "मध्य प्रदेश में प्रमुख जलाशय बनाने वाली तवा नदी किस नदी की सहायक नदी है?",
+          "options": [
+            {
+              "key": "A",
+              "text": "नर्मदा"
+            },
+            {
+              "key": "B",
+              "text": "ताप्ती"
+            },
+            {
+              "key": "C",
+              "text": "चंबल"
+            },
+            {
+              "key": "D",
+              "text": "सोन"
+            }
+          ]
+        }
+      },
+      "subject": "Geography",
+      "topic": "Rivers of Madhya Pradesh",
+      "subtopic": "Tributaries",
+      "classification_confidence": 0.89,
+      "classification_source": "pipeline-ai",
+      "supplied_answer": {
+        "answer": [
+          "A"
+        ],
+        "status": "final",
+        "source": "Synthetic demonstration key",
+        "notes": null
+      },
+      "answer_key_status": "final",
+      "verified_answer": null,
+      "verification_evidence": [],
+      "dispute": null,
+      "explanation": {
+        "language": "en",
+        "status": "reviewed",
+        "correct_reasoning": "The Tawa is a left-bank tributary of the Narmada and the Tawa reservoir supplies water to parts of the Narmadapuram region.",
+        "option_explanations": [],
+        "key_concepts": [
+          "Narmada tributaries: Tawa, Barna, Hiran, Bichhiya"
+        ],
+        "revision_takeaways": [
+          "Left-bank tributaries of the Narmada include Tawa, Barna and Hiran."
+        ],
+        "sources": [],
+        "generated_by": "pipeline-demo",
+        "reviewed_by": "reviewer-demo",
+        "generated_at": "2026-01-15T09:30:00Z",
+        "reviewed_at": "2026-01-15T12:40:00Z"
+      },
+      "explanation_status": "reviewed",
+      "source_reference": {
+        "file": "synthetic://demo-paper-a",
+        "page": null,
+        "question_location": "Q11",
+        "note": "Synthetic demonstration content."
+      },
+      "validation_status": "valid",
+      "is_demonstration": true,
+      "metadata": {
+        "demo": true
+      }
+    },
+    {
+      "id": "DEMO-P1-012",
+      "exam": "MPPSC State Service Preliminary Examination (DEMONSTRATION)",
+      "year": 2024,
+      "paper_id": "DEMO-P1",
+      "set_code": "A",
+      "question_number": 12,
+      "question_type": "statement_based",
+      "language_variants": {
+        "en": {
+          "question_text": "Consider the following statements about Kanha National Park:\n1. It lies in the Maikal range.\n2. It is known for the hard-ground barasingha.\nWhich of the statements given above is/are correct?",
+          "options": [
+            {
+              "key": "A",
+              "text": "1 only"
+            },
+            {
+              "key": "B",
+              "text": "2 only"
+            },
+            {
+              "key": "C",
+              "text": "Both 1 and 2"
+            },
+            {
+              "key": "D",
+              "text": "Neither 1 nor 2"
+            }
+          ]
+        }
+      },
+      "subject": "Environment",
+      "topic": "Wildlife of Madhya Pradesh",
+      "subtopic": "National parks",
+      "classification_confidence": 0.86,
+      "classification_source": "pipeline-ai",
+      "supplied_answer": {
+        "answer": [
+          "C"
+        ],
+        "status": "final",
+        "source": "Synthetic demonstration key",
+        "notes": null
+      },
+      "answer_key_status": "final",
+      "verified_answer": null,
+      "verification_evidence": [],
+      "dispute": null,
+      "explanation": {
+        "language": "en",
+        "status": "generated",
+        "correct_reasoning": "Kanha lies in the Maikal hills and its barasingha population is the hard-ground subspecies, so both statements are correct.",
+        "option_explanations": [],
+        "key_concepts": [
+          "Kanha",
+          "barasingha conservation"
+        ],
+        "revision_takeaways": [],
+        "sources": [],
+        "generated_by": "pipeline-demo",
+        "reviewed_by": null,
+        "generated_at": "2026-01-15T09:32:00Z",
+        "reviewed_at": null
+      },
+      "explanation_status": "generated",
+      "source_reference": {
+        "file": "synthetic://demo-paper-a",
+        "page": null,
+        "question_location": "Q12",
+        "note": "Synthetic demonstration content."
+      },
+      "validation_status": "valid",
+      "is_demonstration": true,
+      "metadata": {
+        "demo": true
+      }
+    },
+    {
+      "id": "DEMO-P1-013",
+      "exam": "MPPSC State Service Preliminary Examination (DEMONSTRATION)",
+      "year": 2024,
+      "paper_id": "DEMO-P1",
+      "set_code": "A",
+      "question_number": 13,
+      "question_type": "assertion_reason",
+      "language_variants": {
+        "en": {
+          "question_text": "Assertion (A): Sanchi is an important Buddhist pilgrimage and heritage site.\nReason (R): Emperor Ashoka built the Great Stupa at Sanchi.\nSelect the correct option.",
+          "options": [
+            {
+              "key": "A",
+              "text": "Both A and R are true, and R is the correct explanation of A"
+            },
+            {
+              "key": "B",
+              "text": "Both A and R are true, but R is not the correct explanation of A"
+            },
+            {
+              "key": "C",
+              "text": "A is true, but R is false"
+            },
+            {
+              "key": "D",
+              "text": "A is false, but R is true"
+            }
+          ]
+        }
+      },
+      "subject": "History",
+      "topic": "Ancient India",
+      "subtopic": "Buddhism in Madhya Pradesh",
+      "classification_confidence": 0.84,
+      "classification_source": "pipeline-ai",
+      "supplied_answer": {
+        "answer": [
+          "A"
+        ],
+        "status": "final",
+        "source": "Synthetic demonstration key",
+        "notes": null
+      },
+      "answer_key_status": "final",
+      "verified_answer": null,
+      "verification_evidence": [],
+      "dispute": null,
+      "explanation": null,
+      "explanation_status": "missing",
+      "source_reference": {
+        "file": "synthetic://demo-paper-a",
+        "page": null,
+        "question_location": "Q13",
+        "note": "Synthetic demonstration content."
+      },
+      "validation_status": "valid",
+      "is_demonstration": true,
+      "metadata": {
+        "demo": true
+      }
+    },
+    {
+      "id": "DEMO-P1-014",
+      "exam": "MPPSC State Service Preliminary Examination (DEMONSTRATION)",
+      "year": 2024,
+      "paper_id": "DEMO-P1",
+      "set_code": "A",
+      "question_number": 14,
+      "question_type": "matching",
+      "language_variants": {
+        "en": {
+          "question_text": "Match the national parks of Madhya Pradesh with their districts:\n1. Bandhavgarh  2. Kanha  3. Pench  4. Satpura\n(a) Umaria  (b) Mandla  (c) Seoni  (d) Narmadapuram",
+          "options": [
+            {
+              "key": "A",
+              "text": "1-a, 2-b, 3-c, 4-d"
+            },
+            {
+              "key": "B",
+              "text": "1-b, 2-a, 3-d, 4-c"
+            },
+            {
+              "key": "C",
+              "text": "1-c, 2-d, 3-a, 4-b"
+            },
+            {
+              "key": "D",
+              "text": "1-d, 2-c, 3-b, 4-a"
+            }
+          ],
+          "instructions": "Do not shuffle this question's options: the pairings are positional."
+        }
+      },
+      "subject": "Environment",
+      "topic": "Wildlife of Madhya Pradesh",
+      "subtopic": "National parks",
+      "classification_confidence": 0.82,
+      "classification_source": "pipeline-ai",
+      "supplied_answer": {
+        "answer": [
+          "A"
+        ],
+        "status": "final",
+        "source": "Synthetic demonstration key",
+        "notes": null
+      },
+      "answer_key_status": "final",
+      "verified_answer": null,
+      "verification_evidence": [],
+      "dispute": null,
+      "explanation": null,
+      "explanation_status": "missing",
+      "source_reference": {
+        "file": "synthetic://demo-paper-a",
+        "page": null,
+        "question_location": "Q14",
+        "note": "Synthetic demonstration content."
+      },
+      "validation_status": "valid",
+      "is_demonstration": true,
+      "metadata": {
+        "demo": true,
+        "shuffle_options_forbidden": true
+      }
+    },
+    {
+      "id": "DEMO-P1-015",
+      "exam": "MPPSC State Service Preliminary Examination (DEMONSTRATION)",
+      "year": 2024,
+      "paper_id": "DEMO-P1",
+      "set_code": "A",
+      "question_number": 15,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "As per the 2011 Census, which tribal group had the largest population in Madhya Pradesh?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Gond"
+            },
+            {
+              "key": "B",
+              "text": "Bhil"
+            },
+            {
+              "key": "C",
+              "text": "Baiga"
+            },
+            {
+              "key": "D",
+              "text": "Korku"
+            }
+          ]
+        },
+        "hi": {
+          "question_text": "2011 की जनगणना के अनुसार मध्य प्रदेश में सर्वाधिक जनसंख्या वाला जनजातीय समूह कौन-सा था?",
+          "options": [
+            {
+              "key": "A",
+              "text": "गोंड"
+            },
+            {
+              "key": "B",
+              "text": "भील"
+            },
+            {
+              "key": "C",
+              "text": "बैगा"
+            },
+            {
+              "key": "D",
+              "text": "कोरकू"
+            }
+          ]
+        }
+      },
+      "subject": "Madhya Pradesh Special",
+      "topic": "Tribes of Madhya Pradesh",
+      "subtopic": "Census data",
+      "classification_confidence": 0.78,
+      "classification_source": "pipeline-ai",
+      "supplied_answer": {
+        "answer": [
+          "B"
+        ],
+        "status": "final",
+        "source": "Synthetic demonstration key",
+        "notes": null
+      },
+      "answer_key_status": "final",
+      "verified_answer": null,
+      "verification_evidence": [],
+      "dispute": null,
+      "explanation": null,
+      "explanation_status": "missing",
+      "source_reference": {
+        "file": "synthetic://demo-paper-a",
+        "page": null,
+        "question_location": "Q15",
+        "note": "Synthetic demonstration content."
+      },
+      "validation_status": "valid",
+      "is_demonstration": true,
+      "metadata": {
+        "demo": true
+      }
+    },
+    {
+      "id": "DEMO-P1-016",
+      "exam": "MPPSC State Service Preliminary Examination (DEMONSTRATION)",
+      "year": 2024,
+      "paper_id": "DEMO-P1",
+      "set_code": "A",
+      "question_number": 16,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following rivers of Madhya Pradesh drains northwards into the Ganga system?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Chambal"
+            },
+            {
+              "key": "B",
+              "text": "Narmada"
+            },
+            {
+              "key": "C",
+              "text": "Tapti"
+            },
+            {
+              "key": "D",
+              "text": "Wainganga"
+            }
+          ]
+        }
+      },
+      "subject": "Geography",
+      "topic": "Rivers of Madhya Pradesh",
+      "subtopic": "Drainage systems",
+      "classification_confidence": 0.87,
+      "classification_source": "pipeline-ai",
+      "supplied_answer": {
+        "answer": [
+          "A"
+        ],
+        "status": "final",
+        "source": "Synthetic demonstration key",
+        "notes": null
+      },
+      "answer_key_status": "final",
+      "verified_answer": null,
+      "verification_evidence": [],
+      "dispute": null,
+      "explanation": null,
+      "explanation_status": "missing",
+      "source_reference": {
+        "file": "synthetic://demo-paper-a",
+        "page": null,
+        "question_location": "Q16",
+        "note": "Synthetic demonstration content."
+      },
+      "validation_status": "valid",
+      "is_demonstration": true,
+      "metadata": {
+        "demo": true
+      }
+    },
+    {
+      "id": "DEMO-P1-017",
+      "exam": "MPPSC State Service Preliminary Examination (DEMONSTRATION)",
+      "year": 2024,
+      "paper_id": "DEMO-P1",
+      "set_code": "A",
+      "question_number": 17,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "Sardar Sarovar dam, downstream of the Indira Sagar project, is located on which river?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Narmada"
+            },
+            {
+              "key": "B",
+              "text": "Tapti"
+            },
+            {
+              "key": "C",
+              "text": "Mahi"
+            },
+            {
+              "key": "D",
+              "text": "Betwa"
+            }
+          ]
+        },
+        "hi": {
+          "question_text": "इंदिरा सागर परियोजना के नीचे स्थित सरदार सरोवर बाँध किस नदी पर बना है?",
+          "options": [
+            {
+              "key": "A",
+              "text": "नर्मदा"
+            },
+            {
+              "key": "B",
+              "text": "ताप्ती"
+            },
+            {
+              "key": "C",
+              "text": "माही"
+            },
+            {
+              "key": "D",
+              "text": "बेतवा"
+            }
+          ]
+        }
+      },
+      "subject": "Geography",
+      "topic": "Rivers of Madhya Pradesh",
+      "subtopic": "Narmada basin",
+      "classification_confidence": 0.9,
+      "classification_source": "pipeline-ai",
+      "supplied_answer": {
+        "answer": [
+          "A"
+        ],
+        "status": "final",
+        "source": "Synthetic demonstration key",
+        "notes": null
+      },
+      "answer_key_status": "final",
+      "verified_answer": null,
+      "verification_evidence": [],
+      "dispute": null,
+      "explanation": null,
+      "explanation_status": "missing",
+      "source_reference": {
+        "file": "synthetic://demo-paper-a",
+        "page": null,
+        "question_location": "Q17",
+        "note": "Synthetic demonstration content."
+      },
+      "validation_status": "valid",
+      "is_demonstration": true,
+      "metadata": {
+        "demo": true
+      }
+    },
+    {
+      "id": "DEMO-P1-018",
+      "exam": "MPPSC State Service Preliminary Examination (DEMONSTRATION)",
+      "year": 2024,
+      "paper_id": "DEMO-P1",
+      "set_code": "A",
+      "question_number": 18,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "The Narmada river originates from which place?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Amarkantak"
+            },
+            {
+              "key": "B",
+              "text": "Pachmarhi"
+            },
+            {
+              "key": "C",
+              "text": "Multai"
+            },
+            {
+              "key": "D",
+              "text": "Chitrakoot"
+            }
+          ]
+        },
+        "hi": {
+          "question_text": "नर्मदा नदी किस स्थान से निकलती है?",
+          "options": [
+            {
+              "key": "A",
+              "text": "अमरकंटक"
+            },
+            {
+              "key": "B",
+              "text": "पचमढ़ी"
+            },
+            {
+              "key": "C",
+              "text": "मुलताई"
+            },
+            {
+              "key": "D",
+              "text": "चित्रकूट"
+            }
+          ]
+        }
+      },
+      "subject": "Geography",
+      "topic": "Rivers of Madhya Pradesh",
+      "subtopic": "Narmada basin",
+      "classification_confidence": 0.97,
+      "classification_source": "pipeline-ai",
+      "supplied_answer": {
+        "answer": [
+          "A"
+        ],
+        "status": "final",
+        "source": "Synthetic demonstration key",
+        "notes": null
+      },
+      "answer_key_status": "final",
+      "verified_answer": null,
+      "verification_evidence": [],
+      "dispute": null,
+      "explanation": {
+        "language": "en",
+        "status": "reviewed",
+        "correct_reasoning": "The Narmada rises at Amarkantak in the Anuppur district of Madhya Pradesh.",
+        "option_explanations": [
+          {
+            "key": "A",
+            "text": "Correct.",
+            "is_correct": true
+          },
+          {
+            "key": "C",
+            "text": "Multai is the origin of the Tapti, not the Narmada.",
+            "is_correct": false
+          }
+        ],
+        "key_concepts": [
+          "Amarkantak",
+          "origin of Narmada and Son"
+        ],
+        "revision_takeaways": [
+          "Amarkantak is the source of the Narmada; the Son also rises nearby."
+        ],
+        "sources": [],
+        "generated_by": "pipeline-demo",
+        "reviewed_by": "reviewer-demo",
+        "generated_at": "2026-01-15T09:40:00Z",
+        "reviewed_at": "2026-01-15T12:50:00Z"
+      },
+      "explanation_status": "reviewed",
+      "source_reference": {
+        "file": "synthetic://demo-paper-a",
+        "page": null,
+        "question_location": "Q18",
+        "note": "Synthetic demonstration content."
+      },
+      "validation_status": "valid",
+      "is_demonstration": true,
+      "metadata": {
+        "demo": true
+      }
+    },
+    {
+      "id": "DEMO-P2-001",
+      "exam": "MPPSC State Service Preliminary Examination (DEMONSTRATION)",
+      "year": 2023,
+      "paper_id": "DEMO-P2",
+      "set_code": "B",
+      "question_number": 1,
+      "question_type": "multiple_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "Select ALL rivers that are tributaries of the Narmada.",
+          "options": [
+            {
+              "key": "A",
+              "text": "Tawa"
+            },
+            {
+              "key": "B",
+              "text": "Barna"
+            },
+            {
+              "key": "C",
+              "text": "Betwa"
+            },
+            {
+              "key": "D",
+              "text": "Sone"
+            }
+          ],
+          "instructions": "More than one option may be correct. Select all that apply."
+        }
+      },
+      "subject": "Geography",
+      "topic": "Rivers of Madhya Pradesh",
+      "subtopic": "Tributaries",
+      "classification_confidence": 0.75,
+      "classification_source": "pipeline-ai",
+      "supplied_answer": {
+        "answer": [
+          "A",
+          "B"
+        ],
+        "status": "provisional",
+        "source": "Synthetic demonstration key",
+        "notes": null
+      },
+      "answer_key_status": "provisional",
+      "verified_answer": null,
+      "verification_evidence": [],
+      "dispute": null,
+      "explanation": {
+        "language": "en",
+        "status": "generated",
+        "correct_reasoning": "The Tawa and the Barna join the Narmada from the left bank; the Betwa and the Sone belong to the Ganga basin.",
+        "option_explanations": [],
+        "key_concepts": [
+          "Narmada tributaries"
+        ],
+        "revision_takeaways": [],
+        "sources": [],
+        "generated_by": "pipeline-demo",
+        "reviewed_by": null,
+        "generated_at": "2026-01-15T09:45:00Z",
+        "reviewed_at": null
+      },
+      "explanation_status": "generated",
+      "source_reference": {
+        "file": "synthetic://demo-paper-b",
+        "page": null,
+        "question_location": "Q1",
+        "note": "Synthetic demonstration content. Multi-select question."
+      },
+      "validation_status": "valid",
+      "is_demonstration": true,
+      "metadata": {
+        "demo": true
+      }
+    },
+    {
+      "id": "DEMO-P2-002",
+      "exam": "MPPSC State Service Preliminary Examination (DEMONSTRATION)",
+      "year": 2023,
+      "paper_id": "DEMO-P2",
+      "set_code": "B",
+      "question_number": 2,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "Kuno National Park, selected as a site for cheetah reintroduction, is located in which district?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Sheopur"
+            },
+            {
+              "key": "B",
+              "text": "Shivpuri"
+            },
+            {
+              "key": "C",
+              "text": "Morena"
+            },
+            {
+              "key": "D",
+              "text": "Guna"
+            }
+          ]
+        }
+      },
+      "subject": "Environment",
+      "topic": "Wildlife of Madhya Pradesh",
+      "subtopic": "Protected areas",
+      "classification_confidence": 0.88,
+      "classification_source": "pipeline-ai",
+      "supplied_answer": {
+        "answer": null,
+        "status": "missing",
+        "source": null,
+        "notes": "Answer key entry absent in the source record — used to test missing-key handling."
+      },
+      "answer_key_status": "missing",
+      "verified_answer": null,
+      "verification_evidence": [],
+      "dispute": null,
+      "explanation": null,
+      "explanation_status": "missing",
+      "source_reference": {
+        "file": "synthetic://demo-paper-b",
+        "page": null,
+        "question_location": "Q2",
+        "note": "Synthetic demonstration content. Deliberately missing answer key entry."
+      },
+      "validation_status": "valid_with_warnings",
+      "validation_notes": [
+        "Supplied answer is missing."
+      ],
+      "is_demonstration": true,
+      "metadata": {
+        "demo": true
+      }
+    },
+    {
+      "id": "DEMO-P2-003",
+      "exam": "MPPSC State Service Preliminary Examination (DEMONSTRATION)",
+      "year": 2023,
+      "paper_id": "DEMO-P2",
+      "set_code": "B",
+      "question_number": 3,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "Statement: The Tapti river flows through the state of Madhya Pradesh.",
+          "options": [
+            {
+              "key": "A",
+              "text": "True"
+            },
+            {
+              "key": "B",
+              "text": "False"
+            }
+          ]
+        }
+      },
+      "subject": "Geography",
+      "topic": "Rivers of Madhya Pradesh",
+      "subtopic": "Tapti basin",
+      "classification_confidence": 0.7,
+      "classification_source": "pipeline-ai",
+      "supplied_answer": {
+        "answer": [
+          "B"
+        ],
+        "status": "disputed",
+        "source": "Synthetic demonstration key (disputed entry)",
+        "notes": "The source key marked the statement False; a separate verification concluded True."
+      },
+      "answer_key_status": "disputed",
+      "verified_answer": {
+        "answer": [
+          "A"
+        ],
+        "verified_by": "demo-verifier",
+        "verified_at": "2026-01-16T10:00:00Z",
+        "evidence": [
+          {
+            "title": "District administration reference",
+            "citation": "Tapti flows through Burhanpur district of Madhya Pradesh",
+            "url": null,
+            "note": "Verification recorded for demonstration purposes only."
+          }
+        ],
+        "status": "verified"
+      },
+      "verification_evidence": [
+        {
+          "title": "District administration reference",
+          "citation": "Tapti flows through Burhanpur district of Madhya Pradesh",
+          "url": null,
+          "note": "Demonstration evidence entry."
+        }
+      ],
+      "dispute": {
+        "is_disputed": true,
+        "status": "open",
+        "reason": "The supplied key marked the statement false, but the Tapti does flow through Burhanpur district. Verification kept the supplied key intact and recorded a separate verified answer.",
+        "raised_by": "demo-verifier"
+      },
+      "explanation": null,
+      "explanation_status": "missing",
+      "source_reference": {
+        "file": "synthetic://demo-paper-b",
+        "page": null,
+        "question_location": "Q3",
+        "note": "Synthetic demonstration content. Disputed answer by design."
+      },
+      "validation_status": "valid_with_warnings",
+      "validation_notes": [
+        "Answer key entry is disputed; supplied answer preserved."
+      ],
+      "is_demonstration": true,
+      "metadata": {
+        "demo": true
+      }
+    },
+    {
+      "id": "DEMO-P2-004",
+      "exam": "MPPSC State Service Preliminary Examination (DEMONSTRATION)",
+      "year": 2023,
+      "paper_id": "DEMO-P2",
+      "set_code": "B",
+      "question_number": 4,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "Which is the largest national park in Madhya Pradesh by area?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Kanha"
+            },
+            {
+              "key": "B",
+              "text": "Bandhavgarh"
+            },
+            {
+              "key": "C",
+              "text": "Satpura"
+            },
+            {
+              "key": "D",
+              "text": "Pench"
+            }
+          ]
+        }
+      },
+      "subject": "Environment",
+      "topic": "Wildlife of Madhya Pradesh",
+      "subtopic": "National parks",
+      "classification_confidence": 0.72,
+      "classification_source": "pipeline-ai",
+      "supplied_answer": {
+        "answer": [
+          "A"
+        ],
+        "status": "provisional",
+        "source": "Synthetic demonstration key",
+        "notes": null
+      },
+      "answer_key_status": "provisional",
+      "verified_answer": null,
+      "verification_evidence": [],
+      "dispute": null,
+      "explanation": null,
+      "explanation_status": "missing",
+      "source_reference": {
+        "file": "synthetic://demo-paper-b",
+        "page": null,
+        "question_location": "Q4",
+        "note": "Synthetic demonstration content."
+      },
+      "validation_status": "valid",
+      "is_demonstration": true,
+      "metadata": {
+        "demo": true
+      }
+    },
+    {
+      "id": "DEMO-P2-005",
+      "exam": "MPPSC State Service Preliminary Examination (DEMONSTRATION)",
+      "year": 2023,
+      "paper_id": "DEMO-P2",
+      "set_code": "B",
+      "question_number": 5,
+      "question_type": "assertion_reason",
+      "language_variants": {
+        "en": {
+          "question_text": "Assertion (A): Ujjain is a major religious centre of Madhya Pradesh.\nReason (R): The Simhastha Kumbh is held at Ujjain.\nSelect the correct option.",
+          "options": [
+            {
+              "key": "A",
+              "text": "Both A and R are true, and R is the correct explanation of A"
+            },
+            {
+              "key": "B",
+              "text": "Both A and R are true, but R is not the correct explanation of A"
+            },
+            {
+              "key": "C",
+              "text": "A is true, but R is false"
+            },
+            {
+              "key": "D",
+              "text": "A is false, but R is true"
+            }
+          ]
+        }
+      },
+      "subject": "Art and Culture",
+      "topic": "Festivals and fairs",
+      "subtopic": "Simhastha",
+      "classification_confidence": 0.83,
+      "classification_source": "pipeline-ai",
+      "supplied_answer": {
+        "answer": [
+          "A"
+        ],
+        "status": "provisional",
+        "source": "Synthetic demonstration key",
+        "notes": null
+      },
+      "answer_key_status": "provisional",
+      "verified_answer": null,
+      "verification_evidence": [],
+      "dispute": null,
+      "explanation": null,
+      "explanation_status": "missing",
+      "source_reference": {
+        "file": "synthetic://demo-paper-b",
+        "page": null,
+        "question_location": "Q5",
+        "note": "Synthetic demonstration content."
+      },
+      "validation_status": "valid",
+      "is_demonstration": true,
+      "metadata": {
+        "demo": true
+      }
+    },
+    {
+      "id": "DEMO-P2-006",
+      "exam": "MPPSC State Service Preliminary Examination (DEMONSTRATION)",
+      "year": 2023,
+      "paper_id": "DEMO-P2",
+      "set_code": "B",
+      "question_number": 6,
+      "question_type": "statement_based",
+      "language_variants": {
+        "en": {
+          "question_text": "Consider the following statements based on the 2011 Census:\n1. Madhya Pradesh had the second largest tribal population among Indian states.\n2. The literacy rate of Madhya Pradesh in 2011 was about 69 per cent.\nWhich of the statements given above is/are correct?",
+          "options": [
+            {
+              "key": "A",
+              "text": "1 only"
+            },
+            {
+              "key": "B",
+              "text": "2 only"
+            },
+            {
+              "key": "C",
+              "text": "Both 1 and 2"
+            },
+            {
+              "key": "D",
+              "text": "Neither 1 nor 2"
+            }
+          ]
+        }
+      },
+      "subject": "Madhya Pradesh Special",
+      "topic": "Demography of Madhya Pradesh",
+      "subtopic": "Census 2011",
+      "classification_confidence": 0.68,
+      "classification_source": "pipeline-ai",
+      "supplied_answer": {
+        "answer": [
+          "B"
+        ],
+        "status": "provisional",
+        "source": "Synthetic demonstration key",
+        "notes": null
+      },
+      "answer_key_status": "provisional",
+      "verified_answer": null,
+      "verification_evidence": [],
+      "dispute": null,
+      "explanation": null,
+      "explanation_status": "missing",
+      "source_reference": {
+        "file": "synthetic://demo-paper-b",
+        "page": null,
+        "question_location": "Q6",
+        "note": "Synthetic demonstration content."
+      },
+      "validation_status": "valid",
+      "is_demonstration": true,
+      "metadata": {
+        "demo": true
+      }
+    },
+    {
+      "id": "DEMO-P2-007",
+      "exam": "MPPSC State Service Preliminary Examination (DEMONSTRATION)",
+      "year": 2023,
+      "paper_id": "DEMO-P2",
+      "set_code": "B",
+      "question_number": 7,
+      "question_type": "matching",
+      "language_variants": {
+        "en": {
+          "question_text": "Match the following:\n1. Ashoka  2. Chandela  3. Paramara  4. Holkar\n(a) Sanchi stupa  (b) Khajuraho temples  (c) Bhojshala, Dhar  (d) Indore",
+          "options": [
+            {
+              "key": "A",
+              "text": "1-a, 2-b, 3-c, 4-d"
+            },
+            {
+              "key": "B",
+              "text": "1-b, 2-a, 3-d, 4-c"
+            },
+            {
+              "key": "C",
+              "text": "1-c, 2-d, 3-a, 4-b"
+            },
+            {
+              "key": "D",
+              "text": "1-d, 2-c, 3-b, 4-a"
+            }
+          ],
+          "instructions": "Do not shuffle this question's options: the pairings are positional."
+        }
+      },
+      "subject": "History",
+      "topic": "Art and architecture",
+      "subtopic": "Dynasties and monuments",
+      "classification_confidence": 0.76,
+      "classification_source": "pipeline-ai",
+      "supplied_answer": {
+        "answer": [
+          "A"
+        ],
+        "status": "unofficial",
+        "source": "Synthetic unofficial key",
+        "notes": "Unofficial key used to test key-status labelling."
+      },
+      "answer_key_status": "unofficial",
+      "verified_answer": null,
+      "verification_evidence": [],
+      "dispute": null,
+      "explanation": null,
+      "explanation_status": "missing",
+      "source_reference": {
+        "file": "synthetic://demo-paper-b",
+        "page": null,
+        "question_location": "Q7",
+        "note": "Synthetic demonstration content."
+      },
+      "validation_status": "valid",
+      "is_demonstration": true,
+      "metadata": {
+        "demo": true,
+        "shuffle_options_forbidden": true
+      }
+    },
+    {
+      "id": "DEMO-P2-008",
+      "exam": "MPPSC State Service Preliminary Examination (DEMONSTRATION)",
+      "year": 2023,
+      "paper_id": "DEMO-P2",
+      "set_code": "B",
+      "question_number": 8,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "Who was the first president of the Indian National Congress (1885)?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Womesh Chandra Bonnerjee"
+            },
+            {
+              "key": "B",
+              "text": "Allan Octavian Hume"
+            },
+            {
+              "key": "C",
+              "text": "Dadabhai Naoroji"
+            },
+            {
+              "key": "D",
+              "text": "Surendranath Banerjee"
+            }
+          ]
+        }
+      },
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": "Indian National Congress",
+      "classification_confidence": 0.9,
+      "classification_source": "pipeline-ai",
+      "supplied_answer": {
+        "answer": [
+          "A"
+        ],
+        "status": "final",
+        "source": "Synthetic demonstration key",
+        "notes": null
+      },
+      "answer_key_status": "final",
+      "verified_answer": null,
+      "verification_evidence": [],
+      "dispute": null,
+      "explanation": null,
+      "explanation_status": "missing",
+      "source_reference": {
+        "file": "synthetic://demo-paper-b",
+        "page": null,
+        "question_location": "Q8",
+        "note": "Synthetic demonstration content."
+      },
+      "validation_status": "valid",
+      "is_demonstration": true,
+      "metadata": {
+        "demo": true
+      }
+    },
+    {
+      "id": "DEMO-P2-009",
+      "exam": "MPPSC State Service Preliminary Examination (DEMONSTRATION)",
+      "year": 2023,
+      "paper_id": "DEMO-P2",
+      "set_code": "B",
+      "question_number": 9,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "Under which Article of the Constitution of India is President's Rule imposed in a state?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Article 352"
+            },
+            {
+              "key": "B",
+              "text": "Article 356"
+            },
+            {
+              "key": "C",
+              "text": "Article 360"
+            },
+            {
+              "key": "D",
+              "text": "Article 368"
+            }
+          ]
+        },
+        "hi": {
+          "question_text": "किसी राज्य में राष्ट्रपति शासन भारत के संविधान के किस अनुच्छेद के अंतर्गत लगाया जाता है?",
+          "options": [
+            {
+              "key": "A",
+              "text": "अनुच्छेद 352"
+            },
+            {
+              "key": "B",
+              "text": "अनुच्छेद 356"
+            },
+            {
+              "key": "C",
+              "text": "अनुच्छेद 360"
+            },
+            {
+              "key": "D",
+              "text": "अनुच्छेद 368"
+            }
+          ]
+        }
+      },
+      "subject": "Polity",
+      "topic": "Union and State Relations",
+      "subtopic": "Emergency provisions",
+      "classification_confidence": 0.92,
+      "classification_source": "pipeline-ai",
+      "supplied_answer": {
+        "answer": [
+          "B"
+        ],
+        "status": "final",
+        "source": "Synthetic demonstration key",
+        "notes": null
+      },
+      "answer_key_status": "final",
+      "verified_answer": null,
+      "verification_evidence": [],
+      "dispute": null,
+      "explanation": {
+        "language": "en",
+        "status": "reviewed",
+        "correct_reasoning": "Article 356 allows the President to assume the functions of the state government when the constitutional machinery fails.",
+        "option_explanations": [],
+        "key_concepts": [
+          "Article 356",
+          "Article 352 national emergency",
+          "Article 360 financial emergency"
+        ],
+        "revision_takeaways": [
+          "352 = national, 356 = state, 360 = financial emergency."
+        ],
+        "sources": [],
+        "generated_by": "pipeline-demo",
+        "reviewed_by": "reviewer-demo",
+        "generated_at": "2026-01-15T09:50:00Z",
+        "reviewed_at": "2026-01-15T13:00:00Z"
+      },
+      "explanation_status": "reviewed",
+      "source_reference": {
+        "file": "synthetic://demo-paper-b",
+        "page": null,
+        "question_location": "Q9",
+        "note": "Synthetic demonstration content."
+      },
+      "validation_status": "valid",
+      "is_demonstration": true,
+      "metadata": {
+        "demo": true
+      }
+    },
+    {
+      "id": "DEMO-P2-010",
+      "exam": "MPPSC State Service Preliminary Examination (DEMONSTRATION)",
+      "year": 2023,
+      "paper_id": "DEMO-P2",
+      "set_code": "B",
+      "question_number": 10,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "Which tree is the state tree of Madhya Pradesh?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Banyan"
+            },
+            {
+              "key": "B",
+              "text": "Teak"
+            },
+            {
+              "key": "C",
+              "text": "Sal"
+            },
+            {
+              "key": "D",
+              "text": "Neem"
+            }
+          ]
+        },
+        "hi": {
+          "question_text": "मध्य प्रदेश का राज्य वृक्ष कौन-सा है?",
+          "options": [
+            {
+              "key": "A",
+              "text": "बरगद"
+            },
+            {
+              "key": "B",
+              "text": "सागौन"
+            },
+            {
+              "key": "C",
+              "text": "साल"
+            },
+            {
+              "key": "D",
+              "text": "नीम"
+            }
+          ]
+        }
+      },
+      "subject": "Environment",
+      "topic": "Forests of Madhya Pradesh",
+      "subtopic": "State symbols",
+      "classification_confidence": 0.85,
+      "classification_source": "pipeline-ai",
+      "supplied_answer": {
+        "answer": [
+          "A"
+        ],
+        "status": "final",
+        "source": "Synthetic demonstration key",
+        "notes": null
+      },
+      "answer_key_status": "final",
+      "verified_answer": null,
+      "verification_evidence": [],
+      "dispute": null,
+      "explanation": null,
+      "explanation_status": "missing",
+      "source_reference": {
+        "file": "synthetic://demo-paper-b",
+        "page": null,
+        "question_location": "Q10",
+        "note": "Synthetic demonstration content."
+      },
+      "validation_status": "valid",
+      "is_demonstration": true,
+      "metadata": {
+        "demo": true
+      }
+    },
+    {
+      "id": "DEMO-P3-001",
+      "exam": "MPPSC State Service Preliminary Examination (DEMONSTRATION)",
+      "year": 2022,
+      "paper_id": "DEMO-P3",
+      "set_code": null,
+      "question_number": 1,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "Mahatma Gandhi's first satyagraha in India (1917) was launched at which place?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Champaran"
+            },
+            {
+              "key": "B",
+              "text": "Kheda"
+            },
+            {
+              "key": "C",
+              "text": "Bardoli"
+            },
+            {
+              "key": "D",
+              "text": "Ahmedabad"
+            }
+          ]
+        },
+        "hi": {
+          "question_text": "भारत में महात्मा गांधी का प्रथम सत्याग्रह (1917) किस स्थान पर आरंभ हुआ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "चंपारण"
+            },
+            {
+              "key": "B",
+              "text": "खेड़ा"
+            },
+            {
+              "key": "C",
+              "text": "बारडोली"
+            },
+            {
+              "key": "D",
+              "text": "अहमदाबाद"
+            }
+          ]
+        }
+      },
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": "Gandhian movements",
+      "classification_confidence": 0.93,
+      "classification_source": "pipeline-ai",
+      "supplied_answer": {
+        "answer": [
+          "A"
+        ],
+        "status": "final",
+        "source": "Synthetic demonstration key",
+        "notes": null
+      },
+      "answer_key_status": "final",
+      "verified_answer": null,
+      "verification_evidence": [],
+      "dispute": null,
+      "explanation": {
+        "language": "en",
+        "status": "reviewed",
+        "correct_reasoning": "Gandhi's Champaran campaign of 1917 was his first satyagraha on Indian soil, taken up for indigo cultivators.",
+        "option_explanations": [],
+        "key_concepts": [
+          "Champaran 1917",
+          "Kheda 1918",
+          "Bardoli 1928"
+        ],
+        "revision_takeaways": [
+          "Order: Champaran (1917), Ahmedabad mill strike and Kheda (1918), Bardoli (1928)."
+        ],
+        "sources": [],
+        "generated_by": "pipeline-demo",
+        "reviewed_by": "reviewer-demo",
+        "generated_at": "2026-01-15T09:55:00Z",
+        "reviewed_at": "2026-01-15T13:10:00Z"
+      },
+      "explanation_status": "reviewed",
+      "source_reference": {
+        "file": "synthetic://demo-paper-c",
+        "page": null,
+        "question_location": "Q1",
+        "note": "Synthetic demonstration content."
+      },
+      "validation_status": "valid",
+      "is_demonstration": true,
+      "metadata": {
+        "demo": true
+      }
+    },
+    {
+      "id": "DEMO-P3-002",
+      "exam": "MPPSC State Service Preliminary Examination (DEMONSTRATION)",
+      "year": 2022,
+      "paper_id": "DEMO-P3",
+      "set_code": null,
+      "question_number": 2,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following is NOT a Fundamental Right under the Constitution of India?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Right to equality"
+            },
+            {
+              "key": "B",
+              "text": "Right to freedom of religion"
+            },
+            {
+              "key": "C",
+              "text": "Right to property"
+            },
+            {
+              "key": "D",
+              "text": "Right to constitutional remedies"
+            }
+          ]
+        }
+      },
+      "subject": "Polity",
+      "topic": "Constitution of India",
+      "subtopic": "Fundamental Rights",
+      "classification_confidence": 0.94,
+      "classification_source": "pipeline-ai",
+      "supplied_answer": {
+        "answer": [
+          "C"
+        ],
+        "status": "final",
+        "source": "Synthetic demonstration key",
+        "notes": null
+      },
+      "answer_key_status": "final",
+      "verified_answer": null,
+      "verification_evidence": [],
+      "dispute": null,
+      "explanation": null,
+      "explanation_status": "missing",
+      "source_reference": {
+        "file": "synthetic://demo-paper-c",
+        "page": null,
+        "question_location": "Q2",
+        "note": "Synthetic demonstration content."
+      },
+      "validation_status": "valid",
+      "is_demonstration": true,
+      "metadata": {
+        "demo": true
+      }
+    },
+    {
+      "id": "DEMO-P3-003",
+      "exam": "MPPSC State Service Preliminary Examination (DEMONSTRATION)",
+      "year": 2022,
+      "paper_id": "DEMO-P3",
+      "set_code": null,
+      "question_number": 3,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "As per the 2011 Census, which tribe had the largest population in India?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Bhil"
+            },
+            {
+              "key": "B",
+              "text": "Gond"
+            },
+            {
+              "key": "C",
+              "text": "Santhal"
+            },
+            {
+              "key": "D",
+              "text": "Munda"
+            }
+          ]
+        }
+      },
+      "subject": "Madhya Pradesh Special",
+      "topic": "Tribes of Madhya Pradesh",
+      "subtopic": "Census data",
+      "classification_confidence": 0.7,
+      "classification_source": "pipeline-ai",
+      "supplied_answer": {
+        "answer": [
+          "A"
+        ],
+        "status": "final",
+        "source": "Synthetic demonstration key",
+        "notes": null
+      },
+      "answer_key_status": "final",
+      "verified_answer": null,
+      "verification_evidence": [],
+      "dispute": null,
+      "explanation": null,
+      "explanation_status": "missing",
+      "source_reference": {
+        "file": "synthetic://demo-paper-c",
+        "page": null,
+        "question_location": "Q3",
+        "note": "Synthetic demonstration content."
+      },
+      "validation_status": "valid",
+      "is_demonstration": true,
+      "metadata": {
+        "demo": true
+      }
+    },
+    {
+      "id": "DEMO-P3-004",
+      "exam": "MPPSC State Service Preliminary Examination (DEMONSTRATION)",
+      "year": 2022,
+      "paper_id": "DEMO-P3",
+      "set_code": null,
+      "question_number": 4,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "The river popularly called the lifeline of Madhya Pradesh is which of the following?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Tapti"
+            },
+            {
+              "key": "B",
+              "text": "Narmada"
+            },
+            {
+              "key": "C",
+              "text": "Chambal"
+            },
+            {
+              "key": "D",
+              "text": "Betwa"
+            }
+          ]
+        },
+        "hi": {
+          "question_text": "मध्य प्रदेश की जीवन-रेखा कही जाने वाली नदी निम्नलिखित में से कौन-सी है?",
+          "options": [
+            {
+              "key": "A",
+              "text": "ताप्ती"
+            },
+            {
+              "key": "B",
+              "text": "नर्मदा"
+            },
+            {
+              "key": "C",
+              "text": "चंबल"
+            },
+            {
+              "key": "D",
+              "text": "बेतवा"
+            }
+          ]
+        }
+      },
+      "subject": "Geography",
+      "topic": "Rivers of Madhya Pradesh",
+      "subtopic": "Narmada basin",
+      "classification_confidence": 0.95,
+      "classification_source": "pipeline-ai",
+      "supplied_answer": {
+        "answer": [
+          "B"
+        ],
+        "status": "final",
+        "source": "Synthetic demonstration key",
+        "notes": "Near-duplicate of DEMO-P1-001 (repeat-question detection fixture)."
+      },
+      "answer_key_status": "final",
+      "verified_answer": null,
+      "verification_evidence": [],
+      "dispute": null,
+      "explanation": null,
+      "explanation_status": "missing",
+      "source_reference": {
+        "file": "synthetic://demo-paper-c",
+        "page": null,
+        "question_location": "Q4",
+        "note": "Synthetic demonstration content; near-duplicate fixture."
+      },
+      "validation_status": "valid",
+      "is_demonstration": true,
+      "metadata": {
+        "demo": true,
+        "near_duplicate_of": "DEMO-P1-001"
+      }
+    },
+    {
+      "id": "DEMO-P3-005",
+      "exam": "MPPSC State Service Preliminary Examination (DEMONSTRATION)",
+      "year": 2022,
+      "paper_id": "DEMO-P3",
+      "set_code": null,
+      "question_number": 5,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following lines of latitude passes through Madhya Pradesh?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Equator"
+            },
+            {
+              "key": "B",
+              "text": "Tropic of Cancer"
+            },
+            {
+              "key": "C",
+              "text": "Tropic of Capricorn"
+            },
+            {
+              "key": "D",
+              "text": "Arctic Circle"
+            }
+          ]
+        }
+      },
+      "subject": "Geography",
+      "topic": "Physiography of Madhya Pradesh",
+      "subtopic": "Location",
+      "classification_confidence": 0.9,
+      "classification_source": "pipeline-ai",
+      "supplied_answer": {
+        "answer": [
+          "B"
+        ],
+        "status": "final",
+        "source": "Synthetic demonstration key",
+        "notes": null
+      },
+      "answer_key_status": "final",
+      "verified_answer": null,
+      "verification_evidence": [],
+      "dispute": null,
+      "explanation": null,
+      "explanation_status": "missing",
+      "source_reference": {
+        "file": "synthetic://demo-paper-c",
+        "page": null,
+        "question_location": "Q5",
+        "note": "Synthetic demonstration content."
+      },
+      "validation_status": "valid",
+      "is_demonstration": true,
+      "metadata": {
+        "demo": true
+      }
+    },
+    {
+      "id": "DEMO-P3-006",
+      "exam": "MPPSC State Service Preliminary Examination (DEMONSTRATION)",
+      "year": 2022,
+      "paper_id": "DEMO-P3",
+      "set_code": null,
+      "question_number": 6,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "The Bhimbetka rock shelters were inscribed on the UNESCO World Heritage list in which year?",
+          "options": [
+            {
+              "key": "A",
+              "text": "1983"
+            },
+            {
+              "key": "B",
+              "text": "1989"
+            },
+            {
+              "key": "C",
+              "text": "2003"
+            },
+            {
+              "key": "D",
+              "text": "2010"
+            }
+          ]
+        },
+        "hi": {
+          "question_text": "भीमबेटका शैलाश्रय किस वर्ष यूनेस्को विश्व धरोहर सूची में शामिल किए गए?",
+          "options": [
+            {
+              "key": "A",
+              "text": "1983"
+            },
+            {
+              "key": "B",
+              "text": "1989"
+            },
+            {
+              "key": "C",
+              "text": "2003"
+            },
+            {
+              "key": "D",
+              "text": "2010"
+            }
+          ]
+        }
+      },
+      "subject": "Art and Culture",
+      "topic": "Heritage Sites",
+      "subtopic": "UNESCO listings",
+      "classification_confidence": 0.88,
+      "classification_source": "pipeline-ai",
+      "supplied_answer": {
+        "answer": [
+          "C"
+        ],
+        "status": "final",
+        "source": "Synthetic demonstration key",
+        "notes": null
+      },
+      "answer_key_status": "final",
+      "verified_answer": null,
+      "verification_evidence": [],
+      "dispute": null,
+      "explanation": null,
+      "explanation_status": "missing",
+      "source_reference": {
+        "file": "synthetic://demo-paper-c",
+        "page": null,
+        "question_location": "Q6",
+        "note": "Synthetic demonstration content."
+      },
+      "validation_status": "valid",
+      "is_demonstration": true,
+      "metadata": {
+        "demo": true
+      }
+    }
+  ]
+}
