@@ -7,10 +7,22 @@
  * presented as faithful simulations. Unfinished tests can be resumed.
  */
 
-import { STORES } from '../../core/constants.js';
-import * as db from '../../core/db.js';
 import { state } from '../../core/state.js';
-import { esc, badge, card, tile, notice, dataTable, emptyState, openModal, toast, confirmDialog, answerKeyBadge } from '../components.js';
+import {
+  esc,
+  badge,
+  card,
+  tile,
+  notice,
+  dataTable,
+  emptyState,
+  openModal,
+  toast,
+  confirmDialog,
+  answerKeyBadge,
+  sourceChip,
+  demoBadge,
+} from '../components.js';
 import { fmtDate, fmtMarks, fmtPct, fmtClock } from '../../core/util.js';
 import { paperSummary } from '../../services/select.js';
 import * as tests from '../../services/tests.js';
@@ -25,21 +37,24 @@ function paperCard(paper, summary) {
   if (!summary.scoringKnown) flags.push(badge('scoring rules unknown', 'warn'));
   if (summary.disputed) flags.push(badge(`${summary.disputed} disputed answer(s)`, 'bad'));
   if (summary.missingAnswers) flags.push(badge(`${summary.missingAnswers} question(s) without a key`, 'warn'));
-  if (paper.is_demonstration) flags.push('<span class="demo-flag">demonstration dataset</span>');
+  if (paper.is_demonstration) flags.push(demoBadge(true));
   if (summary.bilingual) flags.push(badge(`${summary.bilingual} bilingual`, 'info'));
 
   return `<section class="card">
     <div class="card-body">
       <div class="spread">
         <div class="grow">
-          <h3 style="margin-bottom:2px">${esc(paper.paper_name || paper.paper_id)}</h3>
-          <p class="muted small" style="margin:0">
+          <div class="row tight">
+            <h3 class="mb-1">${esc(paper.paper_name || paper.paper_id)}</h3>
+            ${summary.scoringKnown ? sourceChip('supplied', 'source rules') : sourceChip('unavailable', 'rules unknown')}
+          </div>
+          <p class="muted small m-0">
             ${esc(paper.exam || 'Examination not stated')}
             ${paper.year ? ` · ${esc(String(paper.year))}` : ' · year not stated'}
             ${paper.set_code ? ` · set ${esc(paper.set_code)}` : ''}
             ${paper.paper_code ? ` · ${esc(paper.paper_code)}` : ''}
           </p>
-          <div class="row tight" style="margin-top:6px">
+          <div class="row tight mt-2">
             ${badge(`${questions} question(s) stored`, questions ? 'ok' : 'bad')}
             ${summary.declared !== null && summary.declared !== undefined ? badge(`source declares ${summary.declared}`, summary.complete ? '' : 'warn') : badge('source count not stated', 'warn')}
             ${paper.duration_minutes ? badge(`${paper.duration_minutes} min`) : badge('duration not stated', 'warn')}
@@ -47,7 +62,7 @@ function paperCard(paper, summary) {
             ${answerKeyBadge(paper.answer_key?.status)}
             ${flags.join(' ')}
           </div>
-          <p class="tiny muted" style="margin:6px 0 0">
+          <p class="tiny muted mt-2 mb-0">
             ${summary.scoringKnown ? `Scoring: +${esc(fmtMarks(paper.scoring.marks_per_correct))} per correct${paper.scoring.negative_marking_enabled ? `, −${esc(fmtMarks(paper.scoring.negative_marks_per_incorrect))} per incorrect` : ', no negative marking'} ${paper.scoring.rules_source ? `· source: ${esc(paper.scoring.rules_source)}` : ''}` : 'Scoring rules are not known from the source.'}
             ${paper.answer_key?.source ? ` · key source: ${esc(paper.answer_key.source)}` : ' · key source not recorded'}
           </p>
@@ -64,21 +79,23 @@ function paperCard(paper, summary) {
 export default {
   title: 'PYQ Test Centre',
 
-  async render(ctx) {
+  async render() {
     const metas = Array.from(state.questionIndex.values());
     const papers = Array.from(state.papers.values()).sort((a, b) => Number(b.year || 0) - Number(a.year || 0));
     const unfinished = await tests.unfinishedTests();
     const submitted = (await tests.listTests({ status: 'submitted' })).slice(0, 12);
 
     if (!papers.length) {
-      return card({
-        title: 'No previous-year papers are stored yet',
-        body: `${emptyState({
-          title: 'Import a validated question bank to begin',
-          message: 'MyMPPSC does not ship with MPPSC previous-year papers. Import a bank produced by your separate preparation pipeline — the Question Bank screen explains the format, validates the file and shows a full summary before anything is written.',
-          action: '<a class="btn btn-primary" href="#/bank">Go to Question Bank &amp; Imports</a>',
-        })}`,
-      });
+      return `
+        <h1>PYQ Test Centre</h1>
+        ${card({
+          title: 'No previous-year papers are stored yet',
+          body: `${emptyState({
+            title: 'Import a validated question bank to begin',
+            message: 'MyMPPSC does not ship with MPPSC previous-year papers. Import a bank produced by your separate preparation pipeline — the Question Bank screen explains the format, validates the file and shows a full summary before anything is written.',
+            action: '<a class="btn btn-primary" href="#/bank">Go to Question Bank &amp; Imports</a>',
+          })}`,
+        })}`;
     }
 
     const paperSummaries = papers.map((paper) => ({ paper, summary: paperSummary(paper, metas) }));
@@ -95,12 +112,11 @@ export default {
       <h1>PYQ Test Centre</h1>
       <p class="muted">Full-paper simulations use the imported question order, the source duration and the source scoring rules. Anything the source does not state is shown as unknown rather than assumed.</p>
 
-      
-      <div class="grid tiles" style="margin-bottom:16px">
-        ${tile({ label: 'Papers stored', value: String(papers.length), sub: `${totals.complete} with a complete question set` })}
-        ${tile({ label: 'Questions available', value: String(totals.questions), sub: `${state.subjects.length} subject groups` })}
-        ${tile({ label: 'Rules unknown', value: String(totals.unknownRules), sub: 'configure before scoring', tone: totals.unknownRules ? 'warn' : '' })}
-        ${tile({ label: 'Unfinished tests', value: String(unfinished.length), sub: unfinished.length ? 'resume below' : 'nothing pending', tone: unfinished.length ? 'accent' : '' })}
+      <div class="grid tiles mb-4">
+        ${tile({ label: 'Papers stored', value: String(papers.length), sub: `${totals.complete} with a complete question set`, source: 'supplied', where: 'Imported paper records' })}
+        ${tile({ label: 'Questions available', value: String(totals.questions), sub: `${state.subjects.length} subject groups`, source: 'supplied', where: 'Stored in local IndexedDB' })}
+        ${tile({ label: 'Rules unknown', value: String(totals.unknownRules), sub: 'configure before scoring', tone: totals.unknownRules ? 'warn' : '', source: totals.unknownRules ? 'unavailable' : 'supplied', where: 'Source paper scoring metadata' })}
+        ${tile({ label: 'Unfinished tests', value: String(unfinished.length), sub: unfinished.length ? 'resume below' : 'nothing pending', tone: unfinished.length ? 'accent' : '', source: 'measured', where: 'Active local test sessions' })}
       </div>
 
       ${
@@ -108,10 +124,11 @@ export default {
           ? card({
               title: 'Resume an unfinished test',
               tone: 'accent',
+              right: sourceChip('measured', 'autosaved'),
               body: `${unfinished
                 .map((t) => {
                   const p = tests.testProgress(t);
-                  return `<div class="spread" style="border-bottom:1px solid var(--border);padding:8px 0">
+                  return `<div class="spread row-divider">
                   <div>
                     <strong>${esc(t.label || t.kind)}</strong>
                     <div class="tiny muted">${esc(tests.describeTest(t))} · started ${esc(fmtDate(t.started_at || t.created_at))} · ${p.answered} answered, ${p.unanswered} left${t.timer?.remaining_seconds !== null && t.timer?.remaining_seconds !== undefined ? ` · ${esc(fmtClock(t.timer.remaining_seconds))} remaining` : ''}${t.status === 'paused' ? ' · paused' : ''}</div>
@@ -127,13 +144,14 @@ export default {
           : ''
       }
 
-      <h2 style="margin-top:20px">Available papers</h2>
+      <h2 class="mt-5">Available papers</h2>
       ${paperSummaries.map(({ paper, summary }) => paperCard(paper, summary)).join('')}
 
       ${
         submitted.length
           ? card({
               title: 'Recent submitted tests',
+              right: sourceChip('measured', 'submitted'),
               body: dataTable({
                 columns: [{ label: 'Test' }, { label: 'Submitted' }, { label: 'Score', num: true }, { label: 'Accuracy', num: true }, { label: '' }],
                 rows: submitted.map((t) => {

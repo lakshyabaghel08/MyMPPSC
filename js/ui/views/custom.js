@@ -8,7 +8,7 @@
  */
 
 import { state } from '../../core/state.js';
-import { esc, card, notice, dataTable, toast, emptyState, confirmDialog } from '../components.js';
+import { esc, card, notice, dataTable, toast, emptyState, confirmDialog, sourceChip } from '../components.js';
 import { QUESTION_TYPES } from '../../core/constants.js';
 import { filterMetas, selectQuestions, ATTEMPT_STATE_FILTERS } from '../../services/select.js';
 import { configFields, readConfig, startPracticeTest, currentAttemptSummary, countSummary } from './shared.js';
@@ -26,13 +26,6 @@ const viewState = {
   orderRandom: true,
 };
 
-function toggle(list, value) {
-  const index = list.indexOf(value);
-  if (index >= 0) list.splice(index, 1);
-  else list.push(value);
-  return list;
-}
-
 function readSelection() {
   const selected = (name) => Array.from(document.querySelectorAll(`input[name="${name}"]:checked`)).map((el) => el.value);
   viewState.years = selected('cbYear');
@@ -44,14 +37,15 @@ function readSelection() {
   viewState.strategy = document.getElementById('customStrategy')?.value || 'random';
   viewState.includeAttempted = Boolean(document.getElementById('customIncludeAttempted')?.checked);
   viewState.orderRandom = Boolean(document.getElementById('customOrderRandom')?.checked);
+  viewState.excludeDemonstration = Boolean(document.getElementById('customExcludeDemo')?.checked);
   return viewState;
 }
 
 function checkboxGroup(name, items, selectedValues, { columns = 3 } = {}) {
   if (!items.length) return '<p class="muted small">Nothing available.</p>';
-  return `<div class="grid cols-${columns}" style="gap:2px">${items
+  return `<div class="grid cols-${columns} gap-xs">${items
     .map(
-      (item) => `<label class="check" style="margin-bottom:2px"><input type="checkbox" name="${esc(name)}" value="${esc(item.value)}" ${selectedValues.includes(item.value) ? 'checked' : ''} />
+      (item) => `<label class="check mb-1"><input type="checkbox" name="${esc(name)}" value="${esc(item.value)}" ${selectedValues.includes(item.value) ? 'checked' : ''} />
       <span>${esc(item.label)}${item.count !== undefined ? ` <span class="soft tiny">(${item.count})</span>` : ''}</span></label>`,
     )
     .join('')}</div>`;
@@ -60,13 +54,19 @@ function checkboxGroup(name, items, selectedValues, { columns = 3 } = {}) {
 export default {
   title: 'Custom Test',
 
-  async render(ctx) {
+  async render() {
     const metas = Array.from(state.questionIndex.values());
     if (!metas.length) {
-      return card({
-        title: 'The custom test builder needs a question bank',
-        body: emptyState({ title: 'No questions stored yet', message: 'Import a validated question bank first.', action: '<a class="btn btn-primary" href="#/bank">Question Bank &amp; Imports</a>' }),
-      });
+      return `
+        <h1>Custom Test</h1>
+        ${card({
+          title: 'The custom test builder needs a question bank',
+          body: emptyState({
+            title: 'No questions stored yet',
+            message: 'Import a validated question bank first.',
+            action: '<a class="btn btn-primary" href="#/bank">Question Bank &amp; Imports</a>',
+          }),
+        })}`;
     }
     const attemptSummary = await currentAttemptSummary();
 
@@ -108,19 +108,20 @@ export default {
 
       <div class="split-2">
         <div>
-          ${card({ title: 'Years', body: checkboxGroup('cbYear', years.map((y) => ({ value: String(y), label: String(y), count: metas.filter((m) => String(m.year) === String(y)).length })), viewState.years, { columns: 4 }) })}
-          ${card({ title: 'Papers', body: checkboxGroup('cbPaper', papers.map((p) => ({ value: p.paper_id, label: `${p.paper_name || p.paper_id}${p.year ? ` (${p.year}${p.set_code ? `, set ${p.set_code}` : ''})` : ''}`, count: metas.filter((m) => m.paper_id === p.paper_id).length })), viewState.papers, { columns: 1 }) })}
-          ${card({ title: 'Subjects', body: checkboxGroup('cbSubject', subjects.map((s) => ({ value: s, label: s, count: metas.filter((m) => (m.subject || 'Unclassified') === s).length })), viewState.subjects, { columns: 2 }) })}
+          ${card({ title: 'Years', right: sourceChip('supplied'), body: checkboxGroup('cbYear', years.map((y) => ({ value: String(y), label: String(y), count: metas.filter((m) => String(m.year) === String(y)).length })), viewState.years, { columns: 4 }) })}
+          ${card({ title: 'Papers', right: sourceChip('supplied'), body: checkboxGroup('cbPaper', papers.map((p) => ({ value: p.paper_id, label: `${p.paper_name || p.paper_id}${p.year ? ` (${p.year}${p.set_code ? `, set ${p.set_code}` : ''})` : ''}`, count: metas.filter((m) => m.paper_id === p.paper_id).length })), viewState.papers, { columns: 1 }) })}
+          ${card({ title: 'Subjects', right: sourceChip('supplied'), body: checkboxGroup('cbSubject', subjects.map((s) => ({ value: s, label: s, count: metas.filter((m) => (m.subject || 'Unclassified') === s).length })), viewState.subjects, { columns: 2 }) })}
         </div>
         <div>
-          ${card({ title: 'Topics', subtitle: 'Filtered by the subjects you selected', body: checkboxGroup('cbTopic', topics.map((t) => ({ value: t, label: t, count: metas.filter((m) => (m.topic || 'Unclassified') === t).length })), viewState.topics, { columns: 1 }) })}
-          ${card({ title: 'Question types', body: checkboxGroup('cbType', types.map((t) => ({ value: t, label: QUESTION_TYPES[t], count: metas.filter((m) => m.question_type === t).length })), viewState.questionTypes, { columns: 1 }) })}
+          ${card({ title: 'Topics', subtitle: 'Filtered by the subjects you selected', right: sourceChip('supplied'), body: checkboxGroup('cbTopic', topics.map((t) => ({ value: t, label: t, count: metas.filter((m) => (m.topic || 'Unclassified') === t).length })), viewState.topics, { columns: 1 }) })}
+          ${card({ title: 'Question types', right: sourceChip('supplied'), body: checkboxGroup('cbType', types.map((t) => ({ value: t, label: QUESTION_TYPES[t], count: metas.filter((m) => m.question_type === t).length })), viewState.questionTypes, { columns: 1 }) })}
         </div>
       </div>
 
       ${card({
         title: 'Pool and strategy',
         subtitle: `${pool.length} question(s) match`,
+        right: sourceChip('measured', `${pool.length} matching`),
         body: `
           ${countSummary({ total: pool.length, unseen: pool.filter((m) => !attemptSummary.get(m.id)?.attempts).length, incorrect: pool.filter((m) => attemptSummary.get(m.id)?.everIncorrect).length, skipped: pool.filter((m) => attemptSummary.get(m.id)?.everSkipped).length })}
           <div class="field-row">
@@ -144,6 +145,7 @@ export default {
 
       ${card({
         title: 'Test settings',
+        right: sourceChip('derived', 'session rules'),
         body: `${configFields({ paper: null, defaultCount: Math.min(25, Math.max(1, pool.length)), maxCount: pool.length, allowCustomScoring: true })}
         <div class="sticky-actions">
           <button class="btn btn-primary" type="button" id="assembleCustom" ${pool.length ? '' : 'disabled'}>Assemble custom test</button>

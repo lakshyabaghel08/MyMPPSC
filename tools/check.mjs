@@ -358,6 +358,7 @@ for (const file of jsFiles) {
   }
   check(!/localhost:\d+/.test(source), `${file} hard-codes a localhost URL`);
   check(!/\bfetch\(\s*['"]https?:/.test(source), `${file} fetches an external URL`);
+  check(!/\bstyle\s*=\s*["'`]/.test(source), `${file} contains an inline style="..." attribute — move layout/visual rules to css/app.css`);
 }
 
 /* --------------------------------------------------------------- report -- */

@@ -9,7 +9,7 @@
 import { APP_VERSION, DB_NAME, DB_VERSION, SUPPORTED_SCHEMA_VERSIONS, STORES } from '../../core/constants.js';
 import { state, saveSettings, resetSettings, loadSettings, refreshQuestionIndex } from '../../core/state.js';
 import * as db from '../../core/db.js';
-import { esc, badge, card, tile, dataTable, toast, openModal, confirmDialog, tabs, mountTabs } from '../components.js';
+import { esc, badge, card, tile, dataTable, toast, openModal, confirmDialog, tabs, mountTabs, sourceChip } from '../components.js';
 import { fmtBytes, fmtDate, fmtRelative, readFileAsText, downloadJson, getLogRing, todayKey } from '../../core/util.js';
 import * as data from '../../services/data.js';
 
@@ -119,18 +119,19 @@ export default {
     const backupTab = `
       ${card({
         title: 'Create a backup',
+        right: sourceChip('measured', 'local JSON + SHA-256'),
         body: `
           <p class="small">A backup is a single JSON file containing your question bank, papers, tests, attempts, mistakes, revision schedule, syllabus, tasks, study sessions, import history and settings. It is written by your browser to your device — nothing is uploaded.</p>
           <div class="row">
             <label class="check"><input type="checkbox" id="backupTests" checked /><span>Include test sessions and results</span></label>
             <label class="check"><input type="checkbox" id="backupQuestions" checked /><span>Include the question bank (uncheck to back up progress only)</span></label>
           </div>
-          <div class="row" style="margin-top:10px">
+          <div class="row mt-3">
             <button class="btn btn-primary" type="button" id="makeBackup">Download backup</button>
             <button class="btn" type="button" id="backupProgress">Download progress only</button>
             <button class="btn btn-quiet" type="button" id="backupCheck">Run a round-trip self-test</button>
           </div>
-          <p class="tiny muted" style="margin-top:8px">Last backup: ${lastBackup ? esc(`${fmtDate(lastBackup.at)} (${fmtRelative(lastBackup.at)})`) : 'never recorded on this device'}.</p>
+          <p class="tiny muted mt-2">Last backup: ${lastBackup ? esc(`${fmtDate(lastBackup.at)} (${fmtRelative(lastBackup.at)})`) : 'never recorded on this device'}.</p>
           <p class="tiny muted">Browser storage can be cleared by you, by the browser, or when a device runs out of space. Keep a backup file outside the browser.</p>`,
       })}
 
@@ -144,15 +145,16 @@ export default {
 
       ${card({
         title: 'Storage',
+        right: sourceChip('measured', 'IndexedDB'),
         body: `
           <div class="grid tiles">
-            ${tile({ label: 'Records stored', value: String(Object.values(report.counts).filter((v) => typeof v === 'number').reduce((a, b) => a + b, 0)), sub: `${Object.keys(report.counts).length} stores` })}
-            ${tile({ label: 'Estimated usage', value: report.estimate?.usage === null || report.estimate?.usage === undefined ? '—' : fmtBytes(report.estimate.usage), sub: report.estimate?.quota ? `of about ${fmtBytes(report.estimate.quota)} available` : 'quota unknown' })}
-            ${tile({ label: 'Persistent storage', value: report.persisted === null ? 'unknown' : report.persisted ? 'granted' : 'not granted', sub: 'asked of the browser, not guaranteed', tone: report.persisted ? 'ok' : '' })}
-            ${tile({ label: 'Last backup', value: lastBackup ? fmtRelative(lastBackup.at) : 'never', tone: lastBackup ? '' : 'warn' })}
+            ${tile({ label: 'Records stored', value: String(Object.values(report.counts).filter((v) => typeof v === 'number').reduce((a, b) => a + b, 0)), sub: `${Object.keys(report.counts).length} stores`, source: 'measured', where: 'Local IndexedDB stores' })}
+            ${tile({ label: 'Estimated usage', value: report.estimate?.usage === null || report.estimate?.usage === undefined ? '—' : fmtBytes(report.estimate.usage), sub: report.estimate?.quota ? `of about ${fmtBytes(report.estimate.quota)} available` : 'quota unknown', source: report.estimate?.usage !== null && report.estimate?.usage !== undefined ? 'measured' : 'unavailable', where: 'Browser StorageManager API' })}
+            ${tile({ label: 'Persistent storage', value: report.persisted === null ? 'unknown' : report.persisted ? 'granted' : 'not granted', sub: 'asked of the browser, not guaranteed', tone: report.persisted ? 'ok' : '', source: report.persisted === null ? 'unavailable' : 'measured' })}
+            ${tile({ label: 'Last backup', value: lastBackup ? fmtRelative(lastBackup.at) : 'never', tone: lastBackup ? '' : 'warn', source: lastBackup ? 'measured' : 'unavailable' })}
           </div>
           ${dataTable({ columns: [{ label: 'Store' }, { label: 'Records', num: true }], rows: Object.entries(report.counts).map(([k, v]) => [esc(k), typeof v === 'number' ? String(v) : esc(String(v))]), className: 'compact' })}
-          <div class="row" style="margin-top:10px"><button class="btn btn-sm" type="button" id="requestPersistence">Ask the browser for persistent storage</button></div>
+          <div class="row mt-3"><button class="btn btn-sm" type="button" id="requestPersistence">Ask the browser for persistent storage</button></div>
           <p class="tiny muted">${esc(report.warning)}</p>`,
       })}`;
 
@@ -375,8 +377,8 @@ function renderRestoreSummary() {
   if (!v) return '';
   const integrity = v.integrity?.checked ? (v.integrity.matches ? badge('SHA-256 verified', 'ok') : badge('SHA-256 MISMATCH', 'bad')) : badge('no hash recorded', 'warn');
   return `
-    <div class="row" style="margin-top:10px">${integrity} ${v.ok ? badge('structure valid', 'ok') : badge('invalid file', 'bad')}</div>
-    ${v.errors.length ? `<ul class="small" style="color:var(--bad)">${v.errors.map((e) => `<li>${esc(e)}</li>`).join('')}</ul>` : ''}
+    <div class="row mt-3">${integrity} ${v.ok ? badge('structure valid', 'ok') : badge('invalid file', 'bad')}</div>
+    ${v.errors.length ? `<ul class="small text-bad">${v.errors.map((e) => `<li>${esc(e)}</li>`).join('')}</ul>` : ''}
     ${v.warnings.length ? `<ul class="small muted">${v.warnings.map((w) => `<li>${esc(w)}</li>`).join('')}</ul>` : ''}
     ${dataTable({
       columns: [{ label: 'Contents' }, { label: 'Records', num: true }],
@@ -395,7 +397,7 @@ function renderRestoreSummary() {
     })}
     ${
       v.ok
-        ? `<div class="row" style="margin-top:10px">
+        ? `<div class="row mt-3">
              <button class="btn btn-primary" type="button" id="restoreMerge">Merge into current data</button>
              <button class="btn btn-danger" type="button" id="restoreReplace">Replace everything on this device</button>
              <button class="btn btn-quiet" type="button" id="restoreCancel">Cancel</button>

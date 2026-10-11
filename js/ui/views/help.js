@@ -7,7 +7,7 @@
  */
 
 import { APP_VERSION } from '../../core/constants.js';
-import { esc, card, notice, dataTable, badge } from '../components.js';
+import { esc, card, notice, dataTable, badge, sourceChip, evidenceMeter } from '../components.js';
 
 const KEYBOARD = [
   ['1 … 9', 'Select option A … I on the current question'],
@@ -16,7 +16,8 @@ const KEYBOARD = [
   ['F', 'Toggle “mark for review” on the current question'],
   ['U', 'Clear the selected response'],
   ['C', 'Cycle confidence marking (when enabled)'],
-  ['Esc', 'Close a dialog'],
+  ['← / → / Home / End', 'Move across tabs in tabbed views'],
+  ['Esc', 'Close a dialog or mobile navigation drawer'],
 ];
 
 export default {
@@ -74,11 +75,18 @@ export default {
 
       <div class="split-2">
         <div>
-          ${card({ title: 'How the numbers are defined', body: dataTable({ columns: [{ label: 'Figure' }, { label: 'What it means' }], rows: definitions.map(([a, b]) => [`<strong>${a}</strong>`, b]), className: 'compact' }) })}
+          ${card({ title: 'How the numbers are defined', right: sourceChip('measured', 'local evidence'), body: dataTable({ columns: [{ label: 'Figure' }, { label: 'What it means' }], rows: definitions.map(([a, b]) => [`<strong>${a}</strong>`, b]), className: 'compact' }) })}
 
           ${card({
-            title: 'Answer-key integrity',
+            title: 'Answer-key integrity & provenance chips',
             body: `
+              <p class="small">Every number and question carries explicit provenance chips so you know what is measured, what is derived, and what is supplied by the source:</p>
+              <div class="row mb-2">
+                ${sourceChip('measured')} ${sourceChip('derived')} ${sourceChip('unavailable')} ${sourceChip('synthetic')} ${sourceChip('supplied')} ${sourceChip('verified')} ${sourceChip('disputed')}
+              </div>
+              <div class="row mb-2">
+                ${evidenceMeter(1)} ${evidenceMeter(3)} ${evidenceMeter(5)}
+              </div>
               <p class="small">Every question carries two keys, and they are never mixed up:</p>
               <ul class="small">
                 <li><strong>Supplied key</strong> — what the source said. It is never overwritten.</li>

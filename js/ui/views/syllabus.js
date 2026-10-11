@@ -7,7 +7,7 @@
  */
 
 import { state } from '../../core/state.js';
-import { esc, badge, card, tile, notice, dataTable, emptyState, toast, openModal, confirmDialog, lineChart } from '../components.js';
+import { esc, badge, card, tile, notice, dataTable, emptyState, toast, openModal, confirmDialog, lineChart, sourceChip, evidenceMeter } from '../components.js';
 import { fmtDate, fmtDuration, fmtRelative, todayKey } from '../../core/util.js';
 import { readFileAsText, downloadJson } from '../../core/util.js';
 import * as planner from '../../services/planner.js';
@@ -67,7 +67,7 @@ function renderNodes(nodes, progressById, depth = 0, out = []) {
 function taskCard(buckets) {
   const section = (label, tone, rows) =>
     rows.length
-      ? `<h4 class="task-section ${tone}">${esc(label)} <span class="soft">(${rows.length})</span></h4>
+      ? `<h3 class="task-section ${tone}">${esc(label)} <span class="soft">(${rows.length})</span></h3>
          ${dataTable({
            columns: [{ label: 'Task' }, { label: 'Due' }, { label: 'Est.' }, { label: '' }],
            rows: rows.map((t) => [
@@ -116,11 +116,11 @@ export default {
         'info',
       )}
 
-      <div class="grid tiles" style="margin-bottom:16px">
-        ${tile({ label: 'Syllabus items', value: String(progress.total), sub: `${Object.entries(planner.STATUSES).map(([k, l]) => `${progress.byStatus[k] || 0} ${l.toLowerCase()}`).join(' · ')}` })}
-        ${tile({ label: 'Overall completion', value: `${Math.round(progress.overallCompletion * 100)}%`, sub: 'average of your marked statuses' })}
-        ${tile({ label: 'Open tasks', value: String(buckets.overdue.length + buckets.today.length + buckets.upcoming.length + buckets.undated.length), sub: `${buckets.overdue.length} overdue`, tone: buckets.overdue.length ? 'bad' : '' })}
-        ${tile({ label: 'Study time logged', value: fmtDuration(totals.totalMinutes * 60), sub: `${totals.sessions} session(s) · ${totals.last7Minutes} min in 7 days` })}
+      <div class="grid tiles mb-4">
+        ${tile({ label: 'Syllabus items', value: String(progress.total), sub: `${Object.entries(planner.STATUSES).map(([k, l]) => `${progress.byStatus[k] || 0} ${l.toLowerCase()}`).join(' · ')}`, source: 'supplied', where: 'User-defined syllabus tree' })}
+        ${tile({ label: 'Overall completion', value: `${Math.round(progress.overallCompletion * 100)}%`, sub: 'average of your marked statuses', source: 'derived', where: 'Manual status completion' })}
+        ${tile({ label: 'Open tasks', value: String(buckets.overdue.length + buckets.today.length + buckets.upcoming.length + buckets.undated.length), sub: `${buckets.overdue.length} overdue`, tone: buckets.overdue.length ? 'bad' : '', source: 'measured', where: 'Active planner tasks' })}
+        ${tile({ label: 'Study time logged', value: fmtDuration(totals.totalMinutes * 60), sub: `${totals.sessions} session(s) · ${totals.last7Minutes} min in 7 days`, source: 'measured', where: 'Logged study sessions' })}
       </div>
 
       ${card({
@@ -133,7 +133,7 @@ export default {
           <input type="file" id="sylFile" accept="application/json,.json" hidden />`,
         body: rows.length
           ? `<div class="syllabus-tree">${renderNodes(tree, progressById)}</div>
-             <p class="tiny muted" style="margin-top:10px">${rows.filter((r) => r.source === 'question-bank').length} item(s) were suggested from your question bank classifications. Those are a copy of your imported data, not an official syllabus.</p>`
+             <p class="tiny muted mt-3 mb-0">${rows.filter((r) => r.source === 'question-bank').length} item(s) were suggested from your question bank classifications. Those are a copy of your imported data, not an official syllabus.</p>`
           : emptyState({
               title: 'No syllabus items yet',
               message: 'Import a JSON structure you made yourself, generate a starting point from the subjects and topics already classified in your question bank, or add items one by one.',
@@ -170,9 +170,10 @@ export default {
         <div>
           ${card({
             title: 'Log a study session',
+            right: sourceChip('measured', 'manual log'),
             body: `
               <form id="sessionForm" class="field-row">
-                <label class="field"><span class="label-text">Minutes</span><input type="number" min="1" step="5" id="sessMinutes" value="30" style="width:90px" /></label>
+                <label class="field field-xs"><span class="label-text">Minutes</span><input type="number" min="1" step="5" id="sessMinutes" value="30" /></label>
                 <label class="field"><span class="label-text">Activity</span>
                   <select id="sessCategory">
                     <option value="study">Reading / notes</option>
@@ -184,7 +185,7 @@ export default {
                 </label>
                 <label class="field"><span class="label-text">Subject (optional)</span><input type="text" id="sessSubject" /></label>
                 <label class="field"><span class="label-text">Topic (optional)</span><input type="text" id="sessTopic" /></label>
-                <label class="field" style="flex:1 1 100%"><span class="label-text">Notes (optional)</span><input type="text" id="sessNotes" /></label>
+                <label class="field w-full"><span class="label-text">Notes (optional)</span><input type="text" id="sessNotes" /></label>
                 <button class="btn btn-primary" type="submit">Log session</button>
               </form>`,
           })}

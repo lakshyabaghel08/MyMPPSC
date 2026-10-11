@@ -7,7 +7,22 @@
  */
 
 import { state } from '../../core/state.js';
-import { esc, badge, card, tile, notice, dataTable, emptyState, toast, openModal, confirmDialog, progressBar, renderExplanation, answerKeyBadge } from '../components.js';
+import {
+  esc,
+  badge,
+  card,
+  tile,
+  notice,
+  dataTable,
+  emptyState,
+  toast,
+  openModal,
+  confirmDialog,
+  progressBar,
+  renderExplanation,
+  answerKeyBadge,
+  sourceChip,
+} from '../components.js';
 import { fmtDate, fmtRelative, todayKey } from '../../core/util.js';
 import * as revision from '../../services/revision.js';
 import { allAttempts, attemptHistoryForQuestion, attemptTrend } from '../../services/attempts.js';
@@ -34,6 +49,7 @@ function rulesCard() {
   const intervals = Object.entries(cfg.intervals).map(([level, days]) => `level ${level} → ${days} day(s)`).join(' · ');
   return card({
     title: 'How the revision schedule is decided',
+    right: sourceChip('derived', 'transparent rules'),
     body: `
       <p class="small">Every scheduled date comes from the outcome of your last attempt on that question, the confidence you marked (if you mark it) and how long the answer took. Reading the date does not require trusting a black box — the basis for each question is listed with it.</p>
       <ul class="small">
@@ -45,7 +61,7 @@ function rulesCard() {
         <li><strong>Slow answers</strong> (over ${esc(String(cfg.slowAnswerSeconds))}s) shorten the next interval by 25%.</li>
         <li>Intervals are clamped between ${esc(String(cfg.minIntervalDays))} and ${esc(String(cfg.maxIntervalDays))} days.</li>
       </ul>
-      <p class="tiny muted">This is a spaced-repetition heuristic based on your own recorded answers. It cannot guarantee that anything is remembered, and it is not a prediction about any examination.</p>`,
+      <p class="tiny muted mb-0">This is a spaced-repetition heuristic based on your own recorded answers. It cannot guarantee that anything is remembered, and it is not a prediction about any examination.</p>`,
   });
 }
 
@@ -57,7 +73,7 @@ function reasonCell(rec) {
 export default {
   title: 'Revision Centre',
 
-  async render(ctx) {
+  async render() {
     const records = await revision.allRevisionRecords();
     const metas = Array.from(state.questionIndex.values());
 
@@ -118,15 +134,16 @@ export default {
       <h1>Revision Centre</h1>
       <p class="muted">Questions scheduled from your own recorded outcomes, with the reason for each date. Everything here can be inspected and overridden.</p>
 
-      <div class="grid tiles" style="margin-bottom:16px">
-        ${tile({ label: 'Due today', value: String(buckets.dueToday.length), tone: buckets.dueToday.length ? 'warn' : '' })}
-        ${tile({ label: 'Overdue', value: String(buckets.overdue.length), sub: 'scheduled for an earlier day', tone: buckets.overdue.length ? 'bad' : 'ok' })}
-        ${tile({ label: 'Upcoming', value: String(buckets.upcoming.length), sub: 'scheduled ahead' })}
-        ${tile({ label: 'Mastered', value: String(records.filter((r) => r.state === 'mastered').length), sub: `of ${records.length} tracked question(s)` })}
+      <div class="grid tiles mb-4">
+        ${tile({ label: 'Due today', value: String(buckets.dueToday.length), tone: buckets.dueToday.length ? 'warn' : '', source: 'derived', where: 'Scheduled for today’s date' })}
+        ${tile({ label: 'Overdue', value: String(buckets.overdue.length), sub: 'scheduled for an earlier day', tone: buckets.overdue.length ? 'bad' : 'ok', source: 'derived', where: 'Scheduled before today' })}
+        ${tile({ label: 'Upcoming', value: String(buckets.upcoming.length), sub: 'scheduled ahead', source: 'derived', where: 'Scheduled for future dates' })}
+        ${tile({ label: 'Mastered', value: String(records.filter((r) => r.state === 'mastered').length), sub: `of ${records.length} tracked question(s)`, source: 'derived', where: 'Reached highest interval level' })}
       </div>
 
       ${card({
         title: 'Revise the due queue',
+        right: sourceChip('derived', 'due_first order'),
         body: `
           <div class="row">
             <button class="btn btn-primary" type="button" data-action="revise-due" ${buckets.dueToday.length + buckets.overdue.length ? '' : 'disabled'}>
@@ -134,26 +151,28 @@ export default {
             </button>
             <button class="btn" type="button" data-action="add-manual">Add a question to the queue</button>
           </div>
-          <p class="tiny muted" style="margin-top:8px">Due questions are kept in the order they were scheduled. The session records one attempt per question and reschedules each one from its outcome.</p>`,
+          <p class="tiny muted mt-2 mb-0">Due questions are kept in the order they were scheduled. The session records one attempt per question and reschedules each one from its outcome.</p>`,
       })}
 
       ${effectiveness.withHistory
         ? card({
             title: 'Is revision working?',
             subtitle: `${effectiveness.withHistory} question(s) with at least two scored attempts`,
+            right: sourceChip('measured', 'first vs latest'),
             body: `
               ${progressBar(effectiveness.improved / effectiveness.withHistory, 'ok')}
-              <div class="row" style="margin-top:8px">
+              <div class="row mt-2">
                 ${badge(`${effectiveness.improved} improved (wrong → right)`, 'ok')}
                 ${badge(`${effectiveness.worsened} declined (right → wrong)`, effectiveness.worsened ? 'bad' : '')}
                 ${badge(`${effectiveness.unchanged} unchanged`, 'info')}
               </div>
-              <p class="tiny muted">This compares the first and most recent scored attempt per question. A small number of questions proves nothing on its own.</p>`,
+              <p class="tiny muted mb-0">This compares the first and most recent scored attempt per question. A small number of questions proves nothing on its own.</p>`,
           })
         : notice('There is not yet enough attempt history to judge whether revision is working. At least two scored attempts are needed on a question.', 'info')}
 
       ${card({
         title: `Queue (${filtered.length} of ${records.length})`,
+        right: sourceChip('derived', 'spaced repetition'),
         body: `
           <div class="filters">
             <label class="field"><span class="label-text">Show</span>
@@ -181,6 +200,7 @@ export default {
       ${card({
         title: 'Upcoming load',
         subtitle: 'How many questions fall due on each of the next days',
+        right: sourceChip('derived'),
         body: dataTable({
           columns: [{ label: 'Date' }, { label: 'Questions due', num: true }],
           rows: Array.from(upcomingByDay.entries())
@@ -193,12 +213,13 @@ export default {
 
       ${card({
         title: 'Revision statistics',
+        right: sourceChip('measured'),
         body: `
           <div class="grid tiles">
-            ${tile({ label: 'Tracked questions', value: String(records.length), sub: `${Math.round((records.length / Math.max(1, metas.length)) * 100)}% of the bank` })}
-            ${tile({ label: 'Average interval', value: `${Math.round(records.reduce((a, r) => a + (r.interval_days || 0), 0) / records.length)} days`, sub: 'across tracked questions' })}
-            ${tile({ label: 'Lapses', value: String(records.reduce((a, r) => a + (r.lapses || 0), 0)), sub: 'wrong or unanswered after being scheduled' })}
-            ${tile({ label: 'Revision accuracy', value: analytics.accuracy.all !== analytics.accuracy.all ? '—' : `${Math.round((analytics.accuracy.all || 0) * 100)}%`, sub: 'all scored attempts, repeats included' })}
+            ${tile({ label: 'Tracked questions', value: String(records.length), sub: `${Math.round((records.length / Math.max(1, metas.length)) * 100)}% of the bank`, source: 'measured' })}
+            ${tile({ label: 'Average interval', value: `${Math.round(records.reduce((a, r) => a + (r.interval_days || 0), 0) / records.length)} days`, sub: 'across tracked questions', source: 'derived' })}
+            ${tile({ label: 'Lapses', value: String(records.reduce((a, r) => a + (r.lapses || 0), 0)), sub: 'wrong or unanswered after being scheduled', source: 'measured' })}
+            ${tile({ label: 'Revision accuracy', value: analytics.accuracy.all !== analytics.accuracy.all ? '—' : `${Math.round((analytics.accuracy.all || 0) * 100)}%`, sub: 'all scored attempts, repeats included', source: 'measured' })}
           </div>`,
       })}
 
@@ -376,7 +397,7 @@ export default {
               ],
               className: 'compact',
             })}
-            <div class="row" style="margin:10px 0">
+            <div class="row my-2">
               <button class="btn btn-sm" type="button" data-action="reschedule" data-qid="${esc(questionId)}">Reschedule…</button>
               <button class="btn btn-sm" type="button" data-action="interval" data-qid="${esc(questionId)}">Set interval…</button>
               <button class="btn btn-sm btn-danger" type="button" data-action="remove" data-qid="${esc(questionId)}">Remove from queue</button>
@@ -395,12 +416,11 @@ export default {
               empty: 'No attempts recorded.',
               className: 'compact',
             })}
-            ${question ? `<h3 style="margin-top:12px">Question ${answerKeyBadge(question.supplied.status)}</h3>${renderExplanation(question)}` : ''}`,
+            ${question ? `<h3 class="mt-3">Question ${answerKeyBadge(question.supplied.status)}</h3>${renderExplanation(question)}` : ''}`,
           actions: [{ label: 'Close', tone: 'btn-primary', value: 'close' }],
         });
         return;
       }
     });
-
   },
 };

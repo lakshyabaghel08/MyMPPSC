@@ -7,10 +7,22 @@
  */
 
 import { state } from '../../core/state.js';
-import { esc, badge, card, tile, notice, dataTable, emptyState, lineChart, progressBar, toast } from '../components.js';
+import {
+  esc,
+  badge,
+  card,
+  tile,
+  notice,
+  dataTable,
+  emptyState,
+  lineChart,
+  progressBar,
+  toast,
+  sourceChip,
+  evidenceMeter,
+} from '../components.js';
 import { fmtPct, fmtDate, fmtDuration, downloadJson, todayKey } from '../../core/util.js';
 import { loadAnalytics, studyPriorities, MIN_SAMPLE_HINT, MIN_SAMPLE_STRONG } from '../../services/analytics.js';
-import { QUESTION_TYPES } from '../../core/constants.js';
 
 const viewState = { subject: 'all', priorityLimit: 12 };
 
@@ -22,21 +34,27 @@ function verdictBadge(row) {
 function accuracyText(value, sample) {
   if (!Number.isFinite(value)) return '<span class="soft">—</span>';
   const text = fmtPct(value);
-  if (sample < MIN_SAMPLE_HINT) return `${text} <span class="tiny soft">(sample ${sample})</span>`;
-  return `${text} <span class="tiny soft">(n=${sample})</span>`;
+  if (sample < MIN_SAMPLE_HINT) return `${text} <span class="tiny soft">(sample ${sample})</span> ${evidenceMeter(sample, MIN_SAMPLE_STRONG, { showLabel: false })}`;
+  return `${text} <span class="tiny soft">(n=${sample})</span> ${evidenceMeter(sample, MIN_SAMPLE_STRONG, { showLabel: false })}`;
 }
 
 export default {
   title: 'Analytics',
 
-  async render(ctx) {
-    const { metas, attempts, revisionRecords, mistakes, analytics } = await loadAnalytics();
+  async render() {
+    const { metas, analytics } = await loadAnalytics();
 
     if (!metas.length) {
-      return card({
-        title: 'Analytics needs data',
-        body: emptyState({ title: 'No questions stored yet', message: 'Import a question bank and record some attempts; this screen reports only measured data.', action: '<a class="btn btn-primary" href="#/bank">Question Bank &amp; Imports</a>' }),
-      });
+      return `
+        <h1>Analytics</h1>
+        ${card({
+          title: 'Analytics needs data',
+          body: emptyState({
+            title: 'No questions stored yet',
+            message: 'Import a question bank and record some attempts; this screen reports only measured data.',
+            action: '<a class="btn btn-primary" href="#/bank">Question Bank &amp; Imports</a>',
+          }),
+        })}`;
     }
 
     const priorities = studyPriorities({ analytics, limit: viewState.priorityLimit });
@@ -117,13 +135,13 @@ export default {
       <h1>Analytics</h1>
       <p class="muted">All figures come from attempts stored on this device. Nothing is estimated, extrapolated or projected.</p>
 
-      <div class="grid tiles" style="margin-bottom:12px">
-        ${tile({ label: 'Questions available', value: String(counts.availableQuestions), sub: 'unique questions stored in the bank' })}
-        ${tile({ label: 'Unique questions attempted', value: String(counts.attemptedUnique), sub: `${fmtPct(counts.coverage)} of the bank — repeats do not increase this` })}
-        ${tile({ label: 'Total attempts', value: String(counts.totalAttempts), sub: `${counts.repeatAttempts} attempt(s) beyond the first on a question` })}
-        ${tile({ label: 'First-attempt accuracy', value: analytics.accuracy.firstAttemptSample ? fmtPct(analytics.accuracy.firstAttempt) : '—', sub: analytics.accuracy.firstAttemptSample ? `on ${analytics.accuracy.firstAttemptSample} first attempts` : 'no first attempts yet' })}
-        ${tile({ label: 'Accuracy (all attempts)', value: counts.correct + counts.incorrect ? fmtPct(analytics.accuracy.all) : '—', sub: `${counts.correct} correct · ${counts.incorrect} incorrect` })}
-        ${tile({ label: 'Answer rate', value: counts.totalAttempts ? fmtPct(analytics.accuracy.answerRate) : '—', sub: `${counts.unanswered} left unanswered · ${counts.unscored} unscored` })}
+      <div class="grid tiles mb-3">
+        ${tile({ label: 'Questions available', value: String(counts.availableQuestions), sub: 'unique questions stored in the bank', source: 'supplied', where: 'Stored in local IndexedDB bank' })}
+        ${tile({ label: 'Unique questions attempted', value: String(counts.attemptedUnique), sub: `${fmtPct(counts.coverage)} of the bank — repeats do not increase this`, source: 'measured', where: 'Unique question IDs with ≥1 attempt' })}
+        ${tile({ label: 'Total attempts', value: String(counts.totalAttempts), sub: `${counts.repeatAttempts} attempt(s) beyond the first on a question`, source: 'measured', where: 'Every recorded attempt in local store' })}
+        ${tile({ label: 'First-attempt accuracy', value: analytics.accuracy.firstAttemptSample ? fmtPct(analytics.accuracy.firstAttempt) : '—', sub: analytics.accuracy.firstAttemptSample ? `on ${analytics.accuracy.firstAttemptSample} first attempts` : 'no first attempts yet', source: analytics.accuracy.firstAttemptSample ? 'measured' : 'unavailable', where: 'First scored attempt per unique question' })}
+        ${tile({ label: 'Accuracy (all attempts)', value: counts.correct + counts.incorrect ? fmtPct(analytics.accuracy.all) : '—', sub: `${counts.correct} correct · ${counts.incorrect} incorrect`, source: counts.correct + counts.incorrect ? 'measured' : 'unavailable', where: 'All judged attempts including repeats' })}
+        ${tile({ label: 'Answer rate', value: counts.totalAttempts ? fmtPct(analytics.accuracy.answerRate) : '—', sub: `${counts.unanswered} left unanswered · ${counts.unscored} unscored`, source: counts.totalAttempts ? 'measured' : 'unavailable', where: 'Answered share of total attempts' })}
       </div>
 
       ${notice(
@@ -137,6 +155,7 @@ export default {
           ${card({
             title: 'Activity per day',
             subtitle: 'Last 21 days with recorded attempts',
+            right: sourceChip('measured'),
             body: daily.length ? lineChart({ points: daily.map((d) => ({ label: d.date.slice(5), value: d.attempts })), height: 150, yFormat: (v) => String(Math.round(v)), yMax: Math.max(1, ...daily.map((d) => d.attempts)) }) : '<p class="muted small">No attempts recorded yet.</p>',
           })}
         </div>
@@ -144,6 +163,7 @@ export default {
           ${card({
             title: 'Accuracy trend',
             subtitle: 'All scored attempts per day',
+            right: sourceChip('measured'),
             body: accuracyPoints.length >= 2 ? lineChart({ points: accuracyPoints, height: 150 }) : '<p class="muted small">At least two days with scored attempts are needed to draw a trend.</p>',
             footer: 'This line includes repeat attempts. Repeating questions you already know lifts it without improving first-time recall — check first-attempt accuracy above.',
           })}
@@ -152,6 +172,7 @@ export default {
 
       ${card({
         title: 'Subjects',
+        right: sourceChip('measured', 'bank + attempts'),
         body: dataTable({
           columns: [{ label: 'Subject' }, { label: 'Available', num: true }, { label: 'Attempted', num: true }, { label: 'Coverage', num: true }, { label: 'Accuracy (all)', num: true }, { label: 'First-attempt accuracy', num: true }, { label: 'Verdict' }],
           rows: subjectRows,
@@ -163,7 +184,7 @@ export default {
       ${card({
         title: 'Topics',
         subtitle: `${topicRows.length} topic(s)`,
-        actions: `<label class="field" style="margin:0"><span class="label-text">Subject</span>
+        actions: `<label class="field field-inline m-0"><span class="label-text">Subject</span>
           <select id="anaSubject"><option value="all">All subjects</option>${subjects.map((s) => `<option value="${esc(s)}" ${viewState.subject === s ? 'selected' : ''}>${esc(s)}</option>`).join('')}</select></label>`,
         body: dataTable({
           columns: [{ label: 'Topic' }, { label: 'Available', num: true }, { label: 'Attempted', num: true }, { label: 'Accuracy (all)', num: true }, { label: 'First-attempt', num: true }, { label: 'Avg time', num: true }, { label: 'Verdict' }],
@@ -178,10 +199,11 @@ export default {
           ${card({
             title: 'Weak topics',
             subtitle: `At least ${MIN_SAMPLE_STRONG} scored answers`,
+            right: sourceChip('derived', `min ${MIN_SAMPLE_STRONG}`),
             body: analytics.weakTopics.length
               ? dataTable({
                   columns: [{ label: 'Topic' }, { label: 'Accuracy', num: true }, { label: 'n', num: true }, { label: 'Coverage', num: true }],
-                  rows: analytics.weakTopics.map((r) => [esc(`${r.topic} · ${r.subject}`), fmtPct(r.accuracy), String(r.scored), fmtPct(r.coverage)]),
+                  rows: analytics.weakTopics.map((r) => [esc(`${r.topic} · ${r.subject}`), fmtPct(r.accuracy), `${String(r.scored)} ${evidenceMeter(r.scored, MIN_SAMPLE_STRONG, { showLabel: false })}`, fmtPct(r.coverage)]),
                   className: 'compact',
                 })
               : '<p class="muted small">No topic currently meets the evidence threshold for a weak verdict.</p>',
@@ -190,10 +212,11 @@ export default {
           ${card({
             title: 'Strong topics',
             subtitle: 'Your best-performing topics with enough evidence',
+            right: sourceChip('derived', `min ${MIN_SAMPLE_STRONG}`),
             body: analytics.strongTopics.length
               ? dataTable({
                   columns: [{ label: 'Topic' }, { label: 'Accuracy', num: true }, { label: 'n', num: true }],
-                  rows: analytics.strongTopics.slice(0, 10).map((r) => [esc(`${r.topic} · ${r.subject}`), fmtPct(r.accuracy), String(r.scored)]),
+                  rows: analytics.strongTopics.slice(0, 10).map((r) => [esc(`${r.topic} · ${r.subject}`), fmtPct(r.accuracy), `${String(r.scored)} ${evidenceMeter(r.scored, MIN_SAMPLE_STRONG, { showLabel: false })}`]),
                   className: 'compact',
                 })
               : '<p class="muted small">No topic yet meets the evidence threshold for a strong verdict.</p>',
@@ -201,8 +224,9 @@ export default {
 
           ${card({
             title: 'Too thin to judge',
+            right: sourceChip('unavailable', 'small sample'),
             body: insufficient.length
-              ? `<ul class="small">${insufficient.map((r) => `<li><strong>${esc(r.topic)}</strong> — ${esc(r.reason)}</li>`).join('')}</ul>`
+              ? `<ul class="small">${insufficient.map((r) => `<li><strong>${esc(r.topic)}</strong> — ${esc(r.reason)} ${evidenceMeter(r.scored || 1, MIN_SAMPLE_STRONG)}</li>`).join('')}</ul>`
               : '<p class="muted small">Every attempted topic has enough scored answers to say something useful.</p>',
           })}
         </div>
@@ -210,6 +234,7 @@ export default {
         <div>
           ${card({
             title: 'Never attempted',
+            right: sourceChip('measured', '0 attempts'),
             body: neverAttempted.length
               ? dataTable({
                   columns: [{ label: 'Topic' }, { label: 'Available', num: true }],
@@ -221,6 +246,7 @@ export default {
 
           ${card({
             title: 'Under-practised (coverage below 30%)',
+            right: sourceChip('derived', '<30% covered'),
             body: underPractised.length
               ? dataTable({
                   columns: [{ label: 'Topic' }, { label: 'Covered', num: true }, { label: 'Available', num: true }],
@@ -233,6 +259,7 @@ export default {
           ${card({
             title: 'Confidence analysis',
             subtitle: analytics.confidence.enabled ? 'Confidence you marked, shown separately from correctness' : 'Confidence marking is currently off',
+            right: sourceChip('measured'),
             body: analytics.confidence.enabled
               ? `${dataTable({
                   columns: [{ label: 'Marked as' }, { label: 'Correct', num: true }, { label: 'Incorrect', num: true }, { label: 'Unanswered', num: true }, { label: 'Total', num: true }, { label: 'Accuracy', num: true }],
@@ -240,7 +267,7 @@ export default {
                   empty: 'No confidence data yet.',
                   className: 'compact',
                 })}
-                 <div class="row" style="margin-top:8px">
+                 <div class="row mt-2">
                    ${badge(`${analytics.confidence.overconfidence} confident but wrong`, analytics.confidence.overconfidence ? 'bad' : '')}
                    ${badge(`${analytics.confidence.underconfidence} correct but unsure/guessed`, 'warn')}
                  </div>
@@ -250,6 +277,7 @@ export default {
 
           ${card({
             title: 'Time per question',
+            right: sourceChip('measured'),
             body: `
               ${dataTable({
                 columns: [{ label: 'Measure' }, { label: 'Value' }],
@@ -260,7 +288,7 @@ export default {
                 ],
                 className: 'compact',
               })}
-              <h4 style="margin-top:10px">Slowest answers</h4>
+              <h3 class="mt-3">Slowest answers</h3>
               ${dataTable({ columns: [{ label: 'Question' }, { label: 'Subject' }, { label: 'Topic' }, { label: 'Time', num: true }, { label: 'Outcome' }], rows: slowestRows, empty: 'No timings recorded.', className: 'compact' })}`,
           })}
         </div>
@@ -269,15 +297,16 @@ export default {
       ${card({
         title: 'Mistakes',
         subtitle: 'Open entries in the mistake book',
+        right: sourceChip('measured', 'mistake book'),
         body: `
           <div class="grid tiles">
-            ${tile({ label: 'Open entries', value: String(analytics.mistakes.open), sub: `${analytics.mistakes.repeated} repeated` })}
-            ${tile({ label: 'Incorrect', value: String(counts.incorrect), sub: 'wrong answers recorded' })}
-            ${tile({ label: 'Skipped', value: String(counts.unanswered), sub: 'left unanswered' })}
-            ${tile({ label: 'Flagged for review', value: String(counts.flagged), sub: 'marked during tests' })}
+            ${tile({ label: 'Open entries', value: String(analytics.mistakes.open), sub: `${analytics.mistakes.repeated} repeated`, source: 'measured' })}
+            ${tile({ label: 'Incorrect', value: String(counts.incorrect), sub: 'wrong answers recorded', source: 'measured' })}
+            ${tile({ label: 'Skipped', value: String(counts.unanswered), sub: 'left unanswered', source: 'measured' })}
+            ${tile({ label: 'Flagged for review', value: String(counts.flagged), sub: 'marked during tests', source: 'measured' })}
           </div>
           ${analytics.mistakes.top.length
-            ? `<h4 style="margin-top:12px">Most repeated</h4>
+            ? `<h3 class="mt-3">Most repeated</h3>
                ${dataTable({
                  columns: [{ label: 'Question' }, { label: 'Type' }, { label: 'Times', num: true }, { label: 'Last seen' }],
                  rows: analytics.mistakes.top.slice(0, 10).map((m) => [
@@ -289,31 +318,33 @@ export default {
                  className: 'compact',
                })}`
             : '<p class="muted small">No open mistake entries.</p>'}
-          <div class="row" style="margin-top:8px"><a class="btn btn-sm" href="#/mistakes">Open the Mistake Book</a></div>`,
+          <div class="row mt-2"><a class="btn btn-sm" href="#/mistakes">Open the Mistake Book</a></div>`,
       })}
 
       ${card({
         title: 'Revision',
+        right: sourceChip('derived', 'spaced repetition'),
         body: `
           <div class="grid tiles">
-            ${tile({ label: 'Tracked', value: String(analytics.revision.tracked), sub: 'questions with a schedule' })}
-            ${tile({ label: 'Due today', value: String(analytics.revision.dueToday), tone: analytics.revision.dueToday ? 'warn' : '' })}
-            ${tile({ label: 'Overdue', value: String(analytics.revision.overdue), tone: analytics.revision.overdue ? 'bad' : 'ok' })}
-            ${tile({ label: 'Upcoming', value: String(analytics.revision.upcoming) })}
+            ${tile({ label: 'Tracked', value: String(analytics.revision.tracked), sub: 'questions with a schedule', source: 'measured' })}
+            ${tile({ label: 'Due today', value: String(analytics.revision.dueToday), tone: analytics.revision.dueToday ? 'warn' : '', source: 'derived' })}
+            ${tile({ label: 'Overdue', value: String(analytics.revision.overdue), tone: analytics.revision.overdue ? 'bad' : 'ok', source: 'derived' })}
+            ${tile({ label: 'Upcoming', value: String(analytics.revision.upcoming), source: 'derived' })}
           </div>
           ${
             analytics.revision.effectiveness.withHistory
-              ? `<h4 style="margin-top:12px">Change between first and latest scored attempt</h4>
+              ? `<h3 class="mt-3">Change between first and latest scored attempt</h3>
                  ${progressBar(analytics.revision.effectiveness.improved / analytics.revision.effectiveness.withHistory, 'ok')}
-                 <p class="small" style="margin-top:6px">${analytics.revision.effectiveness.improved} improved · ${analytics.revision.effectiveness.worsened} declined · ${analytics.revision.effectiveness.unchanged} unchanged, across ${analytics.revision.effectiveness.withHistory} question(s).</p>`
+                 <p class="small mt-2">${analytics.revision.effectiveness.improved} improved · ${analytics.revision.effectiveness.worsened} declined · ${analytics.revision.effectiveness.unchanged} unchanged, across ${analytics.revision.effectiveness.withHistory} question(s).</p>`
               : '<p class="muted small">Not enough repeated attempts yet to compare first and latest answers.</p>'
           }
-          <div class="row" style="margin-top:8px"><a class="btn btn-sm" href="#/revision">Revision Centre</a></div>`,
+          <div class="row mt-2"><a class="btn btn-sm" href="#/revision">Revision Centre</a></div>`,
       })}
 
       ${card({
         title: 'Topic frequency in your bank',
         subtitle: `${analytics.frequency.total} stored question(s)`,
+        right: sourceChip('supplied', 'imported bank'),
         body: `
           ${dataTable({ columns: [{ label: 'Topic' }, { label: 'Questions', num: true }, { label: 'Share of bank', num: true }, { label: 'By year' }], rows: freqTopicRows, empty: 'No classified topics yet.', className: 'compact' })}
           <p class="tiny muted">${esc(analytics.frequency.disclaimer)}</p>`,
@@ -323,13 +354,14 @@ export default {
       ${card({
         title: 'Study priorities',
         subtitle: 'Derived ranking with its reasons and caveats',
+        right: sourceChip('derived'),
         body: dataTable({
           columns: [{ label: 'Topic' }, { label: 'Score', num: true }, { label: 'Available', num: true }, { label: 'Accuracy', num: true }, { label: 'Why' }],
           rows: priorities.map((p) => [
             `<strong>${esc(p.topic)}</strong><div class="tiny muted">${esc(p.subject)}</div>`,
             String(p.priorityScore),
             String(p.available),
-            p.scored ? fmtPct(p.accuracy) : '<span class="soft">no data</span>',
+            p.scored ? `${fmtPct(p.accuracy)} ${evidenceMeter(p.scored, MIN_SAMPLE_STRONG, { showLabel: false })}` : '<span class="soft">no data</span>',
             `<span class="tiny">${p.reasons.slice(0, 3).map((r) => esc(r)).join('<br />')}</span>`,
           ]),
           empty: 'No priorities yet.',
@@ -340,6 +372,7 @@ export default {
 
       ${card({
         title: 'Test history',
+        right: sourceChip('measured'),
         body: dataTable({
           columns: [{ label: 'Test' }, { label: 'Questions', num: true }, { label: 'Correct / total', num: true }, { label: 'Accuracy', num: true }, { label: 'Marks', num: true }, { label: 'Time' }],
           rows: testRows,
@@ -350,7 +383,7 @@ export default {
       })}`;
   },
 
-  async mount(ctx, root) {
+  async mount(ctx) {
     document.getElementById('anaSubject')?.addEventListener('change', async (ev) => {
       viewState.subject = ev.target.value;
       await ctx.refresh();

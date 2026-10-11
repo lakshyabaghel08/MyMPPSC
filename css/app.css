@@ -1965,10 +1965,16 @@ body.runner-focus .runner {
   font-size: var(--text-sm);
 }
 
+.explanation h3,
 .explanation h4 {
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
   margin-top: var(--space-3);
 }
 
+.explanation h3:first-child,
 .explanation h4:first-child {
   margin-top: 0;
 }

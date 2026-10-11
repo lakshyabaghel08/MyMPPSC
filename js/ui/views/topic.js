@@ -7,7 +7,7 @@
  */
 
 import { state } from '../../core/state.js';
-import { esc, card, dataTable, toast, emptyState } from '../components.js';
+import { esc, card, dataTable, toast, emptyState, sourceChip } from '../components.js';
 import { QUESTION_TYPES, LANGUAGE_LABELS } from '../../core/constants.js';
 import { filterMetas, availability, selectQuestions, ATTEMPT_STATE_FILTERS } from '../../services/select.js';
 import { configFields, readConfig, startPracticeTest, countSummary, availabilityTable, currentAttemptSummary } from './shared.js';
@@ -47,9 +47,9 @@ function filtersMarkup(filters, options) {
         <input type="search" id="fSearch" value="${esc(filters.search)}" placeholder="e.g. Narmada" />
       </label>
     </div>
-    <div class="row" style="margin-top:6px">
-      <label class="check" style="margin:0"><input type="checkbox" id="fExcludeDemo" ${filters.excludeDemonstration ? 'checked' : ''} /><span>Exclude demonstration questions</span></label>
-      <label class="check" style="margin:0"><input type="checkbox" id="fReviewed" ${filters.onlyReviewedExplanation ? 'checked' : ''} /><span>Only questions with a reviewed explanation</span></label>
+    <div class="row mt-2">
+      <label class="check m-0"><input type="checkbox" id="fExcludeDemo" ${filters.excludeDemonstration ? 'checked' : ''} /><span>Exclude demonstration questions</span></label>
+      <label class="check m-0"><input type="checkbox" id="fReviewed" ${filters.onlyReviewedExplanation ? 'checked' : ''} /><span>Only questions with a reviewed explanation</span></label>
       <button class="btn btn-sm" type="button" id="fReset">Reset filters</button>
     </div>`;
 }
@@ -74,13 +74,19 @@ function readFilters() {
 export default {
   title: 'Topic Practice',
 
-  async render(ctx) {
+  async render() {
     const metas = Array.from(state.questionIndex.values());
     if (!metas.length) {
-      return card({
-        title: 'Topic practice needs a question bank',
-        body: emptyState({ title: 'No questions stored yet', message: 'Import a validated bank first; this screen will then let you filter by subject, topic, subtopic, year, paper, question type and attempt history.', action: '<a class="btn btn-primary" href="#/bank">Question Bank &amp; Imports</a>' }),
-      });
+      return `
+        <h1>Topic Practice</h1>
+        ${card({
+          title: 'Topic practice needs a question bank',
+          body: emptyState({
+            title: 'No questions stored yet',
+            message: 'Import a validated bank first; this screen will then let you filter by subject, topic, subtopic, year, paper, question type and attempt history.',
+            action: '<a class="btn btn-primary" href="#/bank">Question Bank &amp; Imports</a>',
+          }),
+        })}`;
     }
     const attemptSummary = await currentAttemptSummary();
     const filters = viewState.filters;
@@ -102,10 +108,11 @@ export default {
       <h1>Topic Practice</h1>
       <p class="muted">Choose exactly what you want to practise. Counts update as you change the filters, before you start.</p>
 
-      ${card({ title: 'Filters', body: filtersMarkup(filters, { subjects: subjectOptions, topics: topicOptions, subtopics: subtopicOptions, years: yearOptions, papers }) })}
+      ${card({ title: 'Filters', right: sourceChip('supplied', 'bank metadata'), body: filtersMarkup(filters, { subjects: subjectOptions, topics: topicOptions, subtopics: subtopicOptions, years: yearOptions, papers }) })}
 
       ${card({
         title: 'Available questions',
+        right: sourceChip('measured', `${matching.length} matching`),
         body: `
           ${countSummary(availabilityData)}
           <div class="split-2">
@@ -122,10 +129,11 @@ export default {
       ${card({
         title: 'Session settings',
         subtitle: `${matching.length} question(s) will be drawn from`,
+        right: sourceChip('derived', 'session rules'),
         body: `
           ${configFields({ paper: null, defaultCount: Math.min(20, Math.max(1, matching.length)), maxCount: matching.length, allowCustomScoring: true })}
-          <div class="row">
-            <label class="field" style="flex:1 1 220px"><span class="label-text">Selection strategy</span>
+          <div class="field-row">
+            <label class="field"><span class="label-text">Selection strategy</span>
               <select id="practiceStrategy">
                 <option value="random">Random from the matching set</option>
                 <option value="least-attempted">Least attempted first</option>
@@ -140,7 +148,7 @@ export default {
       })}`;
   },
 
-  async mount(ctx, root) {
+  async mount(ctx) {
     const rerender = async () => {
       viewState.filters = readFilters();
       await ctx.refresh();

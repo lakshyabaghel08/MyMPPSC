@@ -1,17 +1,34 @@
 /**
- * runner.js — The test-taking screen.
+ * runner.js — The test-taking screen (crown jewel).
  *
  * Handles: original question order, timer, question palette, mark for review,
  * clear response, confidence marking, learning-mode feedback, automatic saving,
- * resume after a refresh and submission with confirmation.
+ * distraction-free focus mode, keyboard shortcut bar + aria-keyshortcuts,
+ * Devanagari lang="hi" typography, resume after a refresh and submission with
+ * confirmation.
  */
 
-import { CONFIDENCE_LEVELS, NON_SHUFFLEABLE_TYPES } from '../../core/constants.js';
+import { CONFIDENCE_LEVELS, STORES } from '../../core/constants.js';
 import { state } from '../../core/state.js';
 import * as db from '../../core/db.js';
-import { STORES } from '../../core/constants.js';
-import { esc, fmtClock, badge, notice, warningList, renderExplanation, questionTypeLabel, answerKeyBadge, confidenceLabel, languageSwitcher } from '../components.js';
-import { toast, confirmDialog, openModal } from '../components.js';
+import {
+  esc,
+  fmtClock,
+  badge,
+  notice,
+  warningList,
+  renderExplanation,
+  questionTypeLabel,
+  answerKeyBadge,
+  confidenceLabel,
+  languageSwitcher,
+  sourceChip,
+  demoBadge,
+  langAttr,
+  toast,
+  confirmDialog,
+  openModal,
+} from '../components.js';
 import { getQuestions } from '../../services/questions.js';
 import * as tests from '../../services/tests.js';
 import { displayVariant } from '../../core/schema.js';
@@ -62,6 +79,19 @@ function orderedOptions(question) {
   return keys.map((k) => byKey.get(k)).filter(Boolean);
 }
 
+function keyProvenanceChip(question) {
+  if (question.dispute?.is_disputed || question.supplied?.status === 'disputed') {
+    return sourceChip('disputed', 'disputed key');
+  }
+  if (question.verified?.answer?.length) {
+    return sourceChip('verified', 'independently verified');
+  }
+  if (question.supplied?.answer?.length) {
+    return sourceChip('supplied', 'supplied key');
+  }
+  return sourceChip('unavailable', 'key missing');
+}
+
 function markup() {
   const { test } = session;
   const { id: questionId, question, index } = currentQuestion();
@@ -71,9 +101,10 @@ function markup() {
   const revealed = learningMode && response.revealed;
   const paper = test.paper_snapshot;
   const totalQuestions = test.question_ids.length;
+  const isFocusMode = typeof document !== 'undefined' && document.body.classList.contains('runner-focus');
 
   if (!question) {
-    return notice('This question could not be loaded from the local database. It may have been removed by undoing an import.', 'bad');
+    return `<h1 class="runner-title">${esc(test.label || 'Test')}</h1>${notice('This question could not be loaded from the local database. It may have been removed by undoing an import.', 'bad')}`;
   }
 
   const { variant, lang, fallback } = displayVariant(question, session.lang);
@@ -84,16 +115,17 @@ function markup() {
 
   const remaining = test.timer.remaining_seconds;
   const timerClass = remaining !== null && remaining !== undefined ? (remaining <= 60 ? 'bad' : remaining <= 300 ? 'warn' : '') : '';
+  const saveStateClass = session.saveState === 'saving' ? 'saving' : session.saveState === 'error' ? 'error' : '';
 
   const confidenceControl = test.config.confidence === 'off'
     ? ''
-    : `<div class="row tight" style="margin-top:12px">
+    : `<div class="row tight mt-3">
         <span class="tiny muted">Recall confidence${test.config.confidence === 'required' ? ' (required)' : ''}:</span>
-        <span class="seg" data-confidence>
+        <span class="seg" role="group" aria-label="Recall confidence" data-confidence>
           ${Object.entries(CONFIDENCE_LEVELS)
-            .map(([key, label]) => `<button type="button" data-action="confidence" data-value="${key}" aria-pressed="${response.confidence === key}">${esc(label)}</button>`)
+            .map(([key, label]) => `<button type="button" data-action="confidence" data-value="${key}" aria-keyshortcuts="c" aria-pressed="${response.confidence === key}">${esc(label)}</button>`)
             .join('')}
-          <button type="button" data-action="confidence" data-value="" aria-pressed="${!response.confidence}">Clear</button>
+          <button type="button" data-action="confidence" data-value="" aria-keyshortcuts="c" aria-pressed="${!response.confidence}">Clear</button>
         </span>
         <span class="tiny soft">Stored separately from correctness — a correct guess is treated as weak recall.</span>
       </div>`;
@@ -103,38 +135,43 @@ function markup() {
       const r = responseFor(id);
       const classes = [r.selected?.length ? 'answered' : '', r.flagged ? 'flagged' : '', i === index ? 'current' : ''].filter(Boolean).join(' ');
       const number = session.questions.get(id)?.question_number ?? i + 1;
-      return `<button type="button" class="${classes}" data-action="goto" data-index="${i}" aria-label="Question ${esc(String(number))}${r.flagged ? ', flagged' : ''}${r.selected?.length ? ', answered' : ''}">${esc(String(number))}${r.flagged ? '<span class="flag-dot">⚑</span>' : ''}</button>`;
+      return `<button type="button" class="${classes}" data-action="goto" data-index="${i}" aria-label="Question ${esc(String(number))}${r.flagged ? ', flagged' : ''}${r.selected?.length ? ', answered' : ''}">${esc(String(number))}${r.flagged ? '<span class="flag-dot" aria-hidden="true">⚑</span>' : ''}</button>`;
     })
     .join('');
 
   const explanationBlock = revealed
-    ? `<div style="margin-top:14px">
+    ? `<div class="mt-4">
         ${renderExplanation(question)}
         ${
           effective.length
-            ? `<p class="small" style="margin-top:8px">Answer key: <strong>${esc(effective.join(', '))}</strong> ${answerKeyBadge(question.supplied?.status)}${question.verified?.answer ? ` · verified answer: <strong>${esc(question.verified.answer.join(', '))}</strong>` : ''}</p>`
-            : '<p class="small" style="margin-top:8px;color:var(--bad)">No usable answer key entry exists for this question, so your response cannot be judged. It is excluded from scoring rather than marked wrong.</p>'
+            ? `<p class="small mt-2 mb-0">Answer key: <strong>${esc(effective.join(', '))}</strong> ${answerKeyBadge(question.supplied?.status)}${question.verified?.answer ? ` · verified answer: <strong>${esc(question.verified.answer.join(', '))}</strong>` : ''}</p>`
+            : '<p class="small text-bad mt-2 mb-0">No usable answer key entry exists for this question, so your response cannot be judged. It is excluded from scoring rather than marked wrong.</p>'
         }
       </div>`
     : '';
+
+  const qLangAttr = langAttr(variant?.question_text, lang);
 
   return `
   <div class="runner-bar">
     <div class="grow">
       <div class="row tight">
-        <strong>${esc(test.label || 'Practice')}</strong>
+        <h1 class="runner-title">${esc(test.label || 'Practice')}</h1>
         ${test.config.is_authentic_paper ? badge('authentic paper order', 'accent') : badge('custom / practice set', '')}
+        ${test.config.is_authentic_paper ? sourceChip('supplied', 'authentic paper') : sourceChip('derived', 'practice session')}
         ${badge(test.config.feedback_mode === 'learning' ? 'learning mode' : 'exam simulation', test.config.feedback_mode === 'learning' ? 'info' : '')}
       </div>
       <div class="tiny muted">
         ${paper ? `${esc(paper.exam || '')} ${paper.year ? `· ${esc(String(paper.year))}` : ''}${paper.set_code ? ` · set ${esc(paper.set_code)}` : ''} · ` : ''}
         Question ${index + 1} of ${totalQuestions}${question.question_number ? ` (paper Q${esc(String(question.question_number))})` : ''}
-        ${progress.answered} answered · ${progress.unanswered} left · ${progress.flagged} flagged
+        · ${progress.answered} answered · ${progress.unanswered} left · ${progress.flagged} flagged
       </div>
     </div>
     <div class="row tight">
       ${test.config.show_timer && remaining !== null && remaining !== undefined ? `<span class="timer ${timerClass}" id="runnerTimer" role="timer">${fmtClock(remaining)}</span>` : '<span class="tiny muted">No time limit</span>'}
-      <span class="save-state" id="saveState">${session.saveState === 'saving' ? 'saving…' : session.saveState === 'error' ? 'save failed' : 'saved'}</span>
+      <span class="save-state ${saveStateClass}" id="saveState">${session.saveState === 'saving' ? 'saving…' : session.saveState === 'error' ? 'save failed' : 'saved'}</span>
+      <button class="btn btn-sm" type="button" data-action="focus-mode" aria-pressed="${isFocusMode}" title="Toggle distraction-free reading layout">${isFocusMode ? 'Show sidebar' : 'Focus mode'}</button>
+      <button class="btn btn-sm" type="button" data-action="print" title="Print question paper">Print</button>
       <button class="btn btn-sm" type="button" data-action="pause">${test.status === 'paused' ? 'Resume' : 'Pause'}</button>
       <button class="btn btn-primary btn-sm" type="button" data-action="submit">Submit</button>
     </div>
@@ -144,48 +181,59 @@ function markup() {
     <div>
       <article class="question-card" id="questionCard">
         <div class="question-meta">
-          <span class="strong">Q${esc(String(question.question_number ?? index + 1))}</span>
+          <span class="question-num-pill">Q${esc(String(question.question_number ?? index + 1))}</span>
           ${badge(question.classification?.subject || 'Unclassified', question.classification?.isUnclassified ? 'warn' : '')}
           ${question.classification?.topic ? badge(question.classification.topic, '') : ''}
           ${question.classification?.subtopic ? badge(question.classification.subtopic, 'plain') : ''}
           ${badge(questionTypeLabel(question.question_type), 'info')}
           ${answerKeyBadge(question.supplied?.status)}
-          ${question.verified?.answer ? badge('independently verified', 'ok') : ''}
-          ${question.is_demonstration ? '<span class="demo-flag">demonstration</span>' : ''}
+          ${keyProvenanceChip(question)}
+          ${demoBadge(question.is_demonstration)}
           ${fallback && lang !== session.lang ? badge(`showing ${lang === 'hi' ? 'Hindi' : 'English'} (other language unavailable)`, 'warn') : ''}
-          ${Object.keys(question.language_variants).length > 1 ? `<span style="margin-left:auto" data-lang-wrap>${languageSwitcher(question, session.lang)}</span>` : ''}
+          ${Object.keys(question.language_variants).length > 1 ? `<span class="ml-auto" data-lang-wrap>${languageSwitcher(question, session.lang)}</span>` : ''}
         </div>
 
-        ${variant?.instructions ? `<div class="instructions">${esc(variant.instructions)}</div>` : ''}
-        <p class="question-text ${lang === 'hi' ? 'hi' : ''}">${esc(variant?.question_text || '')}</p>
+        ${variant?.instructions ? `<div class="instructions"${langAttr(variant.instructions, lang)}>${esc(variant.instructions)}</div>` : ''}
+        <p class="question-text ${lang === 'hi' ? 'hi' : ''}"${qLangAttr}>${esc(variant?.question_text || '')}</p>
 
         <div class="options" role="group" aria-label="Answer options">
           ${options
-            .map((opt) => {
+            .map((opt, optIdx) => {
               const selected = response.selected?.includes(opt.key);
               const isAnswer = revealed && answers.has(opt.key);
               const wrongPick = revealed && selected && !answers.has(opt.key);
               const cls = [isAnswer ? 'correct' : '', wrongPick ? 'incorrect' : ''].filter(Boolean).join(' ');
-              return `<button class="option-row ${cls}" type="button" data-action="select" data-key="${esc(opt.key)}" aria-pressed="${selected}">
+              const shortcutKey = optIdx < 9 ? String(optIdx + 1) : '';
+              return `<button class="option-row ${cls}" type="button" data-action="select" data-key="${esc(opt.key)}" aria-pressed="${selected}"${shortcutKey ? ` aria-keyshortcuts="${shortcutKey}"` : ''}${langAttr(opt.text, lang)}>
                 <span class="option-key">${esc(opt.key)}</span>
                 <span class="option-text">${esc(opt.text)}</span>
+                ${shortcutKey ? `<span class="option-kbd" aria-hidden="true">${shortcutKey}</span>` : ''}
               </button>`;
             })
             .join('')}
         </div>
 
-        ${question.question_type === 'multiple_correct' && !revealed ? '<p class="tiny muted" style="margin-top:8px">More than one option may be correct. Select all that apply, then check your answer.</p>' : ''}
+        ${question.question_type === 'multiple_correct' && !revealed ? '<p class="tiny muted mt-2 mb-0">More than one option may be correct. Select all that apply, then check your answer.</p>' : ''}
 
         <div class="runner-nav">
-          <button class="btn" type="button" data-action="prev" ${index === 0 ? 'disabled' : ''}>← Previous</button>
-          <button class="btn" type="button" data-action="next" ${index >= totalQuestions - 1 ? 'disabled' : ''}>Next →</button>
-          <button class="btn" type="button" data-action="flag">${response.flagged ? '⚑ Remove flag' : '⚑ Mark for review'}</button>
-          <button class="btn" type="button" data-action="clear" ${!response.selected?.length ? 'disabled' : ''}>Clear response</button>
+          <button class="btn" type="button" data-action="prev" aria-keyshortcuts="ArrowLeft p" ${index === 0 ? 'disabled' : ''}>← Previous</button>
+          <button class="btn" type="button" data-action="next" aria-keyshortcuts="ArrowRight n" ${index >= totalQuestions - 1 ? 'disabled' : ''}>Next →</button>
+          <button class="btn" type="button" data-action="flag" aria-keyshortcuts="f" aria-pressed="${Boolean(response.flagged)}">${response.flagged ? '⚑ Remove flag' : '⚑ Mark for review'}</button>
+          <button class="btn" type="button" data-action="clear" aria-keyshortcuts="u" ${!response.selected?.length ? 'disabled' : ''}>Clear response</button>
           <span class="grow"></span>
           <span class="tiny muted">Time on this question: ${fmtClock(Math.round((response.time_spent_ms || 0) / 1000))}</span>
           ${learningMode && !revealed ? '<button class="btn btn-primary" type="button" data-action="reveal">Check answer</button>' : ''}
         </div>
         ${confidenceControl}
+        <div class="kbd-bar" aria-label="Keyboard shortcuts">
+          <span><kbd>1</kbd>–<kbd>${Math.min(9, Math.max(1, options.length))}</kbd> select option</span>
+          <span><kbd>←</kbd>/<kbd>P</kbd> previous</span>
+          <span><kbd>→</kbd>/<kbd>N</kbd> next</span>
+          <span><kbd>F</kbd> flag</span>
+          <span><kbd>U</kbd> clear</span>
+          ${test.config.confidence !== 'off' ? '<span><kbd>C</kbd> confidence</span>' : ''}
+          <span><kbd>?</kbd> help</span>
+        </div>
         ${explanationBlock}
       </article>
       ${warningList(test.config.warnings)}
@@ -193,7 +241,7 @@ function markup() {
 
     <aside class="sticky-side">
       <section class="card">
-        <div class="card-head"><h3>Question palette</h3><span class="muted tiny">${progress.answered}/${totalQuestions}</span></div>
+        <div class="card-head"><h2>Question palette</h2><span class="muted tiny">${progress.answered}/${totalQuestions}</span></div>
         <div class="card-body tight">
           <div class="palette">${paletteHtml}</div>
           <div class="legend">
@@ -209,21 +257,21 @@ function markup() {
 }
 
 function card_summary(test, progress) {
-  const conf = test.config.confidence !== 'off' ? `<p class="small" style="margin:6px 0 0">Confidence marked: ${progress.confidence.confident} confident · ${progress.confidence.unsure} unsure · ${progress.confidence.guessed} guessed</p>` : '';
+  const conf = test.config.confidence !== 'off' ? `<p class="small mt-2 mb-0">Confidence marked: ${progress.confidence.confident} confident · ${progress.confidence.unsure} unsure · ${progress.confidence.guessed} guessed</p>` : '';
   return `<section class="card">
-    <div class="card-head"><h3>Scoring in force</h3></div>
+    <div class="card-head"><h2>Scoring in force</h2>${test.config.scoring.rules ? sourceChip('supplied') : sourceChip('unavailable')}</div>
     <div class="card-body tight small">
       ${
         test.config.scoring.rules
-          ? `<p style="margin:0">${esc(
+          ? `<p class="m-0">${esc(
               [
                 `+${test.config.scoring.rules.marks_per_correct} correct`,
                 test.config.scoring.rules.negative_marking_enabled ? `−${test.config.scoring.rules.negative_marks_per_incorrect} incorrect` : 'no negative marking',
                 `${test.config.scoring.rules.marks_for_unanswered} unanswered`,
               ].join(' · '),
             )}</p>
-            <p class="tiny soft" style="margin:4px 0 0">${esc(test.config.scoring.rulesSourceNote || '')}</p>`
-          : '<p style="margin:0;color:var(--bad)">Rules are not configured. You can finish the paper, but it cannot be scored until the rules are set.</p>'
+            <p class="tiny soft mt-1 mb-0">${esc(test.config.scoring.rulesSourceNote || '')}</p>`
+          : '<p class="text-bad m-0">Rules are not configured. You can finish the paper, but it cannot be scored until the rules are set.</p>'
       }
       ${conf}
     </div>
@@ -238,14 +286,23 @@ function card_summary(test, progress) {
 async function persist() {
   session.saveState = 'saving';
   const saveEl = document.getElementById('saveState');
-  if (saveEl) saveEl.textContent = 'saving…';
+  if (saveEl) {
+    saveEl.textContent = 'saving…';
+    saveEl.className = 'save-state saving';
+  }
   try {
     await tests.saveTest(session.test);
     session.saveState = 'saved';
-    if (saveEl) saveEl.textContent = 'saved';
+    if (saveEl) {
+      saveEl.textContent = 'saved';
+      saveEl.className = 'save-state';
+    }
   } catch (err) {
     session.saveState = 'error';
-    if (saveEl) saveEl.textContent = 'save failed';
+    if (saveEl) {
+      saveEl.textContent = 'save failed';
+      saveEl.className = 'save-state error';
+    }
     toast(`Your answer could not be saved: ${err.message}`, 'bad');
   }
 }
@@ -313,7 +370,6 @@ async function goto(ctx, root, index) {
   await persist();
   await repaint(ctx, root);
   if (session.test.config.feedback_mode === 'learning' && response.selected?.length && !response.revealed) {
-    // keep learning mode pinned to the current question
     document.getElementById('questionCard')?.scrollIntoView({ block: 'nearest' });
   }
 }
@@ -355,7 +411,7 @@ export async function submitWithConfirmation(ctx, { auto = false, root = null } 
       message: `You answered <strong>${progress.answered}</strong> of ${progress.total} questions.
         ${progress.unanswered ? `<br /><strong>${progress.unanswered}</strong> question(s) are unanswered — they stay unanswered rather than being guessed.` : ''}
         ${progress.flagged ? `<br />${progress.flagged} question(s) are still marked for review.` : ''}
-        ${requiredMissing ? `<br /><span style="color:var(--warn)">${requiredMissing} answered question(s) have no confidence mark yet.</span>` : ''}
+        ${requiredMissing ? `<br /><span class="text-warn">${requiredMissing} answered question(s) have no confidence mark yet.</span>` : ''}
         <br /><br />Scoring uses: ${esc(
           [
             `+${test.config.scoring.rules.marks_per_correct} correct`,
@@ -371,6 +427,7 @@ export async function submitWithConfirmation(ctx, { auto = false, root = null } 
     await tests.submitTest(test, { auto });
     if (session.ticker) clearInterval(session.ticker);
     session.ticker = null;
+    document.body?.classList.remove('runner-focus');
     toast(auto ? 'Time is up — the test was submitted automatically.' : 'Test submitted. Results are ready.', auto ? 'warn' : 'ok');
     ctx.navigate(`report/${test.id}`);
     return true;
@@ -438,7 +495,6 @@ function startTicker(ctx, root) {
         }
       }
     }
-    // periodic light save (timer + elapsed only)
     if (test.elapsed_seconds % 5 === 0) {
       tests.saveTest(test).catch(() => {});
     }
@@ -459,7 +515,12 @@ function attach(ctx, root, { keepTimer = false } = {}) {
       else if (action === 'confidence') await setConfidence(ctx, root, btn.dataset.value || null);
       else if (action === 'reveal') await reveal(ctx, root);
       else if (action === 'submit') await submitWithConfirmation(ctx, { root });
-      else if (action === 'pause') {
+      else if (action === 'focus-mode') {
+        document.body?.classList.toggle('runner-focus');
+        await repaint(ctx, root);
+      } else if (action === 'print') {
+        window.print?.();
+      } else if (action === 'pause') {
         const test = session.test;
         if (test.status === 'paused') {
           test.status = 'in_progress';
@@ -537,7 +598,7 @@ const view = {
     const [testId, sessionId] = ctx.params;
     const loaded = await loadSession(testId, { questionIds: sessionId ? idsFromParam(sessionId) : null });
     if (!loaded) {
-      return notice('That test session was not found in local storage. It may have been deleted by a restore. <a href="#/test-centre">Back to the test centre</a>.', 'warn');
+      return `<h1>Test</h1>${notice('That test session was not found in local storage. It may have been deleted by a restore. <a href="#/test-centre">Back to the test centre</a>.', 'warn')}`;
     }
     session = loaded;
     if (session.test.status === 'submitted') {
@@ -575,6 +636,7 @@ const view = {
   async cleanup() {
     if (session?.ticker) clearInterval(session.ticker);
     if (session?.keyboardHandler) document.removeEventListener('keydown', session.keyboardHandler);
+    document.body?.classList.remove('runner-focus');
     if (session?.test && session.test.status === 'in_progress') {
       await tests.saveTest(session.test).catch((err) => console.warn('Could not save the test on leaving the screen', err));
     }
