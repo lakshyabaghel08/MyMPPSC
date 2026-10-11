@@ -1313,6 +1313,17 @@ legend {
   margin-top: 4px;
 }
 
+/* One-line plain-language summary of the practice session configuration. */
+.settings-summary {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  background: var(--bg-sunken);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: var(--space-2) var(--space-3);
+  margin: 0 0 var(--space-3);
+}
+
 .filters {
   display: flex;
   gap: var(--space-3);

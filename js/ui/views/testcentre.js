@@ -26,7 +26,7 @@ import {
 import { fmtDate, fmtMarks, fmtPct, fmtClock } from '../../core/util.js';
 import { paperSummary } from '../../services/select.js';
 import * as tests from '../../services/tests.js';
-import { configFields, readConfig, incompletePaperNotice, scoringUnknownNotice, startPracticeTest } from './shared.js';
+import { configFields, readConfig, mountConfigFields, incompletePaperNotice, scoringUnknownNotice, startPracticeTest } from './shared.js';
 
 function paperCard(paper, summary) {
   const questions = summary.present;
@@ -238,6 +238,9 @@ export default {
             <p class="small">This simulation will use the paper's original question order (${paper.question_order.length} stored questions), the source duration when known, and the source scoring rules.</p>
             ${configFields({ paper, defaultCount: paper.question_order.length, allowCustomScoring: true, allowRepeatOverride: false, maxCount: paper.question_order.length })}
             <label class="check"><input type="checkbox" id="simulationStrict" checked /><span>Keep the exact original order (recommended for a faithful simulation)</span></label>`,
+          onMount: () => {
+            mountConfigFields({ paper, defaultCount: paper.question_order.length, maxCount: paper.question_order.length, allowRepeatOverride: false });
+          },
           actions: [
             { label: 'Cancel', value: '__cancel' },
             { label: 'Start simulation', tone: 'btn-primary', value: '__start' },

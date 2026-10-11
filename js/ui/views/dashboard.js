@@ -84,15 +84,9 @@ export default {
     if (!metas.length) return noBankCard();
 
     const { analytics } = await loadAnalytics();
-    const [allTests, unfinished, tasks, , totals] = await Promise.all([
-      testsSvc.listTests({ limit: 200 }),
-      testsSvc.unfinishedTests(),
-      planner.listTasks({}),
-      planner.listSessions({ limit: 200 }),
-      planner.studyTotals(),
-    ]);
+    const [allTests, unfinished] = await Promise.all([testsSvc.listTests({ limit: 200 }), testsSvc.unfinishedTests()]);
 
-    const summary = dashboardSummary({ analytics, tests: allTests, tasks, revision: analytics.revision, settings: state.settings });
+    const summary = dashboardSummary({ analytics, tests: allTests, revision: analytics.revision, settings: state.settings });
     const bank = bankSummary();
     const syllabusRows = await planner.listSyllabus();
     const progress = planner.syllabusProgress(syllabusRows, analytics);
@@ -110,15 +104,6 @@ export default {
       t.score === null || t.score === undefined ? '<span class="soft">—</span>' : `${esc(String(t.score))}${t.max ? ` / ${esc(String(t.max))}` : ''}`,
       t.accuracy === null || t.accuracy === undefined ? '<span class="soft">—</span>' : esc(fmtPct(t.accuracy)),
     ]);
-
-    const taskRows = [...tasks.filter((t) => t.status !== 'done' && t.due_date && t.due_date <= summary.today)]
-      .sort((a, b) => (a.due_date < b.due_date ? -1 : 1))
-      .slice(0, 6)
-      .map((t) => [
-        `<strong>${esc(t.title)}</strong>${t.subject ? `<div class="tiny muted">${esc(t.subject)}${t.topic ? ` · ${esc(t.topic)}` : ''}</div>` : ''}`,
-        t.due_date < summary.today ? badge(`overdue ${esc(fmtRelative(t.due_date))}`, 'bad') : badge('due today', 'warn'),
-        `<button class="btn btn-sm" type="button" data-task-done="${esc(t.id)}">Mark done</button>`,
-      ]);
 
     const priorityRows = priorities.map((p) => [
       `<strong>${esc(p.topic)}</strong><div class="tiny muted">${esc(p.subject)}</div>`,
@@ -257,8 +242,8 @@ export default {
           value: esc(fmtDuration(summary.todayAttempts.minutes * 60)),
           context: `${summary.todayAttempts.attempts} answers · ${summary.streak}-day streak`,
           secondaryLabel: 'Last 7 days',
-          secondaryValue: esc(fmtDuration(totals.last7Minutes * 60)),
-          secondaryContext: `${totals.sessions} sessions · ${totals.avgMinutesPerSession} min avg`,
+          secondaryValue: esc(String(summary.activityByDay.reduce((a, d) => a + d.attempts, 0))),
+          secondaryContext: `answers · ${summary.activityByDay.filter((d) => d.attempts > 0).length} active day(s)`,
         })}
       </div>
 
@@ -278,14 +263,6 @@ export default {
 
       <div class="split-2">
         <div>
-          ${card({
-            title: "Today's tasks",
-            actions: `<a class="btn btn-sm btn-quiet" href="#/syllabus">Plan</a>`,
-            body: taskRows.length
-              ? dataTable({ columns: [{ label: 'Task' }, { label: 'Due' }, { label: '' }], rows: taskRows, className: 'compact' })
-              : `<p class="muted small">No tasks are due today. ${tasks.filter((t) => t.status !== 'done').length} open task(s) in total — create some in the <a href="#/syllabus">Syllabus &amp; Study Planner</a>.</p>`,
-          })}
-
           ${card({
             title: 'Questions answered per day',
             subtitle: 'Last 7 days, from stored attempts',
@@ -374,14 +351,6 @@ export default {
       } catch (err) {
         toast(`The demonstration bank could not be loaded: ${err.message}`, 'bad');
       }
-    });
-
-    root.addEventListener('click', async (ev) => {
-      const btn = ev.target.closest('[data-task-done]');
-      if (!btn) return;
-      await planner.completeTask(btn.dataset.taskDone, { markSyllabus: 'none' });
-      toast('Task marked done.', 'ok');
-      await ctx.refresh();
     });
   },
 };

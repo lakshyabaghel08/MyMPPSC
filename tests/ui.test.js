@@ -294,6 +294,48 @@ test('practice setup screens start real sessions from the shared configuration f
   assert.ok((smart.config.selection_notes || []).some((n) => /not a prediction/i.test(n)), 'a smart session must carry its explanation notes');
 });
 
+test('practice setup is progressive: essentials first, advanced collapsed and summarised', async () => {
+  await goto('topic');
+  assert.ok($('#practiceCfgCount'), 'session size is visible up front');
+  assert.ok($('#practiceCfgFeedback'), 'feedback timing is visible up front');
+  assert.ok($('#practiceStrategy'), 'topic selection strategy stays with the quick settings');
+  const summary = $('#practiceCfgSummary');
+  assert.ok(summary, 'the full session rules are summarised in plain language');
+  assert.match(summary.textContent, /This session: \d+ question/);
+
+  const advanced = $$('#view details.disclosure').find((d) => /Advanced settings/.test(d.querySelector('summary')?.textContent || ''));
+  assert.ok(advanced, 'timing, scoring and confidence live behind one disclosure');
+  assert.equal(advanced.open, false, 'the advanced settings start collapsed');
+
+  change($('#practiceCfgMarksCorrect'), '5');
+  assert.match($('#practiceCfgSummary').textContent, /\+5 marks, no negative marking/, 'the summary follows advanced changes');
+  click($('#practiceCfgReset'));
+  assert.match($('#practiceCfgSummary').textContent, /\+2 marks, no negative marking/, 'reset returns to the saved defaults');
+
+  await goto('smart');
+  assert.ok($('#practiceCfgCount'), 'smart practice has one size control in the session form');
+  assert.ok(!$('#smartCount'), 'the duplicate size selector is gone');
+  change($('#practiceCfgCount'), '15');
+  await waitFor(() => /This session: 15 questions/.test($('#practiceCfgSummary')?.textContent || ''), { label: 'size change rebuilds the smart plan' });
+
+  await goto('syllabus');
+  const plannerText = viewText();
+  assert.match(plannerText, /Syllabus structure/);
+  assert.ok(!/Log a study session/.test(plannerText), 'study-session logging is gone from the planner');
+  assert.ok(!/Study minutes per day/.test(plannerText), 'the study-minutes chart is gone from the planner');
+  assert.ok(!/Recent sessions/.test(plannerText), 'the recent-sessions table is gone from the planner');
+  assert.ok(!/Open tasks/.test(plannerText) && !/Suggested tasks/.test(plannerText) && !/New task/.test(plannerText), 'tasks are gone from the planner');
+
+  await goto('custom');
+  assert.ok($('#assembleCustom'), 'the custom builder still assembles tests');
+  const moreNarrowing = $$('#view details.disclosure').find((d) => /Narrow further/.test(d.querySelector('summary')?.textContent || ''));
+  assert.ok(moreNarrowing, 'year/paper/type pickers are tucked away');
+  assert.equal(moreNarrowing.open, false, 'the optional pickers start collapsed');
+
+  await goto('dashboard');
+  assert.ok(!/Today's tasks/.test(viewText()), 'the dashboard no longer advertises the removed planner tasks');
+});
+
 test('the mistake book, revision centre and analytics reflect the submitted test', async () => {
   await goto('mistakes');
   assert.match(viewText(), /Mistake Book/);

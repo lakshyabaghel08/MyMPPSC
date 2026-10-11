@@ -5,6 +5,9 @@
  * previously skipped questions, unseen coverage and under-practised topics —
  * and always explains why the session looks the way it does. It also states
  * plainly that question frequency is not a prediction of future papers.
+ * Session size lives in one place (the shared session form); everything else
+ * about the session is pre-filled from Settings and editable under "Advanced
+ * settings".
  */
 
 import { STORES } from '../../core/constants.js';
@@ -13,7 +16,7 @@ import { state } from '../../core/state.js';
 import { esc, card, notice, dataTable, tile, toast, emptyState, sourceChip, evidenceMeter } from '../components.js';
 import { allAttempts } from '../../services/attempts.js';
 import { buildAttemptSummary, smartPracticePlan, SMART_BUCKETS, computeTopicStats } from '../../services/select.js';
-import { configFields, readConfig, startPracticeTest, currentAttemptSummary } from './shared.js';
+import { configFields, readConfig, mountConfigFields, startPracticeTest, currentAttemptSummary } from './shared.js';
 
 const viewState = { count: 20, overrideRepeats: false, includeDemonstration: true, plan: null };
 
@@ -62,9 +65,6 @@ export default {
       `<span class="tiny muted">${esc(b.why)}</span>`,
     ]);
 
-    const options = Array.from({ length: 7 }, (_, i) => 10 + i * 10).filter((n) => n <= Math.max(10, metas.length));
-    if (!options.includes(10)) options.unshift(10);
-
     return `
       <h1>Smart Practice</h1>
       <p class="muted">A session assembled from your recorded performance: what is due for revision, what you keep getting wrong, what you skipped, and what you have never seen.</p>
@@ -78,8 +78,7 @@ export default {
 
       ${card({
         title: 'How this session will be built',
-        actions: `<label class="field field-inline m-0"><span class="label-text">Size</span>
-          <select id="smartCount">${options.map((n) => `<option value="${n}" ${n === viewState.count ? 'selected' : ''}>${n} questions</option>`).join('')}</select></label>`,
+        right: sourceChip('derived', `${plan.questionIds.length} picked`),
         body: `
           ${dataTable({ columns: [{ label: 'Source of questions' }, { label: 'Available', num: true }, { label: 'In this session', num: true }, { label: 'Why' }], rows: bucketRows, className: 'compact' })}
           <div class="row mt-3">
@@ -115,9 +114,12 @@ export default {
   },
 
   async mount(ctx) {
-    document.getElementById('smartCount')?.addEventListener('change', async (ev) => {
-      viewState.count = Number(ev.target.value) || 20;
-      await ctx.refresh();
+    mountConfigFields({
+      defaultCount: viewState.count,
+      onCountChange: async (n) => {
+        viewState.count = n;
+        await ctx.refresh();
+      },
     });
     document.getElementById('smartOverrideRepeats')?.addEventListener('change', async (ev) => {
       viewState.overrideRepeats = ev.target.checked;
