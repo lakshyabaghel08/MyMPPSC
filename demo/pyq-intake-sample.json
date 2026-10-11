@@ -1,0 +1,237 @@
+{
+  "intake_version": "1.0.0",
+  "bank_id": "PYQ-PIPELINE-SAMPLE",
+  "bank_name": "PYQ pipeline sample (synthetic — not a genuine MPPSC paper)",
+  "exam_default": "MPPSC State Service Preliminary Examination (SAMPLE DATA)",
+  "is_demonstration": true,
+  "default_language": "en",
+  "provenance": {
+    "kind": "synthetic_demo",
+    "verified": false,
+    "notes": "Synthetic questions written to exercise tools/classify-bank.mjs: rule-based classification, Madhya-Pradesh-versus-India separation, a missing key, a source classification outside the taxonomy, an ambiguous question and a near-duplicate pair. NOT genuine previous-year content.",
+    "sources": []
+  },
+  "papers": [
+    {
+      "paper_id": "SAMPLE-2023-GS1",
+      "year": 2023,
+      "exam": "MPPSC State Service Preliminary Examination (SAMPLE DATA)",
+      "paper_name": "Sample General Studies Paper I",
+      "paper_code": "GS-I",
+      "set_code": "A",
+      "language": "bilingual",
+      "original_question_count": 10,
+      "duration_minutes": 120,
+      "total_marks": 200,
+      "scoring": {
+        "rules_known": true,
+        "marks_per_correct": 2,
+        "negative_marks_per_incorrect": 0.66,
+        "negative_marking_enabled": true,
+        "marks_for_unanswered": 0,
+        "rules_source": "Illustrative rule set for the pipeline sample."
+      },
+      "answer_key": {
+        "source": "Illustrative key (synthetic sample)",
+        "status": "final",
+        "published_at": "2026-01-01",
+        "notes": "Not an official answer key."
+      },
+      "source_files": [{ "path": "synthetic://pyq-pipeline-sample", "pages": null, "sha256": null }]
+    }
+  ],
+  "questions": [
+    {
+      "id": "SAMPLE-2023-GS1-001",
+      "paper_id": "SAMPLE-2023-GS1",
+      "question_number": 1,
+      "question_type": "single_correct",
+      "en": {
+        "question_text": "From which place in Madhya Pradesh does the Narmada river originate?",
+        "options": [
+          { "key": "A", "text": "Amarkantak" },
+          { "key": "B", "text": "Mahabaleshwar" },
+          { "key": "C", "text": "Brahmagiri" },
+          { "key": "D", "text": "Nashik" }
+        ]
+      },
+      "answer": "A",
+      "answer_status": "final",
+      "answer_source": "Illustrative key (synthetic sample)",
+      "explanation": "The Narmada rises at Amarkantak on the Maikal range in Madhya Pradesh and flows west to the Arabian Sea.",
+      "source_reference": { "file": "synthetic://pyq-pipeline-sample", "page": 1, "question_location": "Q1", "note": null }
+    },
+    {
+      "id": "SAMPLE-2023-GS1-002",
+      "paper_id": "SAMPLE-2023-GS1",
+      "question_number": 2,
+      "question_type": "single_correct",
+      "en": {
+        "question_text": "The Sardar Sarovar dam is built on which river?",
+        "options": [
+          { "key": "A", "text": "Narmada" },
+          { "key": "B", "text": "Tapti" },
+          { "key": "C", "text": "Mahi" },
+          { "key": "D", "text": "Luni" }
+        ]
+      },
+      "answer": "A",
+      "answer_status": "final",
+      "answer_source": "Illustrative key (synthetic sample)",
+      "explanation": "Sardar Sarovar is a gravity dam on the Narmada in Gujarat, far downstream of Madhya Pradesh."
+    },
+    {
+      "id": "SAMPLE-2023-GS1-003",
+      "paper_id": "SAMPLE-2023-GS1",
+      "question_number": 3,
+      "question_type": "single_correct",
+      "hi": {
+        "question_text": "मध्य प्रदेश राज्य के गठन के समय राज्य के प्रथम मुख्यमंत्री कौन थे?",
+        "options": [
+          { "key": "A", "text": "पंडित रविशंकर शुक्ल" },
+          { "key": "B", "text": "कैलाश विजयवर्गीय" },
+          { "key": "C", "text": "श्यामाचरण शुक्ल" },
+          { "key": "D", "text": "प्रकाशचंद सेठी" }
+        ]
+      },
+      "answer": "A",
+      "answer_status": "final",
+      "answer_source": "Illustrative key (synthetic sample)",
+      "explanation": "Pt. Ravishankar Shukla became the first Chief Minister of the reorganised state formed on 1 November 1956."
+    },
+    {
+      "id": "SAMPLE-2023-GS1-004",
+      "paper_id": "SAMPLE-2023-GS1",
+      "question_number": 4,
+      "question_type": "single_correct",
+      "en": {
+        "question_text": "Which Article of the Constitution of India guarantees the right to equality before law?",
+        "options": [
+          { "key": "A", "text": "Article 14" },
+          { "key": "B", "text": "Article 19" },
+          { "key": "C", "text": "Article 21" },
+          { "key": "D", "text": "Article 32" }
+        ]
+      },
+      "answer": "A",
+      "answer_status": "final",
+      "answer_source": "Illustrative key (synthetic sample)",
+      "explanation": "Article 14 of Part III guarantees equality before the law and equal protection of the laws."
+    },
+    {
+      "id": "SAMPLE-2023-GS1-005",
+      "paper_id": "SAMPLE-2023-GS1",
+      "question_number": 5,
+      "question_type": "single_correct",
+      "en": {
+        "question_text": "Consider the following statements about the Reserve Bank of India and select the correct answer.",
+        "options": [
+          { "key": "A", "text": "Only statement 1 is correct" },
+          { "key": "B", "text": "Only statement 2 is correct" },
+          { "key": "C", "text": "Both statements are correct" },
+          { "key": "D", "text": "Neither statement is correct" }
+        ]
+      },
+      "passage": "1. The Reserve Bank of India was set up on the recommendations of the Hilton Young Commission. 2. The repo rate is decided by the Monetary Policy Committee.",
+      "answer": "C",
+      "answer_status": "final",
+      "answer_source": "Illustrative key (synthetic sample)"
+    },
+    {
+      "id": "SAMPLE-2023-GS1-006",
+      "paper_id": "SAMPLE-2023-GS1",
+      "question_number": 6,
+      "question_type": "single_correct",
+      "en": {
+        "question_text": "Which one of the following national parks of Madhya Pradesh is known for the barasingha?",
+        "options": [
+          { "key": "A", "text": "Kanha National Park" },
+          { "key": "B", "text": "Van Vihar National Park" },
+          { "key": "C", "text": "Fossil National Park" },
+          { "key": "D", "text": "Madhav National Park" }
+        ]
+      },
+      "answer": "Kanha National Park",
+      "answer_status": "final",
+      "answer_source": "Illustrative key (synthetic sample)",
+      "explanation": "The swamp deer or barasingha is the state animal of Madhya Pradesh and Kanha is its best-known habitat."
+    },
+    {
+      "id": "SAMPLE-2023-GS1-007",
+      "paper_id": "SAMPLE-2023-GS1",
+      "question_number": 7,
+      "en": {
+        "question_text": "In the context of administrative history, which one of the following best describes the arrangement shown in the table?",
+        "options": [
+          { "key": "A", "text": "A revenue settlement" },
+          { "key": "B", "text": "A judicial circuit" }
+        ]
+      },
+      "subject": "General Studies",
+      "topic": "Administration",
+      "subtopic": "Revenue",
+      "classification_source": "legacy_extractor"
+    },
+    {
+      "id": "SAMPLE-2023-GS1-008",
+      "paper_id": "SAMPLE-2023-GS1",
+      "question_number": 8,
+      "question_type": "single_correct",
+      "en": {
+        "question_text": "Consider the following statements and identify which one of them is consistent with the passage above.",
+        "options": [
+          { "key": "A", "text": "Statement 1 only" },
+          { "key": "B", "text": "Statement 2 only" },
+          { "key": "C", "text": "Both 1 and 2" },
+          { "key": "D", "text": "Neither 1 nor 2" }
+        ]
+      },
+      "answer_status": "missing"
+    },
+    {
+      "id": "SAMPLE-2023-GS1-009",
+      "paper_id": "SAMPLE-2023-GS1",
+      "question_number": 9,
+      "question_type": "single_correct",
+      "en": {
+        "question_text": "Which one of the following is the correct sequence of the tributaries of the Chambal from west to east?",
+        "options": [
+          { "key": "A", "text": "Shipra, Kali Sindh, Parbati, Banas" },
+          { "key": "B", "text": "Banas, Parbati, Kali Sindh, Shipra" },
+          { "key": "C", "text": "Parbati, Banas, Shipra, Kali Sindh" },
+          { "key": "D", "text": "Kali Sindh, Shipra, Banas, Parbati" }
+        ]
+      },
+      "answer": "B",
+      "answer_status": "unofficial",
+      "answer_source": "Illustrative coaching key (synthetic sample)",
+      "verified_answer": {
+        "answer": ["A"],
+        "status": "partially_verified",
+        "verified_by": "pipeline-sample reviewer",
+        "verified_at": "2026-01-01",
+        "evidence": [{ "title": "Sample evidence note", "citation": "synthetic", "url": null, "note": "Sequence re-checked against a district gazetteer extract." }]
+      },
+      "dispute": { "is_disputed": true, "status": "open", "reason": "The printed key and the independently checked sequence disagree.", "raised_by": "pipeline" }
+    },
+    {
+      "id": "SAMPLE-2023-GS1-010",
+      "paper_id": "SAMPLE-2023-GS1",
+      "question_number": 10,
+      "question_type": "single_correct",
+      "en": {
+        "question_text": "Which one of the following is the correct sequence of the tributaries of the Chambal river from the west to the east?",
+        "options": [
+          { "key": "A", "text": "Shipra, Kali Sindh, Parbati, Banas" },
+          { "key": "B", "text": "Banas, Parbati, Kali Sindh, Shipra" },
+          { "key": "C", "text": "Parbati, Banas, Shipra, Kali Sindh" },
+          { "key": "D", "text": "Kali Sindh, Shipra, Banas, Parbati" }
+        ]
+      },
+      "answer": "B",
+      "answer_status": "unofficial",
+      "answer_source": "Illustrative coaching key (synthetic sample)",
+      "explanation": "Reprinted from a second booklet of the same paper, which is why it duplicates question 9."
+    }
+  ]
+}

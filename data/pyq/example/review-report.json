@@ -1,0 +1,115 @@
+{
+  "generated_at": "2026-10-11T19:48:48.177Z",
+  "totals": {
+    "questions_in_bank": 10,
+    "questions_in_source": 10,
+    "records_removed": 0,
+    "records_merged": 0,
+    "missing_answer_keys": 2,
+    "near_duplicate_pairs": 1,
+    "identical_content_groups": 0,
+    "ambiguous_classifications": 2,
+    "low_confidence_classifications": 0
+  },
+  "missing_answers": [
+    {
+      "id": "SAMPLE-2023-GS1-007",
+      "paper_id": "SAMPLE-2023-GS1",
+      "year": 2023,
+      "status": "missing",
+      "excerpt": "In the context of administrative history, which one of the following best describes the arrangement shown in the table?",
+      "note": "No key was fabricated. The record keeps answer: null and answer_key_status: \"missing\"."
+    },
+    {
+      "id": "SAMPLE-2023-GS1-008",
+      "paper_id": "SAMPLE-2023-GS1",
+      "year": 2023,
+      "status": "missing",
+      "excerpt": "Consider the following statements and identify which one of them is consistent with the passage above.",
+      "note": "No key was fabricated. The record keeps answer: null and answer_key_status: \"missing\"."
+    }
+  ],
+  "near_duplicates": [
+    {
+      "a": "SAMPLE-2023-GS1-009",
+      "b": "SAMPLE-2023-GS1-010",
+      "similarity": 0.933,
+      "basis": "similar wording and options",
+      "same_paper": true,
+      "kept": "both records retained in the bank"
+    }
+  ],
+  "identical_content_groups": [],
+  "ambiguous_classifications": [
+    {
+      "id": "SAMPLE-2023-GS1-007",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "In the context of administrative history, which one of the following best describes the arrangement shown in the table?"
+    },
+    {
+      "id": "SAMPLE-2023-GS1-008",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Consider the following statements and identify which one of them is consistent with the passage above."
+    }
+  ],
+  "low_confidence_classifications": [],
+  "integrity": {
+    "missing_language_variant": [],
+    "fewer_than_two_options": [],
+    "empty_option_text": [],
+    "invalid_answer_reference": [],
+    "duplicate_option_key": [],
+    "multi_answer_on_single_correct": [],
+    "missing_question_number": [],
+    "disputed_keys": [
+      {
+        "id": "SAMPLE-2023-GS1-009",
+        "reason": "The printed key and the independently checked sequence disagree."
+      }
+    ],
+    "verified_differs_from_supplied": [
+      {
+        "id": "SAMPLE-2023-GS1-009",
+        "supplied": [
+          "B"
+        ],
+        "verified": [
+          "A"
+        ]
+      }
+    ],
+    "unreviewed_explanations": 6,
+    "without_explanation": 4,
+    "duplicate_ids_in_source": [],
+    "unmapped_source_keys": [],
+    "adapter_notes": [
+      {
+        "index": 5,
+        "id": "SAMPLE-2023-GS1-006",
+        "problem": "SAMPLE-2023-GS1-006: answer \"Kanha National Park\" was given as option text and mapped to key A"
+      },
+      {
+        "index": 6,
+        "id": "SAMPLE-2023-GS1-007",
+        "problem": "SAMPLE-2023-GS1-007: no usable printed answer; the question stays without a key"
+      },
+      {
+        "index": 7,
+        "id": "SAMPLE-2023-GS1-008",
+        "problem": "SAMPLE-2023-GS1-008: no usable printed answer; the question stays without a key"
+      }
+    ],
+    "rejected_records": []
+  },
+  "preserved": {
+    "statement": "No source record was deleted, rewritten or merged to produce this bank. Question text, options, printed answers, explanations, years, papers and source references are carried over verbatim; classification fields and review metadata are the only additions. Where two records look alike both are kept and flagged here instead of being merged.",
+    "questions_kept": 10,
+    "review_flags_added": 7
+  }
+}
