@@ -10,7 +10,8 @@
 
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFile } from 'node:fs/promises';
+import { mkdtemp, readFile, writeFile } from 'node:fs/promises';
+import os from 'node:os';
 import path from 'node:path';
 import { bootApp, dataPath, repoRoot } from './helpers.mjs';
 import { loadTaxonomy, reconcile, subjectNames, TAXONOMY_PATH } from '../tools/classify/taxonomy.mjs';
@@ -23,9 +24,20 @@ import {
   CLASSIFICATION_SOURCE_RULES,
 } from '../tools/classify/rules.mjs';
 import { adaptIntake, adaptQuestion, mapAnswer, normaliseOptions, inferQuestionType } from '../tools/classify/intake-adapter.mjs';
-import { buildAiQueue, renderAiQueueJsonl, parseLabels, applyAiLabels, providerConfig } from '../tools/classify/ai-queue.mjs';
-import { LOW_CONFIDENCE_THRESHOLD } from '../tools/classify/reports.mjs';
+import {
+  buildAiQueue,
+  renderAiQueueJsonl,
+  renderAiTaxonomy,
+  taxonomyCombinations,
+  pendingQueueItems,
+  parseLabels,
+  applyAiLabels,
+  labelOne,
+  providerConfig,
+} from '../tools/classify/ai-queue.mjs';
+import { LOW_CONFIDENCE_THRESHOLD, renderClassificationMarkdown, renderReviewMarkdown } from '../tools/classify/reports.mjs';
 import { runPipeline, classifyQuestion } from '../tools/classify-bank.mjs';
+import { loadAllowedCombinations } from '../tools/classify/ai-provider.mjs';
 import { SUBJECT_ORDER } from '../js/core/constants.js';
 
 async function sampleSource() {
@@ -456,13 +468,39 @@ test('provider labels are validated against the taxonomy before they are applied
   assert.equal(summary.flagged.length, 0);
 });
 
-test('a provider that returns no subject leaves the question unclassified and flagged', async () => {
+test('an empty provider response never erases an existing classification', async () => {
   const taxonomy = await loadTaxonomy();
-  const intake = { questions: [{ id: 'Q1', subject: 'Geography', classification_source: 'pipeline-rules', metadata: {} }] };
+  const intake = {
+    questions: [
+      {
+        id: 'Q1',
+        subject: 'Geography',
+        topic: 'Rivers of Madhya Pradesh',
+        subtopic: 'Narmada basin',
+        classification_confidence: 0.9,
+        classification_source: 'pipeline-rules',
+        metadata: {},
+      },
+    ],
+  };
+  const before = JSON.parse(JSON.stringify(intake.questions[0]));
   const summary = applyAiLabels(intake, [{ id: 'Q1', subject: null, confidence: null }], taxonomy, {});
-  assert.equal(intake.questions[0].subject, null);
+  assert.deepEqual(intake.questions[0], before, 'the record must be byte-identical to what it was');
+  assert.equal(summary.applied.length, 0);
+  assert.equal(summary.preserved.length, 1);
   assert.equal(summary.flagged.length, 1);
-  assert.match(summary.flagged[0].reason, /stays unclassified/);
+  assert.match(summary.flagged[0].reason, /existing classification \(Geography\) was kept/);
+  assert.equal(summary.decisions[0].action, 'preserved');
+});
+
+test('a record with nothing to preserve stays unclassified and in the queue', async () => {
+  const taxonomy = await loadTaxonomy();
+  const intake = { questions: [{ id: 'Q1', metadata: {} }] };
+  const summary = applyAiLabels(intake, [{ id: 'Q1', subject: '' }], taxonomy, {});
+  assert.equal(intake.questions[0].subject, undefined, 'no label was invented');
+  assert.equal(intake.questions[0].classification_source, undefined, 'the rule engine still gets its turn');
+  assert.equal(summary.decisions[0].action, 'no_label');
+  assert.match(summary.decisions[0].reason, /stays unclassified/);
 });
 
 test('a low-confidence provider label is applied but marked for review', async () => {
@@ -504,6 +542,284 @@ test('the pipeline resumes from provider labels without redoing the rule pass', 
   assert.equal(result.classificationReport.levels.subject.unclassified, 1);
   assert.equal(result.aiQueue.length, 1, 'the still-unclassified question stays in the queue');
   assert.equal(result.validation.rejected.length, 0);
+});
+
+/* -------------------------------------------- hardening: valid combos --- */
+
+test('every combination offered to the provider is a real taxonomy leaf', async () => {
+  const taxonomy = await loadTaxonomy();
+  const combos = taxonomyCombinations(taxonomy);
+  let leaves = 0;
+  for (const topics of taxonomy.subjects.values()) for (const subtopics of topics.values()) leaves += subtopics.length;
+  assert.equal(combos.length, leaves, 'one entry per taxonomy leaf, none invented');
+  assert.equal(new Set(combos).size, combos.length, 'no combination appears twice');
+  for (const combo of combos) {
+    const [subject, topic, subtopic] = combo.split(' > ');
+    const reconciled = reconcile(taxonomy, subject, topic, subtopic);
+    assert.deepEqual(reconciled.problems, [], `${combo} must reconcile cleanly`);
+    assert.equal(reconciled.subtopic, subtopic);
+  }
+});
+
+test('the queue carries the closed vocabulary by reference, and inline on request', async () => {
+  const taxonomy = await loadTaxonomy();
+  const source = await sampleSource();
+  const { aiQueue } = await runPipeline(source);
+  const [item] = aiQueue;
+  assert.equal(item.taxonomy_ref, 'ai-queue.taxonomy.json', 'the vocabulary lives in one shared sidecar file');
+  assert.equal(item.allowed_combinations, undefined, 'it is not repeated inside every queue record');
+  assert.equal(item.taxonomy_version, taxonomy.version);
+  assert.match(item.instructions, /rejected/);
+
+  const sidecar = JSON.parse(renderAiTaxonomy(taxonomy));
+  assert.equal(sidecar.taxonomy_version, taxonomy.version);
+  assert.deepEqual(sidecar.combinations, taxonomyCombinations(taxonomy));
+  assert.equal(renderAiTaxonomy(taxonomy), renderAiTaxonomy(taxonomy), 'the sidecar is deterministic, so a re-run changes nothing');
+  for (const entry of sidecar.subjects) {
+    assert.ok(taxonomy.subjects.has(entry.subject), `${entry.subject} is a taxonomy subject`);
+    for (const topic of entry.topics) assert.ok(taxonomy.subjects.get(entry.subject).has(topic.topic));
+  }
+});
+
+test('a provider request carries the combinations and flags a made-up subject', async () => {
+  const taxonomy = await loadTaxonomy();
+  const combinations = taxonomyCombinations(taxonomy);
+  const config = { ok: true, provider: 'test', apiKey: 'k', baseUrl: 'https://example.test/v1', model: 'm' };
+  const item = {
+    id: 'Q1',
+    question_text: 'Which river rises at Amarkantak?',
+    options: [{ key: 'A', text: 'Narmada' }],
+    taxonomy_version: taxonomy.version,
+    allowed_subjects: subjectNames(taxonomy),
+    instructions: 'Reply with one JSON object.',
+  };
+  const requests = [];
+  const fetchImpl = async (url, init) => {
+    requests.push({ url, body: JSON.parse(init.body) });
+    return {
+      ok: true,
+      json: async () => ({ choices: [{ message: { content: JSON.stringify({ subject: 'Astrology', topic: 'Zodiac', confidence: 0.9 }) } }] }),
+    };
+  };
+  const out = await labelOne(config, item, { fetchImpl, allowedCombinations: combinations });
+  assert.equal(out.ok, true);
+  assert.match(out.warning, /not in the taxonomy/, 'the operator is told straight away');
+  const prompt = requests[0].body.messages[1].content;
+  assert.ok(prompt.includes('History > Prehistory and Art > Rock shelters'), 'a real combination is in the request body');
+  assert.match(prompt, /anything else is rejected/);
+  assert.equal(requests[0].body.temperature, 0, 'classification must not be sampled');
+  assert.equal(requests[0].url, 'https://example.test/v1/chat/completions');
+});
+
+test('the provider finds the vocabulary sidecar next to the queue file', async () => {
+  const taxonomy = await loadTaxonomy();
+  const { aiQueue } = await runPipeline(await sampleSource());
+  const dir = await mkdtemp(path.join(os.tmpdir(), 'mymppsc-queue-'));
+  const queueFile = path.join(dir, 'ai-queue.jsonl');
+  await writeFile(queueFile, renderAiQueueJsonl(aiQueue), 'utf8');
+  await writeFile(path.join(dir, 'ai-queue.taxonomy.json'), renderAiTaxonomy(taxonomy), 'utf8');
+
+  const found = await loadAllowedCombinations(queueFile, aiQueue);
+  assert.equal(path.basename(found.file), 'ai-queue.taxonomy.json');
+  assert.deepEqual(found.combinations, taxonomyCombinations(taxonomy), 'every request carries the full closed vocabulary');
+
+  // No sidecar: fall back to the per-item list, then to the subject list — the
+  // request is still sent, and the merge step still rejects invented labels.
+  const inline = aiQueue.map((i) => ({ ...i, taxonomy_ref: undefined, allowed_combinations: taxonomyCombinations(taxonomy) }));
+  const fallback = await loadAllowedCombinations(path.join(dir, 'missing.jsonl'), inline);
+  assert.equal(fallback.file, null);
+  assert.equal(fallback.combinations.length, taxonomyCombinations(taxonomy).length);
+
+  const bare = await loadAllowedCombinations(path.join(dir, 'missing.jsonl'), [{ id: 'Q1', allowed_subjects: ['Polity'] }]);
+  assert.equal(bare.combinations, null, 'with nothing to offer the caller says so instead of inventing a vocabulary');
+});
+
+test('a completion that is not a usable JSON object is refused, not guessed at', async () => {
+  const config = { ok: true, provider: 'test', apiKey: 'k', baseUrl: 'https://example.test/v1', model: 'm' };
+  const item = { id: 'Q1', question_text: 'x', options: [], instructions: 'Reply with one JSON object.' };
+  const reply = (content) =>
+    labelOne(config, item, { fetchImpl: async () => ({ ok: true, json: async () => ({ choices: [{ message: { content } }] }) }) });
+  assert.match((await reply('')).reason, /empty completion/);
+  assert.match((await reply(null)).reason, /empty completion/);
+  assert.match((await reply('sure, it is geography')).reason, /not valid JSON/);
+  assert.match((await reply('["Geography"]')).reason, /not a JSON object/);
+  assert.match((await reply('{"subject": "Geography"')).reason, /not valid JSON/);
+  assert.match((await labelOne(config, item, { fetchImpl: async () => ({ ok: false, status: 503 }) })).reason, /responded 503/);
+  assert.match((await labelOne(config, item, { fetchImpl: async () => { throw new Error('offline'); } })).reason, /offline/);
+});
+
+/* --------------------------------------------- hardening: bad responses --- */
+
+test('invented labels are rejected instead of stored', async () => {
+  const taxonomy = await loadTaxonomy();
+  const intake = { questions: [{ id: 'Q1', metadata: {} }, { id: 'Q2', metadata: {} }] };
+  const summary = applyAiLabels(
+    intake,
+    [
+      { id: 'Q1', subject: 'Astrology', topic: 'Zodiac', subtopic: 'Aries', confidence: 0.99 },
+      { id: null, subject: 'Polity' },
+      { id: 'NO-SUCH-RECORD', subject: 'Polity' },
+      { id: 'Q1', subject: ['Polity'] },
+      { id: 'Q2', subject: 'Polity', topic: 'Judiciary', subtopic: 'Supreme Court', confidence: 0.9 },
+    ],
+    taxonomy,
+    {},
+  );
+  assert.deepEqual([intake.questions[0].subject, intake.questions[0].topic, intake.questions[0].subtopic], [undefined, undefined, undefined], 'nothing invented was written');
+  assert.equal(intake.questions[1].subject, 'Polity');
+  assert.equal(intake.questions[1].topic, 'Judiciary');
+  assert.equal(summary.rejected.length, 4);
+  const reasons = summary.rejected.map((r) => r.reason).join(' | ');
+  assert.match(reasons, /not in the taxonomy/);
+  assert.match(reasons, /no question in the intake has this id/);
+  assert.match(reasons, /must be a string or null/);
+  assert.equal(summary.applied.length, 1);
+});
+
+test('a bogus topic or subtopic is dropped and a still-valid existing level is kept', async () => {
+  const taxonomy = await loadTaxonomy();
+  const intake = {
+    questions: [
+      { id: 'Q1', subject: 'Geography', topic: 'Rivers of Madhya Pradesh', subtopic: 'Narmada basin', classification_source: 'pipeline-rules', metadata: {} },
+      { id: 'Q2', subject: 'Geography', topic: 'Rivers of Madhya Pradesh', classification_source: 'pipeline-rules', metadata: {} },
+      { id: 'Q3', subject: 'Polity', topic: 'Judiciary', subtopic: 'Writs', classification_source: 'pipeline-rules', metadata: {} },
+    ],
+  };
+  const summary = applyAiLabels(
+    intake,
+    [
+      { id: 'Q1', subject: 'Geography', topic: 'Rivers', subtopic: 'Narmada basin', confidence: 0.9 },
+      { id: 'Q2', subject: 'Polity', topic: 'Rivers of Madhya Pradesh', confidence: 0.9 },
+      { id: 'Q3', subject: 'Polity', confidence: 0.9 },
+    ],
+    taxonomy,
+    {},
+  );
+  const [q1, q2, q3] = intake.questions;
+  assert.equal(q1.topic, 'Rivers of Madhya Pradesh', 'the taxonomy-valid topic survived the invalid one');
+  assert.equal(q1.subtopic, 'Narmada basin');
+  assert.match(q1.metadata.ai_classification.merge_notes.join(' | '), /was kept/);
+  assert.equal(q1.metadata.ai_classification.preserved_from_existing, true);
+
+  assert.equal(q2.subject, 'Polity');
+  assert.equal(q2.topic, null, 'a geography topic cannot be stored under polity');
+  assert.equal(summary.decisions.find((d) => d.id === 'Q2').rejected_levels, 1);
+
+  assert.equal(q3.topic, 'Judiciary', 'a level the provider omitted keeps its existing value');
+  assert.equal(q3.subtopic, 'Writs');
+  assert.equal(summary.decisions.find((d) => d.id === 'Q3').action, 'partial');
+  assert.equal(summary.preserved.length, 2, 'Q1 and Q3 both kept an existing level');
+  assert.match(summary.notes.join('\n'), /was not stored/);
+});
+
+test('malformed provider lines are reported, never silently dropped', () => {
+  const parsed = parseLabels(
+    [
+      '{"id":"Q1","subject":"Polity"',
+      'not json at all',
+      '[]',
+      '{"subject":"Polity"}',
+      '{"id":"Q2","subject":"Geography"}',
+    ].join('\n'),
+  );
+  assert.equal(parsed.labels.length, 1, 'only the well-formed line is read');
+  assert.equal(parsed.malformed.length, 4);
+  assert.match(parsed.malformed[0].reason, /Unexpected end of JSON|JSON/);
+  assert.match(parsed.malformed[1].reason, /JSON/);
+  assert.match(parsed.malformed[2].reason, /must be a JSON object/);
+  assert.match(parsed.malformed[3].reason, /must carry an "id"/);
+  assert.deepEqual(parsed.malformed.map((m) => m.line), [1, 2, 3, 4], 'the operator can find each bad line');
+});
+
+test('malformed lines reach the merge summary and change no record', async () => {
+  const taxonomy = await loadTaxonomy();
+  const parsed = parseLabels('{"id":"Q1","subject":"Polity"\n{"id":"Q2","subject":"Geography"}');
+  const intake = { questions: [{ id: 'Q1', subject: 'Geography', metadata: {} }, { id: 'Q2', metadata: {} }] };
+  const summary = applyAiLabels(intake, parsed.labels, taxonomy, { malformed: parsed.malformed });
+  assert.equal(intake.questions[0].subject, 'Geography', 'the truncated response changed nothing');
+  assert.equal(intake.questions[1].subject, 'Geography', 'the good line was applied');
+  assert.equal(summary.malformed.length, 1);
+  assert.equal(summary.rejected.length, 0);
+  assert.deepEqual(summary.malformed[0].line, 1);
+});
+
+test('an empty provider file changes nothing and still says so', async () => {
+  const taxonomy = await loadTaxonomy();
+  const parsed = parseLabels('');
+  assert.deepEqual(parsed.labels, []);
+  assert.deepEqual(parsed.malformed, []);
+  assert.equal(parsed.notes.length, 1, 'the operator is told the file was empty');
+
+  const intake = { questions: [{ id: 'Q1', subject: 'Geography', topic: 'Rivers of India', metadata: {} }] };
+  const before = JSON.parse(JSON.stringify(intake.questions[0]));
+  const summary = applyAiLabels(intake, parsed.labels, taxonomy, { malformed: parsed.malformed });
+  assert.deepEqual(intake.questions[0], before, 'an empty file must not touch the bank');
+  assert.equal(summary.applied.length, 0);
+  assert.equal(summary.rejected.length, 0);
+  assert.equal(summary.decisions.length, 0);
+});
+
+/* --------------------------------------------- hardening: end to end ------ */
+
+test('unusable provider labels never move a classification the rules already made', async () => {
+  const clean = await runPipeline(await sampleSource());
+  const labels = renderAiQueueJsonl([
+    { id: 'SAMPLE-2023-GS1-004', subject: 'Astrology', topic: 'Zodiac', confidence: 0.99 },
+    { id: 'SAMPLE-2023-GS1-009', subject: null, confidence: null },
+    { id: 'SAMPLE-2023-GS1-006', subject: 'Environment', topic: 'Bogus topic', subtopic: 'Bogus subtopic', confidence: 0.9 },
+    { id: 'SAMPLE-2023-GS1-005', subject: 'Polity', topic: 'Judiciary', subtopic: 'Supreme Court', confidence: 0.9 },
+    { id: 'SAMPLE-NO-SUCH-RECORD', subject: 'Polity' },
+  ]);
+  const result = await runPipeline(await sampleSource(), { aiLabels: labels, aiProvider: 'test-provider' });
+  const triple = (bank, id) => {
+    const q = bank.questions.find((x) => x.id === id);
+    return [q.subject, q.topic, q.subtopic];
+  };
+  assert.deepEqual(triple(result.bank, 'SAMPLE-2023-GS1-004'), triple(clean.bank, 'SAMPLE-2023-GS1-004'), 'an invented subject changes nothing');
+  assert.deepEqual(triple(result.bank, 'SAMPLE-2023-GS1-009'), ['Geography', 'Rivers of Madhya Pradesh', 'Chambal basin'], 'an empty reply erases nothing');
+  assert.deepEqual(triple(result.bank, 'SAMPLE-2023-GS1-006'), ['Environment', 'Wildlife of Madhya Pradesh', 'National parks'], 'a bogus topic is dropped and the topic the rules found is kept');
+  assert.deepEqual(triple(result.bank, 'SAMPLE-2023-GS1-005'), ['Polity', 'Judiciary', 'Supreme Court'], 'a valid label is applied');
+  assert.equal(result.bank.questions.length, clean.bank.questions.length, 'no record was lost');
+  assert.equal(result.validation.rejected.length, 0);
+
+  const merge = result.reviewReport.ai_merge;
+  assert.ok(merge, 'the review report carries the merge decisions');
+  assert.equal(merge.applied.length, 2, 'the valid label and the partially kept one');
+  assert.equal(merge.preserved.length, 2, 'the kept topic of 006 and the whole classification of 009');
+  assert.equal(merge.rejected.length, 2, 'the invented subject and the unknown id');
+  assert.deepEqual(merge.decisions.map((d) => d.action).sort(), ['applied', 'partial', 'preserved', 'rejected', 'rejected']);
+  const kept = merge.decisions.find((d) => d.id === 'SAMPLE-2023-GS1-004');
+  assert.deepEqual(kept.after, kept.before, 'a rejected response leaves the record exactly as it was');
+  assert.equal(result.reviewReport.totals.ai_labels_rejected, 2);
+  assert.equal(result.reviewReport.totals.ai_labels_applied, 2);
+  assert.equal(result.reviewReport.totals.ai_labels_preserved, 2);
+  assert.equal(result.meta.ai_merge.applied, 2);
+  assert.match(result.meta.pipeline_notes.join('\n'), /AI labels merged: 2 applied, 2 preserved, 2 rejected, 0 malformed/);
+  assert.match(result.meta.pipeline_notes.join('\n'), /AI label rejected for SAMPLE-2023-GS1-004/);
+  assert.match(renderReviewMarkdown(result.reviewReport), /AI label merge/);
+  assert.match(renderClassificationMarkdown(result.classificationReport, result.meta), /AI label merge/);
+});
+
+test('resume skips the ids that already have a label and keeps the rest of the work', async () => {
+  const first = await runPipeline(await sampleSource());
+  const queue = first.aiQueue;
+  assert.deepEqual(queue.map((i) => i.id), ['SAMPLE-2023-GS1-007', 'SAMPLE-2023-GS1-008']);
+  assert.equal(pendingQueueItems(queue, []).length, 2, 'nothing labelled yet, so the whole queue is pending');
+
+  const done = [{ id: 'SAMPLE-2023-GS1-007', subject: 'History', topic: 'Medieval India', confidence: 0.8 }];
+  assert.deepEqual(pendingQueueItems(queue, done).map((i) => i.id), ['SAMPLE-2023-GS1-008'], 'the labelled record is not redone');
+  assert.equal(pendingQueueItems(queue, [...done, ...done]).length, 1, 'a duplicated label does not change the pending set');
+  assert.equal(pendingQueueItems(queue, [{ id: 'NOT-IN-THE-QUEUE' }]).length, 2, 'a label for an unknown id loses no work');
+
+  const resumed = await runPipeline(await sampleSource(), { aiLabels: renderAiQueueJsonl(done) });
+  const queued = resumed.aiQueue.map((i) => i.id);
+  assert.deepEqual(queued, ['SAMPLE-2023-GS1-008'], 'the labelled record leaves the queue and the rest stays');
+  assert.equal(new Set(queued).size, queued.length, 'nothing is queued twice');
+
+  const again = await runPipeline(await sampleSource(), { aiLabels: renderAiQueueJsonl([...done, ...done]) });
+  const key = (q) => [q.id, q.subject, q.topic, q.subtopic, q.classification_confidence];
+  assert.deepEqual(again.bank.questions.map(key), resumed.bank.questions.map(key), 'applying the same labels twice is idempotent');
+  assert.deepEqual(again.aiQueue.map((i) => i.id), queued);
 });
 
 /* ------------------------------------------------- pipeline invariants --- */

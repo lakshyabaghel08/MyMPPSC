@@ -1,6 +1,6 @@
 # PYQ bank review report
 
-Generated 2026-10-11T19:48:48.177Z.
+Generated 2026-10-11T20:26:28.750Z.
 
 ## Summary
 
@@ -15,6 +15,7 @@ Generated 2026-10-11T19:48:48.177Z.
 | Identical-content groups | 0 |
 | Ambiguous classifications | 2 |
 | Low-confidence classifications | 0 |
+| AI labels applied / preserved / rejected / malformed | 0 / 0 / 0 / 0 |
 
 ## Missing answer keys
 

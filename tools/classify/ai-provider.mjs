@@ -20,9 +20,28 @@
 import { readFile, writeFile, appendFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { providerConfig, labelOne, parseLabels } from './ai-queue.mjs';
+import { providerConfig, labelOne, parseLabels, pendingQueueItems } from './ai-queue.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
+
+/**
+ * Load the taxonomy sidecar that sits next to the queue, so every request can
+ * carry the closed vocabulary. Falls back to the per-item list when the sidecar
+ * is absent (for example a queue produced with `inlineTaxonomy`).
+ */
+export async function loadAllowedCombinations(queueFile, queue) {
+  const ref = queue[0]?.taxonomy_ref;
+  const candidates = ref ? [path.join(path.dirname(resolve(queueFile)), ref), resolve(ref)] : [resolve(`${queueFile.replace(/\.jsonl?$/i, '')}.taxonomy.json`)];
+  for (const file of candidates) {
+    try {
+      const sidecar = JSON.parse(await readFile(file, 'utf8'));
+      if (Array.isArray(sidecar.combinations) && sidecar.combinations.length) return { file, combinations: sidecar.combinations };
+    } catch {
+      /* try the next candidate, then fall back */
+    }
+  }
+  return { file: null, combinations: queue[0]?.allowed_combinations || null };
+}
 
 function args(argv) {
   const out = { flags: new Set(), values: {} };
@@ -40,6 +59,11 @@ function args(argv) {
 }
 
 const resolve = (file) => (path.isAbsolute(file) ? file : path.join(root, file));
+/** A repo-relative path when the file is inside the repo, otherwise the path as given. */
+const displayPath = (file) => {
+  const rel = path.relative(root, file);
+  return rel && !rel.startsWith('..') ? rel : file;
+};
 
 async function main() {
   const parsed = args(process.argv.slice(2));
@@ -67,14 +91,19 @@ Environment:
     process.exit(0);
   }
 
-  let done = new Set();
+  let todo = queue;
   if (parsed.values.skip) {
     const existing = parseLabels(await readFile(resolve(parsed.values.skip), 'utf8'));
-    done = new Set(existing.labels.map((l) => String(l.id)));
-    console.log(`Resuming: ${done.size} question(s) already labelled in ${parsed.values.skip}.`);
+    todo = pendingQueueItems(queue, existing.labels);
+    console.log(`Resuming: ${queue.length - todo.length} question(s) already labelled in ${parsed.values.skip}; ${todo.length} left.`);
   }
-  const todo = queue.filter((item) => !done.has(String(item.id)));
   const limited = parsed.values.limit ? todo.slice(0, Number(parsed.values.limit)) : todo;
+  const { file: taxonomyFile, combinations } = await loadAllowedCombinations(queueFile, limited.length ? limited : queue);
+  console.log(
+    combinations
+      ? `Vocabulary: ${combinations.length} valid subject > topic > subtopic combination(s) from ${taxonomyFile ? displayPath(taxonomyFile) : 'the queue itself'}.`
+      : 'Warning: no taxonomy sidecar found, so requests carry the subject list only. Merge-time validation still rejects invented labels.',
+  );
 
   if (parsed.flags.has('dry-run')) {
     console.log(`${limited.length} question(s) would be sent to the provider.`);
@@ -91,11 +120,12 @@ Environment:
   let ok = 0;
   const failures = [];
   for (const item of limited) {
-    const result = await labelOne(config, item);
+    const result = await labelOne(config, item, { allowedCombinations: combinations });
     if (result.ok) {
       await appendFile(resolve(outFile), `${JSON.stringify(result.label)}\n`, 'utf8');
       ok += 1;
       console.log(`  ${item.id}: ${result.label.subject || 'no subject'} / ${result.label.topic || '—'} (confidence ${result.label.confidence ?? '—'})`);
+      if (result.warning) console.log(`      warning: ${result.warning}`);
     } else {
       failures.push({ id: item.id, reason: result.reason });
       console.log(`  ${item.id}: failed — ${result.reason}`);

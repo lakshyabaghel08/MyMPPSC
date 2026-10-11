@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "bank_id": "PYQ-PIPELINE-SAMPLE",
   "bank_name": "PYQ pipeline sample (synthetic — not a genuine MPPSC paper)",
-  "generated_at": "2026-10-11T19:48:48.163Z",
+  "generated_at": "2026-10-11T20:26:28.735Z",
   "generator": {
     "name": "tools/classify-bank.mjs",
     "version": "1.0.0",

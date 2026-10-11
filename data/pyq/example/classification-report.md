@@ -1,6 +1,6 @@
 # Classification report — PYQ pipeline sample (synthetic — not a genuine MPPSC paper)
 
-Generated 2026-10-11T19:48:48.169Z by tools/classify-bank.mjs 1.0.0.
+Generated 2026-10-11T20:26:28.742Z by tools/classify-bank.mjs 1.0.0.
 
 Questions in the bank: **10**
 

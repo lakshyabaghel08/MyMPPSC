@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-11T19:48:48.169Z",
+  "generated_at": "2026-10-11T20:26:28.742Z",
   "total_questions": 10,
   "levels": {
     "subject": {
@@ -182,6 +182,7 @@
       "Current Affairs",
       "General Aptitude"
     ],
-    "pipeline_notes": []
+    "pipeline_notes": [],
+    "ai_merge": null
   }
 }

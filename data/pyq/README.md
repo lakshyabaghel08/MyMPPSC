@@ -17,6 +17,7 @@ node tools/classify-bank.mjs --in <source.json> --out data/pyq/mymppsc-pyq-bank.
 | `classification-report.md` / `.json` | Coverage by subject, topic and subtopic, with counts and percentages. |
 | `review-report.md` / `.json` | Everything still needing a human: missing keys, suspected duplicates, ambiguous and low-confidence classifications, integrity checks. |
 | `ai-queue.jsonl` | Questions the rule engine could not settle — the input for the optional, resumable AI step. |
+| `ai-queue.taxonomy.json` | The closed vocabulary (every valid subject → topic → subtopic combination) those AI requests must choose from. Written next to the queue; shared by every queue item. |
 | `ai-labels.jsonl` | Provider labels for that queue, merged back with `--apply-ai`. Never contains an API key. |
 | `example/` | A committed worked example built from `demo/pyq-intake-sample.json` (synthetic, `is_demonstration: true`) so the report format can be read without running the pipeline. |
 

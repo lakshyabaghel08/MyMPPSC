@@ -139,6 +139,10 @@ export function renderClassificationMarkdown(report, meta = {}) {
   L.push('| --- | --- | --- |');
   for (const row of report.by_source) L.push(`| ${row.source} | ${row.count} | ${row.percentage} |`);
   L.push('');
+  if (meta.ai_merge) {
+    L.push(`AI label merge: **${meta.ai_merge.applied} applied**, ${meta.ai_merge.preserved} existing classification(s) preserved, ${meta.ai_merge.rejected} rejected (out of taxonomy, malformed or protected), ${meta.ai_merge.malformed} malformed line(s). Every decision is listed in the review report.`);
+    L.push('');
+  }
   L.push('## Confidence distribution (classified questions)');
   L.push('');
   L.push('| Confidence band | Questions |');
@@ -247,6 +251,8 @@ export function buildReviewReport(bank, validation, rows, extra = {}) {
     rejected_records: (validation.rejected || []).map((r) => ({ id: r.id, reason: r.reason })),
   };
 
+  const ai = extra.aiSummary || null;
+
   return {
     generated_at: new Date().toISOString(),
     totals: {
@@ -259,12 +265,28 @@ export function buildReviewReport(bank, validation, rows, extra = {}) {
       identical_content_groups: identicalGroups.length,
       ambiguous_classifications: ambiguous.length,
       low_confidence_classifications: lowConfidence.length,
+      ai_labels_applied: ai ? ai.applied.length : 0,
+      ai_labels_preserved: ai ? ai.preserved.length : 0,
+      ai_labels_rejected: ai ? ai.rejected.length : 0,
+      ai_labels_malformed: ai ? ai.malformed.length : 0,
     },
     missing_answers: missingAnswers,
     near_duplicates: nearDuplicates,
     identical_content_groups: identicalGroups,
     ambiguous_classifications: ambiguous,
     low_confidence_classifications: lowConfidence,
+    ai_merge: ai
+      ? {
+          statement:
+            'Provider labels are merged only when they validate against data/taxonomy/mppsc-taxonomy.json. An empty, malformed or out-of-taxonomy response changes nothing: the existing subject, topic and subtopic are kept, and the response is listed here. A level the taxonomy rejects is preserved when it still fits the subject, otherwise it is dropped and the reason recorded.',
+          applied: ai.applied,
+          preserved: ai.preserved,
+          rejected: ai.rejected,
+          flagged: ai.flagged,
+          malformed: ai.malformed,
+          decisions: (ai.decisions || []).slice(0, 200),
+        }
+      : null,
     integrity,
     preserved: {
       statement:
@@ -303,6 +325,7 @@ export function renderReviewMarkdown(report) {
   L.push(`| Identical-content groups | ${report.totals.identical_content_groups} |`);
   L.push(`| Ambiguous classifications | ${report.totals.ambiguous_classifications} |`);
   L.push(`| Low-confidence classifications | ${report.totals.low_confidence_classifications} |`);
+  L.push(`| AI labels applied / preserved / rejected / malformed | ${report.totals.ai_labels_applied} / ${report.totals.ai_labels_preserved} / ${report.totals.ai_labels_rejected} / ${report.totals.ai_labels_malformed} |`);
   L.push('');
   L.push('## Missing answer keys');
   L.push('');
@@ -353,6 +376,25 @@ export function renderReviewMarkdown(report) {
     for (const row of report.low_confidence_classifications) L.push(`| \`${row.id}\` | ${row.subject} | ${row.topic || '—'} | ${row.confidence} |`);
   }
   L.push('');
+  if (report.ai_merge) {
+    L.push('## AI label merge');
+    L.push('');
+    L.push(report.ai_merge.statement);
+    L.push('');
+    L.push('| Question | Decision | Subject / topic / subtopic after | Why |');
+    L.push('| --- | --- | --- | --- |');
+    for (const d of report.ai_merge.decisions) {
+      const after = d.after ? `${d.after.subject}${d.after.topic ? ` / ${d.after.topic}` : ''}${d.after.subtopic ? ` / ${d.after.subtopic}` : ''}` : '—';
+      L.push(`| \`${d.id ?? 'unknown'}\` | ${d.action} | ${after} | ${escapeCell(d.reason || '')} |`);
+    }
+    if (report.ai_merge.malformed.length) {
+      L.push('');
+      L.push('Malformed provider lines that were skipped (never silently dropped):');
+      L.push('');
+      for (const m of report.ai_merge.malformed) L.push(`- line ${m.line ?? '—'}: ${escapeCell(m.reason)} — \`${escapeCell(m.excerpt || '')}\``);
+    }
+    L.push('');
+  }
   L.push('## Content integrity');
   L.push('');
   const I = report.integrity;

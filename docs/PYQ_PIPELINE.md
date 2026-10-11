@@ -121,10 +121,33 @@ provider configured, `ai-provider.mjs` exits with a clear message and leaves the
 queue untouched; everything the rules could place is already in the bank. The
 step is resumable (`--skip`, `--limit`) and safe to re-run.
 
-Provider labels are not trusted blindly: each one is reconciled against the
-taxonomy (unknown subjects are rejected, not stored), labels below the `0.6`
-threshold are flagged for review, and a label never overwrites a classification
-the source file supplied unless `--overwrite-source` is passed.
+Every request carries the **closed vocabulary** the provider may choose from:
+all 435 valid `Subject > Topic > Subtopic` combinations of taxonomy
+`1.0.1`. They live in one shared sidecar, `ai-queue.taxonomy.json`, written next
+to the queue (each queue item points at it with `taxonomy_ref`, so the queue file
+stays small), and the request states that a value outside the list is rejected.
+
+Provider replies are not trusted blindly. The merge is conservative in one
+direction only — it may add a classification, never destroy one:
+
+- a subject the taxonomy does not contain, a non-string subject, a reply that is
+  not a JSON object, and a line that is not valid JSON are **rejected**; the
+  record is left byte-identical to what it was;
+- an empty reply (`null`, `""` or no subject at all) changes **nothing** — the
+  rule engine's classification stands and the question stays in the queue;
+- a topic or subtopic the taxonomy rejects is dropped, and the level the record
+  already had is kept when it still fits the subject; if the subject moved, the
+  old level is dropped rather than stored under a subject it does not belong to;
+- a label never overwrites a classification the source file supplied unless
+  `--overwrite-source` is passed, and labels below the `0.6` threshold are
+  flagged for review.
+
+Every response produces exactly one row in the review report's **AI label
+merge** table — `applied`, `partial` (some level kept from the record),
+`preserved`, `no_label` or `rejected` — with the reason and the resulting
+subject/topic/subtopic, and malformed lines are listed with their line numbers.
+Nothing is dropped silently. The rule engine runs **before** the merge, so a
+partial reply cannot cost a question the topic the rules had already found.
 
 ## 4. What comes out
 
@@ -132,8 +155,9 @@ the source file supplied unless `--overwrite-source` is passed.
 | --- | --- |
 | `mymppsc-pyq-bank.json` | schema 1.0.0 bank, ready for **Question Bank & Imports → Import** |
 | `classification-report.md` / `.json` | counts and percentages at subject, topic and subtopic level, breakdown by subject/topic/subtopic, how each label was produced, confidence distribution, the unclassified list with reasons and candidates, the low-confidence list |
-| `review-report.md` / `.json` | missing keys, suspected duplicates, ambiguous and low-confidence classifications, content-integrity checks, unmapped source keys, adapter notes, and the preservation statement |
+| `review-report.md` / `.json` | missing keys, suspected duplicates, ambiguous and low-confidence classifications, the AI label merge decisions, content-integrity checks, unmapped source keys, adapter notes, and the preservation statement |
 | `ai-queue.jsonl` | the questions still needing a semantic label |
+| `ai-queue.taxonomy.json` | the closed vocabulary those requests must use (shared by every queue item) |
 
 Exit codes: `0` written, `1` usage error, `2` blocked (the validator rejects
 records), `3` `--strict` and something still needs review.

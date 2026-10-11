@@ -28,7 +28,7 @@ import { validateBank } from '../js/core/validate.js';
 import { loadTaxonomy, subjectNames, reconcile, TAXONOMY_PATH } from './classify/taxonomy.mjs';
 import { RULES, classifyWithRules, validateRules, CLASSIFICATION_SOURCE_RULES } from './classify/rules.mjs';
 import { adaptIntake } from './classify/intake-adapter.mjs';
-import { buildAiQueue, renderAiQueueJsonl, parseLabels, applyAiLabels } from './classify/ai-queue.mjs';
+import { buildAiQueue, renderAiQueueJsonl, renderAiTaxonomy, parseLabels, applyAiLabels } from './classify/ai-queue.mjs';
 import {
   buildClassificationReport,
   renderClassificationMarkdown,
@@ -203,19 +203,37 @@ export async function runPipeline(source, opts = {}) {
   const intake = adapted.intake;
   const pipelineNotes = [...adapted.notes];
 
+  // The rule engine runs first so the AI merge always has something to compare
+  // against. A provider reply that is empty, malformed or out of taxonomy then
+  // leaves the classification the rules produced untouched, and a reply with a
+  // valid subject but an unusable topic keeps the topic the rules found.
+  let rows = intake.questions.map((q) => classifyQuestion(q, taxonomy));
+
   let aiSummary = null;
   if (opts.aiLabels) {
-    const { labels, notes: labelNotes } = parseLabels(opts.aiLabels);
+    const { labels, notes: labelNotes, malformed } = parseLabels(opts.aiLabels);
     pipelineNotes.push(...labelNotes);
     aiSummary = applyAiLabels(intake, labels, taxonomy, {
       provider: opts.aiProvider,
       model: opts.aiModel,
+      malformed,
       overwriteSource: Boolean(opts.overwriteSourceClassification),
     });
     pipelineNotes.push(...aiSummary.notes.map((n) => `AI labels: ${n}`));
+    pipelineNotes.push(
+      `AI labels merged: ${aiSummary.applied.length} applied, ${aiSummary.preserved.length} preserved, ${aiSummary.rejected.length} rejected, ${aiSummary.malformed.length} malformed line(s).`,
+    );
+    for (const r of aiSummary.rejected) pipelineNotes.push(`AI label rejected for ${r.id ?? 'an unknown id'}: ${r.reason}`);
+    // Refresh only the rows the merge actually changed, so the queue, the
+    // reports and the bank describe the same thing. Every other question keeps
+    // the row its rule pass produced.
+    const appliedIds = new Set(aiSummary.applied.map((a) => a.id));
+    if (appliedIds.size) {
+      const rowById = new Map(rows.map((r) => [r.id, r]));
+      rows = intake.questions.map((q) => (appliedIds.has(q.id) ? classifyQuestion(q, taxonomy) : rowById.get(q.id)));
+    }
   }
 
-  const rows = intake.questions.map((q) => classifyQuestion(q, taxonomy));
   const byId = new Map(intake.questions.map((q) => [q.id, q]));
 
   const { bank, warnings } = buildBankFromIntake(intake);
@@ -277,6 +295,15 @@ export async function runPipeline(source, opts = {}) {
     taxonomy_version: taxonomy.version,
     subjects_allowed: subjectNames(taxonomy),
     pipeline_notes: pipelineNotes,
+    ai_merge: aiSummary
+      ? {
+          applied: aiSummary.applied.length,
+          preserved: aiSummary.preserved.length,
+          rejected: aiSummary.rejected.length,
+          flagged: aiSummary.flagged.length,
+          malformed: aiSummary.malformed.length,
+        }
+      : null,
   };
 
   const classificationReport = buildClassificationReport(rows, meta);
@@ -289,6 +316,7 @@ export async function runPipeline(source, opts = {}) {
       duplicateIds: adapted.duplicateIds,
       unmappedKeys: adapted.unmappedKeys,
       recordIssues: adapted.recordIssues,
+      aiSummary,
     },
   );
 
@@ -305,6 +333,7 @@ export async function runPipeline(source, opts = {}) {
     aiQueue,
     aiSummary,
     meta,
+    taxonomy,
   };
 }
 
@@ -351,7 +380,7 @@ async function main() {
     overwriteSourceClassification: parsed.flags.has('overwrite-source'),
   });
 
-  const { bank, validation, classificationReport, reviewReport, aiQueue, buildWarnings } = result;
+  const { bank, validation, classificationReport, reviewReport, aiQueue, buildWarnings, aiSummary } = result;
 
   console.log(`Source  : ${parsed.values.in}`);
   console.log(`Bank    : ${outPath}`);
@@ -367,6 +396,11 @@ async function main() {
   console.log(`missing answer keys: ${reviewReport.totals.missing_answer_keys}`);
   console.log(`near-duplicate pair: ${reviewReport.totals.near_duplicate_pairs}`);
   console.log(`AI queue           : ${aiQueue.length}`);
+  if (aiSummary) {
+    console.log(
+      `AI labels merged   : ${aiSummary.applied.length} applied, ${aiSummary.preserved.length} preserved, ${aiSummary.rejected.length} rejected, ${aiSummary.malformed.length} malformed`,
+    );
+  }
   console.log('');
   console.log(`validator: ${validation.ok ? 'ok' : 'blocked'} — fatal ${validation.fatal.length}, errors ${validation.errors.length}, rejected ${validation.rejected.length}, warnings ${validation.warnings.length}`);
   if (validation.fatal.length || validation.errors.length) {
@@ -400,6 +434,10 @@ async function main() {
   await writeFile(path.join(reportsDir, 'review-report.json'), `${JSON.stringify(reviewReport, null, 2)}\n`, 'utf8');
   await writeFile(path.join(reportsDir, 'review-report.md'), renderReviewMarkdown(reviewReport), 'utf8');
   await writeFile(aiQueuePath, renderAiQueueJsonl(aiQueue), 'utf8');
+  // The closed vocabulary the provider must choose from, shared by every queue
+  // item so the queue file stays small. Written even for an empty queue so a
+  // resume run always finds it.
+  await writeFile(aiQueuePath.replace(/\.jsonl?$/i, '') + '.taxonomy.json', renderAiTaxonomy(result.taxonomy), 'utf8');
 
   console.log('');
   console.log(`Wrote ${bank.questions.length} question(s) across ${bank.papers.length} paper(s).`);
@@ -408,6 +446,7 @@ async function main() {
   console.log(`  ${path.relative(root, path.join(reportsDir, 'review-report.md'))}`);
   if (aiQueue.length) {
     console.log(`  ${path.relative(root, aiQueuePath)} — ${aiQueue.length} question(s) still need a semantic label.`);
+    console.log(`  ${path.relative(root, aiQueuePath.replace(/\.jsonl?$/i, '') + '.taxonomy.json')} — the closed vocabulary those requests must use.`);
     console.log('  Run tools/classify/ai-provider.mjs on it, then re-run with --apply-ai to resume.');
   }
   console.log('\nImport it in the app: Question Bank & Imports → choose the file.');
