@@ -7,7 +7,7 @@
  */
 
 import { state } from '../../core/state.js';
-import { esc, badge, card, tile, notice, emptyState, toast, openModal, confirmDialog } from '../components.js';
+import { esc, badge, card, notice, emptyState, toast, openModal, confirmDialog, kpi, pageHead, sectionHead, ring, sourceChip, progressBar } from '../components.js';
 import { fmtDate, todayKey, readFileAsText, downloadJson } from '../../core/util.js';
 import * as planner from '../../services/planner.js';
 import { loadAnalytics } from '../../services/analytics.js';
@@ -74,19 +74,29 @@ export default {
     const tree = planner.buildTree(rows);
 
     return `
-      <h1>Syllabus &amp; Study Planner</h1>
+      ${pageHead({
+        title: 'Syllabus &amp; Study Planner',
+        description: 'The tree below contains only what you import or type — no syllabus ships with this app. Progress status is manual; question-bank statistics sit beside it and never change a status on their own.',
+        actions: `<button class="btn btn-primary" type="button" id="sylAddRoot">Add a subject</button>`,
+      })}
       ${notice(
-        'No syllabus is built into MyMPPSC and none is hard-coded anywhere in the code. The tree below contains only what you import or type. Progress status is manual; question-bank statistics are shown next to it and never change a status on their own.',
+        'No syllabus is built into MyMPPSC and none is hard-coded anywhere in the code. Question-bank statistics are shown next to your manual status and never change it.',
         'info',
       )}
 
-      <div class="grid tiles mb-4">
-        ${tile({ label: 'Syllabus items', value: String(progress.total), sub: `${Object.entries(planner.STATUSES).map(([k, l]) => `${progress.byStatus[k] || 0} ${l.toLowerCase()}`).join(' · ')}`, source: 'supplied', where: 'User-defined syllabus tree' })}
-        ${tile({ label: 'Overall completion', value: `${Math.round(progress.overallCompletion * 100)}%`, sub: 'average of your marked statuses', source: 'derived', where: 'Manual status completion' })}
+      <div class="kpi-grid">
+        ${kpi({ label: 'Syllabus items', value: String(progress.total), context: Object.entries(planner.STATUSES).map(([k, l]) => `${progress.byStatus[k] || 0} ${l.toLowerCase()}`).join(' · '), iconName: 'syllabus', foot: sourceChip('supplied', 'user-defined tree') })}
+        ${kpi({ label: 'Overall completion', value: `${Math.round(progress.overallCompletion * 100)}%`, context: 'average of your marked statuses', iconName: 'target', foot: sourceChip('derived', 'manual status completion') })}
+        ${kpi({ label: 'High priority', value: String(rows.filter((r) => r.priority === 'high').length), context: 'items you flagged as high priority', tone: rows.some((r) => r.priority === 'high') ? 'warn' : '', iconName: 'flame', foot: sourceChip('supplied', 'your own marking') })}
+        ${kpi({ label: 'Dates approaching', value: String(rows.filter((r) => r.target_date && r.target_date >= todayKey()).length), context: 'items with a target date still ahead', iconName: 'calendar', foot: sourceChip('supplied', 'targets you set') })}
       </div>
 
+      ${sectionHead({ title: 'Syllabus structure', kicker: 'Plan', meta: rows.length ? `${rows.length} item(s) · ${rows.filter((r) => r.source === 'question-bank').length} suggested from the bank` : 'Nothing added yet', actions: `
+          <button class="btn btn-sm" type="button" id="sylBootstrap">Suggest from question bank</button>
+          <button class="btn btn-sm" type="button" id="sylImport">Import JSON</button>
+          <button class="btn btn-sm btn-quiet" type="button" id="sylExport">Export</button>
+          <input type="file" id="sylFile" accept="application/json,.json" hidden />` })}
       ${card({
-        title: 'Syllabus structure',
         actions: `
           <button class="btn btn-sm btn-primary" type="button" id="sylAddRoot">Add a subject</button>
           <button class="btn btn-sm" type="button" id="sylBootstrap">Suggest from question bank</button>
@@ -94,8 +104,17 @@ export default {
           <button class="btn btn-sm btn-quiet" type="button" id="sylExport">Export</button>
           <input type="file" id="sylFile" accept="application/json,.json" hidden />`,
         body: rows.length
-          ? `<div class="syllabus-tree">${renderNodes(tree, progressById)}</div>
-             <p class="tiny muted mt-3 mb-0">${rows.filter((r) => r.source === 'question-bank').length} item(s) were suggested from your question bank classifications. Those are a copy of your imported data, not an official syllabus.</p>`
+          ? `<div class="split-2 relaxed">
+              <div>
+                <div class="syllabus-tree">${renderNodes(tree, progressById)}</div>
+                <p class="tiny muted mt-3 mb-0">${rows.filter((r) => r.source === 'question-bank').length} item(s) were suggested from your question bank classifications. Those are a copy of your imported data, not an official syllabus.</p>
+              </div>
+              <div class="ring-panel">
+                ${ring(progress.overallCompletion, { label: 'Overall completion', sub: `${Math.round(progress.overallCompletion * 100)}% marked complete`, size: 132, width: 11 })}
+                ${progressBar(progress.overallCompletion, '')}
+                <p class="tiny muted m-0">Averaged from the manual status you set on each item. Bank statistics never move this value.</p>
+              </div>
+            </div>`
           : emptyState({
               title: 'No syllabus items yet',
               message: 'Import a JSON structure you made yourself, generate a starting point from the subjects and topics already classified in your question bank, or add items one by one.',

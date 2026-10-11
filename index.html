@@ -6,9 +6,9 @@
     <title>Dashboard · MyMPPSC</title>
     <meta name="description" content="Local-first MPPSC State Service Preliminary Examination preparation app: previous-year paper simulations, topic practice, mistake book, adaptive revision, analytics and syllabus planning. Works offline." />
     <meta name="color-scheme" content="light dark" />
-    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f8fafc" />
-    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f131c" />
-    <meta name="theme-color" content="#f8fafc" id="themeColorMeta" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f4f6fb" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0e1420" />
+    <meta name="theme-color" content="#f4f6fb" id="themeColorMeta" />
     <script>
       (function () {
         try {
@@ -22,7 +22,7 @@
           root.setAttribute('data-theme-pref', pref);
           root.setAttribute('data-density', (parsed && parsed.density) || 'comfortable');
           var meta = document.getElementById('themeColorMeta');
-          if (meta) meta.setAttribute('content', isDark ? '#0f131c' : '#f8fafc');
+          if (meta) meta.setAttribute('content', isDark ? '#0e1420' : '#f4f6fb');
         } catch (err) {
           document.documentElement.setAttribute('data-theme', 'light');
         }
@@ -37,7 +37,7 @@
     <a class="skip-link" href="#main">Skip to content</a>
 
     <header class="app-header" id="appHeader">
-      <button class="btn btn-icon nav-toggle" id="navToggle" type="button" aria-label="Toggle navigation" aria-controls="appNav" aria-expanded="false">
+      <button class="btn btn-quiet btn-icon nav-toggle" id="navToggle" type="button" aria-label="Toggle navigation" aria-controls="appNav" aria-expanded="false">
         <span class="icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" focusable="false"><path d="M4 6h16M4 12h16M4 18h16" /></svg>
         </span>
@@ -52,17 +52,17 @@
       <div class="header-actions">
         <span class="offline-pill" id="offlinePill" role="status" hidden>Offline — all features still work</span>
         <span class="bank-pill" id="bankPill" title="Questions stored locally">Bank: —</span>
-        <button class="command-trigger" id="commandBtn" type="button" aria-label="Search and navigate" title="Search and navigate (Ctrl+K)">
+        <button class="command-trigger" id="commandBtn" type="button" aria-label="Search and navigate" aria-keyshortcuts="Control+K Meta+K" title="Search, navigate and run actions (Ctrl+K)">
           <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><circle cx="11" cy="11" r="7" /><path d="m20 20-4-4" /></svg></span>
-          <span>Search</span><kbd>Ctrl K</kbd>
+          <span>Search or run</span><kbd>Ctrl K</kbd>
         </button>
-        <button class="btn btn-primary btn-sm" id="quickStartBtn" type="button">Quick practice</button>
+        <button class="btn btn-primary btn-sm" id="quickStartBtn" type="button" title="Build a short session from what is due, wrong or unseen">Quick practice</button>
         <button class="btn btn-quiet btn-icon" id="themeToggle" type="button" aria-label="Switch colour theme" title="Switch colour theme">
           <span class="icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" focusable="false"><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" /></svg>
           </span>
         </button>
-        <button class="btn btn-quiet btn-icon" id="helpBtn" type="button" aria-label="Help and limitations" title="Help, keyboard shortcuts and limitations (?)">
+        <button class="btn btn-quiet btn-icon" id="helpBtn" type="button" aria-label="Help and limitations" aria-keyshortcuts="?" title="Help, keyboard shortcuts and limitations (?)">
           <span class="icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" focusable="false"><circle cx="12" cy="12" r="9" /><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2.5 2-2.5 3.5M12 16.5h.01" /></svg>
           </span>
@@ -74,6 +74,7 @@
       <nav class="app-nav" id="appNav" aria-label="Main navigation">
         <ul id="navList"></ul>
         <div class="nav-footer">
+          <div class="nav-foot-item"><span class="muted">Today</span><strong id="navTodaySummary">—</strong></div>
           <div class="nav-foot-item"><span class="muted">Local store</span><strong id="navDataSummary">—</strong></div>
           <button class="btn btn-quiet btn-block" id="navBackupBtn" type="button">Backup now</button>
         </div>
@@ -83,7 +84,18 @@
       <main class="app-main" id="main" tabindex="-1">
         <div class="sr-only" id="routeAnnouncer" aria-live="polite" aria-atomic="true"></div>
         <div class="view" id="view">
-          <div class="loading-block" role="status" aria-busy="true">Loading local data…</div>
+          <div class="loading-shell" role="status" aria-busy="true">
+            <span class="sr-only">Loading local data…</span>
+            <span class="skeleton-line" aria-hidden="true"></span>
+            <div class="skeleton-grid" aria-hidden="true">
+              <span class="skeleton-card"></span><span class="skeleton-card"></span><span class="skeleton-card"></span>
+            </div>
+            <div class="skeleton-stack" aria-hidden="true">
+              <span class="skeleton-line medium"></span>
+              <span class="skeleton-line"></span>
+              <span class="skeleton-line short"></span>
+            </div>
+          </div>
         </div>
       </main>
     </div>

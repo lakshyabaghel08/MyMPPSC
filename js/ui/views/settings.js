@@ -9,7 +9,7 @@
 import { APP_VERSION, DB_NAME, DB_VERSION, SUPPORTED_SCHEMA_VERSIONS, STORES } from '../../core/constants.js';
 import { state, saveSettings, resetSettings, loadSettings, refreshQuestionIndex } from '../../core/state.js';
 import * as db from '../../core/db.js';
-import { esc, badge, card, tile, dataTable, toast, openModal, confirmDialog, tabs, mountTabs, sourceChip } from '../components.js';
+import { esc, badge, card, dataTable, toast, openModal, confirmDialog, tabs, mountTabs, sourceChip, kpi, pageHead, sectionHead, statStrip } from '../components.js';
 import { fmtBytes, fmtDate, fmtRelative, readFileAsText, downloadJson, getLogRing, todayKey } from '../../core/util.js';
 import * as data from '../../services/data.js';
 
@@ -147,11 +147,11 @@ export default {
         title: 'Storage',
         right: sourceChip('measured', 'IndexedDB'),
         body: `
-          <div class="grid tiles">
-            ${tile({ label: 'Records stored', value: String(Object.values(report.counts).filter((v) => typeof v === 'number').reduce((a, b) => a + b, 0)), sub: `${Object.keys(report.counts).length} stores`, source: 'measured', where: 'Local IndexedDB stores' })}
-            ${tile({ label: 'Estimated usage', value: report.estimate?.usage === null || report.estimate?.usage === undefined ? '—' : fmtBytes(report.estimate.usage), sub: report.estimate?.quota ? `of about ${fmtBytes(report.estimate.quota)} available` : 'quota unknown', source: report.estimate?.usage !== null && report.estimate?.usage !== undefined ? 'measured' : 'unavailable', where: 'Browser StorageManager API' })}
-            ${tile({ label: 'Persistent storage', value: report.persisted === null ? 'unknown' : report.persisted ? 'granted' : 'not granted', sub: 'asked of the browser, not guaranteed', tone: report.persisted ? 'ok' : '', source: report.persisted === null ? 'unavailable' : 'measured' })}
-            ${tile({ label: 'Last backup', value: lastBackup ? fmtRelative(lastBackup.at) : 'never', tone: lastBackup ? '' : 'warn', source: lastBackup ? 'measured' : 'unavailable' })}
+          <div class="kpi-grid">
+            ${kpi({ label: 'Records stored', value: String(Object.values(report.counts).filter((v) => typeof v === 'number').reduce((a, b) => a + b, 0)), context: `${Object.keys(report.counts).length} local stores`, iconName: 'database', foot: sourceChip('measured', 'local IndexedDB stores') })}
+            ${kpi({ label: 'Estimated usage', value: report.estimate?.usage === null || report.estimate?.usage === undefined ? '—' : fmtBytes(report.estimate.usage), context: report.estimate?.quota ? `of about ${fmtBytes(report.estimate.quota)} available` : 'quota unknown', iconName: 'layers', foot: sourceChip(report.estimate?.usage !== null && report.estimate?.usage !== undefined ? 'measured' : 'unavailable', 'StorageManager API') })}
+            ${kpi({ label: 'Persistent storage', value: report.persisted === null ? 'unknown' : report.persisted ? 'granted' : 'not granted', context: 'asked of the browser, not guaranteed', tone: report.persisted ? 'ok' : 'warn', iconName: 'shield', foot: sourceChip(report.persisted === null ? 'unavailable' : 'measured', 'browser decision') })}
+            ${kpi({ label: 'Last backup', value: lastBackup ? fmtRelative(lastBackup.at) : 'never', context: lastBackup ? 'recorded on this device' : 'no backup recorded here', tone: lastBackup ? '' : 'warn', iconName: 'download', foot: sourceChip(lastBackup ? 'measured' : 'unavailable', 'backup log') })}
           </div>
           ${dataTable({ columns: [{ label: 'Store' }, { label: 'Records', num: true }], rows: Object.entries(report.counts).map(([k, v]) => [esc(k), typeof v === 'number' ? String(v) : esc(String(v))]), className: 'compact' })}
           <div class="row mt-3"><button class="btn btn-sm" type="button" id="requestPersistence">Ask the browser for persistent storage</button></div>
@@ -199,7 +199,12 @@ export default {
       })}`;
 
     return `
-      <h1>Settings &amp; Backup</h1>
+      ${pageHead({
+        title: 'Settings &amp; Backup',
+        description: 'Preferences live in IndexedDB with a localStorage mirror; backups are written by your browser to your device and never uploaded.',
+        actions: `<a class="btn btn-quiet" href="#/help">Help &amp; How it works</a>`,
+      })}
+
       ${tabs({
         id: 'settingsTabs',
         activeId: viewState.tab,

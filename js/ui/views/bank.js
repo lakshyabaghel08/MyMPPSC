@@ -9,7 +9,7 @@
 import { ANSWER_KEY_STATUSES, EXPLANATION_STATUSES, STORES } from '../../core/constants.js';
 import { state, refreshQuestionIndex } from '../../core/state.js';
 import * as db from '../../core/db.js';
-import { esc, badge, card, tile, notice, dataTable, toast, openModal, confirmDialog, tabs, mountTabs, renderExplanation, questionTypeLabel, answerKeyBadge, demoBadge, sourceChip, langAttr } from '../components.js';
+import { esc, badge, card, tile, notice, dataTable, toast, openModal, confirmDialog, tabs, mountTabs, renderExplanation, questionTypeLabel, answerKeyBadge, demoBadge, sourceChip, langAttr, kpi, pageHead, sectionHead, statStrip, progressBar, filterChip } from '../components.js';
 import { fmtPct, fmtDate, fmtRelative, readFileAsText, downloadJson, todayKey } from '../../core/util.js';
 import * as importer from '../../services/importer.js';
 import * as data from '../../services/data.js';
@@ -53,12 +53,12 @@ function importSummary(analysis) {
     )}
 
     <div class="grid tiles">
-      ${tile({ label: 'Bank', value: esc(report.meta.bankName || report.meta.bankId || 'unnamed'), sub: `schema ${esc(report.meta.schemaVersion)} · ${esc(report.meta.bankId || 'no bank id')}` })}
-      ${tile({ label: 'Questions in file', value: String(stats.questions), sub: `${stats.bilingual} bilingual · ${stats.englishOnly} English-only · ${stats.hindiOnly} Hindi-only` })}
-      ${tile({ label: 'Papers in file', value: String(stats.papers), sub: `${stats.incompletePapers} incomplete · ${stats.unknownScoringPapers} without scoring rules` })}
-      ${tile({ label: 'Will be added', value: String(comparison.newQuestions), sub: `${comparison.alreadyPresent} id(s) already stored · ${comparison.newPapers} new paper(s)` })}
-      ${tile({ label: 'Records rejected', value: String(stats.rejectedRecords), sub: 'invalid records are listed below, never silently dropped' })}
-      ${tile({ label: 'Warnings', value: String(report.warnings.length), sub: `${report.errors.length} error(s) · ${report.fatal.length} blocking problem(s)` })}
+      ${kpi({ label: 'Bank', value: esc(report.meta.bankName || report.meta.bankId || 'unnamed'), context: `schema ${esc(report.meta.schemaVersion)} · ${esc(report.meta.bankId || 'no bank id')}`, iconName: 'bank', foot: sourceChip('supplied', 'file metadata') })}
+      ${kpi({ label: 'Questions in file', value: String(stats.questions), context: `${stats.bilingual} bilingual · ${stats.englishOnly} English-only · ${stats.hindiOnly} Hindi-only`, iconName: 'layers', foot: sourceChip('supplied', 'validated records') })}
+      ${kpi({ label: 'Papers in file', value: String(stats.papers), context: `${stats.incompletePapers} incomplete · ${stats.unknownScoringPapers} without scoring rules`, tone: stats.incompletePapers || stats.unknownScoringPapers ? 'warn' : '', iconName: 'book', foot: sourceChip('supplied', 'paper metadata') })}
+      ${kpi({ label: 'Will be added', value: String(comparison.newQuestions), context: `${comparison.alreadyPresent} id(s) already stored · ${comparison.newPapers} new paper(s)`, tone: 'accent', iconName: 'plus', foot: sourceChip('derived', 'compared with stored bank') })}
+      ${kpi({ label: 'Records rejected', value: String(stats.rejectedRecords), context: 'invalid records are listed below, never silently dropped', tone: stats.rejectedRecords ? 'bad' : 'ok', iconName: 'alert', foot: sourceChip('measured', 'validation result') })}
+      ${kpi({ label: 'Warnings', value: String(report.warnings.length), context: `${report.errors.length} error(s) · ${report.fatal.length} blocking problem(s)`, tone: report.errors.length || report.fatal.length ? 'warn' : '', iconName: 'info', foot: sourceChip('measured', 'validation result') })}
     </div>
 
     ${
@@ -383,6 +383,8 @@ export default {
   title: 'Question Bank & Imports',
 
   async render(ctx) {
+    const [section, questionParam] = ctx.params || [];
+    const deepLinkedQuestion = section === 'question' && questionParam ? decodeURIComponent(questionParam) : null;
     const metas = Array.from(state.questionIndex.values());
     const papers = Array.from(state.papers.values());
     const summary = questions.bankSummary();
@@ -411,6 +413,7 @@ export default {
       ${viewState.analysis ? importSummary(viewState.analysis) : ''}`;
 
     /* --------------------------------------------------------- questions -- */
+    if (deepLinkedQuestion) viewState.filters.search = deepLinkedQuestion;
     const filtered = filterQuestions(metas);
     const pageCount = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
     viewState.page = Math.min(viewState.page, pageCount - 1);
@@ -470,13 +473,13 @@ export default {
     const placeholderPapers = papers.filter((p) => p.placeholder);
 
     const integrityTab = `
-      <div class="grid tiles">
-        ${tile({ label: 'Answer keys present', value: `${metas.length - missingKeys.length}/${metas.length}`, sub: `${missingKeys.length} without any usable key`, tone: missingKeys.length ? 'warn' : 'ok' })}
-        ${tile({ label: 'Disputed keys', value: String(disputed.length), sub: 'flagged for review', tone: disputed.length ? 'bad' : 'ok' })}
-        ${tile({ label: 'Explanations reviewed', value: String(summary.byExplanation.reviewed || 0), sub: `${unreviewed.length} missing or unreviewed`, tone: unreviewed.length ? 'warn' : 'ok' })}
-        ${tile({ label: 'Unclassified questions', value: String(summary.unclassified), sub: 'no subject/topic — excluded from topic analytics', tone: summary.unclassified ? 'warn' : 'ok' })}
-        ${tile({ label: 'Papers with unknown rules', value: String(unknownRulesPapers.length), sub: 'cannot be scored until configured', tone: unknownRulesPapers.length ? 'warn' : 'ok' })}
-        ${tile({ label: 'Incomplete papers', value: String(incompletePapers.length), sub: 'fewer stored questions than the paper declares', tone: incompletePapers.length ? 'warn' : 'ok' })}
+      <div class="kpi-grid">
+        ${kpi({ label: 'Answer keys present', value: `${metas.length - missingKeys.length}/${metas.length}`, context: `${missingKeys.length} without any usable key`, tone: missingKeys.length ? 'warn' : 'ok', iconName: 'check', foot: sourceChip('supplied', 'imported key records') })}
+        ${kpi({ label: 'Disputed keys', value: String(disputed.length), context: 'flagged for review', tone: disputed.length ? 'bad' : 'ok', iconName: 'flag', foot: sourceChip('supplied', 'dispute records') })}
+        ${kpi({ label: 'Explanations reviewed', value: String(summary.byExplanation.reviewed || 0), context: `${unreviewed.length} missing or unreviewed`, tone: unreviewed.length ? 'warn' : 'ok', iconName: 'book', foot: sourceChip('supplied', 'explanation status') })}
+        ${kpi({ label: 'Unclassified questions', value: String(summary.unclassified), context: 'no subject/topic — excluded from topic analytics', tone: summary.unclassified ? 'warn' : 'ok', iconName: 'compass', foot: sourceChip('measured', 'classification fields') })}
+        ${kpi({ label: 'Papers with unknown rules', value: String(unknownRulesPapers.length), context: 'cannot be scored until configured', tone: unknownRulesPapers.length ? 'warn' : 'ok', iconName: 'alert', foot: sourceChip('unavailable', 'paper metadata') })}
+        ${kpi({ label: 'Incomplete papers', value: String(incompletePapers.length), context: 'fewer stored questions than the paper declares', tone: incompletePapers.length ? 'warn' : 'ok', iconName: 'layers', foot: sourceChip('supplied', 'declared vs stored') })}
       </div>
 
       ${card({
@@ -607,11 +610,19 @@ export default {
       })}`;
 
     return `
-      <h1>Question Bank &amp; Imports</h1>
-      <p class="muted">The question bank is data, not code: this app never needs rebuilding to accept a new paper.</p>
+      ${pageHead({
+        title: 'Question Bank &amp; Imports',
+        description: 'The question bank is data, not code: this app never needs rebuilding to accept a new paper. Every import is validated, summarised and recorded before anything is written.',
+        actions: `<a class="btn btn-quiet" href="#/settings">Backup &amp; restore</a>`,
+        meta: statStrip([
+          ['Questions stored', String(metas.length)],
+          ['Papers stored', String(papers.length)],
+          ['Import records', String(importHistoryRows.length)],
+        ]),
+      })}
       ${tabs({
         id: 'bankTabs',
-        activeId: viewState.tab,
+        activeId: deepLinkedQuestion ? 'questions' : viewState.tab,
         items: [
           { id: 'import', label: 'Import', body: importTab },
           { id: 'questions', label: `Questions (${metas.length})`, body: questionsTab },
@@ -627,6 +638,15 @@ export default {
     root.querySelectorAll('.tabs .tab').forEach((tab) => tab.addEventListener('click', () => {
       viewState.tab = tab.dataset.tab;
     }));
+
+    /* Deep link: #/bank/question/<id> (used by the report and analytics). */
+    const [section, questionParam] = ctx.params || [];
+    if (section === 'question' && questionParam) {
+      const questionId = decodeURIComponent(questionParam);
+      viewState.tab = 'questions';
+      viewState.filters.search = questionId;
+      await openQuestionEditor(questionId, ctx);
+    }
 
     /* ------------------------------------------------------------ import -- */
     const analyse = async (text, filename) => {

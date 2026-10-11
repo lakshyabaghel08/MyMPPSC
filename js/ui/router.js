@@ -85,9 +85,14 @@ export class Router {
     }
 
     this.container.innerHTML = loadingState();
+    this.container.classList.remove('view-enter');
     try {
       const markup = await view.render(ctx);
       this.container.innerHTML = markup || '';
+      // Restart the (very short) entrance animation on every route change so a
+      // screen change reads as a deliberate move rather than a flash.
+      if (typeof this.container.offsetHeight === 'number') this.container.offsetHeight;
+      this.container.classList.add('view-enter');
       if (typeof view.mount === 'function') await view.mount(ctx, this.container);
       this.activeCleanup = typeof view.cleanup === 'function' ? () => view.cleanup(ctx) : null;
       window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });

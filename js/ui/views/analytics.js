@@ -20,6 +20,11 @@ import {
   toast,
   sourceChip,
   evidenceMeter,
+  kpi,
+  pageHead,
+  sectionHead,
+  statStrip,
+  filterChip,
 } from '../components.js';
 import { fmtPct, fmtDate, fmtDuration, downloadJson, todayKey } from '../../core/util.js';
 import { loadAnalytics, studyPriorities, MIN_SAMPLE_HINT, MIN_SAMPLE_STRONG } from '../../services/analytics.js';
@@ -46,7 +51,7 @@ export default {
 
     if (!metas.length) {
       return `
-        <h1>Analytics</h1>
+        ${pageHead({ title: 'Analytics', description: 'Every figure is computed on this device from your stored attempts. Nothing is estimated, extrapolated or projected.' })}
         ${card({
           title: 'Analytics needs data',
           body: emptyState({
@@ -132,16 +137,19 @@ export default {
     const underPractised = analytics.underPractised.slice(0, 12);
 
     return `
-      <h1>Analytics</h1>
-      <p class="muted">All figures come from attempts stored on this device. Nothing is estimated, extrapolated or projected.</p>
+      ${pageHead({
+        title: 'Analytics',
+        description: 'All figures come from attempts stored on this device. Nothing is estimated, extrapolated or projected.',
+        actions: `<button class="btn" type="button" id="anaExport">Download report as JSON</button>`,
+      })}
 
-      <div class="grid tiles mb-3">
-        ${tile({ label: 'Questions available', value: String(counts.availableQuestions), sub: 'unique questions stored in the bank', source: 'supplied', where: 'Stored in local IndexedDB bank' })}
-        ${tile({ label: 'Unique questions attempted', value: String(counts.attemptedUnique), sub: `${fmtPct(counts.coverage)} of the bank — repeats do not increase this`, source: 'measured', where: 'Unique question IDs with ≥1 attempt' })}
-        ${tile({ label: 'Total attempts', value: String(counts.totalAttempts), sub: `${counts.repeatAttempts} attempt(s) beyond the first on a question`, source: 'measured', where: 'Every recorded attempt in local store' })}
-        ${tile({ label: 'First-attempt accuracy', value: analytics.accuracy.firstAttemptSample ? fmtPct(analytics.accuracy.firstAttempt) : '—', sub: analytics.accuracy.firstAttemptSample ? `on ${analytics.accuracy.firstAttemptSample} first attempts` : 'no first attempts yet', source: analytics.accuracy.firstAttemptSample ? 'measured' : 'unavailable', where: 'First scored attempt per unique question' })}
-        ${tile({ label: 'Accuracy (all attempts)', value: counts.correct + counts.incorrect ? fmtPct(analytics.accuracy.all) : '—', sub: `${counts.correct} correct · ${counts.incorrect} incorrect`, source: counts.correct + counts.incorrect ? 'measured' : 'unavailable', where: 'All judged attempts including repeats' })}
-        ${tile({ label: 'Answer rate', value: counts.totalAttempts ? fmtPct(analytics.accuracy.answerRate) : '—', sub: `${counts.unanswered} left unanswered · ${counts.unscored} unscored`, source: counts.totalAttempts ? 'measured' : 'unavailable', where: 'Answered share of total attempts' })}
+      <div class="kpi-grid">
+        ${kpi({ label: 'Questions available', value: String(counts.availableQuestions), context: 'unique questions stored in the bank', iconName: 'database', foot: sourceChip('supplied', 'local IndexedDB bank') })}
+        ${kpi({ label: 'Unique questions attempted', value: String(counts.attemptedUnique), context: `${fmtPct(counts.coverage)} of the bank — repeats do not increase this`, iconName: 'target', foot: sourceChip('measured', 'distinct question IDs') })}
+        ${kpi({ label: 'Total attempts', value: String(counts.totalAttempts), context: `${counts.repeatAttempts} attempt(s) beyond the first on a question`, iconName: 'layers', foot: sourceChip('measured', 'every recorded attempt') })}
+        ${kpi({ label: 'First-attempt accuracy', value: analytics.accuracy.firstAttemptSample ? fmtPct(analytics.accuracy.firstAttempt) : '—', context: analytics.accuracy.firstAttemptSample ? `on ${analytics.accuracy.firstAttemptSample} first attempts` : 'no first attempts yet', tone: analytics.accuracy.firstAttemptSample ? '' : 'warn', iconName: 'compass', foot: sourceChip(analytics.accuracy.firstAttemptSample ? 'measured' : 'unavailable', 'first scored attempt per question') })}
+        ${kpi({ label: 'Accuracy (all attempts)', value: counts.correct + counts.incorrect ? fmtPct(analytics.accuracy.all) : '—', context: `${counts.correct} correct · ${counts.incorrect} incorrect`, iconName: 'check', foot: sourceChip('measured', 'judged attempts incl. repeats') })}
+        ${kpi({ label: 'Answer rate', value: counts.totalAttempts ? fmtPct(analytics.accuracy.answerRate) : '—', context: `${counts.unanswered} left unanswered · ${counts.unscored} unscored`, iconName: 'clock', foot: sourceChip('measured', 'answered share of attempts') })}
       </div>
 
       ${notice(
@@ -150,6 +158,7 @@ export default {
         'info',
       )}
 
+      ${sectionHead({ title: 'Activity and accuracy over time', kicker: 'Trends', meta: 'Charts include a data-table fallback and keyboard-reachable points', actions: sourceChip('measured', 'stored attempts') })}
       <div class="split-2">
         <div>
           ${card({
@@ -170,9 +179,12 @@ export default {
         </div>
       </div>
 
+      ${sectionHead({ title: 'Subjects and topics', kicker: 'What the bank covers and how it went', meta: 'Sample sizes are shown with every accuracy figure', actions: sourceChip('measured', 'bank + attempts') })}
+      <div class="filter-chips mb-3" role="group" aria-label="Filter topics by subject">
+        ${[{ id: 'all', label: 'All subjects' }, ...subjects.map((s) => ({ id: s, label: s }))].map((f) => filterChip({ id: f.id, label: f.label, pressed: viewState.subject === f.id, action: 'subject-filter' })).join('')}
+      </div>
       ${card({
         title: 'Subjects',
-        right: sourceChip('measured', 'bank + attempts'),
         body: dataTable({
           columns: [{ label: 'Subject' }, { label: 'Available', num: true }, { label: 'Attempted', num: true }, { label: 'Coverage', num: true }, { label: 'Accuracy (all)', num: true }, { label: 'First-attempt accuracy', num: true }, { label: 'Verdict' }],
           rows: subjectRows,
@@ -183,8 +195,8 @@ export default {
 
       ${card({
         title: 'Topics',
-        subtitle: `${topicRows.length} topic(s)`,
-        actions: `<label class="field field-inline m-0"><span class="label-text">Subject</span>
+        subtitle: `${topicRows.length} topic(s)${viewState.subject === 'all' ? '' : ` in ${viewState.subject}`}`,
+        right: `<label class="field field-inline m-0"><span class="label-text">Subject</span>
           <select id="anaSubject"><option value="all">All subjects</option>${subjects.map((s) => `<option value="${esc(s)}" ${viewState.subject === s ? 'selected' : ''}>${esc(s)}</option>`).join('')}</select></label>`,
         body: dataTable({
           columns: [{ label: 'Topic' }, { label: 'Available', num: true }, { label: 'Attempted', num: true }, { label: 'Accuracy (all)', num: true }, { label: 'First-attempt', num: true }, { label: 'Avg time', num: true }, { label: 'Verdict' }],
@@ -294,17 +306,18 @@ export default {
         </div>
       </div>
 
+      ${sectionHead({ title: 'Mistakes and revision', kicker: 'What to act on', meta: 'Both screens keep their full detail', actions: '<a class="btn btn-sm" href="#/mistakes">Mistake Book</a> <a class="btn btn-sm" href="#/revision">Revision Centre</a>' })}
       ${card({
         title: 'Mistakes',
         subtitle: 'Open entries in the mistake book',
         right: sourceChip('measured', 'mistake book'),
         body: `
-          <div class="grid tiles">
-            ${tile({ label: 'Open entries', value: String(analytics.mistakes.open), sub: `${analytics.mistakes.repeated} repeated`, source: 'measured' })}
-            ${tile({ label: 'Incorrect', value: String(counts.incorrect), sub: 'wrong answers recorded', source: 'measured' })}
-            ${tile({ label: 'Skipped', value: String(counts.unanswered), sub: 'left unanswered', source: 'measured' })}
-            ${tile({ label: 'Flagged for review', value: String(counts.flagged), sub: 'marked during tests', source: 'measured' })}
-          </div>
+          ${statStrip([
+            ['Open entries', String(analytics.mistakes.open), `${analytics.mistakes.repeated} repeated`],
+            ['Incorrect', String(counts.incorrect), 'wrong answers recorded'],
+            ['Skipped', String(counts.unanswered), 'left unanswered'],
+            ['Flagged for review', String(counts.flagged), 'marked during tests'],
+          ])}
           ${analytics.mistakes.top.length
             ? `<h3 class="mt-3">Most repeated</h3>
                ${dataTable({
@@ -318,19 +331,19 @@ export default {
                  className: 'compact',
                })}`
             : '<p class="muted small">No open mistake entries.</p>'}
-          <div class="row mt-2"><a class="btn btn-sm" href="#/mistakes">Open the Mistake Book</a></div>`,
+        `,
       })}
 
       ${card({
         title: 'Revision',
         right: sourceChip('derived', 'spaced repetition'),
         body: `
-          <div class="grid tiles">
-            ${tile({ label: 'Tracked', value: String(analytics.revision.tracked), sub: 'questions with a schedule', source: 'measured' })}
-            ${tile({ label: 'Due today', value: String(analytics.revision.dueToday), tone: analytics.revision.dueToday ? 'warn' : '', source: 'derived' })}
-            ${tile({ label: 'Overdue', value: String(analytics.revision.overdue), tone: analytics.revision.overdue ? 'bad' : 'ok', source: 'derived' })}
-            ${tile({ label: 'Upcoming', value: String(analytics.revision.upcoming), source: 'derived' })}
-          </div>
+          ${statStrip([
+            ['Tracked', String(analytics.revision.tracked), 'questions with a schedule'],
+            ['Due today', String(analytics.revision.dueToday), 'scheduled for today'],
+            ['Overdue', String(analytics.revision.overdue), 'scheduled earlier'],
+            ['Upcoming', String(analytics.revision.upcoming), 'scheduled ahead'],
+          ])}
           ${
             analytics.revision.effectiveness.withHistory
               ? `<h3 class="mt-3">Change between first and latest scored attempt</h3>
@@ -338,7 +351,7 @@ export default {
                  <p class="small mt-2">${analytics.revision.effectiveness.improved} improved · ${analytics.revision.effectiveness.worsened} declined · ${analytics.revision.effectiveness.unchanged} unchanged, across ${analytics.revision.effectiveness.withHistory} question(s).</p>`
               : '<p class="muted small">Not enough repeated attempts yet to compare first and latest answers.</p>'
           }
-          <div class="row mt-2"><a class="btn btn-sm" href="#/revision">Revision Centre</a></div>`,
+        `,
       })}
 
       ${card({
@@ -379,13 +392,19 @@ export default {
           empty: 'No submitted tests yet.',
           className: 'compact',
         }),
-        footer: '<button class="btn btn-sm" type="button" id="anaExport">Download this report as JSON</button>',
       })}`;
   },
 
-  async mount(ctx) {
+  async mount(ctx, root) {
     document.getElementById('anaSubject')?.addEventListener('change', async (ev) => {
       viewState.subject = ev.target.value;
+      await ctx.refresh();
+    });
+
+    root.addEventListener('click', async (ev) => {
+      const chip = ev.target.closest('[data-action="subject-filter"]');
+      if (!chip) return;
+      viewState.subject = chip.dataset.value || 'all';
       await ctx.refresh();
     });
 

@@ -11,7 +11,7 @@
  */
 
 import { state } from '../../core/state.js';
-import { esc, card, notice, dataTable, toast, emptyState, confirmDialog, sourceChip } from '../components.js';
+import { esc, card, notice, dataTable, toast, emptyState, confirmDialog, sourceChip, kpi, pageHead, sectionHead } from '../components.js';
 import { QUESTION_TYPES } from '../../core/constants.js';
 import { filterMetas, selectQuestions, ATTEMPT_STATE_FILTERS } from '../../services/select.js';
 import { configFields, readConfig, mountConfigFields, startPracticeTest, currentAttemptSummary, countSummary } from './shared.js';
@@ -61,7 +61,7 @@ export default {
     const metas = Array.from(state.questionIndex.values());
     if (!metas.length) {
       return `
-        <h1>Custom Test</h1>
+        ${pageHead({ title: 'Custom Test', description: 'Assemble a test from the questions you choose — by subject, topic, year, paper and question type.' })}
         ${card({
           title: 'The custom test builder needs a question bank',
           body: emptyState({
@@ -105,12 +105,30 @@ export default {
       }, {}),
     ).map(([type, count]) => [esc(QUESTION_TYPES[type] || type), String(count)]);
 
+    const poolStats = {
+      total: pool.length,
+      unseen: pool.filter((m) => !attemptSummary.get(m.id)?.attempts).length,
+      incorrect: pool.filter((m) => attemptSummary.get(m.id)?.everIncorrect).length,
+      skipped: pool.filter((m) => attemptSummary.get(m.id)?.everSkipped).length,
+    };
+
     return `
-      <h1>Custom Test</h1>
+      ${pageHead({
+        title: 'Custom Test',
+        description: 'Assemble a test from the questions you choose — by subject, topic, year, paper and question type. The pool and its rules update as you select.',
+        actions: `<a class="btn btn-quiet" href="#/bank">Question Bank &amp; Imports</a>`,
+      })}
       ${notice('A custom test is assembled from the questions you choose. It is <strong>not</strong> an authentic previous-year paper and will be labelled as a custom set in the test and in the report. Nothing selected means everything available.', 'info')}
 
+      <div class="kpi-grid">
+        ${kpi({ label: 'Questions in pool', value: String(poolStats.total), context: `of ${metas.length} stored`, tone: poolStats.total ? 'accent' : 'warn', iconName: 'layers' })}
+        ${kpi({ label: 'Never attempted', value: String(poolStats.unseen), context: 'unseen questions in the pool', iconName: 'sparkle' })}
+        ${kpi({ label: 'Wrong before', value: String(poolStats.incorrect), context: 'previous mistakes in the pool', tone: poolStats.incorrect ? 'warn' : 'ok', iconName: 'alert' })}
+        ${kpi({ label: 'Skipped before', value: String(poolStats.skipped), context: 'left unanswered previously', iconName: 'clock' })}
+      </div>
+
+      ${sectionHead({ title: 'What to include', kicker: 'Step 1', meta: 'All optional — leave everything unselected to draw from the whole bank', actions: sourceChip('supplied') })}
       ${card({
-        title: 'What to include',
         subtitle: 'All optional — leave everything unselected to draw from the whole bank',
         right: sourceChip('supplied'),
         body: `
@@ -136,12 +154,10 @@ export default {
           </details>`,
       })}
 
+      ${sectionHead({ title: 'Pool and strategy', kicker: 'Step 2', meta: `${pool.length} question(s) match`, actions: sourceChip('measured', 'local attempt history') })}
       ${card({
-        title: 'Pool and strategy',
-        subtitle: `${pool.length} question(s) match`,
-        right: sourceChip('measured', `${pool.length} matching`),
         body: `
-          ${countSummary({ total: pool.length, unseen: pool.filter((m) => !attemptSummary.get(m.id)?.attempts).length, incorrect: pool.filter((m) => attemptSummary.get(m.id)?.everIncorrect).length, skipped: pool.filter((m) => attemptSummary.get(m.id)?.everSkipped).length })}
+          ${countSummary(poolStats)}
           <div class="field-row">
             <label class="field"><span class="label-text">Previously attempted questions</span>
               <select id="customAttempt">${Object.entries(ATTEMPT_STATE_FILTERS).map(([k, label]) => `<option value="${esc(k)}" ${viewState.attemptState === k ? 'selected' : ''}>${esc(label)}</option>`).join('')}</select>
@@ -164,9 +180,8 @@ export default {
         `,
       })}
 
+      ${sectionHead({ title: 'Test settings', kicker: 'Step 3', meta: 'Only size and feedback need a decision', actions: sourceChip('derived', 'session rules') })}
       ${card({
-        title: 'Test settings',
-        right: sourceChip('derived', 'session rules'),
         body: `${configFields({ paper: null, defaultCount: Math.min(25, Math.max(1, pool.length)), maxCount: pool.length, allowCustomScoring: true })}
         <div class="sticky-actions">
           <button class="btn btn-primary" type="button" id="assembleCustom" ${pool.length ? '' : 'disabled'}>Assemble custom test</button>
