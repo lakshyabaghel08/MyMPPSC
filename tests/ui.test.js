@@ -344,3 +344,88 @@ test('the offline notice and service worker registration are wired without error
   window.dispatchEvent(new window.Event('online'));
   assert.equal($('#offlinePill').hidden, true);
 });
+
+/* ------------------------------------------------- stylesheet regression -- */
+
+/**
+ * Regression test for the deployed-shell bug: the app shipped
+ * `.modal-root { display: grid }` with no `[hidden]` reset. The browser's
+ * built-in `[hidden] { display: none }` is a *user-agent* declaration, and any
+ * author declaration that sets `display` beats it, so from the first frame the
+ * empty `<div class="modal-root" id="modalRoot" hidden>` was laid out as a
+ * full-viewport, z-index 70 overlay that swallowed every click — and the
+ * always-present toast layer could swallow the clicks that got past it.
+ *
+ * This test reads the real index.html and css/app.css and renders them in a
+ * fresh JSDOM: the shared document above has already been booted and mutated,
+ * so it cannot show what a visitor's first frame looks like.
+ *
+ * One caveat about jsdom, stated rather than hidden: jsdom's default
+ * stylesheet gives `[hidden]` the specificity of
+ * `[hidden]:not([hidden=until-found i]):not(embed)`, which is higher than a
+ * plain class selector, so jsdom accidentally keeps the `.modal-root` case
+ * hidden even without the app's reset. `#toastStack` is styled through an
+ * *id* selector, which does beat that rule, so the toast-stack assertion below
+ * fails on the real broken stylesheet — that is checked, not assumed.
+ */
+test('the hidden attribute and the click-through layers cannot cover the app', async () => {
+  const css = await readFile(path.join(repoRoot, 'css/app.css'), 'utf8');
+  const page = new JSDOM(`<style>${css}</style>${html}`, { url: 'http://localhost:8080/', pretendToBeVisual: true });
+  const { window } = page;
+  const document = window.document;
+  const display = (element) => window.getComputedStyle(element).display;
+  const pointerEvents = (element) => window.getComputedStyle(element).pointerEvents;
+  const label = (element) => `#${element.id || '(no id)'}${element.className ? `.${String(element.className).split(' ').join('.')}` : ''}`;
+
+  /* 1. Nothing that carries the attribute may be laid out. */
+
+  const initiallyHidden = [...document.querySelectorAll('[hidden]')];
+  assert.ok(initiallyHidden.length >= 2, 'index.html is expected to ship hidden elements (the dialog overlay and the offline pill)');
+  for (const element of initiallyHidden) {
+    assert.equal(display(element), 'none', `${label(element)} carries the hidden attribute and must not be displayed`);
+  }
+
+  /* 2. The dialog overlay: a grid only while a dialog is actually open. */
+
+  const modalRoot = document.getElementById('modalRoot');
+  assert.equal(display(modalRoot), 'none', 'the empty overlay must not be laid out on the first frame');
+  assert.equal(window.getComputedStyle(modalRoot).zIndex, '70', 'the overlay is a full-viewport z-index 70 layer, so hiding it correctly is what matters');
+  modalRoot.hidden = false;
+  assert.equal(display(modalRoot), 'grid', 'an open dialog must still be laid out as a grid');
+  modalRoot.hidden = true;
+  assert.equal(display(modalRoot), 'none', 'closing a dialog must hide the overlay again');
+
+  /* 3. The toast layer is permanent, so it must be click-through. */
+
+  const toastStack = document.getElementById('toastStack');
+  assert.equal(window.getComputedStyle(toastStack).position, 'fixed');
+  assert.equal(pointerEvents(toastStack), 'none', 'the always-present toast layer must not intercept clicks');
+
+  const toast = document.createElement('div');
+  toast.className = 'toast';
+  toastStack.appendChild(toast);
+  assert.equal(pointerEvents(toast), 'auto', 'a toast itself must remain clickable');
+
+  /* 4. The case that fails on the broken stylesheet: an id-selector author
+     rule that sets `display` (here `#toastStack { display: grid }`) against a
+     `hidden` attribute. Without the reset this computes to grid, exactly the
+     bug this test exists to prevent. */
+
+  toastStack.hidden = true;
+  assert.equal(display(toastStack), 'none', 'the [hidden] reset must beat an id-selector author display rule');
+  toastStack.hidden = false;
+
+  /* 5. And the reset itself must stay in the stylesheet: first rule, !important. */
+
+  const declarations = css.replace(/\/\*[\s\S]*?\*\//g, '');
+  assert.match(
+    declarations,
+    /\[hidden\]\s*\{\s*display:\s*none\s*!important;?\s*\}/,
+    'css/app.css must keep an `[hidden] { display: none !important; }` reset',
+  );
+  assert.equal(
+    declarations.match(/([^{}]+)\{/)[1].trim(),
+    '[hidden]',
+    'the [hidden] reset must stay the first rule of the stylesheet',
+  );
+});

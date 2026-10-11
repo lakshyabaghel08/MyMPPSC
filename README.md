@@ -18,11 +18,23 @@ Then open <http://localhost:8080/>. On an empty database the app offers to load 
 Any static file server works — the app is plain HTML/CSS/ES modules. To run it offline as a PWA, serve it over `http(s)` (the service worker cannot register on `file://`).
 
 ```bash
-npm test             # 100 tests: services, end-to-end journey and UI journey tests
-npm run check        # 520+ static integrity checks (imports, routes, assets, data)
+npm test             # 101 tests: services, end-to-end journey and UI journey tests
+npm run check        # 585 static integrity checks (imports, routes, assets, data, shell)
 python3 tools/make-icons.py   # regenerate the PWA icons (no dependencies)
 node tools/build-bank.mjs --help
 ```
+
+## Deploying to GitHub Pages
+
+The app is a static site with no build step, so Pages can publish the repository
+root directly (**Settings → Pages → Deploy from a branch → `main` / `(root)`**).
+Pages serves over HTTPS, which the service worker requires. Four things keep that
+working, and `npm run check` fails if any of them is undone:
+
+* **Stay relative.** A project site lives at `https://<user>.github.io/<repo>/`, so a leading slash resolves to the domain root and 404s. Every URL in `index.html`, `sw.js`, `manifest.webmanifest` and `css/app.css` is relative (`css/app.css`, `./js/app.js`), the service worker is registered as `'sw.js'` with `scope: './'`, and its precache list uses `./` prefixes. The same files therefore also work on a custom domain or from `npm run serve` with no changes.
+* **Keep an empty `.nojekyll` at the repository root.** Without it Pages runs the tree through Jekyll, which ignores paths that start with an underscore and adds a rebuild step that can drop files.
+* **Bump the service-worker cache version** (`const VERSION = 'v1.0.0-3';` in `sw.js`) in the same commit as any change to a precached file — HTML, CSS, JS, icons, demo data. The old caches are deleted on `activate`, which is how a browser that cached a broken shell drops it. If the version did not change, that browser would keep serving the broken files.
+* **Verify after deploying:** load the site, check the console for a failed request, then reload once (or unregister the old worker in DevTools → Application → Service Workers) to confirm the new build is the one being served.
 
 ## What it does
 
