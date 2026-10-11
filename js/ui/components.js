@@ -32,7 +32,43 @@ const ICONS = {
   print: '<path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/>',
   flag: '<path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1zM4 22v-7"/>',
   close: '<path d="M18 6 6 18M6 6l12 12"/>',
+  check: '<path d="m4 12.5 5 5L20 6.5"/>',
+  alert: '<path d="M12 8v5m0 4h.01"/><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>',
+  info: '<circle cx="12" cy="12" r="9"/><path d="M12 11v5m0-8h.01"/>',
+  clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+  target: '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.4"/>',
+  shield: '<path d="M12 3l7 3v6c0 4.2-2.9 7.9-7 9-4.1-1.1-7-4.8-7-9V6l7-3z"/><path d="m9 12 2 2 4-4"/>',
+  flame: '<path d="M12 3c1.6 3.4.4 5.2-1.2 6.8C9.1 11.5 8 13 8 15a4 4 0 0 0 8 0c0-1.4-.6-2.6-1.5-3.6-.3 1-1 1.6-1.7 1.9.6-2.6-.3-5.6-2.8-8.3.6-1.2 1.2-1.7 2-2z"/>',
+  layers: '<path d="m12 3 9 5-9 5-9-5 9-5z"/><path d="m3 13 9 5 9-5"/>',
+  book: '<path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 1 6.5 18H19v3H6.5"/>',
+  keyboard: '<rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M7 14h10"/>',
+  arrowRight: '<path d="M5 12h14m-6-6 6 6-6 6"/>',
+  arrowUp: '<path d="M12 19V5m-6 6 6-6 6 6"/>',
+  arrowDown: '<path d="M12 5v14m6-6-6 6-6-6"/>',
+  refresh: '<path d="M20 12a8 8 0 1 1-2.3-5.6"/><path d="M20 4v5h-5"/>',
+  download: '<path d="M12 3v12m-5-5 5 5 5-5"/><path d="M5 21h14"/>',
+  upload: '<path d="M12 21V9m-5 5 5-5 5 5"/><path d="M5 3h14"/>',
+  filter: '<path d="M3 5h18l-7 8v6l-4 2v-8L3 5z"/>',
+  calendar: '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4m8-4v4M3 11h18"/>',
+  edit: '<path d="M4 20h4l10-10-4-4L4 16v4z"/><path d="m14 6 4 4"/>',
+  trash: '<path d="M4 7h16M10 11v6m4-6v6"/><path d="M6 7l1 13h10l1-13M9 7V4h6v3"/>',
+  play: '<path d="M7 4l13 8-13 8V4z"/>',
+  pause: '<path d="M7 4h4v16H7zM13 4h4v16h-4z"/>',
+  eye: '<path d="M2 12s3.6-6 10-6 10 6 10 6-3.6 6-10 6-10-6-10-6z"/><circle cx="12" cy="12" r="3"/>',
+  sparkle: '<path d="M12 3v4m0 10v4M5 12H1m22 0h-4M6.3 6.3 3.5 3.5m17 17-2.8-2.8M6.3 17.7l-2.8 2.8m17-17-2.8 2.8"/><circle cx="12" cy="12" r="3"/>',
+  compass: '<circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5 5-2z"/>',
+  database: '<ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/>',
+  lock: '<rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/>',
+  chevronRight: '<path d="m9 6 6 6-6 6"/>',
+  chevronDown: '<path d="m6 9 6 6 6-6"/>',
+  plus: '<path d="M12 5v14M5 12h14"/>',
+  grid: '<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>',
+  list: '<path d="M8 6h13M8 12h13M8 18h13M3.5 6h.01M3.5 12h.01M3.5 18h.01"/>',
 };
+
+function iconFn(name, opts) {
+  return icon(name, opts);
+}
 
 export function icon(name, { size = 16, label = null } = {}) {
   const inner = ICONS[name] || ICONS.help;
@@ -123,29 +159,237 @@ export function card({ title = null, subtitle = null, actions = '', right = '', 
   </section>`;
 }
 
-export function tile({ label, value, sub = '', tone = '', source = null, where = null }) {
+export function tile({ label, value, sub = '', tone = '', source = null, where = null, icon = null, iconName = null, trend = null, id = null }) {
   const chipHtml = source ? sourceChip(source) : '';
   const whereHtml = where ? `<div class="tile-prov">${esc(where)}</div>` : '';
-  return `<div class="tile ${tone}">
-    <div class="tile-label"><span>${esc(label)}</span>${chipHtml}</div>
+  const trendHtml = trend ? `<span class="kpi-trend ${esc(trend.tone || 'flat')}">${esc(trend.label)}</span>` : '';
+  const glyph = iconName || icon;
+  return `<div class="tile ${tone}" ${id ? `id="${esc(id)}"` : ''}>
+    <div class="tile-label"><span>${glyph ? `<span class="tile-icon" aria-hidden="true">${iconFn(glyph, { size: 15 })}</span> ` : ''}${esc(label)}</span>${trendHtml || chipHtml}</div>
     <div class="tile-value">${value}</div>
     ${sub ? `<div class="tile-sub">${sub}</div>` : ''}
     ${whereHtml}
   </div>`;
 }
 
+/**
+ * KPI card used by the dashboard and other overview screens: an icon, a large
+ * value, an optional trend chip, a sparkline and secondary figures.
+ */
+export function kpi({ label, value, context = '', tone = '', iconName = null, trend = null, spark = null, foot = null }) {
+  const trendHtml = trend ? `<span class="kpi-trend ${esc(trend.tone || 'flat')}">${esc(trend.label)}</span>` : '';
+  return `<article class="kpi ${esc(tone)}">
+    <div class="kpi-top">
+      <span class="kpi-label">${esc(label)}</span>
+      ${iconName ? `<span class="kpi-icon" aria-hidden="true">${icon(iconName, { size: 18 })}</span>` : ''}
+    </div>
+    <div class="kpi-value">${value}${trendHtml ? ` ${trendHtml}` : ''}</div>
+    ${context ? `<div class="kpi-context">${context}</div>` : ''}
+    ${spark ? `<div class="kpi-spark">${sparkline(spark)}</div>` : ''}
+    ${foot ? `<div class="kpi-foot">${foot}</div>` : ''}
+  </article>`;
+}
+
 export function notice(html, tone = 'info', { title = null } = {}) {
   return `<div class="notice ${tone}">${title ? `<strong>${esc(title)}</strong> ` : ''}${html}</div>`;
 }
 
-export const emptyState = ({ title, message = '', body = '', action = '', actionHref = null, actionLabel = '' } = {}) => {
+export const emptyState = ({ title, message = '', body = '', action = '', actionHref = null, actionLabel = '', iconName = null } = {}) => {
   const text = message || body;
   const actionHtml = action || (actionHref && actionLabel ? `<a class="btn btn-primary" href="${esc(actionHref)}">${esc(actionLabel)}</a>` : '');
-  return `<div class="empty-block"><strong>${esc(title)}</strong>${text ? `<p class="muted small">${text}</p>` : ''}${actionHtml ? `<div class="empty-actions">${actionHtml}</div>` : ''}</div>`;
+  const iconHtml = iconName ? `<span class="empty-icon" aria-hidden="true">${icon(iconName, { size: 24 })}</span>` : '';
+  return `<div class="empty-block">${iconHtml}<strong>${esc(title)}</strong>${text ? `<p class="muted small">${text}</p>` : ''}${actionHtml ? `<div class="empty-actions">${actionHtml}</div>` : ''}</div>`;
 };
 
 export const loadingState = (message = 'Loading local data…') =>
-  `<div class="loading-block" aria-busy="true" role="status">${esc(message)}</div>`;
+  `<div class="loading-shell" aria-busy="true" role="status">
+    <span class="sr-only">${esc(message)}</span>
+    <span class="skeleton-line" aria-hidden="true"></span>
+    <div class="skeleton-grid" aria-hidden="true">
+      <span class="skeleton-card"></span><span class="skeleton-card"></span><span class="skeleton-card"></span>
+    </div>
+    <div class="skeleton-stack" aria-hidden="true">
+      <span class="skeleton-line medium"></span>
+      <span class="skeleton-line"></span>
+      <span class="skeleton-line short"></span>
+    </div>
+  </div>`;
+
+/** Inline skeleton for a card body that is computing something. */
+export const skeletonStack = (lines = 3) =>
+  `<div class="skeleton-stack" aria-hidden="true">${Array.from({ length: lines }, (_, i) => `<span class="skeleton-line ${i === 0 ? 'short' : i === 1 ? 'medium' : ''}"></span>`).join('')}</div>`;
+
+/* ---------------------------------------------------- layout primitives -- */
+
+/** Screen title block with an optional description and action buttons. */
+export function pageHead({ title, description = '', actions = '', meta = '' } = {}) {
+  return `<header class="page-head">
+    <div class="grow">
+      <h1>${title}</h1>
+      ${description ? `<p class="page-sub">${description}</p>` : ''}
+      ${meta}
+    </div>
+    ${actions ? `<div class="page-actions">${actions}</div>` : ''}
+  </header>`;
+}
+
+/** In-page section heading (h2) with optional right-hand meta/actions. */
+export function sectionHead({ title, meta = '', actions = '', id = null, kicker = '' } = {}) {
+  return `<div class="section-head" ${id ? `id="${esc(id)}"` : ''}>
+    <div>${kicker ? `<span class="section-kicker">${esc(kicker)}</span>` : ''}<h2>${esc(title)}</h2></div>
+    ${meta ? `<span class="muted small">${meta}</span>` : ''}
+    ${actions ? `<div class="toolbar">${actions}</div>` : ''}
+  </div>`;
+}
+
+/** Compact inline stat strip. */
+export const statStrip = (items = []) =>
+  `<div class="stat-strip">${items
+    .map(([label, value, extra = '']) => `<div><span class="stat-label">${esc(label)}</span><span class="stat-value">${value}</span>${extra ? `<span class="tiny muted">${extra}</span>` : ''}</div>`)
+    .join('')}</div>`;
+
+/** Circular progress ring driven by a real 0–1 value. */
+export function ring(value, { label = '', sub = '', size = 108, width = 10, tone = '' } = {}) {
+  const safe = Math.max(0, Math.min(1, Number(value) || 0));
+  const pctText = `${Math.round(safe * 100)}%`;
+  return `<div class="ring ${esc(tone)}" data-ring="${safe.toFixed(3)}" role="img" aria-label="${esc(`${label || sub || 'Progress'}: ${pctText}`)}">
+    <svg viewBox="0 0 108 108" aria-hidden="true">
+      <circle class="ring-track" cx="54" cy="54" r="48"></circle>
+      <circle class="ring-value" cx="54" cy="54" r="48" pathLength="100" stroke-dasharray="100" stroke-dashoffset="${(100 - 100 * safe).toFixed(2)}"></circle>
+    </svg>
+    <span class="ring-label"><strong>${pctText}</strong>${sub ? `<span>${esc(sub)}</span>` : ''}</span>
+  </div>`;
+}
+
+/** Vertical activity timeline. Items: { tone, glyph, title, meta, body } */
+export const timeline = (items = []) =>
+  `<ul class="timeline">${items
+    .map(
+      (item) => `<li class="timeline-item">
+        <span class="timeline-dot ${esc(item.tone || '')}" aria-hidden="true">${item.glyph || '•'}</span>
+        <div class="timeline-body">
+          <span class="timeline-title">${item.title}</span>
+          ${item.meta ? `<span class="timeline-meta">${item.meta}</span>` : ''}
+          ${item.body ? `<span class="small">${item.body}</span>` : ''}
+        </div>
+      </li>`,
+    )
+    .join('')}</ul>`;
+
+/** Filter chip that behaves like a real toggle (views wire the click). */
+export const filterChip = ({ id, label, count = null, pressed = false, action = 'filter', data = {} } = {}) => {
+  const attrs = Object.entries(data)
+    .map(([k, v]) => ` data-${esc(k)}="${esc(String(v))}"`)
+    .join('');
+  return `<button class="filter-chip" type="button" data-action="${esc(action)}" data-value="${esc(id)}" aria-pressed="${pressed ? 'true' : 'false'}"${attrs}>${esc(label)}${count === null ? '' : ` <span class="chip-count">${esc(String(count))}</span>`}</button>`;
+};
+
+/* --------------------------------------- global interaction enhancers ----- */
+
+/**
+ * Chart tooltips for every `.chart-wrap` on the page, including charts rendered
+ * later by any view (delegated events, installed once).
+ */
+export function installChartEnhancers() {
+  if (typeof document === 'undefined' || document.__mymppscChartEnhancers) return;
+  document.__mymppscChartEnhancers = true;
+
+  const show = (target) => {
+    const tip = target?.getAttribute?.('data-tip');
+    if (!tip) return;
+    const wrap = target.closest('.chart-wrap');
+    const box = wrap?.querySelector('.chart-tooltip');
+    if (!box) return;
+    const view = (wrap.dataset.chartView || '660x150').split('x').map(Number);
+    const x = Number(target.getAttribute('data-tip-x'));
+    const y = Number(target.getAttribute('data-tip-y'));
+    box.innerHTML = `<strong>${esc(tip.split(':')[0] || '')}</strong><div class="tip-row"><span><i class="tip-swatch"></i>${esc(tip.split(':').slice(1).join(':').trim() || tip)}</span></div>`;
+    box.style.setProperty('--tip-x', ((x / view[0]) * 100).toFixed(2));
+    box.style.setProperty('--tip-y', ((y / view[1]) * 100).toFixed(2));
+    box.hidden = false;
+    box.classList.add('on');
+  };
+  const hide = (target) => {
+    const wrap = target?.closest?.('.chart-wrap');
+    const box = wrap?.querySelector('.chart-tooltip');
+    if (!box) return;
+    box.classList.remove('on');
+    box.hidden = true;
+  };
+
+  document.addEventListener('pointerover', (ev) => {
+    const target = ev.target?.closest?.('[data-tip]');
+    if (target) show(target);
+  });
+  document.addEventListener('pointerout', (ev) => {
+    const target = ev.target?.closest?.('[data-tip]');
+    if (target) hide(target);
+  });
+  document.addEventListener('focusin', (ev) => {
+    const target = ev.target?.closest?.('[data-tip]');
+    if (target) show(target);
+  });
+  document.addEventListener('focusout', (ev) => {
+    const target = ev.target?.closest?.('[data-tip]');
+    if (target) hide(target);
+  });
+  document.addEventListener('keydown', (ev) => {
+    if (ev.key !== 'Escape') return;
+    document.querySelectorAll('.chart-tooltip.on').forEach((box) => {
+      box.classList.remove('on');
+      box.hidden = true;
+    });
+  });
+}
+
+/**
+ * Client-side sorting for every `table[data-sortable]` in the document.
+ * Values are compared numerically when both cells parse as numbers, otherwise
+ * as locale strings; `data-sort-value` on a cell overrides the visible text.
+ */
+export function installTableSorting() {
+  if (typeof document === 'undefined' || document.__mymppscTableSorting) return;
+  document.__mymppscTableSorting = true;
+
+  const cellValue = (row, index) => {
+    const cell = row.children[index];
+    if (!cell) return '';
+    const raw = cell.getAttribute('data-sort-value');
+    if (raw !== null) return raw;
+    const sized = cell.querySelector('[data-sort-value]')?.getAttribute('data-sort-value');
+    if (sized != null) return sized;
+    return (cell.textContent || '').replace(/\s+/g, ' ').trim();
+  };
+
+  const compare = (a, b) => {
+    const na = Number(String(a).replace(/[^0-9.+-]/g, ''));
+    const nb = Number(String(b).replace(/[^0-9.+-]/g, ''));
+    const numeric = String(a).trim() !== '' && String(b).trim() !== '' && Number.isFinite(na) && Number.isFinite(nb);
+    if (numeric) return na - nb;
+    return String(a).localeCompare(String(b), undefined, { numeric: true, sensitivity: 'base' });
+  };
+
+  document.addEventListener('click', (ev) => {
+    const button = ev.target?.closest?.('.th-sort');
+    if (!button) return;
+    const table = button.closest('table');
+    const tbody = table?.querySelector('tbody');
+    if (!table || !tbody) return;
+    ev.preventDefault();
+    const index = Number(button.dataset.sortIndex);
+    const current = button.getAttribute('aria-sort');
+    const direction = current === 'ascending' ? 'descending' : 'ascending';
+    table.querySelectorAll('.th-sort').forEach((other) => other.removeAttribute('aria-sort'));
+    button.setAttribute('aria-sort', direction);
+    const rows = Array.from(tbody.querySelectorAll('tr'));
+    rows.sort((a, b) => {
+      const result = compare(cellValue(a, index), cellValue(b, index));
+      return direction === 'ascending' ? result : -result;
+    });
+    for (const row of rows) tbody.appendChild(row);
+  });
+}
+
 
 export const kv = (pairs = []) =>
   `<dl class="kv">${pairs
@@ -157,11 +401,15 @@ export const kv = (pairs = []) =>
 /**
  * Supports both `{ columns: [{ label, num }], rows }` and `{ headers: ['...'], rows }`.
  */
-export function dataTable({ columns = null, headers = [], rows = [], empty = 'Nothing to show.', className = '' } = {}) {
+export function dataTable({ columns = null, headers = [], rows = [], empty = 'Nothing to show.', className = '', sortable = false, id = '' } = {}) {
   if (!rows.length) return `<p class="muted small m-0">${esc(empty)}</p>`;
   const cols = columns || headers.map((h) => (typeof h === 'string' ? { label: h, num: false } : h));
-  return `<div class="table-wrap"><table class="data ${className}">
-    <thead><tr>${cols.map((c) => `<th ${c.num ? 'class="num"' : ''}>${esc(c.label)}</th>`).join('')}</tr></thead>
+  const headCell = (c, index) => {
+    if (!sortable || c.sortable === false) return `<th ${c.num ? 'class="num"' : ''}>${esc(c.label)}</th>`;
+    return `<th ${c.num ? 'class="num"' : ''} data-sort-col="${index}"><button class="th-sort" type="button" data-sort-index="${index}" aria-label="Sort by ${esc(c.label)}">${esc(c.label)}</button></th>`;
+  };
+  return `<div class="table-wrap"><table class="data ${className}"${sortable ? ' data-sortable="true"' : ''}${id ? ` id="${esc(id)}"` : ''}>
+    <thead><tr>${cols.map(headCell).join('')}</tr></thead>
     <tbody>${rows
       .map(
         (r) =>
@@ -224,6 +472,8 @@ export function barChart(arg1 = {}, arg2 = {}) {
   const height = (isArrayArg ? arg2.height : arg1.height) || 150;
   const valueFormat = (isArrayArg ? arg2.valueFormat : arg1.valueFormat) || ((v) => String(v));
   const yLabel = (isArrayArg ? arg2.yLabel || arg2.title : arg1.yLabel || arg1.title) || 'Bar chart';
+  const interactive = (isArrayArg ? arg2.interactive : arg1.interactive) !== false;
+  const unitLabel = (isArrayArg ? arg2.unitLabel : arg1.unitLabel) || '';
 
   if (!data.length) return '<p class="muted small m-0">No data to chart yet.</p>';
   const w = 660;
@@ -243,7 +493,11 @@ export function barChart(arg1 = {}, arg2 = {}) {
       const y = padT + innerH - bh;
       const labelEvery = Math.ceil(data.length / 12);
       const label = i % labelEvery === 0 ? `<text class="axis-label" x="${(x + bw / 2).toFixed(1)}" y="${h - 8}" text-anchor="middle">${esc(d.label)}</text>` : '';
-      return `<rect class="bar ${esc(d.tone || '')}" x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${bw.toFixed(1)}" height="${Math.max(0, bh).toFixed(1)}"><title>${esc(d.label)}: ${esc(valueFormat(v))}</title></rect>${label}`;
+      const tip = `${esc(d.label)}: ${esc(valueFormat(v))}${unitLabel ? ` ${esc(unitLabel)}` : ''}`;
+      const hit = interactive
+        ? `<rect class="bar hit" x="${x.toFixed(1)}" y="${padT}" width="${bw.toFixed(1)}" height="${innerH}" tabindex="0" role="img" aria-label="${tip}" data-tip="${tip}" data-tip-x="${(x + bw / 2).toFixed(1)}" data-tip-y="${y.toFixed(1)}"><title>${tip}</title></rect>`
+        : '';
+      return `<g class="bar-group"><rect class="bar ${esc(d.tone || '')}" x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${bw.toFixed(1)}" height="${Math.max(0, bh).toFixed(1)}"><title>${tip}</title></rect>${hit}${label}</g>`;
     })
     .join('');
   const gridLines = [0, 0.5, 1]
@@ -253,8 +507,9 @@ export function barChart(arg1 = {}, arg2 = {}) {
     })
     .join('');
   const tableRows = data.map((d) => `<tr><td>${esc(d.label)}</td><td class="num">${esc(valueFormat(Number(d.value) || 0))}</td></tr>`).join('');
-  return `<div class="chart-wrap">
+  return `<div class="chart-wrap" data-chart-view="${w}x${h}">
     <svg class="chart" viewBox="0 0 ${w} ${h}" role="img" aria-label="${esc(yLabel)}">${gridLines}${bars}</svg>
+    <div class="chart-tooltip" role="status" aria-live="polite" hidden></div>
     <details class="chart-data"><summary>Data table (${data.length} rows)</summary>
       <div class="table-wrap mt-2"><table class="data compact"><thead><tr><th>Item</th><th class="num">Value</th></tr></thead><tbody>${tableRows}</tbody></table></div>
     </details>
@@ -272,6 +527,8 @@ export function lineChart(arg1 = {}, arg2 = {}) {
     ((v) => (yMax === 1 ? `${Math.round(v * 100)}%` : `${Math.round(v)}${arg2.unit || ''}`));
   const labelEvery = isArrayArg ? arg2.labelEvery : arg1.labelEvery;
   const title = (isArrayArg ? arg2.title : arg1.title) || 'Trend chart';
+  const interactive = (isArrayArg ? arg2.interactive : arg1.interactive) !== false;
+  const area = (isArrayArg ? arg2.area : arg1.area) !== false;
 
   if (points.length < 2) return '<p class="muted small m-0">At least two data points are needed to show a trend.</p>';
   const w = 660;
@@ -285,8 +542,16 @@ export function lineChart(arg1 = {}, arg2 = {}) {
   const yOf = (v) => padT + innerH - (clamp(Number(v) || 0, 0, yMax) / yMax) * innerH;
   const path = points.map((p, i) => `${i === 0 ? 'M' : 'L'}${(padL + i * step).toFixed(1)},${yOf(p.value).toFixed(1)}`).join(' ');
   const dots = points
-    .map((p, i) => `<circle class="point" cx="${(padL + i * step).toFixed(1)}" cy="${yOf(p.value).toFixed(1)}" r="3"><title>${esc(p.label)}: ${esc(yFormat(p.value))}</title></circle>`)
+    .map((p, i) => {
+      const cx = (padL + i * step).toFixed(1);
+      const cy = yOf(p.value).toFixed(1);
+      const tip = `${esc(p.label)}: ${esc(yFormat(p.value))}`;
+      return `<circle class="point" cx="${cx}" cy="${cy}" r="4"${interactive ? ` tabindex="0" role="img" aria-label="${tip}" data-tip="${tip}" data-tip-x="${cx}" data-tip-y="${cy}"` : ''}><title>${tip}</title></circle>`;
+    })
     .join('');
+  const areaPath = area && points.length > 1
+    ? `<path class="area" d="${path} L${(padL + (points.length - 1) * step).toFixed(1)},${(padT + innerH).toFixed(1)} L${padL},${(padT + innerH).toFixed(1)} Z"></path>`
+    : '';
   const every = labelEvery || Math.ceil(points.length / 10);
   const labels = points
     .map((p, i) => (i % every === 0 ? `<text class="axis-label" x="${(padL + i * step).toFixed(1)}" y="${h - 8}" text-anchor="middle">${esc(p.label)}</text>` : ''))
@@ -298,8 +563,9 @@ export function lineChart(arg1 = {}, arg2 = {}) {
     })
     .join('');
   const tableRows = points.map((p) => `<tr><td>${esc(p.label)}</td><td class="num">${esc(yFormat(p.value))}</td></tr>`).join('');
-  return `<div class="chart-wrap">
-    <svg class="chart" viewBox="0 0 ${w} ${h}" role="img" aria-label="${esc(title)}">${grid}${path ? `<path class="line" d="${path}"></path>` : ''}${dots}${labels}</svg>
+  return `<div class="chart-wrap" data-chart-view="${w}x${h}">
+    <svg class="chart" viewBox="0 0 ${w} ${h}" role="img" aria-label="${esc(title)}">${grid}${areaPath}${path ? `<path class="line" d="${path}"></path>` : ''}${dots}${labels}</svg>
+    <div class="chart-tooltip" role="status" aria-live="polite" hidden></div>
     <details class="chart-data"><summary>Data table (${points.length} points)</summary>
       <div class="table-wrap mt-2"><table class="data compact"><thead><tr><th>Point</th><th class="num">Value</th></tr></thead><tbody>${tableRows}</tbody></table></div>
     </details>
@@ -506,7 +772,8 @@ export function toast(message, tone = 'info', timeout = 5200) {
   node.className = `toast ${tone}`;
   node.setAttribute('role', tone === 'bad' ? 'alert' : 'status');
   const bodyHtml = typeof message === 'string' ? esc(message) : String(message);
-  node.innerHTML = `<div class="toast-body">${bodyHtml}</div><button class="toast-close" type="button" aria-label="Dismiss notification">✕</button>`;
+  const glyph = { ok: '✓', bad: '!', warn: '!', info: 'i' }[tone] || 'i';
+  node.innerHTML = `<span class="toast-icon" aria-hidden="true">${glyph}</span><div class="toast-body">${bodyHtml}</div><button class="toast-close" type="button" aria-label="Dismiss notification">✕</button>`;
   stack.appendChild(node);
 
   let timer = null;

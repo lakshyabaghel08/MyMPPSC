@@ -22,11 +22,51 @@ import {
   answerKeyBadge,
   sourceChip,
   demoBadge,
+  pageHead,
+  filterChip,
+  ring,
+  icon,
 } from '../components.js';
 import { fmtDate, fmtMarks, fmtPct, fmtClock } from '../../core/util.js';
 import { paperSummary } from '../../services/select.js';
 import * as tests from '../../services/tests.js';
 import { configFields, readConfig, mountConfigFields, incompletePaperNotice, scoringUnknownNotice, startPracticeTest } from './shared.js';
+
+const viewState = { filter: 'all', sort: 'newest' };
+
+const PAPER_FILTERS = [
+  { id: 'all', label: 'All papers' },
+  { id: 'ready', label: 'Ready to simulate' },
+  { id: 'incomplete', label: 'Incomplete' },
+  { id: 'unknown-rules', label: 'Rules unknown' },
+  { id: 'disputed', label: 'Disputed keys' },
+  { id: 'demonstration', label: 'Demonstration' },
+];
+
+function paperMatches(paper, summary, filter) {
+  switch (filter) {
+    case 'ready':
+      return summary.present > 0 && summary.complete !== false && summary.scoringKnown && !summary.disputed && !summary.missingAnswers;
+    case 'incomplete':
+      return summary.complete === false || summary.placeholder;
+    case 'unknown-rules':
+      return !summary.scoringKnown;
+    case 'disputed':
+      return Boolean(summary.disputed);
+    case 'demonstration':
+      return Boolean(paper.is_demonstration);
+    default:
+      return true;
+  }
+}
+
+function sortPapers(rows, sort) {
+  const copy = rows.slice();
+  if (sort === 'oldest') return copy.sort((a, b) => Number(a.paper.year || 0) - Number(b.paper.year || 0));
+  if (sort === 'name') return copy.sort((a, b) => String(a.paper.paper_name || a.paper.paper_id).localeCompare(String(b.paper.paper_name || b.paper.paper_id)));
+  if (sort === 'questions') return copy.sort((a, b) => b.summary.present - a.summary.present);
+  return copy.sort((a, b) => Number(b.paper.year || 0) - Number(a.paper.year || 0));
+}
 
 function paperCard(paper, summary) {
   const questions = summary.present;
@@ -40,13 +80,15 @@ function paperCard(paper, summary) {
   if (paper.is_demonstration) flags.push(demoBadge(true));
   if (summary.bilingual) flags.push(badge(`${summary.bilingual} bilingual`, 'info'));
 
-  return `<section class="card">
+  const readiness = summary.present > 0 && summary.complete !== false && summary.scoringKnown && !summary.disputed && !summary.missingAnswers;
+  return `<section class="card ${readiness ? '' : 'warn'}">
     <div class="card-body">
       <div class="spread">
         <div class="grow">
           <div class="row tight">
             <h3 class="mb-1">${esc(paper.paper_name || paper.paper_id)}</h3>
             ${summary.scoringKnown ? sourceChip('supplied', 'source rules') : sourceChip('unavailable', 'rules unknown')}
+            ${readiness ? badge('ready', 'ok') : badge('read before starting', 'warn')}
           </div>
           <p class="muted small m-0">
             ${esc(paper.exam || 'Examination not stated')}
@@ -54,11 +96,12 @@ function paperCard(paper, summary) {
             ${paper.set_code ? ` · set ${esc(paper.set_code)}` : ''}
             ${paper.paper_code ? ` · ${esc(paper.paper_code)}` : ''}
           </p>
+          <div class="stat-strip">
+            <div><span class="stat-label">Stored</span><span class="stat-value">${questions}</span><span class="tiny muted">${summary.declared !== null && summary.declared !== undefined ? `source declares ${esc(String(summary.declared))}` : 'source count not stated'}</span></div>
+            <div><span class="stat-label">Duration</span><span class="stat-value">${paper.duration_minutes ? esc(String(paper.duration_minutes)) : '—'}</span><span class="tiny muted">${paper.duration_minutes ? 'minutes' : 'not stated'}</span></div>
+            <div><span class="stat-label">Marks</span><span class="stat-value">${paper.total_marks ? esc(String(paper.total_marks)) : '—'}</span><span class="tiny muted">${paper.total_marks ? 'total' : 'not stated'}</span></div>
+          </div>
           <div class="row tight mt-2">
-            ${badge(`${questions} question(s) stored`, questions ? 'ok' : 'bad')}
-            ${summary.declared !== null && summary.declared !== undefined ? badge(`source declares ${summary.declared}`, summary.complete ? '' : 'warn') : badge('source count not stated', 'warn')}
-            ${paper.duration_minutes ? badge(`${paper.duration_minutes} min`) : badge('duration not stated', 'warn')}
-            ${paper.total_marks ? badge(`${paper.total_marks} marks`) : badge('total marks not stated', 'warn')}
             ${answerKeyBadge(paper.answer_key?.status)}
             ${flags.join(' ')}
           </div>
@@ -67,9 +110,9 @@ function paperCard(paper, summary) {
             ${paper.answer_key?.source ? ` · key source: ${esc(paper.answer_key.source)}` : ' · key source not recorded'}
           </p>
         </div>
-        <div class="row tight">
+        <div class="stack-sm paper-actions">
           <button class="btn btn-primary" type="button" data-action="start-paper" data-paper="${esc(paper.paper_id)}" ${ready ? '' : 'disabled'}>Start full simulation</button>
-          <button class="btn" type="button" data-action="paper-details" data-paper="${esc(paper.paper_id)}">Details</button>
+          <button class="btn" type="button" data-action="paper-details" data-paper="${esc(paper.paper_id)}">Paper details</button>
         </div>
       </div>
     </div>
@@ -87,7 +130,7 @@ export default {
 
     if (!papers.length) {
       return `
-        <h1>PYQ Test Centre</h1>
+        ${pageHead({ title: 'PYQ Test Centre', description: 'Full-paper simulations in the original question order, with the source duration and scoring rules.' })}
         ${card({
           title: 'No previous-year papers are stored yet',
           body: `${emptyState({
@@ -99,6 +142,8 @@ export default {
     }
 
     const paperSummaries = papers.map((paper) => ({ paper, summary: paperSummary(paper, metas) }));
+    const countsByFilter = Object.fromEntries(PAPER_FILTERS.map((f) => [f.id, paperSummaries.filter(({ paper, summary }) => paperMatches(paper, summary, f.id)).length]));
+    const shownPapers = sortPapers(paperSummaries.filter(({ paper, summary }) => paperMatches(paper, summary, viewState.filter)), viewState.sort);
     const totals = paperSummaries.reduce(
       (acc, { summary }) => ({
         questions: acc.questions + summary.present,
@@ -109,14 +154,17 @@ export default {
     );
 
     return `
-      <h1>PYQ Test Centre</h1>
-      <p class="muted">Full-paper simulations use the imported question order, the source duration and the source scoring rules. Anything the source does not state is shown as unknown rather than assumed.</p>
+      ${pageHead({
+        title: 'PYQ Test Centre',
+        description: 'Full-paper simulations use the imported question order, the source duration and the source scoring rules. Anything the source does not state is shown as unknown rather than assumed.',
+        actions: `<a class="btn btn-quiet" href="#/help">How simulations work</a>`,
+      })}
 
-      <div class="grid tiles mb-4">
-        ${tile({ label: 'Papers stored', value: String(papers.length), sub: `${totals.complete} with a complete question set`, source: 'supplied', where: 'Imported paper records' })}
-        ${tile({ label: 'Questions available', value: String(totals.questions), sub: `${state.subjects.length} subject groups`, source: 'supplied', where: 'Stored in local IndexedDB' })}
-        ${tile({ label: 'Rules unknown', value: String(totals.unknownRules), sub: 'configure before scoring', tone: totals.unknownRules ? 'warn' : '', source: totals.unknownRules ? 'unavailable' : 'supplied', where: 'Source paper scoring metadata' })}
-        ${tile({ label: 'Unfinished tests', value: String(unfinished.length), sub: unfinished.length ? 'resume below' : 'nothing pending', tone: unfinished.length ? 'accent' : '', source: 'measured', where: 'Active local test sessions' })}
+      <div class="kpi-grid">
+        ${tile({ label: 'Papers stored', value: String(papers.length), sub: `${totals.complete} with a complete question set`, source: 'supplied', where: 'Imported paper records', icon: 'book' })}
+        ${tile({ label: 'Questions available', value: String(totals.questions), sub: `${state.subjects.length} subject group(s)`, source: 'supplied', where: 'Stored in local IndexedDB', icon: 'layers' })}
+        ${tile({ label: 'Rules unknown', value: String(totals.unknownRules), sub: totals.unknownRules ? 'configure before scoring' : 'all papers state their rules', tone: totals.unknownRules ? 'warn' : 'ok', source: totals.unknownRules ? 'unavailable' : 'supplied', where: 'Source paper scoring metadata', icon: 'alert' })}
+        ${tile({ label: 'Unfinished tests', value: String(unfinished.length), sub: unfinished.length ? 'resume below' : 'nothing pending', tone: unfinished.length ? 'accent' : '', source: 'measured', where: 'Active local test sessions', icon: 'clock' })}
       </div>
 
       ${
@@ -144,8 +192,27 @@ export default {
           : ''
       }
 
-      <h2 class="mt-5">Available papers</h2>
-      ${paperSummaries.map(({ paper, summary }) => paperCard(paper, summary)).join('')}
+      <div class="section-head">
+        <div><span class="section-kicker">Simulations</span><h2>Available papers</h2></div>
+        <div class="toolbar">
+          <label class="field field-inline m-0"><span class="label-text">Sort</span>
+            <select id="paperSort" class="w-narrow">
+              <option value="newest" ${viewState.sort === 'newest' ? 'selected' : ''}>Newest first</option>
+              <option value="oldest" ${viewState.sort === 'oldest' ? 'selected' : ''}>Oldest first</option>
+              <option value="name" ${viewState.sort === 'name' ? 'selected' : ''}>Paper name</option>
+              <option value="questions" ${viewState.sort === 'questions' ? 'selected' : ''}>Most questions</option>
+            </select>
+          </label>
+        </div>
+      </div>
+      <div class="filter-chips mb-3" role="group" aria-label="Filter papers">
+        ${PAPER_FILTERS.map((f) => filterChip({ id: f.id, label: f.label, count: countsByFilter[f.id], pressed: viewState.filter === f.id, action: 'paper-filter' })).join('')}
+      </div>
+      ${
+        shownPapers.length
+          ? shownPapers.map(({ paper, summary }) => paperCard(paper, summary)).join('')
+          : emptyState({ title: 'No paper matches this filter', message: 'Clear the filter to see every stored paper.', action: `<button class="btn" type="button" data-action="paper-filter" data-value="all">Show all papers</button>`, iconName: 'filter' })
+      }
 
       ${
         submitted.length
@@ -178,10 +245,20 @@ export default {
   },
 
   async mount(ctx, root) {
+    document.getElementById('paperSort')?.addEventListener('change', async (ev) => {
+      viewState.sort = ev.target.value;
+      await ctx.refresh();
+    });
+
     root.addEventListener('click', async (ev) => {
       const btn = ev.target.closest('[data-action]');
       if (!btn) return;
       const action = btn.dataset.action;
+      if (action === 'paper-filter') {
+        viewState.filter = btn.dataset.value || 'all';
+        await ctx.refresh();
+        return;
+      }
       if (action === 'resume') {
         ctx.navigate(`runner/${btn.dataset.test}`);
       } else if (action === 'abandon') {

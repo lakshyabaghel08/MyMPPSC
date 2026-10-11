@@ -7,7 +7,7 @@
  */
 
 import { APP_VERSION } from '../../core/constants.js';
-import { esc, card, notice, dataTable, badge, sourceChip, evidenceMeter } from '../components.js';
+import { esc, card, notice, dataTable, badge, sourceChip, evidenceMeter, pageHead, sectionHead, timeline, kpi } from '../components.js';
 
 const KEYBOARD = [
   ['1 … 9', 'Select option A … I on the current question'],
@@ -66,12 +66,32 @@ export default {
     ];
 
     return `
-      <h1>Help &amp; How it works</h1>
-      <p class="muted">MyMPPSC v${esc(APP_VERSION)} — a local-first MPPSC Prelims practice app. Your data stays in this browser.</p>
+      ${pageHead({
+        title: 'Help &amp; How it works',
+        description: `MyMPPSC v${esc(APP_VERSION)} — a local-first MPPSC Prelims practice app. Your data stays in this browser; there is no account and no server.`,
+        actions: `<a class="btn btn-primary" href="#/dashboard">Back to the dashboard</a>`,
+      })}
 
       ${notice('This app is a study tool, not an official source. Always check answer keys and syllabus details against official documents before relying on them.', 'warn')}
 
-      ${card({ title: 'The journey through the app', body: `<ol class="small">${journeys.map(([t, b]) => `<li><strong>${t}</strong> — ${b}</li>`).join('')}</ol>` })}
+      <div class="kpi-grid">
+        ${kpi({ label: 'Runs offline', value: 'Yes', context: 'the installed app works with the network off', tone: 'ok', iconName: 'shield', foot: sourceChip('derived', 'service worker cache') })}
+        ${kpi({ label: 'Data location', value: 'This browser', context: 'IndexedDB plus a localStorage mirror for settings', iconName: 'database', foot: sourceChip('measured', 'no uploads') })}
+        ${kpi({ label: 'Keyboard shortcuts', value: String(KEYBOARD.length), context: 'active in the runner and tabbed views', iconName: 'keyboard', foot: sourceChip('supplied', 'this build') })}
+        ${kpi({ label: 'Verification steps', value: String(checklist.length), context: 'a short pass you can run yourself', iconName: 'check', foot: sourceChip('supplied', 'UI checklist') })}
+      </div>
+
+      ${sectionHead({ title: 'The journey through the app', kicker: 'Start here', meta: 'Seven steps from an empty browser to a studied, backed-up bank' })}
+      ${card({
+        body: timeline(
+          journeys.map(([t, b], i) => ({
+            tone: i === 0 ? 'accent' : '',
+            glyph: String(i + 1),
+            title: `<strong>${t}</strong>`,
+            body: `<span class="small">${b}</span>`,
+          })),
+        ),
+      })}
 
       <div class="split-2">
         <div>
@@ -123,7 +143,7 @@ export default {
         title: 'Check it yourself',
         subtitle: 'A short verification pass you can run in a few minutes',
         body: `<ol class="small">${checklist.map((c) => `<li>${c}</li>`).join('')}</ol>
-               <p class="tiny muted">These steps mirror the automated test suite that ships with the app (<code>npm test</code>). The suite covers scoring, imports, revision scheduling, analytics, backup/restore and a full end-to-end journey, but it does not test this user interface — the checklist above is how the UI is verified.</p>`,
+               <p class="tiny muted">These steps mirror (and extend) the automated suite that ships with the app: <code>npm test</code> runs the service, scoring, import, revision, analytics and backup/restore journeys plus a jsdom suite that drives the real screens — route rendering, headings, the runner, the command palette and the demo bank. <code>npm run check</code> adds static checks over routes, design tokens, contrast pairs, service-worker precaching and keyboard documentation. Neither can see real layout, so the visual pass above is still yours to run.</p>`,
       })}
 
       ${card({

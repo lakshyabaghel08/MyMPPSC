@@ -13,7 +13,7 @@
 import { STORES } from '../../core/constants.js';
 import * as db from '../../core/db.js';
 import { state } from '../../core/state.js';
-import { esc, card, notice, dataTable, tile, toast, emptyState, sourceChip, evidenceMeter } from '../components.js';
+import { esc, card, notice, dataTable, kpi, toast, emptyState, sourceChip, evidenceMeter, pageHead, sectionHead, ring } from '../components.js';
 import { allAttempts } from '../../services/attempts.js';
 import { buildAttemptSummary, smartPracticePlan, SMART_BUCKETS, computeTopicStats } from '../../services/select.js';
 import { configFields, readConfig, mountConfigFields, startPracticeTest, currentAttemptSummary } from './shared.js';
@@ -27,7 +27,7 @@ export default {
     const metas = Array.from(state.questionIndex.values());
     if (!metas.length) {
       return `
-        <h1>Smart Practice</h1>
+        ${pageHead({ title: 'Smart Practice', description: 'A session assembled from your recorded performance — weak topics, due revisions, repeated mistakes, skipped questions and unseen coverage.' })}
         ${card({
           title: 'Smart practice needs a question bank',
           body: emptyState({
@@ -65,22 +65,32 @@ export default {
       `<span class="tiny muted">${esc(b.why)}</span>`,
     ]);
 
-    return `
-      <h1>Smart Practice</h1>
-      <p class="muted">A session assembled from your recorded performance: what is due for revision, what you keep getting wrong, what you skipped, and what you have never seen.</p>
+    const coveredFraction = metas.length ? (metas.length - plan.counts.unseen) / metas.length : 0;
 
-      <div class="grid tiles mb-4">
-        ${tile({ label: 'Questions due for revision', value: String(plan.counts.revisionDue), sub: 'due today or overdue', tone: plan.counts.revisionDue ? 'accent' : '', source: 'derived', where: 'Scheduled from attempt history' })}
-        ${tile({ label: 'Repeated mistakes', value: String(plan.counts.repeatedMistakes), sub: 'wrong twice or wrong most recently', tone: plan.counts.repeatedMistakes ? 'warn' : '', source: 'measured', where: 'From local Mistake Book' })}
-        ${tile({ label: 'Never attempted', value: String(plan.counts.unseen), sub: `of ${metas.length} stored questions`, source: 'measured', where: 'Zero recorded attempts' })}
-        ${tile({ label: 'Weak topics', value: String(plan.counts.weakTopics), sub: 'at least 3 judged answers each', source: 'derived', where: 'Min 3 judged & low accuracy' })}
+    return `
+      ${pageHead({
+        title: 'Smart Practice',
+        description: 'A session assembled from your recorded performance: what is due for revision, what you keep getting wrong, what you skipped, and what you have never seen.',
+        actions: `<a class="btn btn-quiet" href="#/revision">Revision Centre</a>`,
+      })}
+
+      <div class="kpi-grid">
+        ${kpi({ label: 'Questions due for revision', value: String(plan.counts.revisionDue), context: 'due today or overdue', tone: plan.counts.revisionDue ? 'accent' : '', iconName: 'revision', foot: sourceChip('derived', 'scheduled from attempt history') })}
+        ${kpi({ label: 'Repeated mistakes', value: String(plan.counts.repeatedMistakes), context: 'wrong twice or wrong most recently', tone: plan.counts.repeatedMistakes ? 'warn' : '', iconName: 'alert', foot: sourceChip('measured', 'local Mistake Book') })}
+        ${kpi({ label: 'Never attempted', value: String(plan.counts.unseen), context: `of ${metas.length} stored questions`, iconName: 'sparkle', foot: sourceChip('measured', 'zero recorded attempts') })}
+        ${kpi({ label: 'Weak topics', value: String(plan.counts.weakTopics), context: 'at least 3 judged answers each', iconName: 'target', foot: sourceChip('derived', 'min 3 judged · low accuracy') })}
       </div>
 
+      ${sectionHead({ title: 'How this session will be built', kicker: 'Plan', meta: `${plan.questionIds.length} question(s) selected`, actions: sourceChip('derived', `${plan.questionIds.length} picked`) })}
       ${card({
-        title: 'How this session will be built',
-        right: sourceChip('derived', `${plan.questionIds.length} picked`),
         body: `
-          ${dataTable({ columns: [{ label: 'Source of questions' }, { label: 'Available', num: true }, { label: 'In this session', num: true }, { label: 'Why' }], rows: bucketRows, className: 'compact' })}
+          <div class="split-2 relaxed">
+            <div>${dataTable({ columns: [{ label: 'Source of questions' }, { label: 'Available', num: true }, { label: 'In this session', num: true }, { label: 'Why' }], rows: bucketRows, className: 'compact' })}</div>
+            <div class="ring-panel">
+              ${ring(coveredFraction, { label: 'Bank coverage', sub: `${metas.length - plan.counts.unseen} of ${metas.length} seen`, size: 128, width: 11 })}
+              <p class="tiny muted m-0">Share of your stored bank that has at least one recorded attempt. The remaining ${plan.counts.unseen} question(s) are eligible for fresh coverage.</p>
+            </div>
+          </div>
           <div class="row mt-3">
             <label class="check m-0"><input type="checkbox" id="smartOverrideRepeats" ${viewState.overrideRepeats ? 'checked' : ''} /><span>Override repeat rules — allow questions I saw recently</span></label>
             <label class="check m-0"><input type="checkbox" id="smartIncludeDemo" ${viewState.includeDemonstration ? 'checked' : ''} /><span>Include demonstration questions</span></label>
@@ -90,9 +100,8 @@ export default {
         footer: 'Historical question frequency is a study-prioritisation aid only. It is not evidence about what a future examination will contain.',
       })}
 
+      ${sectionHead({ title: 'Session settings', kicker: 'Start', meta: 'Size and feedback are the only decisions', actions: sourceChip('derived', 'session rules') })}
       ${card({
-        title: 'Session settings',
-        right: sourceChip('derived', 'session rules'),
         body: `${configFields({ paper: null, defaultCount: viewState.count, maxCount: metas.length, allowCustomScoring: true })}
         <div class="sticky-actions">
           <button class="btn btn-primary" type="button" id="startSmart">Start smart practice</button>
@@ -100,9 +109,8 @@ export default {
         </div>`,
       })}
 
+      ${sectionHead({ title: 'Topics driving this session', meta: 'Ranked by accuracy where at least three answers were judged', actions: sourceChip('derived', 'min 3 judged') })}
       ${card({
-        title: 'Topics driving this session',
-        right: sourceChip('derived', 'min 3 judged'),
         body: weakTopicRows.length
           ? dataTable({
               columns: [{ label: 'Topic' }, { label: 'Subject' }, { label: 'Judged answers', num: true }, { label: 'Accuracy', num: true }],

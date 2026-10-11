@@ -6,8 +6,8 @@ import { APP_VERSION, STORES } from './core/constants.js';
 import * as db from './core/db.js';
 import { state, loadUiPrefs, loadSettings, saveSettings, applyTheme, resolveEffectiveTheme, refreshQuestionIndex, on } from './core/state.js';
 import { Router } from './ui/router.js';
-import { toast, openModal, confirmDialog, esc, notice, icon } from './ui/components.js';
-import { logEvent, downloadJson, fmtDate } from './core/util.js';
+import { toast, openModal, confirmDialog, esc, notice, icon, installChartEnhancers, installTableSorting } from './ui/components.js';
+import { logEvent, downloadJson, fmtDate, todayKey } from './core/util.js';
 import { mistakeCounts } from './services/attempts.js';
 import { revisionSummary } from './services/revision.js';
 import { buildBackup, markBackupTaken, lastBackupInfo } from './services/data.js';
@@ -28,18 +28,18 @@ import settingsView from './ui/views/settings.js';
 import helpView from './ui/views/help.js';
 
 const NAV = [
-  { route: 'dashboard', label: 'Dashboard', icon: 'dashboard', group: 'Workspace' },
-  { route: 'test-centre', label: 'PYQ Test Centre', icon: 'test-centre', group: 'Practice' },
-  { route: 'topic', label: 'Topic Practice', icon: 'topic', group: 'Practice' },
-  { route: 'custom', label: 'Custom Test', icon: 'custom', group: 'Practice' },
-  { route: 'smart', label: 'Smart Practice', icon: 'smart', group: 'Practice' },
-  { route: 'mistakes', label: 'Mistake Book', icon: 'mistakes', badge: 'mistakes', group: 'Improve' },
-  { route: 'revision', label: 'Revision Centre', icon: 'revision', badge: 'revision', group: 'Improve' },
-  { route: 'syllabus', label: 'Syllabus & Planner', icon: 'syllabus', group: 'Improve' },
-  { route: 'analytics', label: 'Analytics', icon: 'analytics', group: 'Improve' },
-  { route: 'bank', label: 'Question Bank & Imports', icon: 'bank', group: 'System' },
-  { route: 'settings', label: 'Settings & Backup', icon: 'settings', group: 'System' },
-  { route: 'help', label: 'Help & How it works', icon: 'help', group: 'System' },
+  { route: 'dashboard', label: 'Dashboard', icon: 'dashboard', group: 'Workspace', hint: 'Priorities, progress and recent activity' },
+  { route: 'test-centre', label: 'PYQ Test Centre', icon: 'test-centre', group: 'Practice', hint: 'Full-paper simulations in source order' },
+  { route: 'topic', label: 'Topic Practice', icon: 'topic', group: 'Practice', hint: 'Practise one subject or topic' },
+  { route: 'custom', label: 'Custom Test', icon: 'custom', group: 'Practice', hint: 'Assemble your own set' },
+  { route: 'smart', label: 'Smart Practice', icon: 'smart', group: 'Practice', hint: 'Built from due, wrong and unseen questions' },
+  { route: 'mistakes', label: 'Mistake Book', icon: 'mistakes', badge: 'mistakes', group: 'Improve', hint: 'Wrong, skipped and uncertain answers' },
+  { route: 'revision', label: 'Revision Centre', icon: 'revision', badge: 'revision', group: 'Improve', hint: 'Due, overdue and upcoming questions' },
+  { route: 'syllabus', label: 'Syllabus & Planner', icon: 'syllabus', group: 'Improve', hint: 'Your own syllabus structure and status' },
+  { route: 'analytics', label: 'Analytics', icon: 'analytics', group: 'Improve', hint: 'Measured performance and coverage' },
+  { route: 'bank', label: 'Question Bank & Imports', icon: 'bank', group: 'System', hint: 'Import, validate and correct questions' },
+  { route: 'settings', label: 'Settings & Backup', icon: 'settings', group: 'System', hint: 'Preferences, backup, restore, diagnostics' },
+  { route: 'help', label: 'Help & How it works', icon: 'help', group: 'System', hint: 'Definitions, shortcuts and limitations' },
 ];
 
 let router = null;
@@ -120,7 +120,7 @@ function renderNav() {
       ? `<li class="nav-section-label" aria-hidden="true">${esc(item.group)}</li>`
       : '';
     currentGroup = item.group;
-    return `${groupLabel}<li><button class="nav-link" type="button" data-route="${item.route}">
+    return `${groupLabel}<li><button class="nav-link" type="button" data-route="${item.route}" title="${esc(item.hint || item.label)}">
       <span class="nav-icon" aria-hidden="true">${icon(item.icon)}</span>
       <span>${esc(item.label)}</span>${badgeHtml}
     </button></li>`;
@@ -148,6 +148,14 @@ async function refreshBadges() {
     badges.mistakes = mistakes.open;
     badges.revision = revision.dueToday.length + revision.overdue.length;
     badges.imported = state.questionIndex.size > 0;
+    const today = todayKey();
+    const [{ recentAttempts }] = await Promise.all([import('./services/attempts.js')]);
+    const answeredToday = (await recentAttempts(400)).filter((a) => String(a.created_at || '').slice(0, 10) === today).length;
+    const todayEl = document.getElementById('navTodaySummary');
+    if (todayEl) {
+      todayEl.textContent = `${answeredToday} answer${answeredToday === 1 ? '' : 's'} · ${badges.revision} due`;
+      todayEl.title = `Answers recorded today (${today}) and revision items due or overdue.`;
+    }
     renderNav();
     const pill = document.getElementById('bankPill');
     if (pill) {
@@ -225,53 +233,206 @@ function helpDialog() {
   });
 }
 
+const RECENT_ROUTES_KEY = 'mymppsc.recentRoutes';
+
+function recentRoutes() {
+  try {
+    const parsed = JSON.parse(localStorage.getItem(RECENT_ROUTES_KEY) || '[]');
+    return (Array.isArray(parsed) ? parsed : []).filter((route) => NAV.some((item) => item.route === route));
+  } catch {
+    return [];
+  }
+}
+
+function rememberRoute(route) {
+  if (!NAV.some((item) => item.route === route)) return;
+  const list = [route, ...recentRoutes().filter((r) => r !== route)].slice(0, 4);
+  try {
+    localStorage.setItem(RECENT_ROUTES_KEY, JSON.stringify(list));
+  } catch {
+    /* storage unavailable — recents are a convenience only */
+  }
+}
+
+/** Revision sprint: a learning-mode session built from the due/overdue queue. */
+async function revisionSprint() {
+  if (!state.questionIndex.size) {
+    toast('Import a question bank first — the Question Bank screen explains the format.', 'warn');
+    router.navigate('bank');
+    return;
+  }
+  const [{ allRevisionRecords, bucketise }, tests] = await Promise.all([import('./services/revision.js'), import('./services/tests.js')]);
+  const buckets = bucketise(await allRevisionRecords());
+  const ids = [...buckets.overdue, ...buckets.dueToday].map((r) => r.question_id).filter((id) => state.questionIndex.has(id));
+  if (!ids.length) {
+    toast('Nothing is due for revision right now. Upcoming questions appear in the Revision Centre.', 'info');
+    router.navigate('revision');
+    return;
+  }
+  const capped = ids.slice(0, 40);
+  const test = await tests.createTest({
+    kind: 'revision',
+    label: `Revision sprint — ${capped.length} due question(s)`,
+    questionIds: capped,
+    questionMetas: capped.map((id) => state.questionIndex.get(id)).filter(Boolean),
+    orderSource: 'due_first',
+    config: {
+      feedbackMode: 'learning',
+      confidence: state.settings.confidenceTracking,
+      durationMinutes: null,
+      randomizeOptions: state.settings.randomizeOptions,
+    },
+    selectionNotes: ['Questions whose scheduled revision date has arrived or passed, newest evidence first.', 'Every revision date is computed from your own recorded outcome, confidence and time taken; the Revision Centre shows the numeric basis.'],
+  });
+  router.navigate(`runner/${encodeURIComponent(test.id)}`);
+}
+
+/** Commands that run real application actions, never decorative shortcuts. */
+function paletteActions() {
+  return [
+    { id: 'quick-practice', label: 'Quick practice', hint: 'Short session from due, wrong and unseen questions', iconName: 'sparkle', run: quickPractice },
+    { id: 'revision-sprint', label: 'Revise what is due', hint: 'Learning-mode session from the revision queue', iconName: 'revision', run: revisionSprint },
+    { id: 'backup', label: 'Back up now', hint: 'Download a JSON backup with a SHA-256 integrity hash', iconName: 'download', run: () => backupNow() },
+    {
+      id: 'theme',
+      label: 'Switch colour theme',
+      hint: 'Toggle between the light and dark themes',
+      iconName: resolveEffectiveTheme(state.settings.theme) === 'dark' ? 'sun' : 'moon',
+      async run() {
+        const next = resolveEffectiveTheme(state.settings.theme) === 'dark' ? 'light' : 'dark';
+        await saveSettings({ theme: next });
+        syncThemeToggleButton();
+        toast(`${next === 'dark' ? 'Dark' : 'Light'} theme applied.`, 'ok');
+      },
+    },
+    {
+      id: 'density',
+      label: 'Switch reading density',
+      hint: 'Compact fits more rows; comfortable is easier on the eyes',
+      iconName: 'list',
+      async run() {
+        const next = (state.settings.density || 'comfortable') === 'compact' ? 'comfortable' : 'compact';
+        await saveSettings({ density: next });
+        toast(`Density set to ${next}.`, 'ok');
+      },
+    },
+    { id: 'print', label: 'Print this screen', hint: 'Print or save the current screen as PDF', iconName: 'print', run: () => window.print?.() },
+    { id: 'shortcuts', label: 'Keyboard shortcuts & limitations', hint: 'What the app does and deliberately does not do', iconName: 'keyboard', run: helpDialog },
+  ];
+}
+
 function openCommandMenu() {
   const modalRoot = document.getElementById('modalRoot');
   if (!modalRoot?.hidden) return;
 
-  const items = NAV.map((item) => `
-    <button class="command-item" type="button" data-command-route="${esc(item.route)}" data-command-label="${esc(`${item.label} ${item.group}`.toLowerCase())}">
-      <span class="command-item-icon">${icon(item.icon, { size: 18 })}</span>
-      <span><strong>${esc(item.label)}</strong><small>${esc(item.group)}</small></span>
-      <span class="command-arrow" aria-hidden="true">→</span>
-    </button>`).join('');
+  const actionItems = paletteActions()
+    .map(
+      (action) => `<button class="command-item" type="button" data-command-action="${esc(action.id)}" data-command-label="${esc(`${action.label} ${action.hint}`.toLowerCase())}">
+        <span class="command-item-icon" aria-hidden="true">${icon(action.iconName, { size: 18 })}</span>
+        <span><strong>${esc(action.label)}</strong><small>${esc(action.hint)}</small></span>
+        <span class="command-arrow" aria-hidden="true">→</span>
+      </button>`,
+    )
+    .join('');
+
+  const recents = recentRoutes();
 
   openModal({
-    title: 'Go anywhere',
+    title: 'Search, navigate and run',
     body: `<div class="command-menu">
       <label class="command-search">
-        <span class="sr-only">Search screens</span>
+        <span class="sr-only">Search screens and actions</span>
         ${icon('search', { size: 18 })}
-        <input id="commandSearch" type="search" autocomplete="off" placeholder="Search practice, revision, analytics…" />
+        <input id="commandSearch" type="search" autocomplete="off" placeholder="Search practice, revision, analytics, backup…" />
         <kbd>Esc</kbd>
       </label>
-      <div class="command-results" id="commandResults">${items}</div>
-      <p class="command-hint">Type to filter · use Tab to move · Enter to open</p>
+      <div class="command-results" id="commandResults">
+        ${
+          recents.length
+            ? `<p class="command-group-label">Recent</p>${NAV.filter((item) => recents.includes(item.route))
+                .map((item) => `<button class="command-item" type="button" data-command-route="${esc(item.route)}" data-command-label="${esc(`${item.label} ${item.group} ${item.hint || ''}`.toLowerCase())}">
+                  <span class="command-item-icon" aria-hidden="true">${icon(item.icon, { size: 18 })}</span>
+                  <span><strong>${esc(item.label)}</strong><small>${esc(item.hint || item.group)}</small></span>
+                  <span class="command-arrow" aria-hidden="true">→</span>
+                </button>`)
+                .join('')}`
+            : ''
+        }
+        <p class="command-group-label">Go to</p>
+        ${NAV.map(
+          (item) => `<button class="command-item" type="button" data-command-route="${esc(item.route)}" data-command-label="${esc(`${item.label} ${item.group} ${item.hint || ''}`.toLowerCase())}">
+            <span class="command-item-icon" aria-hidden="true">${icon(item.icon, { size: 18 })}</span>
+            <span><strong>${esc(item.label)}</strong><small>${esc(item.hint || item.group)}</small></span>
+            <span class="command-arrow" aria-hidden="true">→</span>
+          </button>`,
+        ).join('')}
+        <p class="command-group-label">Actions</p>
+        ${actionItems}
+      </div>
+      <p class="command-hint">Type to filter · ↑ ↓ to move · Enter to open · Esc to close</p>
     </div>`,
     onMount(modal, close) {
       modal.classList.add('command-modal');
       const input = modal.querySelector('#commandSearch');
-      const commands = [...modal.querySelectorAll('[data-command-route]')];
+      const allItems = [...modal.querySelectorAll('[data-command-route], [data-command-action]')];
+      const groups = [...modal.querySelectorAll('.command-group-label')];
+      const visible = () => allItems.filter((button) => !button.hidden);
+
+      const setActive = (target) => {
+        allItems.forEach((button) => button.classList.toggle('active', button === target));
+        visible()[0]?.classList?.remove('active'); // no-op guard for empty lists
+        if (target) target.classList.add('active');
+      };
+
       const filter = () => {
         const query = input.value.trim().toLowerCase();
-        commands.forEach((button) => {
-          button.hidden = query && !button.dataset.commandLabel.includes(query);
+        allItems.forEach((button) => {
+          button.hidden = Boolean(query) && !button.dataset.commandLabel.includes(query);
         });
+        groups.forEach((group) => {
+          const any = group.nextElementSibling ? Array.from(group.parentElement.querySelectorAll('[data-command-route], [data-command-action]')).some((b) => !b.hidden) : false;
+          group.hidden = Boolean(query) && !any;
+        });
+        const first = visible()[0] || null;
+        allItems.forEach((button) => button.classList.remove('active'));
+        if (first) first.classList.add('active');
       };
-      commands.forEach((button) => button.addEventListener('click', () => {
-        const route = button.dataset.commandRoute;
-        close(route);
-        router.navigate(route);
-      }));
+
+      const activate = (button) => {
+        if (!button) return;
+        if (button.dataset.commandRoute) {
+          close(null);
+          router.navigate(button.dataset.commandRoute);
+          return;
+        }
+        const action = paletteActions().find((a) => a.id === button.dataset.commandAction);
+        if (!action) return;
+        close(null);
+        Promise.resolve()
+          .then(() => action.run())
+          .catch((err) => toast(`That action failed: ${err.message}`, 'bad'));
+      };
+
+      allItems.forEach((button) => button.addEventListener('click', () => activate(button)));
       input.addEventListener('input', filter);
       input.addEventListener('keydown', (ev) => {
-        if (ev.key !== 'Enter') return;
-        const first = commands.find((button) => !button.hidden);
-        if (first) {
+        if (ev.key === 'ArrowDown' || ev.key === 'ArrowUp') {
           ev.preventDefault();
-          first.click();
+          const list = visible();
+          if (!list.length) return;
+          const current = list.findIndex((button) => button.classList.contains('active'));
+          const step = ev.key === 'ArrowDown' ? 1 : -1;
+          const next = list[(current + step + list.length) % list.length] || list[0];
+          setActive(next);
+          next.scrollIntoView?.({ block: 'nearest' });
+          return;
+        }
+        if (ev.key === 'Enter') {
+          ev.preventDefault();
+          activate(visible().find((button) => button.classList.contains('active')) || visible()[0]);
         }
       });
+      filter();
       input.focus();
     },
   });
@@ -434,7 +595,10 @@ async function boot() {
   router = new Router({
     container: document.getElementById('view'),
     fallback: 'dashboard',
-    onNavigate: (routeName) => markActiveNav(routeName),
+    onNavigate: (routeName) => {
+      markActiveNav(routeName);
+      rememberRoute(routeName);
+    },
   });
 
   router.register('dashboard', dashboardView);
@@ -452,6 +616,8 @@ async function boot() {
   router.register('settings', settingsView);
   router.register('help', helpView);
 
+  installChartEnhancers();
+  installTableSorting();
   renderNav();
   wireGlobalActions();
   setOfflinePill();
