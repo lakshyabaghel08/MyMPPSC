@@ -11,8 +11,8 @@ import { state } from '../../core/state.js';
 import {
   esc,
   card,
-  tile,
   badge,
+  icon,
   notice,
   dataTable,
   confirmDialog,
@@ -34,6 +34,24 @@ function tone(value, { good = 0.75, bad = 0.5 } = {}) {
   if (value >= good) return 'ok';
   if (value < bad) return 'bad';
   return 'warn';
+}
+
+function metricCard({ iconName, label, value, context, secondaryLabel, secondaryValue, secondaryContext = '', tone = '' }) {
+  return `<article class="metric-card ${tone}">
+    <div class="metric-card-top">
+      <span class="metric-label">${esc(label)}</span>
+      <span class="metric-icon">${icon(iconName, { size: 19 })}</span>
+    </div>
+    <div class="metric-value">${value}</div>
+    <div class="metric-context">${context}</div>
+    <div class="metric-secondary">
+      <div>
+        <span>${esc(secondaryLabel)}</span>
+        ${secondaryContext ? `<small>${secondaryContext}</small>` : ''}
+      </div>
+      <strong>${secondaryValue}</strong>
+    </div>
+  </article>`;
 }
 
 function noBankCard() {
@@ -121,13 +139,13 @@ export default {
 
     const todayPanel = card({
       title: 'Today — what should I do now?',
-      subtitle: 'Immediate actions from your revision schedule, active sessions and recorded topic evidence.',
-      right: sourceChip('derived', 'local study state'),
+      subtitle: 'Your focused plan, based on what needs attention next.',
+      className: 'today-command',
       body: `<div class="today-grid">
         <div class="today-item">
-          <div class="row">
-            <span class="today-item-title">1. Next revision due</span>
-            ${sourceChip('derived', 'spaced repetition')}
+          <div class="today-item-head">
+            <span class="action-icon revision">${icon('revision', { size: 20 })}</span>
+            <div><span class="today-item-title">Revision queue</span><span class="today-eyebrow">Spaced repetition</span></div>
           </div>
           <p class="small m-0">
             ${
@@ -138,16 +156,16 @@ export default {
           </p>
           <div class="row tight mt-auto pt-1">
             <button class="btn btn-primary btn-sm" type="button" id="dashReviseDue" ${dueCount ? '' : 'disabled'}>
-              Revise ${dueCount} due question(s) now
+              Start revision
             </button>
             <a class="btn btn-sm" href="#/revision">Queue</a>
           </div>
         </div>
 
         <div class="today-item">
-          <div class="row">
-            <span class="today-item-title">2. Unfinished test</span>
-            ${unfinished.length ? sourceChip('measured', 'autosaved') : sourceChip('supplied', 'ready')}
+          <div class="today-item-head">
+            <span class="action-icon test">${icon('test-centre', { size: 20 })}</span>
+            <div><span class="today-item-title">Active session</span><span class="today-eyebrow">Autosaved on this device</span></div>
           </div>
           <p class="small m-0">
             ${
@@ -166,9 +184,9 @@ export default {
         </div>
 
         <div class="today-item">
-          <div class="row">
-            <span class="today-item-title">3. Weakest 3 topics (with evidence)</span>
-            ${sourceChip('derived', 'min 3 judged')}
+          <div class="today-item-head">
+            <span class="action-icon analytics">${icon('analytics', { size: 20 })}</span>
+            <div><span class="today-item-title">Topics to strengthen</span><span class="today-eyebrow">Based on 3+ judged attempts</span></div>
           </div>
           ${
             weakTopics.length
@@ -189,22 +207,59 @@ export default {
     });
 
     return `
-      <h1>Dashboard</h1>
+      <section class="dashboard-hero" aria-labelledby="dashboardTitle">
+        <div class="dashboard-hero-copy">
+          <span class="section-kicker">Your preparation workspace</span>
+          <h1 id="dashboardTitle">Ready for your next win?</h1>
+          <p>Stay focused with a clear daily plan, evidence-led revision and every practice session in one place.</p>
+        </div>
+        <div class="dashboard-hero-actions">
+          <a class="btn btn-primary" href="#/smart">Start smart practice</a>
+        </div>
+      </section>
 
       ${todayPanel}
 
-      <div class="grid tiles">
-        ${tile({ label: 'Questions available', value: String(bank.total), sub: `${bank.papers} paper(s) · ${bank.bilingual} bilingual`, source: 'supplied', where: 'Stored in local IndexedDB bank' })}
-        ${tile({ label: 'Questions attempted', value: `${analytics.counts.attemptedUnique}`, sub: `${fmtPct(analytics.counts.coverage)} of the stored bank covered`, tone: analytics.counts.coverage > 0.5 ? 'ok' : '', source: 'measured', where: 'Unique questions tried at least once' })}
-        ${tile({ label: 'Total attempts', value: String(analytics.counts.totalAttempts), sub: `${analytics.counts.repeatAttempts} repeat(s) on questions already attempted`, source: 'measured', where: 'Includes repeat attempts across sessions' })}
-        ${tile({ label: 'First-attempt accuracy', value: analytics.accuracy.firstAttemptSample ? fmtPct(analytics.accuracy.firstAttempt) : '—', sub: analytics.accuracy.firstAttemptSample ? `over ${analytics.accuracy.firstAttemptSample} first attempts` : 'needs first attempts', tone: tone(analytics.accuracy.firstAttempt), source: analytics.accuracy.firstAttemptSample ? 'measured' : 'unavailable', where: 'First scored attempt per unique question' })}
-      </div>
-
-      <div class="grid tiles mt-3">
-        ${tile({ label: 'Due for revision', value: String(dueCount), sub: `${summary.overdue} overdue · ${summary.upcoming} upcoming`, tone: summary.overdue ? 'warn' : '', source: 'derived', where: 'Scheduled from correctness & recall confidence' })}
-        ${tile({ label: 'Open mistakes', value: String(analytics.mistakes.open), sub: `${analytics.mistakes.repeated} repeated`, tone: analytics.mistakes.open ? 'warn' : 'ok', source: 'measured', where: 'Unresolved wrong answers in Mistake Book' })}
-        ${tile({ label: 'Study today', value: fmtDuration(summary.todayAttempts.minutes * 60), sub: `${summary.todayAttempts.attempts} answer(s) today · ${summary.streak}-day streak`, source: 'measured', where: 'Recorded today on this device' })}
-        ${tile({ label: 'Study time (7 days)', value: fmtDuration(totals.last7Minutes * 60), sub: `${totals.sessions} session(s) logged · ${totals.avgMinutesPerSession} min average`, source: 'measured', where: 'Last 7 calendar days' })}
+      <div class="metrics-grid" aria-label="Study overview">
+        ${metricCard({
+          iconName: 'bank',
+          label: 'Question bank',
+          value: esc(String(bank.total)),
+          context: `${bank.papers} paper(s) · ${bank.bilingual} bilingual`,
+          secondaryLabel: 'Attempted',
+          secondaryValue: esc(String(analytics.counts.attemptedUnique)),
+          secondaryContext: `${fmtPct(analytics.counts.coverage)} coverage`,
+          tone: analytics.counts.coverage > 0.5 ? 'ok' : '',
+        })}
+        ${metricCard({
+          iconName: 'analytics',
+          label: 'First-attempt accuracy',
+          value: analytics.accuracy.firstAttemptSample ? esc(fmtPct(analytics.accuracy.firstAttempt)) : '—',
+          context: analytics.accuracy.firstAttemptSample ? `${analytics.accuracy.firstAttemptSample} scored first attempts` : 'Complete a scored attempt to begin',
+          secondaryLabel: 'Total attempts',
+          secondaryValue: esc(String(analytics.counts.totalAttempts)),
+          secondaryContext: `${analytics.counts.repeatAttempts} repeats`,
+          tone: tone(analytics.accuracy.firstAttempt),
+        })}
+        ${metricCard({
+          iconName: 'revision',
+          label: 'Due for revision',
+          value: esc(String(dueCount)),
+          context: `${summary.overdue} overdue · ${summary.upcoming} upcoming`,
+          secondaryLabel: 'Open mistakes',
+          secondaryValue: esc(String(analytics.mistakes.open)),
+          secondaryContext: `${analytics.mistakes.repeated} repeated`,
+          tone: summary.overdue || analytics.mistakes.open ? 'warn' : 'ok',
+        })}
+        ${metricCard({
+          iconName: 'smart',
+          label: 'Study today',
+          value: esc(fmtDuration(summary.todayAttempts.minutes * 60)),
+          context: `${summary.todayAttempts.attempts} answers · ${summary.streak}-day streak`,
+          secondaryLabel: 'Last 7 days',
+          secondaryValue: esc(fmtDuration(totals.last7Minutes * 60)),
+          secondaryContext: `${totals.sessions} sessions · ${totals.avgMinutesPerSession} min avg`,
+        })}
       </div>
 
       ${card({

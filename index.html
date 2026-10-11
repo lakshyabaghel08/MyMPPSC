@@ -6,9 +6,9 @@
     <title>Dashboard · MyMPPSC</title>
     <meta name="description" content="Local-first MPPSC State Service Preliminary Examination preparation app: previous-year paper simulations, topic practice, mistake book, adaptive revision, analytics and syllabus planning. Works offline." />
     <meta name="color-scheme" content="light dark" />
-    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f4f6fa" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f8fafc" />
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f131c" />
-    <meta name="theme-color" content="#f4f6fa" id="themeColorMeta" />
+    <meta name="theme-color" content="#f8fafc" id="themeColorMeta" />
     <script>
       (function () {
         try {
@@ -22,7 +22,7 @@
           root.setAttribute('data-theme-pref', pref);
           root.setAttribute('data-density', (parsed && parsed.density) || 'comfortable');
           var meta = document.getElementById('themeColorMeta');
-          if (meta) meta.setAttribute('content', isDark ? '#0f131c' : '#f4f6fa');
+          if (meta) meta.setAttribute('content', isDark ? '#0f131c' : '#f8fafc');
         } catch (err) {
           document.documentElement.setAttribute('data-theme', 'light');
         }
@@ -52,6 +52,10 @@
       <div class="header-actions">
         <span class="offline-pill" id="offlinePill" role="status" hidden>Offline — all features still work</span>
         <span class="bank-pill" id="bankPill" title="Questions stored locally">Bank: —</span>
+        <button class="command-trigger" id="commandBtn" type="button" aria-label="Search and navigate" title="Search and navigate (Ctrl+K)">
+          <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><circle cx="11" cy="11" r="7" /><path d="m20 20-4-4" /></svg></span>
+          <span>Search</span><kbd>Ctrl K</kbd>
+        </button>
         <button class="btn btn-primary btn-sm" id="quickStartBtn" type="button">Quick practice</button>
         <button class="btn btn-quiet btn-icon" id="themeToggle" type="button" aria-label="Switch colour theme" title="Switch colour theme">
           <span class="icon" aria-hidden="true">
