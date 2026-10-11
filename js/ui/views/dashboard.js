@@ -123,6 +123,7 @@ export default {
       title: 'Today — what should I do now?',
       subtitle: 'Immediate actions from your revision schedule, active sessions and recorded topic evidence.',
       right: sourceChip('derived', 'local study state'),
+      className: 'today-command',
       body: `<div class="today-grid">
         <div class="today-item">
           <div class="row">
@@ -189,7 +190,16 @@ export default {
     });
 
     return `
-      <h1>Dashboard</h1>
+      <section class="dashboard-hero" aria-labelledby="dashboardTitle">
+        <div class="dashboard-hero-copy">
+          <span class="section-kicker">Your preparation workspace</span>
+          <h1 id="dashboardTitle">Ready for your next win?</h1>
+          <p>Stay focused with a clear daily plan, evidence-led revision and every practice session in one place.</p>
+        </div>
+        <div class="dashboard-hero-actions">
+          <a class="btn btn-primary" href="#/smart">Start smart practice</a>
+        </div>
+      </section>
 
       ${todayPanel}
 
