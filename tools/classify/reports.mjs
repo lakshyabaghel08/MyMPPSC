@@ -252,6 +252,7 @@ export function buildReviewReport(bank, validation, rows, extra = {}) {
   };
 
   const ai = extra.aiSummary || null;
+  const sourceAudit = extra.sourceAudit || null;
 
   return {
     generated_at: new Date().toISOString(),
@@ -269,12 +270,15 @@ export function buildReviewReport(bank, validation, rows, extra = {}) {
       ai_labels_preserved: ai ? ai.preserved.length : 0,
       ai_labels_rejected: ai ? ai.rejected.length : 0,
       ai_labels_malformed: ai ? ai.malformed.length : 0,
+      source_blocks_detected: sourceAudit ? sourceAudit.stats.question_blocks_detected : null,
+      records_excluded_by_source_parser: sourceAudit ? sourceAudit.excluded.length : 0,
     },
     missing_answers: missingAnswers,
     near_duplicates: nearDuplicates,
     identical_content_groups: identicalGroups,
     ambiguous_classifications: ambiguous,
     low_confidence_classifications: lowConfidence,
+    source_extraction: sourceAudit,
     ai_merge: ai
       ? {
           statement:
@@ -376,6 +380,48 @@ export function renderReviewMarkdown(report) {
     for (const row of report.low_confidence_classifications) L.push(`| \`${row.id}\` | ${row.subject} | ${row.topic || '—'} | ${row.confidence} |`);
   }
   L.push('');
+  if (report.source_extraction) {
+    const se = report.source_extraction;
+    L.push('## Source extraction findings');
+    L.push('');
+    L.push(
+      `Reported by the source parser itself (${se.file || 'review file'}${se.parser_version ? `, parser ${se.parser_version}` : ''}; input \`${se.input_file || 'unknown'}\`${se.input_sha256 ? `, sha256 \`${se.input_sha256.slice(0, 16)}…\`` : ''}).`,
+    );
+    L.push('');
+    L.push('| Measure | Value |');
+    L.push('| --- | --- |');
+    for (const [key, value] of Object.entries(se.stats)) {
+      if (value === null || value === undefined) continue;
+      L.push(`| ${key.replace(/_/g, ' ')} | ${value} |`);
+    }
+    L.push('');
+    if (se.excluded.length) {
+      L.push(`**${se.excluded.length} question block(s) the parser refused to export — they are NOT in this bank** and need manual transcription from the book:`);
+      L.push('');
+      L.push('| Id | Year / Q# | Page | Why | Preview |');
+      L.push('| --- | --- | --- | --- | --- |');
+      for (const r of se.excluded) {
+        L.push(`| \`${r.id}\` | ${r.year} / ${r.question_number} | ${r.start_page ?? '—'} | ${escapeCell(r.flags.join(', '))} | ${escapeCell(r.preview || '')} |`);
+      }
+      L.push('');
+    }
+    const gapYears = Object.entries(se.numbering_gaps || {}).filter(([, list]) => Array.isArray(list) && list.length);
+    if (gapYears.length) {
+      const total = gapYears.reduce((n, [, list]) => n + list.length, 0);
+      L.push(`**${total} numbering gap(s)** across ${gapYears.length} year(s). A gap may be a deleted question, an extraction miss, or a question start the parser could not recognise — the source parser explicitly warns not to assume the question is absent from the book:`);
+      L.push('');
+      for (const [year, list] of gapYears) L.push(`- ${year}: ${list.join(', ')}`);
+      L.push('');
+    }
+    if (se.flagged.length) {
+      L.push(`${se.flagged.length} further record(s) the parser flagged but still exported:`);
+      L.push('');
+      for (const r of se.flagged) L.push(`- \`${r.id}\` (${r.year} Q${r.question_number}): ${r.flags.join(', ')}`);
+      L.push('');
+    }
+    for (const note of se.notes || []) L.push(`> ${note}`);
+    if ((se.notes || []).length) L.push('');
+  }
   if (report.ai_merge) {
     L.push('## AI label merge');
     L.push('');

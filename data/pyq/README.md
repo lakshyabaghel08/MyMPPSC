@@ -12,8 +12,8 @@ node tools/classify-bank.mjs --in <source.json> --out data/pyq/mymppsc-pyq-bank.
 
 | Path | What belongs here |
 | --- | --- |
-| `source/` | The **input**: the extraction the pipeline is run against (for example `MPPSC_PYQ_intake.json`). Commit it so a build is reproducible and a question can be traced back to where it came from. |
-| `mymppsc-pyq-bank.json` | The **output**: the classified bank you import into the app. |
+| `source/` | The **input**: the extraction the pipeline is run against, plus the alignment bundle it came with (`MPPSC_PYQ_intake.json`, `MPPSC_PYQ_AppBank.json`, `MPPSC_PYQ_Review.json`, `MPPSC_PYQ_BuildReport.json`, `README_ALIGNMENT.txt`, `VALIDATION.txt`, `align_mppsc_book.py`). Committed so a build is reproducible and a question can be traced back to where it came from. Nothing in here is modified by the pipeline. |
+| `mymppsc-pyq-bank.json` | The **output**: the classified bank you import into the app. Currently the real 2019–2024 bank — 571 questions across 6 papers, built from `source/MPPSC_PYQ_intake.json`. |
 | `classification-report.md` / `.json` | Coverage by subject, topic and subtopic, with counts and percentages. |
 | `review-report.md` / `.json` | Everything still needing a human: missing keys, suspected duplicates, ambiguous and low-confidence classifications, integrity checks. |
 | `ai-queue.jsonl` | Questions the rule engine could not settle — the input for the optional, resumable AI step. |

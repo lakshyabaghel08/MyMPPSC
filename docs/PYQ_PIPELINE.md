@@ -159,6 +159,13 @@ partial reply cannot cost a question the topic the rules had already found.
 | `ai-queue.jsonl` | the questions still needing a semantic label |
 | `ai-queue.taxonomy.json` | the closed vocabulary those requests must use (shared by every queue item) |
 
+When the source ships its own parser review file (`MPPSC_PYQ_Review.json` next to
+`--in`, or `--source-review <file>`), its caveats are folded into the review
+report as **Source extraction findings**: how many question blocks the parser
+saw, which records it refused to export (so a reader knows the bank is 571 of
+573, not the whole book), the numbering gaps per year, and the records it
+flagged. Pass `--no-source-review` to skip the lookup.
+
 Exit codes: `0` written, `1` usage error, `2` blocked (the validator rejects
 records), `3` `--strict` and something still needs review.
 

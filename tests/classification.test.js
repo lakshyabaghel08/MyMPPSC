@@ -23,7 +23,7 @@ import {
   mpSignal,
   CLASSIFICATION_SOURCE_RULES,
 } from '../tools/classify/rules.mjs';
-import { adaptIntake, adaptQuestion, mapAnswer, normaliseOptions, inferQuestionType } from '../tools/classify/intake-adapter.mjs';
+import { adaptIntake, adaptQuestion, mapAnswer, normaliseOptions, inferQuestionType, normaliseSourceReview } from '../tools/classify/intake-adapter.mjs';
 import {
   buildAiQueue,
   renderAiQueueJsonl,
@@ -542,6 +542,65 @@ test('the pipeline resumes from provider labels without redoing the rule pass', 
   assert.equal(result.classificationReport.levels.subject.unclassified, 1);
   assert.equal(result.aiQueue.length, 1, 'the still-unclassified question stays in the queue');
   assert.equal(result.validation.rejected.length, 0);
+});
+
+/* ------------------------------------- the source parser's own findings --- */
+
+test('the source review file is normalised without inventing anything', () => {
+  const audit = normaliseSourceReview(
+    {
+      parser_version: '0.1.0',
+      input_file: 'book.md',
+      input_sha256: 'abc123',
+      stats: { question_blocks_detected: 3, records_exported_to_intake: 2, records_excluded_pending_review: 1, records_flagged_for_review: 2, missing_explanation: 1 },
+      numbering_gaps_by_year: { 2021: [4, 9] },
+      important: ['Structural parsing only.'],
+      records: [
+        { id: 'Q1', year: 2021, question_number: 1, start_page: 2, flags: [], option_count: 4, printed_answer: ['C'], question_preview: 'clean' },
+        { id: 'Q2', year: 2021, question_number: 2, start_page: 3, flags: ['missing_explanation'], option_count: 4, printed_answer: ['A'], question_preview: 'flagged' },
+        { id: 'Q3', year: 2021, question_number: 3, start_page: 4, flags: ['no_usable_options'], option_count: 0, printed_answer: null, question_preview: 'x'.repeat(400), excluded_from_intake: true },
+      ],
+    },
+    { file: 'MPPSC_PYQ_Review.json' },
+  );
+  assert.equal(audit.stats.question_blocks_detected, 3);
+  assert.deepEqual(audit.excluded.map((r) => r.id), ['Q3'], 'the record that never reached the intake is named');
+  assert.deepEqual(audit.flagged.map((r) => r.id), ['Q2'], 'an excluded record is not also listed as exported-and-flagged');
+  assert.equal(audit.excluded[0].preview.length, 220, 'previews are truncated, not dumped');
+  assert.deepEqual(audit.numbering_gaps, { 2021: [4, 9] });
+  assert.deepEqual(audit.notes, ['Structural parsing only.']);
+  assert.equal(audit.excluded[0].printed_answer, null, 'a missing key stays missing');
+});
+
+test('a file that is not a review report is refused rather than half-read', () => {
+  assert.equal(normaliseSourceReview(null), null);
+  assert.equal(normaliseSourceReview({ stats: {} }), null);
+  assert.equal(normaliseSourceReview({ records: 'nope' }), null);
+});
+
+test('the review report carries the source parser caveats into the markdown', async () => {
+  const source = await sampleSource();
+  const audit = normaliseSourceReview(
+    {
+      stats: { question_blocks_detected: 12, records_exported_to_intake: 10, records_excluded_pending_review: 2 },
+      numbering_gaps_by_year: { 2023: [7] },
+      records: [{ id: 'X-1', year: 2023, question_number: 7, start_page: 9, flags: ['no_usable_options'], option_count: 0, question_preview: 'Match the following…', excluded_from_intake: true }],
+    },
+    { file: 'MPPSC_PYQ_Review.json' },
+  );
+  const { reviewReport } = await runPipeline(source, { sourceAudit: audit });
+  assert.equal(reviewReport.source_extraction.excluded.length, 1);
+  assert.equal(reviewReport.totals.source_blocks_detected, 12);
+  assert.equal(reviewReport.totals.records_excluded_by_source_parser, 1);
+  const md = renderReviewMarkdown(reviewReport);
+  assert.match(md, /Source extraction findings/);
+  assert.match(md, /NOT in this bank/);
+  assert.match(md, /`X-1`/);
+  assert.match(md, /numbering gap/);
+
+  const without = await runPipeline(source);
+  assert.equal(without.reviewReport.source_extraction, null, 'no review file, no invented section');
+  assert.equal(renderReviewMarkdown(without.reviewReport).includes('Source extraction findings'), false);
 });
 
 /* -------------------------------------------- hardening: valid combos --- */

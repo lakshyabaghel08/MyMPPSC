@@ -1,0 +1,3387 @@
+{
+  "generated_at": "2026-10-11T21:15:05.001Z",
+  "totals": {
+    "questions_in_bank": 571,
+    "questions_in_source": 571,
+    "records_removed": 0,
+    "records_merged": 0,
+    "missing_answer_keys": 8,
+    "near_duplicate_pairs": 36,
+    "identical_content_groups": 0,
+    "ambiguous_classifications": 228,
+    "low_confidence_classifications": 25,
+    "ai_labels_applied": 0,
+    "ai_labels_preserved": 0,
+    "ai_labels_rejected": 0,
+    "ai_labels_malformed": 0,
+    "source_blocks_detected": 573,
+    "records_excluded_by_source_parser": 2
+  },
+  "missing_answers": [
+    {
+      "id": "MPPSC-2021-057",
+      "paper_id": "MPPSC-2021-GS1-BOOK",
+      "year": 2021,
+      "status": "missing",
+      "excerpt": "State Chief Election Commissioner is appointed by",
+      "note": "No key was fabricated. The record keeps answer: null and answer_key_status: \"missing\"."
+    },
+    {
+      "id": "MPPSC-2021-075",
+      "paper_id": "MPPSC-2021-GS1-BOOK",
+      "year": 2021,
+      "status": "missing",
+      "excerpt": "The Development Monitoring and Evaluation Office (DMEO) was constituted on",
+      "note": "No key was fabricated. The record keeps answer: null and answer_key_status: \"missing\"."
+    },
+    {
+      "id": "MPPSC-2022-046",
+      "paper_id": "MPPSC-2022-GS1-BOOK",
+      "year": 2022,
+      "status": "missing",
+      "excerpt": "Quit India Movement was started on",
+      "note": "No key was fabricated. The record keeps answer: null and answer_key_status: \"missing\"."
+    },
+    {
+      "id": "MPPSC-2022-059",
+      "paper_id": "MPPSC-2022-GS1-BOOK",
+      "year": 2022,
+      "status": "missing",
+      "excerpt": "When did the Madhya Pradesh State Election Commission come into existence?",
+      "note": "No key was fabricated. The record keeps answer: null and answer_key_status: \"missing\"."
+    },
+    {
+      "id": "MPPSC-2023-026",
+      "paper_id": "MPPSC-2023-GS1-BOOK",
+      "year": 2023,
+      "status": "missing",
+      "excerpt": "Which of the following rights is not under the purview of the National Human Rights Commission?",
+      "note": "No key was fabricated. The record keeps answer: null and answer_key_status: \"missing\"."
+    },
+    {
+      "id": "MPPSC-2024-021",
+      "paper_id": "MPPSC-2024-GS1-BOOK",
+      "year": 2024,
+      "status": "missing",
+      "excerpt": "Bhimma tribe lives in which of the districts of Madhya Pradesh ?",
+      "note": "No key was fabricated. The record keeps answer: null and answer_key_status: \"missing\"."
+    },
+    {
+      "id": "MPPSC-2024-028",
+      "paper_id": "MPPSC-2024-GS1-BOOK",
+      "year": 2024,
+      "status": "missing",
+      "excerpt": "Which award is given for writings on the cultural tradition and specialties of tribal life in Indian literature?",
+      "note": "No key was fabricated. The record keeps answer: null and answer_key_status: \"missing\"."
+    },
+    {
+      "id": "MPPSC-2024-079",
+      "paper_id": "MPPSC-2024-GS1-BOOK",
+      "year": 2024,
+      "status": "missing",
+      "excerpt": "Arrange the following mountain peaks, in ascending order, according to their height: (i) Guru Shikhar (ii) Mahendragiri (iii) Anaimudi (iv) ",
+      "note": "No key was fabricated. The record keeps answer: null and answer_key_status: \"missing\"."
+    }
+  ],
+  "near_duplicates": [
+    {
+      "a": "MPPSC-2022-086",
+      "b": "MPPSC-2023-076",
+      "similarity": 1,
+      "basis": "similar wording and options",
+      "same_paper": false,
+      "kept": "both records retained in the bank"
+    },
+    {
+      "a": "MPPSC-2021-002",
+      "b": "MPPSC-2022-086",
+      "similarity": 0.923,
+      "basis": "similar wording and options",
+      "same_paper": false,
+      "kept": "both records retained in the bank"
+    },
+    {
+      "a": "MPPSC-2021-002",
+      "b": "MPPSC-2023-076",
+      "similarity": 0.923,
+      "basis": "similar wording and options",
+      "same_paper": false,
+      "kept": "both records retained in the bank"
+    },
+    {
+      "a": "MPPSC-2020-028",
+      "b": "MPPSC-2023-035",
+      "similarity": 0.889,
+      "basis": "similar wording and options",
+      "same_paper": false,
+      "kept": "both records retained in the bank"
+    },
+    {
+      "a": "MPPSC-2024-012",
+      "b": "MPPSC-2024-075",
+      "similarity": 0.889,
+      "basis": "similar wording and options",
+      "same_paper": true,
+      "kept": "both records retained in the bank"
+    },
+    {
+      "a": "MPPSC-2021-070",
+      "b": "MPPSC-2023-035",
+      "similarity": 0.889,
+      "basis": "similar wording and options",
+      "same_paper": false,
+      "kept": "both records retained in the bank"
+    },
+    {
+      "a": "MPPSC-2020-036",
+      "b": "MPPSC-2021-058",
+      "similarity": 0.873,
+      "basis": "similar wording and options",
+      "same_paper": false,
+      "kept": "both records retained in the bank"
+    },
+    {
+      "a": "MPPSC-2020-018",
+      "b": "MPPSC-2021-056",
+      "similarity": 0.857,
+      "basis": "similar wording and options",
+      "same_paper": false,
+      "kept": "both records retained in the bank"
+    },
+    {
+      "a": "MPPSC-2022-087",
+      "b": "MPPSC-2023-074",
+      "similarity": 0.8,
+      "basis": "similar wording and options",
+      "same_paper": false,
+      "kept": "both records retained in the bank"
+    },
+    {
+      "a": "MPPSC-2022-077",
+      "b": "MPPSC-2022-083",
+      "similarity": 0.8,
+      "basis": "similar wording and options",
+      "same_paper": true,
+      "kept": "both records retained in the bank"
+    },
+    {
+      "a": "MPPSC-2020-028",
+      "b": "MPPSC-2021-070",
+      "similarity": 0.8,
+      "basis": "similar wording and options",
+      "same_paper": false,
+      "kept": "both records retained in the bank"
+    },
+    {
+      "a": "MPPSC-2019-048",
+      "b": "MPPSC-2020-028",
+      "similarity": 0.75,
+      "basis": "similar wording and options",
+      "same_paper": false,
+      "kept": "both records retained in the bank"
+    },
+    {
+      "a": "MPPSC-2022-083",
+      "b": "MPPSC-2022-086",
+      "similarity": 0.733,
+      "basis": "similar wording and options",
+      "same_paper": true,
+      "kept": "both records retained in the bank"
+    },
+    {
+      "a": "MPPSC-2022-083",
+      "b": "MPPSC-2023-076",
+      "similarity": 0.733,
+      "basis": "similar wording and options",
+      "same_paper": false,
+      "kept": "both records retained in the bank"
+    },
+    {
+      "a": "MPPSC-2020-061",
+      "b": "MPPSC-2022-074",
+      "similarity": 0.706,
+      "basis": "similar wording and options",
+      "same_paper": false,
+      "kept": "both records retained in the bank"
+    },
+    {
+      "a": "MPPSC-2022-074",
+      "b": "MPPSC-2022-076",
+      "similarity": 0.706,
+      "basis": "similar wording and options",
+      "same_paper": true,
+      "kept": "both records retained in the bank"
+    },
+    {
+      "a": "MPPSC-2020-090",
+      "b": "MPPSC-2023-068",
+      "similarity": 0.7,
+      "basis": "similar wording and options",
+      "same_paper": false,
+      "kept": "both records retained in the bank"
+    },
+    {
+      "a": "MPPSC-2022-006",
+      "b": "MPPSC-2023-043",
+      "similarity": 0.7,
+      "basis": "similar wording and options",
+      "same_paper": false,
+      "kept": "both records retained in the bank"
+    },
+    {
+      "a": "MPPSC-2020-017",
+      "b": "MPPSC-2022-058",
+      "similarity": 0.7,
+      "basis": "similar wording and options",
+      "same_paper": false,
+      "kept": "both records retained in the bank"
+    },
+    {
+      "a": "MPPSC-2020-028",
+      "b": "MPPSC-2020-063",
+      "similarity": 0.692,
+      "basis": "similar wording and options",
+      "same_paper": true,
+      "kept": "both records retained in the bank"
+    },
+    {
+      "a": "MPPSC-2021-002",
+      "b": "MPPSC-2024-012",
+      "similarity": 0.692,
+      "basis": "similar wording and options",
+      "same_paper": false,
+      "kept": "both records retained in the bank"
+    },
+    {
+      "a": "MPPSC-2021-002",
+      "b": "MPPSC-2022-083",
+      "similarity": 0.688,
+      "basis": "similar wording and options",
+      "same_paper": false,
+      "kept": "both records retained in the bank"
+    },
+    {
+      "a": "MPPSC-2022-072",
+      "b": "MPPSC-2022-077",
+      "similarity": 0.688,
+      "basis": "similar wording and options",
+      "same_paper": true,
+      "kept": "both records retained in the bank"
+    },
+    {
+      "a": "MPPSC-2019-024",
+      "b": "MPPSC-2023-035",
+      "similarity": 0.667,
+      "basis": "similar wording and options",
+      "same_paper": false,
+      "kept": "both records retained in the bank"
+    },
+    {
+      "a": "MPPSC-2019-024",
+      "b": "MPPSC-2023-048",
+      "similarity": 0.667,
+      "basis": "similar wording and options",
+      "same_paper": false,
+      "kept": "both records retained in the bank"
+    },
+    {
+      "a": "MPPSC-2019-048",
+      "b": "MPPSC-2023-035",
+      "similarity": 0.667,
+      "basis": "similar wording and options",
+      "same_paper": false,
+      "kept": "both records retained in the bank"
+    },
+    {
+      "a": "MPPSC-2022-086",
+      "b": "MPPSC-2024-075",
+      "similarity": 0.667,
+      "basis": "similar wording and options",
+      "same_paper": false,
+      "kept": "both records retained in the bank"
+    },
+    {
+      "a": "MPPSC-2023-076",
+      "b": "MPPSC-2024-075",
+      "similarity": 0.667,
+      "basis": "similar wording and options",
+      "same_paper": false,
+      "kept": "both records retained in the bank"
+    },
+    {
+      "a": "MPPSC-2021-084",
+      "b": "MPPSC-2023-035",
+      "similarity": 0.667,
+      "basis": "similar wording and options",
+      "same_paper": false,
+      "kept": "both records retained in the bank"
+    },
+    {
+      "a": "MPPSC-2019-018",
+      "b": "MPPSC-2019-020",
+      "similarity": 0.643,
+      "basis": "similar wording and options",
+      "same_paper": true,
+      "kept": "both records retained in the bank"
+    },
+    {
+      "a": "MPPSC-2020-005",
+      "b": "MPPSC-2020-028",
+      "similarity": 0.636,
+      "basis": "similar wording and options",
+      "same_paper": true,
+      "kept": "both records retained in the bank"
+    },
+    {
+      "a": "MPPSC-2022-098",
+      "b": "MPPSC-2022-100",
+      "similarity": 0.636,
+      "basis": "similar wording and options",
+      "same_paper": true,
+      "kept": "both records retained in the bank"
+    },
+    {
+      "a": "MPPSC-2022-006",
+      "b": "MPPSC-2023-041",
+      "similarity": 0.636,
+      "basis": "similar wording and options",
+      "same_paper": false,
+      "kept": "both records retained in the bank"
+    },
+    {
+      "a": "MPPSC-2020-005",
+      "b": "MPPSC-2024-012",
+      "similarity": 0.636,
+      "basis": "similar wording and options",
+      "same_paper": false,
+      "kept": "both records retained in the bank"
+    },
+    {
+      "a": "MPPSC-2020-028",
+      "b": "MPPSC-2024-012",
+      "similarity": 0.636,
+      "basis": "similar wording and options",
+      "same_paper": false,
+      "kept": "both records retained in the bank"
+    },
+    {
+      "a": "MPPSC-2019-094",
+      "b": "MPPSC-2021-096",
+      "similarity": 0.625,
+      "basis": "similar wording and options",
+      "same_paper": false,
+      "kept": "both records retained in the bank"
+    }
+  ],
+  "identical_content_groups": [],
+  "ambiguous_classifications": [
+    {
+      "id": "MPPSC-2019-004",
+      "subject": "Polity",
+      "topic": null,
+      "reason": "topic ambiguous between Constitution of India and Constitutional bodies",
+      "candidates": [
+        {
+          "subject": "Polity",
+          "score": 9.98
+        }
+      ],
+      "excerpt": "Which Article of the Constitution prescribes the duties of the Comptroller and Auditor General of India?"
+    },
+    {
+      "id": "MPPSC-2019-006",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Captain Roop Singh Stadium is related to which sports?"
+    },
+    {
+      "id": "MPPSC-2019-009",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which of the following Vikram Awardee-2018 players of Madhya Pradesh is from the Disabled Category?"
+    },
+    {
+      "id": "MPPSC-2019-010",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Muskan Kirar belongs to which sports?"
+    },
+    {
+      "id": "MPPSC-2019-016",
+      "subject": null,
+      "topic": null,
+      "reason": "ambiguous_subject",
+      "candidates": [
+        {
+          "subject": "Art and Culture",
+          "score": 4.01
+        },
+        {
+          "subject": "History",
+          "score": 3.56
+        }
+      ],
+      "excerpt": "Which Airport is non-operational in Madhya Pradesh?"
+    },
+    {
+      "id": "MPPSC-2019-017",
+      "subject": null,
+      "topic": null,
+      "reason": "ambiguous_subject",
+      "candidates": [
+        {
+          "subject": "Geography",
+          "score": 2.03
+        },
+        {
+          "subject": "Madhya Pradesh Special",
+          "score": 1.8
+        },
+        {
+          "subject": "Polity",
+          "score": 1.25
+        }
+      ],
+      "excerpt": "Who was the Speaker of the previous Madhya Pradesh Assembly (2014-2018)?"
+    },
+    {
+      "id": "MPPSC-2019-019",
+      "subject": null,
+      "topic": null,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "Madhya Pradesh Special",
+          "score": 1.13
+        }
+      ],
+      "excerpt": "Which State does not touch the boundary of Madhya Pradesh?"
+    },
+    {
+      "id": "MPPSC-2019-021",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "What does VIRUS mean in the field of computer?"
+    },
+    {
+      "id": "MPPSC-2019-022",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "One who gains unauthorised access, destroys vital data, denies legitimate user's service or causes problems for their ta"
+    },
+    {
+      "id": "MPPSC-2019-023",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "First cyberlaw which provides the legal infrastructure for e-commerce in India is"
+    },
+    {
+      "id": "MPPSC-2019-024",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which of the following is not a cybercrime?"
+    },
+    {
+      "id": "MPPSC-2019-025",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "The domain name of the Email address mark.sttol@ITdesk.info is"
+    },
+    {
+      "id": "MPPSC-2019-027",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which of the following statements is not correct in relation to the Protection of Human Rights Act?"
+    },
+    {
+      "id": "MPPSC-2019-029",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "An advocate may be specified by the State Government for the purpose of conducting cases in Human Rights Courts as Speci"
+    },
+    {
+      "id": "MPPSC-2019-031",
+      "subject": null,
+      "topic": null,
+      "reason": "ambiguous_subject",
+      "candidates": [
+        {
+          "subject": "Environment",
+          "score": 2.93
+        },
+        {
+          "subject": "Science and Technology",
+          "score": 2.42
+        }
+      ],
+      "excerpt": "Which of the following is Academic Institute Satellite?"
+    },
+    {
+      "id": "MPPSC-2019-033",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Transfer of pollen grains from the anther to stigma of another flower of the same plant is called"
+    },
+    {
+      "id": "MPPSC-2019-035",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "In the buccal cavity of human beings digestion of which one of the following get started ?"
+    },
+    {
+      "id": "MPPSC-2019-039",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "The Croatian Head of the Nation was present in the stadium to cheer her team in the World Cup final match of football in"
+    },
+    {
+      "id": "MPPSC-2019-045",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "In which year \"The Hindu Widow Remarriage Act' was passed ?"
+    },
+    {
+      "id": "MPPSC-2019-049",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Out of the following during which census decade, sex ratio in India recorded the sharpest decline?"
+    },
+    {
+      "id": "MPPSC-2019-053",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which two cities of Madhya Pradesh are included in the 'town of export excellence'?"
+    },
+    {
+      "id": "MPPSC-2019-054",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which Ministry of Government of India is related to India's Foreign Trade Policy ?"
+    },
+    {
+      "id": "MPPSC-2019-055",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Where is the headquarters of Madhya Pradesh Finance Corporation?"
+    },
+    {
+      "id": "MPPSC-2019-058",
+      "subject": "Geography",
+      "topic": null,
+      "reason": "topic ambiguous between Rivers of Madhya Pradesh and Physiography of Madhya Pradesh",
+      "candidates": [
+        {
+          "subject": "Geography",
+          "score": 3.94
+        }
+      ],
+      "excerpt": "Consider the following statements. I. Mandu is in Dhar district. II. Hindola Mahal is in Mandu. Select the correct answe"
+    },
+    {
+      "id": "MPPSC-2019-062",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Who was the Flag bearer at Rio Olympics-2016 opening ceremony for Indian Contingent ?"
+    },
+    {
+      "id": "MPPSC-2019-063",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "What was the Rank of India in the Final Medals Tally of Common Wealth Games 2018 ?"
+    },
+    {
+      "id": "MPPSC-2019-065",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Where is the headquarters of IAAF located?"
+    },
+    {
+      "id": "MPPSC-2019-066",
+      "subject": null,
+      "topic": null,
+      "reason": "ambiguous_subject",
+      "candidates": [
+        {
+          "subject": "Madhya Pradesh Special",
+          "score": 4.59
+        },
+        {
+          "subject": "Polity",
+          "score": 4.22
+        }
+      ],
+      "excerpt": "How many Panchayat General Elections have taken place after formation of Madhya Pradesh State Election Commission ?"
+    },
+    {
+      "id": "MPPSC-2019-070",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "In Madhya Pradesh which of the following cities has not more than 10 lakh population, according to the 2011 census ?"
+    },
+    {
+      "id": "MPPSC-2019-071",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "JSP stands for"
+    },
+    {
+      "id": "MPPSC-2019-072",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Bing is a web search engine owned and operated by"
+    },
+    {
+      "id": "MPPSC-2019-073",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Web Crawler is also known as"
+    },
+    {
+      "id": "MPPSC-2019-074",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which of the following groups consists of only output devices ?"
+    },
+    {
+      "id": "MPPSC-2019-078",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "The Scheduled Castes and Scheduled Tribes (Prevention of Atrocities) Act, 1989 came into force on This Section has been "
+    },
+    {
+      "id": "MPPSC-2019-079",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which of the following statements is incorrect? This Section has been edited from the syllabus"
+    },
+    {
+      "id": "MPPSC-2019-082",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which one of the following cells secrete androgen hormones in human beings?"
+    },
+    {
+      "id": "MPPSC-2019-085",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Opium is of which category medicine?"
+    },
+    {
+      "id": "MPPSC-2019-086",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "The Chief guest of the Republic Day celebration in 2019 in New Delhi was"
+    },
+    {
+      "id": "MPPSC-2019-089",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "In Madhya Pradesh the amount of financial help given to the marriageable girls of poor families under \"Mukhya Mantri Kan"
+    },
+    {
+      "id": "MPPSC-2019-092",
+      "subject": null,
+      "topic": null,
+      "reason": "ambiguous_subject",
+      "candidates": [
+        {
+          "subject": "Polity",
+          "score": 5.57
+        },
+        {
+          "subject": "History",
+          "score": 5.09
+        }
+      ],
+      "excerpt": "Which of the following Act provided for communal representation in British India?"
+    },
+    {
+      "id": "MPPSC-2019-095",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which of the following inscriptions reveals information about the Silk Weavers Guild ?"
+    },
+    {
+      "id": "MPPSC-2019-100",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Extension of the International boundaries of India along with their neighbouring countries in ascending order are"
+    },
+    {
+      "id": "MPPSC-2020-005",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which one of the following is not a commercial crop?"
+    },
+    {
+      "id": "MPPSC-2020-006",
+      "subject": "Polity",
+      "topic": null,
+      "reason": "topic ambiguous between Union Executive and State Government",
+      "candidates": [
+        {
+          "subject": "Polity",
+          "score": 8.18
+        },
+        {
+          "subject": "Economy",
+          "score": 1.25
+        }
+      ],
+      "excerpt": "Match the following States and their respective Chief Ministers, who became Prime Minister of India. a. P. V. Narasimha "
+    },
+    {
+      "id": "MPPSC-2020-011",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "In February 2021 which neighbouring country faced a \"coup\"?"
+    },
+    {
+      "id": "MPPSC-2020-012",
+      "subject": null,
+      "topic": null,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "Science and Technology",
+          "score": 1.08
+        }
+      ],
+      "excerpt": "Where does Headquarters of The International Olympic Committee is Situated?"
+    },
+    {
+      "id": "MPPSC-2020-014",
+      "subject": null,
+      "topic": null,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "Science and Technology",
+          "score": 1.08
+        },
+        {
+          "subject": "Current Affairs",
+          "score": 1.05
+        }
+      ],
+      "excerpt": "Which is the Highest Award given by Madhya Pradesh Government to sports coaches mentioned below?"
+    },
+    {
+      "id": "MPPSC-2020-015",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Madhya Pradesh Archery Academy established by the Department of Sports and Youth Welfare is situated in"
+    },
+    {
+      "id": "MPPSC-2020-017",
+      "subject": null,
+      "topic": null,
+      "reason": "ambiguous_subject",
+      "candidates": [
+        {
+          "subject": "Polity",
+          "score": 3.96
+        },
+        {
+          "subject": "Economy",
+          "score": 3.7
+        }
+      ],
+      "excerpt": "Who was the first Vice-Chairman of NITI Aayog?"
+    },
+    {
+      "id": "MPPSC-2020-019",
+      "subject": null,
+      "topic": null,
+      "reason": "ambiguous_subject",
+      "candidates": [
+        {
+          "subject": "Polity",
+          "score": 4.49
+        },
+        {
+          "subject": "Environment",
+          "score": 3.96
+        }
+      ],
+      "excerpt": "Within how many days, an appeal can be made by an aggrieved person by decision of the National Green Tribunal to the Sup"
+    },
+    {
+      "id": "MPPSC-2020-020",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Underwhich law, the State Food Commission is established?"
+    },
+    {
+      "id": "MPPSC-2020-021",
+      "subject": null,
+      "topic": null,
+      "reason": "ambiguous_subject",
+      "candidates": [
+        {
+          "subject": "History",
+          "score": 1.33
+        },
+        {
+          "subject": "Geography",
+          "score": 1.25
+        },
+        {
+          "subject": "Art and Culture",
+          "score": 1.17
+        }
+      ],
+      "excerpt": "Who was the original founder of Bhopal State?"
+    },
+    {
+      "id": "MPPSC-2020-035",
+      "subject": null,
+      "topic": null,
+      "reason": "ambiguous_subject",
+      "candidates": [
+        {
+          "subject": "History",
+          "score": 4.42
+        },
+        {
+          "subject": "Polity",
+          "score": 4.22
+        }
+      ],
+      "excerpt": "In February 2021 Prime Minister inaugurates which Centenary Celebration?"
+    },
+    {
+      "id": "MPPSC-2020-036",
+      "subject": "Polity",
+      "topic": null,
+      "reason": "topic ambiguous between Constitutional bodies and Judiciary",
+      "candidates": [
+        {
+          "subject": "Polity",
+          "score": 12.6
+        }
+      ],
+      "excerpt": "Consider the following statements: (i) The Chief Election Commissioner of the Election Commission of India is paid the s"
+    },
+    {
+      "id": "MPPSC-2020-041",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "What was the real name of National poet Balkavi Bairagi?"
+    },
+    {
+      "id": "MPPSC-2020-042",
+      "subject": null,
+      "topic": null,
+      "reason": "ambiguous_subject",
+      "candidates": [
+        {
+          "subject": "Art and Culture",
+          "score": 2.03
+        },
+        {
+          "subject": "Madhya Pradesh Special",
+          "score": 1.8
+        },
+        {
+          "subject": "Geography",
+          "score": 1
+        }
+      ],
+      "excerpt": "In which city of Madhya Pradesh, the Parikrama of 7 Sagar, 9 Narayanas and 84 Mahadevas is completed?"
+    },
+    {
+      "id": "MPPSC-2020-046",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "The characteristics features of genetic code are i. It is always universal ii. It is triplet of nucleotides bases corres"
+    },
+    {
+      "id": "MPPSC-2020-047",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Where is the National Institute of Virology situated?"
+    },
+    {
+      "id": "MPPSC-2020-048",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "The task force of the blue economy for sustainable development is a collaboration between India and which country?"
+    },
+    {
+      "id": "MPPSC-2020-049",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "The hybrid variety of mango developed from the cross of Neelum and Alphonso is"
+    },
+    {
+      "id": "MPPSC-2020-051",
+      "subject": null,
+      "topic": null,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "History",
+          "score": 1
+        }
+      ],
+      "excerpt": "'Indian nationalism was in its embryonic stage in the middle of the 19th century.' Who among the following are historian"
+    },
+    {
+      "id": "MPPSC-2020-053",
+      "subject": null,
+      "topic": null,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "History",
+          "score": 1.17
+        }
+      ],
+      "excerpt": "Who speaks of India's self-reliant social system 'The rural system in India is a tiny Republic' ?"
+    },
+    {
+      "id": "MPPSC-2020-054",
+      "subject": null,
+      "topic": null,
+      "reason": "ambiguous_subject",
+      "candidates": [
+        {
+          "subject": "Polity",
+          "score": 2.93
+        },
+        {
+          "subject": "Madhya Pradesh Special",
+          "score": 2.49
+        },
+        {
+          "subject": "Geography",
+          "score": 1.08
+        }
+      ],
+      "excerpt": "How many States and Union Territories were established by the 1956, State Restructuring Act?"
+    },
+    {
+      "id": "MPPSC-2020-057",
+      "subject": null,
+      "topic": null,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "Economy",
+          "score": 1.17
+        }
+      ],
+      "excerpt": "According to Gartner, 4-phase maturity model can be arranged in sequence as"
+    },
+    {
+      "id": "MPPSC-2020-058",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "A social network can be represented as"
+    },
+    {
+      "id": "MPPSC-2020-059",
+      "subject": null,
+      "topic": null,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "Science and Technology",
+          "score": 1.17
+        }
+      ],
+      "excerpt": "IPv6 protocol defines an IP address of"
+    },
+    {
+      "id": "MPPSC-2020-060",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "It is a method of making automatic predictions about the interest of a user by collecting preferences"
+    },
+    {
+      "id": "MPPSC-2020-061",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which of the following States recorded the lowest decadal growth rate of population, according to the 2011 census ?"
+    },
+    {
+      "id": "MPPSC-2020-062",
+      "subject": null,
+      "topic": null,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "Science and Technology",
+          "score": 1.08
+        }
+      ],
+      "excerpt": "Which of the following is not a raw-material for the fertiliser industry?"
+    },
+    {
+      "id": "MPPSC-2020-064",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Match List I with List - Il and select the correct answer using the codes given below: List-I. List-II (Economic Activit"
+    },
+    {
+      "id": "MPPSC-2020-065",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which of the following States of India have the higher opportunities for the development of wind power?"
+    },
+    {
+      "id": "MPPSC-2020-085",
+      "subject": null,
+      "topic": null,
+      "reason": "ambiguous_subject",
+      "candidates": [
+        {
+          "subject": "Economy",
+          "score": 6.22
+        },
+        {
+          "subject": "Geography",
+          "score": 6.08
+        }
+      ],
+      "excerpt": "Non-metallic mineral is"
+    },
+    {
+      "id": "MPPSC-2020-086",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "How many pairs of cranial nerves are there in humans?"
+    },
+    {
+      "id": "MPPSC-2020-088",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Monosodium glutamate (MSG) in food is used as"
+    },
+    {
+      "id": "MPPSC-2020-089",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "The Disaster Management Act was made in"
+    },
+    {
+      "id": "MPPSC-2020-091",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which is not a type of secondary memory?"
+    },
+    {
+      "id": "MPPSC-2020-092",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "What does XML stand for ?"
+    },
+    {
+      "id": "MPPSC-2020-093",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Microwaves are electromagnetic waves having frequencies in range of"
+    },
+    {
+      "id": "MPPSC-2020-094",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Blowfish is a type of"
+    },
+    {
+      "id": "MPPSC-2020-095",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "What does \"PUMA\" stand for in the context of Robotics?"
+    },
+    {
+      "id": "MPPSC-2020-099",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "In which city Madhya Pradesh Tribal Museum is situated?"
+    },
+    {
+      "id": "MPPSC-2020-100",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Akanksha Scheme is related to"
+    },
+    {
+      "id": "MPPSC-2021-002",
+      "subject": "Geography",
+      "topic": null,
+      "reason": "topic ambiguous between Climate and soils of Madhya Pradesh and Physical Geography",
+      "candidates": [
+        {
+          "subject": "Geography",
+          "score": 12.26
+        },
+        {
+          "subject": "Madhya Pradesh Special",
+          "score": 1.91
+        },
+        {
+          "subject": "History",
+          "score": 1.69
+        }
+      ],
+      "excerpt": "Which one of the following statements is not correct regarding the climate of Madhya Pradesh?"
+    },
+    {
+      "id": "MPPSC-2021-007",
+      "subject": null,
+      "topic": null,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "Current Affairs",
+          "score": 1.17
+        }
+      ],
+      "excerpt": "When World Health Organization (W.H.O.) was established?"
+    },
+    {
+      "id": "MPPSC-2021-010",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Phosphatase test is used for the analysis of"
+    },
+    {
+      "id": "MPPSC-2021-015",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Truck farming is associated with"
+    },
+    {
+      "id": "MPPSC-2021-016",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "United Nation has declared the year 2023 as"
+    },
+    {
+      "id": "MPPSC-2021-017",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "On which date Vimukta Jati (Denotified Tribes) Day is celebrated in Madhya Pradesh?"
+    },
+    {
+      "id": "MPPSC-2021-026",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Important concept(s) introduced in IT Act, 2000"
+    },
+    {
+      "id": "MPPSC-2021-027",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Auctions or dynamic pricing markets are examples of"
+    },
+    {
+      "id": "MPPSC-2021-028",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "A _______ is used to transfer data packets between two computer networks."
+    },
+    {
+      "id": "MPPSC-2021-029",
+      "subject": null,
+      "topic": null,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "Science and Technology",
+          "score": 1.17
+        }
+      ],
+      "excerpt": "A database that contains the names and address of various hosts on internet is called"
+    },
+    {
+      "id": "MPPSC-2021-030",
+      "subject": null,
+      "topic": null,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "Science and Technology",
+          "score": 1.08
+        }
+      ],
+      "excerpt": "Consumers fix price on their own, which business accept or decline comes under model."
+    },
+    {
+      "id": "MPPSC-2021-032",
+      "subject": null,
+      "topic": null,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "History",
+          "score": 1.19
+        }
+      ],
+      "excerpt": "Which of the following is not a famous painter of Madhya Pradesh?"
+    },
+    {
+      "id": "MPPSC-2021-035",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which of the following inscription known as the first advertisement of the World?"
+    },
+    {
+      "id": "MPPSC-2021-036",
+      "subject": null,
+      "topic": null,
+      "reason": "ambiguous_subject",
+      "candidates": [
+        {
+          "subject": "History",
+          "score": 4.9
+        },
+        {
+          "subject": "Polity",
+          "score": 4.68
+        }
+      ],
+      "excerpt": "The Federal System proposed under the Government of India Act 1935 was"
+    },
+    {
+      "id": "MPPSC-2021-043",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Player of Madhya Pradesh Chinki Yadav is associated with sports"
+    },
+    {
+      "id": "MPPSC-2021-046",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "In which belt, the volcanic eruption is maximum?"
+    },
+    {
+      "id": "MPPSC-2021-048",
+      "subject": null,
+      "topic": null,
+      "reason": "ambiguous_subject",
+      "candidates": [
+        {
+          "subject": "Geography",
+          "score": 2.93
+        },
+        {
+          "subject": "History",
+          "score": 2.81
+        }
+      ],
+      "excerpt": "Which of the following canal has transformed agricultural activities of western districts of Rajasthan?"
+    },
+    {
+      "id": "MPPSC-2021-049",
+      "subject": null,
+      "topic": null,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "Geography",
+          "score": 1
+        }
+      ],
+      "excerpt": "Among the following densely populated regions, which one does not depend directly on agriculture?"
+    },
+    {
+      "id": "MPPSC-2021-050",
+      "subject": null,
+      "topic": null,
+      "reason": "ambiguous_subject",
+      "candidates": [
+        {
+          "subject": "Geography",
+          "score": 5
+        },
+        {
+          "subject": "General Aptitude",
+          "score": 4.25
+        }
+      ],
+      "excerpt": "Out of a total population of 121 crore, what was the level (percentage) of urbanisation in 2011, census of India?"
+    },
+    {
+      "id": "MPPSC-2021-051",
+      "subject": null,
+      "topic": null,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "Current Affairs",
+          "score": 1
+        }
+      ],
+      "excerpt": "With which misal was Ranjit Singh related?"
+    },
+    {
+      "id": "MPPSC-2021-053",
+      "subject": null,
+      "topic": null,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "History",
+          "score": 1.12
+        }
+      ],
+      "excerpt": "Who called the Congress Conferences as the \"Annual National Festival of Educated Indians\"?"
+    },
+    {
+      "id": "MPPSC-2021-057",
+      "subject": "Polity",
+      "topic": null,
+      "reason": "topic ambiguous between Constitutional bodies and Judiciary",
+      "candidates": [
+        {
+          "subject": "Polity",
+          "score": 9.89
+        }
+      ],
+      "excerpt": "State Chief Election Commissioner is appointed by"
+    },
+    {
+      "id": "MPPSC-2021-058",
+      "subject": "Polity",
+      "topic": null,
+      "reason": "topic ambiguous between Constitutional bodies and Judiciary",
+      "candidates": [
+        {
+          "subject": "Polity",
+          "score": 12.6
+        }
+      ],
+      "excerpt": "Consider the following statements: i. The Chief Election Commissioner of the Election Commission of India is paid a sala"
+    },
+    {
+      "id": "MPPSC-2021-061",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Virtual Keyboards protect the computer against"
+    },
+    {
+      "id": "MPPSC-2021-062",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "An e-mail that appears to originate from one source but actually has been sent from another"
+    },
+    {
+      "id": "MPPSC-2021-063",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "In a network environment…………, which is not server?"
+    },
+    {
+      "id": "MPPSC-2021-065",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "The true justified belief is often called"
+    },
+    {
+      "id": "MPPSC-2021-069",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which of the following district the Gotmar fair held?"
+    },
+    {
+      "id": "MPPSC-2021-075",
+      "subject": "Polity",
+      "topic": null,
+      "reason": "topic ambiguous between Union and State Relations and Statutory and regulatory bodies",
+      "candidates": [
+        {
+          "subject": "Polity",
+          "score": 3.67
+        },
+        {
+          "subject": "Economy",
+          "score": 1.17
+        },
+        {
+          "subject": "Madhya Pradesh Special",
+          "score": 1.07
+        }
+      ],
+      "excerpt": "The Development Monitoring and Evaluation Office (DMEO) was constituted on"
+    },
+    {
+      "id": "MPPSC-2021-078",
+      "subject": null,
+      "topic": null,
+      "reason": "ambiguous_subject",
+      "candidates": [
+        {
+          "subject": "Madhya Pradesh Special",
+          "score": 4.32
+        },
+        {
+          "subject": "Polity",
+          "score": 3.96
+        }
+      ],
+      "excerpt": "Who among the following has held the office of the Protem Speaker, Speaker and Deputy Speaker in Madhya Pradesh Legislat"
+    },
+    {
+      "id": "MPPSC-2021-087",
+      "subject": null,
+      "topic": null,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "Science and Technology",
+          "score": 1.05
+        }
+      ],
+      "excerpt": "In which organ sertoli cells are found?"
+    },
+    {
+      "id": "MPPSC-2021-088",
+      "subject": null,
+      "topic": null,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "History",
+          "score": 1.17
+        }
+      ],
+      "excerpt": "Where UNICEF Headquarter is situated?"
+    },
+    {
+      "id": "MPPSC-2021-095",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Mid day Meal Scheme was launched in which year?"
+    },
+    {
+      "id": "MPPSC-2021-098",
+      "subject": null,
+      "topic": null,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "History",
+          "score": 0.91
+        }
+      ],
+      "excerpt": "The unique feature of whose administrative system was the development of village autonomy?"
+    },
+    {
+      "id": "MPPSC-2022-001",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which description is appropriate among the following for e-governance?"
+    },
+    {
+      "id": "MPPSC-2022-002",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which of the following is not an example of Virtual Assistant?"
+    },
+    {
+      "id": "MPPSC-2022-005",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which dimension of e-commerce enables commerce beyond the boundaries of the country?"
+    },
+    {
+      "id": "MPPSC-2022-006",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which of the following is not an advantage of Robots?"
+    },
+    {
+      "id": "MPPSC-2022-007",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "What is social media optimization?"
+    },
+    {
+      "id": "MPPSC-2022-010",
+      "subject": null,
+      "topic": null,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "Science and Technology",
+          "score": 1.08
+        }
+      ],
+      "excerpt": "Which of the following technique cannot be used for generating electron-hole pairs in electronic devices?"
+    },
+    {
+      "id": "MPPSC-2022-011",
+      "subject": null,
+      "topic": null,
+      "reason": "ambiguous_subject",
+      "candidates": [
+        {
+          "subject": "Current Affairs",
+          "score": 1.25
+        },
+        {
+          "subject": "History",
+          "score": 1.25
+        }
+      ],
+      "excerpt": "Which city was the host of the second edition of \"The Africa-India Field Training Exercise\" AFINDEX - 2023?"
+    },
+    {
+      "id": "MPPSC-2022-012",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Where did the Indian Army establish a Quantum Laboratory in Madhya Pradesh in 2021?"
+    },
+    {
+      "id": "MPPSC-2022-013",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Where was the Global Investors Summit - 2023 held in Madhya Pradesh?"
+    },
+    {
+      "id": "MPPSC-2022-015",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "In which of the following city is the headquarter of Food and Agriculture Organisation (FAO) situated?"
+    },
+    {
+      "id": "MPPSC-2022-016",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which of the following ministry is associated with \"Saubhagya Scheme started in 2017?"
+    },
+    {
+      "id": "MPPSC-2022-017",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "At present (April, 2023) who is the Chief of the Army Staff of India?"
+    },
+    {
+      "id": "MPPSC-2022-020",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Who among the following won the \"Golden Ball\" Award in FIFA World Cup - 2022?"
+    },
+    {
+      "id": "MPPSC-2022-024",
+      "subject": null,
+      "topic": null,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "History",
+          "score": 1
+        }
+      ],
+      "excerpt": "Who among the following Arab writers has given the description of Kalachuri ruler Gangeyadeva and his capital Tripuri?"
+    },
+    {
+      "id": "MPPSC-2022-025",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Nirmal Verma Award is given by Madhya Pradesh Culture Department in which field?"
+    },
+    {
+      "id": "MPPSC-2022-028",
+      "subject": null,
+      "topic": null,
+      "reason": "ambiguous_subject",
+      "candidates": [
+        {
+          "subject": "Polity",
+          "score": 1.25
+        },
+        {
+          "subject": "Madhya Pradesh Special",
+          "score": 1.2
+        },
+        {
+          "subject": "Geography",
+          "score": 1.13
+        }
+      ],
+      "excerpt": "Pandit Dwarka Prasad Mishra was the Chief Editor of which of the following newspapers?"
+    },
+    {
+      "id": "MPPSC-2022-031",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "AYUSH is an acronym for"
+    },
+    {
+      "id": "MPPSC-2022-033",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "As per the Food Safety and Standards Act, 2006, which of the following mark is made mandatory on all processed fruit pro"
+    },
+    {
+      "id": "MPPSC-2022-034",
+      "subject": null,
+      "topic": null,
+      "reason": "ambiguous_subject",
+      "candidates": [
+        {
+          "subject": "Environment",
+          "score": 1.25
+        },
+        {
+          "subject": "Science and Technology",
+          "score": 1.25
+        }
+      ],
+      "excerpt": "Genetically modified Bt. Brinjal is developed for"
+    },
+    {
+      "id": "MPPSC-2022-035",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "The type of joint (pivot) between Atlas and Axis is known as"
+    },
+    {
+      "id": "MPPSC-2022-037",
+      "subject": null,
+      "topic": null,
+      "reason": "ambiguous_subject",
+      "candidates": [
+        {
+          "subject": "Environment",
+          "score": 2.48
+        },
+        {
+          "subject": "Geography",
+          "score": 2.17
+        }
+      ],
+      "excerpt": "The area that acts as a boundary or a transition zone between two ecosystems is known as-"
+    },
+    {
+      "id": "MPPSC-2022-039",
+      "subject": null,
+      "topic": null,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "Science and Technology",
+          "score": 0.98
+        }
+      ],
+      "excerpt": "Wind velocity is measured by-"
+    },
+    {
+      "id": "MPPSC-2022-041",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Who was the chief leader of the Santhal Revolt?"
+    },
+    {
+      "id": "MPPSC-2022-043",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "How many Alvars and Nayanars are there according to tradition?"
+    },
+    {
+      "id": "MPPSC-2022-050",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Paramahansa Mandali was established in which State?"
+    },
+    {
+      "id": "MPPSC-2022-054",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Establishment of Central Vigilance Commissioner to advise and guide the Central agencies in the field of vigilance is ba"
+    },
+    {
+      "id": "MPPSC-2022-057",
+      "subject": "Polity",
+      "topic": null,
+      "reason": "topic ambiguous between Constitution of India and Constitutional bodies",
+      "candidates": [
+        {
+          "subject": "Polity",
+          "score": 16.41
+        }
+      ],
+      "excerpt": "Where are the salary and service conditions of the Comptroller and Auditor General of India specified?"
+    },
+    {
+      "id": "MPPSC-2022-063",
+      "subject": null,
+      "topic": null,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "Economy",
+          "score": 1.05
+        }
+      ],
+      "excerpt": "Which of the following is a benefit of industrial development and trade?"
+    },
+    {
+      "id": "MPPSC-2022-072",
+      "subject": null,
+      "topic": null,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "Geography",
+          "score": 1.08
+        }
+      ],
+      "excerpt": "Which of the following statements is not correct regarding wind power capacity in India?"
+    },
+    {
+      "id": "MPPSC-2022-075",
+      "subject": null,
+      "topic": null,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "Geography",
+          "score": 1.08
+        }
+      ],
+      "excerpt": "The trans-boundary river Mekong of South-East Asia does not pass through which of the following countries?"
+    },
+    {
+      "id": "MPPSC-2022-076",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "According to the 2011 Census, which of the following States has the highest (percentage) female literacy rate?"
+    },
+    {
+      "id": "MPPSC-2022-078",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "During the year 2020-21, which of the following States was the largest producer of groundnuts in the country?"
+    },
+    {
+      "id": "MPPSC-2022-083",
+      "subject": "Geography",
+      "topic": null,
+      "reason": "topic ambiguous between Geography of India and Physiography of Madhya Pradesh",
+      "candidates": [
+        {
+          "subject": "Geography",
+          "score": 16.49
+        },
+        {
+          "subject": "Madhya Pradesh Special",
+          "score": 1.91
+        }
+      ],
+      "excerpt": "Which of the following statements regarding iron ore in Madhya Pradesh is not correct?"
+    },
+    {
+      "id": "MPPSC-2022-093",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "What amount will be given to eligible women under \"Ladli Bahna Yojana\" of the Madhya Pradesh Government?"
+    },
+    {
+      "id": "MPPSC-2022-097",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "What is the minimum population required for the declaration of a Gram Panchayat in Madhya Pradesh?"
+    },
+    {
+      "id": "MPPSC-2022-099",
+      "subject": "Polity",
+      "topic": null,
+      "reason": "topic ambiguous between State Government and Union Executive",
+      "candidates": [
+        {
+          "subject": "Polity",
+          "score": 8.54
+        }
+      ],
+      "excerpt": "Who among the following shall preside the meeting of the Council of Ministers in Madhya Pradesh in the absence of the Ch"
+    },
+    {
+      "id": "MPPSC-2023-003",
+      "subject": null,
+      "topic": null,
+      "reason": "ambiguous_subject",
+      "candidates": [
+        {
+          "subject": "Environment",
+          "score": 2.75
+        },
+        {
+          "subject": "Geography",
+          "score": 2.48
+        },
+        {
+          "subject": "History",
+          "score": 1.17
+        }
+      ],
+      "excerpt": "Which among the following is not a globally accepted National \"hot spot\" of India?"
+    },
+    {
+      "id": "MPPSC-2023-005",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which of the following is not a National Nutrition Programme of the Government of India?"
+    },
+    {
+      "id": "MPPSC-2023-009",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Osteoclasts are associated with which of the following?"
+    },
+    {
+      "id": "MPPSC-2023-011",
+      "subject": null,
+      "topic": null,
+      "reason": "ambiguous_subject",
+      "candidates": [
+        {
+          "subject": "Polity",
+          "score": 3
+        },
+        {
+          "subject": "Economy",
+          "score": 2.8
+        },
+        {
+          "subject": "Madhya Pradesh Special",
+          "score": 1.91
+        }
+      ],
+      "excerpt": "Which district in Madhya Pradesh showed the highest improvement in multidimensional poverty as per the report of Madhya "
+    },
+    {
+      "id": "MPPSC-2023-014",
+      "subject": null,
+      "topic": null,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "Economy",
+          "score": 1.17
+        }
+      ],
+      "excerpt": "What is the objective of Tantya Mama Economic Welfare Scheme (New Scheme)?"
+    },
+    {
+      "id": "MPPSC-2023-015",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which city in Madhya Pradesh has a cluster dedicated to the production of transformers and allied products?"
+    },
+    {
+      "id": "MPPSC-2023-019",
+      "subject": "Polity",
+      "topic": null,
+      "reason": "topic ambiguous between State Government and Union Legislature",
+      "candidates": [
+        {
+          "subject": "Polity",
+          "score": 8.37
+        }
+      ],
+      "excerpt": "Who decides whether a bill is a money bill or not in the State?"
+    },
+    {
+      "id": "MPPSC-2023-024",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "The Food Preservation Commission is a statutory body established under which of the following Acts?"
+    },
+    {
+      "id": "MPPSC-2023-031",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Where is the headquarters of Amateur Kabaddi Federation of India (AKFI) located?"
+    },
+    {
+      "id": "MPPSC-2023-032",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which of the following players were part of the Indian Women's Hockey team in the Tokyo Olympics - 2020?"
+    },
+    {
+      "id": "MPPSC-2023-035",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which of the following is not correctly matched?"
+    },
+    {
+      "id": "MPPSC-2023-036",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "India played its first One Day International cricket match with which country and in which year?"
+    },
+    {
+      "id": "MPPSC-2023-037",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "From which year did the celebration of 21st June as International Yoga Day begin?"
+    },
+    {
+      "id": "MPPSC-2023-038",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Who is the first Indian woman soldier skydiver?"
+    },
+    {
+      "id": "MPPSC-2023-039",
+      "subject": null,
+      "topic": null,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "Current Affairs",
+          "score": 1
+        }
+      ],
+      "excerpt": "From the following industrialists, who is known as the 'Steel Man of India'?"
+    },
+    {
+      "id": "MPPSC-2023-040",
+      "subject": "Economy",
+      "topic": null,
+      "reason": "topic ambiguous between Banking and finance and Indian Economy",
+      "candidates": [
+        {
+          "subject": "Economy",
+          "score": 2.75
+        },
+        {
+          "subject": "Science and Technology",
+          "score": 1.25
+        }
+      ],
+      "excerpt": "'Governor of the Year' award at the Central Banking Awards 2023 was conferred upon the Governor of the central bank of w"
+    },
+    {
+      "id": "MPPSC-2023-041",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which of the following is not an E-Procurement portal?"
+    },
+    {
+      "id": "MPPSC-2023-042",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which of the following is a type of Internet connection that uses telephone lines?"
+    },
+    {
+      "id": "MPPSC-2023-043",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which of the following is an advantage of E- Commerce?"
+    },
+    {
+      "id": "MPPSC-2023-044",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which of the following is a type of cyberattack that involves tricking users into revealing sensitive information?"
+    },
+    {
+      "id": "MPPSC-2023-045",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "What is the purpose of a firewall in cybersecurity?"
+    },
+    {
+      "id": "MPPSC-2023-046",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Flipkart, Alibaba, and Amazon are examples of:"
+    },
+    {
+      "id": "MPPSC-2023-048",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which of the following is not a web browser?"
+    },
+    {
+      "id": "MPPSC-2023-049",
+      "subject": null,
+      "topic": null,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "Science and Technology",
+          "score": 1.17
+        }
+      ],
+      "excerpt": "ChatGPT was developed by:"
+    },
+    {
+      "id": "MPPSC-2023-050",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which electronic device was used in Second Generation Computers?"
+    },
+    {
+      "id": "MPPSC-2023-054",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which of the following processes do not come under diastrophism?"
+    },
+    {
+      "id": "MPPSC-2023-059",
+      "subject": null,
+      "topic": null,
+      "reason": "ambiguous_subject",
+      "candidates": [
+        {
+          "subject": "Environment",
+          "score": 1.42
+        },
+        {
+          "subject": "Geography",
+          "score": 1.17
+        }
+      ],
+      "excerpt": "The first successful attempt to tap , underground heat was made in"
+    },
+    {
+      "id": "MPPSC-2023-063",
+      "subject": null,
+      "topic": null,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "History",
+          "score": 0.93
+        }
+      ],
+      "excerpt": "How many principalities were merged in the 'Saurashtra Sangh' on 15th February, 1948?"
+    },
+    {
+      "id": "MPPSC-2023-064",
+      "subject": null,
+      "topic": null,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "History",
+          "score": 1.05
+        }
+      ],
+      "excerpt": "Who among the following first coined the word 'Pakistan'?"
+    },
+    {
+      "id": "MPPSC-2023-073",
+      "subject": "Geography",
+      "topic": null,
+      "reason": "topic ambiguous between Physiography of Madhya Pradesh and Climate and soils of Madhya Pradesh",
+      "candidates": [
+        {
+          "subject": "Geography",
+          "score": 22.94
+        },
+        {
+          "subject": "Science and Technology",
+          "score": 1.25
+        },
+        {
+          "subject": "Economy",
+          "score": 1.17
+        }
+      ],
+      "excerpt": "Which of the following characteristics is not correct in reference to the black soil of Madhya Pradesh?"
+    },
+    {
+      "id": "MPPSC-2023-077",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which type of forests are not found in Madhya Pradesh?"
+    },
+    {
+      "id": "MPPSC-2023-079",
+      "subject": null,
+      "topic": null,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "Geography",
+          "score": 0.84
+        }
+      ],
+      "excerpt": "Which of the following statements is not correct regarding the roadways of Madhya Pradesh according to Basic Road Statis"
+    },
+    {
+      "id": "MPPSC-2023-080",
+      "subject": null,
+      "topic": null,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "Geography",
+          "score": 1.08
+        }
+      ],
+      "excerpt": "In the year 2020 - 21, which of the following districts holds the first position in the production of cotton in Madhya P"
+    },
+    {
+      "id": "MPPSC-2023-081",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "The Electoral College for the election of the President consists of:"
+    },
+    {
+      "id": "MPPSC-2023-086",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "How many banks were nationalized in India in 1980?"
+    },
+    {
+      "id": "MPPSC-2023-094",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "By which other name was the religious place Chitrakoot also recognized?"
+    },
+    {
+      "id": "MPPSC-2023-099",
+      "subject": null,
+      "topic": null,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "Art and Culture",
+          "score": 0.9
+        }
+      ],
+      "excerpt": "On whom did Balkrishna Sharma Naveen write two kavyas—Tranarpan and Atmosarga?"
+    },
+    {
+      "id": "MPPSC-2023-100",
+      "subject": "History",
+      "topic": null,
+      "reason": "topic ambiguous between Medieval India and Modern India",
+      "candidates": [
+        {
+          "subject": "History",
+          "score": 1.87
+        }
+      ],
+      "excerpt": "When did the Thona-Luhari firing incident of Niwari district take place in the Freedom Movement?"
+    },
+    {
+      "id": "MPPSC-2024-003",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which pulse causes lathyrism when consumed on a regular basis?"
+    },
+    {
+      "id": "MPPSC-2024-005",
+      "subject": null,
+      "topic": null,
+      "reason": "ambiguous_subject",
+      "candidates": [
+        {
+          "subject": "Environment",
+          "score": 4.68
+        },
+        {
+          "subject": "Geography",
+          "score": 4.32
+        }
+      ],
+      "excerpt": "Ozone layer thickness is measured in:"
+    },
+    {
+      "id": "MPPSC-2024-006",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "The number of cervical vertebrae in a human body is:"
+    },
+    {
+      "id": "MPPSC-2024-016",
+      "subject": "Polity",
+      "topic": null,
+      "reason": "topic ambiguous between Union Legislature and Constitution of India",
+      "candidates": [
+        {
+          "subject": "Polity",
+          "score": 9.34
+        },
+        {
+          "subject": "Current Affairs",
+          "score": 1
+        }
+      ],
+      "excerpt": "K.M. Munshi was related to:"
+    },
+    {
+      "id": "MPPSC-2024-023",
+      "subject": "History",
+      "topic": null,
+      "reason": "topic ambiguous between Modern India and Medieval India",
+      "candidates": [
+        {
+          "subject": "History",
+          "score": 2.67
+        },
+        {
+          "subject": "Madhya Pradesh Special",
+          "score": 1.13
+        }
+      ],
+      "excerpt": "Mahanayak Tantya Mama is related to which tribal group?"
+    },
+    {
+      "id": "MPPSC-2024-028",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which award is given for writings on the cultural tradition and specialties of tribal life in Indian literature?"
+    },
+    {
+      "id": "MPPSC-2024-029",
+      "subject": "Polity",
+      "topic": null,
+      "reason": "topic ambiguous between Union Executive and State Government",
+      "candidates": [
+        {
+          "subject": "Polity",
+          "score": 2.58
+        },
+        {
+          "subject": "Economy",
+          "score": 1.17
+        }
+      ],
+      "excerpt": "In whose name is the Self-Employment Scheme being run for tribals in Madhya Pradesh?"
+    },
+    {
+      "id": "MPPSC-2024-030",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "The year of establishment of ‘Vanya,’ the publishing house of the Tribal Affairs Department is:"
+    },
+    {
+      "id": "MPPSC-2024-035",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "UNNATI (Agri-GIS) project of the Madhya Pradesh Government is for:"
+    },
+    {
+      "id": "MPPSC-2024-037",
+      "subject": "Economy",
+      "topic": null,
+      "reason": "topic ambiguous between Indian Economy and Economy of Madhya Pradesh",
+      "candidates": [
+        {
+          "subject": "Economy",
+          "score": 11.91
+        }
+      ],
+      "excerpt": "In the year 2022-23, on comparing the per capita income of Madhya Pradesh and that of India on the basis of advanced est"
+    },
+    {
+      "id": "MPPSC-2024-041",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "The central part of the UNIX Operating System is:"
+    },
+    {
+      "id": "MPPSC-2024-042",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "A ______ attack comes in the form of deceptive emails or text messages that may ask you to install software or divulge p"
+    },
+    {
+      "id": "MPPSC-2024-043",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Kurrently is a/an:"
+    },
+    {
+      "id": "MPPSC-2024-044",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "The Imitation Game was the original name of:"
+    },
+    {
+      "id": "MPPSC-2024-045",
+      "subject": null,
+      "topic": null,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "Science and Technology",
+          "score": 1.17
+        }
+      ],
+      "excerpt": "The founder of Twitter is:"
+    },
+    {
+      "id": "MPPSC-2024-046",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "What are the four pillars of E-Governance?"
+    },
+    {
+      "id": "MPPSC-2024-047",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "A social networking site for professionals and business people who wish to connect with other professionals is:"
+    },
+    {
+      "id": "MPPSC-2024-049",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "MPEG stands for:"
+    },
+    {
+      "id": "MPPSC-2024-050",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "In the field of Internet, W3C stands for:"
+    },
+    {
+      "id": "MPPSC-2024-052",
+      "subject": null,
+      "topic": null,
+      "reason": "ambiguous_subject",
+      "candidates": [
+        {
+          "subject": "Geography",
+          "score": 3.6
+        },
+        {
+          "subject": "History",
+          "score": 3.33
+        },
+        {
+          "subject": "Economy",
+          "score": 1.17
+        }
+      ],
+      "excerpt": "In which district of Madhya Pradesh was the production of soybean initially started?"
+    },
+    {
+      "id": "MPPSC-2024-053",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "In which of the following industries is rock phosphate used?"
+    },
+    {
+      "id": "MPPSC-2024-056",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "When was bamboo nationalized in Madhya Pradesh?"
+    },
+    {
+      "id": "MPPSC-2024-058",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Bharat Heavy Electricals Ltd., Bhopal was established with the support of a company of which country?"
+    },
+    {
+      "id": "MPPSC-2024-061",
+      "subject": null,
+      "topic": null,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "Art and Culture",
+          "score": 1.17
+        }
+      ],
+      "excerpt": "What is the name of the author of the historical novel Durgesh Nandini written in Bengali language?"
+    },
+    {
+      "id": "MPPSC-2024-070",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "What is called Antaranga Sadhana under Ashtanga Yoga?"
+    },
+    {
+      "id": "MPPSC-2024-078",
+      "subject": null,
+      "topic": null,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "Geography",
+          "score": 1.08
+        }
+      ],
+      "excerpt": "From the following, which cyclone struck the western coast of India in the year 2021?"
+    },
+    {
+      "id": "MPPSC-2024-079",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Arrange the following mountain peaks, in ascending order, according to their height: (i) Guru Shikhar (ii) Mahendragiri "
+    },
+    {
+      "id": "MPPSC-2024-080",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "According to the Census year of 2011, which of the following States of India had the lowest density of population?"
+    },
+    {
+      "id": "MPPSC-2024-082",
+      "subject": "Polity",
+      "topic": null,
+      "reason": "topic ambiguous between Union Legislature and Union Executive",
+      "candidates": [
+        {
+          "subject": "Polity",
+          "score": 8.54
+        }
+      ],
+      "excerpt": "Who among the following was nominated to the Rajya Sabha by the President of India as the 12th member in the year 2024?"
+    },
+    {
+      "id": "MPPSC-2024-083",
+      "subject": null,
+      "topic": null,
+      "reason": "ambiguous_subject",
+      "candidates": [
+        {
+          "subject": "Madhya Pradesh Special",
+          "score": 4.99
+        },
+        {
+          "subject": "Current Affairs",
+          "score": 4.32
+        },
+        {
+          "subject": "History",
+          "score": 1.42
+        }
+      ],
+      "excerpt": "Who is the para-canoe athlete from Madhya Pradesh who was awarded the Arjuna Award in 2023?"
+    },
+    {
+      "id": "MPPSC-2024-084",
+      "subject": null,
+      "topic": null,
+      "reason": "ambiguous_subject",
+      "candidates": [
+        {
+          "subject": "Art and Culture",
+          "score": 1.25
+        },
+        {
+          "subject": "Current Affairs",
+          "score": 1.25
+        },
+        {
+          "subject": "History",
+          "score": 1.08
+        }
+      ],
+      "excerpt": "Who among the following is associated with traditional Maach singing style?"
+    },
+    {
+      "id": "MPPSC-2024-086",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Who, in the year 2024, became the youngest player ever to win the FIDE Candidates Tournament?"
+    },
+    {
+      "id": "MPPSC-2024-088",
+      "subject": "Polity",
+      "topic": null,
+      "reason": "topic ambiguous between Judiciary and Statutory and regulatory bodies",
+      "candidates": [
+        {
+          "subject": "Polity",
+          "score": 11.35
+        }
+      ],
+      "excerpt": "Who among the following has been appointed as the Chairperson of Lokpal of India in 2024?"
+    },
+    {
+      "id": "MPPSC-2024-093",
+      "subject": "History",
+      "topic": null,
+      "reason": "topic ambiguous between Ancient India and Prehistory and Art",
+      "candidates": [
+        {
+          "subject": "History",
+          "score": 9.45
+        },
+        {
+          "subject": "Geography",
+          "score": 1
+        }
+      ],
+      "excerpt": "Which Chalcolithic site is also called the birth place of Varahamihira?"
+    },
+    {
+      "id": "MPPSC-2024-094",
+      "subject": "Environment",
+      "topic": null,
+      "reason": "topic ambiguous between Environmental laws and institutions and Protected areas",
+      "candidates": [
+        {
+          "subject": "Environment",
+          "score": 8.69
+        },
+        {
+          "subject": "Geography",
+          "score": 4.21
+        },
+        {
+          "subject": "History",
+          "score": 1.91
+        }
+      ],
+      "excerpt": "Which of the following pairs is false? Sanctuary District"
+    },
+    {
+      "id": "MPPSC-2024-096",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "What is the Sutradhar of Gammat folk theatre called?"
+    },
+    {
+      "id": "MPPSC-2024-099",
+      "subject": null,
+      "topic": null,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "History",
+          "score": 1.08
+        }
+      ],
+      "excerpt": "What is Kohbar?"
+    },
+    {
+      "id": "MPPSC-2024-100",
+      "subject": null,
+      "topic": null,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Who is the author of Yashodharman's Sondani inscription?"
+    }
+  ],
+  "low_confidence_classifications": [
+    {
+      "id": "MPPSC-2019-004",
+      "subject": "Polity",
+      "topic": null,
+      "confidence": 0.5,
+      "reason": "topic ambiguous between Constitution of India and Constitutional bodies"
+    },
+    {
+      "id": "MPPSC-2019-058",
+      "subject": "Geography",
+      "topic": null,
+      "confidence": 0.5,
+      "reason": "topic ambiguous between Rivers of Madhya Pradesh and Physiography of Madhya Pradesh"
+    },
+    {
+      "id": "MPPSC-2020-006",
+      "subject": "Polity",
+      "topic": null,
+      "confidence": 0.5,
+      "reason": "topic ambiguous between Union Executive and State Government"
+    },
+    {
+      "id": "MPPSC-2020-036",
+      "subject": "Polity",
+      "topic": null,
+      "confidence": 0.5,
+      "reason": "topic ambiguous between Constitutional bodies and Judiciary"
+    },
+    {
+      "id": "MPPSC-2021-002",
+      "subject": "Geography",
+      "topic": null,
+      "confidence": 0.5,
+      "reason": "topic ambiguous between Climate and soils of Madhya Pradesh and Physical Geography"
+    },
+    {
+      "id": "MPPSC-2021-019",
+      "subject": "Madhya Pradesh Special",
+      "topic": "Tribes of Madhya Pradesh",
+      "confidence": 0.57,
+      "reason": null
+    },
+    {
+      "id": "MPPSC-2021-057",
+      "subject": "Polity",
+      "topic": null,
+      "confidence": 0.5,
+      "reason": "topic ambiguous between Constitutional bodies and Judiciary"
+    },
+    {
+      "id": "MPPSC-2021-058",
+      "subject": "Polity",
+      "topic": null,
+      "confidence": 0.5,
+      "reason": "topic ambiguous between Constitutional bodies and Judiciary"
+    },
+    {
+      "id": "MPPSC-2021-068",
+      "subject": "Madhya Pradesh Special",
+      "topic": "Tribes of Madhya Pradesh",
+      "confidence": 0.59,
+      "reason": null
+    },
+    {
+      "id": "MPPSC-2021-075",
+      "subject": "Polity",
+      "topic": null,
+      "confidence": 0.5,
+      "reason": "topic ambiguous between Union and State Relations and Statutory and regulatory bodies"
+    },
+    {
+      "id": "MPPSC-2022-057",
+      "subject": "Polity",
+      "topic": null,
+      "confidence": 0.5,
+      "reason": "topic ambiguous between Constitution of India and Constitutional bodies"
+    },
+    {
+      "id": "MPPSC-2022-083",
+      "subject": "Geography",
+      "topic": null,
+      "confidence": 0.5,
+      "reason": "topic ambiguous between Geography of India and Physiography of Madhya Pradesh"
+    },
+    {
+      "id": "MPPSC-2022-099",
+      "subject": "Polity",
+      "topic": null,
+      "confidence": 0.5,
+      "reason": "topic ambiguous between State Government and Union Executive"
+    },
+    {
+      "id": "MPPSC-2023-019",
+      "subject": "Polity",
+      "topic": null,
+      "confidence": 0.5,
+      "reason": "topic ambiguous between State Government and Union Legislature"
+    },
+    {
+      "id": "MPPSC-2023-040",
+      "subject": "Economy",
+      "topic": null,
+      "confidence": 0.5,
+      "reason": "topic ambiguous between Banking and finance and Indian Economy"
+    },
+    {
+      "id": "MPPSC-2023-073",
+      "subject": "Geography",
+      "topic": null,
+      "confidence": 0.5,
+      "reason": "topic ambiguous between Physiography of Madhya Pradesh and Climate and soils of Madhya Pradesh"
+    },
+    {
+      "id": "MPPSC-2023-100",
+      "subject": "History",
+      "topic": null,
+      "confidence": 0.5,
+      "reason": "topic ambiguous between Medieval India and Modern India"
+    },
+    {
+      "id": "MPPSC-2024-016",
+      "subject": "Polity",
+      "topic": null,
+      "confidence": 0.5,
+      "reason": "topic ambiguous between Union Legislature and Constitution of India"
+    },
+    {
+      "id": "MPPSC-2024-023",
+      "subject": "History",
+      "topic": null,
+      "confidence": 0.5,
+      "reason": "topic ambiguous between Modern India and Medieval India"
+    },
+    {
+      "id": "MPPSC-2024-029",
+      "subject": "Polity",
+      "topic": null,
+      "confidence": 0.5,
+      "reason": "topic ambiguous between Union Executive and State Government"
+    },
+    {
+      "id": "MPPSC-2024-037",
+      "subject": "Economy",
+      "topic": null,
+      "confidence": 0.5,
+      "reason": "topic ambiguous between Indian Economy and Economy of Madhya Pradesh"
+    },
+    {
+      "id": "MPPSC-2024-082",
+      "subject": "Polity",
+      "topic": null,
+      "confidence": 0.5,
+      "reason": "topic ambiguous between Union Legislature and Union Executive"
+    },
+    {
+      "id": "MPPSC-2024-088",
+      "subject": "Polity",
+      "topic": null,
+      "confidence": 0.5,
+      "reason": "topic ambiguous between Judiciary and Statutory and regulatory bodies"
+    },
+    {
+      "id": "MPPSC-2024-093",
+      "subject": "History",
+      "topic": null,
+      "confidence": 0.5,
+      "reason": "topic ambiguous between Ancient India and Prehistory and Art"
+    },
+    {
+      "id": "MPPSC-2024-094",
+      "subject": "Environment",
+      "topic": null,
+      "confidence": 0.5,
+      "reason": "topic ambiguous between Environmental laws and institutions and Protected areas"
+    }
+  ],
+  "source_extraction": {
+    "file": "data/pyq/source/MPPSC_PYQ_Review.json",
+    "parser_version": "0.1.0",
+    "input_file": "YOUR_BOOK_columns(3).md",
+    "input_sha256": "126500ed672a6d160ffde02df7d89e08be1f800edee49f895478fd622ccccfc6",
+    "stats": {
+      "question_blocks_detected": 573,
+      "records_exported_to_intake": 571,
+      "records_excluded_pending_review": 2,
+      "records_flagged_for_review": 17,
+      "missing_stem": 0,
+      "missing_options": 1,
+      "missing_or_unparsed_answer": 9,
+      "missing_explanation": 7,
+      "deleted_question_records": 0
+    },
+    "excluded": [
+      {
+        "id": "MPPSC-2021-081",
+        "year": 2021,
+        "question_number": 81,
+        "start_page": 83,
+        "flags": [
+          "printed_answer_not_parseable",
+          "duplicate_option_key",
+          "missing_or_unparsed_answer",
+          "no_usable_options"
+        ],
+        "option_count": 8,
+        "printed_answer": null,
+        "preview": "Match List - I with List - II and select the correct answer from the codes given below: List-I List-II (National Highway) (Passes through) A. National Highway 30 i. Khajuraho B. National Highway 39 ii. Bhopal C. National"
+      },
+      {
+        "id": "MPPSC-2024-039",
+        "year": 2024,
+        "question_number": 39,
+        "start_page": 166,
+        "flags": [
+          "missing_options",
+          "no_usable_options"
+        ],
+        "option_count": 0,
+        "printed_answer": [
+          "B"
+        ],
+        "preview": "Match the following districts of Madhya Pradesh with their unique product: District Product Ashoknagar B ananas Khargone Maheshwari Sarees and Bagh Print Burhanpur Chanderi Sarees Mandsaur Garlic Choose the correct optio"
+      }
+    ],
+    "flagged": [
+      {
+        "id": "MPPSC-2019-076",
+        "year": 2019,
+        "question_number": 76,
+        "start_page": 21,
+        "flags": [
+          "missing_explanation"
+        ],
+        "option_count": 4,
+        "printed_answer": [
+          "A"
+        ],
+        "preview": "When the Court, under Section 12 of the Protection of Civil Rights Act, 1955, shall presume that the offence is committed on the ground of \"untouchability\"?"
+      },
+      {
+        "id": "MPPSC-2019-077",
+        "year": 2019,
+        "question_number": 77,
+        "start_page": 22,
+        "flags": [
+          "missing_explanation"
+        ],
+        "option_count": 4,
+        "printed_answer": [
+          "B"
+        ],
+        "preview": "If any person refuses admission to any person to any Hospital, Dispensary or Educational Institution on the ground of untouchability then under which Section of the Protection of Civil Rights Act, 1955 he shall be punish"
+      },
+      {
+        "id": "MPPSC-2019-078",
+        "year": 2019,
+        "question_number": 78,
+        "start_page": 22,
+        "flags": [
+          "missing_explanation"
+        ],
+        "option_count": 4,
+        "printed_answer": [
+          "B"
+        ],
+        "preview": "The Scheduled Castes and Scheduled Tribes (Prevention of Atrocities) Act, 1989 came into force on This Section has been edited from the syllabus"
+      },
+      {
+        "id": "MPPSC-2019-079",
+        "year": 2019,
+        "question_number": 79,
+        "start_page": 22,
+        "flags": [
+          "missing_explanation"
+        ],
+        "option_count": 4,
+        "printed_answer": [
+          "B"
+        ],
+        "preview": "Which of the following statements is incorrect? This Section has been edited from the syllabus"
+      },
+      {
+        "id": "MPPSC-2019-080",
+        "year": 2019,
+        "question_number": 80,
+        "start_page": 22,
+        "flags": [
+          "missing_explanation"
+        ],
+        "option_count": 4,
+        "printed_answer": [
+          "C"
+        ],
+        "preview": "An appeal under Scheduled Castes and Scheduled Tribes (Prevention of Atrocities) Act, 1989 shall lie from any judgment, sentence, or order to the High Court This Section has been edited from the syllabus"
+      },
+      {
+        "id": "MPPSC-2021-057",
+        "year": 2021,
+        "question_number": 57,
+        "start_page": 75,
+        "flags": [
+          "printed_answer_not_parseable",
+          "missing_or_unparsed_answer"
+        ],
+        "option_count": 4,
+        "printed_answer": null,
+        "preview": "State Chief Election Commissioner is appointed by"
+      },
+      {
+        "id": "MPPSC-2021-075",
+        "year": 2021,
+        "question_number": 75,
+        "start_page": 81,
+        "flags": [
+          "printed_answer_not_parseable",
+          "missing_or_unparsed_answer"
+        ],
+        "option_count": 4,
+        "printed_answer": null,
+        "preview": "The Development Monitoring and Evaluation Office (DMEO) was constituted on"
+      },
+      {
+        "id": "MPPSC-2021-094",
+        "year": 2021,
+        "question_number": 94,
+        "start_page": 87,
+        "flags": [
+          "missing_explanation"
+        ],
+        "option_count": 4,
+        "printed_answer": [
+          "D"
+        ],
+        "preview": "According to the Economic Survey 2020-21, real growth rate for financial year 2022 is assumed based on IMF (International Monetary Fund) estimates."
+      },
+      {
+        "id": "MPPSC-2021-095",
+        "year": 2021,
+        "question_number": 95,
+        "start_page": 87,
+        "flags": [
+          "missing_explanation"
+        ],
+        "option_count": 4,
+        "printed_answer": [
+          "C"
+        ],
+        "preview": "Mid day Meal Scheme was launched in which year?"
+      },
+      {
+        "id": "MPPSC-2022-046",
+        "year": 2022,
+        "question_number": 46,
+        "start_page": 100,
+        "flags": [
+          "printed_answer_not_parseable",
+          "missing_or_unparsed_answer"
+        ],
+        "option_count": 4,
+        "printed_answer": null,
+        "preview": "Quit India Movement was started on"
+      },
+      {
+        "id": "MPPSC-2022-059",
+        "year": 2022,
+        "question_number": 59,
+        "start_page": 104,
+        "flags": [
+          "printed_answer_not_parseable",
+          "missing_or_unparsed_answer"
+        ],
+        "option_count": 4,
+        "printed_answer": null,
+        "preview": "When did the Madhya Pradesh State Election Commission come into existence?"
+      },
+      {
+        "id": "MPPSC-2023-026",
+        "year": 2023,
+        "question_number": 26,
+        "start_page": 125,
+        "flags": [
+          "printed_answer_not_parseable",
+          "missing_or_unparsed_answer"
+        ],
+        "option_count": 4,
+        "printed_answer": null,
+        "preview": "Which of the following rights is not under the purview of the National Human Rights Commission?"
+      },
+      {
+        "id": "MPPSC-2024-021",
+        "year": 2024,
+        "question_number": 21,
+        "start_page": 160,
+        "flags": [
+          "printed_answer_not_parseable",
+          "missing_or_unparsed_answer"
+        ],
+        "option_count": 4,
+        "printed_answer": null,
+        "preview": "Bhimma tribe lives in which of the districts of Madhya Pradesh ?"
+      },
+      {
+        "id": "MPPSC-2024-028",
+        "year": 2024,
+        "question_number": 28,
+        "start_page": 162,
+        "flags": [
+          "printed_answer_not_parseable",
+          "missing_or_unparsed_answer"
+        ],
+        "option_count": 4,
+        "printed_answer": null,
+        "preview": "Which award is given for writings on the cultural tradition and specialties of tribal life in Indian literature?"
+      },
+      {
+        "id": "MPPSC-2024-079",
+        "year": 2024,
+        "question_number": 79,
+        "start_page": 183,
+        "flags": [
+          "printed_answer_not_parseable",
+          "missing_or_unparsed_answer"
+        ],
+        "option_count": 4,
+        "printed_answer": null,
+        "preview": "Arrange the following mountain peaks, in ascending order, according to their height: (i) Guru Shikhar (ii) Mahendragiri (iii) Anaimudi (iv) Panchmarhi"
+      }
+    ],
+    "numbering_gaps": {
+      "2019": [
+        44,
+        47,
+        61,
+        75,
+        98
+      ],
+      "2020": [
+        9,
+        33,
+        77,
+        78,
+        96
+      ],
+      "2021": [
+        64,
+        76,
+        80,
+        82,
+        85
+      ],
+      "2022": [
+        4,
+        19,
+        84
+      ],
+      "2023": [
+        2,
+        47,
+        53,
+        58,
+        60
+      ],
+      "2024": [
+        19,
+        73,
+        81,
+        91
+      ]
+    },
+    "notes": [
+      "This is structural parsing only, not answer verification.",
+      "Question numbering may reset each year; IDs include the detected year.",
+      "Numbering gaps are listed per year. They may indicate deleted questions, extraction gaps, or question starts that need manual review; do not assume they are absent from the source without checking.",
+      "The source book can contain errors; supplied answers are marked unofficial.",
+      "Review all flagged records and run MyMPPSC's own bank builder/validator before import."
+    ]
+  },
+  "ai_merge": null,
+  "integrity": {
+    "missing_language_variant": [],
+    "fewer_than_two_options": [],
+    "empty_option_text": [],
+    "invalid_answer_reference": [],
+    "duplicate_option_key": [],
+    "multi_answer_on_single_correct": [],
+    "missing_question_number": [],
+    "disputed_keys": [],
+    "verified_differs_from_supplied": [],
+    "unreviewed_explanations": 564,
+    "without_explanation": 7,
+    "duplicate_ids_in_source": [],
+    "unmapped_source_keys": [],
+    "adapter_notes": [
+      {
+        "index": 246,
+        "id": "MPPSC-2021-057",
+        "problem": "MPPSC-2021-057: no usable printed answer; the question stays without a key"
+      },
+      {
+        "index": 263,
+        "id": "MPPSC-2021-075",
+        "problem": "MPPSC-2021-075: no usable printed answer; the question stays without a key"
+      },
+      {
+        "index": 327,
+        "id": "MPPSC-2022-046",
+        "problem": "MPPSC-2022-046: no usable printed answer; the question stays without a key"
+      },
+      {
+        "index": 340,
+        "id": "MPPSC-2022-059",
+        "problem": "MPPSC-2022-059: no usable printed answer; the question stays without a key"
+      },
+      {
+        "index": 405,
+        "id": "MPPSC-2023-026",
+        "problem": "MPPSC-2023-026: no usable printed answer; the question stays without a key"
+      },
+      {
+        "index": 495,
+        "id": "MPPSC-2024-021",
+        "problem": "MPPSC-2024-021: no usable printed answer; the question stays without a key"
+      },
+      {
+        "index": 502,
+        "id": "MPPSC-2024-028",
+        "problem": "MPPSC-2024-028: no usable printed answer; the question stays without a key"
+      },
+      {
+        "index": 551,
+        "id": "MPPSC-2024-079",
+        "problem": "MPPSC-2024-079: no usable printed answer; the question stays without a key"
+      }
+    ],
+    "rejected_records": []
+  },
+  "preserved": {
+    "statement": "No source record was deleted, rewritten or merged to produce this bank. Question text, options, printed answers, explanations, years, papers and source references are carried over verbatim; classification fields and review metadata are the only additions. Where two records look alike both are kept and flagged here instead of being merged.",
+    "questions_kept": 571,
+    "review_flags_added": 500
+  }
+}

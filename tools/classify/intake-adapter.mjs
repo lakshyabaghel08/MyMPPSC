@@ -38,6 +38,56 @@ export const FIELD_ALIASES = Object.freeze({
   language: ['language', 'lang'],
 });
 
+/**
+ * Normalise the source parser's own review file (for example the bundle's
+ * `MPPSC_PYQ_Review.json`) so the review report can carry the extraction's own
+ * caveats next to ours.
+ *
+ * This never touches a question. It only surfaces what the parser said: how
+ * many blocks it saw, which records it refused to export and why, and where the
+ * numbering has gaps. Those are the things a reader must know before believing
+ * that the bank is the whole book.
+ *
+ * @param {object} raw parsed review file
+ * @param {{file?: string}} opts
+ * @returns {object|null} null when the file is not a recognisable review report
+ */
+export function normaliseSourceReview(raw, opts = {}) {
+  if (!raw || typeof raw !== 'object' || !Array.isArray(raw.records)) return null;
+  const stats = raw.stats && typeof raw.stats === 'object' ? raw.stats : {};
+  const pick = (r) => ({
+    id: r.id ?? null,
+    year: r.year ?? null,
+    question_number: r.question_number ?? null,
+    start_page: r.start_page ?? null,
+    flags: Array.isArray(r.flags) ? r.flags : [],
+    option_count: Number.isFinite(r.option_count) ? r.option_count : null,
+    printed_answer: r.printed_answer ?? null,
+    preview: typeof r.question_preview === 'string' ? r.question_preview.slice(0, 220) : null,
+  });
+  return {
+    file: opts.file || null,
+    parser_version: raw.parser_version ?? null,
+    input_file: raw.input_file ?? null,
+    input_sha256: raw.input_sha256 ?? null,
+    stats: {
+      question_blocks_detected: stats.question_blocks_detected ?? raw.records.length,
+      records_exported_to_intake: stats.records_exported_to_intake ?? null,
+      records_excluded_pending_review: stats.records_excluded_pending_review ?? null,
+      records_flagged_for_review: stats.records_flagged_for_review ?? null,
+      missing_stem: stats.missing_stem ?? null,
+      missing_options: stats.missing_options ?? null,
+      missing_or_unparsed_answer: stats.missing_or_unparsed_answer ?? null,
+      missing_explanation: stats.missing_explanation ?? null,
+      deleted_question_records: stats.deleted_question_records ?? 0,
+    },
+    excluded: raw.records.filter((r) => r && r.excluded_from_intake).map(pick),
+    flagged: raw.records.filter((r) => r && Array.isArray(r.flags) && r.flags.length && !r.excluded_from_intake).map(pick),
+    numbering_gaps: raw.numbering_gaps_by_year && typeof raw.numbering_gaps_by_year === 'object' ? raw.numbering_gaps_by_year : {},
+    notes: Array.isArray(raw.important) ? raw.important.map(String) : [],
+  };
+}
+
 /** Keys consumed by the adapter, used to report anything left over. */
 export const KNOWN_SOURCE_KEYS = new Set([
   ...Object.values(FIELD_ALIASES).flat(),

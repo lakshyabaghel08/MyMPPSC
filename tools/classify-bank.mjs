@@ -27,7 +27,7 @@ import { buildBankFromIntake } from './build-bank.mjs';
 import { validateBank } from '../js/core/validate.js';
 import { loadTaxonomy, subjectNames, reconcile, TAXONOMY_PATH } from './classify/taxonomy.mjs';
 import { RULES, classifyWithRules, validateRules, CLASSIFICATION_SOURCE_RULES } from './classify/rules.mjs';
-import { adaptIntake } from './classify/intake-adapter.mjs';
+import { adaptIntake, normaliseSourceReview } from './classify/intake-adapter.mjs';
 import { buildAiQueue, renderAiQueueJsonl, renderAiTaxonomy, parseLabels, applyAiLabels } from './classify/ai-queue.mjs';
 import {
   buildClassificationReport,
@@ -317,6 +317,7 @@ export async function runPipeline(source, opts = {}) {
       unmappedKeys: adapted.unmappedKeys,
       recordIssues: adapted.recordIssues,
       aiSummary,
+      sourceAudit: opts.sourceAudit || null,
     },
   );
 
@@ -348,6 +349,10 @@ Options:
   --reports <dir>      where to write classification-report and review-report (default: <out> directory)
   --ai-queue <file>    where to write the resumable AI queue (default: <reports>/ai-queue.jsonl)
   --apply-ai <file>    merge provider labels from this JSONL/JSON file before building
+  --source-review <f>  the source parser's own review file; its findings (records it
+                       refused to export, numbering gaps) are carried into the review
+                       report. Default: MPPSC_PYQ_Review.json next to --in, if present
+  --no-source-review   do not look for that file
   --ai-provider <name> provider name recorded on merged labels (default: from MYMPPSC_AI_PROVIDER)
   --ai-model <name>    model name recorded on merged labels (default: from MYMPPSC_AI_MODEL)
   --overwrite-source   let provider labels replace a classification the source file supplied
@@ -371,7 +376,28 @@ async function main() {
   const reportsDir = resolve(parsed.values.reports || path.dirname(outPath));
   const aiQueuePath = resolve(parsed.values['ai-queue'] || path.join(reportsDir, 'ai-queue.jsonl'));
 
+  // The source parser ships its own review file. When it is there, its caveats
+  // belong in our review report: they are the difference between "571 questions"
+  // and "571 of the 573 blocks the parser found".
+  let sourceAudit = null;
+  if (!parsed.flags.has('no-source-review')) {
+    const reviewPath = parsed.values['source-review']
+      ? resolve(parsed.values['source-review'])
+      : path.join(path.dirname(resolve(parsed.values.in)), 'MPPSC_PYQ_Review.json');
+    try {
+      sourceAudit = normaliseSourceReview(JSON.parse(await readFile(reviewPath, 'utf8')), {
+        file: path.relative(root, reviewPath) || path.basename(reviewPath),
+      });
+    } catch {
+      sourceAudit = null; // no review file, or not one we recognise — not an error
+    }
+    if (parsed.values['source-review'] && !sourceAudit) {
+      console.error(`--source-review: ${parsed.values['source-review']} is not a recognised review file; continuing without it.`);
+    }
+  }
+
   const result = await runPipeline(source, {
+    sourceAudit,
     bankId: parsed.values['bank-id'],
     bankName: parsed.values['bank-name'],
     aiLabels: parsed.values['apply-ai'] ? await readFile(resolve(parsed.values['apply-ai']), 'utf8') : null,
@@ -396,6 +422,11 @@ async function main() {
   console.log(`missing answer keys: ${reviewReport.totals.missing_answer_keys}`);
   console.log(`near-duplicate pair: ${reviewReport.totals.near_duplicate_pairs}`);
   console.log(`AI queue           : ${aiQueue.length}`);
+  if (sourceAudit) {
+    console.log(
+      `source parser      : ${sourceAudit.stats.question_blocks_detected} block(s) detected, ${sourceAudit.excluded.length} NOT exported, ${sourceAudit.flagged.length} flagged (${sourceAudit.file})`,
+    );
+  }
   if (aiSummary) {
     console.log(
       `AI labels merged   : ${aiSummary.applied.length} applied, ${aiSummary.preserved.length} preserved, ${aiSummary.rejected.length} rejected, ${aiSummary.malformed.length} malformed`,
