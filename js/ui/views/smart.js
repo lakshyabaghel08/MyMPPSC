@@ -84,6 +84,25 @@ export default {
       ${sectionHead({ title: 'How this session will be built', kicker: 'Plan', meta: `${plan.questionIds.length} question(s) selected`, actions: sourceChip('derived', `${plan.questionIds.length} picked`) })}
       ${card({
         body: `
+          ${
+            plan.questionIds.length
+              ? `<div class="alloc-bar" role="img" aria-label="${esc(
+                  SMART_BUCKETS.filter((b) => (plan.allocation[b.id] || 0) > 0)
+                    .map((b) => `${plan.allocation[b.id]} from ${b.label.toLowerCase()}`)
+                    .join(', ') || 'No questions could be allocated',
+                )}">
+                  ${SMART_BUCKETS.filter((b) => (plan.allocation[b.id] || 0) > 0)
+                    .map((b) => `<span class="alloc-seg" data-alloc-seg="${esc(b.id)}" data-alloc-value="${esc(String(plan.allocation[b.id] || 0))}"></span>`)
+                    .join('')}
+                </div>
+                <div class="alloc-legend">
+                  ${SMART_BUCKETS.filter((b) => (plan.allocation[b.id] || 0) > 0)
+                    .map((b) => `<span><i></i>${esc(b.label)} · ${esc(String(plan.allocation[b.id] || 0))}</span>`)
+                    .join('')}
+                </div>`
+              : ''
+          }
+
           <div class="split-2 relaxed">
             <div>${dataTable({ columns: [{ label: 'Source of questions' }, { label: 'Available', num: true }, { label: 'In this session', num: true }, { label: 'Why' }], rows: bucketRows, className: 'compact' })}</div>
             <div class="ring-panel">
@@ -122,6 +141,11 @@ export default {
   },
 
   async mount(ctx) {
+    const allocTotal = [...document.querySelectorAll('[data-alloc-value]')].reduce((a, el) => a + (Number(el.dataset.allocValue) || 0), 0) || 1;
+    document.querySelectorAll('[data-alloc-seg]').forEach((el) => {
+      el.style.setProperty('--alloc-w', String(((Number(el.dataset.allocValue) || 0) / allocTotal) * 100));
+    });
+
     mountConfigFields({
       defaultCount: viewState.count,
       onCountChange: async (n) => {
