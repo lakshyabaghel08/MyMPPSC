@@ -1,0 +1,1263 @@
+{
+  "taxonomy_version": "1.0.1",
+  "description": "Closed vocabulary for the AI classification queue. A response that does not match one of these combinations exactly is rejected at merge time, never stored.",
+  "combinations": [
+    "History > Prehistory and Art > Rock shelters",
+    "History > Prehistory and Art > Prehistoric tools",
+    "History > Prehistory and Art > Bhimbetka",
+    "History > Prehistory and Art > Megalithic culture",
+    "History > Prehistory and Art > Harappan art",
+    "History > Ancient India > Indus Valley Civilisation",
+    "History > Ancient India > Vedic age",
+    "History > Ancient India > Buddhism and Jainism",
+    "History > Ancient India > Mauryan empire",
+    "History > Ancient India > Post-Mauryan period",
+    "History > Ancient India > Gupta period",
+    "History > Ancient India > Harshavardhana",
+    "History > Ancient India > Sangam age",
+    "History > Ancient India > Ancient science and literature",
+    "History > Ancient India > Mauryan art and architecture",
+    "History > Medieval India > Delhi Sultanate",
+    "History > Medieval India > Mughal empire",
+    "History > Medieval India > Vijayanagara and Bahmani",
+    "History > Medieval India > Maratha empire",
+    "History > Medieval India > Rajput states",
+    "History > Medieval India > Bhakti and Sufi movements",
+    "History > Medieval India > Medieval art and architecture",
+    "History > Medieval India > Medieval administration and revenue",
+    "History > Modern India > British conquest and consolidation",
+    "History > Modern India > Revolt of 1857",
+    "History > Modern India > Socio-religious reform movements",
+    "History > Modern India > Indian National Congress",
+    "History > Modern India > Gandhian movements",
+    "History > Modern India > Revolutionary movements",
+    "History > Modern India > Governor Generals and Viceroys",
+    "History > Modern India > Acts and constitutional development",
+    "History > Modern India > Partition and independence",
+    "History > World History > French Revolution",
+    "History > World History > American Revolution",
+    "History > World History > Russian Revolution",
+    "History > World History > Industrial Revolution",
+    "History > World History > World wars",
+    "History > World History > Renaissance and Enlightenment",
+    "History > World History > Chinese history",
+    "History > Art and architecture > Temple architecture",
+    "History > Art and architecture > Indo-Islamic architecture",
+    "History > Art and architecture > Cave and rock-cut architecture",
+    "History > Art and architecture > Painting schools",
+    "History > Art and architecture > Sculpture schools",
+    "History > Art and architecture > Dance and music traditions",
+    "History > Art and architecture > UNESCO listings",
+    "History > History of Madhya Pradesh > Mahajanapadas in Madhya Pradesh",
+    "History > History of Madhya Pradesh > Paramara dynasty",
+    "History > History of Madhya Pradesh > Chandela dynasty",
+    "History > History of Madhya Pradesh > Bundela and Baghelkhand",
+    "History > History of Madhya Pradesh > Maratha rule in Madhya Pradesh",
+    "History > History of Madhya Pradesh > Holkar and Scindia",
+    "History > History of Madhya Pradesh > Princely states and agencies",
+    "History > History of Madhya Pradesh > Revolt of 1857 in Madhya Pradesh",
+    "History > History of Madhya Pradesh > Freedom struggle in Madhya Pradesh",
+    "Polity > Constitution of India > Preamble",
+    "Polity > Constitution of India > Fundamental Rights",
+    "Polity > Constitution of India > Directive Principles",
+    "Polity > Constitution of India > Fundamental Duties",
+    "Polity > Constitution of India > Constitutional amendments",
+    "Polity > Constitution of India > Schedules of the Constitution",
+    "Polity > Constitution of India > Basic structure",
+    "Polity > Constitution of India > Making of the Constitution",
+    "Polity > Union Executive > President of India",
+    "Polity > Union Executive > Vice President",
+    "Polity > Union Executive > Prime Minister and Council of Ministers",
+    "Polity > Union Executive > Attorney General",
+    "Polity > Union Legislature > Parliament",
+    "Polity > Union Legislature > Lok Sabha",
+    "Polity > Union Legislature > Rajya Sabha",
+    "Polity > Union Legislature > Parliamentary committees",
+    "Polity > Union Legislature > Legislative procedure",
+    "Polity > Union Legislature > Parliamentary privileges",
+    "Polity > Judiciary > Supreme Court",
+    "Polity > Judiciary > High Courts",
+    "Polity > Judiciary > Subordinate courts",
+    "Polity > Judiciary > Writs",
+    "Polity > Judiciary > Judicial review",
+    "Polity > Judiciary > Public Interest Litigation",
+    "Polity > Judiciary > Contempt of court",
+    "Polity > State Government > Governor",
+    "Polity > State Government > Chief Minister and State Council of Ministers",
+    "Polity > State Government > State Legislature",
+    "Polity > State Government > Advocate General",
+    "Polity > State Government > State Public Service Commission",
+    "Polity > Union and State Relations > Emergency provisions",
+    "Polity > Union and State Relations > Distribution of legislative powers",
+    "Polity > Union and State Relations > Distribution of financial resources",
+    "Polity > Union and State Relations > Inter-State Council",
+    "Polity > Union and State Relations > Finance Commission",
+    "Polity > Union and State Relations > GST Council",
+    "Polity > Constitutional bodies > Election Commission of India",
+    "Polity > Constitutional bodies > Comptroller and Auditor General",
+    "Polity > Constitutional bodies > Union Public Service Commission",
+    "Polity > Constitutional bodies > Finance Commission",
+    "Polity > Constitutional bodies > National Commission for SCs and STs",
+    "Polity > Constitutional bodies > Special Officer for Linguistic Minorities",
+    "Polity > Statutory and regulatory bodies > Lokpal and Lokayukta",
+    "Polity > Statutory and regulatory bodies > National Human Rights Commission",
+    "Polity > Statutory and regulatory bodies > NITI Aayog",
+    "Polity > Statutory and regulatory bodies > Central Information Commission",
+    "Polity > Statutory and regulatory bodies > National Commission for Women",
+    "Polity > Statutory and regulatory bodies > Central Vigilance Commission",
+    "Polity > Local self-government > Panchayati Raj",
+    "Polity > Local self-government > Urban local bodies",
+    "Polity > Local self-government > 73rd Constitutional Amendment",
+    "Polity > Local self-government > 74th Constitutional Amendment",
+    "Polity > Local self-government > PESA Act",
+    "Polity > Local self-government > Local bodies in Madhya Pradesh",
+    "Polity > Citizenship and civil rights > Citizenship",
+    "Polity > Citizenship and civil rights > Right to Information",
+    "Polity > Citizenship and civil rights > Right to Education",
+    "Polity > Citizenship and civil rights > Right to Food",
+    "Polity > Citizenship and civil rights > Protection of minorities",
+    "Geography > Physical Geography > Interior of the Earth",
+    "Geography > Physical Geography > Rocks and minerals",
+    "Geography > Physical Geography > Landforms and their evolution",
+    "Geography > Physical Geography > Latitude and longitude",
+    "Geography > Physical Geography > Atmosphere and weather",
+    "Geography > Physical Geography > Climatology",
+    "Geography > Physical Geography > Oceanography",
+    "Geography > Physical Geography > Earthquakes and volcanoes",
+    "Geography > Geography of India > Physiography of India",
+    "Geography > Geography of India > Rivers of India",
+    "Geography > Geography of India > Climate of India",
+    "Geography > Geography of India > Soils of India",
+    "Geography > Geography of India > Natural vegetation of India",
+    "Geography > Geography of India > Agriculture in India",
+    "Geography > Geography of India > Mineral resources of India",
+    "Geography > Geography of India > Transport in India",
+    "Geography > Geography of India > Population of India",
+    "Geography > Geography of India > Lakes and wetlands",
+    "Geography > Rivers of Madhya Pradesh > Narmada basin",
+    "Geography > Rivers of Madhya Pradesh > Tapti basin",
+    "Geography > Rivers of Madhya Pradesh > Chambal basin",
+    "Geography > Rivers of Madhya Pradesh > Betwa basin",
+    "Geography > Rivers of Madhya Pradesh > Son basin",
+    "Geography > Rivers of Madhya Pradesh > Tributaries",
+    "Geography > Rivers of Madhya Pradesh > Dams and reservoirs",
+    "Geography > Rivers of Madhya Pradesh > Lakes and waterfalls",
+    "Geography > Rivers of Madhya Pradesh > Interlinking of rivers",
+    "Geography > Physiography of Madhya Pradesh > Satpura range",
+    "Geography > Physiography of Madhya Pradesh > Vindhyan range",
+    "Geography > Physiography of Madhya Pradesh > Malwa plateau",
+    "Geography > Physiography of Madhya Pradesh > Bundelkhand plateau",
+    "Geography > Physiography of Madhya Pradesh > Baghelkhand plateau",
+    "Geography > Physiography of Madhya Pradesh > Narmada valley",
+    "Geography > Physiography of Madhya Pradesh > Drainage systems",
+    "Geography > Physiography of Madhya Pradesh > Peaks and passes",
+    "Geography > Physiography of Madhya Pradesh > Location",
+    "Geography > Climate and soils of Madhya Pradesh > Monsoon in Madhya Pradesh",
+    "Geography > Climate and soils of Madhya Pradesh > Rainfall distribution",
+    "Geography > Climate and soils of Madhya Pradesh > Soil types",
+    "Geography > Climate and soils of Madhya Pradesh > Drought prone areas",
+    "Geography > Climate and soils of Madhya Pradesh > Cropping patterns",
+    "Geography > World Geography > Continents and oceans",
+    "Geography > World Geography > Major landforms",
+    "Geography > World Geography > International boundaries",
+    "Geography > World Geography > Deserts of the world",
+    "Geography > World Geography > Straits and isthmuses",
+    "Geography > World Geography > Grasslands of the world",
+    "Geography > World Geography > Important ports",
+    "Geography > Maps and location > Location",
+    "Geography > Maps and location > Boundaries and neighbours",
+    "Geography > Maps and location > States and capitals",
+    "Geography > Maps and location > Time zones",
+    "Geography > Maps and location > Cartography",
+    "Geography > Economic and human geography > Energy resources",
+    "Geography > Economic and human geography > Industries",
+    "Geography > Economic and human geography > Urbanisation",
+    "Geography > Economic and human geography > Migration",
+    "Geography > Economic and human geography > Tribes of India",
+    "Geography > Economic and human geography > Human settlement",
+    "Environment > Ecology and biodiversity > Ecosystem",
+    "Environment > Ecology and biodiversity > Food chain and food web",
+    "Environment > Ecology and biodiversity > Biodiversity",
+    "Environment > Ecology and biodiversity > Ecological pyramids",
+    "Environment > Ecology and biodiversity > Species status",
+    "Environment > Ecology and biodiversity > Ecological succession",
+    "Environment > Protected areas > National parks",
+    "Environment > Protected areas > Wildlife sanctuaries",
+    "Environment > Protected areas > Biosphere reserves",
+    "Environment > Protected areas > Tiger reserves",
+    "Environment > Protected areas > Bird sanctuaries",
+    "Environment > Protected areas > Ramsar sites",
+    "Environment > Protected areas > UNESCO listings",
+    "Environment > Wildlife of Madhya Pradesh > State animal and bird",
+    "Environment > Wildlife of Madhya Pradesh > Tigers of Madhya Pradesh",
+    "Environment > Wildlife of Madhya Pradesh > Birds of Madhya Pradesh",
+    "Environment > Wildlife of Madhya Pradesh > National parks",
+    "Environment > Wildlife of Madhya Pradesh > Wildlife sanctuaries",
+    "Environment > Wildlife of Madhya Pradesh > Biosphere reserves",
+    "Environment > Wildlife of Madhya Pradesh > Crocodile and gharial conservation",
+    "Environment > Forests of Madhya Pradesh > Forest types",
+    "Environment > Forests of Madhya Pradesh > Forest cover",
+    "Environment > Forests of Madhya Pradesh > Minor forest produce",
+    "Environment > Forests of Madhya Pradesh > Joint forest management",
+    "Environment > Forests of Madhya Pradesh > Forest research institutes",
+    "Environment > Pollution and climate change > Greenhouse gases",
+    "Environment > Pollution and climate change > Global warming",
+    "Environment > Pollution and climate change > Ozone depletion",
+    "Environment > Pollution and climate change > Air pollution",
+    "Environment > Pollution and climate change > Water pollution",
+    "Environment > Pollution and climate change > Solid waste management",
+    "Environment > Pollution and climate change > Noise pollution",
+    "Environment > Environmental laws and institutions > Wildlife Protection Act",
+    "Environment > Environmental laws and institutions > Environment Protection Act",
+    "Environment > Environmental laws and institutions > National Green Tribunal",
+    "Environment > Environmental laws and institutions > Forest Rights Act",
+    "Environment > Environmental laws and institutions > Central Pollution Control Board",
+    "Environment > Environmental laws and institutions > Air and Water Acts",
+    "Environment > Conservation initiatives > Project Tiger",
+    "Environment > Conservation initiatives > Project Elephant",
+    "Environment > Conservation initiatives > Ramsar Convention",
+    "Environment > Conservation initiatives > IUCN Red List",
+    "Environment > Conservation initiatives > Convention on Biological Diversity",
+    "Environment > Conservation initiatives > CITES",
+    "Environment > Conservation initiatives > Montreal Protocol",
+    "Environment > Conservation initiatives > Paris Agreement",
+    "Economy > Indian Economy > Planning in India",
+    "Economy > Indian Economy > NITI Aayog",
+    "Economy > Indian Economy > National income",
+    "Economy > Indian Economy > GDP and GNP",
+    "Economy > Indian Economy > Inflation",
+    "Economy > Indian Economy > Economic reforms of 1991",
+    "Economy > Indian Economy > Public sector undertakings",
+    "Economy > Indian Economy > Disinvestment",
+    "Economy > Banking and finance > Reserve Bank of India",
+    "Economy > Banking and finance > Monetary policy",
+    "Economy > Banking and finance > Commercial banks",
+    "Economy > Banking and finance > NABARD and SIDBI",
+    "Economy > Banking and finance > SEBI and capital markets",
+    "Economy > Banking and finance > Non-banking finance companies",
+    "Economy > Banking and finance > Self help groups",
+    "Economy > Banking and finance > Financial inclusion",
+    "Economy > Budget and taxation > Union Budget",
+    "Economy > Budget and taxation > Fiscal policy",
+    "Economy > Budget and taxation > Fiscal deficit",
+    "Economy > Budget and taxation > Direct taxes",
+    "Economy > Budget and taxation > Indirect taxes",
+    "Economy > Budget and taxation > Goods and Services Tax",
+    "Economy > Budget and taxation > Tax reforms",
+    "Economy > Agriculture and rural economy > Cropping patterns",
+    "Economy > Agriculture and rural economy > Green Revolution",
+    "Economy > Agriculture and rural economy > Minimum support price",
+    "Economy > Agriculture and rural economy > Irrigation",
+    "Economy > Agriculture and rural economy > Rural employment programmes",
+    "Economy > Agriculture and rural economy > Agricultural credit and insurance",
+    "Economy > Agriculture and rural economy > Food processing",
+    "Economy > Agriculture and rural economy > Agricultural revolutions",
+    "Economy > Industry and infrastructure > Industrial policy",
+    "Economy > Industry and infrastructure > Core industries",
+    "Economy > Industry and infrastructure > Energy sector",
+    "Economy > Industry and infrastructure > Transport infrastructure",
+    "Economy > Industry and infrastructure > Micro small and medium enterprises",
+    "Economy > Industry and infrastructure > Special Economic Zones",
+    "Economy > Poverty and human development > Poverty estimation",
+    "Economy > Poverty and human development > Unemployment",
+    "Economy > Poverty and human development > Inequality indices",
+    "Economy > Poverty and human development > Human Development Index",
+    "Economy > Poverty and human development > Sustainable Development Goals",
+    "Economy > Poverty and human development > Inclusive growth",
+    "Economy > International economy > World Trade Organization",
+    "Economy > International economy > International Monetary Fund",
+    "Economy > International economy > World Bank Group",
+    "Economy > International economy > Balance of payments",
+    "Economy > International economy > Foreign exchange reserves",
+    "Economy > International economy > Trade agreements",
+    "Economy > International economy > Foreign direct investment",
+    "Economy > Economy of Madhya Pradesh > Madhya Pradesh Budget",
+    "Economy > Economy of Madhya Pradesh > Agriculture of Madhya Pradesh",
+    "Economy > Economy of Madhya Pradesh > Industry of Madhya Pradesh",
+    "Economy > Economy of Madhya Pradesh > Minerals of Madhya Pradesh",
+    "Economy > Economy of Madhya Pradesh > Irrigation projects of Madhya Pradesh",
+    "Economy > Economy of Madhya Pradesh > State welfare schemes",
+    "Economy > Economy of Madhya Pradesh > State fiscal indicators",
+    "Science and Technology > Physics > Units and measurements",
+    "Science and Technology > Physics > Motion and force",
+    "Science and Technology > Physics > Work energy and power",
+    "Science and Technology > Physics > Gravitation",
+    "Science and Technology > Physics > Sound",
+    "Science and Technology > Physics > Light and optics",
+    "Science and Technology > Physics > Heat and thermodynamics",
+    "Science and Technology > Physics > Electricity and magnetism",
+    "Science and Technology > Physics > Modern physics",
+    "Science and Technology > Chemistry > Atomic structure",
+    "Science and Technology > Chemistry > Periodic table",
+    "Science and Technology > Chemistry > Acids bases and salts",
+    "Science and Technology > Chemistry > Metals and non-metals",
+    "Science and Technology > Chemistry > Carbon compounds",
+    "Science and Technology > Chemistry > Chemical reactions",
+    "Science and Technology > Chemistry > Chemistry in everyday life",
+    "Science and Technology > Chemistry > Alloys and mixtures",
+    "Science and Technology > Biology > Cell biology",
+    "Science and Technology > Biology > Human digestive system",
+    "Science and Technology > Biology > Human respiratory system",
+    "Science and Technology > Biology > Human circulatory system",
+    "Science and Technology > Biology > Human nervous system",
+    "Science and Technology > Biology > Human skeletal system",
+    "Science and Technology > Biology > Nutrition and vitamins",
+    "Science and Technology > Biology > Genetics",
+    "Science and Technology > Biology > Plant physiology",
+    "Science and Technology > Biology > Photosynthesis",
+    "Science and Technology > Biology > Hormones and glands",
+    "Science and Technology > Biology > Human excretory system",
+    "Science and Technology > Health and diseases > Communicable diseases",
+    "Science and Technology > Health and diseases > Non-communicable diseases",
+    "Science and Technology > Health and diseases > Vaccination",
+    "Science and Technology > Health and diseases > Epidemics and pandemics",
+    "Science and Technology > Health and diseases > Public health programmes",
+    "Science and Technology > Health and diseases > Vector borne diseases",
+    "Science and Technology > Science and technology developments > Space programme",
+    "Science and Technology > Science and technology developments > ISRO missions",
+    "Science and Technology > Science and technology developments > Defence technology",
+    "Science and Technology > Science and technology developments > Missiles",
+    "Science and Technology > Science and technology developments > Nuclear technology",
+    "Science and Technology > Science and technology developments > Biotechnology",
+    "Science and Technology > Science and technology developments > Information technology",
+    "Science and Technology > Science and technology developments > Nanotechnology",
+    "Science and Technology > Science and technology developments > Research institutes",
+    "Art and Culture > Festivals and fairs > Festivals of India",
+    "Art and Culture > Festivals and fairs > Fairs of Madhya Pradesh",
+    "Art and Culture > Festivals and fairs > Tribal festivals",
+    "Art and Culture > Festivals and fairs > Simhastha",
+    "Art and Culture > Festivals and fairs > Harvest festivals",
+    "Art and Culture > Dance and music > Classical dances",
+    "Art and Culture > Dance and music > Folk dances of Madhya Pradesh",
+    "Art and Culture > Dance and music > Classical music",
+    "Art and Culture > Dance and music > Musical instruments",
+    "Art and Culture > Dance and music > Music gharanas",
+    "Art and Culture > Dance and music > Tansen and Maihar",
+    "Art and Culture > Literature and languages > Sanskrit literature",
+    "Art and Culture > Literature and languages > Hindi literature",
+    "Art and Culture > Literature and languages > Urdu and Persian literature",
+    "Art and Culture > Literature and languages > Literature of Madhya Pradesh",
+    "Art and Culture > Literature and languages > Books and authors",
+    "Art and Culture > Literature and languages > Official languages",
+    "Art and Culture > Paintings and sculpture > Cave paintings",
+    "Art and Culture > Paintings and sculpture > Miniature painting schools",
+    "Art and Culture > Paintings and sculpture > Modern Indian painters",
+    "Art and Culture > Paintings and sculpture > Sculpture schools",
+    "Art and Culture > Paintings and sculpture > Tribal art",
+    "Art and Culture > Paintings and sculpture > Handicrafts",
+    "Art and Culture > Heritage Sites > Temples of Madhya Pradesh",
+    "Art and Culture > Heritage Sites > Khajuraho group",
+    "Art and Culture > Heritage Sites > Sanchi",
+    "Art and Culture > Heritage Sites > Gwalior Fort",
+    "Art and Culture > Heritage Sites > Jyotirlingas",
+    "Art and Culture > Heritage Sites > UNESCO listings",
+    "Art and Culture > Heritage Sites > Forts and palaces",
+    "Art and Culture > Heritage Sites > Buddhist monuments",
+    "Art and Culture > Culture of Madhya Pradesh > Folk art of Madhya Pradesh",
+    "Art and Culture > Culture of Madhya Pradesh > Handicrafts of Madhya Pradesh",
+    "Art and Culture > Culture of Madhya Pradesh > State symbols",
+    "Art and Culture > Culture of Madhya Pradesh > Cuisine and dress",
+    "Art and Culture > Culture of Madhya Pradesh > Cultural institutions of Madhya Pradesh",
+    "Madhya Pradesh Special > Formation of Madhya Pradesh > State reorganisation",
+    "Madhya Pradesh Special > Formation of Madhya Pradesh > Chief Ministers",
+    "Madhya Pradesh Special > Formation of Madhya Pradesh > Governors of Madhya Pradesh",
+    "Madhya Pradesh Special > Formation of Madhya Pradesh > State symbols",
+    "Madhya Pradesh Special > Formation of Madhya Pradesh > Capital of Madhya Pradesh",
+    "Madhya Pradesh Special > Formation of Madhya Pradesh > States Reorganisation Act 1956",
+    "Madhya Pradesh Special > Tribes of Madhya Pradesh > Bhil",
+    "Madhya Pradesh Special > Tribes of Madhya Pradesh > Gond",
+    "Madhya Pradesh Special > Tribes of Madhya Pradesh > Baiga",
+    "Madhya Pradesh Special > Tribes of Madhya Pradesh > Sahariya",
+    "Madhya Pradesh Special > Tribes of Madhya Pradesh > Korku",
+    "Madhya Pradesh Special > Tribes of Madhya Pradesh > Kol and other tribes",
+    "Madhya Pradesh Special > Tribes of Madhya Pradesh > Particularly vulnerable tribal groups",
+    "Madhya Pradesh Special > Tribes of Madhya Pradesh > Tribal culture",
+    "Madhya Pradesh Special > Demography of Madhya Pradesh > Census 2011",
+    "Madhya Pradesh Special > Demography of Madhya Pradesh > Census data",
+    "Madhya Pradesh Special > Demography of Madhya Pradesh > Population density",
+    "Madhya Pradesh Special > Demography of Madhya Pradesh > Literacy",
+    "Madhya Pradesh Special > Demography of Madhya Pradesh > Sex ratio",
+    "Madhya Pradesh Special > Demography of Madhya Pradesh > Districts of Madhya Pradesh",
+    "Madhya Pradesh Special > Demography of Madhya Pradesh > Urbanisation in Madhya Pradesh",
+    "Madhya Pradesh Special > Administrative structure of Madhya Pradesh > Districts and divisions",
+    "Madhya Pradesh Special > Administrative structure of Madhya Pradesh > High Court of Madhya Pradesh",
+    "Madhya Pradesh Special > Administrative structure of Madhya Pradesh > Madhya Pradesh Police",
+    "Madhya Pradesh Special > Administrative structure of Madhya Pradesh > Local bodies in Madhya Pradesh",
+    "Madhya Pradesh Special > Administrative structure of Madhya Pradesh > Madhya Pradesh legislature",
+    "Madhya Pradesh Special > Schemes and institutions of Madhya Pradesh > State welfare schemes",
+    "Madhya Pradesh Special > Schemes and institutions of Madhya Pradesh > Educational institutions",
+    "Madhya Pradesh Special > Schemes and institutions of Madhya Pradesh > Universities and research institutes",
+    "Madhya Pradesh Special > Schemes and institutions of Madhya Pradesh > Industrial and investment initiatives",
+    "Madhya Pradesh Special > Schemes and institutions of Madhya Pradesh > Tourism of Madhya Pradesh",
+    "Madhya Pradesh Special > Personalities and awards of Madhya Pradesh > State awards",
+    "Madhya Pradesh Special > Personalities and awards of Madhya Pradesh > Notable personalities",
+    "Madhya Pradesh Special > Personalities and awards of Madhya Pradesh > Sports from Madhya Pradesh",
+    "Madhya Pradesh Special > Personalities and awards of Madhya Pradesh > Freedom fighters of Madhya Pradesh",
+    "Current Affairs > National current affairs > Government schemes and launches",
+    "Current Affairs > National current affairs > New legislation",
+    "Current Affairs > National current affairs > National events",
+    "Current Affairs > National current affairs > Reports and indices",
+    "Current Affairs > International current affairs > Summits and conferences",
+    "Current Affairs > International current affairs > International organisations",
+    "Current Affairs > International current affairs > Bilateral relations",
+    "Current Affairs > International current affairs > Places in news",
+    "Current Affairs > Awards and honours > National awards",
+    "Current Affairs > Awards and honours > International awards",
+    "Current Affairs > Awards and honours > Sports awards",
+    "Current Affairs > Awards and honours > Civilian honours",
+    "Current Affairs > Appointments and personalities > Constitutional appointments",
+    "Current Affairs > Appointments and personalities > Heads of state and government",
+    "Current Affairs > Appointments and personalities > Obituaries",
+    "Current Affairs > Sports current affairs > Olympic and Asian Games",
+    "Current Affairs > Sports current affairs > Commonwealth Games",
+    "Current Affairs > Sports current affairs > Cricket",
+    "Current Affairs > Sports current affairs > Other sports events",
+    "Current Affairs > Science and technology current affairs > Space missions in news",
+    "Current Affairs > Science and technology current affairs > Defence exercises",
+    "Current Affairs > Science and technology current affairs > Technology launches",
+    "Current Affairs > Science and technology current affairs > Research breakthroughs",
+    "Current Affairs > Current affairs of Madhya Pradesh > State events",
+    "Current Affairs > Current affairs of Madhya Pradesh > State schemes in news",
+    "Current Affairs > Current affairs of Madhya Pradesh > State awards and appointments",
+    "Current Affairs > Days and dates > National days",
+    "Current Affairs > Days and dates > International days",
+    "General Aptitude > Quantitative aptitude > Number system",
+    "General Aptitude > Quantitative aptitude > Percentage and averages",
+    "General Aptitude > Quantitative aptitude > Ratio and proportion",
+    "General Aptitude > Quantitative aptitude > Profit and loss",
+    "General Aptitude > Quantitative aptitude > Simple and compound interest",
+    "General Aptitude > Quantitative aptitude > Time and work",
+    "General Aptitude > Quantitative aptitude > Time speed and distance",
+    "General Aptitude > Quantitative aptitude > Mensuration",
+    "General Aptitude > Quantitative aptitude > Data interpretation",
+    "General Aptitude > Logical reasoning > Series and analogy",
+    "General Aptitude > Logical reasoning > Coding decoding",
+    "General Aptitude > Logical reasoning > Blood relations",
+    "General Aptitude > Logical reasoning > Direction sense",
+    "General Aptitude > Logical reasoning > Syllogism",
+    "General Aptitude > Logical reasoning > Statement and conclusion",
+    "General Aptitude > Logical reasoning > Data sufficiency"
+  ],
+  "subjects": [
+    {
+      "subject": "History",
+      "topics": [
+        {
+          "topic": "Prehistory and Art",
+          "subtopics": [
+            "Rock shelters",
+            "Prehistoric tools",
+            "Bhimbetka",
+            "Megalithic culture",
+            "Harappan art"
+          ]
+        },
+        {
+          "topic": "Ancient India",
+          "subtopics": [
+            "Indus Valley Civilisation",
+            "Vedic age",
+            "Buddhism and Jainism",
+            "Mauryan empire",
+            "Post-Mauryan period",
+            "Gupta period",
+            "Harshavardhana",
+            "Sangam age",
+            "Ancient science and literature",
+            "Mauryan art and architecture"
+          ]
+        },
+        {
+          "topic": "Medieval India",
+          "subtopics": [
+            "Delhi Sultanate",
+            "Mughal empire",
+            "Vijayanagara and Bahmani",
+            "Maratha empire",
+            "Rajput states",
+            "Bhakti and Sufi movements",
+            "Medieval art and architecture",
+            "Medieval administration and revenue"
+          ]
+        },
+        {
+          "topic": "Modern India",
+          "subtopics": [
+            "British conquest and consolidation",
+            "Revolt of 1857",
+            "Socio-religious reform movements",
+            "Indian National Congress",
+            "Gandhian movements",
+            "Revolutionary movements",
+            "Governor Generals and Viceroys",
+            "Acts and constitutional development",
+            "Partition and independence"
+          ]
+        },
+        {
+          "topic": "World History",
+          "subtopics": [
+            "French Revolution",
+            "American Revolution",
+            "Russian Revolution",
+            "Industrial Revolution",
+            "World wars",
+            "Renaissance and Enlightenment",
+            "Chinese history"
+          ]
+        },
+        {
+          "topic": "Art and architecture",
+          "subtopics": [
+            "Temple architecture",
+            "Indo-Islamic architecture",
+            "Cave and rock-cut architecture",
+            "Painting schools",
+            "Sculpture schools",
+            "Dance and music traditions",
+            "UNESCO listings"
+          ]
+        },
+        {
+          "topic": "History of Madhya Pradesh",
+          "subtopics": [
+            "Mahajanapadas in Madhya Pradesh",
+            "Paramara dynasty",
+            "Chandela dynasty",
+            "Bundela and Baghelkhand",
+            "Maratha rule in Madhya Pradesh",
+            "Holkar and Scindia",
+            "Princely states and agencies",
+            "Revolt of 1857 in Madhya Pradesh",
+            "Freedom struggle in Madhya Pradesh"
+          ]
+        }
+      ]
+    },
+    {
+      "subject": "Polity",
+      "topics": [
+        {
+          "topic": "Constitution of India",
+          "subtopics": [
+            "Preamble",
+            "Fundamental Rights",
+            "Directive Principles",
+            "Fundamental Duties",
+            "Constitutional amendments",
+            "Schedules of the Constitution",
+            "Basic structure",
+            "Making of the Constitution"
+          ]
+        },
+        {
+          "topic": "Union Executive",
+          "subtopics": [
+            "President of India",
+            "Vice President",
+            "Prime Minister and Council of Ministers",
+            "Attorney General"
+          ]
+        },
+        {
+          "topic": "Union Legislature",
+          "subtopics": [
+            "Parliament",
+            "Lok Sabha",
+            "Rajya Sabha",
+            "Parliamentary committees",
+            "Legislative procedure",
+            "Parliamentary privileges"
+          ]
+        },
+        {
+          "topic": "Judiciary",
+          "subtopics": [
+            "Supreme Court",
+            "High Courts",
+            "Subordinate courts",
+            "Writs",
+            "Judicial review",
+            "Public Interest Litigation",
+            "Contempt of court"
+          ]
+        },
+        {
+          "topic": "State Government",
+          "subtopics": [
+            "Governor",
+            "Chief Minister and State Council of Ministers",
+            "State Legislature",
+            "Advocate General",
+            "State Public Service Commission"
+          ]
+        },
+        {
+          "topic": "Union and State Relations",
+          "subtopics": [
+            "Emergency provisions",
+            "Distribution of legislative powers",
+            "Distribution of financial resources",
+            "Inter-State Council",
+            "Finance Commission",
+            "GST Council"
+          ]
+        },
+        {
+          "topic": "Constitutional bodies",
+          "subtopics": [
+            "Election Commission of India",
+            "Comptroller and Auditor General",
+            "Union Public Service Commission",
+            "Finance Commission",
+            "National Commission for SCs and STs",
+            "Special Officer for Linguistic Minorities"
+          ]
+        },
+        {
+          "topic": "Statutory and regulatory bodies",
+          "subtopics": [
+            "Lokpal and Lokayukta",
+            "National Human Rights Commission",
+            "NITI Aayog",
+            "Central Information Commission",
+            "National Commission for Women",
+            "Central Vigilance Commission"
+          ]
+        },
+        {
+          "topic": "Local self-government",
+          "subtopics": [
+            "Panchayati Raj",
+            "Urban local bodies",
+            "73rd Constitutional Amendment",
+            "74th Constitutional Amendment",
+            "PESA Act",
+            "Local bodies in Madhya Pradesh"
+          ]
+        },
+        {
+          "topic": "Citizenship and civil rights",
+          "subtopics": [
+            "Citizenship",
+            "Right to Information",
+            "Right to Education",
+            "Right to Food",
+            "Protection of minorities"
+          ]
+        }
+      ]
+    },
+    {
+      "subject": "Geography",
+      "topics": [
+        {
+          "topic": "Physical Geography",
+          "subtopics": [
+            "Interior of the Earth",
+            "Rocks and minerals",
+            "Landforms and their evolution",
+            "Latitude and longitude",
+            "Atmosphere and weather",
+            "Climatology",
+            "Oceanography",
+            "Earthquakes and volcanoes"
+          ]
+        },
+        {
+          "topic": "Geography of India",
+          "subtopics": [
+            "Physiography of India",
+            "Rivers of India",
+            "Climate of India",
+            "Soils of India",
+            "Natural vegetation of India",
+            "Agriculture in India",
+            "Mineral resources of India",
+            "Transport in India",
+            "Population of India",
+            "Lakes and wetlands"
+          ]
+        },
+        {
+          "topic": "Rivers of Madhya Pradesh",
+          "subtopics": [
+            "Narmada basin",
+            "Tapti basin",
+            "Chambal basin",
+            "Betwa basin",
+            "Son basin",
+            "Tributaries",
+            "Dams and reservoirs",
+            "Lakes and waterfalls",
+            "Interlinking of rivers"
+          ]
+        },
+        {
+          "topic": "Physiography of Madhya Pradesh",
+          "subtopics": [
+            "Satpura range",
+            "Vindhyan range",
+            "Malwa plateau",
+            "Bundelkhand plateau",
+            "Baghelkhand plateau",
+            "Narmada valley",
+            "Drainage systems",
+            "Peaks and passes",
+            "Location"
+          ]
+        },
+        {
+          "topic": "Climate and soils of Madhya Pradesh",
+          "subtopics": [
+            "Monsoon in Madhya Pradesh",
+            "Rainfall distribution",
+            "Soil types",
+            "Drought prone areas",
+            "Cropping patterns"
+          ]
+        },
+        {
+          "topic": "World Geography",
+          "subtopics": [
+            "Continents and oceans",
+            "Major landforms",
+            "International boundaries",
+            "Deserts of the world",
+            "Straits and isthmuses",
+            "Grasslands of the world",
+            "Important ports"
+          ]
+        },
+        {
+          "topic": "Maps and location",
+          "subtopics": [
+            "Location",
+            "Boundaries and neighbours",
+            "States and capitals",
+            "Time zones",
+            "Cartography"
+          ]
+        },
+        {
+          "topic": "Economic and human geography",
+          "subtopics": [
+            "Energy resources",
+            "Industries",
+            "Urbanisation",
+            "Migration",
+            "Tribes of India",
+            "Human settlement"
+          ]
+        }
+      ]
+    },
+    {
+      "subject": "Environment",
+      "topics": [
+        {
+          "topic": "Ecology and biodiversity",
+          "subtopics": [
+            "Ecosystem",
+            "Food chain and food web",
+            "Biodiversity",
+            "Ecological pyramids",
+            "Species status",
+            "Ecological succession"
+          ]
+        },
+        {
+          "topic": "Protected areas",
+          "subtopics": [
+            "National parks",
+            "Wildlife sanctuaries",
+            "Biosphere reserves",
+            "Tiger reserves",
+            "Bird sanctuaries",
+            "Ramsar sites",
+            "UNESCO listings"
+          ]
+        },
+        {
+          "topic": "Wildlife of Madhya Pradesh",
+          "subtopics": [
+            "State animal and bird",
+            "Tigers of Madhya Pradesh",
+            "Birds of Madhya Pradesh",
+            "National parks",
+            "Wildlife sanctuaries",
+            "Biosphere reserves",
+            "Crocodile and gharial conservation"
+          ]
+        },
+        {
+          "topic": "Forests of Madhya Pradesh",
+          "subtopics": [
+            "Forest types",
+            "Forest cover",
+            "Minor forest produce",
+            "Joint forest management",
+            "Forest research institutes"
+          ]
+        },
+        {
+          "topic": "Pollution and climate change",
+          "subtopics": [
+            "Greenhouse gases",
+            "Global warming",
+            "Ozone depletion",
+            "Air pollution",
+            "Water pollution",
+            "Solid waste management",
+            "Noise pollution"
+          ]
+        },
+        {
+          "topic": "Environmental laws and institutions",
+          "subtopics": [
+            "Wildlife Protection Act",
+            "Environment Protection Act",
+            "National Green Tribunal",
+            "Forest Rights Act",
+            "Central Pollution Control Board",
+            "Air and Water Acts"
+          ]
+        },
+        {
+          "topic": "Conservation initiatives",
+          "subtopics": [
+            "Project Tiger",
+            "Project Elephant",
+            "Ramsar Convention",
+            "IUCN Red List",
+            "Convention on Biological Diversity",
+            "CITES",
+            "Montreal Protocol",
+            "Paris Agreement"
+          ]
+        }
+      ]
+    },
+    {
+      "subject": "Economy",
+      "topics": [
+        {
+          "topic": "Indian Economy",
+          "subtopics": [
+            "Planning in India",
+            "NITI Aayog",
+            "National income",
+            "GDP and GNP",
+            "Inflation",
+            "Economic reforms of 1991",
+            "Public sector undertakings",
+            "Disinvestment"
+          ]
+        },
+        {
+          "topic": "Banking and finance",
+          "subtopics": [
+            "Reserve Bank of India",
+            "Monetary policy",
+            "Commercial banks",
+            "NABARD and SIDBI",
+            "SEBI and capital markets",
+            "Non-banking finance companies",
+            "Self help groups",
+            "Financial inclusion"
+          ]
+        },
+        {
+          "topic": "Budget and taxation",
+          "subtopics": [
+            "Union Budget",
+            "Fiscal policy",
+            "Fiscal deficit",
+            "Direct taxes",
+            "Indirect taxes",
+            "Goods and Services Tax",
+            "Tax reforms"
+          ]
+        },
+        {
+          "topic": "Agriculture and rural economy",
+          "subtopics": [
+            "Cropping patterns",
+            "Green Revolution",
+            "Minimum support price",
+            "Irrigation",
+            "Rural employment programmes",
+            "Agricultural credit and insurance",
+            "Food processing",
+            "Agricultural revolutions"
+          ]
+        },
+        {
+          "topic": "Industry and infrastructure",
+          "subtopics": [
+            "Industrial policy",
+            "Core industries",
+            "Energy sector",
+            "Transport infrastructure",
+            "Micro small and medium enterprises",
+            "Special Economic Zones"
+          ]
+        },
+        {
+          "topic": "Poverty and human development",
+          "subtopics": [
+            "Poverty estimation",
+            "Unemployment",
+            "Inequality indices",
+            "Human Development Index",
+            "Sustainable Development Goals",
+            "Inclusive growth"
+          ]
+        },
+        {
+          "topic": "International economy",
+          "subtopics": [
+            "World Trade Organization",
+            "International Monetary Fund",
+            "World Bank Group",
+            "Balance of payments",
+            "Foreign exchange reserves",
+            "Trade agreements",
+            "Foreign direct investment"
+          ]
+        },
+        {
+          "topic": "Economy of Madhya Pradesh",
+          "subtopics": [
+            "Madhya Pradesh Budget",
+            "Agriculture of Madhya Pradesh",
+            "Industry of Madhya Pradesh",
+            "Minerals of Madhya Pradesh",
+            "Irrigation projects of Madhya Pradesh",
+            "State welfare schemes",
+            "State fiscal indicators"
+          ]
+        }
+      ]
+    },
+    {
+      "subject": "Science and Technology",
+      "topics": [
+        {
+          "topic": "Physics",
+          "subtopics": [
+            "Units and measurements",
+            "Motion and force",
+            "Work energy and power",
+            "Gravitation",
+            "Sound",
+            "Light and optics",
+            "Heat and thermodynamics",
+            "Electricity and magnetism",
+            "Modern physics"
+          ]
+        },
+        {
+          "topic": "Chemistry",
+          "subtopics": [
+            "Atomic structure",
+            "Periodic table",
+            "Acids bases and salts",
+            "Metals and non-metals",
+            "Carbon compounds",
+            "Chemical reactions",
+            "Chemistry in everyday life",
+            "Alloys and mixtures"
+          ]
+        },
+        {
+          "topic": "Biology",
+          "subtopics": [
+            "Cell biology",
+            "Human digestive system",
+            "Human respiratory system",
+            "Human circulatory system",
+            "Human nervous system",
+            "Human skeletal system",
+            "Nutrition and vitamins",
+            "Genetics",
+            "Plant physiology",
+            "Photosynthesis",
+            "Hormones and glands",
+            "Human excretory system"
+          ]
+        },
+        {
+          "topic": "Health and diseases",
+          "subtopics": [
+            "Communicable diseases",
+            "Non-communicable diseases",
+            "Vaccination",
+            "Epidemics and pandemics",
+            "Public health programmes",
+            "Vector borne diseases"
+          ]
+        },
+        {
+          "topic": "Science and technology developments",
+          "subtopics": [
+            "Space programme",
+            "ISRO missions",
+            "Defence technology",
+            "Missiles",
+            "Nuclear technology",
+            "Biotechnology",
+            "Information technology",
+            "Nanotechnology",
+            "Research institutes"
+          ]
+        }
+      ]
+    },
+    {
+      "subject": "Art and Culture",
+      "topics": [
+        {
+          "topic": "Festivals and fairs",
+          "subtopics": [
+            "Festivals of India",
+            "Fairs of Madhya Pradesh",
+            "Tribal festivals",
+            "Simhastha",
+            "Harvest festivals"
+          ]
+        },
+        {
+          "topic": "Dance and music",
+          "subtopics": [
+            "Classical dances",
+            "Folk dances of Madhya Pradesh",
+            "Classical music",
+            "Musical instruments",
+            "Music gharanas",
+            "Tansen and Maihar"
+          ]
+        },
+        {
+          "topic": "Literature and languages",
+          "subtopics": [
+            "Sanskrit literature",
+            "Hindi literature",
+            "Urdu and Persian literature",
+            "Literature of Madhya Pradesh",
+            "Books and authors",
+            "Official languages"
+          ]
+        },
+        {
+          "topic": "Paintings and sculpture",
+          "subtopics": [
+            "Cave paintings",
+            "Miniature painting schools",
+            "Modern Indian painters",
+            "Sculpture schools",
+            "Tribal art",
+            "Handicrafts"
+          ]
+        },
+        {
+          "topic": "Heritage Sites",
+          "subtopics": [
+            "Temples of Madhya Pradesh",
+            "Khajuraho group",
+            "Sanchi",
+            "Gwalior Fort",
+            "Jyotirlingas",
+            "UNESCO listings",
+            "Forts and palaces",
+            "Buddhist monuments"
+          ]
+        },
+        {
+          "topic": "Culture of Madhya Pradesh",
+          "subtopics": [
+            "Folk art of Madhya Pradesh",
+            "Handicrafts of Madhya Pradesh",
+            "State symbols",
+            "Cuisine and dress",
+            "Cultural institutions of Madhya Pradesh"
+          ]
+        }
+      ]
+    },
+    {
+      "subject": "Madhya Pradesh Special",
+      "topics": [
+        {
+          "topic": "Formation of Madhya Pradesh",
+          "subtopics": [
+            "State reorganisation",
+            "Chief Ministers",
+            "Governors of Madhya Pradesh",
+            "State symbols",
+            "Capital of Madhya Pradesh",
+            "States Reorganisation Act 1956"
+          ]
+        },
+        {
+          "topic": "Tribes of Madhya Pradesh",
+          "subtopics": [
+            "Bhil",
+            "Gond",
+            "Baiga",
+            "Sahariya",
+            "Korku",
+            "Kol and other tribes",
+            "Particularly vulnerable tribal groups",
+            "Tribal culture"
+          ]
+        },
+        {
+          "topic": "Demography of Madhya Pradesh",
+          "subtopics": [
+            "Census 2011",
+            "Census data",
+            "Population density",
+            "Literacy",
+            "Sex ratio",
+            "Districts of Madhya Pradesh",
+            "Urbanisation in Madhya Pradesh"
+          ]
+        },
+        {
+          "topic": "Administrative structure of Madhya Pradesh",
+          "subtopics": [
+            "Districts and divisions",
+            "High Court of Madhya Pradesh",
+            "Madhya Pradesh Police",
+            "Local bodies in Madhya Pradesh",
+            "Madhya Pradesh legislature"
+          ]
+        },
+        {
+          "topic": "Schemes and institutions of Madhya Pradesh",
+          "subtopics": [
+            "State welfare schemes",
+            "Educational institutions",
+            "Universities and research institutes",
+            "Industrial and investment initiatives",
+            "Tourism of Madhya Pradesh"
+          ]
+        },
+        {
+          "topic": "Personalities and awards of Madhya Pradesh",
+          "subtopics": [
+            "State awards",
+            "Notable personalities",
+            "Sports from Madhya Pradesh",
+            "Freedom fighters of Madhya Pradesh"
+          ]
+        }
+      ]
+    },
+    {
+      "subject": "Current Affairs",
+      "topics": [
+        {
+          "topic": "National current affairs",
+          "subtopics": [
+            "Government schemes and launches",
+            "New legislation",
+            "National events",
+            "Reports and indices"
+          ]
+        },
+        {
+          "topic": "International current affairs",
+          "subtopics": [
+            "Summits and conferences",
+            "International organisations",
+            "Bilateral relations",
+            "Places in news"
+          ]
+        },
+        {
+          "topic": "Awards and honours",
+          "subtopics": [
+            "National awards",
+            "International awards",
+            "Sports awards",
+            "Civilian honours"
+          ]
+        },
+        {
+          "topic": "Appointments and personalities",
+          "subtopics": [
+            "Constitutional appointments",
+            "Heads of state and government",
+            "Obituaries"
+          ]
+        },
+        {
+          "topic": "Sports current affairs",
+          "subtopics": [
+            "Olympic and Asian Games",
+            "Commonwealth Games",
+            "Cricket",
+            "Other sports events"
+          ]
+        },
+        {
+          "topic": "Science and technology current affairs",
+          "subtopics": [
+            "Space missions in news",
+            "Defence exercises",
+            "Technology launches",
+            "Research breakthroughs"
+          ]
+        },
+        {
+          "topic": "Current affairs of Madhya Pradesh",
+          "subtopics": [
+            "State events",
+            "State schemes in news",
+            "State awards and appointments"
+          ]
+        },
+        {
+          "topic": "Days and dates",
+          "subtopics": [
+            "National days",
+            "International days"
+          ]
+        }
+      ]
+    },
+    {
+      "subject": "General Aptitude",
+      "topics": [
+        {
+          "topic": "Quantitative aptitude",
+          "subtopics": [
+            "Number system",
+            "Percentage and averages",
+            "Ratio and proportion",
+            "Profit and loss",
+            "Simple and compound interest",
+            "Time and work",
+            "Time speed and distance",
+            "Mensuration",
+            "Data interpretation"
+          ]
+        },
+        {
+          "topic": "Logical reasoning",
+          "subtopics": [
+            "Series and analogy",
+            "Coding decoding",
+            "Blood relations",
+            "Direction sense",
+            "Syllogism",
+            "Statement and conclusion",
+            "Data sufficiency"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,188 @@
+{
+  "generated_at": "2026-10-11T20:26:28.742Z",
+  "total_questions": 10,
+  "levels": {
+    "subject": {
+      "classified": 8,
+      "percentage": 80,
+      "unclassified": 2
+    },
+    "topic": {
+      "classified": 8,
+      "percentage": 80,
+      "missing": 2
+    },
+    "subtopic": {
+      "classified": 8,
+      "percentage": 80,
+      "missing": 2
+    }
+  },
+  "by_subject": [
+    {
+      "subject": "Geography",
+      "count": 4,
+      "percentage": "40%"
+    },
+    {
+      "subject": "Unclassified",
+      "count": 2,
+      "percentage": "20%"
+    },
+    {
+      "subject": "Economy",
+      "count": 1,
+      "percentage": "10%"
+    },
+    {
+      "subject": "Environment",
+      "count": 1,
+      "percentage": "10%"
+    },
+    {
+      "subject": "Madhya Pradesh Special",
+      "count": 1,
+      "percentage": "10%"
+    },
+    {
+      "subject": "Polity",
+      "count": 1,
+      "percentage": "10%"
+    }
+  ],
+  "by_topic": [
+    {
+      "topic": "Geography / Rivers of Madhya Pradesh",
+      "count": 3,
+      "percentage": "30%"
+    },
+    {
+      "topic": "Economy / Banking and finance",
+      "count": 1,
+      "percentage": "10%"
+    },
+    {
+      "topic": "Environment / Wildlife of Madhya Pradesh",
+      "count": 1,
+      "percentage": "10%"
+    },
+    {
+      "topic": "Geography / Geography of India",
+      "count": 1,
+      "percentage": "10%"
+    },
+    {
+      "topic": "Madhya Pradesh Special / Formation of Madhya Pradesh",
+      "count": 1,
+      "percentage": "10%"
+    },
+    {
+      "topic": "Polity / Constitution of India",
+      "count": 1,
+      "percentage": "10%"
+    }
+  ],
+  "by_subtopic": [
+    {
+      "subtopic": "Geography / Rivers of Madhya Pradesh / Chambal basin",
+      "count": 2,
+      "percentage": "20%"
+    },
+    {
+      "subtopic": "Economy / Banking and finance / Reserve Bank of India",
+      "count": 1,
+      "percentage": "10%"
+    },
+    {
+      "subtopic": "Environment / Wildlife of Madhya Pradesh / National parks",
+      "count": 1,
+      "percentage": "10%"
+    },
+    {
+      "subtopic": "Geography / Geography of India / Rivers of India",
+      "count": 1,
+      "percentage": "10%"
+    },
+    {
+      "subtopic": "Geography / Rivers of Madhya Pradesh / Narmada basin",
+      "count": 1,
+      "percentage": "10%"
+    },
+    {
+      "subtopic": "Madhya Pradesh Special / Formation of Madhya Pradesh / Chief Ministers",
+      "count": 1,
+      "percentage": "10%"
+    },
+    {
+      "subtopic": "Polity / Constitution of India / Fundamental Rights",
+      "count": 1,
+      "percentage": "10%"
+    }
+  ],
+  "by_source": [
+    {
+      "source": "pipeline-rules",
+      "count": 8,
+      "percentage": "80%"
+    },
+    {
+      "source": "unclassified",
+      "count": 2,
+      "percentage": "20%"
+    }
+  ],
+  "by_year": [
+    {
+      "year": 2023,
+      "count": 10
+    }
+  ],
+  "confidence_distribution": {
+    "0.00–0.39": 0,
+    "0.40–0.59": 0,
+    "0.60–0.79": 2,
+    "0.80–0.95": 6,
+    "unset": 2
+  },
+  "madhya_pradesh_specific": 5,
+  "unclassified": [
+    {
+      "id": "SAMPLE-2023-GS1-007",
+      "paper_id": "SAMPLE-2023-GS1",
+      "year": 2023,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "In the context of administrative history, which one of the following best describes the arrangement shown in the table?"
+    },
+    {
+      "id": "SAMPLE-2023-GS1-008",
+      "paper_id": "SAMPLE-2023-GS1",
+      "year": 2023,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Consider the following statements and identify which one of them is consistent with the passage above."
+    }
+  ],
+  "low_confidence": [],
+  "topic_ambiguous": [],
+  "meta": {
+    "bankId": "PYQ-PIPELINE-SAMPLE",
+    "bankName": "PYQ pipeline sample (synthetic — not a genuine MPPSC paper)",
+    "generator": "tools/classify-bank.mjs 1.0.0",
+    "taxonomy_version": "1.0.1",
+    "subjects_allowed": [
+      "History",
+      "Polity",
+      "Geography",
+      "Environment",
+      "Economy",
+      "Science and Technology",
+      "Art and Culture",
+      "Madhya Pradesh Special",
+      "Current Affairs",
+      "General Aptitude"
+    ],
+    "pipeline_notes": [],
+    "ai_merge": null
+  }
+}

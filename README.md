@@ -18,11 +18,12 @@ Then open <http://localhost:8080/>. On an empty database the app offers to load 
 Any static file server works — the app is plain HTML/CSS/ES modules. To run it offline as a PWA, serve it over `http(s)` (the service worker cannot register on `file://`).
 
 ```bash
-npm test             # 108 tests: services, end-to-end journey and UI journey tests
+npm test             # 139 tests: services, end-to-end journey, UI journey and PYQ pipeline tests
 npm run check        # 730 static integrity checks (imports, routes, assets, contrast, tokens, shell)
 npm run audit:ui     # alias for npm run check (static UI + contrast + token audit)
 python3 tools/make-icons.py   # regenerate the PWA icons (no dependencies)
 node tools/build-bank.mjs --help
+node tools/classify-bank.mjs --help
 ```
 
 ## Deploying to GitHub Pages
@@ -77,10 +78,13 @@ js/services/               scoring, attempts, questions, tests, select, revision
                            analytics, importer, planner, data (backup)
 js/ui/                     router, components, views/ (one file per screen)
 data/schema/               versioned question-bank JSON Schema
+data/taxonomy/             canonical subject/topic/subtopic vocabulary for the pipeline
 data/demo/                 synthetic demonstration bank
 data/examples/             schema example + invalid-records fixture
-demo/                      sample intake file for the separate pipeline
-tools/                     serve.mjs, check.mjs, build-bank.mjs, make-icons.py
+data/pyq/                  PYQ pipeline output: bank, classification + review reports
+demo/                      sample intake files for the separate pipeline
+tools/                     serve.mjs, check.mjs, build-bank.mjs, classify-bank.mjs,
+                           classify/ (rule engine, taxonomy, reports, AI queue)
 tests/                     node:test suites (services, e2e, UI, tools)
 docs/                      schema, data pipeline, testing, limitations, report
 ```
@@ -89,7 +93,7 @@ Layering is strict: `core → services → ui`. Views are HTML strings plus dele
 
 ## Adding a new paper
 
-1. Produce a bank file that follows `data/schema/question-bank.schema.json` — see `docs/SCHEMA.md`. Question text, options, keys, classifications and explanations come from **your** pipeline, not from this app.
+1. Produce a bank file that follows `data/schema/question-bank.schema.json` — see `docs/SCHEMA.md`. Question text, options, keys, classifications and explanations come from **your** pipeline, not from this app. For an extracted previous-year paper, `tools/classify-bank.mjs` does the subject/topic/subtopic classification and the integrity reports for you — see `docs/PYQ_PIPELINE.md`.
 2. Validate it before importing:
    ```bash
    node tools/build-bank.mjs --validate my-bank.json
@@ -105,6 +109,7 @@ Layering is strict: `core → services → ui`. Views are HTML strings plus dele
 | `docs/UI.md` | The design system: colour tokens (Light/Dark/Forced-colors) and contrast ratios, Devanagari typography, provenance components, accessibility contract, enumerated `!important` rules, and automated UI guards. |
 | `docs/SCHEMA.md` | The question-bank JSON schema: every field, versioning rules, validation behaviour. |
 | `docs/DATA_PIPELINE.md` | How to produce banks outside the app, with the intake format and worked example. |
+| `docs/PYQ_PIPELINE.md` | The PYQ classification pipeline: the rule engine, the taxonomy, MP-versus-India attribution, the resumable AI step, and the two reports it writes. |
 | `docs/TESTING.md` | What the test suite covers, what it does not, and a manual verification checklist. |
 | `docs/LIMITATIONS.md` | Honest list of what this build does not do or cannot guarantee. |
 | `docs/IMPLEMENTATION_REPORT.md` | Feature-by-feature report against the original specification, the UI overhaul before/after measurements, the tests actually run and their results, and the remaining gaps. |

@@ -100,6 +100,22 @@ node tools/build-bank.mjs --validate /tmp/demo-built.json
 successfully, including that the missing answer key stays missing and that the
 paper without rules keeps `rules_known: false`.
 
+### 5a. Or classify an extracted previous-year paper
+
+When the intake is an extraction of a real paper rather than something you wrote
+by hand, `tools/classify-bank.mjs` sits in front of the same builder: it adapts
+the extraction, assigns subject/topic/subtopic with a deterministic rule engine,
+keeps printed and verified answers apart, flags suspected duplicates and missing
+keys, and writes a classification report and a review report next to the bank.
+
+```bash
+node tools/classify-bank.mjs --in data/pyq/source/MPPSC_PYQ_intake.json \
+    --out data/pyq/mymppsc-pyq-bank.json --reports data/pyq
+```
+
+See [`docs/PYQ_PIPELINE.md`](PYQ_PIPELINE.md) for the full workflow, the
+taxonomy, the optional resumable AI step, and what the reports contain.
+
 ## 6. Versioning
 
 * **Schema** (`schema_version`): the app accepts its own major version, warns on other minors, refuses other majors.
