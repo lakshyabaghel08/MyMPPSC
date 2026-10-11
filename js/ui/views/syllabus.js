@@ -7,9 +7,8 @@
  */
 
 import { state } from '../../core/state.js';
-import { esc, badge, card, tile, notice, dataTable, emptyState, toast, openModal, confirmDialog, lineChart, sourceChip, evidenceMeter } from '../components.js';
-import { fmtDate, fmtDuration, fmtRelative, todayKey } from '../../core/util.js';
-import { readFileAsText, downloadJson } from '../../core/util.js';
+import { esc, badge, card, tile, notice, emptyState, toast, openModal, confirmDialog } from '../components.js';
+import { fmtDate, todayKey, readFileAsText, downloadJson } from '../../core/util.js';
 import * as planner from '../../services/planner.js';
 import { loadAnalytics } from '../../services/analytics.js';
 
@@ -64,30 +63,6 @@ function renderNodes(nodes, progressById, depth = 0, out = []) {
   return out.join('');
 }
 
-function taskCard(buckets) {
-  const section = (label, tone, rows) =>
-    rows.length
-      ? `<h3 class="task-section ${tone}">${esc(label)} <span class="soft">(${rows.length})</span></h3>
-         ${dataTable({
-           columns: [{ label: 'Task' }, { label: 'Due' }, { label: 'Est.' }, { label: '' }],
-           rows: rows.map((t) => [
-             `<strong>${esc(t.title)}</strong>${t.subject ? `<div class="tiny muted">${esc(t.subject)}${t.topic ? ` · ${esc(t.topic)}` : ''}</div>` : ''}${t.notes ? `<div class="tiny muted">${esc(t.notes.split('\n')[0])}</div>` : ''}`,
-             t.due_date ? esc(fmtDate(t.due_date)) : '<span class="soft">no date</span>',
-             `${esc(String(t.estimate_minutes || 30))} min`,
-             `<div class="row tight"><button class="btn btn-sm" type="button" data-task-done="${esc(t.id)}">Done</button><button class="btn btn-sm btn-quiet" type="button" data-task-delete="${esc(t.id)}">Delete</button></div>`,
-           ]),
-           empty: '—',
-           className: 'compact',
-         })}`
-      : '';
-  return `
-    ${section('Overdue', 'bad', buckets.overdue)}
-    ${section('Due today', 'warn', buckets.today)}
-    ${section('Upcoming', '', buckets.upcoming)}
-    ${section('No date set', 'soft', buckets.undated)}
-    ${!buckets.overdue.length && !buckets.today.length && !buckets.upcoming.length && !buckets.undated.length ? '<p class="muted small">No open tasks.</p>' : ''}`;
-}
-
 export default {
   title: 'Syllabus & Study Planner',
 
@@ -97,17 +72,6 @@ export default {
     const progress = planner.syllabusProgress(rows, analytics);
     const progressById = new Map(progress.nodes.map((n) => [n.id, n]));
     const tree = planner.buildTree(rows);
-    const [buckets, sessions, totals, tasks] = await Promise.all([planner.taskBuckets(), planner.listSessions({ limit: 40 }), planner.studyTotals(), planner.listTasks({})]);
-    const suggestions = planner.suggestTasks({ analytics, syllabusProgressData: progress, limit: 5 });
-    const byDay = planner.sessionsByDay(sessions, 14);
-
-    const recentSessions = sessions.slice(0, 12).map((s) => [
-      esc(fmtRelative(s.started_at)),
-      esc(s.category),
-      `${esc(String(s.minutes))} min`,
-      esc([s.subject, s.topic].filter(Boolean).join(' · ') || '—'),
-      esc(s.notes || '—'),
-    ]);
 
     return `
       <h1>Syllabus &amp; Study Planner</h1>
@@ -119,8 +83,6 @@ export default {
       <div class="grid tiles mb-4">
         ${tile({ label: 'Syllabus items', value: String(progress.total), sub: `${Object.entries(planner.STATUSES).map(([k, l]) => `${progress.byStatus[k] || 0} ${l.toLowerCase()}`).join(' · ')}`, source: 'supplied', where: 'User-defined syllabus tree' })}
         ${tile({ label: 'Overall completion', value: `${Math.round(progress.overallCompletion * 100)}%`, sub: 'average of your marked statuses', source: 'derived', where: 'Manual status completion' })}
-        ${tile({ label: 'Open tasks', value: String(buckets.overdue.length + buckets.today.length + buckets.upcoming.length + buckets.undated.length), sub: `${buckets.overdue.length} overdue`, tone: buckets.overdue.length ? 'bad' : '', source: 'measured', where: 'Active planner tasks' })}
-        ${tile({ label: 'Study time logged', value: fmtDuration(totals.totalMinutes * 60), sub: `${totals.sessions} session(s) · ${totals.last7Minutes} min in 7 days`, source: 'measured', where: 'Logged study sessions' })}
       </div>
 
       ${card({
@@ -139,76 +101,7 @@ export default {
               message: 'Import a JSON structure you made yourself, generate a starting point from the subjects and topics already classified in your question bank, or add items one by one.',
               action: '<button class="btn btn-primary" type="button" id="sylBootstrap2">Suggest from question bank</button>',
             }),
-      })}
-
-      <div class="split-2">
-        <div>
-          ${card({
-            title: 'Tasks',
-            actions: `<button class="btn btn-sm btn-primary" type="button" id="taskAdd">New task</button>`,
-            body: taskCard(buckets),
-            footer: 'Tasks are reminders you create. Nothing is generated in the background — suggestions below must be added by you.',
-          })}
-
-          ${card({
-            title: 'Suggested tasks',
-            subtitle: 'Derived from your recorded weak areas, coverage and syllabus status',
-            body: suggestions.length
-              ? dataTable({
-                  columns: [{ label: 'Suggestion' }, { label: 'Basis' }, { label: '' }],
-                  rows: suggestions.map((s, i) => [
-                    `<strong>${esc(s.title)}</strong><div class="tiny muted">${esc(s.type)} · ${esc(s.priority)} priority</div>`,
-                    `<span class="tiny">${esc(s.basis)}</span>`,
-                    `<button class="btn btn-sm" type="button" data-add-suggestion="${i}">Add</button>`,
-                  ]),
-                  className: 'compact',
-                })
-              : '<p class="muted small">Not enough recorded evidence yet to suggest anything. Attempt more questions first.</p>',
-          })}
-        </div>
-
-        <div>
-          ${card({
-            title: 'Log a study session',
-            right: sourceChip('measured', 'manual log'),
-            body: `
-              <form id="sessionForm" class="field-row">
-                <label class="field field-xs"><span class="label-text">Minutes</span><input type="number" min="1" step="5" id="sessMinutes" value="30" /></label>
-                <label class="field"><span class="label-text">Activity</span>
-                  <select id="sessCategory">
-                    <option value="study">Reading / notes</option>
-                    <option value="practice">Practice questions</option>
-                    <option value="revision">Revision</option>
-                    <option value="test">Test</option>
-                    <option value="other">Other</option>
-                  </select>
-                </label>
-                <label class="field"><span class="label-text">Subject (optional)</span><input type="text" id="sessSubject" /></label>
-                <label class="field"><span class="label-text">Topic (optional)</span><input type="text" id="sessTopic" /></label>
-                <label class="field w-full"><span class="label-text">Notes (optional)</span><input type="text" id="sessNotes" /></label>
-                <button class="btn btn-primary" type="submit">Log session</button>
-              </form>`,
-          })}
-
-          ${card({
-            title: 'Study minutes per day',
-            subtitle: 'Last 14 days',
-            body: byDay.some((d) => d.minutes)
-              ? lineChart({ points: byDay.map((d) => ({ label: d.date.slice(5), value: d.minutes })), height: 150, yFormat: (v) => `${Math.round(v)}m`, yMax: Math.max(30, ...byDay.map((d) => d.minutes)) })
-              : '<p class="muted small">No sessions logged yet.</p>',
-          })}
-
-          ${card({
-            title: 'Recent sessions',
-            body: dataTable({
-              columns: [{ label: 'When' }, { label: 'Activity' }, { label: 'Time', num: true }, { label: 'Focus' }, { label: 'Notes' }],
-              rows: recentSessions,
-              empty: 'No sessions logged yet.',
-              className: 'compact',
-            }),
-          })}
-        </div>
-      </div>`;
+      })}`;
   },
 
   async mount(ctx, root) {
@@ -291,68 +184,8 @@ export default {
       }
     });
 
-    document.getElementById('taskAdd')?.addEventListener('click', async () => {
-      const value = await openModal({
-        title: 'New study task',
-        body: `
-          <label class="field"><span class="label-text">What will you do?</span><input type="text" id="taskTitle" placeholder="e.g. Revise Fundamental Rights" /></label>
-          <div class="field-row">
-            <label class="field"><span class="label-text">Type</span>
-              <select id="taskType">
-                <option value="study">Study</option>
-                <option value="practice">Practice</option>
-                <option value="revision">Revision</option>
-                <option value="test">Test</option>
-                <option value="other">Other</option>
-              </select>
-            </label>
-            <label class="field"><span class="label-text">Due date</span><input type="date" id="taskDue" value="${esc(todayKey())}" /></label>
-            <label class="field"><span class="label-text">Estimate (minutes)</span><input type="number" min="5" step="5" id="taskEstimate" value="30" /></label>
-            <label class="field"><span class="label-text">Priority</span>
-              <select id="taskPriority"><option value="high">High</option><option value="medium" selected>Medium</option><option value="low">Low</option></select>
-            </label>
-          </div>
-          <label class="field"><span class="label-text">Notes (optional)</span><textarea id="taskNotes" rows="2"></textarea></label>`,
-        actions: [{ label: 'Cancel', value: 'cancel' }, { label: 'Create task', tone: 'btn-primary', value: 'ok' }],
-      });
-      if (value !== 'ok') return;
-      const title = document.getElementById('taskTitle')?.value.trim();
-      if (!title) {
-        toast('Give the task a title.', 'warn');
-        return;
-      }
-      await planner.createTask({
-        title,
-        type: document.getElementById('taskType')?.value || 'study',
-        due_date: document.getElementById('taskDue')?.value || null,
-        estimate_minutes: Number(document.getElementById('taskEstimate')?.value) || 30,
-        priority: document.getElementById('taskPriority')?.value || 'medium',
-        notes: document.getElementById('taskNotes')?.value || null,
-      });
-      toast('Task created.', 'ok');
-      await rerender();
-    });
-
-    document.getElementById('sessionForm')?.addEventListener('submit', async (ev) => {
-      ev.preventDefault();
-      const minutes = Number(document.getElementById('sessMinutes')?.value) || 0;
-      if (minutes <= 0) {
-        toast('Enter how many minutes you studied.', 'warn');
-        return;
-      }
-      await planner.logSession({
-        minutes,
-        category: document.getElementById('sessCategory')?.value || 'study',
-        subject: document.getElementById('sessSubject')?.value.trim() || null,
-        topic: document.getElementById('sessTopic')?.value.trim() || null,
-        notes: document.getElementById('sessNotes')?.value.trim() || null,
-      });
-      toast('Session logged.', 'ok');
-      await rerender();
-    });
-
     root.addEventListener('click', async (ev) => {
-      const target = ev.target.closest('[data-toggle-node],[data-add-child],[data-edit-node],[data-delete-node],[data-task-done],[data-task-delete],[data-add-suggestion]');
+      const target = ev.target.closest('[data-toggle-node],[data-add-child],[data-edit-node],[data-delete-node]');
       if (!target) return;
       const d = target.dataset;
 
@@ -395,52 +228,13 @@ export default {
         const children = planner.descendants(rows, d.deleteNode).length;
         const ok = await confirmDialog({
           title: 'Delete this syllabus item?',
-          message: `“${esc(node?.title || '')}”${children ? ` and its ${children} child item(s)` : ''} will be removed. Tasks linked to it stay, but their link is cleared. Question-bank data is untouched.`,
+          message: `“${esc(node?.title || '')}”${children ? ` and its ${children} child item(s)` : ''} will be removed. Question-bank data is untouched.`,
           confirmLabel: 'Delete',
           danger: true,
         });
         if (!ok) return;
         await planner.deleteSyllabusItem(d.deleteNode, { withChildren: true });
         toast('Syllabus item deleted.', 'info');
-        await rerender();
-        return;
-      }
-      if (d.taskDone) {
-        const value = await openModal({
-          title: 'Finish this task',
-          body: `<label class="field"><span class="label-text">Also update the linked syllabus item status?</span>
-            <select id="doneMark"><option value="none">No, leave the syllabus item as it is</option><option value="in_progress">Mark it in progress</option><option value="completed">Mark it completed</option></select></label>`,
-          actions: [{ label: 'Cancel', value: 'cancel' }, { label: 'Mark done', tone: 'btn-primary', value: 'ok' }],
-        });
-        if (value !== 'ok') return;
-        await planner.completeTask(d.taskDone, { markSyllabus: document.getElementById('doneMark')?.value || 'none' });
-        toast('Task marked done.', 'ok');
-        await rerender();
-        return;
-      }
-      if (d.taskDelete) {
-        const ok = await confirmDialog({ title: 'Delete this task?', message: 'The task is removed. Nothing else is affected.', confirmLabel: 'Delete', danger: true });
-        if (!ok) return;
-        await planner.deleteTask(d.taskDelete);
-        await rerender();
-        return;
-      }
-      if (d.addSuggestion) {
-        const { analytics } = await loadAnalytics();
-        const progressData = planner.syllabusProgress(await planner.listSyllabus(), analytics);
-        const suggestion = planner.suggestTasks({ analytics, syllabusProgressData: progressData, limit: 5 })[Number(d.addSuggestion)];
-        if (!suggestion) return;
-        await planner.createTask({
-          title: suggestion.title,
-          type: suggestion.type,
-          syllabus_id: suggestion.syllabus_id,
-          subject: suggestion.subject,
-          topic: suggestion.topic,
-          priority: suggestion.priority,
-          due_date: todayKey(),
-          notes: suggestion.basis,
-        });
-        toast('Suggested task added.', 'ok');
         await rerender();
       }
     });

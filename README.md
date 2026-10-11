@@ -18,8 +18,8 @@ Then open <http://localhost:8080/>. On an empty database the app offers to load 
 Any static file server works — the app is plain HTML/CSS/ES modules. To run it offline as a PWA, serve it over `http(s)` (the service worker cannot register on `file://`).
 
 ```bash
-npm test             # 107 tests: services, end-to-end journey and UI journey tests
-npm run check        # 729 static integrity checks (imports, routes, assets, contrast, tokens, shell)
+npm test             # 108 tests: services, end-to-end journey and UI journey tests
+npm run check        # 730 static integrity checks (imports, routes, assets, contrast, tokens, shell)
 npm run audit:ui     # alias for npm run check (static UI + contrast + token audit)
 python3 tools/make-icons.py   # regenerate the PWA icons (no dependencies)
 node tools/build-bank.mjs --help
@@ -34,7 +34,7 @@ working, and `npm run check` fails if any of them is undone:
 
 * **Stay relative.** A project site lives at `https://<user>.github.io/<repo>/`, so a leading slash resolves to the domain root and 404s. Every URL in `index.html`, `sw.js`, `manifest.webmanifest` and `css/app.css` is relative (`css/app.css`, `./js/app.js`), the service worker is registered as `'sw.js'` with `scope: './'`, and its precache list uses `./` prefixes. The same files therefore also work on a custom domain or from `npm run serve` with no changes.
 * **Keep an empty `.nojekyll` at the repository root.** Without it Pages runs the tree through Jekyll, which ignores paths that start with an underscore and adds a rebuild step that can drop files.
-* **Bump the service-worker cache version** (`const VERSION = 'v1.1.0-5';` in `sw.js`) in the same commit as any change to a precached file — HTML, CSS, JS, icons, demo data. The old caches are deleted on `activate`, which is how a browser that cached a broken shell drops it. If the version did not change, that browser would keep serving the broken files.
+* **Bump the service-worker cache version** (`const VERSION = 'v1.1.0-8';` in `sw.js`) in the same commit as any change to a precached file — HTML, CSS, JS, icons, demo data. The old caches are deleted on `activate`, which is how a browser that cached a broken shell drops it. If the version did not change, that browser would keep serving the broken files.
 * **Verify after deploying:** load the site, check the console for a failed request, then reload once (or unregister the old worker in DevTools → Application → Service Workers) to confirm the new build is the one being served.
 
 ## What it does
@@ -42,18 +42,20 @@ working, and `npm run check` fails if any of them is undone:
 | Area | Behaviour |
 | --- | --- |
 | **PYQ Test Centre** | Full-paper simulations in the **original question order** with the paper's own duration, plus resume/discard for unfinished sessions. Incomplete papers, unknown scoring rules, disputed keys and missing keys are labelled on the paper card *before* you start. |
-| **Topic Practice** | Filter by subject, topic, subtopic, year, paper, question type, attempt history and language availability. Live counts before you start. |
-| **Custom Test** | Assemble a set from your own selection. Always labelled as a custom set — never as an authentic paper. |
+| **Topic Practice** | Filter by subject, topic, subtopic, attempt history (year, paper, question type and language tuck behind "More filters"). Live counts before you start. |
+| **Custom Test** | Assemble a set from your own selection — subjects and topics up front, everything else optional. Always labelled as a custom set — never as an authentic paper. |
 | **Smart Practice** | Builds a session from due revisions, repeated mistakes, skipped questions, weak topics, unseen coverage and under-practised topics, and **explains every allocation line**. Historical frequency is described as a study aid, never a prediction. |
 | **Mistake Book** | Wrong answers, skips, flagged questions, repeated mistakes and correct-but-unsure answers, with the full attempt history per question. Resolving keeps the history. |
 | **Revision Centre** | Due / overdue / upcoming queues where each entry shows the numeric basis for its date (outcome, confidence, level, interval, ease, time taken). Manual override at any time. |
-| **Syllabus & Study Planner** | The syllabus is whatever you import or type — **nothing is hard-coded**. Status is always manual; question-bank linkage is shown separately. Tasks and study-session logging included. |
+| **Syllabus & Study Planner** | The syllabus is whatever you import or type — **nothing is hard-coded**. Status is always manual; question-bank linkage is shown separately. |
 | **Analytics** | Available questions ≠ unique questions attempted ≠ total attempts. First-attempt accuracy is reported separately from overall accuracy, small samples are labelled, and every figure comes from stored attempts. |
 | **Question Bank & Imports** | Two-phase import (analyse → confirm) with schema/version validation, a pre-import summary, duplicate detection, provenance retention, rejected-record inspection, import history and undo. User corrections (classification, verified answer, dispute flag) are appended, never overwritten. |
 | **Settings & Backup** | Preferences, scoring defaults, revision rules, full JSON backup with SHA-256 integrity, validated restore (merge or replace), storage diagnostics and a guarded destructive zone. |
 | **Offline / PWA** | Service worker precaches the shell; the app keeps working offline. |
 
 Answer-key integrity is enforced throughout: a **supplied** key is never overwritten, an independently **verified** answer is stored alongside it with evidence, keys can be **flagged as disputed**, the policy for which key judges an answer is a setting, and a paper whose scoring rules are unknown **refuses to be scored** until you configure them.
+
+Starting a practice session is deliberately low-config. On Topic Practice, Custom Test and Smart Practice the only decisions up front are **what to include**, **how many questions** and **feedback timing**; every other session rule (timing, scoring, confidence, option order, repeats) is pre-filled from your Settings defaults, summarised in one plain-language line, and editable under a collapsed **Advanced settings** disclosure.
 
 ## What it deliberately does not do
 

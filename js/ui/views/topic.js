@@ -1,16 +1,18 @@
 /**
  * topic.js — Topic-wise practice.
  *
- * Filter by subject/topic/subtopic, year, paper, question type and attempt
- * history; see how many questions match before starting; configure session size,
- * feedback timing, confidence, option shuffling and scoring.
+ * Filter by subject/topic/subtopic (year, paper, question type and attempt
+ * history are tucked behind "More filters"); see how many questions match
+ * before starting; configure the session size and feedback up front, with the
+ * remaining rules summarised in plain language and editable under "Advanced
+ * settings".
  */
 
 import { state } from '../../core/state.js';
 import { esc, card, dataTable, toast, emptyState, sourceChip } from '../components.js';
 import { QUESTION_TYPES, LANGUAGE_LABELS } from '../../core/constants.js';
 import { filterMetas, availability, selectQuestions, ATTEMPT_STATE_FILTERS } from '../../services/select.js';
-import { configFields, readConfig, startPracticeTest, countSummary, availabilityTable, currentAttemptSummary } from './shared.js';
+import { configFields, readConfig, mountConfigFields, startPracticeTest, countSummary, availabilityTable, currentAttemptSummary } from './shared.js';
 
 const viewState = {
   filters: { subject: 'all', topic: 'all', subtopic: 'all', year: 'all', paperId: 'all', questionType: 'all', attemptState: 'any', language: 'all', excludeDemonstration: false, onlyReviewedExplanation: false, search: '' },
@@ -28,28 +30,35 @@ function filtersMarkup(filters, options) {
       <label class="field"><span class="label-text">Subtopic</span>
         <select id="fSubtopic"><option value="all">All subtopics</option>${options.subtopics.map((t) => `<option value="${esc(t)}" ${filters.subtopic === t ? 'selected' : ''}>${esc(t)}</option>`).join('')}</select>
       </label>
-      <label class="field"><span class="label-text">Year</span>
-        <select id="fYear"><option value="all">All years</option>${options.years.map((y) => `<option value="${esc(y)}" ${String(filters.year) === String(y) ? 'selected' : ''}>${esc(y)}</option>`).join('')}</select>
-      </label>
-      <label class="field"><span class="label-text">Paper</span>
-        <select id="fPaper"><option value="all">All papers</option>${options.papers.map((p) => `<option value="${esc(p.paper_id)}" ${filters.paperId === p.paper_id ? 'selected' : ''}>${esc(p.paper_name || p.paper_id)}${p.year ? ` (${esc(String(p.year))}${p.set_code ? `, ${esc(p.set_code)}` : ''})` : ''}</option>`).join('')}</select>
-      </label>
-      <label class="field"><span class="label-text">Question type</span>
-        <select id="fType"><option value="all">All types</option>${Object.entries(QUESTION_TYPES).map(([k, label]) => `<option value="${esc(k)}" ${filters.questionType === k ? 'selected' : ''}>${esc(label)}</option>`).join('')}</select>
-      </label>
       <label class="field"><span class="label-text">Attempt history</span>
         <select id="fAttempt">${Object.entries(ATTEMPT_STATE_FILTERS).map(([k, label]) => `<option value="${esc(k)}" ${filters.attemptState === k ? 'selected' : ''}>${esc(label)}</option>`).join('')}</select>
       </label>
-      <label class="field"><span class="label-text">Language availability</span>
-        <select id="fLanguage"><option value="all">Any</option>${Object.entries(LANGUAGE_LABELS).map(([k, label]) => `<option value="${esc(k)}" ${filters.language === k ? 'selected' : ''}>Has ${esc(label)} text</option>`).join('')}</select>
-      </label>
-      <label class="field"><span class="label-text">Search id, subject or topic</span>
-        <input type="search" id="fSearch" value="${esc(filters.search)}" placeholder="e.g. Narmada" />
-      </label>
     </div>
+    <details class="disclosure mt-2">
+      <summary>More filters — year, paper, question type, language</summary>
+      <div class="filters mt-2">
+        <label class="field"><span class="label-text">Year</span>
+          <select id="fYear"><option value="all">All years</option>${options.years.map((y) => `<option value="${esc(y)}" ${String(filters.year) === String(y) ? 'selected' : ''}>${esc(y)}</option>`).join('')}</select>
+        </label>
+        <label class="field"><span class="label-text">Paper</span>
+          <select id="fPaper"><option value="all">All papers</option>${options.papers.map((p) => `<option value="${esc(p.paper_id)}" ${filters.paperId === p.paper_id ? 'selected' : ''}>${esc(p.paper_name || p.paper_id)}${p.year ? ` (${esc(String(p.year))}${p.set_code ? `, ${esc(p.set_code)}` : ''})` : ''}</option>`).join('')}</select>
+        </label>
+        <label class="field"><span class="label-text">Question type</span>
+          <select id="fType"><option value="all">All types</option>${Object.entries(QUESTION_TYPES).map(([k, label]) => `<option value="${esc(k)}" ${filters.questionType === k ? 'selected' : ''}>${esc(label)}</option>`).join('')}</select>
+        </label>
+        <label class="field"><span class="label-text">Language availability</span>
+          <select id="fLanguage"><option value="all">Any</option>${Object.entries(LANGUAGE_LABELS).map(([k, label]) => `<option value="${esc(k)}" ${filters.language === k ? 'selected' : ''}>Has ${esc(label)} text</option>`).join('')}</select>
+        </label>
+        <label class="field"><span class="label-text">Search id, subject or topic</span>
+          <input type="search" id="fSearch" value="${esc(filters.search)}" placeholder="e.g. Narmada" />
+        </label>
+      </div>
+      <div class="row mt-2">
+        <label class="check m-0"><input type="checkbox" id="fExcludeDemo" ${filters.excludeDemonstration ? 'checked' : ''} /><span>Exclude demonstration questions</span></label>
+        <label class="check m-0"><input type="checkbox" id="fReviewed" ${filters.onlyReviewedExplanation ? 'checked' : ''} /><span>Only questions with a reviewed explanation</span></label>
+      </div>
+    </details>
     <div class="row mt-2">
-      <label class="check m-0"><input type="checkbox" id="fExcludeDemo" ${filters.excludeDemonstration ? 'checked' : ''} /><span>Exclude demonstration questions</span></label>
-      <label class="check m-0"><input type="checkbox" id="fReviewed" ${filters.onlyReviewedExplanation ? 'checked' : ''} /><span>Only questions with a reviewed explanation</span></label>
       <button class="btn btn-sm" type="button" id="fReset">Reset filters</button>
     </div>`;
 }
@@ -106,7 +115,7 @@ export default {
 
     return `
       <h1>Topic Practice</h1>
-      <p class="muted">Choose exactly what you want to practise. Counts update as you change the filters, before you start.</p>
+      <p class="muted">Pick a subject and go — or narrow it down further. Counts update as you change the filters, before you start. Session rules are pre-filled from your defaults; only size and feedback need a decision.</p>
 
       ${card({ title: 'Filters', right: sourceChip('supplied', 'bank metadata'), body: filtersMarkup(filters, { subjects: subjectOptions, topics: topicOptions, subtopics: subtopicOptions, years: yearOptions, papers }) })}
 
@@ -131,16 +140,20 @@ export default {
         subtitle: `${matching.length} question(s) will be drawn from`,
         right: sourceChip('derived', 'session rules'),
         body: `
-          ${configFields({ paper: null, defaultCount: Math.min(20, Math.max(1, matching.length)), maxCount: matching.length, allowCustomScoring: true })}
-          <div class="field-row">
+          ${configFields({
+            paper: null,
+            defaultCount: Math.min(20, Math.max(1, matching.length)),
+            maxCount: matching.length,
+            allowCustomScoring: true,
+            extraQuick: `
             <label class="field"><span class="label-text">Selection strategy</span>
               <select id="practiceStrategy">
                 <option value="random">Random from the matching set</option>
                 <option value="least-attempted">Least attempted first</option>
                 <option value="weakest-first">Weakest performance first</option>
               </select>
-            </label>
-          </div>
+            </label>`,
+          })}
           <div class="sticky-actions">
             <button class="btn btn-primary" type="button" id="startTopic" ${matching.length ? '' : 'disabled'}>Start practice session</button>
             <span class="tiny muted">${matching.length ? `${availabilityData.unseen} of these have never been attempted.` : 'Adjust the filters to enable this.'}</span>
@@ -149,6 +162,7 @@ export default {
   },
 
   async mount(ctx) {
+    mountConfigFields({ defaultCount: 20 });
     const rerender = async () => {
       viewState.filters = readFilters();
       await ctx.refresh();

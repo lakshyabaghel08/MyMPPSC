@@ -2,16 +2,19 @@
  * custom.js — Custom test builder.
  *
  * Assemble a test from selected years, papers, subjects, topics, subtopics and
- * question types, with control over size, strategy, scoring, feedback, time
- * limit, confidence and repeat handling. Custom tests are always labelled as
- * such — they are never presented as authentic previous-year papers.
+ * question types. Subjects and topics are up front; years, papers and question
+ * types tuck behind one disclosure. Session size and feedback stay visible,
+ * while scoring, timing, confidence and repeat handling are summarised in
+ * plain language and editable under "Advanced settings". Custom tests are
+ * always labelled as such — they are never presented as authentic
+ * previous-year papers.
  */
 
 import { state } from '../../core/state.js';
 import { esc, card, notice, dataTable, toast, emptyState, confirmDialog, sourceChip } from '../components.js';
 import { QUESTION_TYPES } from '../../core/constants.js';
 import { filterMetas, selectQuestions, ATTEMPT_STATE_FILTERS } from '../../services/select.js';
-import { configFields, readConfig, startPracticeTest, currentAttemptSummary, countSummary } from './shared.js';
+import { configFields, readConfig, mountConfigFields, startPracticeTest, currentAttemptSummary, countSummary } from './shared.js';
 
 const viewState = {
   years: [],
@@ -104,19 +107,34 @@ export default {
 
     return `
       <h1>Custom Test</h1>
-      ${notice('A custom test is assembled from the questions you choose. It is <strong>not</strong> an authentic previous-year paper and will be labelled as a custom set in the test and in the report.', 'info')}
+      ${notice('A custom test is assembled from the questions you choose. It is <strong>not</strong> an authentic previous-year paper and will be labelled as a custom set in the test and in the report. Nothing selected means everything available.', 'info')}
 
-      <div class="split-2">
-        <div>
-          ${card({ title: 'Years', right: sourceChip('supplied'), body: checkboxGroup('cbYear', years.map((y) => ({ value: String(y), label: String(y), count: metas.filter((m) => String(m.year) === String(y)).length })), viewState.years, { columns: 4 }) })}
-          ${card({ title: 'Papers', right: sourceChip('supplied'), body: checkboxGroup('cbPaper', papers.map((p) => ({ value: p.paper_id, label: `${p.paper_name || p.paper_id}${p.year ? ` (${p.year}${p.set_code ? `, set ${p.set_code}` : ''})` : ''}`, count: metas.filter((m) => m.paper_id === p.paper_id).length })), viewState.papers, { columns: 1 }) })}
-          ${card({ title: 'Subjects', right: sourceChip('supplied'), body: checkboxGroup('cbSubject', subjects.map((s) => ({ value: s, label: s, count: metas.filter((m) => (m.subject || 'Unclassified') === s).length })), viewState.subjects, { columns: 2 }) })}
-        </div>
-        <div>
-          ${card({ title: 'Topics', subtitle: 'Filtered by the subjects you selected', right: sourceChip('supplied'), body: checkboxGroup('cbTopic', topics.map((t) => ({ value: t, label: t, count: metas.filter((m) => (m.topic || 'Unclassified') === t).length })), viewState.topics, { columns: 1 }) })}
-          ${card({ title: 'Question types', right: sourceChip('supplied'), body: checkboxGroup('cbType', types.map((t) => ({ value: t, label: QUESTION_TYPES[t], count: metas.filter((m) => m.question_type === t).length })), viewState.questionTypes, { columns: 1 }) })}
-        </div>
-      </div>
+      ${card({
+        title: 'What to include',
+        subtitle: 'All optional — leave everything unselected to draw from the whole bank',
+        right: sourceChip('supplied'),
+        body: `
+          <div class="split-2">
+            <div>
+              <h3>Subjects</h3>
+              ${checkboxGroup('cbSubject', subjects.map((s) => ({ value: s, label: s, count: metas.filter((m) => (m.subject || 'Unclassified') === s).length })), viewState.subjects, { columns: 2 })}
+            </div>
+            <div>
+              <h3>Topics</h3>
+              <p class="tiny muted mt-0">Filtered by the subjects you selected</p>
+              ${checkboxGroup('cbTopic', topics.map((t) => ({ value: t, label: t, count: metas.filter((m) => (m.topic || 'Unclassified') === t).length })), viewState.topics, { columns: 1 })}
+            </div>
+          </div>
+          <details class="disclosure mt-2">
+            <summary>Narrow further by year, paper or question type</summary>
+            <h3>Years</h3>
+            ${checkboxGroup('cbYear', years.map((y) => ({ value: String(y), label: String(y), count: metas.filter((m) => String(m.year) === String(y)).length })), viewState.years, { columns: 4 })}
+            <h3>Papers</h3>
+            ${checkboxGroup('cbPaper', papers.map((p) => ({ value: p.paper_id, label: `${p.paper_name || p.paper_id}${p.year ? ` (${p.year}${p.set_code ? `, set ${p.set_code}` : ''})` : ''}`, count: metas.filter((m) => m.paper_id === p.paper_id).length })), viewState.papers, { columns: 1 })}
+            <h3>Question types</h3>
+            ${checkboxGroup('cbType', types.map((t) => ({ value: t, label: QUESTION_TYPES[t], count: metas.filter((m) => m.question_type === t).length })), viewState.questionTypes, { columns: 1 })}
+          </details>`,
+      })}
 
       ${card({
         title: 'Pool and strategy',
@@ -136,9 +154,12 @@ export default {
               </select>
             </label>
           </div>
-          <label class="check"><input type="checkbox" id="customIncludeAttempted" ${viewState.includeAttempted ? 'checked' : ''} /><span>Include questions I have already attempted (repeat rules still apply within the pool)</span></label>
-          <label class="check"><input type="checkbox" id="customOrderRandom" ${viewState.orderRandom ? 'checked' : ''} /><span>Shuffle the order of questions in this custom test</span></label>
-          <label class="check"><input type="checkbox" id="customExcludeDemo" ${viewState.excludeDemonstration ? 'checked' : ''} /><span>Exclude demonstration questions</span></label>
+          <details class="disclosure">
+            <summary>More pool options</summary>
+            <label class="check mt-2"><input type="checkbox" id="customIncludeAttempted" ${viewState.includeAttempted ? 'checked' : ''} /><span>Include questions I have already attempted (repeat rules still apply within the pool)</span></label>
+            <label class="check"><input type="checkbox" id="customOrderRandom" ${viewState.orderRandom ? 'checked' : ''} /><span>Shuffle the order of questions in this custom test</span></label>
+            <label class="check"><input type="checkbox" id="customExcludeDemo" ${viewState.excludeDemonstration ? 'checked' : ''} /><span>Exclude demonstration questions</span></label>
+          </details>
           ${dataTable({ columns: [{ label: 'Question type' }, { label: 'In pool', num: true }], rows: byType, className: 'compact' })}
         `,
       })}
@@ -155,6 +176,7 @@ export default {
   },
 
   async mount(ctx, root) {
+    mountConfigFields({ defaultCount: 25 });
     const rerender = async () => {
       readSelection();
       await ctx.refresh();
