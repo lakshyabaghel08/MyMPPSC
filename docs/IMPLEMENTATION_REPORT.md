@@ -45,7 +45,7 @@ this repository; nothing is claimed on the basis of inspection alone.
 | 29 | Settings page | Done | `js/ui/views/settings.js`: general, revision rules, backup & restore, diagnostics (storage report, activity log, guarded wipe) |
 | 30 | Polished, accessible, responsive study UI | Done (with caveat) | Whole `css/app.css`, `#navList` responsive drawer, keyboard shortcuts, focus styles, `prefers-reduced-motion`, print styles. Caveat: verified in jsdom + manual checklist, not by a real-browser automation suite or a screen-reader audit |
 | 31 | Deterministic scoring | Done | Pure `scoreTest` over rules + policy; `tests/scoring.test.js` re-runs identical inputs |
-| 32 | Real validation testing (never claim untested passes) | Done | `tests/validation.test.js` + `tests/tools.test.js`; results below are the actual runs |
+| 32 | Real validation testing (never claim untested passes) | Done | `tests/validation.test.js` + `tests/tools.test.js` + the jsdom journey suite; results below are the actual runs |
 | 33 | Question bank separate from app code | Done | Banks live in `data/**` and user imports; `npm run check` fails if question content appears in `js/**`; `tools/build-bank.mjs` builds banks outside the app |
 | 34 | Final report of features, tests run, limitations | Done | This document, plus `docs/TESTING.md` and `docs/LIMITATIONS.md` |
 
@@ -53,10 +53,10 @@ this repository; nothing is claimed on the basis of inspection alone.
 
 ```
 $ npm test
-# tests 99 / # pass 99 / # fail 0
+# tests 100 / # pass 100 / # fail 0
   validation  13    scoring    12    import  10
   revision    12    analytics   8    smart   11
-  backup       8    e2e        14    ui       8    tools 3
+  backup       8    e2e        14    ui       9    tools 3
 
 $ npm run check
 All 521 checks passed.
@@ -79,6 +79,7 @@ proxy-style Host/Origin request → 200
 Notable things the tests prove rather than assume:
 
 * the real `index.html` boots in jsdom, every route renders without an error notice, and the Import screen adds the demonstration bank through its own buttons;
+* a practice session started from the setup form honours the configured size, resumes after leaving the screen, and its stored clock does not keep ticking in the background;
 * a full paper simulation can be started, answered, flagged, palette-navigated, autosaved, submitted and reported **through the DOM**, and the stored result matches the paper's question count;
 * a paper with unknown rules cannot be scored until rules are configured;
 * a wrong answer creates a mistake entry, escalates on repeat, auto-resolves on a later correct answer and can be reopened;
@@ -109,3 +110,4 @@ The full list is in [`docs/LIMITATIONS.md`](LIMITATIONS.md). The headline items:
 * **Scheduling stores its reasoning.** Each revision record keeps `basis` (outcome, confidence, previous/new level, base days, ease, multiplier, time taken) plus a plain-language `reason`.
 * **One id, many variants.** Bilingual questions share an id so no statistic can double-count them.
 * **Labelling over guessing.** Missing keys, unknown rules, incomplete papers, unreviewed explanations and synthetic content are all surfaced as badges and warnings rather than filled in.
+* **Screens release what they hold.** The router runs a previous view's `cleanup()` before rendering the next one, so the test-runner clock stops ticking (and writing) when you navigate away while remaining wall-clock time is still charged when you return.

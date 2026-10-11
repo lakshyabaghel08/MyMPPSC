@@ -241,6 +241,59 @@ test('a full paper simulation runs, autosaves, submits and reports', async () =>
   assert.equal(record.result.counts.total, record.question_ids.length);
 });
 
+test('practice setup screens start real sessions from the shared configuration form', async () => {
+  const { loadTest } = await import('../js/services/tests.js');
+  const { state: appState } = await import('../js/core/state.js');
+
+  // Topic practice: change the configured size, then start.
+  await goto('topic');
+  change($('#practiceCfgCount'), '4');
+  click($('#startTopic'));
+  await waitFor(() => /#\/runner\//.test(window.location.hash), { label: 'topic session route' });
+  await waitFor(() => /Question 1 of/.test(viewText()), { label: 'topic runner markup' });
+  let testId = window.location.hash.split('/').pop();
+  let record = await loadTest(testId);
+  assert.equal(record.kind, 'topic');
+  assert.equal(record.question_ids.length, 4, 'the configured session size should be honoured');
+  assert.equal(new Set(record.question_ids).size, record.question_ids.length, 'a practice set must not repeat a question');
+  for (const id of record.question_ids) assert.ok(appState.questionIndex.has(id), `${id} should come from the stored index`);
+
+  // Answer one question so the session is genuinely in progress, then leave it
+  // unfinished on purpose: the dashboard should offer to resume it.
+  click($('#view [data-action="select"]'));
+  await waitFor(async () => {
+    const t = await loadTest(testId);
+    return Object.values(t.responses || {}).some((r) => r.selected?.length);
+  }, { label: 'topic response autosave' });
+
+  // Leaving the test screen must stop its background timer: the stored session
+  // should not keep ticking (and writing) while another screen is open.
+  await goto('dashboard');
+  const beforeLap = (await loadTest(testId)).timer.remaining_seconds;
+  await new Promise((resolve) => setTimeout(resolve, 2600));
+  const afterLap = (await loadTest(testId)).timer.remaining_seconds;
+  assert.equal(afterLap, beforeLap, 'the test clock must not keep ticking after leaving the test screen');
+
+  assert.match(viewText(), /unfinished test/i);
+  const resume = $$('#view a[href^="#/runner/"]').find((a) => /Resume/.test(a.textContent));
+  assert.ok(resume, 'the dashboard should offer to resume the unfinished session');
+  click(resume);
+  await waitFor(() => /Question \d+ of/.test(viewText()), { label: 'resumed runner' });
+  record = await loadTest(window.location.hash.split('/').pop());
+  assert.equal(record.id, testId, 'resuming must return to the same session');
+  assert.ok(Object.values(record.responses).some((r) => r.selected?.length), 'resumed session keeps its answers');
+
+  // Smart practice: build and start a session.
+  await goto('smart');
+  click($('#startSmart'));
+  await waitFor(() => /#\/runner\//.test(window.location.hash) && window.location.hash.split('/').pop() !== testId, { label: 'smart session route' });
+  await waitFor(() => /Question 1 of/.test(viewText()), { label: 'smart runner markup' });
+  const smart = await loadTest(window.location.hash.split('/').pop());
+  assert.equal(smart.kind, 'smart');
+  assert.ok(smart.question_ids.length > 0);
+  assert.ok((smart.config.selection_notes || []).some((n) => /not a prediction/i.test(n)), 'a smart session must carry its explanation notes');
+});
+
 test('the mistake book, revision centre and analytics reflect the submitted test', async () => {
   await goto('mistakes');
   assert.match(viewText(), /Mistake Book/);

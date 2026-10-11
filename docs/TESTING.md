@@ -3,7 +3,7 @@
 Everything here has actually been run. No test in this document is aspirational.
 
 ```bash
-npm test          # 99 tests, all passing
+npm test          # 100 tests, all passing
 npm run check     # 521 static integrity checks, all passing
 ```
 
@@ -22,7 +22,7 @@ Requirements: Node 20+ (developed on Node 22). `npm install` fetches
 | `tests/smart.test.js` | 11 | Smart practice: bucket sizes and allocation, unseen-ratio preference, cooldown behaviour, paper order preservation, explainability lines, and the near-duplicate similarity blend. |
 | `tests/backup.test.js` | 8 | Backup and restore: payload contents and counts, SHA-256 integrity, validation of a corrupted file, merge without duplicates, preference for newer local classifications, live settings preserved on merge, and a full round-trip. |
 | `tests/e2e.test.js` | 14 | A complete journey through the services: import the demo bank → an incomplete paper is labelled → take a full simulation in the original order with the source duration → autosave and resume across an interruption → deterministic scoring → report distinguishes outcomes and weak areas → mistake escalation, auto-resolution and reopening → revision scheduling and queue → analytics from recorded attempts only → custom test with custom scoring and shuffled options (matching never shuffled) → a classification correction being reversible → syllabus import and manual progress separate from bank data → backup and restore → no-network behaviour. |
-| `tests/ui.test.js` | 8 | The **real UI in jsdom**: `index.html` boots with IndexedDB, the first-run prompt offers the demonstration bank and says it is synthetic, every route renders without an error notice, the Import screen analyses the demo bank and imports it through the actual buttons, a **full paper simulation is started, answered, autosaved, submitted and reported through the DOM**, the mistake book / revision centre / analytics reflect that submission, a setting persists, the backup round-trip self-test passes, the `?` shortcut opens the help dialog, and the offline notice toggles. |
+| `tests/ui.test.js` | 9 | The **real UI in jsdom**: `index.html` boots with IndexedDB, the first-run prompt offers the demonstration bank and says it is synthetic, every route renders without an error notice, the Import screen analyses the demo bank and imports it through the actual buttons, a **full paper simulation is started, answered, autosaved, submitted and reported through the DOM**, topic and smart sessions start from the shared configuration form, an unfinished session is offered for resume and returns with its answers, and **leaving the test screen stops its background timer** so the clock cannot keep ticking and writing while another screen is open, the mistake book / revision centre / analytics reflect that submission, a setting persists, the backup round-trip self-test passes, the `?` shortcut opens the help dialog, and the offline notice toggles. |
 | `tests/tools.test.js` | 3 | The pipeline bridge: `tools/build-bank.mjs` expands intake shorthand correctly, produces a bank that passes the app's own validator with no unexpected warnings, writes a file that imports cleanly into a real database, never invents an answer key or scoring rules, and refuses an intake file with no questions. |
 
 `tests/helpers.mjs` is the shared harness: it installs an in-memory IndexedDB

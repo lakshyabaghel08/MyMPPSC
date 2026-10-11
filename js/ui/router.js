@@ -15,6 +15,7 @@ export class Router {
     this.onNavigate = onNavigate;
     this.currentRoute = null;
     this.viewState = {};
+    this.activeCleanup = null;
     this._onHashChange = () => this.resolve();
   }
 
@@ -59,11 +60,27 @@ export class Router {
       refresh: () => this.resolve(),
     };
     if (this.onNavigate) this.onNavigate(routeName, params);
+
+    // Let the previous screen release anything it holds (interval timers,
+    // document listeners). This runs before the new screen renders, so a
+    // background timer from the test runner cannot keep running elsewhere in
+    // the app — or keep the process alive in the test harness.
+    if (typeof this.activeCleanup === 'function') {
+      const previous = this.activeCleanup;
+      this.activeCleanup = null;
+      try {
+        await previous();
+      } catch (err) {
+        console.warn('View cleanup failed', err);
+      }
+    }
+
     this.container.innerHTML = loadingState();
     try {
       const markup = await view.render(ctx);
       this.container.innerHTML = markup || '';
       if (typeof view.mount === 'function') await view.mount(ctx, this.container);
+      this.activeCleanup = typeof view.cleanup === 'function' ? () => view.cleanup(ctx) : null;
       window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
     } catch (err) {
       console.error(`View "${routeName}" failed to render`, err);

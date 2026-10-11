@@ -86,9 +86,13 @@ export const ATTEMPT_STATE_FILTERS = {
 export function filterMetas(metas, f = {}, attemptSummary = new Map()) {
   const out = [];
   const search = (f.search || '').trim().toLowerCase();
+  // "all", "" and null/undefined all mean "do not filter on this dimension".
+  const set = (value) => (value === undefined || value === null || value === '' || value === 'all' ? null : value);
+  const paperId = set(f.paperId);
+  const year = set(f.year);
   for (const meta of metas) {
-    if (f.paperId && meta.paper_id !== f.paperId) continue;
-    if (f.year && String(meta.year) !== String(f.year)) continue;
+    if (paperId && meta.paper_id !== paperId) continue;
+    if (year && String(meta.year) !== String(year)) continue;
     if (f.subject && f.subject !== 'all' && (meta.subject || 'Unclassified') !== f.subject) continue;
     if (f.topic && f.topic !== 'all' && (meta.topic || 'Unclassified') !== f.topic) continue;
     if (f.subtopic && f.subtopic !== 'all' && (meta.subtopic || '') !== f.subtopic) continue;

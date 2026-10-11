@@ -566,9 +566,18 @@ const view = {
     }
   },
 
+  /**
+   * Called by the router before another screen renders. The ticker is stopped so
+   * it cannot keep saving in the background, but the test clock is *not*
+   * rewound: reconcileTimer() charges the elapsed wall-clock time when the test
+   * is opened again, exactly as it does after a page refresh.
+   */
   async cleanup() {
     if (session?.ticker) clearInterval(session.ticker);
     if (session?.keyboardHandler) document.removeEventListener('keydown', session.keyboardHandler);
+    if (session?.test && session.test.status === 'in_progress') {
+      await tests.saveTest(session.test).catch((err) => console.warn('Could not save the test on leaving the screen', err));
+    }
     session = null;
   },
 };

@@ -18,7 +18,7 @@ Then open <http://localhost:8080/>. On an empty database the app offers to load 
 Any static file server works — the app is plain HTML/CSS/ES modules. To run it offline as a PWA, serve it over `http(s)` (the service worker cannot register on `file://`).
 
 ```bash
-npm test             # 99 tests: services, end-to-end journey and UI smoke tests
+npm test             # 100 tests: services, end-to-end journey and UI journey tests
 npm run check        # 520+ static integrity checks (imports, routes, assets, data)
 python3 tools/make-icons.py   # regenerate the PWA icons (no dependencies)
 node tools/build-bank.mjs --help
