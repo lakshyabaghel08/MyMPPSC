@@ -103,6 +103,7 @@ function syncThemeToggleButton() {
   if (!btn) return;
   const effective = applyTheme(state.settings);
   const next = effective === 'dark' ? 'light' : 'dark';
+  btn.setAttribute('aria-pressed', String(effective === 'dark'));
   btn.setAttribute('aria-label', `Switch to ${next} theme (current: ${effective})`);
   btn.setAttribute('title', `Switch to ${next} theme (current: ${effective})`);
   btn.innerHTML = icon(effective === 'dark' ? 'sun' : 'moon');

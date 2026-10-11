@@ -69,7 +69,7 @@ const SOURCE_META = {
 export function sourceChip(kind, customLabel = null) {
   const meta = SOURCE_META[kind] || SOURCE_META.measured;
   const text = customLabel || meta.label;
-  return `<span class="prov-chip ${meta.cls}" title="${esc(meta.title)}">${esc(text)}</span>`;
+  return `<span class="prov-chip ${meta.cls}" data-source="${esc(kind || 'measured')}" title="${esc(meta.title)}">${esc(text)}</span>`;
 }
 
 /**
@@ -515,6 +515,7 @@ export function toast(message, tone = 'info', timeout = 5200) {
     timer = setTimeout(() => {
       node.remove();
     }, timeout);
+    timer?.unref?.();
   };
   const pauseTimer = () => {
     clearTimeout(timer);
@@ -546,7 +547,7 @@ function getFocusableElements(container) {
 }
 
 function setBackgroundInert(isInert) {
-  for (const id of ['appHeader', 'appBody']) {
+  for (const id of ['appHeader', 'appBody', 'main']) {
     const el = document.getElementById(id);
     if (!el) continue;
     el.inert = isInert;
@@ -564,17 +565,23 @@ function setBackgroundInert(isInert) {
 export function openModal({ title, body, actions = [], wide = false, onMount = null, dismissible = true }) {
   const root = document.getElementById('modalRoot');
   if (!root) return Promise.resolve(null);
-  const opener = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+  if (modalCleanup) {
+    document.removeEventListener('keydown', modalCleanup, true);
+    modalCleanup = null;
+  }
+  const opener = document.activeElement && typeof document.activeElement.focus === 'function' ? document.activeElement : null;
   const titleId = `modalTitle-${++modalTitleCounter}`;
 
   return new Promise((resolve) => {
+    let onKeyDown = null;
     const close = (value) => {
       root.hidden = true;
       root.innerHTML = '';
       setBackgroundInert(false);
-      if (modalCleanup) {
-        document.removeEventListener('keydown', modalCleanup, true);
-        modalCleanup = null;
+      if (onKeyDown) {
+        document.removeEventListener('keydown', onKeyDown, true);
+        if (modalCleanup === onKeyDown) modalCleanup = null;
+        onKeyDown = null;
       }
       if (opener && typeof opener.focus === 'function' && document.contains(opener)) {
         try {
@@ -613,7 +620,7 @@ export function openModal({ title, body, actions = [], wide = false, onMount = n
       if (ev.target === root && dismissible) close(null);
     };
 
-    modalCleanup = (ev) => {
+    onKeyDown = (ev) => {
       if (ev.key === 'Escape' && dismissible) {
         ev.preventDefault();
         close(null);
@@ -640,7 +647,8 @@ export function openModal({ title, body, actions = [], wide = false, onMount = n
         }
       }
     };
-    document.addEventListener('keydown', modalCleanup, true);
+    modalCleanup = onKeyDown;
+    document.addEventListener('keydown', onKeyDown, true);
 
     if (onMount) {
       try {

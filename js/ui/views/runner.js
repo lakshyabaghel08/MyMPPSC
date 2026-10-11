@@ -499,6 +499,7 @@ function startTicker(ctx, root) {
       tests.saveTest(test).catch(() => {});
     }
   }, 1000);
+  session.ticker?.unref?.();
 }
 
 function attach(ctx, root, { keepTimer = false } = {}) {
@@ -595,6 +596,8 @@ const view = {
   title: 'Test',
 
   async render(ctx) {
+    if (session?.ticker) clearInterval(session.ticker);
+    if (session?.keyboardHandler) document.removeEventListener('keydown', session.keyboardHandler);
     const [testId, sessionId] = ctx.params;
     const loaded = await loadSession(testId, { questionIds: sessionId ? idsFromParam(sessionId) : null });
     if (!loaded) {
