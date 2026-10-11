@@ -13,55 +13,58 @@ Every visual decision serves three goals:
 
 All colour literals in `css/app.css` live inside the root token blocks (`:root, :root[data-theme="light"]`, `:root[data-theme="dark"]`, `@media (prefers-color-scheme: dark)`, and `@media (forced-colors: active)`). `tools/check.mjs` fails the build if any `#hex`, `rgb()`, or `hsl()` colour appears outside a token block.
 
-### 1.1 Surface & Ink Palette
+### 1.1 Surface, Border & Text Palette
 
 | Token | Light Theme (`data-theme="light"`) | Dark Theme (`data-theme="dark"`) | Purpose |
 | :--- | :--- | :--- | :--- |
-| `--bg` | `#f4f6fa` | `#0f131c` | Page canvas & `<meta name="theme-color">` |
-| `--bg-elevated` | `#ffffff` | `#171d29` | Cards, dialogs, table containers |
-| `--bg-subtle` | `#eaf0f8` | `#1d2433` | Secondary panels, hover backgrounds, table headers |
-| `--bg-sunken` | `#dfe7f2` | `#0b0e15` | Wells, code blocks, progress tracks |
-| `--ink` | `#131926` | `#eef2f9` | Primary body & question text (≥ 14.9:1 contrast) |
-| `--ink-muted` | `#3e4c63` | `#b5c1d6` | Secondary labels & metadata (≥ 7.5:1 contrast) |
-| `--ink-soft` | `#53627a` | `#94a3bd` | Captions, hints, axis labels (≥ 5.3:1 contrast) |
-| `--border` | `#c8d3e3` | `#2b3548` | Card & table hairlines |
-| `--border-strong` | `#7486a2` | `#667794` | Input borders, checkbox/radio borders, non-text UI boundaries (≥ 3.2:1 contrast) |
+| `--bg` | `#f4f6fa` | `#0f131c` | Page canvas |
+| `--bg-elevated` | `#ffffff` | `#161b26` | Cards, dialogs, table containers |
+| `--bg-sunken` | `#eaeef5` | `#0a0d14` | Wells, code blocks, secondary panels, progress tracks |
+| `--text` | `#141926` | `#f0f3f9` | Primary body & question text (≥ 15.8:1 contrast) |
+| `--text-muted` | `#3d4659` | `#c2cadb` | Secondary labels & metadata (≥ 7.9:1 contrast) |
+| `--text-soft` | `#525c70` | `#9aa5bc` | Captions, hints, axis labels (≥ 5.4:1 contrast) |
+| `--border` | `#6e778c` | `#6e7891` | Card, table & control borders (≥ 3.7:1 contrast) |
+| `--border-strong` | `#50596d` | `#8b95ad` | Input borders, checkbox/radio borders, non-text UI boundaries (≥ 5.6:1 contrast) |
+| `--focus-ring` | `#1f3d7a` | `#93b4ff` | Keyboard `:focus-visible` ring (≥ 8.2:1 contrast) |
 
 ### 1.2 Brand & Semantic Status Tokens
 
-| Role | Surface Token (Light / Dark) | Ink Token (Light / Dark) | Border Token (Light / Dark) | Contrast (Text on Surface) |
+| Role | Foreground Token (Light / Dark) | Soft Surface Token (Light / Dark) | Solid Ink Token (Light / Dark) | Contrast (Foreground on Soft Surface) |
 | :--- | :--- | :--- | :--- | :--- |
-| **Accent** | `#e6effc` / `#182947` | `#1746a2` / `#8cb4ff` | `#8eb2f0` / `#3862ad` | ≥ 6.8:1 (Light) / ≥ 6.4:1 (Dark) |
-| **OK / Verified** | `#e3f5ec` / `#122b22` | `#0f5c3a` / `#6ee7b7` | `#6bc49c` / `#256f50` | ≥ 6.9:1 (Light) / ≥ 8.5:1 (Dark) |
-| **Warn / Synthetic** | `#fef1db` / `#2f2210` | `#7c4200` / `#fcd34d` | `#e5a952` / `#7c5316` | ≥ 6.8:1 (Light) / ≥ 9.5:1 (Dark) |
-| **Bad / Disputed** | `#fde8e8` / `#32161b` | `#9e1c1c` / `#fca5a5` | `#e68a8a` / `#822d37` | ≥ 6.8:1 (Light) / ≥ 7.2:1 (Dark) |
-| **Info / Derived** | `#e5f2fc` / `#14283d` | `#0f4c81` / `#7dd3fc` | `#7cb8eb` / `#295b8a` | ≥ 7.2:1 (Light) / ≥ 8.3:1 (Dark) |
+| **Accent** (`--accent`, `--accent-soft`, `--on-accent`) | `#1f3d7a` / `#93b4ff` | `#e5ecf9` / `#1b2845` | `#ffffff` / `#0b1528` | ≥ 8.3:1 (Light) / ≥ 6.8:1 (Dark) |
+| **OK / Verified** (`--ok`, `--ok-soft`, `--on-ok`) | `#116139` / `#6ee7a8` | `#e1f3e9` / `#11291e` | `#ffffff` / `#082014` | ≥ 6.4:1 (Light) / ≥ 9.1:1 (Dark) |
+| **Warn / Synthetic** (`--warn`, `--warn-soft`, `--on-warn`) | `#7c4a03` / `#fbbf60` | `#fdefd8` / `#2b2110` | `#ffffff` / `#231602` | ≥ 6.4:1 (Light) / ≥ 8.6:1 (Dark) |
+| **Bad / Disputed** (`--bad`, `--bad-soft`, `--on-bad`) | `#9e1c22` / `#ff9499` | `#fce8e9` / `#2f1619` | `#ffffff` / `#280709` | ≥ 6.4:1 (Light) / ≥ 6.8:1 (Dark) |
+| **Info / Derived** (`--info`, `--info-soft`, `--on-info`) | `#174ea6` / `#8ac4ff` | `#e4eefc` / `#13243b` | `#ffffff` / `#081a2e` | ≥ 6.8:1 (Light) / ≥ 7.8:1 (Dark) |
 
 ### 1.3 Typography & Devanagari Scale
 
 System font stacks are used with zero web-font network requests:
-- `--font-sans`: ` system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', 'Noto Sans Devanagari', 'Kohinoor Devanagari', 'Mangal', sans-serif`
-- `--font-serif`: `'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, 'Noto Serif Devanagari', serif`
-- `--font-mono`: `ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace`
+- `--sans`: `system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "Noto Sans Devanagari", Arial, sans-serif`
+- `--deva`: `"Noto Sans Devanagari", "Kohinoor Devanagari", "Mangal", system-ui, sans-serif`
+- `--mono`: `ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace`
 
 | Token | Value | Usage |
 | :--- | :--- | :--- |
 | `--text-xs` | `0.75rem` (12px) | Badges, provenance chips, keyboard hints, table headers |
-| `--text-sm` | `0.84375rem` (13.5px) | Secondary copy, filter labels, table cells |
-| `--text-md` | `0.9375rem` (15px) | Default interface body |
-| `--text-lg` | `1.0625rem` (17px) | English question stems & card titles |
-| `--text-xl` | `1.25rem` (20px) | Section headings & stat tile values |
-| `--text-2xl` | `1.5rem` (24px) | Screen `<h1>` titles |
-| `--leading-body` | `1.55` | English body copy |
-| `--leading-question` | `1.68` | English question stems (60–72ch measure) |
-| `--leading-hi` | `1.82` | Hindi (`[lang="hi"]`) stems & options so matras (`ि`, `ी`, `ु`, `ू`, `े`, `ै`) never clip |
+| `--text-sm` | `0.8125rem` (13px) | Secondary copy, filter labels, table cells |
+| `--text-base` | `0.9375rem` (15px) | Default interface body |
+| `--text-md` | `1.0625rem` (17px) | English & Hindi question stems |
+| `--text-lg` | `1.125rem` (18px) | Card `<h2>` headings |
+| `--text-xl` | `1.375rem` (22px) | Screen `<h1>` titles |
+| `--text-2xl` | `1.5rem` (24px) | Stat tile values |
+| `--text-3xl` | `2.25rem` (36px) | Hero report score |
+| `--lh-tight` | `1.25` | Headings & stat values |
+| `--lh-base` | `1.55` | English body copy |
+| `--lh-reading` | `1.65` | English question stems (`--measure: 70ch`) |
+| `--lh-deva` | `1.82` | Hindi (`[lang="hi"]`) stems & options so matras (`ि`, `ी`, `ु`, `ू`, `े`, `ै`) never clip |
 
 ### 1.4 Spacing, Radius, Elevation, Z-Index & Motion Scales
 
-- **Spacing (`--space-1` … `--space-8`)**: `4px`, `8px`, `12px`, `16px`, `20px`, `24px`, `32px`, `44px`. Compact density (`html[data-density="compact"]`) scales `--space-3`..`--space-6` down proportionally.
-- **Radii**: `--radius-xs` (`4px`), `--radius-sm` (`6px`), `--radius` (`10px`), `--radius-lg` (`14px`), `--radius-pill` (`999px`).
-- **Z-Index**: `--z-sticky` (`10`), `--z-header` (`30`), `--z-scrim` (`45`), `--z-drawer` (`50`), `--z-modal` (`70`), `--z-toast` (`80`), `--z-skip` (`100`). Note: `.modal-root` also sets literal `z-index: 70` so JSDOM `getComputedStyle(modalRoot).zIndex` resolves without CSS variable evaluation.
-- **Motion**: `--dur-fast` (`90ms`), `--dur-med` (`140ms`), `--ease-out` (`cubic-bezier(0.16, 1, 0.3, 1)`). Zero transitions or animations exceed `150ms`.
+- **Spacing (`--space-1` … `--space-10`)**: `4px`, `8px`, `12px`, `16px`, `20px`, `24px`, `32px`, `40px`. Compact density (`html[data-density="compact"]`) scales `--pad-card`, `--pad-tile`, `--pad-cell-y`, and `--gap-grid` down proportionally.
+- **Radii**: `--radius-xs` (`4px`), `--radius-sm` (`7px`), `--radius` (`10px`), `--radius-lg` (`14px`), `--radius-pill` (`999px`).
+- **Z-Index**: `--z-sticky` (`10`), `--z-runner-bar` (`20`), `--z-header` (`30`), `--z-scrim` (`35`), `--z-drawer` (`40`), `--z-toast` (`60`), `--z-modal` (`70`), `--z-skip` (`100`). Note: `.modal-root` also sets literal `z-index: 70` so JSDOM `getComputedStyle(modalRoot).zIndex` resolves without CSS variable evaluation.
+- **Motion**: `--dur-fast` (`90ms`), `--dur-base` (`140ms`), `--ease-out` (`cubic-bezier(0.16, 1, 0.3, 1)`). Zero transitions or animations exceed `150ms`.
 
 ---
 
