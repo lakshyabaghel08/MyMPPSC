@@ -317,6 +317,14 @@ const shellPaths = [...shellBlock.matchAll(/'([^']*)'/g)].map((m) => m[1]);
 check(shellPaths.length > 30, `sw.js: expected the precache list to cover the app shell, found ${shellPaths.length} entries`);
 for (const entry of shellPaths) {
   check(entry.startsWith('./') || entry === '', `sw.js: precache entry "${entry}" must be relative ("./…") so it resolves under a project-site subpath`);
+  if (entry && entry !== './') {
+    // A precache entry with no file makes the install step fail, which silently
+    // disables offline mode for the whole app.
+    await readFile(path.join(root, entry.replace(/^\.\//, '')), 'utf8').then(
+      () => check(true, ''),
+      () => check(false, `sw.js precaches ${entry}, but that file does not exist`),
+    );
+  }
 }
 
 /* ---------------------------------------------------------- data assets -- */
@@ -335,6 +343,53 @@ for (const file of ['data/demo/demo-bank.json', 'data/examples/example-bank.json
   check(parsed.schema_version, `${file}: a bank needs schema_version`);
   check(Array.isArray(parsed.papers) && parsed.papers.length > 0, `${file}: a bank needs papers`);
   check(Array.isArray(parsed.questions) && parsed.questions.length > 0, `${file}: a bank needs questions`);
+}
+
+/* ------------------------------------------- the repository-backed bank --- */
+
+// The bundled MPPSC bank is fetched by the app at boot and precached by the
+// service worker, so both halves have to point at the same file: a path that
+// exists but is not precached breaks offline use, and a precache entry with no
+// file breaks the install.
+const builtinSource = await readFile(path.join(root, 'js', 'services', 'builtin-bank.js'), 'utf8');
+const builtinPath = builtinSource.match(/BUILTIN_BANK_PATH = '([^']+)'/)?.[1] || null;
+check(Boolean(builtinPath), 'js/services/builtin-bank.js: BUILTIN_BANK_PATH is missing');
+if (builtinPath) {
+  check(await exists(builtinPath), `the bundled bank ${builtinPath} does not exist`);
+  check(shellPaths.includes(`./${builtinPath}`), `sw.js: the bundled bank ${builtinPath} is not precached, so it would need the network`);
+  const bundled = JSON.parse(await readFile(path.join(root, builtinPath), 'utf8'));
+  check(bundled.is_demonstration !== true, 'the bundled bank is real previous-year material, not the demonstration fixture');
+  check(bundled.questions.length > 0 && bundled.papers.length > 0, 'the bundled bank needs papers and questions');
+  check(!('provenance' in bundled), 'the bundled bank must carry no source provenance (docs/PYQ_AUDIT.md keeps the audit detail)');
+  // Only the technical fields are scanned: the words may legitimately appear
+  // inside a question (an option about a coaching scheme, for instance), but a
+  // key status, a classification source or a bank/paper name must never name a
+  // provider or claim a key is official.
+  const technical = {
+    bank_id: bundled.bank_id,
+    bank_name: bundled.bank_name,
+    generator: bundled.generator,
+    classification_meta: bundled.classification_meta,
+    papers: bundled.papers,
+    questions: bundled.questions.map((q) => ({
+      id: q.id,
+      paper_id: q.paper_id,
+      supplied_answer: q.supplied_answer,
+      answer_key_status: q.answer_key_status,
+      verified_answer: q.verified_answer ?? null,
+      classification_source: q.classification_source,
+      subject: q.subject,
+      topic: q.topic,
+      subtopic: q.subtopic,
+      metadata: q.metadata,
+    })),
+  };
+  check(!/unofficial|coaching|solved-book|printed key/i.test(JSON.stringify(technical)), 'the bundled bank must not name a source or label a key official/unofficial');
+  check(!bundled.questions.some((q) => q.source_reference), 'no bundled question may carry a source reference');
+  for (const paper of bundled.papers) {
+    check(paper.scoring?.rules_known === true, `${paper.paper_id}: the bundled bank must carry the paper's automatic marking scheme`);
+  }
+  note(`bundled bank: ${bundled.questions.length} questions, ${bundled.papers.length} papers — ${builtinPath}`);
 }
 
 const demoBank = JSON.parse(await readFile(path.join(root, 'data', 'demo', 'demo-bank.json'), 'utf8'));

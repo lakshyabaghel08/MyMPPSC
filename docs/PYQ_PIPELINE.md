@@ -11,8 +11,25 @@ are reused unchanged, so whatever this pipeline writes is exactly what the
 import screen would accept.
 
 ```bash
-node tools/classify-bank.mjs --in <source.json> --out data/pyq/mymppsc-pyq-bank.json --reports data/pyq
+# the exact command that builds the bank the app loads
+node tools/classify-bank.mjs \
+    --in data/pyq/source/MPPSC_PYQ_intake.json \
+    --out data/pyq/mymppsc-pyq-bank.json \
+    --reports data/pyq \
+    --apply-review data/pyq/reviewed-labels.jsonl
 ```
+
+The run is a sequence of named passes, each of which reports what it did:
+
+| Pass | What it does | Flag |
+| --- | --- | --- |
+| 1. Adapt | reads the extraction shapes into the schema's own vocabulary | always |
+| 2. **Repair** | fixes extraction artefacts and moves source provenance out of the data (`tools/classify/repair.mjs`) | `--no-repair` skips |
+| 3. Classify | the deterministic rule engine (`tools/classify/rules.mjs`) | always |
+| 4. **Review** | merges the committed human decisions (`data/pyq/reviewed-labels.jsonl`) over the rule output | `--apply-review <file>` |
+| 5. AI (optional) | merges provider labels for whatever is still unplaced | `--apply-ai <file>` |
+| 6. Build | writes the schema-shaped bank | always |
+| 7. **Sanitise** | writes the app-facing file: provenance out, marking scheme in, ids renamed | always |
 
 ## 1. What goes in
 
@@ -102,6 +119,57 @@ run otherwise — a typo cannot introduce a subject the app has never seen.
 `Unclassified` is reserved and never assigned: an unplaceable question keeps
 `null` so the app's `classification.isUnclassified` flag stays true.
 
+## 2b. The repair pass and the human review pass
+
+**Repair (`tools/classify/repair.mjs`, build-time only).** Extractions damage
+text in predictable ways. The repair pass fixes the artefacts it can be certain
+about and moves everything the app must not see into the review report:
+
+* literal two-character `\n` sequences (the extraction escaped the book's line
+  breaks inside Markdown table cells) become real newlines — 9,263 of them in
+  564 explanation strings in the bundled bank;
+* every question's `source_reference`, every `supplied_answer.source`, the
+  paper-level `answer_key` and `source_files` blocks, and parser bookkeeping in
+  `metadata` (`book_additional_information`, `parser_version`,
+  `question_type_basis`, `source_answer_text_preserved_as_options`, …) are
+  removed — 571 + 563 + 6 + 6 + 2,284 fields;
+* paper names that carry a source flavour are normalised.
+
+It changes no wording: question text, option text and answers are otherwise
+reproduced exactly. `--no-repair` runs the pipeline against an already-clean
+intake.
+
+**Human review (`tools/classify/reviewed-labels.mjs`).** Some questions carry no
+subject signal a rule can see ("Which of the following statements is *not*
+correct?") and a few subjects have no node in the taxonomy. Those records are
+left unclassified and a person reads the question with its options, printed
+answer and explanation. Their decision is one JSONL line:
+
+```json
+{"id":"MPPSC-2019-006","subject":"Madhya Pradesh Special",
+ "topic":"Personalities and awards of Madhya Pradesh",
+ "subtopic":"Sports from Madhya Pradesh","confidence":0.88,
+ "reason":"Captain Roop Singh Stadium, Gwalior — a Madhya Pradesh sports venue."}
+```
+
+`--apply-review data/pyq/reviewed-labels.jsonl` merges them **after** the rule
+pass, so a reviewed label wins over a rule guess. The merge is strict:
+
+* a subject, topic or subtopic that is not a real taxonomy path is **rejected**
+  with the reason and changes nothing;
+* the record's classification becomes `reviewed` — never `pipeline-ai`. No
+  provider is involved in a human decision and the bank must not imply one;
+* each decision is written into the review report's **Reviewed classification
+  decisions** table with its before/after and its reason, and the review file
+  stays in the repository so the decision can be re-read and re-run;
+* the question's `metadata.reviewed_classification` bookkeeping (which file, when)
+  is stripped from the app-facing bank by the sanitiser — the decision itself is
+  the classification and stays.
+
+In the bundled bank 244 labels were merged: 0 rejected, 0 malformed, 240 of them
+replacing a rule-engine guess. No AI provider was configured, so
+`ai_labels_applied` is 0 and nothing is labelled `pipeline-ai`.
+
 ## 3. The AI step (optional, resumable)
 
 Questions the rules cannot settle are written to an AI queue instead of being
@@ -153,11 +221,37 @@ partial reply cannot cost a question the topic the rules had already found.
 
 | File | Contents |
 | --- | --- |
-| `mymppsc-pyq-bank.json` | schema 1.0.0 bank, ready for **Question Bank & Imports → Import** |
+| `mymppsc-pyq-bank.json` | schema 1.0.0 bank. The bundled file the app **loads automatically at boot**; it is also a normal bank file, so importing it by hand still works |
 | `classification-report.md` / `.json` | counts and percentages at subject, topic and subtopic level, breakdown by subject/topic/subtopic, how each label was produced, confidence distribution, the unclassified list with reasons and candidates, the low-confidence list |
 | `review-report.md` / `.json` | missing keys, suspected duplicates, ambiguous and low-confidence classifications, the AI label merge decisions, content-integrity checks, unmapped source keys, adapter notes, and the preservation statement |
 | `ai-queue.jsonl` | the questions still needing a semantic label |
 | `ai-queue.taxonomy.json` | the closed vocabulary those requests must use (shared by every queue item) |
+
+### 4b. The app-facing sanitiser
+
+The last pass (`tools/classify/sanitise-bank.mjs`) is the boundary between the
+pipeline's working papers and the file the app ships:
+
+* **provenance out** — the bank-level `provenance` block, any remaining
+  `source_reference` / `supplied_answer.source` / paper `answer_key` /
+  `source_files`, parser and review bookkeeping in `metadata`; the audit detail is
+  written into the review report's *App-facing bank sanitisation* section instead;
+* **neutral answer vocabulary** — a stored key becomes `status: "supplied"` ("an
+  answer is stored with this question"); the app makes no claim about who issued
+  it, and a keyless question stays `missing`;
+* **the marking scheme is written in** — each paper gets its automatic MPPSC
+  `scoring` block, duration, total marks and official question count from
+  `js/core/marking.js` (`docs/MARKING.md`); a year no verified scheme covers
+  keeps `rules_known: false` so the app asks instead of guessing. A paper that
+  already states usable rules of its own **keeps them** (the report lists them
+  under *kept its own rules*): a table lookup must never overwrite a rule set the
+  source verified;
+* **identifiers become app-facing** — `bank_id`, `bank_name` and paper ids
+  (`MPPSC-2019-GS1-BOOK` → `MPPSC-2019-P1`). Question ids never change: user data
+  hangs off them. This identity is stamped on **real** data only: a
+  demonstration/sample build (`is_demonstration: true`) keeps its own id, name
+  and paper names, so a synthetic file can never be mistaken for the bundled
+  bank (the committed `data/pyq/example/` output is such a build).
 
 When the source ships its own parser review file (`MPPSC_PYQ_Review.json` next to
 `--in`, or `--source-review <file>`), its caveats are folded into the review
@@ -210,7 +304,22 @@ Its output is committed under `data/pyq/example/` so the reports can be read
 without running anything. It is demonstration data: `is_demonstration: true`,
 and never to be presented as a genuine MPPSC paper.
 
-## 7. Importing into the app
+## 7. Getting the bank into the app
+
+**The bundled bank needs no import.** `js/services/builtin-bank.js` fetches
+`data/pyq/mymppsc-pyq-bank.json` during boot, validates it with the same
+validator the import screen uses, and imports it through the same two-phase
+importer. Idempotence is decided by comparing the file with what is stored (new
+records / changed records) plus the recorded SHA-256, so re-opening the app or
+reloading the same bank writes nothing and cannot duplicate anything. The
+conflict policy is *update, preserving my corrections*, so user corrections,
+verified answers, bookmarks, attempts, revision history and locally authored
+questions survive a bank update. The service worker precaches the file, so it
+also works offline after the first load. **Question Bank & Imports** shows the
+loaded state and offers *Check for an updated bundled bank* and *Remove bundled
+bank from this device*.
+
+**A bank you built yourself** still imports by hand:
 
 1. `npm run serve` (any static server works) and open the app.
 2. **Question Bank & Imports → Import → choose file** → the bank JSON.

@@ -143,11 +143,35 @@ test('Hindi and English variants of one question are scored once, from the same 
   assert.equal(result.counts.correct, 1);
 });
 
-test('unknown paper rules require configuration before scoring', async () => {
+test('an MPPSC paper without stated rules gets the scheme for its examination year automatically', async () => {
   const resolved = m.scoring.resolveScoringRules({ paper: paperP2 });
-  assert.equal(resolved.needsConfiguration, true);
-  assert.equal(resolved.rules, null);
-  assert.match(resolved.warnings.join(' '), /not known/i);
+  assert.equal(resolved.needsConfiguration, false, 'the MPPSC scheme is applied without manual configuration');
+  assert.equal(resolved.source, 'mppsc_builtin');
+  assert.equal(resolved.rules.marks_per_correct, 2);
+  assert.equal(resolved.rules.negative_marking_enabled, false);
+  assert.equal(resolved.rules.marks_for_unanswered, 0);
+  assert.equal(resolved.schemeId, 'mppsc-sse-prelims-2019-2025');
+  assert.match(resolved.warnings.join(' '), /applied automatically/i);
+});
+
+test('the 2026-onwards scheme is selected for 2026 papers, and uncovered years still need configuration', async () => {
+  const fresh = m.scoring.resolveScoringRules({
+    paper: { paper_id: 'MPPSC-2026-GS1', exam: 'MPPSC State Service Preliminary Examination', year: 2026, paper_code: 'GS-I', scoring: { rules_known: false } },
+  });
+  assert.equal(fresh.schemeId, 'mppsc-sse-prelims-2026-plus');
+  assert.equal(fresh.rules.marks_per_correct, 3);
+  assert.equal(fresh.rules.negative_marking_enabled, true);
+  assert.equal(fresh.rules.negative_marks_per_incorrect, 1);
+
+  const old = m.scoring.resolveScoringRules({
+    paper: { paper_id: 'MPPSC-2009-GS1', exam: 'MPPSC State Service Preliminary Examination', year: 2009, paper_code: 'GS-I', scoring: { rules_known: false } },
+  });
+  assert.equal(old.needsConfiguration, true, 'a year with no verified scheme is never guessed');
+  assert.equal(old.rules, null);
+
+  const other = m.scoring.resolveScoringRules({ paper: { paper_id: 'UPSC-2023', exam: 'Union Public Service Commission Preliminary Examination', year: 2023, paper_code: 'GS', scoring: { rules_known: false } } });
+  assert.equal(other.needsConfiguration, true, 'a different commission is not scored with MPPSC rules');
+
   await assert.rejects(
     () => m.tests.submitTest({ id: 'x', question_ids: [], responses: {}, config: { scoring: { rules: null } } }),
     /no scoring rules/i,

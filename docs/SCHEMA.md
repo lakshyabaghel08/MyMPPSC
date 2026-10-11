@@ -70,6 +70,8 @@ node tools/build-bank.mjs --validate my-bank.json   # validate before importing
 * `rules_known: false` means the source does not state the rules. The app then **refuses to score** a test on that paper until you configure the rules (paper card → *Edit rules*, or in the runner when submitting). It never assumes `2 / −0.66`.
 * Rules you configure are stored as an override (`user_scoring_override`) with the original object kept under `original_scoring`.
 * Negative marking is applied only when `negative_marking_enabled` is true; `negative_marks_per_incorrect` is stored as a positive number.
+* **The bundled 2019–2024 bank does not ask you for any of this.** Each of its papers already carries the scheme that applied to its examination year, written at build time from `js/core/marking.js` (`docs/MARKING.md`). A paper whose year no verified scheme covers keeps `rules_known: false` on purpose.
+* **Provenance fields are absent from the bundled bank on purpose.** It has no `provenance` block, no per-question `source_reference` and no paper `answer_key`/`source_files`; a stored key is `status: "supplied"` (an answer is stored with the question) or `missing`. That audit detail lives in `data/pyq/review-report.md` and `docs/PYQ_AUDIT.md`. Banks **you** produce may of course fill these fields in; the schema and the importer still accept them.
 
 ## Question records
 

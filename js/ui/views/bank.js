@@ -6,12 +6,13 @@
  * history with undo. Nothing is ever imported or deleted silently.
  */
 
-import { ANSWER_KEY_STATUSES, EXPLANATION_STATUSES, STORES } from '../../core/constants.js';
+import { EXPLANATION_STATUSES, STORES } from '../../core/constants.js';
 import { state, refreshQuestionIndex } from '../../core/state.js';
 import * as db from '../../core/db.js';
 import { esc, badge, card, tile, notice, dataTable, toast, openModal, confirmDialog, tabs, mountTabs, renderExplanation, questionTypeLabel, answerKeyBadge, demoBadge, sourceChip, langAttr } from '../components.js';
 import { fmtPct, fmtDate, fmtRelative, readFileAsText, downloadJson, todayKey } from '../../core/util.js';
 import * as importer from '../../services/importer.js';
+import * as builtinBank from '../../services/builtin-bank.js';
 import * as data from '../../services/data.js';
 import * as questions from '../../services/questions.js';
 import { findExactDuplicateGroups, findNearDuplicates } from '../../services/select.js';
@@ -25,7 +26,7 @@ const viewState = {
   analysis: null,
   importOptions: { conflictPolicy: 'skip', mode: 'merge' },
   lastResult: null,
-  filters: { search: '', subject: 'all', topic: 'all', year: 'all', paperId: 'all', answerStatus: 'all', explanationStatus: 'all', demonstration: 'all', attention: false },
+  filters: { search: '', subject: 'all', topic: 'all', year: 'all', paperId: 'all', explanationStatus: 'all', demonstration: 'all', attention: false },
 };
 
 /* ------------------------------------------------------------- import UI -- */
@@ -39,7 +40,6 @@ function importSummary(analysis) {
     p.original_question_count === null || p.original_question_count === undefined ? '<span class="soft">unknown</span>' : String(p.original_question_count),
     String((report.questions || []).filter((q) => q.paper_id === p.paper_id).length),
     p.scoring?.rules_known ? `+${esc(String(p.scoring.marks_per_correct))}${p.scoring.negative_marking_enabled ? ` / −${esc(String(p.scoring.negative_marks_per_incorrect))}` : ''}` : badge('rules unknown', 'warn'),
-    esc(p.answer_key?.status || 'unknown'),
   ]);
 
   const errorRows = [...report.fatal, ...report.errors].slice(0, 40).map((e) => [esc(e.questionId || e.paperId || '—'), esc(e.code || ''), esc(e.message)]);
@@ -67,7 +67,7 @@ function importSummary(analysis) {
         : ''
     }
 
-    ${dataTable({ columns: [{ label: 'Paper' }, { label: 'Year' }, { label: 'Declared Qs', num: true }, { label: 'Present in file', num: true }, { label: 'Scoring' }, { label: 'Answer key' }], rows: papers, empty: 'The file declares no papers.', className: 'compact' })}
+    ${dataTable({ columns: [{ label: 'Paper' }, { label: 'Year' }, { label: 'Declared Qs', num: true }, { label: 'Present in file', num: true }, { label: 'Scoring' }], rows: papers, empty: 'The file declares no papers.', className: 'compact' })}
 
     ${
       comparison.changedQuestionIds?.length
@@ -106,7 +106,7 @@ function importSummary(analysis) {
     <div class="sticky-actions">
       <button class="btn btn-primary" type="button" id="confirmImport">Confirm import (${comparison.newQuestions} new question(s))</button>
       <button class="btn btn-quiet" type="button" id="cancelImport">Cancel — import nothing</button>
-      <span class="tiny muted">The file's own content is preserved; provenance, hashes and validation results are stored with the import record.</span>
+      <span class="tiny muted">The file's own content is preserved; the file's hash and the validation result are stored with the import record.</span>
     </div>`;
 }
 
@@ -154,7 +154,6 @@ function filterQuestions(metas) {
     .filter((m) => (f.topic === 'all' ? true : (m.topic || 'Unclassified') === f.topic))
     .filter((m) => (f.year === 'all' ? true : String(m.year) === String(f.year)))
     .filter((m) => (f.paperId === 'all' ? true : m.paper_id === f.paperId))
-    .filter((m) => (f.answerStatus === 'all' ? true : (m.answerStatus || 'unknown') === f.answerStatus))
     .filter((m) => (f.explanationStatus === 'all' ? true : (m.explanationStatus || 'missing') === f.explanationStatus))
     .filter((m) => (f.demonstration === 'all' ? true : f.demonstration === 'only' ? m.demonstration : !m.demonstration))
     .filter((m) => (f.attention ? m.needsAttention || m.unclassified || !m.hasSuppliedAnswer : true))
@@ -178,7 +177,7 @@ async function openQuestionEditor(questionId, ctx) {
   const optionRows = (variant?.options || []).map((o) => [
     `<strong>${esc(o.key)}</strong>`,
     esc(o.text),
-    (question.supplied?.answer || []).includes(o.key) ? badge('supplied key', 'info') : '',
+    (question.supplied?.answer || []).includes(o.key) ? badge('key', 'info') : '',
     (question.verified?.answer || []).includes(o.key) ? badge('verified', 'ok') : '',
   ]);
 
@@ -225,7 +224,7 @@ async function openQuestionEditor(questionId, ctx) {
         const value = await openModal({
           title: 'Record a verified answer',
           body: `
-            <p class="small">The supplied key is never overwritten. A verified answer is an additional, separately-attributed record used by the answer policy you choose in Settings.</p>
+            <p class="small">The stored key is never overwritten. A verified answer is an additional record used by the answer policy you choose in Settings.</p>
             <div class="stack">${keys
               .map(
                 (k) => `<label class="check"><input type="checkbox" name="verifyKey" value="${esc(k)}" ${(question.verified?.answer || []).includes(k) ? 'checked' : ''} /><span><strong>${esc(k)}</strong> — ${esc((variant.options.find((o) => o.key === k) || {}).text || '')}</span></label>`,
@@ -242,7 +241,7 @@ async function openQuestionEditor(questionId, ctx) {
           return;
         }
         await questions.setVerifiedAnswer(questionId, { answer, evidence: evidence ? [{ note: evidence, by: 'you', at: new Date().toISOString() }] : [] });
-        toast('Verified answer recorded; the supplied key was left untouched.', 'ok');
+        toast('Verified answer recorded; the stored key was left untouched.', 'ok');
         close(null);
         await ctx.refresh();
       });
@@ -297,7 +296,7 @@ async function openQuestionEditor(questionId, ctx) {
     },
     body: `
       <div class="row mb-2">
-        ${demoBadge(meta?.demonstration)} ${answerKeyBadge(question.supplied?.status)}
+        ${demoBadge(meta?.demonstration)} ${!question.supplied?.answer && !question.verified?.answer ? badge('answer key missing', 'bad') : ''}
         ${question.dispute?.is_disputed ? badge('disputed key', 'bad') : ''}
         ${question.verified?.answer ? badge('verified answer recorded', 'ok') : ''}
         ${badge(questionTypeLabel(question.question_type), '')}
@@ -314,17 +313,17 @@ async function openQuestionEditor(questionId, ctx) {
       <h3>Options</h3>
       ${dataTable({ columns: [{ label: 'Key' }, { label: 'Text' }, { label: 'Supplied' }, { label: 'Verified' }], rows: optionRows, className: 'compact' })}
 
-      <h3>Answer keys</h3>
+      <h3>Answer</h3>
       ${dataTable({
-        columns: [{ label: 'Record' }, { label: 'Answer' }, { label: 'Status' }, { label: 'Source' }],
+        columns: [{ label: 'Record' }, { label: 'Answer' }, { label: 'Note' }],
         rows: [
-          ['Supplied by the source', esc((question.supplied?.answer || []).join(', ') || 'none'), esc(question.supplied?.status || 'unknown'), esc(question.supplied?.source || '—')],
-          ['Independently verified', esc((question.verified?.answer || []).join(', ') || 'none'), esc(question.verified?.status || '—'), esc(question.verified?.verified_by ? `${question.verified.verified_by}${question.verified.source ? ` (${question.verified.source})` : ''}` : '—')],
-          ['Used for scoring now', esc((effective.answer || []).join(', ') || 'none'), esc(effective.reason || ''), esc(`policy: ${state.settings.answerPolicy}`)],
+          ['Stored with the question', esc((question.supplied?.answer || []).join(', ') || 'none'), answerKeyBadge(question.supplied?.status) || '<span class="soft tiny">answer stored</span>'],
+          ['Your verified answer', esc((question.verified?.answer || []).join(', ') || 'none'), question.verified?.answer ? esc(`recorded ${fmtRelative(question.verified.verified_at)}`) : '<span class="soft tiny">not recorded</span>'],
+          ['Used for scoring now', esc((effective.answer || []).join(', ') || 'none'), esc(effective.reason ? `${effective.reason} (policy: ${state.settings.answerPolicy})` : `policy: ${state.settings.answerPolicy}`)],
         ],
         className: 'compact',
       })}
-      <p class="small">${integrity.label ? esc(integrity.label) : 'The supplied key is present and no conflict has been recorded between the supplied and verified answers.'}</p>
+      <p class="small">${integrity.label ? esc(integrity.label) : 'An answer is stored for this question and no conflict has been recorded between it and your verified answer.'}</p>
 
       <h3>Classification</h3>
       ${dataTable({
@@ -342,14 +341,13 @@ async function openQuestionEditor(questionId, ctx) {
       <h3>Explanation (shown exactly as supplied)</h3>
       ${renderExplanation(question)}
 
-      <h3>Provenance</h3>
+      <h3>Record</h3>
       ${dataTable({
         columns: [{ label: 'Field' }, { label: 'Value' }],
         rows: [
           ['Paper', esc(question.paper_id)],
           ['Question number in paper', esc(String(question.question_number ?? '—'))],
           ['Original order preserved', question.metadata?.original_order_preserved ? 'yes' : 'not recorded'],
-          ['Source file', esc(question.metadata?.source_file || '—')],
           ['Imported at', esc(fmtRelative(question.imported_at))],
           ['Import history', String((question.import_history || []).length)],
           ['User corrections', String((question.user_corrections || []).length)],
@@ -389,8 +387,38 @@ export default {
     const importHistoryRows = await importer.importHistory({ limit: 25 });
     const stored = await db.storeCounts();
 
+    const builtinInfo = await builtinBank.builtinBankInfo();
+    const builtinMeta = builtinInfo.meta;
+    const builtinTab = card({
+      title: 'Bundled MPPSC bank (2019–2024)',
+      right: builtinMeta ? badge('loaded', 'ok') : badge('not loaded', 'warn'),
+      body: `
+        <p class="small">This repository ships the classified MPPSC previous-year question bank. It is loaded automatically from
+        <span class="mono tiny">${esc(builtinBank.BUILTIN_BANK_PATH)}</span> when the app starts, so a fresh installation has real papers
+        without importing anything by hand. The load is checked against a recorded fingerprint: an unchanged bank is never re-written,
+        and an updated one refreshes the stored records while keeping your corrections, bookmarks, attempts and revision history.</p>
+        ${dataTable({
+          columns: [{ label: 'Bank' }, { label: 'Questions' }, { label: 'Papers' }, { label: 'Loaded' }],
+          rows: [
+            [
+              builtinMeta ? `${esc(builtinMeta.bank_name || builtinMeta.bank_id)}<div class="tiny muted mono">${esc(builtinMeta.bank_id || '')}</div>` : '<span class="soft">Not loaded yet</span>',
+              builtinInfo.meta ? String(builtinInfo.storedQuestions) : '—',
+              builtinMeta?.papers != null ? String(builtinMeta.papers) : '—',
+              builtinMeta?.loaded_at ? esc(fmtDate(builtinMeta.loaded_at)) : '—',
+            ],
+          ],
+          className: 'compact',
+        })}
+        <div class="row mt-3">
+          <button class="btn btn-sm" type="button" id="checkBuiltin">${builtinMeta ? 'Check for an updated bundled bank' : 'Load the bundled bank now'}</button>
+          ${builtinMeta ? '<button class="btn btn-sm btn-quiet" type="button" id="removeBuiltin">Remove bundled bank from this device</button>' : ''}
+        </div>
+        <p class="tiny muted mb-0">The file is part of the repository, is available offline once the app has been opened, and is validated again before anything is written.</p>`,
+    });
+
     const importTab = `
       ${importResultCard(viewState.lastResult)}
+      ${builtinTab}
       ${card({
         title: 'Import a question bank',
         right: sourceChip('supplied', 'validated before write'),
@@ -429,7 +457,6 @@ export default {
             <label class="field"><span class="label-text">Topic</span><select id="qTopic"><option value="all">All</option>${topics.map((t) => `<option value="${esc(t)}" ${viewState.filters.topic === t ? 'selected' : ''}>${esc(t)}</option>`).join('')}</select></label>
             <label class="field"><span class="label-text">Year</span><select id="qYear"><option value="all">All</option>${years.map((y) => `<option value="${esc(String(y))}" ${String(viewState.filters.year) === String(y) ? 'selected' : ''}>${esc(String(y))}</option>`).join('')}</select></label>
             <label class="field"><span class="label-text">Paper</span><select id="qPaper"><option value="all">All</option>${papers.map((p) => `<option value="${esc(p.paper_id)}" ${viewState.filters.paperId === p.paper_id ? 'selected' : ''}>${esc(p.paper_name || p.paper_id)}</option>`).join('')}</select></label>
-            <label class="field"><span class="label-text">Answer key</span><select id="qAnswer"><option value="all">Any</option>${Object.entries(ANSWER_KEY_STATUSES).map(([k, l]) => `<option value="${esc(k)}" ${viewState.filters.answerStatus === k ? 'selected' : ''}>${esc(l)}</option>`).join('')}</select></label>
             <label class="field"><span class="label-text">Explanation</span><select id="qExplanation"><option value="all">Any</option>${Object.entries(EXPLANATION_STATUSES).map(([k, l]) => `<option value="${esc(k)}" ${viewState.filters.explanationStatus === k ? 'selected' : ''}>${esc(l)}</option>`).join('')}</select></label>
             <label class="field"><span class="label-text">Demonstration</span><select id="qDemo">
               <option value="all">Include</option><option value="exclude" ${viewState.filters.demonstration === 'exclude' ? 'selected' : ''}>Exclude synthetic demo questions</option><option value="only" ${viewState.filters.demonstration === 'only' ? 'selected' : ''}>Only synthetic demo questions</option>
@@ -452,7 +479,7 @@ export default {
              <div class="tiny muted">${esc(questionTypeLabel(m.question_type))}${m.langs.length > 1 ? ' · bilingual' : ` · ${esc(m.langs.join(', '))}`}</div>`,
             `${esc(m.paper_id)}<div class="tiny muted">${esc(String(m.year ?? 'year unknown'))}</div>`,
             `${esc(m.subject || 'Unclassified')}<div class="tiny muted">${esc(m.topic || '—')}</div>`,
-            `${answerKeyBadge(m.answerStatus)}${m.disputed ? ` ${badge('disputed', 'bad')}` : ''}${m.hasVerifiedAnswer ? ` ${badge('verified', 'ok')}` : ''}`,
+            `${m.hasSuppliedAnswer || m.hasVerifiedAnswer ? '' : badge('key missing', 'bad')}${m.disputed ? ` ${badge('disputed', 'bad')}` : ''}${m.hasVerifiedAnswer ? ` ${badge('verified', 'ok')}` : ''}`,
             `${badge(m.explanationStatus || 'missing', m.explanationStatus === 'reviewed' ? 'ok' : m.explanationStatus === 'unreviewed' ? 'warn' : '')}`,
             `<button class="btn btn-sm" type="button" data-open-question="${esc(m.id)}">Open</button>`,
           ]),
@@ -482,7 +509,7 @@ export default {
       ${card({
         title: 'Papers',
         body: dataTable({
-          columns: [{ label: 'Paper' }, { label: 'Stored / declared', num: true }, { label: 'Scoring rules' }, { label: 'Answer key' }, { label: 'Origin' }, { label: '' }],
+          columns: [{ label: 'Paper' }, { label: 'Stored / declared', num: true }, { label: 'Scoring rules (applied automatically)' }, { label: 'Origin' }, { label: '' }],
           rows: papers.map((p) => {
             const present = metas.filter((m) => m.paper_id === p.paper_id).length;
             return [
@@ -491,7 +518,6 @@ export default {
               p.scoring?.rules_known
                 ? `+${esc(String(p.scoring.marks_per_correct))}${p.scoring.negative_marking_enabled ? ` / −${esc(String(p.scoring.negative_marks_per_incorrect))}` : ' (no negative marking)'}${p.user_scoring_override ? ` ${badge('you set this', 'info')}` : ''}`
                 : badge('unknown — must be configured', 'warn'),
-              esc(p.answer_key?.status || 'unknown'),
               p.placeholder ? badge('placeholder (metadata absent)', 'warn') : badge(p.is_demonstration ? 'demonstration' : 'imported bank', p.is_demonstration ? 'warn' : ''),
               `<button class="btn btn-sm" type="button" data-edit-paper="${esc(p.paper_id)}">Edit rules</button>`,
             ];
@@ -517,10 +543,10 @@ export default {
               title: `Disputed keys (${disputed.length})`,
               body: dataTable({
                 columns: [{ label: 'Question' }, { label: 'Supplied' }, { label: 'Verified' }, { label: '' }],
-                rows: disputed.slice(0, 25).map((m) => [`<span class="mono tiny">${esc(m.id)}</span>`, esc(m.answerStatus), m.hasVerifiedAnswer ? 'recorded' : '—', `<button class="btn btn-sm" type="button" data-open-question="${esc(m.id)}">Open</button>`]),
+                rows: disputed.slice(0, 25).map((m) => [`<span class="mono tiny">${esc(m.id)}</span>`, m.hasSuppliedAnswer ? 'recorded' : '—', m.hasVerifiedAnswer ? 'recorded' : '—', `<button class="btn btn-sm" type="button" data-open-question="${esc(m.id)}">Open</button>`]),
                 className: 'compact',
               }),
-              footer: 'The supplied key is preserved and the post-test report records which key each answer was judged against.',
+              footer: 'The stored key is preserved and the post-test report records which key each answer was judged against.',
             })
           : ''
       }
@@ -684,6 +710,34 @@ export default {
       }
     });
 
+    document.getElementById('checkBuiltin')?.addEventListener('click', async () => {
+      const button = document.getElementById('checkBuiltin');
+      if (button) button.disabled = true;
+      try {
+        const result = await builtinBank.ensureBuiltinBank({ force: true });
+        toast(result.message, result.status === 'current' ? 'info' : result.status === 'loaded' || result.status === 'updated' ? 'ok' : 'bad');
+        await ctx.refresh();
+      } catch (err) {
+        toast(`The bundled bank could not be loaded: ${err.message}`, 'bad');
+      } finally {
+        if (button) button.disabled = false;
+      }
+    });
+
+    document.getElementById('removeBuiltin')?.addEventListener('click', async () => {
+      const ok = await confirmDialog({
+        title: 'Remove the bundled bank from this device?',
+        message: 'The 2019–2024 questions and papers stored from the repository bank are removed from this browser. Your own imported questions, attempts, bookmarks and revision history are untouched, and the bank can be loaded again at any time.',
+        confirmLabel: 'Remove from this device',
+        danger: true,
+      });
+      if (!ok) return;
+      const removed = await builtinBank.removeBuiltinBank();
+      await refreshQuestionIndex({ silent: true });
+      toast(`Removed ${removed.removedQuestions} question(s). The bundled bank can be loaded again whenever you want.`, 'info');
+      await ctx.refresh();
+    });
+
     document.getElementById('importConflict')?.addEventListener('change', (ev) => {
       viewState.importOptions.conflictPolicy = ev.target.value;
     });
@@ -744,14 +798,13 @@ export default {
       f.topic = document.getElementById('qTopic')?.value ?? f.topic;
       f.year = document.getElementById('qYear')?.value ?? f.year;
       f.paperId = document.getElementById('qPaper')?.value ?? f.paperId;
-      f.answerStatus = document.getElementById('qAnswer')?.value ?? f.answerStatus;
       f.explanationStatus = document.getElementById('qExplanation')?.value ?? f.explanationStatus;
       f.demonstration = document.getElementById('qDemo')?.value ?? f.demonstration;
       f.attention = Boolean(document.getElementById('qAttention')?.checked);
       viewState.page = 0;
       await ctx.refresh();
     };
-    ['qSubject', 'qTopic', 'qYear', 'qPaper', 'qAnswer', 'qExplanation', 'qDemo', 'qAttention'].forEach((id) => document.getElementById(id)?.addEventListener('change', rerenderWithFilters));
+    ['qSubject', 'qTopic', 'qYear', 'qPaper', 'qExplanation', 'qDemo', 'qAttention'].forEach((id) => document.getElementById(id)?.addEventListener('change', rerenderWithFilters));
     let searchTimer = null;
     document.getElementById('qSearch')?.addEventListener('input', () => {
       clearTimeout(searchTimer);

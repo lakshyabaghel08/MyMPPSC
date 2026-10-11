@@ -9,6 +9,7 @@ import { Router } from './ui/router.js';
 import { toast, openModal, confirmDialog, esc, notice, icon } from './ui/components.js';
 import { logEvent, downloadJson, fmtDate } from './core/util.js';
 import { mistakeCounts } from './services/attempts.js';
+import { ensureBuiltinBank } from './services/builtin-bank.js';
 import { revisionSummary } from './services/revision.js';
 import { buildBackup, markBackupTaken, lastBackupInfo } from './services/data.js';
 
@@ -424,6 +425,17 @@ async function boot() {
   try {
     await loadSettings();
     await refreshQuestionIndex({ silent: true });
+    // The MPPSC 2019–2024 bank ships with the repository and is loaded here, so
+    // a fresh installation never has to import a file by hand. The loader is
+    // idempotent (it compares the file's SHA-256 with the one it recorded) and
+    // non-destructive (it merges through the normal importer, preserving
+    // corrections, attempts and locally authored questions).
+    const builtin = await ensureBuiltinBank({ silent: true });
+    if (builtin.status === 'loaded' || builtin.status === 'updated') {
+      await refreshQuestionIndex({ silent: true });
+      toast(builtin.message, 'ok');
+    }
+    if (builtin.status === 'blocked') console.error('Built-in bank was not imported:', builtin.message);
   } catch (err) {
     console.error('Could not load local data', err);
     toast(`Local data could not be fully loaded: ${err.message}`, 'bad');

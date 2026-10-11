@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-11T20:26:28.742Z",
+  "generated_at": "2026-10-11T22:21:36.044Z",
   "total_questions": 10,
   "levels": {
     "subject": {
@@ -182,7 +182,55 @@
       "Current Affairs",
       "General Aptitude"
     ],
-    "pipeline_notes": [],
+    "pipeline_notes": [
+      "Extraction repairs: 0 escaped line break(s) in 0 string(s); 1 source reference(s) and 10 parser metadata field(s) moved out of the bank; 8 answer source label(s) removed."
+    ],
+    "repair": {
+      "version": "1.0.0",
+      "statement": "Repairs applied to the extraction before the bank was built. No wording was invented: escape artefacts were converted back to the characters they represent, and source provenance was moved out of the app-facing data into this report.",
+      "text_repairs": {
+        "strings": 0,
+        "occurrences": 0,
+        "by_field": {}
+      },
+      "metadata_removed": {
+        "question_type_basis": 10
+      },
+      "provenance_moved": {
+        "bank_provenance": {
+          "kind": "synthetic_demo",
+          "verified": false,
+          "notes": "Synthetic questions written to exercise tools/classify-bank.mjs: rule-based classification, Madhya-Pradesh-versus-India separation, a missing key, a source classification outside the taxonomy, an ambiguous question and a near-duplicate pair. NOT genuine previous-year content.",
+          "sources": []
+        },
+        "question_source_references": 1,
+        "samples": [
+          {
+            "id": "SAMPLE-2023-GS1-001",
+            "source_reference": {
+              "file": "synthetic://pyq-pipeline-sample",
+              "page": 1,
+              "question_location": "Q1",
+              "note": null
+            }
+          }
+        ]
+      },
+      "answer_sources_blanked": 8,
+      "paper_fixes": {
+        "renamed": [
+          {
+            "paper_id": "SAMPLE-2023-GS1",
+            "from": "Sample General Studies Paper I",
+            "to": "MPPSC 2023 Prelims Paper I (General Studies)"
+          }
+        ],
+        "answer_key_sources_blanked": 1,
+        "source_file_lists_blanked": 1
+      },
+      "untouched": "Question text, option text, printed answers and explanation wording are otherwise reproduced exactly as the extraction captured them."
+    },
+    "reviewed_merge": null,
     "ai_merge": null
   }
 }

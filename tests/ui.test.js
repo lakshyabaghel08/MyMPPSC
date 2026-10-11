@@ -116,13 +116,15 @@ test('boots, renders the shell and the demonstration prompt', async () => {
     assert.ok(labels.some((l) => l.includes(required)), `navigation should offer ${required}`);
   }
 
-  // First run with an empty database: the app offers the demonstration bank.
-  const modal = await waitFor(() => ($('#modalRoot').hidden ? null : $('#modalRoot')), { label: 'first-run prompt' });
-  assert.match(modal.textContent, /demonstration/i);
-  assert.match(modal.textContent, /not genuine|NOT genuine|synthetic/i);
-  const notNow = modal.querySelector('[data-modal-action="0"]');
-  click(notNow);
-  await waitFor(() => $('#modalRoot').hidden, { label: 'prompt dismissal' });
+  // First run with an empty database: the repository-backed MPPSC bank loads by
+  // itself, so the app does not have to fall back to the demonstration prompt.
+  await waitFor(() => state.questionIndex.size > 0, { label: 'bundled bank load' });
+  assert.equal(state.questionIndex.size, 571, 'the committed 2019-2024 bank is loaded from the repository');
+
+  await goto('test-centre');
+  assert.match(viewText(), /MPPSC 2019|MPPSC\s*2019|2019/, 'the Test Centre lists the real papers');
+  await goto('bank');
+  assert.match(viewText(), /2019–2024|2019-2024/, 'the Question Bank screen names the bundled bank');
 });
 
 test('every route renders without an error notice', async () => {
@@ -166,9 +168,11 @@ test('the question bank screen imports the demonstration bank through the UI', a
   click($$('#view [data-open-question]')[0]);
   await waitFor(() => $('#modalRoot').hidden === false, { label: 'question dialog' });
   const detail = $('#modalRoot').textContent;
-  assert.match(detail, /Answer keys/);
-  assert.match(detail, /Supplied by the source/);
+  assert.match(detail, /Answer/);
+  assert.match(detail, /Stored with the question/);
   assert.match(detail, /Explanation/);
+  // Where an answer came from is never shown anywhere in the interface.
+  assert.ok(!/unofficial|coaching|solved PYQ|printed answer/i.test(detail), 'no source provenance in the question dialog');
   click($('#modalRoot').querySelector('[data-modal-close]'));
 });
 

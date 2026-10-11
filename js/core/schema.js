@@ -362,6 +362,10 @@ export function normalisePaper(raw, ctx = {}) {
       marks_for_unanswered: asNumber(scoringRaw.marks_for_unanswered),
       rules_source: asString(scoringRaw.rules_source),
       notes: asString(scoringRaw.notes),
+      // Which automatic scheme the rules came from (js/core/marking.js). Kept so
+      // a stored paper still says what was applied to it, and so an export
+      // round-trips the scheme instead of only its numbers.
+      scheme_id: asString(scoringRaw.scheme_id),
     },
     question_order: asArray(raw.question_order).map(asString).filter(Boolean),
     answer_key: {

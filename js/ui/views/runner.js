@@ -79,19 +79,6 @@ function orderedOptions(question) {
   return keys.map((k) => byKey.get(k)).filter(Boolean);
 }
 
-function keyProvenanceChip(question) {
-  if (question.dispute?.is_disputed || question.supplied?.status === 'disputed') {
-    return sourceChip('disputed', 'disputed key');
-  }
-  if (question.verified?.answer?.length) {
-    return sourceChip('verified', 'independently verified');
-  }
-  if (question.supplied?.answer?.length) {
-    return sourceChip('supplied', 'supplied key');
-  }
-  return sourceChip('unavailable', 'key missing');
-}
-
 function markup() {
   const { test } = session;
   const { id: questionId, question, index } = currentQuestion();
@@ -144,7 +131,7 @@ function markup() {
         ${renderExplanation(question)}
         ${
           effective.length
-            ? `<p class="small mt-2 mb-0">Answer key: <strong>${esc(effective.join(', '))}</strong> ${answerKeyBadge(question.supplied?.status)}${question.verified?.answer ? ` · verified answer: <strong>${esc(question.verified.answer.join(', '))}</strong>` : ''}</p>`
+            ? `<p class="small mt-2 mb-0">Answer: <strong>${esc(effective.join(', '))}</strong>${question.verified?.answer ? ` · your verified answer: <strong>${esc(question.verified.answer.join(', '))}</strong>` : ''}</p>`
             : '<p class="small text-bad mt-2 mb-0">No usable answer key entry exists for this question, so your response cannot be judged. It is excluded from scoring rather than marked wrong.</p>'
         }
       </div>`
@@ -157,8 +144,8 @@ function markup() {
     <div class="grow">
       <div class="row tight">
         <h1 class="runner-title">${esc(test.label || 'Practice')}</h1>
-        ${test.config.is_authentic_paper ? badge('authentic paper order', 'accent') : badge('custom / practice set', '')}
-        ${test.config.is_authentic_paper ? sourceChip('supplied', 'authentic paper') : sourceChip('derived', 'practice session')}
+        ${test.config.is_authentic_paper ? badge('original paper order', 'accent') : badge('custom / practice set', '')}
+        ${sourceChip('derived', 'practice session')}
         ${badge(test.config.feedback_mode === 'learning' ? 'learning mode' : 'exam simulation', test.config.feedback_mode === 'learning' ? 'info' : '')}
       </div>
       <div class="tiny muted">
@@ -187,7 +174,6 @@ function markup() {
           ${question.classification?.subtopic ? badge(question.classification.subtopic, 'plain') : ''}
           ${badge(questionTypeLabel(question.question_type), 'info')}
           ${answerKeyBadge(question.supplied?.status)}
-          ${keyProvenanceChip(question)}
           ${demoBadge(question.is_demonstration)}
           ${fallback && lang !== session.lang ? badge(`showing ${lang === 'hi' ? 'Hindi' : 'English'} (other language unavailable)`, 'warn') : ''}
           ${Object.keys(question.language_variants).length > 1 ? `<span class="ml-auto" data-lang-wrap>${languageSwitcher(question, session.lang)}</span>` : ''}
@@ -444,7 +430,7 @@ async function askForRules(paper = null) {
     title: 'Set the scoring rules for this test',
     body: `${notice(
       p && !p.scoring?.rules_known
-        ? `The source paper <strong>${esc(p.paper_id)}</strong> did not supply scoring rules, so no marks can be assumed. Enter the rules you want to be scored by (for example the official scheme printed on the paper).`
+        ? `No scoring rules are stored for <strong>${esc(p.paper_id)}</strong> and no automatic scheme covers its examination year, so no marks can be assumed. Enter the rules you want to be scored by.`
         : 'This test has no scoring rules yet. Enter the marks to use.',
       'warn',
     )}

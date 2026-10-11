@@ -139,6 +139,10 @@ export function renderClassificationMarkdown(report, meta = {}) {
   L.push('| --- | --- | --- |');
   for (const row of report.by_source) L.push(`| ${row.source} | ${row.count} | ${row.percentage} |`);
   L.push('');
+  if (meta.reviewed_merge) {
+    L.push(`Reviewed labels: **${meta.reviewed_merge.applied} applied** (${meta.reviewed_merge.changed} replaced a rule-engine guess), ${meta.reviewed_merge.rejected} rejected. These were decided by a person reading the question, its options, the printed answer and the explanation — **no AI provider was used**. Every decision is listed in the review report.`);
+    L.push('');
+  }
   if (meta.ai_merge) {
     L.push(`AI label merge: **${meta.ai_merge.applied} applied**, ${meta.ai_merge.preserved} existing classification(s) preserved, ${meta.ai_merge.rejected} rejected (out of taxonomy, malformed or protected), ${meta.ai_merge.malformed} malformed line(s). Every decision is listed in the review report.`);
     L.push('');
@@ -251,7 +255,10 @@ export function buildReviewReport(bank, validation, rows, extra = {}) {
     rejected_records: (validation.rejected || []).map((r) => ({ id: r.id, reason: r.reason })),
   };
 
+  const reviewed = extra.reviewedSummary || null;
+  const repair = extra.repair || null;
   const ai = extra.aiSummary || null;
+  const sanitisation = extra.sanitisation || null;
   const sourceAudit = extra.sourceAudit || null;
 
   return {
@@ -266,6 +273,26 @@ export function buildReviewReport(bank, validation, rows, extra = {}) {
       identical_content_groups: identicalGroups.length,
       ambiguous_classifications: ambiguous.length,
       low_confidence_classifications: lowConfidence.length,
+      // Provenance and escape artefacts are removed by the extraction repair
+      // pass (tools/classify/repair.mjs) before the bank is built; the sanitiser
+      // is the second line of defence. Report both so the number is the truth
+      // about the file the app loads, not about one step of the pipeline.
+      provenance_fields_removed:
+        (repair
+          ? repair.provenance_moved.question_source_references +
+            repair.answer_sources_blanked +
+            repair.paper_fixes.answer_key_sources_blanked +
+            repair.paper_fixes.source_file_lists_blanked
+          : 0) +
+        (sanitisation
+          ? sanitisation.removed.question_source_references + sanitisation.removed.supplied_answer_sources + sanitisation.removed.paper_source_files.length
+          : 0),
+      escapes_repaired: (repair ? repair.text_repairs.occurrences : 0) + (sanitisation ? sanitisation.repaired_escapes.occurrences : 0),
+      papers_with_automatic_scheme: sanitisation ? sanitisation.marking_scheme.length : 0,
+      papers_without_scheme: sanitisation ? sanitisation.marking_scheme_unresolved.length : 0,
+      reviewed_labels_applied: reviewed ? reviewed.applied.length : 0,
+      reviewed_labels_rejected: reviewed ? reviewed.rejected.length : 0,
+      text_repairs: repair ? repair.text_repairs.occurrences : 0,
       ai_labels_applied: ai ? ai.applied.length : 0,
       ai_labels_preserved: ai ? ai.preserved.length : 0,
       ai_labels_rejected: ai ? ai.rejected.length : 0,
@@ -279,6 +306,18 @@ export function buildReviewReport(bank, validation, rows, extra = {}) {
     ambiguous_classifications: ambiguous,
     low_confidence_classifications: lowConfidence,
     source_extraction: sourceAudit,
+    extraction_repairs: repair,
+    reviewed_merge: reviewed
+      ? {
+          statement:
+            'These classification decisions were taken by a person who read each question together with its options, printed answer and explanation, in cases where the rule engine could not place the question or placed it with weak evidence. A label is stored only when every level of it exists in data/taxonomy/mppsc-taxonomy.json; the source is recorded as "reviewed", never as an AI classification.',
+          applied: reviewed.applied,
+          rejected: reviewed.rejected,
+          malformed: reviewed.malformed,
+          decisions: (reviewed.decisions || []).slice(0, 400),
+        }
+      : null,
+    sanitisation,
     ai_merge: ai
       ? {
           statement:
@@ -294,7 +333,7 @@ export function buildReviewReport(bank, validation, rows, extra = {}) {
     integrity,
     preserved: {
       statement:
-        'No source record was deleted, rewritten or merged to produce this bank. Question text, options, printed answers, explanations, years, papers and source references are carried over verbatim; classification fields and review metadata are the only additions. Where two records look alike both are kept and flagged here instead of being merged.',
+        'No source record was deleted, rewritten or merged to produce this bank. Question text, options, stored answers and explanations are carried over verbatim; only classification fields, the automatic marking scheme and review metadata were added. Source provenance (book names, page references, answer sources, key-issue labels) is deliberately not part of the app-facing bank — it is recorded in the sanitisation section of this report instead. Where two records look alike both are kept and flagged here instead of being merged.',
       questions_kept: questions.length,
       review_flags_added: (rows || []).filter((r) => r.flags?.length).length,
     },
@@ -329,6 +368,12 @@ export function renderReviewMarkdown(report) {
   L.push(`| Identical-content groups | ${report.totals.identical_content_groups} |`);
   L.push(`| Ambiguous classifications | ${report.totals.ambiguous_classifications} |`);
   L.push(`| Low-confidence classifications | ${report.totals.low_confidence_classifications} |`);
+  L.push(`| Reviewed classification decisions applied / rejected | ${report.totals.reviewed_labels_applied} / ${report.totals.reviewed_labels_rejected} |`);
+  L.push(`| Extraction artefacts repaired (escaped line breaks) | ${report.totals.text_repairs} |`);
+  L.push(`| Source-provenance fields removed before the bank was built | ${report.totals.provenance_fields_removed} |`);
+  L.push(`| Literal \\n escapes repaired | ${report.totals.escapes_repaired} |`);
+  L.push(`| Papers given an automatic MPPSC scheme | ${report.totals.papers_with_automatic_scheme} |`);
+  L.push(`| Papers with no verified scheme (app asks for rules) | ${report.totals.papers_without_scheme} |`);
   L.push(`| AI labels applied / preserved / rejected / malformed | ${report.totals.ai_labels_applied} / ${report.totals.ai_labels_preserved} / ${report.totals.ai_labels_rejected} / ${report.totals.ai_labels_malformed} |`);
   L.push('');
   L.push('## Missing answer keys');
@@ -440,6 +485,121 @@ export function renderReviewMarkdown(report) {
       for (const m of report.ai_merge.malformed) L.push(`- line ${m.line ?? '—'}: ${escapeCell(m.reason)} — \`${escapeCell(m.excerpt || '')}\``);
     }
     L.push('');
+  }
+  if (report.extraction_repairs) {
+    const r = report.extraction_repairs;
+    L.push('## Extraction repairs');
+    L.push('');
+    L.push(r.statement);
+    L.push('');
+    L.push('| Repair | Value |');
+    L.push('| --- | --- |');
+    L.push(`| Escaped line breaks converted to real newlines | ${r.text_repairs.occurrences} in ${r.text_repairs.strings} string(s) |`);
+    for (const [field, count] of Object.entries(r.text_repairs.by_field)) L.push(`| — in \`${field}\` | ${count} |`);
+    L.push(`| Question source references moved out of the bank | ${r.provenance_moved.question_source_references} |`);
+    for (const [key, count] of Object.entries(r.metadata_removed)) L.push(`| Parser metadata \`${key}\` removed | ${count} |`);
+    L.push(`| Answer source labels removed | ${r.answer_sources_blanked} |`);
+    L.push(`| Paper names normalised | ${r.paper_fixes.renamed.length} |`);
+    L.push(`| Paper answer-key source blocks removed | ${r.paper_fixes.answer_key_sources_blanked} |`);
+    L.push(`| Paper source-file lists removed | ${r.paper_fixes.source_file_lists_blanked} |`);
+    L.push('');
+    if (r.provenance_moved.bank_provenance) {
+      L.push('The bank-level provenance block that was removed is recorded in the sanitisation section below.');
+      L.push('');
+    }
+    L.push(r.untouched);
+    L.push('');
+  }
+  if (report.reviewed_merge) {
+    L.push('## Reviewed classification decisions');
+    L.push('');
+    L.push(report.reviewed_merge.statement);
+    L.push('');
+    L.push(`Applied: **${report.reviewed_merge.applied.length}**, rejected: ${report.reviewed_merge.rejected.length}, malformed lines: ${report.reviewed_merge.malformed.length}.`);
+    L.push('');
+    if (report.reviewed_merge.decisions.length) {
+      L.push('| Question | Decision | Subject / topic / subtopic after | Why |');
+      L.push('| --- | --- | --- | --- |');
+      for (const d of report.reviewed_merge.decisions) {
+        const after = d.after ? `${d.after.subject}${d.after.topic ? ` / ${d.after.topic}` : ''}${d.after.subtopic ? ` / ${d.after.subtopic}` : ''}` : '—';
+        const beforeText = d.before ? `was \`${d.before.subject}${d.before.topic ? ` / ${d.before.topic}` : ''}\`` : 'was unclassified';
+        L.push(`| \`${d.id ?? 'unknown'}\` | ${d.action} (${beforeText}) | ${after} | ${escapeCell(d.reason || '')} |`);
+      }
+    }
+    if (report.reviewed_merge.rejected.length) {
+      L.push('');
+      L.push('Labels that were refused (nothing was changed for those questions):');
+      L.push('');
+      for (const r of report.reviewed_merge.rejected) L.push(`- \`${r.id ?? 'unknown'}\`: ${escapeCell(r.reason)}`);
+    }
+    if (report.reviewed_merge.malformed.length) {
+      L.push('');
+      L.push('Malformed lines that were skipped (never silently dropped):');
+      L.push('');
+      for (const m of report.reviewed_merge.malformed) L.push(`- line ${m.line ?? '—'}: ${escapeCell(m.reason)} — \`${escapeCell(m.excerpt || '')}\``);
+    }
+    L.push('');
+  }
+  if (report.sanitisation) {
+    const san = report.sanitisation;
+    L.push('## App-facing bank sanitisation');
+    L.push('');
+    L.push(san.statement);
+    L.push('');
+    L.push('| What | Value |');
+    L.push('| --- | --- |');
+    L.push(`| Bank id | \`${san.identifiers.bank_id_before || '—'}\` → \`${san.identifiers.bank_id_after}\` |`);
+    L.push(`| Bank name | ${escapeCell(san.identifiers.bank_name_after)} |`);
+    if (san.identifiers.paper_ids.length) {
+      L.push(`| Paper ids | ${san.identifiers.paper_ids.map((p) => `\`${p.from}\` → \`${p.to}\``).join('<br />')} |`);
+    }
+    // Two passes remove provenance: the extraction repair pass, which runs
+    // before the bank is built, and this sanitiser, which is the second line of
+    // defence. Both are reported so the numbers add up to the file the app loads.
+    const parserFieldsTotal = Object.values(san.removed.parser_metadata_fields).reduce((a, b) => a + b, 0);
+    L.push(`| Question \`source_reference\` removed by the repair pass | ${report.extraction_repairs ? report.extraction_repairs.provenance_moved.question_source_references : 0} |`);
+    L.push(`| Question \`source_reference\` still present when the sanitiser ran | ${san.removed.question_source_references} |`);
+    L.push(`| \`supplied_answer.source\` still present when the sanitiser ran | ${san.removed.supplied_answer_sources} |`);
+    L.push(`| Paper-level answer-key blocks removed | ${san.removed.paper_answer_keys} |`);
+    L.push(`| Paper source-file lists removed | ${san.removed.paper_source_files.length} |`);
+    L.push(`| Parser metadata fields removed (${Object.entries(san.removed.parser_metadata_fields).map(([k, v]) => `${k} ${v}`).join(', ') || 'none'}) | ${parserFieldsTotal} |`);
+    L.push(`| Review bookkeeping fields removed from \`metadata\` | ${san.removed.review_metadata_fields ?? 0} |`);
+    L.push(`| Answer keys re-labelled \`supplied\` | ${san.answer_status.remapped_to_supplied} |`);
+    L.push(`| Reviewed classification decisions kept as classification | ${report.totals.reviewed_labels_applied} |`);
+    L.push(`| Questions kept without a key | ${san.answer_status.missing} |`);
+    L.push(`| Literal \\n escapes repaired by the sanitiser (the repair pass does the rest) | ${san.repaired_escapes.occurrences} in ${san.repaired_escapes.strings} string(s) |`);
+    L.push('');
+    if (san.removed.bank_provenance) {
+      L.push('The bank-level provenance block that was removed (kept here as the audit record):');
+      L.push('');
+      L.push('```json');
+      L.push(JSON.stringify(san.removed.bank_provenance, null, 2));
+      L.push('```');
+      L.push('');
+    }
+    if (san.removed.paper_source_files.length) {
+      L.push(`Source files no longer recorded in the bank: ${san.removed.paper_source_files.map((f) => `\`${f.file || 'unknown'}\` (${f.paper_id})`).join(', ')}.`);
+      L.push('');
+    }
+    L.push('### Automatic marking scheme written into each paper');
+    L.push('');
+    if (!san.marking_scheme.length && !san.marking_scheme_unresolved.length && !(san.marking_scheme_preserved || []).length) L.push('No papers.');
+    else {
+      L.push('| Paper | Year | Scheme | Correct | Incorrect | Unanswered | Total | Duration | Evidence confidence |');
+      L.push('| --- | --- | --- | --- | --- | --- | --- | --- | --- |');
+      for (const m of san.marking_scheme_preserved || []) {
+        L.push(`| \`${m.paper_id}\` | ${m.year ?? '—'} | the paper stated its own rules — left untouched | +${m.marks_per_correct} | — | — | — | — | source |`);
+      }
+      for (const m of san.marking_scheme) {
+        L.push(
+          `| \`${m.paper_id}\` | ${m.year} | ${m.scheme_id} | +${m.marks_per_correct} | ${m.negative_marks_per_incorrect ? `−${m.negative_marks_per_incorrect}` : '0'} | ${m.marks_for_unanswered} | ${m.total_marks ?? '—'} | ${m.duration_minutes ?? '—'} | ${m.confidence} |`,
+        );
+      }
+      for (const m of san.marking_scheme_unresolved) {
+        L.push(`| \`${m.paper_id}\` | ${m.year ?? '—'} | no verified scheme — the app asks before scoring | — | — | — | — | — | — |`);
+      }
+      L.push('');
+    }
   }
   L.push('## Content integrity');
   L.push('');

@@ -30,7 +30,6 @@ import {
   openModal,
   sourceChip,
   evidenceMeter,
-  provenanceLine,
   demoBadge,
   langAttr,
 } from '../components.js';
@@ -90,7 +89,7 @@ function questionReviewBlock(row, question, lang) {
         ${badge(row.subject || 'Unclassified')}
         ${row.topic ? badge(row.topic, '') : ''}
         ${answerKeyBadge(question.supplied?.status)}
-        ${row.answer_basis === 'verified' ? sourceChip('verified', 'verified key') : row.answer?.length ? sourceChip('supplied', 'supplied key') : sourceChip('unavailable', 'key missing')}
+        ${row.answer?.length ? '' : sourceChip('unavailable', 'key missing')}
         ${row.flagged ? badge('flagged', 'warn') : ''}
         ${row.confidence ? badge(`confidence: ${confidenceLabel(row.confidence)}`, row.confidence === 'confident' ? 'ok' : 'warn') : ''}
         ${demoBadge(row.demonstration)}
@@ -110,15 +109,11 @@ function questionReviewBlock(row, question, lang) {
       </tbody></table></div>
       <p class="small mt-2">
         Answer used for scoring: <strong>${row.answer?.length ? esc(row.answer.join(', ')) : 'none available'}</strong>
-        ${row.answer_basis ? `(${esc(row.answer_basis === 'verified' ? 'independently verified answer' : 'supplied answer key')})` : ''}
-        ${row.supplied_answer && row.verified_answer && row.supplied_answer.join(',') !== row.verified_answer.join(',') ? ` · supplied key said <strong>${esc(row.supplied_answer.join(', '))}</strong>, verified answer is <strong>${esc(row.verified_answer.join(', '))}</strong> — both are preserved.` : ''}
+        ${row.answer_basis ? `(${esc(row.answer_basis === 'verified' ? 'your verified answer' : 'the stored answer key')})` : ''}
+        ${row.supplied_answer && row.verified_answer && row.supplied_answer.join(',') !== row.verified_answer.join(',') ? ` · the stored key said <strong>${esc(row.supplied_answer.join(', '))}</strong>, your verified answer is <strong>${esc(row.verified_answer.join(', '))}</strong> — both are preserved.` : ''}
         ${row.note ? `<br /><span class="soft">${esc(row.note)}</span>` : ''}
       </p>
       ${renderExplanation(question)}
-      ${provenanceLine({
-        source: row.answer_basis === 'verified' ? 'verified' : row.disputed ? 'disputed' : row.answer?.length ? 'supplied' : 'unavailable',
-        text: `Question ${row.question_id} · basis: ${row.answer_basis || 'none'}`,
-      })}
       <div class="row tight mt-3">
         <button class="btn btn-sm" type="button" data-action="history" data-qid="${esc(row.question_id)}">Attempt history</button>
         <button class="btn btn-sm" type="button" data-action="queue-revision" data-qid="${esc(row.question_id)}">Add to revision queue</button>
@@ -344,9 +339,9 @@ export default {
                     title: 'Answers that remain unresolved',
                     tone: 'warn',
                     right: sourceChip('disputed'),
-                    body: `<p class="small">These questions were judged with an answer key that is missing, disputed or contradicted by a verified answer. The supplied key is preserved; nothing was silently rewritten.</p>
+                    body: `<p class="small">These questions were judged with an answer key that is missing, disputed or contradicted by a verified answer. The stored key is preserved; nothing was silently rewritten.</p>
                       ${dataTable({
-                        columns: [{ label: 'Question' }, { label: 'Issue' }, { label: 'Supplied' }, { label: 'Verified' }, { label: '' }],
+                        columns: [{ label: 'Question' }, { label: 'Issue' }, { label: 'Stored key' }, { label: 'Your verified answer' }, { label: '' }],
                         rows: unresolved.map((u) => [
                           esc(u.question_id),
                           esc(u.reason),
@@ -431,7 +426,7 @@ export default {
         await openModal({
           title: 'Unresolved answers in this test',
           wide: true,
-          body: `<p class="small">Record an independently verified answer where you are confident about it; the supplied key stays untouched and the change is logged as a user correction.</p>
+          body: `<p class="small">Record an independently verified answer where you are confident about it; the stored key stays untouched and the change is logged as a user correction.</p>
             ${dataTable({
               columns: [{ label: 'Question' }, { label: 'Issue' }, { label: '' }],
               rows: unresolved.map((u) => [esc(u.question_id), esc(u.reason), `<a class="btn btn-sm" href="#/bank/question/${encodeURIComponent(u.question_id)}">Open question</a>`]),

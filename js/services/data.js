@@ -248,7 +248,7 @@ export async function exportBankJson({ paperIds = null, includeProgressNotes = t
     provenance: {
       kind: 'mixed',
       verified: null,
-      notes: 'Exported from local storage. Per-question provenance is in source_reference and metadata.',
+      notes: 'Exported from the local browser database of this app.',
       sources: [],
     },
     default_language: state.settings.language,

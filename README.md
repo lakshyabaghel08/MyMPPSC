@@ -2,7 +2,7 @@
 
 A **local-first MPPSC State Service Preliminary Examination practice app**. Previous-year paper simulations, topic and custom practice, smart practice, a mistake book, adaptive revision scheduling, analytics and a study planner — all running in your browser, with **no account, no server and no network calls after the page loads**.
 
-Everything you import and record is stored in IndexedDB on your device. The question bank is data, not code: adding a new paper means importing a JSON file, never rebuilding the app.
+Everything you import and record is stored in IndexedDB on your device. The question bank is data, not code: adding a new paper means importing a JSON file, never rebuilding the app. The repository also ships a classified MPPSC Prelims Paper I bank for **2019–2024** (571 questions, 6 papers) which the app loads **from the repository itself** — a fresh install has the papers without anyone importing a file by hand.
 
 ---
 
@@ -13,13 +13,49 @@ npm install          # only needed to run the tests (fake-indexeddb, jsdom)
 npm run serve        # serves the folder on http://localhost:8080
 ```
 
-Then open <http://localhost:8080/>. On an empty database the app offers to load a **clearly-labelled synthetic demonstration bank** so every screen can be explored immediately. It will never be presented as genuine previous-year content.
+Then open <http://localhost:8080/>. On first load the app fetches the bundled bank from `data/pyq/mymppsc-pyq-bank.json`, validates it with the same validator the import screen uses, and writes it to your local database — no upload, no manual import. A **clearly-labelled synthetic demonstration bank** remains one click away (Question Bank & Imports → *Demonstration data*) for exploring screens; it is never presented as genuine previous-year content.
+
+**The bundled bank is real previous-year material, transcribed from a solved book, and its answer keys are reproduced as printed there.** They have not been verified against an official MPPSC key, and the app never calls a stored key official. Where a key is missing, the question is stored keyless and excluded from scoring. See `docs/PYQ_AUDIT.md` for what is unresolved and why.
 
 Any static file server works — the app is plain HTML/CSS/ES modules. To run it offline as a PWA, serve it over `http(s)` (the service worker cannot register on `file://`).
 
+## The bundled MPPSC bank (repository-backed loading)
+
+```
+data/pyq/mymppsc-pyq-bank.json   the classified bank the app loads
+js/services/builtin-bank.js      the loader (fetch → validate → import)
+js/core/marking.js               the marking schemes the loader writes into papers
+sw.js                            precaches the bank, so it works offline
+```
+
+* **Fresh install** — on boot the app fetches `data/pyq/mymppsc-pyq-bank.json`,
+  validates it with the same validator the import screen uses, and imports it
+  through the same two-phase importer. Nothing is uploaded, and there is no
+  "choose a file" step.
+* **Updates** — a rebuilt bank is picked up on the next load. Idempotence is
+  decided by comparing the file with what is stored (new records / changed
+  records) plus the recorded SHA-256, not by the file's timestamp: re-opening the
+  app, or loading the same bank twice, writes nothing and cannot create
+  duplicate questions. A record whose question text and options are unchanged is
+  left as it is — the same content identity the rest of the app deduplicates
+  on — so a rebuild that changes wording, options, answers, explanations of
+  *those* records, or metadata refreshes them, while the rest keep your edits.
+* **Your data survives** — the loader imports with the *update, preserving my
+  corrections* conflict policy. Your corrections, verified answers, bookmarks,
+  attempts, revision history, tests and your own imported questions are kept.
+* **Offline** — the bank file is in the service-worker precache list, so after
+  the first load the app works with no network.
+* **Manual import still works** — for the bundled bank it is simply unnecessary.
+  **Question Bank & Imports** shows whether the bundled bank is loaded, offers
+  *Check for an updated bundled bank*, and can remove it from this device
+  without touching your own data.
+
+The bank is built, and can be rebuilt, from the committed source and review
+files — see `docs/PYQ_PIPELINE.md` and `docs/PYQ_AUDIT.md`.
+
 ```bash
-npm test             # 139 tests: services, end-to-end journey, UI journey and PYQ pipeline tests
-npm run check        # 730 static integrity checks (imports, routes, assets, contrast, tokens, shell)
+npm test             # 182 tests: services, end-to-end journey, UI journey, bank loader and PYQ pipeline tests
+npm run check        # 814 static integrity checks (imports, routes, assets, contrast, tokens, shell, bundled bank)
 npm run audit:ui     # alias for npm run check (static UI + contrast + token audit)
 python3 tools/make-icons.py   # regenerate the PWA icons (no dependencies)
 node tools/build-bank.mjs --help
@@ -35,7 +71,7 @@ working, and `npm run check` fails if any of them is undone:
 
 * **Stay relative.** A project site lives at `https://<user>.github.io/<repo>/`, so a leading slash resolves to the domain root and 404s. Every URL in `index.html`, `sw.js`, `manifest.webmanifest` and `css/app.css` is relative (`css/app.css`, `./js/app.js`), the service worker is registered as `'sw.js'` with `scope: './'`, and its precache list uses `./` prefixes. The same files therefore also work on a custom domain or from `npm run serve` with no changes.
 * **Keep an empty `.nojekyll` at the repository root.** Without it Pages runs the tree through Jekyll, which ignores paths that start with an underscore and adds a rebuild step that can drop files.
-* **Bump the service-worker cache version** (`const VERSION = 'v1.1.0-8';` in `sw.js`) in the same commit as any change to a precached file — HTML, CSS, JS, icons, demo data. The old caches are deleted on `activate`, which is how a browser that cached a broken shell drops it. If the version did not change, that browser would keep serving the broken files.
+* **Bump the service-worker cache version** (`const VERSION = 'v1.1.0-9';` in `sw.js`) in the same commit as any change to a precached file — HTML, CSS, JS, icons, demo data. The old caches are deleted on `activate`, which is how a browser that cached a broken shell drops it. If the version did not change, that browser would keep serving the broken files.
 * **Verify after deploying:** load the site, check the console for a failed request, then reload once (or unregister the old worker in DevTools → Application → Service Workers) to confirm the new build is the one being served.
 
 ## What it does
@@ -62,8 +98,9 @@ Starting a practice session is deliberately low-config. On Topic Practice, Custo
 
 * No login, backend, cloud sync or API calls. No telemetry.
 * **No AI or model runs inside the app.** Explanations, answers and classifications are imported data: the app displays them exactly as supplied, labels what is missing or unreviewed, and lets you correct it with the original preserved. Nothing is generated.
-* No bundled MPPSC syllabus and no bundled genuine previous-year questions. The demonstration dataset is synthetic and badged as such everywhere it appears.
+* No bundled MPPSC syllabus and no claim to official content. The bundled 2019–2024 bank is transcribed previous-year material whose keys are the source's printed ones, **unverified**; the demonstration dataset is synthetic filler and badged as such everywhere it appears.
 * No exam-prediction claims, no invented questions to "complete" an incomplete paper, and no guarantee that revision makes anything stick.
+* No source-book name, coaching provider, page reference or "official/unofficial key" label anywhere in the bundled bank or the interface. That provenance is kept in the build-time reports (`data/pyq/review-report.md`, `docs/PYQ_AUDIT.md`), not in the app.
 
 ## Project layout
 
@@ -109,7 +146,9 @@ Layering is strict: `core → services → ui`. Views are HTML strings plus dele
 | `docs/UI.md` | The design system: colour tokens (Light/Dark/Forced-colors) and contrast ratios, Devanagari typography, provenance components, accessibility contract, enumerated `!important` rules, and automated UI guards. |
 | `docs/SCHEMA.md` | The question-bank JSON schema: every field, versioning rules, validation behaviour. |
 | `docs/DATA_PIPELINE.md` | How to produce banks outside the app, with the intake format and worked example. |
-| `docs/PYQ_PIPELINE.md` | The PYQ classification pipeline: the rule engine, the taxonomy, MP-versus-India attribution, the resumable AI step, and the two reports it writes. |
+| `docs/PYQ_PIPELINE.md` | The PYQ classification pipeline: the rule engine, the taxonomy, MP-versus-India attribution, the extraction repairs, the human review pass, the app-facing sanitiser and the reports it writes. |
+| `docs/MARKING.md` | The automatic marking schemes: the 2019–2025 and 2026-onwards patterns, how the scheme is selected per paper, what is verified and what is only reported, and how to add a year. |
+| `docs/PYQ_AUDIT.md` | Internal audit of the bundled 2019–2024 bank: coverage, what was repaired, the eight questions with no key, the two extraction losses that could not be recovered, the numbering gaps, and the remaining limitations. |
 | `docs/TESTING.md` | What the test suite covers, what it does not, and a manual verification checklist. |
 | `docs/LIMITATIONS.md` | Honest list of what this build does not do or cannot guarantee. |
 | `docs/IMPLEMENTATION_REPORT.md` | Feature-by-feature report against the original specification, the UI overhaul before/after measurements, the tests actually run and their results, and the remaining gaps. |
@@ -120,4 +159,4 @@ Your data never leaves the device, which also means **you are responsible for ba
 
 ## Licence and content notice
 
-The application code is provided as-is for personal study use. It ships **no real examination content**: the demonstration bank is synthetic, and the sample intake file is filler. Any genuine previous-year paper, answer key or syllabus you use with this app is your own import, and its accuracy is your responsibility — verify keys against official documents.
+The application code is provided as-is for personal study use. Content in this repository is study material, not commission material: the bundled 2019–2024 bank is transcribed previous-year material (571 questions, six papers, printed keys, 8 keyless and 2 records the extraction could not recover — see `docs/PYQ_AUDIT.md`), the demonstration bank and the sample intake file are synthetic filler, and the marking schemes say which patterns are verified and which are only reported. Verify any key against the commission's own key before relying on it, and treat scores as practice feedback, not results.

@@ -8,8 +8,13 @@
  * One deterministic pass:
  *   1. adapt the source extraction into the intake shape (tools/classify/intake-adapter.mjs);
  *   2. classify every question with the rule engine, or keep a source/AI label;
- *   3. merge any provider labels (--apply-ai) and re-validate them against the taxonomy;
- *   4. build the bank with the app's own tool (tools/build-bank.mjs);
+ *   3. merge maintainer review labels (--manual-labels) and any provider labels
+ *      (--apply-ai), re-validating both against the taxonomy;
+ *   4. build the bank with the app's own tool (tools/build-bank.mjs) and sanitise it
+ *      for the app: no source provenance, neutral answer-key statuses, the
+ *      automatic MPPSC marking scheme per paper (tools/classify/sanitise-bank.mjs);
+ *   4b. merge human review decisions (--apply-review) and repair the extraction's
+ *      artefacts (tools/classify/repair.mjs);
  *   5. validate it with the app's own validator (js/core/validate.js);
  *   6. write the classification report, the review report and the AI queue.
  *
@@ -29,6 +34,9 @@ import { loadTaxonomy, subjectNames, reconcile, TAXONOMY_PATH } from './classify
 import { RULES, classifyWithRules, validateRules, CLASSIFICATION_SOURCE_RULES } from './classify/rules.mjs';
 import { adaptIntake, normaliseSourceReview } from './classify/intake-adapter.mjs';
 import { buildAiQueue, renderAiQueueJsonl, renderAiTaxonomy, parseLabels, applyAiLabels } from './classify/ai-queue.mjs';
+import { sanitiseBank } from './classify/sanitise-bank.mjs';
+import { repairIntake } from './classify/repair.mjs';
+import { parseReviewedLabels, applyReviewedLabels, CLASSIFICATION_SOURCE_REVIEWED } from './classify/reviewed-labels.mjs';
 import {
   buildClassificationReport,
   renderClassificationMarkdown,
@@ -87,7 +95,23 @@ export function classifyQuestion(question, taxonomy) {
   const sourceProvenance = question.classification_source || null;
 
   let outcome;
-  if (sourceProvenance === 'pipeline-ai') {
+  if (sourceProvenance === CLASSIFICATION_SOURCE_REVIEWED) {
+    // A human reviewed this question in the label file; that decision stands.
+    outcome = {
+      assigned: Boolean(question.subject),
+      subject: question.subject || null,
+      topic: question.topic || null,
+      subtopic: question.subtopic || null,
+      confidence: question.classification_confidence ?? null,
+      source: CLASSIFICATION_SOURCE_REVIEWED,
+      reason: question.subject ? null : 'reviewed_label_without_subject',
+      candidates: decision.candidates,
+      matched: decision.matched,
+      mpSpecific: decision.mpSpecific,
+    };
+    if (outcome.assigned) flags.push('reviewed_classification_kept');
+    else flags.push('unclassified_after_review');
+  } else if (sourceProvenance === 'pipeline-ai') {
     // A provider label was merged earlier in this run; trust the merge, which
     // already validated the label against the taxonomy.
     outcome = {
@@ -195,7 +219,10 @@ export async function runPipeline(source, opts = {}) {
     throw new Error(`The rule table does not match the taxonomy:\n  - ${ruleProblems.join('\n  - ')}`);
   }
 
-  const adapted = adaptIntake(source, {
+  // Work on a copy: the repair pass edits the intake in place (it moves
+  // provenance out of the data), and a pipeline must never mutate the caller's
+  // object — the same parsed source is re-run by the determinism test.
+  const adapted = adaptIntake(structuredClone(source), {
     bankId: opts.bankId,
     bankName: opts.bankName,
     isDemonstration: opts.isDemonstration,
@@ -203,11 +230,48 @@ export async function runPipeline(source, opts = {}) {
   const intake = adapted.intake;
   const pipelineNotes = [...adapted.notes];
 
+  // The extraction's own artefacts (escaped line breaks, source references,
+  // parser metadata) are repaired/moved before anything reads the text.
+  const repairReport = opts.repair === false ? null : repairIntake(intake);
+  if (repairReport) {
+    pipelineNotes.push(
+      `Extraction repairs: ${repairReport.text_repairs.occurrences} escaped line break(s) in ${repairReport.text_repairs.strings} string(s); ${repairReport.provenance_moved.question_source_references} source reference(s) and ${Object.values(repairReport.metadata_removed).reduce((a, b) => a + b, 0)} parser metadata field(s) moved out of the bank; ${repairReport.answer_sources_blanked} answer source label(s) removed.`,
+    );
+  }
+
   // The rule engine runs first so the AI merge always has something to compare
   // against. A provider reply that is empty, malformed or out of taxonomy then
   // leaves the classification the rules produced untouched, and a reply with a
   // valid subject but an unusable topic keeps the topic the rules found.
   let rows = intake.questions.map((q) => classifyQuestion(q, taxonomy));
+
+  // Human review decisions are merged first: they are made by someone who read
+  // the options, the printed answer and the explanation, so they outrank the
+  // rule engine. A provider merge later still protects them (see ai-queue.mjs).
+  let reviewedSummary = null;
+  if (opts.reviewedLabels) {
+    const { labels, notes: labelNotes, malformed } = parseReviewedLabels(opts.reviewedLabels);
+    pipelineNotes.push(...labelNotes);
+    reviewedSummary = applyReviewedLabels(intake, labels, taxonomy, {
+      labelFile: opts.reviewedLabelFile || null,
+      malformed,
+    });
+    pipelineNotes.push(...reviewedSummary.notes.map((n) => `Reviewed labels: ${n}`));
+    pipelineNotes.push(
+      `Reviewed labels merged: ${reviewedSummary.applied.length} applied (${reviewedSummary.applied.filter((a) => a.changed).length} changed a rule-engine guess), ${reviewedSummary.rejected.length} rejected, ${reviewedSummary.malformed.length} malformed line(s).`,
+    );
+    for (const r of reviewedSummary.rejected) pipelineNotes.push(`Reviewed label rejected for ${r.id ?? 'an unknown id'}: ${r.reason}`);
+  }
+
+  /** Re-run the rule pass for the questions a merge actually changed. */
+  const refreshRows = (current, ids) => {
+    if (!ids.size) return current;
+    const rowById = new Map(current.map((r) => [r.id, r]));
+    return intake.questions.map((q) => (ids.has(q.id) ? classifyQuestion(q, taxonomy) : rowById.get(q.id)));
+  };
+
+  rows = refreshRows(rows, new Set((reviewedSummary?.applied || []).map((a) => a.id)));
+
 
   let aiSummary = null;
   if (opts.aiLabels) {
@@ -226,17 +290,24 @@ export async function runPipeline(source, opts = {}) {
     for (const r of aiSummary.rejected) pipelineNotes.push(`AI label rejected for ${r.id ?? 'an unknown id'}: ${r.reason}`);
     // Refresh only the rows the merge actually changed, so the queue, the
     // reports and the bank describe the same thing. Every other question keeps
-    // the row its rule pass produced.
-    const appliedIds = new Set(aiSummary.applied.map((a) => a.id));
-    if (appliedIds.size) {
-      const rowById = new Map(rows.map((r) => [r.id, r]));
-      rows = intake.questions.map((q) => (appliedIds.has(q.id) ? classifyQuestion(q, taxonomy) : rowById.get(q.id)));
-    }
+    // the row its previous pass produced.
+    rows = refreshRows(rows, new Set(aiSummary.applied.map((a) => a.id)));
   }
 
   const byId = new Map(intake.questions.map((q) => [q.id, q]));
 
   const { bank, warnings } = buildBankFromIntake(intake);
+
+  // The boundary between the working papers (extraction, review) and the file
+  // the app loads. Question ids are untouched; paper ids, provenance, answer
+  // statuses, marking schemes and extraction escapes are cleaned, and the audit
+  // trail of what was removed is handed to the review report.
+  const { report: sanitisation } = sanitiseBank(bank);
+  const paperIdMap = new Map(Object.entries(sanitisation.paper_id_map || {}));
+  if (paperIdMap.size) {
+    for (const row of rows) if (paperIdMap.has(row.paperId)) row.paperId = paperIdMap.get(row.paperId);
+  }
+
   bank.generator = {
     name: 'tools/classify-bank.mjs',
     version: TOOL_VERSION,
@@ -248,6 +319,7 @@ export async function runPipeline(source, opts = {}) {
     taxonomy_version: taxonomy.version,
     taxonomy_subjects: subjectNames(taxonomy),
     rule_count: RULES.length,
+    reviewed_labels_applied: reviewedSummary ? reviewedSummary.applied.length : 0,
     ai_labels_applied: aiSummary ? aiSummary.applied.length : 0,
     low_confidence_threshold: LOW_CONFIDENCE_THRESHOLD,
   };
@@ -295,6 +367,10 @@ export async function runPipeline(source, opts = {}) {
     taxonomy_version: taxonomy.version,
     subjects_allowed: subjectNames(taxonomy),
     pipeline_notes: pipelineNotes,
+    repair: repairReport,
+    reviewed_merge: reviewedSummary
+      ? { applied: reviewedSummary.applied.length, changed: reviewedSummary.applied.filter((a) => a.changed).length, rejected: reviewedSummary.rejected.length, source: CLASSIFICATION_SOURCE_REVIEWED }
+      : null,
     ai_merge: aiSummary
       ? {
           applied: aiSummary.applied.length,
@@ -316,7 +392,10 @@ export async function runPipeline(source, opts = {}) {
       duplicateIds: adapted.duplicateIds,
       unmappedKeys: adapted.unmappedKeys,
       recordIssues: adapted.recordIssues,
+      reviewedSummary,
       aiSummary,
+      sanitisation,
+      repair: repairReport,
       sourceAudit: opts.sourceAudit || null,
     },
   );
@@ -333,6 +412,9 @@ export async function runPipeline(source, opts = {}) {
     reviewReport,
     aiQueue,
     aiSummary,
+    sanitisation,
+    repairReport,
+    reviewedSummary,
     meta,
     taxonomy,
   };
@@ -349,10 +431,13 @@ Options:
   --reports <dir>      where to write classification-report and review-report (default: <out> directory)
   --ai-queue <file>    where to write the resumable AI queue (default: <reports>/ai-queue.jsonl)
   --apply-ai <file>    merge provider labels from this JSONL/JSON file before building
+  --apply-review <f>   merge human review decisions from this JSONL/JSON file before building.
+                       They are recorded as classification_source "reviewed" — never as AI
   --source-review <f>  the source parser's own review file; its findings (records it
                        refused to export, numbering gaps) are carried into the review
                        report. Default: MPPSC_PYQ_Review.json next to --in, if present
   --no-source-review   do not look for that file
+  --no-repair          do not repair the extraction's escape artefacts/provenance
   --ai-provider <name> provider name recorded on merged labels (default: from MYMPPSC_AI_PROVIDER)
   --ai-model <name>    model name recorded on merged labels (default: from MYMPPSC_AI_MODEL)
   --overwrite-source   let provider labels replace a classification the source file supplied
@@ -400,13 +485,16 @@ async function main() {
     sourceAudit,
     bankId: parsed.values['bank-id'],
     bankName: parsed.values['bank-name'],
+    reviewedLabels: parsed.values['apply-review'] ? await readFile(resolve(parsed.values['apply-review']), 'utf8') : null,
+    reviewedLabelFile: parsed.values['apply-review'] ? path.relative(root, resolve(parsed.values['apply-review'])) : null,
+    repair: !parsed.flags.has('no-repair'),
     aiLabels: parsed.values['apply-ai'] ? await readFile(resolve(parsed.values['apply-ai']), 'utf8') : null,
     aiProvider: parsed.values['ai-provider'] || process.env.MYMPPSC_AI_PROVIDER || null,
     aiModel: parsed.values['ai-model'] || process.env.MYMPPSC_AI_MODEL || null,
     overwriteSourceClassification: parsed.flags.has('overwrite-source'),
   });
 
-  const { bank, validation, classificationReport, reviewReport, aiQueue, buildWarnings, aiSummary } = result;
+  const { bank, validation, classificationReport, reviewReport, aiQueue, buildWarnings, aiSummary, sanitisation, repairReport, reviewedSummary } = result;
 
   console.log(`Source  : ${parsed.values.in}`);
   console.log(`Bank    : ${outPath}`);
@@ -422,9 +510,20 @@ async function main() {
   console.log(`missing answer keys: ${reviewReport.totals.missing_answer_keys}`);
   console.log(`near-duplicate pair: ${reviewReport.totals.near_duplicate_pairs}`);
   console.log(`AI queue           : ${aiQueue.length}`);
+  console.log(`provenance removed : ${sanitisation.removed.question_source_references} question reference(s), ${sanitisation.removed.supplied_answer_sources} answer source(s), ${sanitisation.removed.paper_source_files.length} source file(s)`);
+  console.log(`escapes repaired   : ${sanitisation.repaired_escapes.occurrences} literal \\n sequence(s) in ${sanitisation.repaired_escapes.strings} string(s)`);
+  console.log(`marking schemes    : ${sanitisation.marking_scheme.length} paper(s) — ${sanitisation.marking_scheme.map((m) => `${m.paper_id}:${m.scheme_id}`).join(', ') || 'none'}`);
+  if (sanitisation.marking_scheme_unresolved.length) {
+    console.log(`  unresolved rules : ${sanitisation.marking_scheme_unresolved.map((m) => m.paper_id).join(', ')}`);
+  }
   if (sourceAudit) {
     console.log(
       `source parser      : ${sourceAudit.stats.question_blocks_detected} block(s) detected, ${sourceAudit.excluded.length} NOT exported, ${sourceAudit.flagged.length} flagged (${sourceAudit.file})`,
+    );
+  }
+  if (reviewedSummary) {
+    console.log(
+      `reviewed labels    : ${reviewedSummary.applied.length} applied, ${reviewedSummary.rejected.length} rejected, ${reviewedSummary.malformed.length} malformed`,
     );
   }
   if (aiSummary) {

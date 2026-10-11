@@ -13,6 +13,7 @@
 
 import { effectiveAnswer, answerIntegrity } from '../core/schema.js';
 import { round } from '../core/util.js';
+import { resolveMppscMarkingScheme, schemeRules, describeScheme, SCHEME_SOURCE_BUILTIN } from '../core/marking.js';
 
 export const OUTCOMES = { CORRECT: 'correct', INCORRECT: 'incorrect', UNANSWERED: 'unanswered', UNSCORED: 'unscored' };
 
@@ -46,7 +47,7 @@ export function evaluateResponse(question, response, policy = 'verified_preferre
   }
   const outcome = sameAnswerSet(selected, answer) ? OUTCOMES.CORRECT : OUTCOMES.INCORRECT;
   let note = null;
-  if (integrity.disputed) note = `Answer key disputed${integrity.verified ? '; scored against the independently verified answer' : '; scored against the supplied key'}.`;
+  if (integrity.disputed) note = `Answer key disputed${integrity.verified ? '; scored against your verified answer' : '; scored against the stored key'}.`;
   else if (basis === 'verified') note = 'Scored against the verified answer.';
   return { outcome, answer, basis, note, integrity };
 }
@@ -74,6 +75,7 @@ export function resolveScoringRules({ paper = null, override = null, defaults = 
   if (paper) {
     const s = paper.scoring || {};
     if (s.rules_known && Number.isFinite(Number(s.marks_per_correct))) {
+      const scheme = resolveMppscMarkingScheme(paper);
       return {
         rules: {
           marks_per_correct: Number(s.marks_per_correct),
@@ -83,6 +85,10 @@ export function resolveScoringRules({ paper = null, override = null, defaults = 
         },
         source: 'paper_original',
         rulesSourceNote: s.rules_source || 'Scoring rules supplied with the paper metadata.',
+        schemeId: s.scheme_id || scheme?.id || null,
+        schemeLabel: scheme?.label || null,
+        schemeEvidence: scheme?.evidence || [],
+        qualifying: scheme?.qualifying || null,
         needsConfiguration: false,
         warnings,
       };
@@ -90,6 +96,31 @@ export function resolveScoringRules({ paper = null, override = null, defaults = 
     warnings.push(
       `Scoring rules for paper "${paper.paper_id}" are not known from the source. Configure the rules for this test before you can rely on the score.`,
     );
+    // Automatic MPPSC rules: the applicable examination-year scheme is applied
+    // without any manual configuration. Only MPPSC preliminary papers whose
+    // year is covered by a verified scheme qualify; anything else keeps
+    // `needsConfiguration: true` rather than being guessed.
+    const scheme = resolveMppscMarkingScheme(paper);
+    if (scheme) {
+      const rules = schemeRules(scheme);
+      const note = `${describeScheme(scheme)} (${scheme.id}). Paper rules were not stated in the bank, so the MPPSC scheme for the examination year was used automatically.`;
+      warnings.length = 0;
+      warnings.push(
+        `Paper "${paper.paper_id}" did not state its scoring rules; the MPPSC scheme for ${paper.year} was applied automatically — ${describeScheme(scheme)}.`,
+      );
+      return {
+        rules,
+        source: SCHEME_SOURCE_BUILTIN,
+        rulesSourceNote: note,
+        schemeId: scheme.id,
+        schemeLabel: scheme.label,
+        schemeEvidence: scheme.evidence || [],
+        qualifying: scheme.qualifying || null,
+        needsConfiguration: false,
+        warnings,
+        paperId: paper.paper_id,
+      };
+    }
     return { rules: null, source: 'unknown', rulesSourceNote: s.notes || null, needsConfiguration: true, warnings, paperId: paper.paper_id };
   }
   const d = defaults || { marksPerCorrect: 1, negativeMarksPerIncorrect: 0, negativeMarkingEnabled: false, marksForUnanswered: 0 };
@@ -158,7 +189,7 @@ export function scoreTest({ test, questions, rules, policy = 'verified_preferred
         question_id: questionId,
         supplied: integrity.supplied || null,
         verified: integrity.verified || null,
-        reason: integrity.missing ? 'answer key missing' : integrity.disputed ? 'answer key disputed' : 'verified answer differs from supplied key',
+        reason: integrity.missing ? 'answer key missing' : integrity.disputed ? 'answer key disputed' : 'your verified answer differs from the stored key',
         resolved_by: evaluation.basis || null,
       };
       unresolved.push(flag);
@@ -291,6 +322,6 @@ export function describeRules(rules, source) {
   if (rules.negative_marking_enabled && rules.negative_marks_per_incorrect) bits.push(`−${n(rules.negative_marks_per_incorrect)} for incorrect (negative marking)`);
   else bits.push('no negative marking');
   bits.push(`${n(rules.marks_for_unanswered)} for unanswered`);
-  const sourceLabel = { paper_original: 'source paper rules', user_configured: 'rules you configured', app_default: 'app default rules', unknown: 'unknown rules' }[source] || source;
+  const sourceLabel = { paper_original: 'source paper rules', user_configured: 'rules you configured', app_default: 'app default rules', unknown: 'unknown rules', mppsc_builtin: 'MPPSC scheme for the examination year' }[source] || source;
   return `${bits.join(', ')} (${sourceLabel})`;
 }
