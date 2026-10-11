@@ -4,6 +4,13 @@
    decorative animation. One stylesheet, organised by section.
    ========================================================================= */
 
+/* The hidden attribute must win. The browser's built-in rule is only a UA
+   declaration, so any author rule that sets `display` — such as
+   `.modal-root { display: grid }` below — overrides it, which leaves a
+   full-viewport overlay swallowing every click. Keep this first, and
+   `!important` so it also beats later author rules of higher specificity. */
+[hidden] { display: none !important; }
+
 :root {
   --bg: #f6f7fa;
   --bg-elevated: #ffffff;
@@ -350,7 +357,10 @@ legend { font-size: 13px; color: var(--text-muted); padding: 0 6px; }
 .explanation h4:first-child { margin-top: 0; }
 .explanation.options-table td { vertical-align: top; }
 .correction { border-left: 3px solid var(--border-strong); padding: 6px 10px; margin-bottom: 8px; font-size: 13px; background: var(--bg-sunken); border-radius: 4px; }
-#toastStack, .toast-stack { position: fixed; right: 14px; bottom: 14px; display: grid; gap: 8px; z-index: 60; max-width: min(420px, 92vw); }
+/* The toast layer is always in the DOM, so it must never intercept clicks;
+   the toasts themselves get them back below. */
+#toastStack, .toast-stack { position: fixed; right: 14px; bottom: 14px; display: grid; gap: 8px; z-index: 60; max-width: min(420px, 92vw); pointer-events: none; }
+#toastStack > *, .toast-stack > * { pointer-events: auto; }
 .toast { background: var(--bg-elevated); border: 1px solid var(--border-strong); border-left-width: 4px; border-radius: var(--radius-sm); padding: 10px 12px; box-shadow: var(--shadow); font-size: 13.5px; }
 .toast.ok { border-left-color: var(--ok); }
 .toast.bad { border-left-color: var(--bad); }

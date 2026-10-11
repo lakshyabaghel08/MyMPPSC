@@ -133,6 +133,69 @@ for (const asset of ['index.html', 'css/app.css', 'js/app.js', 'js/ui/views/dash
   check(sw.includes(`./${asset}`), `sw.js does not precache ${asset}`);
 }
 
+const cacheVersion = sw.match(/const VERSION = '([^']+)'/)?.[1];
+check(Boolean(cacheVersion), 'sw.js: the cache VERSION constant is missing (clients keep the stale shell without a bump)');
+if (cacheVersion) note(`service worker cache version: ${cacheVersion}`);
+
+/* ------------------------------------- the shell must not block itself --- */
+
+const css = await readFile(path.join(root, 'css/app.css'), 'utf8');
+const cssRules = [...css.replace(/\/\*[\s\S]*?\*\//g, '').matchAll(/([^{}]+)\{([^{}]*)\}/g)];
+const ruleBySelector = (selector) => {
+  for (const [, selectorList, body] of cssRules) {
+    if (selectorList.split(',').some((s) => s.trim() === selector)) return body;
+  }
+  return null;
+};
+
+// An author rule that sets `display` beats the browser's built-in
+// `[hidden] { display: none }`, because the built-in rule is a UA declaration.
+// Without the reset, `<div class="modal-root" id="modalRoot" hidden>` is laid
+// out from the first frame as a full-viewport, z-index 70 overlay that
+// swallows every click. Keep the reset first and `!important`.
+const cssDeclarations = css.replace(/\/\*[\s\S]*?\*\//g, '');
+check(
+  /\[hidden\]\s*\{\s*display:\s*none\s*!important;?\s*\}/.test(cssDeclarations),
+  'css/app.css: the `[hidden] { display: none !important; }` reset is missing — an author display rule would beat the browser default and cover the app',
+);
+const firstRule = cssDeclarations.trim().match(/([^{}]+)\{/)?.[1]?.trim();
+check(firstRule === '[hidden]', `css/app.css: the [hidden] reset must be the first rule, found "${firstRule?.slice(0, 40)}"`);
+
+const toastLayer = ruleBySelector('#toastStack') || ruleBySelector('.toast-stack');
+check(
+  Boolean(toastLayer && /(^|;|\s)pointer-events:\s*none/.test(toastLayer)),
+  'css/app.css: the always-present toast layer (#toastStack) must be click-through: set pointer-events: none',
+);
+const toastChildren = ruleBySelector('#toastStack > *') || ruleBySelector('.toast-stack > *');
+check(
+  Boolean(toastChildren && /(^|;|\s)pointer-events:\s*auto/.test(toastChildren)),
+  'css/app.css: toasts themselves must remain clickable: add `#toastStack > *, .toast-stack > * { pointer-events: auto; }`',
+);
+
+const modalTag = html.match(/<[^>]*id="modalRoot"[^>]*>/)?.[0] || '';
+check(Boolean(modalTag), 'index.html: the dialog overlay #modalRoot is missing');
+check(/\shidden(\s|>|=)/.test(modalTag), 'index.html: the dialog overlay must ship with the hidden attribute so the first frame is not covered');
+
+/* ---------------------------------------------- GitHub Pages + relative -- */
+
+check(await exists('.nojekyll'), '.nojekyll is missing: GitHub Pages runs Jekyll without it');
+
+for (const file of ['index.html', 'sw.js', 'manifest.webmanifest', 'css/app.css']) {
+  const source = await readFile(path.join(root, file), 'utf8');
+  check(!/=\s*["']\/[^"']*["']/.test(source), `${file}: absolute path in an attribute (must be relative: the site is served from a project subpath)`);
+  check(!/url\(\s*['"]?\/[^)]*\)/.test(source), `${file}: absolute url() in CSS (must be relative)`);
+  check(!/url\(\s*['"]?(?:https?:)?\/\//.test(source), `${file}: absolute URL in url() (the app must work offline)`);
+}
+
+check(/navigator\.serviceWorker\.register\(\s*'sw\.js'/.test(appSource), "js/app.js: the service worker must be registered with the relative path 'sw.js'");
+
+const shellBlock = sw.match(/const SHELL_FILES = \[([\s\S]*?)\];/)?.[1] || '';
+const shellPaths = [...shellBlock.matchAll(/'([^']*)'/g)].map((m) => m[1]);
+check(shellPaths.length > 30, `sw.js: expected the precache list to cover the app shell, found ${shellPaths.length} entries`);
+for (const entry of shellPaths) {
+  check(entry.startsWith('./') || entry === '', `sw.js: precache entry "${entry}" must be relative ("./…") so it resolves under a project-site subpath`);
+}
+
 /* ---------------------------------------------------------- data assets -- */
 
 for (const file of ['data/demo/demo-bank.json', 'data/examples/example-bank.json', 'data/examples/invalid-records-fixture.json', 'data/schema/question-bank.schema.json']) {

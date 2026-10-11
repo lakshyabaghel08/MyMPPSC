@@ -3,8 +3,8 @@
 Everything here has actually been run. No test in this document is aspirational.
 
 ```bash
-npm test          # 100 tests, all passing
-npm run check     # 521 static integrity checks, all passing
+npm test          # 101 tests, all passing
+npm run check     # 585 static integrity checks, all passing
 ```
 
 Requirements: Node 20+ (developed on Node 22). `npm install` fetches
@@ -22,7 +22,7 @@ Requirements: Node 20+ (developed on Node 22). `npm install` fetches
 | `tests/smart.test.js` | 11 | Smart practice: bucket sizes and allocation, unseen-ratio preference, cooldown behaviour, paper order preservation, explainability lines, and the near-duplicate similarity blend. |
 | `tests/backup.test.js` | 8 | Backup and restore: payload contents and counts, SHA-256 integrity, validation of a corrupted file, merge without duplicates, preference for newer local classifications, live settings preserved on merge, and a full round-trip. |
 | `tests/e2e.test.js` | 14 | A complete journey through the services: import the demo bank → an incomplete paper is labelled → take a full simulation in the original order with the source duration → autosave and resume across an interruption → deterministic scoring → report distinguishes outcomes and weak areas → mistake escalation, auto-resolution and reopening → revision scheduling and queue → analytics from recorded attempts only → custom test with custom scoring and shuffled options (matching never shuffled) → a classification correction being reversible → syllabus import and manual progress separate from bank data → backup and restore → no-network behaviour. |
-| `tests/ui.test.js` | 9 | The **real UI in jsdom**: `index.html` boots with IndexedDB, the first-run prompt offers the demonstration bank and says it is synthetic, every route renders without an error notice, the Import screen analyses the demo bank and imports it through the actual buttons, a **full paper simulation is started, answered, autosaved, submitted and reported through the DOM**, topic and smart sessions start from the shared configuration form, an unfinished session is offered for resume and returns with its answers, and **leaving the test screen stops its background timer** so the clock cannot keep ticking and writing while another screen is open, the mistake book / revision centre / analytics reflect that submission, a setting persists, the backup round-trip self-test passes, the `?` shortcut opens the help dialog, and the offline notice toggles. |
+| `tests/ui.test.js` | 10 | The **real UI in jsdom**: `index.html` boots with IndexedDB, the first-run prompt offers the demonstration bank and says it is synthetic, every route renders without an error notice, the Import screen analyses the demo bank and imports it through the actual buttons, a **full paper simulation is started, answered, autosaved, submitted and reported through the DOM**, topic and smart sessions start from the shared configuration form, an unfinished session is offered for resume and returns with its answers, and **leaving the test screen stops its background timer** so the clock cannot keep ticking and writing while another screen is open, the mistake book / revision centre / analytics reflect that submission, a setting persists, the backup round-trip self-test passes, the `?` shortcut opens the help dialog, the offline notice toggles, and the **stylesheet regression** suite below holds. |
 | `tests/tools.test.js` | 3 | The pipeline bridge: `tools/build-bank.mjs` expands intake shorthand correctly, produces a bank that passes the app's own validator with no unexpected warnings, writes a file that imports cleanly into a real database, never invents an answer key or scoring rules, and refuses an intake file with no questions. |
 
 `tests/helpers.mjs` is the shared harness: it installs an in-memory IndexedDB
@@ -30,9 +30,41 @@ Requirements: Node 20+ (developed on Node 22). `npm install` fetches
 repository from disk. The service layer was written to run without a DOM, which
 is what makes these suites fast and deterministic.
 
+## The stylesheet regression test
+
+The last test in `tests/ui.test.js` guards the shipped shell, because the shell
+can be broken without any JavaScript changing: the app once shipped
+`.modal-root { display: grid }` with no `[hidden]` reset. The browser's built-in
+`[hidden] { display: none }` is a *user-agent* declaration, and **any** author
+declaration that sets `display` beats it, so the empty
+`<div class="modal-root" id="modalRoot" hidden>` was laid out from the first
+frame as a full-viewport, z-index 70 overlay that swallowed every click — the
+app looked dimmed and nothing worked. The always-present `#toastStack` (fixed,
+`z-index: 60`) could intercept clicks the same way.
+
+The test reads the real `index.html` and `css/app.css`, renders them in a fresh
+JSDOM (the shared document is already booted and mutated, so it cannot show what
+a visitor's first frame looks like) and asserts through `getComputedStyle` that
+every element carrying `hidden` computes to `display: none`, that `#modalRoot`
+computes to `grid` while a dialog is open and back to `none` when it closes,
+that `#toastStack` is click-through with `pointer-events: none` while a toast
+inside it is still clickable, and that the stylesheet still contains the
+`[hidden] { display: none !important; }` reset as its first rule.
+
+That it fails on the broken stylesheet was checked, not assumed: remove the
+reset and the test fails with `'grid' !== 'none'` on the hidden toast stack.
+
+One jsdom caveat, recorded so nobody is misled: jsdom's own default stylesheet
+gives `[hidden]` the specificity of
+`[hidden]:not([hidden=until-found i]):not(embed)`, which is higher than a plain
+class selector, so jsdom keeps the `.modal-root` case hidden even without the
+app's reset. `#toastStack` is styled through an *id* selector, which does beat
+that rule, so the toast-stack assertion is the one that reproduces the real
+failure inside jsdom (in a real browser both were broken).
+
 ## Static checks (`npm run check`)
 
-521 cheap checks that catch what unit tests cannot see:
+585 cheap checks that catch what unit tests cannot see:
 
 * every relative import and dynamic import resolves to a real file;
 * no module imports from a URL (no CDN dependency);
@@ -40,6 +72,8 @@ is what makes these suites fast and deterministic.
 * every route registered in `js/app.js` has a view file, every navigation entry has a route, and the ten required destinations plus the custom-test builder are present;
 * every `getElementById` in `js/app.js` matches an id in `index.html`;
 * `sw.js`, the manifest, the stylesheet and the icons exist; the manifest has 192/512 and maskable icons; the service worker precaches the shell and every view module;
+* the shell cannot cover itself: the `[hidden] { display: none !important; }` reset exists **as the first rule** of `css/app.css`, `#modalRoot` ships with `hidden` in `index.html`, the toast layer sets `pointer-events: none` and its toasts get `pointer-events: auto` back;
+* GitHub Pages and subpath hosting: an empty `.nojekyll` exists at the root, no absolute path (`="/…"`, `url(/…)`, scheme- or protocol-relative URLs) appears in `index.html`, `sw.js`, `manifest.webmanifest` or `css/app.css`, every entry in the `sw.js` precache list is `./`-relative, `js/app.js` registers `'sw.js'` relatively, and the service-worker cache `VERSION` constant is present;
 * the data files parse, the demonstration bank declares `is_demonstration: true` and says in its provenance that it is synthetic and not genuine;
 * no question content, localhost URL or external `fetch` appears in the app's JavaScript.
 
