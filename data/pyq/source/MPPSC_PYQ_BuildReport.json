@@ -1,0 +1,49 @@
+{
+  "input_file": "YOUR_BOOK_columns(3).md",
+  "input_sha256": "126500ed672a6d160ffde02df7d89e08be1f800edee49f895478fd622ccccfc6",
+  "parser_version": "0.1.0",
+  "stats": {
+    "question_blocks_detected": 573,
+    "records_exported_to_intake": 571,
+    "records_excluded_pending_review": 2,
+    "records_with_no_flags": 556,
+    "records_flagged_for_review": 17,
+    "missing_stem": 0,
+    "missing_options": 1,
+    "missing_or_unparsed_answer": 9,
+    "missing_explanation": 7,
+    "deleted_question_records": 0
+  },
+  "papers": [
+    {
+      "paper_id": "MPPSC-2019-GS1-BOOK",
+      "year": 2019,
+      "question_count": 95
+    },
+    {
+      "paper_id": "MPPSC-2020-GS1-BOOK",
+      "year": 2020,
+      "question_count": 95
+    },
+    {
+      "paper_id": "MPPSC-2021-GS1-BOOK",
+      "year": 2021,
+      "question_count": 94
+    },
+    {
+      "paper_id": "MPPSC-2022-GS1-BOOK",
+      "year": 2022,
+      "question_count": 97
+    },
+    {
+      "paper_id": "MPPSC-2023-GS1-BOOK",
+      "year": 2023,
+      "question_count": 95
+    },
+    {
+      "paper_id": "MPPSC-2024-GS1-BOOK",
+      "year": 2024,
+      "question_count": 95
+    }
+  ]
+}

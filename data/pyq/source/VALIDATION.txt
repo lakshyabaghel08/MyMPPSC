@@ -1,0 +1,66 @@
+BUILD OUTPUT
+
+Intake : /mnt/data/mppsc_alignment_test/MPPSC_PYQ_intake.json
+Bank   : /mnt/data/mppsc_alignment_test/MPPSC_PYQ_AppBank.json
+  papers            : 6
+  questions         : 571
+  rejected records  : 0
+  fatal / errors    : 0 / 0
+  warnings          : 301
+  english only      : 571
+  unclassified      : 571
+  without answer key: 8
+  with explanation  : 564
+  papers without scoring rules: 6
+  near-duplicate pairs: 36
+
+Warnings:
+  - MPPSC-2019-GS1-BOOK: Original question count is not stated.
+  - MPPSC-2020-GS1-BOOK: Original question count is not stated.
+  - MPPSC-2021-GS1-BOOK: Original question count is not stated.
+  - MPPSC-2022-GS1-BOOK: Original question count is not stated.
+  - MPPSC-2023-GS1-BOOK: Original question count is not stated.
+  - MPPSC-2024-GS1-BOOK: Original question count is not stated.
+  - MPPSC-2019-001: Question has no subject/topic classification; it is kept as "Unclassified" and remains available in the question bank.
+  - MPPSC-2019-002: Question has no subject/topic classification; it is kept as "Unclassified" and remains available in the question bank.
+  - MPPSC-2019-003: Question has no subject/topic classification; it is kept as "Unclassified" and remains available in the question bank.
+  - MPPSC-2019-004: Question has no subject/topic classification; it is kept as "Unclassified" and remains available in the question bank.
+  - MPPSC-2019-005: Question has no subject/topic classification; it is kept as "Unclassified" and remains available in the question bank.
+  - MPPSC-2019-006: Question has no subject/topic classification; it is kept as "Unclassified" and remains available in the question bank.
+  … and 289 more.
+
+Wrote 571 question(s) across 6 paper(s).
+Import it in the app: Question Bank & Imports → choose the file. The app will analyse it again before writing anything.
+
+
+VALIDATION OUTPUT
+
+Validated /mnt/data/mppsc_alignment_test/MPPSC_PYQ_AppBank.json
+  papers            : 6
+  questions         : 571
+  rejected records  : 0
+  fatal / errors    : 0 / 0
+  warnings          : 301
+  english only      : 571
+  unclassified      : 571
+  without answer key: 8
+  with explanation  : 564
+  papers without scoring rules: 6
+  near-duplicate pairs: 36
+
+Warnings:
+  - MPPSC-2019-GS1-BOOK: Original question count is not stated.
+  - MPPSC-2020-GS1-BOOK: Original question count is not stated.
+  - MPPSC-2021-GS1-BOOK: Original question count is not stated.
+  - MPPSC-2022-GS1-BOOK: Original question count is not stated.
+  - MPPSC-2023-GS1-BOOK: Original question count is not stated.
+  - MPPSC-2024-GS1-BOOK: Original question count is not stated.
+  - MPPSC-2019-001: Question has no subject/topic classification; it is kept as "Unclassified" and remains available in the question bank.
+  - MPPSC-2019-002: Question has no subject/topic classification; it is kept as "Unclassified" and remains available in the question bank.
+  - MPPSC-2019-003: Question has no subject/topic classification; it is kept as "Unclassified" and remains available in the question bank.
+  - MPPSC-2019-004: Question has no subject/topic classification; it is kept as "Unclassified" and remains available in the question bank.
+  - MPPSC-2019-005: Question has no subject/topic classification; it is kept as "Unclassified" and remains available in the question bank.
+  - MPPSC-2019-006: Question has no subject/topic classification; it is kept as "Unclassified" and remains available in the question bank.
+  … and 289 more.
+
+Result: valid — the app will import it.
