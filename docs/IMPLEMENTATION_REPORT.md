@@ -43,7 +43,7 @@ this repository; nothing is claimed on the basis of inspection alone.
 | 27 | Frequency analysis as a study aid only | Done | `analytics.frequency` carries a disclaimer; UI test asserts the "not a prediction" wording |
 | 28 | Full JSON backup/restore with validation and merge | Done | `js/services/data.js` (SHA-256 over `stableStringify(payload)`), `settings.js` restore summary → merge/replace; `tests/backup.test.js`; UI test runs the round-trip self-test |
 | 29 | Settings page | Done | `js/ui/views/settings.js`: general, revision rules, backup & restore, diagnostics (storage report, activity log, guarded wipe) |
-| 30 | Polished, accessible, responsive study UI | Done (with caveat) | Token-driven `css/app.css` (Light/Dark/Forced-colors, Devanagari line-heights, ≥44px touch targets at ≤860px, `@media print`), provenance vocabulary (`sourceChip`, `evidenceMeter`, `provenanceLine`), accessible off-canvas drawer (`inert`, `aria-hidden`, `#navScrim`), focus-trapped dialogs, WAI-ARIA APG roving-tabindex tabs, and runner focus mode (`docs/UI.md`). `[hidden] { display: none !important; }` is the first rule so author `display` rules can never leave the dialog overlay covering the app, `#toastStack` is click-through, and a 17-test jsdom UI suite (108 tests in total) plus 735 static checks (`npm run check`) guard contrast, tokens, zero inline styles, headings, focus, route coverage and component styling. Caveat: verified in jsdom + manual checklist, not by a real-browser automation suite or a screen-reader audit |
+| 30 | Polished, accessible, responsive study UI | Done (with caveat) | Token-driven `css/app.css` (Light/Dark/Forced-colors, Devanagari line-heights, ≥44px touch targets at ≤860px, `@media print`), provenance vocabulary (`sourceChip`, `evidenceMeter`, `provenanceLine`), accessible off-canvas drawer (`inert`, `aria-hidden`, `#navScrim`), focus-trapped dialogs, WAI-ARIA APG roving-tabindex tabs, and runner focus mode (`docs/UI.md`). `[hidden] { display: none !important; }` is the first rule so author `display` rules can never leave the dialog overlay covering the app, `#toastStack` is click-through, and a 16-test jsdom UI suite plus 729 static checks (`npm run check`) guard contrast, tokens, zero inline styles, headings, and focus. Caveat: verified in jsdom + manual checklist, not by a real-browser automation suite or a screen-reader audit |
 | 31 | Deterministic scoring | Done | Pure `scoreTest` over rules + policy; `tests/scoring.test.js` re-runs identical inputs |
 | 32 | Real validation testing (never claim untested passes) | Done | `tests/validation.test.js` + `tests/tools.test.js` + the jsdom journey suite; results below are the actual runs |
 | 33 | Question bank separate from app code | Done | Banks live in `data/**` and user imports; `npm run check` fails if question content appears in `js/**`; `tools/build-bank.mjs` builds banks outside the app |
@@ -53,14 +53,14 @@ this repository; nothing is claimed on the basis of inspection alone.
 
 ```
 $ npm test
-# tests 108 / # pass 108 / # fail 0
+# tests 107 / # pass 107 / # fail 0
   validation  13    scoring    12    import  10
   revision    12    analytics   8    smart   11
-  backup       8    e2e        14    ui      17    tools 3
+  backup       8    e2e        14    ui      16    tools 3
 
 $ npm run check
-All 735 checks passed.
- · service worker cache version: v1.1.0-9
+All 729 checks passed.
+ · service worker cache version: v1.1.0-5
  · demonstration bank: 34 questions, 3 papers
 
 $ the stylesheet regression test, run against deliberately broken CSS
@@ -71,7 +71,7 @@ $ npm run check
 2 problem(s) found after 585 checks:
  - css/app.css: the `[hidden] { display: none !important; }` reset is missing
  - css/app.css: the [hidden] reset must be the first rule, found ":root"
-$ (restore the reset) → # pass 1 · All 585 checks passed.  # the count grows with the codebase; the current run is 735
+$ (restore the reset) → # pass 1 · All 585 checks passed.
 
 $ node tools/build-bank.mjs --in demo/intake-sample.json --out /tmp/sample-bank.json
   papers 2 · questions 5 · rejected 0 · fatal/errors 0/0 · warnings 1
@@ -105,7 +105,7 @@ Notable things the tests prove rather than assume:
 
 The full list is in [`docs/LIMITATIONS.md`](LIMITATIONS.md). The headline items:
 
-1. **UI verification depth.** The UI is covered by a jsdom journey suite (17 tests) plus 735 static checks (including a 98-pair WCAG contrast audit across Light and Dark themes) and a manual checklist. There is no Playwright/Puppeteer browser suite, so real layout, responsive breakpoints, print output, service-worker behaviour and screen-reader output are not automatically verified.
+1. **UI verification depth.** The UI is covered by a jsdom journey suite (16 tests) plus 729 static checks (including a 98-pair WCAG contrast audit across Light and Dark themes) and a manual checklist. There is no Playwright/Puppeteer browser suite, so real layout, responsive breakpoints, print output, service-worker behaviour and screen-reader output are not automatically verified.
 2. **No real content and no syllabus** ship with the app; both come from your imports. Real-key accuracy is the user's responsibility.
 3. **Per-browser storage.** No sync or automatic off-device backup; clearing site data removes progress unless a JSON backup was taken.
 4. **Analytics evidence thresholds.** Under 3 scored answers a figure is labelled insufficient; under 5 no strong/weak verdict is given. This is deliberate, but it means a small bank produces few conclusions.
@@ -124,42 +124,6 @@ The full list is in [`docs/LIMITATIONS.md`](LIMITATIONS.md). The headline items:
 * **Labelling over guessing.** Missing keys, unknown rules, incomplete papers, unreviewed explanations and synthetic content are all surfaced as badges and warnings rather than filled in.
 * **Screens release what they hold.** The router runs a previous view's `cleanup()` before rendering the next one, so the test-runner clock stops ticking (and writing) when you navigate away while remaining wall-clock time is still charged when you return.
 * **`[hidden]` is enforced in the stylesheet, not left to the browser.** The built-in `[hidden] { display: none }` is a UA declaration, so any author rule that sets `display` (`.modal-root`, `#toastStack`, `.tabpanel`) silently overrides it and leaves the element laid out. The stylesheet therefore starts with `[hidden] { display: none !important; }`, and the permanently present toast layer is `pointer-events: none` except for the toasts inside it, so it can never intercept a click either. Both facts are asserted, not assumed: a jsdom regression test fails and `npm run check` reports it if the reset loses its `!important`, moves out of first place, or disappears.
-
----
-
-## 5. Premium redesign pass (screens, shell and components)
-
-This pass upgraded the existing design system rather than replacing it. Every
-registered route was reworked against the shared primitives, and every control
-that was visible before is still wired to the same service calls.
-
-### What changed
-
-| Area | Change |
-| --- | --- |
-| **Tokens** | Navy/indigo system with explicit `--on-*` foreground pairs, a single shadow/space/radius/type/z-index/motion scale, density overrides, and dedicated `--header-*`, `--nav-*`, `--hero-*`, `--chart-*` sets — all three theme blocks (light, dark, forced-colours) kept in step |
-| **Shell** | Sticky translucent header (60px), deep navy navigation rail with an indigo active bar, nav footer (`#navTodaySummary`, `#navDataSummary`, `#navBackupBtn`), scrim-backed mobile drawer, per-route `.view-enter` fade, runner focus mode |
-| **Component library** | New primitives: `pageHead`, `sectionHead`, `kpi`, `statStrip`, `ring`, `timeline`, `filterChip`, `skeletonStack`, sortable `dataTable`, interactive `barChart`/`lineChart` with tooltips, `installChartEnhancers()`, `installTableSorting()` |
-| **Command palette** | Grouped Recent / Go to / Actions, arrow-key navigation, real actions (quick practice, revision sprint, backup, theme, density, print, shortcuts), recency stored in `localStorage['mymppsc.recentRoutes']` |
-| **Dashboard** | Rewritten around hero + 4 real KPIs (with last-7-vs-previous-7 deltas computed only from stored daily rows), "Do this next", 14-day rhythm, accuracy trend, coverage ring, outcome/weak-topic bars, sortable priorities, integrity notice, activity timeline |
-| **Practice setup** (Topic, Custom, Smart) | `pageHead` + KPI grids from real availability/plan figures, quick subject chips, plan table with a coverage ring, unchanged configuration form and start buttons |
-| **Test Centre** | KPI grid, status/escalation badges moved onto the paper card, per-paper `stat-strip` (stored vs declared, duration, marks), filter chips (all / ready / incomplete / rules unknown / disputed / demonstration) and a real sort select |
-| **Runner** | Answered-share progress meter, palette card with progress, unchanged timer/autosave/palette/keyboard/confidence behaviour |
-| **Report** | `pageHead` with provenance chips, KPI score/accuracy/attempted/negative-mark cards, filter chips that keep their `data-filter` wiring, same tabs and review blocks |
-| **Mistake Book, Revision, Analytics** | KPI grids from the same measured figures, status/subject/queue filter chips, SVG labels→bar/line charts with table fallbacks, `statStrip` inside cards, `title`/provenance preserved |
-| **Bank & Imports** | `pageHead` with a live stat strip, KPI grid for the pre-import summary, integrity KPI grid, tabs unchanged |
-| **Syllabus, Settings, Help** | `pageHead` + KPI figures, completion ring beside the tree, storage/test-run figures as KPI cards, Help journey rendered as a timeline, and the verification paragraph corrected to describe the jsdom suite that does exist |
-| **Docs** | `docs/UI.md` gained the component inventory for the new primitives and the premium-layer description; this report's counts were re-measured |
-
-### What was actually verified
-
-* `npm test` → **108/108 pass** (jsdom journeys included: every route renders with one `<h1>`, the runner, dialogs, drawer, tabs, theme, demo bank import).
-* `npm run check` → **All 735 checks passed** (token-only colours, zero inline styles, contrast pairs, route coverage, component-class coverage, service-worker precache list).
-* A development-only jsdom harness (not shipped) additionally exercised, and passed: theme toggle, help dialog open/close, command-palette open/filter/Enter-to-run (density action), `#navBackupBtn` and the nav footer summary, the filter chips on Test Centre / Mistake Book / Analytics / Revision / Topic, the paper-sort select, the syllabus dialog, and the runner's option click plus `N`/`P`/`F`/number/`U` keyboard shortcuts with a seeded submitted test and a seeded in-progress test.
-
-### Still unverified (unchanged caveats)
-
-Real layout at 375/768/1024/1440px, print output, service-worker offline behaviour and screen-reader announcements are **not** automatically tested — there is no browser automation in this environment. Rendering was checked structurally (jsdom + static checks); pixel-level appearance was not.
 
 ---
 

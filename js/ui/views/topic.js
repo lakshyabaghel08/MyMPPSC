@@ -9,7 +9,7 @@
  */
 
 import { state } from '../../core/state.js';
-import { esc, card, dataTable, toast, emptyState, sourceChip, kpi, pageHead, sectionHead, filterChip } from '../components.js';
+import { esc, card, dataTable, toast, emptyState, sourceChip } from '../components.js';
 import { QUESTION_TYPES, LANGUAGE_LABELS } from '../../core/constants.js';
 import { filterMetas, availability, selectQuestions, ATTEMPT_STATE_FILTERS } from '../../services/select.js';
 import { configFields, readConfig, mountConfigFields, startPracticeTest, countSummary, availabilityTable, currentAttemptSummary } from './shared.js';
@@ -87,7 +87,7 @@ export default {
     const metas = Array.from(state.questionIndex.values());
     if (!metas.length) {
       return `
-        ${pageHead({ title: 'Topic Practice', description: 'Build a practice session from your own question bank — filter by subject, topic, subtopic, year, paper, question type and attempt history.' })}
+        <h1>Topic Practice</h1>
         ${card({
           title: 'Topic practice needs a question bank',
           body: emptyState({
@@ -113,32 +113,15 @@ export default {
       .sort((a, b) => b.count - a.count)
       .slice(0, 14);
 
-    const subjectChips = subjectOptions.length > 1
-      ? `<div class="filter-chips mt-3" role="group" aria-label="Quick subject filter">
-          ${['all', ...subjectOptions].map((subject) => filterChip({ id: subject, label: subject === 'all' ? 'All subjects' : subject, pressed: filters.subject === subject, action: 'subject-chip' })).join('')}
-        </div>`
-      : '';
-
     return `
-      ${pageHead({
-        title: 'Topic Practice',
-        description: 'Pick a subject and go — or narrow it down further. Counts update as you change the filters, before you start. Session rules are pre-filled from your defaults; only size and feedback need a decision.',
-        actions: `<a class="btn btn-quiet" href="#/bank">Question Bank &amp; Imports</a>`,
-        meta: sourceChip('supplied', 'bank metadata'),
-      })}
+      <h1>Topic Practice</h1>
+      <p class="muted">Pick a subject and go — or narrow it down further. Counts update as you change the filters, before you start. Session rules are pre-filled from your defaults; only size and feedback need a decision.</p>
 
-      <div class="kpi-grid">
-        ${kpi({ label: 'Matching questions', value: String(availabilityData.total), context: 'against the current filters', tone: availabilityData.total ? 'accent' : 'warn', iconName: 'filter' })}
-        ${kpi({ label: 'Never attempted', value: String(availabilityData.unseen), context: 'unseen questions in this set', iconName: 'sparkle' })}
-        ${kpi({ label: 'Answered wrong before', value: String(availabilityData.incorrect), context: availabilityData.incorrect ? 'good revision candidates' : 'nothing wrong so far', tone: availabilityData.incorrect ? 'warn' : 'ok', iconName: 'alert' })}
-        ${kpi({ label: 'Skipped before', value: String(availabilityData.skipped), context: 'left unanswered in past sessions', iconName: 'clock' })}
-      </div>
+      ${card({ title: 'Filters', right: sourceChip('supplied', 'bank metadata'), body: filtersMarkup(filters, { subjects: subjectOptions, topics: topicOptions, subtopics: subtopicOptions, years: yearOptions, papers }) })}
 
-      ${card({ title: 'Filters', right: sourceChip('measured', 'local attempt history'), body: filtersMarkup(filters, { subjects: subjectOptions, topics: topicOptions, subtopics: subtopicOptions, years: yearOptions, papers }) + subjectChips })}
-
-      ${sectionHead({ title: 'Available questions', meta: `${availabilityData.total} of ${metas.length} stored question(s) match · ${availabilityData.unseen} never attempted`, kicker: 'Before you start' })}
       ${card({
-        right: sourceChip('supplied', 'bank metadata'),
+        title: 'Available questions',
+        right: sourceChip('measured', `${matching.length} matching`),
         body: `
           ${countSummary(availabilityData)}
           <div class="split-2">
@@ -193,13 +176,6 @@ export default {
       clearTimeout(searchTimer);
       searchTimer = setTimeout(rerender, 350);
     });
-    document.getElementById('view')?.addEventListener('click', async (ev) => {
-      const chip = ev.target.closest('[data-action="subject-chip"]');
-      if (!chip) return;
-      viewState.filters = { ...viewState.filters, subject: chip.dataset.value || 'all', topic: 'all', subtopic: 'all' };
-      await ctx.refresh();
-    });
-
     document.getElementById('fReset')?.addEventListener('click', async () => {
       viewState.filters = { subject: 'all', topic: 'all', subtopic: 'all', year: 'all', paperId: 'all', questionType: 'all', attemptState: 'any', language: 'all', excludeDemonstration: false, onlyReviewedExplanation: false, search: '' };
       await ctx.refresh();

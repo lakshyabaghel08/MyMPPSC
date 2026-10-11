@@ -28,9 +28,6 @@ import {
   toast,
   confirmDialog,
   openModal,
-  card,
-  progressBar,
-  pageHead,
 } from '../components.js';
 import { getQuestions } from '../../services/questions.js';
 import * as tests from '../../services/tests.js';
@@ -179,8 +176,6 @@ function markup() {
       <button class="btn btn-primary btn-sm" type="button" data-action="submit">Submit</button>
     </div>
   </div>
-  <div class="runner-progress" aria-hidden="true">${progressBar(totalQuestions ? progress.answered / totalQuestions : 0, timerClass === 'bad' ? 'warn' : '')}</div>
-  <p class="sr-only" role="status">${progress.answered} of ${totalQuestions} question(s) answered, ${progress.flagged} flagged.</p>
 
   <div class="runner">
     <div>
@@ -245,20 +240,17 @@ function markup() {
     </div>
 
     <aside class="sticky-side">
-      ${card({
-        title: 'Question palette',
-        right: `<span class="muted tiny">${progress.answered}/${totalQuestions} answered</span>`,
-        className: 'runner-palette',
-        body: `
+      <section class="card">
+        <div class="card-head"><h2>Question palette</h2><span class="muted tiny">${progress.answered}/${totalQuestions}</span></div>
+        <div class="card-body tight">
           <div class="palette">${paletteHtml}</div>
           <div class="legend">
             <span><i class="swatch ok"></i> answered</span>
             <span><i class="swatch warn"></i> flagged</span>
             <span><i class="swatch"></i> not answered</span>
           </div>
-          <div class="palette-progress">${progressBar(totalQuestions ? progress.answered / totalQuestions : 0, progress.answered === totalQuestions ? 'ok' : '')}</div>
-          <p class="tiny muted mb-0">Jump to any question with the palette, or use the keyboard shortcuts shown under the question.</p>`,
-      })}
+        </div>
+      </section>
       ${card_summary(test, progress)}
     </aside>
   </div>`;
@@ -609,7 +601,7 @@ const view = {
     const [testId, sessionId] = ctx.params;
     const loaded = await loadSession(testId, { questionIds: sessionId ? idsFromParam(sessionId) : null });
     if (!loaded) {
-      return `${pageHead({ title: 'Test session', description: 'A session cannot be resumed once its record is gone from this browser.', actions: '<a class="btn" href="#/test-centre">Back to the test centre</a>' })}${notice('That test session was not found in local storage. It may have been deleted by a restore. <a href="#/test-centre">Back to the test centre</a>.', 'warn')}`;
+      return `<h1>Test</h1>${notice('That test session was not found in local storage. It may have been deleted by a restore. <a href="#/test-centre">Back to the test centre</a>.', 'warn')}`;
     }
     session = loaded;
     if (session.test.status === 'submitted') {

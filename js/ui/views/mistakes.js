@@ -25,11 +25,6 @@ import {
   answerKeyBadge,
   sourceChip,
   langAttr,
-  kpi,
-  pageHead,
-  sectionHead,
-  filterChip,
-  barList,
 } from '../components.js';
 import { fmtDate, fmtClock, fmtRelative } from '../../core/util.js';
 import { listMistakes, mistakeCounts, resolveMistake, reopenMistake, removeMistake, attemptHistoryForQuestion, attemptTrend } from '../../services/attempts.js';
@@ -82,9 +77,9 @@ export default {
     const counts = await mistakeCounts();
     if (!counts.total) {
       return `
-        ${pageHead({ title: 'Mistake Book', description: 'Everything your tests recorded: wrong answers, skipped questions, flagged questions, repeated mistakes and uncertain correct answers.' })}
+        <h1>Mistake Book</h1>
         ${card({
-          title: 'Nothing recorded yet',
+          title: 'Mistake Book',
           body: emptyState({
             title: 'No mistakes recorded yet',
             message: metas.length
@@ -132,34 +127,18 @@ export default {
       topicGroups.set(key, (topicGroups.get(key) || 0) + 1);
     }
 
-    const topicBars = Array.from(topicGroups.entries())
-      .sort((a, b) => b[1] - a[1])
-      .slice(0, 8)
-      .map(([key, count]) => ({ label: key.split('||')[0], value: count }));
-
     return `
-      ${pageHead({
-        title: 'Mistake Book',
-        description: 'Everything recorded automatically from your tests. Resolving an item keeps its attempt history — nothing is erased.',
-        actions: `<button class="btn btn-primary" type="button" data-action="retry-all">Retry all shown</button>`,
-      })}
+      <h1>Mistake Book</h1>
+      <p class="muted">Everything recorded automatically from your tests. Resolving an item keeps its attempt history — nothing is erased.</p>
 
-      <div class="kpi-grid">
-        ${kpi({ label: 'Open items', value: String(counts.open), context: `${counts.repeated} repeated mistake(s)`, tone: counts.open ? 'warn' : 'ok', iconName: 'mistakes', foot: sourceChip('measured', 'active unresolved entries') })}
-        ${kpi({ label: 'Incorrect', value: String(openByType.incorrect || 0), context: 'scored wrong in a test', tone: openByType.incorrect ? 'bad' : '', iconName: 'alert', foot: sourceChip('measured', 'attempt log') })}
-        ${kpi({ label: 'Skipped', value: String(openByType.skipped || 0), context: 'left blank — kept separate from wrong answers', iconName: 'clock', foot: sourceChip('measured', 'attempt log') })}
-        ${kpi({ label: 'Uncertain but correct', value: String(openByType.low_confidence_correct || 0), context: 'correct answers you marked unsure or guessed', iconName: 'eye', foot: sourceChip('measured', 'confidence tracking') })}
+      <div class="grid tiles mb-4">
+        ${tile({ label: 'Open items', value: String(counts.open), sub: `${counts.repeated} repeated`, tone: counts.open ? 'warn' : 'ok', source: 'measured', where: 'Active unresolved entries' })}
+        ${tile({ label: 'Incorrect', value: String(openByType.incorrect || 0), sub: 'wrong answers', tone: 'bad', source: 'measured', where: 'Scored wrong in a test' })}
+        ${tile({ label: 'Skipped', value: String(openByType.skipped || 0), sub: 'kept separate from wrong answers', source: 'measured', where: 'Left blank in a test' })}
+        ${tile({ label: 'Uncertain correct', value: String(openByType.low_confidence_correct || 0), sub: 'guesses and unsure answers', source: 'measured', where: 'Correct but marked unsure/guessed' })}
       </div>
 
-      ${sectionHead({ title: 'Filters', kicker: 'Narrow the list', meta: `${rows.length} item(s) shown`, actions: sourceChip('measured', 'attempt log') })}
-      <div class="filter-chips mb-3" role="group" aria-label="Filter by status">
-        ${[
-          { id: 'open', label: 'Open', count: counts.open },
-          { id: 'resolved', label: 'Resolved', count: counts.resolved },
-          { id: 'all', label: 'All', count: counts.total },
-        ].map((f) => filterChip({ id: f.id, label: f.label, count: f.count, pressed: viewState.status === f.id, action: 'status-chip' })).join('')}
-      </div>
-      ${card({ body: filtersMarkup(metas, counts) })}
+      ${card({ title: 'Filters', right: sourceChip('measured', 'attempt log'), body: filtersMarkup(metas, counts) })}
 
       ${card({
         title: `Items (${rows.length})`,
@@ -173,26 +152,21 @@ export default {
         footer: topicGroups.size ? `Spread across ${topicGroups.size} topic group(s). Use “Retry all shown” to practise the filtered set, or retry a single topic from the list below.` : '',
       })}
 
-      ${sectionHead({ title: 'Topics with the most open items', kicker: 'Where to focus', actions: sourceChip('derived', 'grouped by topic') })}
       ${card({
+        title: 'Topics with the most open items',
+        right: sourceChip('derived', 'grouped by topic'),
         body: topicGroups.size
-          ? `<div class="split-2 relaxed">
-              <div>${dataTable({
-                columns: [{ label: 'Topic' }, { label: 'Open items', num: true }, { label: '' }],
-                rows: Array.from(topicGroups.entries())
-                  .sort((a, b) => b[1] - a[1])
-                  .slice(0, 12)
-                  .map(([key, count]) => {
-                    const [subject, topic] = key.split('||');
-                    return [esc(`${topic} · ${subject}`), String(count), `<button class="btn btn-sm" type="button" data-action="retry-topic" data-subject="${esc(subject)}" data-topic="${esc(topic)}">Retry this topic</button>`];
-                  }),
-                className: 'compact',
-              })}</div>
-              <div class="ring-panel">
-                ${barList(topicBars, { max: topicBars[0]?.value || 1 })}
-                <p class="tiny muted m-0">Largest topic groups among the items currently listed.</p>
-              </div>
-            </div>`
+          ? dataTable({
+              columns: [{ label: 'Topic' }, { label: 'Open items', num: true }, { label: '' }],
+              rows: Array.from(topicGroups.entries())
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 12)
+                .map(([key, count]) => {
+                  const [subject, topic] = key.split('||');
+                  return [esc(`${topic} · ${subject}`), String(count), `<button class="btn btn-sm" type="button" data-action="retry-topic" data-subject="${esc(subject)}" data-topic="${esc(topic)}">Retry this topic</button>`];
+                }),
+              className: 'compact',
+            })
           : '<p class="muted small">No open items.</p>',
       })}`;
   },
@@ -213,12 +187,6 @@ export default {
       const btn = ev.target.closest('[data-action]');
       if (!btn) return;
       const action = btn.dataset.action;
-
-      if (action === 'status-chip') {
-        viewState.status = btn.dataset.value || 'open';
-        await ctx.refresh();
-        return;
-      }
 
       if (action === 'retry') {
         const id = btn.dataset.qid;
