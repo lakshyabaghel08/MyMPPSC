@@ -118,7 +118,7 @@ check(html.includes('css/app.css'), 'index.html must link css/app.css');
 
 /* ------------------------------------------------------------ project files */
 
-for (const file of ['sw.js', 'manifest.webmanifest', 'css/app.css', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/icon-maskable-512.png']) {
+for (const file of ['sw.js', 'manifest.webmanifest', 'css/app.css', 'docs/UI.md', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/icon-maskable-512.png']) {
   check(await exists(file), `${file} is missing`);
 }
 
@@ -175,6 +175,129 @@ check(
 const modalTag = html.match(/<[^>]*id="modalRoot"[^>]*>/)?.[0] || '';
 check(Boolean(modalTag), 'index.html: the dialog overlay #modalRoot is missing');
 check(/\shidden(\s|>|=)/.test(modalTag), 'index.html: the dialog overlay must ship with the hidden attribute so the first frame is not covered');
+
+/* ------------------------------------------- theme + contrast + tokens --- */
+
+const headHtml = html.match(/<head>([\s\S]*?)<\/head>/)?.[1] || '';
+check(
+  headHtml.includes("setAttribute('data-theme'") && headHtml.includes('mymppsc.settings'),
+  'index.html: <head> must apply data-theme from saved settings before first paint',
+);
+check(/<meta\s+name="color-scheme"\s+content="light dark"/.test(headHtml), 'index.html: must declare <meta name="color-scheme" content="light dark">');
+check(/<meta\s+name="theme-color"[^>]*id="themeColorMeta"/.test(headHtml), 'index.html: must include #themeColorMeta so theme switches update browser chrome');
+
+const lightBlock = cssDeclarations.match(/:root\s*,\s*:root\[data-theme="light"\]\s*\{([^}]*)\}/)?.[1] || '';
+const darkBlock = cssDeclarations.match(/:root\[data-theme="dark"\]\s*\{([^}]*)\}/)?.[1] || '';
+check(Boolean(lightBlock), 'css/app.css: missing `:root, :root[data-theme="light"]` token block');
+check(Boolean(darkBlock), 'css/app.css: missing `:root[data-theme="dark"]` token block');
+check(/@media\s*\(\s*forced-colors:\s*active\s*\)/.test(cssDeclarations), 'css/app.css: missing @media (forced-colors: active) support');
+check(/@media\s*\(\s*prefers-reduced-motion:\s*reduce\s*\)/.test(cssDeclarations), 'css/app.css: missing @media (prefers-reduced-motion: reduce) support');
+check(/@media\s+print\b/.test(cssDeclarations), 'css/app.css: missing @media print rules');
+
+function parseHexTokens(block) {
+  const map = new Map();
+  for (const [, name, hex] of block.matchAll(/(--[a-z0-9-]+)\s*:\s*(#[0-9a-fA-F]{6})\b/g)) {
+    map.set(name, hex.toLowerCase());
+  }
+  return map;
+}
+
+function relativeLuminance(hex) {
+  const raw = hex.replace('#', '');
+  const channels = [0, 2, 4].map((offset) => {
+    const c = parseInt(raw.slice(offset, offset + 2), 16) / 255;
+    return c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
+  });
+  return 0.2126 * channels[0] + 0.7152 * channels[1] + 0.0722 * channels[2];
+}
+
+function contrastRatio(hexA, hexB) {
+  const l1 = relativeLuminance(hexA);
+  const l2 = relativeLuminance(hexB);
+  return (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
+}
+
+const TEXT_CONTRAST_PAIRS = [
+  ['--text', '--bg', 4.5],
+  ['--text', '--bg-elevated', 4.5],
+  ['--text', '--bg-sunken', 4.5],
+  ['--text', '--accent-soft', 4.5],
+  ['--text-muted', '--bg', 4.5],
+  ['--text-muted', '--bg-elevated', 4.5],
+  ['--text-muted', '--bg-sunken', 4.5],
+  ['--text-soft', '--bg', 4.5],
+  ['--text-soft', '--bg-elevated', 4.5],
+  ['--text-soft', '--bg-sunken', 4.5],
+  ['--accent', '--bg', 4.5],
+  ['--accent', '--bg-elevated', 4.5],
+  ['--accent', '--bg-sunken', 4.5],
+  ['--accent', '--accent-soft', 4.5],
+  ['--accent-strong', '--bg', 4.5],
+  ['--accent-strong', '--bg-elevated', 4.5],
+  ['--accent-strong', '--bg-sunken', 4.5],
+  ['--accent-strong', '--accent-soft', 4.5],
+  ['--ok', '--bg', 4.5],
+  ['--ok', '--bg-elevated', 4.5],
+  ['--ok', '--bg-sunken', 4.5],
+  ['--ok', '--ok-soft', 4.5],
+  ['--warn', '--bg', 4.5],
+  ['--warn', '--bg-elevated', 4.5],
+  ['--warn', '--bg-sunken', 4.5],
+  ['--warn', '--warn-soft', 4.5],
+  ['--bad', '--bg', 4.5],
+  ['--bad', '--bg-elevated', 4.5],
+  ['--bad', '--bg-sunken', 4.5],
+  ['--bad', '--bad-soft', 4.5],
+  ['--info', '--bg', 4.5],
+  ['--info', '--bg-elevated', 4.5],
+  ['--info', '--bg-sunken', 4.5],
+  ['--info', '--info-soft', 4.5],
+  ['--on-accent', '--accent', 4.5],
+  ['--on-accent', '--accent-strong', 4.5],
+  ['--on-ok', '--ok', 4.5],
+  ['--on-warn', '--warn', 4.5],
+  ['--on-bad', '--bad', 4.5],
+  ['--on-info', '--info', 4.5],
+];
+
+const NON_TEXT_CONTRAST_PAIRS = [
+  ['--border', '--bg', 3.0],
+  ['--border', '--bg-elevated', 3.0],
+  ['--border', '--bg-sunken', 3.0],
+  ['--border-strong', '--bg', 3.0],
+  ['--border-strong', '--bg-elevated', 3.0],
+  ['--border-strong', '--bg-sunken', 3.0],
+  ['--focus-ring', '--bg', 3.0],
+  ['--focus-ring', '--bg-elevated', 3.0],
+  ['--focus-ring', '--bg-sunken', 3.0],
+];
+
+const lightTokens = parseHexTokens(lightBlock);
+const darkTokens = parseHexTokens(darkBlock);
+
+for (const [themeName, tokenMap] of [['light', lightTokens], ['dark', darkTokens]]) {
+  for (const [fg, bg, minRatio] of [...TEXT_CONTRAST_PAIRS, ...NON_TEXT_CONTRAST_PAIRS]) {
+    const fgHex = tokenMap.get(fg);
+    const bgHex = tokenMap.get(bg);
+    const ratio = fgHex && bgHex ? contrastRatio(fgHex, bgHex) : 0;
+    check(
+      Boolean(fgHex && bgHex && ratio >= minRatio),
+      `css/app.css (${themeName} theme): contrast ${fg} (${fgHex || 'missing'}) on ${bg} (${bgHex || 'missing'}) is ${ratio.toFixed(2)}:1, required >= ${minRatio}:1`,
+    );
+  }
+}
+
+// Strip token definition blocks (:root..., prefers-color-scheme, prefers-contrast, print :root)
+// and ensure no literal colours (#hex, rgb/rgba, hsl/hsla) appear in component rules.
+const nonTokenCss = cssDeclarations
+  .replace(/:root[^{]*\{[^}]*\}/g, '')
+  .replace(/@media\s*\(\s*prefers-color-scheme:\s*dark\s*\)\s*\{[\s\S]*?\}\s*\}/g, '')
+  .replace(/@media\s*\(\s*prefers-contrast:\s*more\s*\)\s*\{[\s\S]*?\}\s*\}/g, '');
+const literalColourMatches = [...nonTokenCss.matchAll(/(#[0-9a-fA-F]{3,8}\b|\brgba?\s*\(|\bhsla?\s*\()/g)].map((m) => m[0]);
+check(
+  literalColourMatches.length === 0,
+  `css/app.css: found ${literalColourMatches.length} literal colour(s) outside token blocks (${literalColourMatches.slice(0, 5).join(', ')})`,
+);
 
 /* ---------------------------------------------- GitHub Pages + relative -- */
 
@@ -235,6 +358,7 @@ for (const file of jsFiles) {
   }
   check(!/localhost:\d+/.test(source), `${file} hard-codes a localhost URL`);
   check(!/\bfetch\(\s*['"]https?:/.test(source), `${file} fetches an external URL`);
+  check(!/\bstyle\s*=\s*["'`]/.test(source), `${file} contains an inline style="..." attribute — move layout/visual rules to css/app.css`);
 }
 
 /* --------------------------------------------------------------- report -- */

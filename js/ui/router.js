@@ -59,6 +59,15 @@ export class Router {
       setState: (patch) => Object.assign(this.viewState, patch),
       refresh: () => this.resolve(),
     };
+
+    if (typeof document !== 'undefined') {
+      const screenTitle = view?.title || 'Dashboard';
+      document.title = `${screenTitle} · MyMPPSC`;
+      const announcer = document.getElementById('routeAnnouncer');
+      if (announcer) announcer.textContent = `${screenTitle} · MyMPPSC`;
+      if (routeName !== 'runner') document.body?.classList.remove('runner-focus');
+    }
+
     if (this.onNavigate) this.onNavigate(routeName, params);
 
     // Let the previous screen release anything it holds (interval timers,

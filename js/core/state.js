@@ -90,6 +90,34 @@ function mirrorSettingsToLocalStorage() {
   }
 }
 
+export function resolveEffectiveTheme(themePref = state.settings?.theme) {
+  if (themePref === 'dark' || themePref === 'light') return themePref;
+  if (typeof window !== 'undefined' && typeof window.matchMedia === 'function') {
+    try {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    } catch {
+      /* ignore matchMedia errors */
+    }
+  }
+  return 'light';
+}
+
+export function applyTheme(settings = state.settings) {
+  if (typeof document === 'undefined' || !document.documentElement) return 'light';
+  const pref = settings?.theme || 'system';
+  const effective = resolveEffectiveTheme(pref);
+  const density = settings?.density || 'comfortable';
+  const root = document.documentElement;
+  root.setAttribute('data-theme', effective);
+  root.setAttribute('data-theme-pref', pref);
+  root.setAttribute('data-density', density);
+  const meta = document.getElementById('themeColorMeta');
+  if (meta) meta.setAttribute('content', effective === 'dark' ? '#0f141c' : '#f6f3ec');
+  const toggle = document.getElementById('themeToggle');
+  if (toggle) toggle.setAttribute('aria-pressed', String(effective === 'dark'));
+  return effective;
+}
+
 export async function loadSettings() {
   let stored = null;
   try {
@@ -109,12 +137,14 @@ export async function loadSettings() {
   }
   state.settings = mergeSettings(DEFAULT_SETTINGS, stored || {});
   mirrorSettingsToLocalStorage();
+  applyTheme(state.settings);
   return state.settings;
 }
 
 export async function saveSettings(patch = null, { persist = true } = {}) {
   if (patch) state.settings = mergeSettings(state.settings, patch);
   mirrorSettingsToLocalStorage();
+  applyTheme(state.settings);
   if (persist) {
     try {
       await db.put(STORES.SETTINGS, { key: 'app', value: state.settings, updated_at: new Date().toISOString() });

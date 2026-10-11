@@ -93,7 +93,7 @@ export function configFields({ prefix = CONFIG_PREFIX, paper = null, defaultCoun
         paperRules
           ? `<label class="check"><input type="checkbox" id="${prefix}UsePaperRules" checked /><span>Use the source paper's rules — ${esc(paperRules)}</span></label>
              <p class="hint">Clear the box to override the marks for this session only.</p>`
-          : `<p class="hint" style="margin-top:0">${paper ? 'The source paper does not state scoring rules.' : 'No source paper rules apply to this session.'} Set the marks explicitly — nothing is assumed for you.</p>`
+          : `<p class="hint mt-0">${paper ? 'The source paper does not state scoring rules.' : 'No source paper rules apply to this session.'} Set the marks explicitly — nothing is assumed for you.</p>`
       }
       <div class="field-row">
         <label class="field"><span class="label-text">Marks per correct answer</span><input type="number" step="0.25" id="${prefix}MarksCorrect" value="${esc(String(s.defaultScoring.marksPerCorrect))}" /></label>
@@ -173,7 +173,7 @@ export function availabilityTable(availability, { subjectLabel = 'Subject' } = {
 }
 
 export function countSummary(availability, extra = '') {
-  return `<div class="row" style="margin:8px 0">
+  return `<div class="row my-2">
     ${badge(`${availability.total} matching`, 'accent')}
     ${badge(`${availability.unseen} never attempted`, 'info')}
     ${badge(`${availability.incorrect} answered wrong before`, availability.incorrect ? 'bad' : '')}

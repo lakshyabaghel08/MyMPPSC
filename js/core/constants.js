@@ -153,7 +153,7 @@ export const DEFAULT_SETTINGS = Object.freeze({
     nearDuplicateThreshold: 0.62,
   },
   dailyTaskTarget: 3,
-  theme: 'light',
+  theme: 'system',
   density: 'comfortable',
 });
 

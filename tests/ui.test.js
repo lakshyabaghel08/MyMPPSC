@@ -337,6 +337,208 @@ test('settings persist, diagnostics run and the keyboard entry point works', asy
   click($('#modalRoot').querySelector('[data-modal-close]'));
 });
 
+test('every route renders with one h1, no skipped heading levels, and updates document.title', async () => {
+  const routes = [
+    'dashboard',
+    'test-centre',
+    'topic',
+    'custom',
+    'smart',
+    'mistakes',
+    'revision',
+    'syllabus',
+    'analytics',
+    'bank',
+    'settings',
+    'help',
+  ];
+
+  const seenTitles = new Set();
+  for (const route of routes) {
+    await goto(route);
+    const h1s = $$('#view h1');
+    assert.equal(h1s.length, 1, `route #/${route} must render exactly one <h1> (found ${h1s.length})`);
+
+    const headings = $$('#view h1, #view h2, #view h3, #view h4, #view h5, #view h6');
+    let prevLevel = 1;
+    for (let i = 0; i < headings.length; i += 1) {
+      const level = Number(headings[i].tagName.slice(1));
+      if (i === 0) {
+        assert.equal(level, 1, `first heading on #/${route} must be <h1>`);
+      } else {
+        assert.ok(
+          level <= prevLevel + 1,
+          `route #/${route} skipped a heading level from <h${prevLevel}> to <h${level}> ("${headings[i].textContent.trim()}")`,
+        );
+      }
+      prevLevel = level;
+    }
+
+    assert.match(window.document.title, /· MyMPPSC$/, `document.title on #/${route} must end with "· MyMPPSC"`);
+    seenTitles.add(window.document.title);
+  }
+  assert.ok(seenTitles.size >= 10, 'document.title must change across routes');
+});
+
+test('dialogs move focus inside, trap Tab at boundaries, close on Escape, and restore focus to the trigger', async () => {
+  await goto('dashboard');
+  const trigger = $('#helpBtn');
+  trigger.focus();
+  assert.equal(window.document.activeElement, trigger);
+
+  click(trigger);
+  await waitFor(() => !$('#modalRoot').hidden && $('#modalRoot .modal'), { label: 'modal open' });
+
+  const modal = $('#modalRoot .modal');
+  assert.equal(modal.getAttribute('role'), 'dialog');
+  assert.equal(modal.getAttribute('aria-modal'), 'true');
+  assert.ok(modal.getAttribute('aria-labelledby'), 'dialog must have aria-labelledby');
+  assert.ok(modal.contains(window.document.activeElement), 'opening a dialog must move focus inside it');
+  assert.equal($('#main').hasAttribute('inert'), true, 'background #main must be inert while dialog is open');
+
+  const focusables = Array.from(
+    modal.querySelectorAll('button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'),
+  );
+  assert.ok(focusables.length >= 2, 'dialog should have at least two focusable controls');
+
+  const first = focusables[0];
+  const last = focusables[focusables.length - 1];
+
+  last.focus();
+  assert.equal(window.document.activeElement, last);
+  window.document.dispatchEvent(new window.KeyboardEvent('keydown', { key: 'Tab', bubbles: true, cancelable: true }));
+  assert.equal(window.document.activeElement, first, 'Tab on the last focusable element must wrap to the first');
+
+  first.focus();
+  window.document.dispatchEvent(new window.KeyboardEvent('keydown', { key: 'Tab', shiftKey: true, bubbles: true, cancelable: true }));
+  assert.equal(window.document.activeElement, last, 'Shift+Tab on the first focusable element must wrap to the last');
+
+  window.document.dispatchEvent(new window.KeyboardEvent('keydown', { key: 'Escape', bubbles: true, cancelable: true }));
+  await waitFor(() => $('#modalRoot').hidden, { label: 'modal closed on Escape' });
+  assert.equal($('#main').hasAttribute('inert'), false, 'closing dialog must remove inert from #main');
+  assert.equal(window.document.activeElement, trigger, 'closing dialog must restore focus to the trigger element');
+});
+
+test('off-canvas navigation is not focusable when closed and closes on scrim click or Escape', async () => {
+  const prevWidth = window.innerWidth;
+  window.innerWidth = 600;
+  window.dispatchEvent(new window.Event('resize'));
+
+  const nav = $('#appNav');
+  const toggle = $('#navToggle');
+  const scrim = $('#navScrim');
+
+  assert.equal(toggle.getAttribute('aria-expanded'), 'false');
+  assert.equal(nav.hasAttribute('inert'), true, 'closed off-canvas nav must have inert');
+  assert.equal(nav.getAttribute('aria-hidden'), 'true', 'closed off-canvas nav must have aria-hidden="true"');
+  const closedFocusables = Array.from(nav.querySelectorAll('a, button')).filter((el) => el.getAttribute('tabindex') !== '-1');
+  assert.equal(closedFocusables.length, 0, 'closed off-canvas nav links must have tabindex="-1" so they cannot receive focus');
+
+  click(toggle);
+  assert.equal(toggle.getAttribute('aria-expanded'), 'true');
+  assert.equal(nav.hasAttribute('inert'), false, 'open off-canvas nav must not be inert');
+  assert.equal(nav.getAttribute('aria-hidden'), null);
+  assert.equal(scrim.hidden, false, 'scrim must be visible when drawer is open');
+
+  click(scrim);
+  assert.equal(toggle.getAttribute('aria-expanded'), 'false', 'clicking scrim must close the drawer');
+  assert.equal(scrim.hidden, true);
+  assert.equal(nav.hasAttribute('inert'), true);
+  assert.equal(window.document.activeElement, toggle, 'closing drawer must restore focus to #navToggle');
+
+  window.innerWidth = prevWidth;
+  window.dispatchEvent(new window.Event('resize'));
+  assert.equal(nav.hasAttribute('inert'), false, 'desktop nav must remain interactive');
+});
+
+test('tabs implement APG roving tabindex and respond to ArrowRight, ArrowLeft, Home, and End', async () => {
+  await goto('bank');
+  const tablist = $('#view [role="tablist"]');
+  assert.ok(tablist, 'bank view should render a tablist');
+  const tabs = Array.from(tablist.querySelectorAll('[role="tab"]'));
+  assert.ok(tabs.length >= 3, 'bank tablist should have multiple tabs');
+
+  click(tabs[0]);
+  assert.equal(tabs[0].getAttribute('aria-selected'), 'true');
+  assert.equal(tabs[0].getAttribute('tabindex'), '0');
+  assert.equal(tabs[1].getAttribute('aria-selected'), 'false');
+  assert.equal(tabs[1].getAttribute('tabindex'), '-1');
+
+  tabs[0].focus();
+  tabs[0].dispatchEvent(new window.KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true, cancelable: true }));
+  assert.equal(tabs[1].getAttribute('aria-selected'), 'true');
+  assert.equal(tabs[1].getAttribute('tabindex'), '0');
+  assert.equal(tabs[0].getAttribute('tabindex'), '-1');
+  assert.equal(window.document.activeElement, tabs[1]);
+  assert.equal($(`#${tabs[1].getAttribute('aria-controls')}`).hidden, false);
+  assert.equal($(`#${tabs[0].getAttribute('aria-controls')}`).hidden, true);
+
+  tabs[1].dispatchEvent(new window.KeyboardEvent('keydown', { key: 'End', bubbles: true, cancelable: true }));
+  const lastIdx = tabs.length - 1;
+  assert.equal(tabs[lastIdx].getAttribute('aria-selected'), 'true');
+  assert.equal(window.document.activeElement, tabs[lastIdx]);
+
+  tabs[lastIdx].dispatchEvent(new window.KeyboardEvent('keydown', { key: 'Home', bubbles: true, cancelable: true }));
+  assert.equal(tabs[0].getAttribute('aria-selected'), 'true');
+  assert.equal(window.document.activeElement, tabs[0]);
+
+  tabs[0].dispatchEvent(new window.KeyboardEvent('keydown', { key: 'ArrowLeft', bubbles: true, cancelable: true }));
+  assert.equal(tabs[lastIdx].getAttribute('aria-selected'), 'true');
+});
+
+test('theme setting and header toggle apply data-theme to html and update theme-color meta', async () => {
+  await goto('settings');
+  const themeSelect = $('#setTheme');
+  assert.ok(themeSelect, 'settings must include #setTheme selector');
+
+  change(themeSelect, 'dark');
+  await waitFor(() => window.document.documentElement.getAttribute('data-theme') === 'dark', { label: 'dark theme applied' });
+  assert.equal($('#themeColorMeta')?.getAttribute('content'), '#0f141c');
+
+  change(themeSelect, 'light');
+  await waitFor(() => window.document.documentElement.getAttribute('data-theme') === 'light', { label: 'light theme applied' });
+  assert.equal($('#themeColorMeta')?.getAttribute('content'), '#f6f3ec');
+
+  click($('#themeToggle'));
+  await waitFor(() => window.document.documentElement.getAttribute('data-theme') === 'dark', { label: 'header theme toggle to dark' });
+  assert.equal($('#themeToggle').getAttribute('aria-pressed'), 'true');
+
+  click($('#themeToggle'));
+  await waitFor(() => window.document.documentElement.getAttribute('data-theme') === 'light', { label: 'header theme toggle to light' });
+  assert.equal($('#themeToggle').getAttribute('aria-pressed'), 'false');
+});
+
+test('runner supports focus mode, keyboard hints, Hindi lang="hi" tagging, and provenance chips', async () => {
+  await goto('dashboard');
+  assert.ok($$('#view [data-source]').length >= 5, 'dashboard must render provenance source chips');
+  assert.ok($$('#view .evidence-meter').length >= 1, 'dashboard must render evidence strength meters');
+
+  await goto('topic');
+  change($('#practiceCfgCount'), '2');
+  click($('#startTopic'));
+  await waitFor(() => /#\/runner\//.test(window.location.hash), { label: 'runner started' });
+  await waitFor(() => /Question 1 of/.test(viewText()), { label: 'runner rendered' });
+
+  assert.equal($$('#view h1').length, 1, 'runner must have one h1');
+  assert.ok($('#view .kbd-bar'), 'runner must render keyboard hint bar');
+  assert.ok($('#view [data-action="next"]')?.getAttribute('aria-keyshortcuts'), 'runner controls must expose aria-keyshortcuts');
+
+  const focusBtn = $('#view [data-action="focus-mode"]');
+  assert.ok(focusBtn, 'runner must provide a focus-mode toggle');
+  click(focusBtn);
+  assert.equal(window.document.body.classList.contains('runner-focus'), true, 'focus mode must toggle runner-focus class on body');
+
+  const hiBtn = $$('#view [data-action="lang"]').find((b) => b.dataset.lang === 'hi');
+  if (hiBtn) {
+    click(hiBtn);
+    await waitFor(() => $('#view .question-stem[lang="hi"]'), { label: 'Hindi lang="hi" stem' });
+    assert.ok($('#view .question-stem[lang="hi"]'), 'Devanagari stem must carry lang="hi"');
+  }
+
+  await goto('dashboard');
+  assert.equal(window.document.body.classList.contains('runner-focus'), false, 'leaving the runner must clear runner-focus class from body');
+});
+
 test('the offline notice and service worker registration are wired without errors', async () => {
   window.dispatchEvent(new window.Event('offline'));
   await waitFor(() => /You are offline/.test($('#toastStack').textContent), { label: 'offline toast' });

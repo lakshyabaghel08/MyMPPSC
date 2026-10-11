@@ -9,7 +9,7 @@
 import { ANSWER_KEY_STATUSES, EXPLANATION_STATUSES, STORES } from '../../core/constants.js';
 import { state, refreshQuestionIndex } from '../../core/state.js';
 import * as db from '../../core/db.js';
-import { esc, badge, card, tile, notice, dataTable, toast, openModal, confirmDialog, tabs, mountTabs, renderExplanation, questionTypeLabel, answerKeyBadge, demoBadge } from '../components.js';
+import { esc, badge, card, tile, notice, dataTable, toast, openModal, confirmDialog, tabs, mountTabs, renderExplanation, questionTypeLabel, answerKeyBadge, demoBadge, sourceChip, langAttr } from '../components.js';
 import { fmtPct, fmtDate, fmtRelative, readFileAsText, downloadJson, todayKey } from '../../core/util.js';
 import * as importer from '../../services/importer.js';
 import * as data from '../../services/data.js';
@@ -136,7 +136,7 @@ function importResultCard(result) {
              <button class="btn btn-sm" type="button" id="downloadRejected">Download rejected records</button></details>`
           : ''
       }
-      <div class="row" style="margin-top:10px">
+      <div class="row mt-3">
         <button class="btn" type="button" id="undoImport" data-import-id="${esc(importRecord.id)}">Undo this import</button>
         <a class="btn btn-quiet" href="#/topic">Start practising</a>
       </div>
@@ -296,7 +296,7 @@ async function openQuestionEditor(questionId, ctx) {
       });
     },
     body: `
-      <div class="row" style="margin-bottom:8px">
+      <div class="row mb-2">
         ${demoBadge(meta?.demonstration)} ${answerKeyBadge(question.supplied?.status)}
         ${question.dispute?.is_disputed ? badge('disputed key', 'bad') : ''}
         ${question.verified?.answer ? badge('verified answer recorded', 'ok') : ''}
@@ -306,10 +306,10 @@ async function openQuestionEditor(questionId, ctx) {
       </div>
 
       <h3>Question text</h3>
-      <p class="question-text">${esc(variant?.question_text || '—')}</p>
+      <p class="question-text"${langAttr(variant?.language)}>${esc(variant?.question_text || '—')}</p>
       <p class="tiny muted">Language shown: ${esc(variant?.language || '—')}. ${Object.keys(question.language_variants).length > 1 ? `Available: ${esc(Object.keys(question.language_variants).join(', '))}. Bilingual variants share this one id, so analytics count the question once.` : 'Only one language is stored for this question.'}</p>
-      ${variant?.context ? `<p class="small muted">${esc(variant.context)}</p>` : ''}
-      ${variant?.passage ? `<blockquote class="passage">${esc(variant.passage)}</blockquote>` : ''}
+      ${variant?.context ? `<p class="small muted"${langAttr(variant?.language)}>${esc(variant.context)}</p>` : ''}
+      ${variant?.passage ? `<blockquote class="passage"${langAttr(variant?.language)}>${esc(variant.passage)}</blockquote>` : ''}
 
       <h3>Options</h3>
       ${dataTable({ columns: [{ label: 'Key' }, { label: 'Text' }, { label: 'Supplied' }, { label: 'Verified' }], rows: optionRows, className: 'compact' })}
@@ -365,7 +365,7 @@ async function openQuestionEditor(questionId, ctx) {
         className: 'compact',
       })}
 
-      <div class="row" style="margin-top:12px">
+      <div class="row mt-3">
         <button class="btn btn-sm" type="button" id="editClassificationBtn">Edit classification</button>
         <button class="btn btn-sm" type="button" id="revertClassificationBtn" ${question.classification?.original ? '' : 'disabled'}>Restore imported classification</button>
         <button class="btn btn-sm" type="button" id="verifyAnswerBtn">Record verified answer</button>
@@ -393,14 +393,15 @@ export default {
       ${importResultCard(viewState.lastResult)}
       ${card({
         title: 'Import a question bank',
+        right: sourceChip('supplied', 'validated before write'),
         body: `
           <p class="small">A bank is a UTF-8 JSON file following the documented schema. It is validated before anything is written: schema version, required fields, option keys, answer keys, language variants and paper metadata. Invalid records are rejected <em>and listed</em>; nothing is dropped silently.</p>
-          <div class="row" style="margin:10px 0">
+          <div class="row mt-3 mb-3">
             <input type="file" id="bankFile" accept="application/json,.json" />
           </div>
           <details class="disclosure"><summary>Or paste JSON directly</summary>
-            <textarea id="bankPaste" rows="6" placeholder='{"schema_version":"1.0.0", ...}' style="width:100%"></textarea>
-            <div class="row" style="margin-top:6px"><button class="btn btn-sm" type="button" id="analysePaste">Analyse pasted JSON</button></div>
+            <textarea id="bankPaste" rows="6" placeholder='{"schema_version":"1.0.0", ...}' class="w-full"></textarea>
+            <div class="row mt-2"><button class="btn btn-sm" type="button" id="analysePaste">Analyse pasted JSON</button></div>
           </details>
           <details class="disclosure"><summary>Demonstration data</summary>
             <p class="small">A small synthetic bank is bundled so you can explore every screen without a real question set. Its questions are flagged <code>is_demonstration: true</code> and are never presented as authentic previous-year questions.</p>
@@ -433,7 +434,7 @@ export default {
             <label class="field"><span class="label-text">Demonstration</span><select id="qDemo">
               <option value="all">Include</option><option value="exclude" ${viewState.filters.demonstration === 'exclude' ? 'selected' : ''}>Exclude synthetic demo questions</option><option value="only" ${viewState.filters.demonstration === 'only' ? 'selected' : ''}>Only synthetic demo questions</option>
             </select></label>
-            <label class="check" style="align-self:flex-end"><input type="checkbox" id="qAttention" ${viewState.filters.attention ? 'checked' : ''} /><span>Only questions needing attention</span></label>
+            <label class="check self-end"><input type="checkbox" id="qAttention" ${viewState.filters.attention ? 'checked' : ''} /><span>Only questions needing attention</span></label>
           </div>`,
       })}
 
@@ -834,9 +835,9 @@ export default {
               empty: 'No issues were recorded for this import.',
               className: 'compact',
             })}
-            <h4 style="margin-top:12px">Skipped records</h4>
+            <h3 class="mt-3">Skipped records</h3>
             ${dataTable({ columns: [{ label: 'Record' }, { label: 'Reason' }], rows: (record.skipped || []).map((s) => [`<span class="mono tiny">${esc(s.id)}</span>`, esc(s.reason)]), empty: 'None skipped.', className: 'compact' })}
-            <h4>Info</h4>
+            <h3>Info</h3>
             <ul class="small">${(record.info || []).map((i) => `<li>${esc(i.message || JSON.stringify(i))}</li>`).join('') || '<li class="muted">No extra information.</li>'}</ul>`,
           actions: [{ label: 'Close', tone: 'btn-primary', value: 'close' }],
         });
@@ -867,7 +868,7 @@ export default {
           body: `
             <p class="small">These records have identical text and options but different ids. Keeping both is safe: analytics count a question once per id, so duplicates inflate the “available” count. Deleting one keeps its attempts in history but those attempts no longer resolve to a question.</p>
             <div class="row">${ids.map((id) => `<button class="btn btn-sm" type="button" data-open-question="${esc(id)}">Open ${esc(id)}</button>`).join('')}</div>
-            <div class="row" style="margin-top:10px">${ids.map((id) => `<button class="btn btn-sm btn-danger" type="button" data-delete-duplicate="${esc(id)}">Delete ${esc(id)}</button>`).join('')}</div>`,
+            <div class="row mt-3">${ids.map((id) => `<button class="btn btn-sm btn-danger" type="button" data-delete-duplicate="${esc(id)}">Delete ${esc(id)}</button>`).join('')}</div>`,
           actions: [{ label: 'Close', tone: 'btn-primary', value: 'close' }],
         });
         return;

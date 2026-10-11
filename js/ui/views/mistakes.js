@@ -9,7 +9,23 @@
 
 import { MISTAKE_TYPES } from '../../core/constants.js';
 import { state } from '../../core/state.js';
-import { esc, badge, card, tile, dataTable, emptyState, toast, openModal, confirmDialog, renderExplanation, confidenceLabel, questionTypeLabel, answerKeyBadge } from '../components.js';
+import {
+  esc,
+  badge,
+  card,
+  tile,
+  dataTable,
+  emptyState,
+  toast,
+  openModal,
+  confirmDialog,
+  renderExplanation,
+  confidenceLabel,
+  questionTypeLabel,
+  answerKeyBadge,
+  sourceChip,
+  langAttr,
+} from '../components.js';
 import { fmtDate, fmtClock, fmtRelative } from '../../core/util.js';
 import { listMistakes, mistakeCounts, resolveMistake, reopenMistake, removeMistake, attemptHistoryForQuestion, attemptTrend } from '../../services/attempts.js';
 import { getQuestions } from '../../services/questions.js';
@@ -56,20 +72,22 @@ function typeBadge(type) {
 export default {
   title: 'Mistake Book',
 
-  async render(ctx) {
+  async render() {
     const metas = Array.from(state.questionIndex.values());
     const counts = await mistakeCounts();
     if (!counts.total) {
-      return card({
-        title: 'Mistake Book',
-        body: emptyState({
-          title: 'No mistakes recorded yet',
-          message: metas.length
-            ? 'Incorrect answers, skipped questions, questions you flag for review, repeated mistakes and (when confidence tracking is on) correct but uncertain answers appear here automatically after you submit a test.'
-            : 'Import a question bank and attempt a test; this screen fills itself from your results.',
-          action: metas.length ? '<a class="btn btn-primary" href="#/test-centre">Start a test</a>' : '<a class="btn btn-primary" href="#/bank">Import a question bank</a>',
-        }),
-      });
+      return `
+        <h1>Mistake Book</h1>
+        ${card({
+          title: 'Mistake Book',
+          body: emptyState({
+            title: 'No mistakes recorded yet',
+            message: metas.length
+              ? 'Incorrect answers, skipped questions, questions you flag for review, repeated mistakes and (when confidence tracking is on) correct but uncertain answers appear here automatically after you submit a test.'
+              : 'Import a question bank and attempt a test; this screen fills itself from your results.',
+            action: metas.length ? '<a class="btn btn-primary" href="#/test-centre">Start a test</a>' : '<a class="btn btn-primary" href="#/bank">Import a question bank</a>',
+          }),
+        })}`;
     }
 
     const rows = await listMistakes({
@@ -113,14 +131,14 @@ export default {
       <h1>Mistake Book</h1>
       <p class="muted">Everything recorded automatically from your tests. Resolving an item keeps its attempt history — nothing is erased.</p>
 
-      <div class="grid tiles" style="margin-bottom:16px">
-        ${tile({ label: 'Open items', value: String(counts.open), sub: `${counts.repeated} repeated`, tone: counts.open ? 'warn' : 'ok' })}
-        ${tile({ label: 'Incorrect', value: String(openByType.incorrect || 0), sub: 'wrong answers', tone: 'bad' })}
-        ${tile({ label: 'Skipped', value: String(openByType.skipped || 0), sub: 'kept separate from wrong answers' })}
-        ${tile({ label: 'Uncertain correct', value: String(openByType.low_confidence_correct || 0), sub: 'guesses and unsure answers' })}
+      <div class="grid tiles mb-4">
+        ${tile({ label: 'Open items', value: String(counts.open), sub: `${counts.repeated} repeated`, tone: counts.open ? 'warn' : 'ok', source: 'measured', where: 'Active unresolved entries' })}
+        ${tile({ label: 'Incorrect', value: String(openByType.incorrect || 0), sub: 'wrong answers', tone: 'bad', source: 'measured', where: 'Scored wrong in a test' })}
+        ${tile({ label: 'Skipped', value: String(openByType.skipped || 0), sub: 'kept separate from wrong answers', source: 'measured', where: 'Left blank in a test' })}
+        ${tile({ label: 'Uncertain correct', value: String(openByType.low_confidence_correct || 0), sub: 'guesses and unsure answers', source: 'measured', where: 'Correct but marked unsure/guessed' })}
       </div>
 
-      ${card({ title: 'Filters', body: filtersMarkup(metas, counts) })}
+      ${card({ title: 'Filters', right: sourceChip('measured', 'attempt log'), body: filtersMarkup(metas, counts) })}
 
       ${card({
         title: `Items (${rows.length})`,
@@ -136,6 +154,7 @@ export default {
 
       ${card({
         title: 'Topics with the most open items',
+        right: sourceChip('derived', 'grouped by topic'),
         body: topicGroups.size
           ? dataTable({
               columns: [{ label: 'Topic' }, { label: 'Open items', num: true }, { label: '' }],
@@ -259,6 +278,7 @@ export default {
         const trend = attemptTrend(attempts);
         const map = await getQuestions([questionId]);
         const question = map.get(questionId);
+        const firstVariant = question ? Object.values(question.language_variants)[0] : null;
         await openModal({
           title: `Attempt history — ${questionId}`,
           wide: true,
@@ -278,11 +298,12 @@ export default {
             })}
             ${
               question
-                ? `<h3 style="margin-top:16px">Question (${esc(questionTypeLabel(question.question_type))}) ${answerKeyBadge(question.supplied?.status)}</h3>
-                   <p class="question-text">${esc(Object.values(question.language_variants)[0].question_text)}</p>
-                   <ol class="small">${Object.values(question.language_variants)[0].options.map((o) => `<li><strong>${esc(o.key)}.</strong> ${esc(o.text)}${(question.supplied.answer || []).includes(o.key) ? ' <span class="badge ok">key</span>' : ''}</li>`).join('')}</ol>
+                ? `<h3 class="mt-4">Question (${esc(questionTypeLabel(question.question_type))}) ${answerKeyBadge(question.supplied?.status)}</h3>
+                   <p class="question-text"${langAttr(firstVariant?.question_text)}>${esc(firstVariant?.question_text || '')}</p>
+                   <ol class="small">${(firstVariant?.options || []).map((o) => `<li${langAttr(o.text)}><strong>${esc(o.key)}.</strong> ${esc(o.text)}${(question.supplied.answer || []).includes(o.key) ? ' <span class="badge ok">key</span>' : ''}</li>`).join('')}</ol>
                    ${renderExplanation(question)}`
-                : '<p class="muted">This question is no longer in the database.</p>'}
+                : '<p class="muted">This question is no longer in the database.</p>'
+            }
             <p class="tiny muted">Resolving a mistake never removes attempts — the rows above are the permanent record.</p>`,
           actions: [{ label: 'Close', tone: 'btn-primary', value: 'close' }],
         });

@@ -10,7 +10,30 @@
 import { STORES } from '../../core/constants.js';
 import * as db from '../../core/db.js';
 import { state } from '../../core/state.js';
-import { esc, badge, card, tile, notice, dataTable, barList, pct, renderExplanation, questionTypeLabel, answerKeyBadge, confidenceLabel, emptyState, tabs, mountTabs, toast, openModal } from '../components.js';
+import {
+  esc,
+  badge,
+  card,
+  tile,
+  notice,
+  dataTable,
+  barList,
+  pct,
+  renderExplanation,
+  questionTypeLabel,
+  answerKeyBadge,
+  confidenceLabel,
+  emptyState,
+  tabs,
+  mountTabs,
+  toast,
+  openModal,
+  sourceChip,
+  evidenceMeter,
+  provenanceLine,
+  demoBadge,
+  langAttr,
+} from '../components.js';
 import { fmtMarks, fmtClock, fmtDate, fmtDuration, fmtPct } from '../../core/util.js';
 import { getQuestion } from '../../services/questions.js';
 import { describeRules } from '../../services/scoring.js';
@@ -60,19 +83,20 @@ function questionReviewBlock(row, question, lang) {
   const variant = question.language_variants?.[lang] || Object.values(question.language_variants || {})[0];
   const selected = row.selected || [];
   return `
-    <article class="question-card" style="margin-bottom:12px">
+    <article class="question-card mb-3 review-item">
       <div class="question-meta">
-        <span class="strong">Q${esc(String(row.question_number ?? '—'))}</span>
+        <span class="question-num-pill">Q${esc(String(row.question_number ?? '—'))}</span>
         ${outcomeBadge(row)}
         ${badge(row.subject || 'Unclassified')}
         ${row.topic ? badge(row.topic, '') : ''}
         ${answerKeyBadge(question.supplied?.status)}
+        ${row.answer_basis === 'verified' ? sourceChip('verified', 'verified key') : row.answer?.length ? sourceChip('supplied', 'supplied key') : sourceChip('unavailable', 'key missing')}
         ${row.flagged ? badge('flagged', 'warn') : ''}
         ${row.confidence ? badge(`confidence: ${confidenceLabel(row.confidence)}`, row.confidence === 'confident' ? 'ok' : 'warn') : ''}
-        ${row.demonstration ? '<span class="demo-flag">demonstration</span>' : ''}
+        ${demoBadge(row.demonstration)}
         <span class="soft tiny">${esc(questionTypeLabel(question.question_type))} · ${fmtClock(Math.round((row.time_spent_ms || 0) / 1000))} · ${esc(row.question_id)}</span>
       </div>
-      <p class="question-text ${lang === 'hi' ? 'hi' : ''}">${esc(variant?.question_text || '')}</p>
+      <p class="question-text ${lang === 'hi' ? 'hi' : ''}"${langAttr(variant?.question_text, lang)}>${esc(variant?.question_text || '')}</p>
       <div class="table-wrap"><table class="data compact"><tbody>
         ${(variant?.options || [])
           .map((opt) => {
@@ -80,18 +104,22 @@ function questionReviewBlock(row, question, lang) {
             const wasSelected = selected.includes(opt.key);
             const mark = isAnswer ? badge('answer key', 'ok') : '';
             const picked = wasSelected ? badge('your choice', wasSelected && !isAnswer ? 'bad' : 'info') : '';
-            return `<tr><td class="mono" style="width:34px">${esc(opt.key)}</td><td>${esc(opt.text)}</td><td style="width:190px">${mark} ${picked}</td></tr>`;
+            return `<tr><td class="mono col-key">${esc(opt.key)}</td><td${langAttr(opt.text, lang)}>${esc(opt.text)}</td><td class="col-choice">${mark} ${picked}</td></tr>`;
           })
           .join('')}
       </tbody></table></div>
-      <p class="small" style="margin-top:8px">
+      <p class="small mt-2">
         Answer used for scoring: <strong>${row.answer?.length ? esc(row.answer.join(', ')) : 'none available'}</strong>
         ${row.answer_basis ? `(${esc(row.answer_basis === 'verified' ? 'independently verified answer' : 'supplied answer key')})` : ''}
         ${row.supplied_answer && row.verified_answer && row.supplied_answer.join(',') !== row.verified_answer.join(',') ? ` · supplied key said <strong>${esc(row.supplied_answer.join(', '))}</strong>, verified answer is <strong>${esc(row.verified_answer.join(', '))}</strong> — both are preserved.` : ''}
         ${row.note ? `<br /><span class="soft">${esc(row.note)}</span>` : ''}
       </p>
       ${renderExplanation(question)}
-      <div class="row tight" style="margin-top:10px">
+      ${provenanceLine({
+        source: row.answer_basis === 'verified' ? 'verified' : row.disputed ? 'disputed' : row.answer?.length ? 'supplied' : 'unavailable',
+        text: `Question ${row.question_id} · basis: ${row.answer_basis || 'none'}`,
+      })}
+      <div class="row tight mt-3">
         <button class="btn btn-sm" type="button" data-action="history" data-qid="${esc(row.question_id)}">Attempt history</button>
         <button class="btn btn-sm" type="button" data-action="queue-revision" data-qid="${esc(row.question_id)}">Add to revision queue</button>
         <a class="btn btn-sm" href="#/bank/question/${encodeURIComponent(row.question_id)}">Open in question bank</a>
@@ -107,9 +135,9 @@ export default {
     const test = await db.get(STORES.TESTS, testId);
     viewState.testId = testId;
     viewState.result = test?.result || null;
-    if (!test) return notice('That test report is no longer stored. <a href="#/test-centre">Back to the test centre</a>.', 'warn');
+    if (!test) return `<h1>Test report</h1>${notice('That test report is no longer stored. <a href="#/test-centre">Back to the test centre</a>.', 'warn')}`;
     if (test.status !== 'submitted' || !test.result) {
-      return notice(`This test has not been submitted yet. <a href="#/runner/${esc(test.id)}">Continue the test</a> or <a href="#/test-centre">go back</a>.`, 'info');
+      return `<h1>${esc(test.label || 'Test report')}</h1>${notice(`This test has not been submitted yet. <a href="#/runner/${esc(test.id)}">Continue the test</a> or <a href="#/test-centre">go back</a>.`, 'info')}`;
     }
     const result = test.result;
     viewState.filter = viewState.filter || 'all';
@@ -119,13 +147,14 @@ export default {
     }
 
     const counts = result.counts;
+    const judgedCount = counts.correct + counts.incorrect;
     const filtered = result.per_question.filter((row) => rowMatches(row, viewState.filter));
     const unresolved = result.unresolved_answers || [];
     const repeated = await repeatedMistakesFor(result.per_question.map((r) => r.question_id));
     const recommendations = buildRecommendations(result, test);
 
     const reviewBody = `
-      <div class="row" style="margin-bottom:10px">
+      <div class="row mb-3">
         ${FILTERS.map((f) => `<button class="btn btn-sm ${viewState.filter === f.id ? 'btn-primary' : ''}" type="button" data-action="filter" data-filter="${f.id}">${esc(f.label)}${f.id === 'all' ? ` (${result.per_question.length})` : ` (${result.per_question.filter((r) => rowMatches(r, f.id)).length})`}</button>`).join('')}
       </div>
       ${
@@ -135,10 +164,14 @@ export default {
       }`;
 
     return `
-      <div class="spread" style="margin-bottom:14px">
+      <div class="spread mb-4">
         <div>
-          <h1>${esc(test.label || 'Test report')}</h1>
-          <p class="muted small" style="margin:0">
+          <div class="row tight">
+            <h1 class="m-0">${esc(test.label || 'Test report')}</h1>
+            ${test.config?.is_authentic_paper ? sourceChip('supplied', 'authentic paper') : sourceChip('derived', 'practice session')}
+            ${evidenceMeter(judgedCount)}
+          </div>
+          <p class="muted small m-0 mt-1">
             ${test.paper_snapshot ? `${esc(test.paper_snapshot.exam || '')} ${test.paper_snapshot.year ? `· ${esc(String(test.paper_snapshot.year))}` : ''}${test.paper_snapshot.set_code ? ` · set ${esc(test.paper_snapshot.set_code)}` : ''} · ` : ''}
             submitted ${esc(fmtDate(test.submitted_at))}${result.auto_submitted ? ' (automatically, when the timer expired)' : ''}
           </p>
@@ -149,11 +182,38 @@ export default {
         </div>
       </div>
 
-      <div class="grid tiles" style="margin-bottom:16px">
-        ${tile({ label: 'Score', value: `${esc(fmtMarks(result.score))} <small class="muted" style="font-size:15px">/ ${esc(fmtMarks(result.max_marks))}</small>`, sub: esc(describeRules(result.scoring, result.scoring?.source)), tone: 'accent' })}
-        ${tile({ label: 'Accuracy', value: result.accuracy === null ? '—' : esc(fmtPct(result.accuracy, 0)), sub: `${counts.correct} correct of ${counts.correct + counts.incorrect} judged`, tone: result.accuracy === null ? '' : result.accuracy >= 0.6 ? 'ok' : 'warn' })}
-        ${tile({ label: 'Attempted', value: `${counts.attempted}/${counts.total}`, sub: `${counts.unanswered} left unanswered` })}
-        ${tile({ label: 'Negative marks', value: esc(fmtMarks(result.negative_marks_applied)), sub: 'lost to wrong answers', tone: result.negative_marks_applied ? 'warn' : '' })}
+      <div class="grid tiles mb-4">
+        ${tile({
+          label: 'Score',
+          value: `${esc(fmtMarks(result.score))} <small class="muted">/ ${esc(fmtMarks(result.max_marks))}</small>`,
+          sub: esc(describeRules(result.scoring, result.scoring?.source)),
+          tone: 'accent',
+          source: result.score === null ? 'unavailable' : 'derived',
+          where: result.scoring?.source ? `Source: ${result.scoring.source.replace(/_/g, ' ')}` : 'Rules not configured',
+        })}
+        ${tile({
+          label: 'Accuracy',
+          value: result.accuracy === null ? '—' : esc(fmtPct(result.accuracy, 0)),
+          sub: `${counts.correct} correct of ${judgedCount} judged`,
+          tone: result.accuracy === null ? '' : result.accuracy >= 0.6 ? 'ok' : 'warn',
+          source: judgedCount ? 'measured' : 'unavailable',
+          where: `Judged sample n=${judgedCount}`,
+        })}
+        ${tile({
+          label: 'Attempted',
+          value: `${counts.attempted}/${counts.total}`,
+          sub: `${counts.unanswered} left unanswered`,
+          source: 'measured',
+          where: 'Recorded during this session',
+        })}
+        ${tile({
+          label: 'Negative marks',
+          value: esc(fmtMarks(result.negative_marks_applied)),
+          sub: 'lost to wrong answers',
+          tone: result.negative_marks_applied ? 'warn' : '',
+          source: 'derived',
+          where: 'Deducted from incorrect answers',
+        })}
       </div>
 
       ${result.warnings?.length ? notice(`<ul>${result.warnings.map((w) => `<li>${esc(w)}</li>`).join('')}</ul>`, 'warn', { title: 'Read with the score' }) : ''}
@@ -168,14 +228,16 @@ export default {
             body: `
               ${card({
                 title: 'Scoring rules actually used',
+                right: result.scoring?.rules_known === false ? sourceChip('unavailable') : sourceChip('supplied'),
                 body: `<p>${esc(describeRules(result.scoring, result.scoring?.source))}</p>
                   <p class="small muted">${esc(result.scoring?.rules_source_note || '')}</p>
-                  ${result.accuracy_note ? `<p class="small" style="color:var(--warn)">${esc(result.accuracy_note)}</p>` : ''}
+                  ${result.accuracy_note ? `<p class="small text-warn">${esc(result.accuracy_note)}</p>` : ''}
                   ${test.config.feedback_mode === 'learning' ? '<p class="small">This test ran in learning mode, so answers were revealed as you went.</p>' : ''}`,
               })}
               <div class="grid cols-2">
                 ${card({
                   title: 'Outcome counts',
+                  right: sourceChip('measured'),
                   body: dataTable({
                     columns: [{ label: 'Outcome' }, { label: 'Count', num: true }, { label: 'Share', num: true }],
                     rows: [
@@ -190,6 +252,7 @@ export default {
                 })}
                 ${card({
                   title: 'Weakest topics in this test',
+                  right: sourceChip('derived'),
                   body: barList(
                     (result.per_topic || [])
                       .filter((t) => t.correct + t.incorrect > 0)
@@ -206,6 +269,7 @@ export default {
               ${card({
                 title: 'Time per question',
                 subtitle: `${fmtDuration(Math.round(result.per_question.reduce((a, r) => a + (r.time_spent_ms || 0), 0) / 1000))} in total`,
+                right: sourceChip('measured', 'session clock'),
                 body: dataTable({
                   columns: [{ label: 'Q' }, { label: 'Topic' }, { label: 'Outcome' }, { label: 'Time', num: true }, { label: 'Confidence' }],
                   rows: result.per_question
@@ -224,8 +288,9 @@ export default {
               : card({
                   title: 'Confidence against correctness',
                   subtitle: 'A correct guess is not strong recall',
+                  right: sourceChip('measured', 'self-reported'),
                   body: `
-                    <div class="matrix" style="margin-bottom:12px">
+                    <div class="matrix mb-3">
                       ${['confident', 'unsure', 'guessed'].concat(result.per_question.some((r) => !r.confidence) ? ['none'] : [])
                         .map((level) => {
                           const rows = result.per_question.filter((r) => (r.confidence || 'none') === level);
@@ -257,9 +322,10 @@ export default {
             id: 'tabs-advice',
             label: 'What to do next',
             body: `
-              ${card({ title: 'Revision recommendations', body: recommendations.length ? `<ul>${recommendations.map((r) => `<li>${r}</li>`).join('')}</ul>` : '<p class="muted small">Nothing stands out yet — no pattern was strong enough to recommend a change.</p>' })}
+              ${card({ title: 'Revision recommendations', right: sourceChip('derived'), body: recommendations.length ? `<ul>${recommendations.map((r) => `<li>${r}</li>`).join('')}</ul>` : '<p class="muted small">Nothing stands out yet — no pattern was strong enough to recommend a change.</p>' })}
               ${card({
                 title: 'Repeated mistakes touching this test',
+                right: sourceChip('measured', 'mistake book'),
                 body: repeated.length
                   ? dataTable({
                       columns: [{ label: 'Question' }, { label: 'Topic' }, { label: 'Times wrong', num: true }, { label: '' }],
@@ -277,6 +343,7 @@ export default {
                 ? card({
                     title: 'Answers that remain unresolved',
                     tone: 'warn',
+                    right: sourceChip('disputed'),
                     body: `<p class="small">These questions were judged with an answer key that is missing, disputed or contradicted by a verified answer. The supplied key is preserved; nothing was silently rewritten.</p>
                       ${dataTable({
                         columns: [{ label: 'Question' }, { label: 'Issue' }, { label: 'Supplied' }, { label: 'Verified' }, { label: '' }],

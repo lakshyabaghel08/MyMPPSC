@@ -1,0 +1,146 @@
+# UI & Design System (`docs/UI.md`)
+
+MyMPPSC is a local-first, zero-dependency, static single-page study application for MPPSC Prelims preparation. The interface is built with vanilla HTML, a token-driven stylesheet (`css/app.css`), and a dependency-free component kit (`js/ui/components.js`).
+
+Every visual decision serves three goals:
+1. **Long-session reading comfort** across English and Hindi (Devanagari) question stems, passages, and explanations.
+2. **Epistemic honesty (North Star)** — every figure, badge, and question card answers *what should I do now?*, *what do I actually know?*, and *where did it come from?* using a shared provenance vocabulary.
+3. **Verifiable accessibility and layout safety** enforced automatically by `npm run check` (`tools/check.mjs`) and `npm test` (`tests/ui.test.js`).
+
+---
+
+## 1. Design Tokens (`css/app.css`)
+
+All colour literals in `css/app.css` live inside the root token blocks (`:root, :root[data-theme="light"]`, `:root[data-theme="dark"]`, `@media (prefers-color-scheme: dark)`, and `@media (forced-colors: active)`). `tools/check.mjs` fails the build if any `#hex`, `rgb()`, or `hsl()` colour appears outside a token block.
+
+### 1.1 Surface, Border & Text Palette
+
+| Token | Light Theme (`data-theme="light"`) | Dark Theme (`data-theme="dark"`) | Purpose |
+| :--- | :--- | :--- | :--- |
+| `--bg` | `#f4f6fa` | `#0f131c` | Page canvas |
+| `--bg-elevated` | `#ffffff` | `#161b26` | Cards, dialogs, table containers |
+| `--bg-sunken` | `#eaeef5` | `#0a0d14` | Wells, code blocks, secondary panels, progress tracks |
+| `--text` | `#141926` | `#f0f3f9` | Primary body & question text (≥ 15.8:1 contrast) |
+| `--text-muted` | `#3d4659` | `#c2cadb` | Secondary labels & metadata (≥ 7.9:1 contrast) |
+| `--text-soft` | `#525c70` | `#9aa5bc` | Captions, hints, axis labels (≥ 5.4:1 contrast) |
+| `--border` | `#6e778c` | `#6e7891` | Card, table & control borders (≥ 3.7:1 contrast) |
+| `--border-strong` | `#50596d` | `#8b95ad` | Input borders, checkbox/radio borders, non-text UI boundaries (≥ 5.6:1 contrast) |
+| `--focus-ring` | `#1f3d7a` | `#93b4ff` | Keyboard `:focus-visible` ring (≥ 8.2:1 contrast) |
+
+### 1.2 Brand & Semantic Status Tokens
+
+| Role | Foreground Token (Light / Dark) | Soft Surface Token (Light / Dark) | Solid Ink Token (Light / Dark) | Contrast (Foreground on Soft Surface) |
+| :--- | :--- | :--- | :--- | :--- |
+| **Accent** (`--accent`, `--accent-soft`, `--on-accent`) | `#1f3d7a` / `#93b4ff` | `#e5ecf9` / `#1b2845` | `#ffffff` / `#0b1528` | ≥ 8.3:1 (Light) / ≥ 6.8:1 (Dark) |
+| **OK / Verified** (`--ok`, `--ok-soft`, `--on-ok`) | `#116139` / `#6ee7a8` | `#e1f3e9` / `#11291e` | `#ffffff` / `#082014` | ≥ 6.4:1 (Light) / ≥ 9.1:1 (Dark) |
+| **Warn / Synthetic** (`--warn`, `--warn-soft`, `--on-warn`) | `#7c4a03` / `#fbbf60` | `#fdefd8` / `#2b2110` | `#ffffff` / `#231602` | ≥ 6.4:1 (Light) / ≥ 8.6:1 (Dark) |
+| **Bad / Disputed** (`--bad`, `--bad-soft`, `--on-bad`) | `#9e1c22` / `#ff9499` | `#fce8e9` / `#2f1619` | `#ffffff` / `#280709` | ≥ 6.4:1 (Light) / ≥ 6.8:1 (Dark) |
+| **Info / Derived** (`--info`, `--info-soft`, `--on-info`) | `#174ea6` / `#8ac4ff` | `#e4eefc` / `#13243b` | `#ffffff` / `#081a2e` | ≥ 6.8:1 (Light) / ≥ 7.8:1 (Dark) |
+
+### 1.3 Typography & Devanagari Scale
+
+System font stacks are used with zero web-font network requests:
+- `--sans`: `system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "Noto Sans Devanagari", Arial, sans-serif`
+- `--deva`: `"Noto Sans Devanagari", "Kohinoor Devanagari", "Mangal", system-ui, sans-serif`
+- `--mono`: `ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace`
+
+| Token | Value | Usage |
+| :--- | :--- | :--- |
+| `--text-xs` | `0.75rem` (12px) | Badges, provenance chips, keyboard hints, table headers |
+| `--text-sm` | `0.8125rem` (13px) | Secondary copy, filter labels, table cells |
+| `--text-base` | `0.9375rem` (15px) | Default interface body |
+| `--text-md` | `1.0625rem` (17px) | English & Hindi question stems |
+| `--text-lg` | `1.125rem` (18px) | Card `<h2>` headings |
+| `--text-xl` | `1.375rem` (22px) | Screen `<h1>` titles |
+| `--text-2xl` | `1.5rem` (24px) | Stat tile values |
+| `--text-3xl` | `2.25rem` (36px) | Hero report score |
+| `--lh-tight` | `1.25` | Headings & stat values |
+| `--lh-base` | `1.55` | English body copy |
+| `--lh-reading` | `1.65` | English question stems (`--measure: 70ch`) |
+| `--lh-deva` | `1.82` | Hindi (`[lang="hi"]`) stems & options so matras (`ि`, `ी`, `ु`, `ू`, `े`, `ै`) never clip |
+
+### 1.4 Spacing, Radius, Elevation, Z-Index & Motion Scales
+
+- **Spacing (`--space-1` … `--space-10`)**: `4px`, `8px`, `12px`, `16px`, `20px`, `24px`, `32px`, `40px`. Compact density (`html[data-density="compact"]`) scales `--pad-card`, `--pad-tile`, `--pad-cell-y`, and `--gap-grid` down proportionally.
+- **Radii**: `--radius-xs` (`4px`), `--radius-sm` (`7px`), `--radius` (`10px`), `--radius-lg` (`14px`), `--radius-pill` (`999px`).
+- **Z-Index**: `--z-sticky` (`10`), `--z-runner-bar` (`20`), `--z-header` (`30`), `--z-scrim` (`35`), `--z-drawer` (`40`), `--z-toast` (`60`), `--z-modal` (`70`), `--z-skip` (`100`). Note: `.modal-root` also sets literal `z-index: 70` so JSDOM `getComputedStyle(modalRoot).zIndex` resolves without CSS variable evaluation.
+- **Motion**: `--dur-fast` (`90ms`), `--dur-base` (`140ms`), `--ease-out` (`cubic-bezier(0.16, 1, 0.3, 1)`). Zero transitions or animations exceed `150ms`.
+
+---
+
+## 2. Provenance & Component Inventory (`js/ui/components.js`)
+
+Zero inline `style=` attributes are permitted in `js/**`. All helpers in `js/ui/components.js` use token-backed CSS classes:
+
+- **`sourceChip(kind, customLabel)`**: Renders `<span class="prov-chip <kind>" data-source="<kind>">` for the 7 provenance states:
+  - `measured` — directly counted from local attempt history
+  - `derived` — calculated deterministically from attempts + rules (e.g. spaced-repetition intervals, weak-topic ranking)
+  - `unavailable` — absent in the source data; never guessed or invented
+  - `synthetic` — synthetic demonstration data (`is_demonstration: true`)
+  - `supplied` — answer key or metadata supplied by the imported JSON bank
+  - `verified` — independently verified answer key recorded with evidence
+  - `disputed` — contested answer key
+- **`evidenceMeter(judgedCount, minSample = 3)`**: 3-step visual dot meter (`n=0..3+`) with `role="img"` and `aria-label`. Counts below `minSample` render with `.evidence-meter.insufficient` (`n=1 (<3)`) so small samples are visually distinct from reliable verdicts.
+- **`provenanceLine({ source, text })`**: Compact footer bar attaching a `sourceChip` to a plain-English explanation of how a metric or rule was computed.
+- **`langAttr(text, explicitLang)` & `hasDevanagari(text)`**: Detects Unicode Devanagari (`\u0900–\u097F`) or explicit `'hi'` language code and emits ` lang="hi"` so browsers select Devanagari glyphs and apply `--leading-hi`.
+- **`icon(name)`**: Inline monochrome SVG icons (`stroke="currentColor"`) for navigation, theme switching, and actions.
+- **`card({ title, subtitle, actions, right, body, footer, tone, id, className })`**: Section container with `<h2>` header, optional right-aligned provenance slot (`right` or `actions`), body, and footer. Does not use `overflow: hidden`, preserving focus rings on child controls.
+- **`tile({ label, value, sub, tone, source, where })`**: Stat tile with optional `sourceChip` and `.tile-prov` provenance caption.
+- **`tabs({ id, items, activeId })` & `mountTabs(root, onChange)`**: WAI-ARIA Authoring Practices Guide (APG) tabs with `role="tablist"`, `role="tab"`, `role="tabpanel"`, roving `tabindex` (`0` on selected, `-1` on others), `aria-selected`, `aria-controls`, `aria-labelledby`, and `ArrowRight` / `ArrowLeft` / `Home` / `End` keyboard navigation.
+- **`openModal({ title, body, actions, wide, onMount, dismissible })`**: Accessible modal dialog (`role="dialog"`, `aria-modal="true"`, `aria-labelledby`). Saves the trigger element, sets `inert` on `#appHeader`, `#appBody`, and `#main`, moves initial focus inside the dialog, traps `Tab` / `Shift+Tab` at boundaries, closes on `Escape` or backdrop click, and restores focus to the trigger element on close.
+- **`toast(message, tone, timeout)`**: Notification banner inside `#toastStack` (`pointer-events: none` on stack, `pointer-events: auto` on individual `.toast` items), capped at 4 concurrent toasts, with pause-on-hover/focus and a dismiss button.
+- **`barChart(...)` & `lineChart(...)`**: Responsive SVG charts (`viewBox` + `role="img"` + `aria-label`) paired with a `<details class="chart-table-fallback">` accessible data table.
+
+---
+
+## 3. Accessibility & Layout Contract
+
+1. **Heading Hierarchy**: Every route renders **exactly one `<h1>`** as its first heading and never skips heading levels (`h1 -> h2 -> h3`). Card titles use `<h2>`; sub-sections inside cards and `renderExplanation()` use `<h3>`.
+2. **Route Announcements & Document Title**: On every route transition, `js/ui/router.js` updates `document.title` to `<Screen Title> · MyMPPSC` and updates the dedicated polite live region `#routeAnnouncer`. `#view` itself does **not** carry `aria-live="polite"`, preventing screen readers from re-reading entire screens on every click.
+3. **Off-Canvas Navigation Drawer**: Below `860px` (or when opened as a drawer), `#appNav` is synchronised via `syncDrawerState()` in `js/app.js`. When closed off-canvas, `#appNav` receives `inert`, `aria-hidden="true"`, and `tabindex="-1"` on all interactive children so keyboard `Tab` cannot enter the hidden drawer. When open, `#navScrim` is shown (`hidden = false`), focus moves into the navigation list, and `Escape` or clicking `#navScrim` closes the drawer and restores focus to `#navToggle`.
+4. **Touch Targets**: At `≤860px`, interactive controls (`.btn`, `.tab`, `.palette-cell`, `.option`, `.nav-link`, inputs, selects) enforce a minimum `44×44px` hit target.
+5. **Pre-Paint Theme Initialisation**: `index.html` runs a small synchronous inline script before paint that reads `localStorage['mymppsc.settings']`, resolves `'light'` / `'dark'` / `'system'` (via `matchMedia('(prefers-color-scheme: dark)')`), sets `document.documentElement.dataset.theme` and `dataset.density`, and updates `<meta name="theme-color" id="themeColorMeta">` so there is zero flash of wrong theme.
+6. **Print Stylesheet**: `@media print` forces black-on-white tokens regardless of active dark theme, hides shell chrome (`#appHeader`, `#appNav`, `#toastStack`, `#modalRoot`, buttons, filter forms), expands `.runner-layout` to a single column, and sets `break-inside: avoid` on `.card`, `.question-card`, and `.review-item`.
+
+---
+
+## 4. Enumerated & Justified `!important` Declarations
+
+The baseline `css/app.css` contained 6 `!important` declarations. The redesigned `css/app.css` reduces this to **4 declarations**, each required for a hard safety or accessibility invariant:
+
+| # | Line / Selector | Declaration | Justification |
+| :--- | :--- | :--- | :--- |
+| 1 | `[hidden]` (Rule 1 of `css/app.css`) | `display: none !important;` | **Critical click-through guard**: Browser UA `[hidden] { display: none }` has user-agent origin and loses to any author `display` rule (such as `.modal-root { display: grid }` or `#toastStack { display: grid }`). Keeping `[hidden] { display: none !important; }` as the very first rule guarantees no hidden overlay can ever be laid out. |
+| 2 | `@media (prefers-reduced-motion: reduce)` | `animation: none !important;` | **Vestibular accessibility**: Guarantees user OS reduced-motion preference disables animations across all components regardless of selector specificity. |
+| 3 | `@media (prefers-reduced-motion: reduce)` | `transition: none !important;` | **Vestibular accessibility**: Guarantees user OS reduced-motion preference disables transitions across all components regardless of selector specificity. |
+| 4 | `@media print` (`.app-header, .app-nav, ...`) | `display: none !important;` | **Clean print output**: Hides interactive shell chrome, modals, toasts, and buttons when printing reports or question papers, overriding ID and compound `display: flex`/`grid` rules. |
+
+---
+
+## 5. How to Add or Modify a Screen
+
+1. **Create or update the view module** in `js/ui/views/<name>.js` exporting `{ title, render(ctx), mount?(ctx, root), cleanup?(ctx) }`.
+2. **Start `render()` with `<h1>${esc(this.title)}</h1>`** in both empty and populated states. Use `card({ title: '...' })` (`<h2>`) for top-level sections and `<h3>` for sub-sections inside cards. Never use `<h4>` directly inside a card without an intervening `<h3>`.
+3. **Never write inline `style="..."` attributes** in JS templates. Use existing layout utilities (`.row`, `.spread`, `.stack`, `.split-2`, `.field-row`, `.mt-2`, `.mb-3`, etc.) or add a semantic class to `css/app.css` using design tokens.
+4. **Attach provenance chips** (`sourceChip`, `evidenceMeter`, `provenanceLine`, `demoBadge`) to every stat tile, chart card, and answer-key display, and wrap Hindi question/option text with `langAttr(text, lang)`.
+5. **Run `npm run check && npm test`** to verify all static guards and jsdom accessibility tests pass.
+
+---
+
+## 6. Automated UI Guards (`tools/check.mjs` & `tests/ui.test.js`)
+
+### Static Guards (`tools/check.mjs` / `npm run check` / `npm run audit:ui`)
+- **`[hidden]` first-rule guard**: Verifies `[hidden] { display: none !important; }` is present and is the very first selector in `css/app.css`.
+- **Toast click-through guard**: Verifies `#toastStack { pointer-events: none }` and `#toastStack > * { pointer-events: auto }`.
+- **Token-only colour guard**: Strips `:root` / `data-theme` / `prefers-color-scheme` / `forced-colors` token blocks and verifies **zero** `#hex`, `rgb()`, or `hsl()` colour literals appear anywhere else in `css/app.css`.
+- **WCAG 2.1 contrast audit**: Parses both Light and Dark token maps from `css/app.css` and computes relative luminance contrast ratios across **40 text/surface token pairs** (requiring `≥ 4.5:1`) and **9 non-text border/focus pairs** (requiring `≥ 3.0:1`) per theme (98 contrast assertions in total).
+- **Zero inline style guard**: Scans every file in `js/**` and fails if any `style="..."` attribute is present.
+- **Theme & media query guards**: Verifies `html[data-theme="light"]`, `html[data-theme="dark"]`, `@media (prefers-reduced-motion: reduce)`, `@media (forced-colors: active)`, `@media print`, and the pre-paint theme bootstrap script in `index.html`.
+
+### Runtime / JSDOM Guards (`tests/ui.test.js` / `npm test`)
+- Verifies every route renders with **exactly one `<h1>`**, **no skipped heading levels**, and updates `document.title` (`<Screen> · MyMPPSC`).
+- Verifies `openModal` moves focus inside the dialog, marks `#main` `inert`, wraps `Tab` and `Shift+Tab` at focus boundaries, closes on `Escape`, and restores focus to the trigger element.
+- Verifies the off-canvas navigation drawer is `inert`, `aria-hidden="true"`, and `tabindex="-1"` when closed at mobile widths, opens on `#navToggle`, and closes on `#navScrim` click while restoring focus.
+- Verifies WAI-ARIA APG tabs respond to `ArrowRight`, `ArrowLeft`, `Home`, and `End` with roving `tabindex` and `aria-selected`.
+- Verifies `#setTheme` and `#themeToggle` update `document.documentElement.dataset.theme` and `<meta name="theme-color">`.
+- Verifies the test runner's distraction-free focus mode (`[data-action="focus-mode"]`), keyboard shortcut bar (`.kbd-bar`), `aria-keyshortcuts`, Hindi `lang="hi"` tagging, and provenance chips.

@@ -1,86 +1,230 @@
 /**
- * components.js — Small, dependency-free UI building blocks.
+ * components.js — Dependency-free UI & provenance building blocks.
  *
  * Views build HTML strings with these helpers and attach behaviour in `mount()`
- * using event delegation. That keeps rendering predictable, keeps the bundle
- * small, and avoids a framework dependency in a local-first app.
+ * using event delegation. Zero inline style attributes are emitted here so
+ * all visual rules remain governed by css/app.css tokens.
  */
 
 import { esc, fmtPct, fmtMarks, fmtDate, fmtClock, fmtDuration, round, clamp } from '../core/util.js';
 import { QUESTION_TYPES, ANSWER_KEY_STATUSES, EXPLANATION_STATUSES, CONFIDENCE_LEVELS, LANGUAGE_LABELS } from '../core/constants.js';
 
-export { esc };
+export { esc, fmtPct, fmtMarks, fmtDate, fmtClock, fmtDuration, round };
+
+/* --------------------------------------------------------------- icons ---- */
+
+const ICONS = {
+  dashboard: '<path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/>',
+  'test-centre': '<path d="M9 3h6a2 2 0 0 1 2 2v1h2a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h2V5a2 2 0 0 1 2-2zm0 3h6V5H9v1zm-1 5h8m-8 4h5"/>',
+  topic: '<path d="M4 6h16M4 12h16M4 18h10"/><circle cx="18" cy="18" r="2"/>',
+  custom: '<path d="M4 21v-7m0-4V3m8 18v-9m0-4V3m8 18v-5m0-4V3M1 14h6m2-6h6m2 8h6"/>',
+  smart: '<path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8L12 2z"/>',
+  mistakes: '<path d="M12 9v4m0 4h.01M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>',
+  revision: '<path d="M3 12a9 9 0 1 0 3-6.7L3 8m0-5v5h5m4-1v5l3 2"/>',
+  syllabus: '<path d="M9 11l3 3L22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>',
+  analytics: '<path d="M18 20V10M12 20V4M6 20v-6"/>',
+  bank: '<ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>',
+  settings: '<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9c.26.6.77 1.02 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>',
+  help: '<circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3m.08 4h.01"/>',
+  sun: '<circle cx="12" cy="12" r="5"/><path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72 1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>',
+  moon: '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>',
+  print: '<path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/>',
+  flag: '<path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1zM4 22v-7"/>',
+  close: '<path d="M18 6 6 18M6 6l12 12"/>',
+};
+
+export function icon(name, { size = 16, label = null } = {}) {
+  const inner = ICONS[name] || ICONS.help;
+  const aria = label ? `role="img" aria-label="${esc(label)}"` : 'aria-hidden="true"';
+  return `<svg class="svg-icon" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ${aria}>${inner}</svg>`;
+}
+
+/** Detect Devanagari characters so Hindi strings can be marked with lang="hi". */
+export function hasDevanagari(text) {
+  return typeof text === 'string' && /[\u0900-\u097F]/.test(text);
+}
+
+export function langAttr(text, explicitLang = null) {
+  if (explicitLang === 'hi' || hasDevanagari(text)) return ' lang="hi"';
+  if (explicitLang === 'en') return ' lang="en"';
+  return '';
+}
+
+/* ----------------------------------------------------- provenance vocabulary */
+
+const SOURCE_META = {
+  measured: { cls: 'measured', label: 'measured', title: 'Directly measured from your recorded attempts in this browser' },
+  derived: { cls: 'derived', label: 'derived', title: 'Calculated deterministically from your recorded attempts and rules' },
+  unavailable: { cls: 'unavailable', label: 'unavailable', title: 'Not supplied in the source data — never guessed or invented' },
+  synthetic: { cls: 'synthetic', label: 'synthetic demo', title: 'Synthetic demonstration content — not a genuine MPPSC question' },
+  supplied: { cls: 'supplied', label: 'supplied key', title: 'From the answer key or metadata supplied with the imported bank' },
+  verified: { cls: 'verified', label: 'verified key', title: 'Independently verified and recorded in the question bank' },
+  disputed: { cls: 'disputed', label: 'disputed', title: 'Answer key is disputed or unresolved' },
+};
+
+/**
+ * Render a consistent provenance source chip:
+ * `measured` | `derived` | `unavailable` | `synthetic` | `supplied` | `verified` | `disputed`
+ */
+export function sourceChip(kind, customLabel = null) {
+  const meta = SOURCE_META[kind] || SOURCE_META.measured;
+  const text = customLabel || meta.label;
+  return `<span class="prov-chip ${meta.cls}" data-source="${esc(kind || 'measured')}" title="${esc(meta.title)}">${esc(text)}</span>`;
+}
+
+/**
+ * Render a 3-step evidence-strength meter (`n=0..3+`).
+ * Samples with `< minSample` judged questions are visually distinct so the user
+ * never mistakes a 1-question sample for a reliable topic assessment.
+ */
+export function evidenceMeter(judgedCount, minSample = 3, { showLabel = true } = {}) {
+  const n = Math.max(0, Number(judgedCount) || 0);
+  const steps = Math.min(3, n);
+  const insufficient = n < minSample;
+  const cls = insufficient ? 'insufficient' : 'sufficient';
+  const label = insufficient ? `n=${n} (<${minSample})` : `n=${n}`;
+  const title = insufficient
+    ? `Insufficient evidence: ${n} of ${minSample} required judged attempts recorded`
+    : `Evidence threshold met: ${n} judged attempts recorded (min ${minSample})`;
+  return `<span class="evidence-meter ${cls}" title="${esc(title)}" role="img" aria-label="${esc(title)}">
+    <span class="evidence-dots" aria-hidden="true">
+      <i class="evidence-dot ${steps >= 1 ? 'on' : ''}"></i>
+      <i class="evidence-dot ${steps >= 2 ? 'on' : ''}"></i>
+      <i class="evidence-dot ${steps >= 3 ? 'on' : ''}"></i>
+    </span>
+    ${showLabel ? `<span>${esc(label)}</span>` : ''}
+  </span>`;
+}
+
+export function provenanceLine({ source = 'measured', text = '' } = {}) {
+  return `<div class="prov-line">${sourceChip(source)}<span>${esc(text)}</span></div>`;
+}
 
 /* --------------------------------------------------------------- basics --- */
 
 export const badge = (text, tone = '') => `<span class="badge ${tone}">${esc(text)}</span>`;
 
-export const demoBadge = (isDemo) => (isDemo ? '<span class="demo-flag" title="Synthetic demonstration content — not a genuine previous-year question">demonstration</span>' : '');
-
-export function card({ title = null, subtitle = null, actions = '', body = '', footer = null, tone = '', id = null, className = '' } = {}) {
-  const head = title || subtitle || actions
-    ? `<div class="card-head">${title ? `<h2>${esc(title)}</h2>` : ''}${subtitle ? `<span class="muted small">${esc(subtitle)}</span>` : ''}${actions ? `<div class="card-actions">${actions}</div>` : ''}</div>`
+export const demoBadge = (isDemo) =>
+  isDemo
+    ? '<span class="demo-flag" title="Synthetic demonstration content — not a genuine previous-year question">demonstration</span>'
     : '';
+
+export function card({ title = null, subtitle = null, actions = '', right = '', body = '', footer = null, tone = '', id = null, className = '' } = {}) {
+  const rightContent = actions || right;
+  const head =
+    title || subtitle || rightContent
+      ? `<div class="card-head"><div>${title ? `<h2>${esc(title)}</h2>` : ''}${subtitle ? `<div class="muted small">${esc(subtitle)}</div>` : ''}</div>${rightContent ? `<div class="card-actions">${rightContent}</div>` : ''}</div>`
+      : '';
   return `<section class="card ${tone} ${className}" ${id ? `id="${esc(id)}"` : ''}>
     ${head}
     <div class="card-body">${body}</div>
-    ${footer === null ? '' : `<div class="card-foot">${footer}</div>`}
+    ${footer === null || footer === '' ? '' : `<div class="card-foot">${footer}</div>`}
   </section>`;
 }
 
-export function tile({ label, value, sub = '', tone = '' }) {
-  return `<div class="tile ${tone}"><div class="tile-label">${esc(label)}</div><div class="tile-value">${value}</div>${sub ? `<div class="tile-sub">${sub}</div>` : ''}</div>`;
+export function tile({ label, value, sub = '', tone = '', source = null, where = null }) {
+  const chipHtml = source ? sourceChip(source) : '';
+  const whereHtml = where ? `<div class="tile-prov">${esc(where)}</div>` : '';
+  return `<div class="tile ${tone}">
+    <div class="tile-label"><span>${esc(label)}</span>${chipHtml}</div>
+    <div class="tile-value">${value}</div>
+    ${sub ? `<div class="tile-sub">${sub}</div>` : ''}
+    ${whereHtml}
+  </div>`;
 }
 
 export function notice(html, tone = 'info', { title = null } = {}) {
   return `<div class="notice ${tone}">${title ? `<strong>${esc(title)}</strong> ` : ''}${html}</div>`;
 }
 
-export const emptyState = ({ title, message = '', action = '' } = {}) =>
-  `<div class="empty-block"><strong>${esc(title)}</strong>${message ? `<p class="muted small" style="margin:6px 0 0">${message}</p>` : ''}${action ? `<div style="margin-top:10px">${action}</div>` : ''}</div>`;
+export const emptyState = ({ title, message = '', body = '', action = '', actionHref = null, actionLabel = '' } = {}) => {
+  const text = message || body;
+  const actionHtml = action || (actionHref && actionLabel ? `<a class="btn btn-primary" href="${esc(actionHref)}">${esc(actionLabel)}</a>` : '');
+  return `<div class="empty-block"><strong>${esc(title)}</strong>${text ? `<p class="muted small">${text}</p>` : ''}${actionHtml ? `<div class="empty-actions">${actionHtml}</div>` : ''}</div>`;
+};
 
-export const loadingState = (message = 'Loading local data…') => `<div class="loading-block">${esc(message)}</div>`;
+export const loadingState = (message = 'Loading local data…') =>
+  `<div class="loading-block" aria-busy="true" role="status">${esc(message)}</div>`;
 
-export const kv = (pairs) =>
-  `<dl class="kv">${pairs.map(([k, v]) => `<dt>${esc(k)}</dt><dd>${v === null || v === undefined || v === '' ? '<span class="soft">not recorded</span>' : v}</dd>`).join('')}</dl>`;
+export const kv = (pairs = []) =>
+  `<dl class="kv">${pairs
+    .map(([k, v]) => `<dt>${esc(k)}</dt><dd>${v === null || v === undefined || v === '' ? '<span class="soft">not recorded</span>' : v}</dd>`)
+    .join('')}</dl>`;
 
 /* ---------------------------------------------------------------- tables -- */
 
 /**
- * @param {{columns: Array<{label:string,num?:boolean}>, rows: Array<Array<string>>, empty?: string, className?: string}} opts
+ * Supports both `{ columns: [{ label, num }], rows }` and `{ headers: ['...'], rows }`.
  */
-export function dataTable({ columns, rows, empty = 'Nothing to show.', className = '' }) {
-  if (!rows.length) return `<p class="muted small">${esc(empty)}</p>`;
+export function dataTable({ columns = null, headers = [], rows = [], empty = 'Nothing to show.', className = '' } = {}) {
+  if (!rows.length) return `<p class="muted small m-0">${esc(empty)}</p>`;
+  const cols = columns || headers.map((h) => (typeof h === 'string' ? { label: h, num: false } : h));
   return `<div class="table-wrap"><table class="data ${className}">
-    <thead><tr>${columns.map((c) => `<th ${c.num ? 'class="num"' : ''}>${esc(c.label)}</th>`).join('')}</tr></thead>
-    <tbody>${rows.map((r) => `<tr>${r.map((cell, i) => `<td ${columns[i]?.num ? 'class="num"' : ''}>${cell}</td>`).join('')}</tr>`).join('')}</tbody>
+    <thead><tr>${cols.map((c) => `<th ${c.num ? 'class="num"' : ''}>${esc(c.label)}</th>`).join('')}</tr></thead>
+    <tbody>${rows
+      .map(
+        (r) =>
+          `<tr>${r
+            .map((cell, i) => {
+              const col = cols[i];
+              const labelAttr = col?.label ? ` data-label="${esc(col.label)}"` : '';
+              return `<td ${col?.num ? 'class="num"' : ''}${labelAttr}>${cell ?? ''}</td>`;
+            })
+            .join('')}</tr>`,
+      )
+      .join('')}</tbody>
   </table></div>`;
 }
 
 /* --------------------------------------------------------------- visuals -- */
 
-export function barList(items, { max = null } = {}) {
-  if (!items.length) return '<p class="muted small">No data yet.</p>';
-  const ceiling = max || Math.max(...items.map((i) => Number(i.value) || 0), 1);
+export function barList(items = [], optsOrMax = {}) {
+  if (!items.length) return '<p class="muted small m-0">No data yet.</p>';
+  const maxOpt = typeof optsOrMax === 'number' ? optsOrMax : optsOrMax?.max ?? null;
+  const maxVal = Math.max(...items.map((i) => Number(i.value) || 0), 0);
+  const ceiling = maxOpt || (maxVal <= 1 && maxVal > 0 ? 1 : Math.max(maxVal, 1));
   return `<div class="bar-list">${items
     .map((item) => {
       const value = Number(item.value) || 0;
       const pctWidth = clamp((value / ceiling) * 100, 0, 100);
       return `<div class="bar-item">
         <span class="nowrap" title="${esc(item.label)}">${esc(item.label)}</span>
-        <span class="bar-track"><span class="bar-fill ${item.tone || ''}" style="width:${pctWidth.toFixed(1)}%"></span></span>
+        <svg class="bar-svg" viewBox="0 0 100 8" preserveAspectRatio="none" aria-hidden="true">
+          <rect class="bar-bg" x="0" y="0" width="100" height="8" rx="4" ry="4"></rect>
+          <rect class="bar-fg ${esc(item.tone || '')}" x="0" y="0" width="${pctWidth.toFixed(1)}" height="8" rx="4" ry="4"></rect>
+        </svg>
         <span class="num tiny muted">${item.right ?? esc(String(value))}</span>
       </div>`;
     })
     .join('')}</div>`;
 }
 
-export const progressBar = (fraction, tone = '') =>
-  `<div class="progress"><span class="${tone}" style="width:${(clamp(fraction || 0, 0, 1) * 100).toFixed(1)}%"></span></div>`;
+export function progressBar(valueOrFraction, maxOrTone = '', maybeTone = '') {
+  let pctWidth;
+  let tone = '';
+  if (typeof maxOrTone === 'number') {
+    const safeMax = Math.max(1, maxOrTone);
+    pctWidth = clamp(((Number(valueOrFraction) || 0) / safeMax) * 100, 0, 100);
+    tone = maybeTone || '';
+  } else {
+    pctWidth = clamp((Number(valueOrFraction) || 0) * 100, 0, 100);
+    tone = maxOrTone || '';
+  }
+  return `<svg class="progress-svg" viewBox="0 0 100 8" preserveAspectRatio="none" role="img" aria-label="${Math.round(pctWidth)}% complete">
+    <rect class="progress-bg" x="0" y="0" width="100" height="8" rx="4" ry="4"></rect>
+    <rect class="progress-fg ${esc(tone)}" x="0" y="0" width="${pctWidth.toFixed(1)}" height="8" rx="4" ry="4"></rect>
+  </svg>`;
+}
 
-/** Vertical bar chart (SVG). data: [{label, value, tone}] */
-export function barChart({ data, height = 150, valueFormat = (v) => String(v), yLabel = null }) {
-  if (!data.length) return '<p class="muted small">No data to chart yet.</p>';
+/** Vertical bar chart (SVG) with accessible table fallback. */
+export function barChart(arg1 = {}, arg2 = {}) {
+  const isArrayArg = Array.isArray(arg1);
+  const data = isArrayArg ? arg1 : arg1.data || [];
+  const height = (isArrayArg ? arg2.height : arg1.height) || 150;
+  const valueFormat = (isArrayArg ? arg2.valueFormat : arg1.valueFormat) || ((v) => String(v));
+  const yLabel = (isArrayArg ? arg2.yLabel || arg2.title : arg1.yLabel || arg1.title) || 'Bar chart';
+
+  if (!data.length) return '<p class="muted small m-0">No data to chart yet.</p>';
   const w = 660;
   const h = height;
   const padL = 34;
@@ -97,8 +241,8 @@ export function barChart({ data, height = 150, valueFormat = (v) => String(v), y
       const x = padL + i * (innerW / data.length) + 2;
       const y = padT + innerH - bh;
       const labelEvery = Math.ceil(data.length / 12);
-      const label = i % labelEvery === 0 ? `<text class="axis-label" x="${x + bw / 2}" y="${h - 8}" text-anchor="middle">${esc(d.label)}</text>` : '';
-      return `<rect class="bar ${d.tone || ''}" x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${bw.toFixed(1)}" height="${Math.max(0, bh).toFixed(1)}"><title>${esc(d.label)}: ${esc(valueFormat(v))}</title></rect>${label}`;
+      const label = i % labelEvery === 0 ? `<text class="axis-label" x="${(x + bw / 2).toFixed(1)}" y="${h - 8}" text-anchor="middle">${esc(d.label)}</text>` : '';
+      return `<rect class="bar ${esc(d.tone || '')}" x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${bw.toFixed(1)}" height="${Math.max(0, bh).toFixed(1)}"><title>${esc(d.label)}: ${esc(valueFormat(v))}</title></rect>${label}`;
     })
     .join('');
   const gridLines = [0, 0.5, 1]
@@ -107,12 +251,28 @@ export function barChart({ data, height = 150, valueFormat = (v) => String(v), y
       return `<line class="grid-line" x1="${padL}" y1="${y.toFixed(1)}" x2="${w - 8}" y2="${y.toFixed(1)}"></line><text class="axis-label" x="4" y="${(y + 3).toFixed(1)}">${esc(valueFormat(Math.round(max * f * 100) / 100))}</text>`;
     })
     .join('');
-  return `<svg class="chart" viewBox="0 0 ${w} ${h}" role="img" aria-label="${esc(yLabel || 'Bar chart')}">${gridLines}${bars}</svg>`;
+  const tableRows = data.map((d) => `<tr><td>${esc(d.label)}</td><td class="num">${esc(valueFormat(Number(d.value) || 0))}</td></tr>`).join('');
+  return `<div class="chart-wrap">
+    <svg class="chart" viewBox="0 0 ${w} ${h}" role="img" aria-label="${esc(yLabel)}">${gridLines}${bars}</svg>
+    <details class="chart-data"><summary>Data table (${data.length} rows)</summary>
+      <div class="table-wrap mt-2"><table class="data compact"><thead><tr><th>Item</th><th class="num">Value</th></tr></thead><tbody>${tableRows}</tbody></table></div>
+    </details>
+  </div>`;
 }
 
-/** Line chart (SVG) with optional second series drawn as bars. */
-export function lineChart({ points, height = 160, yFormat = (v) => `${Math.round(v * 100)}%`, yMax = 1, labelEvery = null }) {
-  if (points.length < 2) return '<p class="muted small">At least two data points are needed to show a trend.</p>';
+/** Line chart (SVG) with accessible table fallback. */
+export function lineChart(arg1 = {}, arg2 = {}) {
+  const isArrayArg = Array.isArray(arg1);
+  const points = isArrayArg ? arg1 : arg1.points || [];
+  const height = (isArrayArg ? arg2.height : arg1.height) || 160;
+  const yMax = (isArrayArg ? arg2.maxY ?? arg2.yMax : arg1.yMax ?? arg1.maxY) ?? 1;
+  const yFormat =
+    (isArrayArg ? arg2.yFormat : arg1.yFormat) ||
+    ((v) => (yMax === 1 ? `${Math.round(v * 100)}%` : `${Math.round(v)}${arg2.unit || ''}`));
+  const labelEvery = isArrayArg ? arg2.labelEvery : arg1.labelEvery;
+  const title = (isArrayArg ? arg2.title : arg1.title) || 'Trend chart';
+
+  if (points.length < 2) return '<p class="muted small m-0">At least two data points are needed to show a trend.</p>';
   const w = 660;
   const h = height;
   const padL = 36;
@@ -124,7 +284,7 @@ export function lineChart({ points, height = 160, yFormat = (v) => `${Math.round
   const yOf = (v) => padT + innerH - (clamp(Number(v) || 0, 0, yMax) / yMax) * innerH;
   const path = points.map((p, i) => `${i === 0 ? 'M' : 'L'}${(padL + i * step).toFixed(1)},${yOf(p.value).toFixed(1)}`).join(' ');
   const dots = points
-    .map((p, i) => `<circle class="point" cx="${(padL + i * step).toFixed(1)}" cy="${yOf(p.value).toFixed(1)}" r="2.6"><title>${esc(p.label)}: ${esc(yFormat(p.value))}</title></circle>`)
+    .map((p, i) => `<circle class="point" cx="${(padL + i * step).toFixed(1)}" cy="${yOf(p.value).toFixed(1)}" r="3"><title>${esc(p.label)}: ${esc(yFormat(p.value))}</title></circle>`)
     .join('');
   const every = labelEvery || Math.ceil(points.length / 10);
   const labels = points
@@ -136,10 +296,16 @@ export function lineChart({ points, height = 160, yFormat = (v) => `${Math.round
       return `<line class="grid-line" x1="${padL}" y1="${y.toFixed(1)}" x2="${w - 8}" y2="${y.toFixed(1)}"></line><text class="axis-label" x="4" y="${(y + 3).toFixed(1)}">${esc(yFormat(yMax * f))}</text>`;
     })
     .join('');
-  return `<svg class="chart" viewBox="0 0 ${w} ${h}" role="img" aria-label="Trend chart">${grid}${path ? `<path class="line" d="${path}"></path>` : ''}${dots}${labels}</svg>`;
+  const tableRows = points.map((p) => `<tr><td>${esc(p.label)}</td><td class="num">${esc(yFormat(p.value))}</td></tr>`).join('');
+  return `<div class="chart-wrap">
+    <svg class="chart" viewBox="0 0 ${w} ${h}" role="img" aria-label="${esc(title)}">${grid}${path ? `<path class="line" d="${path}"></path>` : ''}${dots}${labels}</svg>
+    <details class="chart-data"><summary>Data table (${points.length} points)</summary>
+      <div class="table-wrap mt-2"><table class="data compact"><thead><tr><th>Point</th><th class="num">Value</th></tr></thead><tbody>${tableRows}</tbody></table></div>
+    </details>
+  </div>`;
 }
 
-export function sparkline(values, { width = 120, height = 26 } = {}) {
+export function sparkline(values = [], { width = 120, height = 26 } = {}) {
   if (!values.length) return '';
   const max = Math.max(...values, 1);
   const step = values.length > 1 ? width / (values.length - 1) : width;
@@ -151,10 +317,17 @@ export function sparkline(values, { width = 120, height = 26 } = {}) {
 
 export const pct = (value, digits = 0) => (Number.isFinite(value) ? fmtPct(value, digits) : '<span class="soft">—</span>');
 
-export function accuracyCell(accuracy, scoredOrNull = null, minSample = 3) {
+export function accuracyCell(accuracyOrObj, scoredOrNull = null, minSample = 3) {
+  let accuracy = accuracyOrObj;
+  let judged = scoredOrNull;
+  if (accuracyOrObj && typeof accuracyOrObj === 'object') {
+    accuracy = accuracyOrObj.accuracy;
+    judged = accuracyOrObj.judged;
+    minSample = accuracyOrObj.minSample ?? minSample;
+  }
   if (!Number.isFinite(accuracy)) return '<span class="soft">not enough evidence</span>';
   const tone = accuracy >= 0.75 ? 'ok' : accuracy >= 0.5 ? 'warn' : 'bad';
-  const suffix = scoredOrNull !== null && scoredOrNull !== undefined && scoredOrNull < minSample ? ' <span class="soft tiny">(small sample)</span>' : '';
+  const suffix = judged !== null && judged !== undefined && judged < minSample ? ' <span class="soft tiny">(small sample)</span>' : '';
   return `${badge(fmtPct(accuracy, 0), tone)}${suffix}`;
 }
 
@@ -175,8 +348,13 @@ export function explanationBadge(status) {
 export function languageSwitcher(question, activeLang, { languages = null } = {}) {
   const available = languages || Object.keys(question.language_variants || {});
   if (available.length < 2) return '';
-  return `<span class="seg" data-lang-switch>
-    ${available.map((lang) => `<button type="button" data-lang="${esc(lang)}" aria-pressed="${lang === activeLang}">${esc(LANGUAGE_LABELS[lang] || lang)}</button>`).join('')}
+  return `<span class="seg" role="group" aria-label="Question language" data-lang-switch>
+    ${available
+      .map(
+        (lang) =>
+          `<button type="button" data-lang="${esc(lang)}" aria-pressed="${lang === activeLang}">${esc(LANGUAGE_LABELS[lang] || lang)}</button>`,
+      )
+      .join('')}
   </span>`;
 }
 
@@ -188,41 +366,49 @@ export function renderExplanation(question, { compact = false } = {}) {
   const explanation = question.explanation;
   const status = explanation?.status || question.explanation_status || 'missing';
   if (!explanation) {
-    return `<div class="explanation"><h4>Explanation</h4><p class="muted small" style="margin:0">No explanation is available for this question. Explanations are produced and reviewed by the separate preparation pipeline — this app does not generate them, and it will not show filler text.</p></div>`;
+    return `<div class="explanation"><h3>Explanation ${sourceChip('unavailable', 'not supplied')}</h3><p class="muted small m-0">No explanation is available for this question. Explanations are produced and reviewed by the separate preparation pipeline — this app does not generate them, and it will not show filler text.</p></div>`;
   }
   const unreviewed = status === 'generated';
   const rows = (explanation.option_explanations || []).filter((o) => o.text);
   return `<div class="explanation">
-    <h4>Explanation ${explanationBadge(status)}</h4>
-    ${unreviewed ? '<p class="small" style="color:var(--warn);margin-top:0">This explanation has not been reviewed yet. Treat it as a draft.</p>' : ''}
-    ${explanation.correct_reasoning ? `<p>${esc(explanation.correct_reasoning)}</p>` : '<p class="muted small">The pipeline supplied no reasoning text.</p>'}
+    <h3>Explanation ${explanationBadge(status)}</h3>
+    ${unreviewed ? '<p class="small text-warn mt-0">This explanation has not been reviewed yet. Treat it as a draft.</p>' : ''}
+    ${explanation.correct_reasoning ? `<p${langAttr(explanation.correct_reasoning)}>${esc(explanation.correct_reasoning)}</p>` : '<p class="muted small">The pipeline supplied no reasoning text.</p>'}
     ${
       rows.length
-        ? `<h4>Option by option</h4><div class="table-wrap"><table class="data compact options-table"><tbody>${rows
+        ? `<h3>Option by option</h3><div class="table-wrap"><table class="data compact options-table"><tbody>${rows
             .map(
               (o) =>
-                `<tr><td style="width:36px" class="mono">${esc(o.key || '—')}</td><td>${esc(o.text)}</td><td style="width:80px">${o.is_correct === true ? badge('correct', 'ok') : o.is_correct === false ? badge('not correct', 'plain') : '<span class="soft tiny">unstated</span>'}</td></tr>`,
+                `<tr><td class="mono col-key">${esc(o.key || '—')}</td><td${langAttr(o.text)}>${esc(o.text)}</td><td class="col-status">${o.is_correct === true ? badge('correct', 'ok') : o.is_correct === false ? badge('not correct', 'plain') : '<span class="soft tiny">unstated</span>'}</td></tr>`,
             )
             .join('')}</tbody></table></div>`
         : ''
     }
-    ${explanation.key_concepts?.length ? `<h4>Related concepts</h4><div class="chips">${explanation.key_concepts.map((c) => `<span class="chip">${esc(c)}</span>`).join('')}</div>` : ''}
-    ${explanation.revision_takeaways?.length ? `<h4>Revision takeaways</h4><ul class="small">${explanation.revision_takeaways.map((t) => `<li>${esc(t)}</li>`).join('')}</ul>` : ''}
+    ${explanation.key_concepts?.length ? `<h3>Related concepts</h3><div class="chips">${explanation.key_concepts.map((c) => `<span class="chip"${langAttr(c)}>${esc(c)}</span>`).join('')}</div>` : ''}
+    ${explanation.revision_takeaways?.length ? `<h3>Revision takeaways</h3><ul class="small">${explanation.revision_takeaways.map((t) => `<li${langAttr(t)}>${esc(t)}</li>`).join('')}</ul>` : ''}
     ${
       explanation.sources?.length
-        ? `<h4>Sources cited by the pipeline</h4><ul class="small">${explanation.sources
-            .map((s) => `<li>${esc(s.title || s.citation || 'source')}${s.url ? ` — <a href="${esc(s.url)}" rel="noopener noreferrer">link</a>` : ''}${s.citation && s.title ? `<br><span class="soft">${esc(s.citation)}</span>` : ''}</li>`)
+        ? `<h3>Sources cited by the pipeline</h3><ul class="small">${explanation.sources
+            .map(
+              (s) =>
+                `<li>${esc(s.title || s.citation || 'source')}${s.url ? ` — <a href="${esc(s.url)}" rel="noopener noreferrer">link</a>` : ''}${s.citation && s.title ? `<br><span class="soft">${esc(s.citation)}</span>` : ''}</li>`,
+            )
             .join('')}</ul>`
-        : '<p class="tiny soft" style="margin-bottom:0">No sources were supplied with this explanation.</p>'
+        : '<p class="tiny soft mb-0">No sources were supplied with this explanation.</p>'
     }
-    ${compact ? '' : `<p class="tiny soft" style="margin:8px 0 0">Status: ${esc(status)}${explanation.reviewed_by ? ` · reviewed by ${esc(explanation.reviewed_by)}` : ''}${explanation.generated_by ? ` · generated by ${esc(explanation.generated_by)}` : ''}</p>`}
+    ${compact ? '' : `<p class="tiny soft mt-2 mb-0">Status: ${esc(status)}${explanation.reviewed_by ? ` · reviewed by ${esc(explanation.reviewed_by)}` : ''}${explanation.generated_by ? ` · generated by ${esc(explanation.generated_by)}` : ''}</p>`}
   </div>`;
 }
 
 export function sourceLine(question) {
   const ref = question.source_reference;
   if (!ref) return '<span class="soft">No source reference recorded.</span>';
-  const bits = [ref.file, ref.page !== null && ref.page !== undefined ? `page ${esc(String(ref.page))}` : null, ref.question_location ? esc(ref.question_location) : null, ref.note ? esc(ref.note) : null].filter(Boolean);
+  const bits = [
+    ref.file,
+    ref.page !== null && ref.page !== undefined ? `page ${esc(String(ref.page))}` : null,
+    ref.question_location ? esc(ref.question_location) : null,
+    ref.note ? esc(ref.note) : null,
+  ].filter(Boolean);
   return bits.length ? bits.join(' · ') : '<span class="soft">No source reference recorded.</span>';
 }
 
@@ -234,22 +420,70 @@ export function warningList(warnings, { title = 'Read before you start' } = {}) 
 
 /* ------------------------------------------------------------------ tabs -- */
 
-export function tabs({ id, items, activeId }) {
-  return `<div class="tabs" role="tablist" id="${esc(id)}">
-    ${items.map((item) => `<button class="tab" role="tab" type="button" data-tab="${esc(item.id)}" aria-selected="${item.id === activeId}" aria-controls="${esc(item.id)}-panel" id="${esc(item.id)}-tab">${esc(item.label)}</button>`).join('')}
+/**
+ * Accessible tablist implementing the WAI-ARIA Authoring Practices Guide (APG)
+ * roving tabindex pattern (Left/Right/Home/End keys).
+ * Supports both `{ id, items: [{ id, label, body }], activeId }` and `{ items: [{ id, label, content }], active }`.
+ */
+export function tabs({ id = '', items = [], activeId = null, active = null } = {}) {
+  if (!items.length) return '';
+  const selectedId = activeId || active || items[0].id;
+  return `<div class="tabs" role="tablist" ${id ? `id="${esc(id)}"` : ''}>
+    ${items
+      .map((item) => {
+        const isSelected = item.id === selectedId;
+        return `<button class="tab" role="tab" type="button" data-tab="${esc(item.id)}" aria-selected="${isSelected}" tabindex="${isSelected ? '0' : '-1'}" aria-controls="${esc(item.id)}-panel" id="${esc(item.id)}-tab">${esc(item.label)}</button>`;
+      })
+      .join('')}
   </div>
-  ${items.map((item) => `<div class="tabpanel" id="${esc(item.id)}-panel" role="tabpanel" aria-labelledby="${esc(item.id)}-tab" ${item.id === activeId ? '' : 'hidden'}>${item.body}</div>`).join('')}`;
+  ${items
+    .map((item) => {
+      const isSelected = item.id === selectedId;
+      const panelHtml = item.body ?? item.content ?? '';
+      return `<div class="tabpanel" id="${esc(item.id)}-panel" role="tabpanel" tabindex="0" aria-labelledby="${esc(item.id)}-tab" ${isSelected ? '' : 'hidden'}>${panelHtml}</div>`;
+    })
+    .join('')}`;
 }
 
-export function mountTabs(root) {
-  root.querySelectorAll('.tabs .tab').forEach((tab) => {
-    tab.addEventListener('click', () => {
-      const bar = tab.closest('.tabs');
-      bar.querySelectorAll('.tab').forEach((t) => {
-        const selected = t === tab;
-        t.setAttribute('aria-selected', String(selected));
-        const panel = root.querySelector(`#${CSS.escape ? CSS.escape(t.dataset.tab) : t.dataset.tab}-panel`);
-        if (panel) panel.hidden = !selected;
+export function mountTabs(root, onChange = null) {
+  if (!root) return;
+  const activateTab = (tab, { focus = false } = {}) => {
+    const bar = tab.closest('.tabs');
+    if (!bar) return;
+    const allTabs = Array.from(bar.querySelectorAll('.tab'));
+    allTabs.forEach((t) => {
+      const selected = t === tab;
+      t.setAttribute('aria-selected', String(selected));
+      t.setAttribute('tabindex', selected ? '0' : '-1');
+      const panelId = `${t.dataset.tab}-panel`;
+      const panel = root.querySelector(`#${CSS.escape ? CSS.escape(panelId) : panelId}`);
+      if (panel) panel.hidden = !selected;
+    });
+    if (focus) tab.focus();
+    if (typeof onChange === 'function') onChange(tab.dataset.tab);
+  };
+
+  root.querySelectorAll('.tabs').forEach((bar) => {
+    const allTabs = Array.from(bar.querySelectorAll('.tab'));
+    allTabs.forEach((tab) => {
+      tab.addEventListener('click', () => activateTab(tab, { focus: false }));
+      tab.addEventListener('keydown', (ev) => {
+        const idx = allTabs.indexOf(tab);
+        if (idx === -1) return;
+        let nextIdx = -1;
+        if (ev.key === 'ArrowRight' || ev.key === 'ArrowDown') {
+          nextIdx = (idx + 1) % allTabs.length;
+        } else if (ev.key === 'ArrowLeft' || ev.key === 'ArrowUp') {
+          nextIdx = (idx - 1 + allTabs.length) % allTabs.length;
+        } else if (ev.key === 'Home') {
+          nextIdx = 0;
+        } else if (ev.key === 'End') {
+          nextIdx = allTabs.length - 1;
+        }
+        if (nextIdx !== -1) {
+          ev.preventDefault();
+          activateTab(allTabs[nextIdx], { focus: true });
+        }
       });
     });
   });
@@ -257,62 +491,165 @@ export function mountTabs(root) {
 
 /* ----------------------------------------------------------- modal/toast -- */
 
-let toastTimers = new WeakMap();
+const MAX_TOASTS = 4;
 
 export function toast(message, tone = 'info', timeout = 5200) {
   const stack = document.getElementById('toastStack');
-  if (!stack) return;
+  if (!stack) return null;
+
+  while (stack.children.length >= MAX_TOASTS) {
+    stack.firstElementChild?.remove();
+  }
+
   const node = document.createElement('div');
   node.className = `toast ${tone}`;
   node.setAttribute('role', tone === 'bad' ? 'alert' : 'status');
-  node.innerHTML = typeof message === 'string' ? esc(message) : message;
+  const bodyHtml = typeof message === 'string' ? esc(message) : String(message);
+  node.innerHTML = `<div class="toast-body">${bodyHtml}</div><button class="toast-close" type="button" aria-label="Dismiss notification">✕</button>`;
   stack.appendChild(node);
-  const timer = setTimeout(() => {
+
+  let timer = null;
+  const startTimer = () => {
+    if (timeout <= 0) return;
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      node.remove();
+    }, timeout);
+    timer?.unref?.();
+  };
+  const pauseTimer = () => {
+    clearTimeout(timer);
+  };
+
+  node.querySelector('.toast-close')?.addEventListener('click', () => {
+    clearTimeout(timer);
     node.remove();
-    toastTimers.delete(node);
-  }, timeout);
-  toastTimers.set(node, timer);
+  });
+  node.addEventListener('mouseenter', pauseTimer);
+  node.addEventListener('mouseleave', startTimer);
+  node.addEventListener('focusin', pauseTimer);
+  node.addEventListener('focusout', startTimer);
+
+  startTimer();
   return node;
 }
 
 let modalCleanup = null;
+let modalTitleCounter = 0;
+
+function getFocusableElements(container) {
+  if (!container) return [];
+  return Array.from(
+    container.querySelectorAll(
+      'button:not([disabled]), [href], input:not([disabled]):not([type="hidden"]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
+    ),
+  ).filter((el) => !el.closest('[hidden]'));
+}
+
+function setBackgroundInert(isInert) {
+  for (const id of ['appHeader', 'appBody', 'main']) {
+    const el = document.getElementById(id);
+    if (!el) continue;
+    el.inert = isInert;
+    if (isInert) el.setAttribute('inert', '');
+    else el.removeAttribute('inert');
+  }
+  document.body?.classList.toggle('modal-open', isInert);
+}
 
 /**
- * Open a modal dialog. `actions` is a list of {label, tone, value} buttons whose
- * resolved value is returned by the promise.
- * Returns a Promise that resolves with the button value, or null when dismissed.
+ * Open an accessible modal dialog with focus move, Tab/Shift+Tab focus trap,
+ * Escape and backdrop click dismissal, background inert + scroll lock, and
+ * focus restoration to the opener.
  */
 export function openModal({ title, body, actions = [], wide = false, onMount = null, dismissible = true }) {
   const root = document.getElementById('modalRoot');
   if (!root) return Promise.resolve(null);
+  if (modalCleanup) {
+    document.removeEventListener('keydown', modalCleanup, true);
+    modalCleanup = null;
+  }
+  const opener = document.activeElement && typeof document.activeElement.focus === 'function' ? document.activeElement : null;
+  const titleId = `modalTitle-${++modalTitleCounter}`;
+
   return new Promise((resolve) => {
+    let onKeyDown = null;
     const close = (value) => {
       root.hidden = true;
       root.innerHTML = '';
-      if (modalCleanup) {
-        document.removeEventListener('keydown', modalCleanup, true);
-        modalCleanup = null;
+      setBackgroundInert(false);
+      if (onKeyDown) {
+        document.removeEventListener('keydown', onKeyDown, true);
+        if (modalCleanup === onKeyDown) modalCleanup = null;
+        onKeyDown = null;
+      }
+      if (opener && typeof opener.focus === 'function' && document.contains(opener)) {
+        try {
+          opener.focus();
+        } catch {
+          /* ignore focus restoration failure in detached nodes */
+        }
       }
       resolve(value);
     };
+
     root.hidden = false;
-    root.innerHTML = `<div class="modal ${wide ? 'wide' : ''}" role="dialog" aria-modal="true" aria-label="${esc(title)}">
-      <div class="modal-head"><h2>${esc(title)}</h2><button class="btn btn-quiet btn-icon" type="button" data-modal-close aria-label="Close">✕</button></div>
+    setBackgroundInert(true);
+
+    root.innerHTML = `<div class="modal ${wide ? 'wide' : ''}" role="dialog" aria-modal="true" aria-labelledby="${titleId}" aria-label="${esc(title)}" tabindex="-1">
+      <div class="modal-head"><h2 id="${titleId}">${esc(title)}</h2><button class="btn btn-quiet btn-icon" type="button" data-modal-close aria-label="Close">✕</button></div>
       <div class="modal-body" id="modalBody">${body}</div>
-      ${actions.length ? `<div class="modal-foot">${actions.map((a, i) => `<button class="btn ${a.tone || ''}" type="button" data-modal-action="${i}" data-value="${esc(a.value ?? a.label)}">${esc(a.label)}</button>`).join('')}</div>` : ''}
+      ${
+        actions.length
+          ? `<div class="modal-foot">${actions
+              .map(
+                (a, i) =>
+                  `<button class="btn ${a.tone || ''}" type="button" data-modal-action="${i}" data-value="${esc(a.value ?? a.label)}">${esc(a.label)}</button>`,
+              )
+              .join('')}</div>`
+          : ''
+      }
     </div>`;
+
     const modal = root.firstElementChild;
     modal.querySelectorAll('[data-modal-action]').forEach((btn) => {
       btn.addEventListener('click', () => close(btn.dataset.value));
     });
     modal.querySelectorAll('[data-modal-close]').forEach((btn) => btn.addEventListener('click', () => close(null)));
-    modal.addEventListener('click', (ev) => {
+    root.onclick = (ev) => {
       if (ev.target === root && dismissible) close(null);
-    });
-    modalCleanup = (ev) => {
-      if (ev.key === 'Escape' && dismissible) close(null);
     };
-    document.addEventListener('keydown', modalCleanup, true);
+
+    onKeyDown = (ev) => {
+      if (ev.key === 'Escape' && dismissible) {
+        ev.preventDefault();
+        close(null);
+        return;
+      }
+      if (ev.key === 'Tab') {
+        const focusables = getFocusableElements(modal);
+        if (!focusables.length) {
+          ev.preventDefault();
+          modal.focus();
+          return;
+        }
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+        const active = document.activeElement;
+        if (ev.shiftKey) {
+          if (active === first || !modal.contains(active)) {
+            ev.preventDefault();
+            last.focus();
+          }
+        } else if (active === last || !modal.contains(active)) {
+          ev.preventDefault();
+          first.focus();
+        }
+      }
+    };
+    modalCleanup = onKeyDown;
+    document.addEventListener('keydown', onKeyDown, true);
+
     if (onMount) {
       try {
         onMount(modal, close);
@@ -320,6 +657,17 @@ export function openModal({ title, body, actions = [], wide = false, onMount = n
         console.error('Modal mount failed', err);
         toast(`The dialog could not be prepared: ${err.message}`, 'bad');
       }
+    }
+
+    // Move initial focus inside the dialog if onMount did not already focus an element inside it.
+    if (!modal.contains(document.activeElement)) {
+      const focusables = getFocusableElements(modal);
+      const preferred =
+        modal.querySelector('[data-modal-action][ class*="btn-primary" ]') ||
+        modal.querySelector('input:not([type="hidden"]), select, textarea') ||
+        focusables[0] ||
+        modal;
+      preferred?.focus?.();
     }
   });
 }
@@ -339,7 +687,11 @@ export function promptDialog({ title, label, value = '', multiline = false, conf
   const fieldId = 'promptField';
   return openModal({
     title,
-    body: `<label class="field"><span class="label-text">${esc(label)}</span>${multiline ? `<textarea id="${fieldId}" placeholder="${esc(placeholder)}">${esc(value)}</textarea>` : `<input type="text" id="${fieldId}" value="${esc(value)}" placeholder="${esc(placeholder)}" />`}</label>`,
+    body: `<label class="field"><span class="label-text">${esc(label)}</span>${
+      multiline
+        ? `<textarea id="${fieldId}" placeholder="${esc(placeholder)}">${esc(value)}</textarea>`
+        : `<input type="text" id="${fieldId}" value="${esc(value)}" placeholder="${esc(placeholder)}" />`
+    }</label>`,
     actions: [
       { label: 'Cancel', value: '__cancel' },
       { label: confirmLabel, tone: 'btn-primary', value: '__confirm' },
@@ -364,14 +716,12 @@ export function promptDialog({ title, label, value = '', multiline = false, conf
 
 /** Simple radio/checkbox list builder used by setup screens and settings. */
 export function optionList(name, options, selected) {
-  return `<div class="stack" style="margin-bottom:6px">${options
+  return `<div class="stack mb-2">${options
     .map(
       (opt) => `<label class="check"><input type="radio" name="${esc(name)}" value="${esc(opt.value)}" ${String(opt.value) === String(selected) ? 'checked' : ''} />
-      <span><strong>${esc(opt.label)}</strong>${opt.hint ? `<span class="hint" style="display:block">${esc(opt.hint)}</span>` : ''}</span></label>`,
+      <span><strong>${esc(opt.label)}</strong>${opt.hint ? `<span class="hint block">${esc(opt.hint)}</span>` : ''}</span></label>`,
     )
     .join('')}</div>`;
 }
 
 export const stat = (label, value, sub = '') => tile({ label, value, sub });
-
-export { fmtPct, fmtMarks, fmtDate, fmtClock, fmtDuration, round };
