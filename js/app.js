@@ -1,17 +1,16 @@
 /**
- * app.js — Application bootstrap, navigation and global behaviour.
+ * app.js — Application bootstrap, navigation, theme switch and global behaviour.
  */
 
 import { APP_VERSION, STORES } from './core/constants.js';
 import * as db from './core/db.js';
-import { state, loadUiPrefs, loadSettings, refreshQuestionIndex, on } from './core/state.js';
+import { state, loadUiPrefs, loadSettings, saveSettings, applyTheme, resolveEffectiveTheme, refreshQuestionIndex, on } from './core/state.js';
 import { Router } from './ui/router.js';
-import { toast, openModal, confirmDialog, esc, notice } from './ui/components.js';
-import { logEvent } from './core/util.js';
+import { toast, openModal, confirmDialog, esc, notice, icon } from './ui/components.js';
+import { logEvent, downloadJson, fmtDate } from './core/util.js';
 import { mistakeCounts } from './services/attempts.js';
 import { revisionSummary } from './services/revision.js';
 import { buildBackup, markBackupTaken, lastBackupInfo } from './services/data.js';
-import { downloadJson, fmtDate } from './core/util.js';
 
 import dashboardView from './ui/views/dashboard.js';
 import testCentreView from './ui/views/testcentre.js';
@@ -29,22 +28,85 @@ import settingsView from './ui/views/settings.js';
 import helpView from './ui/views/help.js';
 
 const NAV = [
-  { route: 'dashboard', label: 'Dashboard', icon: '▦' },
-  { route: 'test-centre', label: 'PYQ Test Centre', icon: '▤' },
-  { route: 'topic', label: 'Topic Practice', icon: '◈' },
-  { route: 'custom', label: 'Custom Test', icon: '✎' },
-  { route: 'smart', label: 'Smart Practice', icon: '◉' },
-  { route: 'mistakes', label: 'Mistake Book', icon: '⚑', badge: 'mistakes' },
-  { route: 'revision', label: 'Revision Centre', icon: '⟳', badge: 'revision' },
-  { route: 'syllabus', label: 'Syllabus & Planner', icon: '❖' },
-  { route: 'analytics', label: 'Analytics', icon: '◔' },
-  { route: 'bank', label: 'Question Bank & Imports', icon: '❑' },
-  { route: 'settings', label: 'Settings & Backup', icon: '⚙' },
-  { route: 'help', label: 'Help & How it works', icon: '?' },
+  { route: 'dashboard', label: 'Dashboard', icon: 'dashboard' },
+  { route: 'test-centre', label: 'PYQ Test Centre', icon: 'test-centre' },
+  { route: 'topic', label: 'Topic Practice', icon: 'topic' },
+  { route: 'custom', label: 'Custom Test', icon: 'custom' },
+  { route: 'smart', label: 'Smart Practice', icon: 'smart' },
+  { route: 'mistakes', label: 'Mistake Book', icon: 'mistakes', badge: 'mistakes' },
+  { route: 'revision', label: 'Revision Centre', icon: 'revision', badge: 'revision' },
+  { route: 'syllabus', label: 'Syllabus & Planner', icon: 'syllabus' },
+  { route: 'analytics', label: 'Analytics', icon: 'analytics' },
+  { route: 'bank', label: 'Question Bank & Imports', icon: 'bank' },
+  { route: 'settings', label: 'Settings & Backup', icon: 'settings' },
+  { route: 'help', label: 'Help & How it works', icon: 'help' },
 ];
 
 let router = null;
+let drawerUsedAsModal = false;
 const badges = { mistakes: 0, revision: 0, imported: false };
+
+function isOffCanvasViewport() {
+  return typeof window !== 'undefined' && (window.innerWidth <= 860 || drawerUsedAsModal);
+}
+
+function setNavInert(isInert) {
+  const nav = document.getElementById('appNav');
+  if (!nav) return;
+  nav.inert = isInert;
+  if (isInert) {
+    nav.setAttribute('inert', '');
+    nav.setAttribute('aria-hidden', 'true');
+    nav.querySelectorAll('button, a').forEach((el) => el.setAttribute('tabindex', '-1'));
+  } else {
+    nav.removeAttribute('inert');
+    nav.removeAttribute('aria-hidden');
+    nav.querySelectorAll('button, a').forEach((el) => el.removeAttribute('tabindex'));
+  }
+}
+
+export function syncDrawerState() {
+  const open = document.body.classList.contains('nav-open');
+  const navToggle = document.getElementById('navToggle');
+  const scrim = document.getElementById('navScrim');
+  if (navToggle) navToggle.setAttribute('aria-expanded', String(open));
+  if (scrim) scrim.hidden = !open;
+  if (open) {
+    setNavInert(false);
+  } else if (isOffCanvasViewport()) {
+    setNavInert(true);
+  } else {
+    setNavInert(false);
+  }
+}
+
+export function openDrawer() {
+  drawerUsedAsModal = true;
+  document.body.classList.add('nav-open');
+  syncDrawerState();
+  const nav = document.getElementById('appNav');
+  const target = nav?.querySelector('.nav-link[aria-current="page"]') || nav?.querySelector('.nav-link');
+  target?.focus?.();
+}
+
+export function closeDrawer({ restoreFocus = false } = {}) {
+  const wasOpen = document.body.classList.contains('nav-open');
+  document.body.classList.remove('nav-open');
+  syncDrawerState();
+  if (wasOpen && restoreFocus) {
+    document.getElementById('navToggle')?.focus?.();
+  }
+}
+
+function syncThemeToggleButton() {
+  const btn = document.getElementById('themeToggle');
+  if (!btn) return;
+  const effective = applyTheme(state.settings);
+  const next = effective === 'dark' ? 'light' : 'dark';
+  btn.setAttribute('aria-label', `Switch to ${next} theme (current: ${effective})`);
+  btn.setAttribute('title', `Switch to ${next} theme (current: ${effective})`);
+  btn.innerHTML = icon(effective === 'dark' ? 'sun' : 'moon');
+}
 
 function renderNav() {
   const list = document.getElementById('navList');
@@ -53,17 +115,18 @@ function renderNav() {
     const value = badges[item.badge];
     const badgeHtml = value ? `<span class="nav-badge">${value}</span>` : '';
     return `<li><button class="nav-link" type="button" data-route="${item.route}">
-      <span class="nav-icon" aria-hidden="true">${item.icon}</span>
+      <span class="nav-icon" aria-hidden="true">${icon(item.icon)}</span>
       <span>${esc(item.label)}</span>${badgeHtml}
     </button></li>`;
   }).join('');
   list.querySelectorAll('.nav-link').forEach((btn) => {
     btn.addEventListener('click', () => {
-      document.body.classList.remove('nav-open');
+      closeDrawer({ restoreFocus: false });
       router.navigate(btn.dataset.route);
     });
   });
   markActiveNav(router?.currentRoute?.name);
+  syncDrawerState();
 }
 
 function markActiveNav(routeName) {
@@ -135,11 +198,11 @@ function helpDialog() {
         <p><strong>MyMPPSC</strong> keeps everything — question bank, attempts, mistakes, revision schedule and syllabus — in this browser's IndexedDB. Nothing is uploaded, and no account is needed. Export a JSON backup regularly: clearing site data or running out of disk space will remove local storage.</p>
         <h3>Keyboard shortcuts</h3>
         <ul class="small">
-          <li><code>1</code>…<code>6</code> — choose an option while a question is open</li>
+          <li><code>1</code>…<code>9</code> — choose an option while a question is open</li>
           <li><code>→</code> / <code>N</code> next question · <code>←</code> / <code>P</code> previous question</li>
           <li><code>F</code> mark for review · <code>U</code> clear response</li>
           <li><code>C</code> cycle confidence (when confidence tracking is on)</li>
-          <li><code>?</code> this dialog · <code>Esc</code> close dialogs</li>
+          <li><code>?</code> this dialog · <code>Esc</code> close dialogs or navigation drawer</li>
         </ul>
         <h3>What this app does not do</h3>
         <ul class="small">
@@ -199,20 +262,57 @@ function wireGlobalActions() {
   document.getElementById('quickStartBtn')?.addEventListener('click', quickPractice);
   document.getElementById('helpBtn')?.addEventListener('click', helpDialog);
   document.getElementById('navBackupBtn')?.addEventListener('click', () => backupNow());
+  document.getElementById('themeToggle')?.addEventListener('click', async () => {
+    const current = resolveEffectiveTheme(state.settings.theme);
+    const next = current === 'dark' ? 'light' : 'dark';
+    await saveSettings({ theme: next });
+    syncThemeToggleButton();
+  });
+
   const navToggle = document.getElementById('navToggle');
   navToggle?.addEventListener('click', () => {
-    const open = document.body.classList.toggle('nav-open');
-    navToggle.setAttribute('aria-expanded', String(open));
+    const isOpen = document.body.classList.contains('nav-open');
+    if (isOpen) closeDrawer({ restoreFocus: true });
+    else openDrawer();
   });
+
+  document.getElementById('navScrim')?.addEventListener('click', () => {
+    closeDrawer({ restoreFocus: true });
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 860) {
+      drawerUsedAsModal = false;
+      document.body.classList.remove('nav-open');
+    }
+    syncDrawerState();
+  });
+
+  if (typeof window.matchMedia === 'function') {
+    try {
+      const mql = window.matchMedia('(prefers-color-scheme: dark)');
+      mql.addEventListener?.('change', () => {
+        if ((state.settings.theme || 'system') === 'system') syncThemeToggleButton();
+      });
+    } catch {
+      /* ignore matchMedia listener issues */
+    }
+  }
+
   document.addEventListener('keydown', (ev) => {
+    if (ev.key === 'Escape' && document.body.classList.contains('nav-open')) {
+      ev.preventDefault();
+      closeDrawer({ restoreFocus: true });
+      return;
+    }
     const tag = ev.target?.tagName;
     if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || ev.target?.isContentEditable) return;
     if (ev.key === '?') {
       ev.preventDefault();
       helpDialog();
     }
-    if (ev.key === 'Escape') document.body.classList.remove('nav-open');
   });
+
   window.addEventListener('online', () => setOfflinePill(false));
   window.addEventListener('offline', () => {
     setOfflinePill(true);
@@ -265,6 +365,8 @@ async function boot() {
     toast(`Local data could not be fully loaded: ${err.message}`, 'bad');
   }
 
+  syncThemeToggleButton();
+
   router = new Router({
     container: document.getElementById('view'),
     fallback: 'dashboard',
@@ -297,7 +399,10 @@ async function boot() {
   on('bank:changed', () => refreshBadges());
   on('attempts:changed', () => refreshBadges());
   on('mistakes:changed', () => refreshBadges());
-  on('settings:changed', () => refreshBadges());
+  on('settings:changed', () => {
+    syncThemeToggleButton();
+    refreshBadges();
+  });
 
   // Offer the demonstration dataset on a completely empty first run.
   if (!state.questionIndex.size) {
