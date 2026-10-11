@@ -28,18 +28,18 @@ import settingsView from './ui/views/settings.js';
 import helpView from './ui/views/help.js';
 
 const NAV = [
-  { route: 'dashboard', label: 'Dashboard', icon: 'dashboard' },
-  { route: 'test-centre', label: 'PYQ Test Centre', icon: 'test-centre' },
-  { route: 'topic', label: 'Topic Practice', icon: 'topic' },
-  { route: 'custom', label: 'Custom Test', icon: 'custom' },
-  { route: 'smart', label: 'Smart Practice', icon: 'smart' },
-  { route: 'mistakes', label: 'Mistake Book', icon: 'mistakes', badge: 'mistakes' },
-  { route: 'revision', label: 'Revision Centre', icon: 'revision', badge: 'revision' },
-  { route: 'syllabus', label: 'Syllabus & Planner', icon: 'syllabus' },
-  { route: 'analytics', label: 'Analytics', icon: 'analytics' },
-  { route: 'bank', label: 'Question Bank & Imports', icon: 'bank' },
-  { route: 'settings', label: 'Settings & Backup', icon: 'settings' },
-  { route: 'help', label: 'Help & How it works', icon: 'help' },
+  { route: 'dashboard', label: 'Dashboard', icon: 'dashboard', group: 'Workspace' },
+  { route: 'test-centre', label: 'PYQ Test Centre', icon: 'test-centre', group: 'Practice' },
+  { route: 'topic', label: 'Topic Practice', icon: 'topic', group: 'Practice' },
+  { route: 'custom', label: 'Custom Test', icon: 'custom', group: 'Practice' },
+  { route: 'smart', label: 'Smart Practice', icon: 'smart', group: 'Practice' },
+  { route: 'mistakes', label: 'Mistake Book', icon: 'mistakes', badge: 'mistakes', group: 'Improve' },
+  { route: 'revision', label: 'Revision Centre', icon: 'revision', badge: 'revision', group: 'Improve' },
+  { route: 'syllabus', label: 'Syllabus & Planner', icon: 'syllabus', group: 'Improve' },
+  { route: 'analytics', label: 'Analytics', icon: 'analytics', group: 'Improve' },
+  { route: 'bank', label: 'Question Bank & Imports', icon: 'bank', group: 'System' },
+  { route: 'settings', label: 'Settings & Backup', icon: 'settings', group: 'System' },
+  { route: 'help', label: 'Help & How it works', icon: 'help', group: 'System' },
 ];
 
 let router = null;
@@ -112,10 +112,15 @@ function syncThemeToggleButton() {
 function renderNav() {
   const list = document.getElementById('navList');
   if (!list) return;
+  let currentGroup = null;
   list.innerHTML = NAV.map((item) => {
     const value = badges[item.badge];
     const badgeHtml = value ? `<span class="nav-badge">${value}</span>` : '';
-    return `<li><button class="nav-link" type="button" data-route="${item.route}">
+    const groupLabel = item.group !== currentGroup
+      ? `<li class="nav-section-label" aria-hidden="true">${esc(item.group)}</li>`
+      : '';
+    currentGroup = item.group;
+    return `${groupLabel}<li><button class="nav-link" type="button" data-route="${item.route}">
       <span class="nav-icon" aria-hidden="true">${icon(item.icon)}</span>
       <span>${esc(item.label)}</span>${badgeHtml}
     </button></li>`;
@@ -220,6 +225,58 @@ function helpDialog() {
   });
 }
 
+function openCommandMenu() {
+  const modalRoot = document.getElementById('modalRoot');
+  if (!modalRoot?.hidden) return;
+
+  const items = NAV.map((item) => `
+    <button class="command-item" type="button" data-command-route="${esc(item.route)}" data-command-label="${esc(`${item.label} ${item.group}`.toLowerCase())}">
+      <span class="command-item-icon">${icon(item.icon, { size: 18 })}</span>
+      <span><strong>${esc(item.label)}</strong><small>${esc(item.group)}</small></span>
+      <span class="command-arrow" aria-hidden="true">→</span>
+    </button>`).join('');
+
+  openModal({
+    title: 'Go anywhere',
+    body: `<div class="command-menu">
+      <label class="command-search">
+        <span class="sr-only">Search screens</span>
+        ${icon('search', { size: 18 })}
+        <input id="commandSearch" type="search" autocomplete="off" placeholder="Search practice, revision, analytics…" />
+        <kbd>Esc</kbd>
+      </label>
+      <div class="command-results" id="commandResults">${items}</div>
+      <p class="command-hint">Type to filter · use Tab to move · Enter to open</p>
+    </div>`,
+    onMount(modal, close) {
+      modal.classList.add('command-modal');
+      const input = modal.querySelector('#commandSearch');
+      const commands = [...modal.querySelectorAll('[data-command-route]')];
+      const filter = () => {
+        const query = input.value.trim().toLowerCase();
+        commands.forEach((button) => {
+          button.hidden = query && !button.dataset.commandLabel.includes(query);
+        });
+      };
+      commands.forEach((button) => button.addEventListener('click', () => {
+        const route = button.dataset.commandRoute;
+        close(route);
+        router.navigate(route);
+      }));
+      input.addEventListener('input', filter);
+      input.addEventListener('keydown', (ev) => {
+        if (ev.key !== 'Enter') return;
+        const first = commands.find((button) => !button.hidden);
+        if (first) {
+          ev.preventDefault();
+          first.click();
+        }
+      });
+      input.focus();
+    },
+  });
+}
+
 async function quickPractice() {
   if (!state.questionIndex.size) {
     toast('Import a question bank first — the Question Bank screen explains the format and includes a demonstration dataset.', 'warn');
@@ -261,6 +318,7 @@ async function quickPractice() {
 
 function wireGlobalActions() {
   document.getElementById('quickStartBtn')?.addEventListener('click', quickPractice);
+  document.getElementById('commandBtn')?.addEventListener('click', openCommandMenu);
   document.getElementById('helpBtn')?.addEventListener('click', helpDialog);
   document.getElementById('navBackupBtn')?.addEventListener('click', () => backupNow());
   document.getElementById('themeToggle')?.addEventListener('click', async () => {
@@ -304,6 +362,11 @@ function wireGlobalActions() {
     if (ev.key === 'Escape' && document.body.classList.contains('nav-open')) {
       ev.preventDefault();
       closeDrawer({ restoreFocus: true });
+      return;
+    }
+    if ((ev.ctrlKey || ev.metaKey) && ev.key.toLowerCase() === 'k') {
+      ev.preventDefault();
+      openCommandMenu();
       return;
     }
     const tag = ev.target?.tagName;
