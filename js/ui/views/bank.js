@@ -383,6 +383,8 @@ export default {
   title: 'Question Bank & Imports',
 
   async render(ctx) {
+    const [section, questionParam] = ctx.params || [];
+    const deepLinkedQuestion = section === 'question' && questionParam ? decodeURIComponent(questionParam) : null;
     const metas = Array.from(state.questionIndex.values());
     const papers = Array.from(state.papers.values());
     const summary = questions.bankSummary();
@@ -411,6 +413,7 @@ export default {
       ${viewState.analysis ? importSummary(viewState.analysis) : ''}`;
 
     /* --------------------------------------------------------- questions -- */
+    if (deepLinkedQuestion) viewState.filters.search = deepLinkedQuestion;
     const filtered = filterQuestions(metas);
     const pageCount = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
     viewState.page = Math.min(viewState.page, pageCount - 1);
@@ -619,7 +622,7 @@ export default {
       })}
       ${tabs({
         id: 'bankTabs',
-        activeId: viewState.tab,
+        activeId: deepLinkedQuestion ? 'questions' : viewState.tab,
         items: [
           { id: 'import', label: 'Import', body: importTab },
           { id: 'questions', label: `Questions (${metas.length})`, body: questionsTab },
@@ -635,6 +638,15 @@ export default {
     root.querySelectorAll('.tabs .tab').forEach((tab) => tab.addEventListener('click', () => {
       viewState.tab = tab.dataset.tab;
     }));
+
+    /* Deep link: #/bank/question/<id> (used by the report and analytics). */
+    const [section, questionParam] = ctx.params || [];
+    if (section === 'question' && questionParam) {
+      const questionId = decodeURIComponent(questionParam);
+      viewState.tab = 'questions';
+      viewState.filters.search = questionId;
+      await openQuestionEditor(questionId, ctx);
+    }
 
     /* ------------------------------------------------------------ import -- */
     const analyse = async (text, filename) => {
