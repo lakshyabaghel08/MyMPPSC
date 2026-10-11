@@ -33,10 +33,6 @@ import {
   provenanceLine,
   demoBadge,
   langAttr,
-  kpi,
-  pageHead,
-  sectionHead,
-  filterChip,
 } from '../components.js';
 import { fmtMarks, fmtClock, fmtDate, fmtDuration, fmtPct } from '../../core/util.js';
 import { getQuestion } from '../../services/questions.js';
@@ -139,11 +135,9 @@ export default {
     const test = await db.get(STORES.TESTS, testId);
     viewState.testId = testId;
     viewState.result = test?.result || null;
-    if (!test) {
-      return `${pageHead({ title: 'Test report', description: 'Saved test results live in this browser only; a report disappears if its test was deleted by a restore.', actions: '<a class="btn" href="#/test-centre">Back to the test centre</a>' })}${notice('That test report is no longer stored. <a href="#/test-centre">Back to the test centre</a>.', 'warn')}`;
-    }
+    if (!test) return `<h1>Test report</h1>${notice('That test report is no longer stored. <a href="#/test-centre">Back to the test centre</a>.', 'warn')}`;
     if (test.status !== 'submitted' || !test.result) {
-      return `${pageHead({ title: esc(test.label || 'Test report'), description: 'This session has not been submitted yet, so there are no results to read.', actions: `<a class="btn btn-primary" href="#/runner/${esc(test.id)}">Continue the test</a><a class="btn" href="#/test-centre">Back to the test centre</a>` })}${notice(`This test has not been submitted yet. <a href="#/runner/${esc(test.id)}">Continue the test</a> or <a href="#/test-centre">go back</a>.`, 'info')}`;
+      return `<h1>${esc(test.label || 'Test report')}</h1>${notice(`This test has not been submitted yet. <a href="#/runner/${esc(test.id)}">Continue the test</a> or <a href="#/test-centre">go back</a>.`, 'info')}`;
     }
     const result = test.result;
     viewState.filter = viewState.filter || 'all';
@@ -160,17 +154,8 @@ export default {
     const recommendations = buildRecommendations(result, test);
 
     const reviewBody = `
-      <div class="filter-chips mb-3" role="group" aria-label="Filter the question review">
-        ${FILTERS.map((f) =>
-          filterChip({
-            id: f.id,
-            label: f.label,
-            count: f.id === 'all' ? result.per_question.length : result.per_question.filter((r) => rowMatches(r, f.id)).length,
-            pressed: viewState.filter === f.id,
-            action: 'filter',
-            data: { filter: f.id },
-          }),
-        ).join('')}
+      <div class="row mb-3">
+        ${FILTERS.map((f) => `<button class="btn btn-sm ${viewState.filter === f.id ? 'btn-primary' : ''}" type="button" data-action="filter" data-filter="${f.id}">${esc(f.label)}${f.id === 'all' ? ` (${result.per_question.length})` : ` (${result.per_question.filter((r) => rowMatches(r, f.id)).length})`}</button>`).join('')}
       </div>
       ${
         filtered.length
@@ -179,52 +164,55 @@ export default {
       }`;
 
     return `
-      ${pageHead({
-        title: esc(test.label || 'Test report'),
-        description: `${
-          test.paper_snapshot
-            ? `${esc(test.paper_snapshot.exam || '')} ${test.paper_snapshot.year ? `· ${esc(String(test.paper_snapshot.year))}` : ''}${test.paper_snapshot.set_code ? ` · set ${esc(test.paper_snapshot.set_code)}` : ''} · `
-            : ''
-        }submitted ${esc(fmtDate(test.submitted_at))}${result.auto_submitted ? ' (automatically, when the timer expired)' : ''}`,
-        actions: `<button class="btn" type="button" data-action="print">Print / save as PDF</button>
-          <a class="btn" href="#/test-centre">Back to test centre</a>`,
-        meta: `<div class="row tight mt-2">
-          ${test.config?.is_authentic_paper ? sourceChip('supplied', 'authentic paper') : sourceChip('derived', 'practice session')}
-          ${evidenceMeter(judgedCount)}
-        </div>`,
-      })}
+      <div class="spread mb-4">
+        <div>
+          <div class="row tight">
+            <h1 class="m-0">${esc(test.label || 'Test report')}</h1>
+            ${test.config?.is_authentic_paper ? sourceChip('supplied', 'authentic paper') : sourceChip('derived', 'practice session')}
+            ${evidenceMeter(judgedCount)}
+          </div>
+          <p class="muted small m-0 mt-1">
+            ${test.paper_snapshot ? `${esc(test.paper_snapshot.exam || '')} ${test.paper_snapshot.year ? `· ${esc(String(test.paper_snapshot.year))}` : ''}${test.paper_snapshot.set_code ? ` · set ${esc(test.paper_snapshot.set_code)}` : ''} · ` : ''}
+            submitted ${esc(fmtDate(test.submitted_at))}${result.auto_submitted ? ' (automatically, when the timer expired)' : ''}
+          </p>
+        </div>
+        <div class="row tight">
+          <button class="btn" type="button" data-action="print">Print / save as PDF</button>
+          <a class="btn" href="#/test-centre">Back to test centre</a>
+        </div>
+      </div>
 
-      <div class="kpi-grid">
-        ${kpi({
+      <div class="grid tiles mb-4">
+        ${tile({
           label: 'Score',
           value: `${esc(fmtMarks(result.score))} <small class="muted">/ ${esc(fmtMarks(result.max_marks))}</small>`,
-          context: esc(describeRules(result.scoring, result.scoring?.source)),
+          sub: esc(describeRules(result.scoring, result.scoring?.source)),
           tone: 'accent',
-          iconName: 'target',
-          foot: sourceChip(result.score === null ? 'unavailable' : 'derived', result.scoring?.source ? `source: ${result.scoring.source.replace(/_/g, ' ')}` : 'rules not configured'),
+          source: result.score === null ? 'unavailable' : 'derived',
+          where: result.scoring?.source ? `Source: ${result.scoring.source.replace(/_/g, ' ')}` : 'Rules not configured',
         })}
-        ${kpi({
+        ${tile({
           label: 'Accuracy',
           value: result.accuracy === null ? '—' : esc(fmtPct(result.accuracy, 0)),
-          context: `${counts.correct} correct of ${judgedCount} judged`,
+          sub: `${counts.correct} correct of ${judgedCount} judged`,
           tone: result.accuracy === null ? '' : result.accuracy >= 0.6 ? 'ok' : 'warn',
-          iconName: 'check',
-          foot: sourceChip(judgedCount ? 'measured' : 'unavailable', `judged sample n=${judgedCount}`),
+          source: judgedCount ? 'measured' : 'unavailable',
+          where: `Judged sample n=${judgedCount}`,
         })}
-        ${kpi({
+        ${tile({
           label: 'Attempted',
           value: `${counts.attempted}/${counts.total}`,
-          context: `${counts.unanswered} left unanswered`,
-          iconName: 'list',
-          foot: sourceChip('measured', 'recorded during this session'),
+          sub: `${counts.unanswered} left unanswered`,
+          source: 'measured',
+          where: 'Recorded during this session',
         })}
-        ${kpi({
+        ${tile({
           label: 'Negative marks',
           value: esc(fmtMarks(result.negative_marks_applied)),
-          context: 'lost to wrong answers',
+          sub: 'lost to wrong answers',
           tone: result.negative_marks_applied ? 'warn' : '',
-          iconName: 'alert',
-          foot: sourceChip('derived', 'deducted from incorrect answers'),
+          source: 'derived',
+          where: 'Deducted from incorrect answers',
         })}
       </div>
 

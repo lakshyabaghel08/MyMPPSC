@@ -85,33 +85,11 @@ Zero inline `style=` attributes are permitted in `js/**`. All helpers in `js/ui/
 - **`langAttr(text, explicitLang)` & `hasDevanagari(text)`**: Detects Unicode Devanagari (`\u0900–\u097F`) or explicit `'hi'` language code and emits ` lang="hi"` so browsers select Devanagari glyphs and apply `--leading-hi`.
 - **`icon(name)`**: Inline monochrome SVG icons (`stroke="currentColor"`) for navigation, theme switching, and actions.
 - **`card({ title, subtitle, actions, right, body, footer, tone, id, className })`**: Section container with `<h2>` header, optional right-aligned provenance slot (`right` or `actions`), body, and footer. Does not use `overflow: hidden`, preserving focus rings on child controls.
-- **`tile({ label, value, sub, tone, source, where, icon, iconName, trend })`**: Legacy stat tile with an optional icon, trend chip, `sourceChip` and `.tile-prov` provenance caption. Still used where a page wants the denser tile look; `kpi()` is the premium default.
+- **`tile({ label, value, sub, tone, source, where })`**: Stat tile with optional `sourceChip` and `.tile-prov` provenance caption.
 - **`tabs({ id, items, activeId })` & `mountTabs(root, onChange)`**: WAI-ARIA Authoring Practices Guide (APG) tabs with `role="tablist"`, `role="tab"`, `role="tabpanel"`, roving `tabindex` (`0` on selected, `-1` on others), `aria-selected`, `aria-controls`, `aria-labelledby`, and `ArrowRight` / `ArrowLeft` / `Home` / `End` keyboard navigation.
 - **`openModal({ title, body, actions, wide, onMount, dismissible })`**: Accessible modal dialog (`role="dialog"`, `aria-modal="true"`, `aria-labelledby`). Saves the trigger element, sets `inert` on `#appHeader`, `#appBody`, and `#main`, moves initial focus inside the dialog, traps `Tab` / `Shift+Tab` at boundaries, closes on `Escape` or backdrop click, and restores focus to the trigger element on close.
 - **`toast(message, tone, timeout)`**: Notification banner inside `#toastStack` (`pointer-events: none` on stack, `pointer-events: auto` on individual `.toast` items), capped at 4 concurrent toasts, with pause-on-hover/focus and a dismiss button.
 - **`barChart(...)` & `lineChart(...)`**: Responsive SVG charts (`viewBox` + `role="img"` + `aria-label`) paired with a `<details class="chart-table-fallback">` accessible data table.
-- **`pageHead({ title, description, actions, meta })`**: Every screen's `<h1>` block (title, one-line description, right-hand actions, optional meta row such as `statStrip`). Views must render it instead of a bare `<h1>` so headers stay uniform.
-- **`sectionHead({ title, meta, actions, id, kicker })`**: In-page `<h2>` group heading with an optional kicker label, right-hand meta text and a toolbar slot. Used to separate steps inside a screen (`Step 1 · What to include`).
-- **`kpi({ label, value, context, tone, iconName, trend, spark, foot })`**: The premium KPI card used for headline figures. Renders into `.kpi-grid`, which collapses 4 → 2 → 1 columns. `foot` normally carries a `sourceChip`.
-- **`statStrip([[label, value, extra], …])`**: Compact inline figures inside a card — the quieter alternative to a row of tiles.
-- **`ring(fraction, { label, sub, size, width, tone })`**: Circular progress ring driven by a real 0–1 value (SVG `pathLength="100"` + `stroke-dashoffset`, no inline styles).
-- **`timeline([{ tone, glyph, title, meta, body }])`**: Vertical activity/journey list with dotted rail. Used by Help and the dashboard's recent activity.
-- **`filterChip({ id, label, count, pressed, action, data })`**: A real toggle chip (`<button data-action=… aria-pressed>`); views listen for the action in `mount()`. Filter rows on Test Centre, Mistake Book, Revision, Analytics and Topic Practice use these.
-- **`skeletonStack(lines)` / `loadingState(message)`**: Layout-stable placeholders shown by the router while a view module loads — the shell never flashes empty.
-- **`dataTable({ …, sortable, id })`**: Adds real column sorting (click a `th` to toggle, `aria-sort` updated, `data-sort-value` respected, locale-aware numeric comparison) when a view asks for it.
-- **`installChartEnhancers()` / `installTableSorting()`**: Idempotent global enhancers called once from `js/app.js` at boot. They attach tooltips to `.chart-wrap` hit targets (`data-tip`, `--tip-x`/`--tip-y`), keep Escape-to-hide, and wire sortable table headers that appear after any later render.
-- **`barList(items, { max })` / `progressBar(value, tone)`**: Horizontal share bars and SVG progress meters. `bar-fg`/`bar-bg`/`progress-fg`/`progress-bg` are token-backed fills.
-
-### 2.1 Premium visual layer (`§13` of `css/app.css`)
-
-`css/app.css` keeps its numbered sections (§1 reset/tokens … §15 print) and adds one authoritative premium layer that refines the earlier component rules — it does not fork them:
-
-- **Shell**: sticky translucent header (`--header-glass`, `--header-h: 60px`), deep navy/charcoal navigation rail (`--nav-bg` → `--nav-bg-deep`) with an indigo active bar, a nav footer (`#navTodaySummary`, `#navDataSummary`, `#navBackupBtn`), and a scrim-backed mobile drawer.
-- **Surfaces & elevation**: `--bg`, `--bg-elevated`, `--bg-sunken` plus a single shadow scale (`--shadow-xs` … `--shadow-lg`). Prefer `--shadow-xs`; the hero is the only gradient surface.
-- **Components**: `.kpi`, `.hero` (+ `--hero-gradient`, `--hero-glow`), `.filter-chip`, `.stat-strip`, `.section-head`, `.page-head`, `.timeline`, `.ring`, `.skeleton-*`, `.sortable th[aria-sort]`, `.chart-tooltip`, `.command-*`, `.sticky-actions`, `.alloc-bar`.
-- **Motion**: one `view-enter` fade per route change (`js/ui/router.js` replays the class) and short hover/lift transitions, all disabled by `@media (prefers-reduced-motion: reduce)`. Exam interactions never wait on animation.
-- **Print**: `@media print` neutralises the hero and hides the new interactive chrome (`.chart-controls`, `.chart-tooltip`, `.hero-actions`) as well as the shell.
-- **Forced colours**: `.kpi`, `.quick-action`, `.filter-chip`, `.chart-tooltip`, `.ring .ring-track` and `.hero` are explicitly re-stated for `@media (forced-colors: active)`.
 
 ---
 
@@ -142,7 +120,7 @@ The baseline `css/app.css` contained 6 `!important` declarations. The redesigned
 ## 5. How to Add or Modify a Screen
 
 1. **Create or update the view module** in `js/ui/views/<name>.js` exporting `{ title, render(ctx), mount?(ctx, root), cleanup?(ctx) }`.
-2. **Start `render()` with `pageHead({ title, description, actions, meta })`** in both empty and populated states — that is what supplies the single `<h1>`. Use `sectionHead` or `card({ title: '...' })` (`<h2>`) for top-level sections and `<h3>` for sub-sections inside cards. Never use `<h4>` directly inside a card without an intervening `<h3>`. Headline figures go in `kpi()` cards inside a `.kpi-grid`; quieter figures go in `statStrip()`.
+2. **Start `render()` with `<h1>${esc(this.title)}</h1>`** in both empty and populated states. Use `card({ title: '...' })` (`<h2>`) for top-level sections and `<h3>` for sub-sections inside cards. Never use `<h4>` directly inside a card without an intervening `<h3>`.
 3. **Never write inline `style="..."` attributes** in JS templates. Use existing layout utilities (`.row`, `.spread`, `.stack`, `.split-2`, `.field-row`, `.mt-2`, `.mb-3`, etc.) or add a semantic class to `css/app.css` using design tokens.
 4. **Attach provenance chips** (`sourceChip`, `evidenceMeter`, `provenanceLine`, `demoBadge`) to every stat tile, chart card, and answer-key display, and wrap Hindi question/option text with `langAttr(text, lang)`.
 5. **Run `npm run check && npm test`** to verify all static guards and jsdom accessibility tests pass.
@@ -156,8 +134,6 @@ The baseline `css/app.css` contained 6 `!important` declarations. The redesigned
 - **Toast click-through guard**: Verifies `#toastStack { pointer-events: none }` and `#toastStack > * { pointer-events: auto }`.
 - **Token-only colour guard**: Strips `:root` / `data-theme` / `prefers-color-scheme` / `forced-colors` token blocks and verifies **zero** `#hex`, `rgb()`, or `hsl()` colour literals appear anywhere else in `css/app.css`.
 - **WCAG 2.1 contrast audit**: Parses both Light and Dark token maps from `css/app.css` and computes relative luminance contrast ratios across **40 text/surface token pairs** (requiring `≥ 4.5:1`) and **9 non-text border/focus pairs** (requiring `≥ 3.0:1`) per theme (98 contrast assertions in total).
-- **Component-class guard**: every class emitted by `js/ui/components.js` (plus the ones views use for headings, chips, rings and progress) is checked against `css/app.css`, so a view cannot reference an unstyled class.
-- **Route coverage guard**: all 11 navigation destinations (`+ custom` and the `/runner/:id`, `/report/:id` and `/bank/question/:id` sub-routes) must resolve to a view module that renders exactly one `<h1>` and sets `document.title`.
 - **Zero inline style guard**: Scans every file in `js/**` and fails if any `style="..."` attribute is present.
 - **Theme & media query guards**: Verifies `html[data-theme="light"]`, `html[data-theme="dark"]`, `@media (prefers-reduced-motion: reduce)`, `@media (forced-colors: active)`, `@media print`, and the pre-paint theme bootstrap script in `index.html`.
 

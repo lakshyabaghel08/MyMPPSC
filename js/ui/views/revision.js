@@ -22,11 +22,6 @@ import {
   renderExplanation,
   answerKeyBadge,
   sourceChip,
-  kpi,
-  pageHead,
-  sectionHead,
-  filterChip,
-  barChart,
 } from '../components.js';
 import { fmtDate, fmtRelative, todayKey } from '../../core/util.js';
 import * as revision from '../../services/revision.js';
@@ -84,7 +79,7 @@ export default {
 
     if (!records.length) {
       return `
-        ${pageHead({ title: 'Revision Centre', description: 'Questions scheduled from your own recorded outcomes, each with the numeric basis for its date. Everything here can be inspected and overridden.' })}
+        <h1>Revision Centre</h1>
         ${card({
           title: 'Nothing is scheduled yet',
           body: emptyState({
@@ -135,21 +130,15 @@ export default {
       ];
     });
 
-    const dueCount = buckets.dueToday.length + buckets.overdue.length;
-    const masteredCount = records.filter((r) => r.state === 'mastered').length;
-
     return `
-      ${pageHead({
-        title: 'Revision Centre',
-        description: 'Questions scheduled from your own recorded outcomes, with the reason for each date. Everything here can be inspected and overridden.',
-        actions: `<button class="btn btn-primary" type="button" data-action="revise-due" ${dueCount ? '' : 'disabled'}>Revise ${dueCount} due question(s)</button>`,
-      })}
+      <h1>Revision Centre</h1>
+      <p class="muted">Questions scheduled from your own recorded outcomes, with the reason for each date. Everything here can be inspected and overridden.</p>
 
-      <div class="kpi-grid">
-        ${kpi({ label: 'Due today', value: String(buckets.dueToday.length), context: 'scheduled for today’s date', tone: buckets.dueToday.length ? 'warn' : '', iconName: 'calendar', foot: sourceChip('derived', 'spaced repetition') })}
-        ${kpi({ label: 'Overdue', value: String(buckets.overdue.length), context: 'scheduled for an earlier day', tone: buckets.overdue.length ? 'bad' : 'ok', iconName: 'alert', foot: sourceChip('derived', 'spaced repetition') })}
-        ${kpi({ label: 'Upcoming', value: String(buckets.upcoming.length), context: 'scheduled ahead', iconName: 'clock', foot: sourceChip('derived', 'spaced repetition') })}
-        ${kpi({ label: 'Mastered', value: String(masteredCount), context: `of ${records.length} tracked question(s)`, iconName: 'target', foot: sourceChip('derived', 'highest interval reached') })}
+      <div class="grid tiles mb-4">
+        ${tile({ label: 'Due today', value: String(buckets.dueToday.length), tone: buckets.dueToday.length ? 'warn' : '', source: 'derived', where: 'Scheduled for today’s date' })}
+        ${tile({ label: 'Overdue', value: String(buckets.overdue.length), sub: 'scheduled for an earlier day', tone: buckets.overdue.length ? 'bad' : 'ok', source: 'derived', where: 'Scheduled before today' })}
+        ${tile({ label: 'Upcoming', value: String(buckets.upcoming.length), sub: 'scheduled ahead', source: 'derived', where: 'Scheduled for future dates' })}
+        ${tile({ label: 'Mastered', value: String(records.filter((r) => r.state === 'mastered').length), sub: `of ${records.length} tracked question(s)`, source: 'derived', where: 'Reached highest interval level' })}
       </div>
 
       ${card({
@@ -157,8 +146,8 @@ export default {
         right: sourceChip('derived', 'due_first order'),
         body: `
           <div class="row">
-            <button class="btn btn-primary" type="button" data-action="revise-due" ${dueCount ? '' : 'disabled'}>
-              Start a session with all ${dueCount} due question(s)
+            <button class="btn btn-primary" type="button" data-action="revise-due" ${buckets.dueToday.length + buckets.overdue.length ? '' : 'disabled'}>
+              Start a session with all ${buckets.dueToday.length + buckets.overdue.length} due question(s)
             </button>
             <button class="btn" type="button" data-action="add-manual">Add a question to the queue</button>
           </div>
@@ -181,20 +170,14 @@ export default {
           })
         : notice('There is not yet enough attempt history to judge whether revision is working. At least two scored attempts are needed on a question.', 'info')}
 
-      ${sectionHead({ title: `Queue (${filtered.length} of ${records.length})`, kicker: 'Scheduled questions', meta: 'Each row states the rule that produced its date', actions: sourceChip('derived', 'spaced repetition') })}
-      <div class="filter-chips mb-3" role="group" aria-label="Filter the revision queue">
-        ${[
-          { id: 'due', label: 'Due now', count: dueCount },
-          { id: 'upcoming', label: 'Upcoming', count: buckets.upcoming.length },
-          { id: 'all', label: 'Everything', count: records.length },
-        ].map((f) => filterChip({ id: f.id, label: f.label, count: f.count, pressed: viewState.filter === f.id, action: 'queue-filter' })).join('')}
-      </div>
       ${card({
+        title: `Queue (${filtered.length} of ${records.length})`,
+        right: sourceChip('derived', 'spaced repetition'),
         body: `
           <div class="filters">
             <label class="field"><span class="label-text">Show</span>
               <select id="revFilter">
-                <option value="due" ${viewState.filter === 'due' ? 'selected' : ''}>Due now (${dueCount})</option>
+                <option value="due" ${viewState.filter === 'due' ? 'selected' : ''}>Due now (${buckets.dueToday.length + buckets.overdue.length})</option>
                 <option value="upcoming" ${viewState.filter === 'upcoming' ? 'selected' : ''}>Upcoming (${buckets.upcoming.length})</option>
                 <option value="all" ${viewState.filter === 'all' ? 'selected' : ''}>Everything (${records.length})</option>
               </select>
@@ -214,28 +197,29 @@ export default {
           })}`,
       })}
 
-      ${sectionHead({ title: 'Upcoming load', kicker: 'Forecast', meta: 'How many questions fall due on each of the next days', actions: sourceChip('derived') })}
       ${card({
-        body: barChart({
-          data: Array.from(upcomingByDay.entries())
+        title: 'Upcoming load',
+        subtitle: 'How many questions fall due on each of the next days',
+        right: sourceChip('derived'),
+        body: dataTable({
+          columns: [{ label: 'Date' }, { label: 'Questions due', num: true }],
+          rows: Array.from(upcomingByDay.entries())
             .sort((a, b) => (a[0] < b[0] ? -1 : 1))
             .slice(0, 14)
-            .map(([date, count]) => ({ label: fmtDate(date), value: count })),
-          height: 150,
-          interactive: true,
-          unitLabel: 'due',
-          yLabel: 'Questions falling due per day',
+            .map(([date, count]) => [esc(fmtDate(date)), String(count)]),
+          className: 'compact',
         }),
       })}
 
-      ${sectionHead({ title: 'Revision statistics', kicker: 'Measured', actions: sourceChip('measured') })}
       ${card({
+        title: 'Revision statistics',
+        right: sourceChip('measured'),
         body: `
-          <div class="kpi-grid">
-            ${kpi({ label: 'Tracked questions', value: String(records.length), context: `${Math.round((records.length / Math.max(1, metas.length)) * 100)}% of the bank`, iconName: 'database', foot: sourceChip('measured', 'revision records') })}
-            ${kpi({ label: 'Average interval', value: `${Math.round(records.reduce((a, r) => a + (r.interval_days || 0), 0) / records.length)} days`, context: 'across tracked questions', iconName: 'calendar', foot: sourceChip('derived', 'current intervals') })}
-            ${kpi({ label: 'Lapses', value: String(records.reduce((a, r) => a + (r.lapses || 0), 0)), context: 'wrong or unanswered after being scheduled', iconName: 'refresh', foot: sourceChip('measured', 'revision history') })}
-            ${kpi({ label: 'Revision accuracy', value: analytics.accuracy.all !== analytics.accuracy.all ? '—' : `${Math.round((analytics.accuracy.all || 0) * 100)}%`, context: 'all scored attempts, repeats included', iconName: 'target', foot: sourceChip('measured', 'attempt log') })}
+          <div class="grid tiles">
+            ${tile({ label: 'Tracked questions', value: String(records.length), sub: `${Math.round((records.length / Math.max(1, metas.length)) * 100)}% of the bank`, source: 'measured' })}
+            ${tile({ label: 'Average interval', value: `${Math.round(records.reduce((a, r) => a + (r.interval_days || 0), 0) / records.length)} days`, sub: 'across tracked questions', source: 'derived' })}
+            ${tile({ label: 'Lapses', value: String(records.reduce((a, r) => a + (r.lapses || 0), 0)), sub: 'wrong or unanswered after being scheduled', source: 'measured' })}
+            ${tile({ label: 'Revision accuracy', value: analytics.accuracy.all !== analytics.accuracy.all ? '—' : `${Math.round((analytics.accuracy.all || 0) * 100)}%`, sub: 'all scored attempts, repeats included', source: 'measured' })}
           </div>`,
       })}
 
@@ -255,12 +239,6 @@ export default {
       const btn = ev.target.closest('[data-action]');
       if (!btn) return;
       const action = btn.dataset.action;
-
-      if (action === 'queue-filter') {
-        viewState.filter = btn.dataset.value || 'due';
-        await ctx.refresh();
-        return;
-      }
 
       if (action === 'revise') {
         const id = btn.dataset.qid;
