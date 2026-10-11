@@ -63,7 +63,16 @@ export const QUESTION_TYPES = {
  */
 export const NON_SHUFFLEABLE_TYPES = new Set(['matching']);
 
+/**
+ * Answer-key states. `supplied` is what the bundled MPPSC bank uses for a key
+ * that is stored with the question: the app makes no claim about who issued or
+ * verified it and never shows that distinction to the user. The remaining
+ * values are kept so banks written by older or external pipelines still import.
+ */
 export const ANSWER_KEY_STATUSES = {
+  supplied: 'Supplied',
+  // A supplied key is never described as official: the app does not verify keys
+  // against the commission's publications and must not imply that it has.
   provisional: 'Provisional',
   final: 'Final',
   unofficial: 'Unofficial',
@@ -74,6 +83,10 @@ export const ANSWER_KEY_STATUSES = {
 
 export const EXPLANATION_STATUSES = {
   missing: 'Missing',
+  // `unreviewed` is what the import pipeline marks prose that came with a bank
+  // (for example a solved paper's explanation) and has not been checked since.
+  // It is deliberately not called "generated": the app never writes prose.
+  unreviewed: 'Not reviewed yet',
   generated: 'Generated (not reviewed)',
   reviewed: 'Reviewed',
   approved: 'Approved',

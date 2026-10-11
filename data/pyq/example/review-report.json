@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-11T20:26:28.750Z",
+  "generated_at": "2026-10-11T22:21:36.053Z",
   "totals": {
     "questions_in_bank": 10,
     "questions_in_source": 10,
@@ -10,10 +10,19 @@
     "identical_content_groups": 0,
     "ambiguous_classifications": 2,
     "low_confidence_classifications": 0,
+    "provenance_fields_removed": 11,
+    "escapes_repaired": 0,
+    "papers_with_automatic_scheme": 0,
+    "papers_without_scheme": 0,
+    "reviewed_labels_applied": 0,
+    "reviewed_labels_rejected": 0,
+    "text_repairs": 0,
     "ai_labels_applied": 0,
     "ai_labels_preserved": 0,
     "ai_labels_rejected": 0,
-    "ai_labels_malformed": 0
+    "ai_labels_malformed": 0,
+    "source_blocks_detected": null,
+    "records_excluded_by_source_parser": 0
   },
   "missing_answers": [
     {
@@ -63,6 +72,100 @@
     }
   ],
   "low_confidence_classifications": [],
+  "source_extraction": null,
+  "extraction_repairs": {
+    "version": "1.0.0",
+    "statement": "Repairs applied to the extraction before the bank was built. No wording was invented: escape artefacts were converted back to the characters they represent, and source provenance was moved out of the app-facing data into this report.",
+    "text_repairs": {
+      "strings": 0,
+      "occurrences": 0,
+      "by_field": {}
+    },
+    "metadata_removed": {
+      "question_type_basis": 10
+    },
+    "provenance_moved": {
+      "bank_provenance": {
+        "kind": "synthetic_demo",
+        "verified": false,
+        "notes": "Synthetic questions written to exercise tools/classify-bank.mjs: rule-based classification, Madhya-Pradesh-versus-India separation, a missing key, a source classification outside the taxonomy, an ambiguous question and a near-duplicate pair. NOT genuine previous-year content.",
+        "sources": []
+      },
+      "question_source_references": 1,
+      "samples": [
+        {
+          "id": "SAMPLE-2023-GS1-001",
+          "source_reference": {
+            "file": "synthetic://pyq-pipeline-sample",
+            "page": 1,
+            "question_location": "Q1",
+            "note": null
+          }
+        }
+      ]
+    },
+    "answer_sources_blanked": 8,
+    "paper_fixes": {
+      "renamed": [
+        {
+          "paper_id": "SAMPLE-2023-GS1",
+          "from": "Sample General Studies Paper I",
+          "to": "MPPSC 2023 Prelims Paper I (General Studies)"
+        }
+      ],
+      "answer_key_sources_blanked": 1,
+      "source_file_lists_blanked": 1
+    },
+    "untouched": "Question text, option text, printed answers and explanation wording are otherwise reproduced exactly as the extraction captured them."
+  },
+  "reviewed_merge": null,
+  "sanitisation": {
+    "statement": "The app-facing bank carries no source provenance. Everything listed here was removed from the file the app loads and is kept in this review report instead.",
+    "identifiers": {
+      "bank_id_before": "PYQ-PIPELINE-SAMPLE",
+      "bank_id_after": "PYQ-PIPELINE-SAMPLE",
+      "bank_name_after": "PYQ pipeline sample (synthetic — not a genuine MPPSC paper)",
+      "paper_ids": [],
+      "stamped_app_identity": false,
+      "kept_reason": "This build is demonstration/sample data: it keeps its own identity so it can never be mistaken for the real bank."
+    },
+    "removed": {
+      "bank_provenance": {
+        "kind": "unspecified",
+        "verified": false,
+        "notes": "The intake file did not describe provenance. Describe where these questions came from and whether the key has been checked before relying on them.",
+        "sources": []
+      },
+      "question_source_references": 0,
+      "supplied_answer_sources": 0,
+      "paper_answer_keys": 1,
+      "paper_source_files": [],
+      "parser_metadata_fields": {},
+      "review_metadata_fields": 0,
+      "sample_source_references": []
+    },
+    "answer_status": {
+      "remapped_to_supplied": 8,
+      "missing": 2,
+      "disputed": 0,
+      "other": 0
+    },
+    "marking_scheme": [],
+    "marking_scheme_preserved": [
+      {
+        "paper_id": "SAMPLE-2023-GS1",
+        "year": 2023,
+        "marks_per_correct": 2,
+        "rules_source": "Illustrative rule set for the pipeline sample."
+      }
+    ],
+    "marking_scheme_unresolved": [],
+    "repaired_escapes": {
+      "strings": 0,
+      "occurrences": 0
+    },
+    "paper_id_map": {}
+  },
   "ai_merge": null,
   "integrity": {
     "missing_language_variant": [],
@@ -113,7 +216,7 @@
     "rejected_records": []
   },
   "preserved": {
-    "statement": "No source record was deleted, rewritten or merged to produce this bank. Question text, options, printed answers, explanations, years, papers and source references are carried over verbatim; classification fields and review metadata are the only additions. Where two records look alike both are kept and flagged here instead of being merged.",
+    "statement": "No source record was deleted, rewritten or merged to produce this bank. Question text, options, stored answers and explanations are carried over verbatim; only classification fields, the automatic marking scheme and review metadata were added. Source provenance (book names, page references, answer sources, key-issue labels) is deliberately not part of the app-facing bank — it is recorded in the sanitisation section of this report instead. Where two records look alike both are kept and flagged here instead of being merged.",
     "questions_kept": 10,
     "review_flags_added": 7
   }

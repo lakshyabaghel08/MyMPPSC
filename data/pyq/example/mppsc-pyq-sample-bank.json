@@ -2,19 +2,13 @@
   "schema_version": "1.0.0",
   "bank_id": "PYQ-PIPELINE-SAMPLE",
   "bank_name": "PYQ pipeline sample (synthetic — not a genuine MPPSC paper)",
-  "generated_at": "2026-10-11T20:26:28.735Z",
+  "generated_at": "2026-10-11T22:21:36.038Z",
   "generator": {
     "name": "tools/classify-bank.mjs",
     "version": "1.0.0",
     "notes": "Classified with the deterministic rule engine (tools/classify/rules.mjs, taxonomy 1.0.1). Source question text, options, printed answers and explanations are reproduced verbatim; only classification and review metadata were added."
   },
   "is_demonstration": true,
-  "provenance": {
-    "kind": "synthetic_demo",
-    "verified": false,
-    "notes": "Synthetic questions written to exercise tools/classify-bank.mjs: rule-based classification, Madhya-Pradesh-versus-India separation, a missing key, a source classification outside the taxonomy, an ambiguous question and a near-duplicate pair. NOT genuine previous-year content.",
-    "sources": []
-  },
   "default_language": "en",
   "app_compatibility": {
     "built_with": "1.0.0",
@@ -25,7 +19,7 @@
       "paper_id": "SAMPLE-2023-GS1",
       "exam": "MPPSC State Service Preliminary Examination (SAMPLE DATA)",
       "year": 2023,
-      "paper_name": "Sample General Studies Paper I",
+      "paper_name": "MPPSC 2023 Prelims Paper I (General Studies)",
       "paper_code": "GS-I",
       "set_code": "A",
       "language": "bilingual",
@@ -51,19 +45,6 @@
         "SAMPLE-2023-GS1-008",
         "SAMPLE-2023-GS1-009",
         "SAMPLE-2023-GS1-010"
-      ],
-      "answer_key": {
-        "source": "Illustrative key (synthetic sample)",
-        "status": "final",
-        "published_at": "2026-01-01",
-        "notes": "Not an official answer key."
-      },
-      "source_files": [
-        {
-          "path": "synthetic://pyq-pipeline-sample",
-          "pages": null,
-          "sha256": null
-        }
       ],
       "import_validation": null,
       "metadata": {
@@ -108,24 +89,17 @@
         "answer": [
           "A"
         ],
-        "status": "final",
-        "source": "Illustrative key (synthetic sample)",
+        "status": "supplied",
+        "source": null,
         "notes": null
       },
-      "answer_key_status": "final",
+      "answer_key_status": "supplied",
       "explanation": {
         "correct_reasoning": "The Narmada rises at Amarkantak on the Maikal range in Madhya Pradesh and flows west to the Arabian Sea.",
         "status": "unreviewed",
         "language": "en"
       },
-      "source_reference": {
-        "file": "synthetic://pyq-pipeline-sample",
-        "page": 1,
-        "question_location": "Q1",
-        "note": null
-      },
       "metadata": {
-        "question_type_basis": "source record",
         "classification_flags": [
           "madhya_pradesh_specific"
         ],
@@ -189,18 +163,17 @@
         "answer": [
           "A"
         ],
-        "status": "final",
-        "source": "Illustrative key (synthetic sample)",
+        "status": "supplied",
+        "source": null,
         "notes": null
       },
-      "answer_key_status": "final",
+      "answer_key_status": "supplied",
       "explanation": {
         "correct_reasoning": "Sardar Sarovar is a gravity dam on the Narmada in Gujarat, far downstream of Madhya Pradesh.",
         "status": "unreviewed",
         "language": "en"
       },
       "metadata": {
-        "question_type_basis": "source record",
         "classification_flags": [],
         "classification_evidence": {
           "mp_markers": [
@@ -263,18 +236,17 @@
         "answer": [
           "A"
         ],
-        "status": "final",
-        "source": "Illustrative key (synthetic sample)",
+        "status": "supplied",
+        "source": null,
         "notes": null
       },
-      "answer_key_status": "final",
+      "answer_key_status": "supplied",
       "explanation": {
         "correct_reasoning": "Pt. Ravishankar Shukla became the first Chief Minister of the reorganised state formed on 1 November 1956.",
         "status": "unreviewed",
         "language": "en"
       },
       "metadata": {
-        "question_type_basis": "source record",
         "classification_flags": [
           "madhya_pradesh_specific"
         ],
@@ -337,18 +309,17 @@
         "answer": [
           "A"
         ],
-        "status": "final",
-        "source": "Illustrative key (synthetic sample)",
+        "status": "supplied",
+        "source": null,
         "notes": null
       },
-      "answer_key_status": "final",
+      "answer_key_status": "supplied",
       "explanation": {
         "correct_reasoning": "Article 14 of Part III guarantees equality before the law and equal protection of the laws.",
         "status": "unreviewed",
         "language": "en"
       },
       "metadata": {
-        "question_type_basis": "source record",
         "classification_flags": [],
         "classification_evidence": {
           "matched_rules": [
@@ -405,14 +376,13 @@
         "answer": [
           "C"
         ],
-        "status": "final",
-        "source": "Illustrative key (synthetic sample)",
+        "status": "supplied",
+        "source": null,
         "notes": null
       },
-      "answer_key_status": "final",
+      "answer_key_status": "supplied",
       "explanation": null,
       "metadata": {
-        "question_type_basis": "source record",
         "classification_flags": [],
         "classification_evidence": {
           "matched_rules": [
@@ -469,18 +439,17 @@
         "answer": [
           "A"
         ],
-        "status": "final",
-        "source": "Illustrative key (synthetic sample)",
+        "status": "supplied",
+        "source": null,
         "notes": null
       },
-      "answer_key_status": "final",
+      "answer_key_status": "supplied",
       "explanation": {
         "correct_reasoning": "The swamp deer or barasingha is the state animal of Madhya Pradesh and Kanha is its best-known habitat.",
         "status": "unreviewed",
         "language": "en"
       },
       "metadata": {
-        "question_type_basis": "source record",
         "classification_flags": [
           "ambiguous_subtopic",
           "madhya_pradesh_specific"
@@ -549,7 +518,6 @@
       "answer_key_status": "missing",
       "explanation": null,
       "metadata": {
-        "question_type_basis": "inferred from the question shape (default for a single printed key)",
         "classification_dropped": {
           "subject": "General Studies",
           "topic": "Administration",
@@ -615,7 +583,6 @@
       "answer_key_status": "missing",
       "explanation": null,
       "metadata": {
-        "question_type_basis": "source record",
         "classification_flags": [
           "unclassified_no_rule_matched",
           "missing_answer_key"
@@ -673,11 +640,11 @@
         "answer": [
           "B"
         ],
-        "status": "unofficial",
-        "source": "Illustrative coaching key (synthetic sample)",
+        "status": "supplied",
+        "source": null,
         "notes": null
       },
-      "answer_key_status": "unofficial",
+      "answer_key_status": "supplied",
       "verified_answer": {
         "answer": [
           "A"
@@ -702,7 +669,6 @@
       },
       "explanation": null,
       "metadata": {
-        "question_type_basis": "source record",
         "classification_flags": [
           "madhya_pradesh_specific",
           "near_duplicate_candidate"
@@ -774,18 +740,17 @@
         "answer": [
           "B"
         ],
-        "status": "unofficial",
-        "source": "Illustrative coaching key (synthetic sample)",
+        "status": "supplied",
+        "source": null,
         "notes": null
       },
-      "answer_key_status": "unofficial",
+      "answer_key_status": "supplied",
       "explanation": {
         "correct_reasoning": "Reprinted from a second booklet of the same paper, which is why it duplicates question 9.",
         "status": "unreviewed",
         "language": "en"
       },
       "metadata": {
-        "question_type_basis": "source record",
         "classification_flags": [
           "madhya_pradesh_specific",
           "near_duplicate_candidate"
@@ -839,6 +804,7 @@
       "General Aptitude"
     ],
     "rule_count": 396,
+    "reviewed_labels_applied": 0,
     "ai_labels_applied": 0,
     "low_confidence_threshold": 0.6
   }

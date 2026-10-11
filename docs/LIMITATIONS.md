@@ -4,11 +4,21 @@ This is the honest list, written to be read before trusting any screen.
 
 ## Scope and content
 
-* **No real examination content ships with this app.** The bundled demonstration bank is synthetic filler, badged `demonstration` everywhere it appears; the sample intake file in `demo/` is filler too. Everything meaningful comes from a bank you import, and its accuracy is your responsibility.
+* **What ships is transcribed, not official.** The repository bundles a classified MPPSC Prelims Paper I bank for 2019–2024 (571 questions, 6 papers), and it is loaded automatically — see the section below for exactly what it does and does not claim. The demonstration bank and the `demo/` sample intake file are synthetic filler, badged `demonstration` everywhere they appear. Anything else meaningful comes from a bank you import, and its accuracy is your responsibility.
 * **No syllabus is built in.** The planner mirrors whatever structure you import or create. "Suggest from question bank" copies the subjects and topics your own data already has — it is not an official syllabus and does not claim to be.
 * **No AI or model runs inside the app.** Explanations, keys and classifications are imported data. The app displays them exactly as supplied and labels missing/unreviewed ones; it never generates or "improves" them.
 * **No examination predictions.** Topic frequency, priorities and smart-practice allocation describe *your stored bank and your recorded answers*. They are study aids. Nothing here estimates a future paper's content or your result.
 * **No guarantee of retention.** The revision schedule is a transparent heuristic (outcome + confidence + answer time → interval). It cannot promise that anything is remembered.
+
+## The bundled MPPSC bank (2019–2024)
+
+* **571 questions across six papers** (`MPPSC-2019-P1` … `MPPSC-2024-P1`), subject and topic on all 571, subtopic on 553. It is loaded from the repository on first boot; no import step is needed.
+* **The answer keys are the source's printed keys, unverified.** 563 questions carry one, 8 carry none (stored `missing`, excluded from scoring, never guessed). The app never describes a stored key as official; a key *you* verify is stored separately and the policy for using it is yours to choose.
+* **Two question blocks of the 573 the text contained are missing** and could not be recovered from the repository: `MPPSC-2021-081` (a two-column match-list whose item block was destroyed by the extraction) and `MPPSC-2024-039` (a district–product match whose option block was interleaved). 27 numbering gaps remain. No question was invented to fill any of them — `docs/PYQ_AUDIT.md` §4–5 explains each case.
+* **Classification is honest about its source.** 327 questions are labelled by the deterministic rule engine, 244 by a person who read the question, options, printed answer and explanation (their reasons are committed in `data/pyq/reviewed-labels.jsonl`). **No AI provider was available or used**, so nothing is labelled `pipeline-ai`. One question stays below the review confidence threshold and is listed for review.
+* **Explanations are the source's prose, unreviewed** — displayed as stored, never generated, and labelled `unreviewed` (564) or `missing` (7).
+* **The marking scheme is applied automatically** (+2, no negative marking, 200 marks, 120 minutes for 2019–2025). The 2026-onwards pattern is recorded but marked `reported`, never applied to these papers — see `docs/MARKING.md`.
+* **Removing it is safe.** Question Bank & Imports → *Remove bundled bank from this device* removes those questions and papers only; your own data is untouched and it can be reloaded at any time.
 
 ## Data and durability
 

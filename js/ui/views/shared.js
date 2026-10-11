@@ -138,7 +138,7 @@ export function configFields({ prefix = CONFIG_PREFIX, paper = null, defaultCoun
                 <option value="supplied" ${s.answerPolicy === 'supplied' ? 'selected' : ''}>${esc(ANSWER_POLICIES.supplied)}</option>
                 <option value="verified_only" ${s.answerPolicy === 'verified_only' ? 'selected' : ''}>${esc(ANSWER_POLICIES.verified_only)}</option>
               </select>
-              <span class="hint">The supplied key is never overwritten, whichever policy you choose.</span>
+              <span class="hint">The stored key is never overwritten, whichever policy you choose.</span>
             </label>
             <label class="field"><span class="label-text">If an answer is still unresolved (missing or disputed)</span>
               <select id="${prefix}Unresolved">

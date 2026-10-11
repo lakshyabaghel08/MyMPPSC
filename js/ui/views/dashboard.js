@@ -115,7 +115,7 @@ export default {
 
     const attention = [];
     if (missingKeys) attention.push(`${missingKeys} question(s) have no answer key at all — they are excluded from scoring rather than marked wrong.`);
-    if (disputed) attention.push(`${disputed} question(s) have a disputed or unverified answer key. The supplied key is preserved and the report shows which key was used.`);
+    if (disputed) attention.push(`${disputed} question(s) have a disputed answer key. The stored key is preserved and the report shows which key was used.`);
     if (bank.unclassified) attention.push(`${bank.unclassified} question(s) are not yet classified by subject/topic, so they cannot appear in topic-level analysis until you classify them.`);
     if (unresolvedExplanations) attention.push(`${unresolvedExplanations} question(s) have a missing or not-yet-reviewed explanation. Explanations are shown exactly as supplied — this app never writes one.`);
 

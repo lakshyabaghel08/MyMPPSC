@@ -59,12 +59,10 @@ function paperCard(paper, summary) {
             ${summary.declared !== null && summary.declared !== undefined ? badge(`source declares ${summary.declared}`, summary.complete ? '' : 'warn') : badge('source count not stated', 'warn')}
             ${paper.duration_minutes ? badge(`${paper.duration_minutes} min`) : badge('duration not stated', 'warn')}
             ${paper.total_marks ? badge(`${paper.total_marks} marks`) : badge('total marks not stated', 'warn')}
-            ${answerKeyBadge(paper.answer_key?.status)}
             ${flags.join(' ')}
           </div>
           <p class="tiny muted mt-2 mb-0">
-            ${summary.scoringKnown ? `Scoring: +${esc(fmtMarks(paper.scoring.marks_per_correct))} per correct${paper.scoring.negative_marking_enabled ? `, −${esc(fmtMarks(paper.scoring.negative_marks_per_incorrect))} per incorrect` : ', no negative marking'} ${paper.scoring.rules_source ? `· source: ${esc(paper.scoring.rules_source)}` : ''}` : 'Scoring rules are not known from the source.'}
-            ${paper.answer_key?.source ? ` · key source: ${esc(paper.answer_key.source)}` : ' · key source not recorded'}
+            ${summary.scoringKnown ? `Scoring: +${esc(fmtMarks(paper.scoring.marks_per_correct))} per correct${paper.scoring.negative_marking_enabled ? `, −${esc(fmtMarks(paper.scoring.negative_marks_per_incorrect))} per incorrect` : ', no negative marking'}${paper.scoring.negative_marking_enabled ? '' : ', 0 for unanswered'}` : 'Scoring rules are not yet known for this paper.'}
           </p>
         </div>
         <div class="row tight">
@@ -207,18 +205,17 @@ export default {
             ${incompletePaperNotice(summary)}
             ${scoringUnknownNotice(paper)}
             ${notice(
-              `Source files: ${(paper.source_files || []).map((f) => esc(f.path || 'unnamed')).join(', ') || 'not recorded'}<br />
-               Import validation: ${esc(paper.import_validation?.status || 'unknown')} ${paper.import_validation?.notes ? `— ${esc(paper.import_validation.notes)}` : ''}<br />
+              `Import validation: ${esc(paper.import_validation?.status || 'unknown')} ${paper.import_validation?.notes ? `— ${esc(paper.import_validation.notes)}` : ''}<br />
                Original order preserved: ${paper.original_order_preserved ? 'yes' : 'reconstructed at import (flagged)'}${paper.placeholder ? '<br />This is a placeholder paper created because the imported bank had no metadata for it.' : ''}`,
               'info',
             )}
             ${dataTable({
-              columns: [{ label: 'Q no.' }, { label: 'Subject' }, { label: 'Topic' }, { label: 'Key' }, { label: 'Explanation' }],
+              columns: [{ label: 'Q no.' }, { label: 'Subject' }, { label: 'Topic' }, { label: 'Answer key' }, { label: 'Explanation' }],
               rows: questions.slice(0, 60).map((q) => [
                 esc(String(q.question_number ?? '—')),
                 esc(q.subject || 'Unclassified'),
                 esc(q.topic || '—'),
-                answerKeyBadge(q.answerStatus),
+                answerKeyBadge(q.answerStatus) || '<span class="soft tiny">available</span>',
                 badge(q.explanationStatus || 'missing', q.explanationStatus === 'reviewed' || q.explanationStatus === 'approved' ? 'ok' : 'warn'),
               ]),
               className: 'compact',

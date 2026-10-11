@@ -68,9 +68,8 @@ export function buildTest({
       const m = meta.get(id);
       return m && !m.hasSuppliedAnswer && !m.hasVerifiedAnswer;
     }).length;
-    if (disputed) warnings.push(`${disputed} question(s) in this paper have a disputed answer key. The supplied key is preserved and the report shows which answer was used.`);
+    if (disputed) warnings.push(`${disputed} question(s) in this paper have a disputed answer key. The stored key is preserved and the report shows which answer was used.`);
     if (missingKeys) warnings.push(`${missingKeys} question(s) in this paper have no answer key entry. They are excluded from scoring rather than marked wrong.`);
-    if (paper.answer_key?.status && paper.answer_key.status !== 'final') warnings.push(`The answer key for this paper is "${paper.answer_key.status}", not final.`);
     if (questionIds.length && questionIds.some((id) => meta.get(id)?.demonstration)) warnings.push('This paper includes demonstration (synthetic) questions, which are clearly marked in the interface.');
   }
   if (!resolvedRules.rules) warnings.push('Scoring rules must be configured before this test can be scored.');
@@ -135,6 +134,9 @@ export function buildTest({
         source: resolvedRules.source,
         rules: resolvedRules.rules,
         rulesSourceNote: resolvedRules.rulesSourceNote,
+        schemeId: resolvedRules.schemeId || null,
+        schemeLabel: resolvedRules.schemeLabel || null,
+        qualifying: resolvedRules.qualifying || null,
         needsConfiguration: resolvedRules.needsConfiguration,
       },
       answer_policy: config.answerPolicy || settings.answerPolicy,

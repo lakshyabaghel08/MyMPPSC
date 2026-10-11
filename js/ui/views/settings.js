@@ -12,6 +12,7 @@ import * as db from '../../core/db.js';
 import { esc, badge, card, tile, dataTable, toast, openModal, confirmDialog, tabs, mountTabs, sourceChip } from '../components.js';
 import { fmtBytes, fmtDate, fmtRelative, readFileAsText, downloadJson, getLogRing, todayKey } from '../../core/util.js';
 import * as data from '../../services/data.js';
+import * as builtinBank from '../../services/builtin-bank.js';
 
 const viewState = { tab: 'general', restoreCandidate: null, restoreValidation: null };
 
@@ -39,6 +40,7 @@ export default {
     const report = await data.storageReport();
     const log = getLogRing().slice(-25).reverse();
     const lastBackup = data.lastBackupInfo();
+    const builtinInfo = await builtinBank.builtinBankInfo();
 
     const general = `
       ${card({
@@ -52,10 +54,10 @@ export default {
           <div class="field-row">
             ${selectField('setFeedback', 'Default feedback timing', { exam: 'Exam simulation (reveal after submission)', learning: 'Learning mode (reveal immediately)' }, s.feedbackMode)}
             ${selectField('setConfidence', 'Confidence marking', { off: 'Off', optional: 'Optional', required: 'Required' }, s.confidenceTracking, 'Stored separately from correctness. Correct-but-guessed answers return sooner in revision.')}
-            ${selectField('setPolicy', 'Answer policy', { verified_preferred: 'Use the verified answer when it exists', supplied: 'Always use the supplied key', verified_only: 'Only judge questions with a verified answer' }, s.answerPolicy, 'The supplied key is never overwritten.')}
+            ${selectField('setPolicy', 'Answer policy', { verified_preferred: 'Use the verified answer when it exists', supplied: 'Always use the stored answer key', verified_only: 'Only judge questions with a verified answer' }, s.answerPolicy, 'The stored key is never overwritten.')}
           </div>
           <div class="field-row">
-            ${selectField('setUnresolved', 'If an answer is missing or disputed', { supplied: 'Judge with the supplied key and flag it', verified: 'Only judge when independelty verified', exclude: 'Exclude from the score' }, s.scoringPolicyWhenUnresolved)}
+            ${selectField('setUnresolved', 'If an answer is missing or disputed', { supplied: 'Judge with the stored key and flag it', verified: 'Only judge when independelty verified', exclude: 'Exclude from the score' }, s.scoringPolicyWhenUnresolved)}
             ${selectField('setDailyTarget', 'Daily task target', { 1: '1 task', 2: '2 tasks', 3: '3 tasks', 4: '4 tasks', 5: '5 tasks' }, s.dailyTaskTarget)}
           </div>
           <div class="stack">
@@ -194,8 +196,10 @@ export default {
           <p class="small">These actions cannot be undone. Export a backup first.</p>
           <div class="row">
             <button class="btn" type="button" id="resetSettings">Reset all settings to defaults</button>
+            ${builtinInfo.loaded ? '<button class="btn" type="button" id="removeBuiltinBank">Remove the bundled MPPSC bank</button>' : ''}
             <button class="btn btn-danger" type="button" id="wipeData">Delete all local data</button>
-          </div>`,
+          </div>
+          <p class="tiny muted mb-0">${builtinInfo.loaded ? `The bundled bank holds ${builtinInfo.storedQuestions} question(s) loaded from the repository; removing it leaves your own questions, tests, attempts and revision history untouched, and it is loaded again on the next start while the file is unchanged.` : 'The bundled MPPSC bank is not loaded on this device.'}</p>`,
       })}`;
 
     return `
@@ -347,6 +351,20 @@ export default {
       if (!ok) return;
       await resetSettings();
       toast('Settings reset to defaults.', 'ok');
+      await ctx.refresh();
+    });
+
+    document.getElementById('removeBuiltinBank')?.addEventListener('click', async () => {
+      const ok = await confirmDialog({
+        title: 'Remove the bundled MPPSC bank from this device?',
+        message: 'The 2019–2024 questions and papers stored from the repository bank are removed from this browser. Your own imported questions, tests, attempts, bookmarks and revision history are untouched; the bank is loaded again the next time you start the app.',
+        confirmLabel: 'Remove from this device',
+        danger: true,
+      });
+      if (!ok) return;
+      const removed = await builtinBank.removeBuiltinBank();
+      await refreshQuestionIndex({ silent: true });
+      toast(`Removed ${removed.removedQuestions} question(s). The bundled bank will be loaded again on the next start.`, 'info');
       await ctx.refresh();
     });
 

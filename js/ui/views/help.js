@@ -25,7 +25,7 @@ export default {
 
   async render() {
     const journeys = [
-      ['1. Get a bank in', 'Question Bank & Imports → choose a JSON file. The file is validated and summarised <em>before</em> anything is written. Invalid records are rejected with reasons, never dropped silently. The bundled demonstration bank is synthetic and labelled everywhere.'],
+      ['1. Get a bank in', 'The bundled MPPSC 2019–2024 bank loads itself when the app starts, so there is nothing to import. Other banks: Question Bank & Imports → choose a JSON file, validated and summarised <em>before</em> anything is written, with invalid records rejected with reasons and never dropped silently. The demonstration bank is synthetic and labelled everywhere.'],
       ['2. Take a paper simulation', 'PYQ Test Centre → pick a paper → start. Questions run in the original order with the paper’s duration. The palette, timer, mark-for-review, autosave and resume all work while the tab is open or after a refresh.'],
       ['3. Read the report', 'Every submitted test produces a report: score from the stored rules, outcome counts, per-question review with filters, weak areas, time per question, confidence cross-check and the exact key used for each answer.'],
       ['4. Work the mistakes', 'The Mistake Book collects wrong answers, skips, flagged questions, repeated mistakes and correct-but-guessed answers. Each entry shows the attempt history; resolving keeps the history.'],
@@ -50,7 +50,7 @@ export default {
       'No AI or model runs inside the app. Explanations and classifications are imported data that the app displays, labels and lets you correct — it never generates them.',
       'No invented questions and no invented content to “complete” an incomplete paper. Missing questions stay missing and are labelled as such.',
       'No exam-prediction claims, no “expected score” projections, and no guarantee that revision makes anything stick.',
-      'No bundled MPPSC syllabus, and no bundled genuine previous-year questions: the demonstration bank is synthetic and is badged as such.',
+      'No bundled MPPSC syllabus, and no claim to official content: the bundled 2019–2024 bank is transcribed previous-year material whose stored keys are unverified printed keys, and the demonstration bank is synthetic and badged as such.',
       'No silent data changes: imports, answer-key edits, classification corrections and queue changes are all recorded and inspectable.',
     ];
 
@@ -92,7 +92,7 @@ export default {
                 <li><strong>Supplied key</strong> — what the source said. It is never overwritten.</li>
                 <li><strong>Verified answer</strong> — an additional record you can add with evidence.</li>
                 <li><strong>Dispute flag</strong> — marks a key as contested; the report states which key judged each answer.</li>
-                <li><strong>Policy</strong> — you choose in Settings whether scoring prefers the verified answer, uses the supplied key, or only judges verified questions.</li>
+                <li><strong>Policy</strong> — you choose in Settings whether scoring prefers the verified answer, uses the stored key, or only judges verified questions.</li>
               </ul>
               <p class="small">If a paper’s scoring rules are unknown, the app refuses to score until you configure them, and it says so on the paper card and again at submission.</p>`,
           })}

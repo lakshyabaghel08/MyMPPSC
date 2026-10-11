@@ -1,5 +1,11 @@
 # Implementation report
 
+> **Point-in-time document.** The numbers below describe the revision this report
+> was written for (107 tests, 729 checks, cache `v1.1.0-5`). They have since
+> grown — see `README.md` and `docs/TESTING.md` for the current suite, and
+> `docs/PYQ_AUDIT.md` for the bundled 2019–2024 bank. The feature narrative and
+> the caveats in this report still apply.
+
 App: **MyMPPSC** — a local-first MPPSC Prelims preparation app.
 Version: 1.0.0 · Bank schema: 1.0.0 · Backup format: `mymppsc-backup` 1.0.0
 Build: plain HTML/CSS/ES modules, no bundler, no framework, no runtime dependency.

@@ -45,17 +45,22 @@ test('the app accepts the real bank and imports all 571 questions', { skip: !hav
   assert.equal(m.appState.questionIndex.size, 571, 'the index holds every question');
 
   const history = await m.importer.importHistory();
-  assert.equal(history[0].bank_id, 'mppsc-solved-pyq-book-2019-2024');
+  assert.equal(history[0].bank_id, 'mppsc-prelims-paper1-2019-2024');
   assert.equal(history[0].is_demonstration, false);
 });
 
 test('every source record arrives, with its id, year and paper intact', { skip: !haveBank }, async () => {
   const source = await readJson('pyq/source/MPPSC_PYQ_intake.json');
   assert.equal(source.questions.length, 571);
+  // The app-facing bank renames the extraction's paper ids (`…-GS1-BOOK` →
+  // `…-P1`); question ids never change, and the mapping is one-to-one.
+  const cleanPaperId = (id) => String(id).replace(/-GS(II|I|2|1)-BOOK$/i, (_m, code) => `-P${/^(II|2)$/i.test(String(code)) ? '2' : '1'}`);
+  const paperIds = new Set(source.questions.map((q) => q.paper_id));
+  assert.equal(new Set([...paperIds].map(cleanPaperId)).size, paperIds.size, 'paper ids stay distinct');
   for (const q of source.questions) {
     const meta = m.appState.questionIndex.get(q.id);
     assert.ok(meta, `${q.id} is missing from the imported bank`);
-    assert.equal(meta.paper_id, q.paper_id);
+    assert.equal(meta.paper_id, cleanPaperId(q.paper_id));
     assert.equal(meta.question_number, q.question_number);
     const stored = await m.db.get(m.constants.STORES.QUESTIONS, q.id);
     assert.equal(stored.language_variants.en.question_text, q.en.question_text, `${q.id}: question text must be verbatim`);
@@ -81,34 +86,54 @@ test('no answer was invented for the eight questions that have no key', { skip: 
   }
 });
 
-test('printed answers stay unofficial and none is marked verified', { skip: !haveBank }, async () => {
+test('answers are stored without provenance and none is marked verified', { skip: !haveBank }, async () => {
   const bank = await readJson('pyq/mymppsc-pyq-bank.json');
-  const unofficial = bank.questions.filter((q) => q.supplied_answer?.status === 'unofficial');
-  assert.equal(unofficial.length, 563);
+  const withKey = bank.questions.filter((q) => q.supplied_answer?.answer?.length);
+  assert.equal(withKey.length, 563);
+  // No source claim survives into the app-facing bank: no provenance block, no
+  // per-question source references, no key-issue labels ('unofficial'/'final').
+  assert.equal('provenance' in bank, false, 'the bank carries no provenance block');
+  assert.equal(bank.questions.filter((q) => q.source_reference).length, 0, 'no question carries a source reference');
+  assert.equal(bank.questions.filter((q) => q.supplied_answer?.source).length, 0, 'no stored answer names a source');
+  const statuses = new Set(bank.questions.map((q) => q.answer_key_status));
+  assert.deepEqual([...statuses].sort(), ['missing', 'supplied']);
   assert.equal(bank.questions.filter((q) => q.verified_answer?.answer?.length).length, 0);
-  assert.equal(bank.provenance.verified, false, 'the bank still says the source is unverified');
-  assert.equal(bank.provenance.kind, 'coaching_material');
   const meta = m.appState.questionIndex.get('MPPSC-2019-001');
-  assert.equal(meta.answerStatus, 'unofficial');
+  assert.equal(meta.answerStatus, 'supplied');
   assert.equal(meta.hasSuppliedAnswer, true);
 });
 
-test('classification survived the import, and unclassified stayed unclassified', { skip: !haveBank }, async () => {
-  const classified = [...m.appState.questionIndex.values()].filter((q) => q.subject);
-  assert.equal(classified.length, 366, 'the rule engine placed 366 of 571');
-  const unclassified = [...m.appState.questionIndex.values()].filter((q) => !q.subject);
-  assert.equal(unclassified.length, 205);
-  for (const q of unclassified) assert.equal(q.unclassified, true, `${q.id} is flagged unclassified, not silently bucketed`);
+test('classification survived the import, and every label is a real taxonomy node', { skip: !haveBank }, async () => {
+  const index = [...m.appState.questionIndex.values()];
+  const classified = index.filter((q) => q.subject);
+  assert.equal(classified.length, 571, 'every question carries a subject after the pipeline run');
+  assert.equal(index.filter((q) => !q.subject).length, 0);
+  assert.equal(index.filter((q) => q.topic).length, 571, 'and every one carries a topic');
+  assert.equal(index.filter((q) => !q.subtopic).length, 18, 'eighteen questions have no subtopic; none was invented');
   assert.equal(m.appState.questionIndex.get('MPPSC-2019-001').subject, 'Polity');
+
+  // Where the labels came from is recorded on the bank itself. The rule engine
+  // placed some questions and a human review pass decided the rest; no AI
+  // provider was configured, so nothing may claim to be an AI classification.
+  const bank = await readJson('pyq/mymppsc-pyq-bank.json');
+  const bySource = {};
+  for (const q of bank.questions) bySource[q.classification_source] = (bySource[q.classification_source] || 0) + 1;
+  assert.deepEqual(Object.keys(bySource).sort(), ['pipeline-rules', 'reviewed']);
+  assert.ok(bySource.reviewed > 0 && bySource['pipeline-rules'] > 0);
+  assert.equal(bank.classification_meta.ai_labels_applied, 0, 'the pipeline reports that no AI labels were applied');
+  assert.equal(bank.classification_meta.reviewed_labels_applied, bySource.reviewed);
+
   // Every assigned label is a real taxonomy node.
   const taxonomy = await readJson('taxonomy/mppsc-taxonomy.json');
   const subjects = new Map(taxonomy.subjects.map((s) => [s.subject, new Map(s.topics.map((t) => [t.topic, t.subtopics]))]));
   for (const q of classified) {
     assert.ok(subjects.has(q.subject), `${q.subject} is not a taxonomy subject`);
-    if (q.topic) {
-      assert.ok(subjects.get(q.subject).has(q.topic), `${q.subject} / ${q.topic} is not in the taxonomy`);
-      if (q.subtopic) assert.ok(subjects.get(q.subject).get(q.topic).includes(q.subtopic));
-    }
+    assert.ok(q.topic, `${q.id} has no topic`);
+    assert.ok(subjects.get(q.subject).has(q.topic), `${q.subject} / ${q.topic} is not in the taxonomy`);
+    if (q.subtopic) assert.ok(subjects.get(q.subject).get(q.topic).includes(q.subtopic));
+  }
+  for (const q of bank.questions) {
+    if (q.subtopic) assert.ok(subjects.get(q.subject)?.get(q.topic)?.includes(q.subtopic), `${q.id}: ${q.subtopic} is not in the taxonomy`);
   }
 });
 

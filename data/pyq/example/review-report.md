@@ -1,6 +1,6 @@
 # PYQ bank review report
 
-Generated 2026-10-11T20:26:28.750Z.
+Generated 2026-10-11T22:21:36.053Z.
 
 ## Summary
 
@@ -15,6 +15,12 @@ Generated 2026-10-11T20:26:28.750Z.
 | Identical-content groups | 0 |
 | Ambiguous classifications | 2 |
 | Low-confidence classifications | 0 |
+| Reviewed classification decisions applied / rejected | 0 / 0 |
+| Extraction artefacts repaired (escaped line breaks) | 0 |
+| Source-provenance fields removed before the bank was built | 11 |
+| Literal \n escapes repaired | 0 |
+| Papers given an automatic MPPSC scheme | 0 |
+| Papers with no verified scheme (app asks for rules) | 0 |
 | AI labels applied / preserved / rejected / malformed | 0 / 0 / 0 / 0 |
 
 ## Missing answer keys
@@ -47,6 +53,61 @@ Either the evidence was too weak to pick a subject, or two subjects scored too c
 
 None.
 
+## Extraction repairs
+
+Repairs applied to the extraction before the bank was built. No wording was invented: escape artefacts were converted back to the characters they represent, and source provenance was moved out of the app-facing data into this report.
+
+| Repair | Value |
+| --- | --- |
+| Escaped line breaks converted to real newlines | 0 in 0 string(s) |
+| Question source references moved out of the bank | 1 |
+| Parser metadata `question_type_basis` removed | 10 |
+| Answer source labels removed | 8 |
+| Paper names normalised | 1 |
+| Paper answer-key source blocks removed | 1 |
+| Paper source-file lists removed | 1 |
+
+The bank-level provenance block that was removed is recorded in the sanitisation section below.
+
+Question text, option text, printed answers and explanation wording are otherwise reproduced exactly as the extraction captured them.
+
+## App-facing bank sanitisation
+
+The app-facing bank carries no source provenance. Everything listed here was removed from the file the app loads and is kept in this review report instead.
+
+| What | Value |
+| --- | --- |
+| Bank id | `PYQ-PIPELINE-SAMPLE` → `PYQ-PIPELINE-SAMPLE` |
+| Bank name | PYQ pipeline sample (synthetic — not a genuine MPPSC paper) |
+| Question `source_reference` removed by the repair pass | 1 |
+| Question `source_reference` still present when the sanitiser ran | 0 |
+| `supplied_answer.source` still present when the sanitiser ran | 0 |
+| Paper-level answer-key blocks removed | 1 |
+| Paper source-file lists removed | 0 |
+| Parser metadata fields removed (none) | 0 |
+| Review bookkeeping fields removed from `metadata` | 0 |
+| Answer keys re-labelled `supplied` | 8 |
+| Reviewed classification decisions kept as classification | 0 |
+| Questions kept without a key | 2 |
+| Literal \n escapes repaired by the sanitiser (the repair pass does the rest) | 0 in 0 string(s) |
+
+The bank-level provenance block that was removed (kept here as the audit record):
+
+```json
+{
+  "kind": "unspecified",
+  "verified": false,
+  "notes": "The intake file did not describe provenance. Describe where these questions came from and whether the key has been checked before relying on them.",
+  "sources": []
+}
+```
+
+### Automatic marking scheme written into each paper
+
+| Paper | Year | Scheme | Correct | Incorrect | Unanswered | Total | Duration | Evidence confidence |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `SAMPLE-2023-GS1` | 2023 | the paper stated its own rules — left untouched | +2 | — | — | — | — | source |
+
 ## Content integrity
 
 | Check | Count |
@@ -74,7 +135,7 @@ None.
 
 ## Preservation statement
 
-No source record was deleted, rewritten or merged to produce this bank. Question text, options, printed answers, explanations, years, papers and source references are carried over verbatim; classification fields and review metadata are the only additions. Where two records look alike both are kept and flagged here instead of being merged.
+No source record was deleted, rewritten or merged to produce this bank. Question text, options, stored answers and explanations are carried over verbatim; only classification fields, the automatic marking scheme and review metadata were added. Source provenance (book names, page references, answer sources, key-issue labels) is deliberately not part of the app-facing bank — it is recorded in the sanitisation section of this report instead. Where two records look alike both are kept and flagged here instead of being merged.
 
 Review flags attached to records: **7**.
 

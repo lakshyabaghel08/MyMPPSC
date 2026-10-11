@@ -10,6 +10,10 @@ That separation is deliberate and enforced:
 
 * the app's `js/` tree contains no question text (checked by `npm run check`);
 * the bundled demonstration bank is flagged synthetic and badged in the UI;
+* the bundled MPPSC 2019–2024 bank carries **no** source provenance (no book or
+  provider names, no page references, no "official"/"unofficial" key labels) —
+  it is fetched from the repository at boot and its audit detail lives in
+  `docs/PYQ_AUDIT.md`;
 * a paper whose rules or keys are unknown stays labelled as such rather than being filled in.
 
 This document describes the workflow between your pipeline and the app.
@@ -20,7 +24,7 @@ See [`docs/SCHEMA.md`](SCHEMA.md) for every field. The important habits:
 
 1. **One id per question**, shared by all language variants of that question.
 2. **Report what you know, and say what you do not.** `original_question_count`, `duration_minutes`, `scoring.rules_known`, `answer_key_status` — a `null` or `false` is far more useful than a plausible guess, because the app surfaces exactly those gaps to the reader.
-3. **Keep provenance.** `source_files`, `source_reference` and `provenance` end up in the import record and help you check a question later.
+3. **Keep provenance in your working files.** `source_files`, `source_reference` and `provenance` end up in the import record and help you check a question later. (The bundled bank strips them, because the app must never show where a transcription came from — see `docs/PYQ_AUDIT.md`.)
 4. **Never overwrite a key you are unsure about.** Put the published key in `supplied_answer`; put your own checked answer in `verified_answer` with `evidence`. Disagreement between the two is displayed, not hidden.
 5. **Set `is_demonstration: true`** for anything synthetic, including fixtures.
 

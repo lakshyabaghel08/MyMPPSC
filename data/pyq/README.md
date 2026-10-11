@@ -1,8 +1,13 @@
 # data/pyq/
 
 Output of the PYQ classification pipeline
-([`docs/PYQ_PIPELINE.md`](../../docs/PYQ_PIPELINE.md)). Nothing in this folder is
-read by the app at runtime — these are pipeline artefacts, produced with:
+([`docs/PYQ_PIPELINE.md`](../../docs/PYQ_PIPELINE.md)).
+
+**One file here is read by the app at runtime**: `mymppsc-pyq-bank.json` is the
+bundled bank, fetched and imported by `js/services/builtin-bank.js` on first boot
+and precached by the service worker. Everything else in this folder — the source
+extraction, the review labels and the reports — is a build-time artefact. The
+whole set is produced with:
 
 ```bash
 node tools/classify-bank.mjs --in <source.json> --out data/pyq/mymppsc-pyq-bank.json --reports data/pyq
@@ -16,7 +21,8 @@ node tools/classify-bank.mjs --in <source.json> --out data/pyq/mymppsc-pyq-bank.
 | `mymppsc-pyq-bank.json` | The **output**: the classified bank you import into the app. Currently the real 2019–2024 bank — 571 questions across 6 papers, built from `source/MPPSC_PYQ_intake.json`. |
 | `classification-report.md` / `.json` | Coverage by subject, topic and subtopic, with counts and percentages. |
 | `review-report.md` / `.json` | Everything still needing a human: missing keys, suspected duplicates, ambiguous and low-confidence classifications, integrity checks. |
-| `ai-queue.jsonl` | Questions the rule engine could not settle — the input for the optional, resumable AI step. |
+| `reviewed-labels.jsonl` | The **human review decisions**: one JSONL line per question the rule engine could not settle, with the label, the confidence and the reason. Committed, so every human decision is reproducible; merged with `--apply-review`. |
+| `ai-queue.jsonl` | Questions the rule engine could not settle and no reviewer has classified — the input for the optional, resumable AI step. |
 | `ai-queue.taxonomy.json` | The closed vocabulary (every valid subject → topic → subtopic combination) those AI requests must choose from. Written next to the queue; shared by every queue item. |
 | `ai-labels.jsonl` | Provider labels for that queue, merged back with `--apply-ai`. Never contains an API key. |
 | `example/` | A committed worked example built from `demo/pyq-intake-sample.json` (synthetic, `is_demonstration: true`) so the report format can be read without running the pipeline. |
@@ -25,3 +31,8 @@ node tools/classify-bank.mjs --in <source.json> --out data/pyq/mymppsc-pyq-bank.
 a bank that is not version-controlled cannot be re-validated or audited later.
 Do not commit anything that holds a credential — the pipeline reads provider
 configuration from the environment only.
+
+The audit of what the bundled bank still cannot resolve (missing keys, the two
+lost question blocks, numbering gaps, confidence) is
+[`docs/PYQ_AUDIT.md`](../../docs/PYQ_AUDIT.md); the marking schemes are
+[`docs/MARKING.md`](../../docs/MARKING.md).
