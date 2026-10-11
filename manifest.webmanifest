@@ -1,0 +1,42 @@
+{
+  "name": "MyMPPSC — MPPSC Prelims Preparation",
+  "short_name": "MyMPPSC",
+  "description": "Local-first MPPSC State Service Preliminary Examination preparation: previous-year paper simulations, topic and smart practice, mistake book, adaptive revision, analytics and study planner. All data stays in your browser; no account and no server.",
+  "lang": "en",
+  "dir": "ltr",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui", "browser"],
+  "orientation": "any",
+  "background_color": "#f5f6f9",
+  "theme_color": "#1f2a44",
+  "categories": ["education", "productivity"],
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-maskable-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

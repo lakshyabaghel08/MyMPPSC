@@ -1,0 +1,279 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://mymppsc.local/schema/question-bank.schema.json",
+  "title": "MyMPPSC Question Bank",
+  "description": "Versioned interchange format for MPPSC prelims question banks produced by the external preparation pipeline and imported by the MyMPPSC study app. Every field that is not known MUST be present and explicitly null/empty (e.g. answer_key_status: 'missing') rather than omitted or invented.",
+  "type": "object",
+  "required": ["schema_version", "bank_id", "papers", "questions"],
+  "additionalProperties": true,
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "description": "Version of THIS schema. The app supports 1.x (major version must match)."
+    },
+    "bank_id": { "type": "string", "minLength": 1, "description": "Stable identifier for the bank/package." },
+    "bank_name": { "type": "string" },
+    "generated_at": { "type": ["string", "null"], "description": "ISO 8601 timestamp of pipeline generation." },
+    "generator": {
+      "type": ["object", "null"],
+      "properties": {
+        "name": { "type": ["string", "null"] },
+        "version": { "type": ["string", "null"] },
+        "notes": { "type": ["string", "null"] }
+      }
+    },
+    "is_demonstration": {
+      "type": "boolean",
+      "default": false,
+      "description": "true when the bank contains synthetic/demonstration content that must never be presented as a genuine previous-year paper."
+    },
+    "provenance": { "$ref": "#/definitions/provenance" },
+    "default_language": { "enum": ["en", "hi", null] },
+    "csv_equivalent": { "type": ["string", "null"] },
+    "papers": { "type": "array", "items": { "$ref": "#/definitions/paper" } },
+    "questions": { "type": "array", "items": { "$ref": "#/definitions/question" } }
+  },
+  "definitions": {
+    "provenance": {
+      "type": "object",
+      "description": "Where the records came from. Used to label demonstration data and to keep audit trails.",
+      "properties": {
+        "kind": { "enum": ["official_paper", "unofficial_recall", "coaching_material", "synthetic_demo", "mixed", null] },
+        "verified": { "type": ["boolean", "null"] },
+        "notes": { "type": ["string", "null"] },
+        "sources": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "description": { "type": ["string", "null"] },
+              "url": { "type": ["string", "null"] },
+              "retrieved_at": { "type": ["string", "null"] }
+            }
+          }
+        }
+      }
+    },
+    "answerKeyInfo": {
+      "type": "object",
+      "required": ["source"],
+      "properties": {
+        "source": { "type": ["string", "null"], "description": "Who published the key, e.g. 'MPPSC official answer key'. null means unknown." },
+        "status": {
+          "enum": ["provisional", "final", "unofficial", "disputed", "missing", "unknown", null],
+          "description": "Integrity status of the supplied key. Never upgraded by the app."
+        },
+        "published_at": { "type": ["string", "null"] },
+        "notes": { "type": ["string", "null"] }
+      }
+    },
+    "scoring": {
+      "type": "object",
+      "description": "Original scoring rules of the paper. Set rules_known=false when the source does not state them; the app then refuses to score a simulation until the user configures rules.",
+      "required": ["rules_known"],
+      "properties": {
+        "rules_known": { "type": "boolean" },
+        "marks_per_correct": { "type": ["number", "null"] },
+        "negative_marks_per_incorrect": { "type": ["number", "null"] },
+        "negative_marking_enabled": { "type": ["boolean", "null"] },
+        "marks_for_unanswered": { "type": ["number", "null"] },
+        "rules_source": { "type": ["string", "null"], "description": "Citation for the scoring rule. null when unknown." },
+        "notes": { "type": ["string", "null"] }
+      }
+    },
+    "paper": {
+      "type": "object",
+      "required": ["paper_id", "exam", "year", "original_question_count"],
+      "properties": {
+        "paper_id": { "type": "string", "minLength": 1 },
+        "exam": { "type": "string" },
+        "year": { "type": ["integer", "string", "null"] },
+        "paper_name": { "type": ["string", "null"] },
+        "paper_code": { "type": ["string", "null"] },
+        "set_code": { "type": ["string", "null"], "description": "Original paper set (A/B/C/D). null when the paper has no sets." },
+        "language": { "enum": ["en", "hi", "bilingual", null] },
+        "original_question_count": { "type": ["integer", "null"] },
+        "duration_minutes": { "type": ["integer", "null"] },
+        "total_marks": { "type": ["number", "null"] },
+        "scoring": { "$ref": "#/definitions/scoring" },
+        "question_order": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Question ids in the ORIGINAL paper order. Required for faithful full-paper simulation."
+        },
+        "answer_key": { "$ref": "#/definitions/answerKeyInfo" },
+        "source_files": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "path": { "type": ["string", "null"] },
+              "pages": { "type": ["string", "null"] },
+              "sha256": { "type": ["string", "null"] }
+            }
+          }
+        },
+        "import_validation": {
+          "type": ["object", "null"],
+          "properties": {
+            "status": { "enum": ["valid", "valid_with_warnings", "invalid", "unknown", null] },
+            "checked_at": { "type": ["string", "null"] },
+            "notes": { "type": ["string", "null"] }
+          }
+        },
+        "is_demonstration": { "type": "boolean", "default": false },
+        "metadata": { "type": "object" }
+      }
+    },
+    "languageVariant": {
+      "type": "object",
+      "required": ["question_text", "options"],
+      "properties": {
+        "question_text": { "type": "string", "minLength": 1 },
+        "instructions": { "type": ["string", "null"] },
+        "options": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "object",
+            "required": ["key", "text"],
+            "properties": {
+              "key": { "type": "string", "description": "Option key exactly as printed (A/B/C/D or 1/2/3/4)." },
+              "text": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "explanation": {
+      "type": ["object", "null"],
+      "description": "English explanation produced and reviewed by the external pipeline. The app never generates explanations and never presents unreviewed ones as authoritative.",
+      "properties": {
+        "language": { "enum": ["en", null] },
+        "status": { "enum": ["missing", "generated", "reviewed", "approved", null] },
+        "correct_reasoning": { "type": ["string", "null"] },
+        "option_explanations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "key": { "type": ["string", "null"] },
+              "text": { "type": ["string", "null"] },
+              "is_correct": { "type": ["boolean", "null"] }
+            }
+          }
+        },
+        "key_concepts": { "type": "array", "items": { "type": "string" } },
+        "revision_takeaways": { "type": "array", "items": { "type": "string" } },
+        "sources": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": { "type": ["string", "null"] },
+              "citation": { "type": ["string", "null"] },
+              "url": { "type": ["string", "null"] }
+            }
+          }
+        },
+        "generated_by": { "type": ["string", "null"] },
+        "reviewed_by": { "type": ["string", "null"] },
+        "generated_at": { "type": ["string", "null"] },
+        "reviewed_at": { "type": ["string", "null"] }
+      }
+    },
+    "question": {
+      "type": "object",
+      "required": ["id", "exam", "year", "paper_id", "question_number", "language_variants"],
+      "properties": {
+        "id": { "type": "string", "minLength": 3, "description": "Stable unique id, shared by all language variants of the same question." },
+        "exam": { "type": "string" },
+        "year": { "type": ["integer", "string", "null"] },
+        "paper_id": { "type": "string" },
+        "set_code": { "type": ["string", "null"] },
+        "question_number": { "type": ["integer", "string", "null"] },
+        "question_type": {
+          "enum": ["single_correct", "multiple_correct", "statement_based", "matching", "assertion_reason", "other", null]
+        },
+        "language_variants": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": { "$ref": "#/definitions/languageVariant" },
+          "description": "Keys are BCP-47-ish language tags: 'en' and 'hi'. Both entries describe ONE question and must share this record's id."
+        },
+        "subject": { "type": ["string", "null"], "description": "Pipeline-assigned classification; null = unclassified, never invented by the app." },
+        "topic": { "type": ["string", "null"] },
+        "subtopic": { "type": ["string", "null"] },
+        "classification_confidence": { "type": ["number", "null"], "minimum": 0, "maximum": 1 },
+        "classification_source": { "type": ["string", "null"] },
+        "supplied_answer": {
+          "type": ["object", "null"],
+          "required": ["answer"],
+          "properties": {
+            "answer": {
+              "type": ["array", "null"],
+              "items": { "type": "string" },
+              "description": "Option key(s). null/[] = key missing. Never guessed by the app."
+            },
+            "status": { "enum": ["provisional", "final", "unofficial", "disputed", "missing", "unknown", null] },
+            "source": { "type": ["string", "null"] },
+            "notes": { "type": ["string", "null"] }
+          }
+        },
+        "answer_key_status": {
+          "enum": ["provisional", "final", "unofficial", "disputed", "missing", "unknown", null],
+          "description": "Mirror of supplied_answer.status, kept as a top-level field for pipeline convenience."
+        },
+        "verified_answer": {
+          "type": ["object", "null"],
+          "description": "Independently verified answer. NEVER copied from the supplied key automatically.",
+          "properties": {
+            "answer": { "type": ["array", "null"], "items": { "type": "string" } },
+            "verified_by": { "type": ["string", "null"] },
+            "verified_at": { "type": ["string", "null"] },
+            "evidence": { "$ref": "#/definitions/evidence" },
+            "status": { "enum": ["verified", "partially_verified", "unresolved", null] }
+          }
+        },
+        "verification_evidence": { "$ref": "#/definitions/evidence" },
+        "dispute": {
+          "type": ["object", "null"],
+          "properties": {
+            "is_disputed": { "type": ["boolean", "null"] },
+            "status": { "enum": ["open", "resolved", "unresolved", null] },
+            "reason": { "type": ["string", "null"] },
+            "raised_by": { "type": ["string", "null"] }
+          }
+        },
+        "explanation": { "$ref": "#/definitions/explanation" },
+        "explanation_status": { "enum": ["missing", "generated", "reviewed", "approved", null] },
+        "source_reference": {
+          "type": ["object", "null"],
+          "properties": {
+            "file": { "type": ["string", "null"] },
+            "page": { "type": ["integer", "string", "null"] },
+            "question_location": { "type": ["string", "null"] },
+            "note": { "type": ["string", "null"] }
+          }
+        },
+        "validation_status": { "enum": ["valid", "valid_with_warnings", "invalid", "unknown", null] },
+        "validation_notes": { "type": "array", "items": { "type": "string" } },
+        "is_demonstration": { "type": "boolean", "default": false },
+        "metadata": { "type": "object" }
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": { "type": ["string", "null"] },
+          "citation": { "type": ["string", "null"] },
+          "url": { "type": ["string", "null"] },
+          "note": { "type": ["string", "null"] }
+        }
+      }
+    }
+  }
+}

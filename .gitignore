@@ -1,0 +1,9 @@
+# Dependencies are needed only to run the automated tests in Node.
+node_modules/
+package-lock.json
+
+# Scratch / editor files
+*.log
+.DS_Store
+.idea/
+.vscode/
