@@ -6,7 +6,8 @@
  * user's own data. What it proves is that the bank produced by
  * tools/classify-bank.mjs from data/pyq/source/MPPSC_PYQ_intake.json is
  * accepted by the app, arrives complete, and keeps the source's answer
- * semantics — including the eight questions that have no key at all.
+ * semantics — including the eight questions the source left without a key, which a
+ * committed review file resolves and nothing else may.
  *
  * If data/pyq/mymppsc-pyq-bank.json is absent the suite skips rather than
  * fails, so a fresh clone without the built bank still passes `npm test`.
@@ -16,6 +17,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { existsSync } from 'node:fs';
 import { bootApp, readJson, readText, dataPath, importDemoBank } from './helpers.mjs';
+import { parseAnswerReviews } from '../tools/classify/answer-review.mjs';
 
 const BANK_PATH = dataPath('pyq', 'mymppsc-pyq-bank.json');
 const INTAKE_PATH = dataPath('pyq', 'source', 'MPPSC_PYQ_intake.json');
@@ -57,6 +59,9 @@ test('every source record arrives, with its id, year and paper intact', { skip: 
   const cleanPaperId = (id) => String(id).replace(/-GS(II|I|2|1)-BOOK$/i, (_m, code) => `-P${/^(II|2)$/i.test(String(code)) ? '2' : '1'}`);
   const paperIds = new Set(source.questions.map((q) => q.paper_id));
   assert.equal(new Set([...paperIds].map(cleanPaperId)).size, paperIds.size, 'paper ids stay distinct');
+  // The committed review file is the one thing allowed to supply an answer the
+  // extraction did not print, so those ids are checked against it instead.
+  const resolved = new Set(parseAnswerReviews(await readText('pyq/reviewed-answers.jsonl')).resolutions.map((r) => r.id));
   for (const q of source.questions) {
     const meta = m.appState.questionIndex.get(q.id);
     assert.ok(meta, `${q.id} is missing from the imported bank`);
@@ -69,34 +74,48 @@ test('every source record arrives, with its id, year and paper intact', { skip: 
       (q.en.options || []).map((o) => [o.key, o.text]),
       `${q.id}: options must be verbatim`,
     );
+    if (resolved.has(q.id)) {
+      assert.equal(q.answer, undefined, `${q.id}: the extraction printed no key for it`);
+      continue;
+    }
     assert.deepEqual(stored.supplied?.answer ?? null, q.answer ?? null, `${q.id}: the printed key must not change`);
   }
 });
 
-test('no answer was invented for the eight questions that have no key', { skip: !haveBank }, async () => {
+test('the eight questions the source left keyless come from the committed review file', { skip: !haveBank }, async () => {
   const bank = await readJson('pyq/mymppsc-pyq-bank.json');
-  const keyless = bank.questions.filter((q) => !q.supplied_answer?.answer?.length);
-  assert.equal(keyless.length, 8, 'the source reports eight; the bank must still report eight');
-  for (const q of keyless) {
+  const review = parseAnswerReviews(await readText('pyq/reviewed-answers.jsonl'));
+  assert.equal(review.malformed.length, 0, 'the review file itself must parse cleanly');
+  assert.equal(review.resolutions.length, 8, 'it covers exactly the eight the source left keyless');
+
+  const byId = new Map(bank.questions.map((q) => [q.id, q]));
+  for (const resolution of review.resolutions) {
+    const q = byId.get(resolution.id);
+    assert.ok(q, `${resolution.id}: the review file names a question that is not in the bank`);
+    assert.deepEqual([...q.supplied_answer.answer].sort(), [...resolution.answer].sort(), `${q.id}: the bank carries the reviewed answer`);
+    assert.equal(q.answer_key_status, 'supplied', `${q.id}: labelled as supplied by review, never as a printed key`);
+    assert.ok(q.explanation, `${q.id}: the reasoning that goes with it is stored too`);
     const meta = m.appState.questionIndex.get(q.id);
-    assert.equal(meta.hasSuppliedAnswer, false, `${q.id}: still has no answer`);
-    assert.equal(meta.answerStatus, 'missing', `${q.id}: recorded as missing, not guessed`);
-    assert.equal(q.supplied_answer.status, 'missing');
-    assert.ok(!q.verified_answer?.answer?.length, `${q.id}: nothing was presented as a verified answer`);
+    assert.equal(meta.hasSuppliedAnswer, true, `${q.id}: the app can score it`);
+    assert.ok(!q.verified_answer?.answer?.length, `${q.id}: it is not presented as a verified answer`);
   }
+
+  // Nothing may quietly invent a key either: a question outside the review file
+  // keeps whatever the source printed, and the source printed none of these.
+  assert.equal(bank.questions.filter((x) => !x.supplied_answer?.answer?.length).length, 0, 'every question in the shipped bank is keyed');
 });
 
 test('answers are stored without provenance and none is marked verified', { skip: !haveBank }, async () => {
   const bank = await readJson('pyq/mymppsc-pyq-bank.json');
   const withKey = bank.questions.filter((q) => q.supplied_answer?.answer?.length);
-  assert.equal(withKey.length, 563);
+  assert.equal(withKey.length, 571, 'every question carries a key once the review file is applied');
   // No source claim survives into the app-facing bank: no provenance block, no
   // per-question source references, no key-issue labels ('unofficial'/'final').
   assert.equal('provenance' in bank, false, 'the bank carries no provenance block');
   assert.equal(bank.questions.filter((q) => q.source_reference).length, 0, 'no question carries a source reference');
   assert.equal(bank.questions.filter((q) => q.supplied_answer?.source).length, 0, 'no stored answer names a source');
   const statuses = new Set(bank.questions.map((q) => q.answer_key_status));
-  assert.deepEqual([...statuses].sort(), ['missing', 'supplied']);
+  assert.deepEqual([...statuses].sort(), ['supplied'], 'the review pass resolved the last missing keys');
   assert.equal(bank.questions.filter((q) => q.verified_answer?.answer?.length).length, 0);
   const meta = m.appState.questionIndex.get('MPPSC-2019-001');
   assert.equal(meta.answerStatus, 'supplied');
@@ -112,16 +131,18 @@ test('classification survived the import, and every label is a real taxonomy nod
   assert.equal(index.filter((q) => !q.subtopic).length, 18, 'eighteen questions have no subtopic; none was invented');
   assert.equal(m.appState.questionIndex.get('MPPSC-2019-001').subject, 'Polity');
 
-  // Where the labels came from is recorded on the bank itself. The rule engine
-  // placed some questions and a human review pass decided the rest; no AI
-  // provider was configured, so nothing may claim to be an AI classification.
+  // Where the labels came from is a fact about the build, not about the exam, so
+  // the pipeline records it in data/pyq/review-report.json and the app-facing file
+  // carries the labels alone. The rule engine placed most questions; a human
+  // review pass decided the rest; no AI provider was configured, so nothing on
+  // either side may claim to be an AI classification.
   const bank = await readJson('pyq/mymppsc-pyq-bank.json');
-  const bySource = {};
-  for (const q of bank.questions) bySource[q.classification_source] = (bySource[q.classification_source] || 0) + 1;
-  assert.deepEqual(Object.keys(bySource).sort(), ['pipeline-rules', 'reviewed']);
-  assert.ok(bySource.reviewed > 0 && bySource['pipeline-rules'] > 0);
-  assert.equal(bank.classification_meta.ai_labels_applied, 0, 'the pipeline reports that no AI labels were applied');
-  assert.equal(bank.classification_meta.reviewed_labels_applied, bySource.reviewed);
+  const review = await readJson('pyq/review-report.json');
+  assert.equal(bank.questions.some((q) => 'classification_source' in q || 'classification_confidence' in q), false, 'no label provenance or confidence in the shipped file');
+  assert.equal(review.totals.ai_labels_applied, 0, 'the report says no AI labels were applied');
+  assert.ok(review.totals.reviewed_labels_applied > 0, 'the report says a human review pass decided some labels');
+  assert.equal('explanation_status' in bank.questions[0], false, 'and no explanation review state either');
+  assert.equal(bank.questions.some((q) => q.explanation && typeof q.explanation === 'object' && ('status' in q.explanation || 'reviewed_by' in q.explanation)), false, 'stored explanations carry their text and nothing else');
 
   // Every assigned label is a real taxonomy node.
   const taxonomy = await readJson('taxonomy/mppsc-taxonomy.json');

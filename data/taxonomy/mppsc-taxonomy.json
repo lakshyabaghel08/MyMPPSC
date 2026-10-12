@@ -5,7 +5,7 @@
   "sources": [
     "js/core/constants.js — SUBJECT_ORDER",
     "data/demo/demo-bank.json — existing subject/topic/subtopic vocabulary",
-    "docs/SCHEMA.md — classification fields (subject, topic, subtopic, classification_confidence, classification_source)"
+    "docs/SCHEMA.md — classification fields (subject, topic, subtopic)"
   ],
   "notes": "'Unclassified' is a reserved bucket, never assigned by the pipeline: a question the pipeline cannot place keeps subject/topic/subtopic = null so the app's classification.isUnclassified flag stays true and the question is listed for review.",
   "reserved_subjects": [

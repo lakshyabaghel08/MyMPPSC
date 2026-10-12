@@ -8,19 +8,7 @@
  */
 
 import { state } from '../../core/state.js';
-import {
-  esc,
-  card,
-  badge,
-  icon,
-  notice,
-  dataTable,
-  confirmDialog,
-  lineChart,
-  toast,
-  sourceChip,
-  evidenceMeter,
-} from '../components.js';
+import { esc, card, badge, icon, dataTable, confirmDialog, toast, sourceChip, evidenceMeter } from '../components.js';
 import { fmtPct, fmtDuration, fmtDate, fmtRelative } from '../../core/util.js';
 import { loadAnalytics, dashboardSummary, studyPriorities } from '../../services/analytics.js';
 import * as testsSvc from '../../services/tests.js';
@@ -94,10 +82,6 @@ export default {
 
     const missingKeys = metas.filter((m) => !m.hasSuppliedAnswer && !m.hasVerifiedAnswer).length;
     const disputed = metas.filter((m) => m.disputed).length;
-    const unresolvedExplanations = metas.filter((m) => m.explanationStatus === 'missing' || m.explanationStatus === 'unreviewed').length;
-
-    const activity = summary.activityByDay.map((d) => ({ label: d.date.slice(5), value: d.attempts }));
-    const accuracyTrend = analytics.daily.slice(-14).filter((d) => d.accuracy !== null).map((d) => ({ label: d.date.slice(5), value: d.accuracy }));
 
     const recentTestRows = summary.recentTests.map((t) => [
       `<a href="#/report/${esc(t.id)}">${esc(t.label)}</a><div class="tiny muted">${esc(fmtDate(t.at))}</div>`,
@@ -117,7 +101,6 @@ export default {
     if (missingKeys) attention.push(`${missingKeys} question(s) have no answer key at all — they are excluded from scoring rather than marked wrong.`);
     if (disputed) attention.push(`${disputed} question(s) have a disputed answer key. The stored key is preserved and the report shows which key was used.`);
     if (bank.unclassified) attention.push(`${bank.unclassified} question(s) are not yet classified by subject/topic, so they cannot appear in topic-level analysis until you classify them.`);
-    if (unresolvedExplanations) attention.push(`${unresolvedExplanations} question(s) have a missing or not-yet-reviewed explanation. Explanations are shown exactly as supplied — this app never writes one.`);
 
     const dueCount = summary.dueToday + summary.overdue;
     const weakTopics = (analytics.topics || []).filter((t) => t.verdict === 'weak').slice(0, 3);
@@ -264,23 +247,6 @@ export default {
       <div class="split-2">
         <div>
           ${card({
-            title: 'Questions answered per day',
-            subtitle: 'Last 7 days, from stored attempts',
-            right: sourceChip('measured'),
-            body: activity.some((a) => a.value) ? lineChart({ points: activity, height: 140, yFormat: (v) => String(Math.round(v)), yMax: Math.max(1, ...activity.map((a) => a.value)) }) : '<p class="muted small">No attempts recorded in the past week.</p>',
-          })}
-
-          ${card({
-            title: 'Accuracy trend',
-            subtitle: 'Last 14 active days (all attempts)',
-            right: sourceChip('measured'),
-            body: accuracyTrend.length >= 2 ? lineChart({ points: accuracyTrend, height: 140 }) : '<p class="muted small">Not enough recorded days yet to draw a trend.</p>',
-            footer: 'Accuracy counts every scored attempt, including repeats. The Analytics screen separates first-attempt accuracy, which does not improve simply by repeating questions.',
-          })}
-        </div>
-
-        <div>
-          ${card({
             title: 'Study priorities',
             subtitle: 'From your recorded performance, bank coverage and syllabus status',
             right: sourceChip('derived'),
@@ -289,7 +255,9 @@ export default {
               : '<p class="muted small">No topics to prioritise yet.</p>',
             footer: 'Priorities combine question frequency in your imported bank, your recorded accuracy and your own syllabus notes. Frequency is a study aid, not a forecast of any future examination.',
           })}
+        </div>
 
+        <div>
           ${attention.length ? card({ title: 'Needs your attention', right: sourceChip('disputed'), body: `<ul class="small">${attention.map((a) => `<li>${esc(a)}</li>`).join('')}</ul><div class="row mt-2"><a class="btn btn-sm" href="#/bank">Open Question Bank &amp; Imports</a></div>` }) : card({ title: 'Answer-key and content integrity', right: sourceChip('verified'), body: '<p class="small">Every stored question has an answer key or is flagged as unresolved, and every classification is traceable. Nothing needs attention right now.</p>' })}
 
           ${card({

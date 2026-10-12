@@ -283,8 +283,6 @@ export async function exportBankJson({ paperIds = null, includeProgressNotes = t
       subject: q.classification?.subject ?? null,
       topic: q.classification?.topic ?? null,
       subtopic: q.classification?.subtopic ?? null,
-      classification_confidence: q.classification?.confidence ?? null,
-      classification_source: q.classification?.source ?? null,
       supplied_answer: q.supplied ? { answer: q.supplied.answer, status: q.supplied.status, source: q.supplied.source, notes: q.supplied.notes } : null,
       answer_key_status: q.supplied?.status ?? null,
       verified_answer: q.verified
@@ -295,19 +293,13 @@ export async function exportBankJson({ paperIds = null, includeProgressNotes = t
       explanation: q.explanation
         ? {
             language: 'en',
-            status: q.explanation.status,
             correct_reasoning: q.explanation.correct_reasoning,
             option_explanations: q.explanation.option_explanations,
             key_concepts: q.explanation.key_concepts,
             revision_takeaways: q.explanation.revision_takeaways,
             sources: q.explanation.sources,
-            generated_by: q.explanation.generated_by,
-            reviewed_by: q.explanation.reviewed_by,
-            generated_at: q.explanation.generated_at,
-            reviewed_at: q.explanation.reviewed_at,
           }
         : null,
-      explanation_status: q.explanation_status ?? 'missing',
       source_reference: q.source_reference,
       validation_status: q.validation_status,
       validation_notes: q.validation_notes || [],

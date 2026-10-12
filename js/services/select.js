@@ -98,12 +98,10 @@ export function filterMetas(metas, f = {}, attemptSummary = new Map()) {
     if (f.subtopic && f.subtopic !== 'all' && (meta.subtopic || '') !== f.subtopic) continue;
     if (f.questionType && f.questionType !== 'all' && meta.question_type !== f.questionType) continue;
     if (f.subjectIsUnclassified === true && !meta.unclassified) continue;
-    if (f.onlyUncertainClassification && !meta.uncertain) continue;
     if (f.language && f.language !== 'all' && !meta.langs.includes(f.language)) continue;
     if (f.excludeDemonstration && meta.demonstration) continue;
     if (f.onlyDemonstration && !meta.demonstration) continue;
     if (f.onlyWithExplanation && !meta.hasExplanation) continue;
-    if (f.onlyReviewedExplanation && !['reviewed', 'approved'].includes(meta.explanationStatus)) continue;
     if (f.onlyMissingAnswers && !(meta.needsAttention && !meta.hasSuppliedAnswer)) continue;
     if (f.onlyDisputed && !meta.disputed) continue;
     if (f.onlyIncompletePapers && !meta.paper_incomplete) continue;
@@ -246,7 +244,6 @@ export function weaknessScore(meta, attemptSummary, settings = state.settings) {
   score += s.lowConfidenceCorrect * 5;
   if (s.lastOutcome === 'incorrect') score += 10;
   if (meta.disputed) score += 4;
-  if (meta.explanationStatus === 'missing') score -= 0; // no effect: explanations are not a difficulty signal
   return round(score, 2);
 }
 

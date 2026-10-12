@@ -299,7 +299,7 @@ test('question types are only inferred from unambiguous signals', () => {
 test('the pipeline classifies the sample intake and the app accepts the result', async () => {
   const source = await sampleSource();
   const result = await runPipeline(source, { bankId: 'TEST-PIPELINE' });
-  const { bank, validation, rows, classificationReport, reviewReport } = result;
+  const { bank, validation, rows, classificationReport, reviewReport, sanitisation } = result;
 
   assert.equal(validation.fatal.length, 0, JSON.stringify(validation.fatal));
   assert.equal(validation.errors.length, 0, JSON.stringify(validation.errors));
@@ -319,12 +319,16 @@ test('the pipeline classifies the sample intake and the app accepts the result',
   assert.equal(byId.get('SAMPLE-2023-GS1-002').topic, 'Geography of India');
   assert.equal(byId.get('SAMPLE-2023-GS1-003').subject, 'Madhya Pradesh Special');
   assert.equal(byId.get('SAMPLE-2023-GS1-007').subject, null, 'an out-of-taxonomy source label is dropped, not stored');
-  assert.deepEqual(byId.get('SAMPLE-2023-GS1-007').metadata.classification_dropped, {
-    subject: 'General Studies',
-    topic: 'Administration',
-    subtopic: 'Revenue',
-    source: 'legacy_extractor',
-  });
+  assert.equal(
+    'classification_dropped' in (byId.get('SAMPLE-2023-GS1-007').metadata || {}),
+    false,
+    'the source label that was dropped is not shipped as app data',
+  );
+  assert.equal(
+    result.sanitisation.removed.parser_metadata_fields.classification_dropped,
+    1,
+    'the sanitiser reports the drop note it removed, so the review report is where it is recorded',
+  );
 
   // Answer integrity is untouched.
   assert.equal(byId.get('SAMPLE-2023-GS1-008').supplied_answer.answer, null);
@@ -338,11 +342,15 @@ test('the pipeline classifies the sample intake and the app accepts the result',
     ['SAMPLE-2023-GS1-009'],
   );
 
-  // Suspected duplicates are flagged, never merged.
+  // Suspected duplicates are reported and never merged — and the pairing lives in
+  // the report, not in the file the app loads: the app rediscovers duplicates
+  // itself when it validates a bank, so a pointer in the record would be
+  // bookkeeping a learner cannot act on.
   assert.equal(reviewReport.totals.near_duplicate_pairs, 1);
   assert.deepEqual(reviewReport.near_duplicates[0].kept, 'both records retained in the bank');
   assert.ok(byId.has('SAMPLE-2023-GS1-009') && byId.has('SAMPLE-2023-GS1-010'));
-  assert.deepEqual(byId.get('SAMPLE-2023-GS1-010').metadata.near_duplicate_candidates.map((d) => d.id), ['SAMPLE-2023-GS1-009']);
+  assert.equal('near_duplicate_candidates' in (byId.get('SAMPLE-2023-GS1-010').metadata || {}), false, 'no duplicate pointers in the bank');
+  assert.equal(sanitisation.removed.parser_metadata_fields.near_duplicate_candidates || 0, 0, 'and they were never written into the bank in the first place');
 
   // The reports agree with the bank.
   assert.equal(rows.length, bank.questions.length);
@@ -362,7 +370,9 @@ test('the pipeline classifies the sample intake and the app accepts the result',
   const stored = await m.questions.getQuestion('SAMPLE-2023-GS1-001');
   assert.equal(stored.classification.subject, 'Geography');
   assert.equal(stored.classification.topic, 'Rivers of Madhya Pradesh');
-  assert.equal(stored.classification.source, 'pipeline-rules');
+  assert.equal(stored.classification.original?.subject, 'Geography', 'the imported label is kept as the original of record');
+  assert.equal('source' in stored.classification, false, 'the app-facing classification carries no marker for which pass produced it');
+  assert.equal('confidence' in stored.classification, false, 'and no confidence figure');
   const unclassified = await m.questions.getQuestion('SAMPLE-2023-GS1-008');
   assert.equal(unclassified.classification.isUnclassified, true, 'unclassified records must stay flagged in the app');
   assert.equal(unclassified.supplied.answer, null);
@@ -538,7 +548,8 @@ test('the pipeline resumes from provider labels without redoing the rule pass', 
   const result = await runPipeline(source, { aiLabels: labels, aiProvider: 'test-provider' });
   const q = result.bank.questions.find((x) => x.id === 'SAMPLE-2023-GS1-007');
   assert.equal(q.subject, 'History');
-  assert.equal(q.classification_source, 'pipeline-ai');
+  assert.equal('classification_source' in q, false, 'the app-facing record carries the label, not how it was obtained');
+  assert.equal(result.meta.ai_merge.applied, 1, 'the merge itself is recorded in the report');
   assert.equal(result.classificationReport.levels.subject.unclassified, 1);
   assert.equal(result.aiQueue.length, 1, 'the still-unclassified question stays in the queue');
   assert.equal(result.validation.rejected.length, 0);
@@ -876,7 +887,7 @@ test('resume skips the ids that already have a label and keeps the rest of the w
   assert.equal(new Set(queued).size, queued.length, 'nothing is queued twice');
 
   const again = await runPipeline(await sampleSource(), { aiLabels: renderAiQueueJsonl([...done, ...done]) });
-  const key = (q) => [q.id, q.subject, q.topic, q.subtopic, q.classification_confidence];
+  const key = (q) => [q.id, q.subject, q.topic, q.subtopic];
   assert.deepEqual(again.bank.questions.map(key), resumed.bank.questions.map(key), 'applying the same labels twice is idempotent');
   assert.deepEqual(again.aiQueue.map((i) => i.id), queued);
 });
@@ -905,7 +916,7 @@ test('a built bank can be fed back through the pipeline without losing answer in
   const source = await sampleSource();
   const first = await runPipeline(source);
   const second = await runPipeline(first.bank); // re-classify the bank itself
-  const key = (q) => [q.id, q.subject, q.topic, q.subtopic, q.classification_confidence, q.supplied_answer?.answer ?? null];
+  const key = (q) => [q.id, q.subject, q.topic, q.subtopic, q.supplied_answer?.answer ?? null];
   assert.equal(second.bank.questions.length, first.bank.questions.length);
   assert.deepEqual(second.bank.questions.map(key), first.bank.questions.map(key), 'a re-run must be idempotent');
   assert.equal(second.reviewReport.totals.records_removed, 0);
@@ -924,20 +935,28 @@ test('the reports can be regenerated deterministically from the same input', asy
   assert.equal(strip(a.classificationReport), strip(b.classificationReport));
   assert.equal(strip(a.reviewReport), strip(b.reviewReport));
   assert.deepEqual(
-    a.bank.questions.map((q) => [q.id, q.subject, q.topic, q.subtopic, q.classification_confidence]),
-    b.bank.questions.map((q) => [q.id, q.subject, q.topic, q.subtopic, q.classification_confidence]),
+    a.bank.questions.map((q) => [q.id, q.subject, q.topic, q.subtopic]),
+    b.bank.questions.map((q) => [q.id, q.subject, q.topic, q.subtopic]),
   );
 });
 
-test('the bank the pipeline writes keeps the app-facing classification fields', async () => {
+test('the bank the pipeline writes carries the labels and nothing about how they were chosen', async () => {
   const source = await sampleSource();
   const { bank } = await runPipeline(source);
   const q = bank.questions.find((x) => x.id === 'SAMPLE-2023-GS1-001');
-  for (const field of ['subject', 'topic', 'subtopic', 'classification_confidence', 'classification_source']) {
+  for (const field of ['subject', 'topic', 'subtopic']) {
     assert.ok(field in q, `the bank must carry ${field} at the top level, as docs/SCHEMA.md specifies`);
   }
-  assert.equal(typeof q.classification_confidence, 'number');
-  assert.ok(q.classification_confidence >= 0 && q.classification_confidence <= 1);
+  // The app ships the decision, never the reasoning behind it: a learner cannot
+  // act on a confidence figure or on which pass of a build script produced a label.
+  for (const field of ['classification_confidence', 'classification_source', 'explanation_status']) {
+    assert.equal(field in q, false, `${field} belongs in the review report, not in the bank`);
+  }
+  assert.equal(
+    bank.questions.some((x) => x.explanation && typeof x.explanation === 'object' && ('status' in x.explanation || 'reviewed_by' in x.explanation)),
+    false,
+    'stored explanations carry their text and nothing else',
+  );
   assert.equal(bank.schema_version, '1.0.0');
   assert.equal(bank.is_demonstration, true, 'the sample intake is synthetic and must stay flagged');
   assert.ok(dataPath('taxonomy', 'mppsc-taxonomy.json').endsWith('mppsc-taxonomy.json'));

@@ -77,8 +77,6 @@
       "subject": "Illustration",
       "topic": "Sample topic",
       "subtopic": "Sample subtopic",
-      "classification_confidence": 1,
-      "classification_source": "sample-intake",
       "answer": ["B"],
       "answer_status": "final",
       "answer_source": "Illustrative key (sample intake file)",
@@ -107,13 +105,10 @@
       },
       "subject": "Illustration",
       "topic": "Sample topic",
-      "classification_confidence": 0.8,
-      "classification_source": "sample-intake",
       "answer": ["A", "C"],
       "answer_status": "provisional",
       "answer_source": "Illustrative key (sample intake file)",
-      "explanation_status": "unreviewed",
-      "explanation": "Filler explanation that has not been reviewed; the app will label it as unreviewed."
+      "explanation": "Filler explanation supplied as a bare string, so the text is kept exactly as it arrives."
     },
     {
       "id": "SAMPLE-2024-P1-003",

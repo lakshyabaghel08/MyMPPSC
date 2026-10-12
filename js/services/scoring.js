@@ -238,7 +238,6 @@ export function scoreTest({ test, questions, rules, policy = 'verified_preferred
       confidence: response.confidence || null,
       time_spent_ms: Number(response.time_spent_ms) || 0,
       note: evaluation.note,
-      explanation_status: question.explanation?.status || 'missing',
       has_explanation: Boolean(question.explanation),
       excluded_for_unresolved: excludedForUnresolved,
       demonstration: Boolean(question.is_demonstration),

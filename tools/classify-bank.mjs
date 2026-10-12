@@ -8,8 +8,10 @@
  * One deterministic pass:
  *   1. adapt the source extraction into the intake shape (tools/classify/intake-adapter.mjs);
  *   2. classify every question with the rule engine, or keep a source/AI label;
- *   3. merge maintainer review labels (--manual-labels) and any provider labels
- *      (--apply-ai), re-validating both against the taxonomy;
+ *   3. merge maintainer review labels (--apply-review) and any provider labels
+ *      (--apply-ai), re-validating both against the taxonomy, then the human
+ *      answer/explanation resolutions for questions the source left keyless
+ *      (--apply-answers);
  *   4. build the bank with the app's own tool (tools/build-bank.mjs) and sanitise it
  *      for the app: no source provenance, neutral answer-key statuses, the
  *      automatic MPPSC marking scheme per paper (tools/classify/sanitise-bank.mjs);
@@ -20,7 +22,9 @@
  *
  * Nothing is invented and nothing is deleted: an unplaceable question stays
  * unclassified with a reason, a printed answer stays printed, and both members
- * of every suspected duplicate pair stay in the bank.
+ * of every suspected duplicate pair stay in the bank. Where the source printed no
+ * answer at all, the answer and explanation can be supplied by a human review
+ * file (--apply-answers); the pipeline itself never writes a key.
  *
  * Build-time tool only — the browser app never imports this file.
  */
@@ -37,6 +41,7 @@ import { buildAiQueue, renderAiQueueJsonl, renderAiTaxonomy, parseLabels, applyA
 import { sanitiseBank } from './classify/sanitise-bank.mjs';
 import { repairIntake } from './classify/repair.mjs';
 import { parseReviewedLabels, applyReviewedLabels, CLASSIFICATION_SOURCE_REVIEWED } from './classify/reviewed-labels.mjs';
+import { parseAnswerReviews, applyAnswerReviews } from './classify/answer-review.mjs';
 import {
   buildClassificationReport,
   renderClassificationMarkdown,
@@ -294,6 +299,38 @@ export async function runPipeline(source, opts = {}) {
     rows = refreshRows(rows, new Set(aiSummary.applied.map((a) => a.id)));
   }
 
+  // Human answers and explanations for the questions the source left keyless
+  // (tools/classify/answer-review.mjs). This runs after every classification pass
+  // on purpose: the rule engine reads an explanation as evidence, so the
+  // classification of a question must not move just because its key was resolved.
+  let answerSummary = null;
+  if (opts.answerReviews) {
+    const { resolutions, notes: resolutionNotes, malformed } = parseAnswerReviews(opts.answerReviews);
+    pipelineNotes.push(...resolutionNotes);
+    answerSummary = applyAnswerReviews(intake, resolutions, { file: opts.answerReviewFile || null, malformed });
+    pipelineNotes.push(...answerSummary.notes.map((n) => `Answer resolutions: ${n}`));
+    pipelineNotes.push(
+      `Answer resolutions merged: ${answerSummary.applied.length} applied, ${answerSummary.preserved.length} preserved (the source had already printed a key), ${answerSummary.rejected.length} rejected, ${answerSummary.malformed.length} malformed line(s).`,
+    );
+    for (const r of answerSummary.rejected) pipelineNotes.push(`Answer resolution rejected for ${r.id ?? 'an unknown id'}: ${r.reason}`);
+    // A resolved record no longer needs the missing-key flag, in the row that
+    // feeds the reports or in the record's own metadata.
+    const resolvedIds = new Set(answerSummary.ids);
+    if (resolvedIds.size) {
+      rows = rows.map((row) =>
+        resolvedIds.has(row.id)
+          ? { ...row, flags: Array.from(new Set([...(row.flags || []).filter((f) => f !== 'missing_answer_key'), 'answer_resolved_by_review'])) }
+          : row,
+      );
+      for (const id of resolvedIds) {
+        const question = intake.questions.find((q) => q.id === id);
+        if (question?.metadata?.classification_flags) {
+          question.metadata.classification_flags = question.metadata.classification_flags.filter((f) => f !== 'missing_answer_key');
+        }
+      }
+    }
+  }
+
   const byId = new Map(intake.questions.map((q) => [q.id, q]));
 
   const { bank, warnings } = buildBankFromIntake(intake);
@@ -311,23 +348,19 @@ export async function runPipeline(source, opts = {}) {
   bank.generator = {
     name: 'tools/classify-bank.mjs',
     version: TOOL_VERSION,
-    notes: `Classified with the deterministic rule engine (tools/classify/rules.mjs, taxonomy ${taxonomy.version}). Source question text, options, printed answers and explanations are reproduced verbatim; only classification and review metadata were added.`,
+    notes: `Classified with the deterministic rule engine (tools/classify/rules.mjs, taxonomy ${taxonomy.version}). Source question text, options, answers and explanations are reproduced verbatim; the classification levels are the only fields added.`,
   };
-  bank.classification_meta = {
-    tool: `tools/classify-bank.mjs ${TOOL_VERSION}`,
-    taxonomy_path: 'data/taxonomy/mppsc-taxonomy.json',
-    taxonomy_version: taxonomy.version,
-    taxonomy_subjects: subjectNames(taxonomy),
-    rule_count: RULES.length,
-    reviewed_labels_applied: reviewedSummary ? reviewedSummary.applied.length : 0,
-    ai_labels_applied: aiSummary ? aiSummary.applied.length : 0,
-    low_confidence_threshold: LOW_CONFIDENCE_THRESHOLD,
-  };
+  // The shipped file carries the labels and the text they describe — nothing about
+  // the build that produced them. Which vocabulary and which tool were used, how
+  // confident each label was and how many a human reviewed all belong to the
+  // classification and review reports instead.
 
   const validation = validateBank(bank, {});
 
-  // Duplicate flags come from the validator, so they are attached after it runs.
-  // Adding metadata cannot change a validation result, so the report above stays valid.
+  // Suspected duplicates are reported, never merged. The pairs are attached to
+  // the rows that feed the review report only: recording them on the app-facing
+  // records would be bookkeeping a learner cannot act on, and the app rediscovers
+  // duplicates itself when it validates a bank.
   const bankById = new Map(bank.questions.map((q) => [q.id, q]));
   const rowById = new Map(rows.map((r) => [r.id, r]));
   const partners = new Map();
@@ -340,12 +373,7 @@ export async function runPipeline(source, opts = {}) {
     partners.set(pair.b, listB);
   }
   for (const [id, list] of partners.entries()) {
-    const q = bankById.get(id);
     const row = rowById.get(id);
-    if (q) {
-      q.metadata = { ...(q.metadata || {}), near_duplicate_candidates: list };
-      q.metadata.classification_flags = Array.from(new Set([...(q.metadata.classification_flags || []), 'near_duplicate_candidate']));
-    }
     if (row) {
       row.flags = Array.from(new Set([...(row.flags || []), 'near_duplicate_candidate']));
       row.duplicatePartners = list;
@@ -353,9 +381,7 @@ export async function runPipeline(source, opts = {}) {
   }
   for (const issue of validation.warnings.filter((w) => w.code === 'identical_question_content')) {
     for (const id of issue.ids || []) {
-      const q = bankById.get(id);
       const row = rowById.get(id);
-      if (q) q.metadata.classification_flags = Array.from(new Set([...(q.metadata.classification_flags || []), 'identical_content_group']));
       if (row) row.flags = Array.from(new Set([...(row.flags || []), 'identical_content_group']));
     }
   }
@@ -364,12 +390,23 @@ export async function runPipeline(source, opts = {}) {
     bankId: bank.bank_id,
     bankName: bank.bank_name,
     generator: `tools/classify-bank.mjs ${TOOL_VERSION}`,
+    taxonomy_path: 'data/taxonomy/mppsc-taxonomy.json',
     taxonomy_version: taxonomy.version,
+    taxonomy_subjects: subjectNames(taxonomy),
+    rule_count: RULES.length,
     subjects_allowed: subjectNames(taxonomy),
     pipeline_notes: pipelineNotes,
     repair: repairReport,
     reviewed_merge: reviewedSummary
       ? { applied: reviewedSummary.applied.length, changed: reviewedSummary.applied.filter((a) => a.changed).length, rejected: reviewedSummary.rejected.length, source: CLASSIFICATION_SOURCE_REVIEWED }
+      : null,
+    answer_merge: answerSummary
+      ? {
+          applied: answerSummary.applied.length,
+          preserved: answerSummary.preserved.length,
+          rejected: answerSummary.rejected.length,
+          malformed: answerSummary.malformed.length,
+        }
       : null,
     ai_merge: aiSummary
       ? {
@@ -393,6 +430,7 @@ export async function runPipeline(source, opts = {}) {
       unmappedKeys: adapted.unmappedKeys,
       recordIssues: adapted.recordIssues,
       reviewedSummary,
+      answerSummary,
       aiSummary,
       sanitisation,
       repair: repairReport,
@@ -415,6 +453,7 @@ export async function runPipeline(source, opts = {}) {
     sanitisation,
     repairReport,
     reviewedSummary,
+    answerSummary,
     meta,
     taxonomy,
   };
@@ -433,6 +472,9 @@ Options:
   --apply-ai <file>    merge provider labels from this JSONL/JSON file before building
   --apply-review <f>   merge human review decisions from this JSONL/JSON file before building.
                        They are recorded as classification_source "reviewed" — never as AI
+  --apply-answers <f>  merge human answer + explanation resolutions for questions the source
+                       left without a key (JSONL: {id, answer, basis, reason, explanation}).
+                       A record that already has a printed key is never overwritten
   --source-review <f>  the source parser's own review file; its findings (records it
                        refused to export, numbering gaps) are carried into the review
                        report. Default: MPPSC_PYQ_Review.json next to --in, if present
@@ -487,6 +529,8 @@ async function main() {
     bankName: parsed.values['bank-name'],
     reviewedLabels: parsed.values['apply-review'] ? await readFile(resolve(parsed.values['apply-review']), 'utf8') : null,
     reviewedLabelFile: parsed.values['apply-review'] ? path.relative(root, resolve(parsed.values['apply-review'])) : null,
+    answerReviews: parsed.values['apply-answers'] ? await readFile(resolve(parsed.values['apply-answers']), 'utf8') : null,
+    answerReviewFile: parsed.values['apply-answers'] ? path.relative(root, resolve(parsed.values['apply-answers'])) : null,
     repair: !parsed.flags.has('no-repair'),
     aiLabels: parsed.values['apply-ai'] ? await readFile(resolve(parsed.values['apply-ai']), 'utf8') : null,
     aiProvider: parsed.values['ai-provider'] || process.env.MYMPPSC_AI_PROVIDER || null,
@@ -494,7 +538,7 @@ async function main() {
     overwriteSourceClassification: parsed.flags.has('overwrite-source'),
   });
 
-  const { bank, validation, classificationReport, reviewReport, aiQueue, buildWarnings, aiSummary, sanitisation, repairReport, reviewedSummary } = result;
+  const { bank, validation, classificationReport, reviewReport, aiQueue, buildWarnings, aiSummary, sanitisation, repairReport, reviewedSummary, answerSummary } = result;
 
   console.log(`Source  : ${parsed.values.in}`);
   console.log(`Bank    : ${outPath}`);
@@ -508,6 +552,7 @@ async function main() {
   console.log(`unclassified       : ${classificationReport.levels.subject.unclassified}`);
   console.log(`low confidence     : ${classificationReport.low_confidence.length}`);
   console.log(`missing answer keys: ${reviewReport.totals.missing_answer_keys}`);
+  console.log(`explanations       : ${reviewReport.integrity.explanations_present} present, ${reviewReport.integrity.without_explanation} without`);
   console.log(`near-duplicate pair: ${reviewReport.totals.near_duplicate_pairs}`);
   console.log(`AI queue           : ${aiQueue.length}`);
   console.log(`provenance removed : ${sanitisation.removed.question_source_references} question reference(s), ${sanitisation.removed.supplied_answer_sources} answer source(s), ${sanitisation.removed.paper_source_files.length} source file(s)`);

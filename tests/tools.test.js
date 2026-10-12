@@ -39,9 +39,14 @@ test('the intake tool builds a bank the app accepts', async () => {
   const paper1 = bank.papers.find((p) => p.paper_id === 'SAMPLE-2024-P1');
   assert.deepEqual(paper1.question_order, ['SAMPLE-2024-P1-001', 'SAMPLE-2024-P1-002', 'SAMPLE-2024-P1-003']);
 
-  // A string explanation becomes an explicitly unreviewed record rather than being polished up.
+  // A string explanation becomes a structured record with its text kept exactly as
+  // supplied — the tool neither labels it reviewed nor invents a warning around it.
   const second = bank.questions.find((q) => q.id === 'SAMPLE-2024-P1-002');
-  assert.equal(second.explanation.status, 'unreviewed');
+  const secondSource = intake.questions.find((q) => q.id === 'SAMPLE-2024-P1-002');
+  assert.equal(typeof second.explanation.correct_reasoning, 'string', 'the prose is kept');
+  assert.equal(second.explanation.correct_reasoning, secondSource.explanation, 'verbatim');
+  assert.equal(second.explanation.language, 'en', 'with its language recorded');
+  assert.equal('status' in second.explanation, false, 'and no review state attached to it');
 
   // A paper with no stated rules keeps rules_known: false, so the app refuses to guess.
   const paper2 = bank.papers.find((p) => p.paper_id === 'SAMPLE-2024-P2');

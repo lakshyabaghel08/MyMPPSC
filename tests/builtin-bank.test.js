@@ -103,7 +103,8 @@ test('an upgraded bank refreshes records and keeps the user\'s own work', async 
   assert.equal(after.verified.evidence.length >= 1, true);
   assert.equal(after.dispute?.is_disputed, true, 'the dispute flag survives an update');
   assert.equal(after.classification.subject, 'History', 'the user\'s classification is kept as the one in use');
-  assert.equal(after.classification.source, 'user_correction');
+  assert.ok(after.classification.userEditedAt, 'the record is marked as edited by the user, which is what protects it');
+  assert.equal('source' in after.classification, false, 'and not by a provenance marker on the label');
   assert.equal(after.classification.pipeline_latest?.subject, 'Polity', 'and the new pipeline label is kept alongside it');
   assert.equal(marks.verified.answer.join(','), 'C');
 });

@@ -93,26 +93,29 @@ function normaliseIntakeQuestion(raw, paper, index, warnings) {
   delete q.answer_notes;
   if (q.answer_key_status === undefined && q.supplied_answer) q.answer_key_status = q.supplied_answer.status;
 
-  // Classification shorthand
-  if (q.classification === undefined && (q.subject !== undefined || q.topic !== undefined)) {
-    q.classification = {
-      subject: q.subject ?? null,
-      topic: q.topic ?? null,
-      subtopic: q.subtopic ?? null,
-      confidence: q.classification_confidence ?? null,
-      source: q.classification_source ?? 'external_pipeline',
-    };
-  }
+  // A classification is three levels of labels and nothing else: the app reads
+  // `subject` / `topic` / `subtopic` from the record. How much the pipeline that
+  // wrote them trusted the label is its own business, so a bank file that comes
+  // in with `classification_confidence` or `classification_source` loses them
+  // here rather than carrying them into the app.
+  delete q.classification;
+  delete q.classification_confidence;
+  delete q.classification_source;
 
-  // Explanation shorthand: a plain string becomes reviewed prose only if the
-  // intake explicitly says so; otherwise it is recorded as an unreviewed note.
+  // Explanation shorthand: prose arrives as a string or as an object; either way
+  // it is stored as the text itself. A review state that may have been recorded
+  // on it is dropped — the app shows explanations as supplied and nothing else.
   if (typeof q.explanation === 'string') {
-    q.explanation = { correct_reasoning: q.explanation, status: q.explanation_status || 'unreviewed', language: 'en' };
+    q.explanation = { correct_reasoning: q.explanation, language: 'en' };
   }
-  if (q.explanation && !q.explanation.status) {
-    q.explanation.status = 'unreviewed';
-    warnings.push(`${q.id}: explanation had no status, recorded as "unreviewed".`);
+  if (q.explanation && typeof q.explanation === 'object') {
+    delete q.explanation.status;
+    delete q.explanation.generated_by;
+    delete q.explanation.reviewed_by;
+    delete q.explanation.generated_at;
+    delete q.explanation.reviewed_at;
   }
+  delete q.explanation_status;
 
   if (!q.language_variants || !Object.keys(q.language_variants).length) {
     warnings.push(`${q.id}: no language variant (question text + options) — the record will be rejected by validation.`);

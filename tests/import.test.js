@@ -29,7 +29,7 @@ test('the index reflects the imported bank, including language and answer metada
   const meta = m.appState.questionIndex.get('DEMO-P1-001');
   assert.deepEqual(meta.langs, ['en', 'hi']);
   assert.equal(meta.hasSuppliedAnswer, true);
-  assert.equal(meta.explanationStatus, 'reviewed');
+  assert.equal(meta.hasExplanation, true, 'the index says whether an explanation exists, and nothing more');
   const disputed = m.appState.questionIndex.get('DEMO-P2-003');
   assert.equal(disputed.disputed, true);
   assert.equal(m.appState.papers.get('DEMO-P1').scoring.marks_per_correct, 2);

@@ -57,8 +57,8 @@ Intake files use the same structure as a bank, with convenient shorthand:
 | --- | --- |
 | `"en": {…}, "hi": {…}` on a question | `language_variants` |
 | `"answer": ["B"], "answer_status": "final", "answer_source": "…"` | `supplied_answer` |
-| `"subject"/"topic"/"subtopic"/"classification_confidence"` | `classification` |
-| `"explanation": "prose…"` | `explanation.correct_reasoning` with `status: "unreviewed"` |
+| `"subject"/"topic"/"subtopic"` | `classification` |
+| `"explanation": "prose…"` | `explanation.correct_reasoning` with `language: "en"`, text unchanged |
 | omitting `question_order` on a paper | derived from `question_number` |
 | omitting `exam`, `year`, `set_code` on a question | inherited from its paper |
 | omitting `scoring` for a paper | `rules_known: false` — the app will refuse to score it until you configure rules |
@@ -92,7 +92,7 @@ undone from the History tab (attempts stay in your history).
 
 `demo/intake-sample.json` is a small, deliberately obvious fixture: two papers
 (one with rules, one without), five questions (bilingual, multiple-correct, a
-question with a missing key, a question with an unreviewed explanation). Build
+question with a missing key, a question whose explanation is a bare string). Build
 and inspect it:
 
 ```bash

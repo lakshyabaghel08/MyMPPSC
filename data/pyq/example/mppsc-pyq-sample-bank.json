@@ -2,7 +2,6 @@
   "schema_version": "1.0.0",
   "bank_id": "PYQ-PIPELINE-SAMPLE",
   "bank_name": "PYQ pipeline sample (synthetic — not a genuine MPPSC paper)",
-  "generated_at": "2026-10-11T22:21:36.038Z",
   "generator": {
     "name": "tools/classify-bank.mjs",
     "version": "1.0.0",
@@ -96,29 +95,11 @@
       "answer_key_status": "supplied",
       "explanation": {
         "correct_reasoning": "The Narmada rises at Amarkantak on the Maikal range in Madhya Pradesh and flows west to the Arabian Sea.",
-        "status": "unreviewed",
         "language": "en"
-      },
-      "metadata": {
-        "classification_flags": [
-          "madhya_pradesh_specific"
-        ],
-        "classification_evidence": {
-          "mp_markers": [
-            "madhya pradesh",
-            "narmada",
-            "amarkantak"
-          ],
-          "matched_rules": [
-            "geo-mp-narmada"
-          ]
-        }
       },
       "subject": "Geography",
       "topic": "Rivers of Madhya Pradesh",
       "subtopic": "Narmada basin",
-      "classification_confidence": 0.95,
-      "classification_source": "pipeline-rules",
       "classification": {
         "subject": "Geography",
         "topic": "Rivers of Madhya Pradesh",
@@ -170,28 +151,11 @@
       "answer_key_status": "supplied",
       "explanation": {
         "correct_reasoning": "Sardar Sarovar is a gravity dam on the Narmada in Gujarat, far downstream of Madhya Pradesh.",
-        "status": "unreviewed",
         "language": "en"
-      },
-      "metadata": {
-        "classification_flags": [],
-        "classification_evidence": {
-          "mp_markers": [
-            "narmada",
-            "tapti",
-            "madhya pradesh"
-          ],
-          "matched_rules": [
-            "geo-mp-narmada",
-            "geo-mp-tapti"
-          ]
-        }
       },
       "subject": "Geography",
       "topic": "Geography of India",
       "subtopic": "Rivers of India",
-      "classification_confidence": 0.93,
-      "classification_source": "pipeline-rules",
       "classification": {
         "subject": "Geography",
         "topic": "Geography of India",
@@ -243,28 +207,11 @@
       "answer_key_status": "supplied",
       "explanation": {
         "correct_reasoning": "Pt. Ravishankar Shukla became the first Chief Minister of the reorganised state formed on 1 November 1956.",
-        "status": "unreviewed",
         "language": "en"
-      },
-      "metadata": {
-        "classification_flags": [
-          "madhya_pradesh_specific"
-        ],
-        "classification_evidence": {
-          "mp_markers": [
-            "मध्य प्रदेश"
-          ],
-          "matched_rules": [
-            "mp-cm",
-            "pol-cm"
-          ]
-        }
       },
       "subject": "Madhya Pradesh Special",
       "topic": "Formation of Madhya Pradesh",
       "subtopic": "Chief Ministers",
-      "classification_confidence": 0.76,
-      "classification_source": "pipeline-rules",
       "classification": {
         "subject": "Madhya Pradesh Special",
         "topic": "Formation of Madhya Pradesh",
@@ -316,22 +263,11 @@
       "answer_key_status": "supplied",
       "explanation": {
         "correct_reasoning": "Article 14 of Part III guarantees equality before the law and equal protection of the laws.",
-        "status": "unreviewed",
         "language": "en"
-      },
-      "metadata": {
-        "classification_flags": [],
-        "classification_evidence": {
-          "matched_rules": [
-            "pol-fundamental-rights"
-          ]
-        }
       },
       "subject": "Polity",
       "topic": "Constitution of India",
       "subtopic": "Fundamental Rights",
-      "classification_confidence": 0.93,
-      "classification_source": "pipeline-rules",
       "classification": {
         "subject": "Polity",
         "topic": "Constitution of India",
@@ -382,19 +318,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "metadata": {
-        "classification_flags": [],
-        "classification_evidence": {
-          "matched_rules": [
-            "eco-rbi"
-          ]
-        }
-      },
       "subject": "Economy",
       "topic": "Banking and finance",
       "subtopic": "Reserve Bank of India",
-      "classification_confidence": 0.86,
-      "classification_source": "pipeline-rules",
       "classification": {
         "subject": "Economy",
         "topic": "Banking and finance",
@@ -446,33 +372,11 @@
       "answer_key_status": "supplied",
       "explanation": {
         "correct_reasoning": "The swamp deer or barasingha is the state animal of Madhya Pradesh and Kanha is its best-known habitat.",
-        "status": "unreviewed",
         "language": "en"
-      },
-      "metadata": {
-        "classification_flags": [
-          "ambiguous_subtopic",
-          "madhya_pradesh_specific"
-        ],
-        "classification_evidence": {
-          "mp_markers": [
-            "madhya pradesh",
-            "barasingha",
-            "kanha",
-            "van vihar"
-          ],
-          "matched_rules": [
-            "env-mp-parks",
-            "env-mp-state-animal",
-            "env-parks"
-          ]
-        }
       },
       "subject": "Environment",
       "topic": "Wildlife of Madhya Pradesh",
       "subtopic": "National parks",
-      "classification_confidence": 0.6,
-      "classification_source": "pipeline-rules",
       "classification": {
         "subject": "Environment",
         "topic": "Wildlife of Madhya Pradesh",
@@ -508,7 +412,6 @@
       "subject": null,
       "topic": null,
       "subtopic": null,
-      "classification_source": "pipeline-rules",
       "supplied_answer": {
         "answer": null,
         "status": "missing",
@@ -523,17 +426,8 @@
           "topic": "Administration",
           "subtopic": "Revenue",
           "source": "legacy_extractor"
-        },
-        "classification_flags": [
-          "source_classification_not_in_taxonomy",
-          "unclassified_no_rule_matched",
-          "missing_answer_key"
-        ],
-        "classification_evidence": {
-          "matched_rules": []
         }
       },
-      "classification_confidence": null,
       "classification": {
         "subject": null,
         "topic": null,
@@ -582,20 +476,9 @@
       },
       "answer_key_status": "missing",
       "explanation": null,
-      "metadata": {
-        "classification_flags": [
-          "unclassified_no_rule_matched",
-          "missing_answer_key"
-        ],
-        "classification_evidence": {
-          "matched_rules": []
-        }
-      },
       "subject": null,
       "topic": null,
       "subtopic": null,
-      "classification_confidence": null,
-      "classification_source": "pipeline-rules",
       "classification": {
         "subject": null,
         "topic": null,
@@ -668,34 +551,9 @@
         "raised_by": "pipeline"
       },
       "explanation": null,
-      "metadata": {
-        "classification_flags": [
-          "madhya_pradesh_specific",
-          "near_duplicate_candidate"
-        ],
-        "classification_evidence": {
-          "mp_markers": [
-            "chambal",
-            "shipra",
-            "parbati",
-            "banas"
-          ],
-          "matched_rules": [
-            "geo-mp-chambal"
-          ]
-        },
-        "near_duplicate_candidates": [
-          {
-            "id": "SAMPLE-2023-GS1-010",
-            "similarity": 0.933
-          }
-        ]
-      },
       "subject": "Geography",
       "topic": "Rivers of Madhya Pradesh",
       "subtopic": "Chambal basin",
-      "classification_confidence": 0.95,
-      "classification_source": "pipeline-rules",
       "classification": {
         "subject": "Geography",
         "topic": "Rivers of Madhya Pradesh",
@@ -747,37 +605,11 @@
       "answer_key_status": "supplied",
       "explanation": {
         "correct_reasoning": "Reprinted from a second booklet of the same paper, which is why it duplicates question 9.",
-        "status": "unreviewed",
         "language": "en"
-      },
-      "metadata": {
-        "classification_flags": [
-          "madhya_pradesh_specific",
-          "near_duplicate_candidate"
-        ],
-        "classification_evidence": {
-          "mp_markers": [
-            "chambal",
-            "shipra",
-            "parbati",
-            "banas"
-          ],
-          "matched_rules": [
-            "geo-mp-chambal"
-          ]
-        },
-        "near_duplicate_candidates": [
-          {
-            "id": "SAMPLE-2023-GS1-009",
-            "similarity": 0.933
-          }
-        ]
       },
       "subject": "Geography",
       "topic": "Rivers of Madhya Pradesh",
       "subtopic": "Chambal basin",
-      "classification_confidence": 0.95,
-      "classification_source": "pipeline-rules",
       "classification": {
         "subject": "Geography",
         "topic": "Rivers of Madhya Pradesh",

@@ -148,10 +148,9 @@
     },
     "explanation": {
       "type": ["object", "null"],
-      "description": "English explanation produced and reviewed by the external pipeline. The app never generates explanations and never presents unreviewed ones as authoritative.",
+      "description": "English explanation supplied with the bank. The app never generates explanations: it shows this prose exactly as it arrives and says so when a record has none. Whether an explanation was reviewed is the producing pipeline's own concern and is not part of this interchange.",
       "properties": {
         "language": { "enum": ["en", null] },
-        "status": { "enum": ["missing", "generated", "reviewed", "approved", null] },
         "correct_reasoning": { "type": ["string", "null"] },
         "option_explanations": {
           "type": "array",
@@ -176,11 +175,7 @@
               "url": { "type": ["string", "null"] }
             }
           }
-        },
-        "generated_by": { "type": ["string", "null"] },
-        "reviewed_by": { "type": ["string", "null"] },
-        "generated_at": { "type": ["string", "null"] },
-        "reviewed_at": { "type": ["string", "null"] }
+        }
       }
     },
     "question": {
@@ -205,8 +200,6 @@
         "subject": { "type": ["string", "null"], "description": "Pipeline-assigned classification; null = unclassified, never invented by the app." },
         "topic": { "type": ["string", "null"] },
         "subtopic": { "type": ["string", "null"] },
-        "classification_confidence": { "type": ["number", "null"], "minimum": 0, "maximum": 1 },
-        "classification_source": { "type": ["string", "null"] },
         "supplied_answer": {
           "type": ["object", "null"],
           "required": ["answer"],
@@ -216,13 +209,13 @@
               "items": { "type": "string" },
               "description": "Option key(s). null/[] = key missing. Never guessed by the app."
             },
-            "status": { "enum": ["provisional", "final", "unofficial", "disputed", "missing", "unknown", null] },
+            "status": { "enum": ["supplied", "provisional", "final", "unofficial", "disputed", "missing", "unknown", null] },
             "source": { "type": ["string", "null"] },
             "notes": { "type": ["string", "null"] }
           }
         },
         "answer_key_status": {
-          "enum": ["provisional", "final", "unofficial", "disputed", "missing", "unknown", null],
+          "enum": ["supplied", "provisional", "final", "unofficial", "disputed", "missing", "unknown", null],
           "description": "Mirror of supplied_answer.status, kept as a top-level field for pipeline convenience."
         },
         "verified_answer": {
@@ -247,7 +240,6 @@
           }
         },
         "explanation": { "$ref": "#/definitions/explanation" },
-        "explanation_status": { "enum": ["missing", "generated", "reviewed", "approved", null] },
         "source_reference": {
           "type": ["object", "null"],
           "properties": {

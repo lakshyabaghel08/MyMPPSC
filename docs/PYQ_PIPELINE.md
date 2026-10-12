@@ -16,7 +16,8 @@ node tools/classify-bank.mjs \
     --in data/pyq/source/MPPSC_PYQ_intake.json \
     --out data/pyq/mymppsc-pyq-bank.json \
     --reports data/pyq \
-    --apply-review data/pyq/reviewed-labels.jsonl
+    --apply-review data/pyq/reviewed-labels.jsonl \
+    --apply-answers data/pyq/reviewed-answers.jsonl
 ```
 
 The run is a sequence of named passes, each of which reports what it did:
@@ -26,10 +27,11 @@ The run is a sequence of named passes, each of which reports what it did:
 | 1. Adapt | reads the extraction shapes into the schema's own vocabulary | always |
 | 2. **Repair** | fixes extraction artefacts and moves source provenance out of the data (`tools/classify/repair.mjs`) | `--no-repair` skips |
 | 3. Classify | the deterministic rule engine (`tools/classify/rules.mjs`) | always |
-| 4. **Review** | merges the committed human decisions (`data/pyq/reviewed-labels.jsonl`) over the rule output | `--apply-review <file>` |
+| 4. **Review** | merges the committed human label decisions (`data/pyq/reviewed-labels.jsonl`) over the rule output | `--apply-review <file>` |
 | 5. AI (optional) | merges provider labels for whatever is still unplaced | `--apply-ai <file>` |
-| 6. Build | writes the schema-shaped bank | always |
-| 7. **Sanitise** | writes the app-facing file: provenance out, marking scheme in, ids renamed | always |
+| 6. **Answer review** | merges the committed human answers/explanations for questions the source left keyless (`data/pyq/reviewed-answers.jsonl`) | `--apply-answers <file>` |
+| 7. Build | writes the schema-shaped bank | always |
+| 8. **Sanitise** | writes the app-facing file: provenance out, marking scheme in, ids renamed, no build metadata | always |
 
 ## 1. What goes in
 
@@ -43,8 +45,9 @@ extraction produces and reports anything it does not understand:
 | `options` as strings, `{key,text}` objects, `{option,text}`, a `{A: "…"}` map or one newline-separated string | keys are preserved when present, otherwise assigned `A`, `B`, `C`… |
 | `answer` / `correct_answer` / `answer_key` / `printed_answer` / `supplied_answer.answer` | a key (`"B"`) or the option **text**, which is mapped to its key |
 | `verified_answer`, `dispute`, `verification_evidence` | passed through untouched — a verified answer never replaces the printed key |
-| `explanation` / `solution` | kept as supplied; a plain string is recorded as `unreviewed` |
-| `subject` / `topic` / `subtopic` / `classification_*` | kept when they exist **in the taxonomy**, otherwise recorded in `metadata.classification_dropped` |
+| `explanation` / `solution` | kept verbatim; a plain string becomes `explanation.correct_reasoning` with its language recorded — no review status is attached, because the pipeline is not in a position to grant one |
+| `subject` / `topic` / `subtopic` | kept when they exist **in the taxonomy**, otherwise recorded in `metadata.classification_dropped` |
+| `classification_confidence` / `classification_source` | read by the passes above (an AI merge, for instance, refuses to overwrite a `reviewed` label), then dropped: they never reach the app-facing bank |
 | `year`, `paper`, `set_code`, `exam`, `page`, `source_file` | carried into provenance |
 
 A file that is already a bank (`MPPSC_PYQ_AppBank.json`-style) can be fed back
@@ -170,6 +173,36 @@ In the bundled bank 244 labels were merged: 0 rejected, 0 malformed, 240 of them
 replacing a rule-engine guess. No AI provider was configured, so
 `ai_labels_applied` is 0 and nothing is labelled `pipeline-ai`.
 
+### The answer review pass
+
+`--apply-answers data/pyq/reviewed-answers.jsonl` resolves the questions the
+source printed **no answer for** (`tools/classify/answer-review.mjs`). One JSONL
+line per question:
+
+```json
+{"id":"MPPSC-2024-079","answer":["D"],
+ "basis":"deleted_by_commission",
+ "reason":"MPPSC deleted this question, so no official key exists. The standard elevations order …",
+ "explanation":"Order by elevation: Dhupgarh 1350 m < Mahendragiri 1501 m < …"}
+```
+
+* it runs **after** classification on purpose: an explanation is evidence for the
+  rule engine, so resolving a key must not be able to move a label;
+* a record that already carries a printed key is **never** overwritten — it is
+  reported as `preserved` instead, which is why this pass is safe to run on a
+  whole bank;
+* the answer is written as `supplied_answer` with `answer_key_status: "supplied"`,
+  the same status any other stored key gets, and `basis`/`reason` go to the review
+  report's **Answer resolutions** table rather than into the bank;
+* `explanation` is the prose a learner sees in the app, so it is written to say
+  what the answer rests on — including, for a question MPPSC deleted, that MPPSC
+  deleted it;
+* an id that is not in the bank, or an answer that is not one of its option keys,
+  is rejected and listed; nothing is silently adjusted.
+
+In the bundled bank this resolved 8 questions, preserving 0 printed keys and
+rejecting 0 lines.
+
 ## 3. The AI step (optional, resumable)
 
 Questions the rules cannot settle are written to an AI queue instead of being
@@ -234,8 +267,12 @@ pipeline's working papers and the file the app ships:
 
 * **provenance out** — the bank-level `provenance` block, any remaining
   `source_reference` / `supplied_answer.source` / paper `answer_key` /
-  `source_files`, parser and review bookkeeping in `metadata`; the audit detail is
-  written into the review report's *App-facing bank sanitisation* section instead;
+  `source_files`, parser and review bookkeeping in `metadata`,
+  `classification_confidence` / `classification_source`, every review field on an
+  explanation and the bank-level `classification_meta`; the audit detail is written
+  into the review report's *App-facing bank sanitisation* section instead. The
+  rule for what may stay is simple: if a learner could not act on it, it is not in
+  the file;
 * **neutral answer vocabulary** — a stored key becomes `status: "supplied"` ("an
   answer is stored with this question"); the app makes no claim about who issued
   it, and a keyless question stays `missing`;
@@ -280,9 +317,11 @@ Nothing is written at all if the app's validator would reject any record.
 * **Printed and verified answers stay separate.** `supplied_answer` and
   `verified_answer` are both preserved; a disagreement between them is reported
   in the review report and surfaced by the app, never resolved silently.
-* **Only classification and review metadata are added.** `subject`, `topic`,
-  `subtopic`, `classification_confidence`, `classification_source` and
-  `metadata.*` — nothing else is written into a source record.
+* **Only the labels are added, and nothing about how they were chosen.** The
+  working fields the passes use — `classification_confidence`,
+  `classification_source`, `metadata.*` review bookkeeping, explanation review
+  status, near-duplicate pointers — are all removed by the sanitiser, so what the
+  app loads is the source's content plus `subject`, `topic` and `subtopic`.
 * **Reproducible.** The same input produces byte-identical classifications
   (`generated_at` aside); no randomness, no network, no manual record editing.
 

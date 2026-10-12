@@ -24,6 +24,7 @@ import mistakesView from './ui/views/mistakes.js';
 import revisionView from './ui/views/revision.js';
 import syllabusView from './ui/views/syllabus.js';
 import analyticsView from './ui/views/analytics.js';
+import pyqAnalysisView from './ui/views/pyq-analysis.js';
 import bankView from './ui/views/bank.js';
 import settingsView from './ui/views/settings.js';
 import helpView from './ui/views/help.js';
@@ -38,6 +39,7 @@ const NAV = [
   { route: 'revision', label: 'Revision Centre', icon: 'revision', badge: 'revision', group: 'Improve' },
   { route: 'syllabus', label: 'Syllabus & Planner', icon: 'syllabus', group: 'Improve' },
   { route: 'analytics', label: 'Analytics', icon: 'analytics', group: 'Improve' },
+  { route: 'pyq-analysis', label: 'PYQ Analysis', icon: 'pyq-analysis', group: 'Improve' },
   { route: 'bank', label: 'Question Bank & Imports', icon: 'bank', group: 'System' },
   { route: 'settings', label: 'Settings & Backup', icon: 'settings', group: 'System' },
   { route: 'help', label: 'Help & How it works', icon: 'help', group: 'System' },
@@ -214,7 +216,7 @@ function helpDialog() {
         <h3>What this app does not do</h3>
         <ul class="small">
           <li>It does not generate explanations, answers or classifications with AI. Those arrive with the imported question bank, produced and reviewed by your separate preparation pipeline.</li>
-          <li>It does not contain MPPSC previous-year papers. Real papers must be imported and validated; until then only the clearly-labelled demonstration dataset exists.</li>
+          <li>It does not verify anything for you. The bundled 2019–2024 bank is transcribed previous-year material whose keys have not been checked against an official MPPSC key, and any other paper you want still has to be imported and validated.</li>
           <li>It does not predict future examinations. Topic frequency is a study-prioritisation aid only.</li>
           <li>It does not schedule revision as a guarantee of retention — the interval is a study aid based on your recorded performance.</li>
           <li>Multiple-correct questions use exact set matching (no partial credit) unless a future scoring rule adds it.</li>
@@ -460,6 +462,7 @@ async function boot() {
   router.register('revision', revisionView);
   router.register('syllabus', syllabusView);
   router.register('analytics', analyticsView);
+  router.register('pyq-analysis', pyqAnalysisView);
   router.register('bank', bankView);
   router.register('settings', settingsView);
   router.register('help', helpView);

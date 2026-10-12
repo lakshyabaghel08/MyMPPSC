@@ -47,15 +47,16 @@ export default {
 
     const notDoing = [
       'No account, login, server, cloud sync or API calls. The app runs entirely in your browser and works offline once loaded.',
-      'No AI or model runs inside the app. Explanations and classifications are imported data that the app displays, labels and lets you correct — it never generates them.',
+      'No AI or model runs inside the app. Explanations, answers and classifications are imported data that the app displays and lets you correct — it never generates them and never rates them.',
       'No invented questions and no invented content to “complete” an incomplete paper. Missing questions stay missing and are labelled as such.',
       'No exam-prediction claims, no “expected score” projections, and no guarantee that revision makes anything stick.',
-      'No bundled MPPSC syllabus, and no claim to official content: the bundled 2019–2024 bank is transcribed previous-year material whose stored keys are unverified printed keys, and the demonstration bank is synthetic and badged as such.',
+      'No bundled MPPSC syllabus, and no claim to official content: the bundled 2019–2024 bank is transcribed previous-year material whose stored keys are the source\'s printed answers (a few resolved by hand, recorded in the audit), none of them verified against a commission key, and the demonstration bank is synthetic and badged as such.',
       'No silent data changes: imports, answer-key edits, classification corrections and queue changes are all recorded and inspectable.',
     ];
 
     const checklist = [
       'Import a bank and confirm the pre-import summary lists the same number of questions you expected, plus any rejected records with reasons.',
+      'Open PYQ Analysis and check that the per-subject counts add up to the number of questions the Question Bank screen reports for the same bank.',
       'Start a paper simulation, answer a few questions, refresh the page mid-test, and confirm the session resumes with answers and time intact.',
       'Open a question with a missing or disputed key and confirm it is labelled, and that the report shows which key was used.',
       'Answer a question incorrectly, submit, and check that the Mistake Book and the Revision Centre both picked it up.',
@@ -111,7 +112,7 @@ export default {
                 <li>The revision schedule is a spaced-repetition heuristic over your own answers; it cannot guarantee retention.</li>
                 <li>Analytics are only as good as the attempt history: small samples are labelled, not hidden.</li>
                 <li>Near-duplicate detection works on wording similarity — rephrased questions about the same fact may be reported as similar. Nothing is deleted automatically.</li>
-                <li>Explanations appear exactly as imported. Missing or unreviewed explanations are labelled instead of being filled in.</li>
+                <li>Explanations appear exactly as imported: the app says so when a question has none, and attaches no review status to prose it cannot verify.</li>
                 <li>Full-paper simulation shows only the questions that are actually stored; a paper with missing questions is labelled incomplete.</li>
                 <li>Hindi text is preserved verbatim. Interface text is English.</li>
               </ul>`,

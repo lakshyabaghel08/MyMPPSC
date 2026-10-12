@@ -9,7 +9,7 @@
  *  - The supplied answer key is stored separately from any verified answer.
  */
 
-import { QUESTION_TYPES, SUPPORTED_LANGUAGES, ANSWER_KEY_STATUSES, EXPLANATION_STATUSES, VALIDATION_STATUSES } from './constants.js';
+import { QUESTION_TYPES, SUPPORTED_LANGUAGES, ANSWER_KEY_STATUSES, VALIDATION_STATUSES } from './constants.js';
 import { normaliseText, sortBy } from './util.js';
 
 export const OPTION_KEY_RE = /^[A-Za-z0-9]{1,3}$/;
@@ -169,10 +169,13 @@ export function normaliseQuestion(raw, ctx = {}) {
       }
     : null;
 
+  // An explanation is the prose the bank came with, shown as it is. Nothing here
+  // tracks whether it was reviewed: that is the preparation pipeline's own
+  // bookkeeping, and it changes nothing about how the app uses the text.
   const explanationRaw = raw.explanation && typeof raw.explanation === 'object' ? raw.explanation : null;
   let explanation = null;
   if (explanationRaw) {
-    const correct = asString(explanationRaw.correct_reasoning);
+    const correct = asString(explanationRaw.correct_reasoning ?? explanationRaw.text);
     const optionExplanations = asArray(explanationRaw.option_explanations)
       .map((oe) => (oe && typeof oe === 'object' ? { key: asString(oe.key), text: asString(oe.text), is_correct: asBool(oe.is_correct) } : null))
       .filter((oe) => oe && (oe.text || oe.key));
@@ -180,26 +183,12 @@ export function normaliseQuestion(raw, ctx = {}) {
     if (hasContent) {
       explanation = {
         language: 'en',
-        status: normaliseStatus(explanationRaw.status ?? raw.explanation_status, EXPLANATION_STATUSES, 'generated'),
         correct_reasoning: correct,
         option_explanations: optionExplanations,
         key_concepts: asArray(explanationRaw.key_concepts).map(asString).filter(Boolean),
         revision_takeaways: asArray(explanationRaw.revision_takeaways).map(asString).filter(Boolean),
         sources: normaliseSources(explanationRaw.sources),
-        generated_by: asString(explanationRaw.generated_by),
-        reviewed_by: asString(explanationRaw.reviewed_by),
-        generated_at: asString(explanationRaw.generated_at),
-        reviewed_at: asString(explanationRaw.reviewed_at),
-        original: null,
-        history: [],
       };
-      if (explanation.status === 'missing') {
-        at('explanation_status_missing', 'warning', 'Explanation content is present but its status is "missing"; treated as unreviewed.');
-        explanation.status = 'generated';
-      }
-      if (explanation.status === 'generated' || explanation.status === 'missing') {
-        at('explanation_unreviewed', 'info', 'Explanation has not been reviewed/approved by the external pipeline.');
-      }
     } else {
       at('empty_explanation', 'info', 'Explanation object present but empty; treated as no explanation.');
     }
@@ -209,13 +198,9 @@ export function normaliseQuestion(raw, ctx = {}) {
   const subject = asString(raw.subject);
   const topic = asString(raw.topic);
   const subtopic = asString(raw.subtopic);
-  const confidence = asNumber(raw.classification_confidence);
 
   if (!subject && !topic) {
     at('unclassified', 'warning', 'Question has no subject/topic classification; it is kept as "Unclassified" and remains available in the question bank.');
-  }
-  if (confidence !== null && (confidence < 0.6 || confidence > 1)) {
-    at('low_classification_confidence', 'warning', `Classification confidence is ${confidence}; treat the subject/topic label as uncertain.`);
   }
   if (raw.question_type === 'matching' || raw?.metadata?.shuffle_options_forbidden) {
     // recorded in metadata; option shuffling is blocked for matching questions
@@ -236,11 +221,8 @@ export function normaliseQuestion(raw, ctx = {}) {
       subject,
       topic,
       subtopic,
-      confidence,
-      source: asString(raw.classification_source),
       isUnclassified: !subject && !topic,
-      uncertain: confidence !== null && confidence < 0.6,
-      original: { subject, topic, subtopic, confidence, source: asString(raw.classification_source) || null },
+      original: { subject, topic, subtopic },
       history: [],
     },
     supplied: {
@@ -261,7 +243,6 @@ export function normaliseQuestion(raw, ctx = {}) {
         }
       : null,
     explanation,
-    explanation_status: explanation ? explanation.status : normaliseStatus(raw.explanation_status, EXPLANATION_STATUSES, 'missing'),
     source_reference: sourceRefRaw
       ? {
           file: asString(sourceRefRaw.file),

@@ -1423,6 +1423,57 @@ table.data.compact td {
 }
 
 /* -------------------------------------------------------------------------
+   9b. PYQ Analysis Grid
+   Per-paper counts inside the analysis tables. The number always carries the
+   information; the shading only helps the eye find the heavy rows, and it is
+   relative to the row rather than to the whole bank.
+   ------------------------------------------------------------------------- */
+
+.pyq-matrix .heat {
+  display: inline-block;
+  min-width: 2.4em;
+  padding: 1px 5px;
+  border-radius: var(--radius);
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+
+.pyq-matrix .heat-none {
+  color: var(--ink-faint);
+}
+
+.pyq-matrix .heat-1 {
+  background: color-mix(in oklab, var(--accent) 10%, transparent);
+}
+
+.pyq-matrix .heat-2 {
+  background: color-mix(in oklab, var(--accent) 20%, transparent);
+}
+
+.pyq-matrix .heat-3 {
+  background: color-mix(in oklab, var(--accent) 32%, transparent);
+  font-weight: 650;
+}
+
+[data-theme='dark'] .pyq-matrix .heat-1 {
+  background: color-mix(in oklab, var(--accent) 18%, transparent);
+}
+
+[data-theme='dark'] .pyq-matrix .heat-2 {
+  background: color-mix(in oklab, var(--accent) 28%, transparent);
+}
+
+[data-theme='dark'] .pyq-matrix .heat-3 {
+  background: color-mix(in oklab, var(--accent) 40%, transparent);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .pyq-matrix .heat {
+    transition: background var(--transition-fast);
+  }
+}
+
+/* -------------------------------------------------------------------------
    10. Test Runner (The Crown Jewel)
    ------------------------------------------------------------------------- */
 
@@ -1815,10 +1866,6 @@ body.runner-focus .runner {
   fill: none;
   stroke: var(--accent);
   stroke-width: 2.25;
-}
-
-.chart .point {
-  fill: var(--accent);
 }
 
 .chart-data {

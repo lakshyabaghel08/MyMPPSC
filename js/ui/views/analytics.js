@@ -6,7 +6,6 @@
  * clearly: questions available, unique questions attempted, and total attempts.
  */
 
-import { state } from '../../core/state.js';
 import {
   esc,
   badge,
@@ -15,7 +14,6 @@ import {
   notice,
   dataTable,
   emptyState,
-  lineChart,
   progressBar,
   toast,
   sourceChip,
@@ -59,8 +57,6 @@ export default {
 
     const priorities = studyPriorities({ analytics, limit: viewState.priorityLimit });
     const counts = analytics.counts;
-    const daily = analytics.daily.slice(-21);
-    const accuracyPoints = analytics.daily.filter((d) => d.accuracy !== null).slice(-21).map((d) => ({ label: d.date.slice(5), value: d.accuracy }));
 
     const subjectRows = analytics.bySubject.map((row) => [
       `<strong>${esc(row.subject)}</strong>`,
@@ -149,26 +145,6 @@ export default {
           `${MIN_SAMPLE_HINT} scored answers are labelled “insufficient evidence”. A “weak topic” verdict needs at least ${MIN_SAMPLE_STRONG}.`,
         'info',
       )}
-
-      <div class="split-2">
-        <div>
-          ${card({
-            title: 'Activity per day',
-            subtitle: 'Last 21 days with recorded attempts',
-            right: sourceChip('measured'),
-            body: daily.length ? lineChart({ points: daily.map((d) => ({ label: d.date.slice(5), value: d.attempts })), height: 150, yFormat: (v) => String(Math.round(v)), yMax: Math.max(1, ...daily.map((d) => d.attempts)) }) : '<p class="muted small">No attempts recorded yet.</p>',
-          })}
-        </div>
-        <div>
-          ${card({
-            title: 'Accuracy trend',
-            subtitle: 'All scored attempts per day',
-            right: sourceChip('measured'),
-            body: accuracyPoints.length >= 2 ? lineChart({ points: accuracyPoints, height: 150 }) : '<p class="muted small">At least two days with scored attempts are needed to draw a trend.</p>',
-            footer: 'This line includes repeat attempts. Repeating questions you already know lifts it without improving first-time recall — check first-attempt accuracy above.',
-          })}
-        </div>
-      </div>
 
       ${card({
         title: 'Subjects',

@@ -2,7 +2,6 @@
   "schema_version": "1.0.0",
   "bank_id": "DEMO-SYNTHETIC-001",
   "bank_name": "MyMPPSC Demonstration Bank (synthetic, not a genuine PYQ set)",
-  "generated_at": "2026-01-15T09:00:00Z",
   "generator": {
     "name": "MyMPPSC demonstration fixture",
     "version": "1.0.0",
@@ -246,8 +245,6 @@
       "subject": "Geography",
       "topic": "Rivers of Madhya Pradesh",
       "subtopic": "Narmada basin",
-      "classification_confidence": 0.96,
-      "classification_source": "pipeline-ai",
       "supplied_answer": {
         "answer": [
           "B"
@@ -267,7 +264,6 @@
       },
       "explanation": {
         "language": "en",
-        "status": "reviewed",
         "correct_reasoning": "The Narmada rises from the Amarkantak plateau and drains the largest part of Madhya Pradesh, which is why it is described as the state's lifeline.",
         "option_explanations": [
           {
@@ -306,13 +302,8 @@
             "citation": "Standard Indian geography text",
             "url": null
           }
-        ],
-        "generated_by": "pipeline-demo",
-        "reviewed_by": "reviewer-demo",
-        "generated_at": "2026-01-15T09:10:00Z",
-        "reviewed_at": "2026-01-15T11:00:00Z"
+        ]
       },
-      "explanation_status": "reviewed",
       "source_reference": {
         "file": "synthetic://demo-paper-a",
         "page": null,
@@ -380,8 +371,6 @@
       "subject": "Geography",
       "topic": "Physiography of Madhya Pradesh",
       "subtopic": "Satpura range",
-      "classification_confidence": 0.93,
-      "classification_source": "pipeline-ai",
       "supplied_answer": {
         "answer": [
           "B"
@@ -401,7 +390,6 @@
       },
       "explanation": {
         "language": "en",
-        "status": "approved",
         "correct_reasoning": "Dhupgarh (about 1,352 m) stands in the Satpura range at Pachmarhi and is the highest point in Madhya Pradesh.",
         "option_explanations": [],
         "key_concepts": [
@@ -411,13 +399,8 @@
         "revision_takeaways": [
           "Pachmarhi is in the Satpura range and is also a biosphere reserve."
         ],
-        "sources": [],
-        "generated_by": "pipeline-demo",
-        "reviewed_by": "reviewer-demo",
-        "generated_at": "2026-01-15T09:12:00Z",
-        "reviewed_at": "2026-01-15T12:00:00Z"
+        "sources": []
       },
-      "explanation_status": "approved",
       "source_reference": {
         "file": "synthetic://demo-paper-a",
         "page": null,
@@ -485,8 +468,6 @@
       "subject": "Environment",
       "topic": "Wildlife of Madhya Pradesh",
       "subtopic": "State symbols",
-      "classification_confidence": 0.9,
-      "classification_source": "pipeline-ai",
       "supplied_answer": {
         "answer": [
           "B"
@@ -501,7 +482,6 @@
       "dispute": null,
       "explanation": {
         "language": "en",
-        "status": "reviewed",
         "correct_reasoning": "The hard-ground barasingha is the state animal of Madhya Pradesh; the tiger is the national animal.",
         "option_explanations": [],
         "key_concepts": [
@@ -511,13 +491,8 @@
         "revision_takeaways": [
           "Do not confuse the state animal (barasingha) with the national animal (tiger)."
         ],
-        "sources": [],
-        "generated_by": "pipeline-demo",
-        "reviewed_by": "reviewer-demo",
-        "generated_at": "2026-01-15T09:14:00Z",
-        "reviewed_at": "2026-01-15T12:05:00Z"
+        "sources": []
       },
-      "explanation_status": "reviewed",
       "source_reference": {
         "file": "synthetic://demo-paper-a",
         "page": null,
@@ -564,8 +539,6 @@
       "subject": "Environment",
       "topic": "Wildlife of Madhya Pradesh",
       "subtopic": "State symbols",
-      "classification_confidence": 0.88,
-      "classification_source": "pipeline-ai",
       "supplied_answer": {
         "answer": [
           "A"
@@ -579,7 +552,6 @@
       "verification_evidence": [],
       "dispute": null,
       "explanation": null,
-      "explanation_status": "missing",
       "source_reference": {
         "file": "synthetic://demo-paper-a",
         "page": null,
@@ -647,8 +619,6 @@
       "subject": "Madhya Pradesh Special",
       "topic": "Formation of Madhya Pradesh",
       "subtopic": "State reorganisation",
-      "classification_confidence": 0.95,
-      "classification_source": "pipeline-ai",
       "supplied_answer": {
         "answer": [
           "B"
@@ -663,7 +633,6 @@
       "dispute": null,
       "explanation": {
         "language": "en",
-        "status": "generated",
         "correct_reasoning": "Chhattisgarh was formed on 1 November 2000 by the Madhya Pradesh Reorganisation Act, 2000.",
         "option_explanations": [],
         "key_concepts": [
@@ -672,13 +641,8 @@
         "revision_takeaways": [
           "Madhya Pradesh itself was reorganised on 1 November 1956."
         ],
-        "sources": [],
-        "generated_by": "pipeline-demo",
-        "reviewed_by": null,
-        "generated_at": "2026-01-15T09:20:00Z",
-        "reviewed_at": null
+        "sources": []
       },
-      "explanation_status": "generated",
       "source_reference": {
         "file": "synthetic://demo-paper-a",
         "page": null,
@@ -749,8 +713,6 @@
       "subject": "Madhya Pradesh Special",
       "topic": "Formation of Madhya Pradesh",
       "subtopic": "Chief Ministers",
-      "classification_confidence": 0.8,
-      "classification_source": "pipeline-ai",
       "supplied_answer": {
         "answer": [
           "A"
@@ -764,7 +726,6 @@
       "verification_evidence": [],
       "dispute": null,
       "explanation": null,
-      "explanation_status": "missing",
       "source_reference": {
         "file": "synthetic://demo-paper-a",
         "page": null,
@@ -832,8 +793,6 @@
       "subject": "History",
       "topic": "Prehistory and Art",
       "subtopic": "Rock shelters",
-      "classification_confidence": 0.94,
-      "classification_source": "pipeline-ai",
       "supplied_answer": {
         "answer": [
           "A"
@@ -848,7 +807,6 @@
       "dispute": null,
       "explanation": {
         "language": "en",
-        "status": "reviewed",
         "correct_reasoning": "The Bhimbetka rock shelters lie in the Raisen district and were inscribed as a UNESCO World Heritage Site in 2003.",
         "option_explanations": [],
         "key_concepts": [
@@ -858,13 +816,8 @@
         "revision_takeaways": [
           "Madhya Pradesh UNESCO sites: Khajuraho, Sanchi, Bhimbetka."
         ],
-        "sources": [],
-        "generated_by": "pipeline-demo",
-        "reviewed_by": "reviewer-demo",
-        "generated_at": "2026-01-15T09:25:00Z",
-        "reviewed_at": "2026-01-15T12:30:00Z"
+        "sources": []
       },
-      "explanation_status": "reviewed",
       "source_reference": {
         "file": "synthetic://demo-paper-a",
         "page": null,
@@ -911,8 +864,6 @@
       "subject": "History",
       "topic": "Ancient India",
       "subtopic": "Mauryan art and architecture",
-      "classification_confidence": 0.92,
-      "classification_source": "pipeline-ai",
       "supplied_answer": {
         "answer": [
           "A"
@@ -926,7 +877,6 @@
       "verification_evidence": [],
       "dispute": null,
       "explanation": null,
-      "explanation_status": "missing",
       "source_reference": {
         "file": "synthetic://demo-paper-a",
         "page": null,
@@ -994,8 +944,6 @@
       "subject": "History",
       "topic": "Medieval India",
       "subtopic": "Temple architecture",
-      "classification_confidence": 0.91,
-      "classification_source": "pipeline-ai",
       "supplied_answer": {
         "answer": [
           "A"
@@ -1010,7 +958,6 @@
       "dispute": null,
       "explanation": {
         "language": "en",
-        "status": "reviewed",
         "correct_reasoning": "The Khajuraho temples were built under the Chandela rulers between roughly the 10th and 12th centuries.",
         "option_explanations": [],
         "key_concepts": [
@@ -1020,13 +967,8 @@
         "revision_takeaways": [
           "Khajuraho = Chandela; Bhojshala at Dhar = Paramara."
         ],
-        "sources": [],
-        "generated_by": "pipeline-demo",
-        "reviewed_by": "reviewer-demo",
-        "generated_at": "2026-01-15T09:28:00Z",
-        "reviewed_at": "2026-01-15T12:35:00Z"
+        "sources": []
       },
-      "explanation_status": "reviewed",
       "source_reference": {
         "file": "synthetic://demo-paper-a",
         "page": null,
@@ -1094,8 +1036,6 @@
       "subject": "Art and Culture",
       "topic": "Temples of Madhya Pradesh",
       "subtopic": "Jyotirlingas",
-      "classification_confidence": 0.9,
-      "classification_source": "pipeline-ai",
       "supplied_answer": {
         "answer": [
           "B"
@@ -1109,7 +1049,6 @@
       "verification_evidence": [],
       "dispute": null,
       "explanation": null,
-      "explanation_status": "missing",
       "source_reference": {
         "file": "synthetic://demo-paper-a",
         "page": null,
@@ -1177,8 +1116,6 @@
       "subject": "Geography",
       "topic": "Rivers of Madhya Pradesh",
       "subtopic": "Tributaries",
-      "classification_confidence": 0.89,
-      "classification_source": "pipeline-ai",
       "supplied_answer": {
         "answer": [
           "A"
@@ -1193,7 +1130,6 @@
       "dispute": null,
       "explanation": {
         "language": "en",
-        "status": "reviewed",
         "correct_reasoning": "The Tawa is a left-bank tributary of the Narmada and the Tawa reservoir supplies water to parts of the Narmadapuram region.",
         "option_explanations": [],
         "key_concepts": [
@@ -1202,13 +1138,8 @@
         "revision_takeaways": [
           "Left-bank tributaries of the Narmada include Tawa, Barna and Hiran."
         ],
-        "sources": [],
-        "generated_by": "pipeline-demo",
-        "reviewed_by": "reviewer-demo",
-        "generated_at": "2026-01-15T09:30:00Z",
-        "reviewed_at": "2026-01-15T12:40:00Z"
+        "sources": []
       },
-      "explanation_status": "reviewed",
       "source_reference": {
         "file": "synthetic://demo-paper-a",
         "page": null,
@@ -1255,8 +1186,6 @@
       "subject": "Environment",
       "topic": "Wildlife of Madhya Pradesh",
       "subtopic": "National parks",
-      "classification_confidence": 0.86,
-      "classification_source": "pipeline-ai",
       "supplied_answer": {
         "answer": [
           "C"
@@ -1271,7 +1200,6 @@
       "dispute": null,
       "explanation": {
         "language": "en",
-        "status": "generated",
         "correct_reasoning": "Kanha lies in the Maikal hills and its barasingha population is the hard-ground subspecies, so both statements are correct.",
         "option_explanations": [],
         "key_concepts": [
@@ -1279,13 +1207,8 @@
           "barasingha conservation"
         ],
         "revision_takeaways": [],
-        "sources": [],
-        "generated_by": "pipeline-demo",
-        "reviewed_by": null,
-        "generated_at": "2026-01-15T09:32:00Z",
-        "reviewed_at": null
+        "sources": []
       },
-      "explanation_status": "generated",
       "source_reference": {
         "file": "synthetic://demo-paper-a",
         "page": null,
@@ -1332,8 +1255,6 @@
       "subject": "History",
       "topic": "Ancient India",
       "subtopic": "Buddhism in Madhya Pradesh",
-      "classification_confidence": 0.84,
-      "classification_source": "pipeline-ai",
       "supplied_answer": {
         "answer": [
           "A"
@@ -1347,7 +1268,6 @@
       "verification_evidence": [],
       "dispute": null,
       "explanation": null,
-      "explanation_status": "missing",
       "source_reference": {
         "file": "synthetic://demo-paper-a",
         "page": null,
@@ -1395,8 +1315,6 @@
       "subject": "Environment",
       "topic": "Wildlife of Madhya Pradesh",
       "subtopic": "National parks",
-      "classification_confidence": 0.82,
-      "classification_source": "pipeline-ai",
       "supplied_answer": {
         "answer": [
           "A"
@@ -1410,7 +1328,6 @@
       "verification_evidence": [],
       "dispute": null,
       "explanation": null,
-      "explanation_status": "missing",
       "source_reference": {
         "file": "synthetic://demo-paper-a",
         "page": null,
@@ -1479,8 +1396,6 @@
       "subject": "Madhya Pradesh Special",
       "topic": "Tribes of Madhya Pradesh",
       "subtopic": "Census data",
-      "classification_confidence": 0.78,
-      "classification_source": "pipeline-ai",
       "supplied_answer": {
         "answer": [
           "B"
@@ -1494,7 +1409,6 @@
       "verification_evidence": [],
       "dispute": null,
       "explanation": null,
-      "explanation_status": "missing",
       "source_reference": {
         "file": "synthetic://demo-paper-a",
         "page": null,
@@ -1541,8 +1455,6 @@
       "subject": "Geography",
       "topic": "Rivers of Madhya Pradesh",
       "subtopic": "Drainage systems",
-      "classification_confidence": 0.87,
-      "classification_source": "pipeline-ai",
       "supplied_answer": {
         "answer": [
           "A"
@@ -1556,7 +1468,6 @@
       "verification_evidence": [],
       "dispute": null,
       "explanation": null,
-      "explanation_status": "missing",
       "source_reference": {
         "file": "synthetic://demo-paper-a",
         "page": null,
@@ -1624,8 +1535,6 @@
       "subject": "Geography",
       "topic": "Rivers of Madhya Pradesh",
       "subtopic": "Narmada basin",
-      "classification_confidence": 0.9,
-      "classification_source": "pipeline-ai",
       "supplied_answer": {
         "answer": [
           "A"
@@ -1639,7 +1548,6 @@
       "verification_evidence": [],
       "dispute": null,
       "explanation": null,
-      "explanation_status": "missing",
       "source_reference": {
         "file": "synthetic://demo-paper-a",
         "page": null,
@@ -1707,8 +1615,6 @@
       "subject": "Geography",
       "topic": "Rivers of Madhya Pradesh",
       "subtopic": "Narmada basin",
-      "classification_confidence": 0.97,
-      "classification_source": "pipeline-ai",
       "supplied_answer": {
         "answer": [
           "A"
@@ -1723,7 +1629,6 @@
       "dispute": null,
       "explanation": {
         "language": "en",
-        "status": "reviewed",
         "correct_reasoning": "The Narmada rises at Amarkantak in the Anuppur district of Madhya Pradesh.",
         "option_explanations": [
           {
@@ -1744,13 +1649,8 @@
         "revision_takeaways": [
           "Amarkantak is the source of the Narmada; the Son also rises nearby."
         ],
-        "sources": [],
-        "generated_by": "pipeline-demo",
-        "reviewed_by": "reviewer-demo",
-        "generated_at": "2026-01-15T09:40:00Z",
-        "reviewed_at": "2026-01-15T12:50:00Z"
+        "sources": []
       },
-      "explanation_status": "reviewed",
       "source_reference": {
         "file": "synthetic://demo-paper-a",
         "page": null,
@@ -1798,8 +1698,6 @@
       "subject": "Geography",
       "topic": "Rivers of Madhya Pradesh",
       "subtopic": "Tributaries",
-      "classification_confidence": 0.75,
-      "classification_source": "pipeline-ai",
       "supplied_answer": {
         "answer": [
           "A",
@@ -1815,20 +1713,14 @@
       "dispute": null,
       "explanation": {
         "language": "en",
-        "status": "generated",
         "correct_reasoning": "The Tawa and the Barna join the Narmada from the left bank; the Betwa and the Sone belong to the Ganga basin.",
         "option_explanations": [],
         "key_concepts": [
           "Narmada tributaries"
         ],
         "revision_takeaways": [],
-        "sources": [],
-        "generated_by": "pipeline-demo",
-        "reviewed_by": null,
-        "generated_at": "2026-01-15T09:45:00Z",
-        "reviewed_at": null
+        "sources": []
       },
-      "explanation_status": "generated",
       "source_reference": {
         "file": "synthetic://demo-paper-b",
         "page": null,
@@ -1875,8 +1767,6 @@
       "subject": "Environment",
       "topic": "Wildlife of Madhya Pradesh",
       "subtopic": "Protected areas",
-      "classification_confidence": 0.88,
-      "classification_source": "pipeline-ai",
       "supplied_answer": {
         "answer": null,
         "status": "missing",
@@ -1888,7 +1778,6 @@
       "verification_evidence": [],
       "dispute": null,
       "explanation": null,
-      "explanation_status": "missing",
       "source_reference": {
         "file": "synthetic://demo-paper-b",
         "page": null,
@@ -1930,8 +1819,6 @@
       "subject": "Geography",
       "topic": "Rivers of Madhya Pradesh",
       "subtopic": "Tapti basin",
-      "classification_confidence": 0.7,
-      "classification_source": "pipeline-ai",
       "supplied_answer": {
         "answer": [
           "B"
@@ -1972,7 +1859,6 @@
         "raised_by": "demo-verifier"
       },
       "explanation": null,
-      "explanation_status": "missing",
       "source_reference": {
         "file": "synthetic://demo-paper-b",
         "page": null,
@@ -2022,8 +1908,6 @@
       "subject": "Environment",
       "topic": "Wildlife of Madhya Pradesh",
       "subtopic": "National parks",
-      "classification_confidence": 0.72,
-      "classification_source": "pipeline-ai",
       "supplied_answer": {
         "answer": [
           "A"
@@ -2037,7 +1921,6 @@
       "verification_evidence": [],
       "dispute": null,
       "explanation": null,
-      "explanation_status": "missing",
       "source_reference": {
         "file": "synthetic://demo-paper-b",
         "page": null,
@@ -2084,8 +1967,6 @@
       "subject": "Art and Culture",
       "topic": "Festivals and fairs",
       "subtopic": "Simhastha",
-      "classification_confidence": 0.83,
-      "classification_source": "pipeline-ai",
       "supplied_answer": {
         "answer": [
           "A"
@@ -2099,7 +1980,6 @@
       "verification_evidence": [],
       "dispute": null,
       "explanation": null,
-      "explanation_status": "missing",
       "source_reference": {
         "file": "synthetic://demo-paper-b",
         "page": null,
@@ -2146,8 +2026,6 @@
       "subject": "Madhya Pradesh Special",
       "topic": "Demography of Madhya Pradesh",
       "subtopic": "Census 2011",
-      "classification_confidence": 0.68,
-      "classification_source": "pipeline-ai",
       "supplied_answer": {
         "answer": [
           "B"
@@ -2161,7 +2039,6 @@
       "verification_evidence": [],
       "dispute": null,
       "explanation": null,
-      "explanation_status": "missing",
       "source_reference": {
         "file": "synthetic://demo-paper-b",
         "page": null,
@@ -2209,8 +2086,6 @@
       "subject": "History",
       "topic": "Art and architecture",
       "subtopic": "Dynasties and monuments",
-      "classification_confidence": 0.76,
-      "classification_source": "pipeline-ai",
       "supplied_answer": {
         "answer": [
           "A"
@@ -2224,7 +2099,6 @@
       "verification_evidence": [],
       "dispute": null,
       "explanation": null,
-      "explanation_status": "missing",
       "source_reference": {
         "file": "synthetic://demo-paper-b",
         "page": null,
@@ -2272,8 +2146,6 @@
       "subject": "History",
       "topic": "Modern India",
       "subtopic": "Indian National Congress",
-      "classification_confidence": 0.9,
-      "classification_source": "pipeline-ai",
       "supplied_answer": {
         "answer": [
           "A"
@@ -2287,7 +2159,6 @@
       "verification_evidence": [],
       "dispute": null,
       "explanation": null,
-      "explanation_status": "missing",
       "source_reference": {
         "file": "synthetic://demo-paper-b",
         "page": null,
@@ -2355,8 +2226,6 @@
       "subject": "Polity",
       "topic": "Union and State Relations",
       "subtopic": "Emergency provisions",
-      "classification_confidence": 0.92,
-      "classification_source": "pipeline-ai",
       "supplied_answer": {
         "answer": [
           "B"
@@ -2371,7 +2240,6 @@
       "dispute": null,
       "explanation": {
         "language": "en",
-        "status": "reviewed",
         "correct_reasoning": "Article 356 allows the President to assume the functions of the state government when the constitutional machinery fails.",
         "option_explanations": [],
         "key_concepts": [
@@ -2382,13 +2250,8 @@
         "revision_takeaways": [
           "352 = national, 356 = state, 360 = financial emergency."
         ],
-        "sources": [],
-        "generated_by": "pipeline-demo",
-        "reviewed_by": "reviewer-demo",
-        "generated_at": "2026-01-15T09:50:00Z",
-        "reviewed_at": "2026-01-15T13:00:00Z"
+        "sources": []
       },
-      "explanation_status": "reviewed",
       "source_reference": {
         "file": "synthetic://demo-paper-b",
         "page": null,
@@ -2456,8 +2319,6 @@
       "subject": "Environment",
       "topic": "Forests of Madhya Pradesh",
       "subtopic": "State symbols",
-      "classification_confidence": 0.85,
-      "classification_source": "pipeline-ai",
       "supplied_answer": {
         "answer": [
           "A"
@@ -2471,7 +2332,6 @@
       "verification_evidence": [],
       "dispute": null,
       "explanation": null,
-      "explanation_status": "missing",
       "source_reference": {
         "file": "synthetic://demo-paper-b",
         "page": null,
@@ -2539,8 +2399,6 @@
       "subject": "History",
       "topic": "Modern India",
       "subtopic": "Gandhian movements",
-      "classification_confidence": 0.93,
-      "classification_source": "pipeline-ai",
       "supplied_answer": {
         "answer": [
           "A"
@@ -2555,7 +2413,6 @@
       "dispute": null,
       "explanation": {
         "language": "en",
-        "status": "reviewed",
         "correct_reasoning": "Gandhi's Champaran campaign of 1917 was his first satyagraha on Indian soil, taken up for indigo cultivators.",
         "option_explanations": [],
         "key_concepts": [
@@ -2566,13 +2423,8 @@
         "revision_takeaways": [
           "Order: Champaran (1917), Ahmedabad mill strike and Kheda (1918), Bardoli (1928)."
         ],
-        "sources": [],
-        "generated_by": "pipeline-demo",
-        "reviewed_by": "reviewer-demo",
-        "generated_at": "2026-01-15T09:55:00Z",
-        "reviewed_at": "2026-01-15T13:10:00Z"
+        "sources": []
       },
-      "explanation_status": "reviewed",
       "source_reference": {
         "file": "synthetic://demo-paper-c",
         "page": null,
@@ -2619,8 +2471,6 @@
       "subject": "Polity",
       "topic": "Constitution of India",
       "subtopic": "Fundamental Rights",
-      "classification_confidence": 0.94,
-      "classification_source": "pipeline-ai",
       "supplied_answer": {
         "answer": [
           "C"
@@ -2634,7 +2484,6 @@
       "verification_evidence": [],
       "dispute": null,
       "explanation": null,
-      "explanation_status": "missing",
       "source_reference": {
         "file": "synthetic://demo-paper-c",
         "page": null,
@@ -2681,8 +2530,6 @@
       "subject": "Madhya Pradesh Special",
       "topic": "Tribes of Madhya Pradesh",
       "subtopic": "Census data",
-      "classification_confidence": 0.7,
-      "classification_source": "pipeline-ai",
       "supplied_answer": {
         "answer": [
           "A"
@@ -2696,7 +2543,6 @@
       "verification_evidence": [],
       "dispute": null,
       "explanation": null,
-      "explanation_status": "missing",
       "source_reference": {
         "file": "synthetic://demo-paper-c",
         "page": null,
@@ -2764,8 +2610,6 @@
       "subject": "Geography",
       "topic": "Rivers of Madhya Pradesh",
       "subtopic": "Narmada basin",
-      "classification_confidence": 0.95,
-      "classification_source": "pipeline-ai",
       "supplied_answer": {
         "answer": [
           "B"
@@ -2779,7 +2623,6 @@
       "verification_evidence": [],
       "dispute": null,
       "explanation": null,
-      "explanation_status": "missing",
       "source_reference": {
         "file": "synthetic://demo-paper-c",
         "page": null,
@@ -2827,8 +2670,6 @@
       "subject": "Geography",
       "topic": "Physiography of Madhya Pradesh",
       "subtopic": "Location",
-      "classification_confidence": 0.9,
-      "classification_source": "pipeline-ai",
       "supplied_answer": {
         "answer": [
           "B"
@@ -2842,7 +2683,6 @@
       "verification_evidence": [],
       "dispute": null,
       "explanation": null,
-      "explanation_status": "missing",
       "source_reference": {
         "file": "synthetic://demo-paper-c",
         "page": null,
@@ -2910,8 +2750,6 @@
       "subject": "Art and Culture",
       "topic": "Heritage Sites",
       "subtopic": "UNESCO listings",
-      "classification_confidence": 0.88,
-      "classification_source": "pipeline-ai",
       "supplied_answer": {
         "answer": [
           "C"
@@ -2925,7 +2763,6 @@
       "verification_evidence": [],
       "dispute": null,
       "explanation": null,
-      "explanation_status": "missing",
       "source_reference": {
         "file": "synthetic://demo-paper-c",
         "page": null,

@@ -15,7 +15,7 @@ npm run serve        # serves the folder on http://localhost:8080
 
 Then open <http://localhost:8080/>. On first load the app fetches the bundled bank from `data/pyq/mymppsc-pyq-bank.json`, validates it with the same validator the import screen uses, and writes it to your local database — no upload, no manual import. A **clearly-labelled synthetic demonstration bank** remains one click away (Question Bank & Imports → *Demonstration data*) for exploring screens; it is never presented as genuine previous-year content.
 
-**The bundled bank is real previous-year material, transcribed from a solved book, and its answer keys are reproduced as printed there.** They have not been verified against an official MPPSC key, and the app never calls a stored key official. Where a key is missing, the question is stored keyless and excluded from scoring. See `docs/PYQ_AUDIT.md` for what is unresolved and why.
+**The bundled bank is real previous-year material, transcribed from a solved book, and its answer keys are reproduced as printed there.** They have not been verified against an official MPPSC key, and the app never calls a stored key official. Eight questions the book printed without a key are answered by a committed human review file, with the reason for each recorded in the audit — none of them is a guess, and none of them is an official key. A question that ends up without a key is stored keyless and excluded from scoring. The bank carries no record of how a label or an explanation was produced: no confidence figures, no reviewer names, no explanation statuses — see `docs/PYQ_AUDIT.md` for what is unresolved and why.
 
 Any static file server works — the app is plain HTML/CSS/ES modules. To run it offline as a PWA, serve it over `http(s)` (the service worker cannot register on `file://`).
 
@@ -54,8 +54,8 @@ The bank is built, and can be rebuilt, from the committed source and review
 files — see `docs/PYQ_PIPELINE.md` and `docs/PYQ_AUDIT.md`.
 
 ```bash
-npm test             # 182 tests: services, end-to-end journey, UI journey, bank loader and PYQ pipeline tests
-npm run check        # 814 static integrity checks (imports, routes, assets, contrast, tokens, shell, bundled bank)
+npm test             # 194 tests: services, end-to-end journey, UI journey, bank loader, PYQ pipeline and PYQ analysis tests
+npm run check        # 847 static integrity checks (imports, routes, assets, contrast, tokens, shell, bundled bank)
 npm run audit:ui     # alias for npm run check (static UI + contrast + token audit)
 python3 tools/make-icons.py   # regenerate the PWA icons (no dependencies)
 node tools/build-bank.mjs --help
@@ -79,7 +79,8 @@ working, and `npm run check` fails if any of them is undone:
 | Area | Behaviour |
 | --- | --- |
 | **PYQ Test Centre** | Full-paper simulations in the **original question order** with the paper's own duration, plus resume/discard for unfinished sessions. Incomplete papers, unknown scoring rules, disputed keys and missing keys are labelled on the paper card *before* you start. |
-| **Topic Practice** | Filter by subject, topic, subtopic, attempt history (year, paper, question type and language tuck behind "More filters"). Live counts before you start. |
+| **Topic Practice** | Filter by subject, topic, subtopic, attempt history (year, paper, question type and language tuck behind "More filters"). Live counts before you start. A deep link (`#/topic/<Subject>` or `#/topic/<Subject>||<Topic>`) preselects the filters, which is what the PYQ Analysis and dashboard tables link to. |
+| **PYQ Analysis** | Counts the previous-year questions stored on this device by subject and by topic, with what each paper contributed to each group. It stops at the topic level: subtopic labels come from an import, not from the printed paper, so counting them would describe the bank instead of the exam. Every count links through to practice on that group. |
 | **Custom Test** | Assemble a set from your own selection — subjects and topics up front, everything else optional. Always labelled as a custom set — never as an authentic paper. |
 | **Smart Practice** | Builds a session from due revisions, repeated mistakes, skipped questions, weak topics, unseen coverage and under-practised topics, and **explains every allocation line**. Historical frequency is described as a study aid, never a prediction. |
 | **Mistake Book** | Wrong answers, skips, flagged questions, repeated mistakes and correct-but-unsure answers, with the full attempt history per question. Resolving keeps the history. |
@@ -97,7 +98,7 @@ Starting a practice session is deliberately low-config. On Topic Practice, Custo
 ## What it deliberately does not do
 
 * No login, backend, cloud sync or API calls. No telemetry.
-* **No AI or model runs inside the app.** Explanations, answers and classifications are imported data: the app displays them exactly as supplied, labels what is missing or unreviewed, and lets you correct it with the original preserved. Nothing is generated.
+* **No AI or model runs inside the app.** Explanations, answers and classifications are imported data: the app displays them exactly as supplied, says when a question has none, and lets you correct anything with the original preserved. Nothing is generated, and no review status is claimed for prose the app cannot verify.
 * No bundled MPPSC syllabus and no claim to official content. The bundled 2019–2024 bank is transcribed previous-year material whose keys are the source's printed ones, **unverified**; the demonstration dataset is synthetic filler and badged as such everywhere it appears.
 * No exam-prediction claims, no invented questions to "complete" an incomplete paper, and no guarantee that revision makes anything stick.
 * No source-book name, coaching provider, page reference or "official/unofficial key" label anywhere in the bundled bank or the interface. That provenance is kept in the build-time reports (`data/pyq/review-report.md`, `docs/PYQ_AUDIT.md`), not in the app.
@@ -148,7 +149,7 @@ Layering is strict: `core → services → ui`. Views are HTML strings plus dele
 | `docs/DATA_PIPELINE.md` | How to produce banks outside the app, with the intake format and worked example. |
 | `docs/PYQ_PIPELINE.md` | The PYQ classification pipeline: the rule engine, the taxonomy, MP-versus-India attribution, the extraction repairs, the human review pass, the app-facing sanitiser and the reports it writes. |
 | `docs/MARKING.md` | The automatic marking schemes: the 2019–2025 and 2026-onwards patterns, how the scheme is selected per paper, what is verified and what is only reported, and how to add a year. |
-| `docs/PYQ_AUDIT.md` | Internal audit of the bundled 2019–2024 bank: coverage, what was repaired, the eight questions with no key, the two extraction losses that could not be recovered, the numbering gaps, and the remaining limitations. |
+| `docs/PYQ_AUDIT.md` | Internal audit of the bundled 2019–2024 bank: coverage, what was repaired, the eight questions the source left keyless and how each was resolved, the two extraction losses that could not be recovered, the numbering gaps, and the remaining limitations. |
 | `docs/TESTING.md` | What the test suite covers, what it does not, and a manual verification checklist. |
 | `docs/LIMITATIONS.md` | Honest list of what this build does not do or cannot guarantee. |
 | `docs/IMPLEMENTATION_REPORT.md` | Feature-by-feature report against the original specification, the UI overhaul before/after measurements, the tests actually run and their results, and the remaining gaps. |
@@ -159,4 +160,4 @@ Your data never leaves the device, which also means **you are responsible for ba
 
 ## Licence and content notice
 
-The application code is provided as-is for personal study use. Content in this repository is study material, not commission material: the bundled 2019–2024 bank is transcribed previous-year material (571 questions, six papers, printed keys, 8 keyless and 2 records the extraction could not recover — see `docs/PYQ_AUDIT.md`), the demonstration bank and the sample intake file are synthetic filler, and the marking schemes say which patterns are verified and which are only reported. Verify any key against the commission's own key before relying on it, and treat scores as practice feedback, not results.
+The application code is provided as-is for personal study use. Content in this repository is study material, not commission material: the bundled 2019–2024 bank is transcribed previous-year material (571 questions, six papers, every one keyed — 563 from the printed source and 8 from a committed review pass; 2 records the extraction could not recover — see `docs/PYQ_AUDIT.md`), the demonstration bank and the sample intake file are synthetic filler, and the marking schemes say which patterns are verified and which are only reported. Verify any key against the commission's own key before relying on it, and treat scores as practice feedback, not results.

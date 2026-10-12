@@ -1,6 +1,6 @@
 # PYQ bank review report
 
-Generated 2026-10-11T22:21:35.932Z.
+Generated 2026-10-12T05:26:50.325Z.
 
 ## Summary
 
@@ -10,12 +10,13 @@ Generated 2026-10-11T22:21:35.932Z.
 | Questions in the built bank | 571 |
 | Records removed | 0 |
 | Records merged | 0 |
-| Missing answer keys | 8 |
+| Missing answer keys | 0 |
 | Near-duplicate pairs | 36 |
 | Identical-content groups | 0 |
 | Ambiguous classifications | 0 |
 | Low-confidence classifications | 1 |
 | Reviewed classification decisions applied / rejected | 244 / 0 |
+| Keyless questions resolved by a human / printed keys preserved | 8 / 0 |
 | Extraction artefacts repaired (escaped line breaks) | 9263 |
 | Source-provenance fields removed before the bank was built | 1146 |
 | Literal \n escapes repaired | 9263 |
@@ -25,18 +26,24 @@ Generated 2026-10-11T22:21:35.932Z.
 
 ## Missing answer keys
 
-These questions are in the bank with `supplied_answer.answer = null` and `answer_key_status = "missing"`. The app excludes them from scoring and labels them *Answer key missing*. **No answer was fabricated for any of them.**
+None.
 
-| Question | Paper | Year | Question text (excerpt) |
-| --- | --- | --- | --- |
-| `MPPSC-2021-057` | MPPSC-2021-P1 | 2021 | State Chief Election Commissioner is appointed by |
-| `MPPSC-2021-075` | MPPSC-2021-P1 | 2021 | The Development Monitoring and Evaluation Office (DMEO) was constituted on |
-| `MPPSC-2022-046` | MPPSC-2022-P1 | 2022 | Quit India Movement was started on |
-| `MPPSC-2022-059` | MPPSC-2022-P1 | 2022 | When did the Madhya Pradesh State Election Commission come into existence? |
-| `MPPSC-2023-026` | MPPSC-2023-P1 | 2023 | Which of the following rights is not under the purview of the National Human Rights Commission? |
-| `MPPSC-2024-021` | MPPSC-2024-P1 | 2024 | Bhimma tribe lives in which of the districts of Madhya Pradesh ? |
-| `MPPSC-2024-028` | MPPSC-2024-P1 | 2024 | Which award is given for writings on the cultural tradition and specialties of tribal life in Indian literature? |
-| `MPPSC-2024-079` | MPPSC-2024-P1 | 2024 | Arrange the following mountain peaks, in ascending order, according to their height: (i) Guru Shikhar (ii) Mahendragiri (iii) Anaimudi (iv)  |
+## Answer resolutions
+
+A question the source left without any answer stays keyless unless a person resolves it. These are those resolutions: the answer was chosen by reading the question, its options and the source explanation, and, where the commission deleted the question, by the settled position on the point. The merge refuses to touch a record that already carries a printed key, and the source explanation that was replaced is recorded below. The app-facing bank carries the answer and the explanation text only — the basis and the reason live here.
+
+Applied: **8**, printed keys left untouched: 0, rejected: 0, malformed lines: 0.
+
+| Question | Action | Answer | Basis | Explanation in the bank | Why |
+| --- | --- | --- | --- | --- | --- |
+| `MPPSC-2021-057` | applied | `A` | constitutional_provision | written for the bank | Article 243K(1) vests the State Election Commission in a State Election Commissioner appointed by the Governor; the source's own explanation |
+| `MPPSC-2021-075` | applied | `A` | source_explanation | written for the bank | The printed explanation dates the office to 18 September 2015, which is also the notification date recorded by NITI Aayog; the other three d |
+| `MPPSC-2022-046` | applied | `B` | source_explanation | written for the bank | Of the four dates this paper prints (6, 7, 9 and 10 August 1942) only 9 August has any connection with the movement, and the printed explana |
+| `MPPSC-2022-059` | applied | `B` | standard_reference | written for the bank | The Madhya Pradesh State Election Commission was constituted by a General Administration Department notification dated 1 February 1994 — the |
+| `MPPSC-2023-026` | applied | `B` | deleted_by_commission | written for the bank | MPPSC deleted this question, so no official key exists. Section 2(d) of the Protection of Human Rights Act, 1993 lists life, liberty, equali |
+| `MPPSC-2024-021` | applied | `B` | deleted_by_commission | written for the bank | MPPSC deleted this question, so no official key exists. The Bhimma are recorded as a section of the Gond tribe of Madhya Pradesh whose home  |
+| `MPPSC-2024-028` | applied | `B` | deleted_by_commission | written for the bank | MPPSC deleted this question, so no official key exists. The award instituted for writings on the cultural tradition and specialities of trib |
+| `MPPSC-2024-079` | applied | `D` | deleted_by_commission | written for the bank | MPPSC deleted this question, so no official key exists. The standard elevations order the four peaks as Panchmarhi < Mahendragiri < Guru Shi |
 
 ## Suspected duplicates
 
@@ -438,11 +445,15 @@ The app-facing bank carries no source provenance. Everything listed here was rem
 | `supplied_answer.source` still present when the sanitiser ran | 0 |
 | Paper-level answer-key blocks removed | 6 |
 | Paper source-file lists removed | 0 |
-| Parser metadata fields removed (none) | 0 |
+| Parser metadata fields removed (classification_flags 571, classification_evidence 571, answer_review 8) | 1150 |
 | Review bookkeeping fields removed from `metadata` | 244 |
+| Pipeline working notes removed from `metadata` (flags, evidence, duplicate pointers) | 1150 |
+| Classification bookkeeping removed from the records (none) | 0 |
+| Explanation review fields removed (status, reviewer, dates) | 0 |
 | Answer keys re-labelled `supplied` | 563 |
 | Reviewed classification decisions kept as classification | 244 |
-| Questions kept without a key | 8 |
+| Questions kept without a key | 0 |
+| Bank-level classification metadata removed from the file | none present |
 | Literal \n escapes repaired by the sanitiser (the repair pass does the rest) | 0 in 0 string(s) |
 
 The bank-level provenance block that was removed (kept here as the audit record):
@@ -481,8 +492,8 @@ The bank-level provenance block that was removed (kept here as the audit record)
 | Disputed keys | 0 |
 | Verified answer differs from printed key | 0 |
 | Records rejected by validation | 0 |
-| Unreviewed explanations | 564 |
 | Questions without an explanation | 7 |
+| Explanations carried into the bank | 564 |
 | Duplicate ids in the source | 0 |
 | Unmapped source keys | 0 |
 

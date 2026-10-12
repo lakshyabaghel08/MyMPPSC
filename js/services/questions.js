@@ -9,7 +9,7 @@
 
 import { STORES } from '../core/constants.js';
 import * as db from '../core/db.js';
-import { state, emit, refreshQuestionIndex } from '../core/state.js';
+import { state, emit } from '../core/state.js';
 import { nowIso, logEvent, chunk } from '../core/util.js';
 import { questionFingerprint, questionTextKey } from '../core/schema.js';
 
@@ -83,15 +83,12 @@ async function refreshIndexEntry(question) {
     topic: question.classification?.topic || null,
     subtopic: question.classification?.subtopic || null,
     unclassified: Boolean(question.classification?.isUnclassified),
-    uncertain: Boolean(question.classification?.uncertain),
-    confidence: question.classification?.confidence ?? null,
     langs: Object.keys(question.language_variants || {}),
     answerStatus: question.supplied?.status || 'missing',
     hasSuppliedAnswer: Boolean(question.supplied?.answer?.length),
     hasVerifiedAnswer: Boolean(question.verified?.answer?.length),
     disputed: Boolean(question.dispute?.is_disputed) || question.supplied?.status === 'disputed',
     needsAttention: Boolean(!(question.supplied?.answer?.length || question.verified?.answer?.length) || question.dispute?.is_disputed),
-    explanationStatus: question.explanation?.status || 'missing',
     hasExplanation: Boolean(question.explanation),
     validationStatus: question.validation_status || 'unknown',
     demonstration: Boolean(question.is_demonstration),
@@ -105,9 +102,9 @@ async function refreshIndexEntry(question) {
 }
 
 /**
- * Correct the AI classification of a question. Original labels are preserved.
+ * Correct a question's classification. The imported labels are preserved.
  */
-export async function updateClassification(id, { subject, topic, subtopic, confidence = null, note = null }) {
+export async function updateClassification(id, { subject, topic, subtopic, note = null }) {
   const current = await db.get(STORES.QUESTIONS, id);
   if (!current) throw new Error(`Question ${id} is not in the local database.`);
   const before = {
@@ -119,22 +116,19 @@ export async function updateClassification(id, { subject, topic, subtopic, confi
     id,
     (question) => {
       const classification = question.classification || {};
-      classification.original = classification.original || { ...before, confidence: classification.confidence ?? null, source: classification.source ?? null };
+      classification.original = classification.original || { ...before };
       classification.subject = subject ?? classification.subject ?? null;
       classification.topic = topic ?? classification.topic ?? null;
       classification.subtopic = subtopic ?? classification.subtopic ?? null;
-      classification.confidence = confidence;
-      classification.source = 'user_correction';
       classification.userEditedAt = nowIso();
       classification.isUnclassified = !classification.subject && !classification.topic;
-      classification.uncertain = confidence !== null && confidence < 0.6;
       question.classification = classification;
     },
     { kind: 'classification', note, before },
   );
 }
 
-/** Restore the pipeline's original classification for a question. */
+/** Restore the imported classification for a question. */
 export async function revertClassification(id) {
   const current = await db.get(STORES.QUESTIONS, id);
   if (!current?.classification?.original) throw new Error('No original classification recorded for this question.');
@@ -145,8 +139,6 @@ export async function revertClassification(id) {
       question.classification.subject = original.subject ?? null;
       question.classification.topic = original.topic ?? null;
       question.classification.subtopic = original.subtopic ?? null;
-      question.classification.confidence = original.confidence ?? null;
-      question.classification.source = original.source ?? null;
       question.classification.isUnclassified = !original.subject && !original.topic;
       question.classification.userEditedAt = null;
     },
@@ -227,21 +219,18 @@ export function bankSummary() {
   const bySubject = new Map();
   const byYear = new Map();
   const byAnswerStatus = {};
-  const byExplanation = {};
   const byType = {};
   let bilingual = 0;
   let unclassified = 0;
   let needsAttention = 0;
   let demonstration = 0;
   let withExplanation = 0;
-  let userEdited = 0;
   for (const m of metas) {
     const subject = m.subject || 'Unclassified';
     bySubject.set(subject, (bySubject.get(subject) || 0) + 1);
     const year = m.year === null || m.year === undefined ? 'unknown' : String(m.year);
     byYear.set(year, (byYear.get(year) || 0) + 1);
     byAnswerStatus[m.answerStatus || 'unknown'] = (byAnswerStatus[m.answerStatus || 'unknown'] || 0) + 1;
-    byExplanation[m.explanationStatus || 'missing'] = (byExplanation[m.explanationStatus || 'missing'] || 0) + 1;
     byType[m.question_type || 'other'] = (byType[m.question_type || 'other'] || 0) + 1;
     if (m.langs.includes('en') && m.langs.includes('hi')) bilingual += 1;
     if (m.unclassified) unclassified += 1;
@@ -259,7 +248,6 @@ export function bankSummary() {
     bySubject: Array.from(bySubject.entries()).sort((a, b) => b[1] - a[1]),
     byYear: Array.from(byYear.entries()).sort((a, b) => String(b[0]).localeCompare(String(a[0]))),
     byAnswerStatus,
-    byExplanation,
     byType,
     papers: state.papers.size,
   };

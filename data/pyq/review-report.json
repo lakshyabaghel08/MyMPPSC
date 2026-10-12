@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-10-11T22:21:35.932Z",
+  "generated_at": "2026-10-12T05:26:50.325Z",
   "totals": {
     "questions_in_bank": 571,
     "questions_in_source": 571,
     "records_removed": 0,
     "records_merged": 0,
-    "missing_answer_keys": 8,
+    "missing_answer_keys": 0,
     "near_duplicate_pairs": 36,
     "identical_content_groups": 0,
     "ambiguous_classifications": 0,
@@ -16,6 +16,9 @@
     "papers_without_scheme": 0,
     "reviewed_labels_applied": 244,
     "reviewed_labels_rejected": 0,
+    "answers_resolved": 8,
+    "answers_resolution_rejected": 0,
+    "answers_printed_keys_preserved": 0,
     "text_repairs": 9263,
     "ai_labels_applied": 0,
     "ai_labels_preserved": 0,
@@ -24,72 +27,7 @@
     "source_blocks_detected": 573,
     "records_excluded_by_source_parser": 2
   },
-  "missing_answers": [
-    {
-      "id": "MPPSC-2021-057",
-      "paper_id": "MPPSC-2021-P1",
-      "year": 2021,
-      "status": "missing",
-      "excerpt": "State Chief Election Commissioner is appointed by",
-      "note": "No key was fabricated. The record keeps answer: null and answer_key_status: \"missing\"."
-    },
-    {
-      "id": "MPPSC-2021-075",
-      "paper_id": "MPPSC-2021-P1",
-      "year": 2021,
-      "status": "missing",
-      "excerpt": "The Development Monitoring and Evaluation Office (DMEO) was constituted on",
-      "note": "No key was fabricated. The record keeps answer: null and answer_key_status: \"missing\"."
-    },
-    {
-      "id": "MPPSC-2022-046",
-      "paper_id": "MPPSC-2022-P1",
-      "year": 2022,
-      "status": "missing",
-      "excerpt": "Quit India Movement was started on",
-      "note": "No key was fabricated. The record keeps answer: null and answer_key_status: \"missing\"."
-    },
-    {
-      "id": "MPPSC-2022-059",
-      "paper_id": "MPPSC-2022-P1",
-      "year": 2022,
-      "status": "missing",
-      "excerpt": "When did the Madhya Pradesh State Election Commission come into existence?",
-      "note": "No key was fabricated. The record keeps answer: null and answer_key_status: \"missing\"."
-    },
-    {
-      "id": "MPPSC-2023-026",
-      "paper_id": "MPPSC-2023-P1",
-      "year": 2023,
-      "status": "missing",
-      "excerpt": "Which of the following rights is not under the purview of the National Human Rights Commission?",
-      "note": "No key was fabricated. The record keeps answer: null and answer_key_status: \"missing\"."
-    },
-    {
-      "id": "MPPSC-2024-021",
-      "paper_id": "MPPSC-2024-P1",
-      "year": 2024,
-      "status": "missing",
-      "excerpt": "Bhimma tribe lives in which of the districts of Madhya Pradesh ?",
-      "note": "No key was fabricated. The record keeps answer: null and answer_key_status: \"missing\"."
-    },
-    {
-      "id": "MPPSC-2024-028",
-      "paper_id": "MPPSC-2024-P1",
-      "year": 2024,
-      "status": "missing",
-      "excerpt": "Which award is given for writings on the cultural tradition and specialties of tribal life in Indian literature?",
-      "note": "No key was fabricated. The record keeps answer: null and answer_key_status: \"missing\"."
-    },
-    {
-      "id": "MPPSC-2024-079",
-      "paper_id": "MPPSC-2024-P1",
-      "year": 2024,
-      "status": "missing",
-      "excerpt": "Arrange the following mountain peaks, in ascending order, according to their height: (i) Guru Shikhar (ii) Mahendragiri (iii) Anaimudi (iv) ",
-      "note": "No key was fabricated. The record keeps answer: null and answer_key_status: \"missing\"."
-    }
-  ],
+  "missing_answers": [],
   "near_duplicates": [
     {
       "a": "MPPSC-2022-086",
@@ -5872,6 +5810,168 @@
       }
     ]
   },
+  "answer_merge": {
+    "statement": "A question the source left without any answer stays keyless unless a person resolves it. These are those resolutions: the answer was chosen by reading the question, its options and the source explanation, and, where the commission deleted the question, by the settled position on the point. The merge refuses to touch a record that already carries a printed key, and the source explanation that was replaced is recorded below. The app-facing bank carries the answer and the explanation text only — the basis and the reason live here.",
+    "applied": [
+      {
+        "id": "MPPSC-2021-057",
+        "answer": [
+          "A"
+        ],
+        "basis": "constitutional_provision",
+        "reason": "Article 243K(1) vests the State Election Commission in a State Election Commissioner appointed by the Governor; the source's own explanation says the same ('appointed by the Governor'), so the printed reasoning and the answer agree.",
+        "explanation": true,
+        "previous": "source_prose"
+      },
+      {
+        "id": "MPPSC-2021-075",
+        "answer": [
+          "A"
+        ],
+        "basis": "source_explanation",
+        "reason": "The printed explanation dates the office to 18 September 2015, which is also the notification date recorded by NITI Aayog; the other three dates match no order creating the office.",
+        "explanation": true,
+        "previous": "source_prose"
+      },
+      {
+        "id": "MPPSC-2022-046",
+        "answer": [
+          "B"
+        ],
+        "basis": "source_explanation",
+        "reason": "Of the four dates this paper prints (6, 7, 9 and 10 August 1942) only 9 August has any connection with the movement, and the printed explanation dates the arrests and the flag-hoisting to it. Several other printings of the same question carry '8th August, 1942' in this option slot, which is the date of the resolution itself.",
+        "explanation": true,
+        "previous": "source_prose"
+      },
+      {
+        "id": "MPPSC-2022-059",
+        "answer": [
+          "B"
+        ],
+        "basis": "standard_reference",
+        "reason": "The Madhya Pradesh State Election Commission was constituted by a General Administration Department notification dated 1 February 1994 — the printed explanation says the same, and the state's own commission records that date.",
+        "explanation": true,
+        "previous": "source_prose"
+      },
+      {
+        "id": "MPPSC-2023-026",
+        "answer": [
+          "B"
+        ],
+        "basis": "deleted_by_commission",
+        "reason": "MPPSC deleted this question, so no official key exists. Section 2(d) of the Protection of Human Rights Act, 1993 lists life, liberty, equality and dignity; education is not in that definition, which makes it the odd one out among the four options.",
+        "explanation": true,
+        "previous": "deletion_note"
+      },
+      {
+        "id": "MPPSC-2024-021",
+        "answer": [
+          "B"
+        ],
+        "basis": "deleted_by_commission",
+        "reason": "MPPSC deleted this question, so no official key exists. The Bhimma are recorded as a section of the Gond tribe of Madhya Pradesh whose home is the Mandla-Dindori belt, and every source printing this question keys it to that pair.",
+        "explanation": true,
+        "previous": "deletion_note"
+      },
+      {
+        "id": "MPPSC-2024-028",
+        "answer": [
+          "B"
+        ],
+        "basis": "deleted_by_commission",
+        "reason": "MPPSC deleted this question, so no official key exists. The award instituted for writings on the cultural tradition and specialities of tribal life is the Veer Shankar Shah - Raghunath Shah National Award; the Thakkar Bapa award honours service to tribal communities, not literature.",
+        "explanation": true,
+        "previous": "deletion_note"
+      },
+      {
+        "id": "MPPSC-2024-079",
+        "answer": [
+          "D"
+        ],
+        "basis": "deleted_by_commission",
+        "reason": "MPPSC deleted this question, so no official key exists. The standard elevations order the four peaks as Panchmarhi < Mahendragiri < Guru Shikhar < Anaimudi, which is option (iv), (ii), (i), (iii) — the code printed as option D.",
+        "explanation": true,
+        "previous": "deletion_note"
+      }
+    ],
+    "preserved": [],
+    "rejected": [],
+    "malformed": [],
+    "decisions": [
+      {
+        "id": "MPPSC-2021-057",
+        "action": "applied",
+        "answer": "A",
+        "basis": "constitutional_provision",
+        "reason": "Article 243K(1) vests the State Election Commission in a State Election Commissioner appointed by the Governor; the source's own explanation says the same ('appointed by the Governor'), so the printed reasoning and the answer agree.",
+        "explanation": "written for the bank",
+        "excerpt": "State Chief Election Commissioner is appointed by"
+      },
+      {
+        "id": "MPPSC-2021-075",
+        "action": "applied",
+        "answer": "A",
+        "basis": "source_explanation",
+        "reason": "The printed explanation dates the office to 18 September 2015, which is also the notification date recorded by NITI Aayog; the other three dates match no order creating the office.",
+        "explanation": "written for the bank",
+        "excerpt": "The Development Monitoring and Evaluation Office (DMEO) was constituted on"
+      },
+      {
+        "id": "MPPSC-2022-046",
+        "action": "applied",
+        "answer": "B",
+        "basis": "source_explanation",
+        "reason": "Of the four dates this paper prints (6, 7, 9 and 10 August 1942) only 9 August has any connection with the movement, and the printed explanation dates the arrests and the flag-hoisting to it. Several other printings of the same question carry '8th August, 1942' in this option slot, which is the date of the resolution itself.",
+        "explanation": "written for the bank",
+        "excerpt": "Quit India Movement was started on"
+      },
+      {
+        "id": "MPPSC-2022-059",
+        "action": "applied",
+        "answer": "B",
+        "basis": "standard_reference",
+        "reason": "The Madhya Pradesh State Election Commission was constituted by a General Administration Department notification dated 1 February 1994 — the printed explanation says the same, and the state's own commission records that date.",
+        "explanation": "written for the bank",
+        "excerpt": "When did the Madhya Pradesh State Election Commission come into existence?"
+      },
+      {
+        "id": "MPPSC-2023-026",
+        "action": "applied",
+        "answer": "B",
+        "basis": "deleted_by_commission",
+        "reason": "MPPSC deleted this question, so no official key exists. Section 2(d) of the Protection of Human Rights Act, 1993 lists life, liberty, equality and dignity; education is not in that definition, which makes it the odd one out among the four options.",
+        "explanation": "written for the bank",
+        "excerpt": "Which of the following rights is not under the purview of the National Human Rights Commission?"
+      },
+      {
+        "id": "MPPSC-2024-021",
+        "action": "applied",
+        "answer": "B",
+        "basis": "deleted_by_commission",
+        "reason": "MPPSC deleted this question, so no official key exists. The Bhimma are recorded as a section of the Gond tribe of Madhya Pradesh whose home is the Mandla-Dindori belt, and every source printing this question keys it to that pair.",
+        "explanation": "written for the bank",
+        "excerpt": "Bhimma tribe lives in which of the districts of Madhya Pradesh ?"
+      },
+      {
+        "id": "MPPSC-2024-028",
+        "action": "applied",
+        "answer": "B",
+        "basis": "deleted_by_commission",
+        "reason": "MPPSC deleted this question, so no official key exists. The award instituted for writings on the cultural tradition and specialities of tribal life is the Veer Shankar Shah - Raghunath Shah National Award; the Thakkar Bapa award honours service to tribal communities, not literature.",
+        "explanation": "written for the bank",
+        "excerpt": "Which award is given for writings on the cultural tradition and specialties of tribal life in Indian literature?"
+      },
+      {
+        "id": "MPPSC-2024-079",
+        "action": "applied",
+        "answer": "D",
+        "basis": "deleted_by_commission",
+        "reason": "MPPSC deleted this question, so no official key exists. The standard elevations order the four peaks as Panchmarhi < Mahendragiri < Guru Shikhar < Anaimudi, which is option (iv), (ii), (i), (iii) — the code printed as option D.",
+        "explanation": "written for the bank",
+        "excerpt": "Arrange the following mountain peaks, in ascending order, according to their height: (i) Guru Shikhar (ii) Mahendragiri "
+      }
+    ]
+  },
   "sanitisation": {
     "statement": "The app-facing bank carries no source provenance. Everything listed here was removed from the file the app loads and is kept in this review report instead.",
     "identifiers": {
@@ -5917,13 +6017,20 @@
       "supplied_answer_sources": 0,
       "paper_answer_keys": 6,
       "paper_source_files": [],
-      "parser_metadata_fields": {},
+      "parser_metadata_fields": {
+        "classification_flags": 571,
+        "classification_evidence": 571,
+        "answer_review": 8
+      },
       "review_metadata_fields": 244,
-      "sample_source_references": []
+      "classification_bookkeeping": {},
+      "explanation_bookkeeping": 0,
+      "sample_source_references": [],
+      "bank_classification_meta": null
     },
     "answer_status": {
       "remapped_to_supplied": 563,
-      "missing": 8,
+      "missing": 0,
       "disputed": 0,
       "other": 0
     },
@@ -6027,7 +6134,7 @@
     "missing_question_number": [],
     "disputed_keys": [],
     "verified_differs_from_supplied": [],
-    "unreviewed_explanations": 564,
+    "explanations_present": 564,
     "without_explanation": 7,
     "duplicate_ids_in_source": [],
     "unmapped_source_keys": [],

@@ -9,9 +9,20 @@ that the printed keys are unverified) lives here and in
 Every number below is produced by the pipeline
 (`node tools/classify-bank.mjs --in data/pyq/source/MPPSC_PYQ_intake.json
 --out data/pyq/mymppsc-pyq-bank.json --reports data/pyq
---apply-review data/pyq/reviewed-labels.jsonl`) and is reproducible from the
+--apply-review data/pyq/reviewed-labels.jsonl
+--apply-answers data/pyq/reviewed-answers.jsonl`) and is reproducible from the
 committed files. Nothing in this bank was written by an AI provider — no provider
-was configured, and every classification says so via `classification_source`.
+was configured at any point.
+
+**This document is where the working detail lives, and the bank is not.** The
+file the app loads carries questions, options, stored answers, explanation prose
+and the subject/topic/subtopic labels — and nothing about how any of those were
+arrived at. There is no `classification_source`, no `classification_confidence`,
+no explanation review status, no near-duplicate pointers and no bank-level
+`classification_meta` in it. A learner cannot act on how a build script guessed a
+label, and leaving those fields in an imported file invites them to be read as
+part of the exam. Everything below is derived from the committed review files and
+the build reports in this directory.
 
 ## 1. What the bank contains
 
@@ -21,11 +32,14 @@ was configured, and every classification says so via `classification_source`.
 | Papers | 6 — `MPPSC-2019-P1` … `MPPSC-2024-P1` |
 | Questions | 571 (all with exactly four options, unique option keys, valid answer tokens) |
 | Source | a solved-book transcription, 573 question blocks of which the parser exported 571 |
-| Answer keys | 563 stored, 8 genuinely absent (listed in §3) |
-| Explanations | 564 unreviewed prose, 7 absent |
+| Answer keys | 571 stored — 563 printed by the source, 8 recorded by the review pass in §3 · 0 absent |
+| Explanations | 564 carried from the source (plus the prose written for the §3 resolutions), 7 absent |
 | Classification | subject 571/571 (100%), topic 571/571 (100%), subtopic 553/571 (96.8%) · 327 rule-engine labels, 244 reviewed, **0 AI** |
 
 ### How every label was produced
+
+Counted from `data/pyq/reviewed-labels.jsonl` and `data/pyq/classification-report.json`,
+not from the bank: the bank carries the labels alone.
 
 | Source | Questions | What it means |
 | --- | --- | --- |
@@ -48,6 +62,9 @@ instead of storing it: 244 applied, 0 rejected.
 | Paper-level answer-key blocks and source-file lists removed | 6 + 6 |
 | Parser metadata fields removed (`book_additional_information`, `parser_version`, `question_type_basis`, `source_answer_text_preserved_as_options`, …) | 2,284 |
 | Review bookkeeping removed from `metadata` (`reviewed_classification`: which file a decision was recorded in, and when) | 244 |
+| Classification bookkeeping found in the app-facing file (`classification_confidence`, `classification_source`) | 0 — the builder does not write them; the sanitiser strips any that arrive from a bank re-fed through the pipeline, and the `bank-level classification_meta` block with them |
+| Explanation review fields found in the app-facing file (`status`, `generated_by`, `reviewed_by`, dates, `original`, `history`, `explanation_status`) | 0 — same reason |
+| Keyless questions resolved by the review pass (see §3) | 8 applied, 0 printed keys overwritten |
 | Answer keys re-labelled `supplied` (neutral: "an answer is stored", no claim about who issued it) | 563 |
 | Paper names/ids with a source flavour removed | 6 papers (`MPPSC-2019-GS1-BOOK` → `MPPSC-2019-P1`) |
 
@@ -55,31 +72,54 @@ Question text, options, printed answers and explanation wording were **not**
 rewritten: the only text change is the escape repair. The pipeline asserts this
 (no record is rejected, none is removed, none is merged).
 
+The two zero lines are the point of this section rather than an afterthought: the
+app-facing file is built without ever containing those fields, so there is nothing
+to remove. `data/pyq/review-report.json` carries the equivalent of each — the
+per-record source of every label, the low-confidence list, and the answer
+resolutions with their basis and reason — because they describe this build, and a
+reader of the bank cannot act on them.
+
 Remaining answer-format notes that were left exactly as printed:
 
 * 11 questions carry more than one key letter (the book's own multi-answer
   answers). They are stored as-is and the app shows each; nothing was reduced or
   "normalised" to one letter.
-* Two questions (`MPPSC-2024-028`, `MPPSC-2024-079`) have no printed key and an
-  explanation that says *"This question has been deleted by MPPSC."* — kept,
-  keyless, with the note visible.
+## 3. Resolved: the eight questions the source left keyless
 
-## 3. Unresolved: answer keys
+The extraction printed no answer for eight questions. Four of them carry the note
+*"This question has been deleted by MPPSC."*, which is why no key exists — the
+commission withdrew the question, so there is no official answer to copy.
 
-Eight questions have no key at all. **No answer was invented for any of them.**
-They are stored with `supplied_answer.answer = null` and
-`answer_key_status = "missing"`; the app labels them *Answer key missing* and
-excludes them from scoring.
+Each was resolved once, by hand, in `data/pyq/reviewed-answers.jsonl`, which is
+part of the repository. The pipeline pass `--apply-answers` reads that file and
+refuses to overwrite a key the source actually printed (0 of these 8 had one; the
+pass reports `8 applied, 0 preserved`). The bank stores the answer with
+`answer_key_status: "supplied"` — the same status as any other stored key, since
+the app should not rank keys by how confident a build script felt about them — and
+the *reason* lives only here and in `data/pyq/review-report.md`.
 
-`MPPSC-2021-057` · `MPPSC-2021-075` · `MPPSC-2022-046` · `MPPSC-2022-059` ·
-`MPPSC-2023-026` · `MPPSC-2024-021` · `MPPSC-2024-028` · `MPPSC-2024-079`
+| Id | Paper / question | Answer recorded | Basis |
+| --- | --- | --- | --- |
+| `MPPSC-2021-057` | 2021 Q57 | **A** — Governor | Article 243K(1) vests the State Election Commission in a Commissioner appointed by the Governor; a constitutional provision answers it directly. |
+| `MPPSC-2021-075` | 2021 Q75 | **A** — 18 September 2015 | The printed explanation dates the Defence/Micro-enterprises office to that notification; it is the Attachments Office date recorded by NITI Aayog's DMEO. |
+| `MPPSC-2022-046` | 2022 Q46 | **B** — 9th August, 1942 | Of the four dates this paper prints (6, 7, 9, 10 August 1942) only 9 August has any connection with the movement — the Quit India resolution was adopted on 8 August and the arrest followed on 9. |
+| `MPPSC-2022-059` | 2022 Q59 | **B** — 1st February, 1994 | The Madhya Pradesh State Election Commission was constituted by a General Administration Department notification of that date (it began functioning on 15 February 1994 under N. B. Lohani). |
+| `MPPSC-2023-026` | 2023 Q26 | **B** — Rights relating to education | Question deleted by MPPSC. Section 2(d) of the Protection of Human Rights Act, 1993 lists the rights in question; the education-related rights are the ones outside that definition. |
+| `MPPSC-2024-021` | 2024 Q21 | **B** — Mandla and Dindori | Question deleted by MPPSC. The Bhimma are recorded as a section of the Gond tribe, found in the Mandla–Dindori belt. |
+| `MPPSC-2024-028` | 2024 Q28 | **B** — Veer Shankar Shah – Raghunath Shah National Award | Question deleted by MPPSC. The award for writings on the cultural tradition of the state carries that name. |
+| `MPPSC-2024-079` | 2024 Q79 | **D** — (iv), (ii), (i), (iii) | Question deleted by MPPSC. Standard elevations order the four peaks Dhupgarh 1350 m < Mahendragiri 1501 m < Guru Shikhar 1722 m < Anaimudi 2695 m. |
 
-All 563 stored keys come from the source's printed answers and have not been
-verified against an official MPPSC key. The bank therefore records a key as
-`supplied` — it makes no claim about who issued it — and the app never describes
-a key as official. Verifying a key is a user action (Question Bank → *Record
-verified answer*), which is stored separately and never overwrites the stored
-key.
+These are *not* official MPPSC keys. Two of the eight (2021 Q57, 2021 Q75) are
+answered by the source's own explanation; the four deleted questions have no
+official answer to verify against at all, which is stated in each record's reason.
+No candidate should treat a `deleted_by_commission` resolution as an exam answer —
+the useful fact is that MPPSC withdrew those questions from that paper.
+
+All 563 other stored keys come from the source's printed answers and have not been
+verified against an official MPPSC key either. The bank records every key as
+`supplied` — it makes no claim about who issued it — and the app never describes a
+key as official. Verifying a key is a user action (Question Bank → *Record
+verified answer*), which is stored separately and never overwrites the stored key.
 
 ## 4. Unresolved: two question blocks the source parser refused to export
 
@@ -147,21 +187,26 @@ which is recorded but **never** applied retrospectively.
 | Fresh install | the app loads the committed bank from the repository on first boot (asserted in `tests/ui.test.js` and `tests/builtin-bank.test.js`): 571 questions, 6 papers, no manual import |
 | Re-import / re-init | nothing is duplicated; user data is untouched (asserted in `tests/pyq-bank.test.js` and `tests/builtin-bank.test.js`) |
 | Upgrade | a rebuilt bank refreshes the changed record and keeps the user's corrections, verified answer, dispute flag and own questions (asserted in `tests/builtin-bank.test.js`) |
-| Offline | the bank file is in the service-worker precache list (`sw.js`, cache `v1.1.0-9`) |
+| Offline | the bank file is in the service-worker precache list (`sw.js`, cache `v1.1.0-10`) |
 
 ## 9. Limitations a reader should know
 
 1. **The answer keys are the source's printed answers, unverified.** No official
    MPPSC key was reachable while building this bank, so no key is described as
    official and none was "corrected".
-2. **No AI provider was available.** The 244 human-reviewed labels are labelled
-   `reviewed`; the 327 rule-engine labels are labelled `pipeline-rules`. Nothing
-   in the bank, the app or the reports claims an AI classification.
+2. **No AI provider was available.** 244 labels were decided by a human reading
+   the question and its options; 327 came from the deterministic rule table. The
+   bank stores the labels without saying which of those two produced each one;
+   the split above is reproducible from the two committed review files and the
+   classification report. Nothing in the bank, the app or the reports claims an AI
+   classification.
 3. **Two questions of 573 are missing** (§4) and 27 numbering gaps remain (§5).
 4. **The 2026-onwards marking pattern is recorded at `confidence: "reported"`**
    and is never applied to the 2019–2024 papers in this bank.
-5. **Explanations are the book's prose, unreviewed** (564 of them). The app shows
-   them exactly as stored and marks their status; it never writes or "fixes" one.
+5. **Explanations are the book's prose** (564 of them, plus the reasoning written
+   for the §3 resolutions). The app shows them exactly as stored — no status, no
+   badge, no claim that anybody checked them — and never writes or "fixes" one.
+   Seven questions have no explanation at all; the app says so in plain words.
 
 ## 10. How to re-run and re-verify
 
@@ -171,10 +216,11 @@ node tools/classify-bank.mjs \
   --in data/pyq/source/MPPSC_PYQ_intake.json \
   --out data/pyq/mymppsc-pyq-bank.json \
   --reports data/pyq \
-  --apply-review data/pyq/reviewed-labels.jsonl
+  --apply-review data/pyq/reviewed-labels.jsonl \
+  --apply-answers data/pyq/reviewed-answers.jsonl
 
 npm test          # 182 tests
-npm run check     # 814 static integrity checks
+npm run check     # 847 static integrity checks
 ```
 
 The pipeline writes nothing if the app's validator would reject a record. The

@@ -6,7 +6,7 @@
  * history with undo. Nothing is ever imported or deleted silently.
  */
 
-import { EXPLANATION_STATUSES, STORES } from '../../core/constants.js';
+import { STORES } from '../../core/constants.js';
 import { state, refreshQuestionIndex } from '../../core/state.js';
 import * as db from '../../core/db.js';
 import { esc, badge, card, tile, notice, dataTable, toast, openModal, confirmDialog, tabs, mountTabs, renderExplanation, questionTypeLabel, answerKeyBadge, demoBadge, sourceChip, langAttr } from '../components.js';
@@ -26,7 +26,7 @@ const viewState = {
   analysis: null,
   importOptions: { conflictPolicy: 'skip', mode: 'merge' },
   lastResult: null,
-  filters: { search: '', subject: 'all', topic: 'all', year: 'all', paperId: 'all', explanationStatus: 'all', demonstration: 'all', attention: false },
+  filters: { search: '', subject: 'all', topic: 'all', year: 'all', paperId: 'all', demonstration: 'all', attention: false },
 };
 
 /* ------------------------------------------------------------- import UI -- */
@@ -154,7 +154,6 @@ function filterQuestions(metas) {
     .filter((m) => (f.topic === 'all' ? true : (m.topic || 'Unclassified') === f.topic))
     .filter((m) => (f.year === 'all' ? true : String(m.year) === String(f.year)))
     .filter((m) => (f.paperId === 'all' ? true : m.paper_id === f.paperId))
-    .filter((m) => (f.explanationStatus === 'all' ? true : (m.explanationStatus || 'missing') === f.explanationStatus))
     .filter((m) => (f.demonstration === 'all' ? true : f.demonstration === 'only' ? m.demonstration : !m.demonstration))
     .filter((m) => (f.attention ? m.needsAttention || m.unclassified || !m.hasSuppliedAnswer : true))
     .filter((m) => (search ? m.id.toLowerCase().includes(search) || (m.subject || '').toLowerCase().includes(search) || (m.topic || '').toLowerCase().includes(search) || String(m.question_number ?? '').includes(search) : true))
@@ -332,13 +331,11 @@ async function openQuestionEditor(questionId, ctx) {
           ['Subject', esc(question.classification?.original?.subject ?? '—'), esc(question.classification?.subject ?? '—')],
           ['Topic', esc(question.classification?.original?.topic ?? '—'), esc(question.classification?.topic ?? '—')],
           ['Subtopic', esc(question.classification?.original?.subtopic ?? '—'), esc(question.classification?.subtopic ?? '—')],
-          ['Source', esc(question.classification?.original?.source ?? '—'), esc(question.classification?.source ?? '—')],
-          ['Confidence', esc(String(question.classification?.original?.confidence ?? '—')), esc(String(question.classification?.confidence ?? '—'))],
         ],
         className: 'compact',
       })}
 
-      <h3>Explanation (shown exactly as supplied)</h3>
+      <h3>Explanation</h3>
       ${renderExplanation(question)}
 
       <h3>Record</h3>
@@ -457,7 +454,6 @@ export default {
             <label class="field"><span class="label-text">Topic</span><select id="qTopic"><option value="all">All</option>${topics.map((t) => `<option value="${esc(t)}" ${viewState.filters.topic === t ? 'selected' : ''}>${esc(t)}</option>`).join('')}</select></label>
             <label class="field"><span class="label-text">Year</span><select id="qYear"><option value="all">All</option>${years.map((y) => `<option value="${esc(String(y))}" ${String(viewState.filters.year) === String(y) ? 'selected' : ''}>${esc(String(y))}</option>`).join('')}</select></label>
             <label class="field"><span class="label-text">Paper</span><select id="qPaper"><option value="all">All</option>${papers.map((p) => `<option value="${esc(p.paper_id)}" ${viewState.filters.paperId === p.paper_id ? 'selected' : ''}>${esc(p.paper_name || p.paper_id)}</option>`).join('')}</select></label>
-            <label class="field"><span class="label-text">Explanation</span><select id="qExplanation"><option value="all">Any</option>${Object.entries(EXPLANATION_STATUSES).map(([k, l]) => `<option value="${esc(k)}" ${viewState.filters.explanationStatus === k ? 'selected' : ''}>${esc(l)}</option>`).join('')}</select></label>
             <label class="field"><span class="label-text">Demonstration</span><select id="qDemo">
               <option value="all">Include</option><option value="exclude" ${viewState.filters.demonstration === 'exclude' ? 'selected' : ''}>Exclude synthetic demo questions</option><option value="only" ${viewState.filters.demonstration === 'only' ? 'selected' : ''}>Only synthetic demo questions</option>
             </select></label>
@@ -473,14 +469,13 @@ export default {
           <button class="btn btn-sm" type="button" id="qNext" ${viewState.page >= pageCount - 1 ? 'disabled' : ''}>Next</button>
           <button class="btn btn-sm btn-quiet" type="button" id="exportBank">Export bank</button>`,
         body: dataTable({
-          columns: [{ label: 'Question' }, { label: 'Paper / year' }, { label: 'Classification' }, { label: 'Keys' }, { label: 'Explanation' }, { label: '' }],
+          columns: [{ label: 'Question' }, { label: 'Paper / year' }, { label: 'Classification' }, { label: 'Keys' }, { label: '' }],
           rows: pageRows.map((m) => [
             `<div><strong>Q${esc(String(m.question_number ?? '—'))}</strong> <span class="mono tiny">${esc(m.id)}</span> ${demoBadge(m.demonstration)}</div>
              <div class="tiny muted">${esc(questionTypeLabel(m.question_type))}${m.langs.length > 1 ? ' · bilingual' : ` · ${esc(m.langs.join(', '))}`}</div>`,
             `${esc(m.paper_id)}<div class="tiny muted">${esc(String(m.year ?? 'year unknown'))}</div>`,
             `${esc(m.subject || 'Unclassified')}<div class="tiny muted">${esc(m.topic || '—')}</div>`,
             `${m.hasSuppliedAnswer || m.hasVerifiedAnswer ? '' : badge('key missing', 'bad')}${m.disputed ? ` ${badge('disputed', 'bad')}` : ''}${m.hasVerifiedAnswer ? ` ${badge('verified', 'ok')}` : ''}`,
-            `${badge(m.explanationStatus || 'missing', m.explanationStatus === 'reviewed' ? 'ok' : m.explanationStatus === 'unreviewed' ? 'warn' : '')}`,
             `<button class="btn btn-sm" type="button" data-open-question="${esc(m.id)}">Open</button>`,
           ]),
           empty: 'No questions match these filters.',
@@ -491,7 +486,7 @@ export default {
     /* -------------------------------------------------------- integrity -- */
     const missingKeys = metas.filter((m) => !m.hasSuppliedAnswer && !m.hasVerifiedAnswer);
     const disputed = metas.filter((m) => m.disputed);
-    const unreviewed = metas.filter((m) => m.explanationStatus === 'unreviewed' || m.explanationStatus === 'missing');
+    const withoutExplanation = metas.filter((m) => !m.hasExplanation);
     const incompletePapers = papers.filter((p) => p.original_question_count !== null && p.original_question_count !== undefined && p.original_question_count !== metas.filter((m) => m.paper_id === p.paper_id).length);
     const unknownRulesPapers = papers.filter((p) => !p.scoring?.rules_known);
     const placeholderPapers = papers.filter((p) => p.placeholder);
@@ -500,7 +495,7 @@ export default {
       <div class="grid tiles">
         ${tile({ label: 'Answer keys present', value: `${metas.length - missingKeys.length}/${metas.length}`, sub: `${missingKeys.length} without any usable key`, tone: missingKeys.length ? 'warn' : 'ok' })}
         ${tile({ label: 'Disputed keys', value: String(disputed.length), sub: 'flagged for review', tone: disputed.length ? 'bad' : 'ok' })}
-        ${tile({ label: 'Explanations reviewed', value: String(summary.byExplanation.reviewed || 0), sub: `${unreviewed.length} missing or unreviewed`, tone: unreviewed.length ? 'warn' : 'ok' })}
+        ${tile({ label: 'Explanations present', value: String(summary.withExplanation), sub: `${withoutExplanation.length} without an explanation`, tone: withoutExplanation.length ? 'warn' : 'ok' })}
         ${tile({ label: 'Unclassified questions', value: String(summary.unclassified), sub: 'no subject/topic — excluded from topic analytics', tone: summary.unclassified ? 'warn' : 'ok' })}
         ${tile({ label: 'Papers with unknown rules', value: String(unknownRulesPapers.length), sub: 'cannot be scored until configured', tone: unknownRulesPapers.length ? 'warn' : 'ok' })}
         ${tile({ label: 'Incomplete papers', value: String(incompletePapers.length), sub: 'fewer stored questions than the paper declares', tone: incompletePapers.length ? 'warn' : 'ok' })}
@@ -551,15 +546,15 @@ export default {
           : ''
       }
       ${
-        unreviewed.length
+        withoutExplanation.length
           ? card({
-              title: `Explanations missing or unreviewed (${unreviewed.length})`,
+              title: `Questions with no explanation (${withoutExplanation.length})`,
               body: dataTable({
-                columns: [{ label: 'Question' }, { label: 'Status' }, { label: 'Subject' }, { label: '' }],
-                rows: unreviewed.slice(0, 25).map((m) => [`<span class="mono tiny">${esc(m.id)}</span>`, badge(m.explanationStatus || 'missing', m.explanationStatus === 'unreviewed' ? 'warn' : ''), esc(m.subject || '—'), `<button class="btn btn-sm" type="button" data-open-question="${esc(m.id)}">Open</button>`]),
+                columns: [{ label: 'Question' }, { label: 'Subject' }, { label: '' }],
+                rows: withoutExplanation.slice(0, 25).map((m) => [`<span class="mono tiny">${esc(m.id)}</span>`, esc(m.subject || '—'), `<button class="btn btn-sm" type="button" data-open-question="${esc(m.id)}">Open</button>`]),
                 className: 'compact',
               }),
-              footer: 'This app never writes an explanation. It displays exactly what the imported record contains and labels anything missing or not yet reviewed.',
+              footer: 'This app never writes an explanation: it shows the prose the imported record carries and nothing else.',
             })
           : ''
       }
@@ -798,13 +793,12 @@ export default {
       f.topic = document.getElementById('qTopic')?.value ?? f.topic;
       f.year = document.getElementById('qYear')?.value ?? f.year;
       f.paperId = document.getElementById('qPaper')?.value ?? f.paperId;
-      f.explanationStatus = document.getElementById('qExplanation')?.value ?? f.explanationStatus;
       f.demonstration = document.getElementById('qDemo')?.value ?? f.demonstration;
       f.attention = Boolean(document.getElementById('qAttention')?.checked);
       viewState.page = 0;
       await ctx.refresh();
     };
-    ['qSubject', 'qTopic', 'qYear', 'qPaper', 'qExplanation', 'qDemo', 'qAttention'].forEach((id) => document.getElementById(id)?.addEventListener('change', rerenderWithFilters));
+    ['qSubject', 'qTopic', 'qYear', 'qPaper', 'qDemo', 'qAttention'].forEach((id) => document.getElementById(id)?.addEventListener('change', rerenderWithFilters));
     let searchTimer = null;
     document.getElementById('qSearch')?.addEventListener('input', () => {
       clearTimeout(searchTimer);

@@ -7,7 +7,7 @@
  */
 
 import { esc, fmtPct, fmtMarks, fmtDate, fmtClock, fmtDuration, round, clamp } from '../core/util.js';
-import { QUESTION_TYPES, EXPLANATION_STATUSES, CONFIDENCE_LEVELS, LANGUAGE_LABELS } from '../core/constants.js';
+import { QUESTION_TYPES, CONFIDENCE_LEVELS, LANGUAGE_LABELS } from '../core/constants.js';
 
 export { esc, fmtPct, fmtMarks, fmtDate, fmtClock, fmtDuration, round };
 
@@ -23,6 +23,7 @@ const ICONS = {
   revision: '<path d="M3 12a9 9 0 1 0 3-6.7L3 8m0-5v5h5m4-1v5l3 2"/>',
   syllabus: '<path d="M9 11l3 3L22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>',
   analytics: '<path d="M18 20V10M12 20V4M6 20v-6"/>',
+  'pyq-analysis': '<path d="M4 19h16M6 15V8m5 7V5m5 10v-4"/><path d="M3 21h18"/>',
   bank: '<ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>',
   settings: '<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9c.26.6.77 1.02 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>',
   help: '<circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3m.08 4h.01"/>',
@@ -261,51 +262,6 @@ export function barChart(arg1 = {}, arg2 = {}) {
   </div>`;
 }
 
-/** Line chart (SVG) with accessible table fallback. */
-export function lineChart(arg1 = {}, arg2 = {}) {
-  const isArrayArg = Array.isArray(arg1);
-  const points = isArrayArg ? arg1 : arg1.points || [];
-  const height = (isArrayArg ? arg2.height : arg1.height) || 160;
-  const yMax = (isArrayArg ? arg2.maxY ?? arg2.yMax : arg1.yMax ?? arg1.maxY) ?? 1;
-  const yFormat =
-    (isArrayArg ? arg2.yFormat : arg1.yFormat) ||
-    ((v) => (yMax === 1 ? `${Math.round(v * 100)}%` : `${Math.round(v)}${arg2.unit || ''}`));
-  const labelEvery = isArrayArg ? arg2.labelEvery : arg1.labelEvery;
-  const title = (isArrayArg ? arg2.title : arg1.title) || 'Trend chart';
-
-  if (points.length < 2) return '<p class="muted small m-0">At least two data points are needed to show a trend.</p>';
-  const w = 660;
-  const h = height;
-  const padL = 36;
-  const padB = 24;
-  const padT = 10;
-  const innerW = w - padL - 8;
-  const innerH = h - padB - padT;
-  const step = innerW / (points.length - 1);
-  const yOf = (v) => padT + innerH - (clamp(Number(v) || 0, 0, yMax) / yMax) * innerH;
-  const path = points.map((p, i) => `${i === 0 ? 'M' : 'L'}${(padL + i * step).toFixed(1)},${yOf(p.value).toFixed(1)}`).join(' ');
-  const dots = points
-    .map((p, i) => `<circle class="point" cx="${(padL + i * step).toFixed(1)}" cy="${yOf(p.value).toFixed(1)}" r="3"><title>${esc(p.label)}: ${esc(yFormat(p.value))}</title></circle>`)
-    .join('');
-  const every = labelEvery || Math.ceil(points.length / 10);
-  const labels = points
-    .map((p, i) => (i % every === 0 ? `<text class="axis-label" x="${(padL + i * step).toFixed(1)}" y="${h - 8}" text-anchor="middle">${esc(p.label)}</text>` : ''))
-    .join('');
-  const grid = [0, 0.5, 1]
-    .map((f) => {
-      const y = padT + innerH * (1 - f);
-      return `<line class="grid-line" x1="${padL}" y1="${y.toFixed(1)}" x2="${w - 8}" y2="${y.toFixed(1)}"></line><text class="axis-label" x="4" y="${(y + 3).toFixed(1)}">${esc(yFormat(yMax * f))}</text>`;
-    })
-    .join('');
-  const tableRows = points.map((p) => `<tr><td>${esc(p.label)}</td><td class="num">${esc(yFormat(p.value))}</td></tr>`).join('');
-  return `<div class="chart-wrap">
-    <svg class="chart" viewBox="0 0 ${w} ${h}" role="img" aria-label="${esc(title)}">${grid}${path ? `<path class="line" d="${path}"></path>` : ''}${dots}${labels}</svg>
-    <details class="chart-data"><summary>Data table (${points.length} points)</summary>
-      <div class="table-wrap mt-2"><table class="data compact"><thead><tr><th>Point</th><th class="num">Value</th></tr></thead><tbody>${tableRows}</tbody></table></div>
-    </details>
-  </div>`;
-}
-
 export function sparkline(values = [], { width = 120, height = 26 } = {}) {
   if (!values.length) return '';
   const max = Math.max(...values, 1);
@@ -351,11 +307,6 @@ export function answerKeyBadge(status) {
   return entry ? badge(entry[0], entry[1]) : '';
 }
 
-export function explanationBadge(status) {
-  const map = { approved: 'ok', reviewed: 'ok', generated: 'warn', unreviewed: 'warn', missing: 'bad' };
-  return badge(EXPLANATION_STATUSES[status] || status || 'missing', map[status] ?? '');
-}
-
 export function languageSwitcher(question, activeLang, { languages = null } = {}) {
   const available = languages || Object.keys(question.language_variants || {});
   if (available.length < 2) return '';
@@ -370,21 +321,19 @@ export function languageSwitcher(question, activeLang, { languages = null } = {}
 }
 
 /**
- * Render the explanation block, clearly marking missing/unreviewed content.
- * The app never generates explanations: it displays what the pipeline supplied.
+ * Render the explanation block. Explanations are the prose that came with the
+ * bank and are shown exactly as supplied; when a record has none the app says so
+ * instead of filling the space in, because it never writes an explanation itself.
  */
-export function renderExplanation(question, { compact = false } = {}) {
+export function renderExplanation(question) {
   const explanation = question.explanation;
-  const status = explanation?.status || question.explanation_status || 'missing';
   if (!explanation) {
-    return `<div class="explanation"><h3>Explanation ${sourceChip('unavailable', 'not supplied')}</h3><p class="muted small m-0">No explanation is available for this question. Explanations are produced and reviewed by the separate preparation pipeline — this app does not generate them, and it will not show filler text.</p></div>`;
+    return `<div class="explanation"><h3>Explanation</h3><p class="muted small m-0">No explanation was supplied with this question. Explanations arrive with the question bank; this app does not write them, and it will not show filler text.</p></div>`;
   }
-  const unreviewed = status === 'generated';
   const rows = (explanation.option_explanations || []).filter((o) => o.text);
   return `<div class="explanation">
-    <h3>Explanation ${explanationBadge(status)}</h3>
-    ${unreviewed ? '<p class="small text-warn mt-0">This explanation has not been reviewed yet. Treat it as a draft.</p>' : ''}
-    ${explanation.correct_reasoning ? `<p${langAttr(explanation.correct_reasoning)}>${esc(explanation.correct_reasoning)}</p>` : '<p class="muted small">The pipeline supplied no reasoning text.</p>'}
+    <h3>Explanation</h3>
+    ${explanation.correct_reasoning ? `<p${langAttr(explanation.correct_reasoning)}>${esc(explanation.correct_reasoning)}</p>` : ''}
     ${
       rows.length
         ? `<h3>Option by option</h3><div class="table-wrap"><table class="data compact options-table"><tbody>${rows
@@ -399,15 +348,14 @@ export function renderExplanation(question, { compact = false } = {}) {
     ${explanation.revision_takeaways?.length ? `<h3>Revision takeaways</h3><ul class="small">${explanation.revision_takeaways.map((t) => `<li${langAttr(t)}>${esc(t)}</li>`).join('')}</ul>` : ''}
     ${
       explanation.sources?.length
-        ? `<h3>Sources cited by the pipeline</h3><ul class="small">${explanation.sources
+        ? `<h3>Sources</h3><ul class="small">${explanation.sources
             .map(
               (s) =>
                 `<li>${esc(s.title || s.citation || 'source')}${s.url ? ` — <a href="${esc(s.url)}" rel="noopener noreferrer">link</a>` : ''}${s.citation && s.title ? `<br><span class="soft">${esc(s.citation)}</span>` : ''}</li>`,
             )
             .join('')}</ul>`
-        : '<p class="tiny soft mb-0">No sources were supplied with this explanation.</p>'
+        : ''
     }
-    ${compact || !unreviewed ? '' : '<p class="tiny soft mt-2 mb-0">This explanation has not been through a review pass yet.</p>'}
   </div>`;
 }
 
