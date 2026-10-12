@@ -2,16 +2,16 @@
 
 Everything here has actually been run. No test in this document is aspirational.
 
-**Latest verified run (2026-10-12, against `data/pyq/mymppsc-pyq-bank.json`):**
-`npm test` passed **211/211 tests** (0 failures, 0 skips); `npm run check`
-passed **860 checks**. The production bank loaded by these runs contains 1,171
-questions across 12 papers (2013–2024); service-worker cache `v1.1.0-14`. All
+**Latest verified run (2026-10-13, against `data/pyq/mymppsc-pyq-bank.json`):**
+`npm test` passed **223/223 tests** (0 failures, 0 skips); `npm run check`
+passed **902 checks**. The production bank loaded by these runs contains 1,171
+questions across 12 papers (2013–2024); service-worker cache `v1.1.0-15`. All
 years use the latest MPPSC marking pattern (+3/−1/0) as a uniform **practice
 policy only**; this does not establish the historical rules for any paper.
 
 ```bash
-npm test          # all 211 tests
-npm run check     # all 860 static integrity checks
+npm test          # all 223 tests
+npm run check     # all 902 static integrity checks
 npm run audit:ui  # alias for npm run check (static UI + contrast + token audit)
 ```
 

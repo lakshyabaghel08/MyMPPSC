@@ -23,6 +23,9 @@ export const STORE_DEFS = {
   [STORES.MISTAKES]: { keyPath: 'key', indexes: [['question_id', 'question_id'], ['type', 'type'], ['status', 'status'], ['subject', 'subject'], ['topic', 'topic']] },
   [STORES.REVISION]: { keyPath: 'question_id', indexes: [['due_date', 'due_date'], ['state', 'state'], ['subject', 'subject'], ['topic', 'topic']] },
   [STORES.SYLLABUS]: { keyPath: 'id', indexes: [['parent_id', 'parent_id'], ['subject', 'subject'], ['status', 'status']] },
+  // One row per syllabus node the user has marked. Kept apart from the planner's
+  // own syllabus rows so neither module can read or overwrite the other's data.
+  [STORES.SYLLABUS_PROGRESS]: { keyPath: 'node_id', indexes: [['status', 'status'], ['section_id', 'section_id'], ['updated_at', 'updated_at']] },
   [STORES.TASKS]: { keyPath: 'id', indexes: [['status', 'status'], ['due_date', 'due_date'], ['syllabus_id', 'syllabus_id']] },
   [STORES.SESSIONS]: { keyPath: 'id', indexes: [['started_at', 'started_at'], ['category', 'category'], ['syllabus_id', 'syllabus_id']] },
   [STORES.IMPORTS]: { keyPath: 'id', indexes: [['imported_at', 'imported_at'], ['bank_id', 'bank_id']] },
@@ -70,6 +73,10 @@ function applySchema(db, tx, oldVersion) {
   // inside a versionchange transaction before bumping DB_VERSION.
   if (oldVersion < 1) {
     // no data to migrate in the first release
+  }
+  if (oldVersion >= 1 && oldVersion < 2) {
+    // v2 adds `syllabus_progress` and changes no existing store. applySchema has
+    // already created it above; there is nothing to transform.
   }
 }
 

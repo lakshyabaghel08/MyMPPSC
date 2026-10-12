@@ -25,6 +25,7 @@ const STORE_FOR_KEY = {
   mistakes: STORES.MISTAKES,
   revision: STORES.REVISION,
   syllabus: STORES.SYLLABUS,
+  syllabusProgress: STORES.SYLLABUS_PROGRESS,
   tasks: STORES.TASKS,
   sessions: STORES.SESSIONS,
   imports: STORES.IMPORTS,
@@ -40,6 +41,7 @@ const KEY_FIELD_FOR = {
   mistakes: 'key',
   revision: 'question_id',
   syllabus: 'id',
+  syllabusProgress: 'node_id',
   tasks: 'id',
   sessions: 'id',
   imports: 'id',
@@ -63,6 +65,7 @@ export async function buildBackup({ includeTests = true, includeQuestions = true
     mistakes: await db.getAll(STORES.MISTAKES),
     revision: await db.getAll(STORES.REVISION),
     syllabus: await db.getAll(STORES.SYLLABUS),
+    syllabusProgress: await db.getAll(STORES.SYLLABUS_PROGRESS),
     tasks: await db.getAll(STORES.TASKS),
     sessions: await db.getAll(STORES.SESSIONS),
     imports: await db.getAll(STORES.IMPORTS),
@@ -122,6 +125,7 @@ export function validateBackup(obj) {
     mistakes: 'key',
     revision: 'question_id',
     syllabus: 'id',
+    syllabusProgress: 'node_id',
     tasks: 'id',
     sessions: 'id',
     imports: 'id',
@@ -160,7 +164,7 @@ export async function verifyBackupIntegrity(obj) {
 export async function restoreBackup(validation, { mode = 'merge', includeQuestions = true } = {}) {
   if (!validation?.ok) throw new Error('Refusing to restore a backup that did not pass validation.');
   const payload = validation.payload;
-  const restoreOrder = ['settings', 'meta', 'papers', 'questions', 'tests', 'attempts', 'mistakes', 'revision', 'syllabus', 'tasks', 'sessions', 'imports'];
+  const restoreOrder = ['settings', 'meta', 'papers', 'questions', 'tests', 'attempts', 'mistakes', 'revision', 'syllabus', 'syllabusProgress', 'tasks', 'sessions', 'imports'];
   const stats = {};
 
   if (mode === 'replace') {

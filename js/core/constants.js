@@ -16,8 +16,11 @@ export const DB_NAME = 'mymppsc';
 /**
  * Bump DB_VERSION and add a migration step in db.js whenever a store or index
  * changes. Never delete an existing store without a migration that exports it.
+ *
+ * v2 added `syllabus_progress`. applySchema creates any store that is missing,
+ * so the upgrade only has to declare the store in STORE_DEFS.
  */
-export const DB_VERSION = 1;
+export const DB_VERSION = 2;
 
 export const STORES = {
   QUESTIONS: 'questions',
@@ -27,6 +30,12 @@ export const STORES = {
   MISTAKES: 'mistakes',
   REVISION: 'revision',
   SYLLABUS: 'syllabus',
+  /**
+   * Progress through the built-in official syllabus. Deliberately its own store:
+   * the planner's `syllabus` store holds the user's own tree, and mixing the two
+   * would put module nodes into the planner and planner nodes into this module.
+   */
+  SYLLABUS_PROGRESS: 'syllabus_progress',
   TASKS: 'tasks',
   SESSIONS: 'sessions',
   IMPORTS: 'imports',

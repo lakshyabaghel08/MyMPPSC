@@ -1,0 +1,967 @@
+{
+  "format": "mymppsc-syllabus-study-guide",
+  "format_version": "1.0.0",
+  "title": "Mains study breakdown — Papers I and II",
+  "notice": "Derived study guidance. Every unit below groups or subdivides official syllabus lines; it never adds a requirement of its own.",
+  "headings": {
+    "mains/paper-I": {
+      "focus": "Two halves that answer in the same three-hour paper: History and Geography. Treat them as one paper with two revision cycles rather than as two independent subjects."
+    },
+    "mains/paper-I/part-a/unit-1": {
+      "focus": "A long chronological sweep. The danger is depth without sequence, so fix the timeline before adding detail.",
+      "units": [
+        {
+          "title": "Harappan to tenth century",
+          "match": [
+            "भारतीय इतिहास-"
+          ],
+          "note": "The source sets the closing point at the tenth century, so stop there rather than carrying on into the Sultanate."
+        },
+        {
+          "title": "Eleventh to eighteenth century",
+          "match": [
+            "11वीं से 18वीं शताब्दी"
+          ],
+          "note": "Same four lenses as the earlier period — political, economic, social, cultural — so the two can be revised in parallel."
+        },
+        {
+          "title": "Sultanate and Mughal rule, and the rise of medieval culture",
+          "match": [
+            "सल्तनत एवं मुगल शासक"
+          ],
+          "split": [
+            "सल्तनत एवं मुगल शासक और उनका प्रशासन",
+            "मध्यकालीन संस्कृति का अभ्युदय"
+          ],
+          "note": "Administration is named explicitly, so prepare revenue and administrative structure, not just rulers."
+        }
+      ]
+    },
+    "mains/paper-I/part-a/unit-2": {
+      "focus": "One dense line naming every major dynasty of Madhya Pradesh. The list is the syllabus, so nothing can be dropped.",
+      "units": [
+        {
+          "title": "Prehistoric and protohistoric Madhya Pradesh",
+          "match": [
+            "प्रागेतिहासिक एवं आद्य-ऐतिहासिक मध्यप्रदेश"
+          ],
+          "note": "Pair with the rock shelters and prehistoric sites already used for Prelims Paper I subject 2."
+        },
+        {
+          "title": "Dynasty-by-dynasty table",
+          "match": [
+            "प्रागेतिहासिक एवं आद्य-ऐतिहासिक मध्यप्रदेश"
+          ],
+          "split": [
+            "गर्दभिल्ल वंश",
+            "नागवंश",
+            "औलिकर, परिव्राजक राजवंश",
+            "उच्च कल्प वंश",
+            "गुर्जर-प्रतिहार, कलचुरी",
+            "चंदेल, परमार, तोमर",
+            "गोंडवंश",
+            "कच्छपघात वंश"
+          ],
+          "note": "One row per dynasty — region, capital, notable ruler, coins or inscriptions, monuments. Eight groups here, and every one is examinable."
+        }
+      ]
+    },
+    "mains/paper-I/part-a/unit-3": {
+      "focus": "The colonial impact, the Indian response, and Madhya Pradesh's own freedom movement.",
+      "units": [
+        {
+          "title": "Economic and social impact of British rule",
+          "match": [
+            "ब्रिटिश शासन का भारतीय अर्थव्यवस्था"
+          ],
+          "note": "Keep land revenue, deindustrialisation and social change as three separate strands."
+        },
+        {
+          "title": "Indian response and the national movement",
+          "match": [
+            "ब्रिटिश उपनिवेश के प्रति भारतीयों की प्रतिक्रिया"
+          ],
+          "split": [
+            "कृषक एवं जनजातियों का विद्रोह",
+            "प्रथम स्वतंत्रता आंदोलन/संग्राम",
+            "राष्ट्रीय स्वतंत्रता आंदोलन एवं इसके नेतृत्वकर्ता"
+          ],
+          "note": "The peasant and tribal revolts are listed before 1857, so treat them as a distinct strand, not as a footnote to it."
+        },
+        {
+          "title": "Freedom movement in Madhya Pradesh",
+          "match": [
+            "मध्यप्रदेश में स्वतंत्रता आंदोलन"
+          ],
+          "note": "State-level events and personalities; carries forward into Unit V."
+        }
+      ]
+    },
+    "mains/paper-I/part-a/unit-4": {
+      "focus": "Post-independence India, cultural heritage with a state focus, and heritage tourism.",
+      "units": [
+        {
+          "title": "Republic, reorganisation and post-independence events",
+          "match": [
+            "गणतंत्र के रूप में भारत का उदय"
+          ],
+          "note": "Overlaps Prelims Paper I subject 1's final heading and Mains Paper II Unit IV's reorganisation heading."
+        },
+        {
+          "title": "Cultural heritage with special reference to Madhya Pradesh",
+          "match": [
+            "भारतीय सांस्कृतिक विरासत"
+          ],
+          "split": [
+            "विभिन्न कला प्रारूपों",
+            "साहित्य, पर्व (उत्सव)",
+            "वास्तुकला"
+          ],
+          "note": "The state reference is explicit, so every example should carry an MP illustration wherever one exists."
+        },
+        {
+          "title": "World heritage sites and tourism",
+          "match": [
+            "म.प्र. में विश्व धरोहर स्थल"
+          ],
+          "note": "Short list, high yield — same material as Prelims Paper I subject 2."
+        }
+      ]
+    },
+    "mains/paper-I/part-a/unit-5": {
+      "focus": "The princely states and the tribal heroes — the most MP-specific unit in the paper.",
+      "units": [
+        {
+          "title": "Princely states to independence",
+          "match": [
+            "मध्यप्रदेश की प्रमुख रियासतें"
+          ],
+          "split": [
+            "गोंडवाना, बुंदेली, बघेली",
+            "होल्कर, सिंधिया एवं भोपाल रियासत"
+          ],
+          "note": "Know each state's territory, ruler at accession and the instrument of accession."
+        },
+        {
+          "title": "Tribal heroes, named individually",
+          "match": [
+            "मध्यप्रदेश के जनजातीय नायकों"
+          ],
+          "split": [
+            "राजा शंकरशाह, रघुनाथ शाह",
+            "रानी दुर्गावती",
+            "भीमाजी नायक, खाज्यानायक",
+            "टंट्या भील",
+            "गंजनसिंह कोरकू",
+            "बादल भोई, पेमा फाल्या"
+          ],
+          "note": "Nine names are printed in the syllabus itself, so each one can be asked directly — learn the revolt, the year and the region for every name."
+        }
+      ]
+    },
+    "mains/paper-I/part-b/unit-1": {
+      "focus": "Physical geography and climate of India, including the mechanisms behind monsoon variability.",
+      "units": [
+        {
+          "title": "Geographical knowledge in ancient India",
+          "match": [
+            "प्राचीन भारत में भौगोलिक ज्ञान"
+          ],
+          "note": "A short, often-overlooked line — do not skip it because it appears first."
+        },
+        {
+          "title": "Physiographic divisions",
+          "match": [
+            "भारत के प्रमुख भू-आकृतिक"
+          ],
+          "split": [
+            "हिमालय पर्वत",
+            "उत्तर भारत का विशाल मैदान",
+            "प्रायद्वीपीय पठार"
+          ],
+          "note": "Three divisions are named; keep the hills, plateaus, rivers and lakes listed separately beneath them."
+        },
+        {
+          "title": "Soils",
+          "match": [
+            "भारत में मिट्टियाँ"
+          ],
+          "note": "Type, distribution and the crop each soil supports."
+        },
+        {
+          "title": "Climate mechanics",
+          "match": [
+            "जलवायु- ऋतुएँ"
+          ],
+          "split": [
+            "ऋतुएँ, तापमान, वर्षा",
+            "मानसून की उत्पत्ति",
+            "जेट स्ट्रीम"
+          ],
+          "note": "The upper-air circulation part is the technical core; be able to explain the jet stream's role in plain terms."
+        },
+        {
+          "title": "Climatic phenomena and change",
+          "match": [
+            "जलवायु घटनाएँ- अल-नीनो"
+          ],
+          "split": [
+            "अल-नीनो, ला-नीना, दक्षिणी दोलन",
+            "पश्चिमी विक्षोभ",
+            "हिंद महासागर, द्विध्रुव",
+            "जलवायु परिवर्तन के परिणाम"
+          ],
+          "note": "One more phenomenon than the Prelims version of this heading — the Indian Ocean Dipole is added here."
+        }
+      ]
+    },
+    "mains/paper-I/part-b/unit-2": {
+      "focus": "Agriculture and water — production, irrigation, food security and conservation policy.",
+      "units": [
+        {
+          "title": "Crops including millets",
+          "match": [
+            "कृषि- प्रमुख फसलें"
+          ],
+          "note": "The syllabus names श्रीअन्न (millets) explicitly, so give them their own notes."
+        },
+        {
+          "title": "Irrigation",
+          "match": [
+            "सिंचाई- सिंचाई तकनीकों"
+          ],
+          "split": [
+            "सिंचाई तकनीकों के प्रकार",
+            "सिंचाई के स्रोत",
+            "बहुउद्देशीय परियोजनाएँ"
+          ],
+          "note": "Technique, source and project are three separate lists in one line."
+        },
+        {
+          "title": "Food security and the green revolutions",
+          "match": [
+            "खाद्य सुरक्षा, हरित क्रांति"
+          ],
+          "note": "Keep the second green revolution and sustainable agriculture distinct from the first."
+        },
+        {
+          "title": "Water conservation and policy",
+          "match": [
+            "जल संसाधनों का संरक्षण"
+          ],
+          "split": [
+            "वर्षा जल संचयन",
+            "जल संरक्षण के तरीके",
+            "नदियों को आपस में जोड़ना",
+            "राष्ट्रीय जल नीति"
+          ],
+          "note": "River interlinking and the national water policy are policy items and should be answered with the current position, not only the concept."
+        }
+      ]
+    },
+    "mains/paper-I/part-b/unit-3": {
+      "focus": "Resources and industry, with energy as a recurring thread.",
+      "units": [
+        {
+          "title": "Forest resources",
+          "match": [
+            "वन संसाधन, इनके प्रकार"
+          ],
+          "note": "Types and distribution together, as in the Prelims version."
+        },
+        {
+          "title": "Minerals and energy resources",
+          "match": [
+            "प्रमुख खनिज और ऊर्जा संसाधन"
+          ],
+          "note": "Pair this with the energy-crisis heading directly beneath it."
+        },
+        {
+          "title": "Energy crisis and non-conventional sources",
+          "match": [
+            "ऊर्जा संकट"
+          ],
+          "note": "The same heading appears in Prelims Paper I subjects 3 and 4 at a shallower depth."
+        },
+        {
+          "title": "Manufacturing industries",
+          "match": [
+            "प्रमुख उद्योग-"
+          ],
+          "split": [
+            "लोहा और इस्पात",
+            "सीमेंट",
+            "कागज",
+            "शक्कर",
+            "सूती वस्त्र उद्योग"
+          ],
+          "note": "Five industries are named individually; prepare the location factors for each."
+        },
+        {
+          "title": "Food processing",
+          "match": [
+            "प्रमुख खाद्य प्रसंस्करण"
+          ],
+          "note": "Links to the agro-processing heading in Mains Paper III Part A Unit I."
+        }
+      ]
+    },
+    "mains/paper-I/part-b/unit-4": {
+      "focus": "Disasters, pollution, population and the geography-specific technologies.",
+      "units": [
+        {
+          "title": "Hazards and disasters, named individually",
+          "match": [
+            "भारत में प्राकृतिक खतरे और आपदाएँ-"
+          ],
+          "split": [
+            "भूकंप, सुनामी",
+            "सूखा, बाढ़",
+            "ओलावृष्टि, कोहरा, बादल फटना, तड़ित झंझा",
+            "भारत में उष्णकटिबंधीय चक्रवात"
+          ],
+          "note": "The syllabus names each hazard, so each can carry its own question — learn the mechanism, the vulnerable region and the mitigation for every one."
+        },
+        {
+          "title": "Environmental pollution",
+          "match": [
+            "पर्यावरण प्रदूषण-"
+          ],
+          "split": [
+            "वायु प्रदूषण",
+            "जल प्रदूषण",
+            "मिट्टी या भूमि प्रदूषण"
+          ],
+          "note": "Cause, effect, control and mitigation for each of the three."
+        },
+        {
+          "title": "Population pressure and migration",
+          "match": [
+            "भारत में जनसंख्या वृद्धि"
+          ],
+          "note": "The angle here is pressure on resources, not population size as such."
+        },
+        {
+          "title": "Remote sensing, GIS and GPS",
+          "match": [
+            "भूगोल में उन्नत तकनीकें"
+          ],
+          "split": [
+            "सुदूर संवेदन",
+            "भौगोलिक सूचना प्रणाली (जी.आई.एस.)",
+            "भौगोलिक स्थिति निर्धारण प्रणाली (जी.पी.एस.)",
+            "उपग्रहों के प्रकार"
+          ],
+          "note": "Know each acronym's full form, a working application and the Indian programme it is used in."
+        }
+      ]
+    },
+    "mains/paper-I/part-b/unit-5": {
+      "focus": "The geography of Madhya Pradesh, described region by region. This unit rewards map work more than any other.",
+      "units": [
+        {
+          "title": "Physiographic divisions of the state",
+          "match": [
+            "प्रमुख भू-आकृतिक (भौतिक) विभाग - मालवा"
+          ],
+          "split": [
+            "मालवा का पठार",
+            "मध्य भारत का पठार",
+            "बुन्देलखण्ड पठार",
+            "विंध्याचल श्रेणी",
+            "बघेलखंड पठार",
+            "नर्मदा-सोन घाटी",
+            "सतपुड़ा श्रेणी"
+          ],
+          "note": "Seven named divisions — draw them, then label the districts that fall in each."
+        },
+        {
+          "title": "Rivers and tributaries",
+          "match": [
+            "प्रमुख नदियाँ और उनकी सहायक नदियाँ"
+          ],
+          "note": "River, origin, course and the tributaries that join it."
+        },
+        {
+          "title": "Climate",
+          "match": [
+            "जलवायु- ऋतुएँ"
+          ],
+          "note": "Seasons, temperature and rainfall for the state."
+        },
+        {
+          "title": "Soils and soil conservation",
+          "match": [
+            "मध्यप्रदेश की मिट्टियाँ"
+          ],
+          "split": [
+            "प्रकार एवं वितरण",
+            "मृदा अपरदन",
+            "मृदा संरक्षण"
+          ],
+          "note": "Conservation is examined alongside the soil types."
+        },
+        {
+          "title": "Natural vegetation and forest produce",
+          "match": [
+            "प्राकृतिक वनस्पति"
+          ],
+          "note": "Forest types, distribution and the major produce."
+        },
+        {
+          "title": "Crops, irrigation and projects",
+          "match": [
+            "प्रमुख फसलें, सिंचाई एवं सिंचाई परियोजनाएँ"
+          ],
+          "note": "Crop-plus-project recall works best on a river map."
+        },
+        {
+          "title": "Minerals and energy",
+          "match": [
+            "प्रमुख खनिज और ऊर्जा संसाधन,"
+          ],
+          "note": "Mineral belts, thermal and hydro stations, and the non-conventional sources."
+        },
+        {
+          "title": "Industry, including small and cottage industry",
+          "match": [
+            "प्रमुख उद्योग, लघु एवं कुटीर उद्योग"
+          ],
+          "note": "The cottage-industry part is not present in the Prelims version of this heading."
+        },
+        {
+          "title": "Population and urbanisation",
+          "match": [
+            "जनसंख्या वृद्धि, वितरण और घनत्व"
+          ],
+          "note": "Compare with the India-level population heading in Unit IV."
+        }
+      ]
+    },
+    "mains/paper-II": {
+      "focus": "Governance and sociology. Part A is institutional and Part B is social — the two are examined separately but often answer each other's questions."
+    },
+    "mains/paper-II/part-a/unit-1": {
+      "focus": "The Constitution itself, its ideological content, and the federal-judicial structure.",
+      "units": [
+        {
+          "title": "Making, features, basic structure and amendments",
+          "match": [
+            "भारतीय संविधान- निर्माण"
+          ],
+          "split": [
+            "निर्माण, विशेषताएँ",
+            "मूल ढाँचा",
+            "प्रमुख संशोधन"
+          ],
+          "note": "The basic-structure doctrine needs its landmark judgments along with the concept."
+        },
+        {
+          "title": "Ideological elements",
+          "match": [
+            "वैचारिक तत्त्व-"
+          ],
+          "split": [
+            "उद्देशिका",
+            "मूल अधिकार, मूल कर्तव्य",
+            "राज्य के नीति-निदेशक तत्त्व"
+          ],
+          "note": "Overlaps Prelims Paper I subject 5; the Mains version expects reasoning, not recall."
+        },
+        {
+          "title": "Federalism and judicial review",
+          "match": [
+            "संघवाद-"
+          ],
+          "split": [
+            "केन्द्र-राज्य संबंध",
+            "उच्चतम न्यायालय, उच्च न्यायालय",
+            "न्यायिक पुनरावलोकन, न्यायिक सक्रियता",
+            "लोक अदालत एवं जनहित याचिका"
+          ],
+          "note": "Lok Adalat and PIL are named separately — treat them as their own short topics."
+        }
+      ]
+    },
+    "mains/paper-II/part-a/unit-2": {
+      "focus": "Constitutional bodies, then the social bases of Indian politics.",
+      "units": [
+        {
+          "title": "Commissions and policy bodies",
+          "match": [
+            "भारत निर्वाचन आयोग"
+          ],
+          "split": [
+            "भारत निर्वाचन आयोग",
+            "नियंत्रक एवं महालेखा परीक्षक",
+            "संघ लोक सेवा आयोग, मध्यप्रदेश लोक सेवा आयोग",
+            "नीति आयोग"
+          ],
+          "note": "Five bodies in one line — composition, appointment, powers and mandate for each."
+        },
+        {
+          "title": "Caste, religion, class, ethnicity, language and gender in politics",
+          "match": [
+            "भारतीय राजनीति में जाति"
+          ],
+          "note": "Use contemporary illustrations; this is an analytical question area."
+        },
+        {
+          "title": "Parties, voting behaviour, civil society and national security",
+          "match": [
+            "भारतीय राजनीति में जाति"
+          ],
+          "split": [
+            "राजनीतिक दल एवं मतदान व्यवहार",
+            "सिविल सोसायटी एवं जन आंदोलन",
+            "राष्ट्रीय अखंडता तथा सुरक्षा"
+          ],
+          "note": "Three distinct strands usually combined into one line here."
+        }
+      ]
+    },
+    "mains/paper-II/part-a/unit-3": {
+      "focus": "Democratic participation, organised civil society, media, and political thinkers.",
+      "units": [
+        {
+          "title": "Features of democracy and citizen participation",
+          "match": [
+            "लोकतंत्र की विशेषताएँ-"
+          ],
+          "split": [
+            "राजनीतिक प्रतिनिधित्व",
+            "निर्णय प्रक्रिया में नागरिकों की भागीदारी"
+          ],
+          "note": "Representation and participation are listed as two ideas; keep them apart in answers."
+        },
+        {
+          "title": "CBOs, NGOs and self-help groups",
+          "match": [
+            "समुदाय आधारित संगठन"
+          ],
+          "note": "Define each and give one working example, preferably from Madhya Pradesh."
+        },
+        {
+          "title": "Role and problems of the media",
+          "match": [
+            "मीडिया की भूमिका"
+          ],
+          "split": [
+            "इलेक्ट्रॉनिक, प्रिन्ट",
+            "सोशल मीडिया"
+          ],
+          "note": "The syllabus pairs role with problems, so both halves are examinable."
+        },
+        {
+          "title": "Indian political thinkers, named individually",
+          "match": [
+            "भारतीय राजनीतिक विचारक-"
+          ],
+          "split": [
+            "कौटिल्य",
+            "देवी अहिल्याबाई होलकर",
+            "महात्मा गाँधी, जवाहरलाल नेहरू",
+            "सरदार वल्लभ भाई पटेल",
+            "राममनोहर लोहिया, डॉ. भीमराव आम्बेडकर",
+            "पंडित दीनदयाल उपाध्याय, जयप्रकाश नारायण"
+          ],
+          "note": "Nine names are printed here. Deendayal Upadhyaya and Ahilyabai Holkar are the state-linked ones and recur across papers."
+        }
+      ]
+    },
+    "mains/paper-II/part-a/unit-4": {
+      "focus": "Madhya Pradesh's formation and institutions, plus the accountability commissions.",
+      "units": [
+        {
+          "title": "Reorganisation and partition of the state",
+          "match": [
+            "राज्यों का पुनर्गठन 1956"
+          ],
+          "split": [
+            "मध्यप्रदेश का निर्माण",
+            "मध्यप्रदेश का विभाजन (2000)"
+          ],
+          "note": "The 1956 formation and the 2000 partition are two separate events — date both precisely."
+        },
+        {
+          "title": "Governor, Chief Minister and Council of Ministers",
+          "match": [
+            "राज्यपाल- नियुक्ति"
+          ],
+          "note": "Appointment, powers and status for each office."
+        },
+        {
+          "title": "The state legislature",
+          "match": [
+            "मध्यप्रदेश की विधानसभा-"
+          ],
+          "split": [
+            "संगठन एवं शक्तियाँ",
+            "अध्यक्ष की भूमिका",
+            "विपक्ष की भूमिका"
+          ],
+          "note": "The Speaker and Opposition roles are named separately from the House's own powers."
+        },
+        {
+          "title": "The High Court of Madhya Pradesh",
+          "match": [
+            "मध्यप्रदेश उच्च न्यायालय"
+          ],
+          "note": "Composition, jurisdiction and role."
+        },
+        {
+          "title": "Accountability commissions",
+          "match": [
+            "जवाबदेही एवं अधिकार-"
+          ],
+          "split": [
+            "प्रतिस्पर्धा आयोग",
+            "अनुसूचित जाति आयोग, अनुसूचित जनजाति आयोग",
+            "पिछड़ा वर्ग आयोग",
+            "केन्द्रीय सतर्कता आयोग, मानव अधिकार आयोग, सूचना आयोग",
+            "उपभोक्ता फोरम, बाल आयोग, महिला आयोग"
+          ],
+          "note": "Nine bodies listed in one line — a table of mandate, composition and complaint route is the fastest way through it."
+        }
+      ]
+    },
+    "mains/paper-II/part-a/unit-5": {
+      "focus": "How Madhya Pradesh is actually administered, including local government, tribal and Naxalite issues, and women in state politics.",
+      "units": [
+        {
+          "title": "State administration and the district collector",
+          "match": [
+            "Administration of Madhya Pradesh-"
+          ],
+          "split": [
+            "Secretariat, Chief Secretary, Secretary and Commissioner",
+            "District Administration in Madhya Pradesh, Role of District Collector"
+          ],
+          "note": "The collector's role is the standard case-study anchor for this paper."
+        },
+        {
+          "title": "Rural and urban local self-government",
+          "match": [
+            "Rural Local Self Government in Madhya Pradesh-"
+          ],
+          "split": [
+            "Panchayati Raj organization and Powers",
+            "Urban Local Self Government- Organization and Power",
+            "Finance Bureaucracy in Local Self Government and importance of autonomy"
+          ],
+          "note": "Finance and autonomy are named explicitly — the fiscal side of local bodies is examinable."
+        },
+        {
+          "title": "Tribal, backward and deprived classes; the Naxalite problem",
+          "match": [
+            "Political Scenerio of Madhya Pradesh-"
+          ],
+          "note": "A sensitive area: answer with policy and constitutional provisions rather than commentary."
+        },
+        {
+          "title": "Women in the politics of Madhya Pradesh",
+          "match": [
+            "Contribution of Women in Politics"
+          ],
+          "note": "Representation, reservation and notable office-holders."
+        },
+        {
+          "title": "Current issues in state politics",
+          "match": [
+            "Current Issues in the Politics"
+          ],
+          "note": "Dynamic by design — maintain a rolling file, and revise it directly before the exam."
+        }
+      ]
+    },
+    "mains/paper-II/part-b/unit-1": {
+      "focus": "Basic concepts of sociology, grounded in Indian usage.",
+      "units": [
+        {
+          "title": "Indian concept of society and kinship terms",
+          "match": [
+            "समाज की भारतीय संकल्पना-"
+          ],
+          "split": [
+            "कुटुम्ब, परिवार",
+            "नातेदारी, वंश, गोत्र परंपरा"
+          ],
+          "note": "The source uses Indian categories rather than imported ones — define each in Indian terms."
+        },
+        {
+          "title": "Community, institution, association, culture, norms and values",
+          "match": [
+            "समुदाय, संस्था, संघ"
+          ],
+          "note": "Five foundational terms in one line; the distinctions between them are the examinable part."
+        },
+        {
+          "title": "Social harmony, civilisation and culture",
+          "match": [
+            "सामाजिक समरसता के तत्व"
+          ],
+          "note": "Salient features of Indian culture are attached to this heading."
+        },
+        {
+          "title": "Social institutions",
+          "match": [
+            "सामाजिक संस्थाएँ-"
+          ],
+          "split": [
+            "परिवार, शिक्षा, धर्म",
+            "वर्ण, ऋण, यज्ञ, संस्कार"
+          ],
+          "note": "Note that varna, rin, yagya and sanskar are treated as institutions, not merely rituals."
+        },
+        {
+          "title": "Rituals, caste, ashram, purushartha and marriage",
+          "match": [
+            "अनुष्ठान-"
+          ],
+          "note": "The last clause brings religion and sects into the study of marriage."
+        }
+      ]
+    },
+    "mains/paper-II/part-b/unit-2": {
+      "focus": "Diversity, its challenges, and the problems of nation building.",
+      "units": [
+        {
+          "title": "Conceptualising Indian society",
+          "match": [
+            "भारतीय समाज की संकल्पना-"
+          ],
+          "note": "Unity in diversity is the organising idea of this unit."
+        },
+        {
+          "title": "Cultural diversity",
+          "match": [
+            "सांस्कृतिक विविधता-"
+          ],
+          "split": [
+            "क्षेत्रीय, भाषायी",
+            "धार्मिक और जनजातीय"
+          ],
+          "note": "Four kinds of diversity are named; give each an Indian illustration."
+        },
+        {
+          "title": "Changing face of crime",
+          "match": [
+            "अपराध का बदलता परिदृश्य-"
+          ],
+          "split": [
+            "नशीली दवाओं की लत, आत्महत्या",
+            "साइबर अपराध",
+            "महिलाओं के प्रति अपराध एवं घरेलू हिंसा"
+          ],
+          "note": "A current-affairs-sensitive heading; keep data and legal provisions together."
+        },
+        {
+          "title": "Tradition and modernity",
+          "match": [
+            "वर्तमान बहस-"
+          ],
+          "note": "A debate, not a fact set — prepare a balanced two-sided argument."
+        },
+        {
+          "title": "Problems of nation building",
+          "match": [
+            "राष्ट्र निर्माण की समस्याएँ-"
+          ],
+          "split": [
+            "धर्मनिरपेक्षता",
+            "बहुलवाद"
+          ],
+          "note": "Links directly to nation building in Mains Paper IV Part A Unit II."
+        }
+      ]
+    },
+    "mains/paper-II/part-b/unit-3": {
+      "focus": "Rural and urban sociology, including the 73rd Amendment and town planning.",
+      "units": [
+        {
+          "title": "Approaches to rural society",
+          "match": [
+            "ग्रामीण समाज के अध्ययन के उपागम-"
+          ],
+          "split": [
+            "ग्रामीण-शहरी अंतर",
+            "ग्रामीणवाद और नगरवाद"
+          ],
+          "note": "The rural-urban distinction is the foundation for the rest of the unit."
+        },
+        {
+          "title": "Peasant studies and Panchayati Raj",
+          "match": [
+            "किसान अध्ययन,"
+          ],
+          "split": [
+            "किसान अध्ययन",
+            "73वें संशोधन से पहले और बाद में पंचायती राज व्यवस्था",
+            "ग्रामीण नेतृत्त्व, गुटबाजी, लोक सशक्तीकरण"
+          ],
+          "note": "Know what changed with the 73rd Amendment, not just that it happened."
+        },
+        {
+          "title": "Rural development issues",
+          "match": [
+            "ग्रामीण विकास के सामाजिक मुद्दे"
+          ],
+          "split": [
+            "बंधुआ और प्रवासी मजदूर",
+            "ग्रामीण समाज में बदलाव के रुझान"
+          ],
+          "note": "Bonded and migrant labour are named specifically — this is the social-issue core of the unit."
+        },
+        {
+          "title": "Urban community and urbanisation",
+          "match": [
+            "नगरीय समुदाय की विशेषताएँ,"
+          ],
+          "split": [
+            "नगरीय समुदाय में परिवर्तन",
+            "नगरीकरण के कारण एवं प्रभाव"
+          ],
+          "note": "Characteristics, change, causes and effects — four parts of one line."
+        },
+        {
+          "title": "Town planning and urban management",
+          "match": [
+            "नगर नियोजन की अवधारणा,"
+          ],
+          "split": [
+            "नगर नियोजन को प्रभावित करने वाले कारक",
+            "भारत में नगरीय प्रबंध की समस्याएँ"
+          ],
+          "note": "Overlaps the urban administration material in Part A Unit V and the local-government item in Prelims Paper I subject 5."
+        }
+      ]
+    },
+    "mains/paper-II/part-b/unit-4": {
+      "focus": "Industrialisation, globalisation, development and population.",
+      "units": [
+        {
+          "title": "Industrialisation and social change",
+          "match": [
+            "भारत में औद्योगीकरण और सामाजिक परिवर्तन-"
+          ],
+          "split": [
+            "परिवार, शिक्षा, स्तरीकरण पर प्रभाव",
+            "औद्योगिक समाज में वर्ग और वर्ग संघर्ष"
+          ],
+          "note": "Impact on family, education and stratification is the examinable list."
+        },
+        {
+          "title": "Globalisation, indianisation of sociology and privatisation of education",
+          "match": [
+            "वैश्वीकरण की चुनौतियाँ,"
+          ],
+          "note": "Three loosely related items grouped in one line; the indianisation of sociology is the most conceptual."
+        },
+        {
+          "title": "Social structure and development",
+          "match": [
+            "सामाजिक संरचना और विकास,"
+          ],
+          "split": [
+            "सुविधाप्रदाता, अवरोधक",
+            "विकास और सामाजिक-आर्थिक असमानताएँ"
+          ],
+          "note": "Facilitators and inhibitors are the analytical pairs to prepare."
+        },
+        {
+          "title": "Culture and development",
+          "match": [
+            "संस्कृति और विकास-"
+          ],
+          "split": [
+            "सहायक/बाधक के रूप में संस्कृति",
+            "उत्तर-आधुनिकीकरण, पश्चिमीकरण"
+          ],
+          "note": "Culture as aid and as impediment is a standard two-part question."
+        },
+        {
+          "title": "Population growth and distribution",
+          "match": [
+            "भारत में जनसंख्या वृद्धि और वितरण-"
+          ],
+          "note": "Growth since 1901 with causes and effects — the 1901 start point is specified in the syllabus."
+        },
+        {
+          "title": "Population concepts",
+          "match": [
+            "अवधारणाएँ-"
+          ],
+          "split": [
+            "प्रजनन क्षमता, मृत्यु दर, रुग्णता",
+            "प्रवास",
+            "आयु और लिंग संरचना"
+          ],
+          "note": "Definitions and how each is measured."
+        }
+      ]
+    },
+    "mains/paper-II/part-b/unit-5": {
+      "focus": "Human resource development and welfare, ending with Madhya Pradesh tribes and folk culture.",
+      "units": [
+        {
+          "title": "National Education Policy 2020",
+          "match": [
+            "राष्ट्रीय शिक्षा नीति 2020-"
+          ],
+          "split": [
+            "विजन, सिद्धांत",
+            "स्कूली शिक्षा, उच्च शिक्षा",
+            "व्यावसायिक शिक्षा",
+            "ऑनलाइन और डिजिटल शिक्षा",
+            "वयस्क शिक्षा और जीवन-पर्यन्त सीखना"
+          ],
+          "note": "Five strands of one policy are listed — prepare each separately, as the syllabus does."
+        },
+        {
+          "title": "Welfare issues by social group",
+          "match": [
+            "सामाजिक वर्गों और उनके कल्याण कार्यक्रमों"
+          ],
+          "split": [
+            "वरिष्ठ नागरिक, बच्चे, महिलाएँ",
+            "विशेषाधिकार प्राप्त वर्ग",
+            "विस्थापित समूह",
+            "बालिकाओं की शिक्षा"
+          ],
+          "note": "Keep the scheme and the constitutional or legal basis for each group together."
+        },
+        {
+          "title": "Community development and extension education",
+          "match": [
+            "सामुदायिक विकास कार्यक्रम,"
+          ],
+          "split": [
+            "सामुदायिक विकास कार्यक्रम, विस्तार शिक्षा",
+            "पंचायती राज",
+            "गैर-सरकारी संगठनों (एन.जी.ओ.) की भूमिका"
+          ],
+          "note": "The NGO role here is community development, not the wider media-and-civil-society heading in Part A."
+        },
+        {
+          "title": "Tribes of Madhya Pradesh",
+          "match": [
+            "मध्यप्रदेश में जनजातियों की स्थिति"
+          ],
+          "split": [
+            "सामाजिक संरचना, रीति-रिवाज",
+            "विश्वास, विवाह, रिश्तेदारी",
+            "धार्मिक विश्वास, परंपराएँ, त्यौहार और उत्सव"
+          ],
+          "note": "Study with Prelims Paper I subject 10 — the same facts serve both."
+        },
+        {
+          "title": "Folk culture of Madhya Pradesh",
+          "match": [
+            "मध्यप्रदेश की लोक संस्कृति।"
+          ],
+          "note": "One consolidated folk-culture file covers this, Prelims subjects 2 and 10, and Paper IV."
+        }
+      ]
+    }
+  }
+}
