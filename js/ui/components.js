@@ -156,11 +156,20 @@ export const kv = (pairs = []) =>
 /* ---------------------------------------------------------------- tables -- */
 
 /**
- * Supports both `{ columns: [{ label, num }], rows }` and `{ headers: ['...'], rows }`.
+ * Supports both `{ columns: [{ label, num }], rows, footer }` and `{ headers: ['...'], rows }`.
  */
-export function dataTable({ columns = null, headers = [], rows = [], empty = 'Nothing to show.', className = '' } = {}) {
+export function dataTable({ columns = null, headers = [], rows = [], footer = null, empty = 'Nothing to show.', className = '' } = {}) {
   if (!rows.length) return `<p class="muted small m-0">${esc(empty)}</p>`;
   const cols = columns || headers.map((h) => (typeof h === 'string' ? { label: h, num: false } : h));
+  const footHtml =
+    Array.isArray(footer) && footer.length
+      ? `<tfoot><tr>${footer
+          .map((cell, i) => {
+            const col = cols[i];
+            return `<td ${col?.num ? 'class="num"' : ''}>${cell ?? ''}</td>`;
+          })
+          .join('')}</tr></tfoot>`
+      : '';
   return `<div class="table-wrap"><table class="data ${className}">
     <thead><tr>${cols.map((c) => `<th ${c.num ? 'class="num"' : ''}>${esc(c.label)}</th>`).join('')}</tr></thead>
     <tbody>${rows
@@ -174,7 +183,7 @@ export function dataTable({ columns = null, headers = [], rows = [], empty = 'No
             })
             .join('')}</tr>`,
       )
-      .join('')}</tbody>
+      .join('')}</tbody>${footHtml}
   </table></div>`;
 }
 
@@ -218,46 +227,115 @@ export function progressBar(valueOrFraction, maxOrTone = '', maybeTone = '') {
   </svg>`;
 }
 
-/** Vertical bar chart (SVG) with accessible table fallback. */
+function computeAxisTicks(maxVal) {
+  const safeMax = Number.isFinite(maxVal) && maxVal > 0 ? maxVal : 1;
+  if (safeMax <= 5) {
+    const ceil = Math.max(1, Math.ceil(safeMax));
+    const ticks = [];
+    for (let i = 0; i <= ceil; i += 1) ticks.push(i);
+    return { domainMax: ceil, ticks };
+  }
+  const roughStep = safeMax / 5;
+  const mag = 10 ** Math.floor(Math.log10(roughStep));
+  const norm = roughStep / mag;
+  const mult = norm <= 1 ? 1 : norm <= 2 ? 2 : norm <= 2.5 ? 2.5 : norm <= 5 ? 5 : 10;
+  const cleanStep = Math.max(1, Math.round(mult * mag));
+  const domainMax = Math.max(cleanStep, Math.ceil(safeMax / cleanStep) * cleanStep);
+  const ticks = [];
+  for (let v = 0; v <= domainMax; v += cleanStep) {
+    ticks.push(v);
+  }
+  return { domainMax, ticks };
+}
+
+/**
+ * Horizontal bar chart (SVG) with collision-free labels, end-of-bar totals,
+ * axis grid lines, hover tooltips, and accessible table fallback.
+ */
 export function barChart(arg1 = {}, arg2 = {}) {
   const isArrayArg = Array.isArray(arg1);
-  const data = isArrayArg ? arg1 : arg1.data || [];
-  const height = (isArrayArg ? arg2.height : arg1.height) || 150;
-  const valueFormat = (isArrayArg ? arg2.valueFormat : arg1.valueFormat) || ((v) => String(v));
+  const rawData = isArrayArg ? arg1 : arg1.data || [];
+  const valueFormat = (isArrayArg ? arg2.valueFormat : arg1.valueFormat) || ((v) => String(Math.round(Number(v) || 0)));
   const yLabel = (isArrayArg ? arg2.yLabel || arg2.title : arg1.yLabel || arg1.title) || 'Bar chart';
 
+  const data = rawData.map((d) => {
+    const rawVal = Number(d?.value);
+    const value = Number.isFinite(rawVal) ? Math.max(0, rawVal) : 0;
+    const rawShare = Number(d?.share);
+    const share = Number.isFinite(rawShare) ? clamp(rawShare, 0, 1) : null;
+    const fullLabel = String(d?.label ?? '—');
+    const displayLabel = fullLabel.length > 34 ? `${fullLabel.slice(0, 33)}…` : fullLabel;
+    return {
+      ...d,
+      label: fullLabel,
+      displayLabel,
+      value,
+      share,
+    };
+  });
+
   if (!data.length) return '<p class="muted small m-0">No data to chart yet.</p>';
-  const w = 660;
-  const h = height;
-  const padL = 34;
-  const padB = 26;
+
+  const w = 760;
+  const padL = 192;
+  const padR = 112;
   const padT = 10;
-  const max = Math.max(...data.map((d) => Number(d.value) || 0), 1);
-  const innerW = w - padL - 8;
-  const innerH = h - padB - padT;
-  const bw = Math.max(6, innerW / data.length - 6);
+  const padB = 28;
+  const rowH = 30;
+  const barH = 14;
+  const innerW = w - padL - padR;
+  const innerH = data.length * rowH;
+  const h = padT + innerH + padB;
+
+  const maxVal = Math.max(...data.map((d) => d.value), 1);
+  const { domainMax, ticks } = computeAxisTicks(maxVal);
+
+  const gridLines = ticks
+    .map((tick) => {
+      const x = padL + (tick / domainMax) * innerW;
+      return `<line class="grid-line" x1="${x.toFixed(1)}" y1="${padT}" x2="${x.toFixed(1)}" y2="${(padT + innerH).toFixed(1)}"></line><text class="axis-label" x="${x.toFixed(1)}" y="${(h - 7).toFixed(1)}" text-anchor="middle">${esc(valueFormat(tick))}</text>`;
+    })
+    .join('');
+
+  const axisBaseline = `<line class="axis-baseline" x1="${padL}" y1="${padT}" x2="${padL}" y2="${(padT + innerH).toFixed(1)}"></line>`;
+
   const bars = data
     .map((d, i) => {
-      const v = Number(d.value) || 0;
-      const bh = (v / max) * innerH;
-      const x = padL + i * (innerW / data.length) + 2;
-      const y = padT + innerH - bh;
-      const labelEvery = Math.ceil(data.length / 12);
-      const label = i % labelEvery === 0 ? `<text class="axis-label" x="${(x + bw / 2).toFixed(1)}" y="${h - 8}" text-anchor="middle">${esc(d.label)}</text>` : '';
-      return `<rect class="bar ${esc(d.tone || '')}" x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${bw.toFixed(1)}" height="${Math.max(0, bh).toFixed(1)}"><title>${esc(d.label)}: ${esc(valueFormat(v))}</title></rect>${label}`;
+      const rowY = padT + i * rowH;
+      const barY = rowY + (rowH - barH) / 2;
+      const textY = rowY + rowH / 2 + 4;
+      const rawBw = (d.value / domainMax) * innerW;
+      const bw = d.value > 0 ? Math.max(4, Math.min(innerW, rawBw)) : 0;
+      const formattedVal = valueFormat(d.value);
+      const endText = d.endLabel || (d.share !== null ? `${formattedVal} (${fmtPct(d.share, 1)})` : formattedVal);
+      const tooltip = d.tooltip || `${d.label}: ${endText}`;
+      const valX = padL + bw + 8;
+
+      return `<g class="chart-row" tabindex="0" data-chart-label="${esc(d.label)}" data-chart-detail="${esc(tooltip)}">
+        <title>${esc(tooltip)}</title>
+        <rect class="chart-row-hit" x="4" y="${(rowY + 1).toFixed(1)}" width="${w - 8}" height="${rowH - 2}" rx="6" ry="6"></rect>
+        <text class="chart-subject-label" x="${padL - 12}" y="${textY.toFixed(1)}" text-anchor="end">${esc(d.displayLabel)}</text>
+        <rect class="bar-track-bg" x="${padL}" y="${barY.toFixed(1)}" width="${innerW}" height="${barH}" rx="4" ry="4"></rect>
+        <rect class="bar ${esc(d.tone || '')}" x="${padL}" y="${barY.toFixed(1)}" width="${bw.toFixed(1)}" height="${barH}" rx="4" ry="4"></rect>
+        <text class="chart-value-label" x="${valX.toFixed(1)}" y="${textY.toFixed(1)}" text-anchor="start">${esc(endText)}</text>
+      </g>`;
     })
     .join('');
-  const gridLines = [0, 0.5, 1]
-    .map((f) => {
-      const y = padT + innerH * (1 - f);
-      return `<line class="grid-line" x1="${padL}" y1="${y.toFixed(1)}" x2="${w - 8}" y2="${y.toFixed(1)}"></line><text class="axis-label" x="4" y="${(y + 3).toFixed(1)}">${esc(valueFormat(Math.round(max * f * 100) / 100))}</text>`;
-    })
+
+  const tableRows = data
+    .map(
+      (d) =>
+        `<tr><td>${esc(d.label)}</td><td class="num">${esc(valueFormat(d.value))}</td>${
+          d.share !== null ? `<td class="num">${esc(fmtPct(d.share, 1))}</td>` : ''
+        }</tr>`,
+    )
     .join('');
-  const tableRows = data.map((d) => `<tr><td>${esc(d.label)}</td><td class="num">${esc(valueFormat(Number(d.value) || 0))}</td></tr>`).join('');
-  return `<div class="chart-wrap">
-    <svg class="chart" viewBox="0 0 ${w} ${h}" role="img" aria-label="${esc(yLabel)}">${gridLines}${bars}</svg>
+  const hasShareCol = data.some((d) => d.share !== null);
+
+  return `<div class="chart-wrap pyq-hbar-wrap">
+    <svg class="chart pyq-hbar-chart" viewBox="0 0 ${w} ${h}" role="img" aria-label="${esc(yLabel)}">${gridLines}${bars}${axisBaseline}</svg>
     <details class="chart-data"><summary>Data table (${data.length} rows)</summary>
-      <div class="table-wrap mt-2"><table class="data compact"><thead><tr><th>Item</th><th class="num">Value</th></tr></thead><tbody>${tableRows}</tbody></table></div>
+      <div class="table-wrap mt-2"><table class="data compact"><thead><tr><th>Subject</th><th class="num">Questions</th>${hasShareCol ? '<th class="num">Share</th>' : ''}</tr></thead><tbody>${tableRows}</tbody></table></div>
     </details>
   </div>`;
 }

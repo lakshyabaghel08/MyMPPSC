@@ -14,7 +14,7 @@
 
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { bootApp, importDemoBank } from './helpers.mjs';
+import { bootApp, importDemoBank, readText } from './helpers.mjs';
 import { summariseBank, topicStanding, topicKey, UNCLASSIFIED_SUBJECT } from '../js/services/pyq-analysis.js';
 
 const meta = (o) => ({
@@ -188,3 +188,69 @@ test('the screen adds no inline styles, no scripts and no remote calls', async (
   assert.equal(/localhost/.test(html), false);
   assert.ok(html.includes('class="prov-chip'), 'its numbers say where they came from');
 });
+
+test('the horizontal subject chart renders all 571 real bank questions with untruncated, non-overlapping labels', async () => {
+  const m = await bootApp();
+  const builtin = await import('../js/services/builtin-bank.js');
+  const bankText = await readText('pyq/mymppsc-pyq-bank.json');
+  await builtin.ensureBuiltinBank({ text: bankText });
+
+  const view = await import('../js/ui/views/pyq-analysis.js');
+  const html = await view.default.render({});
+
+  assert.equal(html.includes('NaN'), false, 'no NaN values in rendered markup');
+  assert.equal(html.includes('undefined'), false, 'no undefined values in rendered markup');
+
+  // Summary cards reflect real calculated values (571 questions, 6 papers, 10 subjects, 64 topics, 571/571 keys)
+  assert.match(html, /571/);
+  assert.match(html, /6<\/strong>\s*paper\(s\)|6 paper\(s\)/);
+  assert.match(html, /2019–2024/);
+  assert.match(html, /571\/571/);
+
+  // Every subject label in the chart is rendered in full (no truncation with ellipsis) and sorted highest-first
+  const labelMatches = [...html.matchAll(/<text class="chart-subject-label"[^>]*y="([^"]+)"[^>]*>([^<]+)<\/text>/g)];
+  assert.equal(labelMatches.length, 10, 'all 10 syllabus subjects are plotted in the chart');
+
+  const labels = labelMatches.map((match) => match[2]);
+  const yPositions = labelMatches.map((match) => Number(match[1]));
+  assert.equal(labels[0], 'Polity', 'highest-count subject (Polity, 108) is plotted first');
+  assert.equal(labels[1], 'Geography', 'second-highest subject (Geography, 100) is plotted second');
+  assert.equal(labels[labels.length - 1], 'General Aptitude', 'lowest-count subject (General Aptitude, 7) is plotted last');
+
+  for (const fullSubject of ['Science and Technology', 'Madhya Pradesh Special', 'Art and Culture', 'General Aptitude', 'Current Affairs']) {
+    assert.ok(labels.includes(fullSubject), `full untruncated label "${fullSubject}" is present in the chart`);
+  }
+  assert.equal(labels.some((l) => l.includes('…')), false, 'no subject label is truncated');
+
+  // Verify every subject label sits on its own distinct vertical row (>= 24px apart) so labels never collide
+  for (let i = 1; i < yPositions.length; i += 1) {
+    assert.ok(yPositions[i] - yPositions[i - 1] >= 24, `row ${i} and row ${i - 1} must not overlap vertically`);
+  }
+
+  // Verify end-of-bar total counts are present for each bar
+  const valueMatches = [...html.matchAll(/<text class="chart-value-label"[^>]*>([^<]+)<\/text>/g)].map((m2) => m2[1]);
+  assert.equal(valueMatches.length, 10, 'each bar has an end-of-bar total label');
+  assert.match(valueMatches[0], /^108\b/);
+  assert.match(valueMatches[1], /^100\b/);
+  assert.match(valueMatches[2], /^94\b/);
+});
+
+test('the unplaced-question bucket is surfaced clearly when records lack a subject or topic', async () => {
+  const m = await bootApp();
+  await importDemoBank();
+  // Add an unclassified question record into the live index to verify the unplaced bucket UI
+  m.appState.questionIndex.set(
+    'UNPLACED-1',
+    meta({ id: 'UNPLACED-1', subject: null, topic: null, year: 2024 }),
+  );
+
+  const view = await import('../js/ui/views/pyq-analysis.js');
+  const html = await view.default.render({});
+
+  assert.match(html, /Unplaced questions/);
+  assert.match(html, /Unplaced-question bucket/);
+  assert.match(html, /Unclassified/);
+  assert.match(html, /href="#\/topic\/Unclassified"/);
+});
+
+
