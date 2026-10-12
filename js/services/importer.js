@@ -219,7 +219,7 @@ export async function executeImport(analysis, options = {}) {
  * answers and locally authored explanations are preserved.
  */
 export function mergeImportedQuestion(prior, incoming, bankId) {
-  const userEditedClassification = prior.classification?.source === 'user_correction';
+  const userEditedClassification = Boolean(prior.classification?.userEditedAt);
   const userVerified = prior.verified?.source === 'user_correction';
   return {
     ...incoming,
@@ -227,13 +227,12 @@ export function mergeImportedQuestion(prior, incoming, bankId) {
     classification: userEditedClassification
       ? {
           ...prior.classification,
-          pipeline_latest: { subject: incoming.classification.subject, topic: incoming.classification.topic, subtopic: incoming.classification.subtopic, confidence: incoming.classification.confidence, source: incoming.classification.source, at: nowIso() },
+          pipeline_latest: { subject: incoming.classification.subject, topic: incoming.classification.topic, subtopic: incoming.classification.subtopic, at: nowIso() },
         }
       : incoming.classification,
     verified: userVerified ? prior.verified : incoming.verified || prior.verified || null,
     dispute: prior.dispute?.raised_by === 'user' ? prior.dispute : incoming.dispute || prior.dispute || null,
     explanation: incoming.explanation || prior.explanation || null,
-    explanation_status: incoming.explanation ? incoming.explanation_status : prior.explanation_status || 'missing',
     user_corrections: [
       ...(prior.user_corrections || []),
       { at: nowIso(), kind: 'reimported', note: `Source record refreshed from bank ${bankId || 'unknown'}; your classification/verification edits were preserved.`, before: null, by: 'system' },

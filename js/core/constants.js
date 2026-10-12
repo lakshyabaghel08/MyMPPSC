@@ -81,16 +81,12 @@ export const ANSWER_KEY_STATUSES = {
   unknown: 'Unknown',
 };
 
-export const EXPLANATION_STATUSES = {
-  missing: 'Missing',
-  // `unreviewed` is what the import pipeline marks prose that came with a bank
-  // (for example a solved paper's explanation) and has not been checked since.
-  // It is deliberately not called "generated": the app never writes prose.
-  unreviewed: 'Not reviewed yet',
-  generated: 'Generated (not reviewed)',
-  reviewed: 'Reviewed',
-  approved: 'Approved',
-};
+/**
+ * Explanations are content, not a workflow state: the app shows the prose that
+ * came with the bank and says so when there is none. Whether an explanation was
+ * reviewed, and by whom, belongs to the preparation pipeline's own reports, so
+ * this app has no vocabulary for it.
+ */
 
 export const VALIDATION_STATUSES = {
   valid: 'Valid',

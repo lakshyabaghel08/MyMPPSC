@@ -89,7 +89,8 @@ Zero inline `style=` attributes are permitted in `js/**`. All helpers in `js/ui/
 - **`tabs({ id, items, activeId })` & `mountTabs(root, onChange)`**: WAI-ARIA Authoring Practices Guide (APG) tabs with `role="tablist"`, `role="tab"`, `role="tabpanel"`, roving `tabindex` (`0` on selected, `-1` on others), `aria-selected`, `aria-controls`, `aria-labelledby`, and `ArrowRight` / `ArrowLeft` / `Home` / `End` keyboard navigation.
 - **`openModal({ title, body, actions, wide, onMount, dismissible })`**: Accessible modal dialog (`role="dialog"`, `aria-modal="true"`, `aria-labelledby`). Saves the trigger element, sets `inert` on `#appHeader`, `#appBody`, and `#main`, moves initial focus inside the dialog, traps `Tab` / `Shift+Tab` at boundaries, closes on `Escape` or backdrop click, and restores focus to the trigger element on close.
 - **`toast(message, tone, timeout)`**: Notification banner inside `#toastStack` (`pointer-events: none` on stack, `pointer-events: auto` on individual `.toast` items), capped at 4 concurrent toasts, with pause-on-hover/focus and a dismiss button.
-- **`barChart(...)` & `lineChart(...)`**: Responsive SVG charts (`viewBox` + `role="img"` + `aria-label`) paired with a `<details class="chart-table-fallback">` accessible data table.
+- **`barChart(...)`**: Responsive SVG chart (`viewBox` + `role="img"` + `aria-label`) paired with a `<details class="chart-data">` accessible data table. There is no time-series chart in the library: the daily-activity and accuracy-trend line charts were removed as uninterpretable at small sample sizes, and per-day numbers were not replaced with another visual.
+- **`renderExplanation(question)`**: Renders the explanation the bank stored for a question — the correct-option reasoning, per-option notes, key concepts and revision takeaways — with a plain sentence when the record has none. It attaches no badge and no review status: the app cannot check prose, so it neither claims nor implies that anybody has.
 
 ---
 
@@ -119,11 +120,12 @@ The baseline `css/app.css` contained 6 `!important` declarations. The redesigned
 
 ## 5. How to Add or Modify a Screen
 
-1. **Create or update the view module** in `js/ui/views/<name>.js` exporting `{ title, render(ctx), mount?(ctx, root), cleanup?(ctx) }`.
+1. **Create or update the view module** in `js/ui/views/<name>.js` exporting `{ title, render(ctx), mount?(ctx, root), cleanup?(ctx) }`. `render()` receives the parsed hash route in `ctx.params` (`#/topic/Geography` → `['Geography']`); a view that can be deep-linked must apply its params once per route change, not on every re-render.
 2. **Start `render()` with `<h1>${esc(this.title)}</h1>`** in both empty and populated states. Use `card({ title: '...' })` (`<h2>`) for top-level sections and `<h3>` for sub-sections inside cards. Never use `<h4>` directly inside a card without an intervening `<h3>`.
 3. **Never write inline `style="..."` attributes** in JS templates. Use existing layout utilities (`.row`, `.spread`, `.stack`, `.split-2`, `.field-row`, `.mt-2`, `.mb-3`, etc.) or add a semantic class to `css/app.css` using design tokens.
 4. **Attach provenance chips** (`sourceChip`, `evidenceMeter`, `provenanceLine`, `demoBadge`) to every stat tile, chart card, and answer-key display, and wrap Hindi question/option text with `langAttr(text, lang)`.
-5. **Run `npm run check && npm test`** to verify all static guards and jsdom accessibility tests pass.
+5. **Register it in three places**: the `NAV` array and the `router.register(...)` list in `js/app.js` (the ⌘K palette is built from `NAV`, so one entry covers both), and — for any new file under `js/services/` or `js/ui/views/` — `SHELL_FILES` in `sw.js` with a `VERSION` bump, or the offline shell ships without it. `npm run check` fails on any precached file that is missing from the list and on any registered route with no view.
+6. **Run `npm run check && npm test`** to verify all static guards and jsdom accessibility tests pass.
 
 ---
 

@@ -1,8 +1,10 @@
 # Classification report — MPPSC Prelims Paper I (General Studies) 2019–2024
 
-Generated 2026-10-11T22:21:35.930Z by tools/classify-bank.mjs 1.0.0.
+Generated 2026-10-12T05:26:50.322Z by tools/classify-bank.mjs 1.0.0.
 
 Questions in the bank: **571**
+
+Labels come from `data/taxonomy/mppsc-taxonomy.json` (version 1.0.1, 10 subjects, 396 rules), written by tools/classify-bank.mjs 1.0.0.
 
 ## Coverage by level
 

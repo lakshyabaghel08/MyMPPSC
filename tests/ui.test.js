@@ -112,7 +112,7 @@ test('boots, renders the shell and the demonstration prompt', async () => {
   await waitFor(() => $$('#navList .nav-link').length >= 10, { label: 'navigation links' });
   assert.equal(state.dbError, null);
   const labels = $$('#navList .nav-link').map((b) => b.textContent.trim());
-  for (const required of ['Dashboard', 'PYQ Test Centre', 'Topic Practice', 'Smart Practice', 'Mistake Book', 'Revision Centre', 'Syllabus & Planner', 'Analytics', 'Question Bank & Imports', 'Settings & Backup']) {
+  for (const required of ['Dashboard', 'PYQ Test Centre', 'Topic Practice', 'Smart Practice', 'Mistake Book', 'Revision Centre', 'Syllabus & Planner', 'Analytics', 'PYQ Analysis', 'Question Bank & Imports', 'Settings & Backup']) {
     assert.ok(labels.some((l) => l.includes(required)), `navigation should offer ${required}`);
   }
 
@@ -128,13 +128,35 @@ test('boots, renders the shell and the demonstration prompt', async () => {
 });
 
 test('every route renders without an error notice', async () => {
-  for (const route of ['dashboard', 'test-centre', 'topic', 'custom', 'smart', 'mistakes', 'revision', 'syllabus', 'analytics', 'bank', 'settings', 'help']) {
+  for (const route of ['dashboard', 'test-centre', 'topic', 'custom', 'smart', 'mistakes', 'revision', 'syllabus', 'analytics', 'pyq-analysis', 'bank', 'settings', 'help']) {
     await goto(route);
     const text = viewText();
     assert.ok(text.length > 40, `${route} rendered almost nothing`);
     assert.ok(!/could not be displayed/i.test(text), `${route} reported a rendering error: ${text.slice(0, 200)}`);
     assert.ok(!/Loading local data/.test(text), `${route} stayed on the loading state`);
   }
+});
+
+test('PYQ Analysis counts the bundled bank and deep-links into practice', async () => {
+  await goto('pyq-analysis');
+  assert.match(viewText(), /Questions per subject/);
+  assert.match(viewText(), /571/, 'the whole bundled bank is counted');
+
+  const link = $$('#view a[href^="#/topic/"]')[0];
+  assert.ok(link, 'a subject row offers a way to practise it');
+  const target = decodeURIComponent(link.getAttribute('href').replace('#/topic/', ''));
+  const [subject] = target.split('||');
+
+  await goto(`topic/${encodeURIComponent(target)}`);
+  assert.equal(document.getElementById('fSubject').value, subject, 'the link preselects the subject it was clicked from');
+
+  // …and editing a filter afterwards sticks: the route param is applied once per
+  // navigation, not on every re-render.
+  const select = document.getElementById('fSubject');
+  select.value = 'all';
+  select.dispatchEvent(new window.Event('change', { bubbles: true }));
+  await waitFor(() => document.getElementById('fSubject')?.value === 'all', { label: 'the edited filter to survive the re-render' });
+  assert.equal(document.getElementById('fSubject').value, 'all', 'the route does not snap the filter back');
 });
 
 test('the question bank screen imports the demonstration bank through the UI', async () => {
@@ -394,6 +416,7 @@ test('every route renders with one h1, no skipped heading levels, and updates do
     'revision',
     'syllabus',
     'analytics',
+    'pyq-analysis',
     'bank',
     'settings',
     'help',

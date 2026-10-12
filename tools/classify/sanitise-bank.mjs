@@ -15,16 +15,22 @@
  *     ("an answer is stored with this question"); the app makes no claim about
  *     who issued it. A question with no key stays `missing`. `disputed` is kept
  *     because it is a state the app acts on.
- *  3. Repairs extraction escapes: literal two-character `\n` sequences inside
+ *  3. Removes the pipeline's own working notes from the records it ships: the
+ *     classification confidence and source, the flags and evidence in `metadata`,
+ *     the suspected-duplicate pointers, and every explanation's review
+ *     bookkeeping (`status`, `reviewed_by`, and so on). The labels themselves,
+ *     the answers and the explanation prose are untouched, and all of this detail
+ *     is printed in the review report instead.
+ *  4. Repairs extraction escapes: literal two-character `\n` sequences inside
  *     explanation text become real newlines.
- *  4. Writes the automatic MPPSC marking scheme into each paper's `scoring`
+ *  5. Writes the automatic MPPSC marking scheme into each paper's `scoring`
  *     block (and the paper's duration, total marks and official question count),
  *     using js/core/marking.js — the single source of truth the app also reads.
  *     A paper whose examination year has no verified scheme keeps
  *     `rules_known: false` so the app asks for configuration instead of guessing;
  *     a paper that already carries usable rules of its own keeps them, and the
  *     report says so (a pipeline must never overwrite rules it did not verify).
- *  5. Replaces source-flavoured identifiers: `bank_id`, `bank_name`, paper ids
+ *  6. Replaces source-flavoured identifiers: `bank_id`, `bank_name`, paper ids
  *     (`MPPSC-2019-GS1-BOOK` → `MPPSC-2019-P1`) and paper names. Question ids
  *     (`MPPSC-2019-001`) never change — they are the keys user data hangs off.
  *     The identity of the bundled bank is only stamped on real data: a
@@ -46,11 +52,31 @@ export const APP_BANK_NAME = 'MPPSC Prelims Paper I (General Studies) 2019–202
 const PARSER_METADATA_KEYS = [
   'book_additional_information',
   'parser_version',
-  'question_type_basis',
   'source_answer_text_preserved_as_options',
   'source_file',
   'source_page',
 ];
+
+/**
+ * Metadata the pipeline itself writes while it works. Every one of these is a
+ * note about *how the file was built* — which rule fired, which flag was raised,
+ * which review file a decision came from — and the app has nothing to do with
+ * any of it. They all stay in the review and classification reports, which is
+ * where a reader who cares about provenance looks.
+ */
+const PIPELINE_METADATA_KEYS = [
+  'classification_flags',
+  'classification_evidence',
+  'classification_review',
+  'classification_dropped',
+  'near_duplicate_candidates',
+  'answer_review',
+  'question_type_basis',
+  'section',
+];
+
+/** Classification bookkeeping on the record: the labels stay, the meta-data goes. */
+const CLASSIFICATION_BOOKKEEPING_KEYS = ['classification_confidence', 'classification_source'];
 
 const PAPER_NAME_BY_CODE = {
   'GS-I': 'Paper I (General Studies)',
@@ -143,7 +169,10 @@ export function sanitiseBank(bank, opts = {}) {
       paper_source_files: [],
       parser_metadata_fields: {},
       review_metadata_fields: 0,
+      classification_bookkeeping: {},
+      explanation_bookkeeping: 0,
       sample_source_references: [],
+      bank_classification_meta: null,
     },
     answer_status: { remapped_to_supplied: 0, missing: 0, disputed: 0, other: 0 },
     marking_scheme: [],
@@ -182,6 +211,13 @@ export function sanitiseBank(bank, opts = {}) {
 
   /* ------------------------------------------------ 2. provenance -------- */
   delete bank.provenance;
+  // A bank built by an earlier run of this pipeline carried a description of its
+  // own labelling. A bank re-fed through the pipeline must not hand that straight
+  // back to the app, so it is lifted out and reported.
+  if (bank.classification_meta) {
+    report.removed.bank_classification_meta = bank.classification_meta;
+    delete bank.classification_meta;
+  }
 
   const bump = (key) => {
     report.removed.parser_metadata_fields[key] = (report.removed.parser_metadata_fields[key] || 0) + 1;
@@ -202,7 +238,7 @@ export function sanitiseBank(bank, opts = {}) {
       }
       if (question.supplied_answer.notes) delete question.supplied_answer.notes;
     }
-    for (const key of PARSER_METADATA_KEYS) {
+    for (const key of [...PARSER_METADATA_KEYS, ...PIPELINE_METADATA_KEYS]) {
       if (question.metadata && key in question.metadata) {
         delete question.metadata[key];
         bump(key);
@@ -211,11 +247,36 @@ export function sanitiseBank(bank, opts = {}) {
     // The review pass records which review file a decision came from and when.
     // That is build-time bookkeeping: the decision itself (and its reason) is in
     // the review report, and the app needs neither.
-    if (question.metadata && 'reviewed_classification' in question.metadata) {
-      delete question.metadata.reviewed_classification;
-      report.removed.review_metadata_fields += 1;
+    for (const key of ['reviewed_classification', 'ai_label']) {
+      if (question.metadata && key in question.metadata) {
+        delete question.metadata[key];
+        report.removed.review_metadata_fields += 1;
+      }
     }
     if (question.metadata && Object.keys(question.metadata).length === 0) delete question.metadata;
+
+    // How much the pipeline trusted a label, and whether a person or a model
+    // wrote it, is the audit's business. The learner only needs the label.
+    for (const key of CLASSIFICATION_BOOKKEEPING_KEYS) {
+      if (key in question) {
+        delete question[key];
+        report.removed.classification_bookkeeping[key] = (report.removed.classification_bookkeeping[key] || 0) + 1;
+      }
+    }
+    // An explanation is prose. Its review state was never the app's to display,
+    // and the review vocabulary no longer exists in the app at all.
+    if (question.explanation && typeof question.explanation === 'object') {
+      for (const key of ['status', 'generated_by', 'reviewed_by', 'generated_at', 'reviewed_at', 'original', 'history']) {
+        if (key in question.explanation) {
+          delete question.explanation[key];
+          report.removed.explanation_bookkeeping += 1;
+        }
+      }
+    }
+    if ('explanation_status' in question) {
+      delete question.explanation_status;
+      report.removed.explanation_bookkeeping += 1;
+    }
   }
 
   for (const paper of bank.papers || []) {

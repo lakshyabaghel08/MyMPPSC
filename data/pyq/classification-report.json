@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-11T22:21:35.930Z",
+  "generated_at": "2026-10-12T05:26:50.322Z",
   "total_questions": 571,
   "levels": {
     "subject": {
@@ -1519,7 +1519,21 @@
     "bankId": "mppsc-prelims-paper1-2019-2024",
     "bankName": "MPPSC Prelims Paper I (General Studies) 2019–2024",
     "generator": "tools/classify-bank.mjs 1.0.0",
+    "taxonomy_path": "data/taxonomy/mppsc-taxonomy.json",
     "taxonomy_version": "1.0.1",
+    "taxonomy_subjects": [
+      "History",
+      "Polity",
+      "Geography",
+      "Environment",
+      "Economy",
+      "Science and Technology",
+      "Art and Culture",
+      "Madhya Pradesh Special",
+      "Current Affairs",
+      "General Aptitude"
+    ],
+    "rule_count": 396,
     "subjects_allowed": [
       "History",
       "Polity",
@@ -1534,7 +1548,9 @@
     ],
     "pipeline_notes": [
       "Extraction repairs: 9263 escaped line break(s) in 564 string(s); 571 source reference(s) and 2284 parser metadata field(s) moved out of the bank; 563 answer source label(s) removed.",
-      "Reviewed labels merged: 244 applied (240 changed a rule-engine guess), 0 rejected, 0 malformed line(s)."
+      "Reviewed labels merged: 244 applied (240 changed a rule-engine guess), 0 rejected, 0 malformed line(s).",
+      "Answer resolutions: 8 keyless question(s) resolved by a human review pass; each answer is recorded with its basis in the review report.",
+      "Answer resolutions merged: 8 applied, 0 preserved (the source had already printed a key), 0 rejected, 0 malformed line(s)."
     ],
     "repair": {
       "version": "1.0.0",
@@ -1640,6 +1656,12 @@
       "changed": 240,
       "rejected": 0,
       "source": "reviewed"
+    },
+    "answer_merge": {
+      "applied": 8,
+      "preserved": 0,
+      "rejected": 0,
+      "malformed": 0
     },
     "ai_merge": null
   }

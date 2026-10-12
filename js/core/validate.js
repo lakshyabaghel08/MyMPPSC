@@ -370,16 +370,13 @@ export function validateBank(raw, opts = {}) {
     englishOnly: questions.filter((q) => q.language_variants.en && !q.language_variants.hi).length,
     hindiOnly: questions.filter((q) => q.language_variants.hi && !q.language_variants.en).length,
     unclassified: questions.filter((q) => q.classification.isUnclassified).length,
-    uncertainClassification: questions.filter((q) => q.classification.uncertain).length,
     byType: {},
     bySubject: {},
     byAnswerKeyStatus: {},
-    byExplanationStatus: {},
     missingAnswers: questions.filter((q) => !q.supplied.answer && !q.verified?.answer).length,
     disputedAnswers: questions.filter((q) => q.dispute?.is_disputed || q.supplied.status === 'disputed').length,
     verifiedAnswers: questions.filter((q) => q.verified?.answer).length,
     withExplanation: questions.filter((q) => q.explanation).length,
-    approvedExplanations: questions.filter((q) => q.explanation && (q.explanation.status === 'reviewed' || q.explanation.status === 'approved')).length,
     demonstration: questions.filter((q) => q.is_demonstration).length,
     unknownScoringPapers: Array.from(paperById.values()).filter((p) => !p.scoring.rules_known).length,
     incompletePapers: Array.from(paperById.values()).filter((p) => p.original_question_count !== null && p.original_question_count !== (byPaper.get(p.paper_id) || []).length).length,
@@ -389,8 +386,6 @@ export function validateBank(raw, opts = {}) {
     const s = q.classification.subject || 'Unclassified';
     stats.bySubject[s] = (stats.bySubject[s] || 0) + 1;
     stats.byAnswerKeyStatus[q.supplied.status || 'unknown'] = (stats.byAnswerKeyStatus[q.supplied.status || 'unknown'] || 0) + 1;
-    const es = q.explanation ? q.explanation.status : 'missing';
-    stats.byExplanationStatus[es] = (stats.byExplanationStatus[es] || 0) + 1;
   }
   report.stats = stats;
   report.meta = {

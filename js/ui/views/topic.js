@@ -15,7 +15,8 @@ import { filterMetas, availability, selectQuestions, ATTEMPT_STATE_FILTERS } fro
 import { configFields, readConfig, mountConfigFields, startPracticeTest, countSummary, availabilityTable, currentAttemptSummary } from './shared.js';
 
 const viewState = {
-  filters: { subject: 'all', topic: 'all', subtopic: 'all', year: 'all', paperId: 'all', questionType: 'all', attemptState: 'any', language: 'all', excludeDemonstration: false, onlyReviewedExplanation: false, search: '' },
+  appliedRoute: '',
+  filters: { subject: 'all', topic: 'all', subtopic: 'all', year: 'all', paperId: 'all', questionType: 'all', attemptState: 'any', language: 'all', excludeDemonstration: false, onlyWithExplanation: false, search: '' },
 };
 
 function filtersMarkup(filters, options) {
@@ -55,7 +56,7 @@ function filtersMarkup(filters, options) {
       </div>
       <div class="row mt-2">
         <label class="check m-0"><input type="checkbox" id="fExcludeDemo" ${filters.excludeDemonstration ? 'checked' : ''} /><span>Exclude demonstration questions</span></label>
-        <label class="check m-0"><input type="checkbox" id="fReviewed" ${filters.onlyReviewedExplanation ? 'checked' : ''} /><span>Only questions with a reviewed explanation</span></label>
+        <label class="check m-0"><input type="checkbox" id="fWithExplanation" ${filters.onlyWithExplanation ? 'checked' : ''} /><span>Only questions that have an explanation</span></label>
       </div>
     </details>
     <div class="row mt-2">
@@ -76,14 +77,24 @@ function readFilters() {
     language: value('fLanguage') ?? 'all',
     search: value('fSearch') ?? '',
     excludeDemonstration: Boolean(document.getElementById('fExcludeDemo')?.checked),
-    onlyReviewedExplanation: Boolean(document.getElementById('fReviewed')?.checked),
+    onlyWithExplanation: Boolean(document.getElementById('fWithExplanation')?.checked),
   };
 }
 
 export default {
   title: 'Topic Practice',
 
-  async render() {
+  async render(ctx) {
+    // A link may arrive as #/topic/<Subject> or #/topic/<Subject>||<Topic>. It is applied once per
+    // route change so that editing a filter below is not undone by the next re-render.
+    const fromRoute = String(ctx?.params?.[0] || '');
+    if (fromRoute !== viewState.appliedRoute) {
+      viewState.appliedRoute = fromRoute;
+      if (fromRoute) {
+        const [subject = '', topic = ''] = fromRoute.split('||');
+        viewState.filters = { ...viewState.filters, subject: subject || 'all', topic: topic || 'all' };
+      }
+    }
     const metas = Array.from(state.questionIndex.values());
     if (!metas.length) {
       return `
@@ -170,14 +181,15 @@ export default {
     ['fSubject', 'fTopic', 'fSubtopic', 'fYear', 'fPaper', 'fType', 'fAttempt', 'fLanguage'].forEach((id) => {
       document.getElementById(id)?.addEventListener('change', rerender);
     });
-    ['fExcludeDemo', 'fReviewed'].forEach((id) => document.getElementById(id)?.addEventListener('change', rerender));
+    ['fExcludeDemo', 'fWithExplanation'].forEach((id) => document.getElementById(id)?.addEventListener('change', rerender));
     let searchTimer = null;
     document.getElementById('fSearch')?.addEventListener('input', () => {
       clearTimeout(searchTimer);
       searchTimer = setTimeout(rerender, 350);
     });
     document.getElementById('fReset')?.addEventListener('click', async () => {
-      viewState.filters = { subject: 'all', topic: 'all', subtopic: 'all', year: 'all', paperId: 'all', questionType: 'all', attemptState: 'any', language: 'all', excludeDemonstration: false, onlyReviewedExplanation: false, search: '' };
+      viewState.appliedRoute = '';
+      viewState.filters = { subject: 'all', topic: 'all', subtopic: 'all', year: 'all', paperId: 'all', questionType: 'all', attemptState: 'any', language: 'all', excludeDemonstration: false, onlyWithExplanation: false, search: '' };
       await ctx.refresh();
     });
 

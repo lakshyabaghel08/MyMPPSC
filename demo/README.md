@@ -7,7 +7,12 @@ used by the running app.
 * `intake-sample.json` — a small, obviously-filler intake file for `tools/build-bank.mjs`. It carries `is_demonstration: true` and a provenance note saying the content is synthetic. It is written to exercise interesting cases on purpose:
   * a paper with rules and a paper without any (`rules_known` stays `false`);
   * a bilingual question, a multiple-correct question and an assertion–reason question;
-  * a question whose answer key is genuinely missing, and one whose explanation is unreviewed.
+  * a question whose answer key is genuinely missing, and one whose explanation is a bare string.
+
+`tools/build-bank.mjs` writes the classification levels and the explanation text
+and nothing else: an intake may carry `classification_confidence`,
+`classification_source` or `explanation_status`, but the built bank does not, because
+those fields describe a build rather than a question.
 
 Build it and inspect the result:
 

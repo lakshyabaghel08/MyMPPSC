@@ -216,7 +216,7 @@ export default {
                 esc(q.subject || 'Unclassified'),
                 esc(q.topic || '—'),
                 answerKeyBadge(q.answerStatus) || '<span class="soft tiny">available</span>',
-                badge(q.explanationStatus || 'missing', q.explanationStatus === 'reviewed' || q.explanationStatus === 'approved' ? 'ok' : 'warn'),
+                q.hasExplanation ? '<span class="soft tiny">supplied</span>' : badge('none', 'warn'),
               ]),
               className: 'compact',
             })}

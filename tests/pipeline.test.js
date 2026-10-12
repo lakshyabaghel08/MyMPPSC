@@ -310,7 +310,11 @@ test('the committed bank is the sanitised one: scheme written, no provenance, no
   };
   walk(bank, 'bank');
   assert.deepEqual(rawEscapes, [], 'no two-character escape artefact is left in the bank text');
-  assert.equal(bank.classification_meta.ai_labels_applied, 0);
+  // What the file says about its labels is limited to the vocabulary and the tool
+  // that wrote them; how many labels came from a review pass or a provider belongs
+  // to data/pyq/review-report.json.
+  assert.equal('classification_meta' in bank, false, 'the shipped file describes the questions, not the build that produced them');
+  assert.equal(bank.questions.some((q) => 'classification_source' in q || 'classification_confidence' in q), false, 'no per-record label provenance in the shipped file');
 
   for (const paper of bank.papers) {
     assert.match(paper.paper_id, /^MPPSC-\d{4}-P1$/, `${paper.paper_id} should be an app-facing id`);
@@ -321,11 +325,11 @@ test('the committed bank is the sanitised one: scheme written, no provenance, no
     assert.equal(paper.original_question_count, 100, 'the official paper length comes from the scheme');
   }
   const statuses = new Set(bank.questions.map((q) => q.answer_key_status));
-  assert.deepEqual([...statuses].sort(), ['missing', 'supplied']);
+  assert.deepEqual([...statuses].sort(), ['supplied'], 'the committed answer review resolved the last keyless questions');
   // The review decision itself is a classification, and stays; the review
   // file's path and timestamp are build-time bookkeeping and do not.
   assert.equal(bank.questions.some((q) => q.metadata && 'reviewed_classification' in q.metadata), false, 'review bookkeeping is not app data');
   assert.equal(JSON.stringify(bank).includes('label_file'), false, 'the review file path is not in the bank');
-  assert.ok(bank.questions.some((q) => q.classification_source === 'reviewed'), 'the reviewed labels are still the classification');
+  assert.ok(bank.questions.some((q) => q.subject && q.topic), 'the reviewed labels are still the classification');
   assert.ok(bank.questions.every((q) => !q.metadata || !('label_file' in q.metadata)));
 });

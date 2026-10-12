@@ -87,8 +87,8 @@ node tools/build-bank.mjs --validate my-bank.json   # validate before importing
 | `verified_answer` | object\|null | no | `{answer, status, verified_by, verified_at, evidence[]}` — an **additional** record. It never replaces the supplied key. |
 | `verification_evidence` | array | no | `{kind, description, url, retrieved_at}`. |
 | `dispute` | object | no | `{is_disputed, status, reason, raised_by}`. |
-| `explanation` | object\|null | no | `{language, status, correct_reasoning, option_explanations:[{key,text,is_correct}]}`. `status` ∈ `missing`, `unreviewed`, `reviewed`, `approved`, `disputed`, `unknown`. |
-| `subject`, `topic`, `subtopic`, `classification_confidence`, `classification_source` | — | recommended | Classifications from **your** pipeline (AI or human). The app never classifies anything itself; it displays these and lets you correct them. |
+| `explanation` | object\|null | no | `{language, correct_reasoning, option_explanations:[{key,text,is_correct}], key_concepts:[], revision_takeaways:[], sources:[]}`. The app shows this text and nothing about it: a plain string is accepted too and stored as `correct_reasoning`. There is no review status — the app cannot verify prose, so it neither claims nor implies one. |
+| `subject`, `topic`, `subtopic` | — | recommended | Classifications from **your** pipeline (AI or human). The app never classifies anything itself; it displays these and lets you correct them. How a label was chosen — which pass wrote it, how confident it was — is not part of the record: it belongs in your build report, where a reader of the bank cannot act on it. |
 | `source_reference` | object | no | `{file, page, url, retrieved_at}`. |
 | `provenance` | object | no | `{kind, verified, notes}`. |
 | `metadata` | object | no | Preserved verbatim (e.g. original order flags). |

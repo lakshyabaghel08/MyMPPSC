@@ -377,7 +377,6 @@ if (builtinPath) {
       supplied_answer: q.supplied_answer,
       answer_key_status: q.answer_key_status,
       verified_answer: q.verified_answer ?? null,
-      classification_source: q.classification_source,
       subject: q.subject,
       topic: q.topic,
       subtopic: q.subtopic,
@@ -386,6 +385,22 @@ if (builtinPath) {
   };
   check(!/unofficial|coaching|solved-book|printed key/i.test(JSON.stringify(technical)), 'the bundled bank must not name a source or label a key official/unofficial');
   check(!bundled.questions.some((q) => q.source_reference), 'no bundled question may carry a source reference');
+  // The bank is study material, not a pipeline worklog: how a label or an explanation was arrived at
+  // belongs in the review report under data/pyq/, never in the file the app loads.
+  const PIPELINE_FIELDS = ['classification_source', 'classification_confidence', 'explanation_status'];
+  check(!('classification_meta' in bundled), 'the bundled bank must not carry pipeline run metadata');
+  check(
+    !bundled.questions.some((q) => PIPELINE_FIELDS.some((field) => field in q)),
+    `no bundled question may carry ${PIPELINE_FIELDS.join(', ')}`,
+  );
+  check(
+    !bundled.questions.some((q) => q.metadata && typeof q.metadata === 'object' && Object.keys(q.metadata).some((key) => /^(classification_|answer_review|near_duplicate|ai_label|reviewed_classification)/.test(key))),
+    'no bundled question may carry parser working notes in metadata',
+  );
+  check(
+    !bundled.questions.some((q) => q.explanation && typeof q.explanation === 'object' && ['status', 'generated_by', 'reviewed_by', 'reviewed_at'].some((key) => key in q.explanation)),
+    'stored explanations must not carry review or generation metadata',
+  );
   for (const paper of bundled.papers) {
     check(paper.scoring?.rules_known === true, `${paper.paper_id}: the bundled bank must carry the paper's automatic marking scheme`);
   }

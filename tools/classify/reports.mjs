@@ -104,6 +104,14 @@ export function renderClassificationMarkdown(report, meta = {}) {
   L.push(`Generated ${report.generated_at} by ${meta.generator || 'tools/classify-bank.mjs'}.`);
   L.push('');
   L.push(`Questions in the bank: **${report.total_questions}**`);
+  if (meta.taxonomy_version) {
+    L.push('');
+    L.push(
+      `Labels come from \`${meta.taxonomy_path || 'data/taxonomy/mppsc-taxonomy.json'}\` (version ${meta.taxonomy_version}, ${
+        (meta.taxonomy_subjects || meta.subjects_allowed || []).length
+      } subjects, ${meta.rule_count ?? '—'} rules), written by ${meta.generator || 'tools/classify-bank.mjs'}.`,
+    );
+  }
   L.push('');
   L.push('## Coverage by level');
   L.push('');
@@ -247,7 +255,7 @@ export function buildReviewReport(bank, validation, rows, extra = {}) {
     verified_differs_from_supplied: questions
       .filter((q) => q.verified_answer?.answer?.length && q.supplied_answer?.answer?.length && q.verified_answer.answer.join(',') !== q.supplied_answer.answer.join(','))
       .map((q) => ({ id: q.id, supplied: q.supplied_answer.answer, verified: q.verified_answer.answer })),
-    unreviewed_explanations: questions.filter((q) => q.explanation && q.explanation.status === 'unreviewed').length,
+    explanations_present: questions.filter((q) => q.explanation).length,
     without_explanation: questions.filter((q) => !q.explanation).length,
     duplicate_ids_in_source: extra.duplicateIds || [],
     unmapped_source_keys: extra.unmappedKeys || [],
@@ -256,6 +264,7 @@ export function buildReviewReport(bank, validation, rows, extra = {}) {
   };
 
   const reviewed = extra.reviewedSummary || null;
+  const answers = extra.answerSummary || null;
   const repair = extra.repair || null;
   const ai = extra.aiSummary || null;
   const sanitisation = extra.sanitisation || null;
@@ -292,6 +301,9 @@ export function buildReviewReport(bank, validation, rows, extra = {}) {
       papers_without_scheme: sanitisation ? sanitisation.marking_scheme_unresolved.length : 0,
       reviewed_labels_applied: reviewed ? reviewed.applied.length : 0,
       reviewed_labels_rejected: reviewed ? reviewed.rejected.length : 0,
+      answers_resolved: answers ? answers.applied.length : 0,
+      answers_resolution_rejected: answers ? answers.rejected.length : 0,
+      answers_printed_keys_preserved: answers ? answers.preserved.length : 0,
       text_repairs: repair ? repair.text_repairs.occurrences : 0,
       ai_labels_applied: ai ? ai.applied.length : 0,
       ai_labels_preserved: ai ? ai.preserved.length : 0,
@@ -315,6 +327,17 @@ export function buildReviewReport(bank, validation, rows, extra = {}) {
           rejected: reviewed.rejected,
           malformed: reviewed.malformed,
           decisions: (reviewed.decisions || []).slice(0, 400),
+        }
+      : null,
+    answer_merge: answers
+      ? {
+          statement:
+            'A question the source left without any answer stays keyless unless a person resolves it. These are those resolutions: the answer was chosen by reading the question, its options and the source explanation, and, where the commission deleted the question, by the settled position on the point. The merge refuses to touch a record that already carries a printed key, and the source explanation that was replaced is recorded below. The app-facing bank carries the answer and the explanation text only — the basis and the reason live here.',
+          applied: answers.applied,
+          preserved: answers.preserved,
+          rejected: answers.rejected,
+          malformed: answers.malformed,
+          decisions: (answers.decisions || []).slice(0, 200),
         }
       : null,
     sanitisation,
@@ -369,6 +392,7 @@ export function renderReviewMarkdown(report) {
   L.push(`| Ambiguous classifications | ${report.totals.ambiguous_classifications} |`);
   L.push(`| Low-confidence classifications | ${report.totals.low_confidence_classifications} |`);
   L.push(`| Reviewed classification decisions applied / rejected | ${report.totals.reviewed_labels_applied} / ${report.totals.reviewed_labels_rejected} |`);
+  L.push(`| Keyless questions resolved by a human / printed keys preserved | ${report.totals.answers_resolved} / ${report.totals.answers_printed_keys_preserved} |`);
   L.push(`| Extraction artefacts repaired (escaped line breaks) | ${report.totals.text_repairs} |`);
   L.push(`| Source-provenance fields removed before the bank was built | ${report.totals.provenance_fields_removed} |`);
   L.push(`| Literal \\n escapes repaired | ${report.totals.escapes_repaired} |`);
@@ -387,6 +411,22 @@ export function renderReviewMarkdown(report) {
     for (const row of report.missing_answers) L.push(`| \`${row.id}\` | ${row.paper_id || '—'} | ${row.year ?? '—'} | ${escapeCell(row.excerpt)} |`);
   }
   L.push('');
+  if (report.answer_merge) {
+    L.push('## Answer resolutions');
+    L.push('');
+    L.push(report.answer_merge.statement);
+    L.push('');
+    L.push(`Applied: **${report.answer_merge.applied.length}**, printed keys left untouched: ${report.answer_merge.preserved.length}, rejected: ${report.answer_merge.rejected.length}, malformed lines: ${report.answer_merge.malformed.length}.`);
+    L.push('');
+    if (report.answer_merge.decisions.length) {
+      L.push('| Question | Action | Answer | Basis | Explanation in the bank | Why |');
+      L.push('| --- | --- | --- | --- | --- | --- |');
+      for (const d of report.answer_merge.decisions) {
+        L.push(`| \`${d.id ?? 'unknown'}\` | ${d.action} | ${d.answer ? `\`${d.answer}\`` : '—'} | ${d.basis || '—'} | ${escapeCell(d.explanation || '')} | ${escapeCell(d.reason || '')} |`);
+      }
+    }
+    L.push('');
+  }
   L.push('## Suspected duplicates');
   L.push('');
   if (!report.near_duplicates.length && !report.identical_content_groups.length) L.push('None.');
@@ -564,11 +604,26 @@ export function renderReviewMarkdown(report) {
     L.push(`| Paper source-file lists removed | ${san.removed.paper_source_files.length} |`);
     L.push(`| Parser metadata fields removed (${Object.entries(san.removed.parser_metadata_fields).map(([k, v]) => `${k} ${v}`).join(', ') || 'none'}) | ${parserFieldsTotal} |`);
     L.push(`| Review bookkeeping fields removed from \`metadata\` | ${san.removed.review_metadata_fields ?? 0} |`);
+    const pipelineFields = san.removed.parser_metadata_fields;
+    const pipelineNotesTotal = ['classification_flags', 'classification_evidence', 'classification_review', 'classification_dropped', 'near_duplicate_candidates', 'answer_review', 'question_type_basis', 'section'].reduce((sum, k) => sum + (pipelineFields[k] || 0), 0);
+    L.push(`| Pipeline working notes removed from \`metadata\` (flags, evidence, duplicate pointers) | ${pipelineNotesTotal} |`);
+    const bookkeeping = san.removed.classification_bookkeeping || {};
+    L.push(`| Classification bookkeeping removed from the records (${Object.entries(bookkeeping).map(([k, v]) => `${k} ${v}`).join(', ') || 'none'}) | ${Object.values(bookkeeping).reduce((a, b) => a + b, 0)} |`);
+    L.push(`| Explanation review fields removed (status, reviewer, dates) | ${san.removed.explanation_bookkeeping ?? 0} |`);
     L.push(`| Answer keys re-labelled \`supplied\` | ${san.answer_status.remapped_to_supplied} |`);
     L.push(`| Reviewed classification decisions kept as classification | ${report.totals.reviewed_labels_applied} |`);
     L.push(`| Questions kept without a key | ${san.answer_status.missing} |`);
+    L.push(`| Bank-level classification metadata removed from the file | ${san.removed.bank_classification_meta ? 'yes (shown below)' : 'none present'} |`);
     L.push(`| Literal \\n escapes repaired by the sanitiser (the repair pass does the rest) | ${san.repaired_escapes.occurrences} in ${san.repaired_escapes.strings} string(s) |`);
     L.push('');
+    if (san.removed.bank_classification_meta) {
+      L.push('The bank-level `classification_meta` block that was removed, so a bank re-fed through the pipeline does not hand its build notes straight back to the app:');
+      L.push('');
+      L.push('```json');
+      L.push(JSON.stringify(san.removed.bank_classification_meta, null, 2));
+      L.push('```');
+      L.push('');
+    }
     if (san.removed.bank_provenance) {
       L.push('The bank-level provenance block that was removed (kept here as the audit record):');
       L.push('');
@@ -616,8 +671,8 @@ export function renderReviewMarkdown(report) {
   L.push(`| Disputed keys | ${I.disputed_keys.length} |`);
   L.push(`| Verified answer differs from printed key | ${I.verified_differs_from_supplied.length} |`);
   L.push(`| Records rejected by validation | ${I.rejected_records.length} |`);
-  L.push(`| Unreviewed explanations | ${I.unreviewed_explanations} |`);
   L.push(`| Questions without an explanation | ${I.without_explanation} |`);
+  L.push(`| Explanations carried into the bank | ${I.explanations_present} |`);
   L.push(`| Duplicate ids in the source | ${I.duplicate_ids_in_source.length} |`);
   L.push(`| Unmapped source keys | ${I.unmapped_source_keys.length} |`);
   L.push('');
