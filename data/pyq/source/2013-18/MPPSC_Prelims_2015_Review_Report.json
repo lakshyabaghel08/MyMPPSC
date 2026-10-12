@@ -1,0 +1,1044 @@
+{
+  "year": 2015,
+  "source_file": "Pasted markdown(20261011-193824).md",
+  "questions_found": 100,
+  "question_numbers": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72,
+    73,
+    74,
+    75,
+    76,
+    77,
+    78,
+    79,
+    80,
+    81,
+    82,
+    83,
+    84,
+    85,
+    86,
+    87,
+    88,
+    89,
+    90,
+    91,
+    92,
+    93,
+    94,
+    95,
+    96,
+    97,
+    98,
+    99,
+    100
+  ],
+  "missing_printed_answers": [],
+  "missing_or_empty_explanations": [
+    4,
+    28,
+    54
+  ],
+  "questions_requiring_review": [
+    {
+      "question_number": 2,
+      "question_text": "'Maitri Express' railway service is related with",
+      "printed_answer": "B",
+      "review_flags": [
+        "question_stem_has_no_explicit_solution_issue"
+      ],
+      "classification": {
+        "subject": "International Relations",
+        "topic": "India's Neighbourhood",
+        "subtopic": "Maitri Express: India–Bangladesh",
+        "confidence": "medium",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 4,
+      "question_text": "Who authored the book \"Ignitis Minds\" ?",
+      "printed_answer": "C",
+      "review_flags": [
+        "missing_or_empty_explanation",
+        "option_parse_incomplete",
+        "source_answer_or_claim_requires_verification"
+      ],
+      "classification": {
+        "subject": "Books and Authors",
+        "topic": "Indian Science and Thought",
+        "subtopic": "Ignited Minds; A.P.J. Abdul Kalam",
+        "confidence": "medium",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 13,
+      "question_text": "In which year Sati System was abolished by William Bentinck?",
+      "printed_answer": "C",
+      "review_flags": [
+        "option_parse_incomplete"
+      ],
+      "classification": {
+        "subject": "Modern Indian History",
+        "topic": "Social Reform",
+        "subtopic": "Abolition of Sati, 1829",
+        "confidence": "medium",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 28,
+      "question_text": "Which State of India has borders with three countries namely Nepal, Bhutan and China?",
+      "printed_answer": "D",
+      "review_flags": [
+        "missing_or_empty_explanation",
+        "source_answer_or_claim_requires_verification"
+      ],
+      "classification": {
+        "subject": "Geography",
+        "topic": "India's Neighbours",
+        "subtopic": "Sikkim and international borders",
+        "confidence": "medium",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 32,
+      "question_text": "What is the base of Human Development Index?",
+      "printed_answer": "C",
+      "review_flags": [
+        "source_answer_or_claim_requires_verification"
+      ],
+      "classification": {
+        "subject": "Indian Economy",
+        "topic": "Human Development",
+        "subtopic": "Human Development Index",
+        "confidence": "medium",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 36,
+      "question_text": "Who has termed Constitution a sacred document?",
+      "printed_answer": "A",
+      "review_flags": [
+        "option_parse_incomplete"
+      ],
+      "classification": {
+        "subject": "Indian Polity",
+        "topic": "Constitutional History",
+        "subtopic": "Constitution as a sacred document",
+        "confidence": "medium",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 44,
+      "question_text": "Who had suggested merger of Finance and Planning Commission ?",
+      "printed_answer": "C",
+      "review_flags": [
+        "option_parse_incomplete"
+      ],
+      "classification": {
+        "subject": "Indian Economy",
+        "topic": "Economic Institutions",
+        "subtopic": "Finance Commission and Planning Commission",
+        "confidence": "medium",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 45,
+      "question_text": "Who is the Chairman of Central Pollution Control Board?",
+      "printed_answer": "A",
+      "review_flags": [
+        "source_answer_or_claim_requires_verification",
+        "source_answer_appears_inconsistent_with_explanation"
+      ],
+      "classification": {
+        "subject": "Environment",
+        "topic": "Pollution Control Institutions",
+        "subtopic": "Central Pollution Control Board",
+        "confidence": "medium",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 46,
+      "question_text": "Which is not renewable resource ?",
+      "printed_answer": "D",
+      "review_flags": [
+        "source_answer_or_claim_requires_verification"
+      ],
+      "classification": {
+        "subject": "Environment",
+        "topic": "Natural Resources",
+        "subtopic": "Renewable and non-renewable energy",
+        "confidence": "medium",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 47,
+      "question_text": "Which is not indicator of climate change?",
+      "printed_answer": "D",
+      "review_flags": [
+        "source_answer_or_claim_requires_verification"
+      ],
+      "classification": {
+        "subject": "Environment",
+        "topic": "Climate Change",
+        "subtopic": "Indicators of climate change",
+        "confidence": "medium",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 49,
+      "question_text": "Which is not a part of Tsunami effected area?",
+      "printed_answer": "B",
+      "review_flags": [
+        "source_answer_or_claim_requires_verification"
+      ],
+      "classification": {
+        "subject": "Geography",
+        "topic": "Natural Hazards",
+        "subtopic": "Tsunami-affected coastlines",
+        "confidence": "medium",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 50,
+      "question_text": "In which sea maximum salanity is obtained?",
+      "printed_answer": "A",
+      "review_flags": [
+        "source_answer_or_claim_requires_verification"
+      ],
+      "classification": {
+        "subject": "Geography",
+        "topic": "Oceanography",
+        "subtopic": "Salinity of the Dead Sea",
+        "confidence": "medium",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 51,
+      "question_text": "The causes are not atrocity of scheduled caste and scheduled tribe according to the report of National Commission of Scheduled Caste and Scheduled Tribe in the year 1990.",
+      "printed_answer": "D",
+      "review_flags": [
+        "source_answer_or_claim_requires_verification"
+      ],
+      "classification": {
+        "subject": "Indian Polity",
+        "topic": "Social Justice",
+        "subtopic": "Reported causes of SC/ST atrocities",
+        "confidence": "medium",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 53,
+      "question_text": "Under which Article scheduled caste and scheduled tribe has granted fundamental, socioeconomic, political and cultural rights ?",
+      "printed_answer": "D",
+      "review_flags": [
+        "source_answer_or_claim_requires_verification"
+      ],
+      "classification": {
+        "subject": "Indian Polity",
+        "topic": "Fundamental Rights",
+        "subtopic": "Article 17 and untouchability",
+        "confidence": "medium",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 54,
+      "question_text": "The base of sustainable development is",
+      "printed_answer": "A",
+      "review_flags": [
+        "missing_or_empty_explanation",
+        "source_answer_or_claim_requires_verification"
+      ],
+      "classification": {
+        "subject": "Environment",
+        "topic": "Sustainable Development",
+        "subtopic": "Social approach to sustainability",
+        "confidence": "medium",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 60,
+      "question_text": "Which of the following is the largest, fastest and costliest computer?",
+      "printed_answer": "B",
+      "review_flags": [
+        "source_answer_or_claim_requires_verification"
+      ],
+      "classification": {
+        "subject": "Computer Awareness",
+        "topic": "Computer Fundamentals",
+        "subtopic": "Supercomputers",
+        "confidence": "medium",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 65,
+      "question_text": "The first page that you normally view at a website is its",
+      "printed_answer": "A",
+      "review_flags": [
+        "source_answer_or_claim_requires_verification"
+      ],
+      "classification": {
+        "subject": "Computer Awareness",
+        "topic": "Internet",
+        "subtopic": "Homepage",
+        "confidence": "medium",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 74,
+      "question_text": "From which date was the Protection of Human Rights Act, 1993 implemented ?",
+      "printed_answer": "A",
+      "review_flags": [
+        "source_answer_or_claim_requires_verification",
+        "source_question_date_and_explanation_conflict"
+      ],
+      "classification": {
+        "subject": "Indian Polity",
+        "topic": "Human Rights",
+        "subtopic": "Protection of Human Rights Act, 1993",
+        "confidence": "medium",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 76,
+      "question_text": "Under which Article of the Constitution the Protection of Human Rights Ordinance was issued by the President in 1993 ?",
+      "printed_answer": "A",
+      "review_flags": [
+        "source_answer_or_claim_requires_verification"
+      ],
+      "classification": {
+        "subject": "Indian Polity",
+        "topic": "Ordinance-making Power",
+        "subtopic": "Article 123",
+        "confidence": "medium",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 79,
+      "question_text": "Bhil Tribe population is largest in",
+      "printed_answer": "C",
+      "review_flags": [
+        "source_answer_or_claim_requires_verification"
+      ],
+      "classification": {
+        "subject": "Tribal Studies",
+        "topic": "Tribes of India",
+        "subtopic": "Bhil population",
+        "confidence": "medium",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 80,
+      "question_text": "State who has first implemented 73rd Constitutional Amendment ?",
+      "printed_answer": "D",
+      "review_flags": [
+        "source_answer_or_claim_requires_verification"
+      ],
+      "classification": {
+        "subject": "Indian Polity",
+        "topic": "Local Government",
+        "subtopic": "73rd Amendment and Panchayati Raj",
+        "confidence": "medium",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 89,
+      "question_text": "Who is the Arjun Awardee in the field of yachting belongs to Madhya Pradesh ?",
+      "printed_answer": "A",
+      "review_flags": [
+        "source_answer_or_claim_requires_verification"
+      ],
+      "classification": {
+        "subject": "Madhya Pradesh GK",
+        "topic": "Sports Personalities",
+        "subtopic": "G. L. Yadav and yachting",
+        "confidence": "medium",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 94,
+      "question_text": "A person of which blood group can be a universal donor?",
+      "printed_answer": "A",
+      "review_flags": [
+        "source_answer_or_claim_requires_verification"
+      ],
+      "classification": {
+        "subject": "General Science",
+        "topic": "Human Biology",
+        "subtopic": "Universal donor blood group; source wording needs review",
+        "confidence": "medium",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 96,
+      "question_text": "The intensity of earthquake is measured by",
+      "printed_answer": "D",
+      "review_flags": [
+        "source_answer_or_claim_requires_verification"
+      ],
+      "classification": {
+        "subject": "General Science",
+        "topic": "Earth Science",
+        "subtopic": "Earthquake intensity versus magnitude",
+        "confidence": "medium",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 97,
+      "question_text": "Alexander Fleming discovered",
+      "printed_answer": "B",
+      "review_flags": [
+        "source_answer_or_claim_requires_verification",
+        "source_answer_conflicts_with_solution"
+      ],
+      "classification": {
+        "subject": "General Science",
+        "topic": "Medical Discoveries",
+        "subtopic": "Alexander Fleming and penicillin; source answer conflicts",
+        "confidence": "medium",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 99,
+      "question_text": "The winner of Gandhi Peace Prize 2013 is",
+      "printed_answer": "D",
+      "review_flags": [
+        "source_answer_or_claim_requires_verification",
+        "solution_incomplete_or_malformed"
+      ],
+      "classification": {
+        "subject": "Awards and Honours",
+        "topic": "Gandhi Peace Prize",
+        "subtopic": "2013 award; source solution incomplete",
+        "confidence": "medium",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    }
+  ],
+  "classification_counts_by_subject": {
+    "International Relations": 2,
+    "General Knowledge": 1,
+    "Books and Authors": 1,
+    "Madhya Pradesh GK": 15,
+    "General Science": 8,
+    "Medieval Indian History": 3,
+    "Indian Culture": 3,
+    "Ancient Indian History": 2,
+    "Modern Indian History": 3,
+    "Environment": 7,
+    "World Geography": 4,
+    "Geography": 7,
+    "Indian Geography": 3,
+    "Indian Economy": 7,
+    "Indian Polity": 12,
+    "Comparative Constitutions": 1,
+    "Computer Awareness": 9,
+    "Sports": 6,
+    "Tribal Studies": 1,
+    "Modern Indian Literature": 1,
+    "Mountaineering": 1,
+    "Astronomy": 1,
+    "Awards and Honours": 1,
+    "Indian Government Schemes": 1
+  },
+  "classification_counts_by_subject_and_topic": [
+    {
+      "subject": "Ancient Indian History",
+      "topic": "Classical Sources",
+      "count": 1
+    },
+    {
+      "subject": "Ancient Indian History",
+      "topic": "Mauryan Empire",
+      "count": 1
+    },
+    {
+      "subject": "Astronomy",
+      "topic": "Earth-Sun Relations",
+      "count": 1
+    },
+    {
+      "subject": "Awards and Honours",
+      "topic": "Gandhi Peace Prize",
+      "count": 1
+    },
+    {
+      "subject": "Books and Authors",
+      "topic": "Indian Science and Thought",
+      "count": 1
+    },
+    {
+      "subject": "Comparative Constitutions",
+      "topic": "Constitutional History",
+      "count": 1
+    },
+    {
+      "subject": "Computer Awareness",
+      "topic": "Computer Fundamentals",
+      "count": 5
+    },
+    {
+      "subject": "Computer Awareness",
+      "topic": "Computer Hardware",
+      "count": 1
+    },
+    {
+      "subject": "Computer Awareness",
+      "topic": "Indian Computing",
+      "count": 1
+    },
+    {
+      "subject": "Computer Awareness",
+      "topic": "Internet",
+      "count": 1
+    },
+    {
+      "subject": "Computer Awareness",
+      "topic": "Software",
+      "count": 1
+    },
+    {
+      "subject": "Environment",
+      "topic": "Climate Change",
+      "count": 1
+    },
+    {
+      "subject": "Environment",
+      "topic": "Environmental Awareness",
+      "count": 1
+    },
+    {
+      "subject": "Environment",
+      "topic": "Natural Resources",
+      "count": 1
+    },
+    {
+      "subject": "Environment",
+      "topic": "Ozone Layer",
+      "count": 1
+    },
+    {
+      "subject": "Environment",
+      "topic": "Pollution",
+      "count": 1
+    },
+    {
+      "subject": "Environment",
+      "topic": "Pollution Control Institutions",
+      "count": 1
+    },
+    {
+      "subject": "Environment",
+      "topic": "Sustainable Development",
+      "count": 1
+    },
+    {
+      "subject": "General Knowledge",
+      "topic": "Companies and Brands",
+      "count": 1
+    },
+    {
+      "subject": "General Science",
+      "topic": "Colour and Light",
+      "count": 1
+    },
+    {
+      "subject": "General Science",
+      "topic": "Earth Science",
+      "count": 1
+    },
+    {
+      "subject": "General Science",
+      "topic": "Human Biology",
+      "count": 1
+    },
+    {
+      "subject": "General Science",
+      "topic": "Medical Discoveries",
+      "count": 1
+    },
+    {
+      "subject": "General Science",
+      "topic": "Plant Physiology",
+      "count": 1
+    },
+    {
+      "subject": "General Science",
+      "topic": "Public Health",
+      "count": 1
+    },
+    {
+      "subject": "General Science",
+      "topic": "Scientific Instruments",
+      "count": 2
+    },
+    {
+      "subject": "Geography",
+      "topic": "Agriculture",
+      "count": 1
+    },
+    {
+      "subject": "Geography",
+      "topic": "Climatology and Mapping",
+      "count": 1
+    },
+    {
+      "subject": "Geography",
+      "topic": "India's Neighbours",
+      "count": 1
+    },
+    {
+      "subject": "Geography",
+      "topic": "Indian Rivers",
+      "count": 1
+    },
+    {
+      "subject": "Geography",
+      "topic": "Natural Hazards",
+      "count": 1
+    },
+    {
+      "subject": "Geography",
+      "topic": "Oceanography",
+      "count": 2
+    },
+    {
+      "subject": "Indian Culture",
+      "topic": "Pilgrimage Sites",
+      "count": 1
+    },
+    {
+      "subject": "Indian Culture",
+      "topic": "Rites and Rituals",
+      "count": 1
+    },
+    {
+      "subject": "Indian Culture",
+      "topic": "Sikhism",
+      "count": 1
+    },
+    {
+      "subject": "Indian Economy",
+      "topic": "Economic Institutions",
+      "count": 1
+    },
+    {
+      "subject": "Indian Economy",
+      "topic": "External Sector",
+      "count": 1
+    },
+    {
+      "subject": "Indian Economy",
+      "topic": "Five-Year Plans",
+      "count": 2
+    },
+    {
+      "subject": "Indian Economy",
+      "topic": "Human Development",
+      "count": 1
+    },
+    {
+      "subject": "Indian Economy",
+      "topic": "Rural Development and Banking",
+      "count": 1
+    },
+    {
+      "subject": "Indian Economy",
+      "topic": "Sustainable Development",
+      "count": 1
+    },
+    {
+      "subject": "Indian Geography",
+      "topic": "Mineral Resources",
+      "count": 3
+    },
+    {
+      "subject": "Indian Government Schemes",
+      "topic": "Rural Development",
+      "count": 1
+    },
+    {
+      "subject": "Indian Polity",
+      "topic": "Constitutional Amendments",
+      "count": 1
+    },
+    {
+      "subject": "Indian Polity",
+      "topic": "Constitutional History",
+      "count": 1
+    },
+    {
+      "subject": "Indian Polity",
+      "topic": "Elections",
+      "count": 1
+    },
+    {
+      "subject": "Indian Polity",
+      "topic": "Electoral Reforms",
+      "count": 1
+    },
+    {
+      "subject": "Indian Polity",
+      "topic": "Fundamental Rights",
+      "count": 1
+    },
+    {
+      "subject": "Indian Polity",
+      "topic": "Human Rights",
+      "count": 1
+    },
+    {
+      "subject": "Indian Polity",
+      "topic": "Human Rights Institutions",
+      "count": 1
+    },
+    {
+      "subject": "Indian Polity",
+      "topic": "Judiciary",
+      "count": 1
+    },
+    {
+      "subject": "Indian Polity",
+      "topic": "Local Government",
+      "count": 1
+    },
+    {
+      "subject": "Indian Polity",
+      "topic": "Ordinance-making Power",
+      "count": 1
+    },
+    {
+      "subject": "Indian Polity",
+      "topic": "Social Justice",
+      "count": 2
+    },
+    {
+      "subject": "International Relations",
+      "topic": "India's Neighbourhood",
+      "count": 1
+    },
+    {
+      "subject": "International Relations",
+      "topic": "International Economic Institutions",
+      "count": 1
+    },
+    {
+      "subject": "Madhya Pradesh GK",
+      "topic": "Art and Artists",
+      "count": 1
+    },
+    {
+      "subject": "Madhya Pradesh GK",
+      "topic": "Awards and Journalism",
+      "count": 1
+    },
+    {
+      "subject": "Madhya Pradesh GK",
+      "topic": "Forest Research",
+      "count": 1
+    },
+    {
+      "subject": "Madhya Pradesh GK",
+      "topic": "Government Schemes",
+      "count": 1
+    },
+    {
+      "subject": "Madhya Pradesh GK",
+      "topic": "History",
+      "count": 1
+    },
+    {
+      "subject": "Madhya Pradesh GK",
+      "topic": "Industry",
+      "count": 1
+    },
+    {
+      "subject": "Madhya Pradesh GK",
+      "topic": "Museums and Heritage",
+      "count": 1
+    },
+    {
+      "subject": "Madhya Pradesh GK",
+      "topic": "Music and Awards",
+      "count": 1
+    },
+    {
+      "subject": "Madhya Pradesh GK",
+      "topic": "Physical Geography",
+      "count": 1
+    },
+    {
+      "subject": "Madhya Pradesh GK",
+      "topic": "Saints and Regions",
+      "count": 1
+    },
+    {
+      "subject": "Madhya Pradesh GK",
+      "topic": "Sports Infrastructure",
+      "count": 1
+    },
+    {
+      "subject": "Madhya Pradesh GK",
+      "topic": "Sports Institutions",
+      "count": 1
+    },
+    {
+      "subject": "Madhya Pradesh GK",
+      "topic": "Sports Personalities",
+      "count": 1
+    },
+    {
+      "subject": "Madhya Pradesh GK",
+      "topic": "Tribal History",
+      "count": 1
+    },
+    {
+      "subject": "Madhya Pradesh GK",
+      "topic": "Universities",
+      "count": 1
+    },
+    {
+      "subject": "Medieval Indian History",
+      "topic": "Later Mughals",
+      "count": 1
+    },
+    {
+      "subject": "Medieval Indian History",
+      "topic": "Mughal Empire",
+      "count": 1
+    },
+    {
+      "subject": "Medieval Indian History",
+      "topic": "Persian Literature",
+      "count": 1
+    },
+    {
+      "subject": "Modern Indian History",
+      "topic": "British Rule",
+      "count": 1
+    },
+    {
+      "subject": "Modern Indian History",
+      "topic": "Education under British Rule",
+      "count": 1
+    },
+    {
+      "subject": "Modern Indian History",
+      "topic": "Social Reform",
+      "count": 1
+    },
+    {
+      "subject": "Modern Indian Literature",
+      "topic": "Hindi Literature",
+      "count": 1
+    },
+    {
+      "subject": "Mountaineering",
+      "topic": "Mount Everest",
+      "count": 1
+    },
+    {
+      "subject": "Sports",
+      "topic": "Cricket",
+      "count": 1
+    },
+    {
+      "subject": "Sports",
+      "topic": "Olympic Games",
+      "count": 1
+    },
+    {
+      "subject": "Sports",
+      "topic": "Polo",
+      "count": 1
+    },
+    {
+      "subject": "Sports",
+      "topic": "Sports Awards and Observances",
+      "count": 1
+    },
+    {
+      "subject": "Sports",
+      "topic": "Tennis",
+      "count": 1
+    },
+    {
+      "subject": "Sports",
+      "topic": "Women's Cricket",
+      "count": 1
+    },
+    {
+      "subject": "Tribal Studies",
+      "topic": "Tribes of India",
+      "count": 1
+    },
+    {
+      "subject": "World Geography",
+      "topic": "Atmospheric Circulation",
+      "count": 1
+    },
+    {
+      "subject": "World Geography",
+      "topic": "Human Geography",
+      "count": 1
+    },
+    {
+      "subject": "World Geography",
+      "topic": "Oceans and Marine Features",
+      "count": 1
+    },
+    {
+      "subject": "World Geography",
+      "topic": "Ports and Trade",
+      "count": 1
+    }
+  ],
+  "verification_status": "not independently fact-checked"
+}

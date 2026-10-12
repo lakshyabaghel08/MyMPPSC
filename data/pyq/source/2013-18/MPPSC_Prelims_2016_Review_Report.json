@@ -1,0 +1,315 @@
+{
+  "year": 2016,
+  "questions_parsed": 100,
+  "question_numbers_present": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72,
+    73,
+    74,
+    75,
+    76,
+    77,
+    78,
+    79,
+    80,
+    81,
+    82,
+    83,
+    84,
+    85,
+    86,
+    87,
+    88,
+    89,
+    90,
+    91,
+    92,
+    93,
+    94,
+    95,
+    96,
+    97,
+    98,
+    99,
+    100
+  ],
+  "missing_question_numbers": [],
+  "missing_printed_answers": [],
+  "missing_or_empty_explanations": [
+    4,
+    13,
+    56,
+    57,
+    59,
+    66,
+    68
+  ],
+  "option_count_distribution": {
+    "4": 100
+  },
+  "preliminary_subject_counts": {
+    "General Awareness": 4,
+    "Geography": 22,
+    "Environment": 9,
+    "Science": 10,
+    "Economy": 10,
+    "Miscellaneous / Current Affairs": 5,
+    "International Relations & Organisations": 4,
+    "Sports": 3,
+    "Polity & Governance": 11,
+    "Computer & IT": 9,
+    "Art & Culture": 6,
+    "History": 7
+  },
+  "review_flagged_count": 21,
+  "review_items": [
+    {
+      "question_number": 2,
+      "printed_answer": "A",
+      "subject": "Geography",
+      "review_flags": [
+        "Verify source terminology/spelling and option wording."
+      ]
+    },
+    {
+      "question_number": 4,
+      "printed_answer": "C",
+      "subject": "Geography",
+      "review_flags": [
+        "Check question's listed states and answer ordering; source table includes states not asked.",
+        "No solution/explanation supplied."
+      ]
+    },
+    {
+      "question_number": 9,
+      "printed_answer": "B",
+      "subject": "Geography",
+      "review_flags": [
+        "Solution calls it the oldest dam over Chambal in Madhya Pradesh; verify wording/factual claim."
+      ]
+    },
+    {
+      "question_number": 13,
+      "printed_answer": "D",
+      "subject": "General Awareness",
+      "review_flags": [
+        "No solution/explanation supplied.",
+        "No solution/explanation supplied."
+      ]
+    },
+    {
+      "question_number": 31,
+      "printed_answer": "B",
+      "subject": "Environment",
+      "review_flags": [
+        "Verify name/title: question and solution use variant names for 'Jal Purush'."
+      ]
+    },
+    {
+      "question_number": 39,
+      "printed_answer": "C",
+      "subject": "International Relations & Organisations",
+      "review_flags": [
+        "G-8 membership is time-sensitive; source explanation uses 2021 wording for a 2015 question."
+      ]
+    },
+    {
+      "question_number": 43,
+      "printed_answer": "A",
+      "subject": "International Relations & Organisations",
+      "review_flags": [
+        "Verify appointment details and wording for IMF Executive Director in November 2015."
+      ]
+    },
+    {
+      "question_number": 56,
+      "printed_answer": "A",
+      "subject": "Computer & IT",
+      "review_flags": [
+        "No solution/explanation supplied."
+      ]
+    },
+    {
+      "question_number": 57,
+      "printed_answer": "C",
+      "subject": "Computer & IT",
+      "review_flags": [
+        "No solution/explanation supplied."
+      ]
+    },
+    {
+      "question_number": 59,
+      "printed_answer": "A",
+      "subject": "Computer & IT",
+      "review_flags": [
+        "Answer may be time-sensitive/dated; source identifies Azim Premji as chief of Wipro.",
+        "No solution/explanation supplied."
+      ]
+    },
+    {
+      "question_number": 60,
+      "printed_answer": "B",
+      "subject": "Computer & IT",
+      "review_flags": [
+        "Question says virus, but explanation describes a computer worm; concept mismatch."
+      ]
+    },
+    {
+      "question_number": 63,
+      "printed_answer": "C",
+      "subject": "Computer & IT",
+      "review_flags": [
+        "Question says compulsory device; explanation also mentions audio input, so answer may be incomplete."
+      ]
+    },
+    {
+      "question_number": 66,
+      "printed_answer": "C",
+      "subject": "Polity & Governance",
+      "review_flags": [
+        "Verify statutory section reference against the Act; no explanation supplied.",
+        "No solution/explanation supplied."
+      ]
+    },
+    {
+      "question_number": 68,
+      "printed_answer": "C",
+      "subject": "Polity & Governance",
+      "review_flags": [
+        "Verify statutory section and legal wording against the Act; no explanation supplied.",
+        "No solution/explanation supplied."
+      ]
+    },
+    {
+      "question_number": 74,
+      "printed_answer": "C",
+      "subject": "Geography",
+      "review_flags": [
+        "Check geographic classification/terminology for Chambal Valley."
+      ]
+    },
+    {
+      "question_number": 77,
+      "printed_answer": "A",
+      "subject": "Miscellaneous / Current Affairs",
+      "review_flags": [
+        "Historical framing is dated: Telangana was the 29th state at the time, not current framing."
+      ]
+    },
+    {
+      "question_number": 87,
+      "printed_answer": "A",
+      "subject": "History",
+      "review_flags": [
+        "Option D is malformed in source (missing opening parenthesis)."
+      ]
+    },
+    {
+      "question_number": 88,
+      "printed_answer": "D",
+      "subject": "Polity & Governance",
+      "review_flags": [
+        "Source solution appears truncated/contains an unmatched bracket at the end."
+      ]
+    },
+    {
+      "question_number": 91,
+      "printed_answer": "A",
+      "subject": "History",
+      "review_flags": [
+        "Verify attribution: source says Engels used the term while answer is Karl Marx."
+      ]
+    },
+    {
+      "question_number": 98,
+      "printed_answer": "B",
+      "subject": "Polity & Governance",
+      "review_flags": [
+        "Verify the claim that the 1894 Act's purpose was land reforms; likely source's answer is intended but explanation is brief."
+      ]
+    },
+    {
+      "question_number": 100,
+      "printed_answer": "D",
+      "subject": "Polity & Governance",
+      "review_flags": [
+        "Verify option formatting and exact statutory clause; answer points to Section 2(M)."
+      ]
+    }
+  ],
+  "limitations": [
+    "Classification is a preliminary text-based pass and is not harmonized across years yet.",
+    "Printed answers and source explanations have not been independently fact-checked.",
+    "Review flags identify likely formatting, ambiguity, dated context, or content concerns; they do not imply every flagged answer is wrong."
+  ]
+}

@@ -1,0 +1,1237 @@
+{
+  "year": 2014,
+  "source_file": "Pasted markdown(20261011-193735).md",
+  "questions_found": 100,
+  "question_numbers": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72,
+    73,
+    74,
+    75,
+    76,
+    77,
+    78,
+    79,
+    80,
+    81,
+    82,
+    83,
+    84,
+    85,
+    86,
+    87,
+    88,
+    89,
+    90,
+    91,
+    92,
+    93,
+    94,
+    95,
+    96,
+    97,
+    98,
+    99,
+    100
+  ],
+  "missing_printed_answers": [],
+  "missing_or_empty_explanations": [
+    3,
+    73
+  ],
+  "questions_requiring_review": [
+    {
+      "question_number": 1,
+      "question_text": "Under which ‘Five year Plan’ was the decision to establish a socialistic pattern of society taken?",
+      "printed_answer": "D",
+      "review_flags": [
+        "answer_or_explanation_requires_independent_verification"
+      ],
+      "classification": {
+        "subject": "Indian Economy",
+        "topic": "Economic Planning",
+        "subtopic": "Five-Year Plans and socialistic pattern",
+        "confidence": "high",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 2,
+      "question_text": "Which committee recommended for three tier Panchayati Raj system in India?",
+      "printed_answer": "A",
+      "review_flags": [
+        "answer_or_explanation_requires_independent_verification",
+        "source_explanation_contains_mismatched_committee_description"
+      ],
+      "classification": {
+        "subject": "Indian Polity",
+        "topic": "Local Government",
+        "subtopic": "Balwant Rai Mehta Committee and Panchayati Raj",
+        "confidence": "high",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 3,
+      "question_text": "What was the industrial growth rate of India during 2013-14 with 2011- 12 as the base year?",
+      "printed_answer": "C",
+      "review_flags": [
+        "missing_or_empty_explanation",
+        "answer_or_explanation_requires_independent_verification",
+        "source_text_or_claim_may_need_review"
+      ],
+      "classification": {
+        "subject": "Indian Economy",
+        "topic": "Industry",
+        "subtopic": "Industrial growth rate",
+        "confidence": "medium",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 4,
+      "question_text": "After establishment of Bhartiya Janta Party, who became its first president?",
+      "printed_answer": "B",
+      "review_flags": [
+        "option_parse_incomplete"
+      ],
+      "classification": {
+        "subject": "Indian Polity",
+        "topic": "Political Parties",
+        "subtopic": "Bharatiya Janata Party leadership",
+        "confidence": "high",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 7,
+      "question_text": "Example of Inland Drainage River is",
+      "printed_answer": "B",
+      "review_flags": [
+        "answer_or_explanation_requires_independent_verification",
+        "source_text_or_claim_may_need_review"
+      ],
+      "classification": {
+        "subject": "Geography",
+        "topic": "Indian Rivers",
+        "subtopic": "Inland drainage and Ghaggar River",
+        "confidence": "medium",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 10,
+      "question_text": "Tropic of cancer passes through",
+      "printed_answer": "D",
+      "review_flags": [
+        "source_text_or_claim_may_need_review"
+      ],
+      "classification": {
+        "subject": "Geography",
+        "topic": "Indian Physiography",
+        "subtopic": "Tropic of Cancer across Indian states",
+        "confidence": "medium",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 11,
+      "question_text": "In which year did the government of India Nationalized 14 major private banks?",
+      "printed_answer": "C",
+      "review_flags": [
+        "answer_or_explanation_requires_independent_verification"
+      ],
+      "classification": {
+        "subject": "Indian Economy",
+        "topic": "Banking",
+        "subtopic": "Nationalisation of major banks",
+        "confidence": "high",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 27,
+      "question_text": "The state with lowest urban population in India isA. sikkim",
+      "printed_answer": "A",
+      "review_flags": [
+        "option_parse_incomplete",
+        "answer_or_explanation_requires_independent_verification",
+        "source_text_or_claim_may_need_review"
+      ],
+      "classification": {
+        "subject": "Indian Geography",
+        "topic": "Population Geography",
+        "subtopic": "Urban population by state",
+        "confidence": "medium",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 32,
+      "question_text": "Fossil National Park of Madhya Pradesh is located at",
+      "printed_answer": "B",
+      "review_flags": [
+        "answer_or_explanation_requires_independent_verification",
+        "source_text_or_claim_may_need_review"
+      ],
+      "classification": {
+        "subject": "Madhya Pradesh GK",
+        "topic": "National Parks and Heritage",
+        "subtopic": "Fossil National Park",
+        "confidence": "medium",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 33,
+      "question_text": "Of the total forest area of Madhya Pradesh, teak forests occupy approximately how much percentage of area?",
+      "printed_answer": "A",
+      "review_flags": [
+        "answer_or_explanation_requires_independent_verification",
+        "source_text_or_claim_may_need_review"
+      ],
+      "classification": {
+        "subject": "Madhya Pradesh GK",
+        "topic": "Forests",
+        "subtopic": "Teak forest coverage",
+        "confidence": "medium",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 34,
+      "question_text": "What is the approximate present irrigation potential, in lakh, of Madhya Pradesh?",
+      "printed_answer": "B",
+      "review_flags": [
+        "answer_or_explanation_requires_independent_verification",
+        "source_text_or_claim_may_need_review"
+      ],
+      "classification": {
+        "subject": "Madhya Pradesh GK",
+        "topic": "Irrigation",
+        "subtopic": "Irrigation potential",
+        "confidence": "medium",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 35,
+      "question_text": "The example of “Lentic Habitat” in fresh water community isA. ponds and swamps",
+      "printed_answer": "A",
+      "review_flags": [
+        "option_parse_incomplete"
+      ],
+      "classification": {
+        "subject": "Environment",
+        "topic": "Ecology",
+        "subtopic": "Lentic freshwater habitats",
+        "confidence": "high",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 36,
+      "question_text": "Which of the following is used in the preparation of nuclear bombs?",
+      "printed_answer": "B",
+      "review_flags": [
+        "answer_or_explanation_requires_independent_verification"
+      ],
+      "classification": {
+        "subject": "General Science",
+        "topic": "Nuclear Science",
+        "subtopic": "Uranium and nuclear weapons",
+        "confidence": "high",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 39,
+      "question_text": "Asia-Pacific economic Co-operation (APEC) Summit 2014 was held at",
+      "printed_answer": "A",
+      "review_flags": [
+        "answer_or_explanation_requires_independent_verification"
+      ],
+      "classification": {
+        "subject": "International Relations",
+        "topic": "Regional Economic Organisations",
+        "subtopic": "APEC Summit 2014",
+        "confidence": "high",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 41,
+      "question_text": "In the 17th Asian games, India secured 8th position in the medal table and won following number of total medalsA. 55 medals",
+      "printed_answer": "D",
+      "review_flags": [
+        "option_parse_incomplete"
+      ],
+      "classification": {
+        "subject": "Sports",
+        "topic": "Asian Games",
+        "subtopic": "India's 2014 medal tally",
+        "confidence": "high",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 42,
+      "question_text": "Who introduced “Green Army” for environment conservation?",
+      "printed_answer": "C",
+      "review_flags": [
+        "answer_or_explanation_requires_independent_verification"
+      ],
+      "classification": {
+        "subject": "Environment",
+        "topic": "Environmental Conservation",
+        "subtopic": "Green Army",
+        "confidence": "high",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 43,
+      "question_text": "The Nobel Prize in chemistry for the year 2014 was given to",
+      "printed_answer": "D",
+      "review_flags": [
+        "answer_or_explanation_requires_independent_verification",
+        "source_text_or_claim_may_need_review",
+        "source_question_and_explanation_conflict_on_nobel_prize_category"
+      ],
+      "classification": {
+        "subject": "Science and Technology",
+        "topic": "Nobel Prize",
+        "subtopic": "2014 Nobel Prize in Chemistry; source answer requires verification",
+        "confidence": "medium",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 44,
+      "question_text": "According to the world health organization the most affected country by Ebola is",
+      "printed_answer": "C",
+      "review_flags": [
+        "answer_or_explanation_requires_independent_verification",
+        "source_text_or_claim_may_need_review"
+      ],
+      "classification": {
+        "subject": "General Science",
+        "topic": "Public Health",
+        "subtopic": "Ebola outbreak",
+        "confidence": "medium",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 50,
+      "question_text": "Halophytes grow well in",
+      "printed_answer": "D",
+      "review_flags": [
+        "answer_or_explanation_requires_independent_verification"
+      ],
+      "classification": {
+        "subject": "Environment",
+        "topic": "Plant Ecology",
+        "subtopic": "Halophytes and saline soils",
+        "confidence": "high",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 51,
+      "question_text": "Excess of which of the following in the blood causes the “Blue Baby Syndrome” disease?",
+      "printed_answer": "D",
+      "review_flags": [
+        "answer_or_explanation_requires_independent_verification"
+      ],
+      "classification": {
+        "subject": "General Science",
+        "topic": "Human Health",
+        "subtopic": "Blue Baby Syndrome and nitrates",
+        "confidence": "high",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 52,
+      "question_text": "Size of the sun is how many times bigger than that of the earth?",
+      "printed_answer": "C",
+      "review_flags": [
+        "answer_or_explanation_requires_independent_verification",
+        "source_text_or_claim_may_need_review"
+      ],
+      "classification": {
+        "subject": "Astronomy",
+        "topic": "Solar System",
+        "subtopic": "Sun-Earth size comparison",
+        "confidence": "medium",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 53,
+      "question_text": "The coldest planet in the solar system is",
+      "printed_answer": "A",
+      "review_flags": [
+        "answer_or_explanation_requires_independent_verification",
+        "source_text_or_claim_may_need_review"
+      ],
+      "classification": {
+        "subject": "Astronomy",
+        "topic": "Solar System",
+        "subtopic": "Coldest planet",
+        "confidence": "medium",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 55,
+      "question_text": "Organization related to “Red Data Book” or “Red List” is",
+      "printed_answer": "B",
+      "review_flags": [
+        "option_parse_incomplete"
+      ],
+      "classification": {
+        "subject": "Environment",
+        "topic": "Conservation Organisations",
+        "subtopic": "IUCN Red List",
+        "confidence": "high",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 60,
+      "question_text": "What is the rank of India in silk production in the world?",
+      "printed_answer": "B",
+      "review_flags": [
+        "answer_or_explanation_requires_independent_verification",
+        "source_text_or_claim_may_need_review"
+      ],
+      "classification": {
+        "subject": "Indian Economy",
+        "topic": "Agriculture and Industry",
+        "subtopic": "Silk production",
+        "confidence": "medium",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 61,
+      "question_text": "Who was the chairman of advisory committee of fundamental rights and minorities by the constituent assembly?",
+      "printed_answer": "B",
+      "review_flags": [
+        "option_parse_incomplete"
+      ],
+      "classification": {
+        "subject": "Indian Polity",
+        "topic": "Constituent Assembly",
+        "subtopic": "Advisory Committee on Fundamental Rights and Minorities",
+        "confidence": "high",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 64,
+      "question_text": "Chairperson and members of state human rights commission is appointed by-",
+      "printed_answer": "B",
+      "review_flags": [
+        "answer_or_explanation_requires_independent_verification",
+        "source_text_or_claim_may_need_review"
+      ],
+      "classification": {
+        "subject": "Indian Polity",
+        "topic": "Human Rights Institutions",
+        "subtopic": "State Human Rights Commission",
+        "confidence": "medium",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 65,
+      "question_text": "Who is not a member of the committee for the appointment of chairperson and members of the national human rights commission?",
+      "printed_answer": "B",
+      "review_flags": [
+        "answer_or_explanation_requires_independent_verification",
+        "source_text_or_claim_may_need_review"
+      ],
+      "classification": {
+        "subject": "Indian Polity",
+        "topic": "Human Rights Institutions",
+        "subtopic": "National Human Rights Commission appointment committee",
+        "confidence": "medium",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 67,
+      "question_text": "Who is empowered for imposition and realization of collective fine under SC and ST (Prevention of Atrocities) Act, 1989?",
+      "printed_answer": "B",
+      "review_flags": [
+        "answer_or_explanation_requires_independent_verification"
+      ],
+      "classification": {
+        "subject": "Indian Polity",
+        "topic": "Social Justice",
+        "subtopic": "SC/ST (Prevention of Atrocities) Act",
+        "confidence": "high",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 68,
+      "question_text": "Who is held responsible for the offences committed by companies, under the protection of civil rights act, 1955?",
+      "printed_answer": "D",
+      "review_flags": [
+        "answer_or_explanation_requires_independent_verification"
+      ],
+      "classification": {
+        "subject": "Indian Polity",
+        "topic": "Civil Rights",
+        "subtopic": "Protection of Civil Rights Act and company offences",
+        "confidence": "high",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 69,
+      "question_text": "Offence committed by any public servant under section 3 of the SC and ST (Prevention of Atrocities) Act, 1989, provides for minimum punishment of",
+      "printed_answer": "C",
+      "review_flags": [
+        "answer_or_explanation_requires_independent_verification"
+      ],
+      "classification": {
+        "subject": "Indian Polity",
+        "topic": "Social Justice",
+        "subtopic": "Punishment under SC/ST (Prevention of Atrocities) Act",
+        "confidence": "high",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 73,
+      "question_text": "Which of the following is a connecting device?",
+      "printed_answer": "D",
+      "review_flags": [
+        "missing_or_empty_explanation",
+        "source_text_or_claim_may_need_review"
+      ],
+      "classification": {
+        "subject": "Computer Awareness",
+        "topic": "Computer Networking",
+        "subtopic": "Routers, hubs and switches",
+        "confidence": "medium",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 78,
+      "question_text": "Which are of Madhya Pradesh is known for White Tigers?",
+      "printed_answer": "B",
+      "review_flags": [
+        "answer_or_explanation_requires_independent_verification",
+        "source_text_or_claim_may_need_review"
+      ],
+      "classification": {
+        "subject": "Madhya Pradesh GK",
+        "topic": "Wildlife",
+        "subtopic": "White tigers and Baghelkhand",
+        "confidence": "medium",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 81,
+      "question_text": "Gaur dance is associated with which tribe?",
+      "printed_answer": "B",
+      "review_flags": [
+        "answer_or_explanation_requires_independent_verification",
+        "source_text_or_claim_may_need_review"
+      ],
+      "classification": {
+        "subject": "Tribal Studies",
+        "topic": "Tribal Culture",
+        "subtopic": "Gaur dance and tribe",
+        "confidence": "medium",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 83,
+      "question_text": "Dynasty famous for efficient rural administration was",
+      "printed_answer": "A",
+      "review_flags": [
+        "answer_or_explanation_requires_independent_verification",
+        "source_text_or_claim_may_need_review"
+      ],
+      "classification": {
+        "subject": "Ancient Indian History",
+        "topic": "South Indian Kingdoms",
+        "subtopic": "Chola rural administration",
+        "confidence": "medium",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 86,
+      "question_text": "Malanjkhand Madhya Pradesh is famous for which of the following?",
+      "printed_answer": "B",
+      "review_flags": [
+        "answer_or_explanation_requires_independent_verification",
+        "source_text_or_claim_may_need_review"
+      ],
+      "classification": {
+        "subject": "Madhya Pradesh GK",
+        "topic": "Mineral Resources",
+        "subtopic": "Malanjkhand copper",
+        "confidence": "medium",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 99,
+      "question_text": "Which among the following was not the profit making central public sector enterprises during 2013-14?",
+      "printed_answer": "D",
+      "review_flags": [
+        "answer_or_explanation_requires_independent_verification",
+        "source_text_or_claim_may_need_review"
+      ],
+      "classification": {
+        "subject": "Indian Economy",
+        "topic": "Public Sector Enterprises",
+        "subtopic": "Profitability of central public-sector enterprises",
+        "confidence": "medium",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 100,
+      "question_text": "Bhim Rao Ambedkar International Sports Stadium is situated at",
+      "printed_answer": "A",
+      "review_flags": [
+        "answer_or_explanation_requires_independent_verification",
+        "source_text_or_claim_may_need_review"
+      ],
+      "classification": {
+        "subject": "Indian Polity",
+        "topic": "Sports Infrastructure",
+        "subtopic": "Bhim Rao Ambedkar International Sports Stadium",
+        "confidence": "medium",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    }
+  ],
+  "classification_counts_by_subject": {
+    "Indian Economy": 6,
+    "Indian Polity": 14,
+    "Modern Indian History": 5,
+    "Geography": 8,
+    "World Geography": 1,
+    "International Relations": 4,
+    "Medieval Indian History": 6,
+    "Indian Culture": 2,
+    "Ancient Indian History": 3,
+    "Indian Geography": 1,
+    "Madhya Pradesh GK": 16,
+    "Environment": 8,
+    "General Science": 5,
+    "Sports": 7,
+    "Science and Technology": 2,
+    "Indian Government Schemes": 1,
+    "Astronomy": 2,
+    "Computer Awareness": 7,
+    "Tribal Studies": 1,
+    "Books and Authors": 1
+  },
+  "classification_counts_by_subject_and_topic": [
+    {
+      "subject": "Ancient Indian History",
+      "topic": "Buddhism",
+      "count": 1
+    },
+    {
+      "subject": "Ancient Indian History",
+      "topic": "Gupta Empire",
+      "count": 1
+    },
+    {
+      "subject": "Ancient Indian History",
+      "topic": "South Indian Kingdoms",
+      "count": 1
+    },
+    {
+      "subject": "Astronomy",
+      "topic": "Solar System",
+      "count": 2
+    },
+    {
+      "subject": "Books and Authors",
+      "topic": "Sports Literature",
+      "count": 1
+    },
+    {
+      "subject": "Computer Awareness",
+      "topic": "Computer Fundamentals",
+      "count": 1
+    },
+    {
+      "subject": "Computer Awareness",
+      "topic": "Computer Hardware",
+      "count": 1
+    },
+    {
+      "subject": "Computer Awareness",
+      "topic": "Computer Networking",
+      "count": 2
+    },
+    {
+      "subject": "Computer Awareness",
+      "topic": "Cybersecurity",
+      "count": 1
+    },
+    {
+      "subject": "Computer Awareness",
+      "topic": "Internet Connectivity",
+      "count": 1
+    },
+    {
+      "subject": "Computer Awareness",
+      "topic": "Software",
+      "count": 1
+    },
+    {
+      "subject": "Environment",
+      "topic": "Climate Change",
+      "count": 1
+    },
+    {
+      "subject": "Environment",
+      "topic": "Conservation Organisations",
+      "count": 1
+    },
+    {
+      "subject": "Environment",
+      "topic": "Ecology",
+      "count": 1
+    },
+    {
+      "subject": "Environment",
+      "topic": "Environmental Conservation",
+      "count": 1
+    },
+    {
+      "subject": "Environment",
+      "topic": "Environmental Movements",
+      "count": 1
+    },
+    {
+      "subject": "Environment",
+      "topic": "Ozone Layer",
+      "count": 1
+    },
+    {
+      "subject": "Environment",
+      "topic": "Ozone-Depleting Substances",
+      "count": 1
+    },
+    {
+      "subject": "Environment",
+      "topic": "Plant Ecology",
+      "count": 1
+    },
+    {
+      "subject": "General Science",
+      "topic": "Chemistry",
+      "count": 1
+    },
+    {
+      "subject": "General Science",
+      "topic": "Human Biology",
+      "count": 1
+    },
+    {
+      "subject": "General Science",
+      "topic": "Human Health",
+      "count": 1
+    },
+    {
+      "subject": "General Science",
+      "topic": "Nuclear Science",
+      "count": 1
+    },
+    {
+      "subject": "General Science",
+      "topic": "Public Health",
+      "count": 1
+    },
+    {
+      "subject": "Geography",
+      "topic": "Geomorphology",
+      "count": 1
+    },
+    {
+      "subject": "Geography",
+      "topic": "Indian Coastline",
+      "count": 1
+    },
+    {
+      "subject": "Geography",
+      "topic": "Indian Lakes",
+      "count": 1
+    },
+    {
+      "subject": "Geography",
+      "topic": "Indian Physiography",
+      "count": 3
+    },
+    {
+      "subject": "Geography",
+      "topic": "Indian Rivers",
+      "count": 2
+    },
+    {
+      "subject": "Indian Culture",
+      "topic": "Bhakti Movement and Literature",
+      "count": 1
+    },
+    {
+      "subject": "Indian Culture",
+      "topic": "Philosophy",
+      "count": 1
+    },
+    {
+      "subject": "Indian Economy",
+      "topic": "Agriculture and Industry",
+      "count": 1
+    },
+    {
+      "subject": "Indian Economy",
+      "topic": "Banking",
+      "count": 1
+    },
+    {
+      "subject": "Indian Economy",
+      "topic": "Disinvestment",
+      "count": 1
+    },
+    {
+      "subject": "Indian Economy",
+      "topic": "Economic Planning",
+      "count": 1
+    },
+    {
+      "subject": "Indian Economy",
+      "topic": "Industry",
+      "count": 1
+    },
+    {
+      "subject": "Indian Economy",
+      "topic": "Public Sector Enterprises",
+      "count": 1
+    },
+    {
+      "subject": "Indian Geography",
+      "topic": "Population Geography",
+      "count": 1
+    },
+    {
+      "subject": "Indian Government Schemes",
+      "topic": "Cleanliness and Sanitation",
+      "count": 1
+    },
+    {
+      "subject": "Indian Polity",
+      "topic": "Civil Rights",
+      "count": 2
+    },
+    {
+      "subject": "Indian Polity",
+      "topic": "Constituent Assembly",
+      "count": 1
+    },
+    {
+      "subject": "Indian Polity",
+      "topic": "Constitutional Bodies",
+      "count": 1
+    },
+    {
+      "subject": "Indian Polity",
+      "topic": "Elections",
+      "count": 1
+    },
+    {
+      "subject": "Indian Polity",
+      "topic": "Human Rights Institutions",
+      "count": 2
+    },
+    {
+      "subject": "Indian Polity",
+      "topic": "Local Government",
+      "count": 1
+    },
+    {
+      "subject": "Indian Polity",
+      "topic": "Political Parties",
+      "count": 1
+    },
+    {
+      "subject": "Indian Polity",
+      "topic": "Social Justice",
+      "count": 2
+    },
+    {
+      "subject": "Indian Polity",
+      "topic": "Sports Infrastructure",
+      "count": 1
+    },
+    {
+      "subject": "Indian Polity",
+      "topic": "State Formation",
+      "count": 1
+    },
+    {
+      "subject": "Indian Polity",
+      "topic": "State Legislature",
+      "count": 1
+    },
+    {
+      "subject": "International Relations",
+      "topic": "International Trade",
+      "count": 1
+    },
+    {
+      "subject": "International Relations",
+      "topic": "Regional Economic Organisations",
+      "count": 1
+    },
+    {
+      "subject": "International Relations",
+      "topic": "Regional Organisations",
+      "count": 1
+    },
+    {
+      "subject": "International Relations",
+      "topic": "South Asia",
+      "count": 1
+    },
+    {
+      "subject": "Madhya Pradesh GK",
+      "topic": "Agriculture",
+      "count": 1
+    },
+    {
+      "subject": "Madhya Pradesh GK",
+      "topic": "Art and Architecture",
+      "count": 1
+    },
+    {
+      "subject": "Madhya Pradesh GK",
+      "topic": "Awards and Honours",
+      "count": 1
+    },
+    {
+      "subject": "Madhya Pradesh GK",
+      "topic": "Festivals",
+      "count": 1
+    },
+    {
+      "subject": "Madhya Pradesh GK",
+      "topic": "Forests",
+      "count": 1
+    },
+    {
+      "subject": "Madhya Pradesh GK",
+      "topic": "Irrigation",
+      "count": 1
+    },
+    {
+      "subject": "Madhya Pradesh GK",
+      "topic": "Literature",
+      "count": 1
+    },
+    {
+      "subject": "Madhya Pradesh GK",
+      "topic": "Mineral Resources",
+      "count": 2
+    },
+    {
+      "subject": "Madhya Pradesh GK",
+      "topic": "National Parks and Heritage",
+      "count": 1
+    },
+    {
+      "subject": "Madhya Pradesh GK",
+      "topic": "Population and Census",
+      "count": 2
+    },
+    {
+      "subject": "Madhya Pradesh GK",
+      "topic": "Power and Energy",
+      "count": 1
+    },
+    {
+      "subject": "Madhya Pradesh GK",
+      "topic": "Rivers and Cities",
+      "count": 1
+    },
+    {
+      "subject": "Madhya Pradesh GK",
+      "topic": "State Formation",
+      "count": 1
+    },
+    {
+      "subject": "Madhya Pradesh GK",
+      "topic": "Wildlife",
+      "count": 1
+    },
+    {
+      "subject": "Medieval Indian History",
+      "topic": "Delhi Sultanate",
+      "count": 2
+    },
+    {
+      "subject": "Medieval Indian History",
+      "topic": "Maratha Empire",
+      "count": 1
+    },
+    {
+      "subject": "Medieval Indian History",
+      "topic": "Mughal Empire",
+      "count": 1
+    },
+    {
+      "subject": "Medieval Indian History",
+      "topic": "Sikh History",
+      "count": 1
+    },
+    {
+      "subject": "Medieval Indian History",
+      "topic": "Vijayanagara Empire",
+      "count": 1
+    },
+    {
+      "subject": "Modern Indian History",
+      "topic": "Indian National Congress",
+      "count": 1
+    },
+    {
+      "subject": "Modern Indian History",
+      "topic": "Land Revenue Systems",
+      "count": 1
+    },
+    {
+      "subject": "Modern Indian History",
+      "topic": "National Movement",
+      "count": 1
+    },
+    {
+      "subject": "Modern Indian History",
+      "topic": "Partition of India",
+      "count": 1
+    },
+    {
+      "subject": "Modern Indian History",
+      "topic": "Political Movements",
+      "count": 1
+    },
+    {
+      "subject": "Science and Technology",
+      "topic": "Nobel Prize",
+      "count": 1
+    },
+    {
+      "subject": "Science and Technology",
+      "topic": "Scientific Institutions",
+      "count": 1
+    },
+    {
+      "subject": "Sports",
+      "topic": "Asian Games",
+      "count": 1
+    },
+    {
+      "subject": "Sports",
+      "topic": "Bridge",
+      "count": 1
+    },
+    {
+      "subject": "Sports",
+      "topic": "Football",
+      "count": 1
+    },
+    {
+      "subject": "Sports",
+      "topic": "Hockey",
+      "count": 1
+    },
+    {
+      "subject": "Sports",
+      "topic": "Kabaddi",
+      "count": 1
+    },
+    {
+      "subject": "Sports",
+      "topic": "Traditional Indian Sports",
+      "count": 1
+    },
+    {
+      "subject": "Sports",
+      "topic": "Volleyball",
+      "count": 1
+    },
+    {
+      "subject": "Tribal Studies",
+      "topic": "Tribal Culture",
+      "count": 1
+    },
+    {
+      "subject": "World Geography",
+      "topic": "Countries and Cities",
+      "count": 1
+    }
+  ],
+  "verification_status": "not independently fact-checked"
+}

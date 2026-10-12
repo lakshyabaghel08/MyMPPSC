@@ -1,0 +1,3174 @@
+{
+  "dataset_name": "MPPSC Prelims 2017 Solved Paper — Preliminary Structured Source Bank",
+  "year": 2017,
+  "source_description": "User-provided solved-paper text; source wording, printed answers, and supplied explanations retained.",
+  "status": "preliminary_not_independently_fact_checked",
+  "taxonomy_status": "first-pass classification; harmonize across 2013–2018 before app integration",
+  "question_count": 100,
+  "questions": [
+    {
+      "question_number": 1,
+      "source_text": "Ghani Malik was the founder of which dynasty? (A) Tughlaq (B) Khilji (C) Sayyid (D) Lodi Ans: (A) Solution: Factual Question",
+      "question": "Ghani Malik was the founder of which dynasty?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Tughlaq"
+        },
+        {
+          "label": "B",
+          "text": "Khilji"
+        },
+        {
+          "label": "C",
+          "text": "Sayyid"
+        },
+        {
+          "label": "D",
+          "text": "Lodi"
+        }
+      ],
+      "printed_answer": "A",
+      "explanation": "Factual Question",
+      "subject": "History",
+      "topic": "Indian History",
+      "subtopic": "Ancient/Medieval/Modern history",
+      "review_flags": [
+        "Explanation is only a generic placeholder, not an actual explanation."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 2,
+      "source_text": "Who is called the Father of Indian Archaeology? (A) Alexander Cunningham (B) John Marshall (C) Mortimer Wheeler (D) James Prinsep Ans: (A) Solution: Alexander Cunningham was a British Army engineer who later took an interest in the history and archaeology of India. He is regarded as the father of Indian archaeology.",
+      "question": "Who is called the Father of Indian Archaeology?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Alexander Cunningham"
+        },
+        {
+          "label": "B",
+          "text": "John Marshall"
+        },
+        {
+          "label": "C",
+          "text": "Mortimer Wheeler"
+        },
+        {
+          "label": "D",
+          "text": "James Prinsep"
+        }
+      ],
+      "printed_answer": "A",
+      "explanation": "Alexander Cunningham was a British Army engineer who later took an interest in the history and archaeology of India. He is regarded as the father of Indian archaeology.",
+      "subject": "History",
+      "topic": "Indian History",
+      "subtopic": "Ancient/Medieval/Modern history",
+      "review_flags": [],
+      "needs_review": false
+    },
+    {
+      "question_number": 3,
+      "source_text": "Who adorned Ram Mohan Roy with the title of Raja? (A) Aurangzeb (B) Robert Clive (C) Mahatma Gandhi (D) Mughal Emperor Akbar II Ans: (D) Solution: Akbar II gave the title of Raja to Raja Rammohan Roy. He was known for his efforts to abolish the practices of sati and child marriage.",
+      "question": "Who adorned Ram Mohan Roy with the title of Raja?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Aurangzeb"
+        },
+        {
+          "label": "B",
+          "text": "Robert Clive"
+        },
+        {
+          "label": "C",
+          "text": "Mahatma Gandhi"
+        },
+        {
+          "label": "D",
+          "text": "Mughal Emperor Akbar II"
+        }
+      ],
+      "printed_answer": "D",
+      "explanation": "Akbar II gave the title of Raja to Raja Rammohan Roy. He was known for his efforts to abolish the practices of sati and child marriage.",
+      "subject": "History",
+      "topic": "Indian History",
+      "subtopic": "Ancient/Medieval/Modern history",
+      "review_flags": [],
+      "needs_review": false
+    },
+    {
+      "question_number": 4,
+      "source_text": "The Act of 1909 was associated with (A) introduction separate electorate (B) decentralization (C) dyarchy (D) legislative councils Ans: (A) Solution: Government of India Act 1909 is associated with the Separate electorate to Muslims.",
+      "question": "The Act of 1909 was associated with",
+      "options": [
+        {
+          "label": "A",
+          "text": "introduction separate electorate"
+        },
+        {
+          "label": "B",
+          "text": "decentralization"
+        },
+        {
+          "label": "C",
+          "text": "dyarchy"
+        },
+        {
+          "label": "D",
+          "text": "legislative councils"
+        }
+      ],
+      "printed_answer": "A",
+      "explanation": "Government of India Act 1909 is associated with the Separate electorate to Muslims.",
+      "subject": "History",
+      "topic": "Indian History",
+      "subtopic": "Ancient/Medieval/Modern history",
+      "review_flags": [],
+      "needs_review": false
+    },
+    {
+      "question_number": 5,
+      "source_text": "Whom had Muhammad Ghori defeated in 1194 in the Battle of Chandawar? (A) Kumarpal (B) Jaichand (C) Govindraj (D) Bhim II Ans: (B) Solution: The Battle of Chandawar (year: 1193 was fought between Muhammad of Ghori and Jaichand of Kannauj of the Gahadavala dynasty. It took place at Chandawar (modern Chandawal near Ferozabad), on the Yamuna River close to Agra, giving Muhammad control of much of northern India.",
+      "question": "Whom had Muhammad Ghori defeated in 1194 in the Battle of Chandawar?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Kumarpal"
+        },
+        {
+          "label": "B",
+          "text": "Jaichand"
+        },
+        {
+          "label": "C",
+          "text": "Govindraj"
+        },
+        {
+          "label": "D",
+          "text": "Bhim II"
+        }
+      ],
+      "printed_answer": "B",
+      "explanation": "The Battle of Chandawar (year: 1193 was fought between Muhammad of Ghori and Jaichand of Kannauj of the Gahadavala dynasty. It took place at Chandawar (modern Chandawal near Ferozabad), on the Yamuna River close to Agra, giving Muhammad control of much of northern India.",
+      "subject": "History",
+      "topic": "Indian History",
+      "subtopic": "Ancient/Medieval/Modern history",
+      "review_flags": [
+        "Question says 1194, while the supplied solution says 1193; verify date/source."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 6,
+      "source_text": "Which dynasty of Delhi Sultanate ruled for the shortest period? (A) Khilji (B) Tughlaq (C) Sayyid (D) Lodi Ans: (A) Solution: The Delhi Sultanate was an Islamic empire based in Delhi that stretched over large parts of the Indian subcontinent for 320 years (1206–1526). Five dynasties ruled over the Delhi Sultanate sequentially: the Mamluk dynasty (1206–1290), the Khalji dynasty (1290–1320), the Tughlaq dynasty (1320–1414), the Sayyid dynasty (1414–1451), and the Lodi dynasty (1451–1526). The shortest period was of Khilji.",
+      "question": "Which dynasty of Delhi Sultanate ruled for the shortest period?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Khilji"
+        },
+        {
+          "label": "B",
+          "text": "Tughlaq"
+        },
+        {
+          "label": "C",
+          "text": "Sayyid"
+        },
+        {
+          "label": "D",
+          "text": "Lodi"
+        }
+      ],
+      "printed_answer": "A",
+      "explanation": "The Delhi Sultanate was an Islamic empire based in Delhi that stretched over large parts of the Indian subcontinent for 320 years (1206–1526). Five dynasties ruled over the Delhi Sultanate sequentially: the Mamluk dynasty (1206–1290), the Khalji dynasty (1290–1320), the Tughlaq dynasty (1320–1414), the Sayyid dynasty (1414–1451), and the Lodi dynasty (1451–1526). The shortest period was of Khilji.",
+      "subject": "History",
+      "topic": "Indian History",
+      "subtopic": "Ancient/Medieval/Modern history",
+      "review_flags": [
+        "The explanation's wording about the shortest ruling dynasty should be independently checked against dates."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 7,
+      "source_text": "An important event of Lord Dufferin's tenure as Viceroy was (A) establishment of Ramakrishna Mission (B) establishment of Muslim League in Dhaka (C) establishment of National Congress (D) beginning of the first Census Ans: (C) Solution: The Indian National congress was found in the year 1885. The British ICS offices A O Hume was the founder of congress. Lord Dufferin was the viceroy of India during the formation of Congress.",
+      "question": "An important event of Lord Dufferin's tenure as Viceroy was",
+      "options": [
+        {
+          "label": "A",
+          "text": "establishment of Ramakrishna Mission"
+        },
+        {
+          "label": "B",
+          "text": "establishment of Muslim League in Dhaka"
+        },
+        {
+          "label": "C",
+          "text": "establishment of National Congress"
+        },
+        {
+          "label": "D",
+          "text": "beginning of the first Census"
+        }
+      ],
+      "printed_answer": "C",
+      "explanation": "The Indian National congress was found in the year 1885. The British ICS offices A O Hume was the founder of congress. Lord Dufferin was the viceroy of India during the formation of Congress.",
+      "subject": "History",
+      "topic": "Indian History",
+      "subtopic": "Ancient/Medieval/Modern history",
+      "review_flags": [],
+      "needs_review": false
+    },
+    {
+      "question_number": 8,
+      "source_text": "Who among the following was the youngest person to become the President of the Indian National Congress? (A) Jawaharlal Nehru (B) Abul Kalam Azad (C) Ananda Mohan Bose (D) Bhupendra Nath Bose Ans: (B) Solution: Maulana Abul Kalam Azad became the youngest person to serve as the President of the Indian National Congress in 1923, at an age of 35.",
+      "question": "Who among the following was the youngest person to become the President of the Indian National Congress?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Jawaharlal Nehru"
+        },
+        {
+          "label": "B",
+          "text": "Abul Kalam Azad"
+        },
+        {
+          "label": "C",
+          "text": "Ananda Mohan Bose"
+        },
+        {
+          "label": "D",
+          "text": "Bhupendra Nath Bose"
+        }
+      ],
+      "printed_answer": "B",
+      "explanation": "Maulana Abul Kalam Azad became the youngest person to serve as the President of the Indian National Congress in 1923, at an age of 35.",
+      "subject": "History",
+      "topic": "Indian History",
+      "subtopic": "Ancient/Medieval/Modern history",
+      "review_flags": [],
+      "needs_review": false
+    },
+    {
+      "question_number": 9,
+      "source_text": "From which year was regular and scientific Cenaus started in India? (A) 1861 (B) 1871 (C) 1881 (D) 1891 Ans: (C) Solution: The first synchronous census in India was held in 1881.",
+      "question": "From which year was regular and scientific Cenaus started in India?",
+      "options": [
+        {
+          "label": "A",
+          "text": "1861"
+        },
+        {
+          "label": "B",
+          "text": "1871"
+        },
+        {
+          "label": "C",
+          "text": "1881"
+        },
+        {
+          "label": "D",
+          "text": "1891"
+        }
+      ],
+      "printed_answer": "C",
+      "explanation": "The first synchronous census in India was held in 1881.",
+      "subject": "History",
+      "topic": "Indian History",
+      "subtopic": "Ancient/Medieval/Modern history",
+      "review_flags": [],
+      "needs_review": false
+    },
+    {
+      "question_number": 10,
+      "source_text": "Who among the following had not participated in the Second Round Table Conference? (A) Mahadev Desai (B) Pyarelal Nayyar (C) Madan Mohan Malaviya (D) Jawaharlal Nehru Ans: (D) Solution: Second round conference was held in 1931, Gandhiji participated from the Congress side but Nehru ji was not a participant.",
+      "question": "Who among the following had not participated in the Second Round Table Conference?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Mahadev Desai"
+        },
+        {
+          "label": "B",
+          "text": "Pyarelal Nayyar"
+        },
+        {
+          "label": "C",
+          "text": "Madan Mohan Malaviya"
+        },
+        {
+          "label": "D",
+          "text": "Jawaharlal Nehru"
+        }
+      ],
+      "printed_answer": "D",
+      "explanation": "Second round conference was held in 1931, Gandhiji participated from the Congress side but Nehru ji was not a participant.",
+      "subject": "History",
+      "topic": "Indian History",
+      "subtopic": "Ancient/Medieval/Modern history",
+      "review_flags": [],
+      "needs_review": false
+    },
+    {
+      "question_number": 11,
+      "source_text": "Which of the following countries does not form border with the Caspian Sea? (A) Azerbaijan (B) Iran (C) Iraq (D) Kazakhstan Ans: (C) Solution: Caspian Sea is situated above Iran. Iraq does not share boundary with Caspian Sea.",
+      "question": "Which of the following countries does not form border with the Caspian Sea?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Azerbaijan"
+        },
+        {
+          "label": "B",
+          "text": "Iran"
+        },
+        {
+          "label": "C",
+          "text": "Iraq"
+        },
+        {
+          "label": "D",
+          "text": "Kazakhstan"
+        }
+      ],
+      "printed_answer": "C",
+      "explanation": "Caspian Sea is situated above Iran. Iraq does not share boundary with Caspian Sea.",
+      "subject": "Geography",
+      "topic": "Physical & Indian Geography",
+      "subtopic": "Landforms, locations and population",
+      "review_flags": [],
+      "needs_review": false
+    },
+    {
+      "question_number": 12,
+      "source_text": "What is Kayal? (A) Terai Plain (B) Ganges Delta (C) Regur of Deccan Plateau (D) Lagoon of Kerala Ans: (D) Solution: Kayals are the shallow lagoons (coastal) lying parallel to the coastline.",
+      "question": "What is Kayal?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Terai Plain"
+        },
+        {
+          "label": "B",
+          "text": "Ganges Delta"
+        },
+        {
+          "label": "C",
+          "text": "Regur of Deccan Plateau"
+        },
+        {
+          "label": "D",
+          "text": "Lagoon of Kerala"
+        }
+      ],
+      "printed_answer": "D",
+      "explanation": "Kayals are the shallow lagoons (coastal) lying parallel to the coastline.",
+      "subject": "Geography",
+      "topic": "Physical & Indian Geography",
+      "subtopic": "Landforms, locations and population",
+      "review_flags": [],
+      "needs_review": false
+    },
+    {
+      "question_number": 13,
+      "source_text": "Which of the following pairs is not correctly matched? (A) Canyon-River (B) Zeugen-Wind (C) Inselberg-Glacier (D) Moraine-Glacier Ans: (C) Solution: An inselberg or monadnock is an isolated ruins of hilly region eroded by the running water. This geomorphic feature is formed in the final stage of cycle or erosion.",
+      "question": "Which of the following pairs is not correctly matched?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Canyon-River"
+        },
+        {
+          "label": "B",
+          "text": "Zeugen-Wind"
+        },
+        {
+          "label": "C",
+          "text": "Inselberg-Glacier"
+        },
+        {
+          "label": "D",
+          "text": "Moraine-Glacier"
+        }
+      ],
+      "printed_answer": "C",
+      "explanation": "An inselberg or monadnock is an isolated ruins of hilly region eroded by the running water. This geomorphic feature is formed in the final stage of cycle or erosion.",
+      "subject": "Geography",
+      "topic": "Physical & Indian Geography",
+      "subtopic": "Landforms, locations and population",
+      "review_flags": [
+        "The supplied explanation does not clearly justify why Inselberg–Glacier is the mismatched pair."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 14,
+      "source_text": "Stromboli is a/an (A) dormant volcano (B) active volcano (C) extinct volcano (D) None of the above Ans: (B) Solution: Factual Question",
+      "question": "Stromboli is a/an",
+      "options": [
+        {
+          "label": "A",
+          "text": "dormant volcano"
+        },
+        {
+          "label": "B",
+          "text": "active volcano"
+        },
+        {
+          "label": "C",
+          "text": "extinct volcano"
+        },
+        {
+          "label": "D",
+          "text": "None of the above"
+        }
+      ],
+      "printed_answer": "B",
+      "explanation": "Factual Question",
+      "subject": "Geography",
+      "topic": "Physical & Indian Geography",
+      "subtopic": "Landforms, locations and population",
+      "review_flags": [
+        "Explanation is only a generic placeholder, not an actual explanation."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 15,
+      "source_text": "In which year was the Water Pollution Prevention and Control Act enforced? (A) 1980 (B) 1974 (C) 1981 (D) None of the above Ans: (B) Solution: The Water (Prevention and Control of Pollution) Act was enacted in 1974 to provide for the prevention and control of water pollution, and for the maintaining or restoring of wholesomeness of water in the country.",
+      "question": "In which year was the Water Pollution Prevention and Control Act enforced?",
+      "options": [
+        {
+          "label": "A",
+          "text": "1980"
+        },
+        {
+          "label": "B",
+          "text": "1974"
+        },
+        {
+          "label": "C",
+          "text": "1981"
+        },
+        {
+          "label": "D",
+          "text": "None of the above"
+        }
+      ],
+      "printed_answer": "B",
+      "explanation": "The Water (Prevention and Control of Pollution) Act was enacted in 1974 to provide for the prevention and control of water pollution, and for the maintaining or restoring of wholesomeness of water in the country.",
+      "subject": "Geography",
+      "topic": "Physical & Indian Geography",
+      "subtopic": "Landforms, locations and population",
+      "review_flags": [],
+      "needs_review": false
+    },
+    {
+      "question_number": 16,
+      "source_text": "According to 2011 Census, the density of population in India was (A) 325 (B) 335 (C) 382 (D) 385 Ans: (C) Solution: The population density of India has gone up to 382 persons per square kilometre in 2011 from 325 persons per square kilometre in 2001.",
+      "question": "According to 2011 Census, the density of population in India was",
+      "options": [
+        {
+          "label": "A",
+          "text": "325"
+        },
+        {
+          "label": "B",
+          "text": "335"
+        },
+        {
+          "label": "C",
+          "text": "382"
+        },
+        {
+          "label": "D",
+          "text": "385"
+        }
+      ],
+      "printed_answer": "C",
+      "explanation": "The population density of India has gone up to 382 persons per square kilometre in 2011 from 325 persons per square kilometre in 2001.",
+      "subject": "History",
+      "topic": "Indian History",
+      "subtopic": "Ancient/Medieval/Modern history",
+      "review_flags": [],
+      "needs_review": false
+    },
+    {
+      "question_number": 17,
+      "source_text": "Which of the following pairs is not correctly matched? (A) Lipulekh-Uttarakhand (B) Nathu La-Arunachal Pradesh (C) Rohtang---Himachal Pradesh (D) Palghat-Kerala Ans: (B) Solution: Nathu La is a mountain pass in the Sikkim and West Bengal.",
+      "question": "Which of the following pairs is not correctly matched?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Lipulekh-Uttarakhand"
+        },
+        {
+          "label": "B",
+          "text": "Nathu La-Arunachal Pradesh"
+        },
+        {
+          "label": "C",
+          "text": "Rohtang---Himachal Pradesh"
+        },
+        {
+          "label": "D",
+          "text": "Palghat-Kerala"
+        }
+      ],
+      "printed_answer": "B",
+      "explanation": "Nathu La is a mountain pass in the Sikkim and West Bengal.",
+      "subject": "Geography",
+      "topic": "Physical & Indian Geography",
+      "subtopic": "Landforms, locations and population",
+      "review_flags": [
+        "The explanation's location for Nathu La is questionable/inaccurate; verify."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 18,
+      "source_text": "Peneplain is related (A) wind (B) underground water (C) glacier (D) river Ans: (D) Solution: In geomorphology the peneplain is a low-relief plain formed by erosion. This is the ultimate final stage of cycle of erosion.",
+      "question": "Peneplain is related",
+      "options": [
+        {
+          "label": "A",
+          "text": "wind"
+        },
+        {
+          "label": "B",
+          "text": "underground water"
+        },
+        {
+          "label": "C",
+          "text": "glacier"
+        },
+        {
+          "label": "D",
+          "text": "river"
+        }
+      ],
+      "printed_answer": "D",
+      "explanation": "In geomorphology the peneplain is a low-relief plain formed by erosion. This is the ultimate final stage of cycle of erosion.",
+      "subject": "Geography",
+      "topic": "Physical & Indian Geography",
+      "subtopic": "Landforms, locations and population",
+      "review_flags": [],
+      "needs_review": false
+    },
+    {
+      "question_number": 19,
+      "source_text": "Which of the following regions is the original habitat of the Toda Tribe\"? (A) Jaunsar Hills (B) Garo Hills (C) Nilgiri Hills (D) Jaintia Hills Ans: (C) Solution: Toda people are a Dravidian ethnic group who live in the Nilgiri Mountains of the Indian state of Tamil Nadu.",
+      "question": "Which of the following regions is the original habitat of the Toda Tribe\"?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Jaunsar Hills"
+        },
+        {
+          "label": "B",
+          "text": "Garo Hills"
+        },
+        {
+          "label": "C",
+          "text": "Nilgiri Hills"
+        },
+        {
+          "label": "D",
+          "text": "Jaintia Hills"
+        }
+      ],
+      "printed_answer": "C",
+      "explanation": "Toda people are a Dravidian ethnic group who live in the Nilgiri Mountains of the Indian state of Tamil Nadu.",
+      "subject": "Geography",
+      "topic": "Physical & Indian Geography",
+      "subtopic": "Landforms, locations and population",
+      "review_flags": [],
+      "needs_review": false
+    },
+    {
+      "question_number": 20,
+      "source_text": "Where is Ras Tanura Oil Refinery located? (A) Iran (B) United States of America (C) Saudi Arabia (D) Iraq Ans: (C) Solution: Factual Question",
+      "question": "Where is Ras Tanura Oil Refinery located?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Iran"
+        },
+        {
+          "label": "B",
+          "text": "United States of America"
+        },
+        {
+          "label": "C",
+          "text": "Saudi Arabia"
+        },
+        {
+          "label": "D",
+          "text": "Iraq"
+        }
+      ],
+      "printed_answer": "C",
+      "explanation": "Factual Question",
+      "subject": "Geography",
+      "topic": "Physical & Indian Geography",
+      "subtopic": "Landforms, locations and population",
+      "review_flags": [
+        "Explanation is only a generic placeholder, not an actual explanation."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 21,
+      "source_text": "What is the botanical name of opium? (A) Emblica officinalis (B) Papaver somniferum (C) Rauwolfia serpentina (D) Cinchona sp. Ans: (B) Solution: Factual Question",
+      "question": "What is the botanical name of opium?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Emblica officinalis"
+        },
+        {
+          "label": "B",
+          "text": "Papaver somniferum"
+        },
+        {
+          "label": "C",
+          "text": "Rauwolfia serpentina"
+        },
+        {
+          "label": "D",
+          "text": "Cinchona sp."
+        }
+      ],
+      "printed_answer": "B",
+      "explanation": "Factual Question",
+      "subject": "Science & Technology",
+      "topic": "General Science",
+      "subtopic": "Biology, physics and chemistry",
+      "review_flags": [
+        "Explanation is only a generic placeholder, not an actual explanation."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 22,
+      "source_text": "Smallpox was declared eradicated from the world in (A) 1975 (B) 1980 (C) 1996 (D) 2008 Ans: (B) Solution: In 1980, the World Health Assembly declared smallpox eradicated (eliminated), and no cases of naturally occurring smallpox have happened since.",
+      "question": "Smallpox was declared eradicated from the world in",
+      "options": [
+        {
+          "label": "A",
+          "text": "1975"
+        },
+        {
+          "label": "B",
+          "text": "1980"
+        },
+        {
+          "label": "C",
+          "text": "1996"
+        },
+        {
+          "label": "D",
+          "text": "2008"
+        }
+      ],
+      "printed_answer": "B",
+      "explanation": "In 1980, the World Health Assembly declared smallpox eradicated (eliminated), and no cases of naturally occurring smallpox have happened since.",
+      "subject": "Science & Technology",
+      "topic": "General Science",
+      "subtopic": "Biology, physics and chemistry",
+      "review_flags": [],
+      "needs_review": false
+    },
+    {
+      "question_number": 23,
+      "source_text": "A bacteriophage is a (A) bacterium with a tail (B) newly formed bacterium (C) bacterium infecting virus (D) virus infecting bacterium Ans: (D) Solution: A bacteriophage is a type of virus that infects bacteria. In fact, the word “bacteriophage” literally means “bacteria eater,” because bacteriophages destroy their host cells.",
+      "question": "A bacteriophage is a",
+      "options": [
+        {
+          "label": "A",
+          "text": "bacterium with a tail"
+        },
+        {
+          "label": "B",
+          "text": "newly formed bacterium"
+        },
+        {
+          "label": "C",
+          "text": "bacterium infecting virus"
+        },
+        {
+          "label": "D",
+          "text": "virus infecting bacterium"
+        }
+      ],
+      "printed_answer": "D",
+      "explanation": "A bacteriophage is a type of virus that infects bacteria. In fact, the word “bacteriophage” literally means “bacteria eater,” because bacteriophages destroy their host cells.",
+      "subject": "Science & Technology",
+      "topic": "General Science",
+      "subtopic": "Biology, physics and chemistry",
+      "review_flags": [],
+      "needs_review": false
+    },
+    {
+      "question_number": 24,
+      "source_text": "To study meiosis in plants, the best part would be (A) shoot apex (B) root apex (C) anthers (D) leaf cells Ans: (C) Solution: Factual Question",
+      "question": "To study meiosis in plants, the best part would be",
+      "options": [
+        {
+          "label": "A",
+          "text": "shoot apex"
+        },
+        {
+          "label": "B",
+          "text": "root apex"
+        },
+        {
+          "label": "C",
+          "text": "anthers"
+        },
+        {
+          "label": "D",
+          "text": "leaf cells"
+        }
+      ],
+      "printed_answer": "C",
+      "explanation": "Factual Question",
+      "subject": "Science & Technology",
+      "topic": "General Science",
+      "subtopic": "Biology, physics and chemistry",
+      "review_flags": [
+        "Explanation is only a generic placeholder, not an actual explanation."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 25,
+      "source_text": "Sound waves travel fastest in (A) solids (B) liquids (C) gases (D) vacuum Ans: (A) Solution: The speed of sound in solid is 6000 m/s, sound moves 35 times faster in diamonds than in air. Note: Diamond is much denser than air.",
+      "question": "Sound waves travel fastest in",
+      "options": [
+        {
+          "label": "A",
+          "text": "solids"
+        },
+        {
+          "label": "B",
+          "text": "liquids"
+        },
+        {
+          "label": "C",
+          "text": "gases"
+        },
+        {
+          "label": "D",
+          "text": "vacuum"
+        }
+      ],
+      "printed_answer": "A",
+      "explanation": "The speed of sound in solid is 6000 m/s, sound moves 35 times faster in diamonds than in air. Note: Diamond is much denser than air.",
+      "subject": "Geography",
+      "topic": "Physical & Indian Geography",
+      "subtopic": "Landforms, locations and population",
+      "review_flags": [],
+      "needs_review": false
+    },
+    {
+      "question_number": 26,
+      "source_text": "In human eyes, the image of an object is formed on (A) Cornea (B) Iris (C) Pupil D) Retina Ans: (D) Solution: The images are formed on Retina. Additional Facts: Images formed in the eye are inverted but the brain inverts them to make them seem upright.",
+      "question": "In human eyes, the image of an object is formed on",
+      "options": [
+        {
+          "label": "A",
+          "text": "Cornea"
+        },
+        {
+          "label": "B",
+          "text": "Iris"
+        },
+        {
+          "label": "C",
+          "text": "Pupil"
+        },
+        {
+          "label": "D",
+          "text": "Retina"
+        }
+      ],
+      "printed_answer": "D",
+      "explanation": "The images are formed on Retina. Additional Facts: Images formed in the eye are inverted but the brain inverts them to make them seem upright.",
+      "subject": "Geography",
+      "topic": "Physical & Indian Geography",
+      "subtopic": "Landforms, locations and population",
+      "review_flags": [],
+      "needs_review": false
+    },
+    {
+      "question_number": 27,
+      "source_text": "The kidneys in human beings are a part of system for (A) nutrition (B) transportation (C) excretion (D) respiration Ans: (C) Solution: Factual Question",
+      "question": "The kidneys in human beings are a part of system for",
+      "options": [
+        {
+          "label": "A",
+          "text": "nutrition"
+        },
+        {
+          "label": "B",
+          "text": "transportation"
+        },
+        {
+          "label": "C",
+          "text": "excretion"
+        },
+        {
+          "label": "D",
+          "text": "respiration"
+        }
+      ],
+      "printed_answer": "C",
+      "explanation": "Factual Question",
+      "subject": "Geography",
+      "topic": "Physical & Indian Geography",
+      "subtopic": "Landforms, locations and population",
+      "review_flags": [
+        "Explanation is only a generic placeholder, not an actual explanation."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 28,
+      "source_text": "Which of the following diseases is caused by protozoa? (A) Cholera (B) Diphtheria (C) Pneumonia (D) Malaria Ans: (D) Solution: Malaria is caused by protozoa of the genus Plasmodium. Malaria is a mosquito-borne infectious disease.",
+      "question": "Which of the following diseases is caused by protozoa?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Cholera"
+        },
+        {
+          "label": "B",
+          "text": "Diphtheria"
+        },
+        {
+          "label": "C",
+          "text": "Pneumonia"
+        },
+        {
+          "label": "D",
+          "text": "Malaria"
+        }
+      ],
+      "printed_answer": "D",
+      "explanation": "Malaria is caused by protozoa of the genus Plasmodium. Malaria is a mosquito-borne infectious disease.",
+      "subject": "Geography",
+      "topic": "Physical & Indian Geography",
+      "subtopic": "Landforms, locations and population",
+      "review_flags": [],
+      "needs_review": false
+    },
+    {
+      "question_number": 29,
+      "source_text": "Transfer of heat by convection can take place in (A) solids and liquids (B) solids and vacuum (C) gases and liquids (D) vacuum and gases Ans: (C) Solution: Convection is the process by which heat is transferred by movement of a heated fluid such as air or water.",
+      "question": "Transfer of heat by convection can take place in",
+      "options": [
+        {
+          "label": "A",
+          "text": "solids and liquids"
+        },
+        {
+          "label": "B",
+          "text": "solids and vacuum"
+        },
+        {
+          "label": "C",
+          "text": "gases and liquids"
+        },
+        {
+          "label": "D",
+          "text": "vacuum and gases"
+        }
+      ],
+      "printed_answer": "C",
+      "explanation": "Convection is the process by which heat is transferred by movement of a heated fluid such as air or water.",
+      "subject": "Geography",
+      "topic": "Physical & Indian Geography",
+      "subtopic": "Landforms, locations and population",
+      "review_flags": [],
+      "needs_review": false
+    },
+    {
+      "question_number": 30,
+      "source_text": "Which of the following pairs is not correctly matched? (A) Vitamin A- Maculan (B) Vitemin B- Maculan (C) Vitemin C- James Lind (D) Vitamin D- Paul muller Ans: (D) Solution: Elmer McCollum discovered Vitamin A, Vitamin B and Vitamin D. James Lind discovered Vitamin C.",
+      "question": "Which of the following pairs is not correctly matched?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Vitamin A- Maculan"
+        },
+        {
+          "label": "B",
+          "text": "Vitemin B- Maculan"
+        },
+        {
+          "label": "C",
+          "text": "Vitemin C- James Lind"
+        },
+        {
+          "label": "D",
+          "text": "Vitamin D- Paul muller"
+        }
+      ],
+      "printed_answer": "D",
+      "explanation": "Elmer McCollum discovered Vitamin A, Vitamin B and Vitamin D. James Lind discovered Vitamin C.",
+      "subject": "Science & Technology",
+      "topic": "General Science",
+      "subtopic": "Biology, physics and chemistry",
+      "review_flags": [
+        "The printed answer is (D), but the explanation says Elmer McCollum discovered Vitamin D, so the answer/explanation appear inconsistent."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 31,
+      "source_text": "The power of a lens is measured in (A) dioptre (B) Aeon (C) Lumen (D) candela Ans: (A) Solution: Power of Lens is measured in Dioptre. The Numerical Value of Power of the Lens (Dioptre) is equal to (1/f), where f is the Focal Length of the Lens. Positive Value of Dioptre shows Convex Lens and the Negative Value shows the Cancave Lens. How will you calculate the Power of the Diode in case two Lences are joined together? 1/f = (1/f1) (1/f2), where f1 and f2 are the focal length.",
+      "question": "The power of a lens is measured in",
+      "options": [
+        {
+          "label": "A",
+          "text": "dioptre"
+        },
+        {
+          "label": "B",
+          "text": "Aeon"
+        },
+        {
+          "label": "C",
+          "text": "Lumen"
+        },
+        {
+          "label": "D",
+          "text": "candela"
+        }
+      ],
+      "printed_answer": "A",
+      "explanation": "Power of Lens is measured in Dioptre. The Numerical Value of Power of the Lens (Dioptre) is equal to (1/f), where f is the Focal Length of the Lens. Positive Value of Dioptre shows Convex Lens and the Negative Value shows the Cancave Lens. How will you calculate the Power of the Diode in case two Lences are joined together? 1/f = (1/f1) (1/f2), where f1 and f2 are the focal length.",
+      "subject": "Geography",
+      "topic": "Physical & Indian Geography",
+      "subtopic": "Landforms, locations and population",
+      "review_flags": [
+        "The explanation contains a malformed formula for combined lens power; verify and correct if this is later fact-checked."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 32,
+      "source_text": "Which of the following is also used as a lubricant? (A) Cuprite (B) Graphite (C) Haematite (D) Cryolite Ans: (B) Solution: Graphite has been used for many years as lubricant. The lubricating mechanism of graphite is thought to be mechanical in nature. Cuprite is an oxide mineral composed of copper(I) oxide Cu2O, and is a minor ore of copper. Hematite is a common iron oxide compound with the formula, Fe₂O₃ and is the ore of Iron.",
+      "question": "Which of the following is also used as a lubricant?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Cuprite"
+        },
+        {
+          "label": "B",
+          "text": "Graphite"
+        },
+        {
+          "label": "C",
+          "text": "Haematite"
+        },
+        {
+          "label": "D",
+          "text": "Cryolite"
+        }
+      ],
+      "printed_answer": "B",
+      "explanation": "Graphite has been used for many years as lubricant. The lubricating mechanism of graphite is thought to be mechanical in nature. Cuprite is an oxide mineral composed of copper(I) oxide Cu2O, and is a minor ore of copper. Hematite is a common iron oxide compound with the formula, Fe₂O₃ and is the ore of Iron.",
+      "subject": "Science & Technology",
+      "topic": "General Science",
+      "subtopic": "Biology, physics and chemistry",
+      "review_flags": [],
+      "needs_review": false
+    },
+    {
+      "question_number": 33,
+      "source_text": "The laughing gas is (A) Hydrogen peroxide (B) Nitrous oxide (C) Carbon monoxide (D) Sulpher dioxide Ans: (B) Solution: Nitrous oxide is commonly known as laughing gas.",
+      "question": "The laughing gas is",
+      "options": [
+        {
+          "label": "A",
+          "text": "Hydrogen peroxide"
+        },
+        {
+          "label": "B",
+          "text": "Nitrous oxide"
+        },
+        {
+          "label": "C",
+          "text": "Carbon monoxide"
+        },
+        {
+          "label": "D",
+          "text": "Sulpher dioxide"
+        }
+      ],
+      "printed_answer": "B",
+      "explanation": "Nitrous oxide is commonly known as laughing gas.",
+      "subject": "Science & Technology",
+      "topic": "General Science",
+      "subtopic": "Biology, physics and chemistry",
+      "review_flags": [],
+      "needs_review": false
+    },
+    {
+      "question_number": 34,
+      "source_text": "Lightning can even burn a tree because it contains termendous amount of (A) Heat energy (B) Electric energy (C) Chemical energy (D) Nuclear energy Ans: (B) Solution: Lightning is a naturally occurring electrostatic discharge during which two electrically charged regions, both in the atmosphere or with one on the ground, temporarily neutralize themselves, causing the instantaneous release of energy.",
+      "question": "Lightning can even burn a tree because it contains termendous amount of",
+      "options": [
+        {
+          "label": "A",
+          "text": "Heat energy"
+        },
+        {
+          "label": "B",
+          "text": "Electric energy"
+        },
+        {
+          "label": "C",
+          "text": "Chemical energy"
+        },
+        {
+          "label": "D",
+          "text": "Nuclear energy"
+        }
+      ],
+      "printed_answer": "B",
+      "explanation": "Lightning is a naturally occurring electrostatic discharge during which two electrically charged regions, both in the atmosphere or with one on the ground, temporarily neutralize themselves, causing the instantaneous release of energy.",
+      "subject": "Science & Technology",
+      "topic": "General Science",
+      "subtopic": "Biology, physics and chemistry",
+      "review_flags": [],
+      "needs_review": false
+    },
+    {
+      "question_number": 35,
+      "source_text": "Eight- year- old Tajamul Islam of J & K is related to which game ? (A) Squash (B) KickBoxing (C) Swimming (D) Football Ans: (B) Solution: Factual Question",
+      "question": "Eight- year- old Tajamul Islam of J & K is related to which game ?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Squash"
+        },
+        {
+          "label": "B",
+          "text": "KickBoxing"
+        },
+        {
+          "label": "C",
+          "text": "Swimming"
+        },
+        {
+          "label": "D",
+          "text": "Football"
+        }
+      ],
+      "printed_answer": "B",
+      "explanation": "Factual Question",
+      "subject": "Sports",
+      "topic": "Sports & Awards",
+      "subtopic": "Sports personalities, events and awards",
+      "review_flags": [
+        "Explanation is only a generic placeholder, not an actual explanation."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 36,
+      "source_text": "Who among the following was a Hockey Player of Madhya Pradesh ? (A) Sameer dad (B) Kriti Patel (C) Micheal nath (D) Amit banerjee Ans: (A) Solution: Factual Question",
+      "question": "Who among the following was a Hockey Player of Madhya Pradesh ?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Sameer dad"
+        },
+        {
+          "label": "B",
+          "text": "Kriti Patel"
+        },
+        {
+          "label": "C",
+          "text": "Micheal nath"
+        },
+        {
+          "label": "D",
+          "text": "Amit banerjee"
+        }
+      ],
+      "printed_answer": "A",
+      "explanation": "Factual Question",
+      "subject": "Sports",
+      "topic": "Sports & Awards",
+      "subtopic": "Sports personalities, events and awards",
+      "review_flags": [
+        "Explanation is only a generic placeholder, not an actual explanation."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 37,
+      "source_text": "The tradition of which game started with setting up of the parsee club ? (A) Hockey (B) FootBall (C) Cricket (D) Table tennis Ans: (C) Solution: Factual Question",
+      "question": "The tradition of which game started with setting up of the parsee club ?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Hockey"
+        },
+        {
+          "label": "B",
+          "text": "FootBall"
+        },
+        {
+          "label": "C",
+          "text": "Cricket"
+        },
+        {
+          "label": "D",
+          "text": "Table tennis"
+        }
+      ],
+      "printed_answer": "C",
+      "explanation": "Factual Question",
+      "subject": "Sports",
+      "topic": "Sports & Awards",
+      "subtopic": "Sports personalities, events and awards",
+      "review_flags": [
+        "Explanation is only a generic placeholder, not an actual explanation."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 38,
+      "source_text": "where is the Roop Singh Stadium Located? (A) Gwalior (B) Indore (C) Bhopal (D) Jabalpur Ans: (A) Solution: Factual Question",
+      "question": "where is the Roop Singh Stadium Located?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Gwalior"
+        },
+        {
+          "label": "B",
+          "text": "Indore"
+        },
+        {
+          "label": "C",
+          "text": "Bhopal"
+        },
+        {
+          "label": "D",
+          "text": "Jabalpur"
+        }
+      ],
+      "printed_answer": "A",
+      "explanation": "Factual Question",
+      "subject": "Sports",
+      "topic": "Sports & Awards",
+      "subtopic": "Sports personalities, events and awards",
+      "review_flags": [
+        "Explanation is only a generic placeholder, not an actual explanation."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 39,
+      "source_text": "With which game is Amitabh Vijayvargia associted ? (A) Hockey (B) Football (C) Cricket (D) None of these above Ans: (C) Solution: Factual Question",
+      "question": "With which game is Amitabh Vijayvargia associted ?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Hockey"
+        },
+        {
+          "label": "B",
+          "text": "Football"
+        },
+        {
+          "label": "C",
+          "text": "Cricket"
+        },
+        {
+          "label": "D",
+          "text": "None of these above"
+        }
+      ],
+      "printed_answer": "C",
+      "explanation": "Factual Question",
+      "subject": "Sports",
+      "topic": "Sports & Awards",
+      "subtopic": "Sports personalities, events and awards",
+      "review_flags": [
+        "Explanation is only a generic placeholder, not an actual explanation."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 40,
+      "source_text": "What is the name of the Cricket world cup played in 1987 ? (A) Reliance cup (B) Bensen and Hedges cup (C) Wiills cup (D) none of these above Ans: (A) Solution: Factual Question",
+      "question": "What is the name of the Cricket world cup played in 1987 ?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Reliance cup"
+        },
+        {
+          "label": "B",
+          "text": "Bensen and Hedges cup"
+        },
+        {
+          "label": "C",
+          "text": "Wiills cup"
+        },
+        {
+          "label": "D",
+          "text": "none of these above"
+        }
+      ],
+      "printed_answer": "A",
+      "explanation": "Factual Question",
+      "subject": "Sports",
+      "topic": "Sports & Awards",
+      "subtopic": "Sports personalities, events and awards",
+      "review_flags": [
+        "Explanation is only a generic placeholder, not an actual explanation."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 41,
+      "source_text": "In which year was Sachin Tendulkar given the Arjuna Award? (A) 1990 (B) 1994 (C) 1997 (D) 1999 Ans: (B) Solution: Factual Question",
+      "question": "In which year was Sachin Tendulkar given the Arjuna Award?",
+      "options": [
+        {
+          "label": "A",
+          "text": "1990"
+        },
+        {
+          "label": "B",
+          "text": "1994"
+        },
+        {
+          "label": "C",
+          "text": "1997"
+        },
+        {
+          "label": "D",
+          "text": "1999"
+        }
+      ],
+      "printed_answer": "B",
+      "explanation": "Factual Question",
+      "subject": "Sports",
+      "topic": "Sports & Awards",
+      "subtopic": "Sports personalities, events and awards",
+      "review_flags": [
+        "Explanation is only a generic placeholder, not an actual explanation."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 42,
+      "source_text": "In which year were the Commonwealth Games started ? (A) 1922 (B) 1925 (C) 1927 (D) 1930 Ans: (D) Solution: Factual Question",
+      "question": "In which year were the Commonwealth Games started ?",
+      "options": [
+        {
+          "label": "A",
+          "text": "1922"
+        },
+        {
+          "label": "B",
+          "text": "1925"
+        },
+        {
+          "label": "C",
+          "text": "1927"
+        },
+        {
+          "label": "D",
+          "text": "1930"
+        }
+      ],
+      "printed_answer": "D",
+      "explanation": "Factual Question",
+      "subject": "Sports",
+      "topic": "Sports & Awards",
+      "subtopic": "Sports personalities, events and awards",
+      "review_flags": [
+        "Explanation is only a generic placeholder, not an actual explanation."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 43,
+      "source_text": "Which of the following countries has never been a winner in the T-20 Cricket World Cup (Men)? (A) India (B) Australia (C) England (D) Pakistan S/SP/1/2017/1-A Ans: (B) Solution: Factual Question",
+      "question": "Which of the following countries has never been a winner in the T-20 Cricket World Cup (Men)?",
+      "options": [
+        {
+          "label": "A",
+          "text": "India"
+        },
+        {
+          "label": "B",
+          "text": "Australia"
+        },
+        {
+          "label": "C",
+          "text": "England"
+        },
+        {
+          "label": "D",
+          "text": "Pakistan S/SP/1/2017/1-A"
+        }
+      ],
+      "printed_answer": "B",
+      "explanation": "Factual Question",
+      "subject": "Sports",
+      "topic": "Sports & Awards",
+      "subtopic": "Sports personalities, events and awards",
+      "review_flags": [
+        "Explanation is only a generic placeholder, not an actual explanation.",
+        "Answer is time-sensitive to the paper's year; retain historical context when fact-checking."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 44,
+      "source_text": "In which of the following years were Olympics not held in London? (A) 2012 (B) 1968 (C) 1948 (D) 1908 Ans: (B) Solution: Factual Question",
+      "question": "In which of the following years were Olympics not held in London?",
+      "options": [
+        {
+          "label": "A",
+          "text": "2012"
+        },
+        {
+          "label": "B",
+          "text": "1968"
+        },
+        {
+          "label": "C",
+          "text": "1948"
+        },
+        {
+          "label": "D",
+          "text": "1908"
+        }
+      ],
+      "printed_answer": "B",
+      "explanation": "Factual Question",
+      "subject": "Sports",
+      "topic": "Sports & Awards",
+      "subtopic": "Sports personalities, events and awards",
+      "review_flags": [
+        "Explanation is only a generic placeholder, not an actual explanation."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 45,
+      "source_text": "The service of the Internet that provides audio' and video conversation, is called (A) chat (B) e-mail (C) video conferencing (D) video chat Ans: (C) Solution: Factual Question",
+      "question": "The service of the Internet that provides audio' and video conversation, is called",
+      "options": [
+        {
+          "label": "A",
+          "text": "chat"
+        },
+        {
+          "label": "B",
+          "text": "e-mail"
+        },
+        {
+          "label": "C",
+          "text": "video conferencing"
+        },
+        {
+          "label": "D",
+          "text": "video chat"
+        }
+      ],
+      "printed_answer": "C",
+      "explanation": "Factual Question",
+      "subject": "Science & Technology",
+      "topic": "Computer Awareness",
+      "subtopic": "Internet, networking and cybersecurity",
+      "review_flags": [
+        "Explanation is only a generic placeholder, not an actual explanation."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 46,
+      "source_text": "Which of the following is not a Web browser? (A) Opera (B) Google Apps (C) Vivaldi (D) Mozilla Firefox Ans: (B) Solution: Factual Question",
+      "question": "Which of the following is not a Web browser?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Opera"
+        },
+        {
+          "label": "B",
+          "text": "Google Apps"
+        },
+        {
+          "label": "C",
+          "text": "Vivaldi"
+        },
+        {
+          "label": "D",
+          "text": "Mozilla Firefox"
+        }
+      ],
+      "printed_answer": "B",
+      "explanation": "Factual Question",
+      "subject": "Science & Technology",
+      "topic": "Computer Awareness",
+      "subtopic": "Internet, networking and cybersecurity",
+      "review_flags": [
+        "Explanation is only a generic placeholder, not an actual explanation."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 47,
+      "source_text": "In the context of computer security, crackers are also known as (A) black hat hackers (B) white hat hackers (C) elite hackers (D) script kiddie Ans: (A) Solution: Factual Question",
+      "question": "In the context of computer security, crackers are also known as",
+      "options": [
+        {
+          "label": "A",
+          "text": "black hat hackers"
+        },
+        {
+          "label": "B",
+          "text": "white hat hackers"
+        },
+        {
+          "label": "C",
+          "text": "elite hackers"
+        },
+        {
+          "label": "D",
+          "text": "script kiddie"
+        }
+      ],
+      "printed_answer": "A",
+      "explanation": "Factual Question",
+      "subject": "Science & Technology",
+      "topic": "Computer Awareness",
+      "subtopic": "Internet, networking and cybersecurity",
+      "review_flags": [
+        "Explanation is only a generic placeholder, not an actual explanation."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 48,
+      "source_text": "DuckDuckGo is a (A) search engine (B) Web browser (C) virus (D) news Web site Ans: (A) Solution: Factual Question",
+      "question": "DuckDuckGo is a",
+      "options": [
+        {
+          "label": "A",
+          "text": "search engine"
+        },
+        {
+          "label": "B",
+          "text": "Web browser"
+        },
+        {
+          "label": "C",
+          "text": "virus"
+        },
+        {
+          "label": "D",
+          "text": "news Web site"
+        }
+      ],
+      "printed_answer": "A",
+      "explanation": "Factual Question",
+      "subject": "Science & Technology",
+      "topic": "Computer Awareness",
+      "subtopic": "Internet, networking and cybersecurity",
+      "review_flags": [
+        "Explanation is only a generic placeholder, not an actual explanation."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 49,
+      "source_text": "Ethernet is an example of (A) MAN (H) LAN (C) WAN (D) Wi-Fi Ans: (B) Solution: Factual Question",
+      "question": "Ethernet is an example of",
+      "options": [
+        {
+          "label": "A",
+          "text": "MAN"
+        },
+        {
+          "label": "B",
+          "text": "LAN (source label appears as H)"
+        },
+        {
+          "label": "C",
+          "text": "WAN"
+        },
+        {
+          "label": "D",
+          "text": "Wi-Fi"
+        }
+      ],
+      "printed_answer": "B",
+      "explanation": "Factual Question",
+      "subject": "Science & Technology",
+      "topic": "Computer Awareness",
+      "subtopic": "Internet, networking and cybersecurity",
+      "review_flags": [
+        "Explanation is only a generic placeholder, not an actual explanation.",
+        "Option B is printed with label '(H)' in the source; normalized to B for structured representation and flagged."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 50,
+      "source_text": "A modem converts (A) analog signals into digital signals (B) digital signals into analog signals (C) Both (A) and (B) (D) None of the above Ans: (C) Solution: Factual Question",
+      "question": "A modem converts",
+      "options": [
+        {
+          "label": "A",
+          "text": "analog signals into digital signals"
+        },
+        {
+          "label": "B",
+          "text": "digital signals into analog signals"
+        },
+        {
+          "label": "C",
+          "text": "Both (A) and (B)"
+        },
+        {
+          "label": "D",
+          "text": "None of the above"
+        }
+      ],
+      "printed_answer": "C",
+      "explanation": "Factual Question",
+      "subject": "Science & Technology",
+      "topic": "Computer Awareness",
+      "subtopic": "Internet, networking and cybersecurity",
+      "review_flags": [
+        "Explanation is only a generic placeholder, not an actual explanation."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 51,
+      "source_text": "Which of the following Acts introduced the Principle of Constitutional Autocracy'? (A) The Indian Councils Act of 1909 (B) The Government of India Act of 1919 (C) The Government of India Act of 1935 [D) The Indian Independence Act of 1947 Ans: (C) Solution: The Government of India Act, 1935 paved the way for the formation of Indian Federation with considerable degree of autonomy to the states.",
+      "question": "Which of the following Acts introduced the Principle of Constitutional Autocracy'?",
+      "options": [
+        {
+          "label": "A",
+          "text": "The Indian Councils Act of 1909"
+        },
+        {
+          "label": "B",
+          "text": "The Government of India Act of 1919"
+        },
+        {
+          "label": "C",
+          "text": "The Government of India Act of 1935 ["
+        },
+        {
+          "label": "D",
+          "text": "The Indian Independence Act of 1947"
+        }
+      ],
+      "printed_answer": "C",
+      "explanation": "The Government of India Act, 1935 paved the way for the formation of Indian Federation with considerable degree of autonomy to the states.",
+      "subject": "History",
+      "topic": "Indian History",
+      "subtopic": "Ancient/Medieval/Modern history",
+      "review_flags": [
+        "The explanation may not directly explain the phrase 'constitutional autocracy'; verify the terminology."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 52,
+      "source_text": "Who is the inventor of www? (A) Bill Gates (B) Tim Berners Lee (C) Timothy Bill (D) Ray Tomlinson Ans: (B) Solution: Factual Question",
+      "question": "Who is the inventor of www?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Bill Gates"
+        },
+        {
+          "label": "B",
+          "text": "Tim Berners Lee"
+        },
+        {
+          "label": "C",
+          "text": "Timothy Bill"
+        },
+        {
+          "label": "D",
+          "text": "Ray Tomlinson"
+        }
+      ],
+      "printed_answer": "B",
+      "explanation": "Factual Question",
+      "subject": "Science & Technology",
+      "topic": "Computer Awareness",
+      "subtopic": "Internet, networking and cybersecurity",
+      "review_flags": [
+        "Explanation is only a generic placeholder, not an actual explanation."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 53,
+      "source_text": "A batsman hits a cricket ball which then rolls on a level ground. After covering a short distance, the ball comes to rest. The ball slows to a stop because (A) the batsman did not hit the ball hard enough (B) velocity is proportional to the force exerted on the ball (C) there is a force on the ball opposing the motion (D) there is no unbalanced force on the ball, so the ball would try to come to rest Ans: (C) Solution: Factual Question",
+      "question": "A batsman hits a cricket ball which then rolls on a level ground. After covering a short distance, the ball comes to rest. The ball slows to a stop because",
+      "options": [
+        {
+          "label": "A",
+          "text": "the batsman did not hit the ball hard enough"
+        },
+        {
+          "label": "B",
+          "text": "velocity is proportional to the force exerted on the ball"
+        },
+        {
+          "label": "C",
+          "text": "there is a force on the ball opposing the motion"
+        },
+        {
+          "label": "D",
+          "text": "there is no unbalanced force on the ball, so the ball would try to come to rest"
+        }
+      ],
+      "printed_answer": "C",
+      "explanation": "Factual Question",
+      "subject": "Science & Technology",
+      "topic": "General Science",
+      "subtopic": "Biology, physics and chemistry",
+      "review_flags": [
+        "Explanation is only a generic placeholder, not an actual explanation."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 54,
+      "source_text": "Which of the following rulers got the Jantar Mahal of Mandu constructed? (A) Mahmud Shah Khilji (B) Alauddin Khilji (C) Bhoj Parmar (D) Hoshang Shah [P.T.O. Ans: (A) Solution: Factual Question",
+      "question": "Which of the following rulers got the Jantar Mahal of Mandu constructed?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Mahmud Shah Khilji"
+        },
+        {
+          "label": "B",
+          "text": "Alauddin Khilji"
+        },
+        {
+          "label": "C",
+          "text": "Bhoj Parmar"
+        },
+        {
+          "label": "D",
+          "text": "Hoshang Shah [P.T.O."
+        }
+      ],
+      "printed_answer": "A",
+      "explanation": "Factual Question",
+      "subject": "History",
+      "topic": "Indian History",
+      "subtopic": "Ancient/Medieval/Modern history",
+      "review_flags": [
+        "Explanation is only a generic placeholder, not an actual explanation."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 55,
+      "source_text": "Ain-ul-Mulle Multani did not serve under which of the following rulers? (A) Alauddin Khilji (B) Muhammad bin Tughlaq (C) Firoz Tughlaq (D) Iltutmish Ans: (D) Solution: Factual Question",
+      "question": "Ain-ul-Mulle Multani did not serve under which of the following rulers?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Alauddin Khilji"
+        },
+        {
+          "label": "B",
+          "text": "Muhammad bin Tughlaq"
+        },
+        {
+          "label": "C",
+          "text": "Firoz Tughlaq"
+        },
+        {
+          "label": "D",
+          "text": "Iltutmish"
+        }
+      ],
+      "printed_answer": "D",
+      "explanation": "Factual Question",
+      "subject": "General Knowledge",
+      "topic": "Miscellaneous GK",
+      "subtopic": "Needs subject review",
+      "review_flags": [
+        "Explanation is only a generic placeholder, not an actual explanation."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 56,
+      "source_text": "Which of the following pairs is not correctly matched? (A) The President of Switzerland Johann Schneider-Ammann (B) The President of Mexico Enrique Peña Nieto (C) The President of Namibia Hage Geingob (D) The President of Côte d'Ivoire Angela Merkel Ans: (D) Solution: Factual Question",
+      "question": "Which of the following pairs is not correctly matched?",
+      "options": [
+        {
+          "label": "A",
+          "text": "The President of Switzerland Johann Schneider-Ammann"
+        },
+        {
+          "label": "B",
+          "text": "The President of Mexico Enrique Peña Nieto"
+        },
+        {
+          "label": "C",
+          "text": "The President of Namibia Hage Geingob"
+        },
+        {
+          "label": "D",
+          "text": "The President of Côte d'Ivoire Angela Merkel"
+        }
+      ],
+      "printed_answer": "D",
+      "explanation": "Factual Question",
+      "subject": "Economy & Current Affairs",
+      "topic": "Economy / National and International Current Affairs",
+      "subtopic": "Institutions, appointments and events",
+      "review_flags": [
+        "Explanation is only a generic placeholder, not an actual explanation.",
+        "The answer appears consistent with the options, but source is a generic 'Factual Question'; verify current/history framing."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 57,
+      "source_text": "Which one of the following mountain ranges is spread over only one State in India? (A) Aravali (B) Satpura (C) Ajanta (D) Sahyadri Ans: (C) Solution: Factual Question",
+      "question": "Which one of the following mountain ranges is spread over only one State in India?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Aravali"
+        },
+        {
+          "label": "B",
+          "text": "Satpura"
+        },
+        {
+          "label": "C",
+          "text": "Ajanta"
+        },
+        {
+          "label": "D",
+          "text": "Sahyadri"
+        }
+      ],
+      "printed_answer": "C",
+      "explanation": "Factual Question",
+      "subject": "Geography",
+      "topic": "Physical & Indian Geography",
+      "subtopic": "Landforms, locations and population",
+      "review_flags": [
+        "Explanation is only a generic placeholder, not an actual explanation."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 58,
+      "source_text": "Who among the following was the first leader to organize labour movement in India? (A) B. P. Walia (B) Lala Lajpat Rai (C) N. M. Lolchande (D) N. G. Ranga Ans: (C) Solution: Factual Question",
+      "question": "Who among the following was the first leader to organize labour movement in India?",
+      "options": [
+        {
+          "label": "A",
+          "text": "B. P. Walia"
+        },
+        {
+          "label": "B",
+          "text": "Lala Lajpat Rai"
+        },
+        {
+          "label": "C",
+          "text": "N. M. Lolchande"
+        },
+        {
+          "label": "D",
+          "text": "N. G. Ranga"
+        }
+      ],
+      "printed_answer": "C",
+      "explanation": "Factual Question",
+      "subject": "General Knowledge",
+      "topic": "Miscellaneous GK",
+      "subtopic": "Needs subject review",
+      "review_flags": [
+        "Explanation is only a generic placeholder, not an actual explanation."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 59,
+      "source_text": "The tenure of the chairman of the National Human Rights Commission is (A) 3 years (B) 4 years (C) 5 years (D) 6 years Ans: (C) Solution: Factual Question",
+      "question": "The tenure of the chairman of the National Human Rights Commission is",
+      "options": [
+        {
+          "label": "A",
+          "text": "3 years"
+        },
+        {
+          "label": "B",
+          "text": "4 years"
+        },
+        {
+          "label": "C",
+          "text": "5 years"
+        },
+        {
+          "label": "D",
+          "text": "6 years"
+        }
+      ],
+      "printed_answer": "C",
+      "explanation": "Factual Question",
+      "subject": "Polity & Governance",
+      "topic": "Indian Constitution and Governance",
+      "subtopic": "Constitution, laws and institutions",
+      "review_flags": [
+        "Explanation is only a generic placeholder, not an actual explanation.",
+        "Tenure rules may have changed over time; verify against the law as it stood for the exam year."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 60,
+      "source_text": "Joe Root is associated with which game? (A) Cricket (B) Chess (C) Polo (D) Golf Ans: (A) Solution: Factual Question",
+      "question": "Joe Root is associated with which game?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Cricket"
+        },
+        {
+          "label": "B",
+          "text": "Chess"
+        },
+        {
+          "label": "C",
+          "text": "Polo"
+        },
+        {
+          "label": "D",
+          "text": "Golf"
+        }
+      ],
+      "printed_answer": "A",
+      "explanation": "Factual Question",
+      "subject": "Sports",
+      "topic": "Sports & Awards",
+      "subtopic": "Sports personalities, events and awards",
+      "review_flags": [
+        "Explanation is only a generic placeholder, not an actual explanation."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 61,
+      "source_text": "Prime Minister Narendra Modi met Jacob Zuma in July 2016, who is the (A) President of Namibia (B) President of Qatar (C) President of Mexico (D) President of South Africa Ans: (D) Solution: Factual Question",
+      "question": "Prime Minister Narendra Modi met Jacob Zuma in July 2016, who is the",
+      "options": [
+        {
+          "label": "A",
+          "text": "President of Namibia"
+        },
+        {
+          "label": "B",
+          "text": "President of Qatar"
+        },
+        {
+          "label": "C",
+          "text": "President of Mexico"
+        },
+        {
+          "label": "D",
+          "text": "President of South Africa"
+        }
+      ],
+      "printed_answer": "D",
+      "explanation": "Factual Question",
+      "subject": "Economy & Current Affairs",
+      "topic": "Economy / National and International Current Affairs",
+      "subtopic": "Institutions, appointments and events",
+      "review_flags": [
+        "Explanation is only a generic placeholder, not an actual explanation."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 62,
+      "source_text": "In which year was the Mohun Bagan Club of football founded? (A) 1850 (B) 1879 (C) 1889 (D) 1901 Ans: (C) Solution: Factual Question",
+      "question": "In which year was the Mohun Bagan Club of football founded?",
+      "options": [
+        {
+          "label": "A",
+          "text": "1850"
+        },
+        {
+          "label": "B",
+          "text": "1879"
+        },
+        {
+          "label": "C",
+          "text": "1889"
+        },
+        {
+          "label": "D",
+          "text": "1901"
+        }
+      ],
+      "printed_answer": "C",
+      "explanation": "Factual Question",
+      "subject": "Sports",
+      "topic": "Sports & Awards",
+      "subtopic": "Sports personalities, events and awards",
+      "review_flags": [
+        "Explanation is only a generic placeholder, not an actual explanation."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 63,
+      "source_text": "In which of the following countries, a woman became the President for the first time in May 2016? {A} Taiwan (B) Myanmar (C) Angola (D) Namibia Ans: (A) Solution: Factual Question",
+      "question": "In which of the following countries, a woman became the President for the first time in May 2016?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Taiwan"
+        },
+        {
+          "label": "B",
+          "text": "Myanmar"
+        },
+        {
+          "label": "C",
+          "text": "Angola"
+        },
+        {
+          "label": "D",
+          "text": "Namibia"
+        }
+      ],
+      "printed_answer": "A",
+      "explanation": "Factual Question",
+      "subject": "Economy & Current Affairs",
+      "topic": "Economy / National and International Current Affairs",
+      "subtopic": "Institutions, appointments and events",
+      "review_flags": [
+        "Explanation is only a generic placeholder, not an actual explanation.",
+        "Question wording 'a woman became the President for the first time' is ambiguous; specify the country/context and verify."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 64,
+      "source_text": "Who won the Men's Singles Title of French Open, 2016? (A) Ivan Dodig (B) Novak Djokovic (C) Andy Murray (D) Roger Federer Ans: (B) Solution: Factual Question",
+      "question": "Who won the Men's Singles Title of French Open, 2016?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Ivan Dodig"
+        },
+        {
+          "label": "B",
+          "text": "Novak Djokovic"
+        },
+        {
+          "label": "C",
+          "text": "Andy Murray"
+        },
+        {
+          "label": "D",
+          "text": "Roger Federer"
+        }
+      ],
+      "printed_answer": "B",
+      "explanation": "Factual Question",
+      "subject": "Sports",
+      "topic": "Sports & Awards",
+      "subtopic": "Sports personalities, events and awards",
+      "review_flags": [
+        "Explanation is only a generic placeholder, not an actual explanation."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 65,
+      "source_text": "Manohar Aich was called 'Pocket Hercules'. He was a/an (A) boxer (B) athlete (C) swimmer (D) bodybuilder Ans: (D) Solution: Factual Question",
+      "question": "Manohar Aich was called 'Pocket Hercules'. He was a/an",
+      "options": [
+        {
+          "label": "A",
+          "text": "boxer"
+        },
+        {
+          "label": "B",
+          "text": "athlete"
+        },
+        {
+          "label": "C",
+          "text": "swimmer"
+        },
+        {
+          "label": "D",
+          "text": "bodybuilder"
+        }
+      ],
+      "printed_answer": "D",
+      "explanation": "Factual Question",
+      "subject": "Sports",
+      "topic": "Sports & Awards",
+      "subtopic": "Sports personalities, events and awards",
+      "review_flags": [
+        "Explanation is only a generic placeholder, not an actual explanation."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 66,
+      "source_text": "What are Ranjit Sub-1¹ and Bahadur Sub-17 (A) Two fighter planes (B) Two submarines (C) Two new varieties of paddy (D) Two new varieties of wheat Ans: (C) Solution: Factual Question",
+      "question": "What are Ranjit Sub-1¹ and Bahadur Sub-17",
+      "options": [
+        {
+          "label": "A",
+          "text": "Two fighter planes"
+        },
+        {
+          "label": "B",
+          "text": "Two submarines"
+        },
+        {
+          "label": "C",
+          "text": "Two new varieties of paddy"
+        },
+        {
+          "label": "D",
+          "text": "Two new varieties of wheat"
+        }
+      ],
+      "printed_answer": "C",
+      "explanation": "Factual Question",
+      "subject": "General Knowledge",
+      "topic": "Miscellaneous GK",
+      "subtopic": "Needs subject review",
+      "review_flags": [
+        "Explanation is only a generic placeholder, not an actual explanation."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 67,
+      "source_text": "In May 2016, Rodrigo Duterte was elected the President of which country? (A) Thailand (B) Switzerland (C) Mexico (D) Philippines Ans: (D) Solution: Factual Question",
+      "question": "In May 2016, Rodrigo Duterte was elected the President of which country?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Thailand"
+        },
+        {
+          "label": "B",
+          "text": "Switzerland"
+        },
+        {
+          "label": "C",
+          "text": "Mexico"
+        },
+        {
+          "label": "D",
+          "text": "Philippines"
+        }
+      ],
+      "printed_answer": "D",
+      "explanation": "Factual Question",
+      "subject": "Economy & Current Affairs",
+      "topic": "Economy / National and International Current Affairs",
+      "subtopic": "Institutions, appointments and events",
+      "review_flags": [
+        "Explanation is only a generic placeholder, not an actual explanation."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 68,
+      "source_text": "Who administered the oath of the Chief Minister of West Bengal to Mamata Banerjee on 27 May, 2016? (A) Ram Naik (B) Keshari Nath Tripathi (C) T. S. Thakur (D) P. Sathasivam Ans: (B) Solution: Factual Question",
+      "question": "Who administered the oath of the Chief Minister of West Bengal to Mamata Banerjee on 27 May, 2016?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Ram Naik"
+        },
+        {
+          "label": "B",
+          "text": "Keshari Nath Tripathi"
+        },
+        {
+          "label": "C",
+          "text": "T. S. Thakur"
+        },
+        {
+          "label": "D",
+          "text": "P. Sathasivam"
+        }
+      ],
+      "printed_answer": "B",
+      "explanation": "Factual Question",
+      "subject": "General Knowledge",
+      "topic": "Miscellaneous GK",
+      "subtopic": "Needs subject review",
+      "review_flags": [
+        "Explanation is only a generic placeholder, not an actual explanation."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 69,
+      "source_text": "The first Indian State to start State Data Centre (SDC) is (A) Telangana (B) Rajasthan (C) Chhattisgarh (D) Himachal Pradesh Ans: (D) Solution: Factual Question",
+      "question": "The first Indian State to start State Data Centre (SDC) is",
+      "options": [
+        {
+          "label": "A",
+          "text": "Telangana"
+        },
+        {
+          "label": "B",
+          "text": "Rajasthan"
+        },
+        {
+          "label": "C",
+          "text": "Chhattisgarh"
+        },
+        {
+          "label": "D",
+          "text": "Himachal Pradesh"
+        }
+      ],
+      "printed_answer": "D",
+      "explanation": "Factual Question",
+      "subject": "Economy & Current Affairs",
+      "topic": "Economy / National and International Current Affairs",
+      "subtopic": "Institutions, appointments and events",
+      "review_flags": [
+        "Explanation is only a generic placeholder, not an actual explanation.",
+        "Claim that Himachal Pradesh was first to start an SDC needs independent verification."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 70,
+      "source_text": "In which of the following States, Bharatiya Janata Party formed Government for the first time in 2016? (A) Assam (B) Rajasthan (C) Kerala (D) Odisha Ans: (A) Solution: Factual Question",
+      "question": "In which of the following States, Bharatiya Janata Party formed Government for the first time in 2016?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Assam"
+        },
+        {
+          "label": "B",
+          "text": "Rajasthan"
+        },
+        {
+          "label": "C",
+          "text": "Kerala"
+        },
+        {
+          "label": "D",
+          "text": "Odisha"
+        }
+      ],
+      "printed_answer": "A",
+      "explanation": "Factual Question",
+      "subject": "General Knowledge",
+      "topic": "Miscellaneous GK",
+      "subtopic": "Needs subject review",
+      "review_flags": [
+        "Explanation is only a generic placeholder, not an actual explanation."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 71,
+      "source_text": "Bhawani Prasad Mishra's birth place was (A) Sagar (B) Ujjain (C) Indore (D) Hoshangabad Ans: (D) Solution: Factual Question",
+      "question": "Bhawani Prasad Mishra's birth place was",
+      "options": [
+        {
+          "label": "A",
+          "text": "Sagar"
+        },
+        {
+          "label": "B",
+          "text": "Ujjain"
+        },
+        {
+          "label": "C",
+          "text": "Indore"
+        },
+        {
+          "label": "D",
+          "text": "Hoshangabad"
+        }
+      ],
+      "printed_answer": "D",
+      "explanation": "Factual Question",
+      "subject": "Madhya Pradesh",
+      "topic": "MP Geography, History, Culture & Economy",
+      "subtopic": "State-specific facts",
+      "review_flags": [
+        "Explanation is only a generic placeholder, not an actual explanation."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 72,
+      "source_text": "Sunil Lanba is (A) the author of the novel, Masiha (B) a famous Hindi novelist (C) the 23rd Naval Chief of India (D) the Director General of Border Security Force Ans: (C) Solution: Factual Question",
+      "question": "Sunil Lanba is",
+      "options": [
+        {
+          "label": "A",
+          "text": "the author of the novel, Masiha"
+        },
+        {
+          "label": "B",
+          "text": "a famous Hindi novelist"
+        },
+        {
+          "label": "C",
+          "text": "the 23rd Naval Chief of India"
+        },
+        {
+          "label": "D",
+          "text": "the Director General of Border Security Force"
+        }
+      ],
+      "printed_answer": "C",
+      "explanation": "Factual Question",
+      "subject": "Art & Culture",
+      "topic": "Indian Art, Literature & Culture",
+      "subtopic": "Books, personalities and cultural heritage",
+      "review_flags": [
+        "Explanation is only a generic placeholder, not an actual explanation."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 73,
+      "source_text": "Who among the following was elected as the Chairman of world's biggest commercial organization the International Chamber of Commerce' in June 2016? (A) Mukesh Ambani (B) Adi Godrej (C) Lakshmi Narain Mittal (D) Sunil Bharti Mittal Ans: (D) Solution: Factual Question",
+      "question": "Who among the following was elected as the Chairman of world's biggest commercial organization the International Chamber of Commerce' in June 2016?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Mukesh Ambani"
+        },
+        {
+          "label": "B",
+          "text": "Adi Godrej"
+        },
+        {
+          "label": "C",
+          "text": "Lakshmi Narain Mittal"
+        },
+        {
+          "label": "D",
+          "text": "Sunil Bharti Mittal"
+        }
+      ],
+      "printed_answer": "D",
+      "explanation": "Factual Question",
+      "subject": "Economy & Current Affairs",
+      "topic": "Economy / National and International Current Affairs",
+      "subtopic": "Institutions, appointments and events",
+      "review_flags": [
+        "Explanation is only a generic placeholder, not an actual explanation."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 74,
+      "source_text": "When was the State Bank of India established ? (A) 1954 (B) 1955 (C) 1956 (D) 1957 Ans: (B) Solution: Factual Question",
+      "question": "When was the State Bank of India established ?",
+      "options": [
+        {
+          "label": "A",
+          "text": "1954"
+        },
+        {
+          "label": "B",
+          "text": "1955"
+        },
+        {
+          "label": "C",
+          "text": "1956"
+        },
+        {
+          "label": "D",
+          "text": "1957"
+        }
+      ],
+      "printed_answer": "B",
+      "explanation": "Factual Question",
+      "subject": "General Knowledge",
+      "topic": "Miscellaneous GK",
+      "subtopic": "Needs subject review",
+      "review_flags": [
+        "Explanation is only a generic placeholder, not an actual explanation.",
+        "Historical establishment year should be verified against official SBI history."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 75,
+      "source_text": "In which post was the former Police Commissioner of Delhi, B. S. Bassi appointed in May 2016? (A) The Chairman of Union Public Service Commission (B) The Governor of Meghalaya (C) The Director General of Border Security Force (D) The Member of Union Public Service Commission Ans: (D)",
+      "question": "In which post was the former Police Commissioner of Delhi, B. S. Bassi appointed in May 2016?",
+      "options": [
+        {
+          "label": "A",
+          "text": "The Chairman of Union Public Service Commission"
+        },
+        {
+          "label": "B",
+          "text": "The Governor of Meghalaya"
+        },
+        {
+          "label": "C",
+          "text": "The Director General of Border Security Force"
+        },
+        {
+          "label": "D",
+          "text": "The Member of Union Public Service Commission"
+        }
+      ],
+      "printed_answer": "D",
+      "explanation": "",
+      "subject": "Economy & Current Affairs",
+      "topic": "Economy / National and International Current Affairs",
+      "subtopic": "Institutions, appointments and events",
+      "review_flags": [
+        "Missing/empty explanation.",
+        "No explanation supplied; verify the appointment and date if needed."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 76,
+      "source_text": "Which of the following countries did President Pranab Mukherjee visit in May 2016? (A) Japan (B) Myanmar (C) China (D) France Ans: (C) Solution: Factual Question",
+      "question": "Which of the following countries did President Pranab Mukherjee visit in May 2016?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Japan"
+        },
+        {
+          "label": "B",
+          "text": "Myanmar"
+        },
+        {
+          "label": "C",
+          "text": "China"
+        },
+        {
+          "label": "D",
+          "text": "France"
+        }
+      ],
+      "printed_answer": "C",
+      "explanation": "Factual Question",
+      "subject": "Economy & Current Affairs",
+      "topic": "Economy / National and International Current Affairs",
+      "subtopic": "Institutions, appointments and events",
+      "review_flags": [
+        "Explanation is only a generic placeholder, not an actual explanation."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 77,
+      "source_text": "Sania Mirza's mixed doubles partner Ivan Dodig in from which country? (A) Sweden (B) Switzerland (C) Russin (D) Croatia Ans: (D) Solution: Factual Question",
+      "question": "Sania Mirza's mixed doubles partner Ivan Dodig in from which country?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Sweden"
+        },
+        {
+          "label": "B",
+          "text": "Switzerland"
+        },
+        {
+          "label": "C",
+          "text": "Russin"
+        },
+        {
+          "label": "D",
+          "text": "Croatia"
+        }
+      ],
+      "printed_answer": "D",
+      "explanation": "Factual Question",
+      "subject": "Sports",
+      "topic": "Sports & Awards",
+      "subtopic": "Sports personalities, events and awards",
+      "review_flags": [
+        "Explanation is only a generic placeholder, not an actual explanation."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 78,
+      "source_text": "What is the name of that book of Suhel Seth which was released in London in June 2016? (A) Mantras for Success (B) Dark Horse (C) Wings of Fire (D) Masiha Ans: (A) Solution: Factual Question",
+      "question": "What is the name of that book of Suhel Seth which was released in London in June 2016?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Mantras for Success"
+        },
+        {
+          "label": "B",
+          "text": "Dark Horse"
+        },
+        {
+          "label": "C",
+          "text": "Wings of Fire"
+        },
+        {
+          "label": "D",
+          "text": "Masiha"
+        }
+      ],
+      "printed_answer": "A",
+      "explanation": "Factual Question",
+      "subject": "Economy & Current Affairs",
+      "topic": "Economy / National and International Current Affairs",
+      "subtopic": "Institutions, appointments and events",
+      "review_flags": [
+        "Explanation is only a generic placeholder, not an actual explanation."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 79,
+      "source_text": "What was the name of the sculpture stolen from the Khajuraho Temple Which was handed over by the Prime Minister of canada to the indian Prime Minister Narendra Modi ? (A) Golden Parrot (B) Singing Parrot (C) Talkative Parrot (D) Parrot Lady Ans: (D) Solution: Factual Question",
+      "question": "What was the name of the sculpture stolen from the Khajuraho Temple Which was handed over by the Prime Minister of canada to the indian Prime Minister Narendra Modi ?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Golden Parrot"
+        },
+        {
+          "label": "B",
+          "text": "Singing Parrot"
+        },
+        {
+          "label": "C",
+          "text": "Talkative Parrot"
+        },
+        {
+          "label": "D",
+          "text": "Parrot Lady"
+        }
+      ],
+      "printed_answer": "D",
+      "explanation": "Factual Question",
+      "subject": "Economy & Current Affairs",
+      "topic": "Economy / National and International Current Affairs",
+      "subtopic": "Institutions, appointments and events",
+      "review_flags": [
+        "Explanation is only a generic placeholder, not an actual explanation."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 80,
+      "source_text": "Which one of the following books in not written by Kalidasa? (A) Meghadutam (B) Kumarasambhavam (C) Uttararamacharitam (D) Ritusamharam Ans: (C) Solution: Factual Question",
+      "question": "Which one of the following books in not written by Kalidasa?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Meghadutam"
+        },
+        {
+          "label": "B",
+          "text": "Kumarasambhavam"
+        },
+        {
+          "label": "C",
+          "text": "Uttararamacharitam"
+        },
+        {
+          "label": "D",
+          "text": "Ritusamharam"
+        }
+      ],
+      "printed_answer": "C",
+      "explanation": "Factual Question",
+      "subject": "History",
+      "topic": "Indian History",
+      "subtopic": "Ancient/Medieval/Modern history",
+      "review_flags": [
+        "Explanation is only a generic placeholder, not an actual explanation."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 81,
+      "source_text": "Where in the oldest music college. of Madhya Pradesh, Madhav Sangeet College located? (A) Raipur (B) Indore (C) Bhopal (D) Gwalior Ans: (D) Solution: Factual Question",
+      "question": "Where in the oldest music college. of Madhya Pradesh, Madhav Sangeet College located?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Raipur"
+        },
+        {
+          "label": "B",
+          "text": "Indore"
+        },
+        {
+          "label": "C",
+          "text": "Bhopal"
+        },
+        {
+          "label": "D",
+          "text": "Gwalior"
+        }
+      ],
+      "printed_answer": "D",
+      "explanation": "Factual Question",
+      "subject": "Madhya Pradesh",
+      "topic": "MP Geography, History, Culture & Economy",
+      "subtopic": "State-specific facts",
+      "review_flags": [
+        "Explanation is only a generic placeholder, not an actual explanation."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 82,
+      "source_text": "A 'closed economy' is an economy in which (A) the money supply is fully controlled (B) deficit financing takes place (C) only exports take place (D) neither exports nor imports take place Ans: (D) Solution: A closed economy is one that has no trading activity with outside economies. The closed economy is therefore entirely self-sufficient, which means no imports come into the country and no exports leave the country.",
+      "question": "A 'closed economy' is an economy in which",
+      "options": [
+        {
+          "label": "A",
+          "text": "the money supply is fully controlled"
+        },
+        {
+          "label": "B",
+          "text": "deficit financing takes place"
+        },
+        {
+          "label": "C",
+          "text": "only exports take place"
+        },
+        {
+          "label": "D",
+          "text": "neither exports nor imports take place"
+        }
+      ],
+      "printed_answer": "D",
+      "explanation": "A closed economy is one that has no trading activity with outside economies. The closed economy is therefore entirely self-sufficient, which means no imports come into the country and no exports leave the country.",
+      "subject": "Economy & Current Affairs",
+      "topic": "Economy / National and International Current Affairs",
+      "subtopic": "Institutions, appointments and events",
+      "review_flags": [],
+      "needs_review": false
+    },
+    {
+      "question_number": 83,
+      "source_text": "The period of the 12th Five-Year Plan in (A) 2007-2012 (B) 2012-2017 (C) 2010-2015 (D) 2006-2011 Ans: (B) Solution: Factual Question",
+      "question": "The period of the 12th Five-Year Plan in",
+      "options": [
+        {
+          "label": "A",
+          "text": "2007-2012"
+        },
+        {
+          "label": "B",
+          "text": "2012-2017"
+        },
+        {
+          "label": "C",
+          "text": "2010-2015"
+        },
+        {
+          "label": "D",
+          "text": "2006-2011"
+        }
+      ],
+      "printed_answer": "B",
+      "explanation": "Factual Question",
+      "subject": "Economy & Current Affairs",
+      "topic": "Economy / National and International Current Affairs",
+      "subtopic": "Institutions, appointments and events",
+      "review_flags": [
+        "Explanation is only a generic placeholder, not an actual explanation.",
+        "Question stem is incomplete ('period of the 12th Five-Year Plan in'); infer intended wording only after source review."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 84,
+      "source_text": "'India Vision 2020' is prepared by (A) S. P. Gupta Committee (B) Panth Committee (C) Malhotra Committee (D) Narasimham Committee Ans: (A)",
+      "question": "'India Vision 2020' is prepared by",
+      "options": [
+        {
+          "label": "A",
+          "text": "S. P. Gupta Committee"
+        },
+        {
+          "label": "B",
+          "text": "Panth Committee"
+        },
+        {
+          "label": "C",
+          "text": "Malhotra Committee"
+        },
+        {
+          "label": "D",
+          "text": "Narasimham Committee"
+        }
+      ],
+      "printed_answer": "A",
+      "explanation": "",
+      "subject": "Economy & Current Affairs",
+      "topic": "Economy / National and International Current Affairs",
+      "subtopic": "Institutions, appointments and events",
+      "review_flags": [
+        "Missing/empty explanation.",
+        "No explanation supplied; verify the committee attribution."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 85,
+      "source_text": "Which of the following statements is correct with regard to \"International Monetary Fund\"? (A) It can grant loans to any country. (B) It can grant loans to only developed countries (C) It grants loans to member countries only. (D) It grants loans to the Central Bank of a country. Ans: (C)",
+      "question": "Which of the following statements is correct with regard to \"International Monetary Fund\"?",
+      "options": [
+        {
+          "label": "A",
+          "text": "It can grant loans to any country."
+        },
+        {
+          "label": "B",
+          "text": "It can grant loans to only developed countries"
+        },
+        {
+          "label": "C",
+          "text": "It grants loans to member countries only."
+        },
+        {
+          "label": "D",
+          "text": "It grants loans to the Central Bank of a country."
+        }
+      ],
+      "printed_answer": "C",
+      "explanation": "",
+      "subject": "General Knowledge",
+      "topic": "Miscellaneous GK",
+      "subtopic": "Needs subject review",
+      "review_flags": [
+        "Missing/empty explanation.",
+        "No explanation supplied; answer/explanation should be verified before app publication."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 86,
+      "source_text": "Who was declared Man of the Series' in the India-Zimbabwe One Day Cricket Series in 2016? (A) Jasprit Bumrah (B) Virat Kohli (C) Ajinkya Rahane (D) K. L. Rahul Ans: (D)",
+      "question": "Who was declared Man of the Series' in the India-Zimbabwe One Day Cricket Series in 2016?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Jasprit Bumrah"
+        },
+        {
+          "label": "B",
+          "text": "Virat Kohli"
+        },
+        {
+          "label": "C",
+          "text": "Ajinkya Rahane"
+        },
+        {
+          "label": "D",
+          "text": "K. L. Rahul"
+        }
+      ],
+      "printed_answer": "D",
+      "explanation": "",
+      "subject": "Sports",
+      "topic": "Sports & Awards",
+      "subtopic": "Sports personalities, events and awards",
+      "review_flags": [
+        "Missing/empty explanation."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 87,
+      "source_text": "The final match of IPL-9 (2016) was played in the stadium of which State? (A) Karnataka (B) Maharashtra. (C) Haryana (D) West Bengal Ans: (A) Solution: Factual Question",
+      "question": "The final match of IPL-9 (2016) was played in the stadium of which State?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Karnataka"
+        },
+        {
+          "label": "B",
+          "text": "Maharashtra."
+        },
+        {
+          "label": "C",
+          "text": "Haryana"
+        },
+        {
+          "label": "D",
+          "text": "West Bengal"
+        }
+      ],
+      "printed_answer": "A",
+      "explanation": "Factual Question",
+      "subject": "Sports",
+      "topic": "Sports & Awards",
+      "subtopic": "Sports personalities, events and awards",
+      "review_flags": [
+        "Explanation is only a generic placeholder, not an actual explanation."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 88,
+      "source_text": "Who is the author of the book ''Rashmirekha'' ? (A) Gajanan Mahadev 'Muktibodh' (B) Bal kishna sharma 'Naveen' (C) Haishankar Parasai (D) Bhavani Prasad Mishra Ans: (B) Solution: Factual Question",
+      "question": "Who is the author of the book ''Rashmirekha'' ?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Gajanan Mahadev 'Muktibodh'"
+        },
+        {
+          "label": "B",
+          "text": "Bal kishna sharma 'Naveen'"
+        },
+        {
+          "label": "C",
+          "text": "Haishankar Parasai"
+        },
+        {
+          "label": "D",
+          "text": "Bhavani Prasad Mishra"
+        }
+      ],
+      "printed_answer": "B",
+      "explanation": "Factual Question",
+      "subject": "Art & Culture",
+      "topic": "Indian Art, Literature & Culture",
+      "subtopic": "Books, personalities and cultural heritage",
+      "review_flags": [
+        "Explanation is only a generic placeholder, not an actual explanation."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 89,
+      "source_text": "In which district of Madhya Pradesh was Chandrashekhar Azad born? (A) Khargone (B) Gwalior (C) Jhabua (D) Satna Ans: (C) Solution: Factual Question",
+      "question": "In which district of Madhya Pradesh was Chandrashekhar Azad born?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Khargone"
+        },
+        {
+          "label": "B",
+          "text": "Gwalior"
+        },
+        {
+          "label": "C",
+          "text": "Jhabua"
+        },
+        {
+          "label": "D",
+          "text": "Satna"
+        }
+      ],
+      "printed_answer": "C",
+      "explanation": "Factual Question",
+      "subject": "History",
+      "topic": "Indian History",
+      "subtopic": "Ancient/Medieval/Modern history",
+      "review_flags": [
+        "Explanation is only a generic placeholder, not an actual explanation."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 90,
+      "source_text": "Who among the following was not a king of the Parmar dynasty? (A) Upendra (B) Munj (C) Gangeyadev (D) Udayaditya Ans: (C)",
+      "question": "Who among the following was not a king of the Parmar dynasty?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Upendra"
+        },
+        {
+          "label": "B",
+          "text": "Munj"
+        },
+        {
+          "label": "C",
+          "text": "Gangeyadev"
+        },
+        {
+          "label": "D",
+          "text": "Udayaditya"
+        }
+      ],
+      "printed_answer": "C",
+      "explanation": "",
+      "subject": "History",
+      "topic": "Indian History",
+      "subtopic": "Ancient/Medieval/Modern history",
+      "review_flags": [
+        "Missing/empty explanation.",
+        "Question asks who was not a Parmar king; verify the options and answer against a reliable history source."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 91,
+      "source_text": "Dhangdev was the ruler of which dynasty? (A) Chandelas of Jejakabbukti (B) Parmar of Malwa (C) Kalchuri of Mahishmati (D) Kalchuri of Tripuri Ans: (A) Solution: Factual Question",
+      "question": "Dhangdev was the ruler of which dynasty?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Chandelas of Jejakabbukti"
+        },
+        {
+          "label": "B",
+          "text": "Parmar of Malwa"
+        },
+        {
+          "label": "C",
+          "text": "Kalchuri of Mahishmati"
+        },
+        {
+          "label": "D",
+          "text": "Kalchuri of Tripuri"
+        }
+      ],
+      "printed_answer": "A",
+      "explanation": "Factual Question",
+      "subject": "History",
+      "topic": "Indian History",
+      "subtopic": "Ancient/Medieval/Modern history",
+      "review_flags": [
+        "Explanation is only a generic placeholder, not an actual explanation."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 92,
+      "source_text": "At which of the following places was Habib Tanvir born? (A) Raipur (B) Jhabuav (C) Indore (D) Ratlam Ans: (A) Solution: Factual Question",
+      "question": "At which of the following places was Habib Tanvir born?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Raipur"
+        },
+        {
+          "label": "B",
+          "text": "Jhabuav"
+        },
+        {
+          "label": "C",
+          "text": "Indore"
+        },
+        {
+          "label": "D",
+          "text": "Ratlam"
+        }
+      ],
+      "printed_answer": "A",
+      "explanation": "Factual Question",
+      "subject": "Madhya Pradesh",
+      "topic": "MP Geography, History, Culture & Economy",
+      "subtopic": "State-specific facts",
+      "review_flags": [
+        "Explanation is only a generic placeholder, not an actual explanation."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 93,
+      "source_text": "Under the Scheduled Castes and Scheduled Tribes (Prevention of Atrocities) Act, 1989, in which Section there is a provision for the arrangement of a Special Court? (A) 14 (B) 17 (C) 21(1) (D) 21(3) Ans: (A) Solution: Factual Question",
+      "question": "Under the Scheduled Castes and Scheduled Tribes (Prevention of Atrocities) Act, 1989, in which Section there is a provision for the arrangement of a Special Court?",
+      "options": [
+        {
+          "label": "A",
+          "text": "14"
+        },
+        {
+          "label": "B",
+          "text": "17"
+        },
+        {
+          "label": "C",
+          "text": "21(1)"
+        },
+        {
+          "label": "D",
+          "text": "21(3)"
+        }
+      ],
+      "printed_answer": "A",
+      "explanation": "Factual Question",
+      "subject": "Polity & Governance",
+      "topic": "Indian Constitution and Governance",
+      "subtopic": "Constitution, laws and institutions",
+      "review_flags": [
+        "Explanation is only a generic placeholder, not an actual explanation.",
+        "No explanation supplied; verify statutory section reference before publication."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 94,
+      "source_text": "In how many days will the investigating officer submit his report for the offences committed under the Scheduled Castes and Scheduled Tribes (Prevention of Atrocities) Act, 1989? (A) 15 (B) 20 (C) 25 (D) 30 Ans: (D) Solution: Factual Question",
+      "question": "In how many days will the investigating officer submit his report for the offences committed under the Scheduled Castes and Scheduled Tribes (Prevention of Atrocities) Act, 1989?",
+      "options": [
+        {
+          "label": "A",
+          "text": "15"
+        },
+        {
+          "label": "B",
+          "text": "20"
+        },
+        {
+          "label": "C",
+          "text": "25"
+        },
+        {
+          "label": "D",
+          "text": "30"
+        }
+      ],
+      "printed_answer": "D",
+      "explanation": "Factual Question",
+      "subject": "Polity & Governance",
+      "topic": "Indian Constitution and Governance",
+      "subtopic": "Constitution, laws and institutions",
+      "review_flags": [
+        "Explanation is only a generic placeholder, not an actual explanation.",
+        "No explanation supplied; verify statutory deadline and applicable rules."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 95,
+      "source_text": "Which one of the following Brahmana texts belongs to the Rigveda? (A) Aitareya Brahmana (B) Gopatha Brahmana (C) Shatapatha Brahmana (D) Taittiriya Brahmana Ans: (A)",
+      "question": "Which one of the following Brahmana texts belongs to the Rigveda?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Aitareya Brahmana"
+        },
+        {
+          "label": "B",
+          "text": "Gopatha Brahmana"
+        },
+        {
+          "label": "C",
+          "text": "Shatapatha Brahmana"
+        },
+        {
+          "label": "D",
+          "text": "Taittiriya Brahmana"
+        }
+      ],
+      "printed_answer": "A",
+      "explanation": "",
+      "subject": "History",
+      "topic": "Indian History",
+      "subtopic": "Ancient/Medieval/Modern history",
+      "review_flags": [
+        "Missing/empty explanation."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 96,
+      "source_text": "The 'Goods and Services Tax' was proposed by a task force, whose President was (A) Vijay Kelkar (B) Montel Singh Ahluwalia (C) Arun Jaitley (D) Narsimham. Ans: (A) Solution: Factual Question",
+      "question": "The 'Goods and Services Tax' was proposed by a task force, whose President was",
+      "options": [
+        {
+          "label": "A",
+          "text": "Vijay Kelkar"
+        },
+        {
+          "label": "B",
+          "text": "Montel Singh Ahluwalia"
+        },
+        {
+          "label": "C",
+          "text": "Arun Jaitley"
+        },
+        {
+          "label": "D",
+          "text": "Narsimham."
+        }
+      ],
+      "printed_answer": "A",
+      "explanation": "Factual Question",
+      "subject": "General Knowledge",
+      "topic": "Miscellaneous GK",
+      "subtopic": "Needs subject review",
+      "review_flags": [
+        "Explanation is only a generic placeholder, not an actual explanation.",
+        "No explanation supplied; verify task-force chairperson attribution."
+      ],
+      "needs_review": true
+    },
+    {
+      "question_number": 97,
+      "source_text": "When were the Fundamental Duties mentioned in the Constitution? (A) At the time of framing of Constitution (B) On 26th January, 1950 (C) In the 42nd Constitutional Amendment (D) In the 41st Constitutional Amendment Ans: (C) Solution: The Swarn Singh Committee recommended the inclusion of a separate chapter on fundamental duties in the Constitution. The Congress Government at Centre accepted recommendations and enacted the 42nd Constitutional Amendment Act in 1976.",
+      "question": "When were the Fundamental Duties mentioned in the Constitution?",
+      "options": [
+        {
+          "label": "A",
+          "text": "At the time of framing of Constitution"
+        },
+        {
+          "label": "B",
+          "text": "On 26th January, 1950"
+        },
+        {
+          "label": "C",
+          "text": "In the 42nd Constitutional Amendment"
+        },
+        {
+          "label": "D",
+          "text": "In the 41st Constitutional Amendment"
+        }
+      ],
+      "printed_answer": "C",
+      "explanation": "The Swarn Singh Committee recommended the inclusion of a separate chapter on fundamental duties in the Constitution. The Congress Government at Centre accepted recommendations and enacted the 42nd Constitutional Amendment Act in 1976.",
+      "subject": "History",
+      "topic": "Indian History",
+      "subtopic": "Ancient/Medieval/Modern history",
+      "review_flags": [],
+      "needs_review": false
+    },
+    {
+      "question_number": 98,
+      "source_text": "The States and the Central Government derive power from (A) the Constitution of India (B) the President of India (C) the Prime Minister of India (D) the Parliament of India Ans: (A) Solution: It is the constitution of India that empowers the State and Central government at the same time the constitution places certain limitation on these institutions.",
+      "question": "The States and the Central Government derive power from",
+      "options": [
+        {
+          "label": "A",
+          "text": "the Constitution of India"
+        },
+        {
+          "label": "B",
+          "text": "the President of India"
+        },
+        {
+          "label": "C",
+          "text": "the Prime Minister of India"
+        },
+        {
+          "label": "D",
+          "text": "the Parliament of India"
+        }
+      ],
+      "printed_answer": "A",
+      "explanation": "It is the constitution of India that empowers the State and Central government at the same time the constitution places certain limitation on these institutions.",
+      "subject": "History",
+      "topic": "Indian History",
+      "subtopic": "Ancient/Medieval/Modern history",
+      "review_flags": [],
+      "needs_review": false
+    },
+    {
+      "question_number": 99,
+      "source_text": "Which of the following may be considered a Pressure Group? (A) Members of the Lok Sabha (B) Members of a Panchayat (C) Members of the Cabinet (D) Members of a Trade Union Ans: (D) Solution: A pressure group is a group of people who are organised actively for promoting and defending their common interest, e.g. Trade Unions, Student Organization, Bar Council etc.",
+      "question": "Which of the following may be considered a Pressure Group?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Members of the Lok Sabha"
+        },
+        {
+          "label": "B",
+          "text": "Members of a Panchayat"
+        },
+        {
+          "label": "C",
+          "text": "Members of the Cabinet"
+        },
+        {
+          "label": "D",
+          "text": "Members of a Trade Union"
+        }
+      ],
+      "printed_answer": "D",
+      "explanation": "A pressure group is a group of people who are organised actively for promoting and defending their common interest, e.g. Trade Unions, Student Organization, Bar Council etc.",
+      "subject": "History",
+      "topic": "Indian History",
+      "subtopic": "Ancient/Medieval/Modern history",
+      "review_flags": [],
+      "needs_review": false
+    },
+    {
+      "question_number": 100,
+      "source_text": "Which of the following statements is correct with regarded to 'International Monetary Fund' ? (A) It can grant loans to any country (B) It can grant loans to only developed country (C) It grant loans to member countries only (D) It grant loans to the central bank of country Ans: (B) Solution: “The International Monetary Fund (IMF) is an international financial institution, headquartered in Washington, D.C., consisting of 190 countries. It grants loan to the member countries only but World Bank gives loan to non member country also. &#x20;",
+      "question": "Which of the following statements is correct with regarded to 'International Monetary Fund' ?",
+      "options": [
+        {
+          "label": "A",
+          "text": "It can grant loans to any country"
+        },
+        {
+          "label": "B",
+          "text": "It can grant loans to only developed country"
+        },
+        {
+          "label": "C",
+          "text": "It grant loans to member countries only"
+        },
+        {
+          "label": "D",
+          "text": "It grant loans to the central bank of country"
+        }
+      ],
+      "printed_answer": "B",
+      "explanation": "“The International Monetary Fund (IMF) is an international financial institution, headquartered in Washington, D.C., consisting of 190 countries. It grants loan to the member countries only but World Bank gives loan to non member country also. &#x20;",
+      "subject": "General Knowledge",
+      "topic": "Miscellaneous GK",
+      "subtopic": "Needs subject review",
+      "review_flags": [
+        "Printed answer is (B), but the supplied explanation says IMF lends to member countries only, matching option (C); clear answer/explanation conflict.",
+        "Trailing HTML space entity present in source text."
+      ],
+      "needs_review": true
+    }
+  ]
+}

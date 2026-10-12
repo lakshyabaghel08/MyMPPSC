@@ -1,0 +1,1057 @@
+{
+  "year": 2013,
+  "source_file": "Pasted markdown(20261011-193344).md",
+  "questions_found": 100,
+  "question_numbers": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72,
+    73,
+    74,
+    75,
+    76,
+    77,
+    78,
+    79,
+    80,
+    81,
+    82,
+    83,
+    84,
+    85,
+    86,
+    87,
+    88,
+    89,
+    90,
+    91,
+    92,
+    93,
+    94,
+    95,
+    96,
+    97,
+    98,
+    99,
+    100
+  ],
+  "missing_printed_answers": [],
+  "missing_or_empty_explanations": [
+    16,
+    39,
+    50,
+    51,
+    56,
+    73,
+    88
+  ],
+  "questions_requiring_review": [
+    {
+      "question_number": 7,
+      "question_text": "Child rights are protected in article of ICCPR",
+      "printed_answer": "B",
+      "review_flags": [
+        "answer_or_explanation_requires_independent_verification"
+      ],
+      "classification": {
+        "subject": "Indian Polity",
+        "topic": "Fundamental Rights",
+        "subtopic": "Protection of children; source wording needs review",
+        "confidence": "medium",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 11,
+      "question_text": "----- Without duties are like men without shadow.’",
+      "printed_answer": "B",
+      "review_flags": [
+        "source_text_or_claim_may_need_review"
+      ],
+      "classification": {
+        "subject": "Indian Polity",
+        "topic": "Rights and Duties",
+        "subtopic": "Relationship between rights and duties",
+        "confidence": "medium",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 12,
+      "question_text": "‘Human Rights Day’ is observed on",
+      "printed_answer": "A",
+      "review_flags": [
+        "source_text_or_claim_may_need_review"
+      ],
+      "classification": {
+        "subject": "International Organisations",
+        "topic": "United Nations",
+        "subtopic": "Human Rights Day",
+        "confidence": "high",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 13,
+      "question_text": "Author of the book ‘World of All Human Rights’ is:",
+      "printed_answer": "C",
+      "review_flags": [
+        "source_text_or_claim_may_need_review"
+      ],
+      "classification": {
+        "subject": "Books and Authors",
+        "topic": "Human Rights",
+        "subtopic": "Soli J. Sorabjee",
+        "confidence": "high",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 16,
+      "question_text": "In a prosecution for an offence under the scheduled castes and scheduled tribes (prevention of atrocities) act 1989, the accused in his defence cannot take the ple that",
+      "printed_answer": "D",
+      "review_flags": [
+        "missing_or_empty_explanation",
+        "answer_or_explanation_requires_independent_verification"
+      ],
+      "classification": {
+        "subject": "Indian Polity",
+        "topic": "Social Justice and Rights",
+        "subtopic": "SC/ST (Prevention of Atrocities) Act, 1989",
+        "confidence": "high",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 18,
+      "question_text": "Which of the following power a special court can not exercise under the scheduled castes and scheduled tribes (prevention of atrocities) act, 1989?",
+      "printed_answer": "D",
+      "review_flags": [
+        "answer_or_explanation_requires_independent_verification"
+      ],
+      "classification": {
+        "subject": "Indian Polity",
+        "topic": "Social Justice and Rights",
+        "subtopic": "SC/ST (Prevention of Atrocities) Act, 1989",
+        "confidence": "high",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 20,
+      "question_text": "Under the scheduled castes and scheduled tribes (prevention of atrocities) Act, 1989, which of the following is absolutely barred?",
+      "printed_answer": "A",
+      "review_flags": [
+        "answer_or_explanation_requires_independent_verification"
+      ],
+      "classification": {
+        "subject": "Indian Polity",
+        "topic": "Social Justice and Rights",
+        "subtopic": "Bail provisions under SC/ST (Prevention of Atrocities) Act",
+        "confidence": "high",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 21,
+      "question_text": "The state government can specify a court session to be a special court to try the offences under the scheduled castes and scheduled tribes (prevention of atrocities) act, 1989, with the concurrence of the",
+      "printed_answer": "B",
+      "review_flags": [
+        "answer_or_explanation_requires_independent_verification"
+      ],
+      "classification": {
+        "subject": "Indian Polity",
+        "topic": "Social Justice and Rights",
+        "subtopic": "Special Courts under SC/ST (Prevention of Atrocities) Act",
+        "confidence": "high",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 22,
+      "question_text": "In a prosecution for an offence under the scheduled castes and scheduled tribes (prevention of atrocities) act, 1989, the court can presume which of the following?",
+      "printed_answer": "D",
+      "review_flags": [
+        "answer_or_explanation_requires_independent_verification"
+      ],
+      "classification": {
+        "subject": "Indian Polity",
+        "topic": "Social Justice and Rights",
+        "subtopic": "Presumptions under SC/ST (Prevention of Atrocities) Act",
+        "confidence": "high",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 23,
+      "question_text": "Under the protection of civil rights act, 1955, all offences are",
+      "printed_answer": "A",
+      "review_flags": [
+        "answer_or_explanation_requires_independent_verification"
+      ],
+      "classification": {
+        "subject": "Indian Polity",
+        "topic": "Civil Rights",
+        "subtopic": "Protection of Civil Rights Act, 1955",
+        "confidence": "high",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 34,
+      "question_text": "Which is the largest tribe of India?",
+      "printed_answer": "A",
+      "review_flags": [
+        "source_text_or_claim_may_need_review"
+      ],
+      "classification": {
+        "subject": "Tribal Studies",
+        "topic": "Tribes of India",
+        "subtopic": "Gond tribe",
+        "confidence": "high",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 37,
+      "question_text": "Where is the Samadhi of Maharani Laxmibai situated?",
+      "printed_answer": "D",
+      "review_flags": [
+        "source_text_or_claim_may_need_review"
+      ],
+      "classification": {
+        "subject": "Madhya Pradesh GK",
+        "topic": "Modern History",
+        "subtopic": "Rani Lakshmibai and Gwalior",
+        "confidence": "high",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 38,
+      "question_text": "Where the caves of Bhimbethka are situated?",
+      "printed_answer": "D",
+      "review_flags": [
+        "source_text_or_claim_may_need_review"
+      ],
+      "classification": {
+        "subject": "Madhya Pradesh GK",
+        "topic": "Archaeology and Heritage",
+        "subtopic": "Bhimbetka rock shelters",
+        "confidence": "high",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 39,
+      "question_text": "Which is the highest waterfall of Madhya Pradesh?",
+      "printed_answer": "C",
+      "review_flags": [
+        "missing_or_empty_explanation"
+      ],
+      "classification": {
+        "subject": "Madhya Pradesh GK",
+        "topic": "Physical Geography",
+        "subtopic": "Waterfalls of Madhya Pradesh",
+        "confidence": "high",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 44,
+      "question_text": "The famous textile of M.P. is",
+      "printed_answer": "D",
+      "review_flags": [
+        "source_text_or_claim_may_need_review"
+      ],
+      "classification": {
+        "subject": "Madhya Pradesh GK",
+        "topic": "Handicrafts and Textiles",
+        "subtopic": "Chanderi textiles",
+        "confidence": "high",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 50,
+      "question_text": "Which country won the hockey (Men) world cup title for the third time?",
+      "printed_answer": "C",
+      "review_flags": [
+        "missing_or_empty_explanation",
+        "answer_or_explanation_requires_independent_verification"
+      ],
+      "classification": {
+        "subject": "Sports",
+        "topic": "Hockey",
+        "subtopic": "Men's Hockey World Cup",
+        "confidence": "high",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 51,
+      "question_text": "The term ‘Butterfly stroke’ is related with:",
+      "printed_answer": "A",
+      "review_flags": [
+        "missing_or_empty_explanation"
+      ],
+      "classification": {
+        "subject": "Sports",
+        "topic": "Swimming",
+        "subtopic": "Swimming strokes",
+        "confidence": "high",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 52,
+      "question_text": "How many players are there in a Kho-Kho team?",
+      "printed_answer": "D",
+      "review_flags": [
+        "answer_or_explanation_requires_independent_verification"
+      ],
+      "classification": {
+        "subject": "Sports",
+        "topic": "Kho-Kho",
+        "subtopic": "Team size",
+        "confidence": "high",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 56,
+      "question_text": "Which of the following is not included in ‘Chardham’?",
+      "printed_answer": "C",
+      "review_flags": [
+        "missing_or_empty_explanation"
+      ],
+      "classification": {
+        "subject": "Indian Culture",
+        "topic": "Pilgrimage and Religious Traditions",
+        "subtopic": "Char Dham",
+        "confidence": "high",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 58,
+      "question_text": "Which of the following musical instrument is not of Indo-Islamic origin?",
+      "printed_answer": "D",
+      "review_flags": [
+        "source_text_or_claim_may_need_review"
+      ],
+      "classification": {
+        "subject": "Indian Culture",
+        "topic": "Music and Instruments",
+        "subtopic": "Indo-Islamic musical traditions",
+        "confidence": "medium",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 61,
+      "question_text": "‘National Planning Committee’ was set up by:",
+      "printed_answer": "C",
+      "review_flags": [
+        "option_parse_incomplete",
+        "answer_or_explanation_requires_independent_verification",
+        "source_text_or_claim_may_need_review"
+      ],
+      "classification": {
+        "subject": "Indian Economy",
+        "topic": "Economic Planning",
+        "subtopic": "National Planning Committee",
+        "confidence": "medium",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 64,
+      "question_text": "Which of the following is included in ‘Navratna’?",
+      "printed_answer": "C",
+      "review_flags": [
+        "answer_or_explanation_requires_independent_verification",
+        "source_text_or_claim_may_need_review"
+      ],
+      "classification": {
+        "subject": "Indian Economy",
+        "topic": "Public Sector Enterprises",
+        "subtopic": "Navratna status",
+        "confidence": "high",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 69,
+      "question_text": "Which act introduced a bicameral legislature in the centre?",
+      "printed_answer": "C",
+      "review_flags": [
+        "answer_or_explanation_requires_independent_verification"
+      ],
+      "classification": {
+        "subject": "Modern Indian History",
+        "topic": "Constitutional Development",
+        "subtopic": "Government of India Act, 1919",
+        "confidence": "high",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 70,
+      "question_text": "The ‘Directive Principles’ are",
+      "printed_answer": "B",
+      "review_flags": [
+        "source_explanation_truncated"
+      ],
+      "classification": {
+        "subject": "Indian Polity",
+        "topic": "Directive Principles of State Policy",
+        "subtopic": "Non-justiciability",
+        "confidence": "high",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 73,
+      "question_text": "Which is the longest National Highway of India?",
+      "printed_answer": "A",
+      "review_flags": [
+        "missing_or_empty_explanation",
+        "answer_or_explanation_requires_independent_verification",
+        "source_text_or_claim_may_need_review"
+      ],
+      "classification": {
+        "subject": "Geography",
+        "topic": "Transport and Infrastructure",
+        "subtopic": "National Highways",
+        "confidence": "medium",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 88,
+      "question_text": "By which act British Govt. abolished the monopoly of East India Company on trading of tea and sugar?",
+      "printed_answer": "D",
+      "review_flags": [
+        "missing_or_empty_explanation",
+        "answer_or_explanation_requires_independent_verification",
+        "source_text_or_claim_may_need_review"
+      ],
+      "classification": {
+        "subject": "Modern Indian History",
+        "topic": "British Constitutional and Economic Policy",
+        "subtopic": "Charter Acts and trade monopoly",
+        "confidence": "medium",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 91,
+      "question_text": "Which country has test-launched first 3D television broadcast?",
+      "printed_answer": "B",
+      "review_flags": [
+        "answer_or_explanation_requires_independent_verification",
+        "source_text_or_claim_may_need_review"
+      ],
+      "classification": {
+        "subject": "Science and Technology",
+        "topic": "Broadcasting Technology",
+        "subtopic": "3D television broadcast",
+        "confidence": "medium",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 92,
+      "question_text": "‘Pradhanmantri Bharat Jodo Pariyojna’ is related to:",
+      "printed_answer": "D",
+      "review_flags": [
+        "answer_or_explanation_requires_independent_verification",
+        "source_text_or_claim_may_need_review"
+      ],
+      "classification": {
+        "subject": "Indian Economy",
+        "topic": "Infrastructure",
+        "subtopic": "Highway development projects",
+        "confidence": "medium",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 94,
+      "question_text": "Who is the author of book ‘Namsake’?",
+      "printed_answer": "D",
+      "review_flags": [
+        "source_text_or_claim_may_need_review"
+      ],
+      "classification": {
+        "subject": "Books and Authors",
+        "topic": "Indian Literature",
+        "subtopic": "The Namesake and Jhumpa Lahiri",
+        "confidence": "high",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    },
+    {
+      "question_number": 96,
+      "question_text": "The sector in which United Kingdom has expressed its interest for partnership with Kerala is:",
+      "printed_answer": "C",
+      "review_flags": [
+        "answer_or_explanation_requires_independent_verification"
+      ],
+      "classification": {
+        "subject": "International Relations",
+        "topic": "India–United Kingdom Relations",
+        "subtopic": "Kerala health-sector partnership",
+        "confidence": "medium",
+        "method": "source-grounded first-pass classification",
+        "verified": false,
+        "review_required": true
+      }
+    }
+  ],
+  "classification_counts_by_subject": {
+    "Geography": 15,
+    "Indian Polity": 19,
+    "World History": 1,
+    "International Organisations": 2,
+    "Books and Authors": 3,
+    "Computer Awareness": 7,
+    "Madhya Pradesh GK": 14,
+    "Tribal Studies": 1,
+    "Sports": 7,
+    "Ancient Indian History": 3,
+    "Indian Culture": 5,
+    "Indian Economy": 8,
+    "Modern Indian History": 8,
+    "Environment": 3,
+    "International Relations": 2,
+    "Science and Technology": 1,
+    "General Science": 1
+  },
+  "classification_counts_by_subject_and_topic": [
+    {
+      "subject": "Ancient Indian History",
+      "topic": "Classical Literature",
+      "count": 1
+    },
+    {
+      "subject": "Ancient Indian History",
+      "topic": "Indus Valley Civilisation",
+      "count": 1
+    },
+    {
+      "subject": "Ancient Indian History",
+      "topic": "Vedic Literature",
+      "count": 1
+    },
+    {
+      "subject": "Books and Authors",
+      "topic": "Human Rights",
+      "count": 1
+    },
+    {
+      "subject": "Books and Authors",
+      "topic": "Indian Literature",
+      "count": 1
+    },
+    {
+      "subject": "Books and Authors",
+      "topic": "Sports and Biography",
+      "count": 1
+    },
+    {
+      "subject": "Computer Awareness",
+      "topic": "Computer Applications",
+      "count": 1
+    },
+    {
+      "subject": "Computer Awareness",
+      "topic": "Computer Fundamentals",
+      "count": 3
+    },
+    {
+      "subject": "Computer Awareness",
+      "topic": "Internet and Email",
+      "count": 2
+    },
+    {
+      "subject": "Computer Awareness",
+      "topic": "Internet and Web",
+      "count": 1
+    },
+    {
+      "subject": "Environment",
+      "topic": "Disaster Management",
+      "count": 1
+    },
+    {
+      "subject": "Environment",
+      "topic": "Environmental Legislation",
+      "count": 1
+    },
+    {
+      "subject": "Environment",
+      "topic": "Forest and Biodiversity",
+      "count": 1
+    },
+    {
+      "subject": "General Science",
+      "topic": "Biology",
+      "count": 1
+    },
+    {
+      "subject": "Geography",
+      "topic": "Agriculture",
+      "count": 1
+    },
+    {
+      "subject": "Geography",
+      "topic": "Cartography and Mapping",
+      "count": 1
+    },
+    {
+      "subject": "Geography",
+      "topic": "Geomorphology",
+      "count": 1
+    },
+    {
+      "subject": "Geography",
+      "topic": "India and Neighbouring Countries",
+      "count": 1
+    },
+    {
+      "subject": "Geography",
+      "topic": "Indian Agriculture",
+      "count": 1
+    },
+    {
+      "subject": "Geography",
+      "topic": "Indian Physiography",
+      "count": 2
+    },
+    {
+      "subject": "Geography",
+      "topic": "Indian Rivers",
+      "count": 3
+    },
+    {
+      "subject": "Geography",
+      "topic": "Indian Soils",
+      "count": 1
+    },
+    {
+      "subject": "Geography",
+      "topic": "Monsoon and Winds",
+      "count": 1
+    },
+    {
+      "subject": "Geography",
+      "topic": "Transport and Infrastructure",
+      "count": 1
+    },
+    {
+      "subject": "Geography",
+      "topic": "Transport and Ports",
+      "count": 1
+    },
+    {
+      "subject": "Geography",
+      "topic": "Water Resources and River Projects",
+      "count": 1
+    },
+    {
+      "subject": "Indian Culture",
+      "topic": "Festivals",
+      "count": 1
+    },
+    {
+      "subject": "Indian Culture",
+      "topic": "Folk and Traditional Art",
+      "count": 1
+    },
+    {
+      "subject": "Indian Culture",
+      "topic": "Music and Instruments",
+      "count": 1
+    },
+    {
+      "subject": "Indian Culture",
+      "topic": "Pilgrimage and Religious Traditions",
+      "count": 1
+    },
+    {
+      "subject": "Indian Culture",
+      "topic": "Religious Festivals",
+      "count": 1
+    },
+    {
+      "subject": "Indian Economy",
+      "topic": "Agriculture and Fertilisers",
+      "count": 1
+    },
+    {
+      "subject": "Indian Economy",
+      "topic": "Economic Planning",
+      "count": 4
+    },
+    {
+      "subject": "Indian Economy",
+      "topic": "Infrastructure",
+      "count": 1
+    },
+    {
+      "subject": "Indian Economy",
+      "topic": "International Trade",
+      "count": 1
+    },
+    {
+      "subject": "Indian Economy",
+      "topic": "Public Sector Enterprises",
+      "count": 1
+    },
+    {
+      "subject": "Indian Polity",
+      "topic": "Civil Rights",
+      "count": 1
+    },
+    {
+      "subject": "Indian Polity",
+      "topic": "Constitutional Amendments",
+      "count": 1
+    },
+    {
+      "subject": "Indian Polity",
+      "topic": "Directive Principles of State Policy",
+      "count": 1
+    },
+    {
+      "subject": "Indian Polity",
+      "topic": "Fundamental Rights",
+      "count": 3
+    },
+    {
+      "subject": "Indian Polity",
+      "topic": "Human Rights",
+      "count": 1
+    },
+    {
+      "subject": "Indian Polity",
+      "topic": "Judiciary",
+      "count": 2
+    },
+    {
+      "subject": "Indian Polity",
+      "topic": "Political Ideologies and Parties",
+      "count": 1
+    },
+    {
+      "subject": "Indian Polity",
+      "topic": "Rights and Duties",
+      "count": 1
+    },
+    {
+      "subject": "Indian Polity",
+      "topic": "Social Justice and Rights",
+      "count": 7
+    },
+    {
+      "subject": "Indian Polity",
+      "topic": "Union Territories",
+      "count": 1
+    },
+    {
+      "subject": "International Organisations",
+      "topic": "United Nations",
+      "count": 2
+    },
+    {
+      "subject": "International Relations",
+      "topic": "India–United Kingdom Relations",
+      "count": 1
+    },
+    {
+      "subject": "International Relations",
+      "topic": "Regional Organisations",
+      "count": 1
+    },
+    {
+      "subject": "Madhya Pradesh GK",
+      "topic": "Archaeology and Heritage",
+      "count": 1
+    },
+    {
+      "subject": "Madhya Pradesh GK",
+      "topic": "Art and Architecture",
+      "count": 1
+    },
+    {
+      "subject": "Madhya Pradesh GK",
+      "topic": "Art and Culture",
+      "count": 1
+    },
+    {
+      "subject": "Madhya Pradesh GK",
+      "topic": "Disasters and Industrial History",
+      "count": 1
+    },
+    {
+      "subject": "Madhya Pradesh GK",
+      "topic": "Education",
+      "count": 1
+    },
+    {
+      "subject": "Madhya Pradesh GK",
+      "topic": "Energy and Industry",
+      "count": 1
+    },
+    {
+      "subject": "Madhya Pradesh GK",
+      "topic": "Handicrafts and Textiles",
+      "count": 1
+    },
+    {
+      "subject": "Madhya Pradesh GK",
+      "topic": "Industry and Economy",
+      "count": 1
+    },
+    {
+      "subject": "Madhya Pradesh GK",
+      "topic": "Language and Dialects",
+      "count": 1
+    },
+    {
+      "subject": "Madhya Pradesh GK",
+      "topic": "Media and Institutions",
+      "count": 1
+    },
+    {
+      "subject": "Madhya Pradesh GK",
+      "topic": "Modern History",
+      "count": 1
+    },
+    {
+      "subject": "Madhya Pradesh GK",
+      "topic": "Physical Geography",
+      "count": 1
+    },
+    {
+      "subject": "Madhya Pradesh GK",
+      "topic": "Religious Places",
+      "count": 1
+    },
+    {
+      "subject": "Madhya Pradesh GK",
+      "topic": "State Polity",
+      "count": 1
+    },
+    {
+      "subject": "Modern Indian History",
+      "topic": "British Constitutional and Economic Policy",
+      "count": 1
+    },
+    {
+      "subject": "Modern Indian History",
+      "topic": "Constitutional Development",
+      "count": 1
+    },
+    {
+      "subject": "Modern Indian History",
+      "topic": "Freedom Struggle",
+      "count": 2
+    },
+    {
+      "subject": "Modern Indian History",
+      "topic": "Maratha History",
+      "count": 1
+    },
+    {
+      "subject": "Modern Indian History",
+      "topic": "Socio-Political Organisations",
+      "count": 1
+    },
+    {
+      "subject": "Modern Indian History",
+      "topic": "Socio-Religious Reform",
+      "count": 2
+    },
+    {
+      "subject": "Science and Technology",
+      "topic": "Broadcasting Technology",
+      "count": 1
+    },
+    {
+      "subject": "Sports",
+      "topic": "Athletics",
+      "count": 1
+    },
+    {
+      "subject": "Sports",
+      "topic": "Chess",
+      "count": 1
+    },
+    {
+      "subject": "Sports",
+      "topic": "Cricket",
+      "count": 1
+    },
+    {
+      "subject": "Sports",
+      "topic": "Hockey",
+      "count": 1
+    },
+    {
+      "subject": "Sports",
+      "topic": "Kho-Kho",
+      "count": 1
+    },
+    {
+      "subject": "Sports",
+      "topic": "Olympic Games",
+      "count": 1
+    },
+    {
+      "subject": "Sports",
+      "topic": "Swimming",
+      "count": 1
+    },
+    {
+      "subject": "Tribal Studies",
+      "topic": "Tribes of India",
+      "count": 1
+    },
+    {
+      "subject": "World History",
+      "topic": "Apartheid",
+      "count": 1
+    }
+  ],
+  "verification_status": "not independently fact-checked"
+}
