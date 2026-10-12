@@ -1,6 +1,6 @@
 /**
  * pipeline.test.js — the parts of tools/classify-bank.mjs that prepare the real
- * bank for the app: the extraction repair pass, the human review label merge,
+ * bank for the app: the extraction repair pass, the reviewed-label merge,
  * and the sanitiser that writes the app-facing file.
  *
  * These steps decide what the committed bank may contain, so they are tested
@@ -99,6 +99,25 @@ test('a reviewed label is applied as "reviewed" and never as an AI label', async
   assert.ok(!('ai_classification' in q.metadata), 'a human decision is never stamped as an AI one');
 });
 
+test('an explicit agent-assisted review method is preserved in internal metadata', async () => {
+  const taxonomy = await loadTaxonomy();
+  const intake = { questions: [{ id: 'Q1', subject: null, topic: null, subtopic: null, metadata: {} }] };
+  const { labels } = parseReviewedLabels(JSON.stringify({
+    id: 'Q1',
+    subject: 'Polity',
+    topic: 'Constitution of India',
+    subtopic: 'Fundamental Rights',
+    confidence: 0.9,
+    review_method: 'agent_assisted_validation',
+    reason: 'A review method is explicitly disclosed and the full path is checked against the taxonomy.',
+  }));
+
+  const summary = applyReviewedLabels(intake, labels, taxonomy);
+  assert.equal(summary.applied.length, 1);
+  assert.equal(intake.questions[0].metadata.reviewed_classification.method, 'agent_assisted_validation');
+  assert.equal(summary.decisions[0].review_method, 'agent_assisted_validation');
+});
+
 test('a reviewed label the taxonomy cannot hold changes nothing', async () => {
   const taxonomy = await loadTaxonomy();
   const intake = {
@@ -127,7 +146,7 @@ test('the committed review file only contains real taxonomy paths', async () => 
   const taxonomy = await loadTaxonomy();
   const { labels, malformed } = parseReviewedLabels(text);
   assert.equal(malformed.length, 0, 'every line of the committed review file parses');
-  assert.ok(labels.length > 200, `expected the human review pass to cover the rule engine's gaps, found ${labels.length}`);
+  assert.ok(labels.length > 500, `expected all original and remediated review labels, found ${labels.length}`);
   const seen = new Set();
   for (const label of labels) {
     assert.equal(seen.has(label.id), false, `${label.id} appears twice`);

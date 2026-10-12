@@ -189,7 +189,7 @@ test('the screen adds no inline styles, no scripts and no remote calls', async (
   assert.ok(html.includes('class="prov-chip'), 'its numbers say where they came from');
 });
 
-test('the horizontal subject chart renders all 1,171 questions across 2013–2024 with the unplaced bucket', async () => {
+test('the horizontal subject chart renders all 1,171 audited questions across 2013–2024', async () => {
   const m = await bootApp();
   const builtin = await import('../js/services/builtin-bank.js');
   const bankText = await readText('pyq/mymppsc-pyq-bank.json');
@@ -212,17 +212,19 @@ test('the horizontal subject chart renders all 1,171 questions across 2013–202
   assert.match(html, /12<\/strong>\s*paper\(s\)|12 paper\(s\)/);
   assert.match(html, /2013–2024/);
 
-  // Subject labels are data-driven, including the explicit Unclassified bucket.
+  // Subject labels are data-driven. The audited bank now has no unplaced
+  // subjects; taxonomy-supported topic/subtopic gaps remain separately tracked.
   const labelMatches = [...html.matchAll(/<text class="chart-subject-label"[^>]*y="([^"]+)"[^>]*>([^<]+)<\/text>/g)];
   const expectedSubjects = summary.subjects.slice().sort((a, b) => {
     const aUnplaced = a.subject === UNCLASSIFIED_SUBJECT ? 1 : 0;
     const bUnplaced = b.subject === UNCLASSIFIED_SUBJECT ? 1 : 0;
     return aUnplaced - bUnplaced || b.questions - a.questions || String(a.subject).localeCompare(String(b.subject));
   });
-  assert.equal(labelMatches.length, expectedSubjects.length, 'all taxonomy subjects and the unplaced bucket are plotted');
+  assert.equal(summary.unclassified, 0, 'every question has a taxonomy-supported subject after the audit');
+  assert.equal(labelMatches.length, expectedSubjects.length, 'every subject present in the bank is plotted');
   const labels = labelMatches.map((match) => match[2]);
   assert.deepEqual(labels, expectedSubjects.map((row) => row.subject));
-  assert.ok(labels.includes(UNCLASSIFIED_SUBJECT), 'questions without a subject stay visible');
+  assert.equal(labels.includes(UNCLASSIFIED_SUBJECT), false, 'the final bank has no questions without a subject');
   assert.equal(labels.some((label) => label.includes('…')), false, 'no subject label is truncated');
 
   const yPositions = labelMatches.map((match) => Number(match[1]));

@@ -1,11 +1,13 @@
 # Implementation report
 
-> **Status refreshed 2026-10-12.** The production bank now contains 1,171 MPPSC
+> **Status refreshed 2026-10-12.** The production bank contains 1,171 MPPSC
 > Prelims questions across 12 papers (2013–2024), preserving the original 571
-> 2019–2024 records. The latest full run passed 205/205 tests and 860 static
-> checks; the service-worker cache is `v1.1.0-14`. The earlier UI-overhaul
-> comparison in §5 is a historical baseline; current suite and bank details are
-> in `docs/TESTING.md` and `docs/PYQ_AUDIT.md`.
+> 2019–2024 records. The focused audit applied 322 validated labels; current
+> coverage is 1,171 subjects, 1,162 topics and 1,076 subtopics, with one item
+> remaining in the internal review queue. The latest full run passed 211/211
+> tests and 860 static checks; the service-worker cache is `v1.1.0-14`. The earlier
+> UI-overhaul comparison in §5 is a historical baseline; current suite and bank
+> details are in `docs/TESTING.md` and `docs/PYQ_AUDIT.md`.
 
 App: **MyMPPSC** — a local-first MPPSC Prelims preparation app.
 Version: 1.0.0 · Bank schema: 1.0.0 · Backup format: `mymppsc-backup` 1.0.0
@@ -60,11 +62,11 @@ this repository; nothing is claimed on the basis of inspection alone.
 
 ```
 $ npm test
-# tests 205 / # pass 205 / # fail 0 / # skipped 0
+# tests 211 / # pass 211 / # fail 0 / # skipped 0
   validation 13 · scoring 14 · import 10 · revision 12
   analytics 8 · smart 11 · backup 8 · e2e 14 · ui 18
   tools 3 · PYQ bank 8 · built-in bank 9 · PYQ analysis 13
-  classification 47 · pipeline 10 · historical sources 6
+  classification 47 · pipeline 11 · historical sources 7 · quality audit 5
 
 $ npm run check
 All 860 checks passed.

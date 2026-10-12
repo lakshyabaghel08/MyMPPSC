@@ -29550,9 +29550,9 @@
         "correct_reasoning": "The word ‘monsoon’ is derived from the Arabic word ‘mausim’, which means seasonal wind, the direction of these winds varies according to the weather.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": "Climatology"
     },
     {
       "id": "MPPSC-2013-002",
@@ -29648,9 +29648,9 @@
         "correct_reasoning": "India has 7 union territories among which the smallest is Lakshadweep, according to the area.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Geography",
+      "topic": "Maps and location",
+      "subtopic": "Location"
     },
     {
       "id": "MPPSC-2013-004",
@@ -29746,9 +29746,9 @@
         "correct_reasoning": "The great ice age is related to the Pleistocene.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": "Landforms and their evolution"
     },
     {
       "id": "MPPSC-2013-006",
@@ -29942,8 +29942,8 @@
         "correct_reasoning": "Universal Declaration of Human Rights has a total of 30 articles.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
+      "subject": "Polity",
+      "topic": "Citizenship and civil rights",
       "subtopic": null
     },
     {
@@ -29991,8 +29991,8 @@
         "correct_reasoning": "Apartheid was a system of institutionalised racial segregation and discrimination in South Africa between 1948 and 1991.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
+      "subject": "History",
+      "topic": "World History",
       "subtopic": null
     },
     {
@@ -30040,9 +30040,9 @@
         "correct_reasoning": "‘The right is without duty",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Polity",
+      "topic": "Constitution of India",
+      "subtopic": "Fundamental Duties"
     },
     {
       "id": "MPPSC-2013-012",
@@ -30089,9 +30089,9 @@
         "correct_reasoning": "Human Rights Day is celebrated every year on December 10, 1950. It was decided in 1950 to celebrate it by the United Nations on 10th December in this form.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Current Affairs",
+      "topic": "Days and dates",
+      "subtopic": "International days"
     },
     {
       "id": "MPPSC-2013-013",
@@ -30187,9 +30187,9 @@
         "correct_reasoning": "U.N. observed 1975 as International year for women",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Current Affairs",
+      "topic": "International current affairs",
+      "subtopic": "International organisations"
     },
     {
       "id": "MPPSC-2013-015",
@@ -30285,8 +30285,8 @@
         "correct_reasoning": "",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
+      "subject": "Polity",
+      "topic": "Citizenship and civil rights",
       "subtopic": null
     },
     {
@@ -30383,8 +30383,8 @@
         "correct_reasoning": "The power to impose a collective fines belongs to the state government, hence this power can not be exercised by the court.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
+      "subject": "Polity",
+      "topic": "Citizenship and civil rights",
       "subtopic": null
     },
     {
@@ -30432,8 +30432,8 @@
         "correct_reasoning": "An offence committed under the Scheduled Castes and Scheduled Tribes Act, 1989 will be investigated by the police officer of the rank of Deputy Superintendent.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
+      "subject": "Polity",
+      "topic": "Citizenship and civil rights",
       "subtopic": null
     },
     {
@@ -30481,8 +30481,8 @@
         "correct_reasoning": "Under section 8 of the the act Anticipatory bail is denied.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
+      "subject": "Polity",
+      "topic": "Citizenship and civil rights",
       "subtopic": null
     },
     {
@@ -30579,8 +30579,8 @@
         "correct_reasoning": "Under the Scheduled Caste and Scheduled Tribes Prevention of Atrocities Act, 1989, the court may presume abetment, common intention and common object.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
+      "subject": "Polity",
+      "topic": "Citizenship and civil rights",
       "subtopic": null
     },
     {
@@ -30628,8 +30628,8 @@
         "correct_reasoning": "Under the Civil Rights Protection Act, 1955 all offenses are cognizable.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
+      "subject": "Polity",
+      "topic": "Citizenship and civil rights",
       "subtopic": null
     },
     {
@@ -30677,9 +30677,9 @@
         "correct_reasoning": "Two parts of the e-mail address are the name of the user and the address of the domain.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
     },
     {
       "id": "MPPSC-2013-025",
@@ -30726,9 +30726,9 @@
         "correct_reasoning": "In the ‘menu’ there is a list of all the commands.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
     },
     {
       "id": "MPPSC-2013-026",
@@ -30775,9 +30775,9 @@
         "correct_reasoning": "Junk e-mail is also called spam.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
     },
     {
       "id": "MPPSC-2013-027",
@@ -30824,9 +30824,9 @@
         "correct_reasoning": "Excel is a software while all other mouse, printer, monitor are computer hardware.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
     },
     {
       "id": "MPPSC-2013-028",
@@ -30873,9 +30873,9 @@
         "correct_reasoning": "A digital clock has an embedded computer.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
     },
     {
       "id": "MPPSC-2013-029",
@@ -30922,9 +30922,9 @@
         "correct_reasoning": "Tim Berners-Lee is inventor of WWW",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
     },
     {
       "id": "MPPSC-2013-030",
@@ -30971,9 +30971,9 @@
         "correct_reasoning": "OMR is used to test the answer in objective type testing.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
     },
     {
       "id": "MPPSC-2013-031",
@@ -31020,8 +31020,8 @@
         "correct_reasoning": "The ‘akashwani kendra’ was established on May 22, 1955 in Indore.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
+      "subject": "Madhya Pradesh Special",
+      "topic": "Schemes and institutions of Madhya Pradesh",
       "subtopic": null
     },
     {
@@ -31167,9 +31167,9 @@
         "correct_reasoning": "The largest tribe of India is Gond and in the state it is the second large tribe after Bhil.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Geography",
+      "topic": "Economic and human geography",
+      "subtopic": "Tribes of India"
     },
     {
       "id": "MPPSC-2013-035",
@@ -31216,9 +31216,9 @@
         "correct_reasoning": "Currency notes are printed in Dewas. It was established in 1975-76 AD.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Economy",
+      "topic": "Economy of Madhya Pradesh",
+      "subtopic": "Industry of Madhya Pradesh"
     },
     {
       "id": "MPPSC-2013-036",
@@ -31265,8 +31265,8 @@
         "correct_reasoning": "Bhojpuri dialect is spoken in Bihar and not in Madhya Pradesh.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
+      "subject": "Art and Culture",
+      "topic": "Literature and languages",
       "subtopic": null
     },
     {
@@ -31314,9 +31314,9 @@
         "correct_reasoning": "The Tomb of Maharani Laxmibai is located in Gwalior. Rani was born in Varanasi in 1835 and on 18th June 1858 the country was sacrificed.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "History",
+      "topic": "History of Madhya Pradesh",
+      "subtopic": "Revolt of 1857 in Madhya Pradesh"
     },
     {
       "id": "MPPSC-2013-038",
@@ -31559,9 +31559,9 @@
         "correct_reasoning": "Dr. Harisingh Gaur Sagar, the oldest and only central university of Madhya Pradesh, was established in 1946.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Madhya Pradesh Special",
+      "topic": "Schemes and institutions of Madhya Pradesh",
+      "subtopic": "Universities and research institutes"
     },
     {
       "id": "MPPSC-2013-043",
@@ -31755,9 +31755,9 @@
         "correct_reasoning": "The weight of a ball of cricket is 159.9 grams to 163 grams and the length of the bat is 38 inches and width is 4.25 inches. The length of the cricket pitches is 22 yards.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Cricket"
     },
     {
       "id": "MPPSC-2013-047",
@@ -31902,9 +31902,9 @@
         "correct_reasoning": "A board of chess contains 64 square .",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Other sports events"
     },
     {
       "id": "MPPSC-2013-050",
@@ -31951,9 +31951,9 @@
         "correct_reasoning": "",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Other sports events"
     },
     {
       "id": "MPPSC-2013-051",
@@ -32000,9 +32000,9 @@
         "correct_reasoning": "",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Other sports events"
     },
     {
       "id": "MPPSC-2013-052",
@@ -32049,9 +32049,9 @@
         "correct_reasoning": "In the Kho-Kho game, 12 players are in a team.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Other sports events"
     },
     {
       "id": "MPPSC-2013-053",
@@ -32245,8 +32245,8 @@
         "correct_reasoning": "",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
+      "subject": "Art and Culture",
+      "topic": "Heritage Sites",
       "subtopic": null
     },
     {
@@ -32294,9 +32294,9 @@
         "correct_reasoning": "Mahakumbh is held at four places of India, Haridwar, Ujjain, Nasik and Allahabad. Generally, Mahakumbh is held at a span of 12 years.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Art and Culture",
+      "topic": "Festivals and fairs",
+      "subtopic": "Festivals of India"
     },
     {
       "id": "MPPSC-2013-058",
@@ -32441,9 +32441,9 @@
         "correct_reasoning": "Jai Prakash Narayan was involved in formulating the ‘Sarvodaya Yojana’ outline",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Economy",
+      "topic": "Indian Economy",
+      "subtopic": "Planning in India"
     },
     {
       "id": "MPPSC-2013-061",
@@ -32539,9 +32539,9 @@
         "correct_reasoning": "India is the third largest producer and consumer of fertilisers in the world after China and USA. It contributes to 12.1% of world production .",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Economy",
+      "topic": "Industry and infrastructure",
+      "subtopic": "Core industries"
     },
     {
       "id": "MPPSC-2013-063",
@@ -32588,8 +32588,8 @@
         "correct_reasoning": "China is the largest source of total import of India.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
+      "subject": "Economy",
+      "topic": "International economy",
       "subtopic": null
     },
     {
@@ -32686,9 +32686,9 @@
         "correct_reasoning": "Viticulture is related to grapes production.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Economy",
+      "topic": "Agriculture and rural economy",
+      "subtopic": "Cropping patterns"
     },
     {
       "id": "MPPSC-2013-066",
@@ -32784,8 +32784,8 @@
         "correct_reasoning": "Hedgewar established the Rashtriya Swayamsewak Sangh (RSS) in 1925.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
+      "subject": "History",
+      "topic": "Modern India",
       "subtopic": null
     },
     {
@@ -32833,7 +32833,7 @@
         "correct_reasoning": "The social base of the communist is the workers of the agricultural and industrial sectors, the educated classes, the youth, etc. in India. But not the business class.",
         "language": "en"
       },
-      "subject": null,
+      "subject": "Polity",
       "topic": null,
       "subtopic": null
     },
@@ -33225,9 +33225,9 @@
         "correct_reasoning": "National Atlas and Thematic Map organization is located in Kolkata.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Geography",
+      "topic": "Maps and location",
+      "subtopic": "Cartography"
     },
     {
       "id": "MPPSC-2013-077",
@@ -33323,9 +33323,9 @@
         "correct_reasoning": "Nanda Devi Peak is located in Uttarakhand.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": "Landforms and their evolution"
     },
     {
       "id": "MPPSC-2013-079",
@@ -33421,9 +33421,9 @@
         "correct_reasoning": "India’s main harbour is Cochin, Mangalore, Kandla etc. while Bengaluru is not a harbour.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Transport in India"
     },
     {
       "id": "MPPSC-2013-081",
@@ -33519,9 +33519,9 @@
         "correct_reasoning": "Swami Vivekanad delivered his speech at the World Religions Conference held in Chicago in 1893.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": "Socio-religious reform movements"
     },
     {
       "id": "MPPSC-2013-083",
@@ -33568,9 +33568,9 @@
         "correct_reasoning": "The ex-officio chairman of the Planning Commission is the Prime Minister of India. This is not a constitutional institution. It was established on March 15, 1950.",
         "language": "en"
       },
-      "subject": "Polity",
-      "topic": null,
-      "subtopic": null
+      "subject": "Economy",
+      "topic": "Indian Economy",
+      "subtopic": "Planning in India"
     },
     {
       "id": "MPPSC-2013-084",
@@ -33764,9 +33764,9 @@
         "correct_reasoning": "The Gadar Party was formed on November 1, 1913 under the leadership of Lala Hardayal in San Francisco (America).",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": "Revolutionary movements"
     },
     {
       "id": "MPPSC-2013-088",
@@ -33960,9 +33960,9 @@
         "correct_reasoning": "Firstly in China, the ‘3 D’ television broadcast has been experimentally used.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Current Affairs",
+      "topic": "Science and technology current affairs",
+      "subtopic": "Technology launches"
     },
     {
       "id": "MPPSC-2013-092",
@@ -34009,9 +34009,9 @@
         "correct_reasoning": "The ‘Pradhanmantri Bharat Jodo Pariyojna’ is concerned with the development of highways. This project will have a well-developed development of highways.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Economy",
+      "topic": "Industry and infrastructure",
+      "subtopic": "Transport infrastructure"
     },
     {
       "id": "MPPSC-2013-093",
@@ -34107,9 +34107,9 @@
         "correct_reasoning": "Jumpa Lahiri is the author of ‘Namesake’ book, some of her other famous works are LaLand, Uncustomed Earth, etc.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Art and Culture",
+      "topic": "Literature and languages",
+      "subtopic": "Books and authors"
     },
     {
       "id": "MPPSC-2013-095",
@@ -34205,9 +34205,9 @@
         "correct_reasoning": "The United Kingdom has expressed a desire to partner with the state of Kerala in the health sector. With the completion of this partnership, the health sector will improve in the state.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Current Affairs",
+      "topic": "International current affairs",
+      "subtopic": "Bilateral relations"
     },
     {
       "id": "MPPSC-2013-097",
@@ -34303,8 +34303,8 @@
         "correct_reasoning": "The international decade of natural disaster reduction is considered to be 1991-2000. Its basic objective was to decrease the loss of life, property destruction and social and economic disruption caused by natural disasters.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
+      "subject": "Environment",
+      "topic": "Conservation initiatives",
       "subtopic": null
     },
     {
@@ -34548,9 +34548,9 @@
         "correct_reasoning": "",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Economy",
+      "topic": "Indian Economy",
+      "subtopic": "GDP and GNP"
     },
     {
       "id": "MPPSC-2014-004",
@@ -34597,7 +34597,7 @@
         "correct_reasoning": "A.B. Vajpayee was its first president of BJP.",
         "language": "en"
       },
-      "subject": null,
+      "subject": "Polity",
       "topic": null,
       "subtopic": null
     },
@@ -34744,9 +34744,9 @@
         "correct_reasoning": "Ghagra is an example of the Inland Drainage River. It is the most important river of inland drainage. It is a seasonal stream that rises on the lower slopes of the Himalayas and forms a boundary between Haryana and Punjab. It gets lost in the dry sands of Rajasthan near Hanumangarh after traversing a distance of 465 km. Ghaggar River",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Rivers of India"
     },
     {
       "id": "MPPSC-2014-008",
@@ -34793,9 +34793,9 @@
         "correct_reasoning": "Kanchanjunga is situated in Sikkim. Its height is 8586 meters. Kanchenjunga",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": "Landforms and their evolution"
     },
     {
       "id": "MPPSC-2014-009",
@@ -34842,8 +34842,8 @@
         "correct_reasoning": "Durban is Located in the African continent of South Africa.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
+      "subject": "Geography",
+      "topic": "World Geography",
       "subtopic": null
     },
     {
@@ -34940,9 +34940,9 @@
         "correct_reasoning": "To reform the banking sector, the Government of India Nationalized 14 major banks in 1969. Again, 6 banks were Nationalized in 1980.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Economy",
+      "topic": "Banking and finance",
+      "subtopic": "Commercial banks"
     },
     {
       "id": "MPPSC-2014-012",
@@ -34989,9 +34989,9 @@
         "correct_reasoning": "After the India-Pak war, 1971, Bangladesh was established as an independent nation.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": "Partition and independence"
     },
     {
       "id": "MPPSC-2014-013",
@@ -35136,8 +35136,8 @@
         "correct_reasoning": "All India Muslim League was established by Aga Khan in Dhaka in 1906",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
+      "subject": "History",
+      "topic": "Modern India",
       "subtopic": null
     },
     {
@@ -35675,9 +35675,9 @@
         "correct_reasoning": "Total area of India is 32,87,263 Km2 and it has main land boundary of 15,200 Km and coastline of the border – 7516.6 Km and Gujarat is the longest coastline state in India",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Physiography of India"
     },
     {
       "id": "MPPSC-2014-027",
@@ -35724,9 +35724,9 @@
         "correct_reasoning": "According to the 2011 census, the total population of India is 1,21,05,69,573 in which the rural population is 68.8 percent while the urban population is 31.3 percent.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Population of India"
     },
     {
       "id": "MPPSC-2014-028",
@@ -35871,9 +35871,9 @@
         "correct_reasoning": "Mandsaur is the only opium producing district of Madhya pradesh and Khandwa is known for Gaanja production.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Economy",
+      "topic": "Economy of Madhya Pradesh",
+      "subtopic": "Agriculture of Madhya Pradesh"
     },
     {
       "id": "MPPSC-2014-031",
@@ -36116,9 +36116,9 @@
         "correct_reasoning": "In the clean water community, the example of“Lentic Habitat”are pond and swamps ..",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Environment",
+      "topic": "Ecology and biodiversity",
+      "subtopic": "Ecosystem"
     },
     {
       "id": "MPPSC-2014-036",
@@ -36165,9 +36165,9 @@
         "correct_reasoning": "Uranium is used to make nuclear bombs.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Nuclear technology"
     },
     {
       "id": "MPPSC-2014-037",
@@ -36312,9 +36312,9 @@
         "correct_reasoning": "Asia-Pacific Economic Co-operation (APEC-2014) was held in Beijing, China. The Asia-Pacific Economic Co-Operation (APEC) has 21 member countries, which has 40 percent of the total population while the world’s gross product 55 percent of the part is received from these countries, so the APEC organization is considered very important in the economic sector.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Current Affairs",
+      "topic": "International current affairs",
+      "subtopic": "Summits and conferences"
     },
     {
       "id": "MPPSC-2014-040",
@@ -36361,9 +36361,9 @@
         "correct_reasoning": "The nineteenth SAARC Conference (2016) was proposed in Pakistan. it was boycotted by India. Later, Bangladesh, Afghanistan, Bhutan, Sri Lanka and Maldives also pulled out of the summit. SAARC have 8 members. SAARC were established in 1985.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Current Affairs",
+      "topic": "International current affairs",
+      "subtopic": "Summits and conferences"
     },
     {
       "id": "MPPSC-2014-041",
@@ -36459,8 +36459,8 @@
         "correct_reasoning": "Green Army has been set up in Australia for environmental protection.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
+      "subject": "Environment",
+      "topic": "Conservation initiatives",
       "subtopic": null
     },
     {
@@ -36557,9 +36557,9 @@
         "correct_reasoning": "According to the World Health Organization, Africa’s continent of Liberia is the most affected by Ebola virus.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Health and diseases",
+      "subtopic": "Epidemics and pandemics"
     },
     {
       "id": "MPPSC-2014-045",
@@ -36704,8 +36704,8 @@
         "correct_reasoning": "The reflection of an object turns upside down and becomes real in the human eye in the retina. Retina",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
+      "subject": "Science and Technology",
+      "topic": "Biology",
       "subtopic": null
     },
     {
@@ -36753,9 +36753,9 @@
         "correct_reasoning": "The 102nd Indian Science Congress was organized in Mumbai.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Current Affairs",
+      "topic": "National current affairs",
+      "subtopic": "National events"
     },
     {
       "id": "MPPSC-2014-049",
@@ -36851,9 +36851,9 @@
         "correct_reasoning": "Theses are salt loving plants. Salt Loving Plant",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Biology",
+      "subtopic": "Plant physiology"
     },
     {
       "id": "MPPSC-2014-051",
@@ -36900,8 +36900,8 @@
         "correct_reasoning": "The disease called “Blue Baby Syndrome” is caused by excessive nitrate in the blood.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
+      "subject": "Science and Technology",
+      "topic": "Health and diseases",
       "subtopic": null
     },
     {
@@ -36949,8 +36949,8 @@
         "correct_reasoning": "The Sun’s diameter is 13 lakh 92 thousand kilometers and is 109 times bigger than earth. Earth gets 2 billionth part of sunlight.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
+      "subject": "Science and Technology",
+      "topic": "Physics",
       "subtopic": null
     },
     {
@@ -36998,8 +36998,8 @@
         "correct_reasoning": "Planet Neptune is the coldest planet of Solar System and the warmest planet in the Solar System is Mercury.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
+      "subject": "Science and Technology",
+      "topic": "Physics",
       "subtopic": null
     },
     {
@@ -37047,9 +37047,9 @@
         "correct_reasoning": "“Ozone Layer Conservation Day” is celebrated on September 16th, the main function of the ozone layer is to prevent us from harmful ultraviolet rays from the sun. Ozone Layer Extra Information: Ozone Layer is found in the Stratosphere.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Current Affairs",
+      "topic": "Days and dates",
+      "subtopic": "International days"
     },
     {
       "id": "MPPSC-2014-055",
@@ -37145,8 +37145,8 @@
         "correct_reasoning": "Sunderlal Bahuguna was the leader of the “Chipko movement”. “Chipko movement” was started in the Garhwal Himalayas in 1973 to prevent indiscriminate felling of trees.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
+      "subject": "Environment",
+      "topic": "Conservation initiatives",
       "subtopic": null
     },
     {
@@ -37293,8 +37293,8 @@
         "language": "en"
       },
       "subject": "Polity",
-      "topic": null,
-      "subtopic": null
+      "topic": "Constitutional bodies",
+      "subtopic": "Election Commission of India"
     },
     {
       "id": "MPPSC-2014-060",
@@ -37341,8 +37341,8 @@
         "correct_reasoning": "India is ranked second in the world in the production of silk, whereas milk production is first and second place in wheat production.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
+      "subject": "Economy",
+      "topic": "Agriculture and rural economy",
       "subtopic": null
     },
     {
@@ -37439,9 +37439,9 @@
         "correct_reasoning": "Harihara and Bukka established the Vijayanagar empire. The famous Hazara temple, situated in the Vijayanagar empire, was built by Krishna Deva Raya.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "History",
+      "topic": "Medieval India",
+      "subtopic": "Vijayanagara and Bahmani"
     },
     {
       "id": "MPPSC-2014-063",
@@ -37587,8 +37587,8 @@
         "language": "en"
       },
       "subject": "Polity",
-      "topic": null,
-      "subtopic": null
+      "topic": "Statutory and regulatory bodies",
+      "subtopic": "National Human Rights Commission"
     },
     {
       "id": "MPPSC-2014-066",
@@ -37684,8 +37684,8 @@
         "correct_reasoning": "Under the Scheduled Castes and Scheduled Tribes (Prevention of Atrocities) Act, 1989, the state government has the power to impose and recover the collective fines.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
+      "subject": "Polity",
+      "topic": "Citizenship and civil rights",
       "subtopic": null
     },
     {
@@ -37733,8 +37733,8 @@
         "correct_reasoning": "In the case of crimes committed by the companies under the Civil Rights Protection Act 1955, the director, Manager and the Secretary are liable.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
+      "subject": "Polity",
+      "topic": "Citizenship and civil rights",
       "subtopic": null
     },
     {
@@ -37782,8 +37782,8 @@
         "correct_reasoning": "Under the Scheduled Castes and Scheduled Tribes (Prevention of Atrocities Act, 1989), there is a provision of minimum punishment for at least one year if a person has committed a crime under section 3.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
+      "subject": "Polity",
+      "topic": "Citizenship and civil rights",
       "subtopic": null
     },
     {
@@ -37831,9 +37831,9 @@
         "correct_reasoning": "Dial up-service is the slowest internet connection service.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
     },
     {
       "id": "MPPSC-2014-071",
@@ -37880,9 +37880,9 @@
         "correct_reasoning": "SMPS stands for Switched-Mode Power Supply.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
     },
     {
       "id": "MPPSC-2014-072",
@@ -37929,8 +37929,8 @@
         "correct_reasoning": "Under the Civil Rights Protection Act 1955, the offense is considered by the First Class Judicial Magistrate.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
+      "subject": "Polity",
+      "topic": "Citizenship and civil rights",
       "subtopic": null
     },
     {
@@ -37978,9 +37978,9 @@
         "correct_reasoning": "",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
     },
     {
       "id": "MPPSC-2014-074",
@@ -38027,9 +38027,9 @@
         "correct_reasoning": "There are 8 bits in a byte 1 byte = 8 bits The other unit is- 1 KB = 1024 bytes 2 MB = 1024 KB 3 GB = 1024 MB",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
     },
     {
       "id": "MPPSC-2014-075",
@@ -38076,9 +38076,9 @@
         "correct_reasoning": "Fireball is used to prevent unauthorized attacks in communication networks / systems.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
     },
     {
       "id": "MPPSC-2014-076",
@@ -38125,9 +38125,9 @@
         "correct_reasoning": "FTP stands for file transfer protocol",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
     },
     {
       "id": "MPPSC-2014-077",
@@ -38272,9 +38272,9 @@
         "correct_reasoning": "word processing, spreadsheets, and photo editing are examples of application software.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
     },
     {
       "id": "MPPSC-2014-080",
@@ -38321,9 +38321,9 @@
         "correct_reasoning": "The Tansen Award is given by the Madhya Pradesh government. Tansen Samman was awarded to Prabhakar Korkar in 2014.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Current Affairs",
+      "topic": "Current affairs of Madhya Pradesh",
+      "subtopic": "State awards and appointments"
     },
     {
       "id": "MPPSC-2014-081",
@@ -38419,9 +38419,9 @@
         "correct_reasoning": "Dharmaveer Bharati was born in Uttar Pradesh (Allahabad) in the year 1926. While Sharad Joshi in Ujjain, Prabhakar Machwe M.P. Harishankar Parsai was born on 22nd August, 1922 in Hoshangabad.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Art and Culture",
+      "topic": "Literature and languages",
+      "subtopic": "Literature of Madhya Pradesh"
     },
     {
       "id": "MPPSC-2014-083",
@@ -38468,9 +38468,9 @@
         "correct_reasoning": "The founder of the Chola dynasty was Vijaypal and the Chola dynasty was famous for skilled rural administration. The capital of Chola dynasty was Tanjore.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "History",
+      "topic": "Medieval India",
+      "subtopic": "Medieval administration and revenue"
     },
     {
       "id": "MPPSC-2014-084",
@@ -38517,9 +38517,9 @@
         "correct_reasoning": "The Khajuraho was constructed in 950-1050 AD by the kings of Chandel dynasty. Khajuraho is the world famous because of its grand art figures.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "History",
+      "topic": "History of Madhya Pradesh",
+      "subtopic": "Chandela dynasty"
     },
     {
       "id": "MPPSC-2014-085",
@@ -38664,9 +38664,9 @@
         "correct_reasoning": "Birsinghpur Power Station is located in Umaria district of madhya pradesh.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Economy",
+      "topic": "Economy of Madhya Pradesh",
+      "subtopic": "Industry of Madhya Pradesh"
     },
     {
       "id": "MPPSC-2014-088",
@@ -38811,9 +38811,9 @@
         "correct_reasoning": "2013 is the starting year of Hockey India League (HIL). Not only indian players, other country players are also participate in Hockey India League (HIL).",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Other sports events"
     },
     {
       "id": "MPPSC-2014-091",
@@ -38909,9 +38909,9 @@
         "correct_reasoning": "Malakham has been declared a state sports by the Madhya Pradesh government and its player is given the Prashash Joshi Award.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Madhya Pradesh Special",
+      "topic": "Personalities and awards of Madhya Pradesh",
+      "subtopic": "State awards"
     },
     {
       "id": "MPPSC-2014-093",
@@ -39007,9 +39007,9 @@
         "correct_reasoning": "In the volleyball game, the word libro is used.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Other sports events"
     },
     {
       "id": "MPPSC-2014-095",
@@ -39105,9 +39105,9 @@
         "correct_reasoning": "Bonus line is marked in the game of kabaddi.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Other sports events"
     },
     {
       "id": "MPPSC-2014-097",
@@ -39154,9 +39154,9 @@
         "correct_reasoning": "Black pearl related to football.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Other sports events"
     },
     {
       "id": "MPPSC-2014-098",
@@ -39252,9 +39252,9 @@
         "correct_reasoning": "In the year 2013-14, BSNL, India’s leading telecom operator was not in the profit position.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Economy",
+      "topic": "Indian Economy",
+      "subtopic": "Public sector undertakings"
     },
     {
       "id": "MPPSC-2014-100",
@@ -39301,9 +39301,9 @@
         "correct_reasoning": "Bhimrao Ambedkar international sports stadium is located in Faizabad city of Uttar Pradesh.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Geography",
+      "topic": "Maps and location",
+      "subtopic": "Location"
     },
     {
       "id": "MPPSC-2015-001",
@@ -39448,8 +39448,8 @@
         "correct_reasoning": "Founded on July 16, 1909 in Zwickau, Germany, Audi AG is a world-renowned manufacturer of automobiles and motorcycles and is one of the three luxury automakers, besides Mercedes Benz and BMW, that together constitute what is known as the ‘German Big 3’ – a group of those three car-manufacturers from Germany.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
+      "subject": "Economy",
+      "topic": "Industry and infrastructure",
       "subtopic": null
     },
     {
@@ -39497,9 +39497,9 @@
         "correct_reasoning": "",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Art and Culture",
+      "topic": "Literature and languages",
+      "subtopic": "Books and authors"
     },
     {
       "id": "MPPSC-2015-005",
@@ -39546,9 +39546,9 @@
         "correct_reasoning": "The Madhya Pradesh government has appointed actress Madhuri Dixit as the brand ambassador for its Mamta Abhiyaan (maternal and child health) campaign",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Current Affairs",
+      "topic": "Current affairs of Madhya Pradesh",
+      "subtopic": "State schemes in news"
     },
     {
       "id": "MPPSC-2015-006",
@@ -39644,8 +39644,8 @@
         "correct_reasoning": "State Museum of Madhya Pradesh, Bhopal was earlier known as Edward Museum which is located in Shymala Hills, Bhopal.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
+      "subject": "Madhya Pradesh Special",
+      "topic": "Schemes and institutions of Madhya Pradesh",
       "subtopic": null
     },
     {
@@ -39693,9 +39693,9 @@
         "correct_reasoning": "Under the patronage of the Samanid dynasty, Ferdowsi began his epic poem in 977, taking thirty-three years to complete it. The Shahnameh was written at a time when modern Persian had started to flourish.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Art and Culture",
+      "topic": "Literature and languages",
+      "subtopic": "Urdu and Persian literature"
     },
     {
       "id": "MPPSC-2015-009",
@@ -39742,7 +39742,7 @@
         "correct_reasoning": "There is a diverse number of Sanskaras in Hinduism out of which 16 are known as “Shodasha Samskaras“.",
         "language": "en"
       },
-      "subject": null,
+      "subject": "Art and Culture",
       "topic": null,
       "subtopic": null
     },
@@ -39938,9 +39938,9 @@
         "correct_reasoning": "The Bengal Sati Regulation which banned the Sati practice in all jurisdictions of British India was passed on December 4, 1829 by the then Governor-General Lord William Bentinck.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": "Socio-religious reform movements"
     },
     {
       "id": "MPPSC-2015-014",
@@ -40183,9 +40183,9 @@
         "correct_reasoning": "April 22 is Earth Day, an international event celebrated around the world to pledge support for environmental protection. It was celebrated in the United States for the first time on April 22, 1970.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Current Affairs",
+      "topic": "Days and dates",
+      "subtopic": "International days"
     },
     {
       "id": "MPPSC-2015-019",
@@ -40330,8 +40330,8 @@
         "correct_reasoning": "Alfalfa is a perennial flowering plant in the legume family Fabaceae. It is cultivated as an important forage crop (the edible parts of plants ) in many countries around the world. It is used for grazing, hay, and silage, as well as a green manure and cover crop. The name alfalfa is used in North America. The name lucerne is the more commonly used name in the United Kingdom, South Africa, Australia, and New Zealand.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
+      "subject": "Science and Technology",
+      "topic": "Biology",
       "subtopic": null
     },
     {
@@ -40477,9 +40477,9 @@
         "correct_reasoning": "The Port of Santos is located in the city of Santos, state of Sao Paulo, Brazil. Port Santos",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Geography",
+      "topic": "World Geography",
+      "subtopic": "Important ports"
     },
     {
       "id": "MPPSC-2015-025",
@@ -40673,9 +40673,9 @@
         "correct_reasoning": "",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Geography",
+      "topic": "Maps and location",
+      "subtopic": "Boundaries and neighbours"
     },
     {
       "id": "MPPSC-2015-029",
@@ -41017,8 +41017,8 @@
         "language": "en"
       },
       "subject": "Polity",
-      "topic": null,
-      "subtopic": null
+      "topic": "Union Legislature",
+      "subtopic": "Lok Sabha"
     },
     {
       "id": "MPPSC-2015-036",
@@ -41065,9 +41065,9 @@
         "correct_reasoning": "B R Ambedkar has termed Constitution a sacred document.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Polity",
+      "topic": "Constitution of India",
+      "subtopic": "Making of the Constitution"
     },
     {
       "id": "MPPSC-2015-037",
@@ -41261,9 +41261,9 @@
         "correct_reasoning": "Sustainable development is an approach to economic planning that attempts to foster economic growth while preserving the quality of the environment for future generations.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Economy",
+      "topic": "Poverty and human development",
+      "subtopic": "Sustainable Development Goals"
     },
     {
       "id": "MPPSC-2015-041",
@@ -41359,7 +41359,7 @@
         "correct_reasoning": "The practice of a written constitution began in America.",
         "language": "en"
       },
-      "subject": null,
+      "subject": "Polity",
       "topic": null,
       "subtopic": null
     },
@@ -41408,7 +41408,7 @@
         "correct_reasoning": "A committee was formed under the chairmanship of Justice Tarkunde by Jaiprakash Narayan for electoral reforms. He recommended the 18 years as voting age which was included by 61st amendment of 1988.",
         "language": "en"
       },
-      "subject": null,
+      "subject": "Polity",
       "topic": null,
       "subtopic": null
     },
@@ -41555,9 +41555,9 @@
         "correct_reasoning": "Coal, fossil fuels, crude oil, natural gas, etc are all hydrocarbon fuels. These are nonrenewable source of energy.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Geography",
+      "topic": "Economic and human geography",
+      "subtopic": "Energy resources"
     },
     {
       "id": "MPPSC-2015-047",
@@ -41703,8 +41703,8 @@
         "language": "en"
       },
       "subject": "Geography",
-      "topic": null,
-      "subtopic": null
+      "topic": "Physical Geography",
+      "subtopic": "Oceanography"
     },
     {
       "id": "MPPSC-2015-050",
@@ -41800,9 +41800,9 @@
         "correct_reasoning": "Religious causes are not atrocity of scheduled caste and scheduled tribe according to the report of National Commission of Scheduled Caste and Scheduled Tribe of year 1990.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Polity",
+      "topic": "Constitutional bodies",
+      "subtopic": "National Commission for SCs and STs"
     },
     {
       "id": "MPPSC-2015-052",
@@ -41947,9 +41947,9 @@
         "correct_reasoning": "",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Economy",
+      "topic": "Poverty and human development",
+      "subtopic": "Sustainable Development Goals"
     },
     {
       "id": "MPPSC-2015-055",
@@ -41996,9 +41996,9 @@
         "correct_reasoning": "Red, yellow and blue are primary colours.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Physics",
+      "subtopic": "Light and optics"
     },
     {
       "id": "MPPSC-2015-056",
@@ -42045,9 +42045,9 @@
         "correct_reasoning": "Indian scientist Jagadish Chandra Bose was the first to prove that plants are like any other life in 1901.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Biology",
+      "subtopic": "Plant physiology"
     },
     {
       "id": "MPPSC-2015-057",
@@ -42094,9 +42094,9 @@
         "correct_reasoning": "A byte is 8 bits. A kilobyte is 1,024 bytes. A megabyte is 1,024 kilobytes. A gigabyte is 1,024 megabytes. A terabyte is 1,024 gigabytes.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
     },
     {
       "id": "MPPSC-2015-058",
@@ -42143,9 +42143,9 @@
         "correct_reasoning": "Among the given options KB is the smallest memory unit.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
     },
     {
       "id": "MPPSC-2015-059",
@@ -42192,9 +42192,9 @@
         "correct_reasoning": "At a physical level, the 0 and 1 are stored in the central processing unit of a computer system using transistors.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
     },
     {
       "id": "MPPSC-2015-060",
@@ -42241,9 +42241,9 @@
         "correct_reasoning": "Super Computer is the largest, fastest, and costliest computer.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
     },
     {
       "id": "MPPSC-2015-061",
@@ -42339,9 +42339,9 @@
         "correct_reasoning": "Paint brush is a physical product for painting.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
     },
     {
       "id": "MPPSC-2015-063",
@@ -42388,9 +42388,9 @@
         "correct_reasoning": "Understanding is not a work of computers because it derives the solution from the data stored or allowed by software makers.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
     },
     {
       "id": "MPPSC-2015-064",
@@ -42437,9 +42437,9 @@
         "correct_reasoning": "Port is an interface or a point of connection between the computer and its peripheral devices.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
     },
     {
       "id": "MPPSC-2015-065",
@@ -42486,9 +42486,9 @@
         "correct_reasoning": "The first page at a website is known as its Home Page.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
     },
     {
       "id": "MPPSC-2015-066",
@@ -42535,9 +42535,9 @@
         "correct_reasoning": "In 2016 Summer Olympics was held in Rio de Janeiro.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Olympic and Asian Games"
     },
     {
       "id": "MPPSC-2015-067",
@@ -42584,9 +42584,9 @@
         "correct_reasoning": "Novak Djokovic in Men’s Singles.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Other sports events"
     },
     {
       "id": "MPPSC-2015-068",
@@ -42633,8 +42633,8 @@
         "correct_reasoning": "Indore",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
+      "subject": "Madhya Pradesh Special",
+      "topic": "Schemes and institutions of Madhya Pradesh",
       "subtopic": null
     },
     {
@@ -42682,9 +42682,9 @@
         "correct_reasoning": "Sandhya Agarwal (born 9 May 1963) is a former captain of the Indian women’s cricket team. She hails from Indore.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Madhya Pradesh Special",
+      "topic": "Personalities and awards of Madhya Pradesh",
+      "subtopic": "Sports from Madhya Pradesh"
     },
     {
       "id": "MPPSC-2015-070",
@@ -42780,9 +42780,9 @@
         "correct_reasoning": "A polo team is comprised of four players. The object of the game is to move the polo ball down the field, hitting the ball through the goal posts to score. The teams then change direction after each goal to compensate for field and wind conditions.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Other sports events"
     },
     {
       "id": "MPPSC-2015-072",
@@ -42829,9 +42829,9 @@
         "correct_reasoning": "Nineteen-year old Narendra Hirwani had played a debut Test match against a rampaging West Indies side led by Viv Richards. At the end of five days of Test cricket in January 1988, the debutant’s incredible display of leg spin bowling in front of a packed Chepauk stadium in chennai, would leave the most successful West Indies Test side of all time on their knees.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Cricket"
     },
     {
       "id": "MPPSC-2015-073",
@@ -42878,8 +42878,8 @@
         "correct_reasoning": "Aishbagh Stadium is in Bhopal.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
+      "subject": "Madhya Pradesh Special",
+      "topic": "Schemes and institutions of Madhya Pradesh",
       "subtopic": null
     },
     {
@@ -43123,9 +43123,9 @@
         "correct_reasoning": "The Tribal Movement occurred in Sendhawa located in the Barwani district of Madhya Pradesh under the leadership of Bhima Nayak.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "History",
+      "topic": "History of Madhya Pradesh",
+      "subtopic": "Revolt of 1857 in Madhya Pradesh"
     },
     {
       "id": "MPPSC-2015-079",
@@ -43270,9 +43270,9 @@
         "correct_reasoning": "Alauddin Khan Fellowship is given by the Madhya Pradesh government in the field of Music.",
         "language": "en"
       },
-      "subject": "Art and Culture",
-      "topic": null,
-      "subtopic": null
+      "subject": "Madhya Pradesh Special",
+      "topic": "Personalities and awards of Madhya Pradesh",
+      "subtopic": "State awards"
     },
     {
       "id": "MPPSC-2015-082",
@@ -43319,9 +43319,9 @@
         "correct_reasoning": "Born on 5th of September 1917 in Aalot village (district Dewas ), Madhya Pradesh. Youngest among three sisters and one brother he had a modest but caring upbringing. His father being an accountant in the service of one of the influential officers of Dewas royalty. Dinkar Rao was in the habit of recycling things of daily use, even paper and thread salvaged from grocery packages. Later using them for rough calculations and weaving small strings. Mother Anandi Bai, or happy woman, a thrifty housewife making do in husband’s limited income, utilised every conceivable part of edible things to produce toothsome morsels. These practices were to have a profound influence on Vishnu in later life as a painter.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Art and Culture",
+      "topic": "Paintings and sculpture",
+      "subtopic": "Modern Indian painters"
     },
     {
       "id": "MPPSC-2015-083",
@@ -43417,9 +43417,9 @@
         "correct_reasoning": "M.P. Pashu Chikitsa Avem Pashu Palan Vishwa Vidyalaya is located at Jabalpur.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Madhya Pradesh Special",
+      "topic": "Schemes and institutions of Madhya Pradesh",
+      "subtopic": "Universities and research institutes"
     },
     {
       "id": "MPPSC-2015-085",
@@ -43466,9 +43466,9 @@
         "correct_reasoning": "Ganesh Shanker Vidyarthi award is an annual journalism award.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Madhya Pradesh Special",
+      "topic": "Personalities and awards of Madhya Pradesh",
+      "subtopic": "State awards"
     },
     {
       "id": "MPPSC-2015-086",
@@ -43760,9 +43760,9 @@
         "correct_reasoning": "An instrument used in measuring the depth of water by the time required for a sound wave to travel from surface to bottom and for its echo to be returned.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": "Oceanography"
     },
     {
       "id": "MPPSC-2015-092",
@@ -43809,9 +43809,9 @@
         "correct_reasoning": "The regional research branch of the Indian Forest Research Institute is situated in the Jabalpur district of Madhya Pradesh.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Madhya Pradesh Special",
+      "topic": "Schemes and institutions of Madhya Pradesh",
+      "subtopic": "Universities and research institutes"
     },
     {
       "id": "MPPSC-2015-093",
@@ -43858,9 +43858,9 @@
         "correct_reasoning": "The microscope is used for the study of micro and nearby objects.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Physics",
+      "subtopic": "Light and optics"
     },
     {
       "id": "MPPSC-2015-094",
@@ -43956,9 +43956,9 @@
         "correct_reasoning": "Lactometer is used to measure the density of milk.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Physics",
+      "subtopic": "Units and measurements"
     },
     {
       "id": "MPPSC-2015-096",
@@ -44054,8 +44054,8 @@
         "correct_reasoning": "Sir Alexander Fleming was a Scottish physician and microbiologist, best known for discovering the world’s first broadly effective antibiotic substance, which he named penicillin.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
+      "subject": "Science and Technology",
+      "topic": "Biology",
       "subtopic": null
     },
     {
@@ -44103,9 +44103,9 @@
         "correct_reasoning": "The longest day of the year is the summer solstice, which falls around 21 June in the Northern Hemisphere, and 21 December in the Southern Hemisphere.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": "Climatology"
     },
     {
       "id": "MPPSC-2015-099",
@@ -44250,9 +44250,9 @@
         "correct_reasoning": "Bangladesh — 4096.7 km China — 3488 km Pakistan —- 3323 km Nepal —- 1751 km Mayanmar — 1643 km Bhutan —- 699 km Afganishtan —- 106 km",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Geography",
+      "topic": "Maps and location",
+      "subtopic": "Boundaries and neighbours"
     },
     {
       "id": "MPPSC-2016-002",
@@ -44397,9 +44397,9 @@
         "correct_reasoning": "",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Physiography of India"
     },
     {
       "id": "MPPSC-2016-005",
@@ -44544,9 +44544,9 @@
         "correct_reasoning": "It is drawn on conquered area.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Geography",
+      "topic": "Maps and location",
+      "subtopic": "Boundaries and neighbours"
     },
     {
       "id": "MPPSC-2016-008",
@@ -44593,9 +44593,9 @@
         "correct_reasoning": "Hudhud cyclone hit the Indian mainland at Andra Pradesh Coast. It was a strong tropical cyclone.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Climate of India"
     },
     {
       "id": "MPPSC-2016-009",
@@ -44691,8 +44691,8 @@
         "correct_reasoning": "Cochin Shipyard Limited (CSL) is the largest shipbuilding and maintenance facility in India located in the port city of Kochi, Kerala, India.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
+      "subject": "Economy",
+      "topic": "Industry and infrastructure",
       "subtopic": null
     },
     {
@@ -44740,9 +44740,9 @@
         "correct_reasoning": "It is an experimental geothermal power plant of 5 MW capacity set up at Manikaran in Himachal Pradesh.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Geography",
+      "topic": "Economic and human geography",
+      "subtopic": "Energy resources"
     },
     {
       "id": "MPPSC-2016-012",
@@ -44887,9 +44887,9 @@
         "correct_reasoning": "The silent valley project is a hydroelectric project adopted in the silent valley area of Kerala which is an evergreen tropical forest in the Palakkad district of Kerala.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Geography",
+      "topic": "Economic and human geography",
+      "subtopic": "Energy resources"
     },
     {
       "id": "MPPSC-2016-015",
@@ -44985,9 +44985,9 @@
         "correct_reasoning": "The potato is a starchy tuber of the plant Solanum tuberosum.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Biology",
+      "subtopic": "Plant physiology"
     },
     {
       "id": "MPPSC-2016-017",
@@ -45034,9 +45034,9 @@
         "correct_reasoning": "Nobel gas is gases of group 18 of the periodic table .The elements helium, neon, argon, krypton, xenon, and radon are the members of this group.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Chemistry",
+      "subtopic": "Periodic table"
     },
     {
       "id": "MPPSC-2016-018",
@@ -45083,9 +45083,9 @@
         "correct_reasoning": "Liver, the largest gland in the body, a spongy mass of wedge-shaped lobes,",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Biology",
+      "subtopic": "Human digestive system"
     },
     {
       "id": "MPPSC-2016-019",
@@ -45132,9 +45132,9 @@
         "correct_reasoning": "All mammals have lungs that are the main organs for breathing. During inhalation, the lungs expand with air, and oxygen diffuses across the lung’s surface and enters the bloodstream. During exhalation, the lungs expel air and lung volume decreases.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Biology",
+      "subtopic": "Human respiratory system"
     },
     {
       "id": "MPPSC-2016-020",
@@ -45181,9 +45181,9 @@
         "correct_reasoning": "Acetic acid (CH3COOH), also called ethanoic acid, the most important of the carboxylic acids is a dilute (approximately 5 percent by volume) solution of acetic acid produced by fermentation and oxidation of natural carbohydrates is called vinegar; a salt, ester, or acylal of acetic acid is called acetate.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Chemistry",
+      "subtopic": "Chemistry in everyday life"
     },
     {
       "id": "MPPSC-2016-021",
@@ -45279,9 +45279,9 @@
         "correct_reasoning": "Watt is a unit of Power.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Physics",
+      "subtopic": "Units and measurements"
     },
     {
       "id": "MPPSC-2016-023",
@@ -45328,9 +45328,9 @@
         "correct_reasoning": "Mercury is commonly used in barometers because its height of the column can be a reasonable size due to higher density so that to measure atmospheric pressure.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Physics",
+      "subtopic": "Units and measurements"
     },
     {
       "id": "MPPSC-2016-024",
@@ -45377,9 +45377,9 @@
         "correct_reasoning": "Uranium is a radioactive substance.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Geography",
+      "topic": "Economic and human geography",
+      "subtopic": "Energy resources"
     },
     {
       "id": "MPPSC-2016-025",
@@ -45426,9 +45426,9 @@
         "correct_reasoning": "The most popular renewable energy sources are:  Solar energy.  Wind energy.  Hydro energy.  Tidal energy.  Geothermal energy.  Biomass energy",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Geography",
+      "topic": "Economic and human geography",
+      "subtopic": "Energy resources"
     },
     {
       "id": "MPPSC-2016-026",
@@ -45524,9 +45524,9 @@
         "correct_reasoning": "Starch is a polysaccharide comprising glucose monomers joined in α 1,4 linkages.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Chemistry",
+      "subtopic": "Carbon compounds"
     },
     {
       "id": "MPPSC-2016-028",
@@ -45622,9 +45622,9 @@
         "correct_reasoning": "The process of pasteurisation involves heating milk to 71.7°C for at least 15 seconds (and no more than 25 seconds). … Once the milk has been heated, it is then cooled very quickly to less than 3°C.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Chemistry",
+      "subtopic": "Chemistry in everyday life"
     },
     {
       "id": "MPPSC-2016-030",
@@ -45720,8 +45720,8 @@
         "correct_reasoning": "Rajendra Chaudhary is known as the ‘Waterman of India’. He is the founder of Tarun Bahrat Sangh which works for revival of rivers such as Aravari,Tiba etc in Rajasthan.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
+      "subject": "Environment",
+      "topic": "Conservation initiatives",
       "subtopic": null
     },
     {
@@ -45916,9 +45916,9 @@
         "correct_reasoning": "Arunachal Pradesh has the lowest record of population density having 17 per square kilometre.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Population of India"
     },
     {
       "id": "MPPSC-2016-036",
@@ -46112,9 +46112,9 @@
         "correct_reasoning": "G8 Countries 2021  France.  Germany.  Italy.  Japan.  United Kingdom.  United States.  Canada.  Russia. G-8 group has turned into G-7 after suspension of Russia.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Current Affairs",
+      "topic": "International current affairs",
+      "subtopic": "International organisations"
     },
     {
       "id": "MPPSC-2016-040",
@@ -46161,9 +46161,9 @@
         "correct_reasoning": "O.P. Sabharwal is the author of the book Killer Instinct. This book tells about rescue and raid mission worldwide.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Art and Culture",
+      "topic": "Literature and languages",
+      "subtopic": "Books and authors"
     },
     {
       "id": "MPPSC-2016-041",
@@ -46259,9 +46259,9 @@
         "correct_reasoning": "Five countries: Brazil, Russia, India, China, and South Africa.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Current Affairs",
+      "topic": "International current affairs",
+      "subtopic": "International organisations"
     },
     {
       "id": "MPPSC-2016-043",
@@ -46357,9 +46357,9 @@
         "correct_reasoning": "At Delhi.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Other sports events"
     },
     {
       "id": "MPPSC-2016-045",
@@ -46504,9 +46504,9 @@
         "correct_reasoning": "Madhya Pradesh Laghu Udyog Nigam Limited is a State Govt company, incorporated on 28 Dec, 1961.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Economy",
+      "topic": "Economy of Madhya Pradesh",
+      "subtopic": "Industry of Madhya Pradesh"
     },
     {
       "id": "MPPSC-2016-048",
@@ -46553,9 +46553,9 @@
         "correct_reasoning": "The Indian Parliament passed the Mahatma Gandhi National Rural Employment Guarantee Act on 23rd August 2005.It guarantees the 100 days of wage employment in the financial year to a rural household whose adult members volunteer to do unskilled manual work. In this scheme, onethird of the proposed job will be reserved for women.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Economy",
+      "topic": "Agriculture and rural economy",
+      "subtopic": "Rural employment programmes"
     },
     {
       "id": "MPPSC-2016-049",
@@ -46651,9 +46651,9 @@
         "correct_reasoning": "Total population of Madhya Pradesh as per 2011 census is 7.27 crore, of which male and female are 3.76 crore and 3.51 crore respectively.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Madhya Pradesh Special",
+      "topic": "Demography of Madhya Pradesh",
+      "subtopic": "Census data"
     },
     {
       "id": "MPPSC-2016-051",
@@ -46700,9 +46700,9 @@
         "correct_reasoning": "According to the 2011 census, Madhya Pradesh’s most populous district is Indore, whose population is 32,76,697, while the lowest population is in Harda district, which is 5,70,465.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Madhya Pradesh Special",
+      "topic": "Demography of Madhya Pradesh",
+      "subtopic": "Districts of Madhya Pradesh"
     },
     {
       "id": "MPPSC-2016-052",
@@ -46847,9 +46847,9 @@
         "correct_reasoning": "The spirit and the objective of the Pradhan Mantri Gram Sadak Yojana (PMGSY) is to provide good all-weather road connectivity to unconnected Habitations. A habitation which was earlier provided all-weather connectivity would not be eligible even if the present condition of the road is bad",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Current Affairs",
+      "topic": "National current affairs",
+      "subtopic": "Government schemes and launches"
     },
     {
       "id": "MPPSC-2016-055",
@@ -46896,9 +46896,9 @@
         "correct_reasoning": "All options are correct.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Economy",
+      "topic": "Economy of Madhya Pradesh",
+      "subtopic": "Industry of Madhya Pradesh"
     },
     {
       "id": "MPPSC-2016-056",
@@ -46945,9 +46945,9 @@
         "correct_reasoning": "",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
     },
     {
       "id": "MPPSC-2016-057",
@@ -46994,9 +46994,9 @@
         "correct_reasoning": "",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
     },
     {
       "id": "MPPSC-2016-058",
@@ -47043,9 +47043,9 @@
         "correct_reasoning": "Chrome, an Internet browser released by Google, Inc., a major American search engine company, in 2008.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
     },
     {
       "id": "MPPSC-2016-059",
@@ -47092,8 +47092,8 @@
         "correct_reasoning": "",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
+      "subject": "Current Affairs",
+      "topic": "Appointments and personalities",
       "subtopic": null
     },
     {
@@ -47141,9 +47141,9 @@
         "correct_reasoning": "A computer worm is a malicious, self-replicating software program (popularly termed as ‘malware’) which affects the functions of software and hardware programs.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
     },
     {
       "id": "MPPSC-2016-061",
@@ -47190,9 +47190,9 @@
         "correct_reasoning": "SPAM is any sort of unwanted, unsolicited digital communication sent out in bulk, usually in the form of an email.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
     },
     {
       "id": "MPPSC-2016-062",
@@ -47239,9 +47239,9 @@
         "correct_reasoning": "Baidu.com is the search engine in the Chinese-language or china based.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
     },
     {
       "id": "MPPSC-2016-063",
@@ -47288,9 +47288,9 @@
         "correct_reasoning": "A video input device, such as a video camera, desktop web cam, or a camera built in to a tablet, smart phone, or laptop. and an audio input device, such as a stand-alone microphone, headset, or a smart phone’s voice input are required.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
     },
     {
       "id": "MPPSC-2016-064",
@@ -47337,9 +47337,9 @@
         "correct_reasoning": "Hypertext Transfer Protocol = HTTP",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
     },
     {
       "id": "MPPSC-2016-065",
@@ -47435,8 +47435,8 @@
         "correct_reasoning": "",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
+      "subject": "Polity",
+      "topic": "Citizenship and civil rights",
       "subtopic": null
     },
     {
@@ -47484,8 +47484,8 @@
         "correct_reasoning": "The Central Government inay, by notification in the Official Gazette, make rules for carrying out the purposes of this Act.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
+      "subject": "Polity",
+      "topic": "Citizenship and civil rights",
       "subtopic": null
     },
     {
@@ -47533,8 +47533,8 @@
         "correct_reasoning": "",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
+      "subject": "Polity",
+      "topic": "Citizenship and civil rights",
       "subtopic": null
     },
     {
@@ -47876,9 +47876,9 @@
         "correct_reasoning": "Madhya Pradesh has a Monsoon type of Climate.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Geography",
+      "topic": "Climate and soils of Madhya Pradesh",
+      "subtopic": "Monsoon in Madhya Pradesh"
     },
     {
       "id": "MPPSC-2016-076",
@@ -47925,7 +47925,7 @@
         "correct_reasoning": "Suchitra Sen was an Indian film actress who worked in Bengali and Hindi cinema.",
         "language": "en"
       },
-      "subject": null,
+      "subject": "Art and Culture",
       "topic": null,
       "subtopic": null
     },
@@ -48415,8 +48415,8 @@
         "correct_reasoning": "The tomb of Sher Shah Suri is in the Sasaram town of Bihar.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
+      "subject": "History",
+      "topic": "Medieval India",
       "subtopic": null
     },
     {
@@ -48709,8 +48709,8 @@
         "correct_reasoning": "The first state to be created on a linguistic basis was Andhra in 1953, created out of the Telugu-speaking northern parts of Madras State.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
+      "subject": "Polity",
+      "topic": "Union and State Relations",
       "subtopic": null
     },
     {
@@ -48807,9 +48807,9 @@
         "correct_reasoning": "Lord’s Cricket Ground in London, is commonly referred to as the “Home of Cricket” and it also has world’s oldest sporting museum. It was named after its founder Thomas Lord. It is also called as the ‘Mecca of Cricket.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Cricket"
     },
     {
       "id": "MPPSC-2016-095",
@@ -48954,9 +48954,9 @@
         "correct_reasoning": "On 14 June 1945 Lord Wavell at the Shimla Conference announced a plan for a new Executive Council in which all members except the Viceroy and the Commander in Chief would be Indians. The secretary of state of India, L.S.Amery, officially launched the Wavell plan in London. The Wavell Plan was first in 1945",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": "Acts and constitutional development"
     },
     {
       "id": "MPPSC-2016-098",
@@ -49003,7 +49003,7 @@
         "correct_reasoning": "Under the Land Acquisition Act, 1894, land may be acquired for a public purpose and also for companies.",
         "language": "en"
       },
-      "subject": null,
+      "subject": "Polity",
       "topic": null,
       "subtopic": null
     },
@@ -49101,9 +49101,9 @@
         "correct_reasoning": "It states that “Public servant” shall have the meaning assigned to it in section 21 of the Indian Penal Code.  ",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Polity",
+      "topic": "Statutory and regulatory bodies",
+      "subtopic": "National Human Rights Commission"
     },
     {
       "id": "MPPSC-2017-001",
@@ -49196,8 +49196,8 @@
         "correct_reasoning": "Alexander Cunningham was a British Army engineer who later took an interest in the history and archaeology of India. He is regarded as the father of Indian archaeology.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
+      "subject": "History",
+      "topic": "Ancient India",
       "subtopic": null
     },
     {
@@ -49294,9 +49294,9 @@
         "correct_reasoning": "Government of India Act 1909 is associated with the Separate electorate to Muslims.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": "Acts and constitutional development"
     },
     {
       "id": "MPPSC-2017-005",
@@ -49343,8 +49343,8 @@
         "correct_reasoning": "The Battle of Chandawar (year: 1193 was fought between Muhammad of Ghori and Jaichand of Kannauj of the Gahadavala dynasty. It took place at Chandawar (modern Chandawal near Ferozabad), on the Yamuna River close to Agra, giving Muhammad control of much of northern India.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
+      "subject": "History",
+      "topic": "Medieval India",
       "subtopic": null
     },
     {
@@ -49539,9 +49539,9 @@
         "correct_reasoning": "The first synchronous census in India was held in 1881.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Population of India"
     },
     {
       "id": "MPPSC-2017-010",
@@ -49637,9 +49637,9 @@
         "correct_reasoning": "Caspian Sea is situated above Iran. Iraq does not share boundary with Caspian Sea.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Geography",
+      "topic": "World Geography",
+      "subtopic": "International boundaries"
     },
     {
       "id": "MPPSC-2017-012",
@@ -49735,9 +49735,9 @@
         "correct_reasoning": "An inselberg or monadnock is an isolated ruins of hilly region eroded by the running water. This geomorphic feature is formed in the final stage of cycle or erosion.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": "Landforms and their evolution"
     },
     {
       "id": "MPPSC-2017-014",
@@ -49781,9 +49781,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": "Earthquakes and volcanoes"
     },
     {
       "id": "MPPSC-2017-015",
@@ -49879,9 +49879,9 @@
         "correct_reasoning": "The population density of India has gone up to 382 persons per square kilometre in 2011 from 325 persons per square kilometre in 2001.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Population of India"
     },
     {
       "id": "MPPSC-2017-017",
@@ -49928,9 +49928,9 @@
         "correct_reasoning": "Nathu La is a mountain pass in the Sikkim and West Bengal.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Geography",
+      "topic": "Maps and location",
+      "subtopic": "Location"
     },
     {
       "id": "MPPSC-2017-018",
@@ -49977,9 +49977,9 @@
         "correct_reasoning": "In geomorphology the peneplain is a low-relief plain formed by erosion. This is the ultimate final stage of cycle of erosion.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": "Landforms and their evolution"
     },
     {
       "id": "MPPSC-2017-019",
@@ -50026,9 +50026,9 @@
         "correct_reasoning": "Toda people are a Dravidian ethnic group who live in the Nilgiri Mountains of the Indian state of Tamil Nadu.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Geography",
+      "topic": "Economic and human geography",
+      "subtopic": "Tribes of India"
     },
     {
       "id": "MPPSC-2017-020",
@@ -50072,8 +50072,8 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
+      "subject": "Geography",
+      "topic": "World Geography",
       "subtopic": null
     },
     {
@@ -50118,8 +50118,8 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
+      "subject": "Science and Technology",
+      "topic": "Biology",
       "subtopic": null
     },
     {
@@ -50167,9 +50167,9 @@
         "correct_reasoning": "In 1980, the World Health Assembly declared smallpox eradicated (eliminated), and no cases of naturally occurring smallpox have happened since.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Health and diseases",
+      "subtopic": "Epidemics and pandemics"
     },
     {
       "id": "MPPSC-2017-023",
@@ -50216,8 +50216,8 @@
         "correct_reasoning": "A bacteriophage is a type of virus that infects bacteria. In fact, the word “bacteriophage” literally means “bacteria eater,” because bacteriophages destroy their host cells.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
+      "subject": "Science and Technology",
+      "topic": "Biology",
       "subtopic": null
     },
     {
@@ -50262,9 +50262,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Biology",
+      "subtopic": "Cell biology"
     },
     {
       "id": "MPPSC-2017-025",
@@ -50360,8 +50360,8 @@
         "correct_reasoning": "The images are formed on Retina. Additional Facts: Images formed in the eye are inverted but the brain inverts them to make them seem upright.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
+      "subject": "Science and Technology",
+      "topic": "Biology",
       "subtopic": null
     },
     {
@@ -50406,9 +50406,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Biology",
+      "subtopic": "Human excretory system"
     },
     {
       "id": "MPPSC-2017-028",
@@ -50795,9 +50795,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Other sports events"
     },
     {
       "id": "MPPSC-2017-036",
@@ -50841,9 +50841,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Madhya Pradesh Special",
+      "topic": "Personalities and awards of Madhya Pradesh",
+      "subtopic": "Sports from Madhya Pradesh"
     },
     {
       "id": "MPPSC-2017-037",
@@ -50887,9 +50887,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Cricket"
     },
     {
       "id": "MPPSC-2017-038",
@@ -50933,8 +50933,8 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
+      "subject": "Madhya Pradesh Special",
+      "topic": "Schemes and institutions of Madhya Pradesh",
       "subtopic": null
     },
     {
@@ -50979,9 +50979,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Cricket"
     },
     {
       "id": "MPPSC-2017-040",
@@ -51025,9 +51025,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Cricket"
     },
     {
       "id": "MPPSC-2017-041",
@@ -51163,9 +51163,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Cricket"
     },
     {
       "id": "MPPSC-2017-044",
@@ -51209,9 +51209,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Olympic and Asian Games"
     },
     {
       "id": "MPPSC-2017-045",
@@ -51255,9 +51255,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
     },
     {
       "id": "MPPSC-2017-046",
@@ -51301,9 +51301,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
     },
     {
       "id": "MPPSC-2017-047",
@@ -51347,9 +51347,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
     },
     {
       "id": "MPPSC-2017-048",
@@ -51393,9 +51393,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
     },
     {
       "id": "MPPSC-2017-049",
@@ -51439,9 +51439,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
     },
     {
       "id": "MPPSC-2017-050",
@@ -51485,9 +51485,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
     },
     {
       "id": "MPPSC-2017-051",
@@ -51580,9 +51580,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
     },
     {
       "id": "MPPSC-2017-053",
@@ -51626,9 +51626,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Physics",
+      "subtopic": "Motion and force"
     },
     {
       "id": "MPPSC-2017-054",
@@ -51764,9 +51764,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Current Affairs",
+      "topic": "Appointments and personalities",
+      "subtopic": "Heads of state and government"
     },
     {
       "id": "MPPSC-2017-057",
@@ -51856,8 +51856,8 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
+      "subject": "History",
+      "topic": "Modern India",
       "subtopic": null
     },
     {
@@ -51948,9 +51948,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Cricket"
     },
     {
       "id": "MPPSC-2017-061",
@@ -52040,9 +52040,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Other sports events"
     },
     {
       "id": "MPPSC-2017-063",
@@ -52086,9 +52086,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Current Affairs",
+      "topic": "Appointments and personalities",
+      "subtopic": "Heads of state and government"
     },
     {
       "id": "MPPSC-2017-064",
@@ -52132,9 +52132,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Other sports events"
     },
     {
       "id": "MPPSC-2017-065",
@@ -52178,9 +52178,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Other sports events"
     },
     {
       "id": "MPPSC-2017-066",
@@ -52224,9 +52224,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Economy",
+      "topic": "Agriculture and rural economy",
+      "subtopic": "Cropping patterns"
     },
     {
       "id": "MPPSC-2017-067",
@@ -52270,9 +52270,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Current Affairs",
+      "topic": "Appointments and personalities",
+      "subtopic": "Heads of state and government"
     },
     {
       "id": "MPPSC-2017-068",
@@ -52362,9 +52362,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Current Affairs",
+      "topic": "Science and technology current affairs",
+      "subtopic": "Technology launches"
     },
     {
       "id": "MPPSC-2017-070",
@@ -52408,9 +52408,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Current Affairs",
+      "topic": "National current affairs",
+      "subtopic": "National events"
     },
     {
       "id": "MPPSC-2017-071",
@@ -52454,9 +52454,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Art and Culture",
+      "topic": "Literature and languages",
+      "subtopic": "Literature of Madhya Pradesh"
     },
     {
       "id": "MPPSC-2017-072",
@@ -52500,8 +52500,8 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
+      "subject": "Current Affairs",
+      "topic": "Appointments and personalities",
       "subtopic": null
     },
     {
@@ -52546,9 +52546,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Current Affairs",
+      "topic": "International current affairs",
+      "subtopic": "International organisations"
     },
     {
       "id": "MPPSC-2017-074",
@@ -52592,9 +52592,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Economy",
+      "topic": "Banking and finance",
+      "subtopic": "Commercial banks"
     },
     {
       "id": "MPPSC-2017-075",
@@ -52687,9 +52687,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Current Affairs",
+      "topic": "International current affairs",
+      "subtopic": "Bilateral relations"
     },
     {
       "id": "MPPSC-2017-077",
@@ -52733,9 +52733,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Other sports events"
     },
     {
       "id": "MPPSC-2017-078",
@@ -52779,9 +52779,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Art and Culture",
+      "topic": "Literature and languages",
+      "subtopic": "Books and authors"
     },
     {
       "id": "MPPSC-2017-079",
@@ -52917,9 +52917,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Madhya Pradesh Special",
+      "topic": "Schemes and institutions of Madhya Pradesh",
+      "subtopic": "Educational institutions"
     },
     {
       "id": "MPPSC-2017-082",
@@ -52966,8 +52966,8 @@
         "correct_reasoning": "A closed economy is one that has no trading activity with outside economies. The closed economy is therefore entirely self-sufficient, which means no imports come into the country and no exports leave the country.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
+      "subject": "Economy",
+      "topic": "International economy",
       "subtopic": null
     },
     {
@@ -53061,9 +53061,9 @@
         "correct_reasoning": "",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Economy",
+      "topic": "Indian Economy",
+      "subtopic": "Planning in India"
     },
     {
       "id": "MPPSC-2017-085",
@@ -53159,9 +53159,9 @@
         "correct_reasoning": "",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Cricket"
     },
     {
       "id": "MPPSC-2017-087",
@@ -53205,9 +53205,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Cricket"
     },
     {
       "id": "MPPSC-2017-088",
@@ -53346,9 +53346,9 @@
         "correct_reasoning": "",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "History",
+      "topic": "History of Madhya Pradesh",
+      "subtopic": "Paramara dynasty"
     },
     {
       "id": "MPPSC-2017-091",
@@ -53392,9 +53392,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "History",
+      "topic": "History of Madhya Pradesh",
+      "subtopic": "Chandela dynasty"
     },
     {
       "id": "MPPSC-2017-092",
@@ -53438,7 +53438,7 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
+      "subject": "Art and Culture",
       "topic": null,
       "subtopic": null
     },
@@ -53484,8 +53484,8 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
+      "subject": "Polity",
+      "topic": "Citizenship and civil rights",
       "subtopic": null
     },
     {
@@ -53530,8 +53530,8 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
+      "subject": "Polity",
+      "topic": "Citizenship and civil rights",
       "subtopic": null
     },
     {
@@ -53965,9 +53965,9 @@
         "correct_reasoning": "The Indian state of Sikkim is now the world’s first 100 per cent organic state.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Agriculture in India"
     },
     {
       "id": "MPPSC-2018-004",
@@ -54063,8 +54063,8 @@
         "correct_reasoning": "There are plenty of use Aloe Vera, both topically and internally. It heals burns, acts as soothing, moisturizing, and cooling agents.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
+      "subject": "Science and Technology",
+      "topic": "Biology",
       "subtopic": null
     },
     {
@@ -54161,9 +54161,9 @@
         "correct_reasoning": "Audible Range: 20 Hz to 20 KHz. Ultra Sound: 20 KHz to 200 MHz. Infra Sound: Less than 20 Hz. Microwave frequencies range between 1 GHz to 1000 GHz.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Physics",
+      "subtopic": "Sound"
     },
     {
       "id": "MPPSC-2018-008",
@@ -54259,9 +54259,9 @@
         "correct_reasoning": "Each year on April 22, we celebrate Earth Day to protect the planet from things like pollution and deforestation.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Current Affairs",
+      "topic": "Days and dates",
+      "subtopic": "International days"
     },
     {
       "id": "MPPSC-2018-010",
@@ -54305,9 +54305,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Art and Culture",
+      "topic": "Literature and languages",
+      "subtopic": "Books and authors"
     },
     {
       "id": "MPPSC-2018-011",
@@ -54397,9 +54397,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Current Affairs",
+      "topic": "International current affairs",
+      "subtopic": "Bilateral relations"
     },
     {
       "id": "MPPSC-2018-013",
@@ -54443,8 +54443,8 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
+      "subject": "Current Affairs",
+      "topic": "Appointments and personalities",
       "subtopic": null
     },
     {
@@ -54535,9 +54535,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Polity",
+      "topic": "State Government",
+      "subtopic": "State Legislature"
     },
     {
       "id": "MPPSC-2018-016",
@@ -54581,9 +54581,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Economy",
+      "topic": "Economy of Madhya Pradesh",
+      "subtopic": "State fiscal indicators"
     },
     {
       "id": "MPPSC-2018-017",
@@ -54673,9 +54673,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Current Affairs",
+      "topic": "National current affairs",
+      "subtopic": "Reports and indices"
     },
     {
       "id": "MPPSC-2018-019",
@@ -54765,8 +54765,8 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
+      "subject": "History",
+      "topic": "Ancient India",
       "subtopic": null
     },
     {
@@ -54814,9 +54814,9 @@
         "correct_reasoning": "",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "History",
+      "topic": "Ancient India",
+      "subtopic": "Post-Mauryan period"
     },
     {
       "id": "MPPSC-2018-022",
@@ -54958,8 +54958,8 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
+      "subject": "History",
+      "topic": "Modern India",
       "subtopic": null
     },
     {
@@ -55056,9 +55056,9 @@
         "correct_reasoning": "Yusuf Meher Ali was an Indian freedom fighter and socialist leader. He coined the above term.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Economy",
+      "topic": "Indian Economy",
+      "subtopic": "Planning in India"
     },
     {
       "id": "MPPSC-2018-027",
@@ -55102,9 +55102,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "History",
+      "topic": "History of Madhya Pradesh",
+      "subtopic": "Freedom struggle in Madhya Pradesh"
     },
     {
       "id": "MPPSC-2018-028",
@@ -55249,9 +55249,9 @@
         "correct_reasoning": "In the north, Uttar Pradesh shares its border with the states of Uttarakhand and Himachal Pradesh, in the west with the states of Haryana, Delhi, and Rajasthan, in South with Madhya Pradesh and Chhattisgarh, and in the east with the states of Jharkhand and Bihar. Map of India",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Geography",
+      "topic": "Maps and location",
+      "subtopic": "States and capitals"
     },
     {
       "id": "MPPSC-2018-031",
@@ -55445,9 +55445,9 @@
         "correct_reasoning": "Nepanagar is an industrial township in Burhanpur district in the Indian state of Madhya Pradesh. Nepanagar is famous for its newsprint paper mill.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Economy",
+      "topic": "Economy of Madhya Pradesh",
+      "subtopic": "Industry of Madhya Pradesh"
     },
     {
       "id": "MPPSC-2018-035",
@@ -55586,9 +55586,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Geography",
+      "topic": "Maps and location",
+      "subtopic": "Boundaries and neighbours"
     },
     {
       "id": "MPPSC-2018-038",
@@ -55727,8 +55727,8 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
+      "subject": "Economy",
+      "topic": "Economy of Madhya Pradesh",
       "subtopic": null
     },
     {
@@ -55826,7 +55826,7 @@
         "language": "en"
       },
       "subject": "Polity",
-      "topic": null,
+      "topic": "Constitution of India",
       "subtopic": null
     },
     {
@@ -55969,9 +55969,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Madhya Pradesh Special",
+      "topic": "Schemes and institutions of Madhya Pradesh",
+      "subtopic": "Educational institutions"
     },
     {
       "id": "MPPSC-2018-046",
@@ -56018,9 +56018,9 @@
         "correct_reasoning": "",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Other sports events"
     },
     {
       "id": "MPPSC-2018-047",
@@ -56067,9 +56067,9 @@
         "correct_reasoning": "The Khel Ratna Award is the highest sporting honour of India. It is awarded annually by the Ministry of Youth Affairs and Sports. First Awardee: Viswanathan Anand",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Current Affairs",
+      "topic": "Awards and honours",
+      "subtopic": "Sports awards"
     },
     {
       "id": "MPPSC-2018-048",
@@ -56113,9 +56113,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Other sports events"
     },
     {
       "id": "MPPSC-2018-049",
@@ -56208,9 +56208,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Other sports events"
     },
     {
       "id": "MPPSC-2018-051",
@@ -56254,9 +56254,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Olympic and Asian Games"
     },
     {
       "id": "MPPSC-2018-052",
@@ -56591,9 +56591,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Geography",
+      "topic": "Climate and soils of Madhya Pradesh",
+      "subtopic": "Monsoon in Madhya Pradesh"
     },
     {
       "id": "MPPSC-2018-059",
@@ -56729,9 +56729,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Art and Culture",
+      "topic": "Heritage Sites",
+      "subtopic": "Forts and palaces"
     },
     {
       "id": "MPPSC-2018-062",
@@ -56775,9 +56775,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Transport in India"
     },
     {
       "id": "MPPSC-2018-063",
@@ -56913,8 +56913,8 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
+      "subject": "Madhya Pradesh Special",
+      "topic": "Administrative structure of Madhya Pradesh",
       "subtopic": null
     },
     {
@@ -56959,9 +56959,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Polity",
+      "topic": "Local self-government",
+      "subtopic": "Local bodies in Madhya Pradesh"
     },
     {
       "id": "MPPSC-2018-067",
@@ -57051,9 +57051,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Current Affairs",
+      "topic": "Current affairs of Madhya Pradesh",
+      "subtopic": "State schemes in news"
     },
     {
       "id": "MPPSC-2018-069",
@@ -57097,9 +57097,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Current Affairs",
+      "topic": "Current affairs of Madhya Pradesh",
+      "subtopic": "State schemes in news"
     },
     {
       "id": "MPPSC-2018-070",
@@ -57143,9 +57143,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Current Affairs",
+      "topic": "Current affairs of Madhya Pradesh",
+      "subtopic": "State events"
     },
     {
       "id": "MPPSC-2018-071",
@@ -57189,9 +57189,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Current Affairs",
+      "topic": "Current affairs of Madhya Pradesh",
+      "subtopic": "State schemes in news"
     },
     {
       "id": "MPPSC-2018-072",
@@ -57235,9 +57235,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
     },
     {
       "id": "MPPSC-2018-073",
@@ -57281,9 +57281,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
     },
     {
       "id": "MPPSC-2018-074",
@@ -57327,9 +57327,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
     },
     {
       "id": "MPPSC-2018-075",
@@ -57373,9 +57373,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
     },
     {
       "id": "MPPSC-2018-076",
@@ -57419,9 +57419,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
     },
     {
       "id": "MPPSC-2018-077",
@@ -57465,9 +57465,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
     },
     {
       "id": "MPPSC-2018-078",
@@ -57511,9 +57511,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
     },
     {
       "id": "MPPSC-2018-079",
@@ -57557,9 +57557,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
     },
     {
       "id": "MPPSC-2018-080",
@@ -57603,9 +57603,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
     },
     {
       "id": "MPPSC-2018-081",
@@ -57649,8 +57649,8 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
+      "subject": "Polity",
+      "topic": "Citizenship and civil rights",
       "subtopic": null
     },
     {
@@ -57695,8 +57695,8 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
+      "subject": "Polity",
+      "topic": "Citizenship and civil rights",
       "subtopic": null
     },
     {
@@ -57741,8 +57741,8 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
+      "subject": "Polity",
+      "topic": "Citizenship and civil rights",
       "subtopic": null
     },
     {
@@ -57787,8 +57787,8 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
+      "subject": "Polity",
+      "topic": "Citizenship and civil rights",
       "subtopic": null
     },
     {
@@ -57833,8 +57833,8 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
+      "subject": "Polity",
+      "topic": "Citizenship and civil rights",
       "subtopic": null
     },
     {
@@ -57879,8 +57879,8 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
+      "subject": "Polity",
+      "topic": "Citizenship and civil rights",
       "subtopic": null
     },
     {
@@ -57925,8 +57925,8 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
+      "subject": "Polity",
+      "topic": "Citizenship and civil rights",
       "subtopic": null
     },
     {
@@ -57971,8 +57971,8 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
+      "subject": "Polity",
+      "topic": "Citizenship and civil rights",
       "subtopic": null
     },
     {
@@ -58066,9 +58066,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Polity",
+      "topic": "Statutory and regulatory bodies",
+      "subtopic": "National Human Rights Commission"
     },
     {
       "id": "MPPSC-2018-091",
@@ -58210,9 +58210,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Polity",
+      "topic": "Statutory and regulatory bodies",
+      "subtopic": "National Human Rights Commission"
     },
     {
       "id": "MPPSC-2018-094",
@@ -58256,9 +58256,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Polity",
+      "topic": "Statutory and regulatory bodies",
+      "subtopic": "National Human Rights Commission"
     },
     {
       "id": "MPPSC-2018-095",
@@ -58397,9 +58397,9 @@
       },
       "answer_key_status": "supplied",
       "explanation": null,
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Polity",
+      "topic": "Statutory and regulatory bodies",
+      "subtopic": "National Human Rights Commission"
     },
     {
       "id": "MPPSC-2018-098",
@@ -58495,9 +58495,9 @@
         "correct_reasoning": "Armed forces are not covered under the Protection of Human Rights Act.",
         "language": "en"
       },
-      "subject": null,
-      "topic": null,
-      "subtopic": null
+      "subject": "Polity",
+      "topic": "Statutory and regulatory bodies",
+      "subtopic": "National Human Rights Commission"
     },
     {
       "id": "MPPSC-2018-100",

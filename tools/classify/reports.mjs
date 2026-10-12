@@ -148,7 +148,8 @@ export function renderClassificationMarkdown(report, meta = {}) {
   for (const row of report.by_source) L.push(`| ${row.source} | ${row.count} | ${row.percentage} |`);
   L.push('');
   if (meta.reviewed_merge) {
-    L.push(`Reviewed labels: **${meta.reviewed_merge.applied} applied** (${meta.reviewed_merge.changed} replaced a rule-engine guess), ${meta.reviewed_merge.rejected} rejected. These were decided by a person reading the question, its options, the printed answer and the explanation — **no AI provider was used**. Every decision is listed in the review report.`);
+    const methods = Object.entries(meta.reviewed_merge.methods || {}).map(([method, count]) => `${method}: ${count}`).join('; ');
+    L.push(`Reviewed labels: **${meta.reviewed_merge.applied} applied** (${meta.reviewed_merge.changed} changed a rule-engine result), ${meta.reviewed_merge.rejected} rejected. Each decision's review method and rationale are recorded separately; all stored labels were validated against the taxonomy. Methods: ${methods || 'not recorded'}. Every decision is listed in the review report.`);
     L.push('');
   }
   if (meta.ai_merge) {
@@ -363,10 +364,17 @@ export function buildReviewReport(bank, validation, rows, extra = {}) {
     reviewed_merge: reviewed
       ? {
           statement:
-            'These classification decisions were taken by a person who read each question together with its options, printed answer and explanation, in cases where the rule engine could not place the question or placed it with weak evidence. A label is stored only when every level of it exists in data/taxonomy/mppsc-taxonomy.json; the source is recorded as "reviewed", never as an AI classification.',
+            'Each decision records its review_method and rationale. Reviewers assess the question wording, options, available answer/explanation, and taxonomy path; labels are stored only when every stated level exists in data/taxonomy/mppsc-taxonomy.json. The classification source is recorded as "reviewed" and the review method is kept in this internal report, not the app-facing bank.',
           applied: reviewed.applied,
           rejected: reviewed.rejected,
           malformed: reviewed.malformed,
+          methods: Object.fromEntries(
+            reviewed.applied.reduce((counts, item) => {
+              const method = item.review_method || 'human_review';
+              counts.set(method, (counts.get(method) || 0) + 1);
+              return counts;
+            }, new Map()),
+          ),
           decisions: (reviewed.decisions || []).slice(0, 400),
         }
       : null,
@@ -700,15 +708,16 @@ export function renderReviewMarkdown(report) {
     L.push('');
     L.push(report.reviewed_merge.statement);
     L.push('');
-    L.push(`Applied: **${report.reviewed_merge.applied.length}**, rejected: ${report.reviewed_merge.rejected.length}, malformed lines: ${report.reviewed_merge.malformed.length}.`);
+    const methods = Object.entries(report.reviewed_merge.methods || {}).map(([method, count]) => `${method}: ${count}`).join('; ');
+    L.push(`Applied: **${report.reviewed_merge.applied.length}**, rejected: ${report.reviewed_merge.rejected.length}, malformed lines: ${report.reviewed_merge.malformed.length}. Review methods: ${methods || 'not recorded'}.`);
     L.push('');
     if (report.reviewed_merge.decisions.length) {
-      L.push('| Question | Decision | Subject / topic / subtopic after | Why |');
-      L.push('| --- | --- | --- | --- |');
+      L.push('| Question | Decision | Subject / topic / subtopic after | Review method | Why |');
+      L.push('| --- | --- | --- | --- | --- |');
       for (const d of report.reviewed_merge.decisions) {
         const after = d.after ? `${d.after.subject}${d.after.topic ? ` / ${d.after.topic}` : ''}${d.after.subtopic ? ` / ${d.after.subtopic}` : ''}` : '—';
         const beforeText = d.before ? `was \`${d.before.subject}${d.before.topic ? ` / ${d.before.topic}` : ''}\`` : 'was unclassified';
-        L.push(`| \`${d.id ?? 'unknown'}\` | ${d.action} (${beforeText}) | ${after} | ${escapeCell(d.reason || '')} |`);
+        L.push(`| \`${d.id ?? 'unknown'}\` | ${d.action} (${beforeText}) | ${after} | ${escapeCell(d.review_method || 'not recorded')} | ${escapeCell(d.reason || '')} |`);
       }
     }
     if (report.reviewed_merge.rejected.length) {

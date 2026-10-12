@@ -390,7 +390,19 @@ export async function runPipeline(source, opts = {}) {
     pipeline_notes: pipelineNotes,
     repair: repairReport,
     reviewed_merge: reviewedSummary
-      ? { applied: reviewedSummary.applied.length, changed: reviewedSummary.applied.filter((a) => a.changed).length, rejected: reviewedSummary.rejected.length, source: CLASSIFICATION_SOURCE_REVIEWED }
+      ? {
+          applied: reviewedSummary.applied.length,
+          changed: reviewedSummary.applied.filter((a) => a.changed).length,
+          rejected: reviewedSummary.rejected.length,
+          source: CLASSIFICATION_SOURCE_REVIEWED,
+          methods: Object.fromEntries(
+            reviewedSummary.applied.reduce((counts, item) => {
+              const method = item.review_method || 'human_review';
+              counts.set(method, (counts.get(method) || 0) + 1);
+              return counts;
+            }, new Map()),
+          ),
+        }
       : null,
     answer_merge: answerSummary
       ? {

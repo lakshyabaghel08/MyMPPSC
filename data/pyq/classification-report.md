@@ -1,5 +1,7 @@
 # Classification report — MPPSC Prelims Paper I (General Studies) 2013–2024
 
+> **Historical snapshot (pre-remediation).** This report preserves the PR #12 integration baseline; its coverage figures predate the focused classification audit. Use `data/pyq/quality-audit/quality-audit-final.md` and `quality-audit-final.json` for current post-remediation counts.
+
 Generated 2026-10-12T16:23:47.243Z by tools/classify-bank.mjs 1.0.0.
 
 Questions in the bank: **1171**

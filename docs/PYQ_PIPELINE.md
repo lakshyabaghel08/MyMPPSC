@@ -129,10 +129,10 @@ topic/subtopic names reuse the vocabulary already present in
 `data/demo/demo-bank.json` where one exists. At start-up the tool verifies that
 every rule (and every rule fallback) points at a node that exists, and refuses to
 run otherwise — a typo cannot introduce a subject the app has never seen.
-`Unclassified` is reserved and never assigned: an unplaceable question keeps
-`null` so the app's `classification.isUnclassified` flag stays true.
+`Unclassified` is reserved and never assigned: a question without a supported subject keeps
+`null` so the app's `classification.isUnclassified` flag stays true. After the 2026-10-12 audit, the bundled bank has no such questions; supported subject-only/topic-only labels still leave unsupported lower levels null.
 
-## 2b. The repair pass and the human review pass
+## 2b. The repair pass and reviewed-label pass
 
 **Repair (`tools/classify/repair.mjs`, build-time only).** Extractions damage
 text in predictable ways. The repair pass fixes the artefacts it can be certain
@@ -154,16 +154,17 @@ The legacy repair pass changes only recorded extraction artefacts. The separate
 options, printed keys and source explanations are preserved. `--no-repair` runs
 the legacy pipeline against an already-clean intake.
 
-**Human review (`tools/classify/reviewed-labels.mjs`).** Some questions carry no
+**Reviewed labels (`tools/classify/reviewed-labels.mjs`).** Some questions carry no
 subject signal a rule can see ("Which of the following statements is *not*
-correct?") and a few subjects have no node in the taxonomy. Those records are
-left unclassified and a person reads the question with its options, printed
-answer and explanation. Their decision is one JSONL line:
+correct?") or do not fit a narrow taxonomy node. A reviewer records the supported
+classification and reason in one JSONL line; `review_method` is optional for legacy
+human-reviewed entries and explicit for other processes:
 
 ```json
 {"id":"MPPSC-2019-006","subject":"Madhya Pradesh Special",
  "topic":"Personalities and awards of Madhya Pradesh",
  "subtopic":"Sports from Madhya Pradesh","confidence":0.88,
+ "review_method":"human_review",
  "reason":"Captain Roop Singh Stadium, Gwalior — a Madhya Pradesh sports venue."}
 ```
 
@@ -172,21 +173,28 @@ pass, so a reviewed label wins over a rule guess. The merge is strict:
 
 * a subject, topic or subtopic that is not a real taxonomy path is **rejected**
   with the reason and changes nothing;
-* the record's classification becomes `reviewed` — never `pipeline-ai`. No
-  provider is involved in a human decision and the bank must not imply one;
+* the record's classification becomes `reviewed` — never `pipeline-ai`; the
+  optional `review_method` is copied into internal report metadata (legacy labels
+  default to `human_review`, while agent-assisted validation is identified explicitly);
 * each decision is written into the review report's **Reviewed classification
-  decisions** table with its before/after and its reason, and the review file
+  decisions** table with its before/after, method and reason, and the review file
   stays in the repository so the decision can be re-read and re-run;
 * the question's `metadata.reviewed_classification` bookkeeping (which file, when)
   is stripped from the app-facing bank by the sanitiser — the decision itself is
   the classification and stays.
 
-In the combined bank 244 existing human-reviewed labels are reapplied: 0 rejected,
-0 malformed, 240 replacing a rule-engine guess. Historical preliminary labels
-are never copied as final classifications. No AI provider ran, so `ai_labels_applied`
-is 0 and nothing is labelled `pipeline-ai`. Across 1,171 questions, 858 have a
-subject, 850 a topic and 832 a subtopic; the rest remain unclassified rather than
-receiving invented labels.
+In the final combined bank 566 reviewed labels are applied: the 244 legacy
+`human_review` records and 322 `agent_assisted_validation` labels added by the
+focused audit. There are 0 rejected or malformed reviewed labels; 560 replace a
+rule result. Historical preliminary labels are never copied as final
+classifications. No provider-generated `pipeline-ai` labels were merged
+(`ai_labels_applied` remains 0). Current coverage is 1,171/1,171 subjects,
+1,162/1,171 topics and 1,076/1,171 subtopics; 9 questions have no topic and 95
+have no subtopic. These missing lower levels are documented rather than guessed.
+The production review queue now contains only `MPPSC-2021-065`. The previous
+`classification-report.*` and `review-report.*` files are marked as pre-remediation
+snapshots; the current totals and queue are in
+`data/pyq/quality-audit/quality-audit-final.md` and `.json`.
 
 ### The answer review pass
 

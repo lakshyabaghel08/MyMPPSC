@@ -205,7 +205,13 @@ test('the combined production pipeline applies review decisions, keeps repeats, 
   assert.equal(result.validation.rejected.length, 0);
   assert.equal(result.bank.questions.length, 1171);
   assert.equal(result.bank.papers.length, 12);
-  assert.equal(result.reviewedSummary.applied.length, 244);
+  assert.equal(result.reviewedSummary.applied.length, 566);
+  assert.equal(result.reviewedSummary.applied.filter((label) => label.review_method === 'agent_assisted_validation').length, 322);
+  assert.equal(result.reviewedSummary.applied.filter((label) => label.review_method === 'human_review').length, 244);
+  assert.deepEqual(result.reviewReport.reviewed_merge.methods, { human_review: 244, agent_assisted_validation: 322 });
+  assert.equal(result.classificationReport.levels.subject.classified, 1171);
+  assert.equal(result.classificationReport.levels.topic.classified, 1162);
+  assert.equal(result.classificationReport.levels.subtopic.classified, 1076);
   assert.equal(result.answerSummary.applied.length, 8);
   assert.equal(result.reviewReport.totals.records_removed, 0);
   assert.equal(result.reviewReport.totals.records_merged, 0);

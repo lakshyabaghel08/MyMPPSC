@@ -128,26 +128,26 @@ test('classification survived the import, and every label is a real taxonomy nod
   const current = index.filter((q) => Number(q.year) >= 2019);
   const historical = index.filter((q) => Number(q.year) >= 2013 && Number(q.year) <= 2018);
   assert.equal(index.length, 1171);
-  assert.equal(classified.length, 858, 'only taxonomy-supported labels are assigned');
-  assert.equal(index.filter((q) => !q.subject).length, 313, 'unplaceable historical questions remain unclassified');
+  assert.equal(classified.length, 1171, 'all questions now have a supported subject');
+  assert.equal(index.filter((q) => !q.subject).length, 0);
   assert.equal(current.length, 571);
   assert.equal(current.filter((q) => q.subject).length, 571, 'all existing current-bank classifications are preserved');
   assert.equal(historical.length, 600);
-  assert.equal(historical.filter((q) => q.subject).length, 287, 'the rules classify only supported historical records');
-  assert.equal(index.filter((q) => q.topic).length, 850);
-  assert.equal(index.filter((q) => q.subtopic).length, 832, 'missing subtopics are not fabricated');
+  assert.equal(historical.filter((q) => q.subject).length, 600, 'all historical records have an audited subject');
+  assert.equal(index.filter((q) => q.topic).length, 1162, 'topic-only gaps are retained where no topic is supported');
+  assert.equal(index.filter((q) => q.subtopic).length, 1076, 'unsupported subtopics are not fabricated');
   assert.equal(m.appState.questionIndex.get('MPPSC-2019-001').subject, 'Polity');
 
-  // Where the labels came from is a fact about the build, not about the exam, so
-  // the pipeline records it in data/pyq/review-report.json and the app-facing file
-  // carries the labels alone. The rule engine placed most questions; a human
-  // review pass decided the rest; no AI provider was configured, so nothing on
-  // either side may claim to be an AI classification.
+  // Classification provenance is audit-only. The focused remediation adds
+  // agent-assisted, taxonomy-validated labels to the reviewed sidecar; the older
+  // pipeline reports are explicitly marked as pre-remediation snapshots. The
+  // app-facing bank carries labels only, never internal provenance or confidence.
   const bank = await readJson('pyq/mymppsc-pyq-bank.json');
   const review = await readJson('pyq/review-report.json');
   assert.equal(bank.questions.some((q) => 'classification_source' in q || 'classification_confidence' in q), false, 'no label provenance or confidence in the shipped file');
-  assert.equal(review.totals.ai_labels_applied, 0, 'the report says no AI labels were applied');
-  assert.ok(review.totals.reviewed_labels_applied > 0, 'the report says a human review pass decided some labels');
+  assert.equal(review.report_status, 'pre_remediation_integration_snapshot', 'the older pipeline report is clearly historical');
+  assert.equal(review.totals.ai_labels_applied, 0, 'the pre-remediation snapshot recorded no provider-classifier output');
+  assert.equal(review.totals.reviewed_labels_applied, 244, 'the snapshot records the original reviewed-label count');
   assert.equal('explanation_status' in bank.questions[0], false, 'and no explanation review state either');
   assert.equal(bank.questions.some((q) => q.explanation && typeof q.explanation === 'object' && ('status' in q.explanation || 'reviewed_by' in q.explanation)), false, 'stored explanations carry their text and nothing else');
 
