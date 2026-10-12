@@ -143,30 +143,44 @@ test('Hindi and English variants of one question are scored once, from the same 
   assert.equal(result.counts.correct, 1);
 });
 
-test('an MPPSC paper without stated rules gets the scheme for its examination year automatically', async () => {
-  const resolved = m.scoring.resolveScoringRules({ paper: paperP2 });
-  assert.equal(resolved.needsConfiguration, false, 'the MPPSC scheme is applied without manual configuration');
-  assert.equal(resolved.source, 'mppsc_builtin');
-  assert.equal(resolved.rules.marks_per_correct, 2);
-  assert.equal(resolved.rules.negative_marking_enabled, false);
-  assert.equal(resolved.rules.marks_for_unanswered, 0);
-  assert.equal(resolved.schemeId, 'mppsc-sse-prelims-2019-2025');
-  assert.match(resolved.warnings.join(' '), /applied automatically/i);
+test('the latest MPPSC scoring pattern applies uniformly to all bundled years', () => {
+  for (const year of [2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2026]) {
+    const resolved = m.scoring.resolveScoringRules({
+      paper: { paper_id: `MPPSC-${year}-P1`, exam: 'MPPSC State Service Preliminary Examination', year, paper_code: 'GS-I', scoring: { rules_known: false } },
+    });
+    assert.equal(resolved.needsConfiguration, false, `${year}: current practice rules are automatic`);
+    assert.equal(resolved.rules.marks_per_correct, 3, `${year}: +3 per correct answer`);
+    assert.equal(resolved.rules.negative_marks_per_incorrect, 1, `${year}: −1 per wrong answer`);
+    assert.equal(resolved.rules.negative_marking_enabled, true);
+    assert.equal(resolved.rules.marks_for_unanswered, 0);
+    assert.equal(resolved.schemeId, 'mppsc-sse-prelims-latest-practice');
+  }
 });
 
-test('the 2026-onwards scheme is selected for 2026 papers, and uncovered years still need configuration', async () => {
-  const fresh = m.scoring.resolveScoringRules({
-    paper: { paper_id: 'MPPSC-2026-GS1', exam: 'MPPSC State Service Preliminary Examination', year: 2026, paper_code: 'GS-I', scoring: { rules_known: false } },
-  });
-  assert.equal(fresh.schemeId, 'mppsc-sse-prelims-2026-plus');
-  assert.equal(fresh.rules.marks_per_correct, 3);
-  assert.equal(fresh.rules.negative_marking_enabled, true);
-  assert.equal(fresh.rules.negative_marks_per_incorrect, 1);
+test('a stale historical scheme is upgraded to the latest pattern unless the user set an override', () => {
+  const oldPaper = {
+    paper_id: 'MPPSC-2019-P1',
+    exam: 'MPPSC State Service Preliminary Examination',
+    year: 2019,
+    paper_code: 'GS-I',
+    scoring: { rules_known: true, marks_per_correct: 2, negative_marks_per_incorrect: 0, negative_marking_enabled: false, marks_for_unanswered: 0, scheme_id: 'mppsc-sse-prelims-2019-2025' },
+  };
+  const upgraded = m.scoring.resolveScoringRules({ paper: oldPaper });
+  assert.equal(upgraded.source, 'mppsc_builtin');
+  assert.equal(upgraded.rules.marks_per_correct, 3);
+  assert.equal(upgraded.rules.negative_marks_per_incorrect, 1);
+  assert.match(upgraded.warnings.join(' '), /older or differing stored scheme/i);
 
+  const userOverride = m.scoring.resolveScoringRules({ paper: { ...oldPaper, user_scoring_override: true } });
+  assert.equal(userOverride.source, 'paper_original');
+  assert.equal(userOverride.rules.marks_per_correct, 2, 'an explicit user override is still preserved');
+});
+
+test('years outside the bundled coverage and other commissions still require configuration', async () => {
   const old = m.scoring.resolveScoringRules({
     paper: { paper_id: 'MPPSC-2009-GS1', exam: 'MPPSC State Service Preliminary Examination', year: 2009, paper_code: 'GS-I', scoring: { rules_known: false } },
   });
-  assert.equal(old.needsConfiguration, true, 'a year with no verified scheme is never guessed');
+  assert.equal(old.needsConfiguration, true, 'the uniform current pattern is defined from 2013 onward');
   assert.equal(old.rules, null);
 
   const other = m.scoring.resolveScoringRules({ paper: { paper_id: 'UPSC-2023', exam: 'Union Public Service Commission Preliminary Examination', year: 2023, paper_code: 'GS', scoring: { rules_known: false } } });

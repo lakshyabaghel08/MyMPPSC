@@ -1,1472 +1,1723 @@
 {
-  "generated_at": "2026-10-12T05:26:50.322Z",
-  "total_questions": 571,
+  "report_status": "pre_remediation_integration_snapshot",
+  "superseded_by": "data/pyq/quality-audit/quality-audit-final.json",
+  "generated_at": "2026-10-12T16:23:47.243Z",
+  "total_questions": 1171,
   "levels": {
     "subject": {
-      "classified": 571,
-      "percentage": 100,
-      "unclassified": 0
+      "classified": 858,
+      "percentage": 73.3,
+      "unclassified": 313
     },
     "topic": {
-      "classified": 571,
-      "percentage": 100,
-      "missing": 0
+      "classified": 850,
+      "percentage": 72.6,
+      "missing": 321
     },
     "subtopic": {
-      "classified": 553,
-      "percentage": 96.8,
-      "missing": 18
+      "classified": 832,
+      "percentage": 71.1,
+      "missing": 339
     }
   },
   "by_subject": [
     {
-      "subject": "Polity",
-      "count": 108,
-      "percentage": "18.9%"
+      "subject": "Unclassified",
+      "count": 313,
+      "percentage": "26.7%"
     },
     {
       "subject": "Geography",
-      "count": 100,
-      "percentage": "17.5%"
+      "count": 165,
+      "percentage": "14.1%"
+    },
+    {
+      "subject": "Polity",
+      "count": 164,
+      "percentage": "14%"
     },
     {
       "subject": "History",
-      "count": 94,
-      "percentage": "16.5%"
+      "count": 149,
+      "percentage": "12.7%"
     },
     {
       "subject": "Science and Technology",
-      "count": 89,
-      "percentage": "15.6%"
+      "count": 100,
+      "percentage": "8.5%"
     },
     {
       "subject": "Economy",
-      "count": 48,
-      "percentage": "8.4%"
+      "count": 83,
+      "percentage": "7.1%"
     },
     {
       "subject": "Current Affairs",
-      "count": 44,
-      "percentage": "7.7%"
+      "count": 57,
+      "percentage": "4.9%"
     },
     {
       "subject": "Environment",
-      "count": 29,
-      "percentage": "5.1%"
+      "count": 51,
+      "percentage": "4.4%"
     },
     {
       "subject": "Madhya Pradesh Special",
-      "count": 29,
-      "percentage": "5.1%"
+      "count": 41,
+      "percentage": "3.5%"
     },
     {
       "subject": "Art and Culture",
-      "count": 23,
-      "percentage": "4%"
+      "count": 37,
+      "percentage": "3.2%"
     },
     {
       "subject": "General Aptitude",
-      "count": 7,
-      "percentage": "1.2%"
+      "count": 11,
+      "percentage": "0.9%"
     }
   ],
   "by_topic": [
     {
       "topic": "Science and Technology / Science and technology developments",
-      "count": 61,
-      "percentage": "10.7%"
-    },
-    {
-      "topic": "History / Modern India",
-      "count": 38,
-      "percentage": "6.7%"
+      "count": 62,
+      "percentage": "5.3%"
     },
     {
       "topic": "Geography / Geography of India",
-      "count": 29,
-      "percentage": "5.1%"
+      "count": 58,
+      "percentage": "5%"
     },
     {
-      "topic": "Polity / Constitution of India",
-      "count": 28,
+      "topic": "History / Modern India",
+      "count": 57,
       "percentage": "4.9%"
     },
     {
-      "topic": "Geography / Rivers of Madhya Pradesh",
-      "count": 22,
-      "percentage": "3.9%"
+      "topic": "Polity / Constitution of India",
+      "count": 47,
+      "percentage": "4%"
     },
     {
       "topic": "History / Ancient India",
-      "count": 21,
-      "percentage": "3.7%"
-    },
-    {
-      "topic": "Economy / Economy of Madhya Pradesh",
-      "count": 19,
-      "percentage": "3.3%"
-    },
-    {
-      "topic": "History / History of Madhya Pradesh",
-      "count": 18,
-      "percentage": "3.2%"
-    },
-    {
-      "topic": "Polity / Constitutional bodies",
-      "count": 18,
-      "percentage": "3.2%"
-    },
-    {
-      "topic": "Geography / Physiography of Madhya Pradesh",
-      "count": 15,
+      "count": 31,
       "percentage": "2.6%"
     },
     {
-      "topic": "Science and Technology / Biology",
-      "count": 14,
-      "percentage": "2.5%"
+      "topic": "History / Medieval India",
+      "count": 31,
+      "percentage": "2.6%"
     },
     {
-      "topic": "Current Affairs / Sports current affairs",
-      "count": 13,
-      "percentage": "2.3%"
+      "topic": "Geography / Rivers of Madhya Pradesh",
+      "count": 30,
+      "percentage": "2.6%"
     },
     {
-      "topic": "Polity / Union Executive",
-      "count": 12,
+      "topic": "Geography / Physiography of Madhya Pradesh",
+      "count": 26,
+      "percentage": "2.2%"
+    },
+    {
+      "topic": "Economy / Economy of Madhya Pradesh",
+      "count": 25,
       "percentage": "2.1%"
     },
     {
-      "topic": "Current Affairs / Awards and honours",
-      "count": 11,
-      "percentage": "1.9%"
+      "topic": "History / History of Madhya Pradesh",
+      "count": 21,
+      "percentage": "1.8%"
     },
     {
-      "topic": "Geography / World Geography",
-      "count": 11,
-      "percentage": "1.9%"
-    },
-    {
-      "topic": "History / Medieval India",
-      "count": 11,
-      "percentage": "1.9%"
-    },
-    {
-      "topic": "Madhya Pradesh Special / Tribes of Madhya Pradesh",
-      "count": 11,
-      "percentage": "1.9%"
-    },
-    {
-      "topic": "Polity / State Government",
-      "count": 11,
-      "percentage": "1.9%"
+      "topic": "Polity / Constitutional bodies",
+      "count": 19,
+      "percentage": "1.6%"
     },
     {
       "topic": "Polity / Judiciary",
-      "count": 10,
-      "percentage": "1.8%"
-    },
-    {
-      "topic": "Polity / Statutory and regulatory bodies",
-      "count": 10,
-      "percentage": "1.8%"
-    },
-    {
-      "topic": "Art and Culture / Literature and languages",
-      "count": 9,
+      "count": 19,
       "percentage": "1.6%"
     },
     {
-      "topic": "Environment / Ecology and biodiversity",
-      "count": 9,
-      "percentage": "1.6%"
-    },
-    {
-      "topic": "Geography / Physical Geography",
-      "count": 8,
-      "percentage": "1.4%"
-    },
-    {
-      "topic": "Current Affairs / International current affairs",
-      "count": 7,
-      "percentage": "1.2%"
-    },
-    {
-      "topic": "Economy / Banking and finance",
-      "count": 7,
-      "percentage": "1.2%"
+      "topic": "Current Affairs / Sports current affairs",
+      "count": 18,
+      "percentage": "1.5%"
     },
     {
       "topic": "Environment / Pollution and climate change",
-      "count": 7,
-      "percentage": "1.2%"
+      "count": 17,
+      "percentage": "1.5%"
     },
     {
-      "topic": "Science and Technology / Health and diseases",
-      "count": 7,
-      "percentage": "1.2%"
+      "topic": "Geography / World Geography",
+      "count": 17,
+      "percentage": "1.5%"
     },
     {
-      "topic": "Economy / Agriculture and rural economy",
-      "count": 6,
-      "percentage": "1.1%"
+      "topic": "Polity / Statutory and regulatory bodies",
+      "count": 17,
+      "percentage": "1.5%"
+    },
+    {
+      "topic": "Science and Technology / Biology",
+      "count": 17,
+      "percentage": "1.5%"
+    },
+    {
+      "topic": "Art and Culture / Literature and languages",
+      "count": 16,
+      "percentage": "1.4%"
     },
     {
       "topic": "Economy / Indian Economy",
-      "count": 6,
-      "percentage": "1.1%"
+      "count": 16,
+      "percentage": "1.4%"
+    },
+    {
+      "topic": "Geography / Physical Geography",
+      "count": 16,
+      "percentage": "1.4%"
+    },
+    {
+      "topic": "Polity / State Government",
+      "count": 16,
+      "percentage": "1.4%"
+    },
+    {
+      "topic": "Polity / Union Executive",
+      "count": 16,
+      "percentage": "1.4%"
+    },
+    {
+      "topic": "Current Affairs / Awards and honours",
+      "count": 15,
+      "percentage": "1.3%"
+    },
+    {
+      "topic": "Madhya Pradesh Special / Tribes of Madhya Pradesh",
+      "count": 15,
+      "percentage": "1.3%"
+    },
+    {
+      "topic": "Economy / Banking and finance",
+      "count": 11,
+      "percentage": "0.9%"
+    },
+    {
+      "topic": "Environment / Ecology and biodiversity",
+      "count": 11,
+      "percentage": "0.9%"
+    },
+    {
+      "topic": "Economy / Agriculture and rural economy",
+      "count": 10,
+      "percentage": "0.9%"
+    },
+    {
+      "topic": "Economy / International economy",
+      "count": 10,
+      "percentage": "0.9%"
     },
     {
       "topic": "General Aptitude / Quantitative aptitude",
+      "count": 10,
+      "percentage": "0.9%"
+    },
+    {
+      "topic": "Science and Technology / Health and diseases",
+      "count": 10,
+      "percentage": "0.9%"
+    },
+    {
+      "topic": "Current Affairs / International current affairs",
+      "count": 9,
+      "percentage": "0.8%"
+    },
+    {
+      "topic": "Polity / Union Legislature",
+      "count": 9,
+      "percentage": "0.8%"
+    },
+    {
+      "topic": "Science and Technology / Physics",
+      "count": 8,
+      "percentage": "0.7%"
+    },
+    {
+      "topic": "Environment / Environmental laws and institutions",
+      "count": 7,
+      "percentage": "0.6%"
+    },
+    {
+      "topic": "Madhya Pradesh Special / Demography of Madhya Pradesh",
+      "count": 7,
+      "percentage": "0.6%"
+    },
+    {
+      "topic": "Madhya Pradesh Special / Formation of Madhya Pradesh",
+      "count": 7,
+      "percentage": "0.6%"
+    },
+    {
+      "topic": "Polity / Local self-government",
+      "count": 7,
+      "percentage": "0.6%"
+    },
+    {
+      "topic": "Art and Culture / Heritage Sites",
       "count": 6,
-      "percentage": "1.1%"
+      "percentage": "0.5%"
+    },
+    {
+      "topic": "Environment / Protected areas",
+      "count": 6,
+      "percentage": "0.5%"
+    },
+    {
+      "topic": "Environment / Wildlife of Madhya Pradesh",
+      "count": 6,
+      "percentage": "0.5%"
     },
     {
       "topic": "Geography / Climate and soils of Madhya Pradesh",
       "count": 6,
-      "percentage": "1.1%"
+      "percentage": "0.5%"
+    },
+    {
+      "topic": "Geography / Maps and location",
+      "count": 6,
+      "percentage": "0.5%"
+    },
+    {
+      "topic": "History / Art and architecture",
+      "count": 6,
+      "percentage": "0.5%"
     },
     {
       "topic": "Madhya Pradesh Special / Schemes and institutions of Madhya Pradesh",
       "count": 6,
-      "percentage": "1.1%"
-    },
-    {
-      "topic": "Polity / Union Legislature",
-      "count": 6,
-      "percentage": "1.1%"
+      "percentage": "0.5%"
     },
     {
       "topic": "Current Affairs / National current affairs",
       "count": 5,
-      "percentage": "0.9%"
+      "percentage": "0.4%"
     },
     {
-      "topic": "Environment / Protected areas",
+      "topic": "Economy / Poverty and human development",
       "count": 5,
-      "percentage": "0.9%"
+      "percentage": "0.4%"
     },
     {
       "topic": "Geography / Economic and human geography",
       "count": 5,
-      "percentage": "0.9%"
+      "percentage": "0.4%"
     },
     {
-      "topic": "Polity / Local self-government",
+      "topic": "Madhya Pradesh Special / Personalities and awards of Madhya Pradesh",
       "count": 5,
-      "percentage": "0.9%"
+      "percentage": "0.4%"
     },
     {
-      "topic": "Art and Culture / Heritage Sites",
+      "topic": "Art and Culture / Culture of Madhya Pradesh",
       "count": 4,
-      "percentage": "0.7%"
+      "percentage": "0.3%"
+    },
+    {
+      "topic": "Art and Culture / Festivals and fairs",
+      "count": 4,
+      "percentage": "0.3%"
+    },
+    {
+      "topic": "Art and Culture / Paintings and sculpture",
+      "count": 4,
+      "percentage": "0.3%"
     },
     {
       "topic": "Current Affairs / Appointments and personalities",
       "count": 4,
-      "percentage": "0.7%"
+      "percentage": "0.3%"
     },
     {
       "topic": "Economy / Industry and infrastructure",
       "count": 4,
-      "percentage": "0.7%"
+      "percentage": "0.3%"
     },
     {
-      "topic": "Economy / Poverty and human development",
+      "topic": "Environment / Forests of Madhya Pradesh",
       "count": 4,
-      "percentage": "0.7%"
-    },
-    {
-      "topic": "Geography / Maps and location",
-      "count": 4,
-      "percentage": "0.7%"
-    },
-    {
-      "topic": "History / Art and architecture",
-      "count": 4,
-      "percentage": "0.7%"
-    },
-    {
-      "topic": "Madhya Pradesh Special / Demography of Madhya Pradesh",
-      "count": 4,
-      "percentage": "0.7%"
-    },
-    {
-      "topic": "Madhya Pradesh Special / Formation of Madhya Pradesh",
-      "count": 4,
-      "percentage": "0.7%"
+      "percentage": "0.3%"
     },
     {
       "topic": "Polity / Citizenship and civil rights",
       "count": 4,
-      "percentage": "0.7%"
+      "percentage": "0.3%"
     },
     {
       "topic": "Polity / Union and State Relations",
       "count": 4,
-      "percentage": "0.7%"
+      "percentage": "0.3%"
     },
     {
-      "topic": "Science and Technology / Physics",
-      "count": 4,
-      "percentage": "0.7%"
-    },
-    {
-      "topic": "Art and Culture / Culture of Madhya Pradesh",
+      "topic": "Current Affairs / Days and dates",
       "count": 3,
-      "percentage": "0.5%"
-    },
-    {
-      "topic": "Art and Culture / Festivals and fairs",
-      "count": 3,
-      "percentage": "0.5%"
-    },
-    {
-      "topic": "Art and Culture / Paintings and sculpture",
-      "count": 3,
-      "percentage": "0.5%"
-    },
-    {
-      "topic": "Environment / Environmental laws and institutions",
-      "count": 3,
-      "percentage": "0.5%"
-    },
-    {
-      "topic": "Environment / Forests of Madhya Pradesh",
-      "count": 3,
-      "percentage": "0.5%"
-    },
-    {
-      "topic": "Madhya Pradesh Special / Personalities and awards of Madhya Pradesh",
-      "count": 3,
-      "percentage": "0.5%"
+      "percentage": "0.3%"
     },
     {
       "topic": "Science and Technology / Chemistry",
       "count": 3,
-      "percentage": "0.5%"
+      "percentage": "0.3%"
+    },
+    {
+      "topic": "Art and Culture / Dance and music",
+      "count": 2,
+      "percentage": "0.2%"
     },
     {
       "topic": "Current Affairs / Current affairs of Madhya Pradesh",
       "count": 2,
-      "percentage": "0.4%"
+      "percentage": "0.2%"
     },
     {
-      "topic": "Economy / International economy",
+      "topic": "Economy / Budget and taxation",
       "count": 2,
-      "percentage": "0.4%"
-    },
-    {
-      "topic": "Environment / Wildlife of Madhya Pradesh",
-      "count": 2,
-      "percentage": "0.4%"
+      "percentage": "0.2%"
     },
     {
       "topic": "History / Prehistory and Art",
       "count": 2,
-      "percentage": "0.4%"
-    },
-    {
-      "topic": "Art and Culture / Dance and music",
-      "count": 1,
-      "percentage": "0.2%"
-    },
-    {
-      "topic": "Current Affairs / Days and dates",
-      "count": 1,
       "percentage": "0.2%"
     },
     {
       "topic": "Current Affairs / Science and technology current affairs",
       "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
     },
     {
       "topic": "General Aptitude / Logical reasoning",
       "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
+    },
+    {
+      "topic": "History / World History",
+      "count": 1,
+      "percentage": "0.1%"
     },
     {
       "topic": "Madhya Pradesh Special / Administrative structure of Madhya Pradesh",
       "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
     }
   ],
   "by_subtopic": [
     {
       "subtopic": "Science and Technology / Science and technology developments / Information technology",
       "count": 51,
-      "percentage": "8.9%"
-    },
-    {
-      "subtopic": "Geography / Rivers of Madhya Pradesh / Narmada basin",
-      "count": 12,
-      "percentage": "2.1%"
+      "percentage": "4.4%"
     },
     {
       "subtopic": "Polity / Constitution of India / Fundamental Rights",
-      "count": 11,
+      "count": 22,
       "percentage": "1.9%"
     },
     {
+      "subtopic": "Geography / Geography of India / Rivers of India",
+      "count": 17,
+      "percentage": "1.5%"
+    },
+    {
+      "subtopic": "Geography / Rivers of Madhya Pradesh / Narmada basin",
+      "count": 13,
+      "percentage": "1.1%"
+    },
+    {
+      "subtopic": "Geography / Physiography of Madhya Pradesh / Satpura range",
+      "count": 12,
+      "percentage": "1%"
+    },
+    {
+      "subtopic": "Polity / Constitution of India / Constitutional amendments",
+      "count": 12,
+      "percentage": "1%"
+    },
+    {
       "subtopic": "Polity / Union Executive / Prime Minister and Council of Ministers",
+      "count": 12,
+      "percentage": "1%"
+    },
+    {
+      "subtopic": "Economy / Economy of Madhya Pradesh / Minerals of Madhya Pradesh",
+      "count": 11,
+      "percentage": "0.9%"
+    },
+    {
+      "subtopic": "History / Modern India / Gandhian movements",
+      "count": 11,
+      "percentage": "0.9%"
+    },
+    {
+      "subtopic": "Current Affairs / Sports current affairs / Olympic and Asian Games",
+      "count": 10,
+      "percentage": "0.9%"
+    },
+    {
+      "subtopic": "Polity / Judiciary / Supreme Court",
+      "count": 10,
+      "percentage": "0.9%"
+    },
+    {
+      "subtopic": "Art and Culture / Literature and languages / Books and authors",
       "count": 9,
-      "percentage": "1.6%"
+      "percentage": "0.8%"
+    },
+    {
+      "subtopic": "Current Affairs / Awards and honours / Sports awards",
+      "count": 9,
+      "percentage": "0.8%"
+    },
+    {
+      "subtopic": "History / Ancient India / Vedic age",
+      "count": 9,
+      "percentage": "0.8%"
+    },
+    {
+      "subtopic": "Polity / Statutory and regulatory bodies / National Human Rights Commission",
+      "count": 9,
+      "percentage": "0.8%"
     },
     {
       "subtopic": "Environment / Ecology and biodiversity / Ecosystem",
       "count": 8,
-      "percentage": "1.4%"
-    },
-    {
-      "subtopic": "Geography / Geography of India / Population of India",
-      "count": 8,
-      "percentage": "1.4%"
-    },
-    {
-      "subtopic": "History / Modern India / Gandhian movements",
-      "count": 8,
-      "percentage": "1.4%"
-    },
-    {
-      "subtopic": "Polity / Constitution of India / Constitutional amendments",
-      "count": 8,
-      "percentage": "1.4%"
-    },
-    {
-      "subtopic": "Polity / Constitutional bodies / Election Commission of India",
-      "count": 8,
-      "percentage": "1.4%"
-    },
-    {
-      "subtopic": "Economy / Economy of Madhya Pradesh / Minerals of Madhya Pradesh",
-      "count": 7,
-      "percentage": "1.2%"
-    },
-    {
-      "subtopic": "History / Ancient India / Vedic age",
-      "count": 7,
-      "percentage": "1.2%"
-    },
-    {
-      "subtopic": "Current Affairs / Awards and honours / Sports awards",
-      "count": 6,
-      "percentage": "1.1%"
-    },
-    {
-      "subtopic": "Current Affairs / Sports current affairs / Other sports events",
-      "count": 6,
-      "percentage": "1.1%"
-    },
-    {
-      "subtopic": "Geography / World Geography / Continents and oceans",
-      "count": 6,
-      "percentage": "1.1%"
-    },
-    {
-      "subtopic": "History / Ancient India / Buddhism and Jainism",
-      "count": 6,
-      "percentage": "1.1%"
-    },
-    {
-      "subtopic": "History / Modern India / Revolt of 1857",
-      "count": 6,
-      "percentage": "1.1%"
-    },
-    {
-      "subtopic": "Polity / Constitutional bodies / Comptroller and Auditor General",
-      "count": 6,
-      "percentage": "1.1%"
-    },
-    {
-      "subtopic": "Polity / Judiciary / Supreme Court",
-      "count": 6,
-      "percentage": "1.1%"
-    },
-    {
-      "subtopic": "Current Affairs / Sports current affairs / Olympic and Asian Games",
-      "count": 5,
-      "percentage": "0.9%"
+      "percentage": "0.7%"
     },
     {
       "subtopic": "General Aptitude / Quantitative aptitude / Percentage and averages",
-      "count": 5,
-      "percentage": "0.9%"
-    },
-    {
-      "subtopic": "Geography / Physiography of Madhya Pradesh / Satpura range",
-      "count": 5,
-      "percentage": "0.9%"
-    },
-    {
-      "subtopic": "History / Modern India / Acts and constitutional development",
-      "count": 5,
-      "percentage": "0.9%"
-    },
-    {
-      "subtopic": "History / Modern India / British conquest and consolidation",
-      "count": 5,
-      "percentage": "0.9%"
-    },
-    {
-      "subtopic": "History / Modern India / Socio-religious reform movements",
-      "count": 5,
-      "percentage": "0.9%"
-    },
-    {
-      "subtopic": "Polity / Constitution of India / Making of the Constitution",
-      "count": 5,
-      "percentage": "0.9%"
-    },
-    {
-      "subtopic": "Polity / State Government / State Legislature",
-      "count": 5,
-      "percentage": "0.9%"
-    },
-    {
-      "subtopic": "Current Affairs / National current affairs / National events",
-      "count": 4,
-      "percentage": "0.7%"
-    },
-    {
-      "subtopic": "Economy / Banking and finance / Reserve Bank of India",
-      "count": 4,
-      "percentage": "0.7%"
-    },
-    {
-      "subtopic": "Economy / Economy of Madhya Pradesh / Industry of Madhya Pradesh",
-      "count": 4,
-      "percentage": "0.7%"
-    },
-    {
-      "subtopic": "Geography / Economic and human geography / Energy resources",
-      "count": 4,
+      "count": 8,
       "percentage": "0.7%"
     },
     {
       "subtopic": "Geography / Geography of India / Mineral resources of India",
-      "count": 4,
+      "count": 8,
       "percentage": "0.7%"
     },
     {
       "subtopic": "Geography / Geography of India / Physiography of India",
-      "count": 4,
+      "count": 8,
       "percentage": "0.7%"
     },
     {
-      "subtopic": "Geography / Geography of India / Rivers of India",
-      "count": 4,
-      "percentage": "0.7%"
-    },
-    {
-      "subtopic": "Geography / Geography of India / Transport in India",
-      "count": 4,
-      "percentage": "0.7%"
-    },
-    {
-      "subtopic": "Geography / Physiography of Madhya Pradesh / Baghelkhand plateau",
-      "count": 4,
+      "subtopic": "Geography / Geography of India / Population of India",
+      "count": 8,
       "percentage": "0.7%"
     },
     {
       "subtopic": "Geography / Rivers of Madhya Pradesh / Chambal basin",
-      "count": 4,
+      "count": 8,
       "percentage": "0.7%"
     },
     {
-      "subtopic": "History / Modern India / Indian National Congress",
-      "count": 4,
+      "subtopic": "History / Ancient India / Buddhism and Jainism",
+      "count": 8,
+      "percentage": "0.7%"
+    },
+    {
+      "subtopic": "History / Modern India / Acts and constitutional development",
+      "count": 8,
+      "percentage": "0.7%"
+    },
+    {
+      "subtopic": "History / Modern India / British conquest and consolidation",
+      "count": 8,
+      "percentage": "0.7%"
+    },
+    {
+      "subtopic": "Polity / Constitutional bodies / Election Commission of India",
+      "count": 8,
       "percentage": "0.7%"
     },
     {
       "subtopic": "Polity / Judiciary / High Courts",
-      "count": 4,
+      "count": 8,
       "percentage": "0.7%"
     },
     {
-      "subtopic": "Polity / State Government / Chief Minister and State Council of Ministers",
-      "count": 4,
+      "subtopic": "Polity / State Government / State Legislature",
+      "count": 8,
       "percentage": "0.7%"
     },
     {
-      "subtopic": "Polity / Statutory and regulatory bodies / National Human Rights Commission",
-      "count": 4,
-      "percentage": "0.7%"
+      "subtopic": "Economy / International economy / International Monetary Fund",
+      "count": 7,
+      "percentage": "0.6%"
     },
     {
-      "subtopic": "Polity / Union Legislature / Lok Sabha",
-      "count": 4,
-      "percentage": "0.7%"
+      "subtopic": "Geography / Geography of India / Transport in India",
+      "count": 7,
+      "percentage": "0.6%"
     },
     {
-      "subtopic": "Science and Technology / Health and diseases / Public health programmes",
-      "count": 4,
-      "percentage": "0.7%"
+      "subtopic": "Geography / Physiography of Madhya Pradesh / Baghelkhand plateau",
+      "count": 7,
+      "percentage": "0.6%"
     },
     {
-      "subtopic": "Science and Technology / Science and technology developments / ISRO missions",
-      "count": 4,
-      "percentage": "0.7%"
+      "subtopic": "Geography / World Geography / Continents and oceans",
+      "count": 7,
+      "percentage": "0.6%"
     },
     {
-      "subtopic": "Art and Culture / Literature and languages / Books and authors",
-      "count": 3,
+      "subtopic": "History / Medieval India / Delhi Sultanate",
+      "count": 7,
+      "percentage": "0.6%"
+    },
+    {
+      "subtopic": "History / Medieval India / Mughal empire",
+      "count": 7,
+      "percentage": "0.6%"
+    },
+    {
+      "subtopic": "History / Modern India / Indian National Congress",
+      "count": 7,
+      "percentage": "0.6%"
+    },
+    {
+      "subtopic": "Current Affairs / Sports current affairs / Other sports events",
+      "count": 6,
       "percentage": "0.5%"
     },
     {
-      "subtopic": "Art and Culture / Literature and languages / Literature of Madhya Pradesh",
-      "count": 3,
+      "subtopic": "Economy / Indian Economy / Planning in India",
+      "count": 6,
       "percentage": "0.5%"
     },
     {
-      "subtopic": "Current Affairs / Awards and honours / National awards",
-      "count": 3,
+      "subtopic": "History / Medieval India / Bhakti and Sufi movements",
+      "count": 6,
       "percentage": "0.5%"
     },
     {
-      "subtopic": "Current Affairs / International current affairs / International organisations",
-      "count": 3,
+      "subtopic": "History / Modern India / Revolt of 1857",
+      "count": 6,
       "percentage": "0.5%"
     },
     {
-      "subtopic": "Economy / Agriculture and rural economy / Cropping patterns",
-      "count": 3,
-      "percentage": "0.5%"
-    },
-    {
-      "subtopic": "Economy / Economy of Madhya Pradesh / Agriculture of Madhya Pradesh",
-      "count": 3,
-      "percentage": "0.5%"
-    },
-    {
-      "subtopic": "Economy / Indian Economy / NITI Aayog",
-      "count": 3,
-      "percentage": "0.5%"
-    },
-    {
-      "subtopic": "Geography / Geography of India / Agriculture in India",
-      "count": 3,
-      "percentage": "0.5%"
-    },
-    {
-      "subtopic": "Geography / Rivers of Madhya Pradesh / Betwa basin",
-      "count": 3,
-      "percentage": "0.5%"
-    },
-    {
-      "subtopic": "History / Art and architecture / Cave and rock-cut architecture",
-      "count": 3,
-      "percentage": "0.5%"
-    },
-    {
-      "subtopic": "History / History of Madhya Pradesh / Mahajanapadas in Madhya Pradesh",
-      "count": 3,
-      "percentage": "0.5%"
-    },
-    {
-      "subtopic": "History / Modern India / Partition and independence",
-      "count": 3,
+      "subtopic": "History / Modern India / Socio-religious reform movements",
+      "count": 6,
       "percentage": "0.5%"
     },
     {
       "subtopic": "Madhya Pradesh Special / Demography of Madhya Pradesh / Districts of Madhya Pradesh",
-      "count": 3,
+      "count": 6,
       "percentage": "0.5%"
     },
     {
-      "subtopic": "Madhya Pradesh Special / Schemes and institutions of Madhya Pradesh / State welfare schemes",
-      "count": 3,
+      "subtopic": "Polity / Constitution of India / Making of the Constitution",
+      "count": 6,
       "percentage": "0.5%"
     },
     {
-      "subtopic": "Madhya Pradesh Special / Tribes of Madhya Pradesh / Baiga",
-      "count": 3,
+      "subtopic": "Polity / Constitutional bodies / Comptroller and Auditor General",
+      "count": 6,
       "percentage": "0.5%"
     },
     {
-      "subtopic": "Madhya Pradesh Special / Tribes of Madhya Pradesh / Bhil",
-      "count": 3,
+      "subtopic": "Polity / State Government / Chief Minister and State Council of Ministers",
+      "count": 6,
       "percentage": "0.5%"
     },
     {
-      "subtopic": "Polity / Local self-government / Panchayati Raj",
-      "count": 3,
-      "percentage": "0.5%"
-    },
-    {
-      "subtopic": "Polity / Union Executive / President of India",
-      "count": 3,
-      "percentage": "0.5%"
-    },
-    {
-      "subtopic": "Science and Technology / Biology / Genetics",
-      "count": 3,
-      "percentage": "0.5%"
-    },
-    {
-      "subtopic": "Science and Technology / Biology / Human skeletal system",
-      "count": 3,
-      "percentage": "0.5%"
-    },
-    {
-      "subtopic": "Science and Technology / Biology / Nutrition and vitamins",
-      "count": 3,
-      "percentage": "0.5%"
-    },
-    {
-      "subtopic": "Science and Technology / Science and technology developments / Space programme",
-      "count": 3,
-      "percentage": "0.5%"
-    },
-    {
-      "subtopic": "Art and Culture / Culture of Madhya Pradesh / Folk art of Madhya Pradesh",
-      "count": 2,
-      "percentage": "0.4%"
-    },
-    {
-      "subtopic": "Art and Culture / Festivals and fairs / Fairs of Madhya Pradesh",
-      "count": 2,
-      "percentage": "0.4%"
-    },
-    {
-      "subtopic": "Art and Culture / Heritage Sites / Temples of Madhya Pradesh",
-      "count": 2,
-      "percentage": "0.4%"
-    },
-    {
-      "subtopic": "Current Affairs / Awards and honours / International awards",
-      "count": 2,
-      "percentage": "0.4%"
-    },
-    {
-      "subtopic": "Current Affairs / Current affairs of Madhya Pradesh / State events",
-      "count": 2,
-      "percentage": "0.4%"
-    },
-    {
-      "subtopic": "Economy / Agriculture and rural economy / Irrigation",
-      "count": 2,
-      "percentage": "0.4%"
-    },
-    {
-      "subtopic": "Economy / Banking and finance / NABARD and SIDBI",
-      "count": 2,
-      "percentage": "0.4%"
-    },
-    {
-      "subtopic": "Economy / Economy of Madhya Pradesh / State fiscal indicators",
-      "count": 2,
-      "percentage": "0.4%"
-    },
-    {
-      "subtopic": "Economy / Economy of Madhya Pradesh / State welfare schemes",
-      "count": 2,
-      "percentage": "0.4%"
-    },
-    {
-      "subtopic": "Economy / Indian Economy / Public sector undertakings",
-      "count": 2,
-      "percentage": "0.4%"
-    },
-    {
-      "subtopic": "Economy / Industry and infrastructure / Core industries",
-      "count": 2,
-      "percentage": "0.4%"
-    },
-    {
-      "subtopic": "Economy / Poverty and human development / Sustainable Development Goals",
-      "count": 2,
-      "percentage": "0.4%"
-    },
-    {
-      "subtopic": "Environment / Environmental laws and institutions / National Green Tribunal",
-      "count": 2,
-      "percentage": "0.4%"
-    },
-    {
-      "subtopic": "Environment / Forests of Madhya Pradesh / Forest types",
-      "count": 2,
+      "subtopic": "Economy / Economy of Madhya Pradesh / Industry of Madhya Pradesh",
+      "count": 5,
       "percentage": "0.4%"
     },
     {
       "subtopic": "Environment / Pollution and climate change / Air pollution",
-      "count": 2,
-      "percentage": "0.4%"
-    },
-    {
-      "subtopic": "Environment / Protected areas / National parks",
-      "count": 2,
-      "percentage": "0.4%"
-    },
-    {
-      "subtopic": "Environment / Protected areas / Wildlife sanctuaries",
-      "count": 2,
-      "percentage": "0.4%"
-    },
-    {
-      "subtopic": "Geography / Climate and soils of Madhya Pradesh / Rainfall distribution",
-      "count": 2,
-      "percentage": "0.4%"
-    },
-    {
-      "subtopic": "Geography / Climate and soils of Madhya Pradesh / Soil types",
-      "count": 2,
-      "percentage": "0.4%"
-    },
-    {
-      "subtopic": "Geography / Maps and location / Boundaries and neighbours",
-      "count": 2,
-      "percentage": "0.4%"
-    },
-    {
-      "subtopic": "Geography / Maps and location / Location",
-      "count": 2,
-      "percentage": "0.4%"
-    },
-    {
-      "subtopic": "Geography / Physical Geography / Atmosphere and weather",
-      "count": 2,
-      "percentage": "0.4%"
-    },
-    {
-      "subtopic": "Geography / Physical Geography / Latitude and longitude",
-      "count": 2,
-      "percentage": "0.4%"
-    },
-    {
-      "subtopic": "Geography / Physiography of Madhya Pradesh / Bundelkhand plateau",
-      "count": 2,
-      "percentage": "0.4%"
-    },
-    {
-      "subtopic": "Geography / Physiography of Madhya Pradesh / Location",
-      "count": 2,
-      "percentage": "0.4%"
-    },
-    {
-      "subtopic": "Geography / Rivers of Madhya Pradesh / Dams and reservoirs",
-      "count": 2,
-      "percentage": "0.4%"
-    },
-    {
-      "subtopic": "History / Ancient India / Ancient science and literature",
-      "count": 2,
+      "count": 5,
       "percentage": "0.4%"
     },
     {
       "subtopic": "History / Ancient India / Gupta period",
-      "count": 2,
+      "count": 5,
       "percentage": "0.4%"
     },
     {
-      "subtopic": "History / Ancient India / Mauryan empire",
-      "count": 2,
+      "subtopic": "History / Medieval India / Maratha empire",
+      "count": 5,
       "percentage": "0.4%"
+    },
+    {
+      "subtopic": "History / Modern India / Revolutionary movements",
+      "count": 5,
+      "percentage": "0.4%"
+    },
+    {
+      "subtopic": "Polity / Local self-government / Panchayati Raj",
+      "count": 5,
+      "percentage": "0.4%"
+    },
+    {
+      "subtopic": "Polity / Union Legislature / Lok Sabha",
+      "count": 5,
+      "percentage": "0.4%"
+    },
+    {
+      "subtopic": "Current Affairs / International current affairs / International organisations",
+      "count": 4,
+      "percentage": "0.3%"
+    },
+    {
+      "subtopic": "Current Affairs / National current affairs / National events",
+      "count": 4,
+      "percentage": "0.3%"
+    },
+    {
+      "subtopic": "Economy / Banking and finance / Reserve Bank of India",
+      "count": 4,
+      "percentage": "0.3%"
+    },
+    {
+      "subtopic": "Economy / Indian Economy / Public sector undertakings",
+      "count": 4,
+      "percentage": "0.3%"
+    },
+    {
+      "subtopic": "Environment / Pollution and climate change / Ozone depletion",
+      "count": 4,
+      "percentage": "0.3%"
+    },
+    {
+      "subtopic": "Environment / Wildlife of Madhya Pradesh / National parks",
+      "count": 4,
+      "percentage": "0.3%"
+    },
+    {
+      "subtopic": "Geography / Economic and human geography / Energy resources",
+      "count": 4,
+      "percentage": "0.3%"
+    },
+    {
+      "subtopic": "Geography / Geography of India / Agriculture in India",
+      "count": 4,
+      "percentage": "0.3%"
+    },
+    {
+      "subtopic": "Geography / Maps and location / Location",
+      "count": 4,
+      "percentage": "0.3%"
+    },
+    {
+      "subtopic": "Geography / Physical Geography / Latitude and longitude",
+      "count": 4,
+      "percentage": "0.3%"
+    },
+    {
+      "subtopic": "Geography / Rivers of Madhya Pradesh / Betwa basin",
+      "count": 4,
+      "percentage": "0.3%"
+    },
+    {
+      "subtopic": "History / Ancient India / Mauryan empire",
+      "count": 4,
+      "percentage": "0.3%"
+    },
+    {
+      "subtopic": "History / History of Madhya Pradesh / Mahajanapadas in Madhya Pradesh",
+      "count": 4,
+      "percentage": "0.3%"
+    },
+    {
+      "subtopic": "History / Modern India / Partition and independence",
+      "count": 4,
+      "percentage": "0.3%"
+    },
+    {
+      "subtopic": "Madhya Pradesh Special / Tribes of Madhya Pradesh / Baiga",
+      "count": 4,
+      "percentage": "0.3%"
+    },
+    {
+      "subtopic": "Madhya Pradesh Special / Tribes of Madhya Pradesh / Bhil",
+      "count": 4,
+      "percentage": "0.3%"
+    },
+    {
+      "subtopic": "Polity / Union Executive / President of India",
+      "count": 4,
+      "percentage": "0.3%"
+    },
+    {
+      "subtopic": "Science and Technology / Biology / Nutrition and vitamins",
+      "count": 4,
+      "percentage": "0.3%"
+    },
+    {
+      "subtopic": "Science and Technology / Health and diseases / Public health programmes",
+      "count": 4,
+      "percentage": "0.3%"
+    },
+    {
+      "subtopic": "Science and Technology / Science and technology developments / ISRO missions",
+      "count": 4,
+      "percentage": "0.3%"
+    },
+    {
+      "subtopic": "Art and Culture / Literature and languages / Literature of Madhya Pradesh",
+      "count": 3,
+      "percentage": "0.3%"
+    },
+    {
+      "subtopic": "Current Affairs / Awards and honours / International awards",
+      "count": 3,
+      "percentage": "0.3%"
+    },
+    {
+      "subtopic": "Current Affairs / Awards and honours / National awards",
+      "count": 3,
+      "percentage": "0.3%"
+    },
+    {
+      "subtopic": "Economy / Agriculture and rural economy / Cropping patterns",
+      "count": 3,
+      "percentage": "0.3%"
+    },
+    {
+      "subtopic": "Economy / Agriculture and rural economy / Irrigation",
+      "count": 3,
+      "percentage": "0.3%"
+    },
+    {
+      "subtopic": "Economy / Banking and finance / NABARD and SIDBI",
+      "count": 3,
+      "percentage": "0.3%"
+    },
+    {
+      "subtopic": "Economy / Economy of Madhya Pradesh / Agriculture of Madhya Pradesh",
+      "count": 3,
+      "percentage": "0.3%"
+    },
+    {
+      "subtopic": "Economy / Indian Economy / NITI Aayog",
+      "count": 3,
+      "percentage": "0.3%"
+    },
+    {
+      "subtopic": "Environment / Environmental laws and institutions / National Green Tribunal",
+      "count": 3,
+      "percentage": "0.3%"
+    },
+    {
+      "subtopic": "Environment / Forests of Madhya Pradesh / Forest types",
+      "count": 3,
+      "percentage": "0.3%"
+    },
+    {
+      "subtopic": "Environment / Pollution and climate change / Global warming",
+      "count": 3,
+      "percentage": "0.3%"
+    },
+    {
+      "subtopic": "Geography / Physical Geography / Atmosphere and weather",
+      "count": 3,
+      "percentage": "0.3%"
+    },
+    {
+      "subtopic": "Geography / Physical Geography / Climatology",
+      "count": 3,
+      "percentage": "0.3%"
+    },
+    {
+      "subtopic": "History / Art and architecture / Cave and rock-cut architecture",
+      "count": 3,
+      "percentage": "0.3%"
+    },
+    {
+      "subtopic": "History / History of Madhya Pradesh / Chandela dynasty",
+      "count": 3,
+      "percentage": "0.3%"
+    },
+    {
+      "subtopic": "History / History of Madhya Pradesh / Maratha rule in Madhya Pradesh",
+      "count": 3,
+      "percentage": "0.3%"
+    },
+    {
+      "subtopic": "History / Medieval India / Rajput states",
+      "count": 3,
+      "percentage": "0.3%"
+    },
+    {
+      "subtopic": "Madhya Pradesh Special / Formation of Madhya Pradesh / Governors of Madhya Pradesh",
+      "count": 3,
+      "percentage": "0.3%"
+    },
+    {
+      "subtopic": "Madhya Pradesh Special / Personalities and awards of Madhya Pradesh / Notable personalities",
+      "count": 3,
+      "percentage": "0.3%"
+    },
+    {
+      "subtopic": "Madhya Pradesh Special / Schemes and institutions of Madhya Pradesh / State welfare schemes",
+      "count": 3,
+      "percentage": "0.3%"
+    },
+    {
+      "subtopic": "Madhya Pradesh Special / Tribes of Madhya Pradesh / Gond",
+      "count": 3,
+      "percentage": "0.3%"
+    },
+    {
+      "subtopic": "Polity / Constitution of India / Directive Principles",
+      "count": 3,
+      "percentage": "0.3%"
+    },
+    {
+      "subtopic": "Polity / Union Legislature / Parliament",
+      "count": 3,
+      "percentage": "0.3%"
+    },
+    {
+      "subtopic": "Science and Technology / Biology / Genetics",
+      "count": 3,
+      "percentage": "0.3%"
+    },
+    {
+      "subtopic": "Science and Technology / Biology / Human skeletal system",
+      "count": 3,
+      "percentage": "0.3%"
+    },
+    {
+      "subtopic": "Science and Technology / Physics / Light and optics",
+      "count": 3,
+      "percentage": "0.3%"
+    },
+    {
+      "subtopic": "Science and Technology / Science and technology developments / Space programme",
+      "count": 3,
+      "percentage": "0.3%"
+    },
+    {
+      "subtopic": "Art and Culture / Culture of Madhya Pradesh / Cultural institutions of Madhya Pradesh",
+      "count": 2,
+      "percentage": "0.2%"
+    },
+    {
+      "subtopic": "Art and Culture / Culture of Madhya Pradesh / Folk art of Madhya Pradesh",
+      "count": 2,
+      "percentage": "0.2%"
+    },
+    {
+      "subtopic": "Art and Culture / Festivals and fairs / Fairs of Madhya Pradesh",
+      "count": 2,
+      "percentage": "0.2%"
+    },
+    {
+      "subtopic": "Art and Culture / Festivals and fairs / Festivals of India",
+      "count": 2,
+      "percentage": "0.2%"
+    },
+    {
+      "subtopic": "Art and Culture / Heritage Sites / Khajuraho group",
+      "count": 2,
+      "percentage": "0.2%"
+    },
+    {
+      "subtopic": "Art and Culture / Heritage Sites / Temples of Madhya Pradesh",
+      "count": 2,
+      "percentage": "0.2%"
+    },
+    {
+      "subtopic": "Art and Culture / Literature and languages / Hindi literature",
+      "count": 2,
+      "percentage": "0.2%"
+    },
+    {
+      "subtopic": "Current Affairs / Current affairs of Madhya Pradesh / State events",
+      "count": 2,
+      "percentage": "0.2%"
+    },
+    {
+      "subtopic": "Current Affairs / Days and dates / National days",
+      "count": 2,
+      "percentage": "0.2%"
+    },
+    {
+      "subtopic": "Current Affairs / International current affairs / Summits and conferences",
+      "count": 2,
+      "percentage": "0.2%"
+    },
+    {
+      "subtopic": "Economy / Agriculture and rural economy / Agricultural revolutions",
+      "count": 2,
+      "percentage": "0.2%"
+    },
+    {
+      "subtopic": "Economy / Banking and finance / Commercial banks",
+      "count": 2,
+      "percentage": "0.2%"
+    },
+    {
+      "subtopic": "Economy / Economy of Madhya Pradesh / Madhya Pradesh Budget",
+      "count": 2,
+      "percentage": "0.2%"
+    },
+    {
+      "subtopic": "Economy / Economy of Madhya Pradesh / State fiscal indicators",
+      "count": 2,
+      "percentage": "0.2%"
+    },
+    {
+      "subtopic": "Economy / Economy of Madhya Pradesh / State welfare schemes",
+      "count": 2,
+      "percentage": "0.2%"
+    },
+    {
+      "subtopic": "Economy / Indian Economy / GDP and GNP",
+      "count": 2,
+      "percentage": "0.2%"
+    },
+    {
+      "subtopic": "Economy / Industry and infrastructure / Core industries",
+      "count": 2,
+      "percentage": "0.2%"
+    },
+    {
+      "subtopic": "Economy / Poverty and human development / Sustainable Development Goals",
+      "count": 2,
+      "percentage": "0.2%"
+    },
+    {
+      "subtopic": "Environment / Environmental laws and institutions / Central Pollution Control Board",
+      "count": 2,
+      "percentage": "0.2%"
+    },
+    {
+      "subtopic": "Environment / Pollution and climate change / Greenhouse gases",
+      "count": 2,
+      "percentage": "0.2%"
+    },
+    {
+      "subtopic": "Environment / Pollution and climate change / Water pollution",
+      "count": 2,
+      "percentage": "0.2%"
+    },
+    {
+      "subtopic": "Environment / Protected areas / National parks",
+      "count": 2,
+      "percentage": "0.2%"
+    },
+    {
+      "subtopic": "Environment / Protected areas / Tiger reserves",
+      "count": 2,
+      "percentage": "0.2%"
+    },
+    {
+      "subtopic": "Environment / Protected areas / Wildlife sanctuaries",
+      "count": 2,
+      "percentage": "0.2%"
+    },
+    {
+      "subtopic": "General Aptitude / Quantitative aptitude / Ratio and proportion",
+      "count": 2,
+      "percentage": "0.2%"
+    },
+    {
+      "subtopic": "Geography / Climate and soils of Madhya Pradesh / Rainfall distribution",
+      "count": 2,
+      "percentage": "0.2%"
+    },
+    {
+      "subtopic": "Geography / Climate and soils of Madhya Pradesh / Soil types",
+      "count": 2,
+      "percentage": "0.2%"
+    },
+    {
+      "subtopic": "Geography / Geography of India / Climate of India",
+      "count": 2,
+      "percentage": "0.2%"
+    },
+    {
+      "subtopic": "Geography / Geography of India / Soils of India",
+      "count": 2,
+      "percentage": "0.2%"
+    },
+    {
+      "subtopic": "Geography / Maps and location / Boundaries and neighbours",
+      "count": 2,
+      "percentage": "0.2%"
+    },
+    {
+      "subtopic": "Geography / Physical Geography / Landforms and their evolution",
+      "count": 2,
+      "percentage": "0.2%"
+    },
+    {
+      "subtopic": "Geography / Physiography of Madhya Pradesh / Bundelkhand plateau",
+      "count": 2,
+      "percentage": "0.2%"
+    },
+    {
+      "subtopic": "Geography / Physiography of Madhya Pradesh / Location",
+      "count": 2,
+      "percentage": "0.2%"
+    },
+    {
+      "subtopic": "Geography / Physiography of Madhya Pradesh / Malwa plateau",
+      "count": 2,
+      "percentage": "0.2%"
+    },
+    {
+      "subtopic": "Geography / Rivers of Madhya Pradesh / Dams and reservoirs",
+      "count": 2,
+      "percentage": "0.2%"
+    },
+    {
+      "subtopic": "Geography / World Geography / Deserts of the world",
+      "count": 2,
+      "percentage": "0.2%"
+    },
+    {
+      "subtopic": "Geography / World Geography / International boundaries",
+      "count": 2,
+      "percentage": "0.2%"
+    },
+    {
+      "subtopic": "Geography / World Geography / Major landforms",
+      "count": 2,
+      "percentage": "0.2%"
+    },
+    {
+      "subtopic": "Geography / World Geography / Straits and isthmuses",
+      "count": 2,
+      "percentage": "0.2%"
+    },
+    {
+      "subtopic": "History / Ancient India / Ancient science and literature",
+      "count": 2,
+      "percentage": "0.2%"
+    },
+    {
+      "subtopic": "History / Ancient India / Indus Valley Civilisation",
+      "count": 2,
+      "percentage": "0.2%"
     },
     {
       "subtopic": "History / History of Madhya Pradesh / Bundela and Baghelkhand",
       "count": 2,
-      "percentage": "0.4%"
-    },
-    {
-      "subtopic": "History / History of Madhya Pradesh / Chandela dynasty",
-      "count": 2,
-      "percentage": "0.4%"
+      "percentage": "0.2%"
     },
     {
       "subtopic": "History / History of Madhya Pradesh / Freedom struggle in Madhya Pradesh",
       "count": 2,
-      "percentage": "0.4%"
-    },
-    {
-      "subtopic": "History / History of Madhya Pradesh / Maratha rule in Madhya Pradesh",
-      "count": 2,
-      "percentage": "0.4%"
+      "percentage": "0.2%"
     },
     {
       "subtopic": "History / History of Madhya Pradesh / Princely states and agencies",
       "count": 2,
-      "percentage": "0.4%"
+      "percentage": "0.2%"
     },
     {
       "subtopic": "History / History of Madhya Pradesh / Revolt of 1857 in Madhya Pradesh",
       "count": 2,
-      "percentage": "0.4%"
+      "percentage": "0.2%"
     },
     {
-      "subtopic": "History / Medieval India / Bhakti and Sufi movements",
+      "subtopic": "History / Medieval India / Vijayanagara and Bahmani",
       "count": 2,
-      "percentage": "0.4%"
+      "percentage": "0.2%"
     },
     {
-      "subtopic": "History / Medieval India / Delhi Sultanate",
+      "subtopic": "History / Modern India / Governor Generals and Viceroys",
       "count": 2,
-      "percentage": "0.4%"
+      "percentage": "0.2%"
     },
     {
-      "subtopic": "History / Medieval India / Mughal empire",
+      "subtopic": "Madhya Pradesh Special / Formation of Madhya Pradesh / State reorganisation",
       "count": 2,
-      "percentage": "0.4%"
-    },
-    {
-      "subtopic": "History / Medieval India / Rajput states",
-      "count": 2,
-      "percentage": "0.4%"
-    },
-    {
-      "subtopic": "Madhya Pradesh Special / Formation of Madhya Pradesh / Governors of Madhya Pradesh",
-      "count": 2,
-      "percentage": "0.4%"
+      "percentage": "0.2%"
     },
     {
       "subtopic": "Madhya Pradesh Special / Schemes and institutions of Madhya Pradesh / Educational institutions",
       "count": 2,
-      "percentage": "0.4%"
+      "percentage": "0.2%"
     },
     {
-      "subtopic": "Madhya Pradesh Special / Tribes of Madhya Pradesh / Gond",
+      "subtopic": "Madhya Pradesh Special / Tribes of Madhya Pradesh / Korku",
       "count": 2,
-      "percentage": "0.4%"
+      "percentage": "0.2%"
     },
     {
       "subtopic": "Polity / Citizenship and civil rights / Protection of minorities",
       "count": 2,
-      "percentage": "0.4%"
+      "percentage": "0.2%"
     },
     {
       "subtopic": "Polity / Citizenship and civil rights / Right to Food",
       "count": 2,
-      "percentage": "0.4%"
+      "percentage": "0.2%"
     },
     {
-      "subtopic": "Polity / Constitution of India / Directive Principles",
+      "subtopic": "Polity / Constitution of India / Preamble",
       "count": 2,
-      "percentage": "0.4%"
+      "percentage": "0.2%"
     },
     {
       "subtopic": "Polity / Constitutional bodies / National Commission for SCs and STs",
       "count": 2,
-      "percentage": "0.4%"
+      "percentage": "0.2%"
+    },
+    {
+      "subtopic": "Polity / Constitutional bodies / Union Public Service Commission",
+      "count": 2,
+      "percentage": "0.2%"
     },
     {
       "subtopic": "Polity / Local self-government / Local bodies in Madhya Pradesh",
       "count": 2,
-      "percentage": "0.4%"
+      "percentage": "0.2%"
     },
     {
       "subtopic": "Polity / State Government / State Public Service Commission",
       "count": 2,
-      "percentage": "0.4%"
+      "percentage": "0.2%"
     },
     {
       "subtopic": "Polity / Statutory and regulatory bodies / Central Information Commission",
       "count": 2,
-      "percentage": "0.4%"
+      "percentage": "0.2%"
+    },
+    {
+      "subtopic": "Polity / Statutory and regulatory bodies / NITI Aayog",
+      "count": 2,
+      "percentage": "0.2%"
     },
     {
       "subtopic": "Polity / Union and State Relations / Distribution of legislative powers",
       "count": 2,
-      "percentage": "0.4%"
-    },
-    {
-      "subtopic": "Polity / Union Legislature / Parliament",
-      "count": 2,
-      "percentage": "0.4%"
+      "percentage": "0.2%"
     },
     {
       "subtopic": "Science and Technology / Chemistry / Chemistry in everyday life",
       "count": 2,
-      "percentage": "0.4%"
+      "percentage": "0.2%"
+    },
+    {
+      "subtopic": "Science and Technology / Health and diseases / Communicable diseases",
+      "count": 2,
+      "percentage": "0.2%"
+    },
+    {
+      "subtopic": "Science and Technology / Science and technology developments / Defence technology",
+      "count": 2,
+      "percentage": "0.2%"
     },
     {
       "subtopic": "Science and Technology / Science and technology developments / Research institutes",
       "count": 2,
-      "percentage": "0.4%"
-    },
-    {
-      "subtopic": "Art and Culture / Culture of Madhya Pradesh / Cultural institutions of Madhya Pradesh",
-      "count": 1,
       "percentage": "0.2%"
     },
     {
       "subtopic": "Art and Culture / Dance and music / Classical music",
       "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
     },
     {
-      "subtopic": "Art and Culture / Festivals and fairs / Festivals of India",
+      "subtopic": "Art and Culture / Dance and music / Musical instruments",
       "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
     },
     {
       "subtopic": "Art and Culture / Heritage Sites / Forts and palaces",
       "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
     },
     {
       "subtopic": "Art and Culture / Heritage Sites / Sanchi",
       "count": 1,
-      "percentage": "0.2%"
-    },
-    {
-      "subtopic": "Art and Culture / Literature and languages / Hindi literature",
-      "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
     },
     {
       "subtopic": "Art and Culture / Literature and languages / Sanskrit literature",
       "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
+    },
+    {
+      "subtopic": "Art and Culture / Paintings and sculpture / Handicrafts",
+      "count": 1,
+      "percentage": "0.1%"
     },
     {
       "subtopic": "Art and Culture / Paintings and sculpture / Modern Indian painters",
       "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
     },
     {
       "subtopic": "Art and Culture / Paintings and sculpture / Tribal art",
       "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
     },
     {
       "subtopic": "Current Affairs / Appointments and personalities / Constitutional appointments",
       "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
     },
     {
       "subtopic": "Current Affairs / Appointments and personalities / Heads of state and government",
       "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
     },
     {
       "subtopic": "Current Affairs / Days and dates / International days",
       "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
     },
     {
       "subtopic": "Current Affairs / International current affairs / Bilateral relations",
       "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
     },
     {
       "subtopic": "Current Affairs / International current affairs / Places in news",
       "count": 1,
-      "percentage": "0.2%"
-    },
-    {
-      "subtopic": "Current Affairs / International current affairs / Summits and conferences",
-      "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
     },
     {
       "subtopic": "Current Affairs / National current affairs / Government schemes and launches",
       "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
     },
     {
       "subtopic": "Current Affairs / Science and technology current affairs / Defence exercises",
       "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
     },
     {
       "subtopic": "Current Affairs / Sports current affairs / Commonwealth Games",
       "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
     },
     {
       "subtopic": "Current Affairs / Sports current affairs / Cricket",
       "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
     },
     {
       "subtopic": "Economy / Agriculture and rural economy / Food processing",
       "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
     },
     {
-      "subtopic": "Economy / Banking and finance / Commercial banks",
+      "subtopic": "Economy / Agriculture and rural economy / Minimum support price",
       "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
     },
     {
-      "subtopic": "Economy / Economy of Madhya Pradesh / Madhya Pradesh Budget",
+      "subtopic": "Economy / Banking and finance / Financial inclusion",
       "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
     },
     {
-      "subtopic": "Economy / Indian Economy / GDP and GNP",
+      "subtopic": "Economy / Banking and finance / SEBI and capital markets",
       "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
+    },
+    {
+      "subtopic": "Economy / Budget and taxation / Direct taxes",
+      "count": 1,
+      "percentage": "0.1%"
+    },
+    {
+      "subtopic": "Economy / Budget and taxation / Goods and Services Tax",
+      "count": 1,
+      "percentage": "0.1%"
+    },
+    {
+      "subtopic": "Economy / Indian Economy / Inflation",
+      "count": 1,
+      "percentage": "0.1%"
     },
     {
       "subtopic": "Economy / Industry and infrastructure / Industrial policy",
       "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
     },
     {
-      "subtopic": "Economy / International economy / International Monetary Fund",
+      "subtopic": "Economy / International economy / Balance of payments",
       "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
     },
     {
       "subtopic": "Economy / International economy / Trade agreements",
       "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
+    },
+    {
+      "subtopic": "Economy / International economy / World Trade Organization",
+      "count": 1,
+      "percentage": "0.1%"
+    },
+    {
+      "subtopic": "Economy / Poverty and human development / Human Development Index",
+      "count": 1,
+      "percentage": "0.1%"
     },
     {
       "subtopic": "Economy / Poverty and human development / Inclusive growth",
       "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
     },
     {
       "subtopic": "Economy / Poverty and human development / Poverty estimation",
       "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
     },
     {
       "subtopic": "Environment / Ecology and biodiversity / Biodiversity",
       "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
     },
     {
-      "subtopic": "Environment / Environmental laws and institutions / Central Pollution Control Board",
+      "subtopic": "Environment / Ecology and biodiversity / Food chain and food web",
       "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
+    },
+    {
+      "subtopic": "Environment / Ecology and biodiversity / Species status",
+      "count": 1,
+      "percentage": "0.1%"
+    },
+    {
+      "subtopic": "Environment / Environmental laws and institutions / Environment Protection Act",
+      "count": 1,
+      "percentage": "0.1%"
+    },
+    {
+      "subtopic": "Environment / Environmental laws and institutions / Wildlife Protection Act",
+      "count": 1,
+      "percentage": "0.1%"
     },
     {
       "subtopic": "Environment / Forests of Madhya Pradesh / Minor forest produce",
       "count": 1,
-      "percentage": "0.2%"
-    },
-    {
-      "subtopic": "Environment / Pollution and climate change / Global warming",
-      "count": 1,
-      "percentage": "0.2%"
-    },
-    {
-      "subtopic": "Environment / Pollution and climate change / Greenhouse gases",
-      "count": 1,
-      "percentage": "0.2%"
-    },
-    {
-      "subtopic": "Environment / Pollution and climate change / Ozone depletion",
-      "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
     },
     {
       "subtopic": "Environment / Pollution and climate change / Solid waste management",
       "count": 1,
-      "percentage": "0.2%"
-    },
-    {
-      "subtopic": "Environment / Pollution and climate change / Water pollution",
-      "count": 1,
-      "percentage": "0.2%"
-    },
-    {
-      "subtopic": "Environment / Protected areas / Tiger reserves",
-      "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
     },
     {
       "subtopic": "Environment / Wildlife of Madhya Pradesh / Birds of Madhya Pradesh",
       "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
     },
     {
-      "subtopic": "Environment / Wildlife of Madhya Pradesh / National parks",
+      "subtopic": "Environment / Wildlife of Madhya Pradesh / State animal and bird",
       "count": 1,
-      "percentage": "0.2%"
-    },
-    {
-      "subtopic": "General Aptitude / Quantitative aptitude / Ratio and proportion",
-      "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
     },
     {
       "subtopic": "Geography / Climate and soils of Madhya Pradesh / Monsoon in Madhya Pradesh",
       "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
     },
     {
-      "subtopic": "Geography / Geography of India / Climate of India",
+      "subtopic": "Geography / Geography of India / Lakes and wetlands",
       "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
     },
     {
       "subtopic": "Geography / Geography of India / Natural vegetation of India",
       "count": 1,
-      "percentage": "0.2%"
-    },
-    {
-      "subtopic": "Geography / Physical Geography / Climatology",
-      "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
     },
     {
       "subtopic": "Geography / Physical Geography / Earthquakes and volcanoes",
       "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
     },
     {
-      "subtopic": "Geography / Physical Geography / Landforms and their evolution",
+      "subtopic": "Geography / Physical Geography / Interior of the Earth",
       "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
+    },
+    {
+      "subtopic": "Geography / Physical Geography / Oceanography",
+      "count": 1,
+      "percentage": "0.1%"
     },
     {
       "subtopic": "Geography / Physical Geography / Rocks and minerals",
       "count": 1,
-      "percentage": "0.2%"
-    },
-    {
-      "subtopic": "Geography / Physiography of Madhya Pradesh / Malwa plateau",
-      "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
     },
     {
       "subtopic": "Geography / Physiography of Madhya Pradesh / Vindhyan range",
       "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
+    },
+    {
+      "subtopic": "Geography / Rivers of Madhya Pradesh / Lakes and waterfalls",
+      "count": 1,
+      "percentage": "0.1%"
     },
     {
       "subtopic": "Geography / Rivers of Madhya Pradesh / Tapti basin",
       "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
     },
     {
-      "subtopic": "Geography / World Geography / International boundaries",
+      "subtopic": "Geography / Rivers of Madhya Pradesh / Tributaries",
       "count": 1,
-      "percentage": "0.2%"
-    },
-    {
-      "subtopic": "Geography / World Geography / Major landforms",
-      "count": 1,
-      "percentage": "0.2%"
-    },
-    {
-      "subtopic": "Geography / World Geography / Straits and isthmuses",
-      "count": 1,
-      "percentage": "0.2%"
-    },
-    {
-      "subtopic": "History / Ancient India / Indus Valley Civilisation",
-      "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
     },
     {
       "subtopic": "History / Ancient India / Mauryan art and architecture",
       "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
+    },
+    {
+      "subtopic": "History / Art and architecture / Indo-Islamic architecture",
+      "count": 1,
+      "percentage": "0.1%"
+    },
+    {
+      "subtopic": "History / Art and architecture / Painting schools",
+      "count": 1,
+      "percentage": "0.1%"
     },
     {
       "subtopic": "History / Art and architecture / Temple architecture",
       "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
     },
     {
       "subtopic": "History / History of Madhya Pradesh / Paramara dynasty",
       "count": 1,
-      "percentage": "0.2%"
-    },
-    {
-      "subtopic": "History / Medieval India / Maratha empire",
-      "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
     },
     {
       "subtopic": "History / Medieval India / Medieval administration and revenue",
       "count": 1,
-      "percentage": "0.2%"
-    },
-    {
-      "subtopic": "History / Medieval India / Vijayanagara and Bahmani",
-      "count": 1,
-      "percentage": "0.2%"
-    },
-    {
-      "subtopic": "History / Modern India / Governor Generals and Viceroys",
-      "count": 1,
-      "percentage": "0.2%"
-    },
-    {
-      "subtopic": "History / Modern India / Revolutionary movements",
-      "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
     },
     {
       "subtopic": "History / Prehistory and Art / Rock shelters",
       "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
+    },
+    {
+      "subtopic": "History / World History / Russian Revolution",
+      "count": 1,
+      "percentage": "0.1%"
     },
     {
       "subtopic": "Madhya Pradesh Special / Administrative structure of Madhya Pradesh / Madhya Pradesh legislature",
       "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
     },
     {
       "subtopic": "Madhya Pradesh Special / Demography of Madhya Pradesh / Census 2011",
       "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
+    },
+    {
+      "subtopic": "Madhya Pradesh Special / Formation of Madhya Pradesh / Capital of Madhya Pradesh",
+      "count": 1,
+      "percentage": "0.1%"
     },
     {
       "subtopic": "Madhya Pradesh Special / Formation of Madhya Pradesh / Chief Ministers",
       "count": 1,
-      "percentage": "0.2%"
-    },
-    {
-      "subtopic": "Madhya Pradesh Special / Formation of Madhya Pradesh / State reorganisation",
-      "count": 1,
-      "percentage": "0.2%"
-    },
-    {
-      "subtopic": "Madhya Pradesh Special / Personalities and awards of Madhya Pradesh / Notable personalities",
-      "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
     },
     {
       "subtopic": "Madhya Pradesh Special / Personalities and awards of Madhya Pradesh / Sports from Madhya Pradesh",
       "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
     },
     {
       "subtopic": "Madhya Pradesh Special / Personalities and awards of Madhya Pradesh / State awards",
       "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
     },
     {
       "subtopic": "Madhya Pradesh Special / Schemes and institutions of Madhya Pradesh / Tourism of Madhya Pradesh",
       "count": 1,
-      "percentage": "0.2%"
-    },
-    {
-      "subtopic": "Madhya Pradesh Special / Tribes of Madhya Pradesh / Korku",
-      "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
     },
     {
       "subtopic": "Madhya Pradesh Special / Tribes of Madhya Pradesh / Sahariya",
       "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
     },
     {
       "subtopic": "Madhya Pradesh Special / Tribes of Madhya Pradesh / Tribal culture",
       "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
     },
     {
       "subtopic": "Polity / Constitution of India / Fundamental Duties",
       "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
     },
     {
       "subtopic": "Polity / Constitution of India / Schedules of the Constitution",
       "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
     },
     {
-      "subtopic": "Polity / Constitutional bodies / Union Public Service Commission",
+      "subtopic": "Polity / Judiciary / Public Interest Litigation",
       "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
     },
     {
       "subtopic": "Polity / Statutory and regulatory bodies / Central Vigilance Commission",
       "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
     },
     {
       "subtopic": "Polity / Statutory and regulatory bodies / Lokpal and Lokayukta",
       "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
     },
     {
       "subtopic": "Polity / Statutory and regulatory bodies / National Commission for Women",
       "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
     },
     {
       "subtopic": "Polity / Union and State Relations / Emergency provisions",
       "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
     },
     {
       "subtopic": "Polity / Union and State Relations / Finance Commission",
       "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
+    },
+    {
+      "subtopic": "Polity / Union Legislature / Rajya Sabha",
+      "count": 1,
+      "percentage": "0.1%"
     },
     {
       "subtopic": "Science and Technology / Biology / Hormones and glands",
       "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
+    },
+    {
+      "subtopic": "Science and Technology / Biology / Human circulatory system",
+      "count": 1,
+      "percentage": "0.1%"
     },
     {
       "subtopic": "Science and Technology / Biology / Human digestive system",
       "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
     },
     {
       "subtopic": "Science and Technology / Biology / Human nervous system",
       "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
+    },
+    {
+      "subtopic": "Science and Technology / Biology / Photosynthesis",
+      "count": 1,
+      "percentage": "0.1%"
     },
     {
       "subtopic": "Science and Technology / Biology / Plant physiology",
       "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
     },
     {
       "subtopic": "Science and Technology / Chemistry / Acids bases and salts",
       "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
     },
     {
       "subtopic": "Science and Technology / Health and diseases / Epidemics and pandemics",
       "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
     },
     {
       "subtopic": "Science and Technology / Health and diseases / Non-communicable diseases",
       "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
+    },
+    {
+      "subtopic": "Science and Technology / Health and diseases / Vaccination",
+      "count": 1,
+      "percentage": "0.1%"
     },
     {
       "subtopic": "Science and Technology / Physics / Electricity and magnetism",
       "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
     },
     {
-      "subtopic": "Science and Technology / Physics / Light and optics",
+      "subtopic": "Science and Technology / Physics / Heat and thermodynamics",
       "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
     },
     {
       "subtopic": "Science and Technology / Physics / Modern physics",
       "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
+    },
+    {
+      "subtopic": "Science and Technology / Physics / Sound",
+      "count": 1,
+      "percentage": "0.1%"
     },
     {
       "subtopic": "Science and Technology / Physics / Units and measurements",
       "count": 1,
-      "percentage": "0.2%"
-    },
-    {
-      "subtopic": "Science and Technology / Science and technology developments / Defence technology",
-      "count": 1,
-      "percentage": "0.2%"
+      "percentage": "0.1%"
     }
   ],
   "by_source": [
     {
       "source": "pipeline-rules",
-      "count": 327,
-      "percentage": "57.3%"
+      "count": 614,
+      "percentage": "52.4%"
+    },
+    {
+      "source": "unclassified",
+      "count": 313,
+      "percentage": "26.7%"
     },
     {
       "source": "reviewed",
       "count": 244,
-      "percentage": "42.7%"
+      "percentage": "20.8%"
     }
   ],
   "by_year": [
+    {
+      "year": 2013,
+      "count": 100
+    },
+    {
+      "year": 2014,
+      "count": 100
+    },
+    {
+      "year": 2015,
+      "count": 100
+    },
+    {
+      "year": 2016,
+      "count": 100
+    },
+    {
+      "year": 2017,
+      "count": 100
+    },
+    {
+      "year": 2018,
+      "count": 100
+    },
     {
       "year": 2022,
       "count": 97
@@ -1494,13 +1745,2769 @@
   ],
   "confidence_distribution": {
     "0.00–0.39": 0,
-    "0.40–0.59": 1,
-    "0.60–0.79": 278,
-    "0.80–0.95": 292,
-    "unset": 0
+    "0.40–0.59": 10,
+    "0.60–0.79": 390,
+    "0.80–0.95": 458,
+    "unset": 313
   },
-  "madhya_pradesh_specific": 161,
-  "unclassified": [],
+  "madhya_pradesh_specific": 256,
+  "unclassified": [
+    {
+      "id": "MPPSC-2013-001",
+      "paper_id": "MPPSC-2013-P1",
+      "year": 2013,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "The term ‘Monsoon’ is originated from"
+    },
+    {
+      "id": "MPPSC-2013-003",
+      "paper_id": "MPPSC-2013-P1",
+      "year": 2013,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which is the smallest Union Territory of India?"
+    },
+    {
+      "id": "MPPSC-2013-005",
+      "paper_id": "MPPSC-2013-P1",
+      "year": 2013,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Great Ice-Age is related to"
+    },
+    {
+      "id": "MPPSC-2013-009",
+      "paper_id": "MPPSC-2013-P1",
+      "year": 2013,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "How many articles are there in ‘Universal Declartaion of human rights?"
+    },
+    {
+      "id": "MPPSC-2013-010",
+      "paper_id": "MPPSC-2013-P1",
+      "year": 2013,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "‘Apartheiv’ is:"
+    },
+    {
+      "id": "MPPSC-2013-011",
+      "paper_id": "MPPSC-2013-P1",
+      "year": 2013,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "----- Without duties are like men without shadow.’"
+    },
+    {
+      "id": "MPPSC-2013-012",
+      "paper_id": "MPPSC-2013-P1",
+      "year": 2013,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "‘Human Rights Day’ is observed on"
+    },
+    {
+      "id": "MPPSC-2013-014",
+      "paper_id": "MPPSC-2013-P1",
+      "year": 2013,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "U N observed as International year for women"
+    },
+    {
+      "id": "MPPSC-2013-016",
+      "paper_id": "MPPSC-2013-P1",
+      "year": 2013,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "In a prosecution for an offence under the scheduled castes and scheduled tribes (prevention of atrocities) act 1989, the"
+    },
+    {
+      "id": "MPPSC-2013-018",
+      "paper_id": "MPPSC-2013-P1",
+      "year": 2013,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which of the following power a special court can not exercise under the scheduled castes and scheduled tribes (preventio"
+    },
+    {
+      "id": "MPPSC-2013-019",
+      "paper_id": "MPPSC-2013-P1",
+      "year": 2013,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "An offence committed under the scheduled castes and schedules tribes (prevention oatrocities act, 1989) shall be investi"
+    },
+    {
+      "id": "MPPSC-2013-020",
+      "paper_id": "MPPSC-2013-P1",
+      "year": 2013,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Under the scheduled castes and scheduled tribes (prevention of atrocities) Act, 1989, which of the following is absolute"
+    },
+    {
+      "id": "MPPSC-2013-022",
+      "paper_id": "MPPSC-2013-P1",
+      "year": 2013,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "In a prosecution for an offence under the scheduled castes and scheduled tribes (prevention of atrocities) act, 1989, th"
+    },
+    {
+      "id": "MPPSC-2013-023",
+      "paper_id": "MPPSC-2013-P1",
+      "year": 2013,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Under the protection of civil rights act, 1955, all offences are"
+    },
+    {
+      "id": "MPPSC-2013-024",
+      "paper_id": "MPPSC-2013-P1",
+      "year": 2013,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "What are the two parts of E-mail address?"
+    },
+    {
+      "id": "MPPSC-2013-025",
+      "paper_id": "MPPSC-2013-P1",
+      "year": 2013,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "A ‘menu’ contains a list of"
+    },
+    {
+      "id": "MPPSC-2013-026",
+      "paper_id": "MPPSC-2013-P1",
+      "year": 2013,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Junk e-mail is also called"
+    },
+    {
+      "id": "MPPSC-2013-027",
+      "paper_id": "MPPSC-2013-P1",
+      "year": 2013,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which of the following is not a computer hardware?"
+    },
+    {
+      "id": "MPPSC-2013-028",
+      "paper_id": "MPPSC-2013-P1",
+      "year": 2013,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which type of computer could be found in a digital watch?"
+    },
+    {
+      "id": "MPPSC-2013-029",
+      "paper_id": "MPPSC-2013-P1",
+      "year": 2013,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Who is considered as the inventor of WWW-World Wide Web?"
+    },
+    {
+      "id": "MPPSC-2013-030",
+      "paper_id": "MPPSC-2013-P1",
+      "year": 2013,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which one is mainly used in checking of objective type answer paper in the examination?"
+    },
+    {
+      "id": "MPPSC-2013-031",
+      "paper_id": "MPPSC-2013-P1",
+      "year": 2013,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "The ‘akashwani kendra’ in Indore was started on:"
+    },
+    {
+      "id": "MPPSC-2013-034",
+      "paper_id": "MPPSC-2013-P1",
+      "year": 2013,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "Geography",
+          "score": 0.98
+        }
+      ],
+      "excerpt": "Which is the largest tribe of India?"
+    },
+    {
+      "id": "MPPSC-2013-035",
+      "paper_id": "MPPSC-2013-P1",
+      "year": 2013,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Dewas is famous for its:"
+    },
+    {
+      "id": "MPPSC-2013-036",
+      "paper_id": "MPPSC-2013-P1",
+      "year": 2013,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which is not the dialect of M.P."
+    },
+    {
+      "id": "MPPSC-2013-037",
+      "paper_id": "MPPSC-2013-P1",
+      "year": 2013,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Where is the Samadhi of Maharani Laxmibai situated?"
+    },
+    {
+      "id": "MPPSC-2013-042",
+      "paper_id": "MPPSC-2013-P1",
+      "year": 2013,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "What is the establishment year of the Oldest (Sagar) university of M.P.?"
+    },
+    {
+      "id": "MPPSC-2013-046",
+      "paper_id": "MPPSC-2013-P1",
+      "year": 2013,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Weight of a cricket ball is:"
+    },
+    {
+      "id": "MPPSC-2013-049",
+      "paper_id": "MPPSC-2013-P1",
+      "year": 2013,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "How many squares are there in a chess board?"
+    },
+    {
+      "id": "MPPSC-2013-050",
+      "paper_id": "MPPSC-2013-P1",
+      "year": 2013,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which country won the hockey (Men) world cup title for the third time?"
+    },
+    {
+      "id": "MPPSC-2013-051",
+      "paper_id": "MPPSC-2013-P1",
+      "year": 2013,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "The term ‘Butterfly stroke’ is related with:"
+    },
+    {
+      "id": "MPPSC-2013-052",
+      "paper_id": "MPPSC-2013-P1",
+      "year": 2013,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "How many players are there in a Kho-Kho team?"
+    },
+    {
+      "id": "MPPSC-2013-056",
+      "paper_id": "MPPSC-2013-P1",
+      "year": 2013,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which of the following is not included in ‘Chardham’?"
+    },
+    {
+      "id": "MPPSC-2013-057",
+      "paper_id": "MPPSC-2013-P1",
+      "year": 2013,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "After how many years ‘Mahakumbh’ is held?"
+    },
+    {
+      "id": "MPPSC-2013-060",
+      "paper_id": "MPPSC-2013-P1",
+      "year": 2013,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Who amongst the following drafted the ‘Sarvodaya Plan’?"
+    },
+    {
+      "id": "MPPSC-2013-062",
+      "paper_id": "MPPSC-2013-P1",
+      "year": 2013,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which of the following countries is the third largest producer and consumer of fertilizer in the world?"
+    },
+    {
+      "id": "MPPSC-2013-063",
+      "paper_id": "MPPSC-2013-P1",
+      "year": 2013,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which of the following country is the largest source in India’s total import?"
+    },
+    {
+      "id": "MPPSC-2013-065",
+      "paper_id": "MPPSC-2013-P1",
+      "year": 2013,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "What is Viticulture?"
+    },
+    {
+      "id": "MPPSC-2013-067",
+      "paper_id": "MPPSC-2013-P1",
+      "year": 2013,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "In which year the Rashtriya Swayamsewak Sangh was founded by Hedgewar?"
+    },
+    {
+      "id": "MPPSC-2013-068",
+      "paper_id": "MPPSC-2013-P1",
+      "year": 2013,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which of the following does not constitute the social base of the communist parties in India?"
+    },
+    {
+      "id": "MPPSC-2013-076",
+      "paper_id": "MPPSC-2013-P1",
+      "year": 2013,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "National Atlas and Thematic Mapping Organisation is located in:"
+    },
+    {
+      "id": "MPPSC-2013-078",
+      "paper_id": "MPPSC-2013-P1",
+      "year": 2013,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Nanda Devi Peak is located in:"
+    },
+    {
+      "id": "MPPSC-2013-080",
+      "paper_id": "MPPSC-2013-P1",
+      "year": 2013,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which of the following is not a harbour?"
+    },
+    {
+      "id": "MPPSC-2013-082",
+      "paper_id": "MPPSC-2013-P1",
+      "year": 2013,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "When did Swami Vivekanand delivered his speech in ‘World Religion Conference’ in Chicago city?"
+    },
+    {
+      "id": "MPPSC-2013-087",
+      "paper_id": "MPPSC-2013-P1",
+      "year": 2013,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Who organized the gadar party?"
+    },
+    {
+      "id": "MPPSC-2013-091",
+      "paper_id": "MPPSC-2013-P1",
+      "year": 2013,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which country has test-launched first 3D television broadcast?"
+    },
+    {
+      "id": "MPPSC-2013-092",
+      "paper_id": "MPPSC-2013-P1",
+      "year": 2013,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "‘Pradhanmantri Bharat Jodo Pariyojna’ is related to:"
+    },
+    {
+      "id": "MPPSC-2013-094",
+      "paper_id": "MPPSC-2013-P1",
+      "year": 2013,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Who is the author of book ‘Namsake’?"
+    },
+    {
+      "id": "MPPSC-2013-096",
+      "paper_id": "MPPSC-2013-P1",
+      "year": 2013,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "The sector in which United Kingdom has expressed its interest for partnership with Kerala is:"
+    },
+    {
+      "id": "MPPSC-2013-098",
+      "paper_id": "MPPSC-2013-P1",
+      "year": 2013,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "International Decade for natural disaster reduction (IDNDR) is:"
+    },
+    {
+      "id": "MPPSC-2014-003",
+      "paper_id": "MPPSC-2014-P1",
+      "year": 2014,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "What was the industrial growth rate of India during 2013-14 with 2011- 12 as the base year?"
+    },
+    {
+      "id": "MPPSC-2014-004",
+      "paper_id": "MPPSC-2014-P1",
+      "year": 2014,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "After establishment of Bhartiya Janta Party, who became its first president?"
+    },
+    {
+      "id": "MPPSC-2014-007",
+      "paper_id": "MPPSC-2014-P1",
+      "year": 2014,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "Geography",
+          "score": 1.01
+        }
+      ],
+      "excerpt": "Example of Inland Drainage River is"
+    },
+    {
+      "id": "MPPSC-2014-008",
+      "paper_id": "MPPSC-2014-P1",
+      "year": 2014,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Himalayan peak Kanchenjunga is situated at"
+    },
+    {
+      "id": "MPPSC-2014-009",
+      "paper_id": "MPPSC-2014-P1",
+      "year": 2014,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "Geography",
+          "score": 1.17
+        }
+      ],
+      "excerpt": "Durban city is situated in"
+    },
+    {
+      "id": "MPPSC-2014-011",
+      "paper_id": "MPPSC-2014-P1",
+      "year": 2014,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "In which year did the government of India Nationalized 14 major private banks?"
+    },
+    {
+      "id": "MPPSC-2014-012",
+      "paper_id": "MPPSC-2014-P1",
+      "year": 2014,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Bangladesh was established as an independent nation after Indo- Pakistan War of"
+    },
+    {
+      "id": "MPPSC-2014-015",
+      "paper_id": "MPPSC-2014-P1",
+      "year": 2014,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "All India Muslim League was founded in the year"
+    },
+    {
+      "id": "MPPSC-2014-026",
+      "paper_id": "MPPSC-2014-P1",
+      "year": 2014,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "State in India with longest coast-line is"
+    },
+    {
+      "id": "MPPSC-2014-027",
+      "paper_id": "MPPSC-2014-P1",
+      "year": 2014,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "Geography",
+          "score": 1.08
+        }
+      ],
+      "excerpt": "The state with lowest urban population in India isA. sikkim"
+    },
+    {
+      "id": "MPPSC-2014-030",
+      "paper_id": "MPPSC-2014-P1",
+      "year": 2014,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Opium is cultivated in which district of Madhya Pradesh?"
+    },
+    {
+      "id": "MPPSC-2014-035",
+      "paper_id": "MPPSC-2014-P1",
+      "year": 2014,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "The example of “Lentic Habitat” in fresh water community isA. ponds and swamps"
+    },
+    {
+      "id": "MPPSC-2014-036",
+      "paper_id": "MPPSC-2014-P1",
+      "year": 2014,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which of the following is used in the preparation of nuclear bombs?"
+    },
+    {
+      "id": "MPPSC-2014-039",
+      "paper_id": "MPPSC-2014-P1",
+      "year": 2014,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Asia-Pacific economic Co-operation (APEC) Summit 2014 was held at"
+    },
+    {
+      "id": "MPPSC-2014-040",
+      "paper_id": "MPPSC-2014-P1",
+      "year": 2014,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "19th SAARC Summit was proposed in"
+    },
+    {
+      "id": "MPPSC-2014-042",
+      "paper_id": "MPPSC-2014-P1",
+      "year": 2014,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Who introduced “Green Army” for environment conservation?"
+    },
+    {
+      "id": "MPPSC-2014-044",
+      "paper_id": "MPPSC-2014-P1",
+      "year": 2014,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "Geography",
+          "score": 1.17
+        }
+      ],
+      "excerpt": "According to the world health organization the most affected country by Ebola is"
+    },
+    {
+      "id": "MPPSC-2014-047",
+      "paper_id": "MPPSC-2014-P1",
+      "year": 2014,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Where is the image of an object formed in human eye?"
+    },
+    {
+      "id": "MPPSC-2014-048",
+      "paper_id": "MPPSC-2014-P1",
+      "year": 2014,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "102nd Indian science congress was held at"
+    },
+    {
+      "id": "MPPSC-2014-050",
+      "paper_id": "MPPSC-2014-P1",
+      "year": 2014,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Halophytes grow well in"
+    },
+    {
+      "id": "MPPSC-2014-051",
+      "paper_id": "MPPSC-2014-P1",
+      "year": 2014,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Excess of which of the following in the blood causes the “Blue Baby Syndrome” disease?"
+    },
+    {
+      "id": "MPPSC-2014-052",
+      "paper_id": "MPPSC-2014-P1",
+      "year": 2014,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Size of the sun is how many times bigger than that of the earth?"
+    },
+    {
+      "id": "MPPSC-2014-053",
+      "paper_id": "MPPSC-2014-P1",
+      "year": 2014,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "The coldest planet in the solar system is"
+    },
+    {
+      "id": "MPPSC-2014-054",
+      "paper_id": "MPPSC-2014-P1",
+      "year": 2014,
+      "reason": "ambiguous_subject",
+      "candidates": [
+        {
+          "subject": "Environment",
+          "score": 4.68
+        },
+        {
+          "subject": "Geography",
+          "score": 4.32
+        }
+      ],
+      "excerpt": "“Ozone layer Preservation Day” is celebrated on"
+    },
+    {
+      "id": "MPPSC-2014-056",
+      "paper_id": "MPPSC-2014-P1",
+      "year": 2014,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Who among the following is regarded as the leader of “Chipko Movement”?"
+    },
+    {
+      "id": "MPPSC-2014-060",
+      "paper_id": "MPPSC-2014-P1",
+      "year": 2014,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "What is the rank of India in silk production in the world?"
+    },
+    {
+      "id": "MPPSC-2014-062",
+      "paper_id": "MPPSC-2014-P1",
+      "year": 2014,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Famous Hazara temple of Vijaynagar was built during the reign of"
+    },
+    {
+      "id": "MPPSC-2014-067",
+      "paper_id": "MPPSC-2014-P1",
+      "year": 2014,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "Polity",
+          "score": 1.12
+        }
+      ],
+      "excerpt": "Who is empowered for imposition and realization of collective fine under SC and ST (Prevention of Atrocities) Act, 1989?"
+    },
+    {
+      "id": "MPPSC-2014-068",
+      "paper_id": "MPPSC-2014-P1",
+      "year": 2014,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Who is held responsible for the offences committed by companies, under the protection of civil rights act, 1955?"
+    },
+    {
+      "id": "MPPSC-2014-069",
+      "paper_id": "MPPSC-2014-P1",
+      "year": 2014,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Offence committed by any public servant under section 3 of the SC and ST (Prevention of Atrocities) Act, 1989, provides "
+    },
+    {
+      "id": "MPPSC-2014-070",
+      "paper_id": "MPPSC-2014-P1",
+      "year": 2014,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Slowest Internet connection service is"
+    },
+    {
+      "id": "MPPSC-2014-071",
+      "paper_id": "MPPSC-2014-P1",
+      "year": 2014,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "SMPS stands for"
+    },
+    {
+      "id": "MPPSC-2014-072",
+      "paper_id": "MPPSC-2014-P1",
+      "year": 2014,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Offences are tried under the protection of civil rights act, 1955 by the court of"
+    },
+    {
+      "id": "MPPSC-2014-073",
+      "paper_id": "MPPSC-2014-P1",
+      "year": 2014,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which of the following is a connecting device?"
+    },
+    {
+      "id": "MPPSC-2014-074",
+      "paper_id": "MPPSC-2014-P1",
+      "year": 2014,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "One byte has"
+    },
+    {
+      "id": "MPPSC-2014-075",
+      "paper_id": "MPPSC-2014-P1",
+      "year": 2014,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Firewall is used in communication network/system for protection from"
+    },
+    {
+      "id": "MPPSC-2014-076",
+      "paper_id": "MPPSC-2014-P1",
+      "year": 2014,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "FTP stands for"
+    },
+    {
+      "id": "MPPSC-2014-079",
+      "paper_id": "MPPSC-2014-P1",
+      "year": 2014,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Word processing, spread sheet and photo editing are examples of"
+    },
+    {
+      "id": "MPPSC-2014-080",
+      "paper_id": "MPPSC-2014-P1",
+      "year": 2014,
+      "reason": "ambiguous_subject",
+      "candidates": [
+        {
+          "subject": "History",
+          "score": 3.96
+        },
+        {
+          "subject": "Art and Culture",
+          "score": 3.38
+        },
+        {
+          "subject": "Madhya Pradesh Special",
+          "score": 3.17
+        }
+      ],
+      "excerpt": "Who among the following has been awarded Tansen Samman 2014"
+    },
+    {
+      "id": "MPPSC-2014-082",
+      "paper_id": "MPPSC-2014-P1",
+      "year": 2014,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which literary figure is not associated with Madhya Pradesh?"
+    },
+    {
+      "id": "MPPSC-2014-083",
+      "paper_id": "MPPSC-2014-P1",
+      "year": 2014,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "Geography",
+          "score": 1
+        },
+        {
+          "subject": "History",
+          "score": 0.91
+        }
+      ],
+      "excerpt": "Dynasty famous for efficient rural administration was"
+    },
+    {
+      "id": "MPPSC-2014-084",
+      "paper_id": "MPPSC-2014-P1",
+      "year": 2014,
+      "reason": "ambiguous_subject",
+      "candidates": [
+        {
+          "subject": "History",
+          "score": 7.03
+        },
+        {
+          "subject": "Art and Culture",
+          "score": 6.42
+        }
+      ],
+      "excerpt": "The temples of Khajuraho were built by the rulers of which of the following dynasties?"
+    },
+    {
+      "id": "MPPSC-2014-087",
+      "paper_id": "MPPSC-2014-P1",
+      "year": 2014,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Birsinghpur Hydro Power Station is situated in which of the following districts?"
+    },
+    {
+      "id": "MPPSC-2014-090",
+      "paper_id": "MPPSC-2014-P1",
+      "year": 2014,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Hockey India League started in the year"
+    },
+    {
+      "id": "MPPSC-2014-092",
+      "paper_id": "MPPSC-2014-P1",
+      "year": 2014,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Prabhas Joshi Award is given by Madhya Pradesh Government for which of the following Indian traditional sport?"
+    },
+    {
+      "id": "MPPSC-2014-094",
+      "paper_id": "MPPSC-2014-P1",
+      "year": 2014,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "The word ‘libro’ is used in which of the following?"
+    },
+    {
+      "id": "MPPSC-2014-096",
+      "paper_id": "MPPSC-2014-P1",
+      "year": 2014,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Bonous line is marked in which of the following sports?"
+    },
+    {
+      "id": "MPPSC-2014-097",
+      "paper_id": "MPPSC-2014-P1",
+      "year": 2014,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Black Pearl is related with which of the following sports?"
+    },
+    {
+      "id": "MPPSC-2014-099",
+      "paper_id": "MPPSC-2014-P1",
+      "year": 2014,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which among the following was not the profit making central public sector enterprises during 2013-14?"
+    },
+    {
+      "id": "MPPSC-2014-100",
+      "paper_id": "MPPSC-2014-P1",
+      "year": 2014,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Bhim Rao Ambedkar International Sports Stadium is situated at"
+    },
+    {
+      "id": "MPPSC-2015-003",
+      "paper_id": "MPPSC-2015-P1",
+      "year": 2015,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "'Audi' is the car manufacturing company of which country?"
+    },
+    {
+      "id": "MPPSC-2015-004",
+      "paper_id": "MPPSC-2015-P1",
+      "year": 2015,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Who authored the book \"Ignitis Minds\" ?"
+    },
+    {
+      "id": "MPPSC-2015-005",
+      "paper_id": "MPPSC-2015-P1",
+      "year": 2015,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Who has been appointed the Brand Ambassador of Mother and Child Health Campaign by the government of Madhya Pradesh ?"
+    },
+    {
+      "id": "MPPSC-2015-007",
+      "paper_id": "MPPSC-2015-P1",
+      "year": 2015,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "State Museum of Madhya Pradesh, Bhopal was earlier known as"
+    },
+    {
+      "id": "MPPSC-2015-008",
+      "paper_id": "MPPSC-2015-P1",
+      "year": 2015,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Who was the author of \"Shahnama\"?"
+    },
+    {
+      "id": "MPPSC-2015-009",
+      "paper_id": "MPPSC-2015-P1",
+      "year": 2015,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "What is the total number of Sanskaras ?"
+    },
+    {
+      "id": "MPPSC-2015-013",
+      "paper_id": "MPPSC-2015-P1",
+      "year": 2015,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "History",
+          "score": 1.17
+        }
+      ],
+      "excerpt": "In which year Sati System was abolished by William Bentinck?"
+    },
+    {
+      "id": "MPPSC-2015-018",
+      "paper_id": "MPPSC-2015-P1",
+      "year": 2015,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "World Earth Day is celebrated on"
+    },
+    {
+      "id": "MPPSC-2015-021",
+      "paper_id": "MPPSC-2015-P1",
+      "year": 2015,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "'Alfalfa' is"
+    },
+    {
+      "id": "MPPSC-2015-024",
+      "paper_id": "MPPSC-2015-P1",
+      "year": 2015,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which one of the following is known as the 'coffee port' of the world?"
+    },
+    {
+      "id": "MPPSC-2015-028",
+      "paper_id": "MPPSC-2015-P1",
+      "year": 2015,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which State of India has borders with three countries namely Nepal, Bhutan and China?"
+    },
+    {
+      "id": "MPPSC-2015-036",
+      "paper_id": "MPPSC-2015-P1",
+      "year": 2015,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "History",
+          "score": 1.19
+        },
+        {
+          "subject": "Polity",
+          "score": 1.08
+        }
+      ],
+      "excerpt": "Who has termed Constitution a sacred document?"
+    },
+    {
+      "id": "MPPSC-2015-040",
+      "paper_id": "MPPSC-2015-P1",
+      "year": 2015,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "What do we mean by sustainable economic development ?"
+    },
+    {
+      "id": "MPPSC-2015-042",
+      "paper_id": "MPPSC-2015-P1",
+      "year": 2015,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "From which country tradition of written Constitution began?"
+    },
+    {
+      "id": "MPPSC-2015-043",
+      "paper_id": "MPPSC-2015-P1",
+      "year": 2015,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "Polity",
+          "score": 1.19
+        }
+      ],
+      "excerpt": "Why the Turkunde Committee was constituted?"
+    },
+    {
+      "id": "MPPSC-2015-046",
+      "paper_id": "MPPSC-2015-P1",
+      "year": 2015,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "Science and Technology",
+          "score": 1.08
+        }
+      ],
+      "excerpt": "Which is not renewable resource ?"
+    },
+    {
+      "id": "MPPSC-2015-051",
+      "paper_id": "MPPSC-2015-P1",
+      "year": 2015,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "The causes are not atrocity of scheduled caste and scheduled tribe according to the report of National Commission of Sch"
+    },
+    {
+      "id": "MPPSC-2015-054",
+      "paper_id": "MPPSC-2015-P1",
+      "year": 2015,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "The base of sustainable development is"
+    },
+    {
+      "id": "MPPSC-2015-055",
+      "paper_id": "MPPSC-2015-P1",
+      "year": 2015,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which is not a primary colour from the followings?"
+    },
+    {
+      "id": "MPPSC-2015-056",
+      "paper_id": "MPPSC-2015-P1",
+      "year": 2015,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Who discovered that life is in plants and tree?"
+    },
+    {
+      "id": "MPPSC-2015-057",
+      "paper_id": "MPPSC-2015-P1",
+      "year": 2015,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "How many bits are there in one byte?"
+    },
+    {
+      "id": "MPPSC-2015-058",
+      "paper_id": "MPPSC-2015-P1",
+      "year": 2015,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Choose the smallest memory size unit."
+    },
+    {
+      "id": "MPPSC-2015-059",
+      "paper_id": "MPPSC-2015-P1",
+      "year": 2015,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Binary language consists of how many digits ?"
+    },
+    {
+      "id": "MPPSC-2015-060",
+      "paper_id": "MPPSC-2015-P1",
+      "year": 2015,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which of the following is the largest, fastest and costliest computer?"
+    },
+    {
+      "id": "MPPSC-2015-062",
+      "paper_id": "MPPSC-2015-P1",
+      "year": 2015,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which of the following is not a computer language?"
+    },
+    {
+      "id": "MPPSC-2015-063",
+      "paper_id": "MPPSC-2015-P1",
+      "year": 2015,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which of the following works is not done by computer ?"
+    },
+    {
+      "id": "MPPSC-2015-064",
+      "paper_id": "MPPSC-2015-P1",
+      "year": 2015,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "The place where accessories are connected in computer is known as"
+    },
+    {
+      "id": "MPPSC-2015-065",
+      "paper_id": "MPPSC-2015-P1",
+      "year": 2015,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "The first page that you normally view at a website is its"
+    },
+    {
+      "id": "MPPSC-2015-066",
+      "paper_id": "MPPSC-2015-P1",
+      "year": 2015,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "At which of the following places is the 2016 Summer Olympics proposed to be held ?"
+    },
+    {
+      "id": "MPPSC-2015-067",
+      "paper_id": "MPPSC-2015-P1",
+      "year": 2015,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Who was the winner of Men's Singles of 2015 Wimbledon Championship?"
+    },
+    {
+      "id": "MPPSC-2015-068",
+      "paper_id": "MPPSC-2015-P1",
+      "year": 2015,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "The headquarters of Madhya Pradesh Cricket Association is situated at"
+    },
+    {
+      "id": "MPPSC-2015-069",
+      "paper_id": "MPPSC-2015-P1",
+      "year": 2015,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Sandhya Agrawal is associated with which of the following sports?"
+    },
+    {
+      "id": "MPPSC-2015-071",
+      "paper_id": "MPPSC-2015-P1",
+      "year": 2015,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "How many players are there in a Polo team?"
+    },
+    {
+      "id": "MPPSC-2015-072",
+      "paper_id": "MPPSC-2015-P1",
+      "year": 2015,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Against which team Narendra Hirwani took 16 wickets in one Test Match?"
+    },
+    {
+      "id": "MPPSC-2015-073",
+      "paper_id": "MPPSC-2015-P1",
+      "year": 2015,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "In which city is Aishbagh Stadium situated ?"
+    },
+    {
+      "id": "MPPSC-2015-078",
+      "paper_id": "MPPSC-2015-P1",
+      "year": 2015,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "In whose leadership the Tribal Movement took place in Sendhawa?"
+    },
+    {
+      "id": "MPPSC-2015-082",
+      "paper_id": "MPPSC-2015-P1",
+      "year": 2015,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Who was Vishnu Chinchalkar?"
+    },
+    {
+      "id": "MPPSC-2015-084",
+      "paper_id": "MPPSC-2015-P1",
+      "year": 2015,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Where is \"M.P. Pashu Chikitsa Avem Pashu Palan Vishwa Vidyalaya\" situated?"
+    },
+    {
+      "id": "MPPSC-2015-085",
+      "paper_id": "MPPSC-2015-P1",
+      "year": 2015,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "From which field Ganesh Shanker Vidyarthi award is related ?"
+    },
+    {
+      "id": "MPPSC-2015-091",
+      "paper_id": "MPPSC-2015-P1",
+      "year": 2015,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "Science and Technology",
+          "score": 1.17
+        },
+        {
+          "subject": "Geography",
+          "score": 0.84
+        }
+      ],
+      "excerpt": "'Fathometer' is used to measure"
+    },
+    {
+      "id": "MPPSC-2015-092",
+      "paper_id": "MPPSC-2015-P1",
+      "year": 2015,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "In which district of Madhya Pradesh, the regional research branch of Indian Forest Research Institute is situated ?"
+    },
+    {
+      "id": "MPPSC-2015-093",
+      "paper_id": "MPPSC-2015-P1",
+      "year": 2015,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Microscope is used for the study of which of the following?"
+    },
+    {
+      "id": "MPPSC-2015-095",
+      "paper_id": "MPPSC-2015-P1",
+      "year": 2015,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "The density of milk is measured by"
+    },
+    {
+      "id": "MPPSC-2015-097",
+      "paper_id": "MPPSC-2015-P1",
+      "year": 2015,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "Science and Technology",
+          "score": 0.91
+        }
+      ],
+      "excerpt": "Alexander Fleming discovered"
+    },
+    {
+      "id": "MPPSC-2015-098",
+      "paper_id": "MPPSC-2015-P1",
+      "year": 2015,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which is the longest day of the year?"
+    },
+    {
+      "id": "MPPSC-2016-001",
+      "paper_id": "MPPSC-2016-P1",
+      "year": 2016,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which one of the following countries shares the longest land frontier with India?"
+    },
+    {
+      "id": "MPPSC-2016-004",
+      "paper_id": "MPPSC-2016-P1",
+      "year": 2016,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Arrange the following Indian States in descending order of their geographical areas: 1. Rajasthan II. Tamil Nadu III. Ma"
+    },
+    {
+      "id": "MPPSC-2016-007",
+      "paper_id": "MPPSC-2016-P1",
+      "year": 2016,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "The boundary line between India and Pakistan is an example of"
+    },
+    {
+      "id": "MPPSC-2016-008",
+      "paper_id": "MPPSC-2016-P1",
+      "year": 2016,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which of the following coastal areas of India was affected by Hudhud Cyclone?"
+    },
+    {
+      "id": "MPPSC-2016-010",
+      "paper_id": "MPPSC-2016-P1",
+      "year": 2016,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "Geography",
+          "score": 1
+        }
+      ],
+      "excerpt": "Which among the following has the largest shipyard in India?"
+    },
+    {
+      "id": "MPPSC-2016-011",
+      "paper_id": "MPPSC-2016-P1",
+      "year": 2016,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "Economy",
+          "score": 1.17
+        }
+      ],
+      "excerpt": "The power plant at Manikaran, based on geothermal energy. is located in the State of"
+    },
+    {
+      "id": "MPPSC-2016-014",
+      "paper_id": "MPPSC-2016-P1",
+      "year": 2016,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which one of the following States is related with Silent Valley Project?"
+    },
+    {
+      "id": "MPPSC-2016-016",
+      "paper_id": "MPPSC-2016-P1",
+      "year": 2016,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Potato is a"
+    },
+    {
+      "id": "MPPSC-2016-017",
+      "paper_id": "MPPSC-2016-P1",
+      "year": 2016,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "Science and Technology",
+          "score": 1.17
+        },
+        {
+          "subject": "Environment",
+          "score": 1.12
+        }
+      ],
+      "excerpt": "Which gas is known as 'noble gas?"
+    },
+    {
+      "id": "MPPSC-2016-018",
+      "paper_id": "MPPSC-2016-P1",
+      "year": 2016,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "The largest gland in human body is"
+    },
+    {
+      "id": "MPPSC-2016-019",
+      "paper_id": "MPPSC-2016-P1",
+      "year": 2016,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Mammals respire by"
+    },
+    {
+      "id": "MPPSC-2016-020",
+      "paper_id": "MPPSC-2016-P1",
+      "year": 2016,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Vinegar is chemically known as"
+    },
+    {
+      "id": "MPPSC-2016-022",
+      "paper_id": "MPPSC-2016-P1",
+      "year": 2016,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which one of the following is not the unit of heat?"
+    },
+    {
+      "id": "MPPSC-2016-023",
+      "paper_id": "MPPSC-2016-P1",
+      "year": 2016,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "The liquid/liquids used in simple barometer is/are"
+    },
+    {
+      "id": "MPPSC-2016-024",
+      "paper_id": "MPPSC-2016-P1",
+      "year": 2016,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which one of the following is not a fossil fuel?"
+    },
+    {
+      "id": "MPPSC-2016-025",
+      "paper_id": "MPPSC-2016-P1",
+      "year": 2016,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "Geography",
+          "score": 1.08
+        }
+      ],
+      "excerpt": "Which one of the following is a renewable source of energy?"
+    },
+    {
+      "id": "MPPSC-2016-027",
+      "paper_id": "MPPSC-2016-P1",
+      "year": 2016,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Starch is a"
+    },
+    {
+      "id": "MPPSC-2016-029",
+      "paper_id": "MPPSC-2016-P1",
+      "year": 2016,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "Current Affairs",
+          "score": 1
+        }
+      ],
+      "excerpt": "Pasteurization is related to"
+    },
+    {
+      "id": "MPPSC-2016-031",
+      "paper_id": "MPPSC-2016-P1",
+      "year": 2016,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Who among the following environmentalists is known by the name of Jal Purush?"
+    },
+    {
+      "id": "MPPSC-2016-035",
+      "paper_id": "MPPSC-2016-P1",
+      "year": 2016,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which one of the following States recorded the lowest population density in Census 2011?"
+    },
+    {
+      "id": "MPPSC-2016-039",
+      "paper_id": "MPPSC-2016-P1",
+      "year": 2016,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which one of the following countries is not a member of G-8?"
+    },
+    {
+      "id": "MPPSC-2016-040",
+      "paper_id": "MPPSC-2016-P1",
+      "year": 2016,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "Art and Culture",
+          "score": 1.17
+        },
+        {
+          "subject": "History",
+          "score": 1.12
+        }
+      ],
+      "excerpt": "The author of \"The Killer Instinct\" is"
+    },
+    {
+      "id": "MPPSC-2016-042",
+      "paper_id": "MPPSC-2016-P1",
+      "year": 2016,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which of the following is not one of the BRICS countries?"
+    },
+    {
+      "id": "MPPSC-2016-044",
+      "paper_id": "MPPSC-2016-P1",
+      "year": 2016,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Shooting World Cup, 2017 will be held in"
+    },
+    {
+      "id": "MPPSC-2016-047",
+      "paper_id": "MPPSC-2016-P1",
+      "year": 2016,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Madhya Pradesh Laghu Udyog Nigam was established in"
+    },
+    {
+      "id": "MPPSC-2016-048",
+      "paper_id": "MPPSC-2016-P1",
+      "year": 2016,
+      "reason": "ambiguous_subject",
+      "candidates": [
+        {
+          "subject": "Economy",
+          "score": 4.68
+        },
+        {
+          "subject": "History",
+          "score": 4.49
+        }
+      ],
+      "excerpt": "Mahatma Gandhi National Rural Employment Guarantee Act was passed in"
+    },
+    {
+      "id": "MPPSC-2016-050",
+      "paper_id": "MPPSC-2016-P1",
+      "year": 2016,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "The population of Madhya Pradesh, according to Census 2011, is"
+    },
+    {
+      "id": "MPPSC-2016-051",
+      "paper_id": "MPPSC-2016-P1",
+      "year": 2016,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "According to Census 2011, the district of maximum population in Madhya Pradesh is"
+    },
+    {
+      "id": "MPPSC-2016-054",
+      "paper_id": "MPPSC-2016-P1",
+      "year": 2016,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "The objective/objectives of Pradhan Mantri Gram Sadak Yojana is/are"
+    },
+    {
+      "id": "MPPSC-2016-055",
+      "paper_id": "MPPSC-2016-P1",
+      "year": 2016,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "The cause/causes of backwardness of industries in Madhya Pradesh is/are"
+    },
+    {
+      "id": "MPPSC-2016-056",
+      "paper_id": "MPPSC-2016-P1",
+      "year": 2016,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "1024 kilobytes are equal to"
+    },
+    {
+      "id": "MPPSC-2016-057",
+      "paper_id": "MPPSC-2016-P1",
+      "year": 2016,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "The basic unit of Excel spreadsheet where we enter data is known as"
+    },
+    {
+      "id": "MPPSC-2016-058",
+      "paper_id": "MPPSC-2016-P1",
+      "year": 2016,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which web browser was developed by Google?"
+    },
+    {
+      "id": "MPPSC-2016-059",
+      "paper_id": "MPPSC-2016-P1",
+      "year": 2016,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Who is the Chief of Wipro Company?"
+    },
+    {
+      "id": "MPPSC-2016-060",
+      "paper_id": "MPPSC-2016-P1",
+      "year": 2016,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "What is the virus that spreads in computer?"
+    },
+    {
+      "id": "MPPSC-2016-061",
+      "paper_id": "MPPSC-2016-P1",
+      "year": 2016,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "The word 'Spam' is related to which subject?"
+    },
+    {
+      "id": "MPPSC-2016-062",
+      "paper_id": "MPPSC-2016-P1",
+      "year": 2016,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which of the following is a search engine?"
+    },
+    {
+      "id": "MPPSC-2016-063",
+      "paper_id": "MPPSC-2016-P1",
+      "year": 2016,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which of the following devices is compulsory for videoconferencing?"
+    },
+    {
+      "id": "MPPSC-2016-064",
+      "paper_id": "MPPSC-2016-P1",
+      "year": 2016,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "What is the full form of http?"
+    },
+    {
+      "id": "MPPSC-2016-066",
+      "paper_id": "MPPSC-2016-P1",
+      "year": 2016,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which of the following Sections of the Scheduled Castes and the Scheduled Tribes Act, 1989 provides for application of c"
+    },
+    {
+      "id": "MPPSC-2016-067",
+      "paper_id": "MPPSC-2016-P1",
+      "year": 2016,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "Polity",
+          "score": 1.19
+        }
+      ],
+      "excerpt": "Who has/have the power to make rules for carrying out the purposes of the Scheduled Castes and the Scheduled Tribes (Pre"
+    },
+    {
+      "id": "MPPSC-2016-068",
+      "paper_id": "MPPSC-2016-P1",
+      "year": 2016,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Under which of the following Sections of the Scheduled Castes and the Scheduled Tribes Act, 1989 is anticipatory bail pr"
+    },
+    {
+      "id": "MPPSC-2016-075",
+      "paper_id": "MPPSC-2016-P1",
+      "year": 2016,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which type of climate does Madhya Pradesh have?"
+    },
+    {
+      "id": "MPPSC-2016-076",
+      "paper_id": "MPPSC-2016-P1",
+      "year": 2016,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Suchitra Sen was a/an"
+    },
+    {
+      "id": "MPPSC-2016-086",
+      "paper_id": "MPPSC-2016-P1",
+      "year": 2016,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "History",
+          "score": 0.9
+        }
+      ],
+      "excerpt": "Where is the mausoleum of Sher Shah situated?"
+    },
+    {
+      "id": "MPPSC-2016-092",
+      "paper_id": "MPPSC-2016-P1",
+      "year": 2016,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which is the first ever State constituted on linguistic basis?"
+    },
+    {
+      "id": "MPPSC-2016-094",
+      "paper_id": "MPPSC-2016-P1",
+      "year": 2016,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which ground is called 'Mecca of Cricket?"
+    },
+    {
+      "id": "MPPSC-2016-097",
+      "paper_id": "MPPSC-2016-P1",
+      "year": 2016,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "History",
+          "score": 1.17
+        }
+      ],
+      "excerpt": "In which year was the Wavell Plan presented?"
+    },
+    {
+      "id": "MPPSC-2016-098",
+      "paper_id": "MPPSC-2016-P1",
+      "year": 2016,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which one of the following statements with respect to the Land Acquisition Act, 1894 is not true?"
+    },
+    {
+      "id": "MPPSC-2016-100",
+      "paper_id": "MPPSC-2016-P1",
+      "year": 2016,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "which Section of the Human Rights Protection Act, 1993 is Public Servant' defined?"
+    },
+    {
+      "id": "MPPSC-2017-002",
+      "paper_id": "MPPSC-2017-P1",
+      "year": 2017,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Who is called the Father of Indian Archaeology?"
+    },
+    {
+      "id": "MPPSC-2017-004",
+      "paper_id": "MPPSC-2017-P1",
+      "year": 2017,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "Polity",
+          "score": 1.05
+        }
+      ],
+      "excerpt": "The Act of 1909 was associated with"
+    },
+    {
+      "id": "MPPSC-2017-005",
+      "paper_id": "MPPSC-2017-P1",
+      "year": 2017,
+      "reason": "ambiguous_subject",
+      "candidates": [
+        {
+          "subject": "Geography",
+          "score": 1.33
+        },
+        {
+          "subject": "History",
+          "score": 1.17
+        }
+      ],
+      "excerpt": "Whom had Muhammad Ghori defeated in 1194 in the Battle of Chandawar?"
+    },
+    {
+      "id": "MPPSC-2017-009",
+      "paper_id": "MPPSC-2017-P1",
+      "year": 2017,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "From which year was regular and scientific Cenaus started in India?"
+    },
+    {
+      "id": "MPPSC-2017-011",
+      "paper_id": "MPPSC-2017-P1",
+      "year": 2017,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which of the following countries does not form border with the Caspian Sea?"
+    },
+    {
+      "id": "MPPSC-2017-013",
+      "paper_id": "MPPSC-2017-P1",
+      "year": 2017,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which of the following pairs is not correctly matched?"
+    },
+    {
+      "id": "MPPSC-2017-014",
+      "paper_id": "MPPSC-2017-P1",
+      "year": 2017,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Stromboli is a/an"
+    },
+    {
+      "id": "MPPSC-2017-016",
+      "paper_id": "MPPSC-2017-P1",
+      "year": 2017,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "Geography",
+          "score": 1.08
+        }
+      ],
+      "excerpt": "According to 2011 Census, the density of population in India was"
+    },
+    {
+      "id": "MPPSC-2017-017",
+      "paper_id": "MPPSC-2017-P1",
+      "year": 2017,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which of the following pairs is not correctly matched?"
+    },
+    {
+      "id": "MPPSC-2017-018",
+      "paper_id": "MPPSC-2017-P1",
+      "year": 2017,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "Geography",
+          "score": 1.08
+        }
+      ],
+      "excerpt": "Peneplain is related"
+    },
+    {
+      "id": "MPPSC-2017-019",
+      "paper_id": "MPPSC-2017-P1",
+      "year": 2017,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which of the following regions is the original habitat of the Toda Tribe\"?"
+    },
+    {
+      "id": "MPPSC-2017-020",
+      "paper_id": "MPPSC-2017-P1",
+      "year": 2017,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Where is Ras Tanura Oil Refinery located?"
+    },
+    {
+      "id": "MPPSC-2017-021",
+      "paper_id": "MPPSC-2017-P1",
+      "year": 2017,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "What is the botanical name of opium?"
+    },
+    {
+      "id": "MPPSC-2017-022",
+      "paper_id": "MPPSC-2017-P1",
+      "year": 2017,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Smallpox was declared eradicated from the world in"
+    },
+    {
+      "id": "MPPSC-2017-023",
+      "paper_id": "MPPSC-2017-P1",
+      "year": 2017,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "A bacteriophage is a"
+    },
+    {
+      "id": "MPPSC-2017-024",
+      "paper_id": "MPPSC-2017-P1",
+      "year": 2017,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "To study meiosis in plants, the best part would be"
+    },
+    {
+      "id": "MPPSC-2017-026",
+      "paper_id": "MPPSC-2017-P1",
+      "year": 2017,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "In human eyes, the image of an object is formed on"
+    },
+    {
+      "id": "MPPSC-2017-027",
+      "paper_id": "MPPSC-2017-P1",
+      "year": 2017,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "The kidneys in human beings are a part of system for"
+    },
+    {
+      "id": "MPPSC-2017-035",
+      "paper_id": "MPPSC-2017-P1",
+      "year": 2017,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Eight- year- old Tajamul Islam of J & K is related to which game ?"
+    },
+    {
+      "id": "MPPSC-2017-036",
+      "paper_id": "MPPSC-2017-P1",
+      "year": 2017,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Who among the following was a Hockey Player of Madhya Pradesh ?"
+    },
+    {
+      "id": "MPPSC-2017-037",
+      "paper_id": "MPPSC-2017-P1",
+      "year": 2017,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "The tradition of which game started with setting up of the parsee club ?"
+    },
+    {
+      "id": "MPPSC-2017-038",
+      "paper_id": "MPPSC-2017-P1",
+      "year": 2017,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "where is the Roop Singh Stadium Located?"
+    },
+    {
+      "id": "MPPSC-2017-039",
+      "paper_id": "MPPSC-2017-P1",
+      "year": 2017,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "With which game is Amitabh Vijayvargia associted ?"
+    },
+    {
+      "id": "MPPSC-2017-040",
+      "paper_id": "MPPSC-2017-P1",
+      "year": 2017,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "What is the name of the Cricket world cup played in 1987 ?"
+    },
+    {
+      "id": "MPPSC-2017-043",
+      "paper_id": "MPPSC-2017-P1",
+      "year": 2017,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which of the following countries has never been a winner in the T-20 Cricket World Cup (Men)?"
+    },
+    {
+      "id": "MPPSC-2017-044",
+      "paper_id": "MPPSC-2017-P1",
+      "year": 2017,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "In which of the following years were Olympics not held in London?"
+    },
+    {
+      "id": "MPPSC-2017-045",
+      "paper_id": "MPPSC-2017-P1",
+      "year": 2017,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "The service of the Internet that provides audio' and video conversation, is called"
+    },
+    {
+      "id": "MPPSC-2017-046",
+      "paper_id": "MPPSC-2017-P1",
+      "year": 2017,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which of the following is not a Web browser?"
+    },
+    {
+      "id": "MPPSC-2017-047",
+      "paper_id": "MPPSC-2017-P1",
+      "year": 2017,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "In the context of computer security, crackers are also known as"
+    },
+    {
+      "id": "MPPSC-2017-048",
+      "paper_id": "MPPSC-2017-P1",
+      "year": 2017,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "DuckDuckGo is a"
+    },
+    {
+      "id": "MPPSC-2017-049",
+      "paper_id": "MPPSC-2017-P1",
+      "year": 2017,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Ethernet is an example of"
+    },
+    {
+      "id": "MPPSC-2017-050",
+      "paper_id": "MPPSC-2017-P1",
+      "year": 2017,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "A modem converts"
+    },
+    {
+      "id": "MPPSC-2017-052",
+      "paper_id": "MPPSC-2017-P1",
+      "year": 2017,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Who is the inventor of www?"
+    },
+    {
+      "id": "MPPSC-2017-053",
+      "paper_id": "MPPSC-2017-P1",
+      "year": 2017,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "A batsman hits a cricket ball which then rolls on a level ground. After covering a short distance, the ball comes to res"
+    },
+    {
+      "id": "MPPSC-2017-056",
+      "paper_id": "MPPSC-2017-P1",
+      "year": 2017,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which of the following pairs is not correctly matched?"
+    },
+    {
+      "id": "MPPSC-2017-058",
+      "paper_id": "MPPSC-2017-P1",
+      "year": 2017,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Who among the following was the first leader to organize labour movement in India?"
+    },
+    {
+      "id": "MPPSC-2017-060",
+      "paper_id": "MPPSC-2017-P1",
+      "year": 2017,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Joe Root is associated with which game?"
+    },
+    {
+      "id": "MPPSC-2017-062",
+      "paper_id": "MPPSC-2017-P1",
+      "year": 2017,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "In which year was the Mohun Bagan Club of football founded?"
+    },
+    {
+      "id": "MPPSC-2017-063",
+      "paper_id": "MPPSC-2017-P1",
+      "year": 2017,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "In which of the following countries, a woman became the President for the first time in May 2016?"
+    },
+    {
+      "id": "MPPSC-2017-064",
+      "paper_id": "MPPSC-2017-P1",
+      "year": 2017,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Who won the Men's Singles Title of French Open, 2016?"
+    },
+    {
+      "id": "MPPSC-2017-065",
+      "paper_id": "MPPSC-2017-P1",
+      "year": 2017,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Manohar Aich was called 'Pocket Hercules'. He was a/an"
+    },
+    {
+      "id": "MPPSC-2017-066",
+      "paper_id": "MPPSC-2017-P1",
+      "year": 2017,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "What are Ranjit Sub-1¹ and Bahadur Sub-17"
+    },
+    {
+      "id": "MPPSC-2017-067",
+      "paper_id": "MPPSC-2017-P1",
+      "year": 2017,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "In May 2016, Rodrigo Duterte was elected the President of which country?"
+    },
+    {
+      "id": "MPPSC-2017-069",
+      "paper_id": "MPPSC-2017-P1",
+      "year": 2017,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "The first Indian State to start State Data Centre (SDC) is"
+    },
+    {
+      "id": "MPPSC-2017-070",
+      "paper_id": "MPPSC-2017-P1",
+      "year": 2017,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "In which of the following States, Bharatiya Janata Party formed Government for the first time in 2016?"
+    },
+    {
+      "id": "MPPSC-2017-071",
+      "paper_id": "MPPSC-2017-P1",
+      "year": 2017,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Bhawani Prasad Mishra's birth place was"
+    },
+    {
+      "id": "MPPSC-2017-072",
+      "paper_id": "MPPSC-2017-P1",
+      "year": 2017,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Sunil Lanba is"
+    },
+    {
+      "id": "MPPSC-2017-073",
+      "paper_id": "MPPSC-2017-P1",
+      "year": 2017,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Who among the following was elected as the Chairman of world's biggest commercial organization the International Chamber"
+    },
+    {
+      "id": "MPPSC-2017-074",
+      "paper_id": "MPPSC-2017-P1",
+      "year": 2017,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "When was the State Bank of India established ?"
+    },
+    {
+      "id": "MPPSC-2017-076",
+      "paper_id": "MPPSC-2017-P1",
+      "year": 2017,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which of the following countries did President Pranab Mukherjee visit in May 2016?"
+    },
+    {
+      "id": "MPPSC-2017-077",
+      "paper_id": "MPPSC-2017-P1",
+      "year": 2017,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Sania Mirza's mixed doubles partner Ivan Dodig in from which country?"
+    },
+    {
+      "id": "MPPSC-2017-078",
+      "paper_id": "MPPSC-2017-P1",
+      "year": 2017,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "What is the name of that book of Suhel Seth which was released in London in June 2016?"
+    },
+    {
+      "id": "MPPSC-2017-081",
+      "paper_id": "MPPSC-2017-P1",
+      "year": 2017,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Where in the oldest music college. of Madhya Pradesh, Madhav Sangeet College located?"
+    },
+    {
+      "id": "MPPSC-2017-082",
+      "paper_id": "MPPSC-2017-P1",
+      "year": 2017,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "Economy",
+          "score": 1.05
+        }
+      ],
+      "excerpt": "A 'closed economy' is an economy in which"
+    },
+    {
+      "id": "MPPSC-2017-084",
+      "paper_id": "MPPSC-2017-P1",
+      "year": 2017,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "History",
+          "score": 1.12
+        }
+      ],
+      "excerpt": "'India Vision 2020' is prepared by"
+    },
+    {
+      "id": "MPPSC-2017-086",
+      "paper_id": "MPPSC-2017-P1",
+      "year": 2017,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Who was declared Man of the Series' in the India-Zimbabwe One Day Cricket Series in 2016?"
+    },
+    {
+      "id": "MPPSC-2017-087",
+      "paper_id": "MPPSC-2017-P1",
+      "year": 2017,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "The final match of IPL-9 (2016) was played in the stadium of which State?"
+    },
+    {
+      "id": "MPPSC-2017-090",
+      "paper_id": "MPPSC-2017-P1",
+      "year": 2017,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Who among the following was not a king of the Parmar dynasty?"
+    },
+    {
+      "id": "MPPSC-2017-091",
+      "paper_id": "MPPSC-2017-P1",
+      "year": 2017,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "History",
+          "score": 0.84
+        }
+      ],
+      "excerpt": "Dhangdev was the ruler of which dynasty?"
+    },
+    {
+      "id": "MPPSC-2017-092",
+      "paper_id": "MPPSC-2017-P1",
+      "year": 2017,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "At which of the following places was Habib Tanvir born?"
+    },
+    {
+      "id": "MPPSC-2017-093",
+      "paper_id": "MPPSC-2017-P1",
+      "year": 2017,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Under the Scheduled Castes and Scheduled Tribes (Prevention of Atrocities) Act, 1989, in which Section there is a provis"
+    },
+    {
+      "id": "MPPSC-2017-094",
+      "paper_id": "MPPSC-2017-P1",
+      "year": 2017,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "In how many days will the investigating officer submit his report for the offences committed under the Scheduled Castes "
+    },
+    {
+      "id": "MPPSC-2018-003",
+      "paper_id": "MPPSC-2018-P1",
+      "year": 2018,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Name the first State of India which is dependent on organic farming."
+    },
+    {
+      "id": "MPPSC-2018-005",
+      "paper_id": "MPPSC-2018-P1",
+      "year": 2018,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "Environment",
+          "score": 0.78
+        }
+      ],
+      "excerpt": "Which of the following is a medicinal crop?"
+    },
+    {
+      "id": "MPPSC-2018-007",
+      "paper_id": "MPPSC-2018-P1",
+      "year": 2018,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "What is the audible range (hearing range) of humans?"
+    },
+    {
+      "id": "MPPSC-2018-009",
+      "paper_id": "MPPSC-2018-P1",
+      "year": 2018,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "When is the 'International Earth Day' celebrated?"
+    },
+    {
+      "id": "MPPSC-2018-010",
+      "paper_id": "MPPSC-2018-P1",
+      "year": 2018,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which of the following pairs is not correctly matched?"
+    },
+    {
+      "id": "MPPSC-2018-012",
+      "paper_id": "MPPSC-2018-P1",
+      "year": 2018,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "How many times India and Pakistan exchanged the list of their nuclear installations under an agreement that aims to prev"
+    },
+    {
+      "id": "MPPSC-2018-013",
+      "paper_id": "MPPSC-2018-P1",
+      "year": 2018,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Who is appointed as the CEO of Infosys in place of Vishal Sikka?"
+    },
+    {
+      "id": "MPPSC-2018-015",
+      "paper_id": "MPPSC-2018-P1",
+      "year": 2018,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "How many women were elected in Madhya Pradesh Assembly Election, 2013?"
+    },
+    {
+      "id": "MPPSC-2018-016",
+      "paper_id": "MPPSC-2018-P1",
+      "year": 2018,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "In which year was the Madhya Pradesh Rajkoshiya Uttardayitva Evam Budget Prabandhan Adhiniysim passed?"
+    },
+    {
+      "id": "MPPSC-2018-018",
+      "paper_id": "MPPSC-2018-P1",
+      "year": 2018,
+      "reason": "ambiguous_subject",
+      "candidates": [
+        {
+          "subject": "Current Affairs",
+          "score": 3
+        },
+        {
+          "subject": "Economy",
+          "score": 3
+        }
+      ],
+      "excerpt": "Which two States have been jointly ranked first in the ease of doing business ranking issued by the World Bank and DIP i"
+    },
+    {
+      "id": "MPPSC-2018-020",
+      "paper_id": "MPPSC-2018-P1",
+      "year": 2018,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "In ancient period, which Varna was also called as 'Sarthavaha'?"
+    },
+    {
+      "id": "MPPSC-2018-021",
+      "paper_id": "MPPSC-2018-P1",
+      "year": 2018,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "The ancestors of Shungas originated from"
+    },
+    {
+      "id": "MPPSC-2018-024",
+      "paper_id": "MPPSC-2018-P1",
+      "year": 2018,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "\"The British empire is rotten to the core, corrupt in every direction and tyrannical and mean.\" This statement was made "
+    },
+    {
+      "id": "MPPSC-2018-026",
+      "paper_id": "MPPSC-2018-P1",
+      "year": 2018,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Who authored the book, Planned Economy for India?"
+    },
+    {
+      "id": "MPPSC-2018-027",
+      "paper_id": "MPPSC-2018-P1",
+      "year": 2018,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which massacre is known as Jallianwala Bagh Tragedy of Madhya Pradesh?"
+    },
+    {
+      "id": "MPPSC-2018-030",
+      "paper_id": "MPPSC-2018-P1",
+      "year": 2018,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "Geography",
+          "score": 1.08
+        }
+      ],
+      "excerpt": "Which State of India touches maximum State boundaries?"
+    },
+    {
+      "id": "MPPSC-2018-034",
+      "paper_id": "MPPSC-2018-P1",
+      "year": 2018,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Nepanagar is related to which of the following industries?"
+    },
+    {
+      "id": "MPPSC-2018-037",
+      "paper_id": "MPPSC-2018-P1",
+      "year": 2018,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Border Security Force (BSF) is responsible for guarding on borders, of which countries?"
+    },
+    {
+      "id": "MPPSC-2018-040",
+      "paper_id": "MPPSC-2018-P1",
+      "year": 2018,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "What was the growth rate of Gross State Domestic Product (GSDP) of Madhya Pradesh from the year 2011-12 to 2015-16?"
+    },
+    {
+      "id": "MPPSC-2018-045",
+      "paper_id": "MPPSC-2018-P1",
+      "year": 2018,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "In which year was Lakshmibai National Institute of Physical Education established?"
+    },
+    {
+      "id": "MPPSC-2018-046",
+      "paper_id": "MPPSC-2018-P1",
+      "year": 2018,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "'En Passant' is related to which game?"
+    },
+    {
+      "id": "MPPSC-2018-047",
+      "paper_id": "MPPSC-2018-P1",
+      "year": 2018,
+      "reason": "ambiguous_subject",
+      "candidates": [
+        {
+          "subject": "Current Affairs",
+          "score": 3.96
+        },
+        {
+          "subject": "History",
+          "score": 3.4
+        }
+      ],
+      "excerpt": "The first Rajiv Gandhi Khel Ratna Award was given to whom?"
+    },
+    {
+      "id": "MPPSC-2018-048",
+      "paper_id": "MPPSC-2018-P1",
+      "year": 2018,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "'Libero' is related to which game?"
+    },
+    {
+      "id": "MPPSC-2018-050",
+      "paper_id": "MPPSC-2018-P1",
+      "year": 2018,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "What is the distance of Marathon Race?"
+    },
+    {
+      "id": "MPPSC-2018-051",
+      "paper_id": "MPPSC-2018-P1",
+      "year": 2018,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which Indian player has won Gold Medal in Olympics?"
+    },
+    {
+      "id": "MPPSC-2018-058",
+      "paper_id": "MPPSC-2018-P1",
+      "year": 2018,
+      "reason": "insufficient_signal",
+      "candidates": [
+        {
+          "subject": "Geography",
+          "score": 0.91
+        }
+      ],
+      "excerpt": "The climate of Madhya Pradesh is"
+    },
+    {
+      "id": "MPPSC-2018-061",
+      "paper_id": "MPPSC-2018-P1",
+      "year": 2018,
+      "reason": "ambiguous_subject",
+      "candidates": [
+        {
+          "subject": "Art and Culture",
+          "score": 2.56
+        },
+        {
+          "subject": "History",
+          "score": 2.35
+        }
+      ],
+      "excerpt": "Gujari Mahal was built by"
+    },
+    {
+      "id": "MPPSC-2018-062",
+      "paper_id": "MPPSC-2018-P1",
+      "year": 2018,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which one of the following cities of Madhya Pradesh is not located on NH-3?"
+    },
+    {
+      "id": "MPPSC-2018-065",
+      "paper_id": "MPPSC-2018-P1",
+      "year": 2018,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Who among the following was not acted as the Chief Secretary of Madhya Pradesh?"
+    },
+    {
+      "id": "MPPSC-2018-066",
+      "paper_id": "MPPSC-2018-P1",
+      "year": 2018,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "In which year was Madhya Pradesh Zila Yojana Samiti Adhiniyam passed?"
+    },
+    {
+      "id": "MPPSC-2018-068",
+      "paper_id": "MPPSC-2018-P1",
+      "year": 2018,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "'Mukhya Mantri Gram Sadak Yojana' in Madhya Pradesh was implemented from which year?"
+    },
+    {
+      "id": "MPPSC-2018-069",
+      "paper_id": "MPPSC-2018-P1",
+      "year": 2018,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "From which year was 'MP Incubation and Start-up Policy' implemented?"
+    },
+    {
+      "id": "MPPSC-2018-070",
+      "paper_id": "MPPSC-2018-P1",
+      "year": 2018,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "In January 2018, 'Friends of MP Conclave' was held in which city?"
+    },
+    {
+      "id": "MPPSC-2018-071",
+      "paper_id": "MPPSC-2018-P1",
+      "year": 2018,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "How many minimum hours of power supply is assured for rural agriculture purpose in 'Atal Jyoti Yojana-2013'?"
+    },
+    {
+      "id": "MPPSC-2018-072",
+      "paper_id": "MPPSC-2018-P1",
+      "year": 2018,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "The collection of linked information residing on computers which is available through Internet is called"
+    },
+    {
+      "id": "MPPSC-2018-073",
+      "paper_id": "MPPSC-2018-P1",
+      "year": 2018,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "The first page displayed by Web browser after opening a Web site is called"
+    },
+    {
+      "id": "MPPSC-2018-074",
+      "paper_id": "MPPSC-2018-P1",
+      "year": 2018,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "---- offers services such as search capabilities, e-mail, news, stock price, weather information, sports and entertainme"
+    },
+    {
+      "id": "MPPSC-2018-075",
+      "paper_id": "MPPSC-2018-P1",
+      "year": 2018,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which of the following acronyms is normally used to describe unsolicited junk e-mails?"
+    },
+    {
+      "id": "MPPSC-2018-076",
+      "paper_id": "MPPSC-2018-P1",
+      "year": 2018,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "An intentionally disruptive software that spreads from computer to computer is known as"
+    },
+    {
+      "id": "MPPSC-2018-077",
+      "paper_id": "MPPSC-2018-P1",
+      "year": 2018,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which of the following is not an essential component, required for video-conferencing system?"
+    },
+    {
+      "id": "MPPSC-2018-078",
+      "paper_id": "MPPSC-2018-P1",
+      "year": 2018,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which of the following are the two essential features of cyber crime?"
+    },
+    {
+      "id": "MPPSC-2018-079",
+      "paper_id": "MPPSC-2018-P1",
+      "year": 2018,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "The term refers to an, individual, who breaks into computer systems without authorization, deliberately defaces Web site"
+    },
+    {
+      "id": "MPPSC-2018-080",
+      "paper_id": "MPPSC-2018-P1",
+      "year": 2018,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "When customers of a Web site are unable to access it due to flooding of fake network traffic, it is known as"
+    },
+    {
+      "id": "MPPSC-2018-081",
+      "paper_id": "MPPSC-2018-P1",
+      "year": 2018,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Under which Section of the Scheduled Castes and Scheduled Tribes (Prevention of Atrocities) Act, 1989 is 'economic boyco"
+    },
+    {
+      "id": "MPPSC-2018-082",
+      "paper_id": "MPPSC-2018-P1",
+      "year": 2018,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Under which one of the following Sections of the Scheduled Castes and Scheduled Tribes (Prevention of Atrocities) Act, 1"
+    },
+    {
+      "id": "MPPSC-2018-083",
+      "paper_id": "MPPSC-2018-P1",
+      "year": 2018,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Under which one of the following Sections of the Scheduled Castes and Scheduled Tribes Rules, 1995 has 'Material for Ann"
+    },
+    {
+      "id": "MPPSC-2018-084",
+      "paper_id": "MPPSC-2018-P1",
+      "year": 2018,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Under the Scheduled Castes and Scheduled Tribes (Prevention of Atrocities) Act, 1989, whoever, not being a member of a S"
+    },
+    {
+      "id": "MPPSC-2018-085",
+      "paper_id": "MPPSC-2018-P1",
+      "year": 2018,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "How many Sections are there under the Scheduled Castes and Scheduled Tribes (Prevention of Atrocities) Act, 1989?"
+    },
+    {
+      "id": "MPPSC-2018-086",
+      "paper_id": "MPPSC-2018-P1",
+      "year": 2018,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Under which one of the following Sections of the Protection of Civil Rights Act, 1955 has 'power of State Government to "
+    },
+    {
+      "id": "MPPSC-2018-087",
+      "paper_id": "MPPSC-2018-P1",
+      "year": 2018,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Under which one of the following Sections of the Protection of Civil Rights Act, 1955 has 'protection of action taken in"
+    },
+    {
+      "id": "MPPSC-2018-088",
+      "paper_id": "MPPSC-2018-P1",
+      "year": 2018,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Under which one of the' following Sections of the Protection of Civil Rights Act, 1955 has 'offences by companies' been "
+    },
+    {
+      "id": "MPPSC-2018-090",
+      "paper_id": "MPPSC-2018-P1",
+      "year": 2018,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Which statement is true in relation to the Protection of Human Rights Act?"
+    },
+    {
+      "id": "MPPSC-2018-093",
+      "paper_id": "MPPSC-2018-P1",
+      "year": 2018,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "In relation to offences described under Section 175, Section 178, Section 179, Section. 180 or Section 228' of the India"
+    },
+    {
+      "id": "MPPSC-2018-094",
+      "paper_id": "MPPSC-2018-P1",
+      "year": 2018,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "While dealing with complaints of violation of Human Rights by the members of the armed forces, the Commission either on "
+    },
+    {
+      "id": "MPPSC-2018-097",
+      "paper_id": "MPPSC-2018-P1",
+      "year": 2018,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "Every member of the Commission, State Commission and eveiy officer appointed or authorized by the Commission or State Co"
+    },
+    {
+      "id": "MPPSC-2018-099",
+      "paper_id": "MPPSC-2018-P1",
+      "year": 2018,
+      "reason": "no_rule_matched",
+      "candidates": [],
+      "excerpt": "In the definition of armed forces under the Protection of Human Rights Act, which of the following is not included?"
+    }
+  ],
   "low_confidence": [
     {
       "id": "MPPSC-2021-065",
@@ -1512,12 +4519,208 @@
       "confidence": 0.5,
       "reason": null,
       "excerpt": "The true justified belief is often called"
+    },
+    {
+      "id": "MPPSC-2013-083",
+      "paper_id": "MPPSC-2013-P1",
+      "year": 2013,
+      "subject": "Polity",
+      "topic": null,
+      "subtopic": null,
+      "confidence": 0.5,
+      "reason": "topic ambiguous between Statutory and regulatory bodies and Union Executive",
+      "excerpt": "The ex-officio chairman of Planning Commission is:"
+    },
+    {
+      "id": "MPPSC-2013-084",
+      "paper_id": "MPPSC-2013-P1",
+      "year": 2013,
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": "Revolutionary movements",
+      "confidence": 0.55,
+      "reason": null,
+      "excerpt": "Where was the head office of Indian National Army located?"
+    },
+    {
+      "id": "MPPSC-2014-059",
+      "paper_id": "MPPSC-2014-P1",
+      "year": 2014,
+      "subject": "Polity",
+      "topic": null,
+      "subtopic": null,
+      "confidence": 0.5,
+      "reason": "topic ambiguous between Constitution of India and Constitutional bodies",
+      "excerpt": "In which article of Indian constitution provision of election commission is mentioned?"
+    },
+    {
+      "id": "MPPSC-2014-065",
+      "paper_id": "MPPSC-2014-P1",
+      "year": 2014,
+      "subject": "Polity",
+      "topic": null,
+      "subtopic": null,
+      "confidence": 0.5,
+      "reason": "topic ambiguous between Union Legislature and Statutory and regulatory bodies",
+      "excerpt": "Who is not a member of the committee for the appointment of chairperson and members of the national human rights commiss"
+    },
+    {
+      "id": "MPPSC-2015-035",
+      "paper_id": "MPPSC-2015-P1",
+      "year": 2015,
+      "subject": "Polity",
+      "topic": null,
+      "subtopic": null,
+      "confidence": 0.5,
+      "reason": "topic ambiguous between State Government and Union Legislature",
+      "excerpt": "The first general election under the Indian Constitution was held in"
+    },
+    {
+      "id": "MPPSC-2015-049",
+      "paper_id": "MPPSC-2015-P1",
+      "year": 2015,
+      "subject": "Geography",
+      "topic": null,
+      "subtopic": null,
+      "confidence": 0.5,
+      "reason": "topic ambiguous between Geography of India and World Geography",
+      "excerpt": "Which is not a part of Tsunami effected area?"
+    },
+    {
+      "id": "MPPSC-2015-081",
+      "paper_id": "MPPSC-2015-P1",
+      "year": 2015,
+      "subject": "Art and Culture",
+      "topic": null,
+      "subtopic": null,
+      "confidence": 0.5,
+      "reason": "topic ambiguous between Paintings and sculpture and Dance and music",
+      "excerpt": "Which Fellowship is given by Government of M.P. in the field of Music?"
+    },
+    {
+      "id": "MPPSC-2017-099",
+      "paper_id": "MPPSC-2017-P1",
+      "year": 2017,
+      "subject": "Polity",
+      "topic": null,
+      "subtopic": null,
+      "confidence": 0.5,
+      "reason": "topic ambiguous between Union Executive and Union Legislature",
+      "excerpt": "Which of the following may be considered a Pressure Group?"
+    },
+    {
+      "id": "MPPSC-2018-042",
+      "paper_id": "MPPSC-2018-P1",
+      "year": 2018,
+      "subject": "Polity",
+      "topic": null,
+      "subtopic": null,
+      "confidence": 0.5,
+      "reason": "topic ambiguous between Constitution of India and State Government",
+      "excerpt": "Which one of the following is not correctly matched?"
     }
   ],
-  "topic_ambiguous": [],
+  "topic_ambiguous": [
+    {
+      "id": "MPPSC-2013-083",
+      "subject": "Polity",
+      "reason": "topic ambiguous between Statutory and regulatory bodies and Union Executive",
+      "candidates": [
+        {
+          "subject": "Polity",
+          "score": 7.72
+        },
+        {
+          "subject": "Economy",
+          "score": 3.7
+        }
+      ]
+    },
+    {
+      "id": "MPPSC-2014-059",
+      "subject": "Polity",
+      "reason": "topic ambiguous between Constitution of India and Constitutional bodies",
+      "candidates": [
+        {
+          "subject": "Polity",
+          "score": 11.28
+        }
+      ]
+    },
+    {
+      "id": "MPPSC-2014-065",
+      "subject": "Polity",
+      "reason": "topic ambiguous between Union Legislature and Statutory and regulatory bodies",
+      "candidates": [
+        {
+          "subject": "Polity",
+          "score": 7.6
+        }
+      ]
+    },
+    {
+      "id": "MPPSC-2015-035",
+      "subject": "Polity",
+      "reason": "topic ambiguous between State Government and Union Legislature",
+      "candidates": [
+        {
+          "subject": "Polity",
+          "score": 2.5
+        }
+      ]
+    },
+    {
+      "id": "MPPSC-2015-049",
+      "subject": "Geography",
+      "reason": "topic ambiguous between Geography of India and World Geography",
+      "candidates": [
+        {
+          "subject": "Geography",
+          "score": 2.42
+        }
+      ]
+    },
+    {
+      "id": "MPPSC-2015-081",
+      "subject": "Art and Culture",
+      "reason": "topic ambiguous between Paintings and sculpture and Dance and music",
+      "candidates": [
+        {
+          "subject": "Art and Culture",
+          "score": 1.81
+        },
+        {
+          "subject": "History",
+          "score": 1.33
+        }
+      ]
+    },
+    {
+      "id": "MPPSC-2017-099",
+      "subject": "Polity",
+      "reason": "topic ambiguous between Union Executive and Union Legislature",
+      "candidates": [
+        {
+          "subject": "Polity",
+          "score": 2.17
+        }
+      ]
+    },
+    {
+      "id": "MPPSC-2018-042",
+      "subject": "Polity",
+      "reason": "topic ambiguous between Constitution of India and State Government",
+      "candidates": [
+        {
+          "subject": "Polity",
+          "score": 2.58
+        }
+      ]
+    }
+  ],
   "meta": {
     "bankId": "mppsc-prelims-paper1-2019-2024",
-    "bankName": "MPPSC Prelims Paper I (General Studies) 2019–2024",
+    "bankName": "MPPSC Prelims Paper I (General Studies) 2013–2024",
     "generator": "tools/classify-bank.mjs 1.0.0",
     "taxonomy_path": "data/taxonomy/mppsc-taxonomy.json",
     "taxonomy_version": "1.0.1",
@@ -1547,7 +4750,7 @@
       "General Aptitude"
     ],
     "pipeline_notes": [
-      "Extraction repairs: 9263 escaped line break(s) in 564 string(s); 571 source reference(s) and 2284 parser metadata field(s) moved out of the bank; 563 answer source label(s) removed.",
+      "Extraction repairs: 9263 escaped line break(s) in 564 string(s); 571 source reference(s) and 2884 parser metadata field(s) moved out of the bank; 563 answer source label(s) removed.",
       "Reviewed labels merged: 244 applied (240 changed a rule-engine guess), 0 rejected, 0 malformed line(s).",
       "Answer resolutions: 8 keyless question(s) resolved by a human review pass; each answer is recorded with its basis in the review report.",
       "Answer resolutions merged: 8 applied, 0 preserved (the source had already printed a key), 0 rejected, 0 malformed line(s)."
@@ -1565,7 +4768,7 @@
       "metadata_removed": {
         "book_additional_information": 571,
         "parser_version": 571,
-        "question_type_basis": 571,
+        "question_type_basis": 1171,
         "source_answer_text_preserved_as_options": 571
       },
       "provenance_moved": {

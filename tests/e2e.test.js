@@ -31,18 +31,15 @@ test('2. an incomplete paper and an unknown-rules paper are selected', async () 
   assert.equal(summary.complete, false);
   assert.equal(summary.missingCount, 9);
 
-  // A paper that does not state its rules but is an MPPSC preliminary paper now
-  // gets the applicable examination-year scheme automatically — no manual
-  // configuration, and the scheme is named in the warnings.
+  // Synthetic demonstration papers are excluded from automatic exam schemes,
+  // even when their label mentions MPPSC; no rule is guessed for the sample.
   const p2 = await m.db.get(m.constants.STORES.PAPERS, 'DEMO-P2');
   const test2 = m.tests.buildTest({ kind: 'pyq_full', label: 'Rules check', paper: p2, questionIds: p2.question_order, config: {} });
-  assert.equal(test2.config.scoring.needsConfiguration, false);
-  assert.equal(test2.config.scoring.source, 'mppsc_builtin');
-  assert.equal(test2.config.scoring.rules.marks_per_correct, 2);
-  assert.equal(test2.config.scoring.rules.negative_marking_enabled, false);
-  assert.ok(test2.config.warnings.some((w) => /MPPSC scheme/i.test(w)), 'the applied scheme is named in the warnings');
+  assert.equal(test2.config.scoring.needsConfiguration, true);
+  assert.equal(test2.config.scoring.rules, null);
+  assert.ok(test2.config.warnings.some((w) => /configure the rules/i.test(w)));
 
-  // A paper outside the MPPSC preliminary coverage still refuses to be guessed.
+  // A paper outside the MPPSC preliminary coverage also refuses to be guessed.
   const alien = m.tests.buildTest({
     kind: 'pyq_full',
     label: 'Unknown exam',

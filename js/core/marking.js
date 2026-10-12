@@ -20,23 +20,20 @@
  * ------------------------
  * `resolveMppscMarkingScheme({ exam, year, paperCode })` matches on the exam
  * (a State Service Preliminary paper), the exam year and, where a scheme
- * differs per paper, the paper code. A year with no verified scheme returns
+ * differs per paper, the paper code. A year with no scheme coverage returns
  * `null`: the app then refuses to invent rules and asks for configuration
- * (docs/MARKING.md lists exactly which years are covered and which are not).
+ * (docs/MARKING.md lists the coverage and its caveats).
  *
  * Evidence
  * --------
- * Every scheme carries its evidence in `source` / `evidence` fields. The two
- * schemes below are the paper patterns for the MPPSC State Service Preliminary
- * examination:
+ * The scheme carries its reported evidence and a separate product-policy note;
+ * applying a current pattern to old papers must not be described as historical evidence.
  *
- *  - 2019–2025 (the pattern in force for every paper in the bundled bank):
- *    Paper-I General Studies, 100 questions × 2 marks = 200 marks, 120 minutes,
- *    **no negative marking**, 0 for unanswered.
- *  - 2026 onwards: MPPSC introduced negative marking in the preliminary
- *    examination for the first time in 2026 — each correct answer carries
- *    3 marks and one-third of that (1 mark) is deducted for a wrong answer;
- *    100 questions × 3 marks = 300 marks per paper.
+ *  - Latest-pattern practice for every bundled year (2013 onward): +3 for a
+ *    correct answer, −1 for a wrong answer, 0 for unanswered, 100 questions
+ *    and 300 marks in 120 minutes. At the user's direction, the latest reported
+ *    pattern is applied uniformly to past papers; this is not a claim that the
+ *    same rules were historically in force for every year.
  *
  * If MPPSC changes the pattern again, add one entry to MPPSC_MARKING_SCHEMES and
  * nothing else: the pipeline, the scorer and the UI all follow it.
@@ -53,47 +50,14 @@ export const MPPSC_PRELIMS_APTITUDE_PAPER = 'GS-II';
 export const SCHEME_SOURCE_BUILTIN = 'mppsc_builtin';
 
 /**
- * The schemes. `appliesFrom` / `appliesTo` are inclusive exam years; `null`
- * means "open-ended". Order does not matter — the resolver checks the year
- * window and picks the scheme whose window contains the paper's year.
+ * The scheme's `appliesFrom` / `appliesTo` are inclusive exam years; `null`
+ * means "open-ended".
  */
 export const MPPSC_MARKING_SCHEMES = Object.freeze([
   Object.freeze({
-    id: 'mppsc-sse-prelims-2019-2025',
-    label: 'MPPSC State Service Prelims 2019–2025 pattern',
-    appliesFrom: 2019,
-    appliesTo: 2025,
-    exam_match: ['mppsc state service preliminary', 'mppsc prelims', 'mppsc state service'],
-    marks_per_correct: 2,
-    negative_marks_per_incorrect: 0,
-    negative_marking_enabled: false,
-    marks_for_unanswered: 0,
-    duration_minutes: 120,
-    original_question_count: 100,
-    total_marks: 200,
-    per_paper: {
-      'GS-I': { marks_per_correct: 2, total_marks: 200, original_question_count: 100 },
-      'GS-II': { marks_per_correct: 2, total_marks: 200, original_question_count: 100 },
-    },
-    qualifying: Object.freeze({
-      paper_code: 'GS-II',
-      percent: 40,
-      reserved_percent: 30,
-      note: 'Paper-II (General Aptitude/CSAT) is qualifying; the 2019 and later notifications state a minimum of 40% (30% for reserved categories). It does not affect the scoring of Paper-I.',
-      confidence: 'reported',
-    }),
-    source: 'MPPSC State Service Preliminary examination pattern for the 2019–2025 cycles: Paper-I General Studies 100 questions × 2 marks = 200 marks in 120 minutes, no negative marking.',
-    evidence: Object.freeze([
-      'MPPSC 2019 State Service notification summary — Paper-I General Studies 200 marks, 10:00–12:00; Paper-II CSAT qualifying; "no negative marking".',
-      'MPPSC preliminary pattern descriptions for the 2020–2025 cycles: 100 questions per paper, 2 marks per correct answer, no deduction for wrong or unattempted answers.',
-      'Negative marking was introduced in the preliminary examination "for the first time" in 2026 (Free Press Journal, 14 April 2026; Dainik Bhaskar English, 26 April 2026), which confirms it did not apply to the 2019–2025 papers in this bank.',
-    ]),
-    confidence: 'verified',
-  }),
-  Object.freeze({
-    id: 'mppsc-sse-prelims-2026-plus',
-    label: 'MPPSC State Service Prelims 2026 onwards pattern (3 marks, −1)',
-    appliesFrom: 2026,
+    id: 'mppsc-sse-prelims-latest-practice',
+    label: 'MPPSC latest prelims pattern (uniform practice scoring)',
+    appliesFrom: 2013,
     appliesTo: null,
     exam_match: ['mppsc state service preliminary', 'mppsc prelims', 'mppsc state service'],
     marks_per_correct: 3,
@@ -111,16 +75,17 @@ export const MPPSC_MARKING_SCHEMES = Object.freeze([
       paper_code: 'GS-II',
       percent: 33,
       reserved_percent: null,
-      note: 'Paper-II (General Aptitude/CSAT) is qualifying in the revised pattern; MPPSC published it as qualifying (33%). It does not affect the scoring of Paper-I.',
+      note: 'Paper-II (General Aptitude/CSAT) is qualifying in the latest reported pattern (33%). It does not affect the scoring of Paper-I.',
       confidence: 'reported',
     }),
-    source: 'MPPSC State Service preliminary examination revised rules for 2026 onwards: negative marking introduced for the first time — 3 marks per correct answer and one-third (1 mark) deducted for each wrong answer.',
+    source: 'Latest reported MPPSC State Service preliminary pattern: 3 marks per correct answer and 1 mark deducted per wrong answer; 100 questions × 3 marks = 300 marks in 120 minutes. This rule is deliberately applied to all 2013-onward practice papers by product policy, not asserted as each year’s historical rule.',
     evidence: Object.freeze([
       'Free Press Journal, 14 April 2026 — "one-third mark will be deducted for every wrong answer … each correct answer carries three marks" (3R−1W model).',
       'Dainik Bhaskar English, 26 April 2026 — negative marking introduced in the 2026 preliminary examination: one-third of the marks deducted per wrong answer.',
       'Published 2026 pattern tables list each preliminary paper as 100 questions / 300 marks: 100 × 3 marks.',
     ]),
     confidence: 'reported',
+    application_note: 'By user direction, the current/latest pattern is applied uniformly to the 2013–2024 archive for practice scoring. This must not be described as evidence about historical rules.',
   }),
 ]);
 
@@ -129,7 +94,7 @@ const norm = (v) => String(v ?? '').trim().toLowerCase();
 /** Does this paper look like an MPPSC preliminary paper? */
 export function isMppscPrelimsPaper(paper = {}) {
   const hay = `${norm(paper.exam)} ${norm(paper.paper_name)}`;
-  if (!hay.trim()) return false;
+  if (!hay.trim() || hay.includes('demonstration')) return false;
   return hay.includes('mppsc') || hay.includes('madhya pradesh public service commission');
 }
 

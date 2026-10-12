@@ -359,7 +359,13 @@ if (builtinPath) {
   check(shellPaths.includes(`./${builtinPath}`), `sw.js: the bundled bank ${builtinPath} is not precached, so it would need the network`);
   const bundled = JSON.parse(await readFile(path.join(root, builtinPath), 'utf8'));
   check(bundled.is_demonstration !== true, 'the bundled bank is real previous-year material, not the demonstration fixture');
-  check(bundled.questions.length > 0 && bundled.papers.length > 0, 'the bundled bank needs papers and questions');
+  check(bundled.questions.length === 1171, `the expanded bundled bank must contain 1,171 questions, found ${bundled.questions.length}`);
+  check(bundled.papers.length === 12, `the expanded bundled bank must contain 12 papers, found ${bundled.papers.length}`);
+  const bundledYears = [...new Set(bundled.papers.map((paper) => Number(paper.year)))].sort((a, b) => a - b);
+  check(bundledYears.length === 12 && bundledYears.every((year, index) => year === 2013 + index), 'the bundled papers must cover every year from 2013 through 2024');
+  check(new Set(bundled.questions.map((question) => question.id)).size === 1171, 'the expanded bank must have 1,171 unique stable question ids');
+  check(bundled.questions.every((question) => question.supplied_answer?.answer?.length && question.supplied_answer.status === 'supplied'), 'every bundled question must carry a supplied key');
+  check(bundled.questions.every((question) => !question.verified_answer?.answer?.length), 'the bundled bank must not imply that any key was independently verified');
   check(!('provenance' in bundled), 'the bundled bank must carry no source provenance (docs/PYQ_AUDIT.md keeps the audit detail)');
   // Only the technical fields are scanned: the words may legitimately appear
   // inside a question (an option about a coaching scheme, for instance), but a
@@ -401,8 +407,12 @@ if (builtinPath) {
     !bundled.questions.some((q) => q.explanation && typeof q.explanation === 'object' && ['status', 'generated_by', 'reviewed_by', 'reviewed_at'].some((key) => key in q.explanation)),
     'stored explanations must not carry review or generation metadata',
   );
+  check(
+    bundled.papers.every((paper) => paper.scoring?.rules_known === true && paper.scoring.scheme_id === 'mppsc-sse-prelims-latest-practice' && paper.scoring.marks_per_correct === 3 && paper.scoring.negative_marks_per_incorrect === 1 && paper.scoring.negative_marking_enabled === true && paper.scoring.marks_for_unanswered === 0),
+    'all bundled years must use the latest +3/−1/0 practice scheme, not imply historical proof',
+  );
   for (const paper of bundled.papers) {
-    check(paper.scoring?.rules_known === true, `${paper.paper_id}: the bundled bank must carry the paper's automatic marking scheme`);
+    check(paper.scoring?.rules_known === true, `${paper.paper_id}: the bundled bank must carry its automatic practice scheme`);
   }
   note(`bundled bank: ${bundled.questions.length} questions, ${bundled.papers.length} papers — ${builtinPath}`);
 }

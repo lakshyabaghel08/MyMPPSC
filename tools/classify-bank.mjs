@@ -37,8 +37,9 @@ import { validateBank } from '../js/core/validate.js';
 import { loadTaxonomy, subjectNames, reconcile, TAXONOMY_PATH } from './classify/taxonomy.mjs';
 import { RULES, classifyWithRules, validateRules, CLASSIFICATION_SOURCE_RULES } from './classify/rules.mjs';
 import { adaptIntake, normaliseSourceReview } from './classify/intake-adapter.mjs';
+import { loadCombinedHistoricalIntake } from './classify/historical-sources.mjs';
 import { buildAiQueue, renderAiQueueJsonl, renderAiTaxonomy, parseLabels, applyAiLabels } from './classify/ai-queue.mjs';
-import { sanitiseBank } from './classify/sanitise-bank.mjs';
+import { sanitiseBank, APP_BANK_ID } from './classify/sanitise-bank.mjs';
 import { repairIntake } from './classify/repair.mjs';
 import { parseReviewedLabels, applyReviewedLabels, CLASSIFICATION_SOURCE_REVIEWED } from './classify/reviewed-labels.mjs';
 import { parseAnswerReviews, applyAnswerReviews } from './classify/answer-review.mjs';
@@ -47,6 +48,7 @@ import {
   renderClassificationMarkdown,
   buildReviewReport,
   renderReviewMarkdown,
+  renderHistoricalSourceAuditMarkdown,
   LOW_CONFIDENCE_THRESHOLD,
 } from './classify/reports.mjs';
 
@@ -335,25 +337,15 @@ export async function runPipeline(source, opts = {}) {
 
   const { bank, warnings } = buildBankFromIntake(intake);
 
-  // The boundary between the working papers (extraction, review) and the file
-  // the app loads. Question ids are untouched; paper ids, provenance, answer
-  // statuses, marking schemes and extraction escapes are cleaned, and the audit
-  // trail of what was removed is handed to the review report.
+  // The boundary between working files and the app-facing bank. Question ids
+  // remain stable; internal references/labels are removed, a small set of
+  // source extraction artefacts is repaired, and every change is listed in the
+  // separate review report. Root-level generator/source metadata is not shipped.
   const { report: sanitisation } = sanitiseBank(bank);
   const paperIdMap = new Map(Object.entries(sanitisation.paper_id_map || {}));
   if (paperIdMap.size) {
     for (const row of rows) if (paperIdMap.has(row.paperId)) row.paperId = paperIdMap.get(row.paperId);
   }
-
-  bank.generator = {
-    name: 'tools/classify-bank.mjs',
-    version: TOOL_VERSION,
-    notes: `Classified with the deterministic rule engine (tools/classify/rules.mjs, taxonomy ${taxonomy.version}). Source question text, options, answers and explanations are reproduced verbatim; the classification levels are the only fields added.`,
-  };
-  // The shipped file carries the labels and the text they describe — nothing about
-  // the build that produced them. Which vocabulary and which tool were used, how
-  // confident each label was and how many a human reviewed all belong to the
-  // classification and review reports instead.
 
   const validation = validateBank(bank, {});
 
@@ -398,7 +390,19 @@ export async function runPipeline(source, opts = {}) {
     pipeline_notes: pipelineNotes,
     repair: repairReport,
     reviewed_merge: reviewedSummary
-      ? { applied: reviewedSummary.applied.length, changed: reviewedSummary.applied.filter((a) => a.changed).length, rejected: reviewedSummary.rejected.length, source: CLASSIFICATION_SOURCE_REVIEWED }
+      ? {
+          applied: reviewedSummary.applied.length,
+          changed: reviewedSummary.applied.filter((a) => a.changed).length,
+          rejected: reviewedSummary.rejected.length,
+          source: CLASSIFICATION_SOURCE_REVIEWED,
+          methods: Object.fromEntries(
+            reviewedSummary.applied.reduce((counts, item) => {
+              const method = item.review_method || 'human_review';
+              counts.set(method, (counts.get(method) || 0) + 1);
+              return counts;
+            }, new Map()),
+          ),
+        }
       : null,
     answer_merge: answerSummary
       ? {
@@ -435,6 +439,7 @@ export async function runPipeline(source, opts = {}) {
       sanitisation,
       repair: repairReport,
       sourceAudit: opts.sourceAudit || null,
+      historicalSourceAudit: opts.historicalSourceAudit || null,
     },
   );
 
@@ -465,9 +470,11 @@ Usage:
   node tools/classify-bank.mjs --in <source.json> --out <bank.json> [--reports <dir>] [options]
 
 Options:
-  --in <file>          source intake/extraction file (the pipeline's only input)
+  --in <file>          source intake/extraction file; historical rebuilds from raw intake also need both committed review files
   --out <file>         where to write the classified bank
   --reports <dir>      where to write classification-report and review-report (default: <out> directory)
+  --include-2013-2018  append the six historical packages to the 571-question 2019–2024 base; raw intake requires --apply-review and --apply-answers
+  --historical-source-dir <dir> override data/pyq/source/2013-18 for that adapter
   --ai-queue <file>    where to write the resumable AI queue (default: <reports>/ai-queue.jsonl)
   --apply-ai <file>    merge provider labels from this JSONL/JSON file before building
   --apply-review <f>   merge human review decisions from this JSONL/JSON file before building.
@@ -497,7 +504,28 @@ async function main() {
   }
 
   const sourceText = await readFile(resolve(parsed.values.in), 'utf8');
-  const source = JSON.parse(sourceText);
+  let source = JSON.parse(sourceText);
+  let historicalSourceAudit = null;
+  if (parsed.flags.has('include-2013-2018')) {
+    const baseline = Array.isArray(source?.questions) ? source.questions : [];
+    const expectedYears = new Set([2019, 2020, 2021, 2022, 2023, 2024]);
+    const paperYears = new Map((Array.isArray(source?.papers) ? source.papers : []).map((paper) => [String(paper.paper_id), Number(paper.year)]));
+    const yearsMatch = baseline.length === 571 && baseline.every((question) => {
+      const year = Number(question.year ?? paperYears.get(String(question.paper_id)));
+      return expectedYears.has(year);
+    });
+    const labelledProductionBank = source?.schema_version === '1.0.0' && source?.bank_id === APP_BANK_ID && baseline.every((question) => Boolean(question.subject));
+    const reviewRebuiltRawIntake = source?.intake_version === '1.0.0' && parsed.values['apply-review'] && parsed.values['apply-answers'];
+    if (!yearsMatch || (!labelledProductionBank && !reviewRebuiltRawIntake)) {
+      throw new Error('--include-2013-2018 requires the existing 571-question 2019–2024 base plus --apply-review and --apply-answers when starting from raw intake, so its labels and reviewed answers are restored before appending the six historical packages.');
+    }
+    const historicalDir = parsed.values['historical-source-dir']
+      ? resolve(parsed.values['historical-source-dir'])
+      : resolve('data/pyq/source/2013-18');
+    const combined = await loadCombinedHistoricalIntake(source, historicalDir);
+    source = combined.intake;
+    historicalSourceAudit = combined.audit;
+  }
 
   const outPath = resolve(parsed.values.out);
   const reportsDir = resolve(parsed.values.reports || path.dirname(outPath));
@@ -525,6 +553,7 @@ async function main() {
 
   const result = await runPipeline(source, {
     sourceAudit,
+    historicalSourceAudit,
     bankId: parsed.values['bank-id'],
     bankName: parsed.values['bank-name'],
     reviewedLabels: parsed.values['apply-review'] ? await readFile(resolve(parsed.values['apply-review']), 'utf8') : null,
@@ -557,7 +586,11 @@ async function main() {
   console.log(`AI queue           : ${aiQueue.length}`);
   console.log(`provenance removed : ${sanitisation.removed.question_source_references} question reference(s), ${sanitisation.removed.supplied_answer_sources} answer source(s), ${sanitisation.removed.paper_source_files.length} source file(s)`);
   console.log(`escapes repaired   : ${sanitisation.repaired_escapes.occurrences} literal \\n sequence(s) in ${sanitisation.repaired_escapes.strings} string(s)`);
-  console.log(`marking schemes    : ${sanitisation.marking_scheme.length} paper(s) — ${sanitisation.marking_scheme.map((m) => `${m.paper_id}:${m.scheme_id}`).join(', ') || 'none'}`);
+  const knownMarkingSchemes = [
+    ...(sanitisation.marking_scheme_preserved || []).filter((scheme) => scheme.scheme_id),
+    ...sanitisation.marking_scheme,
+  ];
+  console.log(`marking schemes    : ${knownMarkingSchemes.length} paper(s) — ${knownMarkingSchemes.map((m) => `${m.paper_id}:${m.scheme_id}`).join(', ') || 'none'}`);
   if (sanitisation.marking_scheme_unresolved.length) {
     console.log(`  unresolved rules : ${sanitisation.marking_scheme_unresolved.map((m) => m.paper_id).join(', ')}`);
   }
@@ -565,6 +598,10 @@ async function main() {
     console.log(
       `source parser      : ${sourceAudit.stats.question_blocks_detected} block(s) detected, ${sourceAudit.excluded.length} NOT exported, ${sourceAudit.flagged.length} flagged (${sourceAudit.file})`,
     );
+  }
+  if (historicalSourceAudit) {
+    console.log(`historical sources  : ${historicalSourceAudit.question_count} questions across ${historicalSourceAudit.paper_count} papers; ${historicalSourceAudit.records_rejected} rejected`);
+    console.log(`source audit        : ${historicalSourceAudit.repairs.length} documented safe/placeholders repairs; ${historicalSourceAudit.review_report_corrections.length} review-report corrections`);
   }
   if (reviewedSummary) {
     console.log(
@@ -608,6 +645,10 @@ async function main() {
   await writeFile(path.join(reportsDir, 'classification-report.md'), renderClassificationMarkdown(classificationReport, result.meta), 'utf8');
   await writeFile(path.join(reportsDir, 'review-report.json'), `${JSON.stringify(reviewReport, null, 2)}\n`, 'utf8');
   await writeFile(path.join(reportsDir, 'review-report.md'), renderReviewMarkdown(reviewReport), 'utf8');
+  if (historicalSourceAudit) {
+    await writeFile(path.join(reportsDir, 'historical-source-audit.json'), `${JSON.stringify(historicalSourceAudit, null, 2)}\n`, 'utf8');
+    await writeFile(path.join(reportsDir, 'historical-source-audit.md'), renderHistoricalSourceAuditMarkdown(historicalSourceAudit), 'utf8');
+  }
   await writeFile(aiQueuePath, renderAiQueueJsonl(aiQueue), 'utf8');
   // The closed vocabulary the provider must choose from, shared by every queue
   // item so the queue file stays small. Written even for an empty queue so a

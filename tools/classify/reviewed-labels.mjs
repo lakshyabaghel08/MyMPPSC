@@ -4,11 +4,12 @@
  * The rule engine classifies from the wording of a question. It cannot place a
  * stem that carries no subject signal ("Which of the following statements is not
  * correct?"), and the taxonomy has no node for a few subjects. Those records are
- * written to a review file; a human reads the question with its options, printed
- * answer and explanation and writes one JSONL line per question:
+ * written to a review file; a reviewer records the question, options, available
+ * answer/explanation and taxonomy rationale in one JSONL line:
  *
  *   {"id":"MPPSC-2019-006","subject":"Polity","topic":"Union Legislature",
  *    "subtopic":"Parliamentary committees","confidence":0.9,
+ *    "review_method":"human_review",
  *    "reason":"Public Accounts Committee — a parliamentary committee."}
  *
  * This module merges those decisions into the intake after the rule pass, so a
@@ -19,9 +20,12 @@
  *  - A label is stored only when every level it states exists in the taxonomy
  *    under the level above it. Anything else is rejected with the reason and
  *    changes nothing.
- *  - `classification_source` becomes `reviewed` — never `pipeline-ai`. No
- *    provider was involved in a human decision and the bank must not imply one.
- *  - The reviewer's reason is written to the review report's decision table, not
+ *  - `classification_source` becomes `reviewed` — never `pipeline-ai`. The
+ *    optional `review_method` is copied into the internal report metadata so a
+ *    human review and an agent-assisted, taxonomy-validated review are not
+ *    represented as the same process. If omitted, it defaults to `human_review`
+ *    for compatibility with the original review file.
+ *  - The reviewer's reason and method are written to the review report, not
  *    into the app-facing bank.
  *
  * Build-time tool only — the browser app never imports this file.
@@ -160,6 +164,7 @@ export function applyReviewedLabels(intake, labels, taxonomy, opts = {}) {
 
     const after = { subject: reconciled.subject, topic: reconciled.topic ?? null, subtopic: reconciled.subtopic ?? null };
     const changed = !before || before.subject !== after.subject || before.topic !== after.topic || before.subtopic !== after.subtopic;
+    const reviewMethod = labelString(label.review_method) || 'human_review';
     question.subject = after.subject;
     question.topic = after.topic;
     question.subtopic = after.subtopic;
@@ -168,15 +173,15 @@ export function applyReviewedLabels(intake, labels, taxonomy, opts = {}) {
     question.metadata = {
       ...(question.metadata || {}),
       reviewed_classification: {
-        method: 'human_review',
+        method: reviewMethod,
         label_file: labelFile,
         applied_at: new Date().toISOString(),
-        evidence: 'question, options, printed answer and explanation were read together',
+        evidence: 'question, options, available answer/explanation and taxonomy path were assessed together',
         ...(before && changed ? { replaced_classification: before, replaced_source: previousSource } : {}),
       },
     };
 
-    applied.push({ id: question.id, subject: after.subject, topic: after.topic, subtopic: after.subtopic, confidence, changed });
+    applied.push({ id: question.id, subject: after.subject, topic: after.topic, subtopic: after.subtopic, confidence, changed, review_method: reviewMethod });
     decisions.push({
       id: question.id,
       action: changed ? (before ? 'changed' : 'applied') : 'confirmed',
@@ -184,6 +189,7 @@ export function applyReviewedLabels(intake, labels, taxonomy, opts = {}) {
       before,
       after,
       confidence,
+      review_method: reviewMethod,
     });
   }
 

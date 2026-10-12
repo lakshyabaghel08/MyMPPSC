@@ -1,7 +1,7 @@
 /**
  * builtin-bank.test.js — the repository-backed loader, in an isolated database.
  *
- * Requirement it proves: open the app → the committed 2019–2024 bank is there
+ * Requirement it proves: open the app → the committed 2013–2024 bank is there
  * without uploading anything → it is never duplicated however often the app is
  * opened → a rebuilt bank refreshes the stored records while your own work
  * (corrections, verified answers, your own questions) survives → removing the
@@ -28,17 +28,19 @@ test('a fresh install loads the committed bank with no manual import', async () 
 
   assert.equal(result.status, 'loaded');
   assert.equal(result.meta.bank_id, 'mppsc-prelims-paper1-2019-2024');
-  assert.equal(result.meta.questions, 571);
-  assert.equal(result.meta.papers, 6);
-  assert.equal(m.appState.questionIndex.size, 571, 'every question is in the live index');
-  assert.equal(m.appState.papers.size, 6);
+  assert.equal(result.meta.questions, 1171);
+  assert.equal(result.meta.papers, 12);
+  assert.equal(m.appState.questionIndex.size, 1171, 'every question is in the live index');
+  assert.equal(m.appState.papers.size, 12);
 
-  // The scheme arrives with the paper: nothing to configure before scoring.
+  // The latest practice scheme is applied uniformly, including to past years.
   const paper = await m.db.get(m.constants.STORES.PAPERS, 'MPPSC-2019-P1');
   assert.equal(paper.scoring.rules_known, true);
-  assert.equal(paper.scoring.scheme_id, 'mppsc-sse-prelims-2019-2025');
-  assert.equal(paper.scoring.marks_per_correct, 2);
-  assert.equal(paper.total_marks, 200);
+  assert.equal(paper.scoring.scheme_id, 'mppsc-sse-prelims-latest-practice');
+  assert.equal(paper.scoring.marks_per_correct, 3);
+  assert.equal(paper.scoring.negative_marks_per_incorrect, 1);
+  assert.equal(paper.scoring.negative_marking_enabled, true);
+  assert.equal(paper.total_marks, 300);
 });
 
 test('opening the app again changes nothing and duplicates nothing', async () => {
@@ -46,10 +48,45 @@ test('opening the app again changes nothing and duplicates nothing', async () =>
   const again = await builtin.ensureBuiltinBank({ text: bankText });
   assert.equal(again.status, 'current', 'an unchanged bank is not re-imported');
   assert.equal(await m.db.count(m.constants.STORES.QUESTIONS), before);
-  assert.equal(await m.db.count(m.constants.STORES.PAPERS), 6, 'papers are not duplicated either');
-  // Two decades of imports would show here: 6 papers, not 12.
+  assert.equal(await m.db.count(m.constants.STORES.PAPERS), 12, 'papers are not duplicated either');
+  // The expanded bank still records one repository import.
   const history = await m.importer.importHistory();
   assert.equal(history.filter((row) => row.bank_id === 'mppsc-prelims-paper1-2019-2024').length, 1, 'the bank was imported exactly once');
+});
+
+test('a rebuild upgrades stale stored scoring metadata but preserves a user override', async () => {
+  await bootApp();
+  await builtin.ensureBuiltinBank({ text: bankText });
+  const priorPattern = {
+    rules_known: true,
+    marks_per_correct: 2,
+    negative_marks_per_incorrect: 0,
+    negative_marking_enabled: false,
+    marks_for_unanswered: 0,
+    rules_source: 'old bundled pattern',
+    scheme_id: 'mppsc-sse-prelims-2019-2025',
+  };
+  const currentPaper = await m.db.get(m.constants.STORES.PAPERS, 'MPPSC-2019-P1');
+  const overriddenPaper = await m.db.get(m.constants.STORES.PAPERS, 'MPPSC-2020-P1');
+  await m.db.put(m.constants.STORES.PAPERS, { ...currentPaper, scoring: priorPattern });
+  await m.db.put(m.constants.STORES.PAPERS, {
+    ...overriddenPaper,
+    scoring: { ...priorPattern, rules_source: 'configured by the learner' },
+    user_scoring_override: true,
+  });
+
+  const refreshed = await builtin.ensureBuiltinBank({ text: bankText });
+  assert.equal(refreshed.status, 'updated', 'paper scoring changes are noticed even when the bank hash is unchanged');
+  const upgraded = await m.db.get(m.constants.STORES.PAPERS, 'MPPSC-2019-P1');
+  assert.equal(upgraded.scoring.scheme_id, 'mppsc-sse-prelims-latest-practice');
+  assert.equal(upgraded.scoring.marks_per_correct, 3);
+  assert.equal(upgraded.scoring.negative_marks_per_incorrect, 1);
+  assert.equal(upgraded.scoring.negative_marking_enabled, true);
+
+  const keptOverride = await m.db.get(m.constants.STORES.PAPERS, 'MPPSC-2020-P1');
+  assert.equal(keptOverride.user_scoring_override, true);
+  assert.equal(keptOverride.scoring.rules_source, 'configured by the learner');
+  assert.equal(keptOverride.scoring.marks_per_correct, 2, 'a learner\'s explicit scoring choice wins');
 });
 
 test('an upgraded bank refreshes records and keeps the user\'s own work', async () => {
@@ -73,7 +110,7 @@ test('an upgraded bank refreshes records and keeps the user\'s own work', async 
   assert.equal(result.status, 'updated', 'a rebuilt file is applied');
   assert.ok(result.stats.questionsUpdated >= 1, 'the corrected record is refreshed');
   assert.equal(result.stats.questionsAdded, 0, 'no question is added by an update');
-  assert.equal(await m.db.count(m.constants.STORES.QUESTIONS), 571, 'and none is duplicated');
+  assert.equal(await m.db.count(m.constants.STORES.QUESTIONS), 1171, 'and none is duplicated');
 
   const after = await m.db.get(m.constants.STORES.QUESTIONS, 'MPPSC-2019-001');
   assert.match(after.language_variants.en.options[1].text, /corrected in a later build/, 'the corrected option text is stored');
@@ -113,21 +150,21 @@ test('a user\'s own bank is untouched when the bundled bank reloads or is remove
   await bootApp();
   await builtin.ensureBuiltinBank({ text: bankText });
   await importDemoBank();
-  assert.equal(await m.db.count(m.constants.STORES.QUESTIONS), 605);
+  assert.equal(await m.db.count(m.constants.STORES.QUESTIONS), 1205);
 
   await builtin.ensureBuiltinBank({ text: bankText, force: true });
-  assert.equal(await m.db.count(m.constants.STORES.QUESTIONS), 605, 'a forced reload duplicates nothing');
+  assert.equal(await m.db.count(m.constants.STORES.QUESTIONS), 1205, 'a forced reload duplicates nothing');
   assert.ok(await m.db.get(m.constants.STORES.QUESTIONS, 'DEMO-P1-001'), 'the user\'s own question is still there');
 
   const removed = await builtin.removeBuiltinBank();
-  assert.equal(removed.removedQuestions, 571, 'exactly the bundled questions are removed');
+  assert.equal(removed.removedQuestions, 1171, 'exactly the bundled questions are removed');
   assert.equal(await m.db.count(m.constants.STORES.QUESTIONS), 34, 'the user\'s own 34 questions remain');
   assert.equal(await m.db.count(m.constants.STORES.PAPERS), 3, 'and their papers remain');
   assert.equal((await builtin.builtinBankInfo()).loaded, false, 'the app knows the bundled bank is gone');
 
   const reloaded = await builtin.ensureBuiltinBank({ text: bankText });
   assert.equal(reloaded.status, 'loaded');
-  assert.equal(await m.db.count(m.constants.STORES.QUESTIONS), 605, 'and it can be loaded again in full');
+  assert.equal(await m.db.count(m.constants.STORES.QUESTIONS), 1205, 'and it can be loaded again in full');
 });
 
 test('a bank that fails validation is never half-imported', async () => {
@@ -148,18 +185,20 @@ test('scoring a real paper uses the scheme that came with the bank', async () =>
   await builtin.ensureBuiltinBank({ text: bankText });
   const paper = await m.db.get(m.constants.STORES.PAPERS, 'MPPSC-2024-P1');
   const resolved = m.scoring.resolveScoringRules({ paper });
-  assert.equal(resolved.source, 'paper_original');
+  assert.equal(resolved.source, 'mppsc_builtin', 'latest-pattern practice scoring is not mislabeled as a paper historical rule');
   assert.equal(resolved.needsConfiguration, false, 'no manual marks entry is needed');
-  assert.equal(resolved.schemeId, 'mppsc-sse-prelims-2019-2025');
-  assert.equal(resolved.rules.marks_per_correct, 2);
-  assert.equal(resolved.rules.negative_marking_enabled, false);
+  assert.equal(resolved.schemeId, 'mppsc-sse-prelims-latest-practice');
+  assert.equal(resolved.rules.marks_per_correct, 3);
+  assert.equal(resolved.rules.negative_marks_per_incorrect, 1);
+  assert.equal(resolved.rules.negative_marking_enabled, true);
   assert.equal(resolved.rules.marks_for_unanswered, 0);
-  assert.match(m.scoring.describeRules(resolved.rules, { scheme: resolved }), /no negative marking/);
+  assert.match(m.scoring.describeRules(resolved.rules, resolved.source), /latest MPPSC practice pattern/);
+  assert.match(resolved.rulesSourceNote, /must not be described as evidence about historical rules/i);
 });
 
-test('a session on a real 2019 paper scores 2 per correct, 0 for wrong and unanswered', async () => {
+test('a session on a real 2019 paper uses the latest +3/−1/0 practice pattern', async () => {
   // Three questions of `MPPSC-2019-P1`, answered through the real test service:
-  // correct, wrong, left blank. The 2019–2025 pattern gives +2 / 0 / 0.
+  // correct, wrong, left blank. The latest MPPSC practice pattern gives +3 / −1 / 0.
   const paper = await m.db.get(m.constants.STORES.PAPERS, 'MPPSC-2019-P1');
   const ids = paper.question_order.filter((id) => m.appState.questionIndex.get(id)?.hasSuppliedAnswer).slice(0, 3);
   assert.equal(ids.length, 3, 'the paper has at least three questions with a stored key');
@@ -172,33 +211,33 @@ test('a session on a real 2019 paper scores 2 per correct, 0 for wrong and unans
     orderSource: 'original',
     config: { feedbackMode: 'exam', confidence: 'off' },
   });
-  assert.equal(test.config.scoring.source, 'paper_original');
+  assert.equal(test.config.scoring.source, 'mppsc_builtin');
   assert.equal(test.config.scoring.needsConfiguration, false);
 
   await answerTest(test, { correct: [0], incorrect: [1], skip: [2] });
   const { result } = await m.tests.submitTest(test);
-  assert.equal(result.scoring.marks_per_correct, 2);
-  assert.equal(result.scoring.source, 'paper_original');
+  assert.equal(result.scoring.marks_per_correct, 3);
+  assert.equal(result.scoring.source, 'mppsc_builtin');
   assert.equal(result.counts.correct, 1);
   assert.equal(result.counts.incorrect, 1);
   assert.equal(result.counts.unanswered, 1);
   assert.equal(result.counts.unscored, 0, 'every question carried a key');
-  assert.equal(result.score, 2, 'only the correct answer scores');
-  assert.equal(result.max_marks, 6, '3 questions × 2 marks');
-  assert.equal(result.negative_marks_applied, 0, 'nothing is deducted');
+  assert.equal(result.score, 2, 'one correct answer (+3) and one incorrect answer (−1)');
+  assert.equal(result.max_marks, 9, '3 questions × 3 marks');
+  assert.equal(result.negative_marks_applied, -1, 'the incorrect answer deducts one mark');
 });
 
-test('a 2026 paper would be scored with the revised pattern, never the old one', async () => {
+test('the same latest pattern is selected for 2026 and the historical bundled papers', async () => {
   const fresh = m.scoring.resolveScoringRules({
     paper: { paper_id: 'MPPSC-2026-P1', exam: 'MPPSC State Service Preliminary Examination', year: 2026, paper_code: 'GS-I', scoring: { rules_known: false } },
   });
-  assert.equal(fresh.schemeId, 'mppsc-sse-prelims-2026-plus');
+  assert.equal(fresh.schemeId, 'mppsc-sse-prelims-latest-practice');
   assert.equal(fresh.rules.marks_per_correct, 3);
   assert.equal(fresh.rules.negative_marking_enabled, true);
   assert.equal(fresh.rules.negative_marks_per_incorrect, 1);
 
-  // …and the 2019 paper already stored keeps the old one.
   const was = m.scoring.resolveScoringRules({ paper: await m.db.get(m.constants.STORES.PAPERS, 'MPPSC-2019-P1') });
-  assert.equal(was.schemeId, 'mppsc-sse-prelims-2019-2025');
-  assert.equal(was.rules.negative_marking_enabled, false, 'a newer pattern is never applied retrospectively');
+  assert.equal(was.schemeId, 'mppsc-sse-prelims-latest-practice');
+  assert.equal(was.rules.marks_per_correct, 3);
+  assert.equal(was.rules.negative_marking_enabled, true);
 });

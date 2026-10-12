@@ -1,0 +1,308 @@
+{
+  "audit_date": "2026-10-12",
+  "status": "applied",
+  "scope": "Focused classification remediation of all 313 originally unplaced questions and review of every one of the original 323 queue records; no official answer-key comparison.",
+  "bank": {
+    "question_count_before": 1171,
+    "question_count_after": 1171,
+    "paper_count_before": 12,
+    "paper_count_after": 12,
+    "sha256_before": "a20f6dd672dd7bdb97a423fa106a38f6e93a3d3deb5e6d4c2ddc23c44d2cded0",
+    "sha256_after": "0953e535f90a6a8b5a8e28364bd53268e14c2be2a15ef26430cb4ff4a4ffaa5d",
+    "existing_2019_2024_questions": 571,
+    "existing_2019_2024_content_and_classification_unchanged": true,
+    "all_question_options_answers_explanations_unchanged": true,
+    "removed_or_merged_records": 0,
+    "automatic_near_duplicate_merges": 0
+  },
+  "classification": {
+    "before": {
+      "subject_classified": 858,
+      "subject_unclassified": 313,
+      "topic_classified": 850,
+      "topic_missing": 321,
+      "subtopic_classified": 832,
+      "subtopic_missing": 339
+    },
+    "after": {
+      "subject_classified": 1171,
+      "subject_unclassified": 0,
+      "topic_classified": 1162,
+      "topic_missing": 9,
+      "subtopic_classified": 1076,
+      "subtopic_missing": 95
+    },
+    "original_queue_items": 323,
+    "original_queue_reason_counts": {
+      "low_confidence": 2,
+      "no_rule_matched": 274,
+      "insufficient_signal": 31,
+      "topic ambiguous between Statutory and regulatory bodies and Union Executive": 1,
+      "ambiguous_subject": 8,
+      "topic ambiguous between Constitution of India and Constitutional bodies": 1,
+      "topic ambiguous between Union Legislature and Statutory and regulatory bodies": 1,
+      "topic ambiguous between State Government and Union Legislature": 1,
+      "topic ambiguous between Geography of India and World Geography": 1,
+      "topic ambiguous between Paintings and sculpture and Dance and music": 1,
+      "topic ambiguous between Union Executive and Union Legislature": 1,
+      "topic ambiguous between Constitution of India and State Government": 1
+    },
+    "decision_counts": {
+      "classified": 313,
+      "corrected_or_completed": 7,
+      "confirmed": 2,
+      "retained_unresolved": 1
+    },
+    "new_reviewed_labels": 322,
+    "cumulative_reviewed_labels": 566,
+    "classification_fields_changed": 320,
+    "confirmed_without_path_change": 2,
+    "new_label_shapes": {
+      "complete_path": 245,
+      "topic_only": 68,
+      "subject_only": 9
+    },
+    "new_label_review_method": "agent_assisted_validation; every path was validated against the existing taxonomy",
+    "content_rationale_consistency_review": {
+      "decisions_reviewed": 323,
+      "labels_reviewed": 322,
+      "adjustments": [
+        {
+          "id": "MPPSC-2015-021",
+          "before": {
+            "subject": "Science and Technology",
+            "topic": "Biology",
+            "subtopic": "Plant physiology"
+          },
+          "after": {
+            "subject": "Science and Technology",
+            "topic": "Biology",
+            "subtopic": null
+          },
+          "reason": "The stem asks what Alfalfa is; the options contrast a grass, tribe, animal and town, and the available explanation identifies it as a plant/forage crop. Biology is supported, but the taxonomy has no plant-classification or forage-crop subtopic. The Plant physiology node would be narrower than the concept tested, so the label stops at Biology."
+        },
+        {
+          "id": "MPPSC-2016-059",
+          "before": {
+            "subject": "Science and Technology",
+            "topic": "Science and technology developments",
+            "subtopic": "Information technology"
+          },
+          "after": {
+            "subject": "Current Affairs",
+            "topic": "Appointments and personalities",
+            "subtopic": null
+          },
+          "reason": "The question asks who is Chief of Wipro Company, so it tests a corporate appointment/personality rather than an information-technology concept. The supported existing path is Current Affairs / Appointments and personalities; there is no narrower topic for corporate executives, so no subtopic is assigned."
+        },
+        {
+          "id": "MPPSC-2016-097",
+          "before": {
+            "subject": "Science and Technology",
+            "topic": "Biology",
+            "subtopic": null
+          },
+          "after": {
+            "subject": "History",
+            "topic": "Modern India",
+            "subtopic": "Acts and constitutional development"
+          },
+          "reason": "The stem asks when the Wavell Plan was presented; the available explanation describes Wavell’s 1945 Shimla Conference plan for a new Executive Council. That is a Modern India constitutional development, not Biology. The exact existing taxonomy path is History / Modern India / Acts and constitutional development; no answer or option was changed."
+        },
+        {
+          "id": "MPPSC-2017-021",
+          "before": {
+            "subject": "Science and Technology",
+            "topic": "Biology",
+            "subtopic": "Plant physiology"
+          },
+          "after": {
+            "subject": "Science and Technology",
+            "topic": "Biology",
+            "subtopic": null
+          },
+          "reason": "The stem asks for opium’s botanical name and the options are botanical names. Biology is supported, but the existing taxonomy has no plant-taxonomy subtopic; Plant physiology does not describe this identification task. The label therefore stops at Biology."
+        },
+        {
+          "id": "MPPSC-2018-005",
+          "before": {
+            "subject": "Science and Technology",
+            "topic": "Biology",
+            "subtopic": "Plant physiology"
+          },
+          "after": {
+            "subject": "Science and Technology",
+            "topic": "Biology",
+            "subtopic": null
+          },
+          "reason": "The question identifies Aloe vera as a medicinal crop. Biology is the supported topic, but the taxonomy has no subtopic for medicinal plants/crops; Plant physiology is not the concept being tested. The label therefore stops at Biology."
+        }
+      ]
+    },
+    "targeted_spot_checks": [
+      {
+        "id": "MPPSC-2015-078",
+        "result": "reaffirmed",
+        "supporting_question_ids": [
+          "MPPSC-2021-068",
+          "MPPSC-2023-091"
+        ]
+      }
+    ],
+    "remaining_active_review_queue": [
+      "MPPSC-2021-065"
+    ],
+    "taxonomy_gap_records": 95,
+    "queue_taxonomy_gaps": {
+      "subject_only_reviewed_labels": 9,
+      "topic_only_reviewed_labels": 68,
+      "retained_unresolved_low_confidence": 1,
+      "pre_existing_gaps_not_in_original_queue": 17
+    },
+    "subject_counts": {
+      "Art and Culture": 52,
+      "Current Affairs": 121,
+      "Economy": 111,
+      "Environment": 56,
+      "General Aptitude": 11,
+      "Geography": 207,
+      "History": 173,
+      "Madhya Pradesh Special": 59,
+      "Polity": 204,
+      "Science and Technology": 177
+    },
+    "questions_by_year": {
+      "2013": 100,
+      "2014": 100,
+      "2015": 100,
+      "2016": 100,
+      "2017": 100,
+      "2018": 100,
+      "2019": 95,
+      "2020": 95,
+      "2021": 94,
+      "2022": 97,
+      "2023": 95,
+      "2024": 95
+    }
+  },
+  "answers": {
+    "source_printed_key_comparisons_matched": 1163,
+    "source_printed_key_mismatches": 0,
+    "questions_without_local_source_key_comparison": 8,
+    "existing_answer_review_records": 8,
+    "answer_changes_in_this_audit": 0,
+    "officially_verified_answers": 0,
+    "source_answer_flags_preserved": 274
+  },
+  "explanations": {
+    "source_explanation_states": {
+      "supplied": 1017,
+      "missing": 35,
+      "placeholder_removed": 119
+    },
+    "historical_source_missing_ids": [
+      "MPPSC-2013-016",
+      "MPPSC-2013-039",
+      "MPPSC-2013-050",
+      "MPPSC-2013-051",
+      "MPPSC-2013-056",
+      "MPPSC-2013-073",
+      "MPPSC-2013-088",
+      "MPPSC-2014-003",
+      "MPPSC-2014-073",
+      "MPPSC-2015-004",
+      "MPPSC-2015-028",
+      "MPPSC-2015-054",
+      "MPPSC-2016-004",
+      "MPPSC-2016-013",
+      "MPPSC-2016-056",
+      "MPPSC-2016-057",
+      "MPPSC-2016-059",
+      "MPPSC-2016-066",
+      "MPPSC-2016-068",
+      "MPPSC-2017-075",
+      "MPPSC-2017-084",
+      "MPPSC-2017-085",
+      "MPPSC-2017-086",
+      "MPPSC-2017-090",
+      "MPPSC-2017-095",
+      "MPPSC-2018-021",
+      "MPPSC-2018-046",
+      "MPPSC-2018-053"
+    ],
+    "current_period_source_missing_ids": [
+      "MPPSC-2019-076",
+      "MPPSC-2019-077",
+      "MPPSC-2019-078",
+      "MPPSC-2019-079",
+      "MPPSC-2019-080",
+      "MPPSC-2021-094",
+      "MPPSC-2021-095"
+    ],
+    "prior_integration_generic_placeholders_removed": 119,
+    "explanation_text_changes_in_this_audit": 0
+  },
+  "blank_options": {
+    "questions": 11,
+    "blank_option_cells": 13,
+    "restored": 0,
+    "records": {
+      "MPPSC-2013-061": [
+        "B"
+      ],
+      "MPPSC-2014-004": [
+        "A"
+      ],
+      "MPPSC-2014-027": [
+        "A"
+      ],
+      "MPPSC-2014-035": [
+        "A"
+      ],
+      "MPPSC-2014-041": [
+        "A"
+      ],
+      "MPPSC-2014-055": [
+        "C"
+      ],
+      "MPPSC-2014-061": [
+        "C",
+        "D"
+      ],
+      "MPPSC-2015-004": [
+        "C"
+      ],
+      "MPPSC-2015-013": [
+        "A",
+        "D"
+      ],
+      "MPPSC-2015-036": [
+        "A"
+      ],
+      "MPPSC-2015-044": [
+        "A"
+      ]
+    },
+    "primary_paper_documents_found_in_local_source_tree": false
+  },
+  "scoring": {
+    "practice_pattern_preserved": {
+      "marks_per_correct": 3,
+      "negative_marks_per_incorrect": 1,
+      "marks_for_unanswered": 0
+    },
+    "applied_uniformly_to_papers": true,
+    "historical_marking_rules_verified": false
+  },
+  "internal_metadata_in_app_bank": false,
+  "evidence_files": [
+    "data/pyq/quality-audit/question-audit-baseline.jsonl",
+    "data/pyq/quality-audit/question-audit-final.jsonl",
+    "data/pyq/quality-audit/classification-review-decisions.jsonl",
+    "data/pyq/quality-audit/reviewed-labels-quality-remediation.jsonl",
+    "data/pyq/quality-audit/ai-queue-baseline.jsonl",
+    "data/pyq/historical-source-audit.json",
+    "data/pyq/quality-audit/classification-taxonomy-gaps.jsonl"
+  ]
+}

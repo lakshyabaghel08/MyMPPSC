@@ -10,11 +10,11 @@ That separation is deliberate and enforced:
 
 * the app's `js/` tree contains no question text (checked by `npm run check`);
 * the bundled demonstration bank is flagged synthetic and badged in the UI;
-* the bundled MPPSC 2019–2024 bank carries **no** source provenance (no book or
+* the bundled MPPSC 2013–2024 bank carries **no** source provenance (no book or
   provider names, no page references, no "official"/"unofficial" key labels) —
   it is fetched from the repository at boot and its audit detail lives in
   `docs/PYQ_AUDIT.md`;
-* a paper whose rules or keys are unknown stays labelled as such rather than being filled in.
+* missing answer keys remain missing; bundled 2013–2024 MPPSC papers use the latest reported +3/−1/0 pattern as a practice policy, not as proof of historical rules.
 
 This document describes the workflow between your pipeline and the app.
 
@@ -61,7 +61,7 @@ Intake files use the same structure as a bank, with convenient shorthand:
 | `"explanation": "prose…"` | `explanation.correct_reasoning` with `language: "en"`, text unchanged |
 | omitting `question_order` on a paper | derived from `question_number` |
 | omitting `exam`, `year`, `set_code` on a question | inherited from its paper |
-| omitting `scoring` for a paper | `rules_known: false` — the app will refuse to score it until you configure rules |
+| omitting `scoring` for a paper | `rules_known: false`; the app uses the shared MPPSC latest-pattern practice scheme when the paper year is covered, otherwise asks you to configure rules |
 
 The tool **adds nothing else**. It never invents an option, a key, an
 explanation or a classification; a missing answer stays missing. With `--strict`
@@ -116,6 +116,13 @@ keys, and writes a classification report and a review report next to the bank.
 node tools/classify-bank.mjs --in data/pyq/source/MPPSC_PYQ_intake.json \
     --out data/pyq/mymppsc-pyq-bank.json --reports data/pyq
 ```
+
+The production 2013–2024 bank uses a strict `--include-2013-2018` adapter and
+requires both committed review files when rebuilding from the raw intake. Use
+the exact combined-bank command in [`docs/PYQ_PIPELINE.md`](PYQ_PIPELINE.md); it
+checks all six historical source schemas, READMEs and review reports, then writes
+a separate audit. The 600 historical questions are classified only by the
+repository taxonomy/rule engine; preliminary source labels are not final labels.
 
 See [`docs/PYQ_PIPELINE.md`](PYQ_PIPELINE.md) for the full workflow, the
 taxonomy, the optional resumable AI step, and what the reports contain.

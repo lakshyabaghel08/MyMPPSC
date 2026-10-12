@@ -1,7 +1,7 @@
 /**
  * builtin-bank.js — the repository-backed question bank.
  *
- * The MPPSC 2019–2024 bank that ships with this repository
+ * The MPPSC 2013–2024 bank that ships with this repository
  * (`data/pyq/mymppsc-pyq-bank.json`) is loaded from the repository itself, so a
  * fresh installation has real previous-year questions without anyone having to
  * download and re-import a file by hand. Manual import keeps working for other
@@ -35,6 +35,7 @@ import { analyseBankObject, executeImport, sha256Hex } from './importer.js';
 export const BUILTIN_BANK_PATH = 'data/pyq/mymppsc-pyq-bank.json';
 export const BUILTIN_BANK_META = 'builtin_bank';
 /** The bank id this loader owns. A different id in the file is still loaded, but recorded as-is. */
+// Keep the established id so this expanded file upgrades existing installations in place.
 export const BUILTIN_BANK_ID = 'mppsc-prelims-paper1-2019-2024';
 
 const state$ = { last: null };
@@ -137,11 +138,14 @@ export async function ensureBuiltinBank(opts = {}) {
   // content and none has changed, there is nothing to do regardless of how the
   // app got there (first load, re-open, or a manual import of the same file).
   const nothingToDo =
-    analysis.comparison.newQuestions === 0 && analysis.comparison.changedRecords === 0 && analysis.report.questions.length > 0;
+    analysis.comparison.newQuestions === 0 &&
+    analysis.comparison.changedRecords === 0 &&
+    analysis.comparison.changedPapers === 0 &&
+    analysis.report.questions.length > 0;
   const fileIds = analysis.report.questions.map((q) => q.id);
   const storedCount = await countStoredForBank(analysis.report.meta.bankId, fileIds);
 
-  if (!opts.force && (nothingToDo || (previous && previous.sha256 === sha256 && storedCount))) {
+  if (!opts.force && (nothingToDo || (previous && previous.sha256 === sha256 && storedCount && analysis.comparison.changedPapers === 0))) {
     // Nothing to import. If the file itself changed (a rebuild that touched only
     // text the fingerprint does not cover, such as an explanation), record the
     // new hash so the next boot does not re-download and re-validate the file.

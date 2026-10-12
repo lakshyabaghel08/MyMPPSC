@@ -1337,7 +1337,7 @@
       "topic": "Constitution, institutions, laws or governance",
       "subtopic": "Specific constitutional/legal provision or current-affairs fact",
       "review_flags": [
-        "Question/key should be checked against the historical tournament timeline; printed answer is Australia."
+        "The supplied explanation cites Andhra Pradesh reserved seats but the question asks for the Lok Sabha total; verify the key and explanation against a reliable parliamentary source."
       ],
       "needs_review": true
     },
@@ -2736,8 +2736,7 @@
       "topic": "Constitution, institutions, laws or governance",
       "subtopic": "Specific constitutional/legal provision or current-affairs fact",
       "review_flags": [
-        "Explanation is only a generic placeholder, not an actual explanation.",
-        "Source explanation is only a placeholder; answer requires verification against IPL 2016 venue."
+        "Explanation is only a generic placeholder, not an actual explanation."
       ],
       "needs_review": true
     },
@@ -3148,7 +3147,7 @@
       "topic": "Physical, Indian or environmental geography",
       "subtopic": "Geographical features, environment or resources",
       "review_flags": [
-        "Potential inconsistency: printed answer B conflicts with the supplied explanation stating IMF loans go to member countries only."
+        "The supplied explanation discusses the Godavari’s length and drainage area but does not clearly establish the second-largest river-basin ranking; verify that statistic independently."
       ],
       "needs_review": true
     }
