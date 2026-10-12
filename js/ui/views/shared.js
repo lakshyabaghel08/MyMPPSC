@@ -16,6 +16,9 @@ import { allAttempts } from '../../services/attempts.js';
 import { buildAttemptSummary } from '../../services/select.js';
 import * as tests from '../../services/tests.js';
 import { getQuestions } from '../../services/questions.js';
+import { resolveScoringRules } from '../../services/scoring.js';
+
+const LATEST_MPPSC_PRACTICE_SCHEME = 'mppsc-sse-prelims-latest-practice';
 
 export const CONFIG_PREFIX = 'practiceCfg';
 
@@ -40,15 +43,19 @@ function initialConfigValues({ paper = null, defaultCount = 20, maxCount = null,
     unresolvedPolicy: s.scoringPolicyWhenUnresolved,
     randomizeOptions: s.randomizeOptions,
     preferUnseen: allowRepeatOverride ? s.repeatPolicy.preferUnseen : false,
-    usePaperRules: Boolean(paper?.scoring?.rules_known),
+    usePaperRules: Boolean(paper && resolveScoringRules({ paper }).rules),
     scoring: { source: 'custom', ...s.defaultScoring },
   };
 }
 
 /** Marks string, e.g. "+2 / −0.67 marks" or "+2 marks, no negative marking". */
 function describeMarks(v, paper) {
-  if (v.usePaperRules && paper?.scoring?.rules_known) {
-    const rules = paper.scoring;
+  const resolved = paper ? resolveScoringRules({ paper }) : null;
+  if (v.usePaperRules && resolved?.rules) {
+    const rules = resolved.rules;
+    if (resolved.schemeId === LATEST_MPPSC_PRACTICE_SCHEME && !paper?.user_scoring_override) {
+      return `latest MPPSC practice pattern (+${rules.marks_per_correct} / −${rules.negative_marks_per_incorrect} / ${rules.marks_for_unanswered}; not a claim about historical rules)`;
+    }
     return `the paper's scoring rules (+${rules.marks_per_correct}${rules.negative_marking_enabled ? ` / −${rules.negative_marks_per_incorrect}` : ', no negative'})`;
   }
   const base = v.scoring.negativeMarkingEnabled
@@ -86,9 +93,14 @@ function describeConfig(v, { allowRepeatOverride = true, paper = null } = {}) {
 export function configFields({ prefix = CONFIG_PREFIX, paper = null, defaultCount = 20, allowCustomScoring = true, allowRepeatOverride = true, maxCount = null, extraQuick = '' } = {}) {
   const s = state.settings;
   const init = initialConfigValues({ paper, defaultCount, maxCount, allowRepeatOverride });
-  const paperRules = paper?.scoring?.rules_known
-    ? `+${paper.scoring.marks_per_correct} correct${paper.scoring.negative_marking_enabled ? `, −${paper.scoring.negative_marks_per_incorrect} incorrect` : ', no negative marking'} (from the paper metadata)`
+  const resolvedPaperRules = paper ? resolveScoringRules({ paper }) : null;
+  const isLatestPractice = resolvedPaperRules?.schemeId === LATEST_MPPSC_PRACTICE_SCHEME && !paper?.user_scoring_override;
+  const paperRules = resolvedPaperRules?.rules
+    ? isLatestPractice
+      ? `+${resolvedPaperRules.rules.marks_per_correct} correct, −${resolvedPaperRules.rules.negative_marks_per_incorrect} incorrect, ${resolvedPaperRules.rules.marks_for_unanswered} unanswered`
+      : `+${resolvedPaperRules.rules.marks_per_correct} correct${resolvedPaperRules.rules.negative_marking_enabled ? `, −${resolvedPaperRules.rules.negative_marks_per_incorrect} incorrect` : ', no negative marking'} (from the paper metadata)`
     : null;
+  const paperRulesLabel = isLatestPractice ? 'Use latest MPPSC practice pattern' : 'Use the source paper’s rules';
   return `
     <div class="practice-setup" data-config-root="${prefix}">
       <div class="field-row">
@@ -161,7 +173,7 @@ export function configFields({ prefix = CONFIG_PREFIX, paper = null, defaultCoun
             <legend>Scoring</legend>
             ${
               paperRules
-                ? `<label class="check"><input type="checkbox" id="${prefix}UsePaperRules" checked /><span>Use the source paper's rules — ${esc(paperRules)}</span></label>
+                ? `<label class="check"><input type="checkbox" id="${prefix}UsePaperRules" checked /><span>${esc(paperRulesLabel)} — ${esc(paperRules)}${isLatestPractice ? '; not a claim about historical rules' : ''}</span></label>
                    <p class="hint">Clear the box to override the marks for this session only.</p>`
                 : `<p class="hint mt-0">${paper ? 'The source paper does not state scoring rules.' : 'No source paper rules apply to this session.'} Set the marks explicitly — nothing is assumed for you.</p>`
             }
@@ -191,7 +203,8 @@ export function readConfig(prefix = CONFIG_PREFIX, { paper = null, defaultCount 
     return Number.isFinite(n) ? n : fallback;
   };
   const checked = (id) => Boolean(value(id)?.checked);
-  const usePaperRules = paper?.scoring?.rules_known ? (value('UsePaperRules') ? checked('UsePaperRules') : false) : false;
+  const paperRules = paper ? resolveScoringRules({ paper }).rules : null;
+  const usePaperRules = paperRules ? (value('UsePaperRules') ? checked('UsePaperRules') : true) : false;
   const customScoring = {
     source: 'custom',
     marksPerCorrect: num('MarksCorrect', state.settings.defaultScoring.marksPerCorrect),
@@ -322,8 +335,13 @@ export function incompletePaperNotice(paperSummary) {
 }
 
 export function scoringUnknownNotice(paper) {
-  if (paper?.scoring && paper.scoring.rules_known === false) {
-    return notice("The source does not state this paper's scoring rules, so no marks will be assumed. You will be asked to configure them before the test can be scored.", 'warn', { title: 'Scoring rules unknown' });
+  if (!paper) return '';
+  const resolved = resolveScoringRules({ paper });
+  if (resolved.schemeId === LATEST_MPPSC_PRACTICE_SCHEME && !paper.user_scoring_override) {
+    return notice('The latest reported MPPSC +3/−1/0 pattern is applied here as a practice policy. It is not evidence of the historical rules for this paper.', 'info', { title: 'Latest-pattern practice scoring' });
+  }
+  if (!resolved.rules) {
+    return notice("No applicable marking scheme is available for this paper. Configure scoring before the test can be scored.", 'warn', { title: 'Scoring rules unknown' });
   }
   return '';
 }

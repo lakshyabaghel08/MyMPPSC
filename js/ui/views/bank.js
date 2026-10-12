@@ -39,7 +39,9 @@ function importSummary(analysis) {
     `${esc(String(p.year ?? '—'))}${p.set_code ? ` · set ${esc(p.set_code)}` : ''}`,
     p.original_question_count === null || p.original_question_count === undefined ? '<span class="soft">unknown</span>' : String(p.original_question_count),
     String((report.questions || []).filter((q) => q.paper_id === p.paper_id).length),
-    p.scoring?.rules_known ? `+${esc(String(p.scoring.marks_per_correct))}${p.scoring.negative_marking_enabled ? ` / −${esc(String(p.scoring.negative_marks_per_incorrect))}` : ''}` : badge('rules unknown', 'warn'),
+    p.scoring?.rules_known
+      ? `${p.scoring.scheme_id === 'mppsc-sse-prelims-latest-practice' ? 'practice only: ' : ''}+${esc(String(p.scoring.marks_per_correct))}${p.scoring.negative_marking_enabled ? ` / −${esc(String(p.scoring.negative_marks_per_incorrect))}` : ''}`
+      : badge('rules unknown', 'warn'),
   ]);
 
   const errorRows = [...report.fatal, ...report.errors].slice(0, 40).map((e) => [esc(e.questionId || e.paperId || '—'), esc(e.code || ''), esc(e.message)]);
@@ -387,13 +389,14 @@ export default {
     const builtinInfo = await builtinBank.builtinBankInfo();
     const builtinMeta = builtinInfo.meta;
     const builtinTab = card({
-      title: 'Bundled MPPSC bank (2019–2024)',
+      title: 'Bundled MPPSC bank (2013–2024)',
       right: builtinMeta ? badge('loaded', 'ok') : badge('not loaded', 'warn'),
       body: `
         <p class="small">This repository ships the classified MPPSC previous-year question bank. It is loaded automatically from
         <span class="mono tiny">${esc(builtinBank.BUILTIN_BANK_PATH)}</span> when the app starts, so a fresh installation has real papers
         without importing anything by hand. The load is checked against a recorded fingerprint: an unchanged bank is never re-written,
-        and an updated one refreshes the stored records while keeping your corrections, bookmarks, attempts and revision history.</p>
+        and an updated one refreshes the stored records while keeping your corrections, bookmarks, attempts and revision history.
+        Its latest reported +3/−1/0 marking pattern is used for practice across all years; this does not establish historical rules.</p>
         ${dataTable({
           columns: [{ label: 'Bank' }, { label: 'Questions' }, { label: 'Papers' }, { label: 'Loaded' }],
           rows: [
@@ -504,14 +507,14 @@ export default {
       ${card({
         title: 'Papers',
         body: dataTable({
-          columns: [{ label: 'Paper' }, { label: 'Stored / declared', num: true }, { label: 'Scoring rules (applied automatically)' }, { label: 'Origin' }, { label: '' }],
+          columns: [{ label: 'Paper' }, { label: 'Stored / declared', num: true }, { label: 'Scoring policy (practice where noted)' }, { label: 'Origin' }, { label: '' }],
           rows: papers.map((p) => {
             const present = metas.filter((m) => m.paper_id === p.paper_id).length;
             return [
               `${esc(p.paper_name || p.paper_id)}<div class="tiny muted">${esc(p.paper_id)}${p.set_code ? ` · set ${esc(p.set_code)}` : ''}</div>`,
               `${present} / ${esc(String(p.original_question_count ?? '—'))}`,
               p.scoring?.rules_known
-                ? `+${esc(String(p.scoring.marks_per_correct))}${p.scoring.negative_marking_enabled ? ` / −${esc(String(p.scoring.negative_marks_per_incorrect))}` : ' (no negative marking)'}${p.user_scoring_override ? ` ${badge('you set this', 'info')}` : ''}`
+                ? `${p.scoring.scheme_id === 'mppsc-sse-prelims-latest-practice' ? 'practice only: ' : ''}+${esc(String(p.scoring.marks_per_correct))}${p.scoring.negative_marking_enabled ? ` / −${esc(String(p.scoring.negative_marks_per_incorrect))}` : ' (no negative marking)'}${p.scoring.scheme_id === 'mppsc-sse-prelims-latest-practice' && !p.user_scoring_override ? `<div class="tiny muted">latest reported pattern; not historical-rule evidence</div>` : ''}${p.user_scoring_override ? ` ${badge('you set this', 'info')}` : ''}`
                 : badge('unknown — must be configured', 'warn'),
               p.placeholder ? badge('placeholder (metadata absent)', 'warn') : badge(p.is_demonstration ? 'demonstration' : 'imported bank', p.is_demonstration ? 'warn' : ''),
               `<button class="btn btn-sm" type="button" data-edit-paper="${esc(p.paper_id)}">Edit rules</button>`,
@@ -722,7 +725,7 @@ export default {
     document.getElementById('removeBuiltin')?.addEventListener('click', async () => {
       const ok = await confirmDialog({
         title: 'Remove the bundled bank from this device?',
-        message: 'The 2019–2024 questions and papers stored from the repository bank are removed from this browser. Your own imported questions, attempts, bookmarks and revision history are untouched, and the bank can be loaded again at any time.',
+        message: 'The 2013–2024 questions and papers stored from the repository bank are removed from this browser. Your own imported questions, attempts, bookmarks and revision history are untouched, and the bank can be loaded again at any time.',
         confirmLabel: 'Remove from this device',
         danger: true,
       });

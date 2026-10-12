@@ -45,8 +45,10 @@
 import { resolveMppscMarkingScheme, schemeScoring } from '../../js/core/marking.js';
 
 /** The app-facing identity of the bundled bank. Stable — stored imports use it. */
+// Keep the established id so existing installs update in place instead of
+// creating a second bundled bank; the display name now reflects all six years.
 export const APP_BANK_ID = 'mppsc-prelims-paper1-2019-2024';
-export const APP_BANK_NAME = 'MPPSC Prelims Paper I (General Studies) 2019–2024';
+export const APP_BANK_NAME = 'MPPSC Prelims Paper I (General Studies) 2013–2024';
 
 /** Metadata written by the source parser. Audit detail, not app data. */
 const PARSER_METADATA_KEYS = [
@@ -159,10 +161,12 @@ function repairEscapes(bank, report) {
 export function sanitiseBank(bank, opts = {}) {
   const report = {
     statement:
-      'The app-facing bank carries no source provenance. Everything listed here was removed from the file the app loads and is kept in this review report instead.',
+      'The app-facing bank carries no source provenance or internal build/review metadata. Everything listed here was removed from the file the app loads and is kept in this review report instead.',
     identifiers: { bank_id_before: bank.bank_id ?? null, bank_id_after: APP_BANK_ID, bank_name_after: APP_BANK_NAME, paper_ids: [] },
     removed: {
       bank_provenance: bank.provenance ?? null,
+      bank_generator: bank.generator ?? null,
+      paper_metadata_fields: {},
       question_source_references: 0,
       supplied_answer_sources: 0,
       paper_answer_keys: 0,
@@ -211,6 +215,7 @@ export function sanitiseBank(bank, opts = {}) {
 
   /* ------------------------------------------------ 2. provenance -------- */
   delete bank.provenance;
+  delete bank.generator;
   // A bank built by an earlier run of this pipeline carried a description of its
   // own labelling. A bank re-fed through the pipeline must not hand that straight
   // back to the app, so it is lifted out and reported.
@@ -290,8 +295,15 @@ export function sanitiseBank(bank, opts = {}) {
     } else if ('source_files' in paper) {
       delete paper.source_files;
     }
-    if (paper.metadata && 'source_kind' in paper.metadata) delete paper.metadata.source_kind;
-    if (paper.metadata && 'parser_version' in paper.metadata) delete paper.metadata.parser_version;
+    if (paper.metadata && typeof paper.metadata === 'object') {
+      for (const key of ['source_kind', 'parser_version', 'built_by']) {
+        if (key in paper.metadata) {
+          report.removed.paper_metadata_fields[key] = (report.removed.paper_metadata_fields[key] || 0) + 1;
+          delete paper.metadata[key];
+        }
+      }
+      if (Object.keys(paper.metadata).length === 0) delete paper.metadata;
+    }
   }
 
   /* ------------------------------------- 3. answer-key status language --- */
@@ -311,20 +323,32 @@ export function sanitiseBank(bank, opts = {}) {
 
   /* --------------------------------------------- 4. marking schemes ----- */
   for (const paper of bank.papers || []) {
-    // A paper that already states usable rules keeps them: the pipeline writes
-    // the automatic MPPSC scheme only where the source had none. Overwriting a
-    // verified rule set with a table lookup would be an invention.
     const declared = paper.scoring && typeof paper.scoring === 'object' ? paper.scoring : null;
-    if (declared?.rules_known === true && Number.isFinite(Number(declared.marks_per_correct))) {
+    const scheme = resolveMppscMarkingScheme(paper);
+    const declaredMatchesScheme = Boolean(
+      scheme &&
+        declared?.rules_known === true &&
+        declared.scheme_id === scheme.id &&
+        Number(declared.marks_per_correct) === scheme.marks_per_correct &&
+        (Number(declared.negative_marks_per_incorrect) || 0) === (scheme.negative_marking_enabled ? Math.abs(scheme.negative_marks_per_incorrect) : 0) &&
+        Boolean(declared.negative_marking_enabled) === Boolean(scheme.negative_marking_enabled) &&
+        (Number(declared.marks_for_unanswered) || 0) === (scheme.marks_for_unanswered || 0),
+    );
+    if (declared?.rules_known === true && Number.isFinite(Number(declared.marks_per_correct)) && (!scheme || declaredMatchesScheme)) {
       report.marking_scheme_preserved.push({
         paper_id: paper.paper_id,
         year: paper.year ?? null,
+        scheme_id: declared.scheme_id ?? null,
         marks_per_correct: Number(declared.marks_per_correct),
+        negative_marks_per_incorrect: Number(declared.negative_marks_per_incorrect) || 0,
+        negative_marking_enabled: Boolean(declared.negative_marking_enabled),
+        marks_for_unanswered: Number(declared.marks_for_unanswered) || 0,
+        total_marks: paper.total_marks ?? null,
+        duration_minutes: paper.duration_minutes ?? null,
         rules_source: declared.rules_source ?? null,
       });
       continue;
     }
-    const scheme = resolveMppscMarkingScheme(paper);
     if (scheme) {
       paper.scoring = schemeScoring(scheme);
       paper.original_question_count = scheme.original_question_count ?? paper.original_question_count ?? null;
@@ -335,6 +359,8 @@ export function sanitiseBank(bank, opts = {}) {
         year: paper.year,
         scheme_id: scheme.id,
         scheme_label: scheme.label,
+        previous_scheme_id: declared?.scheme_id && declared.scheme_id !== scheme.id ? declared.scheme_id : null,
+        previous_rules_source: declared?.scheme_id && declared.scheme_id !== scheme.id ? declared.rules_source ?? null : null,
         confidence: scheme.confidence,
         marks_per_correct: scheme.marks_per_correct,
         negative_marks_per_incorrect: paper.scoring.negative_marks_per_incorrect,
@@ -359,10 +385,6 @@ export function sanitiseBank(bank, opts = {}) {
 
   /* ------------------------------------------------ 5. text repairs ----- */
   repairEscapes(bank, report);
-  if (bank.generator) {
-    bank.generator.notes =
-      'Classified by the deterministic rule engine and a maintainer review pass (tools/classify-bank.mjs). Question text, options, answers and explanations are reproduced as provided; only classification, review metadata and the automatic marking scheme were added.';
-  }
 
   return { bank, report };
 }

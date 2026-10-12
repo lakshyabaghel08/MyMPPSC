@@ -1,5 +1,5 @@
 /**
- * pyq-bank.test.js — the real 2019–2024 PYQ bank, through the real importer.
+ * pyq-bank.test.js — the real 2013–2024 PYQ bank, through the real importer.
  *
  * This suite is deliberately isolated: bootApp() gives every run a fresh
  * in-memory IndexedDB and an empty localStorage, so nothing here can touch a
@@ -29,7 +29,7 @@ test('the real PYQ bank and its source intake are both present', { skip: !haveBa
   assert.ok(haveBank, 'run tools/classify-bank.mjs first');
 });
 
-test('the app accepts the real bank and imports all 571 questions', { skip: !haveBank }, async () => {
+test('the app accepts the real bank and imports all 1,171 questions', { skip: !haveBank }, async () => {
   const text = await readText('pyq/mymppsc-pyq-bank.json');
   const analysis = await m.importer.analyseBankFile(text, { filename: 'mymppsc-pyq-bank.json' });
   assert.equal(analysis.stage, 'ready', `the importer refused the bank: ${analysis.fatalMessage}`);
@@ -37,14 +37,14 @@ test('the app accepts the real bank and imports all 571 questions', { skip: !hav
   assert.equal(analysis.report.errors.length, 0);
   assert.equal(analysis.report.rejected.length, 0, 'no record is rejected');
   assert.equal(analysis.report.meta.demoFlag, false, 'this is real data, not a demo fixture');
-  assert.equal(analysis.report.stats.questions, 571);
-  assert.equal(analysis.report.stats.papers, 6);
+  assert.equal(analysis.report.stats.questions, 1171);
+  assert.equal(analysis.report.stats.papers, 12);
 
   const result = await m.importer.executeImport(analysis, { conflictPolicy: 'skip' });
-  assert.equal(result.stats.questionsAdded, 571);
-  assert.equal(result.stats.papersAdded, 6);
-  assert.equal(await m.db.count(m.constants.STORES.QUESTIONS), 571);
-  assert.equal(m.appState.questionIndex.size, 571, 'the index holds every question');
+  assert.equal(result.stats.questionsAdded, 1171);
+  assert.equal(result.stats.papersAdded, 12);
+  assert.equal(await m.db.count(m.constants.STORES.QUESTIONS), 1171);
+  assert.equal(m.appState.questionIndex.size, 1171, 'the index holds every question');
 
   const history = await m.importer.importHistory();
   assert.equal(history[0].bank_id, 'mppsc-prelims-paper1-2019-2024');
@@ -108,7 +108,7 @@ test('the eight questions the source left keyless come from the committed review
 test('answers are stored without provenance and none is marked verified', { skip: !haveBank }, async () => {
   const bank = await readJson('pyq/mymppsc-pyq-bank.json');
   const withKey = bank.questions.filter((q) => q.supplied_answer?.answer?.length);
-  assert.equal(withKey.length, 571, 'every question carries a key once the review file is applied');
+  assert.equal(withKey.length, 1171, 'every question carries a key once the review file is applied');
   // No source claim survives into the app-facing bank: no provenance block, no
   // per-question source references, no key-issue labels ('unofficial'/'final').
   assert.equal('provenance' in bank, false, 'the bank carries no provenance block');
@@ -125,10 +125,17 @@ test('answers are stored without provenance and none is marked verified', { skip
 test('classification survived the import, and every label is a real taxonomy node', { skip: !haveBank }, async () => {
   const index = [...m.appState.questionIndex.values()];
   const classified = index.filter((q) => q.subject);
-  assert.equal(classified.length, 571, 'every question carries a subject after the pipeline run');
-  assert.equal(index.filter((q) => !q.subject).length, 0);
-  assert.equal(index.filter((q) => q.topic).length, 571, 'and every one carries a topic');
-  assert.equal(index.filter((q) => !q.subtopic).length, 18, 'eighteen questions have no subtopic; none was invented');
+  const current = index.filter((q) => Number(q.year) >= 2019);
+  const historical = index.filter((q) => Number(q.year) >= 2013 && Number(q.year) <= 2018);
+  assert.equal(index.length, 1171);
+  assert.equal(classified.length, 858, 'only taxonomy-supported labels are assigned');
+  assert.equal(index.filter((q) => !q.subject).length, 313, 'unplaceable historical questions remain unclassified');
+  assert.equal(current.length, 571);
+  assert.equal(current.filter((q) => q.subject).length, 571, 'all existing current-bank classifications are preserved');
+  assert.equal(historical.length, 600);
+  assert.equal(historical.filter((q) => q.subject).length, 287, 'the rules classify only supported historical records');
+  assert.equal(index.filter((q) => q.topic).length, 850);
+  assert.equal(index.filter((q) => q.subtopic).length, 832, 'missing subtopics are not fabricated');
   assert.equal(m.appState.questionIndex.get('MPPSC-2019-001').subject, 'Polity');
 
   // Where the labels came from is a fact about the build, not about the exam, so
@@ -144,14 +151,18 @@ test('classification survived the import, and every label is a real taxonomy nod
   assert.equal('explanation_status' in bank.questions[0], false, 'and no explanation review state either');
   assert.equal(bank.questions.some((q) => q.explanation && typeof q.explanation === 'object' && ('status' in q.explanation || 'reviewed_by' in q.explanation)), false, 'stored explanations carry their text and nothing else');
 
-  // Every assigned label is a real taxonomy node.
+  // Every supplied level is a real taxonomy node; a supported subject-only
+  // label remains valid without fabricating a topic to fill the gap.
   const taxonomy = await readJson('taxonomy/mppsc-taxonomy.json');
   const subjects = new Map(taxonomy.subjects.map((s) => [s.subject, new Map(s.topics.map((t) => [t.topic, t.subtopics]))]));
   for (const q of classified) {
     assert.ok(subjects.has(q.subject), `${q.subject} is not a taxonomy subject`);
-    assert.ok(q.topic, `${q.id} has no topic`);
-    assert.ok(subjects.get(q.subject).has(q.topic), `${q.subject} / ${q.topic} is not in the taxonomy`);
-    if (q.subtopic) assert.ok(subjects.get(q.subject).get(q.topic).includes(q.subtopic));
+    if (q.topic) {
+      assert.ok(subjects.get(q.subject).has(q.topic), `${q.subject} / ${q.topic} is not in the taxonomy`);
+      if (q.subtopic) assert.ok(subjects.get(q.subject).get(q.topic).includes(q.subtopic));
+    } else {
+      assert.equal(q.subtopic ?? null, null, `${q.id} cannot have a subtopic without a topic`);
+    }
   }
   for (const q of bank.questions) {
     if (q.subtopic) assert.ok(subjects.get(q.subject)?.get(q.topic)?.includes(q.subtopic), `${q.id}: ${q.subtopic} is not in the taxonomy`);
@@ -167,7 +178,7 @@ test('importing the PYQ bank does not disturb a bank the user already has', { sk
   const analysis = await m.importer.analyseBankFile(text, { filename: 'mymppsc-pyq-bank.json' });
   await m.importer.executeImport(analysis, { conflictPolicy: 'skip' });
 
-  assert.equal(await m.db.count(m.constants.STORES.QUESTIONS), 605, '34 + 571, nothing overwritten');
+  assert.equal(await m.db.count(m.constants.STORES.QUESTIONS), 1205, '34 + 1,171, nothing overwritten');
   assert.ok(await m.db.get(m.constants.STORES.QUESTIONS, 'DEMO-P1-001'), 'the pre-existing question is untouched');
   assert.ok(await m.db.get(m.constants.STORES.QUESTIONS, 'MPPSC-2019-001'), 'and the new one is there');
 });
@@ -176,9 +187,9 @@ test('re-importing the same file adds nothing', { skip: !haveBank }, async () =>
   const text = await readText('pyq/mymppsc-pyq-bank.json');
   const analysis = await m.importer.analyseBankFile(text, { filename: 'mymppsc-pyq-bank.json' });
   assert.equal(analysis.comparison.newQuestions, 0);
-  assert.equal(analysis.comparison.identicalRecords, 571, 'every record matches what is already stored');
+  assert.equal(analysis.comparison.identicalRecords, 1171, 'every record matches what is already stored');
   assert.equal(analysis.comparison.changedRecords, 0, 'nothing would be overwritten');
   const result = await m.importer.executeImport(analysis, { conflictPolicy: 'skip' });
   assert.equal(result.stats.questionsAdded, 0);
-  assert.equal(await m.db.count(m.constants.STORES.QUESTIONS), 605);
+  assert.equal(await m.db.count(m.constants.STORES.QUESTIONS), 1205);
 });

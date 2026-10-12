@@ -415,6 +415,7 @@ export function compareWithExisting(report, existing = {}) {
   const existingIds = existing.ids instanceof Set ? existing.ids : new Set(existing.ids || []);
   const existingFingerprints = existing.fingerprints instanceof Map ? existing.fingerprints : new Map();
   const existingPaperIds = new Set(existing.paperIds || []);
+  const existingPaperById = existing.paperById instanceof Map ? existing.paperById : new Map();
   const conflicts = [];
   const unchanged = [];
   const updates = [];
@@ -425,6 +426,18 @@ export function compareWithExisting(report, existing = {}) {
     else updates.push(q.id);
     if (conflicts.length < 200) conflicts.push({ id: q.id, kind: unchanged.includes(q.id) ? 'identical' : 'changed' });
   }
+  const paperFields = ['exam', 'year', 'paper_name', 'paper_code', 'set_code', 'language', 'original_question_count', 'duration_minutes', 'total_marks', 'question_order'];
+  const signature = (paper, { ignoreScoring = false } = {}) => JSON.stringify({
+    ...Object.fromEntries(paperFields.map((field) => [field, paper?.[field] ?? null])),
+    ...(ignoreScoring ? {} : { scoring: paper?.scoring ?? null }),
+  });
+  const changedPaperIds = report.papers
+    .filter((paper) => {
+      const prior = existingPaperById.get(paper.paper_id);
+      if (!prior) return false;
+      return signature(paper, { ignoreScoring: Boolean(prior.user_scoring_override) }) !== signature(prior, { ignoreScoring: Boolean(prior.user_scoring_override) });
+    })
+    .map((paper) => paper.paper_id);
   return {
     existingQuestionCount: existingIds.size,
     newQuestions: report.questions.filter((q) => !existingIds.has(q.id)).length,
@@ -433,6 +446,8 @@ export function compareWithExisting(report, existing = {}) {
     changedRecords: updates.length,
     newPapers: report.papers.filter((p) => !existingPaperIds.has(p.paper_id)).length,
     existingPapersTouched: report.papers.filter((p) => existingPaperIds.has(p.paper_id)).length,
+    changedPapers: changedPaperIds.length,
+    changedPaperIds,
     changedQuestionIds: updates,
   };
 }

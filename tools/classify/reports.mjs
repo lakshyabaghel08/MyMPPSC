@@ -195,6 +195,16 @@ export function renderClassificationMarkdown(report, meta = {}) {
  * Build the review report from the built bank plus the app's validation report.
  * The `preserved` section is the audit trail proving nothing was deleted.
  */
+function explanationHasContent(explanation) {
+  if (typeof explanation === 'string') return Boolean(explanation.trim());
+  if (!explanation || typeof explanation !== 'object') return false;
+  if (typeof explanation.correct_reasoning === 'string' && explanation.correct_reasoning.trim()) return true;
+  if ((explanation.option_explanations || []).some((row) => typeof row?.text === 'string' && row.text.trim())) return true;
+  return ['key_concepts', 'revision_takeaways'].some((key) =>
+    (explanation[key] || []).some((value) => typeof value === 'string' ? value.trim() : Boolean(value)),
+  );
+}
+
 export function buildReviewReport(bank, validation, rows, extra = {}) {
   const questions = bank.questions || [];
   const byId = new Map(questions.map((q) => [q.id, q]));
@@ -255,12 +265,12 @@ export function buildReviewReport(bank, validation, rows, extra = {}) {
     verified_differs_from_supplied: questions
       .filter((q) => q.verified_answer?.answer?.length && q.supplied_answer?.answer?.length && q.verified_answer.answer.join(',') !== q.supplied_answer.answer.join(','))
       .map((q) => ({ id: q.id, supplied: q.supplied_answer.answer, verified: q.verified_answer.answer })),
-    explanations_present: questions.filter((q) => q.explanation).length,
-    without_explanation: questions.filter((q) => !q.explanation).length,
     duplicate_ids_in_source: extra.duplicateIds || [],
     unmapped_source_keys: extra.unmappedKeys || [],
     adapter_notes: (extra.recordIssues || []).slice(0, 200),
     rejected_records: (validation.rejected || []).map((r) => ({ id: r.id, reason: r.reason })),
+    explanations_present: questions.filter((q) => explanationHasContent(q.explanation)).length,
+    without_explanation: questions.filter((q) => !explanationHasContent(q.explanation)).length,
   };
 
   const reviewed = extra.reviewedSummary || null;
@@ -269,6 +279,41 @@ export function buildReviewReport(bank, validation, rows, extra = {}) {
   const ai = extra.aiSummary || null;
   const sanitisation = extra.sanitisation || null;
   const sourceAudit = extra.sourceAudit || null;
+  const historicalSourceAudit = extra.historicalSourceAudit || null;
+  const historicalTotals = historicalSourceAudit
+    ? historicalSourceAudit.years.reduce(
+        (totals, year) => ({
+          missing_explanations: totals.missing_explanations + year.missing_explanation_numbers.length,
+          placeholder_explanations: totals.placeholder_explanations + year.placeholder_explanation_numbers.length,
+          empty_option_text: totals.empty_option_text + year.empty_option_text.length,
+        }),
+        { missing_explanations: 0, placeholder_explanations: 0, empty_option_text: 0 },
+      )
+    : { missing_explanations: 0, placeholder_explanations: 0, empty_option_text: 0 };
+  const countValues = (value) => Object.values(value || {}).reduce((sum, count) => sum + (Number(count) || 0), 0);
+  const repairMetadataRemoved = countValues(repair?.metadata_removed);
+  const sanitisedBuildMetadataRemoved = sanitisation
+    ? Number(Boolean(sanitisation.removed.bank_generator)) +
+      Number(Boolean(sanitisation.removed.bank_provenance)) +
+      Number(Boolean(sanitisation.removed.bank_classification_meta)) +
+      countValues(sanitisation.removed.paper_metadata_fields) +
+      countValues(sanitisation.removed.parser_metadata_fields)
+    : 0;
+  const repairProvenanceRemoved = repair
+    ? repair.provenance_moved.question_source_references +
+      repair.answer_sources_blanked +
+      repair.paper_fixes.answer_key_sources_blanked +
+      repair.paper_fixes.source_file_lists_blanked +
+      repairMetadataRemoved +
+      Number(Boolean(repair.provenance_moved.bank_provenance))
+    : 0;
+  const sanitisedProvenanceRemoved = sanitisation
+    ? sanitisation.removed.question_source_references +
+      sanitisation.removed.supplied_answer_sources +
+      sanitisation.removed.paper_source_files.length +
+      sanitisedBuildMetadataRemoved
+    : 0;
+  const preservedAutomaticSchemes = (sanitisation?.marking_scheme_preserved || []).filter((scheme) => scheme.scheme_id).length;
 
   return {
     generated_at: new Date().toISOString(),
@@ -282,22 +327,11 @@ export function buildReviewReport(bank, validation, rows, extra = {}) {
       identical_content_groups: identicalGroups.length,
       ambiguous_classifications: ambiguous.length,
       low_confidence_classifications: lowConfidence.length,
-      // Provenance and escape artefacts are removed by the extraction repair
-      // pass (tools/classify/repair.mjs) before the bank is built; the sanitiser
-      // is the second line of defence. Report both so the number is the truth
-      // about the file the app loads, not about one step of the pipeline.
-      provenance_fields_removed:
-        (repair
-          ? repair.provenance_moved.question_source_references +
-            repair.answer_sources_blanked +
-            repair.paper_fixes.answer_key_sources_blanked +
-            repair.paper_fixes.source_file_lists_blanked
-          : 0) +
-        (sanitisation
-          ? sanitisation.removed.question_source_references + sanitisation.removed.supplied_answer_sources + sanitisation.removed.paper_source_files.length
-          : 0),
+      // The repair pass and final sanitiser both remove build-time provenance;
+      // count every field removed before the app-facing file is written.
+      provenance_fields_removed: repairProvenanceRemoved + sanitisedProvenanceRemoved,
       escapes_repaired: (repair ? repair.text_repairs.occurrences : 0) + (sanitisation ? sanitisation.repaired_escapes.occurrences : 0),
-      papers_with_automatic_scheme: sanitisation ? sanitisation.marking_scheme.length : 0,
+      papers_with_automatic_scheme: sanitisation ? sanitisation.marking_scheme.length + preservedAutomaticSchemes : 0,
       papers_without_scheme: sanitisation ? sanitisation.marking_scheme_unresolved.length : 0,
       reviewed_labels_applied: reviewed ? reviewed.applied.length : 0,
       reviewed_labels_rejected: reviewed ? reviewed.rejected.length : 0,
@@ -311,6 +345,12 @@ export function buildReviewReport(bank, validation, rows, extra = {}) {
       ai_labels_malformed: ai ? ai.malformed.length : 0,
       source_blocks_detected: sourceAudit ? sourceAudit.stats.question_blocks_detected : null,
       records_excluded_by_source_parser: sourceAudit ? sourceAudit.excluded.length : 0,
+      historical_source_questions: historicalSourceAudit?.question_count ?? 0,
+      historical_source_papers: historicalSourceAudit?.paper_count ?? 0,
+      historical_source_repairs: historicalSourceAudit?.repairs?.length ?? 0,
+      historical_missing_explanations: historicalTotals.missing_explanations,
+      historical_placeholders_removed: historicalTotals.placeholder_explanations,
+      historical_empty_option_texts_preserved: historicalTotals.empty_option_text,
     },
     missing_answers: missingAnswers,
     near_duplicates: nearDuplicates,
@@ -318,6 +358,7 @@ export function buildReviewReport(bank, validation, rows, extra = {}) {
     ambiguous_classifications: ambiguous,
     low_confidence_classifications: lowConfidence,
     source_extraction: sourceAudit,
+    historical_sources: historicalSourceAudit,
     extraction_repairs: repair,
     reviewed_merge: reviewed
       ? {
@@ -355,8 +396,9 @@ export function buildReviewReport(bank, validation, rows, extra = {}) {
       : null,
     integrity,
     preserved: {
-      statement:
-        'No source record was deleted, rewritten or merged to produce this bank. Question text, options, stored answers and explanations are carried over verbatim; only classification fields, the automatic marking scheme and review metadata were added. Source provenance (book names, page references, answer sources, key-issue labels) is deliberately not part of the app-facing bank — it is recorded in the sanitisation section of this report instead. Where two records look alike both are kept and flagged here instead of being merged.',
+      statement: historicalSourceAudit
+        ? 'All 571 pre-existing 2019–2024 questions retain their ids, years, numbers, wording, options, explanations, supplied answers and taxonomy labels. Internal metadata is sanitized and their scoring metadata is updated to the latest-pattern practice policy. All 600 historical source records are retained with their printed keys; no question was merged or dropped. Only exact “Factual Question” placeholders were changed to null, and the narrowly scoped, source-evidenced extraction repairs listed in historical_sources were applied. Preliminary labels, review flags and source provenance remain in this report, not in the app-facing JSON. Similar-looking questions are flagged but never deduplicated.'
+        : 'No source question record was deleted or merged. Question text, options, stored answers and explanations are carried over except for explicitly reported safe extraction repairs. Source provenance (book names, page references, answer sources, key-issue labels) is deliberately not part of the app-facing bank — it is recorded in the sanitisation section of this report instead. Where two records look alike both are kept and flagged here instead of being merged.',
       questions_kept: questions.length,
       review_flags_added: (rows || []).filter((r) => r.flags?.length).length,
     },
@@ -370,6 +412,100 @@ function uniqIds(issues) {
 function firstVariant(q) {
   const variants = q.language_variants || {};
   return variants.en || Object.values(variants)[0] || {};
+}
+
+export function renderHistoricalSourceAuditMarkdown(audit) {
+  const L = [];
+  L.push('# Historical source integration audit — 2013–2018');
+  L.push('');
+  L.push(audit.statement || 'Internal source audit.');
+  L.push('');
+  L.push(`Integrated records: **${audit.question_count} questions across ${audit.paper_count} papers**; expected ${audit.expected_questions_per_paper} per year. Rejected: **${audit.records_rejected}**. Merged/deduplicated: **${audit.records_merged}**.`);
+  L.push('');
+  L.push('Every source package was adapted by its own schema branch. The README counts, structured source records and review-report entries are checked before a build succeeds. Printed answer keys remain supplied, not independently verified; preliminary source labels are audit-only and no AI provider was run.');
+  L.push('');
+  L.push('| Year | Adapter schema | Questions | Review-flagged | Missing explanations | Placeholder explanations cleared | Empty option texts preserved | Safe repairs | README/report checks |');
+  L.push('| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | --- |');
+  for (const year of audit.years || []) {
+    const checks = year.source_report_checks || {};
+    const checkResults = [
+      checks.question_count_matches,
+      checks.missing_answer_numbers_match,
+      checks.missing_explanation_numbers_match,
+      checks.review_count_matches,
+      checks.source_flag_count_matches_review_items,
+      checks.readme_question_count_matches,
+      checks.readme_four_option_count_matches,
+      checks.readme_review_flag_count_matches,
+      checks.readme_missing_answer_count_matches,
+      checks.readme_missing_explanation_count_matches,
+    ].filter((value) => value !== null && value !== undefined);
+    const checkLabel = checkResults.every(Boolean) ? `${checkResults.length}/${checkResults.length} match` : `${checkResults.filter(Boolean).length}/${checkResults.length} match — see details`;
+    const repairCount = (audit.repairs || []).filter((repair) => repair.year === year.year).length;
+    L.push(`| ${year.year} | ${year.source_schema} | ${year.source_record_count} | ${year.review_report?.flagged_record_count ?? '—'} | ${year.missing_explanation_numbers.length} | ${year.placeholder_explanation_numbers.length} | ${year.empty_option_text.length} | ${repairCount} | ${checkLabel} |`);
+  }
+  L.push('');
+  L.push('## Readme and report consistency');
+  L.push('');
+  for (const year of audit.years || []) {
+    const checks = year.source_report_checks || {};
+    const mark = (value) => value === null || value === undefined ? 'not stated in that file' : value ? 'match' : 'MISMATCH';
+    L.push(`- **${year.year}:** ${year.readme?.declared_question_count ?? 'README question count not stated'} questions in README (${mark(checks.readme_question_count_matches)}); source-review count ${mark(checks.question_count_matches)}; printed-answer gaps ${mark(checks.missing_answer_numbers_match)}; missing-explanation list/count ${mark(checks.missing_explanation_numbers_match)}; source flags vs review items ${mark(checks.source_flag_count_matches_review_items)}.`);
+    const placeholders = year.placeholder_explanation_numbers || [];
+    const empty = year.empty_option_text || [];
+    if (placeholders.length) L.push(`  - Exact generic placeholders cleared to null: Q${placeholders.join(', Q')}.`);
+    if (empty.length) L.push(`  - Empty option text kept empty (not reconstructed): Q${empty.join(', Q')}.`);
+    const sourceDuplicates = year.source_duplicate_option_keys || [];
+    if (sourceDuplicates.length) L.push(`  - Source option-key anomaly repaired from the verbatim source snippet: ${sourceDuplicates.map((entry) => `Q${entry.question_number} (${entry.keys.join('/')})`).join(', ')}.`);
+  }
+  L.push('');
+  L.push('The source packages declare four options per question. Every adapted record retains four positions, every printed answer maps to an option, and no record is silently skipped. Blank option text, missing explanations and source flags remain listed here rather than being filled with guesses.');
+  L.push('');
+  L.push('## Source-provided preliminary subject counts (audit only)');
+  L.push('');
+  L.push('These labels were **not** imported as final classifications. The deterministic rules classify the app bank; the canonical taxonomy and coverage are in `classification-report.md`.');
+  L.push('');
+  for (const year of audit.years || []) {
+    const counts = Object.entries(year.preliminary_classification_counts || {}).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+    L.push(`- **${year.year}:** ${counts.map(([label, count]) => `${label} ${count}`).join('; ') || 'no preliminary labels'}.`);
+  }
+  L.push('');
+  L.push('## Review-report corrections');
+  L.push('');
+  if (!(audit.review_report_corrections || []).length) L.push('None.');
+  else {
+    L.push('Three stale 2018 review notes were corrected after checking the matching source question, options, printed key and explanation. Question wording, options, printed answers and explanations were not changed by these report corrections.');
+    L.push('');
+    L.push('| Question | Prior note | Corrected note / action | Reason |');
+    L.push('| --- | --- | --- | --- |');
+    for (const correction of audit.review_report_corrections) {
+      L.push(`| ${correction.year} Q${correction.question_number} | ${escapeCell(correction.before, 1000)} | ${correction.after ? escapeCell(correction.after, 1000) : 'Removed unrelated note; generic placeholder flag retained'} | ${escapeCell(correction.reason, 1000)} |`);
+    }
+  }
+  L.push('');
+  L.push('## Safe source-text repairs');
+  L.push('');
+  const nonPlaceholderRepairs = (audit.repairs || []).filter((repair) => !/exact generic placeholder/i.test(repair.reason));
+  if (!nonPlaceholderRepairs.length) L.push('None.');
+  else {
+    L.push('Only source-evidenced extraction/formatting artefacts were repaired; full before/after values remain in the JSON audit.');
+    L.push('');
+    L.push('| Question | Field | Repair |');
+    L.push('| --- | --- | --- |');
+    for (const repair of nonPlaceholderRepairs) L.push(`| ${repair.year} Q${repair.question_number} | ${repair.field} | ${escapeCell(repair.reason)} |`);
+  }
+  L.push('');
+  L.push(`Historical missing explanations: **${(audit.years || []).reduce((count, year) => count + year.missing_explanation_numbers.length, 0)}**. Exact generic “Factual Question” placeholders cleared: **${(audit.years || []).reduce((count, year) => count + year.placeholder_explanation_numbers.length, 0)}**. No explanation was written or expanded.`);
+  L.push('');
+  L.push(`Review-report/question-text mismatches: **${(audit.report_mismatches || []).length}**. Extra report-only flags: **${(audit.report_flag_differences || []).length}**. These were zero at the successful build.`);
+  L.push('');
+  L.push('## Marking and answer verification');
+  L.push('');
+  L.push(audit.marking_policy || 'Historical scoring schemes are not assumed.');
+  L.push('');
+  L.push(audit.answer_policy || 'Printed answer keys remain source-supplied and unverified.');
+  L.push('');
+  return `${L.join('\n').trimEnd()}\n`;
 }
 
 export function renderReviewMarkdown(report) {
@@ -399,7 +535,16 @@ export function renderReviewMarkdown(report) {
   L.push(`| Papers given an automatic MPPSC scheme | ${report.totals.papers_with_automatic_scheme} |`);
   L.push(`| Papers with no verified scheme (app asks for rules) | ${report.totals.papers_without_scheme} |`);
   L.push(`| AI labels applied / preserved / rejected / malformed | ${report.totals.ai_labels_applied} / ${report.totals.ai_labels_preserved} / ${report.totals.ai_labels_rejected} / ${report.totals.ai_labels_malformed} |`);
+  if (report.historical_sources) {
+    L.push(`| Historical 2013–2018 source questions / papers | ${report.totals.historical_source_questions} / ${report.totals.historical_source_papers} |`);
+    L.push(`| Historical missing explanations / placeholders cleared | ${report.totals.historical_missing_explanations} / ${report.totals.historical_placeholders_removed} |`);
+    L.push(`| Historical safe source-text repairs | ${report.totals.historical_source_repairs} |`);
+  }
   L.push('');
+  if (report.historical_sources) {
+    L.push(renderHistoricalSourceAuditMarkdown(report.historical_sources).trimEnd());
+    L.push('');
+  }
   L.push('## Missing answer keys');
   L.push('');
   if (!report.missing_answers.length) L.push('None.');
@@ -632,18 +777,31 @@ export function renderReviewMarkdown(report) {
       L.push('```');
       L.push('');
     }
+    if (san.removed.bank_generator) {
+      L.push('The bank-level generator/build note was removed from the app-facing JSON:');
+      L.push('');
+      L.push('```json');
+      L.push(JSON.stringify(san.removed.bank_generator, null, 2));
+      L.push('```');
+      L.push('');
+    }
+    const removedPaperMetadata = Object.entries(san.removed.paper_metadata_fields || {});
+    if (removedPaperMetadata.length) {
+      L.push(`Internal paper metadata fields removed: ${removedPaperMetadata.map(([key, count]) => `\`${key}\` (${count})`).join(', ')}.`);
+      L.push('');
+    }
     if (san.removed.paper_source_files.length) {
       L.push(`Source files no longer recorded in the bank: ${san.removed.paper_source_files.map((f) => `\`${f.file || 'unknown'}\` (${f.paper_id})`).join(', ')}.`);
       L.push('');
     }
-    L.push('### Automatic marking scheme written into each paper');
+    L.push('### Marking schemes retained or resolved for each paper');
     L.push('');
     if (!san.marking_scheme.length && !san.marking_scheme_unresolved.length && !(san.marking_scheme_preserved || []).length) L.push('No papers.');
     else {
       L.push('| Paper | Year | Scheme | Correct | Incorrect | Unanswered | Total | Duration | Evidence confidence |');
       L.push('| --- | --- | --- | --- | --- | --- | --- | --- | --- |');
       for (const m of san.marking_scheme_preserved || []) {
-        L.push(`| \`${m.paper_id}\` | ${m.year ?? '—'} | the paper stated its own rules — left untouched | +${m.marks_per_correct} | — | — | — | — | source |`);
+        L.push(`| \`${m.paper_id}\` | ${m.year ?? '—'} | ${m.scheme_id || 'pre-existing declared rules'} | +${m.marks_per_correct} | ${m.negative_marks_per_incorrect ? `−${m.negative_marks_per_incorrect}` : '0'} | ${m.marks_for_unanswered} | ${m.total_marks ?? '—'} | ${m.duration_minutes ?? '—'} | preserved |`);
       }
       for (const m of san.marking_scheme) {
         L.push(
@@ -708,6 +866,7 @@ export function renderReviewMarkdown(report) {
   return `${L.join('\n')}\n`;
 }
 
-function escapeCell(text) {
-  return String(text || '').replace(/\|/g, '\\|').replace(/\n/g, ' ').slice(0, 140);
+function escapeCell(text, maxLength = 140) {
+  const escaped = String(text || '').replace(/\|/g, '\\|').replace(/\n/g, ' ');
+  return escaped.slice(0, maxLength);
 }

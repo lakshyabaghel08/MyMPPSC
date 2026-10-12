@@ -2,7 +2,7 @@
 
 A **local-first MPPSC State Service Preliminary Examination practice app**. Previous-year paper simulations, topic and custom practice, smart practice, a mistake book, adaptive revision scheduling, analytics and a study planner — all running in your browser, with **no account, no server and no network calls after the page loads**.
 
-Everything you import and record is stored in IndexedDB on your device. The question bank is data, not code: adding a new paper means importing a JSON file, never rebuilding the app. The repository also ships a classified MPPSC Prelims Paper I bank for **2019–2024** (571 questions, 6 papers) which the app loads **from the repository itself** — a fresh install has the papers without anyone importing a file by hand.
+Everything you import and record is stored in IndexedDB on your device. The question bank is data, not code: adding a new paper means importing a JSON file, never rebuilding the app. The repository also ships a classified MPPSC Prelims Paper I bank for **2013–2024** (1,171 questions, 12 papers) which the app loads **from the repository itself** — a fresh install has the papers without anyone importing a file by hand.
 
 ---
 
@@ -15,7 +15,7 @@ npm run serve        # serves the folder on http://localhost:8080
 
 Then open <http://localhost:8080/>. On first load the app fetches the bundled bank from `data/pyq/mymppsc-pyq-bank.json`, validates it with the same validator the import screen uses, and writes it to your local database — no upload, no manual import. A **clearly-labelled synthetic demonstration bank** remains one click away (Question Bank & Imports → *Demonstration data*) for exploring screens; it is never presented as genuine previous-year content.
 
-**The bundled bank is real previous-year material, transcribed from a solved book, and its answer keys are reproduced as printed there.** They have not been verified against an official MPPSC key, and the app never calls a stored key official. Eight questions the book printed without a key are answered by a committed human review file, with the reason for each recorded in the audit — none of them is a guess, and none of them is an official key. A question that ends up without a key is stored keyless and excluded from scoring. The bank carries no record of how a label or an explanation was produced: no confidence figures, no reviewer names, no explanation statuses — see `docs/PYQ_AUDIT.md` for what is unresolved and why.
+**The bundled bank is real previous-year material.** All 1,171 stored keys are supplied but none has been verified against an official MPPSC key: the 2013–2018 packages carry their printed keys, while eight 2019–2024 source omissions were resolved in a committed human review file. No key is called official. The latest reported +3/−1/0 marking pattern is used uniformly for practice across every bundled year at the user’s direction; this is not a claim about the historical rules for each sitting. See `docs/PYQ_AUDIT.md` for the source and classification audit.
 
 Any static file server works — the app is plain HTML/CSS/ES modules. To run it offline as a PWA, serve it over `http(s)` (the service worker cannot register on `file://`).
 
@@ -54,8 +54,8 @@ The bank is built, and can be rebuilt, from the committed source and review
 files — see `docs/PYQ_PIPELINE.md` and `docs/PYQ_AUDIT.md`.
 
 ```bash
-npm test             # 194 tests: services, end-to-end journey, UI journey, bank loader, PYQ pipeline and PYQ analysis tests
-npm run check        # 847 static integrity checks (imports, routes, assets, contrast, tokens, shell, bundled bank)
+npm test             # service, UI journey, bank loader, historical-source adapter, PYQ pipeline and analysis suites
+npm run check        # static integrity checks for imports, routes, assets, contrast, tokens, shell and the production bank
 npm run audit:ui     # alias for npm run check (static UI + contrast + token audit)
 python3 tools/make-icons.py   # regenerate the PWA icons (no dependencies)
 node tools/build-bank.mjs --help
@@ -71,14 +71,14 @@ working, and `npm run check` fails if any of them is undone:
 
 * **Stay relative.** A project site lives at `https://<user>.github.io/<repo>/`, so a leading slash resolves to the domain root and 404s. Every URL in `index.html`, `sw.js`, `manifest.webmanifest` and `css/app.css` is relative (`css/app.css`, `./js/app.js`), the service worker is registered as `'sw.js'` with `scope: './'`, and its precache list uses `./` prefixes. The same files therefore also work on a custom domain or from `npm run serve` with no changes.
 * **Keep an empty `.nojekyll` at the repository root.** Without it Pages runs the tree through Jekyll, which ignores paths that start with an underscore and adds a rebuild step that can drop files.
-* **Bump the service-worker cache version** (`const VERSION = 'v1.1.0-9';` in `sw.js`) in the same commit as any change to a precached file — HTML, CSS, JS, icons, demo data. The old caches are deleted on `activate`, which is how a browser that cached a broken shell drops it. If the version did not change, that browser would keep serving the broken files.
+* **Bump the service-worker cache version** (`const VERSION = 'v1.1.0-14';` in `sw.js`) in the same commit as any change to a precached file — HTML, CSS, JS, icons, demo data. The old caches are deleted on `activate`, which is how a browser that cached a broken shell drops it. If the version did not change, that browser would keep serving the broken files.
 * **Verify after deploying:** load the site, check the console for a failed request, then reload once (or unregister the old worker in DevTools → Application → Service Workers) to confirm the new build is the one being served.
 
 ## What it does
 
 | Area | Behaviour |
 | --- | --- |
-| **PYQ Test Centre** | Full-paper simulations in the **original question order** with the paper's own duration, plus resume/discard for unfinished sessions. Incomplete papers, unknown scoring rules, disputed keys and missing keys are labelled on the paper card *before* you start. |
+| **PYQ Test Centre** | Full-paper practice in the **stored question order** with a configured time limit when available, plus resume/discard for unfinished sessions. The bundled 2013–2024 bank uses the latest reported +3/−1/0 scheme as a practice policy, not as evidence of historical rules. Incomplete papers, unknown scoring rules, disputed keys and missing keys are labelled before you start. |
 | **Topic Practice** | Filter by subject, topic, subtopic, attempt history (year, paper, question type and language tuck behind "More filters"). Live counts before you start. A deep link (`#/topic/<Subject>` or `#/topic/<Subject>||<Topic>`) preselects the filters, which is what the PYQ Analysis and dashboard tables link to. |
 | **PYQ Analysis** | Counts the previous-year questions stored on this device by subject and by topic, with what each paper contributed to each group. It stops at the topic level: subtopic labels come from an import, not from the printed paper, so counting them would describe the bank instead of the exam. Every count links through to practice on that group. |
 | **Custom Test** | Assemble a set from your own selection — subjects and topics up front, everything else optional. Always labelled as a custom set — never as an authentic paper. |
@@ -91,7 +91,7 @@ working, and `npm run check` fails if any of them is undone:
 | **Settings & Backup** | Preferences, scoring defaults, revision rules, full JSON backup with SHA-256 integrity, validated restore (merge or replace), storage diagnostics and a guarded destructive zone. |
 | **Offline / PWA** | Service worker precaches the shell; the app keeps working offline. |
 
-Answer-key integrity is enforced throughout: a **supplied** key is never overwritten, an independently **verified** answer is stored alongside it with evidence, keys can be **flagged as disputed**, the policy for which key judges an answer is a setting, and a paper whose scoring rules are unknown **refuses to be scored** until you configure them.
+Answer-key integrity is enforced throughout: a **supplied** key is never overwritten, an independently **verified** answer is stored alongside it with evidence, keys can be **flagged as disputed**, and the policy for which key judges an answer is a setting. The bundled 2013–2024 papers automatically use the latest practice marking pattern (+3/−1/0); the app does not claim that pattern governed every historical sitting.
 
 Starting a practice session is deliberately low-config. On Topic Practice, Custom Test and Smart Practice the only decisions up front are **what to include**, **how many questions** and **feedback timing**; every other session rule (timing, scoring, confidence, option order, repeats) is pre-filled from your Settings defaults, summarised in one plain-language line, and editable under a collapsed **Advanced settings** disclosure.
 
@@ -99,7 +99,7 @@ Starting a practice session is deliberately low-config. On Topic Practice, Custo
 
 * No login, backend, cloud sync or API calls. No telemetry.
 * **No AI or model runs inside the app.** Explanations, answers and classifications are imported data: the app displays them exactly as supplied, says when a question has none, and lets you correct anything with the original preserved. Nothing is generated, and no review status is claimed for prose the app cannot verify.
-* No bundled MPPSC syllabus and no claim to official content. The bundled 2019–2024 bank is transcribed previous-year material whose keys are the source's printed ones, **unverified**; the demonstration dataset is synthetic filler and badged as such everywhere it appears.
+* No bundled MPPSC syllabus and no claim to official content. The bundled 2013–2024 bank is transcribed previous-year material whose stored keys are **unverified** against official MPPSC keys; its latest-pattern scoring is a practice policy, not historical proof. The demonstration dataset is synthetic filler and badged as such everywhere it appears.
 * No exam-prediction claims, no invented questions to "complete" an incomplete paper, and no guarantee that revision makes anything stick.
 * No source-book name, coaching provider, page reference or "official/unofficial key" label anywhere in the bundled bank or the interface. That provenance is kept in the build-time reports (`data/pyq/review-report.md`, `docs/PYQ_AUDIT.md`), not in the app.
 
@@ -148,8 +148,8 @@ Layering is strict: `core → services → ui`. Views are HTML strings plus dele
 | `docs/SCHEMA.md` | The question-bank JSON schema: every field, versioning rules, validation behaviour. |
 | `docs/DATA_PIPELINE.md` | How to produce banks outside the app, with the intake format and worked example. |
 | `docs/PYQ_PIPELINE.md` | The PYQ classification pipeline: the rule engine, the taxonomy, MP-versus-India attribution, the extraction repairs, the human review pass, the app-facing sanitiser and the reports it writes. |
-| `docs/MARKING.md` | The automatic marking schemes: the 2019–2025 and 2026-onwards patterns, how the scheme is selected per paper, what is verified and what is only reported, and how to add a year. |
-| `docs/PYQ_AUDIT.md` | Internal audit of the bundled 2019–2024 bank: coverage, what was repaired, the eight questions the source left keyless and how each was resolved, the two extraction losses that could not be recovered, the numbering gaps, and the remaining limitations. |
+| `docs/MARKING.md` | The latest reported +3/−1/0 pattern used uniformly for practice from 2013 onward, the user-directed retroactive application caveat, and the evidence limitations. |
+| `docs/PYQ_AUDIT.md` | Internal audit of the bundled 2013–2024 bank: 1,171 questions across 12 papers, six strict historical source adapters, source/report checks, repairs, classification coverage, unresolved content, answer-key caveats, and marking policy. |
 | `docs/TESTING.md` | What the test suite covers, what it does not, and a manual verification checklist. |
 | `docs/LIMITATIONS.md` | Honest list of what this build does not do or cannot guarantee. |
 | `docs/IMPLEMENTATION_REPORT.md` | Feature-by-feature report against the original specification, the UI overhaul before/after measurements, the tests actually run and their results, and the remaining gaps. |
@@ -160,4 +160,4 @@ Your data never leaves the device, which also means **you are responsible for ba
 
 ## Licence and content notice
 
-The application code is provided as-is for personal study use. Content in this repository is study material, not commission material: the bundled 2019–2024 bank is transcribed previous-year material (571 questions, six papers, every one keyed — 563 from the printed source and 8 from a committed review pass; 2 records the extraction could not recover — see `docs/PYQ_AUDIT.md`), the demonstration bank and the sample intake file are synthetic filler, and the marking schemes say which patterns are verified and which are only reported. Verify any key against the commission's own key before relying on it, and treat scores as practice feedback, not results.
+The application code is provided as-is for personal study use. Content in this repository is study material, not commission material: the bundled 2013–2024 bank is transcribed previous-year material (1,171 questions across twelve papers, every one carrying a supplied key; none verified against an official key; two legacy extraction records unrecovered — see `docs/PYQ_AUDIT.md`), the demonstration bank and the sample intake file are synthetic filler, and the marking schemes say which patterns are verified and which are only reported. Verify any key against the commission's own key before relying on it, and treat scores as practice feedback, not results.

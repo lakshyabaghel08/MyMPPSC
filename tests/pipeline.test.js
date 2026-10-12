@@ -222,13 +222,14 @@ test('the sanitiser writes the marking scheme and removes every source claim', (
   assert.equal(clean.papers[0].paper_name, 'MPPSC 2019 Prelims Paper I (General Studies)');
   assert.equal('answer_key' in clean.papers[0], false);
   assert.equal('source_files' in clean.papers[0], false);
-  assert.equal('source_kind' in clean.papers[0].metadata, false);
+  assert.equal('metadata' in clean.papers[0], false, 'internal paper build metadata is stripped');
   assert.equal(clean.papers[0].scoring.rules_known, true);
-  assert.equal(clean.papers[0].scoring.marks_per_correct, 2);
-  assert.equal(clean.papers[0].scoring.negative_marking_enabled, false);
+  assert.equal(clean.papers[0].scoring.marks_per_correct, 3);
+  assert.equal(clean.papers[0].scoring.negative_marks_per_incorrect, 1);
+  assert.equal(clean.papers[0].scoring.negative_marking_enabled, true);
   assert.equal(clean.papers[0].scoring.marks_for_unanswered, 0);
-  assert.equal(clean.papers[0].scoring.scheme_id, 'mppsc-sse-prelims-2019-2025');
-  assert.equal(clean.papers[0].total_marks, 200);
+  assert.equal(clean.papers[0].scoring.scheme_id, 'mppsc-sse-prelims-latest-practice');
+  assert.equal(clean.papers[0].total_marks, 300);
   assert.equal(clean.papers[0].duration_minutes, 120);
 
   // A year no verified scheme covers keeps its rules unknown: the app asks.
@@ -255,7 +256,8 @@ test('the sanitiser writes the marking scheme and removes every source claim', (
   assert.equal(q2.explanation.correct_reasoning, 'a\nb', 'the escape becomes a real newline');
   assert.equal(report.repaired_escapes.occurrences, 1);
   assert.equal(report.answer_status.missing, 1);
-  assert.match(clean.generator.notes, /reproduced as provided/i);
+  assert.equal('generator' in clean, false, 'internal generator/build metadata is stripped');
+  assert.ok(report.removed.bank_generator, 'the generator block is retained in the internal audit');
   assert.ok(!/solved-book|coaching/i.test(JSON.stringify(clean)), 'no source name survives anywhere in the bank');
 });
 
@@ -316,13 +318,18 @@ test('the committed bank is the sanitised one: scheme written, no provenance, no
   assert.equal('classification_meta' in bank, false, 'the shipped file describes the questions, not the build that produced them');
   assert.equal(bank.questions.some((q) => 'classification_source' in q || 'classification_confidence' in q), false, 'no per-record label provenance in the shipped file');
 
+  assert.equal(bank.questions.length, 1171);
+  assert.equal(bank.papers.length, 12);
+  assert.equal('generator' in bank, false);
   for (const paper of bank.papers) {
     assert.match(paper.paper_id, /^MPPSC-\d{4}-P1$/, `${paper.paper_id} should be an app-facing id`);
-    assert.equal(paper.scoring.rules_known, true, `${paper.paper_id} must carry its scheme`);
-    assert.equal(paper.scoring.scheme_id, 'mppsc-sse-prelims-2019-2025');
-    assert.equal(paper.scoring.marks_per_correct, 2);
-    assert.equal(paper.scoring.negative_marking_enabled, false);
-    assert.equal(paper.original_question_count, 100, 'the official paper length comes from the scheme');
+    assert.equal(paper.scoring.rules_known, true, `${paper.paper_id} must carry the latest practice scheme`);
+    assert.equal(paper.scoring.scheme_id, 'mppsc-sse-prelims-latest-practice');
+    assert.equal(paper.scoring.marks_per_correct, 3);
+    assert.equal(paper.scoring.negative_marking_enabled, true);
+    assert.equal(paper.scoring.negative_marks_per_incorrect, 1);
+    assert.equal(paper.total_marks, 300);
+    assert.equal(paper.original_question_count, 100, 'source paper length is retained');
   }
   const statuses = new Set(bank.questions.map((q) => q.answer_key_status));
   assert.deepEqual([...statuses].sort(), ['supplied'], 'the committed answer review resolved the last keyless questions');

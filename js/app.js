@@ -216,7 +216,7 @@ function helpDialog() {
         <h3>What this app does not do</h3>
         <ul class="small">
           <li>It does not generate explanations, answers or classifications with AI. Those arrive with the imported question bank, produced and reviewed by your separate preparation pipeline.</li>
-          <li>It does not verify anything for you. The bundled 2019–2024 bank is transcribed previous-year material whose keys have not been checked against an official MPPSC key, and any other paper you want still has to be imported and validated.</li>
+          <li>It does not verify anything for you. The bundled 2013–2024 bank is transcribed previous-year material whose stored keys have not been checked against an official MPPSC key. The latest reported marking pattern is used for practice across every bundled year, not claimed as the historical rule for each paper.</li>
           <li>It does not predict future examinations. Topic frequency is a study-prioritisation aid only.</li>
           <li>It does not schedule revision as a guarantee of retention — the interval is a study aid based on your recorded performance.</li>
           <li>Multiple-correct questions use exact set matching (no partial credit) unless a future scoring rule adds it.</li>
@@ -427,7 +427,7 @@ async function boot() {
   try {
     await loadSettings();
     await refreshQuestionIndex({ silent: true });
-    // The MPPSC 2019–2024 bank ships with the repository and is loaded here, so
+    // The MPPSC 2013–2024 bank ships with the repository and is loaded here, so
     // a fresh installation never has to import a file by hand. The loader is
     // idempotent (it compares the file's SHA-256 with the one it recorded) and
     // non-destructive (it merges through the normal importer, preserving

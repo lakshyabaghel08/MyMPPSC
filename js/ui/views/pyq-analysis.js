@@ -73,9 +73,9 @@ export default {
       return `
         <div class="screen-head pyq-screen-head">
           <div>
-            <span class="section-kicker">MPPSC Prelims Paper 1 · Question Bank Analysis</span>
+            <span class="section-kicker">MPPSC Prelims Paper I · Question Bank Analysis</span>
             <h1>PYQ Analysis</h1>
-            <p class="muted">Analyses MPPSC Prelims Paper 1 previous-year questions (2019–2024) by subject and topic — a study map of the stored papers, not a forecast of the next one.</p>
+            <p class="muted">Analyses the MPPSC Prelims questions stored on this device by subject and topic — a study map of the available papers, not a forecast of the next one.</p>
           </div>
         </div>
         ${card({
@@ -128,7 +128,7 @@ export default {
       ? `Highest weightage in bank: ${topThreeText}. Hover or focus any bar to inspect details.`
       : `${summary.total} question(s) across ${summary.subjectCount} subject(s).`;
 
-    const spanLabel = summary.yearSpan !== '—' ? summary.yearSpan : '2019–2024';
+    const spanLabel = summary.yearSpan !== '—' ? summary.yearSpan : 'years not stated';
 
     const subjectFooterRow = [
       `<strong>Total (${summary.subjectCount} subject${summary.subjectCount === 1 ? '' : 's'}${summary.unclassified ? ' + unplaced' : ''})</strong>`,
@@ -142,9 +142,9 @@ export default {
     return `
       <div class="screen-head pyq-screen-head">
         <div class="pyq-head-copy">
-          <span class="section-kicker">MPPSC Prelims Paper 1 · Question Bank Analysis</span>
+          <span class="section-kicker">MPPSC Prelims Paper I · Question Bank Analysis</span>
           <h1>PYQ Analysis</h1>
-          <p class="muted">Analyses MPPSC Prelims Paper 1 questions (${esc(spanLabel)}) stored on this device by subject and by topic. A study map of the stored papers — not a forecast of the next one.</p>
+          <p class="muted">Analyses MPPSC Prelims Paper I questions (${esc(spanLabel)}) stored on this device by subject and by topic. A study map of the stored papers — not a forecast of the next one.</p>
         </div>
         <div class="pyq-head-meta" aria-label="Question bank summary metadata">
           <span class="pyq-meta-pill">${icon('test-centre', { size: 15 })}<span><strong>${esc(String(summary.papers))}</strong> paper(s) · <strong>${esc(String(summary.total))}</strong> questions</span></span>
@@ -178,7 +178,7 @@ export default {
           value: `${summary.withKey}/${summary.total} <small>(${pct(keyCoverageRatio, 0)})</small>`,
           sub: summary.withoutKey ? `${summary.withoutKey} question(s) to resolve in the bank` : `nothing outstanding · ${summary.explanation} explained`,
           tone: summary.withoutKey ? 'warn' : 'ok',
-          source: 'verified',
+          source: 'measured',
         })}
         ${tile({
           label: 'Unplaced questions',

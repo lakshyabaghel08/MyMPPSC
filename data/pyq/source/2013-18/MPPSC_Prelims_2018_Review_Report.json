@@ -264,7 +264,7 @@
       "question": "How many seats are reserved for Scheduled Castes in the Lok Sabha?",
       "printed_answer": "D",
       "review_flags": [
-        "Question/key should be checked against the historical tournament timeline; printed answer is Australia."
+        "The supplied explanation cites Andhra Pradesh reserved seats but the question asks for the Lok Sabha total; verify the key and explanation against a reliable parliamentary source."
       ]
     },
     {
@@ -577,8 +577,7 @@
       "question": "Under which one of the following Sections of the Protection of Civil Rights Act, 1955 has 'protection of action taken in good faith' been provided?",
       "printed_answer": "D",
       "review_flags": [
-        "Explanation is only a generic placeholder, not an actual explanation.",
-        "Source explanation is only a placeholder; answer requires verification against IPL 2016 venue."
+        "Explanation is only a generic placeholder, not an actual explanation."
       ]
     },
     {
@@ -659,7 +658,7 @@
       "question": "The second largest river basin of India is",
       "printed_answer": "C",
       "review_flags": [
-        "Potential inconsistency: printed answer B conflicts with the supplied explanation stating IMF loans go to member countries only."
+        "The supplied explanation discusses the Godavari’s length and drainage area but does not clearly establish the second-largest river-basin ranking; verify that statistic independently."
       ]
     }
   ],

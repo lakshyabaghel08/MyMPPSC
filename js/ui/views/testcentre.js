@@ -1,10 +1,10 @@
 /**
  * testcentre.js — PYQ Test Centre.
  *
- * Select a genuine previous-year paper and attempt it in its original order,
- * with the source duration and the source scoring rules. Papers whose metadata is
- * incomplete or whose rules are unknown are clearly flagged instead of being
- * presented as faithful simulations. Unfinished tests can be resumed.
+ * Select a previous-year paper and attempt it in its stored order. Source
+ * metadata is distinguished from the latest-pattern practice scoring policy;
+ * applying that policy to older papers is not a claim about historical rules.
+ * Unfinished tests can be resumed.
  */
 
 import { state } from '../../core/state.js';
@@ -26,19 +26,41 @@ import {
 import { fmtDate, fmtMarks, fmtPct, fmtClock } from '../../core/util.js';
 import { paperSummary } from '../../services/select.js';
 import * as tests from '../../services/tests.js';
+import { resolveScoringRules } from '../../services/scoring.js';
 import { configFields, readConfig, mountConfigFields, incompletePaperNotice, scoringUnknownNotice, startPracticeTest } from './shared.js';
 
 function paperCard(paper, summary) {
   const questions = summary.present;
   const ready = questions > 0;
+  const resolved = resolveScoringRules({ paper });
+  const hasScoring = Boolean(resolved.rules);
+  const isLatestPractice = resolved.schemeId === 'mppsc-sse-prelims-latest-practice' && !paper.user_scoring_override;
   const flags = [];
   if (summary.placeholder) flags.push(badge('paper metadata missing', 'bad'));
   if (summary.complete === false) flags.push(badge('incomplete paper', 'warn'));
-  if (!summary.scoringKnown) flags.push(badge('scoring rules unknown', 'warn'));
+  if (!hasScoring) flags.push(badge('scoring rules unknown', 'warn'));
   if (summary.disputed) flags.push(badge(`${summary.disputed} disputed answer(s)`, 'bad'));
   if (summary.missingAnswers) flags.push(badge(`${summary.missingAnswers} question(s) without a key`, 'warn'));
   if (paper.is_demonstration) flags.push(demoBadge(true));
   if (summary.bilingual) flags.push(badge(`${summary.bilingual} bilingual`, 'info'));
+
+  const scoringBadge = isLatestPractice
+    ? badge('latest pattern · practice only', 'info')
+    : hasScoring
+      ? sourceChip('supplied', 'paper metadata')
+      : sourceChip('unavailable', 'rules unknown');
+  const practiceMax = hasScoring && isLatestPractice ? questions * resolved.rules.marks_per_correct : null;
+  const timeBadge = paper.duration_minutes
+    ? badge(`${isLatestPractice ? 'practice time ' : ''}${paper.duration_minutes} min`, isLatestPractice ? 'info' : '')
+    : badge('duration not stated', 'warn');
+  const marksBadge = isLatestPractice
+    ? badge(`${practiceMax} practice max marks`, 'info')
+    : paper.total_marks
+      ? badge(`${paper.total_marks} marks`, '')
+      : badge('total marks not stated', 'warn');
+  const scoringText = hasScoring
+    ? `Scoring: +${fmtMarks(resolved.rules.marks_per_correct)} per correct${resolved.rules.negative_marking_enabled ? `, −${fmtMarks(resolved.rules.negative_marks_per_incorrect)} per incorrect` : ', no negative marking'}, ${fmtMarks(resolved.rules.marks_for_unanswered)} unanswered${isLatestPractice ? '; current-pattern practice policy, not a historical-rule claim' : ''}.`
+    : 'Scoring rules are not yet known for this paper.';
 
   return `<section class="card">
     <div class="card-body">
@@ -46,7 +68,7 @@ function paperCard(paper, summary) {
         <div class="grow">
           <div class="row tight">
             <h3 class="mb-1">${esc(paper.paper_name || paper.paper_id)}</h3>
-            ${summary.scoringKnown ? sourceChip('supplied', 'source rules') : sourceChip('unavailable', 'rules unknown')}
+            ${scoringBadge}
           </div>
           <p class="muted small m-0">
             ${esc(paper.exam || 'Examination not stated')}
@@ -57,13 +79,11 @@ function paperCard(paper, summary) {
           <div class="row tight mt-2">
             ${badge(`${questions} question(s) stored`, questions ? 'ok' : 'bad')}
             ${summary.declared !== null && summary.declared !== undefined ? badge(`source declares ${summary.declared}`, summary.complete ? '' : 'warn') : badge('source count not stated', 'warn')}
-            ${paper.duration_minutes ? badge(`${paper.duration_minutes} min`) : badge('duration not stated', 'warn')}
-            ${paper.total_marks ? badge(`${paper.total_marks} marks`) : badge('total marks not stated', 'warn')}
+            ${timeBadge}
+            ${marksBadge}
             ${flags.join(' ')}
           </div>
-          <p class="tiny muted mt-2 mb-0">
-            ${summary.scoringKnown ? `Scoring: +${esc(fmtMarks(paper.scoring.marks_per_correct))} per correct${paper.scoring.negative_marking_enabled ? `, −${esc(fmtMarks(paper.scoring.negative_marks_per_incorrect))} per incorrect` : ', no negative marking'}${paper.scoring.negative_marking_enabled ? '' : ', 0 for unanswered'}` : 'Scoring rules are not yet known for this paper.'}
-          </p>
+          <p class="tiny muted mt-2 mb-0">${esc(scoringText)}</p>
         </div>
         <div class="row tight">
           <button class="btn btn-primary" type="button" data-action="start-paper" data-paper="${esc(paper.paper_id)}" ${ready ? '' : 'disabled'}>Start full simulation</button>
@@ -108,7 +128,7 @@ export default {
 
     return `
       <h1>PYQ Test Centre</h1>
-      <p class="muted">Full-paper simulations use the imported question order, the source duration and the source scoring rules. Anything the source does not state is shown as unknown rather than assumed.</p>
+      <p class="muted">Full-paper practice follows the stored question order. Source metadata is shown separately from practice scoring: the latest reported MPPSC pattern (+3/−1/0) is applied to the bundled 2013–2024 papers by policy, not as a claim about each paper’s historical rules.</p>
 
       <div class="grid tiles mb-4">
         ${tile({ label: 'Papers stored', value: String(papers.length), sub: `${totals.complete} with a complete question set`, source: 'supplied', where: 'Imported paper records' })}
@@ -170,7 +190,7 @@ export default {
       }
 
       ${notice(
-        `Papers are shown exactly as they were imported. If a paper is incomplete, has a disputed key or lacks stated scoring rules, that is displayed above — MyMPPSC will not fill the gap with invented questions, answers or marks.`,
+        `Question wording, order and imported metadata are shown as stored. Missing questions, keys and source metadata are not invented. The bundled 2013–2024 papers use the latest reported +3/−1/0 marking pattern for practice only; that policy does not establish their historical scoring rules.`,
         'info',
       )}`;
   },
@@ -232,7 +252,7 @@ export default {
           body: `
             ${incompletePaperNotice(summary)}
             ${scoringUnknownNotice(paper)}
-            <p class="small">This simulation will use the paper's original question order (${paper.question_order.length} stored questions), the source duration when known, and the source scoring rules.</p>
+            <p class="small">This practice test uses the stored question order (${paper.question_order.length} stored questions) and any configured time limit. The bundled MPPSC papers use the latest reported +3/−1/0 pattern for practice; this does not establish the historical rules for this paper.</p>
             ${configFields({ paper, defaultCount: paper.question_order.length, allowCustomScoring: true, allowRepeatOverride: false, maxCount: paper.question_order.length })}
             <label class="check"><input type="checkbox" id="simulationStrict" checked /><span>Keep the exact original order (recommended for a faithful simulation)</span></label>`,
           onMount: () => {
@@ -245,7 +265,6 @@ export default {
         });
         if (answered !== '__start') return;
         const config = readConfig('practiceCfg', { paper, defaultCount: paper.question_order.length });
-        config.usePaperRules = paper.scoring?.rules_known ? Boolean(document.getElementById('practiceCfgUsePaperRules')?.checked) : false;
         const strict = Boolean(document.getElementById('simulationStrict')?.checked);
         const questionIds = strict ? paper.question_order.slice() : paper.question_order.slice();
         await startPracticeTest(ctx, {
