@@ -140,6 +140,8 @@ test('every route renders without an error notice', async () => {
 test('PYQ Analysis counts the bundled bank and deep-links into practice', async () => {
   await goto('pyq-analysis');
   assert.match(viewText(), /Questions per subject/);
+  assert.match(viewText(), /Subject-by-year breakdown/);
+  assert.match(viewText(), /Questions per topic/);
   assert.match(viewText(), /571/, 'the whole bundled bank is counted');
 
   const link = $$('#view a[href^="#/topic/"]')[0];
@@ -157,6 +159,17 @@ test('PYQ Analysis counts the bundled bank and deep-links into practice', async 
   select.dispatchEvent(new window.Event('change', { bubbles: true }));
   await waitFor(() => document.getElementById('fSubject')?.value === 'all', { label: 'the edited filter to survive the re-render' });
   assert.equal(document.getElementById('fSubject').value, 'all', 'the route does not snap the filter back');
+
+  // Returning to PYQ Analysis, filtering by a subject chip, and following a topic-level Practice link
+  await goto('pyq-analysis');
+  const topicLink = $$('#view a[href^="#/topic/"]').find((a) => decodeURIComponent(a.getAttribute('href')).includes('||'));
+  assert.ok(topicLink, 'a topic row offers a direct Practice link for that subject and topic');
+  const topicTarget = decodeURIComponent(topicLink.getAttribute('href').replace('#/topic/', ''));
+  const [topicSubject, topicName] = topicTarget.split('||');
+
+  await goto(`topic/${encodeURIComponent(topicTarget)}`);
+  assert.equal(document.getElementById('fSubject').value, topicSubject, 'topic Practice link preselects the subject');
+  assert.equal(document.getElementById('fTopic').value, topicName, 'topic Practice link preselects the topic');
 });
 
 test('the question bank screen imports the demonstration bank through the UI', async () => {

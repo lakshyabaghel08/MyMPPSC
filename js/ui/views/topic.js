@@ -19,6 +19,14 @@ const viewState = {
   filters: { subject: 'all', topic: 'all', subtopic: 'all', year: 'all', paperId: 'all', questionType: 'all', attemptState: 'any', language: 'all', excludeDemonstration: false, onlyWithExplanation: false, search: '' },
 };
 
+if (typeof window !== 'undefined') {
+  window.addEventListener('hashchange', () => {
+    if (!window.location.hash.startsWith('#/topic')) {
+      viewState.appliedRoute = '';
+    }
+  });
+}
+
 function filtersMarkup(filters, options) {
   return `
     <div class="filters">
@@ -92,7 +100,7 @@ export default {
       viewState.appliedRoute = fromRoute;
       if (fromRoute) {
         const [subject = '', topic = ''] = fromRoute.split('||');
-        viewState.filters = { ...viewState.filters, subject: subject || 'all', topic: topic || 'all' };
+        viewState.filters = { ...viewState.filters, subject: subject || 'all', topic: topic || 'all', subtopic: 'all' };
       }
     }
     const metas = Array.from(state.questionIndex.values());
@@ -113,8 +121,17 @@ export default {
     const matching = filterMetas(metas, filters, attemptSummary);
     const availabilityData = availability(metas, filters, attemptSummary);
 
-    const subjectOptions = Array.from(new Set(metas.map((m) => m.subject || 'Unclassified'))).sort();
-    const topicOptions = Array.from(new Set(metas.filter((m) => filters.subject === 'all' || (m.subject || 'Unclassified') === filters.subject).map((m) => m.topic || 'Unclassified'))).sort();
+    const subjectSet = new Set(metas.map((m) => m.subject || 'Unclassified'));
+    if (filters.subject && filters.subject !== 'all') subjectSet.add(filters.subject);
+    const subjectOptions = Array.from(subjectSet).sort();
+
+    const topicSet = new Set(
+      metas
+        .filter((m) => filters.subject === 'all' || (m.subject || 'Unclassified') === filters.subject)
+        .map((m) => m.topic || 'Unclassified'),
+    );
+    if (filters.topic && filters.topic !== 'all') topicSet.add(filters.topic);
+    const topicOptions = Array.from(topicSet).sort();
     const subtopicOptions = Array.from(new Set(metas.filter((m) => (filters.subject === 'all' || (m.subject || 'Unclassified') === filters.subject) && (filters.topic === 'all' || (m.topic || 'Unclassified') === filters.topic) && m.subtopic).map((m) => m.subtopic))).sort();
     const yearOptions = Array.from(new Set(metas.map((m) => m.year).filter((y) => y !== null && y !== undefined))).sort((a, b) => Number(b) - Number(a));
     const papers = Array.from(state.papers.values());
@@ -174,8 +191,15 @@ export default {
 
   async mount(ctx) {
     mountConfigFields({ defaultCount: 20 });
-    const rerender = async () => {
-      viewState.filters = readFilters();
+    const rerender = async (ev) => {
+      const next = readFilters();
+      if (ev?.target?.id === 'fSubject' && next.subject !== viewState.filters.subject) {
+        next.topic = 'all';
+        next.subtopic = 'all';
+      } else if (ev?.target?.id === 'fTopic' && next.topic !== viewState.filters.topic) {
+        next.subtopic = 'all';
+      }
+      viewState.filters = next;
       await ctx.refresh();
     };
     ['fSubject', 'fTopic', 'fSubtopic', 'fYear', 'fPaper', 'fType', 'fAttempt', 'fLanguage'].forEach((id) => {
@@ -185,10 +209,9 @@ export default {
     let searchTimer = null;
     document.getElementById('fSearch')?.addEventListener('input', () => {
       clearTimeout(searchTimer);
-      searchTimer = setTimeout(rerender, 350);
+      searchTimer = setTimeout(() => rerender(), 350);
     });
     document.getElementById('fReset')?.addEventListener('click', async () => {
-      viewState.appliedRoute = '';
       viewState.filters = { subject: 'all', topic: 'all', subtopic: 'all', year: 'all', paperId: 'all', questionType: 'all', attemptState: 'any', language: 'all', excludeDemonstration: false, onlyWithExplanation: false, search: '' };
       await ctx.refresh();
     });
