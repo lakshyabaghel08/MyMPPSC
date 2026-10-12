@@ -10,7 +10,7 @@
 
 // Bump this whenever any precached file changes: the old caches are deleted on
 // activate, so a fixed build cannot keep serving a stale shell.
-const VERSION = 'v1.1.0-14';
+const VERSION = 'v1.1.0-15';
 const SHELL_CACHE = `mymppsc-shell-${VERSION}`;
 const RUNTIME_CACHE = `mymppsc-runtime-${VERSION}`;
 
@@ -40,6 +40,7 @@ const SHELL_FILES = [
   './js/services/scoring.js',
   './js/services/select.js',
   './js/services/pyq-analysis.js',
+  './js/services/syllabus.js',
   './js/services/tests.js',
   './js/ui/views/analytics.js',
   './js/ui/views/pyq-analysis.js',
@@ -55,6 +56,7 @@ const SHELL_FILES = [
   './js/ui/views/shared.js',
   './js/ui/views/smart.js',
   './js/ui/views/syllabus.js',
+  './js/ui/views/syllabus-analysis.js',
   './js/ui/views/testcentre.js',
   './js/ui/views/topic.js',
   './icons/icon-192.png',
@@ -62,6 +64,12 @@ const SHELL_FILES = [
   './data/demo/demo-bank.json',
   './data/pyq/mymppsc-pyq-bank.json',
   './data/schema/question-bank.schema.json',
+  './data/syllabus/mppsc-2026-syllabus.json',
+  './data/syllabus/pyq-links.json',
+  './data/syllabus/study-guide/prelims.json',
+  './data/syllabus/study-guide/mains-papers-1-2.json',
+  './data/syllabus/study-guide/mains-papers-3-4.json',
+  './data/syllabus/study-guide/mains-papers-5-6.json',
 ];
 
 self.addEventListener('install', (event) => {

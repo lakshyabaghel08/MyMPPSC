@@ -1,0 +1,171 @@
+{
+  "format": "mymppsc-syllabus-study-guide",
+  "format_version": "1.0.0",
+  "title": "Mains study breakdown — Papers V and VI",
+  "notice": "Derived study guidance. Every unit below groups or subdivides official syllabus lines; it never adds a requirement of its own.",
+  "headings": {
+    "mains/paper-V": {
+      "focus": "General Hindi and grammar, a Hindi-medium paper. The official outline is already itemised, so it is studied and practised item by item rather than by reading. The first item draws on the entire paper's own curriculum."
+    },
+    "mains/paper-V/part/unit-3": {
+      "focus": "Translation is asked in both directions, so practise each direction separately.",
+      "units": [
+        {
+          "title": "Hindi to English",
+          "match": [
+            "1. हिन्दी से अंग्रेजी"
+          ],
+          "note": "Sentence-level translation; accuracy of construction matters more than literary style."
+        },
+        {
+          "title": "English to Hindi",
+          "match": [
+            "2. अँग्रेजी से हिन्दी।"
+          ],
+          "note": "The reverse direction is listed separately and is separately marked, so drill it too."
+        },
+        {
+          "title": "Administrative standard terms",
+          "match": [
+            "3. प्रशासनिक मानक शब्दों के अर्थ"
+          ],
+          "note": "Build a two-way glossary of administrative terminology — this is the most predictable part of the paper."
+        },
+        {
+          "title": "Word-level translation",
+          "match": [
+            "हिन्दी से अँग्रेजी शब्द",
+            "अँग्रेजी से हिन्दी शब्द"
+          ],
+          "note": "Five words in each direction is what the source prescribes; practise in short sets."
+        }
+      ]
+    },
+    "mains/paper-V/part/unit-5": {
+      "focus": "Ten grammar and vocabulary items, each independently examinable — the source lists them one by one.",
+      "units": [
+        {
+          "title": "Punctuation and spelling",
+          "match": [
+            "1. विराम चिह्न",
+            "8. वर्तनी शोधन"
+          ],
+          "note": "Two correction-type items; practise by correcting passages rather than by reading rules."
+        },
+        {
+          "title": "Word power and word relations",
+          "match": [
+            "2. शब्द शक्तियाँ",
+            "7. शब्द-युग्म"
+          ],
+          "note": "Shabdi shakti and word pairs belong together — both are about how a word behaves."
+        },
+        {
+          "title": "Vocabulary substitution and opposites",
+          "match": [
+            "3. विलोम शब्द",
+            "4. अनेक शब्दों के लिए एक शब्द",
+            "6. पर्यायवाची शब्द"
+          ],
+          "note": "Three short recall lists; make them flashcards."
+        },
+        {
+          "title": "Word origins and meaning",
+          "match": [
+            "5. तत्सम एवं तद्भव शब्द",
+            "10. शब्दार्थ"
+          ],
+          "note": "Tatsam and tadbhav need the derivation, not only the pairing."
+        },
+        {
+          "title": "Sentence structure",
+          "match": [
+            "9. वाक्य संरचना एवं प्रकार"
+          ],
+          "note": "Sentence types, and correcting faulty constructions."
+        }
+      ]
+    },
+    "mains/paper-VI": {
+      "focus": "Hindi essay and drafting, a Hindi-medium paper. The official outline gives the subject areas for the long essay and names the drafting formats, so preparation here is writing practice rather than reading."
+    }
+  },
+  "connections": [
+    {
+      "a": "mains/paper-I/part-b/unit-4",
+      "b": "mains/paper-III/part-b/unit-5",
+      "note": "Disaster and pollution material is examined in both papers; prepare it once at Mains depth."
+    },
+    {
+      "a": "mains/paper-II/part-a/unit-5",
+      "b": "mains/paper-II/part-b/unit-3",
+      "note": "Local self-government appears as administration in Part A and as a social institution in Part B."
+    },
+    {
+      "a": "mains/paper-III/part-b/unit-3",
+      "b": "mains/paper-III/part-b/unit-4",
+      "note": "AYUSH systems and the national health programmes are consecutive units on the same subject and share scheme data."
+    },
+    {
+      "a": "mains/paper-IV/part-a/unit-3",
+      "b": "mains/paper-IV/part-a/unit-4",
+      "note": "Attitude, aptitude and ethics are the case-study base for Part A; revise them as one block."
+    },
+    {
+      "a": "mains/paper-I/part-a/unit-5",
+      "b": "mains/paper-II/part-b/unit-5",
+      "note": "Tribal heroes in history and the current status of tribes in society answer each other's questions."
+    },
+    {
+      "a": "mains/paper-III/part-a/unit-3",
+      "b": "mains/paper-III/part-a/unit-4",
+      "note": "The state economy and its social development overlap heavily — one set of Madhya Pradesh data serves both."
+    },
+    {
+      "a": "prelims/paper-1/s5",
+      "b": "mains/paper-II/part-a/unit-4",
+      "note": "The state's constitutional order is asked objectively at Prelims and descriptively here."
+    }
+  ],
+  "revisionGroups": [
+    {
+      "title": "Madhya Pradesh block",
+      "nodes": [
+        "mains/paper-I/part-a/unit-2",
+        "mains/paper-I/part-a/unit-5",
+        "mains/paper-I/part-b/unit-5",
+        "mains/paper-II/part-a/unit-4",
+        "mains/paper-III/part-a/unit-3",
+        "mains/paper-III/part-a/unit-4"
+      ],
+      "note": "Six units carry nearly all the state-specific material in the Mains papers. They share statistics and personalities, so revise them as one block rather than subject by subject."
+    },
+    {
+      "title": "Ethics and case-study block",
+      "nodes": [
+        "mains/paper-IV/part-a/unit-2",
+        "mains/paper-IV/part-a/unit-3",
+        "mains/paper-IV/part-a/unit-4",
+        "mains/paper-IV/part-a/unit-5"
+      ],
+      "note": "The Part A case study is drawn from these units, so practice answers on them rather than revising them passively."
+    },
+    {
+      "title": "Management and administration block",
+      "nodes": [
+        "mains/paper-IV/part-b/unit-2",
+        "mains/paper-IV/part-b/unit-3",
+        "mains/paper-IV/part-b/unit-5"
+      ],
+      "note": "Business management and public administration share concepts here; the Part B case study draws on both."
+    },
+    {
+      "title": "Hindi writing practice",
+      "nodes": [
+        "mains/paper-V",
+        "mains/paper-VI"
+      ],
+      "note": "Papers V and VI are skill papers. Timed writing practice — essays, drafts, translations and grammar correction — is the revision method that works for them."
+    }
+  ]
+}

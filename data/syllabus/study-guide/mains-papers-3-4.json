@@ -1,0 +1,1185 @@
+{
+  "format": "mymppsc-syllabus-study-guide",
+  "format_version": "1.0.0",
+  "title": "Mains study breakdown — Papers III and IV",
+  "notice": "Derived study guidance. Every unit below groups or subdivides official syllabus lines; it never adds a requirement of its own.",
+  "headings": {
+    "mains/paper-III": {
+      "focus": "Economics with a substantial Madhya Pradesh half, plus science, technology and public health. Part B is the most scheme-heavy part of the whole examination."
+    },
+    "mains/paper-III/part-a/unit-1": {
+      "focus": "The longest unit in the paper. It moves through the economy's shape, agriculture, industry and infrastructure in one sweep.",
+      "units": [
+        {
+          "title": "Features of the economy and the 2047 vision",
+          "match": [
+            "भारतीय अर्थव्यवस्था की प्रमुख विशेषताएँ",
+            "विकसित भारत@2047"
+          ],
+          "note": "The 2047 vision is a named policy goal and needs its own notes rather than a passing mention."
+        },
+        {
+          "title": "Sectoral contribution and national income",
+          "match": [
+            "कृषि, उद्योग और सेवा क्षेत्र का क्षेत्रीय योगदान",
+            "राष्ट्रीय आय की विभिन्न अवधारणाएँ"
+          ],
+          "note": "Keep GDP, GNP, NNP and the related measures distinct."
+        },
+        {
+          "title": "Agriculture: crops, distress and price policy",
+          "match": [
+            "प्रमुख फसलें और फसल पैटर्न",
+            "चुनौतियाँ- घटती उत्पादकता",
+            "कृषि मूल्य नीति, विपणन और वित्त"
+          ],
+          "note": "Declining productivity, farmer distress and weather dependence are the three challenges the source names."
+        },
+        {
+          "title": "Government agricultural initiatives",
+          "match": [
+            "सरकारी पहल- पीएम-किसान"
+          ],
+          "note": "PM-KISAN and NMSA are named; learn the scheme, its ministry and its intended beneficiary."
+        },
+        {
+          "title": "Agri start-ups and value addition",
+          "match": [
+            "मूल्यवर्धन के लिए कृषि स्टार्ट-अप"
+          ],
+          "note": "Links to the food-processing heading in Mains Paper I Part B Unit III."
+        },
+        {
+          "title": "Industrial policy, manufacturing and infrastructure",
+          "match": [
+            "भारत में औद्योगिक नीतियाँ",
+            "विनिर्माण और अधोसंरचना- मेक इन इंडिया"
+          ],
+          "note": "Make in India and infrastructure projects are named; keep the policy and the project separate."
+        },
+        {
+          "title": "Hospitality, tourism and standardisation",
+          "match": [
+            "आतिथ्य और पर्यटन-",
+            "भारत में वस्तु व सेवाओं का मानकीकरण"
+          ],
+          "note": "Foreign-exchange earnings is the specific angle for tourism, and standardisation covers BIS-style quality frameworks."
+        }
+      ]
+    },
+    "mains/paper-III/part-a/unit-2": {
+      "focus": "Taxation, fiscal and monetary policy, and India's external economic relations.",
+      "units": [
+        {
+          "title": "Fiscal policy",
+          "match": [
+            "राजकोषीय नीति-"
+          ],
+          "split": [
+            "लोक व्यय",
+            "आगम, कराधान",
+            "घाटा प्रबंधन"
+          ],
+          "note": "Expenditure, revenue and deficit management are listed as three parts of one line."
+        },
+        {
+          "title": "Monetary policy and financial inclusion",
+          "match": [
+            "मौद्रिक नीति और भारत में वित्तीय समावेशन"
+          ],
+          "note": "Keep the policy instruments separate from the inclusion schemes."
+        },
+        {
+          "title": "Cash transactions and the informal economy",
+          "match": [
+            "अनौपचारिक अर्थव्यवस्था पर नकद लेनदेन"
+          ],
+          "note": "A narrower, analytically interesting heading — prepare the demonetisation-style debates."
+        },
+        {
+          "title": "Food security and the public distribution system",
+          "match": [
+            "खाद्य सुरक्षा एवं लोक वितरण प्रणाली"
+          ],
+          "note": "Overlaps the storage and distribution heading in Unit III of this same part."
+        },
+        {
+          "title": "Poverty, unemployment and regional imbalance",
+          "match": [
+            "गरीबी, बेरोजगारी और क्षेत्रीय असंतुलन"
+          ],
+          "note": "Three social-economic problems grouped in one line; measurements and schemes for each."
+        },
+        {
+          "title": "Foreign trade",
+          "match": [
+            "भारत का विदेशी व्यापार-"
+          ],
+          "split": [
+            "मूल्य, संरचना",
+            "दिशा"
+          ],
+          "note": "Value, composition and direction is the standard three-part answer structure."
+        },
+        {
+          "title": "Export promotion, import substitution and foreign capital",
+          "match": [
+            "निर्यात प्रोत्साहन"
+          ],
+          "note": "Prepare the arguments on both sides of import substitution."
+        },
+        {
+          "title": "International financial institutions",
+          "match": [
+            "अंतर्राष्ट्रीय वित्तीय संस्थानों की भूमिकाएँ-"
+          ],
+          "split": [
+            "आई.एम.एफ., विश्व बैंक",
+            "ए.डी.बी. और डब्ल्यू.टी.ओ."
+          ],
+          "note": "Four institutions named — mandate, membership and India's relationship with each."
+        }
+      ]
+    },
+    "mains/paper-III/part-a/unit-3": {
+      "focus": "A full overview of Madhya Pradesh's economy, sector by sector.",
+      "units": [
+        {
+          "title": "Growth, self-reliance and ODOP",
+          "match": [
+            "मध्यप्रदेश में राज्य घरेलू उत्पाद"
+          ],
+          "split": [
+            "राज्य घरेलू उत्पाद और प्रति व्यक्ति आय में वृद्धि",
+            "आत्मनिर्भर मध्यप्रदेश (ANMP)",
+            "एक जिला एक उत्पाद कार्यक्रम (ODOP)"
+          ],
+          "note": "Two named state programmes sit in this one line; ODOP district-product mapping is high yield."
+        },
+        {
+          "title": "Crops, cropping patterns and holdings",
+          "match": [
+            "प्रमुख फसलें और फसल पैटर्न तथा जोत"
+          ],
+          "note": "Holding size is a distinct element — include land-holding data."
+        },
+        {
+          "title": "Food security, distribution and storage",
+          "match": [
+            "खाद्य सुरक्षा, वितरण प्रणाली और भंडारण"
+          ],
+          "note": "Storage and warehousing are specific to the state here."
+        },
+        {
+          "title": "Horticulture, livestock, dairy and fisheries",
+          "match": [
+            "उद्यानिकी, पशुधन, डेयरी"
+          ],
+          "note": "Four allied sectors in one line, each capable of its own question."
+        },
+        {
+          "title": "Industry and infrastructure",
+          "match": [
+            "औद्योगिक क्षेत्र की स्थिति"
+          ],
+          "note": "Current status plus infrastructure development."
+        },
+        {
+          "title": "MSME and traditional industries",
+          "match": [
+            "एम.एस.एम.ई. और पारंपरिक उद्योगों"
+          ],
+          "note": "The support-and-development angle rather than the sector's size alone."
+        },
+        {
+          "title": "Rural and urban development, and the tribal economy",
+          "match": [
+            "मध्यप्रदेश में ग्रामीण एवं शहरी विकास"
+          ],
+          "split": [
+            "जनजातीय अर्थव्यवस्था- कृषि पद्धति",
+            "प्रमुख वनोपज",
+            "हस्तशिल्प एवं हाट बाजार"
+          ],
+          "note": "The tribal economy is named inside this heading and is a recurring state theme."
+        },
+        {
+          "title": "Tourism, trade and investment promotion",
+          "match": [
+            "पर्यटन, व्यापार और निवेश प्रोत्साहन"
+          ],
+          "note": "State investment policy and the tourism circuit are the examinable parts."
+        }
+      ]
+    },
+    "mains/paper-III/part-a/unit-4": {
+      "focus": "Social and economic development in Madhya Pradesh, including the state's fiscal position.",
+      "units": [
+        {
+          "title": "Health, education and skills",
+          "match": [
+            "स्वास्थ्य अधोसंरचना, शिक्षा और कौशल विकास"
+          ],
+          "split": [
+            "स्वास्थ्य अधोसंरचना",
+            "शिक्षा",
+            "कौशल विकास"
+          ],
+          "note": "Same three headings as the state human-resources item in Prelims Paper I subject 6, at greater depth."
+        },
+        {
+          "title": "Natural resource management policy",
+          "match": [
+            "प्राकृतिक संसाधन प्रबंधन के लिए नीतियाँ-"
+          ],
+          "split": [
+            "वन",
+            "जल",
+            "खनिज"
+          ],
+          "note": "Three resources, three policies — do not merge them into one answer."
+        },
+        {
+          "title": "Inclusion and welfare schemes",
+          "match": [
+            "वित्तीय, सामाजिक समावेशन एवं कल्याणकारी योजनाएँ"
+          ],
+          "note": "Scheme plus beneficiary group plus current status."
+        },
+        {
+          "title": "Demographic influence",
+          "match": [
+            "मध्यप्रदेश की जनसांख्यिकी का प्रभाव"
+          ],
+          "note": "The angle is the effect of demography on development, not the numbers alone."
+        },
+        {
+          "title": "Human resource productivity and employment",
+          "match": [
+            "मानव संसाधन की उत्पादकता और रोजगार"
+          ],
+          "note": "Productivity and employment together; employability data helps."
+        },
+        {
+          "title": "Intellectual property rights in the state",
+          "match": [
+            "मध्यप्रदेश में बौद्धिक सम्पदा अधिकारों की प्रगति"
+          ],
+          "note": "Third appearance of this heading across the syllabus; one set of notes covers all three."
+        },
+        {
+          "title": "State finances",
+          "match": [
+            "राज्य का राजस्व, व्यय, ऋण"
+          ],
+          "split": [
+            "राजस्व, व्यय",
+            "ऋण एवं राजकोषीय अनुशासन"
+          ],
+          "note": "Fiscal discipline is named explicitly — prepare the state's deficit and debt position."
+        }
+      ]
+    },
+    "mains/paper-III/part-a/unit-5": {
+      "focus": "Statistics and data analysis. This is a methods unit, so it is learned by working through calculations rather than by reading.",
+      "units": [
+        {
+          "title": "Data collection",
+          "match": [
+            "समंक संकलन की विधियाँ"
+          ],
+          "note": "Primary and secondary methods, with their limitations."
+        },
+        {
+          "title": "Averages",
+          "match": [
+            "माध्य, माध्यिका और बहुलक"
+          ],
+          "split": [
+            "गणना",
+            "व्याख्याएँ"
+          ],
+          "note": "The syllabus asks for both calculation and interpretation — practise both."
+        },
+        {
+          "title": "Types of data analysis",
+          "match": [
+            "डेटा विश्लेषण के प्रकार-"
+          ],
+          "note": "Descriptive versus inferential is an explicit comparison."
+        },
+        {
+          "title": "Sampling methods",
+          "match": [
+            "प्रतिचयन की विधियाँ"
+          ],
+          "note": "Know which design suits which kind of study."
+        },
+        {
+          "title": "Data presentation",
+          "match": [
+            "डेटा प्रस्तुति तकनीक-"
+          ],
+          "note": "Tables, charts and graphs — the same skills as Prelims Paper II numeracy."
+        },
+        {
+          "title": "Basic probability",
+          "match": [
+            "प्रायिकता की बुनियादी अवधारणाएँ"
+          ],
+          "note": "Foundational concepts rather than advanced probability."
+        }
+      ]
+    },
+    "mains/paper-III/part-b/unit-1": {
+      "focus": "General science from microorganisms to astronomy, with biotechnology and patents at the end.",
+      "units": [
+        {
+          "title": "Applications of science",
+          "match": [
+            "विज्ञान के साधारण अनुप्रयोग"
+          ],
+          "note": "Everyday applications rather than theory."
+        },
+        {
+          "title": "Microorganisms and organic farming",
+          "match": [
+            "सूक्ष्मजीव संरचना एवं प्रकार,"
+          ],
+          "split": [
+            "सूक्ष्मजीव संरचना एवं प्रकार",
+            "जैविक कृषि"
+          ],
+          "note": "Microorganism types and organic farming are paired in one line."
+        },
+        {
+          "title": "Cell and classification",
+          "match": [
+            "कोशिका-संरचना"
+          ],
+          "split": [
+            "संरचना, प्रकार, विभाजन एवं कार्य",
+            "जन्तुओं एवं पौधों का वर्गीकरण"
+          ],
+          "note": "Cell biology and taxonomy in one heading."
+        },
+        {
+          "title": "Nutrition, diet and the human body",
+          "match": [
+            "पौधों, पशुओं एवं मनुष्यों में पोषण"
+          ],
+          "split": [
+            "संतुलित आहार, विटामिन",
+            "हीनताजन्य रोग",
+            "हार्मोन्स",
+            "मानव शरीर के अंग, संरचना एवं कार्य-प्रणाली"
+          ],
+          "note": "Vitamin-deficiency disease pairing is the highest-yield part."
+        },
+        {
+          "title": "Biotechnology and ethnobiology",
+          "match": [
+            "जैव प्रौद्योगिकी- परिभाषा",
+            "ईथनोबायोलॉजी के अनुप्रयोग"
+          ],
+          "note": "Biotechnology is asked sector-wise — health, agriculture, horticulture, animal husbandry, industry and environment."
+        },
+        {
+          "title": "Ancient Indian astronomy",
+          "match": [
+            "प्राचीन समय में आर्यभट्ट"
+          ],
+          "split": [
+            "आर्यभट्ट, वराहमिहिर, ब्रह्मगुप्त",
+            "भास्कर प्रथम एवं द्वितीय",
+            "प्राचीन एवं आधुनिक भारतीय वेधशालाओं"
+          ],
+          "note": "Name-and-contribution recall, plus the observatories."
+        },
+        {
+          "title": "Patents and intellectual property",
+          "match": [
+            "बौद्धिक संपदा के अधिकार एवं पेटेंट"
+          ],
+          "note": "TRIPS and TRIMS are named; keep the two agreements distinct."
+        }
+      ]
+    },
+    "mains/paper-III/part-b/unit-2": {
+      "focus": "Computer science, with a mathematical-science block attached to it.",
+      "units": [
+        {
+          "title": "Types and generations of computers",
+          "match": [
+            "कंप्यूटर के प्रकार, विशेषताएँ एवं पीढ़ी"
+          ],
+          "note": "Generation-by-generation characteristics."
+        },
+        {
+          "title": "Hardware, software and operating systems",
+          "match": [
+            "मेमोरी, इनपुट और आउटपुट डिवाइसेस"
+          ],
+          "split": [
+            "मेमोरी, इनपुट और आउटपुट डिवाइसेस, स्टोरेज डिवाइस",
+            "सॉफ्टवेयर और हार्डवेयर, ऑपरेटिंग सिस्टम",
+            "विंडोज, माइक्रोसॉफ्ट ऑफिस"
+          ],
+          "note": "This heading is a long list of device types — treat it as a checklist."
+        },
+        {
+          "title": "Programming languages and translators",
+          "match": [
+            "कंप्यूटर की भाषाओं का सामान्य ज्ञान"
+          ],
+          "split": [
+            "सी, सी++, जावा",
+            "ट्रांसलेटर, इन्टरपिटर तथा एसेंबलर"
+          ],
+          "note": "The distinction between compiler, interpreter and assembler is the standard question."
+        },
+        {
+          "title": "Internet, e-mail and social media",
+          "match": [
+            "इन्टरनेट एवं ई-मेल",
+            "सोशल मीडिया।"
+          ],
+          "note": "Short headings, but they connect to cyber security and current affairs."
+        },
+        {
+          "title": "E-governance",
+          "match": [
+            "ई-गवर्नेस।"
+          ],
+          "note": "Third appearance across the syllabus after Prelims Paper I subject 9 and this part's own digital themes."
+        },
+        {
+          "title": "AI, cloud computing and web resources",
+          "match": [
+            "कृत्रिम बुद्धिमता का आधारभूत ज्ञान"
+          ],
+          "split": [
+            "कृत्रिम बुद्धिमता का आधारभूत ज्ञान (ए.आई.)",
+            "क्लाउड कम्प्यूटिंग",
+            "विभिन्न उपयोगी पोर्टल और वेबसाइट तथा वेबपेजेस"
+          ],
+          "note": "Portals worth knowing are the state and national service portals."
+        },
+        {
+          "title": "Mathematical science",
+          "match": [
+            "संख्याएँ एवं इसके प्रकार",
+            "ज्यामितीय आकृतियों का क्षेत्रफल"
+          ],
+          "split": [
+            "संख्याएँ एवं इसके प्रकार इकाई मापन की विधियाँ",
+            "समीकरण एवं गुणनखंड",
+            "लाभ-हानि, प्रतिशत",
+            "साधारण एवं चक्रवृद्धि ब्याज",
+            "अनुपात-समानुपात",
+            "ज्यामितीय आकृतियों का क्षेत्रफल एवं पृष्ठीय क्षेत्रफल"
+          ],
+          "note": "A sub-block inside Computer Science in the source itself. These are arithmetic and mensuration skills — practise them numerically."
+        }
+      ]
+    },
+    "mains/paper-III/part-b/unit-3": {
+      "focus": "AYUSH systems and their scientific basis, plus health administration.",
+      "units": [
+        {
+          "title": "The AYUSH systems",
+          "match": [
+            "आयुष (AYUSH)- आयुर्वेद"
+          ],
+          "split": [
+            "आयुर्वेद",
+            "योग एवं प्राकृतिक चिकित्सा",
+            "यूनानी, सिद्धा, सोवा रिग्पा",
+            "होम्योपैथी चिकित्सा पद्धतियों के मूल सिद्धांत"
+          ],
+          "note": "Five systems; each needs its founding principles, not just its name."
+        },
+        {
+          "title": "One Nation One Health System",
+          "match": [
+            "वन नेशन वन हेल्थ सिस्टम"
+          ],
+          "note": "A named national policy to 2030 — prepare its objective and scope."
+        },
+        {
+          "title": "Ayurveda",
+          "match": [
+            "आयुर्वेद- त्रिदोष"
+          ],
+          "split": [
+            "त्रिदोष",
+            "पंचमहाभूत",
+            "दिनचर्या, ऋतुचर्या, पंचकर्म",
+            "जैविक घड़ी"
+          ],
+          "note": "Tridosh and Panchamahabhut are the conceptual core; the daily and seasonal routines are practical additions."
+        },
+        {
+          "title": "Health administration and the national health policy",
+          "match": [
+            "केन्द्र, राज्य, जिला एवं ग्राम स्तर पर आयुष"
+          ],
+          "split": [
+            "केन्द्र, राज्य, जिला एवं ग्राम स्तर पर आयुष सहित स्वास्थ्य प्रशासन",
+            "राष्ट्रीय स्वास्थ्य नीति (NHP)"
+          ],
+          "note": "Administrative structure at four levels plus the policy and Ayurveda's place in it."
+        },
+        {
+          "title": "Yoga and naturopathy",
+          "match": [
+            "योग- पंचकोष सिद्धांत"
+          ],
+          "split": [
+            "पंचकोष सिद्धांत, अष्टांग योग",
+            "षट्कर्म, मुद्रा",
+            "मिट्टी चिकित्सा, धूप सेवन (Sun Bath), जल चिकित्सा"
+          ],
+          "note": "Named techniques with their therapeutic effects."
+        },
+        {
+          "title": "Shodasha sanskar",
+          "match": [
+            "षोडश संस्कार-"
+          ],
+          "split": [
+            "नामकरण, निष्क्रमण, कर्णवेध",
+            "वैज्ञानिक महत्व"
+          ],
+          "note": "The scientific significance is explicitly part of the heading."
+        }
+      ]
+    },
+    "mains/paper-III/part-b/unit-4": {
+      "focus": "National health programmes and primary health care.",
+      "units": [
+        {
+          "title": "National health programmes, named by abbreviation",
+          "match": [
+            "राष्ट्रीय स्वास्थ्य कार्यक्रम-"
+          ],
+          "split": [
+            "कुष्ठ (एन.एल.ई.पी.)",
+            "एड्स (एन.ए.सी.पी.)",
+            "अंधत्व (एन.पी.सी.बी.)",
+            "पोलियो, राष्ट्रीय क्षय निवारण कार्यक्रम",
+            "वेक्टर जनित रोग नियंत्रण कार्यक्रम",
+            "प्रजनन एवं बाल स्वास्थ्य (आर.सी.एच.) कार्यक्रम",
+            "इंटीग्रेटेड चाइल्ड डेवलपमेंट स्कीम (आई.सी.डी.एस.)",
+            "सार्वभौमिक एवं राष्ट्रीय टीकाकरण कार्यक्रम",
+            "राष्ट्रीय आयुष मिशन (एनएएम)",
+            "राष्ट्रीय परिवार स्वास्थ्य सर्वेक्षण (एन.एफ.एच.एस.)"
+          ],
+          "note": "The source prints each programme with its abbreviation. Learn full form, launch and target for all ten."
+        },
+        {
+          "title": "Missions and state health indicators",
+          "match": [
+            "स्वच्छ भारत मिशन, आयुष्मान भारत योजना"
+          ],
+          "split": [
+            "स्वच्छ भारत मिशन, आयुष्मान भारत योजना",
+            "राष्ट्रीय स्वास्थ्य मिशन (एन.आर.एच.एम. और एन.यू.एच.एम.)",
+            "मध्यप्रदेश में मातृ मृत्यु दर"
+          ],
+          "note": "The maternal mortality rate of Madhya Pradesh is an explicitly state-specific item."
+        },
+        {
+          "title": "Biomarkers",
+          "match": [
+            "विभिन्न बायोमार्कर"
+          ],
+          "split": [
+            "हेमेटोलॉजी, बायोकेमिस्ट्री",
+            "सीरोलॉजी के सामान्य स्तर"
+          ],
+          "note": "Normal ranges are asked, so keep a reference table."
+        },
+        {
+          "title": "Primary health care structure",
+          "match": [
+            "प्राथमिक स्वास्थ्य देखभाल-"
+          ],
+          "split": [
+            "सिद्धांत और तत्व",
+            "स्वास्थ्य देखभाल का स्तर",
+            "उपकेन्द्र एवं ग्राम स्तर पर प्राथमिक स्वास्थ्य देखभाल की संरचना",
+            "प्राथमिक स्वास्थ्य देखभाल केन्द्र (PHC), सामुदायिक स्वास्थ्य केन्द्र (CHC)"
+          ],
+          "note": "Draw the referral pyramid from sub-centre through PHC and CHC to rural hospitals."
+        }
+      ]
+    },
+    "mains/paper-III/part-b/unit-5": {
+      "focus": "Environment in Indian tradition, environmental problems, education, technology and conservation.",
+      "units": [
+        {
+          "title": "Environment in Indian tradition",
+          "match": [
+            "भारतीय परंपरा और संस्कृति में पर्यावरण"
+          ],
+          "split": [
+            "भारतीय परंपरा और संस्कृति में पर्यावरण की अवधारणा",
+            "जनपदोध्वंस- वायु, जल, देश, काल की विकृतियाँ"
+          ],
+          "note": "Janapadodhvans is an Ayurvedic concept of collective environmental harm — a distinctive term worth learning precisely."
+        },
+        {
+          "title": "Human impact, biodiversity and species loss",
+          "match": [
+            "मानव गतिविधियों का पर्यावरण पर प्रभाव"
+          ],
+          "split": [
+            "पर्यावरण से संबंधित नैतिकता और मूल्य",
+            "जैव-विविधता (विशेष रूप से मध्यप्रदेश के संदर्भ में)",
+            "लुप्तप्राय एवं विलुप्त प्रजातियाँ"
+          ],
+          "note": "Biodiversity is to be studied with special reference to Madhya Pradesh."
+        },
+        {
+          "title": "Environmental problems and degradation",
+          "match": [
+            "पर्यावरण से संबंधित समस्याएँ और चुनौतियाँ"
+          ],
+          "split": [
+            "पर्यावरणीय क्षरण के कारण",
+            "प्रभाव"
+          ],
+          "note": "Cause and effect are separated in the source."
+        },
+        {
+          "title": "Environmental education and awareness",
+          "match": [
+            "पर्यावरण शिक्षा-"
+          ],
+          "split": [
+            "सार्वजनिक जन जागरूकता के कार्यक्रम",
+            "पर्यावरण शिक्षा एवं उसका स्वास्थ्य एवं सुरक्षा से संबंध"
+          ],
+          "note": "The health-and-safety link is the distinctive part of this heading."
+        },
+        {
+          "title": "Environmental technology, law and policy",
+          "match": [
+            "पर्यावरण अनुकूल प्रौद्योगिकी"
+          ],
+          "split": [
+            "पर्यावरण अनुकूल प्रौद्योगिकी",
+            "पर्यावरण संरक्षण के संवैधानिक प्रावधान",
+            "पर्यावरण संरक्षण नीतियाँ और नियामक ढाँचा"
+          ],
+          "note": "Constitutional provisions and the regulatory framework are separately examinable."
+        },
+        {
+          "title": "Tribes and conservation",
+          "match": [
+            "पर्यावरण संरक्षण में मध्यप्रदेश की जनजातियों"
+          ],
+          "note": "Five communities are named — Baiga, Sahariya, Bhariya, Bhil and Gond."
+        },
+        {
+          "title": "Solid waste management",
+          "match": [
+            "ठोस अपशिष्ट प्रबन्धन"
+          ],
+          "split": [
+            "नगरीय और औद्योगिक अपशिष्ट के कारण, प्रभाव",
+            "नियंत्रण के उपाय"
+          ],
+          "note": "Urban and industrial waste separately, with control measures."
+        },
+        {
+          "title": "Cleanliness survey campaign",
+          "match": [
+            "स्वच्छता सर्वेक्षण अभियान"
+          ],
+          "split": [
+            "उद्देश्य, विभिन्न चरण",
+            "उपलब्धियाँ तथा भविष्य"
+          ],
+          "note": "Objective, stages, achievements and future — a four-part structure given by the syllabus itself."
+        },
+        {
+          "title": "Water security and conservation",
+          "match": [
+            "जल सुरक्षा।",
+            "जल संरक्षण के क्षेत्र में किए जाने वाले विभिन्न प्रयास"
+          ],
+          "note": "Two short headings; prepare water security as a concept and the conservation efforts as examples."
+        }
+      ]
+    },
+    "mains/paper-IV": {
+      "focus": "Philosophy, psychology, public administration and case study, with entrepreneurship and management in Part B. Both parts end with a case study drawn from their own content."
+    },
+    "mains/paper-IV/part-a/unit-1": {
+      "focus": "Indian philosophical systems, Western philosophers, and Indian thinkers and reformers.",
+      "units": [
+        {
+          "title": "Indian Shaddarshan",
+          "match": [
+            "भारतीय षड्दर्शन।"
+          ],
+          "note": "The six schools — founder, core text and central doctrine for each."
+        },
+        {
+          "title": "Greek philosophers",
+          "match": [
+            "सुकरात, प्लेटो, अरस्तू।"
+          ],
+          "split": [
+            "सुकरात",
+            "प्लेटो",
+            "अरस्तू"
+          ],
+          "note": "Keep each philosopher's central contribution distinct."
+        },
+        {
+          "title": "Indian religious and philosophical figures",
+          "match": [
+            "महावीर, बुद्ध, आचार्य शंकर"
+          ],
+          "split": [
+            "महावीर, बुद्ध",
+            "आचार्य शंकर",
+            "चार्वाक, भर्तृहरि"
+          ],
+          "note": "Carvaka and Bhartrihari sit at the end of the line and are easy to miss."
+        },
+        {
+          "title": "Saints and devotional figures",
+          "match": [
+            "गुरुनानक, कबीर"
+          ],
+          "split": [
+            "गुरुनानक, कबीर",
+            "तुलसीदास, संत रविदास"
+          ],
+          "note": "Note that Ravidas is named as Sant Ravidas."
+        },
+        {
+          "title": "Social reformers, including Madhya Pradesh figures",
+          "match": [
+            "रवीन्द्रनाथ टैगोर, राजा राममोहन राय"
+          ],
+          "split": [
+            "रवीन्द्रनाथ टैगोर, राजा राममोहन राय",
+            "देवी अहिल्याबाई होल्कर, सावित्रीबाई फुले"
+          ],
+          "note": "Ahilyabai Holkar is the Madhya Pradesh link and recurs in other papers."
+        },
+        {
+          "title": "Modern Indian thinkers",
+          "match": [
+            "स्वामी दयानंद सरस्वती"
+          ],
+          "split": [
+            "स्वामी दयानंद सरस्वती",
+            "स्वामी विवेकानंद, महर्षि अरविन्द",
+            "सर्वपल्ली राधाकृष्णन",
+            "डॉ. भीमराव आम्बेडकर, पंडित दीनदयाल उपाध्याय"
+          ],
+          "note": "Ambedkar and Deendayal Upadhyaya appear across papers — keep their thought in one place."
+        }
+      ]
+    },
+    "mains/paper-IV/part-a/unit-2": {
+      "focus": "Nation, security and the ethical concepts that sit under them.",
+      "units": [
+        {
+          "title": "Concept of nation",
+          "match": [
+            "राष्ट्र की अवधारणा"
+          ],
+          "split": [
+            "शक्ति एवं घटक"
+          ],
+          "note": "Definition and constituent elements."
+        },
+        {
+          "title": "National security and interest",
+          "match": [
+            "राष्ट्रीय सुरक्षा, हित एवं चरित्र"
+          ],
+          "note": "Security, interest and national character are three linked ideas in one line."
+        },
+        {
+          "title": "Security apparatus",
+          "match": [
+            "राष्ट्रीय सुरक्षा संचालन,"
+          ],
+          "split": [
+            "सशस्त्र सैन्य बल, अंग एवं प्रकार",
+            "गुप्तचर एजेंसियाँ"
+          ],
+          "note": "Armed forces structure plus the intelligence agencies."
+        },
+        {
+          "title": "Basic moral concepts",
+          "match": [
+            "मूल नैतिक अवधारणाएँ-"
+          ],
+          "split": [
+            "शुभ, सद्गुण",
+            "अहिंसा",
+            "उत्तरदायित्व"
+          ],
+          "note": "Four concepts named individually."
+        },
+        {
+          "title": "Ethics of the Bhagavad Gita in administration",
+          "match": [
+            "भगवद्गीता का नीतिशास्त्र"
+          ],
+          "note": "The application to administration is the examinable angle, not the text in isolation."
+        }
+      ]
+    },
+    "mains/paper-IV/part-a/unit-3": {
+      "focus": "Attitude, aptitude for public service, emotional intelligence, individual differences and psychotherapy.",
+      "units": [
+        {
+          "title": "Attitude",
+          "match": [
+            "मनोवृत्ति-"
+          ],
+          "split": [
+            "विषयवस्तु, तत्व, प्रकार्य",
+            "मनोवृत्ति का निर्माण, मनोवृत्ति में परिवर्तन",
+            "प्रबोधक संप्रेषण, पूर्वाग्रह तथा भेदभाव",
+            "भारतीय संदर्भ में रुढ़िवादिता"
+          ],
+          "note": "Persuasive communication and prejudice are named separately from attitude change itself."
+        },
+        {
+          "title": "Aptitude and foundational values for public service",
+          "match": [
+            "अभिक्षमता-"
+          ],
+          "split": [
+            "सत्यनिष्ठा, निष्पक्षता",
+            "वस्तुनिष्ठता",
+            "लोक सेवा के प्रति समर्पण",
+            "समानुभूति, सहिष्णुता एवं कमजोर वर्गों के प्रति संवेदना"
+          ],
+          "note": "This heading is the values core of the paper — learn each value with an administrative illustration."
+        },
+        {
+          "title": "Emotional intelligence",
+          "match": [
+            "संवेगिक बुद्धि-"
+          ],
+          "split": [
+            "सम्प्रत्यय",
+            "शासन-प्रशासन में इसकी उपयोगिता एवं अनुप्रयोग"
+          ],
+          "note": "Concept plus application in governance."
+        },
+        {
+          "title": "Individual differences",
+          "match": [
+            "व्यक्तिगत भिन्नताएँ-"
+          ],
+          "split": [
+            "कारक, सिद्धांत",
+            "व्यवहार भिन्नताएँ"
+          ],
+          "note": "Factors, theories and behavioural differences."
+        },
+        {
+          "title": "Mental disorders and psychotherapy",
+          "match": [
+            "मनोविकार एवं मनोचिकित्सा-"
+          ],
+          "split": [
+            "अवसाद, सामाजिक दुश्चिंता मनोविकार",
+            "सिज़ोफ्रेनिया, सामाजिक दुर्भीति, द्विध्रुवी मनोविकार",
+            "व्यक्ति केन्द्रित चिकित्सा, व्यवहार चिकित्सा",
+            "तर्क संगत भावनात्मक व्यवहार चिकित्सा, संज्ञानात्मक व्यवहार चिकित्सा",
+            "सकारात्मक चिकित्सा एवं पारिवारिक चिकित्सा"
+          ],
+          "note": "Five disorders and six therapies are named. Learn the disorder and the therapy it is paired with."
+        }
+      ]
+    },
+    "mains/paper-IV/part-a/unit-4": {
+      "focus": "Ethics in public administration and the problem of corruption.",
+      "units": [
+        {
+          "title": "Human needs, motivation and values",
+          "match": [
+            "मानवीय आवश्यकताएँ एवं अभिप्रेरणा-"
+          ],
+          "split": [
+            "मानव व्यक्तित्व को प्रभावित करने वाले विभिन्न तत्त्व",
+            "कर्तव्यपरायणता, मूल्यबोध, जीवन मूल्य",
+            "संवेदनशीलता, टेक्नोलॉजी एवं नैतिक मूल्य"
+          ],
+          "note": "Technology and moral values are paired in the source — an unusual but examinable combination."
+        },
+        {
+          "title": "Ethical virtues in administration",
+          "match": [
+            "लोक प्रशासन में नैतिक सद्गुण एवं मूल्य-"
+          ],
+          "split": [
+            "सत्यनिष्ठा, उत्तरदायित्व एवं पारदर्शिता",
+            "नैतिक तर्क एवं नैतिक दुविधा",
+            "अंतरात्मा",
+            "आचरण संहिता",
+            "शासन में उच्च मूल्यों का पालन"
+          ],
+          "note": "Integrity, responsibility and transparency are named together; moral dilemma and conscience separately."
+        },
+        {
+          "title": "Corruption",
+          "match": [
+            "भ्रष्टाचार-"
+          ],
+          "split": [
+            "प्रकार एवं कारण",
+            "भ्रष्टाचार का प्रभाव",
+            "अल्पतम करने के उपाय",
+            "समाज, सूचनातंत्र, परिवार एवं व्हिसिलब्लोअर की भूमिका",
+            "राष्ट्रसंघ की घोषणा, भ्रष्टाचार का मापन, ट्रांसपरेंसी इन्टरनेशनल",
+            "लोकपाल एवं लोकायुक्त"
+          ],
+          "note": "Six strands in one heading. Lokpal and Lokayukta belong here as much as in polity."
+        }
+      ]
+    },
+    "mains/paper-IV/part-a/unit-5": {
+      "focus": "A case study built on the content of this part. The syllabus gives no separate reading list for it, so the case material is drawn from Units 1 to 4.",
+      "units": [
+        {
+          "title": "Case study practice base",
+          "match": [
+            "केस स्टडी- प्रश्नपत्र के खण्ड (अ)"
+          ],
+          "note": "Prepare by working through applied situations drawn from ethics, attitude, emotional intelligence and administrative values — the same ground as the rest of Part A."
+        }
+      ]
+    },
+    "mains/paper-IV/part-b/unit-1": {
+      "focus": "Entrepreneurship: concept, process, and its promotion in India.",
+      "units": [
+        {
+          "title": "Concept and significance",
+          "match": [
+            "उद्यमिता की अवधारणा एवं महत्व"
+          ],
+          "note": "Definition plus why it matters for employment and growth."
+        },
+        {
+          "title": "Characteristics, principles and innovation",
+          "match": [
+            "उद्यमशीलता के लक्षण"
+          ],
+          "split": [
+            "लक्षण, सिद्धांत, विशेषताएँ",
+            "नवाचार का महत्व"
+          ],
+          "note": "Innovation is called out separately from the traits of an entrepreneur."
+        },
+        {
+          "title": "The entrepreneurial process",
+          "match": [
+            "उद्यमशीलता की प्रक्रिया-"
+          ],
+          "split": [
+            "सृजनशीलता",
+            "विचार सृजन",
+            "अनुवीक्षण एवं व्यवसाय योजना"
+          ],
+          "note": "Four stages listed in sequence — reproduces well as a flow answer."
+        },
+        {
+          "title": "New enterprise management and its statutory requirements",
+          "match": [
+            "नए उद्यम प्रबंधन में मुख्य मुद्दे"
+          ],
+          "split": [
+            "मुख्य मुद्दे एवं वैधानिक आवश्यकताएँ",
+            "महिला उद्यमियों के सामने आने वाली चुनौतियाँ"
+          ],
+          "note": "Statutory requirements make this a practical, registration-and-compliance question."
+        },
+        {
+          "title": "Entrepreneurship development in India",
+          "match": [
+            "भारत में उद्यमिता का विकास-"
+          ],
+          "split": [
+            "स्टार्टअप इंडिया, मेक इन इंडिया",
+            "उद्यमिता विकास को बढ़ावा देने वाले संस्थान"
+          ],
+          "note": "The institutions promoting entrepreneurship are a named list."
+        }
+      ]
+    },
+    "mains/paper-IV/part-b/unit-2": {
+      "focus": "Business organisation and management, from purchasing to branding.",
+      "units": [
+        {
+          "title": "Business, administration and material management",
+          "match": [
+            "प्रबंध- अवधारणा, महत्व"
+          ],
+          "split": [
+            "प्रबंध एवं प्रशासन",
+            "क्रय तथा सामग्री प्रबंधन"
+          ],
+          "note": "The distinction between management and administration is the classic question here."
+        },
+        {
+          "title": "Management process and functions",
+          "match": [
+            "प्रबंध प्रक्रिया"
+          ],
+          "split": [
+            "संसाधन प्रबंधन",
+            "नियोजन, संगठन, निर्देशन, नियंत्रण",
+            "समन्वय, निर्णयन",
+            "अभिप्रेरणा, नेतृत्व एवं संचार"
+          ],
+          "note": "Nine functions are named. They are a list, so expect a direct question on any of them."
+        },
+        {
+          "title": "Time management",
+          "match": [
+            "समय प्रबंधन एवं संगठन"
+          ],
+          "note": "Short heading, practical content."
+        },
+        {
+          "title": "Branding, marketing and networking",
+          "match": [
+            "ब्रांडिंग, मार्केटिंग एवं नेटवर्किंग"
+          ],
+          "note": "Three related but separate concepts."
+        }
+      ]
+    },
+    "mains/paper-IV/part-b/unit-3": {
+      "focus": "Administration and management, including stress, pluralism and disaster management.",
+      "units": [
+        {
+          "title": "Management dimensions in public administration",
+          "match": [
+            "लोक प्रशासन में प्रबंध के महत्वपूर्ण आयाम"
+          ],
+          "note": "Human resource management is attached to this line."
+        },
+        {
+          "title": "Financial management",
+          "match": [
+            "वित्तीय प्रबंध-"
+          ],
+          "note": "Its scope and significance in public administration specifically."
+        },
+        {
+          "title": "Stress and conflict management",
+          "match": [
+            "लोक कार्य क्षेत्र में तनाव प्रबंधन"
+          ],
+          "split": [
+            "तनाव प्रबंधन",
+            "विवाद प्रबंधन की विभिन्न तकनीकें"
+          ],
+          "note": "Techniques are what the syllabus asks for, not definitions."
+        },
+        {
+          "title": "Managing plurality",
+          "match": [
+            "बहुलता (अनेकता) का प्रबंधन"
+          ],
+          "split": [
+            "बहुलता (अनेकता) का प्रबंधन एवं प्रशासन",
+            "जन प्रबंधन के अवसर एवं चुनौतियाँ"
+          ],
+          "note": "Opportunities and challenges are named — prepare both sides."
+        },
+        {
+          "title": "Disaster management",
+          "match": [
+            "आपदा प्रबंधन।"
+          ],
+          "note": "Connects to the disaster content in Mains Paper I Part B Unit IV and Prelims Paper I subject 7."
+        }
+      ]
+    },
+    "mains/paper-IV/part-b/unit-4": {
+      "focus": "Personality development, success and failure, programme implementation and a named set of social issues.",
+      "units": [
+        {
+          "title": "Personality and national development",
+          "match": [
+            "समग्र व्यक्तित्व एवं राष्ट्रीय विकास"
+          ],
+          "note": "Individual development is linked to national development in the syllabus itself."
+        },
+        {
+          "title": "Components of personality development",
+          "match": [
+            "व्यक्तित्व विकास के विभिन्न घटक"
+          ],
+          "note": "A list heading — prepare the components and how each is developed."
+        },
+        {
+          "title": "Success, its impediments and its causes",
+          "match": [
+            "सफलता की अवधारणा",
+            "सफलता प्राप्त करने में बाधाएँ",
+            "सफलता के लिए जिम्मेदार कारक"
+          ],
+          "note": "Three consecutive short headings — concept, obstacles and causes. Study them together."
+        },
+        {
+          "title": "Learning from failure",
+          "match": [
+            "असफलता से सीखना"
+          ],
+          "note": "The source states the attitude it wants: failure as insight and as an opportunity for improvement."
+        },
+        {
+          "title": "Implementing government programmes",
+          "match": [
+            "सरकारी योजनाओं का क्रियान्वयन"
+          ],
+          "note": "Effective implementation strategy is the examinable core."
+        },
+        {
+          "title": "Facts and approaches on named social issues",
+          "match": [
+            "निम्नांकित मुद्दों से संबंधित तथ्य और दृष्टिकोण"
+          ],
+          "split": [
+            "नागरिक बोध, संस्था के प्रति निष्ठा",
+            "मतदाता जागरूकता कार्यक्रम, यातायात प्रबंधन",
+            "नशाखोरी की प्रवृत्ति, खाद्य पदार्थों में मिलावट",
+            "नाइट कल्चर, मूल्य आधारित जीवन",
+            "विधिक जागरूकता कार्यक्रम"
+          ],
+          "note": "Eight issues are named in one line. Each needs facts and a reasoned viewpoint, so prepare concrete material rather than opinions."
+        }
+      ]
+    },
+    "mains/paper-IV/part-b/unit-5": {
+      "focus": "A case study built on the content of Part B, drawn from entrepreneurship, management, administration and personality development.",
+      "units": [
+        {
+          "title": "Case study practice base",
+          "match": [
+            "केस स्टडी प्रश्नपत्र के खण्ड (ब)"
+          ],
+          "note": "Prepare applied situations from the four units of this part — entrepreneurship, management, administrative ethics and personality development."
+        }
+      ]
+    }
+  }
+}

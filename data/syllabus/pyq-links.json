@@ -1,0 +1,73 @@
+{
+  "format": "mymppsc-syllabus-pyq-links",
+  "format_version": "1.0.0",
+  "notice": "Read-only links from a syllabus heading to the question bank this device already holds. They are curated against the taxonomy the bank itself uses; nothing here reclassifies a question or changes the bank.",
+  "scope_note": "The bundled bank (2013-2024) is a Prelims Paper I bank. Links are therefore offered only where a Prelims Paper I or Paper II heading corresponds to a subject or topic that already exists in that bank's own vocabulary. Mains headings deliberately carry no links: the bank holds no Mains questions, and pointing a Mains heading at Prelims questions would misrepresent what the bank contains.",
+  "links": {
+    "prelims/paper-1/s1": [
+      { "subject": "History", "topic": "Ancient India" },
+      { "subject": "History", "topic": "Medieval India" },
+      { "subject": "History", "topic": "Modern India" },
+      { "subject": "History", "topic": "Art and architecture" }
+    ],
+    "prelims/paper-1/s2": [
+      { "subject": "History", "topic": "History of Madhya Pradesh" },
+      { "subject": "Art and Culture", "topic": "Culture of Madhya Pradesh" },
+      { "subject": "Art and Culture", "topic": "Literature and languages" },
+      { "subject": "Art and Culture", "topic": "Heritage Sites" },
+      { "subject": "Art and Culture", "topic": "Festivals and fairs" },
+      { "subject": "Art and Culture", "topic": "Dance and music" },
+      { "subject": "Art and Culture", "topic": "Paintings and sculpture" },
+      { "subject": "Madhya Pradesh Special", "topic": "Tribes of Madhya Pradesh" },
+      { "subject": "Madhya Pradesh Special", "topic": "Personalities and awards of Madhya Pradesh" }
+    ],
+    "prelims/paper-1/s3": [
+      { "subject": "Geography", "topic": "Physical Geography" },
+      { "subject": "Geography", "topic": "Geography of India" },
+      { "subject": "Geography", "topic": "Economic and human geography" }
+    ],
+    "prelims/paper-1/s4": [
+      { "subject": "Geography", "topic": "Physiography of Madhya Pradesh" },
+      { "subject": "Geography", "topic": "Rivers of Madhya Pradesh" },
+      { "subject": "Geography", "topic": "Climate and soils of Madhya Pradesh" }
+    ],
+    "prelims/paper-1/s5": [
+      { "subject": "Polity", "topic": "Constitution of India" },
+      { "subject": "Polity", "topic": "Union Executive" },
+      { "subject": "Polity", "topic": "Union Legislature" },
+      { "subject": "Polity", "topic": "Judiciary" },
+      { "subject": "Polity", "topic": "State Government" },
+      { "subject": "Polity", "topic": "Union and State Relations" },
+      { "subject": "Polity", "topic": "Constitutional bodies" },
+      { "subject": "Polity", "topic": "Local self-government" },
+      { "subject": "Polity", "topic": "Citizenship and civil rights" }
+    ],
+    "prelims/paper-1/s6": [
+      { "subject": "Economy", "topic": "Indian Economy" },
+      { "subject": "Economy", "topic": "Banking and finance" },
+      { "subject": "Economy", "topic": "Agriculture and rural economy" },
+      { "subject": "Economy", "topic": "Industry and infrastructure" },
+      { "subject": "Economy", "topic": "International economy" },
+      { "subject": "Economy", "topic": "Economy of Madhya Pradesh" }
+    ],
+    "prelims/paper-1/s7": [
+      { "subject": "Science and Technology", "topic": "Biology" },
+      { "subject": "Science and Technology", "topic": "Health and diseases" },
+      { "subject": "Environment", "topic": "Ecology and biodiversity" },
+      { "subject": "Environment", "topic": "Pollution and climate change" }
+    ],
+    "prelims/paper-1/s8": [{ "subject": "Current Affairs" }],
+    "prelims/paper-1/s10": [
+      { "subject": "Madhya Pradesh Special", "topic": "Tribes of Madhya Pradesh" },
+      { "subject": "Madhya Pradesh Special", "topic": "Personalities and awards of Madhya Pradesh" },
+      { "subject": "Art and Culture", "topic": "Culture of Madhya Pradesh" }
+    ],
+    "prelims/paper-2": [
+      { "subject": "General Aptitude", "topic": "Quantitative aptitude" },
+      { "subject": "General Aptitude", "topic": "Logical reasoning" }
+    ]
+  },
+  "omitted": {
+    "prelims/paper-1/s9": "Information and communication technology has no matching topic in the bank's existing vocabulary, so no link is offered rather than an approximate one."
+  }
+}

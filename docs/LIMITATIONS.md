@@ -5,7 +5,7 @@ This is the honest list, written to be read before trusting any screen.
 ## Scope and content
 
 * **What ships is transcribed, not official.** The repository bundles a classified MPPSC Prelims Paper I bank for 2013–2024 (1,171 questions, 12 papers), and it is loaded automatically — see the section below for exactly what it does and does not claim. The demonstration bank and the `demo/` sample intake file are synthetic filler, badged `demonstration` everywhere they appear. Anything else meaningful comes from a bank you import, and its accuracy is your responsibility.
-* **No syllabus is built in.** The planner mirrors whatever structure you import or create. "Suggest from question bank" copies the subjects and topics your own data already has — it is not an official syllabus and does not claim to be.
+* **The planner has no syllabus of its own.** The planner mirrors whatever structure you import or create. "Suggest from question bank" copies the subjects and topics your own data already has — it is not an official syllabus and does not claim to be. The separate **Syllabus Analysis** screen ships the commission's revised 2026 syllabus read-only (see the section below); it never writes into the planner.
 * **No AI or model runs inside the app.** Explanations, keys and classifications are imported data. The app displays an explanation exactly as it is stored, says so when a question has none, and never generates or "improves" one.
 * **No examination predictions.** Topic frequency, priorities and smart-practice allocation describe *your stored bank and your recorded answers*. They are study aids. Nothing here estimates a future paper's content or your result.
 * **No guarantee of retention.** The revision schedule is a transparent heuristic (outcome + confidence + answer time → interval). It cannot promise that anything is remembered.
@@ -19,6 +19,16 @@ This is the honest list, written to be read before trusting any screen.
 * **Explanations are source prose** — displayed as stored and never generated. 1,017 questions have explanation content; 154 do not (7 existing omissions, 28 historical source omissions and 119 exact generic placeholders cleared to null). The app attaches no review status to them.
 * **Latest-pattern practice scoring is applied automatically across every bundled year:** +3 correct, −1 incorrect, 0 unanswered. This user-directed application to 2013–2024 is not evidence that historical papers used those rules. The underlying 2026 pattern remains `reported`, not primary-source verified; see `docs/MARKING.md`.
 * **Removing it is safe.** Question Bank & Imports → *Remove bundled bank from this device* removes those questions and papers only; your own data is untouched and it can be reloaded at any time.
+
+## The Syllabus Analysis section (MPPSC 2026)
+
+* **What it shows is transcribed, never retyped.** `tools/build-syllabus.mjs` lifts every line out of the committed notification (`data/MPPSC 2026 Syllabus.md`, SHA-256 recorded in `data/syllabus/mppsc-2026-syllabus.json`) at a source line and page, and the build fails if a bullet inside a syllabus region would be dropped.
+* **Source gaps are declared, not filled.** Pages 8, 18 and 45 are absent from the source file; several Prelims sections and Mains units have no English rendition, and 13 Mains units are listed without a title of their own — those rows read "Unit N" and the detail panel says so. No text was invented to cover any gap.
+* **Examination-administration content is excluded by design** — the notice, both exam plans, durations, marks, qualifying rules and negative marking. Where a Paper V or Paper VI table row mixed curriculum with a marks plan, the marks annotation was deleted from the curriculum.
+* **Both official renditions are kept.** The tree shows the app's chosen language where the source provides it, with the other rendition beside it in the detail panel; a line the source gives in one language only stays in that language.
+* **The study breakdown is guidance, not the syllabus.** Every breakdown and unit is labelled `derived` where it appears, and `node tools/build-syllabus.mjs --check-guide` fails if any unit cannot be traced back to official lines.
+* **Progress is its own store** (`syllabus_progress`), never mixed with question practice, planner rows or revision records; it is optional (the module is fully readable with nothing marked) and reset only after a confirmation.
+* **Previous-year links are read-only and deliberately partial.** They exist only where the bank's own taxonomy already carries the matching subject or topic, and never carry a count, so a missing link can never be read as "no questions exist". Mains headings carry none, because the bundled bank holds no Mains questions.
 
 ## Data and durability
 

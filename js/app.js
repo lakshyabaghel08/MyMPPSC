@@ -23,6 +23,7 @@ import smartView from './ui/views/smart.js';
 import mistakesView from './ui/views/mistakes.js';
 import revisionView from './ui/views/revision.js';
 import syllabusView from './ui/views/syllabus.js';
+import syllabusAnalysisView from './ui/views/syllabus-analysis.js';
 import analyticsView from './ui/views/analytics.js';
 import pyqAnalysisView from './ui/views/pyq-analysis.js';
 import bankView from './ui/views/bank.js';
@@ -38,6 +39,7 @@ const NAV = [
   { route: 'mistakes', label: 'Mistake Book', icon: 'mistakes', badge: 'mistakes', group: 'Improve' },
   { route: 'revision', label: 'Revision Centre', icon: 'revision', badge: 'revision', group: 'Improve' },
   { route: 'syllabus', label: 'Syllabus & Planner', icon: 'syllabus', group: 'Improve' },
+  { route: 'syllabus-analysis', label: 'Syllabus Analysis', icon: 'syllabus', group: 'Improve' },
   { route: 'analytics', label: 'Analytics', icon: 'analytics', group: 'Improve' },
   { route: 'pyq-analysis', label: 'PYQ Analysis', icon: 'pyq-analysis', group: 'Improve' },
   { route: 'bank', label: 'Question Bank & Imports', icon: 'bank', group: 'System' },
@@ -461,6 +463,7 @@ async function boot() {
   router.register('mistakes', mistakesView);
   router.register('revision', revisionView);
   router.register('syllabus', syllabusView);
+  router.register('syllabus-analysis', syllabusAnalysisView);
   router.register('analytics', analyticsView);
   router.register('pyq-analysis', pyqAnalysisView);
   router.register('bank', bankView);

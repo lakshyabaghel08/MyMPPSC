@@ -1,0 +1,693 @@
+{
+  "format": "mymppsc-syllabus-study-guide",
+  "format_version": "1.0.0",
+  "title": "Prelims study breakdown",
+  "notice": "Derived study guidance. Every unit below groups or subdivides official syllabus lines; it never adds a requirement of its own.",
+  "headings": {
+    "prelims/paper-1": {
+      "focus": "One paper with ten sections. Seven of them cover all of India and Madhya Pradesh in parallel pairs; the last three — current events, ICT and tribes — are examined by recall rather than by depth, so treat them as revision material rather than as new reading."
+    },
+    "prelims/paper-1/s1": {
+      "focus": "The widest section in the paper. Split it into the classical knowledge tradition, the medieval political record, and the modern freedom movement.",
+      "units": [
+        {
+          "title": "Ancient knowledge tradition and vocabulary",
+          "match": [
+            "संकल्पना एवं विचार"
+          ],
+          "split": [
+            "प्राचीन भारतीय ज्ञान परंपरा",
+            "वेद, उपनिषद, आरण्यक, ब्राह्मण ग्रंथ",
+            "षड्दर्शन, स्मृतियाँ",
+            "ऋत सभा समिति, गणतंत्र, वर्णाश्रम",
+            "पुरुषार्थ, ऋण संस्कार, पंचमहायज्ञ/यज्ञ, कर्म का सिद्धांत",
+            "बोधिसत्व, तीर्थंकर"
+          ],
+          "note": "Learn these as terms with a one-line definition each; they recur as direct one-mark-style clues."
+        },
+        {
+          "title": "Ancient and medieval India: features, events, administration",
+          "match": [
+            "प्राचीन एवं मध्यकालीन भारत"
+          ],
+          "note": "Keep a single running timeline and hang administration, society and economy off it."
+        },
+        {
+          "title": "Cultural heritage: art, literature, festivals",
+          "match": [
+            "भारत की सांस्कृतिक विरासत"
+          ],
+          "note": "Overlaps the art-and-culture material; study once and revise from the same notes."
+        },
+        {
+          "title": "Socio-religious reform movements",
+          "match": [
+            "19वीं एवं 20वीं शताब्दी में सामाजिक तथा धार्मिक सुधार आंदोलन"
+          ],
+          "note": "Organise by reformer, region, organisation and the practice each movement attacked."
+        },
+        {
+          "title": "Freedom struggle and the national movement",
+          "match": [
+            "स्वतंत्रता संघर्ष एवं भारतीय राष्ट्रीय आंदोलन"
+          ],
+          "note": "Phase it by 1885-1905, 1905-1919, 1919-1939, 1939-1947 with the session and leader for each phase."
+        },
+        {
+          "title": "Post-independence integration and reorganisation",
+          "match": [
+            "स्वतंत्रता के पश्चात् भारत का एकीकरण एवं पुनर्गठन"
+          ],
+          "note": "Link this forward to the States Reorganisation material in Prelims Paper I subject 5 and Mains Paper I Unit IV."
+        }
+      ]
+    },
+    "prelims/paper-1/s2": {
+      "focus": "Madhya Pradesh's own history, culture and literature — the section where state-specific recall decides marks.",
+      "units": [
+        {
+          "title": "Dynasties and landmark events",
+          "match": [
+            "मध्यप्रदेश के इतिहास की महत्त्वपूर्ण घटनाएँ"
+          ],
+          "note": "Build a dynasty-by-dynasty table: region ruled, capital, notable ruler, notable monument."
+        },
+        {
+          "title": "Role in the freedom movement",
+          "match": [
+            "स्वतंत्रता आंदोलन में मध्यप्रदेश का योगदान"
+          ],
+          "note": "Pairs with the tribal-heroes material in Mains Paper I Unit V."
+        },
+        {
+          "title": "Art and architecture",
+          "match": [
+            "मध्यप्रदेश की प्रमुख कला एवं स्थापत्य कला"
+          ],
+          "note": "Tie each art form to the place it is practised in."
+        },
+        {
+          "title": "Tribes and their dialects",
+          "match": [
+            "मध्यप्रदेश की प्रमुख जनजातियाँ एवं उनकी बोलियाँ"
+          ],
+          "note": "Studied in full in subject 10 of this paper — keep one set of notes for both."
+        },
+        {
+          "title": "Festivals, folk music, folk arts and folk literature",
+          "match": [
+            "मध्यप्रदेश के प्रमुख त्योहार, लोक संगीत"
+          ],
+          "note": "Group by folk form and the community or region associated with it."
+        },
+        {
+          "title": "Authors and their works",
+          "match": [
+            "मध्यप्रदेश के प्रमुख साहित्यकार एवं उनकी कृतियाँ"
+          ],
+          "note": "Learn as author-work pairs, with the language and period noted."
+        },
+        {
+          "title": "Religious, cultural and archaeological tourism sites",
+          "match": [
+            "मध्यप्रदेश के प्रमुख धार्मिक, सांस्कृतिक एवं पुरातात्विक पर्यटन स्थल"
+          ],
+          "note": "Map-based recall works best; mark each site on a blank MP outline."
+        },
+        {
+          "title": "World heritage sites",
+          "match": [
+            "मध्यप्रदेश में विश्व धरोहर स्थल"
+          ],
+          "note": "Small, high-yield list — also appears in Mains Paper I Unit IV."
+        },
+        {
+          "title": "Tribal personalities",
+          "match": [
+            "मध्यप्रदेश के प्रमुख जनजातीय व्यक्तित्व"
+          ],
+          "note": "Overlaps the freedom-movement material in subject 2 of this paper."
+        }
+      ]
+    },
+    "prelims/paper-1/s3": {
+      "focus": "Physical and human geography of India. The English rendition of this section is only partly present in the source, so the Hindi lines are the complete record.",
+      "units": [
+        {
+          "title": "Relief and drainage",
+          "match": [
+            "पर्वत, पहाड़ियाँ, पठार, नदियाँ और झीलें"
+          ],
+          "note": "Anchor everything on a physical map: ranges, plateaus, river systems and lakes."
+        },
+        {
+          "title": "Climatic phenomena",
+          "match": [
+            "जलवायु घटनाएँ"
+          ],
+          "split": [
+            "अल-नीनो, ला-नीना",
+            "दक्षिणी दोलन, पश्चिमी विक्षोभ",
+            "जलवायु परिवर्तन के परिणाम"
+          ],
+          "note": "Learn each phenomenon as a mechanism plus its effect on the Indian monsoon."
+        },
+        {
+          "title": "Natural resources",
+          "match": [
+            "प्राकृतिक संसाधन"
+          ],
+          "split": [
+            "वन",
+            "खनिज",
+            "जल संसाधन"
+          ],
+          "note": "Distribution matters more than definition here."
+        },
+        {
+          "title": "Crops, food security and the green revolutions",
+          "match": [
+            "प्रमुख फसलें, खाद्य सुरक्षा"
+          ],
+          "note": "Keep crop, season, leading producing state and the policy programme together."
+        },
+        {
+          "title": "Energy sources",
+          "match": [
+            "ऊर्जा के पारंपरिक और गैर-पारंपरिक स्रोत"
+          ],
+          "note": "Same heading appears in subject 4 (Madhya Pradesh); study the MP examples separately."
+        },
+        {
+          "title": "Hazards, disasters and cyclones",
+          "match": [
+            "भारत में प्राकृतिक खतरे और आपदाएँ"
+          ],
+          "note": "Expanded considerably in Mains Paper I Part B Unit IV — use that version for depth."
+        },
+        {
+          "title": "Population",
+          "match": [
+            "जनसंख्या वृद्धि, वितरण एवं घनत्व, ग्रामीण-नगरीय प्रवास"
+          ],
+          "note": "Distinguish growth, distribution, density and migration as four separate ideas."
+        }
+      ]
+    },
+    "prelims/paper-1/s4": {
+      "focus": "Madhya Pradesh's physical and economic geography. Read it against subject 3 to see which India-level headings the state repeats.",
+      "units": [
+        {
+          "title": "Forests, forest produce and relief",
+          "match": [
+            "वन, वनोपज, नदियाँ, पहाड़ियाँ और पठार"
+          ],
+          "note": "Know the forest types, the division-wise produce and the major river systems."
+        },
+        {
+          "title": "Climate",
+          "match": [
+            "जलवायु"
+          ],
+          "split": [
+            "ऋतुएँ",
+            "तापमान",
+            "वर्षा"
+          ],
+          "note": "Compare with the India-level climate heading in subject 3."
+        },
+        {
+          "title": "Soils and minerals",
+          "match": [
+            "प्राकृतिक संसाधन"
+          ],
+          "split": [
+            "मिट्टियाँ",
+            "प्रमुख खनिज संसाधन"
+          ],
+          "note": "Mineral belts and their districts are the highest-yield part."
+        },
+        {
+          "title": "Crops, water and irrigation",
+          "match": [
+            "प्रमुख फसलें, जल संसाधन, सिंचाई"
+          ],
+          "note": "Learn the major irrigation projects by river and district."
+        },
+        {
+          "title": "Energy in Madhya Pradesh",
+          "match": [
+            "ऊर्जा के पारंपरिक और गैर-पारंपरिक स्रोत"
+          ],
+          "note": "The state's thermal, hydro and renewable capacity and locations."
+        },
+        {
+          "title": "Industry",
+          "match": [
+            "मध्यप्रदेश के प्रमुख उद्योग"
+          ],
+          "note": "Industrial regions and the anchor units in each."
+        },
+        {
+          "title": "Population and urbanisation",
+          "match": [
+            "जनसंख्या वृद्धि, वितरण एवं घनत्व, नगरीकरण"
+          ],
+          "note": "Note that subject 3 says migration where this one says urbanisation."
+        }
+      ]
+    },
+    "prelims/paper-1/s5": {
+      "focus": "Constitutional order, with the state layer attached. Learn the national framework first, then the Madhya Pradesh version of each institution.",
+      "units": [
+        {
+          "title": "The Constitution and its making",
+          "match": [
+            "संविधान सभा"
+          ],
+          "note": "Pair with the constitutional-development material in Mains Paper II Part A Unit I."
+        },
+        {
+          "title": "Union executive and legislature",
+          "match": [
+            "संघीय कार्यपालिका, राष्ट्रपति एवं संसद"
+          ],
+          "note": "Powers, election, tenure and the relationship between the two."
+        },
+        {
+          "title": "Judiciary",
+          "match": [
+            "सर्वोच्च न्यायालय एवं न्यायिक व्यवस्था"
+          ],
+          "note": "Jurisdiction, judicial review and the writ structure."
+        },
+        {
+          "title": "Amendments",
+          "match": [
+            "संवैधानिक संशोधन"
+          ],
+          "note": "Learn only the landmark amendments with their subject."
+        },
+        {
+          "title": "Rights, duties and directive principles",
+          "match": [
+            "नागरिकों के मौलिक अधिकार"
+          ],
+          "note": "Keep the three lists distinct; the overlap is a common trap."
+        },
+        {
+          "title": "Commissions and statutory bodies",
+          "match": [
+            "राष्ट्रीय एवं प्रादेशिक संवैधानिक"
+          ],
+          "note": "Article, composition, tenure and function for each body."
+        },
+        {
+          "title": "Madhya Pradesh's constitutional order",
+          "match": [
+            "मध्यप्रदेश की संवैधानिक व्यवस्था"
+          ],
+          "split": [
+            "राज्यपाल",
+            "मंत्रिमंडल, विधानसभा",
+            "उच्च न्यायालय"
+          ],
+          "note": "Expanded in Mains Paper II Part A Units IV and V."
+        },
+        {
+          "title": "Panchayati Raj and urban administration",
+          "match": [
+            "मध्यप्रदेश में त्रिस्तरीय पंचायतीराज"
+          ],
+          "note": "The three tiers, their elections and finances, plus the urban bodies."
+        },
+        {
+          "title": "Good governance",
+          "match": [
+            "मध्यप्रदेश में सुशासन"
+          ],
+          "note": "Administrative reform, transparency and service delivery in the state."
+        }
+      ]
+    },
+    "prelims/paper-1/s6": {
+      "focus": "Economy of India with Madhya Pradesh placed inside it. Roughly half the section is state-specific.",
+      "units": [
+        {
+          "title": "Madhya Pradesh's place in the Indian economy",
+          "match": [
+            "भारतीय अर्थव्यवस्था में मध्यप्रदेश की वर्तमान स्थिति"
+          ],
+          "note": "Know the state's share in output and its sectoral composition."
+        },
+        {
+          "title": "Population and human resources",
+          "match": [
+            "मध्यप्रदेश की जनसंख्या व मानवीय संसाधनों"
+          ],
+          "split": [
+            "शिक्षा",
+            "स्वास्थ्य",
+            "कौशल"
+          ],
+          "note": "Keep the indicator values for each of the three."
+        },
+        {
+          "title": "Sustainable development goals",
+          "match": [
+            "सतत् विकास लक्ष्यों में मध्यप्रदेश की प्रगति"
+          ],
+          "note": "Links to the SDG heading in subject 7 of this paper."
+        },
+        {
+          "title": "Agriculture, industry, MSME and infrastructure",
+          "match": [
+            "मध्यप्रदेश में कृषि, उद्योग"
+          ],
+          "note": "Study as four separate but connected sectors."
+        },
+        {
+          "title": "Self-reliant Madhya Pradesh and ODOP",
+          "match": [
+            "आत्मनिर्भर मध्यप्रदेश"
+          ],
+          "note": "The district-product pairing is a favourite recall item."
+        },
+        {
+          "title": "Intellectual property rights",
+          "match": [
+            "मध्यप्रदेश में बौद्धिक संपदा अधिकारों"
+          ],
+          "note": "Repeats in Mains Paper III Part A Unit IV."
+        },
+        {
+          "title": "Recent trends in the Indian economy",
+          "match": [
+            "भारतीय अर्थव्यवस्था की नवीन प्रवृत्तियाँ"
+          ],
+          "split": [
+            "कृषि",
+            "उद्योग एवं सेवा क्षेत्र"
+          ],
+          "note": "Keep the trend and its latest data point together."
+        },
+        {
+          "title": "Financial institutions",
+          "match": [
+            "वित्तीय संस्थाएँ"
+          ],
+          "split": [
+            "रिजर्व बैंक",
+            "वाणिज्यिक बैंक",
+            "सेबी",
+            "गैर बैंकिंग वित्तीय संस्थाएँ"
+          ],
+          "note": "Regulator versus participant is the useful distinction."
+        },
+        {
+          "title": "Foreign trade policy and groupings",
+          "match": [
+            "भारत की विदेशी व्यापार की नीतियाँ"
+          ],
+          "note": "G-20, SAARC and ASEAN — also revise them with current affairs."
+        }
+      ]
+    },
+    "prelims/paper-1/s7": {
+      "focus": "Science, environment and health in one section. Separate the scientific content from the scheme and programme content.",
+      "units": [
+        {
+          "title": "Branches of science",
+          "match": [
+            "विज्ञान की प्रमुख शाखाओं"
+          ],
+          "note": "Definition and one example per branch is enough."
+        },
+        {
+          "title": "Indian scientific institutions",
+          "match": [
+            "भारत के प्रमुख वैज्ञानिक संस्थान"
+          ],
+          "note": "Learn institute, location and what it is known for."
+        },
+        {
+          "title": "Space and satellite technology",
+          "match": [
+            "उपग्रह एवं अंतरिक्ष प्रौद्योगिकी"
+          ],
+          "note": "Match the mission or satellite to its purpose."
+        },
+        {
+          "title": "Human body and nutrition",
+          "match": [
+            "मानव शरीर संरचना",
+            "पोषण, आहार, पोषक तत्व एवं कुपोषण"
+          ],
+          "note": "Organ systems, then nutrients and the deficiency each causes."
+        },
+        {
+          "title": "Genetic disease and sickle cell anaemia",
+          "match": [
+            "आनुवांशिक रोग"
+          ],
+          "split": [
+            "कारण",
+            "प्रभाव, निदान",
+            "कार्यक्रम"
+          ],
+          "note": "The programme element makes this a state-scheme question as much as a science one."
+        },
+        {
+          "title": "Health policy, programmes and communicable disease",
+          "match": [
+            "स्वास्थ्य नीति एवं कार्यक्रम"
+          ],
+          "note": "Overlaps the national health programmes in Mains Paper III Part B Unit IV."
+        },
+        {
+          "title": "Sustainable development and the SDGs",
+          "match": [
+            "सतत् विकास की अवधारणा"
+          ],
+          "note": "Pairs with the MP progress heading in subject 6."
+        },
+        {
+          "title": "Environment, ecology and biodiversity",
+          "match": [
+            "पर्यावरणीय कारक"
+          ],
+          "split": [
+            "पारिस्थितिकीय तंत्र",
+            "जैव-विविधता"
+          ],
+          "note": "Definitions and Indian examples for each."
+        },
+        {
+          "title": "Pollution and disaster management",
+          "match": [
+            "प्रदूषण, प्राकृतिक आपदाएँ एवं प्रबंधन"
+          ],
+          "note": "Keep pollutant, source, effect and control measure together."
+        }
+      ]
+    },
+    "prelims/paper-1/s8": {
+      "focus": "Current events at three levels. This section cannot be finished once — it has to be revised on a cycle.",
+      "units": [
+        {
+          "title": "International current events",
+          "match": [
+            "अंतर्राष्ट्रीय समसामयिक घटनाएँ"
+          ],
+          "note": "Keep a running month-wise file; revise monthly rather than attempting to memorise once."
+        },
+        {
+          "title": "National current events",
+          "match": [
+            "राष्ट्रीय समसामयिक घटनाएँ"
+          ],
+          "note": "Focus on policy, institutions and appointments that connect to a static topic."
+        },
+        {
+          "title": "Madhya Pradesh current events",
+          "match": [
+            "मध्यप्रदेश की समसामयिक घटनाएँ"
+          ],
+          "note": "State schemes, indices and appointments; the highest-yield of the three for this paper."
+        }
+      ]
+    },
+    "prelims/paper-1/s9": {
+      "focus": "Information and communication technology, from the very basic to the applied.",
+      "units": [
+        {
+          "title": "Computer fundamentals",
+          "match": [
+            "कंप्यूटर का आधारभूत ज्ञान"
+          ],
+          "note": "Hardware, software, memory and the terms that go with them."
+        },
+        {
+          "title": "Electronics and ICT",
+          "match": [
+            "इलेक्ट्रॉनिकी, सूचना एवं संचार प्रौद्योगिकी"
+          ],
+          "note": "Communication technologies and their everyday applications."
+        },
+        {
+          "title": "Robotics, artificial intelligence and cyber security",
+          "match": [
+            "रोबोटिक्स, आर्टिफिशियल इंटेलीजेन्स एवं सायबर सिक्यूरिटी"
+          ],
+          "note": "Learn each as definition, application and the risk it carries."
+        },
+        {
+          "title": "E-governance",
+          "match": [
+            "ई-गवर्नेस"
+          ],
+          "note": "Repeats in Mains Paper III Part B Unit II; a few flagship portals are worth knowing."
+        },
+        {
+          "title": "Internet and social networking platforms",
+          "match": [
+            "इंटरनेट तथा सोशल नेटवर्किंग"
+          ],
+          "note": "Basic internet terminology and the platforms named in current affairs."
+        }
+      ]
+    },
+    "prelims/paper-1/s10": {
+      "focus": "Tribes of Madhya Pradesh — heritage, folk culture and folk literature. The most state-specific section of the paper.",
+      "units": [
+        {
+          "title": "Distribution and constitutional provisions",
+          "match": [
+            "मध्यप्रदेश में जनजातियों का भौगोलिक विस्तार"
+          ],
+          "split": [
+            "जनजातियों का भौगोलिक विस्तार",
+            "संवैधानिक प्रावधान"
+          ],
+          "note": "Map the tribal belt district-wise, then the constitutional safeguards."
+        },
+        {
+          "title": "Major, particularly vulnerable and nomadic tribes; welfare schemes",
+          "match": [
+            "मध्यप्रदेश की प्रमुख जनजातियाँ"
+          ],
+          "split": [
+            "प्रमुख जनजातियाँ",
+            "विशेष पिछड़ी जनजातियाँ एवं घुमन्तू जातियाँ",
+            "कल्याण के लिए योजनाएँ"
+          ],
+          "note": "The PVTG list and the welfare schemes are the highest-yield parts."
+        },
+        {
+          "title": "Tribal culture",
+          "match": [
+            "मध्यप्रदेश की जनजातीय संस्कृति"
+          ],
+          "split": [
+            "परम्पराएँ, विशिष्ट कलाएँ",
+            "त्यौहार, उत्सव",
+            "भाषा, बोली एवं साहित्य"
+          ],
+          "note": "Study alongside the folk art and festival headings in subject 2."
+        },
+        {
+          "title": "Contribution to the freedom movement, personalities, institutions",
+          "match": [
+            "मध्यप्रदेश की जनजातियों का भारत के स्वतंत्रता आंदोलन में योगदान"
+          ],
+          "split": [
+            "स्वतंत्रता आंदोलन में योगदान एवं राज्य के प्रमुख जनजातीय व्यक्तित्व",
+            "संस्थान, संग्रहालय, प्रकाशन"
+          ],
+          "note": "The tribal heroes here are named individually in Mains Paper I Unit V."
+        },
+        {
+          "title": "Folk culture and folk literature",
+          "match": [
+            "मध्यप्रदेश की लोक संस्कृति एवं लोक साहित्य"
+          ],
+          "note": "Keep one consolidated folk-culture file across subjects 2, 10 and Mains Paper II Part B Unit V."
+        }
+      ]
+    },
+    "prelims/paper-2": {
+      "focus": "General aptitude. Every item here is a skill rather than a body of facts, so it is trained by timed practice rather than by reading — and item 7 is tested in Hindi only.",
+      "units": [
+        {
+          "title": "Comprehension and communication skill",
+          "match": [
+            "बोधगम्यता।",
+            "सम्प्रेषण कौशल"
+          ],
+          "note": "Practise passages against the clock; accuracy and speed have to rise together."
+        },
+        {
+          "title": "Reasoning, decision making and mental ability",
+          "match": [
+            "तार्किक एवं विश्लेषणात्मक क्षमता",
+            "निर्णय लेना एवं समस्या समाधान",
+            "सामान्य मानसिक योग्यता"
+          ],
+          "note": "Three separate item types — track your accuracy per type rather than overall."
+        },
+        {
+          "title": "Basic numeracy and data interpretation",
+          "match": [
+            "आधारभूत संख्यात्मकता"
+          ],
+          "split": [
+            "संख्याएँ एवं उनके संबंध",
+            "परिमाण क्रम",
+            "आँकड़ों का निर्वचन"
+          ],
+          "note": "Charts, graphs, tables and data sufficiency; the source sets the level at about class ten."
+        },
+        {
+          "title": "Hindi language comprehension",
+          "match": [
+            "हिन्दी भाषा में बोधगम्यता कौशल"
+          ],
+          "note": "Tested through Hindi passages only, with no English translation. Practise in Hindi."
+        }
+      ]
+    }
+  },
+  "connections": [
+    {
+      "a": "prelims/paper-1/s5",
+      "b": "mains/paper-II/part-a/unit-1",
+      "note": "The constitutional framework is examined as objective recall in Prelims and as descriptive analysis in Mains; one set of notes can serve both."
+    },
+    {
+      "a": "prelims/paper-1/s2",
+      "b": "mains/paper-II/part-b/unit-5",
+      "note": "Both carry Madhya Pradesh folk culture and tribal society — study them as one block."
+    }
+  ],
+  "revisionGroups": [
+    {
+      "title": "Everything specific to Madhya Pradesh",
+      "nodes": [
+        "prelims/paper-1/s2",
+        "prelims/paper-1/s4",
+        "prelims/paper-1/s10",
+        "prelims/paper-1/s8"
+      ],
+      "note": "Revise as a single state-specific block before the prelims; these four sections share facts and should not be revised in isolation."
+    },
+    {
+      "title": "Environment, health and disaster material",
+      "nodes": [
+        "prelims/paper-1/s7",
+        "mains/paper-III/part-b/unit-3",
+        "mains/paper-III/part-b/unit-5"
+      ],
+      "note": "The same ecology, pollution and health material appears at Prelims and in Mains Paper III; revise the topics once, at Mains depth."
+    }
+  ]
+}

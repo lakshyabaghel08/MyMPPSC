@@ -129,7 +129,13 @@ The baseline `css/app.css` contained 6 `!important` declarations. The redesigned
 
 ---
 
-## 6. Automated UI Guards (`tools/check.mjs` & `tests/ui.test.js`)
+## 6. The Syllabus Analysis screen
+
+`js/ui/views/syllabus-analysis.js` renders the official 2026 syllabus. It is a reading screen, not a dashboard: a paper rail (`.syl-rail`), one column of nested lines (`.syl-tree` / `.syl-row`), and a detail panel (`.syl-detail`) that opens under the line it describes and is a real route (`#/syllabus-analysis/<node-id>`), so Back and Forward move between the tree and the topic without losing expansion state. The prel/ mains switch (`.syl-switch`) and search box (`#sylSearch`) sit in `.syl-head`; search results carry their path so a match is located inside the hierarchy before it is opened.
+
+Three rules keep the screen honest: nothing but the syllabus is primary content (no counts, no marks, no scores); every derived study unit is marked `derived` wherever it appears; and the only control that changes stored state is the four-status progress row, which writes to the `syllabus_progress` store through `js/services/syllabus.js` and never touches the question bank, attempts or the planner. Style tokens only — the block lives in `css/app.css` under "Syllabus Analysis", with a `≤860px` layout that turns the rail into a horizontal scroller.
+
+## 7. Automated UI Guards (`tools/check.mjs` & `tests/ui.test.js`)
 
 ### Static Guards (`tools/check.mjs` / `npm run check` / `npm run audit:ui`)
 - **`[hidden]` first-rule guard**: Verifies `[hidden] { display: none !important; }` is present and is the very first selector in `css/app.css`.
