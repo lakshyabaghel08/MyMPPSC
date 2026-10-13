@@ -3549,10 +3549,11 @@ table.data td {
 }
 
 /* -------------------------------------------------------------------------
-   Syllabus Analysis
+   Syllabus
    A reading screen: one rail of papers, one column of the commission's own
    lines, and a detail panel that opens under the line it describes. Progress
-   chrome appears only once the reader has marked something.
+   chrome appears only once the reader has marked something. The planner merged
+   into this screen; the rules for the reader's own items follow further down.
    ------------------------------------------------------------------------- */
 
 .syl {
@@ -4328,6 +4329,103 @@ table.data td {
   .grid.tiles {
     grid-template-columns: minmax(0, 1fr);
   }
+}
+
+/* -------------------------------------------------------------------------
+   Syllabus: the user's own items inside the official tree
+   The planner merged into the syllabus screen, so an item the user wrote can
+   sit under the commission's heading it belongs to. It must never read as
+   official text: these rules give it a tinted rail and keep its "your item"
+   chip visible, so the two kinds of row stay distinguishable at a glance.
+   ------------------------------------------------------------------------- */
+
+.syl-lede {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+  max-width: 76ch;
+}
+
+.syl-rail-plan {
+  margin-top: var(--space-2);
+  border-top: 1px solid var(--border-subtle);
+  padding-top: var(--space-3);
+}
+
+.syl-rail-count {
+  display: inline-block;
+  min-width: 18px;
+  margin-left: var(--space-1);
+  padding: 0 5px;
+  border-radius: var(--radius-pill);
+  background: var(--bg-sunken);
+  color: var(--text-muted);
+  font-size: var(--text-xs);
+  text-align: center;
+}
+
+.syl-node-plan > .syl-row {
+  border-left: 2px solid var(--info);
+  background: var(--info-soft);
+  border-radius: var(--radius-sm);
+}
+
+.syl-title-plan .syl-text {
+  font-style: normal;
+  color: var(--text);
+}
+
+.syl-plan-count {
+  margin-left: var(--space-2);
+  padding: 0 6px;
+  border-radius: var(--radius-pill);
+  background: var(--info-soft);
+  color: var(--info);
+  font-size: var(--text-xs);
+  font-weight: 600;
+}
+
+.syl-plan-block,
+.syl-plan-list {
+  border-left: 2px solid var(--info);
+  padding-left: var(--space-3);
+}
+
+.syl-plan-fields {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+.syl-plan-line {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+
+.syl-plan-notes {
+  margin: 0;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  background: var(--bg-sunken);
+  font-size: var(--text-sm);
+  color: var(--text);
+  white-space: pre-wrap;
+}
+
+.syl-plan-meta {
+  margin-left: var(--space-2);
+  color: var(--text-soft);
+  font-size: var(--text-xs);
+}
+
+.syl-plan-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
 }
 
 /* -------------------------------------------------------------------------

@@ -1,9 +1,20 @@
 /**
- * analytics.js (view) — Analytics.
+ * analytics.js (view) — the Insights section.
  *
- * Everything on this screen is computed from stored attempts for this device.
- * The three numbers that are often conflated are shown separately and named
- * clearly: questions available, unique questions attempted, and total attempts.
+ * Analytics and PYQ Analysis were two screens that read as one idea in the
+ * menu but answer different questions over different data: what *you* did,
+ * derived from stored attempts, versus what the stored *papers* contain, which
+ * is pure counting over the question index. Neither is redundant, so they are
+ * merged as one section with two panels rather than one pile of cards.
+ *
+ * The tab boundary is exactly the data-source boundary, and it is a rule worth
+ * keeping: the performance panel never counts the bank as though it were the
+ * examination, and the bank panel never shows performance. Each panel still
+ * comes from its own service, unchanged by the merge.
+ *
+ * On the performance panel, the three numbers that are often conflated are
+ * shown separately and named clearly: questions available, unique questions
+ * attempted, and total attempts.
  */
 
 import {
@@ -18,11 +29,17 @@ import {
   toast,
   sourceChip,
   evidenceMeter,
+  tabs,
+  mountTabs,
 } from '../components.js';
 import { fmtPct, fmtDate, fmtDuration, downloadJson, todayKey } from '../../core/util.js';
 import { loadAnalytics, studyPriorities, MIN_SAMPLE_HINT, MIN_SAMPLE_STRONG } from '../../services/analytics.js';
+import { renderBankPanel, mountBankPanel } from './pyq-analysis.js';
 
 const viewState = { subject: 'all', priorityLimit: 12 };
+
+/** Which panel the section opens on. */
+const PANELS = { performance: 'insights-performance', bank: 'insights-bank' };
 
 function verdictBadge(row) {
   const tone = row.verdict === 'strong' ? 'ok' : row.verdict === 'weak' ? 'bad' : row.verdict === 'developing' ? 'warn' : 'info';
@@ -36,15 +53,14 @@ function accuracyText(value, sample) {
   return `${text} <span class="tiny soft">(n=${sample})</span> ${evidenceMeter(sample, MIN_SAMPLE_STRONG, { showLabel: false })}`;
 }
 
-export default {
-  title: 'Analytics',
-
-  async render() {
+/**
+ * The performance panel. No <h1>: the section shell owns the page heading.
+ */
+async function renderPerformancePanel() {
     const { metas, analytics } = await loadAnalytics();
 
     if (!metas.length) {
       return `
-        <h1>Analytics</h1>
         ${card({
           title: 'Analytics needs data',
           body: emptyState({
@@ -128,7 +144,6 @@ export default {
     const underPractised = analytics.underPractised.slice(0, 12);
 
     return `
-      <h1>Analytics</h1>
       <p class="muted">All figures come from attempts stored on this device. Nothing is estimated, extrapolated or projected.</p>
 
       <div class="grid tiles mb-3">
@@ -357,9 +372,10 @@ export default {
         }),
         footer: '<button class="btn btn-sm" type="button" id="anaExport">Download this report as JSON</button>',
       })}`;
-  },
+}
 
-  async mount(ctx) {
+/** Wire the performance panel's own controls. */
+function mountPerformancePanel(ctx) {
     document.getElementById('anaSubject')?.addEventListener('change', async (ev) => {
       viewState.subject = ev.target.value;
       await ctx.refresh();
@@ -386,5 +402,35 @@ export default {
       );
       toast('Analytics report downloaded.', 'ok');
     });
+}
+
+/* ------------------------------------------------------------------ shell -- */
+
+export default {
+  title: 'Insights',
+
+  async render(ctx) {
+    // `#/pyq-analysis` and `#/pyq-analysis/<Subject>` were the bank panel's own
+    // route before the merge, so arriving by them opens that panel.
+    const viaBankRoute = ctx?.route === 'pyq-analysis';
+    const [performance, bank] = await Promise.all([renderPerformancePanel(), renderBankPanel(ctx)]);
+
+    return `
+      <h1>Insights</h1>
+      <p class="muted">Two readings of the same preparation: what you have done, and what the papers stored on this device actually contain. They are counted from different data and are never mixed.</p>
+      ${tabs({
+        activeId: viaBankRoute ? PANELS.bank : PANELS.performance,
+        items: [
+          { id: PANELS.performance, label: 'My performance', body: performance },
+          { id: PANELS.bank, label: 'The question bank', body: bank },
+        ],
+      })}`;
+  },
+
+  async mount(ctx, root) {
+    const container = root || document.getElementById('view');
+    mountTabs(container);
+    mountPerformancePanel(ctx);
+    mountBankPanel(ctx, container);
   },
 };

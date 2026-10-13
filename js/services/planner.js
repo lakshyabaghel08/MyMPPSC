@@ -13,6 +13,16 @@ import * as db from '../core/db.js';
 import { state } from '../core/state.js';
 import { uid, nowIso, todayKey, daysBetween, addDays, round, logEvent, sortBy } from '../core/util.js';
 
+/**
+ * Planner statuses.
+ *
+ * `revising` predates the merged Syllabus section and sat *before* `completed`
+ * in this module's ordering, so it never meant "done". The merged section
+ * speaks one vocabulary (see `syllabus-hub.js`) and maps it to `in_progress`
+ * rather than to the official module's `revised`, which does count as done —
+ * promoting it would mark items complete that the user never marked complete.
+ * It is kept here so rows written by older builds still read back.
+ */
 export const STATUSES = {
   not_started: 'Not started',
   in_progress: 'In progress',
@@ -45,7 +55,7 @@ export function buildTree(rows) {
   return build(null);
 }
 
-export async function addSyllabusItem({ parentId = null, title, subject = null, topic = null, subtopic = null, priority = 'medium', target_date = null, notes = null, source = 'user' }) {
+export async function addSyllabusItem({ parentId = null, title, subject = null, topic = null, subtopic = null, priority = 'medium', target_date = null, notes = null, source = 'user', attached_node_id = null }) {
   if (!title || !String(title).trim()) throw new Error('A syllabus item needs a title.');
   const rows = await listSyllabus();
   const parent = parentId ? rows.find((r) => r.id === parentId) : null;
@@ -53,6 +63,13 @@ export async function addSyllabusItem({ parentId = null, title, subject = null, 
   const item = {
     id: uid('syl'),
     parent_id: parentId,
+    /**
+     * The official syllabus node this item is shown under, when the user has
+     * pinned it to one. Null means "suggest a home from the curated mapping, or
+     * leave it in My plan". It is a display relationship only: the official
+     * tree ships as data and is never written to.
+     */
+    attached_node_id: attached_node_id || null,
     level,
     title: String(title).trim(),
     subject: subject || parent?.subject || (level === 'subject' ? String(title).trim() : null),
@@ -273,8 +290,14 @@ export function syllabusProgress(rows, analytics) {
   };
 }
 
+/**
+ * Completion weight of a status. Kept in step with `syllabus-hub.js`, which
+ * owns the merged vocabulary — this module cannot import it without a cycle.
+ * `revising` is the legacy spelling of `in_progress` and, as there, is not a
+ * done state.
+ */
 function statusScore(status) {
-  return { not_started: 0, in_progress: 0.4, revising: 0.75, completed: 1 }[status] ?? 0;
+  return { not_started: 0, in_progress: 0.4, revising: 0.4, completed: 1, revised: 1 }[status] ?? 0;
 }
 
 /* ----------------------------------------------------------------- tasks -- */

@@ -16,6 +16,16 @@ export class Router {
     this.currentRoute = null;
     this.viewState = {};
     this.activeCleanup = null;
+    /**
+     * The destination of the most recent resolve(). A render is asynchronous,
+     * so a slow screen can still be awaiting its data when the reader
+     * navigates somewhere else; without this the slow one would finish last
+     * and paint itself over the screen that replaced it. A resolve that finds
+     * a *different* destination pending has been superseded and stands down.
+     * Two resolves of the same destination (the hashchange event arrives after
+     * an explicit navigate) both paint, which is harmless.
+     */
+    this.pendingTarget = null;
     this._onHashChange = () => this.resolve();
   }
 
@@ -50,6 +60,11 @@ export class Router {
     const view = this.routes[name] || this.routes[this.fallback];
     const routeName = this.routes[name] ? name : this.fallback;
     this.currentRoute = { name: routeName, params, view };
+
+    const target = `${routeName}/${params.join('/')}`;
+    this.pendingTarget = target;
+    /** False once a different destination has been asked for. */
+    const current = () => this.pendingTarget === target;
     const ctx = {
       route: routeName,
       params,
@@ -84,15 +99,21 @@ export class Router {
       }
     }
 
+    if (!current()) return;
     this.container.innerHTML = loadingState();
     try {
       const markup = await view.render(ctx);
+      // A newer navigation started while this screen was loading its data:
+      // that screen is the one the reader asked for, so leave it alone.
+      if (!current()) return;
       this.container.innerHTML = markup || '';
       if (typeof view.mount === 'function') await view.mount(ctx, this.container);
+      if (!current()) return;
       this.activeCleanup = typeof view.cleanup === 'function' ? () => view.cleanup(ctx) : null;
       window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
     } catch (err) {
       console.error(`View "${routeName}" failed to render`, err);
+      if (!current()) return;
       this.container.innerHTML = notice(
         `<strong>This screen could not be displayed.</strong> The error was: <code>${esc(err.message)}</code>.
          Your saved data is untouched. You can go back to the <a href="#/dashboard">dashboard</a> and try again.`,

@@ -1,5 +1,9 @@
 /**
- * pyq-analysis.js — PYQ Analysis.
+ * pyq-analysis.js — the question-bank panel of the Insights section.
+ *
+ * This was the standalone "PYQ Analysis" screen. Insights now holds two
+ * panels — what you did, and what the bank contains — so this module exports
+ * the second one and keeps a view for the legacy `#/pyq-analysis` route.
  *
  * Counts the previous-year questions stored on this device by subject and by topic, and shows what
  * each stored paper contributed to each group. Every number here is arithmetic over the imported
@@ -61,10 +65,11 @@ function peakYearInfo(row, years) {
   return bestYear ? { year: bestYear, count: bestCount } : null;
 }
 
-export default {
-  title: 'PYQ Analysis',
-
-  async render(ctx) {
+/**
+ * The panel body. It renders no <h1>: the Insights shell owns the page
+ * heading, and a panel that claimed its own would leave the screen with two.
+ */
+export async function renderBankPanel(ctx) {
     const metas = Array.from(state.questionIndex.values());
     const papers = Array.from(state.papers.values());
     const summary = summariseBank(metas, papers);
@@ -74,7 +79,7 @@ export default {
         <div class="screen-head pyq-screen-head">
           <div>
             <span class="section-kicker">MPPSC Prelims Paper I · Question Bank Analysis</span>
-            <h1>PYQ Analysis</h1>
+            <h2>What the stored papers contain</h2>
             <p class="muted">Analyses the MPPSC Prelims questions stored on this device by subject and topic — a study map of the available papers, not a forecast of the next one.</p>
           </div>
         </div>
@@ -143,7 +148,7 @@ export default {
       <div class="screen-head pyq-screen-head">
         <div class="pyq-head-copy">
           <span class="section-kicker">MPPSC Prelims Paper I · Question Bank Analysis</span>
-          <h1>PYQ Analysis</h1>
+          <h2>What the stored papers contain</h2>
           <p class="muted">Analyses MPPSC Prelims Paper I questions (${esc(spanLabel)}) stored on this device by subject and by topic. A study map of the stored papers — not a forecast of the next one.</p>
         </div>
         <div class="pyq-head-meta" aria-label="Question bank summary metadata">
@@ -418,9 +423,10 @@ export default {
           : 'These counts cover every question stored on this device, including anything you imported yourself.',
         'info',
       )}`;
-  },
+}
 
-  mount(ctx, root) {
+/** Wire the panel's own controls. Safe to call when the panel is hidden. */
+export function mountBankPanel(ctx, root) {
     root.querySelectorAll('[data-action="pyq-subject"]').forEach((button) => {
       button.addEventListener('click', () => {
         viewState.subject = button.dataset.value || 'all';
@@ -496,5 +502,24 @@ export default {
         row.addEventListener('blur', resetDetail);
       });
     }
+}
+
+/**
+ * The legacy `#/pyq-analysis` route (and `#/pyq-analysis/<Subject>`), which the
+ * syllabus PYQ chips and existing bookmarks still use. It opens the merged
+ * Insights section on this panel. The shell is imported lazily so the two
+ * modules do not form an import cycle.
+ */
+export default {
+  title: 'Insights',
+
+  async render(ctx) {
+    const { default: insights } = await import('./analytics.js');
+    return insights.render(ctx);
+  },
+
+  async mount(ctx, root) {
+    const { default: insights } = await import('./analytics.js');
+    return insights.mount(ctx, root);
   },
 };

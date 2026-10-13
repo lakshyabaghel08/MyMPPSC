@@ -321,8 +321,10 @@ test('7. PYQ links are read-only, curated, and omitted where no mapping exists',
 test('8. the route renders the syllabus and switches stage', async () => {
   await waitFor(() => $$('#navList .nav-link').length >= 10 && state.dbError === null, { label: 'the app to boot' });
   await waitFor(() => app.router !== null, { label: 'the router' });
+  // `#/syllabus-analysis` is the pre-merge route and still resolves: it is in
+  // the curated PYQ chips and in anything a reader bookmarked.
   const text = await goto('syllabus-analysis');
-  assert.match(text, /Syllabus Analysis/);
+  assert.match(text, /Syllabus/);
   assert.match(text, /भारत का इतिहास|PAPER-I GENERAL STUDIES|प्रथम प्रश्न पत्र/, 'the Prelims Paper I tree is on screen');
   assert.ok(!/could not be displayed/i.test(text), 'the screen rendered');
   assert.match(text, /Expand all/);
@@ -362,13 +364,13 @@ test('9. expand, collapse and the detail panel work from the tree', async () => 
   assert.ok(sectionButton, 'a section title is openable');
   const nodeId = sectionButton.dataset.open;
   click(sectionButton);
-  await waitFor(() => window.location.hash === `#/syllabus-analysis/${nodeId}`, { label: 'the hash to follow the opened node' });
+  await waitFor(() => window.location.hash === `#/syllabus/official/${nodeId}`, { label: 'the hash to follow the opened node' });
   await waitFor(() => /Official syllabus/.test(viewText()), { label: 'the detail panel' });
   assert.match(viewText(), /Study breakdown/, 'the derived breakdown is shown and labelled');
   assert.match(viewText(), /derived/);
 
   await tap('[data-close-detail]');
-  await waitFor(() => window.location.hash === '#/syllabus-analysis', { label: 'the detail to close' });
+  await waitFor(() => window.location.hash === '#/syllabus', { label: 'the detail to close' });
   await waitFor(() => !/Official syllabus/.test(viewText()), { label: 'the panel to disappear' });
   assert.ok(!/Official syllabus/.test(viewText()), 'the panel is gone');
 
@@ -397,7 +399,7 @@ test('11. marking from the screen persists, and reset asks first', async () => {
   const model = await syllabus.loadSyllabus();
   const target = model.leafIds.find((id) => id.startsWith('prelims/paper-1/s2/'));
   await goto(`syllabus-analysis/${target}`);
-  await waitFor(() => /Your progress/.test(viewText()), { label: 'the progress block' });
+  await waitFor(() => /Your plan/.test(viewText()), { label: 'the progress block' });
 
   const completed = $$('#view [data-status="completed"]')[0];
   assert.ok(completed, 'the status control offers Completed');
@@ -408,7 +410,7 @@ test('11. marking from the screen persists, and reset asks first', async () => {
   assert.equal(row.status, 'completed');
 
   // Reload the screen: the mark is still there, and the tree shows it.
-  await goto('syllabus-analysis');
+  await goto('syllabus');
   assert.ok($$('#view .syl-dot').length >= 1, 'a marked line shows its state');
 
   // Reset asks for confirmation first.
@@ -436,6 +438,11 @@ test('12. the other routes still render', async () => {
     assert.ok(!/could not be displayed/i.test(text), `${route} reported an error`);
   }
   const labels = $$('#navList .nav-link').map((link) => link.textContent.trim());
-  assert.ok(labels.some((label) => label.includes('Syllabus Analysis')), 'the new screen is in the navigation');
-  assert.ok(labels.some((label) => label.includes('Syllabus & Planner')), 'the existing planner entry is kept');
+  // The planner and the official syllabus are one destination after the merge,
+  // and the legacy route above still reaches it.
+  assert.deepEqual(
+    labels.filter((label) => /Syllabus/.test(label)),
+    ['Syllabus'],
+    'one syllabus entry in the navigation, not two',
+  );
 });

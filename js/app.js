@@ -24,7 +24,7 @@ import mistakesView from './ui/views/mistakes.js';
 import revisionView from './ui/views/revision.js';
 import syllabusView from './ui/views/syllabus.js';
 import syllabusAnalysisView from './ui/views/syllabus-analysis.js';
-import analyticsView from './ui/views/analytics.js';
+import insightsView from './ui/views/analytics.js';
 import pyqAnalysisView from './ui/views/pyq-analysis.js';
 import bankView from './ui/views/bank.js';
 import settingsView from './ui/views/settings.js';
@@ -38,10 +38,12 @@ const NAV = [
   { route: 'smart', label: 'Smart Practice', icon: 'smart', group: 'Practice' },
   { route: 'mistakes', label: 'Mistake Book', icon: 'mistakes', badge: 'mistakes', group: 'Improve' },
   { route: 'revision', label: 'Revision Centre', icon: 'revision', badge: 'revision', group: 'Improve' },
-  { route: 'syllabus', label: 'Syllabus & Planner', icon: 'syllabus', group: 'Improve' },
-  { route: 'syllabus-analysis', label: 'Syllabus Analysis', icon: 'syllabus', group: 'Improve' },
-  { route: 'analytics', label: 'Analytics', icon: 'analytics', group: 'Improve' },
-  { route: 'pyq-analysis', label: 'PYQ Analysis', icon: 'pyq-analysis', group: 'Improve' },
+  // The official syllabus, the study planner, performance analytics and the
+  // question-bank analysis used to be four destinations. They are two: one
+  // curriculum, and one place for the numbers. The old routes still resolve —
+  // see the legacy registrations below — they are simply not advertised twice.
+  { route: 'syllabus', label: 'Syllabus', icon: 'syllabus', group: 'Improve' },
+  { route: 'analytics', label: 'Insights', icon: 'analytics', group: 'Improve' },
   { route: 'bank', label: 'Question Bank & Imports', icon: 'bank', group: 'System' },
   { route: 'settings', label: 'Settings & Backup', icon: 'settings', group: 'System' },
   { route: 'help', label: 'Help & How it works', icon: 'help', group: 'System' },
@@ -463,8 +465,12 @@ async function boot() {
   router.register('mistakes', mistakesView);
   router.register('revision', revisionView);
   router.register('syllabus', syllabusView);
+  router.register('analytics', insightsView);
+  // Legacy routes. `#/syllabus-analysis/<nodeId>` and `#/pyq-analysis/<Subject>`
+  // are used by the curated syllabus link chips and by anything a user
+  // bookmarked before the two merges, so they keep resolving to the section
+  // that absorbed them instead of falling back to the dashboard.
   router.register('syllabus-analysis', syllabusAnalysisView);
-  router.register('analytics', analyticsView);
   router.register('pyq-analysis', pyqAnalysisView);
   router.register('bank', bankView);
   router.register('settings', settingsView);
