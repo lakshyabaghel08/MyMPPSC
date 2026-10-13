@@ -129,11 +129,30 @@ The baseline `css/app.css` contained 6 `!important` declarations. The redesigned
 
 ---
 
-## 6. The Syllabus Analysis screen
+## 6. The Syllabus section
 
-`js/ui/views/syllabus-analysis.js` renders the official 2026 syllabus. It is a reading screen, not a dashboard: a paper rail (`.syl-rail`), one column of nested lines (`.syl-tree` / `.syl-row`), and a detail panel (`.syl-detail`) that opens under the line it describes and is a real route (`#/syllabus-analysis/<node-id>`), so Back and Forward move between the tree and the topic without losing expansion state. The prel/ mains switch (`.syl-switch`) and search box (`#sylSearch`) sit in `.syl-head`; search results carry their path so a match is located inside the hierarchy before it is opened.
+`js/ui/views/syllabus.js` renders the whole curriculum in one screen. It replaced two: an official-syllabus viewer and a separate study planner, which kept one curriculum in two stores and showed two progress figures that could not see each other.
 
-Three rules keep the screen honest: nothing but the syllabus is primary content (no counts, no marks, no scores); every derived study unit is marked `derived` wherever it appears; and the only control that changes stored state is the four-status progress row, which writes to the `syllabus_progress` store through `js/services/syllabus.js` and never touches the question bank, attempts or the planner. Style tokens only — the block lives in `css/app.css` under "Syllabus Analysis", with a `≤860px` layout that turns the rail into a horizontal scroller.
+It is a reading screen first, not a dashboard: a rail of papers (`.syl-rail`), one column of nested lines (`.syl-tree` / `.syl-row`), and a detail panel (`.syl-detail`) that opens under the line it describes. The panel is a real route — `#/syllabus/official/<node-id>` for a line of the notification, `#/syllabus/plan/<item-id>` for one of the reader's own — so Back and Forward move between the tree and the topic without losing expansion state. The switch (`.syl-switch`) and search box (`#sylSearch`) sit in `.syl-head`; search results carry their path so a match is located inside the hierarchy before it is opened. The switch offers three peers — **Prelims · Mains · My plan** — because the reader's own branch is a destination of the same rank as a stage of the examination, not a paper inside one; the rail below it lists the papers of the selected stage. *My plan* holds the items that have no home in the official tree, and carries a count when any are waiting there.
+
+Four rules keep the merged screen honest:
+
+1. **The syllabus is the primary content.** No counts, no marks, no scores sit beside it, and every derived study unit is marked `derived` wherever it appears.
+2. **An item the reader wrote is always visibly theirs.** It carries a *your item* chip, gets the tinted `.syl-node-plan` rail, and never receives the numbering or `langAttr` treatment that marks official wording. It is shown under an official heading only where the curated `data/syllabus/pyq-links.json` mapping — or an explicit pin — puts it; fuzzy title matching is deliberately not used, so an unrecognised item waits in *My plan* instead of being guessed into the tree.
+3. **The official tree is read-only data.** Attaching is a display relationship resolved at render time by `js/services/syllabus-hub.js`; nothing is written into the shipped model, and the two stores (`syllabus`, `syllabus_progress`) stay separate on disk.
+4. **One vocabulary, which never over-claims.** `not_started · in_progress · completed · revised` drives both kinds of item. The planner's legacy `revising` sat *before* `completed` in its own ordering, so the hub maps it to `in_progress`, not to the official `revised` that counts as done — reading it as done would mark items complete on the reader's behalf.
+
+Progress chrome still appears only once something is marked, and clearing a status never deletes a target date or note the reader typed. Style tokens only — the blocks live in `css/app.css` under "Syllabus" and "Syllabus: the user's own items inside the official tree", with a `≤860px` layout that turns the rail into a horizontal scroller.
+
+## 6a. The Insights section
+
+`js/ui/views/analytics.js` is a shell with two panels: **My performance** (its own body) and **The question bank** (`renderBankPanel` / `mountBankPanel`, exported by `js/ui/views/pyq-analysis.js`). These were two screens that read as one idea in the menu but are not duplicates — one is derived from stored attempts, the other is pure counting over the question index.
+
+The tab boundary is exactly that data-source boundary, and it is the rule that keeps the merge from becoming a pile of cards: **the bank panel never shows performance, and the performance panel never counts the bank as though it were the examination.** `tests/section-merge.test.js` asserts both directions. The shell owns the single `<h1>`; a panel that claimed its own would leave the screen with two, so each panel starts at `<h2>`.
+
+Above the tabs the shell states the three numbers the two tabs are most often confused for — *questions available*, *unique questions attempted*, *total attempts* — once, in a shared tile strip with a caption naming the difference. They are section-level facts rather than either tab's findings, so neither panel repeats them: the performance panel starts at first-attempt accuracy. The strip is omitted entirely when no bank is stored, because three zeroes state nothing.
+
+Both sections keep the routes they replaced (`#/syllabus-analysis/<node-id>`, `#/pyq-analysis/<Subject>`) registered to the merged view, because the curated PYQ chips and any reader's bookmarks still use them. `js/ui/views/syllabus-analysis.js` and the default export of `js/ui/views/pyq-analysis.js` exist for exactly that, and `tools/check.mjs` still requires a view file per registered route.
 
 ## 7. Automated UI Guards (`tools/check.mjs` & `tests/ui.test.js`)
 

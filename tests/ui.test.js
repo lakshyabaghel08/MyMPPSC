@@ -112,9 +112,13 @@ test('boots, renders the shell and the demonstration prompt', async () => {
   await waitFor(() => $$('#navList .nav-link').length >= 10, { label: 'navigation links' });
   assert.equal(state.dbError, null);
   const labels = $$('#navList .nav-link').map((b) => b.textContent.trim());
-  for (const required of ['Dashboard', 'PYQ Test Centre', 'Topic Practice', 'Smart Practice', 'Mistake Book', 'Revision Centre', 'Syllabus & Planner', 'Analytics', 'PYQ Analysis', 'Question Bank & Imports', 'Settings & Backup']) {
+  for (const required of ['Dashboard', 'PYQ Test Centre', 'Topic Practice', 'Smart Practice', 'Mistake Book', 'Revision Centre', 'Syllabus', 'Insights', 'Question Bank & Imports', 'Settings & Backup']) {
     assert.ok(labels.some((l) => l.includes(required)), `navigation should offer ${required}`);
   }
+  // The syllabus planner merged into the syllabus screen, and the question-bank
+  // analysis into Insights: each pair is one destination, advertised once.
+  assert.equal(labels.filter((l) => /Syllabus/.test(l)).length, 1, 'one syllabus destination, not two');
+  assert.equal(labels.filter((l) => /Analytics|Analysis|Insights/.test(l)).length, 1, 'one destination for the numbers, not two');
 
   // First run with an empty database: the repository-backed MPPSC bank loads by
   // itself, so the app does not have to fall back to the demonstration prompt.
@@ -362,7 +366,9 @@ test('practice setup is progressive: essentials first, advanced collapsed and su
 
   await goto('syllabus');
   const plannerText = viewText();
-  assert.match(plannerText, /Syllabus structure/);
+  // One section now: the official tree is the spine and the planner lives in
+  // it, so the screen offers both the papers and the user's own branch.
+  assert.match(plannerText, /My plan/);
   assert.ok(!/Log a study session/.test(plannerText), 'study-session logging is gone from the planner');
   assert.ok(!/Study minutes per day/.test(plannerText), 'the study-minutes chart is gone from the planner');
   assert.ok(!/Recent sessions/.test(plannerText), 'the recent-sessions table is gone from the planner');

@@ -142,16 +142,18 @@ test('an empty bank yields zeros instead of dividing by nothing', () => {
 test('the screen renders the counts it computed, from the real imported bank', async () => {
   const m = await bootApp();
   await importDemoBank();
+  // The screen is now a panel of the Insights section; render the panel on its
+  // own so this stays a test of the counting, not of the shell.
   const view = await import('../js/ui/views/pyq-analysis.js');
-  const html = await view.default.render({});
+  const html = await view.renderBankPanel({});
 
   const metas = [...m.appState.questionIndex.values()];
   const summary = summariseBank(metas, [...m.appState.papers.values()]);
   assert.ok(metas.length > 0, 'the demonstration bank is loaded');
 
-  assert.equal((html.match(/<h1/g) || []).length, 1, 'exactly one h1');
-  assert.match(html, /<h1>PYQ Analysis<\/h1>/);
-  for (const heading of html.match(/<h[3-6][ >]/g) || []) assert.fail(`the screen jumps to ${heading.trim()}: headings must go h1 -> h2`);
+  assert.equal((html.match(/<h1/g) || []).length, 0, 'the panel leaves the page heading to the Insights shell');
+  assert.match(html, /<h2>What the stored papers contain<\/h2>/);
+  for (const heading of html.match(/<h[3-6][ >]/g) || []) assert.fail(`the panel jumps to ${heading.trim()}: headings must go h2 -> h2`);
   assert.match(html, /Questions per subject/);
   assert.match(html, /Questions per topic/);
   assert.equal(/<th[^>]*>\s*Subtopic/i.test(html), false, 'no subtopic column anywhere');

@@ -413,6 +413,26 @@ export async function loadProgress() {
   return map;
 }
 
+/**
+ * Plan fields a user can attach to an official syllabus node. They are the
+ * planner's own vocabulary, stored on the progress row so that scheduling a
+ * real notification topic does not require inventing a parallel planner item.
+ * They are the user's words, never the commission's.
+ */
+export const PLAN_FIELDS = ['priority', 'target_date', 'notes'];
+
+/** True when a row carries user-typed planning content beyond its status. */
+export function hasPlanContent(row) {
+  if (!row) return false;
+  return Boolean(row.priority || row.target_date || String(row.notes || '').trim());
+}
+
+function withPlanFields(row, source) {
+  const out = { ...row };
+  for (const field of PLAN_FIELDS) out[field] = source?.[field] ?? null;
+  return out;
+}
+
 export async function setProgressStatus(nodeId, status, { model = null, sectionId = null } = {}) {
   if (!nodeId) throw new Error('A syllabus node is required.');
   if (!(status in PROGRESS_STATUSES)) throw new Error(`Unknown syllabus status "${status}".`);
@@ -420,25 +440,78 @@ export async function setProgressStatus(nodeId, status, { model = null, sectionI
   const existing = await db.get(STORES.SYLLABUS_PROGRESS, nodeId);
 
   if (status === 'not_started') {
-    // Not started is the absence of a row, so clearing keeps the store small and
-    // makes "reset" and "set back to not started" the same operation.
-    if (existing) await db.remove(STORES.SYLLABUS_PROGRESS, nodeId);
-    logEvent('syllabus', `Cleared progress for ${nodeId}`);
-    return null;
+    // "Not started" is normally the absence of a row, which keeps the store
+    // small and makes "reset" and "set back to not started" the same operation.
+    // A row that also holds a plan (priority, target date, notes) is kept and
+    // only loses its status: deleting it would silently discard text the user
+    // typed, which is never an acceptable side effect of changing a status.
+    if (!existing) return null;
+    if (!hasPlanContent(existing)) {
+      await db.remove(STORES.SYLLABUS_PROGRESS, nodeId);
+      logEvent('syllabus', `Cleared progress for ${nodeId}`);
+      return null;
+    }
+    const kept = { ...existing, status: 'not_started', updated_at: nowIso() };
+    await db.put(STORES.SYLLABUS_PROGRESS, kept);
+    logEvent('syllabus', `Cleared progress for ${nodeId}, keeping its plan`);
+    return kept;
   }
 
-  const row = {
-    node_id: nodeId,
-    status,
-    section_id: sectionId || node?.parentId || existing?.section_id || null,
-    paper_id: node?.paperId || existing?.paper_id || null,
-    exam_id: node?.examId || existing?.exam_id || null,
-    updated_at: nowIso(),
-    created_at: existing?.created_at || nowIso(),
-  };
+  const row = withPlanFields(
+    {
+      node_id: nodeId,
+      status,
+      section_id: sectionId || node?.parentId || existing?.section_id || null,
+      paper_id: node?.paperId || existing?.paper_id || null,
+      exam_id: node?.examId || existing?.exam_id || null,
+      updated_at: nowIso(),
+      created_at: existing?.created_at || nowIso(),
+    },
+    existing,
+  );
   await db.put(STORES.SYLLABUS_PROGRESS, row);
   logEvent('syllabus', `Marked ${nodeId} as ${status}`);
   return row;
+}
+
+/**
+ * Attach (or clear) planning fields on an official syllabus node without
+ * touching its status. Returns the stored row, or null when the node ends up
+ * carrying nothing at all.
+ */
+export async function setProgressPlan(nodeId, patch = {}, { model = null, sectionId = null } = {}) {
+  if (!nodeId) throw new Error('A syllabus node is required.');
+  const node = model?.nodes?.get(nodeId) || null;
+  const existing = await db.get(STORES.SYLLABUS_PROGRESS, nodeId);
+
+  const next = {
+    node_id: nodeId,
+    status: existing?.status || 'not_started',
+    section_id: sectionId || node?.parentId || existing?.section_id || null,
+    paper_id: node?.paperId || existing?.paper_id || null,
+    exam_id: node?.examId || existing?.exam_id || null,
+    created_at: existing?.created_at || nowIso(),
+    updated_at: nowIso(),
+    priority: existing?.priority ?? null,
+    target_date: existing?.target_date ?? null,
+    notes: existing?.notes ?? null,
+  };
+  for (const field of PLAN_FIELDS) {
+    if (field in patch) {
+      const value = patch[field];
+      next[field] = value === '' || value === undefined ? null : value;
+    }
+  }
+
+  // A node with neither a status nor a plan is simply unmarked: drop the row
+  // rather than leaving an empty one behind.
+  if (next.status === 'not_started' && !hasPlanContent(next)) {
+    if (existing) await db.remove(STORES.SYLLABUS_PROGRESS, nodeId);
+    return null;
+  }
+  await db.put(STORES.SYLLABUS_PROGRESS, next);
+  logEvent('syllabus', `Updated the plan on ${nodeId}`);
+  return next;
 }
 
 /** Remove every progress row for this module only. Nothing else is touched. */

@@ -1,9 +1,20 @@
 /**
- * analytics.js (view) — Analytics.
+ * analytics.js (view) — the Insights section.
  *
- * Everything on this screen is computed from stored attempts for this device.
- * The three numbers that are often conflated are shown separately and named
- * clearly: questions available, unique questions attempted, and total attempts.
+ * Analytics and PYQ Analysis were two screens that read as one idea in the
+ * menu but answer different questions over different data: what *you* did,
+ * derived from stored attempts, versus what the stored *papers* contain, which
+ * is pure counting over the question index. Neither is redundant, so they are
+ * merged as one section with two panels rather than one pile of cards.
+ *
+ * The tab boundary is exactly the data-source boundary, and it is a rule worth
+ * keeping: the performance panel never counts the bank as though it were the
+ * examination, and the bank panel never shows performance. Each panel still
+ * comes from its own service, unchanged by the merge.
+ *
+ * On the performance panel, the three numbers that are often conflated are
+ * shown separately and named clearly: questions available, unique questions
+ * attempted, and total attempts.
  */
 
 import {
@@ -18,11 +29,18 @@ import {
   toast,
   sourceChip,
   evidenceMeter,
+  tabs,
+  mountTabs,
 } from '../components.js';
 import { fmtPct, fmtDate, fmtDuration, downloadJson, todayKey } from '../../core/util.js';
 import { loadAnalytics, studyPriorities, MIN_SAMPLE_HINT, MIN_SAMPLE_STRONG } from '../../services/analytics.js';
+import { loadSyllabusWorkspace } from '../../services/syllabus-hub.js';
+import { renderBankPanel, mountBankPanel } from './pyq-analysis.js';
 
 const viewState = { subject: 'all', priorityLimit: 12 };
+
+/** Which panel the section opens on. */
+const PANELS = { performance: 'insights-performance', bank: 'insights-bank' };
 
 function verdictBadge(row) {
   const tone = row.verdict === 'strong' ? 'ok' : row.verdict === 'weak' ? 'bad' : row.verdict === 'developing' ? 'warn' : 'info';
@@ -36,15 +54,14 @@ function accuracyText(value, sample) {
   return `${text} <span class="tiny soft">(n=${sample})</span> ${evidenceMeter(sample, MIN_SAMPLE_STRONG, { showLabel: false })}`;
 }
 
-export default {
-  title: 'Analytics',
-
-  async render() {
-    const { metas, analytics } = await loadAnalytics();
+/**
+ * The performance panel. No <h1>: the section shell owns the page heading.
+ */
+async function renderPerformancePanel(loaded = null) {
+    const { metas, analytics } = loaded || (await loadAnalytics());
 
     if (!metas.length) {
       return `
-        <h1>Analytics</h1>
         ${card({
           title: 'Analytics needs data',
           body: emptyState({
@@ -55,7 +72,11 @@ export default {
         })}`;
     }
 
-    const priorities = studyPriorities({ analytics, limit: viewState.priorityLimit });
+    // Same roll-up the dashboard quotes, so a topic the reader has marked is
+    // weighed identically on both screens. This is curriculum status, not bank
+    // counting: the panel still reports only what the attempts measured.
+    const curriculum = await loadSyllabusWorkspace();
+    const priorities = studyPriorities({ analytics, syllabusProgress: curriculum.progress, limit: viewState.priorityLimit });
     const counts = analytics.counts;
 
     const subjectRows = analytics.bySubject.map((row) => [
@@ -128,13 +149,9 @@ export default {
     const underPractised = analytics.underPractised.slice(0, 12);
 
     return `
-      <h1>Analytics</h1>
       <p class="muted">All figures come from attempts stored on this device. Nothing is estimated, extrapolated or projected.</p>
 
       <div class="grid tiles mb-3">
-        ${tile({ label: 'Questions available', value: String(counts.availableQuestions), sub: 'unique questions stored in the bank', source: 'supplied', where: 'Stored in local IndexedDB bank' })}
-        ${tile({ label: 'Unique questions attempted', value: String(counts.attemptedUnique), sub: `${fmtPct(counts.coverage)} of the bank — repeats do not increase this`, source: 'measured', where: 'Unique question IDs with ≥1 attempt' })}
-        ${tile({ label: 'Total attempts', value: String(counts.totalAttempts), sub: `${counts.repeatAttempts} attempt(s) beyond the first on a question`, source: 'measured', where: 'Every recorded attempt in local store' })}
         ${tile({ label: 'First-attempt accuracy', value: analytics.accuracy.firstAttemptSample ? fmtPct(analytics.accuracy.firstAttempt) : '—', sub: analytics.accuracy.firstAttemptSample ? `on ${analytics.accuracy.firstAttemptSample} first attempts` : 'no first attempts yet', source: analytics.accuracy.firstAttemptSample ? 'measured' : 'unavailable', where: 'First scored attempt per unique question' })}
         ${tile({ label: 'Accuracy (all attempts)', value: counts.correct + counts.incorrect ? fmtPct(analytics.accuracy.all) : '—', sub: `${counts.correct} correct · ${counts.incorrect} incorrect`, source: counts.correct + counts.incorrect ? 'measured' : 'unavailable', where: 'All judged attempts including repeats' })}
         ${tile({ label: 'Answer rate', value: counts.totalAttempts ? fmtPct(analytics.accuracy.answerRate) : '—', sub: `${counts.unanswered} left unanswered · ${counts.unscored} unscored`, source: counts.totalAttempts ? 'measured' : 'unavailable', where: 'Answered share of total attempts' })}
@@ -357,9 +374,10 @@ export default {
         }),
         footer: '<button class="btn btn-sm" type="button" id="anaExport">Download this report as JSON</button>',
       })}`;
-  },
+}
 
-  async mount(ctx) {
+/** Wire the performance panel's own controls. */
+function mountPerformancePanel(ctx) {
     document.getElementById('anaSubject')?.addEventListener('change', async (ev) => {
       viewState.subject = ev.target.value;
       await ctx.refresh();
@@ -386,5 +404,50 @@ export default {
       );
       toast('Analytics report downloaded.', 'ok');
     });
+}
+
+/* ------------------------------------------------------------------ shell -- */
+
+export default {
+  title: 'Insights',
+
+  async render(ctx) {
+    // `#/pyq-analysis` and `#/pyq-analysis/<Subject>` were the bank panel's own
+    // route before the merge, so arriving by them opens that panel.
+    const viaBankRoute = ctx?.route === 'pyq-analysis';
+    const loaded = await loadAnalytics();
+    const [performance, bank] = await Promise.all([renderPerformancePanel(loaded), renderBankPanel(ctx)]);
+    const counts = loaded.analytics.counts;
+
+    // The three numbers the two tabs are most often confused for one another.
+    // They belong to the section, not to either tab, so they are stated once
+    // here and neither panel repeats them.
+    const strip = loaded.metas.length
+      ? `<div class="grid tiles mb-2">
+          ${tile({ label: 'Questions available', value: String(counts.availableQuestions), sub: 'unique questions stored on this device', source: 'supplied', where: 'Stored in local IndexedDB bank' })}
+          ${tile({ label: 'Unique questions attempted', value: String(counts.attemptedUnique), sub: `${fmtPct(counts.coverage)} of the bank — repeats do not increase this`, source: 'measured', where: 'Unique question IDs with ≥1 attempt' })}
+          ${tile({ label: 'Total attempts', value: String(counts.totalAttempts), sub: `${counts.repeatAttempts} attempt(s) beyond the first on a question`, source: 'measured', where: 'Every recorded attempt in local store' })}
+        </div>
+        <p class="tiny muted mb-3">Three different numbers: what is <em>available</em> to answer, what you have <em>attempted</em> at least once, and how many <em>attempts</em> you have made. The tabs below never mix them — one reports your attempts, the other counts the stored papers.</p>`
+      : '';
+
+    return `
+      <h1>Insights</h1>
+      <p class="muted">Two readings of the same preparation: what you have done, and what the papers stored on this device actually contain. They are counted from different data and are never mixed.</p>
+      ${strip}
+      ${tabs({
+        activeId: viaBankRoute ? PANELS.bank : PANELS.performance,
+        items: [
+          { id: PANELS.performance, label: 'My performance', body: performance },
+          { id: PANELS.bank, label: 'The question bank', body: bank },
+        ],
+      })}`;
+  },
+
+  async mount(ctx, root) {
+    const container = root || document.getElementById('view');
+    mountTabs(container);
+    mountPerformancePanel(ctx);
+    mountBankPanel(ctx, container);
   },
 };

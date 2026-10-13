@@ -12,7 +12,7 @@ import { esc, card, badge, icon, dataTable, confirmDialog, toast, sourceChip, ev
 import { fmtPct, fmtDuration, fmtDate, fmtRelative } from '../../core/util.js';
 import { loadAnalytics, dashboardSummary, studyPriorities } from '../../services/analytics.js';
 import * as testsSvc from '../../services/tests.js';
-import * as planner from '../../services/planner.js';
+import { loadSyllabusWorkspace } from '../../services/syllabus-hub.js';
 import * as revision from '../../services/revision.js';
 import { bankSummary } from '../../services/questions.js';
 import { startPracticeTest } from './shared.js';
@@ -76,9 +76,12 @@ export default {
 
     const summary = dashboardSummary({ analytics, tests: allTests, revision: analytics.revision, settings: state.settings });
     const bank = bankSummary();
-    const syllabusRows = await planner.listSyllabus();
-    const progress = planner.syllabusProgress(syllabusRows, analytics);
-    const priorities = studyPriorities({ analytics, syllabusProgress: progress, limit: 6 });
+    // One figure for the whole curriculum. Progress marked on the official
+    // syllabus used to be invisible here, because only the planner's own store
+    // was read; the hub reads both. The same roll-up feeds study priorities,
+    // which previously received a shape that carried no topic index at all.
+    const curriculum = await loadSyllabusWorkspace();
+    const priorities = studyPriorities({ analytics, syllabusProgress: curriculum.progress, limit: 6 });
 
     const missingKeys = metas.filter((m) => !m.hasSuppliedAnswer && !m.hasVerifiedAnswer).length;
     const disputed = metas.filter((m) => m.disputed).length;
@@ -275,11 +278,15 @@ export default {
         right: sourceChip('supplied', 'manual checklist'),
         body: `
           <div class="row mb-2">
-            ${badge(`${progress.total} syllabus item(s)`, 'info')}
-            ${badge(`${Math.round(progress.overallCompletion * 100)}% complete overall`, progress.overallCompletion > 0.6 ? 'ok' : '')}
-            <a class="btn btn-sm btn-quiet" href="#/syllabus">Manage syllabus</a>
+            ${badge(`${curriculum.progress.done} of ${curriculum.progress.total} item(s) done`, 'info')}
+            ${badge(`${Math.round(curriculum.progress.completion * 100)}% complete overall`, curriculum.progress.completion > 0.6 ? 'ok' : '')}
+            <a class="btn btn-sm btn-quiet" href="#/syllabus">Open the syllabus</a>
           </div>
-          <p class="small muted m-0">No syllabus is built into this app. The planner mirrors whatever structure you import or create yourself.</p>`,
+          <p class="small muted m-0">${curriculum.progress.official.done} marked on the commission's 2026 syllabus${
+            curriculum.progress.plan.total
+              ? `, ${curriculum.progress.plan.done} of ${curriculum.progress.plan.total} on items you added yourself`
+              : ''
+          }. Status is always something you set by hand — nothing here is inferred from your attempts.</p>`,
       })}`;
   },
 

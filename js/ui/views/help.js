@@ -30,7 +30,7 @@ export default {
       ['3. Read the report', 'Every submitted test produces a report: score from the stored rules, outcome counts, per-question review with filters, weak areas, time per question, confidence cross-check and the exact key used for each answer.'],
       ['4. Work the mistakes', 'The Mistake Book collects wrong answers, skips, flagged questions, repeated mistakes and correct-but-guessed answers. Each entry shows the attempt history; resolving keeps the history.'],
       ['5. Let revision schedule itself', 'Each attempt schedules the question from its own outcome, your confidence and how long you took. The Revision Centre shows due/overdue/upcoming questions together with the numeric basis for every date.'],
-      ['6. Plan and track', 'The Syllabus &amp; Study Planner holds the structure you import or type — the app ships none. Tasks and study sessions are yours; suggestions must be added by you.'],
+      ['6. Plan and track', 'Syllabus holds the commission\u2019s revised 2026 syllabus as the spine, and your own items under the heading they belong to, badged as yours. Status, priority, target date and notes work on either, and roll up into one figure. The app ships no plan of its own and marks nothing for you; an item it cannot place waits in <em>My plan</em> rather than being guessed into the tree.'],
       ['7. Back it up', 'Settings &amp; Backup exports a single JSON file with everything and validates any file before restoring it.'],
     ];
 
@@ -56,7 +56,7 @@ export default {
 
     const checklist = [
       'Import a bank and confirm the pre-import summary lists the same number of questions you expected, plus any rejected records with reasons.',
-      'Open PYQ Analysis and check that the per-subject counts add up to the number of questions the Question Bank screen reports for the same bank.',
+      'Open Insights \u2192 The question bank and check that the per-subject counts add up to the number of questions the Question Bank screen reports for the same bank. The other tab, My performance, is about your attempts \u2014 the two never borrow each other\u2019s numbers.',
       'Start a paper simulation, answer a few questions, refresh the page mid-test, and confirm the session resumes with answers and time intact.',
       'Open a question with a missing or disputed key and confirm it is labelled, and that the report shows which key was used.',
       'Answer a question incorrectly, submit, and check that the Mistake Book and the Revision Centre both picked it up.',
@@ -110,7 +110,7 @@ export default {
               <ul class="small">
                 <li>Learning is per browser profile. Clearing site data deletes everything unless you exported a backup.</li>
                 <li>The revision schedule is a spaced-repetition heuristic over your own answers; it cannot guarantee retention.</li>
-                <li>Analytics are only as good as the attempt history: small samples are labelled, not hidden.</li>
+                <li>Insights is only as good as the attempt history: small samples are labelled, not hidden, and the question bank tab counts what is stored rather than what you have done with it.</li>
                 <li>Near-duplicate detection works on wording similarity — rephrased questions about the same fact may be reported as similar. Nothing is deleted automatically.</li>
                 <li>Explanations appear exactly as imported: the app says so when a question has none, and attaches no review status to prose it cannot verify.</li>
                 <li>Full-paper simulation shows only the questions that are actually stored; a paper with missing questions is labelled incomplete.</li>

@@ -4,11 +4,14 @@
 > Prelims questions across 12 papers (2013–2024), preserving the original 571
 > 2019–2024 records. The focused audit applied 322 validated labels; current
 > coverage is 1,171 subjects, 1,162 topics and 1,076 subtopics, with one item
-> remaining in the internal review queue. The latest full run passed 223/223
-> tests and 902 static checks; the service-worker cache is `v1.1.0-15`. The
-> Syllabus Analysis module (the commission's revised 2026 syllabus, read-only,
+> remaining in the internal review queue. The latest full run passed 233/233
+> tests and 915 static checks; the service-worker cache is `v1.2.0-2`. The
+> Syllabus section (the commission's revised 2026 syllabus, read-only,
 > with optional progress and curated previous-year links) was added on
-> 2026-10-13; its source gaps and limits are listed in `docs/LIMITATIONS.md`. The earlier
+> 2026-10-13; its source gaps and limits are listed in `docs/LIMITATIONS.md`.
+> Later the same day the two duplicated pairs of screens were merged — the
+> study planner into Syllabus, and PYQ Analysis into Insights — taking the
+> menu from 14 destinations to 12 (§6). The earlier
 > UI-overhaul comparison in §5 is a historical baseline; current suite and bank
 > details are in `docs/TESTING.md` and `docs/PYQ_AUDIT.md`.
 
@@ -38,7 +41,7 @@ this repository; nothing is claimed on the basis of inspection alone.
 | 10 | Import workflow: validation, pre-import summary, duplicate avoidance, provenance, nothing silently discarded | Done | `js/services/importer.js` two-phase analyse → confirm; `tests/import.test.js` (10 tests), `tests/ui.test.js` drives the real Import screen |
 | 11 | Answer-key integrity: supplied vs verified, dispute flagging, correction history, configurable + auditable scoring | Done | `js/core/schema.js` (`effectiveAnswer`, `answerIntegrity`), `js/services/questions.js` (corrections appended with `before` values), `answerPolicy` / `scoringPolicyWhenUnresolved` settings; `tests/scoring.test.js` |
 | 12 | Refuse to score when paper rules are unknown | Done | `resolveScoringRules` returns `needsConfiguration` for papers without configured rules; `submitTest` throws and the runner opens a rules dialog. The bundled MPPSC 2013–2024 papers intentionally use the latest +3/−1/0 pattern as a uniform practice policy, not as a claim about their historical rules. Asserted in `scoring`, `e2e` and `builtin-bank` |
-| 13 | Ten navigation destinations | Done | `NAV` in `js/app.js` (11 entries incl. Help); `npm run check` fails if a destination loses its view |
+| 13 | Ten navigation destinations | Done | `NAV` in `js/app.js` — **12 entries** incl. Help, after the 2026-10-13 merge removed two duplicates (§6); `npm run check` fails if a destination loses its view, and `tests/ui.test.js` fails if a section regains a second entry |
 | 14 | Full-paper simulation: original order, timer, palette, mark for review, autosave, resume, submit confirmation | Done | `js/ui/views/runner.js`, `testcentre.js`; `tests/ui.test.js` starts, answers, flags, navigates and submits a real simulation through the DOM; `e2e` checks order/duration and resume |
 | 15 | Learning vs exam-simulation feedback modes | Done | `feedbackMode` per test; learning mode reveals per question, exam mode reveals after submission |
 | 16 | Optional confidence marking, stored separately from correctness | Done | `responses[id].confidence`; analytics confidence matrix; revision treats guessed-correct as weak recall |
@@ -46,16 +49,16 @@ this repository; nothing is claimed on the basis of inspection alone.
 | 18 | Custom test builder, labelled non-authentic | Done | `js/ui/views/custom.js`; the disclaimer is asserted by `tests/ui.test.js` |
 | 19 | Smart practice with explainable repeat management, no prediction claims | Done | `smartPracticePlan` returns per-bucket allocation + explanation lines; text asserts "not evidence about what a future examination will contain"; `tests/smart.test.js` |
 | 20 | Mistake book with preserved attempt history | Done | `js/services/attempts.js`, `js/ui/views/mistakes.js`; resolve/reopen/remove never delete attempts; `e2e` covers escalation, auto-resolve, reopen |
-| 21 | Analytics distinguishing available / unique attempted / total attempts / first-attempt accuracy, small-sample warnings | Done | `js/services/analytics.js` + `js/ui/views/analytics.js`; `tests/analytics.test.js`; UI test asserts the four tiles render |
+| 21 | Analytics distinguishing available / unique attempted / total attempts / first-attempt accuracy, small-sample warnings | Done | `js/services/analytics.js` + `js/ui/views/analytics.js`, now the **Insights** shell: *My performance* (attempt-derived) and *The question bank* (`renderBankPanel` from `pyq-analysis.js`, pure counting), with the distinction stated once above both tabs; `tests/analytics.test.js`; UI test asserts the four tiles render and `tests/section-merge.test.js` asserts neither tab borrows the other's numbers |
 | 22 | Post-test report with filters and optional review | Done | `js/ui/views/report.js` (score tiles, rules used, outcome counts, weak topics, time table, confidence matrix, recommendations, repeated mistakes, unresolved answers, 7-way filtered question review) |
 | 23 | Performance-based revision scheduling with transparent reasons | Done | `js/services/revision.js` (`basis` object + human reason per record), Revision Centre shows the numeric basis, manual override/interval/reschedule; `tests/revision.test.js` |
-| 24 | Syllabus planner that hard-codes no MPPSC syllabus | Done | `js/services/planner.js` + `js/ui/views/syllabus.js`; import/create/bootstrap-from-bank; status is always manual, bank linkage shown separately; `e2e` asserts manual progress stays separate |
+| 24 | Syllabus planner that hard-codes no MPPSC syllabus | Done | `js/services/planner.js` + `js/ui/views/syllabus.js`; import/create/bootstrap-from-bank; status is always manual, bank linkage shown separately; `e2e` asserts manual progress stays separate. Since the merge the planner shares the Syllabus screen with the commission's syllabus, but still hard-codes nothing: your items live in their own store, are badged *your item*, and are placed under an official heading only by the curated mapping or your own pin (`js/services/syllabus-hub.js`; `tests/section-merge.test.js` 2, 3, 6) |
 | 25 | Editable classifications with the original preserved | Done | `updateClassification` / `revertClassification` keep `classification.original`; the question dialog shows imported vs in-use side by side |
 | 26 | Explanation display, verbatim | Done | `renderExplanation` shows the stored prose and says when a question has none; the integrity tab lists the questions without one; the app never writes an explanation and attaches no review status of its own |
 | 27 | Frequency analysis as a study aid only | Done | `analytics.frequency` carries a disclaimer; UI test asserts the "not a prediction" wording |
 | 28 | Full JSON backup/restore with validation and merge | Done | `js/services/data.js` (SHA-256 over `stableStringify(payload)`), `settings.js` restore summary → merge/replace; `tests/backup.test.js`; UI test runs the round-trip self-test |
 | 29 | Settings page | Done | `js/ui/views/settings.js`: general, revision rules, backup & restore, diagnostics (storage report, activity log, guarded wipe) |
-| 30 | Polished, accessible, responsive study UI | Done (with caveat) | Token-driven `css/app.css` (Light/Dark/Forced-colors, Devanagari line-heights, ≥44px touch targets at ≤860px, `@media print`), provenance vocabulary (`sourceChip`, `evidenceMeter`, `provenanceLine`), accessible off-canvas drawer (`inert`, `aria-hidden`, `#navScrim`), focus-trapped dialogs, WAI-ARIA APG roving-tabindex tabs, and runner focus mode (`docs/UI.md`). `[hidden] { display: none !important; }` is the first rule so author `display` rules can never leave the dialog overlay covering the app, `#toastStack` is click-through, and an 18-test jsdom UI suite (plus a 12-test syllabus suite) and 902 static checks (`npm run check`) guard contrast, tokens, zero inline styles, headings, and focus. Caveat: verified in jsdom + manual checklist, not by a real-browser automation suite or a screen-reader audit |
+| 30 | Polished, accessible, responsive study UI | Done (with caveat) | Token-driven `css/app.css` (Light/Dark/Forced-colors, Devanagari line-heights, ≥44px touch targets at ≤860px, `@media print`), provenance vocabulary (`sourceChip`, `evidenceMeter`, `provenanceLine`), accessible off-canvas drawer (`inert`, `aria-hidden`, `#navScrim`), focus-trapped dialogs, WAI-ARIA APG roving-tabindex tabs, and runner focus mode (`docs/UI.md`). `[hidden] { display: none !important; }` is the first rule so author `display` rules can never leave the dialog overlay covering the app, `#toastStack` is click-through, and an 18-test jsdom UI suite (plus a 12-test syllabus suite and a 10-test merge suite) and 915 static checks (`npm run check`) guard contrast, tokens, zero inline styles, headings, and focus. Caveat: verified in jsdom + manual checklist, not by a real-browser automation suite or a screen-reader audit |
 | 31 | Deterministic scoring | Done | Pure `scoreTest` over rules + policy; `tests/scoring.test.js` re-runs identical inputs |
 | 32 | Real validation testing (never claim untested passes) | Done | `tests/validation.test.js` + `tests/tools.test.js` + the jsdom journey suite; results below are the actual runs |
 | 33 | Question bank separate from app code | Done | Banks live in `data/**` and user imports; `npm run check` fails if question content appears in `js/**`; `tools/build-bank.mjs` builds banks outside the app |
@@ -65,15 +68,16 @@ this repository; nothing is claimed on the basis of inspection alone.
 
 ```
 $ npm test
-# tests 223 / # pass 223 / # fail 0 / # skipped 0
+# tests 233 / # pass 233 / # fail 0 / # skipped 0
   validation 13 · scoring 14 · import 10 · revision 12
   analytics 8 · smart 11 · backup 8 · e2e 14 · ui 18
   tools 3 · PYQ bank 8 · built-in bank 9 · PYQ analysis 13
+  syllabus 12 · section merge 10
   classification 47 · pipeline 11 · historical sources 7 · quality audit 5
 
 $ npm run check
-All 902 checks passed.
- · service worker cache version: v1.1.0-15
+All 915 checks passed.
+ · service worker cache version: v1.2.0-2
  · bundled bank: 1,171 questions, 12 papers (2013–2024)
  · demonstration bank: 34 questions, 3 papers
 
@@ -119,7 +123,7 @@ Notable things the tests prove rather than assume:
 
 The full list is in [`docs/LIMITATIONS.md`](LIMITATIONS.md). The headline items:
 
-1. **UI verification depth.** The UI is covered by a jsdom journey suite (18 tests) plus 860 static checks (including a 98-pair WCAG contrast audit across Light and Dark themes) and a manual checklist. There is no Playwright/Puppeteer browser suite, so real layout, responsive breakpoints, print output, service-worker behaviour and screen-reader output are not automatically verified.
+1. **UI verification depth.** The UI is covered by a jsdom journey suite (18 tests) plus 915 static checks (including a 98-pair WCAG contrast audit across Light and Dark themes) and a manual checklist. There is no Playwright/Puppeteer browser suite, so real layout, responsive breakpoints, print output, service-worker behaviour and screen-reader output are not automatically verified.
 2. **A real previous-year bank is now bundled** for MPPSC Prelims Paper I, 2013–2024 (1,171 questions / 12 papers). Its keys have not been independently verified against official MPPSC answer keys; a syllabus is still user-imported or user-created. Verify keys before relying on them, and treat scores as practice feedback.
 3. **Per-browser storage.** No sync or automatic off-device backup; clearing site data removes progress unless a JSON backup was taken.
 4. **Analytics evidence thresholds.** Under 3 scored answers a figure is labelled insufficient; under 5 no strong/weak verdict is given. This is deliberate, but it means a small bank produces few conclusions.
@@ -160,3 +164,103 @@ This table is the original UI-overhaul comparison and retains its historical
 post-overhaul snapshot. The current cache version and final test/check totals
 are recorded above and in [`docs/TESTING.md`](TESTING.md).
 
+---
+
+## 6. Section merge (2026-10-13)
+
+The menu had grown two pairs that read as one idea each. The approved design is
+[`docs/SECTION_MERGE_PROPOSAL.md`](SECTION_MERGE_PROPOSAL.md); this is what was
+built against it.
+
+### The two pairs were not the same problem
+
+| Pair | Diagnosis | Treatment |
+| --- | --- | --- |
+| *Syllabus & Study Planner* + *Syllabus Analysis* | **A true duplicate.** One curriculum kept in two stores, with two progress figures that could not see each other. | A real merge: one screen, one status vocabulary, one roll-up. |
+| *Analytics* + *PYQ Analysis* | **Not a duplicate.** One is derived from your attempts; the other counts what is stored. They looked alike only in the menu. | One shell, two tabs. Neither service changed. |
+
+Treating the second pair as a duplicate would have meant mixing bank counts with
+performance figures — which is the specific confusion the app exists to avoid.
+
+### The defect the merge fixed
+
+Marking an official syllabus topic *completed* left the dashboard at 0%. The
+dashboard asked `planner.syllabusProgress()`, while the Syllabus Analysis screen
+wrote to `syllabus_progress`, which only `js/services/syllabus.js` read. Two
+truthful numbers, each blind to half the work. The dashboard card now reads
+`loadSyllabusWorkspace()` and quotes the combined figure, with the official /
+your-own split underneath so the single number can still be taken apart.
+
+### A second defect, found while checking the first
+
+`studyPriorities()` has always carried a branch that weighs what the reader
+marked on the curriculum — *not started* raises a topic's rank, *completed*
+lowers it, *high priority* raises it further. **That branch had never run.** It
+reads a `byTopic` index, and the only caller that supplied a curriculum at all
+passed `planner.syllabusProgress()`, whose return value has no such field; it
+returns `total`, `byStatus`, `overallCompletion` and `nodes`. So every
+`syllabus:` field on every priority row was `null`, and progress marked on the
+official syllabus had no route into priorities regardless.
+
+The merged roll-up now carries the index (`topicStatusIndex`), and the dashboard
+and the Insights priorities list are both fed from it. Marking an official
+heading *in progress* and *high priority* moves its topic from 48.8 to 61.8 with
+the reasons printed beside it. Where both stores describe one topic the **least
+advanced** status wins and the nearer target date is kept, so the merge never
+concludes more than either store would alone. Asserted by
+`tests/section-merge.test.js` case 10.
+
+### What was built
+
+* **`js/services/syllabus-hub.js`** (new) — the facade both screens talk to.
+  Owns the status vocabulary, attachment resolution, the combined roll-up and
+  the workspace loader. Neither store's own service learned about the other.
+* **`js/ui/views/syllabus.js`** — the merged section. The Analysis screen's
+  shell (rail, tree, detail panel, search, bilingual text) with the planner's
+  fields folded into a *Your plan* block in the detail panel, now available on
+  official lines too, and a **My plan** branch for items with no home.
+* **`js/ui/views/analytics.js`** — the Insights shell; the bank screen became
+  `renderBankPanel` / `mountBankPanel` exported by `js/ui/views/pyq-analysis.js`.
+  The shell states *available ≠ attempted ≠ attempts* once, in a shared tile
+  strip above the tabs, and neither panel repeats it.
+* **`js/services/syllabus-hub.js` → `topicStatusIndex()`** — the curriculum
+  keyed the way the question bank is keyed, so one roll-up can answer both the
+  dashboard's question and `studyPriorities()`'s.
+* **`js/ui/router.js`** — a staleness guard. `resolve()` abandons its paint if a
+  *different* destination was requested while it was awaiting. The merged
+  dashboard's extra `await` made a pre-existing race visible: a slow boot render
+  could land on top of a screen the reader had already navigated to.
+
+### Decisions worth recording
+
+* **No `DB_VERSION` bump and no migration.** Both stores stay; the new fields
+  (`priority` / `target_date` / `notes` on progress rows, `attached_node_id` on
+  your items) are additive, so an older backup restores untouched and an older
+  build still opens a new one. Keeping the stores apart is also what keeps the
+  promise that your tree is yours: no official node is ever written into it.
+* **`revising` reads as *in progress*, not *revised*.** The planner's own
+  ordering put `revising` before `completed`; reading it as the official
+  `revised` — which counts as done — would mark items complete on your behalf.
+* **No fuzzy matching.** An item is placed under an official heading by the
+  curated `data/syllabus/pyq-links.json` mapping or by your explicit pin.
+  Anything else waits in *My plan*. A wrong placement in a syllabus tree is
+  worse than an unplaced item.
+* **All four old routes still resolve.** `#/syllabus-analysis/<node-id>` and
+  `#/pyq-analysis/<Subject>` keep working, because the curated PYQ chips and any
+  bookmarks use them.
+* **One `<h1>` per route.** Shells own it; panels start at `<h2>`.
+
+### Verified
+
+`npm test` → **233/233** (the 10 new cases are `tests/section-merge.test.js`),
+`npm run check` → **915 checks**, both after the change. The merge suite asserts
+behaviour rather than markup: the vocabulary, the attachment rules, the shared
+roll-up reaching the dashboard *and* study priorities, the stores staying
+separate, the Insights tab boundary in both directions, and every legacy route.
+
+### Not done
+
+* `searchResults` in the Syllabus section still searches official nodes only;
+  your own items are found by browsing *My plan*, not by the search box.
+* `js/services/planner.js` still carries tasks and study-session APIs that no
+  screen renders. They predate the merge and were left untouched.

@@ -138,3 +138,37 @@ same format (schema version 1.0.0), so a bank exported from one browser profile
 can be imported into another. The full backup (**Settings & Backup**) is a
 separate format (`mymppsc-backup`) that includes tests, attempts, mistakes,
 revision records, syllabus, tasks and sessions — see `docs/LIMITATIONS.md`.
+
+## The two syllabus stores
+
+The Syllabus section reads from two stores and writes to whichever one owns the
+item in front of you. They were **not** merged into one when the screens were:
+
+| Store | Holds | Key |
+| --- | --- | --- |
+| `syllabus` | the items you typed or imported, including any nesting of your own | your item id |
+| `syllabus_progress` | what you marked on a line of the commission's syllabus | the official node id |
+
+Nothing in the shipped syllabus is writable, so there is no row to store for an
+official line until you mark one — a reader who marks nothing has an empty
+`syllabus_progress`. Keeping the stores apart also keeps the promise that the
+tree you built is yours alone: no official node is ever written into it.
+
+Merging the screens added fields to both row shapes and removed none, so
+`DB_VERSION` stays **2** and no migration runs. A backup written by an older
+build restores unchanged (`js/services/data.js` backs up whole rows), and a
+backup written by this build opens in an older one with the new fields ignored.
+
+* `syllabus_progress` rows gained optional `priority`, `target_date` and
+  `notes` — the planning fields, now available on an official line.
+* `syllabus` rows gained an optional `attached_node_id`: the official heading
+  you pinned an item under. Unset means *work it out from the curated mapping,
+  or leave it in My plan*; it is a display relationship, never a copy of
+  official text.
+
+Status is one vocabulary across both: `not_started`, `in_progress`,
+`completed`, `revised`. Rows written by older builds as `revising` are read as
+`in_progress` — in the old planner that status sat *before* `completed`, so
+reading it as the official `revised` (which counts as done) would claim a
+completion the reader never recorded. The stored string is left alone until the
+reader changes it.
