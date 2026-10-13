@@ -261,7 +261,73 @@ export function combinedProgress(model, progressRows, plan) {
     done,
     touched: official.touched + planSummary.touched,
     completion: total ? done / total : 0,
+    // Consumed by `studyPriorities()`, which needs the curriculum keyed the way
+    // the question bank is keyed rather than the way the syllabus is.
+    byTopic: topicStatusIndex(model, progressRows, plan),
   };
+}
+
+/**
+ * One status per *question-bank topic*, drawn from both stores.
+ *
+ * `studyPriorities()` asks a single question of the curriculum — "what has the
+ * reader already said about this topic?" — and it expects a `byTopic` map to
+ * answer it with. Before the merge nothing built one: the planner's roll-up
+ * never carried the field, so the branch that reads it could not run, and
+ * anything marked on the official syllabus was invisible to priorities
+ * regardless. One roll-up now answers for both stores.
+ *
+ * Where both stores speak about the same topic the *least* advanced status
+ * wins, a high priority set in either is kept, and the nearer target date is
+ * the operative one. A topic the reader still has open in their own plan does
+ * not become "done" because the official line above it was ticked — the merge
+ * must not conclude more than either store on its own would.
+ */
+export function topicStatusIndex(model, progressRows, plan) {
+  const byTopic = new Map();
+
+  const record = (key, incoming) => {
+    const status = normaliseStatus(incoming.status);
+    const existing = byTopic.get(key);
+    if (!existing) {
+      byTopic.set(key, {
+        status,
+        priority: incoming.priority || null,
+        target_date: incoming.target_date || null,
+      });
+      return;
+    }
+    if (statusScore(status) < statusScore(existing.status)) existing.status = status;
+    if (incoming.priority === 'high') existing.priority = 'high';
+    else if (!existing.priority && incoming.priority) existing.priority = incoming.priority;
+    if (incoming.target_date && (!existing.target_date || incoming.target_date < existing.target_date)) {
+      existing.target_date = incoming.target_date;
+    }
+  };
+
+  // The reader's own items carry a subject and topic of their own.
+  for (const row of plan?.rows || []) {
+    if (!row?.subject || !row?.topic) continue;
+    record(topicKey(row.subject, row.topic), row);
+  }
+
+  // An official line reaches a bank topic only through the curated mapping,
+  // the same association the attachment logic uses - never a guess at titles.
+  if (model?.ok) {
+    const index = buildAttachmentIndex(model);
+    // `loadProgress()` hands back a Map keyed by node id; accept a plain list
+    // too, so a caller holding raw rows gets the same answer.
+    const entryByNode =
+      progressRows instanceof Map
+        ? progressRows
+        : new Map((progressRows || []).map((row) => [row.node_id || row.id, row]));
+    for (const [key, nodeId] of index.byTopic) {
+      const entry = entryByNode.get(nodeId);
+      if (entry) record(key, entry);
+    }
+  }
+
+  return byTopic;
 }
 
 /** Progress for the leaves under one official node, plus any plan items there. */

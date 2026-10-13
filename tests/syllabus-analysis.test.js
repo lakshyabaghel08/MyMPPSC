@@ -330,7 +330,8 @@ test('8. the route renders the syllabus and switches stage', async () => {
   assert.match(text, /Expand all/);
 
   const stageSwitch = $$('.syl-switch-btn');
-  assert.equal(stageSwitch.length, 2, 'Prelims ↔ Mains');
+  assert.equal(stageSwitch.length, 3, 'Prelims ↔ Mains ↔ My plan');
+  assert.deepEqual(stageSwitch.map((b) => b.textContent.replace(/\s+/g, ' ').trim().replace(/ \d+$/, '')), ['Prelims', 'Mains', 'My plan']);
   click(stageSwitch[1]);
   await waitFor(() => /प्रथम प्रश्न पत्र|FIRST PAPER/.test(viewText()), { label: 'the Mains tree' });
   assert.match(viewText(), /Study breakdown|Official/, 'Mains gets the same treatment as Prelims');

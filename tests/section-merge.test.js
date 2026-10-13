@@ -362,3 +362,61 @@ test('9. the routes the merge replaced still resolve', async () => {
     assert.ok(app.router.routes[route], `${link.analysisHref} resolves to a registered route`);
   }
 });
+
+/* ----------------------------------------- the roll-up reaching priorities -- */
+
+test('10. study priorities read the curriculum from both stores', async () => {
+  // `studyPriorities()` has always had a branch that weighs what the reader
+  // marked on the curriculum, but nothing ever built the `byTopic` index it
+  // reads, so the branch could not run: the planner's roll-up did not carry
+  // the field, and progress on the official syllabus had no route into it at
+  // all. The merged roll-up answers for both stores.
+  const { loadAnalytics, studyPriorities } = await import('../js/services/analytics.js');
+  const model = await syllabus.loadSyllabus();
+  await syllabus.resetProgress();
+
+  const { analytics } = await loadAnalytics();
+  const attachments = hub.buildAttachmentIndex(model);
+  const pair = [...attachments.byTopic.entries()].find(([key]) =>
+    analytics.byTopic.some((topic) => hub.topicKey(topic.subject, topic.topic) === key));
+  assert.ok(pair, 'the curated mapping ties at least one bank topic to an official heading');
+  const [key, nodeId] = pair;
+
+  const priorityFor = async () => {
+    const { progress } = await hub.loadSyllabusWorkspace();
+    assert.ok(progress.byTopic instanceof Map, 'the one roll-up carries the topic index priorities need');
+    return studyPriorities({ analytics, syllabusProgress: progress, limit: 500 })
+      .find((row) => hub.topicKey(row.subject, row.topic) === key);
+  };
+
+  const before = await priorityFor();
+  assert.ok(before, 'the topic is ranked');
+  assert.equal(before.syllabus, null, 'nothing is claimed about a curriculum the reader has not marked');
+
+  // Marking the OFFICIAL heading — the half that was invisible to priorities.
+  await hub.setStatus({ scope: 'official', id: nodeId }, 'in_progress', { model });
+  await hub.setPlanFields({ scope: 'official', id: nodeId }, { priority: 'high' }, { model });
+
+  const after = await priorityFor();
+  assert.equal(after.syllabus.status, 'in_progress');
+  assert.equal(after.syllabus.priority, 'high');
+  assert.ok(after.priorityScore > before.priorityScore, 'a high-priority unfinished topic ranks higher than before');
+  assert.ok(after.reasons.some((r) => /high priority/i.test(r)), 'and says why');
+
+  // A plan item of the reader's own speaks for the same topic. Where the two
+  // disagree the merge must not conclude more than either store on its own:
+  // the least advanced status wins.
+  const topic = analytics.byTopic.find((t) => hub.topicKey(t.subject, t.topic) === key);
+  const mine = await planner.addSyllabusItem({
+    title: 'My own line on this topic',
+    level: 'topic',
+    subject: topic.subject,
+    topic: topic.topic,
+  });
+  await hub.setStatus({ scope: 'official', id: nodeId }, 'completed', { model });
+  const split = await priorityFor();
+  assert.equal(split.syllabus.status, 'not_started', 'an open item of the reader\u2019s own is not done because the official line was ticked');
+
+  await planner.deleteSyllabusItem(mine.id, { withChildren: true });
+  await syllabus.resetProgress();
+});

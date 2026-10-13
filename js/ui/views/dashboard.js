@@ -12,7 +12,6 @@ import { esc, card, badge, icon, dataTable, confirmDialog, toast, sourceChip, ev
 import { fmtPct, fmtDuration, fmtDate, fmtRelative } from '../../core/util.js';
 import { loadAnalytics, dashboardSummary, studyPriorities } from '../../services/analytics.js';
 import * as testsSvc from '../../services/tests.js';
-import * as planner from '../../services/planner.js';
 import { loadSyllabusWorkspace } from '../../services/syllabus-hub.js';
 import * as revision from '../../services/revision.js';
 import { bankSummary } from '../../services/questions.js';
@@ -77,13 +76,12 @@ export default {
 
     const summary = dashboardSummary({ analytics, tests: allTests, revision: analytics.revision, settings: state.settings });
     const bank = bankSummary();
-    const syllabusRows = await planner.listSyllabus();
-    const progress = planner.syllabusProgress(syllabusRows, analytics);
-    const priorities = studyPriorities({ analytics, syllabusProgress: progress, limit: 6 });
     // One figure for the whole curriculum. Progress marked on the official
     // syllabus used to be invisible here, because only the planner's own store
-    // was read; the hub reads both.
+    // was read; the hub reads both. The same roll-up feeds study priorities,
+    // which previously received a shape that carried no topic index at all.
     const curriculum = await loadSyllabusWorkspace();
+    const priorities = studyPriorities({ analytics, syllabusProgress: curriculum.progress, limit: 6 });
 
     const missingKeys = metas.filter((m) => !m.hasSuppliedAnswer && !m.hasVerifiedAnswer).length;
     const disputed = metas.filter((m) => m.disputed).length;

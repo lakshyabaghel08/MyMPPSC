@@ -4352,6 +4352,8 @@ table.data td {
   padding-top: var(--space-3);
 }
 
+.syl-switch-plan { border-left: 1px solid var(--border); }
+.syl-switch-plan .syl-rail-count { margin-left: var(--sp-1); }
 .syl-rail-count {
   display: inline-block;
   min-width: 18px;

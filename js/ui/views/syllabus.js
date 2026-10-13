@@ -661,15 +661,20 @@ async function screen(ctx) {
     <header class="syl-head">
       <div class="syl-head-top">
         <h1>Syllabus</h1>
-        <div class="syl-switch" role="tablist" aria-label="Examination stage">
+        <div class="syl-switch" role="tablist" aria-label="What to show">
           ${['prelims', 'mains']
             .map(
               (examId) =>
-                `<button type="button" role="tab" aria-selected="${viewState.examId === examId}" class="syl-switch-btn${
-                  viewState.examId === examId ? ' on' : ''
+                `<button type="button" role="tab" aria-selected="${!onMyPlan && viewState.examId === examId}" class="syl-switch-btn${
+                  !onMyPlan && viewState.examId === examId ? ' on' : ''
                 }" data-exam="${examId}">${esc(EXAM_LABELS[examId])}</button>`,
             )
             .join('')}
+          <button type="button" role="tab" aria-selected="${onMyPlan}" class="syl-switch-btn syl-switch-plan${
+            onMyPlan ? ' on' : ''
+          }" data-paper="${MY_PLAN}">My plan${
+            plan.unattached.length ? ` <span class="syl-rail-count">${plan.unattached.length}</span>` : ''
+          }</button>
         </div>
       </div>
       <p class="syl-lede">The commission's revised 2026 syllabus, with your own plan kept alongside it. ${
@@ -686,7 +691,7 @@ async function screen(ctx) {
     </header>
 
     <div class="syl-layout">
-      <nav class="syl-rail" aria-label="Papers and your plan">
+      <nav class="syl-rail" aria-label="Papers">
         <div class="syl-rail-papers">
           ${papers
             .map((candidate) => {
@@ -697,10 +702,6 @@ async function screen(ctx) {
               </button>`;
             })
             .join('')}
-          <button type="button" class="syl-rail-item syl-rail-plan${onMyPlan ? ' on' : ''}" data-paper="${MY_PLAN}">
-            <span class="syl-rail-label">My plan${plan.unattached.length ? ` <span class="syl-rail-count">${plan.unattached.length}</span>` : ''}</span>
-            ${overall.plan.touched ? progressBar(overall.plan.completion) : ''}
-          </button>
         </div>
         <details class="syl-about"${viewState.showAbout ? ' open' : ''}>
           <summary>About this syllabus</summary>
@@ -820,7 +821,9 @@ async function mount(ctx, root) {
 
   root.querySelectorAll('[data-exam]').forEach((button) => {
     button.addEventListener('click', async () => {
-      if (viewState.examId === button.dataset.exam) return;
+      // Returning from My plan to the stage you were already on is a real
+      // navigation, even though the stage itself has not changed.
+      if (viewState.examId === button.dataset.exam && viewState.paperId !== MY_PLAN) return;
       viewState.examId = button.dataset.exam;
       viewState.paperId = null;
       viewState.selectedId = null;
