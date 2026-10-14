@@ -28,6 +28,7 @@ import * as revision from '../../services/revision.js';
 import { allAttempts, attemptHistoryForQuestion, attemptTrend } from '../../services/attempts.js';
 import { getQuestions } from '../../services/questions.js';
 import { startPracticeTest } from './shared.js';
+import { revisionSkeleton } from '../skeletons.js';
 
 const viewState = { filter: 'due', subject: 'all', topic: 'all', limit: revision.REVISION_PAGE_SIZE };
 
@@ -70,6 +71,11 @@ function reasonCell(rec) {
 
 export default {
   title: 'Revision Centre',
+
+  /** Placeholder while the schedule and attempt history load (router.js). */
+  skeleton() {
+    return revisionSkeleton();
+  },
 
   async render() {
     const records = await revision.allRevisionRecords();
@@ -195,7 +201,7 @@ export default {
             filtered.length > visible.length
               ? `<div class="row mt-2"><button class="btn btn-sm" type="button" data-action="show-more">Show more (${visible.length} of ${filtered.length} shown)</button></div>`
               : ''
-          }}`,
+          }`,
       })}
 
       ${card({
@@ -428,6 +434,6 @@ export default {
         });
         return;
       }
-    });
+    }, { signal: ctx.signal });
   },
 };

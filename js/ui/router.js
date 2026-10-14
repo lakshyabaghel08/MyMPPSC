@@ -2,7 +2,9 @@
  * router.js — Hash-based router.
  *
  * Routes look like `#/analytics`, `#/runner/test_abc123`, `#/bank/question/Q-1`.
- * A route module is `{ title, render(ctx) -> string|Promise<string>, mount?(ctx) }`.
+ * A route module is `{ title, render(ctx) -> string|Promise<string>, mount?(ctx) }`,
+ * optionally with `skeleton(ctx) -> string` (the placeholder painted while
+ * render() reads its data), `cleanup(ctx)` and `positionScroll(ctx, root)`.
  */
 
 import { loadingState, notice, esc } from './components.js';
@@ -30,6 +32,8 @@ export class Router {
      * same target is a view refreshing itself (a filter changed, a box was
      * ticked), not a navigation, so it must keep the reader's place. */
     this.renderedTarget = null;
+    /** AbortController of the screen currently painted (see `ctx.signal`). */
+    this.paintedAbort = null;
     this._onHashChange = () => this.resolve();
   }
 
@@ -53,6 +57,30 @@ export class Router {
     if (replace) this.resolve();
   }
 
+  /** Drop the listeners of the screen being painted over; `next` owns `#view` now. */
+  releasePainted(next) {
+    if (this.paintedAbort && this.paintedAbort !== next) this.paintedAbort.abort();
+    this.paintedAbort = next;
+  }
+
+  /**
+   * What to paint while a view loads: its own skeleton when it offers one
+   * (grey blocks in the shape of the screen), otherwise the plain loading
+   * line. A skeleton is decoration, so one that throws must never stop the
+   * real screen from rendering.
+   */
+  placeholderFor(view, ctx) {
+    if (typeof view?.skeleton === 'function') {
+      try {
+        const markup = view.skeleton(ctx);
+        if (typeof markup === 'string' && markup) return markup;
+      } catch (err) {
+        console.warn('View skeleton failed', err);
+      }
+    }
+    return loadingState();
+  }
+
   parse() {
     const raw = window.location.hash.replace(/^#\/?/, '');
     const [name = '', ...params] = raw.split('/').filter((p) => p !== '');
@@ -69,9 +97,26 @@ export class Router {
     this.pendingTarget = target;
     /** False once a different destination has been asked for. */
     const current = () => this.pendingTarget === target;
+    // Same screen refreshing itself (ctx.refresh() after ticking a filter,
+    // changing a setting, submitting a form…) rather than a navigation.
+    const isRefresh = this.renderedTarget === target;
+    // `#view` outlives every screen, so a listener a view adds to it (event
+    // delegation) or to `document` would otherwise survive every refresh and
+    // every later screen: handlers piled up, one more per render, and kept
+    // firing elsewhere (one click on "Export bank" downloaded one copy per
+    // earlier render). Views pass `{ signal: ctx.signal }`; the signal is
+    // aborted when the next render paints over this one.
+    // From the container's own window: a DOM only accepts signals of its realm
+    // (one and the same object in a browser; not in jsdom under Node).
+    const Controller = this.container?.ownerDocument?.defaultView?.AbortController || globalThis.AbortController;
+    const abort = new Controller();
     const ctx = {
       route: routeName,
       params,
+      // Lets a view tell "the reader came here" (apply the route's defaults)
+      // from "the screen redrew itself" (keep what the reader chose).
+      isRefresh,
+      signal: abort.signal,
       navigate: (path, opts) => this.navigate(path, opts),
       router: this,
       state: this.viewState,
@@ -105,12 +150,9 @@ export class Router {
 
     if (!current()) return;
 
-    // Same screen refreshing itself (ctx.refresh() after ticking a filter,
-    // changing a setting, submitting a form…): remember where the reader is
-    // and what they were using, so the refresh does not throw them back to
-    // the top of the page or drop their focus. A genuinely new destination
-    // still starts at the top.
-    const isRefresh = this.renderedTarget === target;
+    // On a refresh, remember where the reader is and what they were using, so
+    // it does not throw them back to the top of the page or drop their focus.
+    // A genuinely new destination still starts at the top.
     const keptScrollY = isRefresh && typeof window !== 'undefined' ? window.scrollY || 0 : 0;
     const activeEl = isRefresh && typeof document !== 'undefined' ? document.activeElement : null;
     const escSel = (v) => (typeof CSS !== 'undefined' && CSS.escape ? CSS.escape(String(v)) : String(v).replace(/["\\]/g, '\\$&'));
@@ -125,13 +167,14 @@ export class Router {
               : null
         : null;
 
-    this.container.innerHTML = loadingState();
+    this.container.innerHTML = this.placeholderFor(view, ctx);
     try {
       const markup = await view.render(ctx);
       // A newer navigation started while this screen was loading its data:
       // that screen is the one the reader asked for, so leave it alone.
       if (!current()) return;
       this.container.innerHTML = markup || '';
+      this.releasePainted(abort);
       if (typeof view.mount === 'function') await view.mount(ctx, this.container);
       if (!current()) return;
       this.activeCleanup = typeof view.cleanup === 'function' ? () => view.cleanup(ctx) : null;
@@ -166,6 +209,7 @@ export class Router {
     } catch (err) {
       console.error(`View "${routeName}" failed to render`, err);
       if (!current()) return;
+      this.releasePainted(abort);
       this.container.innerHTML = notice(
         `<strong>This screen could not be displayed.</strong> The error was: <code>${esc(err.message)}</code>.
          Your saved data is untouched. You can go back to the <a href="#/dashboard">dashboard</a> and try again.`,

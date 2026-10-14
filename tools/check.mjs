@@ -194,10 +194,16 @@ check(/@media\s*\(\s*forced-colors:\s*active\s*\)/.test(cssDeclarations), 'css/a
 check(/@media\s*\(\s*prefers-reduced-motion:\s*reduce\s*\)/.test(cssDeclarations), 'css/app.css: missing @media (prefers-reduced-motion: reduce) support');
 check(/@media\s+print\b/.test(cssDeclarations), 'css/app.css: missing @media print rules');
 
-function parseHexTokens(block) {
-  const map = new Map();
+function parseHexTokens(block, base = null) {
+  const map = new Map(base || []);
   for (const [, name, hex] of block.matchAll(/(--[a-z0-9-]+)\s*:\s*(#[0-9a-fA-F]{6})\b/g)) {
     map.set(name, hex.toLowerCase());
+  }
+  // Semantic aliases (`--track: var(--border-subtle);`) are audited through the
+  // token they point at, resolved within the same theme.
+  const aliases = [...block.matchAll(/(--[a-z0-9-]+)\s*:\s*var\(\s*(--[a-z0-9-]+)\s*\)\s*;/g)];
+  for (let pass = 0; pass < 4; pass += 1) {
+    for (const [, name, target] of aliases) if (map.has(target)) map.set(name, map.get(target));
   }
   return map;
 }
@@ -270,10 +276,18 @@ const NON_TEXT_CONTRAST_PAIRS = [
   ['--focus-ring', '--bg', 3.0],
   ['--focus-ring', '--bg-elevated', 3.0],
   ['--focus-ring', '--bg-sunken', 3.0],
+  // Every data colour must stand out from the empty track it is drawn on
+  // (bars, rings, segmented progress), in both themes.
+  ['--accent', '--track', 3.0],
+  ['--ok', '--track', 3.0],
+  ['--warn', '--track', 3.0],
+  ['--bad', '--track', 3.0],
+  ['--info', '--track', 3.0],
 ];
 
 const lightTokens = parseHexTokens(lightBlock);
 const darkTokens = parseHexTokens(darkBlock);
+check(lightTokens.has('--track') && darkTokens.has('--track'), 'css/app.css: the --track token must resolve to a colour in both themes');
 
 for (const [themeName, tokenMap] of [['light', lightTokens], ['dark', darkTokens]]) {
   for (const [fg, bg, minRatio] of [...TEXT_CONTRAST_PAIRS, ...NON_TEXT_CONTRAST_PAIRS]) {
@@ -298,6 +312,23 @@ check(
   literalColourMatches.length === 0,
   `css/app.css: found ${literalColourMatches.length} literal colour(s) outside token blocks (${literalColourMatches.slice(0, 5).join(', ')})`,
 );
+
+/* ------------------------------------------------------------- motion --- */
+
+// Feedback transitions stay short; a looping animation (the skeleton pulse) is
+// allowed only where the OS allows motion. So every `animation:` declaration
+// must sit inside an `@media (prefers-reduced-motion: no-preference)` block —
+// except `animation: none`, which the reduce block uses to switch all off.
+{
+  const motionSafe = /@media\s*\(\s*prefers-reduced-motion:\s*no-preference\s*\)\s*\{(?:[^{}]*\{[^{}]*\})*[^{}]*\}/g;
+  const outside = cssDeclarations.replace(motionSafe, '');
+  const stray = [...outside.matchAll(/(?:^|[;{\s])animation(?:-name)?\s*:\s*([^;}]+)/g)].map((m) => m[1].trim()).filter((v) => !/^none\b/.test(v));
+  check(stray.length === 0, `css/app.css: animations must be declared inside @media (prefers-reduced-motion: no-preference) — found: ${stray.slice(0, 3).join(' | ')}`);
+  const slowTransitions = [...cssDeclarations.matchAll(/transition\s*:\s*([^;}]+)/g)]
+    .flatMap((m) => [...m[1].matchAll(/(\d*\.?\d+)(ms|s)\b/g)].map((t) => (t[2] === 's' ? Number(t[1]) * 1000 : Number(t[1]))))
+    .filter((ms) => ms > 150);
+  check(slowTransitions.length === 0, `css/app.css: transitions are feedback only and must not exceed 150ms (found ${slowTransitions.join(', ')}ms)`);
+}
 
 /* ---------------------------------------------- GitHub Pages + relative -- */
 

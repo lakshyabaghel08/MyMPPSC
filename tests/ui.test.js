@@ -146,7 +146,7 @@ test('every route renders without an error notice', async () => {
 test('PYQ Analysis counts the bundled bank and deep-links into practice', async () => {
   await goto('pyq-analysis');
   assert.match(viewText(), /Questions per subject/);
-  assert.match(viewText(), /Subject-by-year breakdown/);
+  assert.match(viewText(), /Year by year — what each paper contributed/);
   assert.match(viewText(), /Questions per topic/);
   assert.match(viewText(), /(?:1,200|1200)/, 'the whole bundled bank is counted');
   assert.match(viewText(), /2013–2024/, 'year columns and span include the historical papers');

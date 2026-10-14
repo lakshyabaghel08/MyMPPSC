@@ -2,8 +2,17 @@
  * bank.js (view) — Question Bank & Imports.
  *
  * Import workflow (two-phase: analyse, then confirm), bank export, question
- * browser with user corrections, integrity checks, duplicate reports and import
- * history with undo. Nothing is ever imported or deleted silently.
+ * browser with user corrections and bulk actions, integrity checks, duplicate
+ * reports and import history with undo. Nothing is ever imported or deleted
+ * silently.
+ *
+ * Bulk actions (Questions tab): rows are ticked into `viewState.selected`, a
+ * set of question ids that survives paging and filtering. "Change
+ * subject/topic" and "Delete" each ask first and then go through the same
+ * per-question services as the single-question editor
+ * (`questions.updateClassifications` → `updateClassification`, and
+ * `questions.deleteQuestions`). A subject/topic change can be undone from the
+ * list, like an import; a deletion cannot, and the dialog says so.
  */
 
 import { STORES } from '../../core/constants.js';
@@ -17,6 +26,7 @@ import * as data from '../../services/data.js';
 import * as questions from '../../services/questions.js';
 import { findExactDuplicateGroups, findNearDuplicates } from '../../services/select.js';
 import { displayVariant, effectiveAnswer, answerIntegrity } from '../../core/schema.js';
+import { bankSkeleton } from '../skeletons.js';
 
 const PAGE_SIZE = 25;
 
@@ -27,7 +37,95 @@ const viewState = {
   importOptions: { conflictPolicy: 'skip', mode: 'merge' },
   lastResult: null,
   filters: { search: '', subject: 'all', topic: 'all', year: 'all', paperId: 'all', demonstration: 'all', attention: false },
+  /** Ids ticked in the question list. Kept across pages and filters; pruned of deleted questions. */
+  selected: new Set(),
+  /** The last bulk subject/topic change, kept so it can be undone: `{ changes, message }`. */
+  lastBulk: null,
 };
+
+/* ---------------------------------------------------------- bulk helpers -- */
+
+/** The bulk bar's one line: how many are selected, and how many of those are off this page. */
+function selectionSummary(visibleIds) {
+  const total = viewState.selected.size;
+  if (!total) return 'No questions selected';
+  const onPage = visibleIds.filter((id) => viewState.selected.has(id)).length;
+  return `${total} selected${total > onPage ? ` · ${total - onPage} not on this page` : ''}`;
+}
+
+function bulkChangeMessage(count, { subject, topic }) {
+  const what = [subject ? `subject “${subject}”` : '', topic ? `topic “${topic}”` : ''].filter(Boolean).join(' and ');
+  return `Gave ${count} question(s) the ${what}.`;
+}
+
+const uniqueSorted = (values) => Array.from(new Set(values.filter(Boolean))).sort((a, b) => String(a).localeCompare(String(b)));
+
+/**
+ * Ask for the new subject and/or topic of the selected questions. The dialog
+ * is its own confirmation: it names how many questions change and what they
+ * carry now, and it refuses to close on "Apply" with both fields empty (that
+ * would change nothing). Resolves to `{ subject, topic }` or null.
+ */
+async function askBulkClassification(ids) {
+  const all = Array.from(state.questionIndex.values());
+  const chosen = ids.map((id) => state.questionIndex.get(id)).filter(Boolean);
+  const bySubject = new Map();
+  for (const m of chosen) bySubject.set(m.subject || 'Unclassified', (bySubject.get(m.subject || 'Unclassified') || 0) + 1);
+  const now = Array.from(bySubject.entries())
+    .sort((a, b) => b[1] - a[1])
+    .map(([subject, n]) => `${subject} (${n})`)
+    .join(', ');
+  const options = (values) => values.map((v) => `<option value="${esc(v)}"></option>`).join('');
+  const value = await openModal({
+    title: `Change subject/topic of ${ids.length} question(s)`,
+    body: `
+      <p class="small">Each question gets the same correction as editing it on its own: its imported labels are kept, the change is recorded in its correction history, and this batch can be undone from the question list.</p>
+      <p class="small muted">Selected now: ${esc(now || '—')}</p>
+      <label class="field"><span class="label-text">New subject</span><input type="text" id="bulkSubject" list="bulkSubjectOptions" autocomplete="off" placeholder="Leave blank to keep each question's subject" /></label>
+      <label class="field"><span class="label-text">New topic</span><input type="text" id="bulkTopic" list="bulkTopicOptions" autocomplete="off" placeholder="Leave blank to keep each question's topic" /></label>
+      <datalist id="bulkSubjectOptions">${options(uniqueSorted(all.map((m) => m.subject)))}</datalist>
+      <datalist id="bulkTopicOptions">${options(uniqueSorted(all.map((m) => m.topic)))}</datalist>
+      <p class="field-error" id="bulkClassifyError" role="alert" hidden>Enter a new subject, a new topic, or both.</p>
+      <p class="tiny muted mb-0">Subtopics are left as they are. Questions that already carry these labels are skipped.</p>`,
+    actions: [
+      { label: 'Cancel', value: 'cancel' },
+      { label: `Apply to ${ids.length} question(s)`, tone: 'btn-primary', value: 'apply' },
+    ],
+    onMount: (modal) => {
+      const subject = modal.querySelector('#bulkSubject');
+      const topic = modal.querySelector('#bulkTopic');
+      const error = modal.querySelector('#bulkClassifyError');
+      // Capture phase: runs before the button's own listener closes the dialog.
+      modal.addEventListener(
+        'click',
+        (ev) => {
+          if (!ev.target.closest('[data-value="apply"]')) return;
+          if (subject.value.trim() || topic.value.trim()) return;
+          ev.stopPropagation();
+          error.hidden = false;
+          subject.focus();
+        },
+        true,
+      );
+      for (const input of [subject, topic]) {
+        input.addEventListener('input', () => {
+          error.hidden = true;
+        });
+        input.addEventListener('keydown', (ev) => {
+          if (ev.key !== 'Enter') return;
+          ev.preventDefault();
+          modal.querySelector('[data-value="apply"]')?.click();
+        });
+      }
+      subject.focus();
+    },
+  });
+  if (value !== 'apply') return null;
+  return {
+    subject: document.getElementById('bulkSubject')?.value.trim() || null,
+    topic: document.getElementById('bulkTopic')?.value.trim() || null,
+  };
+}
 
 /* ------------------------------------------------------------- import UI -- */
 
@@ -288,8 +386,7 @@ async function openQuestionEditor(questionId, ctx) {
           danger: true,
         });
         if (!ok) return;
-        await db.remove(STORES.QUESTIONS, questionId);
-        await refreshQuestionIndex({ silent: true });
+        await questions.deleteQuestions([questionId]);
         toast('Question removed.', 'info');
         close(null);
         await ctx.refresh();
@@ -379,6 +476,11 @@ async function openQuestionEditor(questionId, ctx) {
 export default {
   title: 'Question Bank & Imports',
 
+  /** Placeholder in the shape of the tab the reader last had open (router.js). */
+  skeleton() {
+    return bankSkeleton({ tab: viewState.tab });
+  },
+
   async render(ctx) {
     const metas = Array.from(state.questionIndex.values());
     const papers = Array.from(state.papers.values());
@@ -446,6 +548,30 @@ export default {
     const topics = Array.from(new Set(metas.filter((m) => viewState.filters.subject === 'all' || (m.subject || 'Unclassified') === viewState.filters.subject).map((m) => m.topic || 'Unclassified'))).sort();
     const years = Array.from(new Set(metas.map((m) => m.year).filter((y) => y !== null && y !== undefined))).sort((a, b) => Number(b) - Number(a));
 
+    // A selection is a set of ids, so it outlives paging and filtering — but
+    // not the questions themselves.
+    for (const id of viewState.selected) if (!state.questionIndex.has(id)) viewState.selected.delete(id);
+    const visibleIds = pageRows.map((m) => m.id);
+    const allVisibleSelected = visibleIds.length > 0 && visibleIds.every((id) => viewState.selected.has(id));
+    const hasSelection = viewState.selected.size > 0;
+    const selectAll = `<input type="checkbox" id="qSelectAll" ${allVisibleSelected ? 'checked' : ''} ${visibleIds.length ? '' : 'disabled'} aria-label="Select all ${visibleIds.length} questions on this page" />`;
+    const bulkResult = viewState.lastBulk
+      ? `<div class="notice ok bulk-result">
+          <span>${esc(viewState.lastBulk.message)}</span>
+          <button class="btn btn-sm" type="button" data-action="bulk-undo">Undo this change</button>
+          <button class="btn btn-sm btn-quiet" type="button" data-action="bulk-dismiss">Dismiss</button>
+        </div>`
+      : '';
+    const bulkBar = `
+      <div class="bulk-bar ${hasSelection ? 'has-selection' : ''}" id="qBulkBar" role="group" aria-label="Bulk actions for selected questions">
+        <span class="bulk-count" id="qBulkCount" aria-live="polite">${esc(selectionSummary(visibleIds))}</span>
+        <div class="bulk-actions">
+          <button class="btn btn-sm" type="button" data-action="bulk-classify" ${hasSelection ? '' : 'disabled'}>Change subject/topic…</button>
+          <button class="btn btn-sm btn-danger" type="button" data-action="bulk-delete" ${hasSelection ? '' : 'disabled'}>Delete…</button>
+          <button class="btn btn-sm btn-quiet" type="button" data-action="bulk-clear" ${hasSelection ? '' : 'disabled'}>Clear selection</button>
+        </div>
+      </div>`;
+
     const questionsTab = `
       ${card({
         title: 'Filters',
@@ -466,13 +592,15 @@ export default {
       ${card({
         title: `Questions (${filtered.length} of ${metas.length})`,
         subtitle: `Page ${viewState.page + 1} of ${pageCount}`,
+        className: 'bank-questions',
         actions: `
           <button class="btn btn-sm" type="button" id="qPrev" ${viewState.page === 0 ? 'disabled' : ''}>Previous</button>
           <button class="btn btn-sm" type="button" id="qNext" ${viewState.page >= pageCount - 1 ? 'disabled' : ''}>Next</button>
           <button class="btn btn-sm btn-quiet" type="button" id="exportBank">Export bank</button>`,
-        body: dataTable({
-          columns: [{ label: 'Question' }, { label: 'Paper / year' }, { label: 'Classification' }, { label: 'Keys' }, { label: '' }],
+        body: `${bulkResult}${bulkBar}${dataTable({
+          columns: [{ label: 'Select', headerHtml: selectAll, className: 'select-col' }, { label: 'Question' }, { label: 'Paper / year' }, { label: 'Classification' }, { label: 'Keys' }, { label: '' }],
           rows: pageRows.map((m) => [
+            `<label class="row-select"><input type="checkbox" class="row-check" data-action="bank-select" data-value="${esc(m.id)}" ${viewState.selected.has(m.id) ? 'checked' : ''} aria-label="Select question Q${esc(String(m.question_number ?? '—'))} (${esc(m.id)})" /></label>`,
             `<div><strong>Q${esc(String(m.question_number ?? '—'))}</strong> <span class="mono tiny">${esc(m.id)}</span> ${demoBadge(m.demonstration)}</div>
              <div class="tiny muted">${esc(questionTypeLabel(m.question_type))}${m.langs.length > 1 ? ' · bilingual' : ` · ${esc(m.langs.join(', '))}`}</div>`,
             `${esc(m.paper_id)}<div class="tiny muted">${esc(String(m.year ?? 'year unknown'))}</div>`,
@@ -482,7 +610,7 @@ export default {
           ]),
           empty: 'No questions match these filters.',
           className: 'compact',
-        }),
+        })}`,
       })}`;
 
     /* -------------------------------------------------------- integrity -- */
@@ -813,6 +941,142 @@ export default {
       await ctx.refresh();
     });
 
+    /* ----------------------------------------------------- bulk actions -- */
+    // Ticking boxes changes only the selection, so the page is updated in
+    // place — no refresh, no lost scroll or focus. The actions themselves end
+    // with a refresh, which the router turns into "same place, same focus".
+    const rowBoxes = () => Array.from(root.querySelectorAll('input[data-action="bank-select"]'));
+    const syncSelection = () => {
+      const boxes = rowBoxes();
+      const onPage = boxes.filter((box) => box.checked).length;
+      const selectAll = root.querySelector('#qSelectAll');
+      if (selectAll) {
+        selectAll.checked = boxes.length > 0 && onPage === boxes.length;
+        selectAll.indeterminate = onPage > 0 && onPage < boxes.length;
+      }
+      const count = root.querySelector('#qBulkCount');
+      if (count) count.textContent = selectionSummary(boxes.map((box) => box.dataset.value));
+      const has = viewState.selected.size > 0;
+      root.querySelector('#qBulkBar')?.classList.toggle('has-selection', has);
+      for (const action of ['bulk-classify', 'bulk-delete', 'bulk-clear']) {
+        const button = root.querySelector(`[data-action="${action}"]`);
+        if (button) button.disabled = !has;
+      }
+    };
+    // After an action the selection is empty and its buttons are disabled, so
+    // the control that had focus is gone; park focus in the list first, and
+    // the refresh brings it back there.
+    const parkFocus = () => {
+      const target = root.querySelector('#qSelectAll:not([disabled])') || root.querySelector('#qSearch');
+      try {
+        target?.focus({ preventScroll: true });
+      } catch {
+        /* focus is best effort */
+      }
+    };
+    syncSelection();
+
+    rowBoxes().forEach((box) =>
+      box.addEventListener('change', () => {
+        if (box.checked) viewState.selected.add(box.dataset.value);
+        else viewState.selected.delete(box.dataset.value);
+        syncSelection();
+      }),
+    );
+
+    root.querySelector('#qSelectAll')?.addEventListener('change', (ev) => {
+      const on = ev.target.checked;
+      for (const box of rowBoxes()) {
+        box.checked = on;
+        if (on) viewState.selected.add(box.dataset.value);
+        else viewState.selected.delete(box.dataset.value);
+      }
+      syncSelection();
+    });
+
+    root.querySelector('[data-action="bulk-clear"]')?.addEventListener('click', () => {
+      parkFocus();
+      viewState.selected.clear();
+      rowBoxes().forEach((box) => {
+        box.checked = false;
+      });
+      syncSelection();
+    });
+
+    root.querySelector('[data-action="bulk-classify"]')?.addEventListener('click', async () => {
+      const ids = Array.from(viewState.selected);
+      if (!ids.length) return;
+      const values = await askBulkClassification(ids);
+      if (!values) return;
+      let result;
+      try {
+        result = await questions.updateClassifications(ids, { ...values, note: `Changed together with ${ids.length - 1} other question(s).` });
+      } catch (err) {
+        toast(err.message, 'bad');
+        return;
+      }
+      viewState.selected.clear();
+      viewState.lastBulk = result.changed.length ? { changes: result.changed, message: bulkChangeMessage(result.changed.length, values) } : null;
+      const notes = [
+        result.unchanged.length ? `${result.unchanged.length} already had these labels` : '',
+        result.failed.length ? `${result.failed.length} could not be changed (${result.failed[0].reason})` : '',
+      ].filter(Boolean);
+      toast(
+        `${result.changed.length ? `Updated ${result.changed.length} question(s); the imported labels were kept.` : 'Nothing needed changing.'}${notes.length ? ` ${notes.join('; ')}.` : ''}`,
+        result.failed.length ? 'warn' : result.changed.length ? 'ok' : 'info',
+      );
+      parkFocus();
+      await ctx.refresh();
+    });
+
+    root.querySelector('[data-action="bulk-delete"]')?.addEventListener('click', async () => {
+      const ids = Array.from(viewState.selected);
+      if (!ids.length) return;
+      const shown = ids.slice(0, 6);
+      const choice = await openModal({
+        title: `Delete ${ids.length} question(s) from the bank?`,
+        body: `
+          <p>These question records are removed from the local database:</p>
+          <ul class="small bulk-preview">${shown.map((id) => `<li><span class="mono tiny">${esc(id)}</span></li>`).join('')}${ids.length > shown.length ? `<li>… and ${ids.length - shown.length} more</li>` : ''}</ul>
+          <p class="small">Attempts already recorded against them stay in your history but no longer resolve to a question. This cannot be undone here — export a backup first if you are unsure. (Questions of the bundled bank come back if you reload it from the Import tab.)</p>`,
+        actions: [
+          { label: 'Cancel', value: 'cancel' },
+          { label: `Delete ${ids.length} question(s)`, tone: 'btn-danger', value: 'delete' },
+        ],
+      });
+      if (choice !== 'delete') return;
+      const result = await questions.deleteQuestions(ids);
+      viewState.selected.clear();
+      toast(`Deleted ${result.deleted.length} question(s).${result.missing.length ? ` ${result.missing.length} had already been removed.` : ''}`, 'info');
+      parkFocus();
+      await ctx.refresh();
+    });
+
+    root.querySelector('[data-action="bulk-undo"]')?.addEventListener('click', async () => {
+      const last = viewState.lastBulk;
+      if (!last) return;
+      const ok = await confirmDialog({
+        title: `Undo the change to ${last.changes.length} question(s)?`,
+        message: 'Each question gets back exactly the subject and topic it had before. A question whose labels were changed again since keeps the newer ones.',
+        confirmLabel: 'Undo the change',
+      });
+      if (!ok) return;
+      const result = await questions.restoreClassifications(last.changes, { note: 'Undid a bulk subject/topic change.' });
+      viewState.lastBulk = null;
+      toast(
+        `Restored ${result.restored.length} question(s).${result.skipped.length ? ` ${result.skipped.length} left as they are (changed again or removed since).` : ''}`,
+        result.skipped.length ? 'warn' : 'ok',
+      );
+      parkFocus();
+      await ctx.refresh();
+    });
+
+    root.querySelector('[data-action="bulk-dismiss"]')?.addEventListener('click', () => {
+      viewState.lastBulk = null;
+      parkFocus();
+      root.querySelector('.bulk-result')?.remove();
+    });
+
     /* ------------------------------------------------------------- misc -- */
     root.addEventListener('click', async (ev) => {
       const exportBtn = ev.target.closest('#exportBank');
@@ -926,12 +1190,11 @@ export default {
         const id = delBtn.dataset.deleteDuplicate;
         const ok = await confirmDialog({ title: `Delete ${id}?`, message: 'The question record is removed from the bank. Attempts recorded against it stay in your history. This cannot be undone — export a backup first if you are unsure.', confirmLabel: 'Delete', danger: true });
         if (!ok) return;
-        await db.remove(STORES.QUESTIONS, id);
-        await refreshQuestionIndex({ silent: true });
+        await questions.deleteQuestions([id]);
         toast(`${id} removed.`, 'info');
         await ctx.refresh();
       }
-    });
+    }, { signal: ctx.signal });
   },
 };
 

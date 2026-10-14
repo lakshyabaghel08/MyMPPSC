@@ -216,7 +216,10 @@ test('the horizontal subject chart renders all 1,200 bank questions across 2013â
 
   // Subject labels are data-driven. The audited bank now has no unplaced
   // subjects; taxonomy-supported topic/subtopic gaps remain separately tracked.
-  const labelMatches = [...html.matchAll(/<text class="chart-subject-label"[^>]*y="([^"]+)"[^>]*>([^<]+)<\/text>/g)];
+  // The panel also charts topics, so read the subject chart on its own.
+  const subjectChart = html.split('<div class="pyq-subject-chart">')[1]?.split('</svg>')[0] || '';
+  assert.ok(subjectChart, 'the subject chart is on the panel');
+  const labelMatches = [...subjectChart.matchAll(/<text class="chart-subject-label"[^>]*y="([^"]+)"[^>]*>([^<]+)<\/text>/g)];
   const expectedSubjects = summary.subjects.slice().sort((a, b) => {
     const aUnplaced = a.subject === UNCLASSIFIED_SUBJECT ? 1 : 0;
     const bUnplaced = b.subject === UNCLASSIFIED_SUBJECT ? 1 : 0;
@@ -234,15 +237,15 @@ test('the horizontal subject chart renders all 1,200 bank questions across 2013â
     assert.ok(yPositions[i] - yPositions[i - 1] >= 24, `row ${i} and row ${i - 1} must not overlap vertically`);
   }
 
-  const valueMatches = [...html.matchAll(/<text class="chart-value-label"[^>]*>([^<]+)<\/text>/g)].map((match) => match[1]);
+  const valueMatches = [...subjectChart.matchAll(/<text class="chart-value-label"[^>]*>([^<]+)<\/text>/g)].map((match) => match[1]);
   assert.equal(valueMatches.length, expectedSubjects.length, 'each chart bar has a total label');
   expectedSubjects.forEach((row, index) => assert.match(valueMatches[index], new RegExp(`^${row.questions}\\b`)));
 });
 
-test('the unplaced-question bucket is surfaced clearly when records lack a subject or topic', async () => {
+test('questions without a subject are counted under Unclassified in the open, without a banner', async () => {
   const m = await bootApp();
   await importDemoBank();
-  // Add an unclassified question record into the live index to verify the unplaced bucket UI
+  // Add an unclassified question record into the live index.
   m.appState.questionIndex.set(
     'UNPLACED-1',
     meta({ id: 'UNPLACED-1', subject: null, topic: null, year: 2024 }),
@@ -251,10 +254,13 @@ test('the unplaced-question bucket is surfaced clearly when records lack a subje
   const view = await import('../js/ui/views/pyq-analysis.js');
   const html = await view.default.render({});
 
-  assert.match(html, /Unplaced questions/);
-  assert.match(html, /Unplaced-question bucket/);
-  assert.match(html, /Unclassified/);
-  assert.match(html, /href="#\/topic\/Unclassified"/);
+  assert.match(html, /1 question\(s\) have none â€” counted as Unclassified/, 'the summary tile says how many and where they went');
+  const subjectChart = html.split('<div class="pyq-subject-chart">')[1]?.split('</svg>')[0] || '';
+  assert.match(subjectChart, />Unclassified<\/text>/, 'the bucket is plotted with the subjects, so every question is accounted for');
+  assert.match(html, /data-action="pyq-subject" data-value="Unclassified"/, 'it can be picked like any subject');
+  assert.match(html, /href="#\/topic\/Unclassified"/, 'and practised');
+  assert.match(html, /About these counts/);
+  assert.match(html, /have no subject label/, 'the explanation sits behind the â“˜ toggle');
+  assert.doesNotMatch(html, /pyq-unplaced-banner|Unplaced-question bucket/, 'no explanatory banner on the surface');
+  m.appState.questionIndex.delete('UNPLACED-1');
 });
-
-
