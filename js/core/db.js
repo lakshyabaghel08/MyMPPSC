@@ -253,6 +253,21 @@ export async function removeMany(storeName, keys) {
   return txDone(tx);
 }
 
+/**
+ * Puts and deletes against one store in a single transaction, so a change that
+ * touches many rows (marking every line under a syllabus heading) is applied
+ * entirely or not at all.
+ */
+export async function writeBatch(storeName, { put: puts = [], remove: removals = [] } = {}) {
+  if (!puts.length && !removals.length) return true;
+  const db = await getDb();
+  const tx = db.transaction(storeName, 'readwrite');
+  const store = tx.objectStore(storeName);
+  for (const key of removals) store.delete(key);
+  for (const value of puts) store.put(value);
+  return txDone(tx);
+}
+
 export async function clearStore(storeName) {
   const db = await getDb();
   const tx = db.transaction(storeName, 'readwrite');

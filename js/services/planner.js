@@ -55,7 +55,14 @@ export function buildTree(rows) {
   return build(null);
 }
 
-export async function addSyllabusItem({ parentId = null, title, subject = null, topic = null, subtopic = null, priority = 'medium', target_date = null, notes = null, source = 'user', attached_node_id = null }) {
+/**
+ * Every status a planner row may carry. `revised` is written by the merged
+ * Syllabus section (`syllabus-hub.js`), which speaks one vocabulary for the
+ * official syllabus and the user's own items.
+ */
+const ROW_STATUSES = new Set([...Object.keys(STATUSES), 'revised']);
+
+export async function addSyllabusItem({ parentId = null, title, subject = null, topic = null, subtopic = null, priority = 'medium', target_date = null, notes = null, source = 'user', attached_node_id = null, status = 'not_started' }) {
   if (!title || !String(title).trim()) throw new Error('A syllabus item needs a title.');
   const rows = await listSyllabus();
   const parent = parentId ? rows.find((r) => r.id === parentId) : null;
@@ -75,7 +82,7 @@ export async function addSyllabusItem({ parentId = null, title, subject = null, 
     subject: subject || parent?.subject || (level === 'subject' ? String(title).trim() : null),
     topic: topic || parent?.topic || (level === 'topic' ? String(title).trim() : null),
     subtopic: subtopic || parent?.subtopic || (level === 'subtopic' ? String(title).trim() : null),
-    status: 'not_started',
+    status: ROW_STATUSES.has(status) ? status : 'not_started',
     status_source: 'manual',
     priority,
     target_date,
@@ -100,6 +107,30 @@ export async function updateSyllabusItem(id, patch) {
     updated.status_changed_at = nowIso();
   }
   await db.put(STORES.SYLLABUS, updated);
+  return updated;
+}
+
+/**
+ * Store several statuses at once — what marking an item with sub-items comes
+ * to. `changes` maps a row id to its new status. One read and one write,
+ * whatever the number of rows.
+ */
+export async function setSyllabusStatuses(changes) {
+  const entries = changes instanceof Map ? [...changes] : Object.entries(changes || {});
+  if (!entries.length) return [];
+  for (const [, status] of entries) {
+    if (!ROW_STATUSES.has(status)) throw new Error(`Unknown syllabus status "${status}".`);
+  }
+  const rows = new Map((await db.getAll(STORES.SYLLABUS)).map((row) => [row.id, row]));
+  const now = nowIso();
+  const updated = [];
+  for (const [id, status] of entries) {
+    const row = rows.get(id);
+    if (!row || row.status === status) continue;
+    updated.push({ ...row, status, status_source: 'manual', status_changed_at: now, updated_at: now });
+  }
+  await db.putMany(STORES.SYLLABUS, updated);
+  if (updated.length) logEvent('planner', `Updated the status of ${updated.length} syllabus item(s)`);
   return updated;
 }
 
@@ -177,6 +208,9 @@ export async function importSyllabus(raw, { replace = false, source = 'imported'
       priority: item.node?.priority || 'medium',
       target_date: item.node?.target_date || null,
       notes: item.node?.notes || null,
+      // An export carries each item's status so progress can be restored;
+      // anything unrecognised starts as not started.
+      status: item.node?.status || 'not_started',
     });
     idByTitle.set(pathKeyOf(item), created.id);
     added += 1;
@@ -193,13 +227,14 @@ export async function exportSyllabus() {
       status: n.status,
       priority: n.priority,
       target_date: n.target_date,
+      notes: n.notes || undefined,
       topics: n.children?.length ? serialise(n.children) : undefined,
     }));
   return {
     format: 'mymppsc-syllabus',
     format_version: '1.0.0',
     exported_at: nowIso(),
-    notes: 'Structure only. Statuses are included so progress can be restored; remove the status fields to import as a fresh structure.',
+    notes: 'Your own syllabus items with their status, priority, target date and notes. Importing restores all of them; remove the status fields to import as a fresh structure.',
     subjects: serialise(tree),
   };
 }

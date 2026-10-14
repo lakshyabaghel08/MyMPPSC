@@ -110,7 +110,19 @@ export class Router {
       if (typeof view.mount === 'function') await view.mount(ctx, this.container);
       if (!current()) return;
       this.activeCleanup = typeof view.cleanup === 'function' ? () => view.cleanup(ctx) : null;
-      window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
+      // Every screen starts at the top, unless it keeps the reader's place
+      // across its own navigations and has positioned itself: the Syllabus
+      // opens a line as a route, and jumping to the top each time lost the
+      // line that was just opened.
+      let positioned = false;
+      if (typeof view.positionScroll === 'function') {
+        try {
+          positioned = view.positionScroll(ctx, this.container) === true;
+        } catch (err) {
+          console.warn('View scroll positioning failed', err);
+        }
+      }
+      if (!positioned) window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
     } catch (err) {
       console.error(`View "${routeName}" failed to render`, err);
       if (!current()) return;
