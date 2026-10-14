@@ -25,4 +25,8 @@ export default {
   mount(ctx, root) {
     return syllabusView.mount(ctx, root);
   },
+
+  positionScroll(ctx, root) {
+    return syllabusView.positionScroll(ctx, root);
+  },
 };

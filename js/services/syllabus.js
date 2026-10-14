@@ -421,18 +421,61 @@ export async function loadProgress() {
  */
 export const PLAN_FIELDS = ['priority', 'target_date', 'notes'];
 
-/** True when a row carries user-typed planning content beyond its status. */
-export function hasPlanContent(row) {
+/** True when a row carries a target date, a priority or a note. */
+export function hasPlanFields(row) {
   if (!row) return false;
   return Boolean(row.priority || row.target_date || String(row.notes || '').trim());
 }
 
+/**
+ * True when the reader has put this official node in *My plan*.
+ *
+ * `in_plan` is the explicit choice, made with "Add to my plan". A row written
+ * before the flag existed that carries a plan (a target date, a priority, a
+ * note) was planned by the reader as well, so it counts unless they have since
+ * taken it out (`in_plan: false`).
+ */
+export function isInPlan(row) {
+  if (!row) return false;
+  if (row.in_plan === true) return true;
+  if (row.in_plan === false) return false;
+  return hasPlanFields(row);
+}
+
+/**
+ * True when a row holds something of the reader's besides its status — a plan
+ * or the choice to keep the node in *My plan*. Such a row is never deleted to
+ * clear a status, because that would discard what the reader typed or chose.
+ */
+export function hasPlanContent(row) {
+  return hasPlanFields(row) || row?.in_plan === true;
+}
+
+/** Copy the reader's plan from `source` onto a row that is being rewritten. */
 function withPlanFields(row, source) {
   const out = { ...row };
   for (const field of PLAN_FIELDS) out[field] = source?.[field] ?? null;
+  if (source && typeof source.in_plan === 'boolean') out.in_plan = source.in_plan;
+  if (source?.planned_at) out.planned_at = source.planned_at;
   return out;
 }
 
+/** The structural fields every stored row carries, resolved from the model when it is at hand. */
+function placement(nodeId, node, existing, sectionId = null) {
+  return {
+    node_id: nodeId,
+    section_id: sectionId || node?.parentId || existing?.section_id || null,
+    paper_id: node?.paperId || existing?.paper_id || null,
+    exam_id: node?.examId || existing?.exam_id || null,
+  };
+}
+
+/**
+ * Store the status of exactly one node. This is the raw write: it does not
+ * look at the node's headings or lines. The Syllabus screen marks items
+ * through `setStatus()` in `syllabus-hub.js`, which works out what marking a
+ * heading means for the lines under it and calls `applyProgressStatuses()`.
+ */
 export async function setProgressStatus(nodeId, status, { model = null, sectionId = null } = {}) {
   if (!nodeId) throw new Error('A syllabus node is required.');
   if (!(status in PROGRESS_STATUSES)) throw new Error(`Unknown syllabus status "${status}".`);
@@ -442,9 +485,10 @@ export async function setProgressStatus(nodeId, status, { model = null, sectionI
   if (status === 'not_started') {
     // "Not started" is normally the absence of a row, which keeps the store
     // small and makes "reset" and "set back to not started" the same operation.
-    // A row that also holds a plan (priority, target date, notes) is kept and
-    // only loses its status: deleting it would silently discard text the user
-    // typed, which is never an acceptable side effect of changing a status.
+    // A row that also holds a plan (priority, target date, notes, a place in
+    // My plan) is kept and only loses its status: deleting it would silently
+    // discard what the user typed, which is never an acceptable side effect of
+    // changing a status.
     if (!existing) return null;
     if (!hasPlanContent(existing)) {
       await db.remove(STORES.SYLLABUS_PROGRESS, nodeId);
@@ -459,11 +503,8 @@ export async function setProgressStatus(nodeId, status, { model = null, sectionI
 
   const row = withPlanFields(
     {
-      node_id: nodeId,
+      ...placement(nodeId, node, existing, sectionId),
       status,
-      section_id: sectionId || node?.parentId || existing?.section_id || null,
-      paper_id: node?.paperId || existing?.paper_id || null,
-      exam_id: node?.examId || existing?.exam_id || null,
       updated_at: nowIso(),
       created_at: existing?.created_at || nowIso(),
     },
@@ -475,9 +516,47 @@ export async function setProgressStatus(nodeId, status, { model = null, sectionI
 }
 
 /**
+ * Store several statuses at once, in one transaction. `changes` maps a node
+ * id to the status it should now carry itself (`not_started` clears it). The
+ * same keep-the-plan rule as `setProgressStatus()` applies to every row.
+ */
+export async function applyProgressStatuses(changes, { model = null, progressRows = null } = {}) {
+  const entries = changes instanceof Map ? [...changes] : Object.entries(changes || {});
+  for (const [, status] of entries) {
+    if (!(status in PROGRESS_STATUSES)) throw new Error(`Unknown syllabus status "${status}".`);
+  }
+  const rows = progressRows instanceof Map ? progressRows : await loadProgress();
+  const now = nowIso();
+  const puts = [];
+  const removals = [];
+  for (const [nodeId, status] of entries) {
+    const existing = rows.get(nodeId) || null;
+    const current = existing && existing.status in PROGRESS_STATUSES ? existing.status : 'not_started';
+    if (status === 'not_started') {
+      if (!existing) continue;
+      if (!hasPlanContent(existing)) removals.push(nodeId);
+      else if (current !== 'not_started') puts.push({ ...existing, status: 'not_started', updated_at: now });
+      continue;
+    }
+    if (existing && current === status) continue;
+    const node = model?.nodes?.get(nodeId) || null;
+    puts.push(
+      withPlanFields(
+        { ...placement(nodeId, node, existing), status, updated_at: now, created_at: existing?.created_at || now },
+        existing,
+      ),
+    );
+  }
+  await db.writeBatch(STORES.SYLLABUS_PROGRESS, { put: puts, remove: removals });
+  if (puts.length || removals.length) logEvent('syllabus', `Updated the status of ${puts.length + removals.length} syllabus item(s)`);
+  return { written: puts.length, cleared: removals.length };
+}
+
+/**
  * Attach (or clear) planning fields on an official syllabus node without
- * touching its status. Returns the stored row, or null when the node ends up
- * carrying nothing at all.
+ * touching its status. `in_plan` puts the node in My plan (true) or takes it
+ * out (false). Returns the stored row, or null when the node ends up carrying
+ * nothing at all.
  */
 export async function setProgressPlan(nodeId, patch = {}, { model = null, sectionId = null } = {}) {
   if (!nodeId) throw new Error('A syllabus node is required.');
@@ -485,22 +564,27 @@ export async function setProgressPlan(nodeId, patch = {}, { model = null, sectio
   const existing = await db.get(STORES.SYLLABUS_PROGRESS, nodeId);
 
   const next = {
-    node_id: nodeId,
+    ...placement(nodeId, node, existing, sectionId),
     status: existing?.status || 'not_started',
-    section_id: sectionId || node?.parentId || existing?.section_id || null,
-    paper_id: node?.paperId || existing?.paper_id || null,
-    exam_id: node?.examId || existing?.exam_id || null,
     created_at: existing?.created_at || nowIso(),
     updated_at: nowIso(),
     priority: existing?.priority ?? null,
     target_date: existing?.target_date ?? null,
     notes: existing?.notes ?? null,
   };
+  if (typeof existing?.in_plan === 'boolean') next.in_plan = existing.in_plan;
+  if (existing?.planned_at) next.planned_at = existing.planned_at;
   for (const field of PLAN_FIELDS) {
     if (field in patch) {
       const value = patch[field];
       next[field] = value === '' || value === undefined ? null : value;
     }
+  }
+  if ('in_plan' in patch) {
+    const joining = Boolean(patch.in_plan);
+    if (joining && !isInPlan(existing)) next.planned_at = nowIso();
+    if (!joining) delete next.planned_at;
+    next.in_plan = joining;
   }
 
   // A node with neither a status nor a plan is simply unmarked: drop the row
@@ -514,53 +598,155 @@ export async function setProgressPlan(nodeId, patch = {}, { model = null, sectio
   return next;
 }
 
-/** Remove every progress row for this module only. Nothing else is touched. */
+/**
+ * Clear every status marked on the official syllabus. Nothing outside this
+ * store is touched — and inside it, a row that also holds the reader's plan
+ * (a place in My plan, a target date, a priority, a note) keeps that plan and
+ * only loses its status. This used to empty the store, which deleted typed
+ * notes along with the ticks.
+ */
 export async function resetProgress() {
-  const before = await db.count(STORES.SYLLABUS_PROGRESS).catch(() => null);
-  await db.clearStore(STORES.SYLLABUS_PROGRESS);
+  const rows = await db.getAll(STORES.SYLLABUS_PROGRESS);
+  const now = nowIso();
+  const puts = [];
+  const removals = [];
+  let cleared = 0;
+  for (const row of rows) {
+    const marked = row.status in PROGRESS_STATUSES && row.status !== 'not_started';
+    if (marked) cleared += 1;
+    if (!hasPlanContent(row)) removals.push(row.node_id);
+    else if (marked) puts.push({ ...row, status: 'not_started', updated_at: now });
+  }
+  await db.writeBatch(STORES.SYLLABUS_PROGRESS, { put: puts, remove: removals });
   logEvent('syllabus', 'Syllabus progress reset');
-  return { cleared: before };
+  return { cleared, plansKept: rows.length - removals.length };
+}
+
+/* ------------------------------------------------------------- roll-ups -- */
+
+/**
+ * How progress is read, in both the official tree and the reader's own:
+ *
+ *  * A line (a node with nothing under it) has its own status if it was given
+ *    one; otherwise it carries the status of its nearest marked heading. So
+ *    marking a section "completed" completes every line in it, while a line
+ *    marked on its own keeps its own status.
+ *  * A heading shows the roll-up of its lines: completed when every line is
+ *    done, revised when every line is revised, in progress once any line is
+ *    started, and not started otherwise.
+ *
+ * Only lines are counted, so a section is never counted next to its own lines.
+ * Before this rule a status stored on a heading was counted nowhere: marking
+ * "1. भारत का इतिहास" completed left every figure on the screen at zero.
+ */
+export const emptySummary = () => ({
+  total: 0,
+  done: 0,
+  inProgress: 0,
+  touched: 0,
+  byStatus: { not_started: 0, in_progress: 0, completed: 0, revised: 0 },
+  completion: 0,
+  status: 'not_started',
+});
+
+/** The status a set of lines adds up to. */
+export function rolledUpStatus(summary) {
+  if (!summary?.total || !summary.touched) return 'not_started';
+  if (summary.byStatus.revised === summary.total) return 'revised';
+  if (summary.done === summary.total) return 'completed';
+  return 'in_progress';
+}
+
+export function finaliseSummary(summary) {
+  summary.completion = summary.total ? summary.done / summary.total : 0;
+  summary.status = rolledUpStatus(summary);
+  return summary;
+}
+
+/** Add one summary's counts into another (the status is recomputed by `finaliseSummary`). */
+export function addSummary(into, from) {
+  if (!from) return into;
+  into.total += from.total;
+  into.done += from.done;
+  into.inProgress += from.inProgress;
+  into.touched += from.touched;
+  for (const key of Object.keys(into.byStatus)) into.byStatus[key] += from.byStatus[key] || 0;
+  return into;
+}
+
+/** The summary of a single line with a given status. */
+export function lineSummary(status) {
+  const summary = emptySummary();
+  const value = status in PROGRESS_STATUSES ? status : 'not_started';
+  summary.total = 1;
+  summary.byStatus[value] = 1;
+  if (DONE_STATUSES.has(value)) summary.done = 1;
+  if (value === 'in_progress') summary.inProgress = 1;
+  if (value !== 'not_started') summary.touched = 1;
+  return finaliseSummary(summary);
 }
 
 /**
- * Roll-up of the user's marks over any set of nodes. Counts only leaves that
+ * Every official node's summary under the rule above, in one pass.
+ * Returns a Map from node id to `{ total, done, inProgress, touched, byStatus,
+ * completion, status, own }`, where `status` is what the reader sees (the
+ * line's effective status, or the heading's roll-up) and `own` is what is
+ * stored on the node itself.
+ */
+export function officialStatusIndex(model, progressRows) {
+  const out = new Map();
+  if (!model?.nodes) return out;
+  const rows = progressRows instanceof Map ? progressRows : new Map();
+  const ownOf = (id) => {
+    const row = rows.get(id);
+    return row && row.status in PROGRESS_STATUSES ? row.status : 'not_started';
+  };
+  const visit = (id, inherited) => {
+    const node = model.nodes.get(id);
+    if (!node) return null;
+    const own = ownOf(id);
+    const carried = own !== 'not_started' ? own : inherited;
+    let summary;
+    if (!node.childIds.length) {
+      summary = lineSummary(carried);
+    } else {
+      summary = emptySummary();
+      for (const childId of node.childIds) addSummary(summary, visit(childId, carried));
+      finaliseSummary(summary);
+    }
+    summary.own = own;
+    out.set(id, summary);
+    return summary;
+  };
+  for (const id of model.topLevel || []) visit(id, 'not_started');
+  return out;
+}
+
+const publicSummary = (summary) => ({
+  total: summary.total,
+  done: summary.done,
+  inProgress: summary.inProgress,
+  touched: summary.touched,
+  byStatus: { ...summary.byStatus },
+  completion: summary.completion,
+  status: summary.status,
+});
+
+/**
+ * Roll-up of the user's marks over the whole syllabus. Counts only lines that
  * exist in the syllabus, so a stale row for a removed node cannot inflate it.
  */
 export function progressSummary(model, progressRows) {
-  const byLeafStatus = { not_started: 0, in_progress: 0, completed: 0, revised: 0 };
-  let done = 0;
-  let touched = 0;
-  const leaves = model.leafIds;
-  for (const id of leaves) {
-    const row = progressRows.get(id);
-    const status = row && row.status in PROGRESS_STATUSES ? row.status : 'not_started';
-    byLeafStatus[status] += 1;
-    if (status !== 'not_started') touched += 1;
-    if (DONE_STATUSES.has(status)) done += 1;
-  }
-  return {
-    total: leaves.length,
-    done,
-    touched,
-    byStatus: byLeafStatus,
-    completion: leaves.length ? done / leaves.length : 0,
-  };
+  const index = officialStatusIndex(model, progressRows);
+  const total = emptySummary();
+  for (const id of model.topLevel || []) addSummary(total, index.get(id));
+  return publicSummary(finaliseSummary(total));
 }
 
-/** Progress restricted to the leaves inside one node (a paper, section or unit). */
+/** Progress restricted to the lines inside one node (a paper, section or unit). */
 export function progressForNode(model, node, progressRows) {
-  const leaves = leavesOf(model.nodes, node);
-  let done = 0;
-  let inProgress = 0;
-  const byStatus = { not_started: 0, in_progress: 0, completed: 0, revised: 0 };
-  for (const leaf of leaves) {
-    const row = progressRows.get(leaf.id);
-    const status = row && row.status in PROGRESS_STATUSES ? row.status : 'not_started';
-    byStatus[status] += 1;
-    if (DONE_STATUSES.has(status)) done += 1;
-    if (status === 'in_progress') inProgress += 1;
-  }
-  return { total: leaves.length, done, inProgress, byStatus, completion: leaves.length ? done / leaves.length : 0 };
+  const summary = node ? officialStatusIndex(model, progressRows).get(node.id) : null;
+  return publicSummary(summary || emptySummary());
 }
 
 /* --------------------------------------------------------------- PYQ links - */

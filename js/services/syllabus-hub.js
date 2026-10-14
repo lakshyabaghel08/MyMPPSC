@@ -28,8 +28,14 @@ import {
   loadProgress,
   setProgressStatus,
   setProgressPlan,
-  progressSummary,
-  leavesOf,
+  applyProgressStatuses,
+  officialStatusIndex,
+  emptySummary,
+  addSummary,
+  finaliseSummary,
+  lineSummary,
+  isInPlan,
+  PLAN_FIELDS,
   pickText,
 } from './syllabus.js';
 
@@ -222,48 +228,124 @@ export function planSubtreeFor(plan, nodeId) {
 /* ------------------------------------------------------------- roll-up ---- */
 
 /**
+ * Progress is read the same way in both trees (see `officialStatusIndex()` in
+ * `syllabus.js`): a line carries its own status or, failing that, that of its
+ * nearest marked heading; a heading is the roll-up of its lines; and only
+ * lines are counted.
+ *
+ * This replaces two miscounts. A status stored on a heading was counted
+ * nowhere, so marking a whole section changed no figure on the screen. And
+ * plan items were counted as rows, so a plan heading with both of its
+ * sub-items finished read "2 of 3": the heading counted as one more
+ * unfinished item.
+ */
+
+const asProgressMap = (progressRows) =>
+  progressRows instanceof Map ? progressRows : new Map((progressRows || []).map((row) => [row.node_id || row.id, row]));
+
+/** Each plan row's summary under the shared rule: a Map from row id to summary. */
+export function planStatusIndex(plan) {
+  const out = new Map();
+  if (!plan?.roots) return out;
+  const visit = (row, inherited) => {
+    const own = normaliseStatus(row.status);
+    const carried = own !== 'not_started' ? own : inherited;
+    const children = plan.childrenOf(row.id);
+    let summary;
+    if (!children.length) {
+      summary = lineSummary(carried);
+    } else {
+      summary = emptySummary();
+      for (const child of children) addSummary(summary, visit(child, carried));
+      finaliseSummary(summary);
+    }
+    summary.own = own;
+    out.set(row.id, summary);
+    return summary;
+  };
+  for (const root of plan.roots) visit(root, 'not_started');
+  return out;
+}
+
+/**
+ * Every figure the Syllabus section shows, computed once per render.
+ *
+ *  * `official` — node id → the node's own lines;
+ *  * `plan` — plan row id → the item and its sub-items;
+ *  * `node` — node id → the node's lines plus the reader's items shown under it
+ *    or anywhere beneath it. This is what a heading's progress shows, so a
+ *    paper counts an item pinned to one of its lines as well as one pinned to
+ *    the paper itself.
+ */
+export function buildProgressIndex(model, progressRows, plan) {
+  const rows = asProgressMap(progressRows);
+  const official = model?.ok ? officialStatusIndex(model, rows) : new Map();
+  const planIndex = planStatusIndex(plan);
+  const node = new Map();
+  if (model?.ok) {
+    const extraOf = new Map();
+    const visit = (id) => {
+      const current = model.nodes.get(id);
+      const extra = emptySummary();
+      if (!current) return extra;
+      for (const root of plan ? planItemsFor(plan, id) : []) addSummary(extra, planIndex.get(root.id));
+      for (const childId of current.childIds) addSummary(extra, visit(childId));
+      extraOf.set(id, extra);
+      return extra;
+    };
+    for (const id of model.topLevel || []) visit(id);
+    for (const [id, lines] of official) {
+      const extra = extraOf.get(id) || emptySummary();
+      const combined = finaliseSummary(addSummary(addSummary(emptySummary(), lines), extra));
+      combined.planItems = extra.total;
+      combined.own = lines.own;
+      node.set(id, combined);
+    }
+  }
+  return { official, plan: planIndex, node };
+}
+
+const publicSummary = (summary) => ({
+  total: summary.total,
+  done: summary.done,
+  inProgress: summary.inProgress,
+  touched: summary.touched,
+  byStatus: { ...summary.byStatus },
+  completion: summary.completion,
+  status: summary.status,
+});
+
+/**
  * One completion figure over both trees.
  *
- * Official progress is counted over the leaves of the notification's own
- * hierarchy (as it always was); plan progress is counted over planner items.
+ * Official progress is counted over the lines of the notification's own
+ * hierarchy; plan progress over the reader's items that have no sub-items.
  * They are reported separately as well as combined, because they measure
  * different things and the app does not pretend otherwise.
  */
-export function combinedProgress(model, progressRows, plan) {
-  const official = model?.ok
-    ? progressSummary(model, progressRows)
-    : { total: 0, done: 0, touched: 0, completion: 0, byStatus: { not_started: 0, in_progress: 0, completed: 0, revised: 0 } };
+export function combinedProgress(model, progressRows, plan, index = null) {
+  const rows = asProgressMap(progressRows);
+  const idx = index || buildProgressIndex(model, rows, plan);
+  const official = emptySummary();
+  for (const id of model?.ok ? model.topLevel : []) addSummary(official, idx.official.get(id));
+  finaliseSummary(official);
+  const mine = emptySummary();
+  for (const root of plan?.roots || []) addSummary(mine, idx.plan.get(root.id));
+  finaliseSummary(mine);
 
-  const planByStatus = { not_started: 0, in_progress: 0, completed: 0, revised: 0 };
-  let planDone = 0;
-  let planTouched = 0;
-  const planRows = plan?.rows || [];
-  for (const row of planRows) {
-    const status = normaliseStatus(row.status);
-    planByStatus[status] += 1;
-    if (status !== 'not_started') planTouched += 1;
-    if (DONE_STATUSES.has(status)) planDone += 1;
-  }
-  const planSummary = {
-    total: planRows.length,
-    done: planDone,
-    touched: planTouched,
-    byStatus: planByStatus,
-    completion: planRows.length ? planDone / planRows.length : 0,
-  };
-
-  const total = official.total + planSummary.total;
-  const done = official.done + planSummary.done;
+  const total = official.total + mine.total;
+  const done = official.done + mine.done;
   return {
-    official,
-    plan: planSummary,
+    official: publicSummary(official),
+    plan: publicSummary(mine),
     total,
     done,
-    touched: official.touched + planSummary.touched,
+    inProgress: official.inProgress + mine.inProgress,
+    touched: official.touched + mine.touched,
     completion: total ? done / total : 0,
     // Consumed by `studyPriorities()`, which needs the curriculum keyed the way
     // the question bank is keyed rather than the way the syllabus is.
-    byTopic: topicStatusIndex(model, progressRows, plan),
+    byTopic: topicStatusIndex(model, rows, plan, idx),
   };
 }
 
@@ -277,14 +359,21 @@ export function combinedProgress(model, progressRows, plan) {
  * anything marked on the official syllabus was invisible to priorities
  * regardless. One roll-up now answers for both stores.
  *
- * Where both stores speak about the same topic the *least* advanced status
- * wins, a high priority set in either is kept, and the nearer target date is
- * the operative one. A topic the reader still has open in their own plan does
- * not become "done" because the official line above it was ticked — the merge
- * must not conclude more than either store on its own would.
+ * Each item answers with the status the screen shows for it — a heading with
+ * the roll-up of its lines, a line with its own status or its heading's — so
+ * priorities and the Syllabus section never disagree. Where both stores speak
+ * about the same topic the *least* advanced status wins, a high priority set
+ * in either is kept, and the nearer target date is the operative one. A topic
+ * the reader still has open in their own plan does not become "done" because
+ * the official line above it was ticked — the merge must not conclude more
+ * than either store on its own would.
  */
-export function topicStatusIndex(model, progressRows, plan) {
+export function topicStatusIndex(model, progressRows, plan, index = null) {
   const byTopic = new Map();
+  // `loadProgress()` hands back a Map keyed by node id; accept a plain list
+  // too, so a caller holding raw rows gets the same answer.
+  const rows = asProgressMap(progressRows);
+  const idx = index || buildProgressIndex(model, rows, plan);
 
   const record = (key, incoming) => {
     const status = normaliseStatus(incoming.status);
@@ -308,54 +397,39 @@ export function topicStatusIndex(model, progressRows, plan) {
   // The reader's own items carry a subject and topic of their own.
   for (const row of plan?.rows || []) {
     if (!row?.subject || !row?.topic) continue;
-    record(topicKey(row.subject, row.topic), row);
+    const summary = idx.plan.get(row.id);
+    record(topicKey(row.subject, row.topic), { ...row, status: summary ? summary.status : row.status });
   }
 
-  // An official line reaches a bank topic only through the curated mapping,
-  // the same association the attachment logic uses - never a guess at titles.
+  // An official heading reaches a bank topic only through the curated
+  // mapping, the same association the attachment logic uses - never a guess
+  // at titles. A heading the reader has said nothing about is left out.
   if (model?.ok) {
-    const index = buildAttachmentIndex(model);
-    // `loadProgress()` hands back a Map keyed by node id; accept a plain list
-    // too, so a caller holding raw rows gets the same answer.
-    const entryByNode =
-      progressRows instanceof Map
-        ? progressRows
-        : new Map((progressRows || []).map((row) => [row.node_id || row.id, row]));
-    for (const [key, nodeId] of index.byTopic) {
-      const entry = entryByNode.get(nodeId);
-      if (entry) record(key, entry);
+    const attachments = plan?.index || buildAttachmentIndex(model);
+    for (const [key, nodeId] of attachments.byTopic) {
+      const entry = rows.get(nodeId);
+      const summary = idx.official.get(nodeId);
+      if (!entry && !summary?.touched) continue;
+      record(key, {
+        status: summary ? summary.status : entry?.status,
+        priority: entry?.priority,
+        target_date: entry?.target_date,
+      });
     }
   }
 
   return byTopic;
 }
 
-/** Progress for the leaves under one official node, plus any plan items there. */
+/** Progress for the lines under one official node, plus any plan items shown there. */
 export function nodeProgress(model, node, progressRows, plan) {
-  const leaves = leavesOf(model.nodes, node);
-  const byStatus = { not_started: 0, in_progress: 0, completed: 0, revised: 0 };
-  let done = 0;
-  let inProgress = 0;
-  for (const leaf of leaves) {
-    const status = normaliseStatus(progressRows.get(leaf.id)?.status);
-    byStatus[status] += 1;
-    if (DONE_STATUSES.has(status)) done += 1;
-    if (status === 'in_progress') inProgress += 1;
-  }
-  const planItems = plan ? planSubtreeFor(plan, node.id) : [];
-  for (const item of planItems) {
-    const status = normaliseStatus(item.status);
-    byStatus[status] += 1;
-    if (DONE_STATUSES.has(status)) done += 1;
-    if (status === 'in_progress') inProgress += 1;
-  }
-  const total = leaves.length + planItems.length;
-  return { total, done, inProgress, byStatus, planItems: planItems.length, completion: total ? done / total : 0 };
+  const summary = (node && buildProgressIndex(model, progressRows, plan).node.get(node.id)) || emptySummary();
+  return { ...publicSummary(summary), planItems: summary.planItems || 0 };
 }
 
 /* --------------------------------------------------------------- access --- */
 
-/** A uniform `{status, priority, target_date, notes}` for either kind of item. */
+/** A uniform `{status, priority, target_date, notes, inPlan}` for either kind of item. */
 export function readEntry(target, { progressRows, plan }) {
   if (!target) return null;
   if (target.scope === 'plan') {
@@ -366,6 +440,7 @@ export function readEntry(target, { progressRows, plan }) {
       priority: row.priority || null,
       target_date: row.target_date || null,
       notes: row.notes || null,
+      inPlan: true,
     };
   }
   const row = progressRows?.get(target.id);
@@ -374,19 +449,125 @@ export function readEntry(target, { progressRows, plan }) {
     priority: row?.priority || null,
     target_date: row?.target_date || null,
     notes: row?.notes || null,
+    inPlan: isInPlan(row),
   };
 }
 
 /* --------------------------------------------------------------- writes --- */
 
-/** Set a status on either kind of item, in the merged vocabulary. */
-export async function setStatus(target, status, { model = null } = {}) {
-  const value = normaliseStatus(status);
-  if (!(value in STATUSES)) throw new Error(`Unknown syllabus status "${status}".`);
-  if (target?.scope === 'plan') {
-    return planner.updateSyllabusItem(target.id, { status: value, status_source: 'manual' });
+const KNOWN_STATUSES = new Set([...Object.keys(STATUSES), ...Object.keys(LEGACY_STATUS_ALIASES)]);
+
+/** The official tree, as `cascadeChanges()` walks it. */
+function officialTree(model, progressRows) {
+  return {
+    childrenOf: (id) => model.nodes.get(id)?.childIds || [],
+    parentOf: (id) => model.nodes.get(id)?.parentId || null,
+    ownOf: (id) => normaliseStatus(progressRows.get(id)?.status),
+  };
+}
+
+/** The reader's own tree, as `cascadeChanges()` walks it. */
+function planTree(plan) {
+  return {
+    childrenOf: (id) => plan.childrenOf(id).map((row) => row.id),
+    parentOf: (id) => {
+      const parentId = plan.byId.get(id)?.parent_id;
+      return parentId && plan.byId.has(parentId) ? parentId : null;
+    },
+    ownOf: (id) => normaliseStatus(plan.byId.get(id)?.status),
+  };
+}
+
+/**
+ * What marking one item means for the items around it, as a Map from id to
+ * the status each item should now carry itself (`not_started` clears).
+ *
+ *  * Marking a heading marks all of its lines, so anything marked beneath it
+ *    gives way: its lines then read the heading's status.
+ *  * Marking a line marks just that line, even under a marked heading.
+ *  * "Not started" under a marked heading cannot be expressed by clearing one
+ *    line — it would read the heading's status again. The outermost marked
+ *    heading's mark is therefore spelled out on each of its lines first, and
+ *    then the item is cleared.
+ *
+ * `tree` supplies `childrenOf(id)`, `parentOf(id)` and `ownOf(id)`. Entries
+ * that would not change anything are left out, except the item itself.
+ */
+export function cascadeChanges(tree, id, status) {
+  const changes = new Map();
+  const ownOf = (nodeId) => (changes.has(nodeId) ? changes.get(nodeId) : tree.ownOf(nodeId));
+
+  if (status === 'not_started') {
+    let outermost = null;
+    const seen = new Set([id]);
+    for (let parent = tree.parentOf(id); parent && !seen.has(parent); parent = tree.parentOf(parent)) {
+      seen.add(parent);
+      if (tree.ownOf(parent) !== 'not_started') outermost = parent;
+    }
+    if (outermost) {
+      const visited = new Set();
+      const spellOut = (nodeId, inherited) => {
+        if (visited.has(nodeId)) return;
+        visited.add(nodeId);
+        const own = tree.ownOf(nodeId);
+        const carried = own !== 'not_started' ? own : inherited;
+        const children = tree.childrenOf(nodeId);
+        if (!children.length) {
+          if (carried !== own) changes.set(nodeId, carried);
+          return;
+        }
+        if (own !== 'not_started') changes.set(nodeId, 'not_started');
+        for (const child of children) spellOut(child, carried);
+      };
+      spellOut(outermost, 'not_started');
+    }
   }
-  return setProgressStatus(target.id, value, { model });
+
+  const visited = new Set([id]);
+  const clearBeneath = (nodeId) => {
+    for (const child of tree.childrenOf(nodeId)) {
+      if (visited.has(child)) continue;
+      visited.add(child);
+      if (ownOf(child) !== 'not_started') changes.set(child, 'not_started');
+      clearBeneath(child);
+    }
+  };
+  clearBeneath(id);
+  changes.set(id, status);
+
+  for (const [nodeId, value] of changes) {
+    if (nodeId !== id && tree.ownOf(nodeId) === value) changes.delete(nodeId);
+  }
+  return changes;
+}
+
+/**
+ * Set a status on either kind of item, in the merged vocabulary. Marking a
+ * heading (or one of the reader's items with sub-items) marks every line under
+ * it; see `cascadeChanges()`. Returns the number of stored items that changed.
+ */
+export async function setStatus(target, status, { model = null } = {}) {
+  // Validate what was asked for, not its normalised form: an unknown value
+  // must be refused, not quietly read as "not started" and stored.
+  if (!KNOWN_STATUSES.has(String(status))) throw new Error(`Unknown syllabus status "${status}".`);
+  const value = normaliseStatus(status);
+  if (!target?.id) throw new Error('A syllabus item is required.');
+
+  if (target.scope === 'plan') {
+    const plan = await loadPlan({ model });
+    if (!plan.byId.has(target.id)) throw new Error('That syllabus item no longer exists.');
+    const updated = await planner.setSyllabusStatuses(cascadeChanges(planTree(plan), target.id, value));
+    return updated.length;
+  }
+
+  if (!model?.ok || !model.nodes.has(target.id)) {
+    await setProgressStatus(target.id, value, { model });
+    return 1;
+  }
+  const progressRows = await loadProgress();
+  const changes = cascadeChanges(officialTree(model, progressRows), target.id, value);
+  const result = await applyProgressStatuses(changes, { model, progressRows });
+  return result.written + result.cleared;
 }
 
 /** Set planning fields (priority, target date, notes) on either kind of item. */
@@ -410,6 +591,110 @@ export async function resetPlanAttachment(rowId) {
   return planner.updateSyllabusItem(rowId, { attach_mode: ATTACH_AUTO });
 }
 
+/* ------------------------------------------------------------- my plan ---- */
+
+/**
+ * Official syllabus nodes join *My plan* by reference. The node gets
+ * `in_plan: true` on its progress row — the same row that holds its status, so
+ * a line ticked in the tree is ticked in My plan too, and nothing the
+ * commission wrote is copied into the reader's own store. A plan is any paper,
+ * section, unit or line; a whole stage is too broad to plan as one item.
+ */
+export { isInPlan };
+
+/** Official nodes the reader has put in My plan, in syllabus order. */
+export function plannedNodes(model, progressRows) {
+  if (!model?.ok) return [];
+  const out = [];
+  for (const [nodeId, row] of asProgressMap(progressRows)) {
+    if (!isInPlan(row)) continue;
+    const node = model.nodes.get(nodeId);
+    if (node && node.kind !== 'exam') out.push(node);
+  }
+  return out.sort((a, b) => a.order - b.order);
+}
+
+/** The node itself, or its nearest heading, that is in My plan; null when neither is. */
+export function planAnchor(model, progressRows, node) {
+  const rows = asProgressMap(progressRows);
+  const seen = new Set();
+  for (let cursor = node; cursor && cursor.kind !== 'exam' && !seen.has(cursor.id); cursor = model.nodes.get(cursor.parentId)) {
+    seen.add(cursor.id);
+    if (isInPlan(rows.get(cursor.id))) return cursor;
+  }
+  return null;
+}
+
+/** Put an official node in My plan, optionally with a target date, priority or notes. */
+export async function addOfficialToPlan(nodeId, fields = {}, { model = null } = {}) {
+  const node = model?.nodes?.get(nodeId) || null;
+  if (model?.ok && !node) throw new Error('That part of the syllabus no longer exists.');
+  if (node?.kind === 'exam') throw new Error('Add a paper, section or line rather than a whole stage.');
+  const patch = { in_plan: true };
+  for (const field of PLAN_FIELDS) if (field in fields) patch[field] = fields[field];
+  return setProgressPlan(nodeId, patch, { model });
+}
+
+/**
+ * Take an official node out of My plan. Its target date, priority and notes go
+ * with it; its status stays, because the status belongs to the syllabus line,
+ * not to the plan.
+ */
+export async function removeOfficialFromPlan(nodeId, { model = null } = {}) {
+  return setProgressPlan(nodeId, { in_plan: false, priority: null, target_date: null, notes: null }, { model });
+}
+
+/**
+ * What My plan holds, read once. `entries` are the planned official nodes
+ * that are not inside another planned node — a section added along with its
+ * paper is shown inside the paper rather than twice — and `summary` counts each
+ * line once: the lines of those entries plus every item of the reader's own.
+ */
+export function planOverview(model, progressRows, plan, index = null) {
+  const rows = asProgressMap(progressRows);
+  const idx = index || buildProgressIndex(model, rows, plan);
+  const planned = plannedNodes(model, rows);
+  const plannedIds = new Set(planned.map((node) => node.id));
+  const entries = planned.filter((node) => {
+    for (let parent = model.nodes.get(node.parentId); parent; parent = model.nodes.get(parent.parentId)) {
+      if (plannedIds.has(parent.id)) return false;
+    }
+    return true;
+  });
+  const summary = emptySummary();
+  for (const node of entries) addSummary(summary, idx.official.get(node.id));
+  for (const root of plan?.roots || []) addSummary(summary, idx.plan.get(root.id));
+  finaliseSummary(summary);
+  return { planned, plannedIds, entries, summary, ownItems: plan?.rows?.length || 0 };
+}
+
+/**
+ * Target dates in My plan on items that are not finished, soonest first,
+ * split into overdue and upcoming against `today` (a `YYYY-MM-DD` key).
+ */
+export function planDeadlines(model, progressRows, plan, today, index = null) {
+  const rows = asProgressMap(progressRows);
+  const idx = index || buildProgressIndex(model, rows, plan);
+  const items = [];
+  for (const node of plannedNodes(model, rows)) {
+    const date = rows.get(node.id)?.target_date;
+    const summary = idx.official.get(node.id);
+    if (!date || (summary && summary.total && summary.done === summary.total)) continue;
+    items.push({ scope: 'official', id: node.id, title: officialLabel(node), target_date: date });
+  }
+  for (const row of plan?.rows || []) {
+    const summary = idx.plan.get(row.id);
+    const finished = summary ? summary.total && summary.done === summary.total : isDone(row.status);
+    if (!row.target_date || finished) continue;
+    items.push({ scope: 'plan', id: row.id, title: planLabel(row), target_date: row.target_date });
+  }
+  items.sort((a, b) => String(a.target_date).localeCompare(String(b.target_date)));
+  return {
+    overdue: items.filter((item) => item.target_date < today),
+    upcoming: items.filter((item) => item.target_date >= today),
+  };
+}
+
 /* ----------------------------------------------------------- composition - */
 
 /**
@@ -418,7 +703,8 @@ export async function resetPlanAttachment(rowId) {
 export async function loadSyllabusWorkspace() {
   const model = await loadSyllabus();
   const [progressRows, plan] = await Promise.all([loadProgress(), loadPlan({ model })]);
-  return { model, progressRows, plan, progress: combinedProgress(model, progressRows, plan) };
+  const index = buildProgressIndex(model, progressRows, plan);
+  return { model, progressRows, plan, index, progress: combinedProgress(model, progressRows, plan, index) };
 }
 
 /** Label for a plan item, used where official and plan items sit side by side. */

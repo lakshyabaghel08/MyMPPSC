@@ -33,6 +33,10 @@ const ICONS = {
   print: '<path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/>',
   flag: '<path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1zM4 22v-7"/>',
   close: '<path d="M18 6 6 18M6 6l12 12"/>',
+  plus: '<path d="M12 5v14M5 12h14"/>',
+  check: '<path d="M20 6 9 17l-5-5"/>',
+  bookmark: '<path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>',
+  calendar: '<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>',
 };
 
 export function icon(name, { size = 16, label = null } = {}) {
@@ -599,9 +603,24 @@ export function openModal({ title, body, actions = [], wide = false, onMount = n
 
   return new Promise((resolve) => {
     let onKeyDown = null;
+    let modal = null;
+    let closed = false;
     const close = (value) => {
+      if (closed) return;
+      closed = true;
+      // Hide at once, but keep the markup until the caller has read it.
+      // Callers read their fields after the promise settles
+      // (`await openModal(...)`, then `document.getElementById(...)`). This
+      // used to empty the root before resolving, so every such read returned
+      // null: a new item always "needed a title", and the plan editor saved
+      // its defaults over the target date and notes the reader had typed. The
+      // markup is released on the next task, after the awaiting code has run,
+      // unless another dialog has replaced it in the meantime.
       root.hidden = true;
-      root.innerHTML = '';
+      const leaving = modal;
+      setTimeout(() => {
+        if (root.hidden && root.firstElementChild === leaving) root.innerHTML = '';
+      }, 0);
       setBackgroundInert(false);
       if (onKeyDown) {
         document.removeEventListener('keydown', onKeyDown, true);
@@ -636,7 +655,7 @@ export function openModal({ title, body, actions = [], wide = false, onMount = n
       }
     </div>`;
 
-    const modal = root.firstElementChild;
+    modal = root.firstElementChild;
     modal.querySelectorAll('[data-modal-action]').forEach((btn) => {
       btn.addEventListener('click', () => close(btn.dataset.value));
     });
