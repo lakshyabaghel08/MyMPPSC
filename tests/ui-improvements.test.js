@@ -45,6 +45,7 @@ setGlobal('fetch', async (input) => {
 
 const app = await import('../js/app.js');
 const { state } = await import('../js/core/state.js');
+const { safeDecodeParam } = await import('../js/ui/router.js');
 const components = await import('../js/ui/components.js');
 const skeletons = await import('../js/ui/skeletons.js');
 
@@ -396,7 +397,11 @@ test('Question Bank: a bulk delete names what goes, can be cancelled, and update
   await settle();
   for (const id of doomed) assert.equal(state.questionIndex.has(id), false);
   await waitFor(() => new RegExp(`Bank: ${sizeBefore - 2} questions`).test($('#bankPill').textContent), { label: 'the bank pill' });
-  assert.equal($('#qBulkCount').textContent, 'No questions selected');
+  // The header pill updates as soon as the store does; the list behind it is
+  // repainted a moment later, because a screen refreshing itself now keeps the
+  // DOM the reader is looking at until the new markup is ready rather than
+  // collapsing the page into a loading line first.
+  await waitFor(() => $('#qBulkCount')?.textContent === 'No questions selected', { label: 'the selection to be cleared' });
 });
 
 /* ------------------------------------------------------------- runner ---- */
@@ -406,7 +411,9 @@ test('runner: the “?” legend lists the real shortcuts, closes on Escape, mov
   const count = $('#practiceCfgCount');
   count.value = '3';
   count.dispatchEvent(new window.Event('change', { bubbles: true }));
-  click($('#startTopic'));
+  click($('#view [data-action="start-practice"]'));
+  await waitFor(() => !$('#modalRoot').hidden, { label: 'the custom-set confirmation' });
+  click($('#modalRoot [data-value="confirm"]'));
   await waitFor(() => /#\/runner\//.test(window.location.hash), { label: 'the runner' });
   await waitFor(() => /Question 1 of/.test(viewText()), { label: 'runner markup' });
 
@@ -501,4 +508,111 @@ test('dark-mode polish: states keep a non-colour cue and decorations stay behind
   assert.match(css, /select,\s*textarea\s*\{\s*border-color: var\(--border\);/, 'form fields keep a 3:1 boundary');
   const dark = css.match(/:root\[data-theme="dark"\]\s*\{([^}]*)\}/)[1];
   assert.match(dark, /--track:\s*var\(--border-subtle\)/, 'dark tracks are visible');
+});
+
+/* -------------------------------------------------- bugs fixed on the way -- */
+
+test('a malformed route parameter is data, not a crash (B5)', async () => {
+  // `decodeURIComponent` throws URIError on a stray or truncated escape. The
+  // router used to let that escape as an unhandled rejection: the hash changed,
+  // the screen did not, and the only trace was a line in the console.
+  assert.equal(safeDecodeParam('50%'), '50%', 'a stray percent sign is kept as written');
+  assert.equal(safeDecodeParam('%E0%A4%A'), '%E0%A4%A', 'a truncated UTF-8 escape is kept as written');
+  assert.equal(safeDecodeParam('A%20B'), 'A B', 'a well-formed escape still decodes');
+  assert.equal(safeDecodeParam('%25'), '%', 'and an escaped percent sign decodes to one');
+  assert.equal(safeDecodeParam(null), '', 'a missing parameter is an empty string');
+
+  for (const hash of ['#/topic/50%', '#/topic/%E0%A4%A', '#/bank/100%', '#/pyq-analysis/%zz']) {
+    window.location.hash = hash;
+    await app.router.resolve();
+    const parsed = app.router.parse();
+    assert.ok(parsed.params.length >= 1, `${hash}: the parameter survived`);
+    assert.ok(!/could not be displayed/i.test(viewText()), `${hash}: the screen rendered`);
+    assert.ok(!/Loading local data/.test(viewText()), `${hash}: and is not stuck loading`);
+    assert.match($('#view h1').textContent, /\S/, `${hash}: it is a real screen`);
+  }
+  // The address that used to break is a valid deep link target: it names no
+  // subject the bank holds, so the practice screen simply ignores it.
+  await goto('topic/50%');
+  assert.match($('#view h1').textContent, /Topic & Custom Practice/);
+  assert.equal($('#pickMatch').textContent.trim(), `${state.questionIndex.size} questions match`, 'and the pool is untouched');
+  assert.ok($('#view [data-action="clear-selection"]').disabled, 'nothing was selected by the nonsense parameter');
+  await goto('dashboard');
+});
+
+test('a refresh keeps the screen the reader is looking at, and the newest render wins (B6)', async () => {
+  // Re-rendering in place used to paint the "Loading local data…" placeholder
+  // first, so a full practice screen collapsed to one line and back on every
+  // ticked checkbox — and a slow render could still land on top of a newer one.
+  const delays = [];
+  let renders = 0;
+  app.router.register('probe-refresh', {
+    title: 'Probe refresh',
+    render: async (ctx) => {
+      renders += 1;
+      const n = renders;
+      await sleep(delays.length ? delays.shift() : 1);
+      return `<h1>Probe refresh</h1><p id="probeOut">render ${n}${ctx.isRefresh ? ' refresh' : ' arrival'}</p>`;
+    },
+  });
+  try {
+    await goto('probe-refresh');
+    const painted = $('#probeOut');
+    assert.match(painted.textContent, /render 1 arrival/, 'a navigation paints the screen');
+
+    // What ctx.refresh() does: another render of the destination already shown.
+    delays.push(40);
+    const refresh = app.router.resolve({ dedupe: false });
+    await sleep(8);
+    assert.equal($('#probeOut'), painted, 'the DOM the reader is looking at is kept while it rebuilds');
+    assert.ok(!/Loading local data/.test(viewText()), 'no placeholder is painted over a refresh');
+    assert.ok(!$('#view .loading-block, #view .skeleton'), 'and no skeleton either');
+    await refresh;
+    assert.match($('#probeOut').textContent, /render 2 refresh/, 'the refresh is recognised as one');
+    assert.notEqual($('#probeOut'), painted, 'and the new markup did replace it');
+
+    // Two refreshes at once: the first is slow, the second is quick. The slow
+    // one must not paint over the screen the reader asked for last.
+    delays.push(60, 2);
+    const slow = app.router.resolve({ dedupe: false });
+    const quick = app.router.resolve({ dedupe: false });
+    await Promise.all([slow, quick]);
+    assert.match($('#probeOut').textContent, /render 4 refresh/, 'the newest render is the one on screen');
+
+    // A duplicate ask for the destination already being rendered joins it
+    // instead of starting a second render of the same thing.
+    const before = renders;
+    delays.push(30);
+    const first = app.router.resolve();
+    const second = app.router.resolve();
+    await Promise.all([first, second]);
+    assert.equal(renders, before + 1, 'one navigation asked twice, one render');
+  } finally {
+    delete app.router.routes['probe-refresh'];
+  }
+  await goto('dashboard');
+});
+
+test('the phone header fits one row: touch targets, an icon-only Quick practice (B11)', () => {
+  // jsdom does no layout, so this asserts the rules that make the row fit
+  // rather than measuring it. On a 390px phone the header actions held about
+  // 460px of content in a 366px row that was allowed to wrap, which is the two
+  // ragged rows the report described.
+  const phone = css.slice(css.lastIndexOf('@media (max-width: 560px) {'));
+  assert.match(phone, /#quickStartBtn \.btn-label \{\s*display: none;\s*\}/, 'the label goes, the button stays');
+  assert.match(phone, /#quickStartBtn \{[^}]*min-width: var\(--touch-min\)/, 'and it stays a 44px touch target');
+  assert.match(phone, /\.command-trigger \{[^}]*min-width: var\(--touch-min\);[^}]*width: var\(--touch-min\)/, 'the search trigger grows to 44px too');
+  assert.match(phone, /\.brand-mark \{[^}]*width: 36px/, 'the wordmark gives up its room');
+  assert.match(phone, /\.header-actions \.offline-pill \{[^}]*flex: 1 0 100%/, 'the offline status takes its own row instead of ragging the buttons');
+  assert.match(css, /--touch-min:\s*44px;/, 'the touch minimum is a token, not a magic number');
+
+  // An icon-only button has to keep its name for assistive tech.
+  const quick = $('#quickStartBtn');
+  assert.equal(quick.getAttribute('aria-label'), 'Quick practice', 'the name stays on the button');
+  assert.equal(quick.getAttribute('title'), 'Quick practice', 'and on the tooltip');
+  assert.ok(quick.querySelector('.btn-label'), 'the visible label is still in the markup for wide screens');
+  assert.equal(quick.querySelector('.icon').getAttribute('aria-hidden'), 'true', 'the icon is decorative');
+  const search = $('#commandBtn');
+  assert.equal(search.getAttribute('aria-label'), 'Search and navigate', 'the search trigger keeps its name when its label is hidden');
+  assert.match(css, /\.command-trigger > span:nth-child\(2\),\s*\.command-trigger kbd \{\s*display: none;/, 'hidden only below 640px');
 });

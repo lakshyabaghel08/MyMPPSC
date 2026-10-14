@@ -408,16 +408,16 @@ export function studyPriorities({ analytics, syllabusProgress = null, limit = 12
         score -= 8;
         reasons.push('syllabus item marked completed');
       }
-      if (syl.priority === 'high') {
-        score += 8;
-        reasons.push('you set this syllabus item to high priority');
-      }
     }
     rows.push({
       ...topic,
       priorityScore: round(score, 1),
       reasons,
-      syllabus: syl ? { status: syl.status, priority: syl.priority, target_date: syl.target_date } : null,
+      // Only the status the Syllabus screen shows. A priority or target date
+      // stored on a progress row is the reader's own planning data: it is kept
+      // on disk and in backups, but *My plan* is no longer part of the
+      // interface, so it no longer moves a suggestion up the list.
+      syllabus: syl ? { status: syl.status } : null,
       caveat: 'Priorities combine question frequency, your recorded performance and syllabus status. Frequency is not a forecast of future examinations.',
     });
   }

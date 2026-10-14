@@ -7,7 +7,7 @@
  * the destructive path always requires explicit confirmation from the UI.
  */
 
-import { APP_VERSION, DB_VERSION, STORES, STORE_LIST, LS_KEYS } from '../core/constants.js';
+import { APP_VERSION, DB_VERSION, STORES, STORE_LIST, LS_KEYS, stripRetiredSettings } from '../core/constants.js';
 import * as db from '../core/db.js';
 import { state, emit, refreshQuestionIndex, mergeSettingsObjects } from '../core/state.js';
 import { nowIso, deepClone, logEvent, todayKey } from '../core/util.js';
@@ -176,7 +176,10 @@ export async function restoreBackup(validation, { mode = 'merge', includeQuestio
     const rows = payload[key];
     if (!rows) continue;
     if (key === 'settings') {
-      if (mode === 'replace') await db.put(STORES.SETTINGS, { key: 'app', value: rows, updated_at: nowIso() });
+      // A backup written by an older build still carries the settings that are
+      // no longer preferences. They are stripped before anything is stored, so
+      // a restore cannot bring a retired rule back to life.
+      if (mode === 'replace') await db.put(STORES.SETTINGS, { key: 'app', value: stripRetiredSettings({ ...rows }), updated_at: nowIso() });
       continue;
     }
     if (key === 'meta') {
@@ -220,7 +223,7 @@ export async function restoreBackup(validation, { mode = 'merge', includeQuestio
     // Replace adopts the backup's settings. Merge keeps the settings currently in
     // place (they are live preferences) and only fills in keys that are missing,
     // so a merge can never silently change how the app behaves.
-    const merged = mode === 'replace' ? payload.settings : mergeSettingsObjects(payload.settings, state.settings);
+    const merged = stripRetiredSettings(mode === 'replace' ? { ...payload.settings } : mergeSettingsObjects(payload.settings, state.settings));
     await import('../core/state.js').then(({ saveSettings }) => saveSettings(merged));
   }
 

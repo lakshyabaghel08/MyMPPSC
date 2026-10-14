@@ -1,21 +1,22 @@
 /**
- * syllabus-progress.test.js — progress tracking and My plan in the Syllabus section.
+ * syllabus-progress.test.js — progress tracking in the Syllabus section.
  *
  * Regression tests for what the Syllabus section got wrong before this
- * revision, and for the "add it to My plan" feature it gained:
+ * revision:
  *
- *  * a dialog handed back nothing that was typed into it (every new plan item
- *    "needed a title", and editing a plan saved its defaults over it);
+ *  * a dialog handed back nothing that was typed into it;
  *  * a status stored on a heading was counted nowhere;
- *  * a paper missed the reader's items pinned beneath it, and a plan heading
- *    was counted next to its own sub-items;
  *  * resetting progress deleted typed notes, and an export promised statuses
  *    an import then dropped;
- *  * with a topic open, the stage switch and My plan tab snapped back to it;
- *  * search ignored the reader's own items and rendered a query as markup;
+ *  * with a topic open, the stage switch snapped back to it;
+ *  * search rendered a query as markup;
  *  * the shared progress bars had no fill rules, so they drew as black blocks;
- *  * the first mark (and clearing the last) moved every row under the pointer,
- *    and an item added under a topic stayed folded out of sight.
+ *  * the first mark (and clearing the last) moved every row under the pointer.
+ *
+ * *My plan* has since been removed from the interface. Its two stores are still
+ * on disk and still travel in backups, so what is asserted about them is that
+ * they are preserved and ignored: a legacy plan row must never change a total,
+ * a count or a status on this screen.
  */
 
 import test from 'node:test';
@@ -224,60 +225,65 @@ test('3. cascadeChanges works the same way on any tree', () => {
   assert.deepEqual(Object.fromEntries(hub.cascadeChanges(tree, 'c1', 'revised')), { c1: 'revised' }, 'a topic is marked on its own');
 });
 
-test('4. a paper counts the reader\u2019s items pinned anywhere beneath it', async () => {
+test('4. a paper counts its own official topics, and a legacy plan row changes nothing', async () => {
   await clean();
   const line = linesOf(S1)[0];
-  const mine = await planner.addSyllabusItem({ title: 'Pinned to one topic' });
-  await hub.attachPlanItem(mine.id, line);
-  await hub.setStatus({ scope: 'plan', id: mine.id }, 'completed', { model });
-
   const rows = await syllabus.loadProgress();
-  const plan = await hub.loadPlan({ model });
-  const index = hub.buildProgressIndex(model, rows, plan);
-  assert.equal(index.node.get(S1).planItems, 1);
-  assert.equal(index.node.get(PAPER).planItems, 1, 'the paper sees an item pinned two levels down');
-  assert.equal(index.node.get(PAPER).done, 1);
-  assert.equal(index.node.get(PAPER).total, linesOf(PAPER).length + 1);
-  assert.equal(index.node.get('prelims').done, 1, 'and so does the stage');
-  assert.equal(hub.nodeProgress(model, model.nodes.get(PAPER), rows, plan).planItems, 1);
+  const index = hub.buildProgressIndex(model, rows);
+  assert.equal(index.official.get(PAPER).total, linesOf(PAPER).length, 'a paper counts every official topic under it');
+  assert.equal(index.official.get('prelims').total, linesOf('prelims').length, 'and so does the stage');
+  assert.equal(hub.nodeProgress(model, model.nodes.get(PAPER), rows).total, linesOf(PAPER).length);
+
+  // A reader who used *My plan* before it was removed still has rows pinned to
+  // these nodes, and rows of their own in the planner store. Neither is counted.
+  await syllabus.setProgressPlan(line, { target_date: '2026-03-01', priority: 'high', notes: 'Legacy plan row' }, { model });
+  const mine = await planner.addSyllabusItem({ title: 'Legacy plan item', subject: 'History', topic: 'Ancient India' });
+  await planner.setSyllabusStatuses(new Map([[mine.id, 'completed']]));
+
+  const after = hub.buildProgressIndex(model, await syllabus.loadProgress());
+  assert.equal(after.official.get(PAPER).total, linesOf(PAPER).length, 'the paper total is unchanged');
+  assert.equal(after.official.get(PAPER).done, 0, 'a legacy plan row is not progress');
+  assert.equal(hub.combinedProgress(model, await syllabus.loadProgress()).done, 0);
+
+  // The row itself is untouched: this screen does not clean up after itself.
+  const kept = await db.get(STORES.SYLLABUS_PROGRESS, line);
+  assert.equal(kept.notes, 'Legacy plan row');
+  assert.equal(kept.target_date, '2026-03-01');
+  assert.equal(kept.priority, 'high');
+
+  await planner.deleteSyllabusItem(mine.id, { withChildren: true });
+  await clean();
 });
 
-test('5. the reader\u2019s own plan counts items, not headings, and marks a heading\u2019s sub-items', async () => {
+test('5. the planner store still keeps its own tree, and the syllabus does not read it', async () => {
   await clean();
   const parent = await planner.addSyllabusItem({ title: 'Indian Polity' });
   const first = await planner.addSyllabusItem({ parentId: parent.id, title: 'Preamble' });
   const second = await planner.addSyllabusItem({ parentId: parent.id, title: 'Fundamental Rights' });
-  await hub.setStatus({ scope: 'plan', id: first.id }, 'completed', { model });
-  await hub.setStatus({ scope: 'plan', id: second.id }, 'completed', { model });
+  await planner.setSyllabusStatuses(new Map([[first.id, 'completed'], [second.id, 'completed']]));
 
-  let plan = await hub.loadPlan({ model });
-  let progress = hub.combinedProgress(model, await syllabus.loadProgress(), plan);
-  assert.equal(progress.plan.total, 2, 'the heading is not counted next to its own sub-items');
-  assert.equal(progress.plan.done, 2, 'both sub-items finished means everything is finished, not 2 of 3');
-  assert.equal(hub.planStatusIndex(plan).get(parent.id).status, 'completed');
+  // The store is intact and self-consistent — a restored backup still makes sense.
+  const rows = await planner.listSyllabus();
+  assert.equal(rows.length, 3);
+  assert.equal(planner.buildTree(rows).length, 1, 'one root with two children');
+  assert.equal(rows.find((row) => row.id === first.id).status, 'completed');
 
-  const third = await planner.addSyllabusItem({ parentId: parent.id, title: 'Directive Principles' });
-  await hub.setStatus({ scope: 'plan', id: parent.id }, 'in_progress', { model });
-  plan = await hub.loadPlan({ model });
-  const index = hub.planStatusIndex(plan);
-  assert.equal(index.get(third.id).status, 'in_progress', 'marking an item marks its sub-items');
-  assert.equal(index.get(first.id).status, 'in_progress', 'and replaces their own marks');
-  assert.equal(normalised(plan.byId.get(first.id).status), 'not_started', 'which are cleared on disk');
+  // And none of it reaches a syllabus figure.
+  const progress = hub.combinedProgress(model, await syllabus.loadProgress());
+  assert.equal(progress.done, 0, 'no plan item is counted as progress');
+  assert.equal(progress.byTopic.size, 0, 'no plan item speaks for a question-bank topic');
+  assert.equal(progress.plan, undefined, 'the roll-up no longer reports a plan figure at all');
 
-  progress = hub.combinedProgress(model, await syllabus.loadProgress(), plan);
-  assert.equal(progress.plan.total, 3);
-  assert.equal(progress.plan.inProgress, 3);
+  await planner.deleteSyllabusItem(parent.id, { withChildren: true });
 });
-
-const normalised = (status) => hub.normaliseStatus(status);
 
 test('6. resetting progress clears statuses and keeps what the reader planned', async () => {
   await clean();
   const lines = linesOf(S1);
   await hub.setStatus({ scope: 'official', id: lines[0] }, 'completed', { model });
   await hub.setStatus({ scope: 'official', id: lines[1] }, 'revised', { model });
-  await hub.setPlanFields({ scope: 'official', id: lines[1] }, { notes: 'Re-read the Upanishads chapter' }, { model });
-  await hub.addOfficialToPlan(S2, { target_date: '2026-11-01' }, { model });
+  await syllabus.setProgressPlan(lines[1], { notes: 'Re-read the Upanishads chapter' }, { model });
+  await syllabus.setProgressPlan(S2, { in_plan: true, target_date: '2026-11-01' }, { model });
   await hub.setStatus({ scope: 'official', id: S2 }, 'in_progress', { model });
 
   const result = await syllabus.resetProgress();
@@ -286,60 +292,50 @@ test('6. resetting progress clears statuses and keeps what the reader planned', 
   assert.equal(rows.has(lines[0]), false, 'a row that held only a status is removed');
   assert.equal(rows.get(lines[1]).notes, 'Re-read the Upanishads chapter', 'typed notes survive a reset');
   assert.equal(rows.get(lines[1]).status, 'not_started');
-  assert.equal(syllabus.isInPlan(rows.get(S2)), true, 'a node in My plan stays in My plan');
+  assert.equal(syllabus.isInPlan(rows.get(S2)), true, 'a row the reader put in My plan keeps that flag');
   assert.equal(rows.get(S2).target_date, '2026-11-01');
   assert.equal(rows.get(S2).status, 'not_started');
+  assert.equal(hub.combinedProgress(model, rows).done, 0, 'and none of it counts as progress');
 });
 
-/* ------------------------------------------------------------- my plan ---- */
+/* ------------------------------------------------- legacy plan fields ---- */
 
-test('7. official nodes join My plan by reference and share their status with the tree', async () => {
+test('7. a row that holds only legacy plan data is kept, and counts as nothing', async () => {
   await clean();
   const lines = linesOf(S1);
-  await hub.addOfficialToPlan(S1, { target_date: '2026-01-05', priority: 'high' }, { model });
-  await hub.addOfficialToPlan(lines[1], {}, { model });
-  const mine = await planner.addSyllabusItem({ title: 'Newspaper notes' });
+
+  // What "Add to My plan" used to write: a flag, a date, a priority, a note.
+  await syllabus.setProgressPlan(S1, { in_plan: true, target_date: '2026-01-05', priority: 'high', notes: 'Start here' }, { model });
+  await syllabus.setProgressPlan(lines[1], { in_plan: true }, { model });
 
   let rows = await syllabus.loadProgress();
-  let plan = await hub.loadPlan({ model });
-  let overview = hub.planOverview(model, rows, plan);
-  assert.deepEqual(overview.planned.map((node) => node.id), [S1, lines[1]]);
-  assert.deepEqual(overview.entries.map((node) => node.id), [S1], 'a topic inside a planned section is not listed twice');
-  assert.equal(overview.summary.total, lines.length + 1, 'each topic is counted once, plus the reader\u2019s own item');
-  assert.equal(hub.planAnchor(model, rows, model.nodes.get(lines[2]))?.id, S1, 'a topic is in the plan through its section');
-  assert.equal((await planner.listSyllabus()).length, 1, 'nothing official is copied into the reader\u2019s own store');
+  assert.equal(rows.size, 2, 'both rows exist for their plan data alone');
+  assert.equal(syllabus.isInPlan(rows.get(S1)), true);
+  assert.equal(hub.combinedProgress(model, rows).done, 0, 'neither is progress');
+  assert.equal((await planner.listSyllabus()).length, 0, 'nothing official was ever copied into the planner store');
 
-  // A status marked in the tree is the status in My plan.
+  // Marking a topic still works, and still does not create plan data.
   await hub.setStatus({ scope: 'official', id: lines[2] }, 'completed', { model });
   rows = await syllabus.loadProgress();
-  overview = hub.planOverview(model, rows, plan);
-  assert.equal(overview.summary.done, 1);
-  assert.equal(syllabus.isInPlan(rows.get(lines[2])), false, 'marking a topic does not add it to the plan');
+  assert.equal(rows.get(lines[2]).status, 'completed');
+  assert.equal(syllabus.isInPlan(rows.get(lines[2])), false, 'marking a topic does not put it in a plan');
+  assert.equal(hub.combinedProgress(model, rows).done, 1, 'only the real mark is counted');
 
-  const due = hub.planDeadlines(model, rows, plan, '2026-10-14');
-  assert.deepEqual(due.overdue.map((item) => item.id), [S1], 'an unfinished item past its target date is overdue');
-
-  await hub.setStatus({ scope: 'official', id: S1 }, 'completed', { model });
+  // The legacy rows survive everything the screen does, including a reset.
+  await syllabus.resetProgress();
   rows = await syllabus.loadProgress();
-  assert.equal(hub.planDeadlines(model, rows, plan, '2026-10-14').overdue.length, 0, 'a finished item is never overdue');
+  assert.equal(rows.get(S1).notes, 'Start here', 'a reset clears statuses, not typed notes');
+  assert.equal(rows.get(S1).target_date, '2026-01-05');
+  assert.equal(rows.get(lines[2]), undefined, 'a row that held only a status is removed');
 
-  await hub.removeOfficialFromPlan(S1, { model });
-  rows = await syllabus.loadProgress();
-  assert.equal(syllabus.isInPlan(rows.get(S1)), false);
-  assert.equal(rows.get(S1).status, 'completed', 'leaving the plan keeps the progress');
-  assert.equal(rows.get(S1).target_date, null);
-
-  await assert.rejects(() => hub.addOfficialToPlan('prelims', {}, { model }), /whole stage/);
-  await planner.deleteSyllabusItem(mine.id);
-  plan = await hub.loadPlan({ model });
-  assert.equal(plan.rows.length, 0);
+  await clean();
 });
 
 test('8. an export restores statuses and notes, and an unknown status is refused', async () => {
   await clean();
   const parent = await planner.addSyllabusItem({ title: 'Ethics', notes: 'Case studies first' });
   const child = await planner.addSyllabusItem({ parentId: parent.id, title: 'Attitude' });
-  await hub.setStatus({ scope: 'plan', id: child.id }, 'revised', { model });
+  await planner.setSyllabusStatuses(new Map([[child.id, 'revised']]));
 
   const payload = JSON.parse(JSON.stringify(await planner.exportSyllabus()));
   await db.clearStore(STORES.SYLLABUS);
@@ -389,69 +385,59 @@ test('9. one click marks a topic, a heading marks all of its topics, and the fig
   assert.equal($('[data-reset-progress]').disabled, false, 'a heading mark is something to reset');
 });
 
-test('10. "+" puts a section in My plan, and My plan edits keep what was typed', async () => {
+test('10. the tree offers progress and nothing to plan', async () => {
   await clean();
   await goto('syllabus');
-  await tap(`[data-plan-add="${S2}"]`);
-  await waitFor(async () => syllabus.isInPlan((await syllabus.loadProgress()).get(S2)), { label: 'the section in the plan' });
-  await waitFor(() => $(`[data-plan-remove="${S2}"]`), { label: 'the row to say it is in the plan' });
-  await waitFor(() => /My plan 1/.test($('.syl-switch-plan')?.textContent.replace(/\s+/g, ' ') || ''), { label: 'the tab count' });
+  await waitFor(() => $(`.syl-title[data-open="${S2}"]`), { label: 'the section row' });
 
-  await tap('.syl-switch-btn[data-paper="__my_plan__"]');
-  await waitFor(() => $(`.syl-card [data-edit-plan="${S2}"]`), { label: 'the My plan card' });
+  // Every control on a row is about progress: the mark, the caret, the title.
+  const row = $(`.syl-title[data-open="${S2}"]`).closest('.syl-row');
+  assert.ok(row.querySelector(`[data-cycle="${S2}"]`) || row.querySelector('.syl-caret'), 'the row offers a mark or an expand control');
+  assert.equal(row.querySelector('[data-plan-add]'), null, 'there is no "add to My plan" button');
+  assert.equal(row.querySelector('[data-plan-remove]'), null, 'and no "in plan" pill');
+  assert.equal(row.querySelector('.syl-plan-count'), null, 'no "+N of your own" chip');
+  assert.ok(!/Add paper to My plan/.test(viewText()), 'the toolbar does not offer to plan a paper');
+  assert.ok(!/Add your own item/.test(viewText()), 'nor to write an item of your own');
 
-  // Set a target date and a note through the dialog.
-  click($(`.syl-card [data-edit-plan="${S2}"]`));
-  await waitFor(() => $('#sylTarget'), { label: 'the plan dialog' });
-  fill('#sylTarget', '2026-12-01');
-  fill('#sylNotes', 'Two chapters a week');
-  click($('#modalRoot [data-value="ok"]'));
-  await waitFor(async () => (await syllabus.loadProgress()).get(S2)?.notes === 'Two chapters a week', { label: 'the note to be saved' });
-  let row = (await syllabus.loadProgress()).get(S2);
-  assert.equal(row.target_date, '2026-12-01');
-
-  // Change only the priority: the date and the note must survive.
-  await waitFor(() => $(`.syl-card [data-edit-plan="${S2}"]`) && $('#modalRoot').hidden, { label: 'the card again' });
-  click($(`.syl-card [data-edit-plan="${S2}"]`));
-  await waitFor(() => $('#sylPriority') && $('#sylTarget')?.value === '2026-12-01', { label: 'the dialog, prefilled' });
-  fill('#sylPriority', 'high');
-  click($('#modalRoot [data-value="ok"]'));
-  await waitFor(async () => (await syllabus.loadProgress()).get(S2)?.priority === 'high', { label: 'the priority' });
-  row = (await syllabus.loadProgress()).get(S2);
-  assert.equal(row.target_date, '2026-12-01', 'editing one field kept the target date');
-  assert.equal(row.notes, 'Two chapters a week', 'and the note');
-  assert.equal(syllabus.isInPlan(row), true);
-
-  // Add an item of the reader's own.
-  await waitFor(() => $('#sylAddRoot') && $('#modalRoot').hidden, { label: 'the add button' });
-  click($('#sylAddRoot'));
-  await waitFor(() => $('#sylTitle'), { label: 'the add dialog' });
-  fill('#sylTitle', 'Weekly essay practice');
-  click($('#modalRoot [data-value="ok"]'));
-  await waitFor(async () => (await planner.listSyllabus()).some((item) => item.title === 'Weekly essay practice'), {
-    label: 'the new item, with the typed title',
-  });
-  await waitFor(() => /Weekly essay practice/.test(viewText()), { label: 'the item on screen' });
-  assert.match(viewText(), /Your own items/);
+  // A heading's panel is progress plus the commission's wording — no plan block.
+  await goto(`syllabus/official/${S2}`);
+  await waitFor(() => /Your progress/.test(viewText()), { label: 'the progress block' });
+  assert.match(viewText(), /Mark all \d+ topics at once/);
+  assert.ok(!/Your plan/.test(viewText()), 'no planning fields are offered');
+  assert.ok(!/Your items here/.test(viewText()), 'and no list of the reader\u2019s own items');
+  assert.equal($('[data-edit-plan]'), null);
+  assert.equal($('#sylAddRoot'), null);
+  assert.equal($('#sylBootstrap'), null);
+  assert.equal($('#sylImport'), null);
+  assert.equal($('#sylExport'), null);
 });
 
-test('11. with a topic open, the stage switch and My plan still switch', async () => {
+test('11. with a topic open, the stage switch still switches', async () => {
   await goto(`syllabus/official/${S1}`);
   await waitFor(() => /Official syllabus/.test(viewText()), { label: 'the open section' });
   await tap('.syl-switch-btn[data-exam="mains"]');
   await waitFor(() => $('.syl-switch-btn[data-exam="mains"]')?.classList.contains('on'), { label: 'Mains to be shown' });
   await waitFor(() => window.location.hash === '#/syllabus', { label: 'the address to drop the open topic' });
-  assert.match(viewText(), /FIRST PAPER|प्रथम प्रश्न पत्र/);
+  assert.match(viewText(), /FIRST PAPER|पंचम प्रश्न पत्र|FIFTH PAPER/, 'the Mains papers are listed');
+  assert.equal($$('#view .syl-row.selected').length, 0, 'the Prelims topic is not still open');
+
+  // The switch is Prelims and Mains: the third tab was My plan.
+  assert.deepEqual(
+    $$('.syl-switch-btn').map((b) => b.textContent.replace(/\s+/g, ' ').trim()),
+    ['Prelims', 'Mains'],
+  );
+  assert.equal($('.syl-switch-plan'), null, 'there is no plan tab');
 
   await goto(`syllabus/official/${S1}`);
   await waitFor(() => /Official syllabus/.test(viewText()), { label: 'the open section again' });
-  await tap('.syl-switch-btn[data-paper="__my_plan__"]');
-  await waitFor(() => $('.syl-switch-plan')?.classList.contains('on'), { label: 'My plan to be shown' });
-  assert.match(viewText(), /Add your own item/);
+  await tap('.syl-switch-btn[data-exam="prelims"]');
+  await waitFor(() => $('.syl-switch-btn[data-exam="prelims"]')?.classList.contains('on'), { label: 'back to Prelims' });
 });
 
-test('12. search finds the reader\u2019s own items and shows a query as text', async () => {
+test('12. search reaches the official wording and shows a query as text', async () => {
   await clean();
+  // A plan item used to be searchable. It is not part of the screen any more,
+  // so it must not appear in the results either.
   await planner.addSyllabusItem({ title: 'Zebra crossing case notes' });
   await goto('syllabus');
   await tap('.syl-switch-btn[data-exam="prelims"]');
@@ -463,17 +449,23 @@ test('12. search finds the reader\u2019s own items and shows a query as text', a
     input.dispatchEvent(new window.Event('input', { bubbles: true }));
     await sleep(260);
   };
+
   await search('Zebra');
-  await waitFor(() => $$('#view .syl-result').some((result) => /Zebra crossing case notes/.test(result.textContent)), {
-    label: 'the reader\u2019s own item in the results',
-  });
-  assert.match(viewText(), /Your own items/);
+  await waitFor(() => /No match/.test(viewText()), { label: 'no match' });
+  assert.ok(!/Zebra crossing case notes/.test(viewText()), 'an item of the reader\u2019s own is not in the results');
+  assert.ok(!/Your own items/.test(viewText()), 'and there is no second group of results');
+
+  // The official Hindi wording is still found.
+  await search('अल-नीनो');
+  await waitFor(() => $$('#view .syl-result').length > 0, { label: 'a Hindi match' });
 
   await search('<img src=x onerror=alert(1)>');
-  await waitFor(() => /No match/.test(viewText()), { label: 'no match' });
+  await waitFor(() => /No match/.test(viewText()), { label: 'no match again' });
   assert.equal($('#view img'), null, 'the query is never parsed as markup');
   assert.match(viewText(), /<img src=x onerror=alert\(1\)>/, 'it is shown as the text that was typed');
   $('[data-clear-search]') && click($('[data-clear-search]'));
+  await waitFor(() => $('#sylSearch')?.value === '', { label: 'the search to clear' });
+  await planner.deleteSyllabusItem((await planner.listSyllabus())[0].id, { withChildren: true });
 });
 
 test('13. the shared progress bars are drawn with theme fills', async () => {
@@ -536,27 +528,33 @@ test('14. marking a topic keeps it under the pointer when the summary above it c
   }
 });
 
-test('15. an item added under a topic shows in the tree at once', async () => {
+test('15. a deep link opens its topic in place, and a legacy plan link falls back to the section', async () => {
   await clean();
-  // A topic two levels down (folded by default once it has children) that no
-  // earlier test has opened.
+  // A topic two levels down, folded by default.
   const section = model.nodes
     .get(PAPER)
     .childIds.map((id) => model.nodes.get(id))
     .find((node) => node.id !== S1 && node.id !== S2 && node.childIds.length && !model.nodes.get(node.childIds[0]).childIds.length);
   const topic = section.childIds[0];
-  await goto(`syllabus/official/${topic}`);
-  await tap(`[data-add-plan-here="${topic}"]`);
-  await waitFor(() => $('#sylTitle'), { label: 'the new item dialog' });
-  fill('#sylTitle', 'Map work for this topic');
-  click($('#modalRoot [data-value="ok"]'));
-  await waitFor(() => $('#modalRoot').hidden && $(`.syl-title[data-open="${topic}"]`), { label: 'the dialog to close' });
 
-  await waitFor(() => $(`.syl-title[data-open="${topic}"]`)?.closest('li.syl-node')?.querySelector('.syl-node-plan'), {
-    label: 'the new item under its topic',
-    timeout: 1500,
+  await goto(`syllabus/official/${topic}`);
+  await waitFor(() => $(`.syl-title[data-open="${topic}"]`)?.closest('.syl-row')?.classList.contains('selected'), {
+    label: 'the topic to be open in its place',
   });
-  const row = $(`.syl-title[data-open="${topic}"]`).closest('li.syl-node');
-  assert.match(row.querySelector('.syl-node-plan')?.textContent || '', /Map work for this topic/, 'the item shows in the tree under its topic');
-  assert.equal(row.querySelector(':scope > .syl-row .syl-caret')?.getAttribute('aria-expanded'), 'true', 'and the topic is open');
+  assert.equal($('.syl-detail [data-close-detail]') !== null, true, 'its detail panel is on screen');
+  assert.match(viewText(), /Official wording/, 'with the commission\u2019s own text');
+  assert.equal(
+    $(`.syl-title[data-open="${section.id}"]`)?.closest('li.syl-node')?.querySelector('.syl-caret')?.getAttribute('aria-expanded'),
+    'true',
+    'and its heading is expanded so the row is actually visible',
+  );
+
+  // `#/syllabus/plan/<id>` was an item in My plan. The address is still out
+  // there in bookmarks and notes, so it must land somewhere sane rather than
+  // throw: the section home, with nothing selected.
+  await goto('syllabus/plan/some-legacy-item');
+  assert.ok(!/could not be displayed/i.test(viewText()), 'a legacy plan link renders without an error');
+  assert.match($('#view h1').textContent, /Syllabus/);
+  assert.equal($$('#view .syl-row.selected').length, 0, 'and selects nothing');
+  assert.ok($('.syl-tree'), 'the tree is there');
 });

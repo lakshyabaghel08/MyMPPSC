@@ -5,17 +5,22 @@
  * people actually vary per session (size and feedback timing) stay visible;
  * everything else is summarised in plain language and lives behind an
  * "Advanced settings" disclosure, pre-filled with the defaults from Settings.
- * Keeping the form in one place means Topic Practice, the Custom Test builder,
- * Smart Practice and PYQ simulations behave identically.
+ * Keeping the form in one place means Topic & Custom Practice, Smart Practice
+ * and PYQ simulations behave identically.
+ *
+ * Three rules are not in the form at all, because they are not preferences:
+ * confidence marking is always optional, a verified answer is preferred over
+ * the supplied key, and an unresolved key is judged with the supplied answer
+ * and flagged in the report. `FIXED_TEST_RULES` in core/constants.js is the
+ * single place they are decided; `buildTest()` writes them into every new test.
  */
 
 import { state } from '../../core/state.js';
-import { esc, notice, badge, dataTable, toast, infoToggle } from '../components.js';
-import { CONFIDENCE_TRACKING, ANSWER_POLICIES } from '../../core/constants.js';
+import { esc, notice, toast, infoToggle } from '../components.js';
+import { ANSWER_POLICIES, FIXED_TEST_RULES } from '../../core/constants.js';
 import { allAttempts } from '../../services/attempts.js';
 import { buildAttemptSummary } from '../../services/select.js';
 import * as tests from '../../services/tests.js';
-import { getQuestions } from '../../services/questions.js';
 import { resolveScoringRules } from '../../services/scoring.js';
 
 const LATEST_MPPSC_PRACTICE_SCHEME = 'mppsc-sse-prelims-latest-practice';
@@ -38,14 +43,68 @@ function initialConfigValues({ paper = null, defaultCount = 20, maxCount = null,
     autoSubmitOnExpiry: s.autoSubmitOnExpiry,
     allowPause: s.allowPause,
     feedbackMode: s.feedbackMode,
-    confidence: s.confidenceTracking,
-    answerPolicy: s.answerPolicy,
-    unresolvedPolicy: s.scoringPolicyWhenUnresolved,
     randomizeOptions: s.randomizeOptions,
     preferUnseen: allowRepeatOverride ? s.repeatPolicy.preferUnseen : false,
     usePaperRules: Boolean(paper && resolveScoringRules({ paper }).rules),
     scoring: { source: 'custom', ...s.defaultScoring },
   };
+}
+
+/** The one line that states the three rules no session can change. */
+export const FIXED_RULES_NOTE = `Confidence marking is always optional per question. Answers are judged with ${ANSWER_POLICIES[FIXED_TEST_RULES.answerPolicy].toLowerCase()}, and a missing or disputed key is judged with the supplied answer and flagged in the report. These three rules are the same in every test.`;
+
+/* ------------------------------------------------------- form memory ---- */
+
+/**
+ * Per-screen memory of the session form.
+ *
+ * Every practice screen re-renders itself in place whenever a filter, a
+ * checkbox or the session size changes. Rebuilding the form from the Settings
+ * defaults on each of those renders threw away what the reader had just typed:
+ * a size of 12 snapped back to 25, "learning" feedback back to "exam", a time
+ * limit back to blank, a chosen strategy back to random. The values are kept
+ * here for the lifetime of the page, one entry per screen, and re-applied to
+ * the DOM after each render — so a refresh keeps the form while a new visit to
+ * the screen still starts from the saved defaults.
+ */
+const sessionForms = new Map();
+
+/** Forget what a screen remembers about its form (used by "Reset"). */
+export function clearSessionForm(screen) {
+  if (screen) sessionForms.delete(screen);
+}
+
+function captureForm(formRoot) {
+  const values = {};
+  formRoot.querySelectorAll('input, select, textarea').forEach((el) => {
+    if (!el.id) return;
+    if (el.type === 'checkbox' || el.type === 'radio') values[el.id] = { checked: el.checked };
+    else values[el.id] = { value: el.value };
+  });
+  // A disclosure the reader opened stays open across the refresh.
+  formRoot.querySelectorAll('details').forEach((el, index) => {
+    values[`__details${index}`] = { open: el.open };
+  });
+  return values;
+}
+
+function applyForm(formRoot, values, { maxCount = null } = {}) {
+  if (!values) return;
+  formRoot.querySelectorAll('input, select, textarea').forEach((el) => {
+    const remembered = values[el.id];
+    if (!remembered) return;
+    if (el.type === 'checkbox' || el.type === 'radio') el.checked = Boolean(remembered.checked);
+    else {
+      let next = remembered.value;
+      // A remembered size must never exceed what the current filters allow.
+      if (el.type === 'number' && maxCount && Number(next) > Number(maxCount)) next = String(maxCount);
+      el.value = next;
+    }
+  });
+  formRoot.querySelectorAll('details').forEach((el, index) => {
+    const remembered = values[`__details${index}`];
+    if (remembered) el.open = Boolean(remembered.open);
+  });
 }
 
 /** Marks string, e.g. "+2 / −0.67 marks" or "+2 marks, no negative marking". */
@@ -76,7 +135,7 @@ function describeConfig(v, { allowRepeatOverride = true, paper = null } = {}) {
     v.randomizeOptions ? 'options shuffled where safe' : 'original option order',
   ];
   if (allowRepeatOverride) parts.push(v.preferUnseen ? 'unseen questions preferred' : 'repeats not restricted');
-  parts.push(v.confidence === 'off' ? 'confidence off' : `confidence ${v.confidence}`);
+  parts.push('confidence optional');
   return `This session: ${parts.join(' · ')}.`;
 }
 
@@ -136,29 +195,7 @@ export function configFields({ prefix = CONFIG_PREFIX, paper = null, defaultCoun
 
           <fieldset>
             <legend>Confidence and answer keys</legend>
-            <label class="field"><span class="label-text">Confidence marking</span>
-              <select id="${prefix}Confidence">
-                <option value="off" ${s.confidenceTracking === 'off' ? 'selected' : ''}>${esc(CONFIDENCE_TRACKING.off)}</option>
-                <option value="optional" ${s.confidenceTracking === 'optional' ? 'selected' : ''}>${esc(CONFIDENCE_TRACKING.optional)}</option>
-                <option value="required" ${s.confidenceTracking === 'required' ? 'selected' : ''}>${esc(CONFIDENCE_TRACKING.required)}</option>
-              </select>
-              <span class="hint">Optional per question. Stored separately from correctness; it never changes your marks.</span>
-            </label>
-            <label class="field"><span class="label-text">Answer policy (which key is used to judge a response)</span>
-              <select id="${prefix}Policy">
-                <option value="verified_preferred" ${s.answerPolicy === 'verified_preferred' ? 'selected' : ''}>${esc(ANSWER_POLICIES.verified_preferred)}</option>
-                <option value="supplied" ${s.answerPolicy === 'supplied' ? 'selected' : ''}>${esc(ANSWER_POLICIES.supplied)}</option>
-                <option value="verified_only" ${s.answerPolicy === 'verified_only' ? 'selected' : ''}>${esc(ANSWER_POLICIES.verified_only)}</option>
-              </select>
-              <span class="hint">The stored key is never overwritten.</span>
-            </label>
-            <label class="field"><span class="label-text">If an answer is still unresolved (missing or disputed)</span>
-              <select id="${prefix}Unresolved">
-                <option value="supplied" ${s.scoringPolicyWhenUnresolved === 'supplied' ? 'selected' : ''}>Judge it with the supplied key and flag it in the report</option>
-                <option value="verified" ${s.scoringPolicyWhenUnresolved === 'verified' ? 'selected' : ''}>Only judge it when an independently verified answer exists</option>
-                <option value="exclude" ${s.scoringPolicyWhenUnresolved === 'exclude' ? 'selected' : ''}>Exclude unresolved questions from the score entirely</option>
-              </select>
-            </label>
+            <p class="hint mt-0 mb-0">${esc(FIXED_RULES_NOTE)}</p>
           </fieldset>
 
           <fieldset>
@@ -220,9 +257,6 @@ export function readConfig(prefix = CONFIG_PREFIX, { paper = null, defaultCount 
     autoSubmitOnExpiry: checked('AutoSubmit'),
     allowPause: checked('AllowPause'),
     feedbackMode: value('Feedback')?.value || state.settings.feedbackMode,
-    confidence: value('Confidence')?.value || state.settings.confidenceTracking,
-    answerPolicy: value('Policy')?.value || state.settings.answerPolicy,
-    unresolvedPolicy: value('Unresolved')?.value || state.settings.scoringPolicyWhenUnresolved,
     randomizeOptions: checked('ShuffleOptions'),
     preferUnseen: checked('PreferUnseen'),
     usePaperRules,
@@ -236,7 +270,7 @@ export function readConfig(prefix = CONFIG_PREFIX, { paper = null, defaultCount 
  * `onCountChange` fires when the session size is edited (Smart Practice uses
  * it to rebuild its plan preview).
  */
-export function mountConfigFields({ prefix = CONFIG_PREFIX, paper = null, defaultCount = 20, maxCount = null, allowRepeatOverride = true, onCountChange = null } = {}) {
+export function mountConfigFields({ prefix = CONFIG_PREFIX, paper = null, defaultCount = 20, maxCount = null, allowRepeatOverride = true, onCountChange = null, screen = null } = {}) {
   const root = document.querySelector(`[data-config-root="${prefix}"]`);
   if (!root) return;
   const summaryEl = document.getElementById(`${prefix}Summary`);
@@ -245,14 +279,28 @@ export function mountConfigFields({ prefix = CONFIG_PREFIX, paper = null, defaul
     summaryEl.textContent = describeConfig(readConfig(prefix, { paper, defaultCount }), { allowRepeatOverride, paper });
   };
 
+  // Put back what this screen's form held before the re-render, then keep it.
+  if (screen) {
+    applyForm(root, sessionForms.get(screen), { maxCount });
+    refreshSummary();
+  }
+  const remember = () => {
+    if (screen) sessionForms.set(screen, captureForm(root));
+  };
+  remember();
+
   root.addEventListener('change', (ev) => {
+    remember();
     refreshSummary();
     if (onCountChange && ev.target?.id === `${prefix}Count`) {
       onCountChange(Number(ev.target.value) || defaultCount);
     }
   });
+  root.addEventListener('input', remember);
+  root.addEventListener('toggle', remember, true);
 
   document.getElementById(`${prefix}Reset`)?.addEventListener('click', () => {
+    clearSessionForm(screen);
     const init = initialConfigValues({ paper, defaultCount, maxCount, allowRepeatOverride });
     const setVal = (id, v) => {
       const el = document.getElementById(`${prefix}${id}`);
@@ -267,9 +315,6 @@ export function mountConfigFields({ prefix = CONFIG_PREFIX, paper = null, defaul
     setChk('AutoSubmit', init.autoSubmitOnExpiry);
     setChk('AllowPause', init.allowPause);
     setVal('Feedback', init.feedbackMode);
-    setVal('Confidence', init.confidence);
-    setVal('Policy', init.answerPolicy);
-    setVal('Unresolved', init.unresolvedPolicy);
     setChk('ShuffleOptions', init.randomizeOptions);
     setChk('PreferUnseen', init.preferUnseen);
     setChk('UsePaperRules', init.usePaperRules);
@@ -277,6 +322,7 @@ export function mountConfigFields({ prefix = CONFIG_PREFIX, paper = null, defaul
     setVal('MarksWrong', init.scoring.negativeMarksPerIncorrect);
     setVal('MarksUnanswered', init.scoring.marksForUnanswered);
     setChk('Negative', init.scoring.negativeMarkingEnabled);
+    remember();
     refreshSummary();
     toast('Advanced settings reset to your saved defaults.', 'info');
   });
@@ -299,24 +345,6 @@ export async function startPracticeTest(ctx, { kind, label, questionIds, metas =
   return test;
 }
 
-/** Availability table used by practice setup screens. */
-export function availabilityTable(availability, { subjectLabel = 'Subject' } = {}) {
-  const rows = Object.entries(availability.bySubject || {})
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 12)
-    .map(([subject, count]) => [esc(subject), String(count)]);
-  return dataTable({
-    columns: [{ label: subjectLabel }, { label: 'Matching questions', num: true }],
-    rows,
-    empty: 'No questions match the current filters.',
-    className: 'compact',
-  });
-}
-
-export function countSummary(availability, extra = '') {
-  return `<p class="small muted my-2"><strong>${availability.total} matching</strong> · ${availability.unseen} never attempted · ${availability.incorrect} answered wrong before · ${availability.skipped} skipped before${extra}</p>`;
-}
-
 export function scoringUnknownNotice(paper) {
   if (!paper) return '';
   const resolved = resolveScoringRules({ paper });
@@ -327,9 +355,4 @@ export function scoringUnknownNotice(paper) {
     return notice("No applicable marking scheme is available for this paper. Configure scoring before the test can be scored.", 'warn', { title: 'Scoring rules unknown' });
   }
   return '';
-}
-
-export async function ensureQuestionsEncodable(ids) {
-  const questions = await getQuestions(ids);
-  return questions;
 }

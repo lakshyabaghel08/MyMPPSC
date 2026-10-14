@@ -329,15 +329,17 @@ test('8. the route renders the syllabus and switches stage', async () => {
   assert.ok(!/could not be displayed/i.test(text), 'the screen rendered');
   assert.match(text, /Expand all/);
 
+  // Prelims and Mains. The third tab used to be *My plan*, which is gone.
   const stageSwitch = $$('.syl-switch-btn');
-  assert.equal(stageSwitch.length, 3, 'Prelims ↔ Mains ↔ My plan');
-  assert.deepEqual(stageSwitch.map((b) => b.textContent.replace(/\s+/g, ' ').trim().replace(/ \d+$/, '')), ['Prelims', 'Mains', 'My plan']);
+  assert.equal(stageSwitch.length, 2, 'Prelims ↔ Mains');
+  assert.deepEqual(stageSwitch.map((b) => b.textContent.replace(/\s+/g, ' ').trim().replace(/ \d+$/, '')), ['Prelims', 'Mains']);
+  assert.deepEqual(stageSwitch.map((b) => b.getAttribute('role')), ['tab', 'tab'], 'the switch is still a tab list');
   click(stageSwitch[1]);
   await waitFor(() => /प्रथम प्रश्न पत्र|FIRST PAPER/.test(viewText()), { label: 'the Mains tree' });
   assert.match(viewText(), /Study breakdown|Official/, 'Mains gets the same treatment as Prelims');
 
   click($$('.syl-switch-btn')[0]);
-  await waitFor(() => /भारत का इतिहास|प्रथम प्रश्न पत्र- सामान्य अध्ययन/.test(viewText()), { label: 'back to Prelims' });
+  await waitFor(() => /History of India|PAPER-I GENERAL STUDIES/.test(viewText()), { label: 'back to Prelims' });
 });
 
 test('9. expand, collapse and the detail panel work from the tree', async () => {
@@ -390,9 +392,20 @@ test('10. search results open the topic in its place', async () => {
   await waitFor(() => $$('#view .syl-result').length > 0, { label: 'search results' });
   assert.ok($$('#view .syl-result-path').length > 0, 'a result shows where it sits');
 
+  // The query is official Hindi; the result is labelled in the interface
+  // language, which for this line is the app's own English rendering.
+  assert.match($('#view .syl-result-text').textContent, /El Nino/);
+  assert.equal($('#view .syl-result-text').getAttribute('lang'), null, 'an English label is not tagged as Hindi');
+
   click($('#view .syl-result'));
-  await waitFor(() => /Official wording/.test(viewText()), { label: 'the topic detail' });
-  assert.match(viewText(), /अल-नीनो/);
+  await waitFor(() => $('.syl-detail'), { label: 'the topic detail' });
+  assert.match(viewText(), /Official wording/);
+  // …and the wording block is the commission's Hindi, verbatim.
+  const said = $('.syl-detail .syl-said');
+  assert.match(said.textContent, /अल-नीनो/);
+  assert.equal(said.getAttribute('lang'), 'hi', 'the official wording is marked as Hindi');
+  assert.match($('.syl-detail-title').textContent, /El Nino/, 'the panel title is the English rendering');
+  assert.match(viewText(), /About this English wording/, 'and the panel says that rendering is not official text');
   assert.equal($('#sylSearch').value, '', 'opening a result returns to the tree with the query cleared');
 });
 
@@ -400,7 +413,7 @@ test('11. marking from the screen persists, and reset asks first', async () => {
   const model = await syllabus.loadSyllabus();
   const target = model.leafIds.find((id) => id.startsWith('prelims/paper-1/s2/'));
   await goto(`syllabus-analysis/${target}`);
-  await waitFor(() => /Your plan/.test(viewText()), { label: 'the progress block' });
+  await waitFor(() => $('.syl-detail') && /Your progress/.test(viewText()), { label: 'the progress block' });
 
   const completed = $$('#view [data-status="completed"]')[0];
   assert.ok(completed, 'the status control offers Completed');
@@ -446,4 +459,173 @@ test('12. the other routes still render', async () => {
     ['Syllabus'],
     'one syllabus entry in the navigation, not two',
   );
+});
+
+/* ------------------------------------- English renderings of the syllabus -- */
+
+const translationsPath = path.join(repoRoot, 'data', 'syllabus', 'translations', 'en.json');
+const translations = JSON.parse(await readFile(translationsPath, 'utf8'));
+const DEVANAGARI = /[\u0900-\u097F]/;
+
+/** id → the notification's own object, so a rendering can be checked against the source. */
+function officialById(root) {
+  const found = new Map();
+  const walk = (value) => {
+    if (Array.isArray(value)) return value.forEach(walk);
+    if (!value || typeof value !== 'object') return;
+    if (typeof value.id === 'string' && !found.has(value.id)) found.set(value.id, value);
+    for (const child of Object.values(value)) walk(child);
+    return undefined;
+  };
+  walk(root);
+  return found;
+}
+
+test('13. every Hindi-only line has a hand-written English rendering that still matches the notification', async () => {
+  const model = await syllabus.loadSyllabus({ force: true });
+  const byId = officialById(official);
+
+  assert.equal(translations.format, 'mymppsc-syllabus-translations');
+  assert.equal(translations.language, 'en');
+  assert.equal(translations.source, 'data/syllabus/mppsc-2026-syllabus.json', 'the file names the notification it renders');
+  assert.match(translations.notice, /never written back into the official syllabus data/, 'and says what it is not');
+  assert.match(translations.notice, /Hand-written/, 'and how it was made');
+
+  // The lines that need a rendering: official Hindi with no official English.
+  const hindiOnly = [];
+  for (const node of model.nodes.values()) {
+    const wording = syllabus.wordingOf(node);
+    if (wording?.hi && !wording?.en) hindiOnly.push(node);
+  }
+  assert.ok(hindiOnly.length >= 50, `expected the notification's Hindi-only lines, found ${hindiOnly.length}`);
+
+  const expected = new Set();
+  for (const node of hindiOnly) {
+    const field = node.text?.hi ? 'text' : 'title';
+    const entry = translations.entries[node.id];
+    assert.ok(entry, `${node.id} has a rendering`);
+    assert.ok(entry[field], `${node.id}.${field} has a rendering`);
+    assert.deepEqual(Object.keys(entry), [field], `${node.id} renders the one field that needs it`);
+    const officialHi = byId.get(node.id)?.[field === 'text' ? 'text' : 'titles']?.hi ?? null;
+    assert.ok(officialHi, `${node.id} exists in the notification with Hindi wording`);
+    assert.equal(entry[field].hi, officialHi, `${node.id}: the Hindi stored beside the rendering is still the commission's, verbatim`);
+    assert.equal(entry[field].hi, syllabus.wordingOf(node).hi, `${node.id}: and the model carries the same wording`);
+    const en = entry[field].en;
+    assert.ok(typeof en === 'string' && en.trim().length >= 3, `${node.id}: the rendering is not empty`);
+    assert.ok(!DEVANAGARI.test(en), `${node.id}: the rendering is English, not a copy of the Hindi`);
+    expected.add(node.id);
+  }
+
+  // Nothing stale: no entry for a line the notification publishes in English,
+  // and none for a node that is no longer there.
+  for (const [id, entry] of Object.entries(translations.entries)) {
+    assert.ok(expected.has(id), `${id} is still a Hindi-only line`);
+    const source = byId.get(id);
+    assert.ok(source, `${id} still exists in the notification`);
+    for (const field of Object.keys(entry)) {
+      const officialField = field === 'text' ? 'text' : 'titles';
+      assert.ok(source[officialField], `${id}.${field} is a real field of that line`);
+      assert.ok(!source[officialField].en, `${id}.${field} has no official English for a rendering to sit over`);
+    }
+  }
+  assert.equal(Object.keys(translations.entries).length, expected.size, 'one entry per Hindi-only line, no more');
+
+  // A rendering sits beside the node; the official wording is never rewritten.
+  const sample = model.nodes.get(hindiOnly[0].id);
+  assert.ok(sample.translation, 'the model attaches the rendering to the node');
+  assert.ok(!syllabus.wordingOf(sample).en, 'and the official wording still has no English');
+  assert.equal(JSON.stringify(model.official), JSON.stringify(official), 'the notification inside the model is the file, unchanged');
+});
+
+test('14. English mode shows English everywhere, Hindi mode is untouched, and search takes all three wordings', async () => {
+  const model = await syllabus.loadSyllabus();
+
+  // English is the default interface language here.
+  assert.equal(syllabus.displayLanguage(), 'en');
+  let rendered = 0;
+  const untitled = [];
+  for (const node of model.nodes.values()) {
+    const label = syllabus.nodeLabel(node, 'en');
+    const wording = syllabus.wordingOf(node);
+    if (!wording?.hi && !wording?.en) {
+      // A numbered container the notification never gave a title of its own.
+      // The screen shows its number; there is no wording to render.
+      assert.equal(label.source, 'none', `${node.id} has nothing to label it`);
+      assert.equal(node.kind, 'unit', `${node.id} is a container, not a line of the syllabus`);
+      assert.ok(node.number, `${node.id} carries the number the screen shows instead`);
+      untitled.push(node);
+      continue;
+    }
+    assert.ok(label.text.trim(), `${node.id} has a label in English mode`);
+    assert.notEqual(label.source, 'hindi', `${node.id} is never bare Hindi in English mode`);
+    assert.notEqual(label.source, 'none', `${node.id} is never blank`);
+    if (label.source === 'rendering') {
+      rendered += 1;
+      assert.ok(!DEVANAGARI.test(label.text), `${node.id}: "${label.text}" reads as English`);
+    }
+    assert.equal(label.lang, 'en', `${node.id} is tagged as English in English mode`);
+  }
+  assert.ok(rendered >= 55, `${rendered} labels come from the hand-written renderings`);
+  assert.equal(untitled.length, 13, 'the untitled containers are the only nodes with no label of their own');
+
+  // The five lines the commission published in English only.
+  const englishOnly = [...model.nodes.values()].filter((n) => {
+    const wording = syllabus.wordingOf(n);
+    return wording?.en && !wording?.hi;
+  });
+  assert.equal(englishOnly.length, 5, 'five lines were published in English only');
+  for (const node of englishOnly) {
+    assert.equal(syllabus.nodeLabel(node, 'en').source, 'official', `${node.id} shows the commission's own English`);
+    assert.deepEqual(syllabus.officialWording(node), { text: syllabus.wordingOf(node).en, lang: 'en', englishOnly: true });
+    assert.equal(syllabus.nodeLabel(node, 'hi').source, 'official-only-en', `${node.id} stays English in Hindi mode too, and says why`);
+  }
+
+  // Hindi mode is exactly what it was before the renderings existed.
+  for (const node of model.nodes.values()) {
+    const label = syllabus.nodeLabel(node, 'hi');
+    const wording = syllabus.wordingOf(node);
+    if (wording?.hi) {
+      assert.equal(label.text, wording.hi, `${node.id} shows the official Hindi`);
+      assert.equal(label.source, 'official');
+      assert.equal(label.lang, 'hi');
+    } else if (wording?.en) {
+      assert.equal(label.source, 'official-only-en', `${node.id} has no Hindi to show`);
+    } else {
+      assert.equal(label.source, 'none', `${node.id} is still an untitled container`);
+    }
+  }
+
+  // All three wordings of one line are searchable, and the official Hindi wins.
+  const target = model.nodes.get('prelims/paper-1/s1/t1');
+  const rendering = translations.entries[target.id].text;
+  const byHindi = syllabus.searchSyllabus(model, 'संकल्पना एवं विचार');
+  const byRendering = syllabus.searchSyllabus(model, 'Ancient Indian Knowledge Tradition');
+  for (const [name, results] of [['official Hindi', byHindi], ['the English rendering', byRendering]]) {
+    const hit = results.find((r) => r.id === target.id);
+    assert.ok(hit, `${name} finds the line`);
+    assert.equal(hit.label, rendering.en, 'and the result is labelled in the interface language');
+    assert.equal(hit.labelSource, 'rendering');
+  }
+  assert.equal(byHindi.find((r) => r.id === target.id).matched, syllabus.wordingOf(target).hi, 'a Hindi query matches the Hindi wording');
+  assert.equal(byRendering.find((r) => r.id === target.id).matched, rendering.en, 'an English query matches the rendering');
+  // The commission's own English is searchable as well — here on one of the
+  // five lines that exist in English only, so the match can only be official.
+  const officialEn = syllabus.wordingOf(englishOnly[0]).en;
+  const word = officialEn.split(/[^A-Za-z]+/).filter((w) => w.length > 8).pop();
+  const byOfficialEnglish = syllabus.searchSyllabus(model, word);
+  const officialHit = byOfficialEnglish.find((r) => r.id === englishOnly[0].id);
+  assert.ok(officialHit, `the official English "${word}" finds ${englishOnly[0].id}`);
+  assert.equal(officialHit.matched, officialEn, 'and it matched the commission\'s wording, not a rendering');
+  assert.equal(officialHit.labelSource, 'official');
+
+  // On the screen: an English-only line says so, and the wording block stays official.
+  await goto(`syllabus/official/${englishOnly[0].id}`);
+  await waitFor(() => $('.syl-detail'), { label: 'the detail panel' });
+  assert.match(viewText(), /Published in English only/, 'the reader is told there is no Hindi for this line');
+  assert.equal($('.syl-detail-title').textContent.trim(), syllabus.wordingOf(englishOnly[0]).en.trim());
+  // The document language is English, so English wording needs no lang tag;
+  // Hindi wording does, and test 10 asserts that one.
+  assert.equal($('.syl-detail .syl-said').getAttribute('lang'), null, 'the official wording is not tagged as another language');
+  assert.equal($('.syl-detail .syl-said').textContent.trim(), officialEn.trim(), 'and it is the commission\'s own text');
+  assert.ok(!/About this English wording/.test(viewText()), 'and no unofficial-rendering note is offered for official text');
 });

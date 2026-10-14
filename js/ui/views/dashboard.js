@@ -9,7 +9,7 @@
 
 import { state } from '../../core/state.js';
 import { esc, card, badge, icon, dataTable, confirmDialog, toast, evidenceMeter } from '../components.js';
-import { fmtPct, fmtDuration, fmtDate, fmtRelative } from '../../core/util.js';
+import { fmtPct, fmtDuration, fmtDate, fmtRelative, topicPracticeHref } from '../../core/util.js';
 import { loadAnalytics, dashboardSummary, studyPriorities } from '../../services/analytics.js';
 import * as testsSvc from '../../services/tests.js';
 import { loadSyllabusWorkspace } from '../../services/syllabus-hub.js';
@@ -102,7 +102,7 @@ export default {
       `${esc(String(p.available))}`,
       p.scored ? `${esc(fmtPct(p.accuracy))} ${evidenceMeter(p.scored)}` : '<span class="soft">no evidence</span>',
       `<div class="tiny">${p.reasons.slice(0, 3).map((r) => esc(r)).join('<br />')}</div>`,
-      `<a class="btn btn-sm" href="#/topic/${encodeURIComponent(`${p.subject}||${p.topic}`)}">Practise</a>`,
+      `<a class="btn btn-sm" href="${esc(topicPracticeHref(p.subject, p.topic))}">Practise</a>`,
     ]);
 
     const attention = [];
@@ -243,8 +243,7 @@ export default {
         body: `
           <div class="row">
             <a class="btn btn-primary" href="#/test-centre">Paper simulations</a>
-            <a class="btn" href="#/topic">Topic practice</a>
-            <a class="btn" href="#/custom">Build a custom test</a>
+            <a class="btn" href="#/topic">Topic &amp; custom practice</a>
             <a class="btn" href="#/smart">Smart practice</a>
             <a class="btn" href="#/mistakes">Mistake book</a>
             <a class="btn" href="#/revision">Revision centre</a>
@@ -283,11 +282,7 @@ export default {
             ${badge(`${Math.round(curriculum.progress.completion * 100)}% complete overall`, curriculum.progress.completion > 0.6 ? 'ok' : '')}
             <a class="btn btn-sm btn-quiet" href="#/syllabus">Open the syllabus</a>
           </div>
-          <p class="small muted m-0">${curriculum.progress.official.done} marked on the commission's 2026 syllabus${
-            curriculum.progress.plan.total
-              ? `, ${curriculum.progress.plan.done} of ${curriculum.progress.plan.total} on items you added yourself`
-              : ''
-          }. Status is always something you set by hand — nothing here is inferred from your attempts.</p>`,
+          <p class="small muted m-0">${curriculum.progress.official.done} of ${curriculum.progress.official.total} marked on the commission's 2026 syllabus. Status is always something you set by hand — nothing here is inferred from your attempts.</p>`,
       })}`;
   },
 
@@ -305,7 +300,7 @@ export default {
         label: `Revision — ${capped.length} due question(s)`,
         questionIds: capped,
         metas: capped.map((id) => state.questionIndex.get(id)).filter(Boolean),
-        config: { feedbackMode: 'learning', confidence: state.settings.confidenceTracking, durationMinutes: null, randomizeOptions: state.settings.randomizeOptions },
+        config: { feedbackMode: 'learning', durationMinutes: null, randomizeOptions: state.settings.randomizeOptions },
         orderSource: 'due_first',
         selectionNotes: ['Questions whose scheduled revision date has arrived or passed.', 'Revision dates come from your recorded outcomes and confidence, with the rule shown in the Revision Centre.'],
       });

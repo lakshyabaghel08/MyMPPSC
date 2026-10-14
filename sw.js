@@ -10,7 +10,7 @@
 
 // Bump this whenever any precached file changes: the old caches are deleted on
 // activate, so a fixed build cannot keep serving a stale shell.
-const VERSION = 'v1.2.0-6';
+const VERSION = 'v1.3.0-1';
 const SHELL_CACHE = `mymppsc-shell-${VERSION}`;
 const RUNTIME_CACHE = `mymppsc-runtime-${VERSION}`;
 
@@ -47,7 +47,6 @@ const SHELL_FILES = [
   './js/ui/views/analytics.js',
   './js/ui/views/pyq-analysis.js',
   './js/ui/views/bank.js',
-  './js/ui/views/custom.js',
   './js/ui/views/dashboard.js',
   './js/ui/views/help.js',
   './js/ui/views/mistakes.js',
@@ -68,6 +67,7 @@ const SHELL_FILES = [
   './data/schema/question-bank.schema.json',
   './data/syllabus/mppsc-2026-syllabus.json',
   './data/syllabus/pyq-links.json',
+  './data/syllabus/translations/en.json',
   './data/syllabus/study-guide/prelims.json',
   './data/syllabus/study-guide/mains-papers-1-2.json',
   './data/syllabus/study-guide/mains-papers-3-4.json',

@@ -407,7 +407,7 @@ export default {
           label: 'Retry: incorrect questions from an earlier test',
           questionIds: ids,
           questionMetas: [],
-          config: { feedbackMode: 'learning', confidence: state.settings.confidenceTracking },
+          config: { feedbackMode: 'learning' },
         });
         ctx.navigate(`runner/${test.id}`);
       }

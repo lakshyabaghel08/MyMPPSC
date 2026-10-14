@@ -102,7 +102,26 @@ const requiredNav = ['dashboard', 'test-centre', 'topic', 'smart', 'mistakes', '
 for (const route of requiredNav) {
   check(navRoutes.includes(route), `navigation is missing the required destination "${route}"`);
 }
-check(navRoutes.includes('custom'), 'navigation is missing the custom test builder');
+// The Custom Test builder merged into Topic & Custom Practice. `#/custom` is
+// kept as an alias so old bookmarks and links still open the screen, so what
+// must hold is the alias, not a second navigation entry.
+const routeAliases = [...appSource.matchAll(/router\.alias\(\s*'([^']+)'\s*,\s*'([^']+)'/g)].map((m) => [m[1], m[2]]);
+const customAlias = routeAliases.find(([from]) => from === 'custom');
+check(Boolean(customAlias), 'js/app.js: #/custom must stay registered as a router alias of the merged practice screen');
+check(customAlias?.[1] === 'topic', `js/app.js: the #/custom alias must point at "topic", found "${customAlias?.[1]}"`);
+check(!navRoutes.includes('custom'), 'navigation must not offer the Custom Test builder twice: it merged into Topic & Custom Practice');
+for (const [from, to] of routeAliases) {
+  check(registered.includes(to) || to === 'topic', `js/app.js: the alias "${from}" points at "${to}", which is not a registered route`);
+  check(!navRoutes.includes(from), `js/app.js: "${from}" is an alias and must not also be a navigation destination`);
+}
+// A legacy address must highlight the destination it renders.
+const navAliasBlock = appSource.match(/const NAV_ALIASES = \{([\s\S]*?)\};/)?.[1] || '';
+const navAliases = [...navAliasBlock.matchAll(/'?([\w-]+)'?\s*:\s*'([^']+)'/g)].map((m) => [m[1], m[2]]);
+for (const legacy of ['pyq-analysis', 'syllabus-analysis', 'custom']) {
+  const hit = navAliases.find(([from]) => from === legacy);
+  check(Boolean(hit), `js/app.js: NAV_ALIASES must map the legacy route "${legacy}" onto a navigation destination`);
+  if (hit) check(navRoutes.includes(hit[1]), `js/app.js: NAV_ALIASES maps "${legacy}" to "${hit[1]}", which is not in the navigation`);
+}
 
 /* ------------------------------------------------- app.js ↔ index.html -- */
 

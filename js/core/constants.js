@@ -136,12 +136,55 @@ export const CONFIDENCE_TRACKING = {
   required: 'Required before moving on',
 };
 
+/**
+ * Three test rules that are no longer a preference: every test built from now
+ * on uses them, whatever the caller passes.
+ *
+ *  * `confidence: 'optional'` — the confidence buttons are always available and
+ *    never compulsory. They used to default to 'off', which hid a control that
+ *    revision depends on.
+ *  * `answerPolicy: 'verified_preferred'` — an independently verified answer
+ *    wins over the supplied key, and the supplied key is used otherwise.
+ *  * `unresolvedPolicy: 'supplied'` — a missing or disputed key is still judged
+ *    with the supplied answer and flagged in the report rather than dropped.
+ *
+ * They are frozen here so that no screen, service or restored backup can drift
+ * back to a per-user setting. `scoring.js` keeps supporting every policy value:
+ * tests stored before this change carry their own and must still finish and
+ * report the way they were scored.
+ */
+export const FIXED_TEST_RULES = Object.freeze({
+  confidence: 'optional',
+  answerPolicy: 'verified_preferred',
+  unresolvedPolicy: 'supplied',
+});
+
+/**
+ * Settings keys that were retired. They are stripped on load and on backup
+ * restore so an old preference file cannot resurrect a rule that is now fixed
+ * (`confidenceTracking`, `answerPolicy`, `scoringPolicyWhenUnresolved`) or a
+ * control that never did anything (`warnOnSubmitUnanswered`,
+ * `dailyTaskTarget`, `repeatPolicy.allowRepeatsInCustom`).
+ */
+export const RETIRED_SETTINGS_KEYS = Object.freeze(['confidenceTracking', 'answerPolicy', 'scoringPolicyWhenUnresolved', 'warnOnSubmitUnanswered', 'dailyTaskTarget']);
+
+/** Retired keys nested inside a settings sub-object. */
+export const RETIRED_SETTINGS_NESTED = Object.freeze({ repeatPolicy: ['allowRepeatsInCustom'] });
+
+/** Remove every retired key from a settings object, in place. */
+export function stripRetiredSettings(settings) {
+  if (!settings || typeof settings !== 'object') return settings;
+  for (const key of RETIRED_SETTINGS_KEYS) delete settings[key];
+  for (const [parent, keys] of Object.entries(RETIRED_SETTINGS_NESTED)) {
+    if (!settings[parent] || typeof settings[parent] !== 'object') continue;
+    for (const key of keys) delete settings[parent][key];
+  }
+  return settings;
+}
+
 export const DEFAULT_SETTINGS = Object.freeze({
   language: 'en',
   feedbackMode: 'exam',
-  confidenceTracking: 'off',
-  answerPolicy: 'verified_preferred',
-  scoringPolicyWhenUnresolved: 'supplied', // supplied | verified | exclude
   // Default scoring for every quiz type is the current MPPSC prelims pattern:
   // +3 for a correct answer, −1 for a wrong answer, 0 for unanswered. Papers
   // with their own stored rules still use those rules; this default fills in
@@ -154,7 +197,6 @@ export const DEFAULT_SETTINGS = Object.freeze({
     marksForUnanswered: 0,
   },
   showTimer: true,
-  warnOnSubmitUnanswered: true,
   autoSubmitOnExpiry: true,
   allowPause: true,
   randomizeOptions: false, // default custom-test option
@@ -170,12 +212,10 @@ export const DEFAULT_SETTINGS = Object.freeze({
   },
   repeatPolicy: {
     preferUnseen: true,
-    allowRepeatsInCustom: true,
     cooldownDays: 3,
     unseenRatio: 0.7, // smart practice: target share of unseen questions
     nearDuplicateThreshold: 0.62,
   },
-  dailyTaskTarget: 3,
   theme: 'system',
   density: 'comfortable',
 });

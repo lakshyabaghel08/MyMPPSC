@@ -15,7 +15,7 @@ const KEYBOARD = [
   ['P / ←', 'Previous question'],
   ['F', 'Toggle “mark for review” on the current question'],
   ['U', 'Clear the selected response'],
-  ['C', 'Cycle confidence marking (when enabled)'],
+  ['C', 'Cycle confidence marking (always available, always optional)'],
   ['← / → / Home / End', 'Move across tabs in tabbed views'],
   ['Esc', 'Close a dialog or mobile navigation drawer'],
 ];
@@ -27,11 +27,12 @@ export default {
     const journeys = [
       ['1. Get a bank in', 'The bundled MPPSC 2013–2024 bank loads itself when the app starts, so there is nothing to import. Other banks: Question Bank & Imports → choose a JSON file, validated and summarised <em>before</em> anything is written, with invalid records rejected with reasons and never dropped silently. The demonstration bank is synthetic and labelled everywhere.'],
       ['2. Take a paper simulation', 'PYQ Test Centre → pick a paper → start. Questions run in the original order with the paper’s duration. The palette, timer, mark-for-review, autosave and resume all work while the tab is open or after a refresh.'],
-      ['3. Read the report', 'Every submitted test produces a report: score from the stored rules, outcome counts, per-question review with filters, weak areas, time per question, confidence cross-check and the exact key used for each answer.'],
-      ['4. Work the mistakes', 'The Mistake Book collects wrong answers, skips, flagged questions, repeated mistakes and correct-but-guessed answers. Each entry shows the attempt history; resolving keeps the history.'],
-      ['5. Let revision schedule itself', 'Each attempt schedules the question from its own outcome, your confidence and how long you took. The Revision Centre shows due/overdue/upcoming questions together with the numeric basis for every date.'],
-      ['6. Plan and track', 'Syllabus holds the commission\u2019s revised 2026 syllabus as the spine, and your own items under the heading they belong to, badged as yours. Status, priority, target date and notes work on either, and roll up into one figure. The app ships no plan of its own and marks nothing for you; an item it cannot place waits in <em>My plan</em> rather than being guessed into the tree.'],
-      ['7. Back it up', 'Settings &amp; Backup exports a single JSON file with everything and validates any file before restoring it.'],
+      ['3. Practise a topic, or build your own set', 'Topic &amp; Custom Practice is one screen for both: tick any subjects and topics and the pool is everything you tick — tick nothing and it is the whole bank. Every count belongs to its own subject and the line under it says how many questions match. Attempt history, years, papers, question types, subtopic and search sit behind <em>Narrow further</em>. One subject with at most one topic is recorded as a topic session; anything wider is recorded as a custom set, never as an authentic paper. A strategy decides which questions are picked, and <em>shuffle question order</em> decides how they are arranged — off means paper order: year, then paper, then question number.'],
+      ['4. Read the report', 'Every submitted test produces a report: score from the stored rules, outcome counts, per-question review with filters, weak areas, time per question, confidence cross-check and the exact key used for each answer.'],
+      ['5. Work the mistakes', 'The Mistake Book collects wrong answers, skips, flagged questions, repeated mistakes and correct-but-guessed answers. Each entry shows the attempt history; resolving keeps the history.'],
+      ['6. Let revision schedule itself', 'Each attempt schedules the question from its own outcome, your confidence and how long you took. The Revision Centre shows due/overdue/upcoming questions together with the numeric basis for every date.'],
+      ['7. Track the syllabus', 'Syllabus holds the commission\u2019s revised 2026 syllabus as the spine, in its own wording and hierarchy. Mark any topic with one click — not started, in progress, completed, revised — or a whole section at once, and the headings, papers and overview add up what you marked. The app ships no plan of its own, marks nothing for you, and shows no figure that is not your own marking. Where the commission published a line in Hindi only, the English interface shows a rendering written for this app and says that it is not official text; the <em>Official wording</em> block is always the commission\u2019s own.'],
+      ['8. Back it up', 'Settings &amp; Backup exports a single JSON file with everything and validates any file before restoring it.'],
     ];
 
     const definitions = [
@@ -61,7 +62,7 @@ export default {
       'Open a question with a missing or disputed key and confirm it is labelled, and that the report shows which key was used.',
       'Answer a question incorrectly, submit, and check that the Mistake Book and the Revision Centre both picked it up.',
       'Attempt a question twice with different results and confirm the report distinguishes first-attempt accuracy from overall accuracy.',
-      'Turn on confidence marking, mark a correct answer as “guessed”, and confirm revision brings it back sooner than a confident correct answer.',
+      'Mark a correct answer as “guessed” — confidence marking is always available and always optional — and confirm revision brings it back sooner than a confident correct answer.',
       'Export a backup, then run the round-trip self-test in Settings → Backup & restore.',
       'Turn the network off and confirm the app still opens and works.',
     ];
@@ -93,7 +94,7 @@ export default {
                 <li><strong>Supplied key</strong> — what the source said. It is never overwritten.</li>
                 <li><strong>Verified answer</strong> — an additional record you can add with evidence.</li>
                 <li><strong>Dispute flag</strong> — marks a key as contested; the report states which key judged each answer.</li>
-                <li><strong>Policy</strong> — you choose in Settings whether scoring prefers the verified answer, uses the stored key, or only judges verified questions.</li>
+                <li><strong>Three fixed rules</strong> — confidence marking is always optional per question; a verified answer is preferred over a supplied key; and a missing or disputed key is judged with the supplied answer and flagged in the report. They are the same in every test, so results stay comparable, and they are stated on the session form rather than offered as settings. Tests taken before they were fixed keep the rules they were taken with.</li>
               </ul>
               <p class="small">If a paper’s scoring rules are unknown, the app refuses to score until you configure them, and it says so on the paper card and again at submission.</p>`,
           })}

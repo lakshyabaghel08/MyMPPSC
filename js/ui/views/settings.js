@@ -7,6 +7,7 @@
  */
 
 import { APP_VERSION, DB_NAME, DB_VERSION, SUPPORTED_SCHEMA_VERSIONS, STORES } from '../../core/constants.js';
+import { FIXED_RULES_NOTE } from './shared.js';
 import { state, saveSettings, resetSettings, loadSettings, refreshQuestionIndex } from '../../core/state.js';
 import * as db from '../../core/db.js';
 import { esc, badge, card, tile, dataTable, toast, openModal, confirmDialog, tabs, mountTabs } from '../components.js';
@@ -47,26 +48,20 @@ export default {
         title: 'Language, theme and defaults',
         body: `
           <div class="field-row">
-            ${selectField('setLanguage', 'Interface and question language', { en: 'English (default)', hi: 'हिन्दी where available' }, s.language, 'Questions are shown in this language when the variant exists. Hindi text is never translated or altered.')}
+            ${selectField('setLanguage', 'Interface and question language', { en: 'English (default)', hi: 'हिन्दी where available' }, s.language, 'Questions are never translated: they are shown in this language when the bank has that variant. The syllabus shows labelled English renderings where the commission published Hindi only, and always its own Hindi wording under “Official wording”.')}
             ${selectField('setTheme', 'Theme', { light: 'Light', dark: 'Dark', system: 'Follow the system' }, s.theme)}
             ${selectField('setDensity', 'Density', { comfortable: 'Comfortable', compact: 'Compact' }, s.density)}
           </div>
           <div class="field-row">
             ${selectField('setFeedback', 'Default feedback timing', { exam: 'Exam simulation (reveal after submission)', learning: 'Learning mode (reveal immediately)' }, s.feedbackMode)}
-            ${selectField('setConfidence', 'Confidence marking', { off: 'Off', optional: 'Optional', required: 'Required' }, s.confidenceTracking, 'Stored separately from correctness. Correct-but-guessed answers return sooner in revision.')}
-            ${selectField('setPolicy', 'Answer policy', { verified_preferred: 'Use the verified answer when it exists', supplied: 'Always use the stored answer key', verified_only: 'Only judge questions with a verified answer' }, s.answerPolicy, 'The stored key is never overwritten.')}
-          </div>
-          <div class="field-row">
-            ${selectField('setUnresolved', 'If an answer is missing or disputed', { supplied: 'Judge with the stored key and flag it', verified: 'Only judge when independelty verified', exclude: 'Exclude from the score' }, s.scoringPolicyWhenUnresolved)}
-            ${selectField('setDailyTarget', 'Daily task target', { 1: '1 task', 2: '2 tasks', 3: '3 tasks', 4: '4 tasks', 5: '5 tasks' }, s.dailyTaskTarget)}
           </div>
           <div class="stack">
             ${check('setTimer', 'Show the countdown timer by default', s.showTimer)}
             ${check('setAutoSubmit', 'Submit automatically when time runs out', s.autoSubmitOnExpiry)}
             ${check('setAllowPause', 'Allow pausing a test (the clock stops while paused)', s.allowPause)}
-            ${check('setWarnUnanswered', 'Warn me when submitting with unanswered questions', s.warnOnSubmitUnanswered)}
             ${check('setShuffleOptions', 'Randomise option order where it is safe (never for matching questions)', s.randomizeOptions)}
-          </div>`,
+          </div>
+          <p class="hint">${esc(FIXED_RULES_NOTE)}</p>`,
       })}
 
       ${card({
@@ -91,7 +86,7 @@ export default {
             ${numberField('setUnseenRatio', 'Target share of unseen questions in smart practice (0–1)', s.repeatPolicy.unseenRatio, { step: '0.05', min: 0, max: 1 })}
             ${numberField('setNearDup', 'Near-duplicate similarity threshold (0–1)', s.repeatPolicy.nearDuplicateThreshold, { step: '0.01', min: 0.3, max: 0.95, hint: 'Used when reporting possible duplicates at import. A higher value reports fewer matches.' })}
           </div>
-          ${check('setAllowRepeatsCustom', 'Allow repeats inside custom tests', s.repeatPolicy.allowRepeatsInCustom)}`,
+          <p class="tiny muted mb-0">Repeats are handled by the cooldown above and by “prefer unseen”; there is no separate rule for custom sets.</p>`,
       })}`;
 
     const revisionTab = `
@@ -249,14 +244,9 @@ export default {
     bindSelect('setTheme', (v) => patchSetting({ theme: v }));
     bindSelect('setDensity', (v) => patchSetting({ density: v }));
     bindSelect('setFeedback', (v) => patchSetting({ feedbackMode: v }));
-    bindSelect('setConfidence', (v) => patchSetting({ confidenceTracking: v }));
-    bindSelect('setPolicy', (v) => patchSetting({ answerPolicy: v }));
-    bindSelect('setUnresolved', (v) => patchSetting({ scoringPolicyWhenUnresolved: v }));
-    bindSelect('setDailyTarget', (v) => patchSetting({ dailyTaskTarget: Number(v) || 3 }));
     bindCheck('setTimer', (v) => patchSetting({ showTimer: v }));
     bindCheck('setAutoSubmit', (v) => patchSetting({ autoSubmitOnExpiry: v }));
     bindCheck('setAllowPause', (v) => patchSetting({ allowPause: v }));
-    bindCheck('setWarnUnanswered', (v) => patchSetting({ warnOnSubmitUnanswered: v }));
     bindCheck('setShuffleOptions', (v) => patchSetting({ randomizeOptions: v }));
 
     bindNumber('setMarksCorrect', (v) => patchSetting({ defaultScoring: { marksPerCorrect: v } }));
@@ -265,7 +255,6 @@ export default {
     bindCheck('setNegative', (v) => patchSetting({ defaultScoring: { negativeMarkingEnabled: v } }));
 
     bindCheck('setPreferUnseen', (v) => patchSetting({ repeatPolicy: { preferUnseen: v } }));
-    bindCheck('setAllowRepeatsCustom', (v) => patchSetting({ repeatPolicy: { allowRepeatsInCustom: v } }));
     bindNumber('setCooldown', (v) => patchSetting({ repeatPolicy: { cooldownDays: Math.max(0, v) } }));
     bindNumber('setUnseenRatio', (v) => patchSetting({ repeatPolicy: { unseenRatio: v } }));
     bindNumber('setNearDup', (v) => patchSetting({ repeatPolicy: { nearDuplicateThreshold: v } }));

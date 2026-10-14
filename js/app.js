@@ -18,7 +18,6 @@ import testCentreView from './ui/views/testcentre.js';
 import runnerView from './ui/views/runner.js';
 import reportView from './ui/views/report.js';
 import topicView from './ui/views/topic.js';
-import customView from './ui/views/custom.js';
 import smartView from './ui/views/smart.js';
 import mistakesView from './ui/views/mistakes.js';
 import revisionView from './ui/views/revision.js';
@@ -33,8 +32,12 @@ import helpView from './ui/views/help.js';
 const NAV = [
   { route: 'dashboard', label: 'Dashboard', icon: 'dashboard', group: 'Workspace' },
   { route: 'test-centre', label: 'PYQ Test Centre', icon: 'test-centre', group: 'Practice' },
-  { route: 'topic', label: 'Topic Practice', icon: 'topic', group: 'Practice' },
-  { route: 'custom', label: 'Custom Test', icon: 'custom', group: 'Practice' },
+  // Topic Practice and the Custom Test builder were two screens over the same
+  // question bank with the same filters, the same three selection strategies
+  // and the same session form; one was simply the single-select version of the
+  // other. They are one screen. Picking a single topic is the narrow case of
+  // picking any set of subjects and topics.
+  { route: 'topic', label: 'Topic & Custom Practice', icon: 'topic', group: 'Practice' },
   { route: 'smart', label: 'Smart Practice', icon: 'smart', group: 'Practice' },
   { route: 'mistakes', label: 'Mistake Book', icon: 'mistakes', badge: 'mistakes', group: 'Improve' },
   { route: 'revision', label: 'Revision Centre', icon: 'revision', badge: 'revision', group: 'Improve' },
@@ -48,6 +51,21 @@ const NAV = [
   { route: 'settings', label: 'Settings & Backup', icon: 'settings', group: 'System' },
   { route: 'help', label: 'Help & How it works', icon: 'help', group: 'System' },
 ];
+
+/**
+ * Route names that are not navigation destinations of their own but must still
+ * highlight one. `#/pyq-analysis` and `#/syllabus-analysis` are the addresses
+ * the curated syllabus chips and older bookmarks use for sections that were
+ * merged into Insights and Syllabus; `#/custom` is the old Custom Test address,
+ * now an alias of the merged practice screen. Without this map those routes
+ * rendered the right screen with nothing selected in the navigation, which reads
+ * as "you are nowhere".
+ */
+const NAV_ALIASES = {
+  'pyq-analysis': 'analytics',
+  'syllabus-analysis': 'syllabus',
+  custom: 'topic',
+};
 
 let router = null;
 let drawerUsedAsModal = false;
@@ -143,8 +161,9 @@ function renderNav() {
 }
 
 function markActiveNav(routeName) {
+  const destination = NAV_ALIASES[routeName] || routeName;
   document.querySelectorAll('.nav-link').forEach((btn) => {
-    if (btn.dataset.route === routeName) btn.setAttribute('aria-current', 'page');
+    if (btn.dataset.route === destination) btn.setAttribute('aria-current', 'page');
     else btn.removeAttribute('aria-current');
   });
 }
@@ -314,7 +333,6 @@ async function quickPractice() {
     orderSource: 'shuffled',
     config: {
       feedbackMode: 'learning',
-      confidence: state.settings.confidenceTracking,
       durationMinutes: null,
       randomizeOptions: state.settings.randomizeOptions,
     },
@@ -460,7 +478,6 @@ async function boot() {
   router.register('runner', runnerView);
   router.register('report', reportView);
   router.register('topic', topicView);
-  router.register('custom', customView);
   router.register('smart', smartView);
   router.register('mistakes', mistakesView);
   router.register('revision', revisionView);
@@ -475,6 +492,10 @@ async function boot() {
   router.register('bank', bankView);
   router.register('settings', settingsView);
   router.register('help', helpView);
+  // `#/custom` (and anything under it) opens the merged practice screen. It is
+  // an alias rather than a registration so the address, the view and the
+  // highlighted navigation item all agree on one destination.
+  router.alias('custom', 'topic');
 
   renderNav();
   wireGlobalActions();
