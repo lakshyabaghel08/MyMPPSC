@@ -317,18 +317,6 @@ export function countSummary(availability, extra = '') {
   return `<p class="small muted my-2"><strong>${availability.total} matching</strong> · ${availability.unseen} never attempted · ${availability.incorrect} answered wrong before · ${availability.skipped} skipped before${extra}</p>`;
 }
 
-export function incompletePaperNotice(paperSummary) {
-  if (!paperSummary) return '';
-  if (paperSummary.complete === false) {
-    return notice(
-      `This paper declares <strong>${esc(String(paperSummary.declared))}</strong> questions but only <strong>${esc(String(paperSummary.present))}</strong> are stored locally (${esc(String(paperSummary.missingCount))} missing). The simulation will include only the questions that exist; nothing is invented to fill the gap.`,
-      'warn',
-      { title: 'Incomplete paper' },
-    );
-  }
-  return '';
-}
-
 export function scoringUnknownNotice(paper) {
   if (!paper) return '';
   const resolved = resolveScoringRules({ paper });

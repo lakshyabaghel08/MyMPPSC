@@ -207,7 +207,6 @@ export async function refreshQuestionIndex({ silent = false } = {}) {
       demonstration: Boolean(q.is_demonstration),
       fingerprint: q.fingerprint,
       text_key: q.text_key,
-      paper_incomplete: Boolean(q.paper_incomplete),
       updated_at: q.updated_at,
     });
   }

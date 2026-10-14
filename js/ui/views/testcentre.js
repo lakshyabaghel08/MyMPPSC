@@ -27,7 +27,7 @@ import { fmtDate, fmtMarks, fmtPct, fmtClock } from '../../core/util.js';
 import { paperSummary } from '../../services/select.js';
 import * as tests from '../../services/tests.js';
 import { resolveScoringRules } from '../../services/scoring.js';
-import { configFields, readConfig, mountConfigFields, incompletePaperNotice, scoringUnknownNotice, startPracticeTest } from './shared.js';
+import { configFields, readConfig, mountConfigFields, scoringUnknownNotice, startPracticeTest } from './shared.js';
 import { shuffle } from '../../core/util.js';
 
 function paperCard(paper, summary) {
@@ -38,7 +38,6 @@ function paperCard(paper, summary) {
   const isLatestPractice = resolved.schemeId === 'mppsc-sse-prelims-latest-practice' && !paper.user_scoring_override;
   const flags = [];
   if (summary.placeholder) flags.push(badge('paper metadata missing', 'bad'));
-  if (summary.complete === false) flags.push(badge('incomplete paper', 'warn'));
   if (!hasScoring) flags.push(badge('scoring rules unknown', 'warn'));
   if (summary.disputed) flags.push(badge(`${summary.disputed} disputed answer(s)`, 'bad'));
   if (summary.missingAnswers) flags.push(badge(`${summary.missingAnswers} question(s) without a key`, 'warn'));
@@ -65,7 +64,7 @@ function paperCard(paper, summary) {
             ${isLatestPractice ? badge('latest pattern · practice only', 'info') : ''}
           </div>
           <p class="muted small m-0">${esc(facts)}${flags.length ? ` · ${flags.join(' ')}` : ''}</p>
-          ${infoToggle('Paper details', `<p class="small m-0">${esc(paper.exam || 'Examination not stated')}${paper.year ? ` · ${esc(String(paper.year))}` : ''}${paper.set_code ? ` · set ${esc(paper.set_code)}` : ''}${paper.paper_code ? ` · ${esc(paper.paper_code)}` : ''}<br />${esc(scoringText)}${summary.declared !== null && summary.declared !== undefined ? `<br />The paper declares ${summary.declared} question(s); ${questions} are stored.` : ''}${summary.bilingual ? `<br />${summary.bilingual} question(s) have both English and Hindi text.` : ''}</p>`)}
+          ${infoToggle('Paper details', `<p class="small m-0">${esc(paper.exam || 'Examination not stated')}${paper.year ? ` · ${esc(String(paper.year))}` : ''}${paper.set_code ? ` · set ${esc(paper.set_code)}` : ''}${paper.paper_code ? ` · ${esc(paper.paper_code)}` : ''}<br />${esc(scoringText)}${summary.bilingual ? `<br />${summary.bilingual} question(s) have both English and Hindi text.` : ''}</p>`)}
         </div>
         <div class="row tight">
           <button class="btn btn-primary" type="button" data-action="start-paper" data-paper="${esc(paper.paper_id)}" ${ready ? '' : 'disabled'}>Start full simulation</button>
@@ -102,10 +101,9 @@ export default {
     const totals = paperSummaries.reduce(
       (acc, { summary }) => ({
         questions: acc.questions + summary.present,
-        complete: acc.complete + (summary.complete ? 1 : 0),
         unknownRules: acc.unknownRules + (summary.scoringKnown ? 0 : 1),
       }),
-      { questions: 0, complete: 0, unknownRules: 0 },
+      { questions: 0, unknownRules: 0 },
     );
 
     return `
@@ -114,7 +112,7 @@ export default {
       ${infoToggle('About scoring and these papers', '<p class="small m-0">Full-paper practice follows the stored question order. Source metadata is shown separately from practice scoring: the latest reported MPPSC pattern (+3/−1/0) is applied to the bundled 2013–2024 papers by policy, not as a claim about each paper’s historical rules. Everything is stored in local IndexedDB on this device.</p>')}
 
       <div class="grid tiles mb-4">
-        ${tile({ label: 'Papers stored', value: String(papers.length), sub: `${totals.complete} with a complete question set` })}
+        ${tile({ label: 'Papers stored', value: String(papers.length), sub: 'ready for a full simulation' })}
         ${tile({ label: 'Questions available', value: String(totals.questions), sub: `${state.subjects.length} subject groups` })}
         ${tile({ label: 'Rules unknown', value: String(totals.unknownRules), sub: 'configure before scoring', tone: totals.unknownRules ? 'warn' : '' })}
         ${tile({ label: 'Unfinished tests', value: String(unfinished.length), sub: unfinished.length ? 'resume below' : 'nothing pending', tone: unfinished.length ? 'accent' : '' })}
@@ -200,7 +198,6 @@ export default {
           title: `${paper.paper_name || paper.paper_id} — details`,
           wide: true,
           body: `
-            ${incompletePaperNotice(summary)}
             ${scoringUnknownNotice(paper)}
             ${notice(
               `Import validation: ${esc(paper.import_validation?.status || 'unknown')} ${paper.import_validation?.notes ? `— ${esc(paper.import_validation.notes)}` : ''}<br />
@@ -228,7 +225,6 @@ export default {
           title: `Start full simulation — ${paper.paper_name || paper.paper_id}`,
           wide: true,
           body: `
-            ${incompletePaperNotice(summary)}
             ${scoringUnknownNotice(paper)}
             <p class="small">${paper.question_order.length} questions, scored +3 / −1 / 0.</p>
             ${configFields({ paper, defaultCount: paper.question_order.length, allowCustomScoring: true, allowRepeatOverride: false, maxCount: paper.question_order.length })}

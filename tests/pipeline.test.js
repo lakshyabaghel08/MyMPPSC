@@ -337,7 +337,7 @@ test('the committed bank is the sanitised one: scheme written, no provenance, no
   assert.equal('classification_meta' in bank, false, 'the shipped file describes the questions, not the build that produced them');
   assert.equal(bank.questions.some((q) => 'classification_source' in q || 'classification_confidence' in q), false, 'no per-record label provenance in the shipped file');
 
-  assert.equal(bank.questions.length, 1171);
+  assert.equal(bank.questions.length, 1200);
   assert.equal(bank.papers.length, 12);
   assert.equal('generator' in bank, false);
   for (const paper of bank.papers) {

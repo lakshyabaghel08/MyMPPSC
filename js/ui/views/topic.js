@@ -238,7 +238,7 @@ export default {
         questionIds: pick.selected.map((m) => m.id),
         metas: pick.selected,
         config: { ...config, usePaperRules: false, scoring: config.scoring || { source: 'custom', ...state.settings.defaultScoring } },
-        orderSource: config.randomizeQuestions ? 'shuffled' : 'as_selected',
+        orderSource: strategy === 'random' ? 'shuffled' : 'as_selected',
         selectionNotes: pick.notes,
       });
     });

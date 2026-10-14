@@ -94,7 +94,6 @@ async function refreshIndexEntry(question) {
     demonstration: Boolean(question.is_demonstration),
     fingerprint: question.fingerprint,
     text_key: question.text_key,
-    paper_incomplete: Boolean(question.paper_incomplete),
     updated_at: question.updated_at,
   });
   emit('question:updated', { id: question.id });

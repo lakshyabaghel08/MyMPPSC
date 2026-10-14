@@ -25,7 +25,10 @@ test('the final quality-audit report describes the complete bank and applied sco
   ]);
 
   assert.equal(summary.status, 'applied');
-  assert.equal(bank.questions.length, 1171);
+  // The audit describes the 1,171 extracted records; 29 app-written model
+  // questions (metadata.model_question) sit alongside them in the bank.
+  assert.equal(bank.questions.length, 1200);
+  assert.equal(bank.questions.filter((q) => q.metadata?.model_question).length, 29);
   assert.equal(bank.papers.length, 12);
   assert.equal(baseline.length, 1171);
   assert.equal(finalRows.length, 1171);
@@ -152,6 +155,7 @@ test('all historical question data and all 2019–2024 records are preserved', a
   const beforeById = new Map(baseline.map((q) => [q.id, q]));
   const finalById = new Map(finalRows.map((q) => [q.id, q]));
   for (const q of bank.questions) {
+    if (q.metadata?.model_question) continue; // app-written additions are outside the audit's scope
     const before = beforeById.get(q.id);
     const final = finalById.get(q.id);
     assert.ok(before && final, `${q.id}: baseline/final record is present`);

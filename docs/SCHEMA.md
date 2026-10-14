@@ -43,7 +43,7 @@ node tools/build-bank.mjs --validate my-bank.json   # validate before importing
 | `paper_code` | string\|null | e.g. `GS-I`. |
 | `set_code` | string\|null | Booklet set (`A`, `B`, …). Sets are separate papers, each with its own key. |
 | `language` | string\|null | `en`, `hi` or `bilingual`. |
-| `original_question_count` | number\|null | How many questions the paper really contains. **Do not fake this to match what you stored**: a mismatch is reported as an incomplete paper and the simulation says so. |
+| `original_question_count` | number\|null | How many questions the printed paper contains, recorded as source metadata. **Do not fake this to match what you stored** — but note the app no longer tags papers complete or incomplete; a simulation simply runs the questions stored for the paper. |
 | `duration_minutes` | number\|null | Drives the countdown for full simulations. `null` = no time limit. |
 | `total_marks` | number\|null | Informational. |
 | `scoring` | object | See below. **Never guess these values.** |
@@ -123,7 +123,7 @@ content):
 | --- | --- |
 | `fingerprint` | Hash over normalised question text + option texts, used for exact-duplicate detection. |
 | `validation_status`, `validation_notes` | Outcome of the checks above. |
-| `paper_incomplete`, `paper_order_index` | Whether the paper is missing questions, and the question's position in the stored order. |
+| `paper_order_index` | The question's position in the paper's stored order. |
 | `import_history[]` | Every import/update that touched the record, with the bank id and time. |
 | `imported_at`, `created_at`, `updated_at` | Timestamps. |
 

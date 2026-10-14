@@ -193,7 +193,7 @@ export default {
           label: 'Mistake retry — single question',
           questionIds: [id],
           metas: [state.questionIndex.get(id)].filter(Boolean),
-          config: { feedbackMode: 'learning', confidence: 'optional', durationMinutes: null },
+          config: { feedbackMode: 'learning', confidence: state.settings.confidenceTracking, durationMinutes: null },
         });
         return test;
       }

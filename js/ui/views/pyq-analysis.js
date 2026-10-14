@@ -401,10 +401,6 @@ export async function renderBankPanel(ctx) {
                 ]),
                 className: 'compact',
               }),
-              footer:
-                summary.papersComplete < summary.papers
-                  ? `${summary.papers - summary.papersComplete} of the stored paper(s) are marked incomplete: the printed paper had more questions than are stored here, so its counts are of what is available.`
-                  : 'Every stored paper is recorded as complete.',
             })
           : ''
       }

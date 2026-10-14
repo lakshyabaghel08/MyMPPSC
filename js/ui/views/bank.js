@@ -57,7 +57,7 @@ function importSummary(analysis) {
     <div class="grid tiles">
       ${tile({ label: 'Bank', value: esc(report.meta.bankName || report.meta.bankId || 'unnamed'), sub: `schema ${esc(report.meta.schemaVersion)} · ${esc(report.meta.bankId || 'no bank id')}` })}
       ${tile({ label: 'Questions in file', value: String(stats.questions), sub: `${stats.bilingual} bilingual · ${stats.englishOnly} English-only · ${stats.hindiOnly} Hindi-only` })}
-      ${tile({ label: 'Papers in file', value: String(stats.papers), sub: `${stats.incompletePapers} incomplete · ${stats.unknownScoringPapers} without scoring rules` })}
+      ${tile({ label: 'Papers in file', value: String(stats.papers), sub: `${stats.unknownScoringPapers} without scoring rules` })}
       ${tile({ label: 'Will be added', value: String(comparison.newQuestions), sub: `${comparison.alreadyPresent} id(s) already stored · ${comparison.newPapers} new paper(s)` })}
       ${tile({ label: 'Records rejected', value: String(stats.rejectedRecords), sub: 'invalid records are listed below, never silently dropped' })}
       ${tile({ label: 'Warnings', value: String(report.warnings.length), sub: `${report.errors.length} error(s) · ${report.fatal.length} blocking problem(s)` })}
@@ -489,7 +489,6 @@ export default {
     const missingKeys = metas.filter((m) => !m.hasSuppliedAnswer && !m.hasVerifiedAnswer);
     const disputed = metas.filter((m) => m.disputed);
     const withoutExplanation = metas.filter((m) => !m.hasExplanation);
-    const incompletePapers = papers.filter((p) => p.original_question_count !== null && p.original_question_count !== undefined && p.original_question_count !== metas.filter((m) => m.paper_id === p.paper_id).length);
     const unknownRulesPapers = papers.filter((p) => !p.scoring?.rules_known);
     const placeholderPapers = papers.filter((p) => p.placeholder);
 
@@ -500,18 +499,17 @@ export default {
         ${tile({ label: 'Explanations present', value: String(summary.withExplanation), sub: `${withoutExplanation.length} without an explanation`, tone: withoutExplanation.length ? 'warn' : 'ok' })}
         ${tile({ label: 'Unclassified questions', value: String(summary.unclassified), sub: 'no subject/topic — excluded from topic analytics', tone: summary.unclassified ? 'warn' : 'ok' })}
         ${tile({ label: 'Papers with unknown rules', value: String(unknownRulesPapers.length), sub: 'cannot be scored until configured', tone: unknownRulesPapers.length ? 'warn' : 'ok' })}
-        ${tile({ label: 'Incomplete papers', value: String(incompletePapers.length), sub: 'fewer stored questions than the paper declares', tone: incompletePapers.length ? 'warn' : 'ok' })}
       </div>
 
       ${card({
         title: 'Papers',
         body: dataTable({
-          columns: [{ label: 'Paper' }, { label: 'Stored / declared', num: true }, { label: 'Scoring policy (practice where noted)' }, { label: 'Origin' }, { label: '' }],
+          columns: [{ label: 'Paper' }, { label: 'Questions', num: true }, { label: 'Scoring policy (practice where noted)' }, { label: 'Origin' }, { label: '' }],
           rows: papers.map((p) => {
             const present = metas.filter((m) => m.paper_id === p.paper_id).length;
             return [
               `${esc(p.paper_name || p.paper_id)}<div class="tiny muted">${esc(p.paper_id)}${p.set_code ? ` · set ${esc(p.set_code)}` : ''}</div>`,
-              `${present} / ${esc(String(p.original_question_count ?? '—'))}`,
+              String(present),
               p.scoring?.rules_known
                 ? `${p.scoring.scheme_id === 'mppsc-sse-prelims-latest-practice' ? 'practice only: ' : ''}+${esc(String(p.scoring.marks_per_correct))}${p.scoring.negative_marking_enabled ? ` / −${esc(String(p.scoring.negative_marks_per_incorrect))}` : ' (no negative marking)'}${p.scoring.scheme_id === 'mppsc-sse-prelims-latest-practice' && !p.user_scoring_override ? `<div class="tiny muted">latest reported pattern; not historical-rule evidence</div>` : ''}${p.user_scoring_override ? ` ${badge('you set this', 'info')}` : ''}`
                 : badge('unknown — must be configured', 'warn'),
@@ -560,7 +558,7 @@ export default {
             })
           : ''
       }
-      ${placeholderPapers.length ? card({ title: 'Placeholder papers', body: `<p class="small">These were created because questions referenced a paper that the bank did not describe. Exam, year, duration and marks are unknown, so full-paper simulations for them are labelled as incomplete.</p><ul class="small mono">${placeholderPapers.map((p) => `<li>${esc(p.paper_id)}</li>`).join('')}</ul>` }) : ''}`;
+      ${placeholderPapers.length ? card({ title: 'Placeholder papers', body: `<p class="small">These were created because questions referenced a paper that the bank did not describe. Exam, year, duration and marks are unknown, so no duration, marks or scoring rules are known for them.</p><ul class="small mono">${placeholderPapers.map((p) => `<li>${esc(p.paper_id)}</li>`).join('')}</ul>` }) : ''}`;
 
     /* -------------------------------------------------------- duplicates -- */
     const exactGroups = findExactDuplicateGroups(metas);

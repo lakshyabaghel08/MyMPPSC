@@ -22,14 +22,14 @@ test('1. import the demonstration bank', async () => {
   assert.equal(m.appState.papers.size, 3);
 });
 
-test('2. an incomplete paper and an unknown-rules paper are selected', async () => {
+test('2. a short paper and an unknown-rules paper are selected', async () => {
   const p1 = await m.db.get(m.constants.STORES.PAPERS, 'DEMO-P1');
   assert.equal(p1.scoring.rules_known, true);
   const p3 = await m.db.get(m.constants.STORES.PAPERS, 'DEMO-P3');
   assert.equal(p3.original_question_count, 15);
   const summary = m.select.paperSummary(p3, Array.from(m.appState.questionIndex.values()));
-  assert.equal(summary.complete, false);
-  assert.equal(summary.missingCount, 9);
+  assert.equal(summary.present, 6);
+  assert.equal('complete' in summary, false, 'papers are not tagged complete or incomplete');
 
   // Synthetic demonstration papers are excluded from automatic exam schemes,
   // even when their label mentions MPPSC; no rule is guessed for the sample.

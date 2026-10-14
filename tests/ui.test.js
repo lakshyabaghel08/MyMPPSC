@@ -123,7 +123,7 @@ test('boots, renders the shell and the demonstration prompt', async () => {
   // First run with an empty database: the repository-backed MPPSC bank loads by
   // itself, so the app does not have to fall back to the demonstration prompt.
   await waitFor(() => state.questionIndex.size > 0, { label: 'bundled bank load' });
-  assert.equal(state.questionIndex.size, 1171, 'the committed 2013-2024 bank is loaded from the repository');
+  assert.equal(state.questionIndex.size, 1200, 'the committed 2013-2024 bank is loaded from the repository');
 
   await goto('test-centre');
   assert.match(viewText(), /MPPSC 2019|MPPSC\s*2019|2019/, 'the Test Centre lists the real papers');
@@ -148,7 +148,7 @@ test('PYQ Analysis counts the bundled bank and deep-links into practice', async 
   assert.match(viewText(), /Questions per subject/);
   assert.match(viewText(), /Subject-by-year breakdown/);
   assert.match(viewText(), /Questions per topic/);
-  assert.match(viewText(), /(?:1,171|1171)/, 'the whole bundled bank is counted');
+  assert.match(viewText(), /(?:1,200|1200)/, 'the whole bundled bank is counted');
   assert.match(viewText(), /2013–2024/, 'year columns and span include the historical papers');
 
   const link = $$('#view a[href^="#/topic/"]')[0];

@@ -295,24 +295,7 @@ export function validateBank(raw, opts = {}) {
 
   for (const [paperId, paper] of paperById.entries()) {
     const qs = byPaper.get(paperId) || [];
-    const checks = { paperId, declared: paper.original_question_count, present: qs.length, missingNumbers: [], orderNotes: [] };
-    if (paper.original_question_count !== null && paper.original_question_count !== qs.length) {
-      push(warnings, {
-        code: 'question_count_mismatch',
-        severity: 'warning',
-        paperId,
-        message: `Paper "${paperId}" declares ${paper.original_question_count} original question(s) but ${qs.length} question(s) are present in this bank. The paper is marked incomplete and full-paper simulation will show a warning.`,
-      });
-      const numbersPresent = new Set(qs.map((q) => Number(q.question_number)).filter((n) => Number.isFinite(n)));
-      if (numbersPresent.size) {
-        const max = Math.max(...numbersPresent);
-        if (max <= 1000) {
-          for (let n = 1; n <= Math.max(max, paper.original_question_count || 0); n += 1) {
-            if (!numbersPresent.has(n)) checks.missingNumbers.push(n);
-          }
-        }
-      }
-    }
+    const checks = { paperId, declared: paper.original_question_count, present: qs.length, orderNotes: [] };
     // original paper order
     const idsPresent = new Set(qs.map((q) => q.id));
     const ordered = [];
@@ -351,7 +334,6 @@ export function validateBank(raw, opts = {}) {
         q.validation_notes = (q.validation_notes || []).concat('Paper metadata missing in this bank.');
         if (q.validation_status === 'valid') q.validation_status = 'valid_with_warnings';
       }
-      q.paper_incomplete = paper.original_question_count !== null && paper.original_question_count !== qs.length;
       q.paper_order_index = paper.question_order.indexOf(q.id);
     }
     checks.ids = paper.question_order;
@@ -379,7 +361,6 @@ export function validateBank(raw, opts = {}) {
     withExplanation: questions.filter((q) => q.explanation).length,
     demonstration: questions.filter((q) => q.is_demonstration).length,
     unknownScoringPapers: Array.from(paperById.values()).filter((p) => !p.scoring.rules_known).length,
-    incompletePapers: Array.from(paperById.values()).filter((p) => p.original_question_count !== null && p.original_question_count !== (byPaper.get(p.paper_id) || []).length).length,
   };
   for (const q of questions) {
     stats.byType[q.question_type] = (stats.byType[q.question_type] || 0) + 1;
