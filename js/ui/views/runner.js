@@ -16,13 +16,11 @@ import {
   fmtClock,
   badge,
   notice,
-  warningList,
   renderExplanation,
-  questionTypeLabel,
   answerKeyBadge,
   confidenceLabel,
   languageSwitcher,
-  sourceChip,
+  infoToggle,
   demoBadge,
   langAttr,
   toast,
@@ -104,25 +102,41 @@ function markup() {
   const timerClass = remaining !== null && remaining !== undefined ? (remaining <= 60 ? 'bad' : remaining <= 300 ? 'warn' : '') : '';
   const saveStateClass = session.saveState === 'saving' ? 'saving' : session.saveState === 'error' ? 'error' : '';
 
+  // Confidence is optional unless the test requires it. Nothing is marked by
+  // default: with no mark, no button is pressed and the question simply reads
+  // "Not marked". Once a mark exists, "Remove mark" takes it off again.
   const confidenceControl = test.config.confidence === 'off'
     ? ''
-    : `<div class="row tight mt-3">
-        <span class="tiny muted">Recall confidence${test.config.confidence === 'required' ? ' (required)' : ''}:</span>
-        <span class="seg" role="group" aria-label="Recall confidence" data-confidence>
-          ${Object.entries(CONFIDENCE_LEVELS)
-            .map(([key, label]) => `<button type="button" data-action="confidence" data-value="${key}" aria-keyshortcuts="c" aria-pressed="${response.confidence === key}">${esc(label)}</button>`)
-            .join('')}
-          <button type="button" data-action="confidence" data-value="" aria-keyshortcuts="c" aria-pressed="${!response.confidence}">Clear</button>
-        </span>
-        <span class="tiny soft">Stored separately from correctness — a correct guess is treated as weak recall.</span>
+    : `<div class="confidence-box">
+        <div class="row tight">
+          <span class="confidence-label" id="confidenceLabel">How sure were you?${test.config.confidence === 'required' ? ' (required)' : ' (optional)'}</span>
+          ${infoToggle('What this is for', '<p class="small m-0">Confidence is stored separately from correctness and never changes your marks. A correct answer you marked as guessed is treated as weak recall and comes back sooner in revision. Leave it unmarked if you prefer — an unmarked question gets no confidence tag at all.</p>')}
+        </div>
+        <div class="row tight mt-2">
+          <span class="seg confidence-seg" role="group" aria-labelledby="confidenceLabel" data-confidence>
+            ${Object.entries(CONFIDENCE_LEVELS)
+              .map(([key, label]) => `<button type="button" data-action="confidence" data-value="${key}" aria-keyshortcuts="c" aria-pressed="${response.confidence === key}">${esc(label)}</button>`)
+              .join('')}
+          </span>
+          ${
+            response.confidence
+              ? `<button class="btn btn-sm btn-quiet" type="button" data-action="confidence" data-value="" aria-keyshortcuts="c">✕ Remove mark</button>
+                 <span class="tiny muted" role="status">Marked: ${esc(confidenceLabel(response.confidence))}</span>`
+              : '<span class="tiny muted" role="status">Not marked</span>'
+          }
+        </div>
       </div>`;
 
+  // The palette always counts 1, 2, 3… in test order, even when the test is a
+  // shuffled mix of papers. Where a question came from (year + its number in
+  // its own paper) is shown in the question box and in each button's label.
   const paletteHtml = test.question_ids
     .map((id, i) => {
       const r = responseFor(id);
       const classes = [r.selected?.length ? 'answered' : '', r.flagged ? 'flagged' : '', i === index ? 'current' : ''].filter(Boolean).join(' ');
-      const number = session.questions.get(id)?.question_number ?? i + 1;
-      return `<button type="button" class="${classes}" data-action="goto" data-index="${i}" aria-label="Question ${esc(String(number))}${r.flagged ? ', flagged' : ''}${r.selected?.length ? ', answered' : ''}">${esc(String(number))}${r.flagged ? '<span class="flag-dot" aria-hidden="true">⚑</span>' : ''}</button>`;
+      const q = session.questions.get(id);
+      const origin = [q?.year ? `${q.year}` : null, q?.question_number ? `paper Q${q.question_number}` : null].filter(Boolean).join(' · ');
+      return `<button type="button" class="${classes}" data-action="goto" data-index="${i}" aria-label="Question ${i + 1} of ${totalQuestions}${origin ? ` (${esc(origin)})` : ''}${r.flagged ? ', flagged' : ''}${r.selected?.length ? ', answered' : ''}">${i + 1}${r.flagged ? '<span class="flag-dot" aria-hidden="true">⚑</span>' : ''}</button>`;
     })
     .join('');
 
@@ -139,19 +153,23 @@ function markup() {
 
   const qLangAttr = langAttr(variant?.question_text, lang);
 
+  const originBits = [
+    question.year ? `MPPSC ${esc(String(question.year))}` : paper?.year ? `MPPSC ${esc(String(paper.year))}` : null,
+    question.question_number ? `Paper Q${esc(String(question.question_number))}` : null,
+    paper?.set_code ? `Set ${esc(paper.set_code)}` : null,
+  ].filter(Boolean);
+  const classificationLine = [question.classification?.subject, question.classification?.topic, question.classification?.subtopic].filter(Boolean).join(' · ');
+
   return `
   <div class="runner-bar">
     <div class="grow">
       <div class="row tight">
         <h1 class="runner-title">${esc(test.label || 'Practice')}</h1>
-        ${test.config.is_authentic_paper ? badge('original paper order', 'accent') : badge('custom / practice set', '')}
-        ${sourceChip('derived', 'practice session')}
-        ${badge(test.config.feedback_mode === 'learning' ? 'learning mode' : 'exam simulation', test.config.feedback_mode === 'learning' ? 'info' : '')}
+        <span class="tiny muted">${test.config.feedback_mode === 'learning' ? 'Learning mode — answers revealed as you go' : 'Exam mode — answers revealed after submitting'}</span>
       </div>
       <div class="tiny muted">
-        ${paper ? `${esc(paper.exam || '')} ${paper.year ? `· ${esc(String(paper.year))}` : ''}${paper.set_code ? ` · set ${esc(paper.set_code)}` : ''} · ` : ''}
-        Question ${index + 1} of ${totalQuestions}${question.question_number ? ` (paper Q${esc(String(question.question_number))})` : ''}
-        · ${progress.answered} answered · ${progress.unanswered} left · ${progress.flagged} flagged
+        Question ${index + 1} of ${totalQuestions}
+        · ${progress.answered} answered · ${progress.unanswered} left${progress.flagged ? ` · ${progress.flagged} flagged` : ''}
       </div>
     </div>
     <div class="row tight">
@@ -168,11 +186,9 @@ function markup() {
     <div>
       <article class="question-card" id="questionCard">
         <div class="question-meta">
-          <span class="question-num-pill">Q${esc(String(question.question_number ?? index + 1))}</span>
-          ${badge(question.classification?.subject || 'Unclassified', question.classification?.isUnclassified ? 'warn' : '')}
-          ${question.classification?.topic ? badge(question.classification.topic, '') : ''}
-          ${question.classification?.subtopic ? badge(question.classification.subtopic, 'plain') : ''}
-          ${badge(questionTypeLabel(question.question_type), 'info')}
+          <span class="question-num-pill">Q${index + 1}</span>
+          ${originBits.length ? `<span class="question-origin">${originBits.join(' · ')}</span>` : ''}
+          ${classificationLine ? `<span class="question-class">${esc(classificationLine)}</span>` : ''}
           ${answerKeyBadge(question.supplied?.status)}
           ${demoBadge(question.is_demonstration)}
           ${fallback && lang !== session.lang ? badge(`showing ${lang === 'hi' ? 'Hindi' : 'English'} (other language unavailable)`, 'warn') : ''}
@@ -222,7 +238,7 @@ function markup() {
         </div>
         ${explanationBlock}
       </article>
-      ${warningList(test.config.warnings)}
+      ${test.config.warnings?.length ? infoToggle('Notes about this test', `<ul class="small">${test.config.warnings.map((w) => `<li>${esc(w)}</li>`).join('')}</ul>`) : ''}
     </div>
 
     <aside class="sticky-side">
@@ -243,20 +259,21 @@ function markup() {
 }
 
 function card_summary(test, progress) {
-  const conf = test.config.confidence !== 'off' ? `<p class="small mt-2 mb-0">Confidence marked: ${progress.confidence.confident} confident · ${progress.confidence.unsure} unsure · ${progress.confidence.guessed} guessed</p>` : '';
+  const marked = progress.confidence.confident + progress.confidence.unsure + progress.confidence.guessed;
+  const conf = test.config.confidence !== 'off' && marked ? `<p class="small mt-2 mb-0">Confidence marked on ${marked} question(s).</p>` : '';
   return `<section class="card">
-    <div class="card-head"><h2>Scoring in force</h2>${test.config.scoring.rules ? sourceChip('supplied') : sourceChip('unavailable')}</div>
+    <div class="card-head"><h2>Scoring</h2></div>
     <div class="card-body tight small">
       ${
         test.config.scoring.rules
-          ? `<p class="m-0">${esc(
+          ? `<p class="m-0"><strong>${esc(
               [
                 `+${test.config.scoring.rules.marks_per_correct} correct`,
                 test.config.scoring.rules.negative_marking_enabled ? `−${test.config.scoring.rules.negative_marks_per_incorrect} incorrect` : 'no negative marking',
                 `${test.config.scoring.rules.marks_for_unanswered} unanswered`,
               ].join(' · '),
-            )}</p>
-            <p class="tiny soft mt-1 mb-0">${esc(test.config.scoring.rulesSourceNote || '')}</p>`
+            )}</strong></p>
+            ${test.config.scoring.rulesSourceNote ? infoToggle('Where these rules come from', `<p class="small m-0">${esc(test.config.scoring.rulesSourceNote)}</p>`) : ''}`
           : '<p class="text-bad m-0">Rules are not configured. You can finish the paper, but it cannot be scored until the rules are set.</p>'
       }
       ${conf}
@@ -270,21 +287,28 @@ function card_summary(test, progress) {
 /* --------------------------------------------------------------- actions --- */
 
 async function persist() {
-  session.saveState = 'saving';
+  // The router may have torn the session down while a save was in flight
+  // (leaving the screen mid-answer); writing to the released session then
+  // threw. Bail out quietly instead — cleanup() saves the test itself.
+  if (!session) return;
+  const mine = session;
+  mine.saveState = 'saving';
   const saveEl = document.getElementById('saveState');
   if (saveEl) {
     saveEl.textContent = 'saving…';
     saveEl.className = 'save-state saving';
   }
   try {
-    await tests.saveTest(session.test);
-    session.saveState = 'saved';
+    await tests.saveTest(mine.test);
+    if (session !== mine) return;
+    mine.saveState = 'saved';
     if (saveEl) {
       saveEl.textContent = 'saved';
       saveEl.className = 'save-state';
     }
   } catch (err) {
-    session.saveState = 'error';
+    if (session !== mine) return;
+    mine.saveState = 'error';
     if (saveEl) {
       saveEl.textContent = 'save failed';
       saveEl.className = 'save-state error';
@@ -302,10 +326,39 @@ function attributeElapsed() {
   session.test.elapsed_seconds = (session.test.elapsed_seconds || 0) + Math.round(elapsed / 1000);
 }
 
-async function repaint(ctx, root) {
+/**
+ * Re-render in place without moving the reader. Answering, flagging or marking
+ * confidence used to rebuild the whole screen and lose both the scroll
+ * position and the focused control; now the scroll offset is restored and
+ * focus returns to the equivalent control. Only an explicit move to another
+ * question (`toQuestion`) scrolls — to the top of that question.
+ */
+async function repaint(ctx, root, { toQuestion = false } = {}) {
   attributeElapsed();
+  const scrollY = typeof window !== 'undefined' ? window.scrollY || 0 : 0;
+  const active = typeof document !== 'undefined' ? document.activeElement : null;
+  const activeKey =
+    active && root.contains(active) && active.dataset?.action
+      ? `[data-action="${active.dataset.action}"]${active.dataset.value !== undefined ? `[data-value="${active.dataset.value}"]` : ''}${active.dataset.key !== undefined ? `[data-key="${active.dataset.key}"]` : ''}${active.dataset.index !== undefined ? `[data-index="${active.dataset.index}"]` : ''}`
+      : null;
   root.innerHTML = markup();
   attach(ctx, root, { keepTimer: true });
+  if (toQuestion) {
+    const card = document.getElementById('questionCard');
+    if (card && typeof card.scrollIntoView === 'function') card.scrollIntoView({ block: 'start' });
+    return;
+  }
+  if (typeof window !== 'undefined') window.scrollTo({ top: scrollY, behavior: 'auto' });
+  if (activeKey) {
+    const again = root.querySelector(activeKey);
+    if (again && typeof again.focus === 'function') {
+      try {
+        again.focus({ preventScroll: true });
+      } catch {
+        /* focus is best effort */
+      }
+    }
+  }
 }
 
 async function selectOption(ctx, root, key) {
@@ -322,13 +375,14 @@ async function selectOption(ctx, root, key) {
   } else {
     selected = [key];
   }
-  const patch = { selected, revealed: false };
+  // In learning mode a single-answer pick reveals the answer in the same
+  // repaint, instead of repainting twice (which flickered and re-attributed
+  // time). Multiple-correct questions still wait for "Check answer".
+  const revealNow = session.test.config.feedback_mode === 'learning' && !multi;
+  const patch = { selected, revealed: revealNow };
   await tests.updateResponse(session.test, id, patch);
   await persist();
   await repaint(ctx, root);
-  if (session.test.config.feedback_mode === 'learning' && !multi) {
-    await reveal(ctx, root);
-  }
 }
 
 async function reveal(ctx, root) {
@@ -354,10 +408,7 @@ async function goto(ctx, root, index) {
   await tests.updateResponse(session.test, id, { visits: (response.visits || 0) + 1 });
   session.lastSwitchAt = Date.now();
   await persist();
-  await repaint(ctx, root);
-  if (session.test.config.feedback_mode === 'learning' && response.selected?.length && !response.revealed) {
-    document.getElementById('questionCard')?.scrollIntoView({ block: 'nearest' });
-  }
+  await repaint(ctx, root, { toQuestion: true });
 }
 
 async function toggleFlag(ctx, root) {
@@ -435,8 +486,8 @@ async function askForRules(paper = null) {
       'warn',
     )}
     <div class="field-row">
-      <label class="field"><span class="label-text">Marks per correct answer</span><input type="number" step="0.25" id="rpCorrect" value="${esc(String(defaults.marksPerCorrect ?? 2))}" /></label>
-      <label class="field"><span class="label-text">Marks per incorrect answer (negative)</span><input type="number" step="0.01" id="rpWrong" value="${esc(String(defaults.negativeMarksPerIncorrect ?? 0))}" /></label>
+      <label class="field"><span class="label-text">Marks per correct answer</span><input type="number" step="0.25" id="rpCorrect" value="${esc(String(defaults.marksPerCorrect ?? 3))}" /></label>
+      <label class="field"><span class="label-text">Marks per incorrect answer (negative)</span><input type="number" step="0.01" id="rpWrong" value="${esc(String(defaults.negativeMarksPerIncorrect ?? 1))}" /></label>
       <label class="field"><span class="label-text">Marks for unanswered</span><input type="number" step="0.25" id="rpUnanswered" value="${esc(String(defaults.marksForUnanswered ?? 0))}" /></label>
     </div>
     <label class="check"><input type="checkbox" id="rpNegative" ${defaults.negativeMarkingEnabled ? 'checked' : ''} /><span>Apply negative marking for incorrect answers</span></label>

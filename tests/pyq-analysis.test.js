@@ -188,7 +188,7 @@ test('the screen adds no inline styles, no scripts and no remote calls', async (
   assert.equal(/<script/.test(html), false);
   assert.equal(/https?:\/\//.test(html.replace(/http:\/\/www\.w3\.org/g, '')), false, 'no external reference');
   assert.equal(/localhost/.test(html), false);
-  assert.ok(html.includes('class="prov-chip'), 'its numbers say where they came from');
+  assert.equal(html.includes('class="prov-chip'), false, 'provenance chips no longer clutter the panel; the framing text carries it');
 });
 
 test('the horizontal subject chart renders all 1,171 audited questions across 2013–2024', async () => {

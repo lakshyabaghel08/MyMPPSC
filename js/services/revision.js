@@ -15,6 +15,20 @@ import { addDays, clamp, round, todayKey, daysBetween, startOfDay, logEvent } fr
 
 export const REVISION_STATES = { NEW: 'new', LEARNING: 'learning', REVIEW: 'review', MASTERED: 'mastered' };
 
+/**
+ * How many due questions one revision session takes at most. The queue itself
+ * can hold every question in the bank (one small record per attempted
+ * question, history capped below); the cap is on a single sitting, so a
+ * large backlog is worked through in sittings rather than one endless test.
+ */
+export const REVISION_SESSION_CAP = 40;
+
+/** Rows the Revision Centre renders at once (the rest load on demand). */
+export const REVISION_PAGE_SIZE = 50;
+
+/** Per-question schedule history kept on a record; older entries drop off. */
+export const REVISION_HISTORY_CAP = 50;
+
 function levelTable(settings) {
   const intervals = settings?.revision?.intervals || { 1: 1, 2: 3, 3: 7, 4: 14, 5: 30, 6: 60 };
   const levels = Object.keys(intervals).map(Number).sort((a, b) => a - b);
@@ -77,13 +91,19 @@ export function computeSchedule({ prev = null, outcome, confidence = null, timeS
       multiplier *= 0.75;
       reasons.push(`answer took ${Math.round(timeSpentSec)}s (slower than ${cfg.slowAnswerSeconds}s), so the interval was shortened by 25%`);
     }
-  } else if (outcome === 'incorrect' || outcome === 'unanswered') {
+  } else if (outcome === 'incorrect' || (outcome === 'unanswered' && cfg.unansweredIsMiss !== false)) {
     lapses = prevLapses + 1;
     streak = 0;
     level = clamp(cfg.hardResetTo || 1, 1, maxLevel);
     ease = clamp(round(ease * 0.85, 3), 0.5, 1.6);
     reasons.push(outcome === 'unanswered' ? 'Left unanswered' : 'Answered incorrectly');
     reasons.push(`scheduled again soon (level ${level})${outcome === 'unanswered' ? '; unanswered questions stay distinguished from wrong answers' : ''}`);
+  } else if (outcome === 'unanswered') {
+    // The user turned "treat unanswered as a miss" off: hold the position
+    // instead of resetting, exactly like an unscored attempt.
+    level = Math.max(1, prevLevel || 1);
+    reasons.push('Left unanswered');
+    reasons.push(`interval kept at level ${level} (unanswered questions are not treated as misses in your settings)`);
   } else {
     // unscored (no usable answer key) — hold position, nothing to learn from
     level = Math.max(1, prevLevel || 1);
@@ -163,7 +183,7 @@ export async function applyAttemptToSchedule(attempt, { settings = state.setting
       at: attempt.created_at,
       test_id: attempt.test_id,
     },
-    history: [...(existing?.history || []).slice(-49), historyEntry],
+    history: [...(existing?.history || []).slice(-(REVISION_HISTORY_CAP - 1)), historyEntry],
     manual_override: false,
     created_at: existing?.created_at || new Date().toISOString(),
     updated_at: new Date().toISOString(),
@@ -217,7 +237,7 @@ export async function reschedule(questionId, dateKey, note = '') {
     reason: `Rescheduled by you to ${dateKey}${note ? ` — ${note}` : ''}.`,
     manual_override: true,
     last_override: { at: new Date().toISOString(), days, note },
-    history: [...(existing.history || []).slice(-49), { at: new Date().toISOString(), outcome: 'manual_reschedule', interval_days: days, next_due: dateKey, reason: note || 'manual reschedule' }],
+    history: [...(existing.history || []).slice(-(REVISION_HISTORY_CAP - 1)), { at: new Date().toISOString(), outcome: 'manual_reschedule', interval_days: days, next_due: dateKey, reason: note || 'manual reschedule' }],
     updated_at: new Date().toISOString(),
   };
   await db.put(STORES.REVISION, updated);
@@ -280,6 +300,17 @@ export async function revisionSummary(reference = new Date()) {
   const byState = {};
   for (const r of records) byState[r.state] = (byState[r.state] || 0) + 1;
   return { total: records.length, dueToday, overdue, upcoming, byState, records };
+}
+
+/**
+ * The due queue in sitting order (most overdue first), capped for one
+ * session. Returns the ids to practise plus how many were left for later,
+ * so the UI can say honestly that a backlog continues next time.
+ */
+export function dueQueue(records, { cap = REVISION_SESSION_CAP, reference = new Date() } = {}) {
+  const { overdue, dueToday } = bucketise(records, reference);
+  const due = [...overdue, ...dueToday];
+  return { ids: due.slice(0, cap).map((r) => r.question_id), total: due.length, remaining: Math.max(0, due.length - cap) };
 }
 
 /** Revision effectiveness: has accuracy on revised questions improved? */

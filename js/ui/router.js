@@ -26,6 +26,10 @@ export class Router {
      * an explicit navigate) both paint, which is harmless.
      */
     this.pendingTarget = null;
+    /** The target of the last screen actually painted. A resolve() for the
+     * same target is a view refreshing itself (a filter changed, a box was
+     * ticked), not a navigation, so it must keep the reader's place. */
+    this.renderedTarget = null;
     this._onHashChange = () => this.resolve();
   }
 
@@ -100,6 +104,27 @@ export class Router {
     }
 
     if (!current()) return;
+
+    // Same screen refreshing itself (ctx.refresh() after ticking a filter,
+    // changing a setting, submitting a form…): remember where the reader is
+    // and what they were using, so the refresh does not throw them back to
+    // the top of the page or drop their focus. A genuinely new destination
+    // still starts at the top.
+    const isRefresh = this.renderedTarget === target;
+    const keptScrollY = isRefresh && typeof window !== 'undefined' ? window.scrollY || 0 : 0;
+    const activeEl = isRefresh && typeof document !== 'undefined' ? document.activeElement : null;
+    const escSel = (v) => (typeof CSS !== 'undefined' && CSS.escape ? CSS.escape(String(v)) : String(v).replace(/["\\]/g, '\\$&'));
+    const activeKey =
+      activeEl && this.container.contains(activeEl)
+        ? activeEl.id
+          ? `#${escSel(activeEl.id)}`
+          : activeEl.dataset?.action
+            ? `[data-action="${escSel(activeEl.dataset.action)}"]${activeEl.dataset.value !== undefined ? `[data-value="${escSel(activeEl.dataset.value)}"]` : ''}${activeEl.dataset.index !== undefined ? `[data-index="${escSel(activeEl.dataset.index)}"]` : ''}`
+            : activeEl.name
+              ? `${activeEl.tagName.toLowerCase()}[name="${escSel(activeEl.name)}"]${activeEl.value !== undefined ? `[value="${escSel(activeEl.value)}"]` : ''}`
+              : null
+        : null;
+
     this.container.innerHTML = loadingState();
     try {
       const markup = await view.render(ctx);
@@ -110,7 +135,8 @@ export class Router {
       if (typeof view.mount === 'function') await view.mount(ctx, this.container);
       if (!current()) return;
       this.activeCleanup = typeof view.cleanup === 'function' ? () => view.cleanup(ctx) : null;
-      // Every screen starts at the top, unless it keeps the reader's place
+      this.renderedTarget = target;
+      // Every new screen starts at the top, unless it keeps the reader's place
       // across its own navigations and has positioned itself: the Syllabus
       // opens a line as a route, and jumping to the top each time lost the
       // line that was just opened.
@@ -121,6 +147,20 @@ export class Router {
         } catch (err) {
           console.warn('View scroll positioning failed', err);
         }
+      }
+      if (!positioned && isRefresh) {
+        window.scrollTo({ top: keptScrollY, behavior: 'auto' });
+        if (activeKey) {
+          const again = this.container.querySelector(activeKey);
+          if (again && typeof again.focus === 'function') {
+            try {
+              again.focus({ preventScroll: true });
+            } catch {
+              /* focus is best effort */
+            }
+          }
+        }
+        positioned = true;
       }
       if (!positioned) window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
     } catch (err) {

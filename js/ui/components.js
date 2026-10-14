@@ -88,7 +88,8 @@ export function evidenceMeter(judgedCount, minSample = 3, { showLabel = true } =
   const steps = Math.min(3, n);
   const insufficient = n < minSample;
   const cls = insufficient ? 'insufficient' : 'sufficient';
-  const label = insufficient ? `n=${n} (<${minSample})` : `n=${n}`;
+  // Plain words on the surface; the sample-size maths stays in the tooltip.
+  const label = insufficient ? (n === 0 ? 'no attempts yet' : `only ${n} attempt${n === 1 ? '' : 's'} so far`) : `${n} attempt${n === 1 ? '' : 's'}`;
   const title = insufficient
     ? `Insufficient evidence: ${n} of ${minSample} required judged attempts recorded`
     : `Evidence threshold met: ${n} judged attempts recorded (min ${minSample})`;
@@ -104,6 +105,26 @@ export function evidenceMeter(judgedCount, minSample = 3, { showLabel = true } =
 
 export function provenanceLine({ source = 'measured', text = '' } = {}) {
   return `<div class="prov-line">${sourceChip(source)}<span>${esc(text)}</span></div>`;
+}
+
+/**
+ * Collapsed "ⓘ" disclosure for explanations, provenance and other background
+ * detail. The short summary is all that shows; the longer text is one tap
+ * away instead of filling the screen. Built on native <details>, so it works
+ * with keyboard, mouse and touch with no JavaScript.
+ * `body` is trusted HTML (callers escape user text, as everywhere else).
+ */
+export function infoToggle(summary, body, { open = false } = {}) {
+  if (!body) return '';
+  return `<details class="info-toggle"${open ? ' open' : ''}>
+    <summary><span class="info-i" aria-hidden="true">i</span><span>${esc(summary)}</span></summary>
+    <div class="info-body">${body}</div>
+  </details>`;
+}
+
+/** A short visible line plus the long explanation tucked into an infoToggle. */
+export function infoNote(shortText, longHtml, summary = 'More about this') {
+  return `<div class="info-note"><span>${shortText}</span>${infoToggle(summary, longHtml)}</div>`;
 }
 
 /* --------------------------------------------------------------- basics --- */
@@ -128,14 +149,15 @@ export function card({ title = null, subtitle = null, actions = '', right = '', 
   </section>`;
 }
 
-export function tile({ label, value, sub = '', tone = '', source = null, where = null }) {
-  const chipHtml = source ? sourceChip(source) : '';
-  const whereHtml = where ? `<div class="tile-prov">${esc(where)}</div>` : '';
+export function tile({ label, value, sub = '', tone = '' }) {
+  // Tiles used to carry a provenance chip and a "where this came from" line on
+  // every stat. That metadata now lives behind the screens' ⓘ disclosures, so
+  // a tile is just the number and what it counts. (`source`/`where` arguments
+  // from older callers are accepted and ignored.)
   return `<div class="tile ${tone}">
-    <div class="tile-label"><span>${esc(label)}</span>${chipHtml}</div>
+    <div class="tile-label"><span>${esc(label)}</span></div>
     <div class="tile-value">${value}</div>
     ${sub ? `<div class="tile-sub">${sub}</div>` : ''}
-    ${whereHtml}
   </div>`;
 }
 

@@ -240,3 +240,16 @@ test('scoring rules are described in plain language for the report', () => {
   assert.match(text, /−0\.67 for incorrect/);
   assert.match(text, /source paper rules/);
 });
+
+test('every quiz type falls back to the MPPSC +3/−1/0 default scoring', () => {
+  assert.deepEqual(
+    { ...m.constants.DEFAULT_SETTINGS.defaultScoring },
+    { marksPerCorrect: 3, negativeMarksPerIncorrect: 1, negativeMarkingEnabled: true, marksForUnanswered: 0 },
+    'the shipped default scoring is the MPPSC +3/−1/0 pattern',
+  );
+  const resolved = m.scoring.resolveScoringRules({});
+  assert.equal(resolved.rules.marks_per_correct, 3);
+  assert.equal(resolved.rules.negative_marks_per_incorrect, 1);
+  assert.equal(resolved.rules.negative_marking_enabled, true);
+  assert.equal(resolved.rules.marks_for_unanswered, 0);
+});

@@ -20,7 +20,6 @@ import {
   barList,
   pct,
   renderExplanation,
-  questionTypeLabel,
   answerKeyBadge,
   confidenceLabel,
   emptyState,
@@ -28,10 +27,9 @@ import {
   mountTabs,
   toast,
   openModal,
-  sourceChip,
-  evidenceMeter,
   demoBadge,
   langAttr,
+  infoToggle,
 } from '../components.js';
 import { fmtMarks, fmtClock, fmtDate, fmtDuration, fmtPct } from '../../core/util.js';
 import { getQuestion } from '../../services/questions.js';
@@ -77,23 +75,24 @@ function rowMatches(row, filter) {
   }
 }
 
-function questionReviewBlock(row, question, lang) {
+function questionReviewBlock(row, question, lang, position = null) {
   if (!question) return `<p class="muted small">Question ${esc(row.question_id)} is no longer in the local database.</p>`;
   const variant = question.language_variants?.[lang] || Object.values(question.language_variants || {})[0];
   const selected = row.selected || [];
+  const origin = [question.year ? `MPPSC ${esc(String(question.year))}` : null, row.question_number ? `Paper Q${esc(String(row.question_number))}` : null].filter(Boolean).join(' · ');
   return `
     <article class="question-card mb-3 review-item">
       <div class="question-meta">
-        <span class="question-num-pill">Q${esc(String(row.question_number ?? '—'))}</span>
+        <span class="question-num-pill">Q${position ?? '—'}</span>
+        ${origin ? `<span class="question-origin">${origin}</span>` : ''}
         ${outcomeBadge(row)}
-        ${badge(row.subject || 'Unclassified')}
-        ${row.topic ? badge(row.topic, '') : ''}
+        <span class="question-class">${esc([row.subject, row.topic].filter(Boolean).join(' · ') || 'Unclassified')}</span>
         ${answerKeyBadge(question.supplied?.status)}
-        ${row.answer?.length ? '' : sourceChip('unavailable', 'key missing')}
+        ${row.answer?.length ? '' : badge('answer key missing', 'bad')}
         ${row.flagged ? badge('flagged', 'warn') : ''}
-        ${row.confidence ? badge(`confidence: ${confidenceLabel(row.confidence)}`, row.confidence === 'confident' ? 'ok' : 'warn') : ''}
+        ${row.confidence ? `<span class="tiny muted">confidence: ${esc(confidenceLabel(row.confidence))}</span>` : ''}
         ${demoBadge(row.demonstration)}
-        <span class="soft tiny">${esc(questionTypeLabel(question.question_type))} · ${fmtClock(Math.round((row.time_spent_ms || 0) / 1000))} · ${esc(row.question_id)}</span>
+        <span class="soft tiny">${fmtClock(Math.round((row.time_spent_ms || 0) / 1000))}</span>
       </div>
       <p class="question-text ${lang === 'hi' ? 'hi' : ''}"${langAttr(variant?.question_text, lang)}>${esc(variant?.question_text || '')}</p>
       <div class="table-wrap"><table class="data compact"><tbody>
@@ -163,8 +162,6 @@ export default {
         <div>
           <div class="row tight">
             <h1 class="m-0">${esc(test.label || 'Test report')}</h1>
-            ${test.config?.is_authentic_paper ? sourceChip('supplied', 'authentic paper') : sourceChip('derived', 'practice session')}
-            ${evidenceMeter(judgedCount)}
           </div>
           <p class="muted small m-0 mt-1">
             ${test.paper_snapshot ? `${esc(test.paper_snapshot.exam || '')} ${test.paper_snapshot.year ? `· ${esc(String(test.paper_snapshot.year))}` : ''}${test.paper_snapshot.set_code ? ` · set ${esc(test.paper_snapshot.set_code)}` : ''} · ` : ''}
@@ -223,16 +220,14 @@ export default {
             body: `
               ${card({
                 title: 'Scoring rules actually used',
-                right: result.scoring?.rules_known === false ? sourceChip('unavailable') : sourceChip('supplied'),
                 body: `<p>${esc(describeRules(result.scoring, result.scoring?.source))}</p>
-                  <p class="small muted">${esc(result.scoring?.rules_source_note || '')}</p>
+                  ${result.scoring?.rules_source_note ? infoToggle('Where these rules come from', `<p class="small m-0">${esc(result.scoring.rules_source_note)}</p>`) : ''}
                   ${result.accuracy_note ? `<p class="small text-warn">${esc(result.accuracy_note)}</p>` : ''}
                   ${test.config.feedback_mode === 'learning' ? '<p class="small">This test ran in learning mode, so answers were revealed as you went.</p>' : ''}`,
               })}
               <div class="grid cols-2">
                 ${card({
                   title: 'Outcome counts',
-                  right: sourceChip('measured'),
                   body: dataTable({
                     columns: [{ label: 'Outcome' }, { label: 'Count', num: true }, { label: 'Share', num: true }],
                     rows: [
@@ -247,7 +242,6 @@ export default {
                 })}
                 ${card({
                   title: 'Weakest topics in this test',
-                  right: sourceChip('derived'),
                   body: barList(
                     (result.per_topic || [])
                       .filter((t) => t.correct + t.incorrect > 0)
@@ -264,11 +258,10 @@ export default {
               ${card({
                 title: 'Time per question',
                 subtitle: `${fmtDuration(Math.round(result.per_question.reduce((a, r) => a + (r.time_spent_ms || 0), 0) / 1000))} in total`,
-                right: sourceChip('measured', 'session clock'),
                 body: dataTable({
                   columns: [{ label: 'Q' }, { label: 'Topic' }, { label: 'Outcome' }, { label: 'Time', num: true }, { label: 'Confidence' }],
                   rows: result.per_question
-                    .map((r) => [esc(`Q${r.question_number ?? '—'}`), esc(r.topic || r.subject || 'Unclassified'), outcomeBadge(r), fmtClock(Math.round((r.time_spent_ms || 0) / 1000)), r.confidence ? badge(confidenceLabel(r.confidence), r.confidence === 'confident' ? 'ok' : 'warn') : '<span class="soft">—</span>'])
+                    .map((r, i) => [esc(`Q${i + 1}`), esc(r.topic || r.subject || 'Unclassified'), outcomeBadge(r), fmtClock(Math.round((r.time_spent_ms || 0) / 1000)), r.confidence ? esc(confidenceLabel(r.confidence)) : '<span class="soft">—</span>'])
                     .slice(0, 40),
                   className: 'compact',
                 }),
@@ -283,7 +276,6 @@ export default {
               : card({
                   title: 'Confidence against correctness',
                   subtitle: 'A correct guess is not strong recall',
-                  right: sourceChip('measured', 'self-reported'),
                   body: `
                     <div class="matrix mb-3">
                       ${['confident', 'unsure', 'guessed'].concat(result.per_question.some((r) => !r.confidence) ? ['none'] : [])
@@ -317,10 +309,9 @@ export default {
             id: 'tabs-advice',
             label: 'What to do next',
             body: `
-              ${card({ title: 'Revision recommendations', right: sourceChip('derived'), body: recommendations.length ? `<ul>${recommendations.map((r) => `<li>${r}</li>`).join('')}</ul>` : '<p class="muted small">Nothing stands out yet — no pattern was strong enough to recommend a change.</p>' })}
+              ${card({ title: 'Revision recommendations', body: recommendations.length ? `<ul>${recommendations.map((r) => `<li>${r}</li>`).join('')}</ul>` : '<p class="muted small">Nothing stands out yet — no pattern was strong enough to recommend a change.</p>' })}
               ${card({
                 title: 'Repeated mistakes touching this test',
-                right: sourceChip('measured', 'mistake book'),
                 body: repeated.length
                   ? dataTable({
                       columns: [{ label: 'Question' }, { label: 'Topic' }, { label: 'Times wrong', num: true }, { label: '' }],
@@ -338,7 +329,6 @@ export default {
                 ? card({
                     title: 'Answers that remain unresolved',
                     tone: 'warn',
-                    right: sourceChip('disputed'),
                     body: `<p class="small">These questions were judged with an answer key that is missing, disputed or contradicted by a verified answer. The stored key is preserved; nothing was silently rewritten.</p>
                       ${dataTable({
                         columns: [{ label: 'Question' }, { label: 'Issue' }, { label: 'Stored key' }, { label: 'Your verified answer' }, { label: '' }],
@@ -371,9 +361,9 @@ export default {
     root.querySelectorAll('[data-action="filter"]').forEach((btn) =>
       btn.addEventListener('click', async () => {
         viewState.filter = btn.dataset.filter;
+        // The router keeps the reader's place on a same-screen refresh, so
+        // there is deliberately no scroll-to-top here.
         await ctx.refresh();
-        await mountTabs(document.getElementById('view'));
-        window.scrollTo({ top: 0 });
       }),
     );
     root.addEventListener('click', async (ev) => {

@@ -9,7 +9,7 @@
 import { APP_VERSION, DB_NAME, DB_VERSION, SUPPORTED_SCHEMA_VERSIONS, STORES } from '../../core/constants.js';
 import { state, saveSettings, resetSettings, loadSettings, refreshQuestionIndex } from '../../core/state.js';
 import * as db from '../../core/db.js';
-import { esc, badge, card, tile, dataTable, toast, openModal, confirmDialog, tabs, mountTabs, sourceChip } from '../components.js';
+import { esc, badge, card, tile, dataTable, toast, openModal, confirmDialog, tabs, mountTabs } from '../components.js';
 import { fmtBytes, fmtDate, fmtRelative, readFileAsText, downloadJson, getLogRing, todayKey } from '../../core/util.js';
 import * as data from '../../services/data.js';
 import * as builtinBank from '../../services/builtin-bank.js';
@@ -72,7 +72,7 @@ export default {
       ${card({
         title: 'Default scoring (used when no paper rules apply)',
         body: `
-          <p class="small">Paper-specific rules always take priority when they are known. These defaults are used for practice sets and as a starting point you can override per test.</p>
+          <p class="small">Paper-specific rules always take priority when they are known. These defaults — the MPPSC +3 / −1 / 0 pattern out of the box — are used for every other quiz type and as a starting point you can override per test.</p>
           <div class="field-row">
             ${numberField('setMarksCorrect', 'Marks per correct answer', s.defaultScoring.marksPerCorrect, { step: '0.25' })}
             ${numberField('setMarksWrong', 'Negative marks per wrong answer (positive number)', s.defaultScoring.negativeMarksPerIncorrect, { step: '0.01', min: 0 })}
@@ -121,7 +121,6 @@ export default {
     const backupTab = `
       ${card({
         title: 'Create a backup',
-        right: sourceChip('measured', 'local JSON + SHA-256'),
         body: `
           <p class="small">A backup is a single JSON file containing your question bank, papers, tests, attempts, mistakes, revision schedule, syllabus, tasks, study sessions, import history and settings. It is written by your browser to your device — nothing is uploaded.</p>
           <div class="row">
@@ -147,7 +146,6 @@ export default {
 
       ${card({
         title: 'Storage',
-        right: sourceChip('measured', 'IndexedDB'),
         body: `
           <div class="grid tiles">
             ${tile({ label: 'Records stored', value: String(Object.values(report.counts).filter((v) => typeof v === 'number').reduce((a, b) => a + b, 0)), sub: `${Object.keys(report.counts).length} stores`, source: 'measured', where: 'Local IndexedDB stores' })}

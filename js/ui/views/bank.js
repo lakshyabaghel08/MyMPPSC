@@ -9,7 +9,7 @@
 import { STORES } from '../../core/constants.js';
 import { state, refreshQuestionIndex } from '../../core/state.js';
 import * as db from '../../core/db.js';
-import { esc, badge, card, tile, notice, dataTable, toast, openModal, confirmDialog, tabs, mountTabs, renderExplanation, questionTypeLabel, answerKeyBadge, demoBadge, sourceChip, langAttr } from '../components.js';
+import { esc, badge, card, tile, notice, dataTable, toast, openModal, confirmDialog, tabs, mountTabs, renderExplanation, questionTypeLabel, answerKeyBadge, demoBadge, langAttr } from '../components.js';
 import { fmtPct, fmtDate, fmtRelative, readFileAsText, downloadJson, todayKey } from '../../core/util.js';
 import * as importer from '../../services/importer.js';
 import * as builtinBank from '../../services/builtin-bank.js';
@@ -421,7 +421,6 @@ export default {
       ${builtinTab}
       ${card({
         title: 'Import a question bank',
-        right: sourceChip('supplied', 'validated before write'),
         body: `
           <p class="small">A bank is a UTF-8 JSON file following the documented schema. It is validated before anything is written: schema version, required fields, option keys, answer keys, language variants and paper metadata. Invalid records are rejected <em>and listed</em>; nothing is dropped silently.</p>
           <div class="row mt-3 mb-3">
@@ -840,8 +839,8 @@ export default {
           body: `
             <p class="small">The imported metadata said: ${paper.scoring?.rules_known ? 'rules known' : '<strong>rules unknown</strong>'}. Setting them here records your own override; the imported values stay in the record.</p>
             <div class="field-row">
-              <label class="field"><span class="label-text">Marks per correct</span><input type="number" step="0.25" id="paperMarks" value="${esc(String(paper.scoring?.marks_per_correct ?? 2))}" /></label>
-              <label class="field"><span class="label-text">Negative marks per wrong</span><input type="number" step="0.01" id="paperNegative" value="${esc(String(paper.scoring?.negative_marks_per_incorrect ?? 0))}" /></label>
+              <label class="field"><span class="label-text">Marks per correct</span><input type="number" step="0.25" id="paperMarks" value="${esc(String(paper.scoring?.marks_per_correct ?? 3))}" /></label>
+              <label class="field"><span class="label-text">Negative marks per wrong</span><input type="number" step="0.01" id="paperNegative" value="${esc(String(paper.scoring?.negative_marks_per_incorrect ?? 1))}" /></label>
               <label class="field"><span class="label-text">Marks for unanswered</span><input type="number" step="0.25" id="paperUnanswered" value="${esc(String(paper.scoring?.marks_for_unanswered ?? 0))}" /></label>
             </div>
             <label class="check"><input type="checkbox" id="paperNegativeOn" ${paper.scoring?.negative_marking_enabled ? 'checked' : ''} /><span>Negative marking applies</span></label>

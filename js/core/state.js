@@ -136,6 +136,14 @@ export async function loadSettings() {
     }
   }
   state.settings = mergeSettings(DEFAULT_SETTINGS, stored || {});
+  // One-time upgrade for installs created before the MPPSC +3/−1/0 pattern
+  // became the default: a stored default that is exactly the old shipped
+  // default (+2, no negative marking) was never a deliberate choice, so it
+  // follows the new default. Anything the user actually changed is kept.
+  const ds = state.settings.defaultScoring || {};
+  if (ds.marksPerCorrect === 2 && ds.negativeMarksPerIncorrect === 0 && ds.negativeMarkingEnabled === false && (ds.marksForUnanswered ?? 0) === 0) {
+    state.settings = mergeSettings(state.settings, { defaultScoring: deepClone(DEFAULT_SETTINGS.defaultScoring) });
+  }
   mirrorSettingsToLocalStorage();
   applyTheme(state.settings);
   return state.settings;

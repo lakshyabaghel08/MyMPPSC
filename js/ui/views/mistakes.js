@@ -23,7 +23,6 @@ import {
   confidenceLabel,
   questionTypeLabel,
   answerKeyBadge,
-  sourceChip,
   langAttr,
 } from '../components.js';
 import { fmtDate, fmtClock, fmtRelative } from '../../core/util.js';
@@ -138,7 +137,7 @@ export default {
         ${tile({ label: 'Uncertain correct', value: String(openByType.low_confidence_correct || 0), sub: 'guesses and unsure answers', source: 'measured', where: 'Correct but marked unsure/guessed' })}
       </div>
 
-      ${card({ title: 'Filters', right: sourceChip('measured', 'attempt log'), body: filtersMarkup(metas, counts) })}
+      ${card({ title: 'Filters', body: filtersMarkup(metas, counts) })}
 
       ${card({
         title: `Items (${rows.length})`,
@@ -154,7 +153,6 @@ export default {
 
       ${card({
         title: 'Topics with the most open items',
-        right: sourceChip('derived', 'grouped by topic'),
         body: topicGroups.size
           ? dataTable({
               columns: [{ label: 'Topic' }, { label: 'Open items', num: true }, { label: '' }],

@@ -142,10 +142,15 @@ export const DEFAULT_SETTINGS = Object.freeze({
   confidenceTracking: 'off',
   answerPolicy: 'verified_preferred',
   scoringPolicyWhenUnresolved: 'supplied', // supplied | verified | exclude
+  // Default scoring for every quiz type is the current MPPSC prelims pattern:
+  // +3 for a correct answer, −1 for a wrong answer, 0 for unanswered. Papers
+  // with their own stored rules still use those rules; this default fills in
+  // for topic, custom, smart, mistake and revision sets, and as the starting
+  // point wherever marks are configurable.
   defaultScoring: {
-    marksPerCorrect: 2,
-    negativeMarksPerIncorrect: 0,
-    negativeMarkingEnabled: false,
+    marksPerCorrect: 3,
+    negativeMarksPerIncorrect: 1,
+    negativeMarkingEnabled: true,
     marksForUnanswered: 0,
   },
   showTimer: true,

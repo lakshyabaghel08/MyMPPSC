@@ -15,7 +15,7 @@
 
 import { state } from '../../core/state.js';
 import { summariseBank, UNCLASSIFIED_SUBJECT } from '../../services/pyq-analysis.js';
-import { esc, badge, card, tile, dataTable, barChart, emptyState, notice, sourceChip, pct, fmtPct, icon } from '../components.js';
+import { esc, badge, card, tile, dataTable, barChart, emptyState, infoToggle, pct, fmtPct, icon } from '../components.js';
 
 const viewState = {
   appliedRoute: '',
@@ -154,7 +154,6 @@ export async function renderBankPanel(ctx) {
         <div class="pyq-head-meta" aria-label="Question bank summary metadata">
           <span class="pyq-meta-pill">${icon('test-centre', { size: 15 })}<span><strong>${esc(String(summary.papers))}</strong> paper(s) · <strong>${esc(String(summary.total))}</strong> questions</span></span>
           <span class="pyq-meta-pill">${icon('pyq-analysis', { size: 15 })}<span>Span: <strong>${esc(summary.yearSpan)}</strong></span></span>
-          ${sourceChip('measured', `${summary.papers} paper(s)`)}
         </div>
       </div>
 
@@ -198,10 +197,7 @@ export async function renderBankPanel(ctx) {
         })}
       </div>
 
-      ${notice(
-        `Counting stops at the topic level: subtopic labels come from the import rather than from the printed paper, so a per-subtopic count would describe this bank instead of the examination.`,
-        'info',
-      )}
+      ${infoToggle('Why counting stops at topic level', '<p class="small m-0">Counting stops at the topic level: subtopic labels come from the import rather than from the printed paper, so a per-subtopic count would describe this bank instead of the examination.</p>')}
 
       ${card({
         title: 'Questions per subject',
@@ -210,8 +206,7 @@ export async function renderBankPanel(ctx) {
           <div class="seg" role="group" aria-label="Sort subjects">
             <button type="button" data-action="pyq-sort" data-value="count" aria-pressed="${subjectSort === 'count'}">Highest count</button>
             <button type="button" data-action="pyq-sort" data-value="syllabus" aria-pressed="${subjectSort === 'syllabus'}">Syllabus order</button>
-          </div>
-          ${sourceChip('measured', `${summary.total} question(s)`)}`,
+          </div>`,
         body: `
           <div class="pyq-chart-readout" id="pyqChartReadout" data-default-text="${esc(defaultChartReadout)}" role="status" aria-live="polite">
             <span class="pyq-readout-dot" aria-hidden="true"></span>
@@ -252,8 +247,7 @@ export async function renderBankPanel(ctx) {
             <span class="heat heat-1">Low</span>
             <span class="heat heat-2">Mid</span>
             <span class="heat heat-3">Peak</span>
-          </div>
-          ${sourceChip('measured', `${summary.subjects.length} group(s)`)}`,
+          </div>`,
         body: dataTable({
           columns: [
             { label: 'Subject' },
@@ -293,7 +287,6 @@ export async function renderBankPanel(ctx) {
                 ? `The ${shownTopics.length} most frequent topics in the bank (of ${topicsFor.length} total)`
                 : `All ${topicsFor.length} topics in the bank, ranked by frequency`
             : `Topics under ${subjectFilter} (${shownTopics.length} of ${topicsFor.length})`,
-        right: sourceChip('measured', `${topicsFor.length} topic(s)`),
         body: `
           ${
             summary.unclassified > 0 || unplacedTopicQuestions > 0
@@ -391,7 +384,6 @@ export async function renderBankPanel(ctx) {
           ? card({
               title: 'Papers in the bank',
               subtitle: 'What each year contributed',
-              right: sourceChip('measured', `${summary.byYear.length} year(s)`),
               body: dataTable({
                 columns: [
                   { label: 'Year' },
@@ -417,12 +409,7 @@ export async function renderBankPanel(ctx) {
           : ''
       }
 
-      ${notice(
-        summary.demonstration
-          ? `${summary.demonstration} of these questions are demonstration questions, included so the screens can be tried out; exclude them under Topic Practice before reading a count as your real coverage.`
-          : 'These counts cover every question stored on this device, including anything you imported yourself.',
-        'info',
-      )}`;
+      ${infoToggle('What these counts cover', `<p class="small m-0">${esc(summary.demonstration ? `${summary.demonstration} of these questions are demonstration questions, included so the screens can be tried out; exclude them under Topic Practice before reading a count as your real coverage.` : 'These counts cover every question stored on this device, including anything you imported yourself.')}</p>`)}`;
 }
 
 /** Wire the panel's own controls. Safe to call when the panel is hidden. */

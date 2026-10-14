@@ -2515,6 +2515,102 @@ details.disclosure > p {
   margin-top: var(--space-2);
 }
 
+/* Collapsed ⓘ disclosures: background detail lives here, not on the surface */
+.info-toggle {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.info-toggle > summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  list-style: none;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--text-muted);
+  padding: 2px 4px;
+  border-radius: var(--radius-xs);
+}
+
+.info-toggle > summary::-webkit-details-marker {
+  display: none;
+}
+
+.info-toggle > summary:hover,
+.info-toggle > summary:focus-visible {
+  color: var(--accent-strong);
+}
+
+.info-toggle .info-i {
+  display: inline-grid;
+  place-items: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1.5px solid currentColor;
+  font-size: 10px;
+  font-weight: 700;
+  font-style: italic;
+  line-height: 1;
+  flex: 0 0 16px;
+}
+
+.info-toggle[open] {
+  display: block;
+  margin: var(--space-2) 0;
+}
+
+.info-toggle .info-body {
+  border-left: 3px solid var(--border);
+  padding: var(--space-1) 0 var(--space-1) var(--space-3);
+  margin-top: var(--space-1);
+  color: var(--text-muted);
+  max-width: var(--measure);
+}
+
+.info-note {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  margin-bottom: var(--space-3);
+}
+
+/* Runner: confidence marking */
+.confidence-box {
+  margin-top: var(--space-3);
+  padding: var(--space-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg-sunken);
+}
+
+.confidence-label {
+  font-size: var(--text-sm);
+  font-weight: 650;
+}
+
+.confidence-seg button {
+  min-height: 40px;
+  padding: 7px 16px;
+  font-size: var(--text-sm);
+}
+
+/* Runner/report: where a question came from, as plain text (not badges) */
+.question-origin {
+  font-weight: 650;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.question-class {
+  color: var(--text-muted);
+}
+
 /* Tabs (APG roving tabindex + arrow keys) */
 .tabs {
   display: flex;
