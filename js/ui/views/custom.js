@@ -11,7 +11,7 @@
  */
 
 import { state } from '../../core/state.js';
-import { esc, card, notice, dataTable, toast, emptyState, confirmDialog, sourceChip } from '../components.js';
+import { esc, card, dataTable, toast, emptyState, confirmDialog, infoToggle } from '../components.js';
 import { QUESTION_TYPES } from '../../core/constants.js';
 import { filterMetas, selectQuestions, ATTEMPT_STATE_FILTERS } from '../../services/select.js';
 import { configFields, readConfig, mountConfigFields, startPracticeTest, currentAttemptSummary, countSummary } from './shared.js';
@@ -107,12 +107,12 @@ export default {
 
     return `
       <h1>Custom Test</h1>
-      ${notice('A custom test is assembled from the questions you choose. It is <strong>not</strong> an authentic previous-year paper and will be labelled as a custom set in the test and in the report. Nothing selected means everything available.', 'info')}
+      <p class="muted">Assemble a set from the questions you choose — nothing selected means everything available.</p>
+      ${infoToggle('About custom tests', '<p class="small m-0">A custom test is assembled from the questions you choose. It is <strong>not</strong> an authentic previous-year paper and will be labelled as a custom set in the test and in the report.</p>')}
 
       ${card({
         title: 'What to include',
         subtitle: 'All optional — leave everything unselected to draw from the whole bank',
-        right: sourceChip('supplied'),
         body: `
           <div class="split-2">
             <div>
@@ -139,7 +139,6 @@ export default {
       ${card({
         title: 'Pool and strategy',
         subtitle: `${pool.length} question(s) match`,
-        right: sourceChip('measured', `${pool.length} matching`),
         body: `
           ${countSummary({ total: pool.length, unseen: pool.filter((m) => !attemptSummary.get(m.id)?.attempts).length, incorrect: pool.filter((m) => attemptSummary.get(m.id)?.everIncorrect).length, skipped: pool.filter((m) => attemptSummary.get(m.id)?.everSkipped).length })}
           <div class="field-row">
@@ -166,11 +165,10 @@ export default {
 
       ${card({
         title: 'Test settings',
-        right: sourceChip('derived', 'session rules'),
         body: `${configFields({ paper: null, defaultCount: Math.min(25, Math.max(1, pool.length)), maxCount: pool.length, allowCustomScoring: true })}
         <div class="sticky-actions">
           <button class="btn btn-primary" type="button" id="assembleCustom" ${pool.length ? '' : 'disabled'}>Assemble custom test</button>
-          <span class="tiny muted">${pool.length ? 'You will be able to review the question order before the timer starts (it starts on the first question).' : 'Select more filters to build a pool.'}</span>
+          <span class="tiny muted">${pool.length ? `${pool.length} question(s) in the pool.` : 'Select more filters to build a pool.'}</span>
         </div>`,
       })}`;
   },

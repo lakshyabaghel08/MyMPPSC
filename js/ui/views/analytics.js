@@ -27,8 +27,8 @@ import {
   emptyState,
   progressBar,
   toast,
-  sourceChip,
   evidenceMeter,
+  infoToggle,
   tabs,
   mountTabs,
 } from '../components.js';
@@ -50,8 +50,9 @@ function verdictBadge(row) {
 function accuracyText(value, sample) {
   if (!Number.isFinite(value)) return '<span class="soft">—</span>';
   const text = fmtPct(value);
-  if (sample < MIN_SAMPLE_HINT) return `${text} <span class="tiny soft">(sample ${sample})</span> ${evidenceMeter(sample, MIN_SAMPLE_STRONG, { showLabel: false })}`;
-  return `${text} <span class="tiny soft">(n=${sample})</span> ${evidenceMeter(sample, MIN_SAMPLE_STRONG, { showLabel: false })}`;
+  // Sample size in plain words beside the figure; no meter widget in tables.
+  if (sample < MIN_SAMPLE_HINT) return `${text} <span class="tiny soft">(${sample} judged — small sample)</span>`;
+  return `${text} <span class="tiny soft">(${sample} judged)</span>`;
 }
 
 /**
@@ -157,15 +158,10 @@ async function renderPerformancePanel(loaded = null) {
         ${tile({ label: 'Answer rate', value: counts.totalAttempts ? fmtPct(analytics.accuracy.answerRate) : '—', sub: `${counts.unanswered} left unanswered · ${counts.unscored} unscored`, source: counts.totalAttempts ? 'measured' : 'unavailable', where: 'Answered share of total attempts' })}
       </div>
 
-      ${notice(
-        'Question counts here describe your own imported bank, not the examination. A topic with 3 stored questions cannot support a strong conclusion, so figures below show their sample size, and rows with fewer than ' +
-          `${MIN_SAMPLE_HINT} scored answers are labelled “insufficient evidence”. A “weak topic” verdict needs at least ${MIN_SAMPLE_STRONG}.`,
-        'info',
-      )}
+      ${infoToggle('How to read these figures', `<p class="small m-0">Question counts here describe your own imported bank, not the examination. A topic with 3 stored questions cannot support a strong conclusion, so figures below show their sample size, and rows with fewer than ${MIN_SAMPLE_HINT} scored answers are labelled “insufficient evidence”. A “weak topic” verdict needs at least ${MIN_SAMPLE_STRONG}.</p>`)}
 
       ${card({
         title: 'Subjects',
-        right: sourceChip('measured', 'bank + attempts'),
         body: dataTable({
           columns: [{ label: 'Subject' }, { label: 'Available', num: true }, { label: 'Attempted', num: true }, { label: 'Coverage', num: true }, { label: 'Accuracy (all)', num: true }, { label: 'First-attempt accuracy', num: true }, { label: 'Verdict' }],
           rows: subjectRows,
@@ -192,11 +188,10 @@ async function renderPerformancePanel(loaded = null) {
           ${card({
             title: 'Weak topics',
             subtitle: `At least ${MIN_SAMPLE_STRONG} scored answers`,
-            right: sourceChip('derived', `min ${MIN_SAMPLE_STRONG}`),
             body: analytics.weakTopics.length
               ? dataTable({
                   columns: [{ label: 'Topic' }, { label: 'Accuracy', num: true }, { label: 'n', num: true }, { label: 'Coverage', num: true }],
-                  rows: analytics.weakTopics.map((r) => [esc(`${r.topic} · ${r.subject}`), fmtPct(r.accuracy), `${String(r.scored)} ${evidenceMeter(r.scored, MIN_SAMPLE_STRONG, { showLabel: false })}`, fmtPct(r.coverage)]),
+                  rows: analytics.weakTopics.map((r) => [esc(`${r.topic} · ${r.subject}`), fmtPct(r.accuracy), `${String(r.scored)}`, fmtPct(r.coverage)]),
                   className: 'compact',
                 })
               : '<p class="muted small">No topic currently meets the evidence threshold for a weak verdict.</p>',
@@ -205,11 +200,10 @@ async function renderPerformancePanel(loaded = null) {
           ${card({
             title: 'Strong topics',
             subtitle: 'Your best-performing topics with enough evidence',
-            right: sourceChip('derived', `min ${MIN_SAMPLE_STRONG}`),
             body: analytics.strongTopics.length
               ? dataTable({
                   columns: [{ label: 'Topic' }, { label: 'Accuracy', num: true }, { label: 'n', num: true }],
-                  rows: analytics.strongTopics.slice(0, 10).map((r) => [esc(`${r.topic} · ${r.subject}`), fmtPct(r.accuracy), `${String(r.scored)} ${evidenceMeter(r.scored, MIN_SAMPLE_STRONG, { showLabel: false })}`]),
+                  rows: analytics.strongTopics.slice(0, 10).map((r) => [esc(`${r.topic} · ${r.subject}`), fmtPct(r.accuracy), `${String(r.scored)}`]),
                   className: 'compact',
                 })
               : '<p class="muted small">No topic yet meets the evidence threshold for a strong verdict.</p>',
@@ -217,7 +211,6 @@ async function renderPerformancePanel(loaded = null) {
 
           ${card({
             title: 'Too thin to judge',
-            right: sourceChip('unavailable', 'small sample'),
             body: insufficient.length
               ? `<ul class="small">${insufficient.map((r) => `<li><strong>${esc(r.topic)}</strong> — ${esc(r.reason)} ${evidenceMeter(r.scored || 1, MIN_SAMPLE_STRONG)}</li>`).join('')}</ul>`
               : '<p class="muted small">Every attempted topic has enough scored answers to say something useful.</p>',
@@ -227,7 +220,6 @@ async function renderPerformancePanel(loaded = null) {
         <div>
           ${card({
             title: 'Never attempted',
-            right: sourceChip('measured', '0 attempts'),
             body: neverAttempted.length
               ? dataTable({
                   columns: [{ label: 'Topic' }, { label: 'Available', num: true }],
@@ -239,7 +231,6 @@ async function renderPerformancePanel(loaded = null) {
 
           ${card({
             title: 'Under-practised (coverage below 30%)',
-            right: sourceChip('derived', '<30% covered'),
             body: underPractised.length
               ? dataTable({
                   columns: [{ label: 'Topic' }, { label: 'Covered', num: true }, { label: 'Available', num: true }],
@@ -252,7 +243,6 @@ async function renderPerformancePanel(loaded = null) {
           ${card({
             title: 'Confidence analysis',
             subtitle: analytics.confidence.enabled ? 'Confidence you marked, shown separately from correctness' : 'Confidence marking is currently off',
-            right: sourceChip('measured'),
             body: analytics.confidence.enabled
               ? `${dataTable({
                   columns: [{ label: 'Marked as' }, { label: 'Correct', num: true }, { label: 'Incorrect', num: true }, { label: 'Unanswered', num: true }, { label: 'Total', num: true }, { label: 'Accuracy', num: true }],
@@ -270,7 +260,6 @@ async function renderPerformancePanel(loaded = null) {
 
           ${card({
             title: 'Time per question',
-            right: sourceChip('measured'),
             body: `
               ${dataTable({
                 columns: [{ label: 'Measure' }, { label: 'Value' }],
@@ -290,7 +279,6 @@ async function renderPerformancePanel(loaded = null) {
       ${card({
         title: 'Mistakes',
         subtitle: 'Open entries in the mistake book',
-        right: sourceChip('measured', 'mistake book'),
         body: `
           <div class="grid tiles">
             ${tile({ label: 'Open entries', value: String(analytics.mistakes.open), sub: `${analytics.mistakes.repeated} repeated`, source: 'measured' })}
@@ -316,7 +304,6 @@ async function renderPerformancePanel(loaded = null) {
 
       ${card({
         title: 'Revision',
-        right: sourceChip('derived', 'spaced repetition'),
         body: `
           <div class="grid tiles">
             ${tile({ label: 'Tracked', value: String(analytics.revision.tracked), sub: 'questions with a schedule', source: 'measured' })}
@@ -337,7 +324,6 @@ async function renderPerformancePanel(loaded = null) {
       ${card({
         title: 'Topic frequency in your bank',
         subtitle: `${analytics.frequency.total} stored question(s)`,
-        right: sourceChip('supplied', 'imported bank'),
         body: `
           ${dataTable({ columns: [{ label: 'Topic' }, { label: 'Questions', num: true }, { label: 'Share of bank', num: true }, { label: 'By year' }], rows: freqTopicRows, empty: 'No classified topics yet.', className: 'compact' })}
           <p class="tiny muted">${esc(analytics.frequency.disclaimer)}</p>`,
@@ -347,14 +333,13 @@ async function renderPerformancePanel(loaded = null) {
       ${card({
         title: 'Study priorities',
         subtitle: 'Derived ranking with its reasons and caveats',
-        right: sourceChip('derived'),
         body: dataTable({
           columns: [{ label: 'Topic' }, { label: 'Score', num: true }, { label: 'Available', num: true }, { label: 'Accuracy', num: true }, { label: 'Why' }],
           rows: priorities.map((p) => [
             `<strong>${esc(p.topic)}</strong><div class="tiny muted">${esc(p.subject)}</div>`,
             String(p.priorityScore),
             String(p.available),
-            p.scored ? `${fmtPct(p.accuracy)} ${evidenceMeter(p.scored, MIN_SAMPLE_STRONG, { showLabel: false })}` : '<span class="soft">no data</span>',
+            p.scored ? `${fmtPct(p.accuracy)} <span class="tiny soft">(${p.scored} judged)</span>` : '<span class="soft">no data</span>',
             `<span class="tiny">${p.reasons.slice(0, 3).map((r) => esc(r)).join('<br />')}</span>`,
           ]),
           empty: 'No priorities yet.',
@@ -365,7 +350,6 @@ async function renderPerformancePanel(loaded = null) {
 
       ${card({
         title: 'Test history',
-        right: sourceChip('measured'),
         body: dataTable({
           columns: [{ label: 'Test' }, { label: 'Questions', num: true }, { label: 'Correct / total', num: true }, { label: 'Accuracy', num: true }, { label: 'Marks', num: true }, { label: 'Time' }],
           rows: testRows,
@@ -428,7 +412,7 @@ export default {
           ${tile({ label: 'Unique questions attempted', value: String(counts.attemptedUnique), sub: `${fmtPct(counts.coverage)} of the bank — repeats do not increase this`, source: 'measured', where: 'Unique question IDs with ≥1 attempt' })}
           ${tile({ label: 'Total attempts', value: String(counts.totalAttempts), sub: `${counts.repeatAttempts} attempt(s) beyond the first on a question`, source: 'measured', where: 'Every recorded attempt in local store' })}
         </div>
-        <p class="tiny muted mb-3">Three different numbers: what is <em>available</em> to answer, what you have <em>attempted</em> at least once, and how many <em>attempts</em> you have made. The tabs below never mix them — one reports your attempts, the other counts the stored papers.</p>`
+        ${infoToggle('Available, attempted and attempts — what differs', '<p class="small m-0">Three different numbers: what is <em>available</em> to answer, what you have <em>attempted</em> at least once, and how many <em>attempts</em> you have made. The tabs below never mix them — one reports your attempts, the other counts the stored papers.</p>')}`
       : '';
 
     return `

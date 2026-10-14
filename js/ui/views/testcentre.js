@@ -20,14 +20,15 @@ import {
   toast,
   confirmDialog,
   answerKeyBadge,
-  sourceChip,
+  infoToggle,
   demoBadge,
 } from '../components.js';
 import { fmtDate, fmtMarks, fmtPct, fmtClock } from '../../core/util.js';
 import { paperSummary } from '../../services/select.js';
 import * as tests from '../../services/tests.js';
 import { resolveScoringRules } from '../../services/scoring.js';
-import { configFields, readConfig, mountConfigFields, incompletePaperNotice, scoringUnknownNotice, startPracticeTest } from './shared.js';
+import { configFields, readConfig, mountConfigFields, scoringUnknownNotice, startPracticeTest } from './shared.js';
+import { shuffle } from '../../core/util.js';
 
 function paperCard(paper, summary) {
   const questions = summary.present;
@@ -37,30 +38,22 @@ function paperCard(paper, summary) {
   const isLatestPractice = resolved.schemeId === 'mppsc-sse-prelims-latest-practice' && !paper.user_scoring_override;
   const flags = [];
   if (summary.placeholder) flags.push(badge('paper metadata missing', 'bad'));
-  if (summary.complete === false) flags.push(badge('incomplete paper', 'warn'));
   if (!hasScoring) flags.push(badge('scoring rules unknown', 'warn'));
   if (summary.disputed) flags.push(badge(`${summary.disputed} disputed answer(s)`, 'bad'));
   if (summary.missingAnswers) flags.push(badge(`${summary.missingAnswers} question(s) without a key`, 'warn'));
   if (paper.is_demonstration) flags.push(demoBadge(true));
-  if (summary.bilingual) flags.push(badge(`${summary.bilingual} bilingual`, 'info'));
 
-  const scoringBadge = isLatestPractice
-    ? badge('latest pattern · practice only', 'info')
-    : hasScoring
-      ? sourceChip('supplied', 'paper metadata')
-      : sourceChip('unavailable', 'rules unknown');
-  const practiceMax = hasScoring && isLatestPractice ? questions * resolved.rules.marks_per_correct : null;
-  const timeBadge = paper.duration_minutes
-    ? badge(`${isLatestPractice ? 'practice time ' : ''}${paper.duration_minutes} min`, isLatestPractice ? 'info' : '')
-    : badge('duration not stated', 'warn');
-  const marksBadge = isLatestPractice
-    ? badge(`${practiceMax} practice max marks`, 'info')
-    : paper.total_marks
-      ? badge(`${paper.total_marks} marks`, '')
-      : badge('total marks not stated', 'warn');
   const scoringText = hasScoring
     ? `Scoring: +${fmtMarks(resolved.rules.marks_per_correct)} per correct${resolved.rules.negative_marking_enabled ? `, −${fmtMarks(resolved.rules.negative_marks_per_incorrect)} per incorrect` : ', no negative marking'}, ${fmtMarks(resolved.rules.marks_for_unanswered)} unanswered${isLatestPractice ? '; current-pattern practice policy, not a historical-rule claim' : ''}.`
     : 'Scoring rules are not yet known for this paper.';
+  const scoringLine = hasScoring
+    ? `+${fmtMarks(resolved.rules.marks_per_correct)} / −${fmtMarks(resolved.rules.negative_marks_per_incorrect)} / ${fmtMarks(resolved.rules.marks_for_unanswered)} scoring`
+    : 'scoring not set yet';
+  const facts = [
+    `${questions} question${questions === 1 ? '' : 's'}`,
+    paper.duration_minutes ? `${paper.duration_minutes} min` : null,
+    scoringLine,
+  ].filter(Boolean).join(' · ');
 
   return `<section class="card">
     <div class="card-body">
@@ -68,22 +61,10 @@ function paperCard(paper, summary) {
         <div class="grow">
           <div class="row tight">
             <h3 class="mb-1">${esc(paper.paper_name || paper.paper_id)}</h3>
-            ${scoringBadge}
+            ${isLatestPractice ? badge('latest pattern · practice only', 'info') : ''}
           </div>
-          <p class="muted small m-0">
-            ${esc(paper.exam || 'Examination not stated')}
-            ${paper.year ? ` · ${esc(String(paper.year))}` : ' · year not stated'}
-            ${paper.set_code ? ` · set ${esc(paper.set_code)}` : ''}
-            ${paper.paper_code ? ` · ${esc(paper.paper_code)}` : ''}
-          </p>
-          <div class="row tight mt-2">
-            ${badge(`${questions} question(s) stored`, questions ? 'ok' : 'bad')}
-            ${summary.declared !== null && summary.declared !== undefined ? badge(`source declares ${summary.declared}`, summary.complete ? '' : 'warn') : badge('source count not stated', 'warn')}
-            ${timeBadge}
-            ${marksBadge}
-            ${flags.join(' ')}
-          </div>
-          <p class="tiny muted mt-2 mb-0">${esc(scoringText)}</p>
+          <p class="muted small m-0">${esc(facts)}${flags.length ? ` · ${flags.join(' ')}` : ''}</p>
+          ${infoToggle('Paper details', `<p class="small m-0">${esc(paper.exam || 'Examination not stated')}${paper.year ? ` · ${esc(String(paper.year))}` : ''}${paper.set_code ? ` · set ${esc(paper.set_code)}` : ''}${paper.paper_code ? ` · ${esc(paper.paper_code)}` : ''}<br />${esc(scoringText)}${summary.bilingual ? `<br />${summary.bilingual} question(s) have both English and Hindi text.` : ''}</p>`)}
         </div>
         <div class="row tight">
           <button class="btn btn-primary" type="button" data-action="start-paper" data-paper="${esc(paper.paper_id)}" ${ready ? '' : 'disabled'}>Start full simulation</button>
@@ -120,21 +101,21 @@ export default {
     const totals = paperSummaries.reduce(
       (acc, { summary }) => ({
         questions: acc.questions + summary.present,
-        complete: acc.complete + (summary.complete ? 1 : 0),
         unknownRules: acc.unknownRules + (summary.scoringKnown ? 0 : 1),
       }),
-      { questions: 0, complete: 0, unknownRules: 0 },
+      { questions: 0, unknownRules: 0 },
     );
 
     return `
       <h1>PYQ Test Centre</h1>
-      <p class="muted">Full-paper practice follows the stored question order. Source metadata is shown separately from practice scoring: the latest reported MPPSC pattern (+3/−1/0) is applied to the bundled 2013–2024 papers by policy, not as a claim about each paper’s historical rules.</p>
+      <p class="muted">Pick a paper and attempt it in its original order, scored +3 / −1 / 0.</p>
+      ${infoToggle('About scoring and these papers', '<p class="small m-0">Full-paper practice follows the stored question order. Source metadata is shown separately from practice scoring: the latest reported MPPSC pattern (+3/−1/0) is applied to the bundled 2013–2024 papers by policy, not as a claim about each paper’s historical rules. Everything is stored in local IndexedDB on this device.</p>')}
 
       <div class="grid tiles mb-4">
-        ${tile({ label: 'Papers stored', value: String(papers.length), sub: `${totals.complete} with a complete question set`, source: 'supplied', where: 'Imported paper records' })}
-        ${tile({ label: 'Questions available', value: String(totals.questions), sub: `${state.subjects.length} subject groups`, source: 'supplied', where: 'Stored in local IndexedDB' })}
-        ${tile({ label: 'Rules unknown', value: String(totals.unknownRules), sub: 'configure before scoring', tone: totals.unknownRules ? 'warn' : '', source: totals.unknownRules ? 'unavailable' : 'supplied', where: 'Source paper scoring metadata' })}
-        ${tile({ label: 'Unfinished tests', value: String(unfinished.length), sub: unfinished.length ? 'resume below' : 'nothing pending', tone: unfinished.length ? 'accent' : '', source: 'measured', where: 'Active local test sessions' })}
+        ${tile({ label: 'Papers stored', value: String(papers.length), sub: 'ready for a full simulation' })}
+        ${tile({ label: 'Questions available', value: String(totals.questions), sub: `${state.subjects.length} subject groups` })}
+        ${tile({ label: 'Rules unknown', value: String(totals.unknownRules), sub: 'configure before scoring', tone: totals.unknownRules ? 'warn' : '' })}
+        ${tile({ label: 'Unfinished tests', value: String(unfinished.length), sub: unfinished.length ? 'resume below' : 'nothing pending', tone: unfinished.length ? 'accent' : '' })}
       </div>
 
       ${
@@ -142,7 +123,6 @@ export default {
           ? card({
               title: 'Resume an unfinished test',
               tone: 'accent',
-              right: sourceChip('measured', 'autosaved'),
               body: `${unfinished
                 .map((t) => {
                   const p = tests.testProgress(t);
@@ -169,7 +149,6 @@ export default {
         submitted.length
           ? card({
               title: 'Recent submitted tests',
-              right: sourceChip('measured', 'submitted'),
               body: dataTable({
                 columns: [{ label: 'Test' }, { label: 'Submitted' }, { label: 'Score', num: true }, { label: 'Accuracy', num: true }, { label: '' }],
                 rows: submitted.map((t) => {
@@ -189,10 +168,7 @@ export default {
           : ''
       }
 
-      ${notice(
-        `Question wording, order and imported metadata are shown as stored. Missing questions, keys and source metadata are not invented. The bundled 2013–2024 papers use the latest reported +3/−1/0 marking pattern for practice only; that policy does not establish their historical scoring rules.`,
-        'info',
-      )}`;
+      ${infoToggle('What is and is not claimed here', '<p class="small m-0">Question wording, order and imported metadata are shown as stored. Missing questions, keys and source metadata are not invented. The bundled 2013–2024 papers use the latest reported +3/−1/0 marking pattern for practice only; that policy does not establish their historical scoring rules.</p>')}`;
   },
 
   async mount(ctx, root) {
@@ -222,7 +198,6 @@ export default {
           title: `${paper.paper_name || paper.paper_id} — details`,
           wide: true,
           body: `
-            ${incompletePaperNotice(summary)}
             ${scoringUnknownNotice(paper)}
             ${notice(
               `Import validation: ${esc(paper.import_validation?.status || 'unknown')} ${paper.import_validation?.notes ? `— ${esc(paper.import_validation.notes)}` : ''}<br />
@@ -250,9 +225,8 @@ export default {
           title: `Start full simulation — ${paper.paper_name || paper.paper_id}`,
           wide: true,
           body: `
-            ${incompletePaperNotice(summary)}
             ${scoringUnknownNotice(paper)}
-            <p class="small">This practice test uses the stored question order (${paper.question_order.length} stored questions) and any configured time limit. The bundled MPPSC papers use the latest reported +3/−1/0 pattern for practice; this does not establish the historical rules for this paper.</p>
+            <p class="small">${paper.question_order.length} questions, scored +3 / −1 / 0.</p>
             ${configFields({ paper, defaultCount: paper.question_order.length, allowCustomScoring: true, allowRepeatOverride: false, maxCount: paper.question_order.length })}
             <label class="check"><input type="checkbox" id="simulationStrict" checked /><span>Keep the exact original order (recommended for a faithful simulation)</span></label>`,
           onMount: () => {
@@ -266,16 +240,16 @@ export default {
         if (answered !== '__start') return;
         const config = readConfig('practiceCfg', { paper, defaultCount: paper.question_order.length });
         const strict = Boolean(document.getElementById('simulationStrict')?.checked);
-        const questionIds = strict ? paper.question_order.slice() : paper.question_order.slice();
+        const questionIds = strict ? paper.question_order.slice() : shuffle(paper.question_order);
         await startPracticeTest(ctx, {
           kind: 'pyq_full',
           label: `${paper.paper_name || paper.exam || paper.paper_id}${paper.year ? ` ${paper.year}` : ''}${paper.set_code ? ` (set ${paper.set_code})` : ''}`,
           questionIds,
           metas: questionIds.map((id) => state.questionIndex.get(id)).filter(Boolean),
           config,
-          orderSource: 'original',
+          orderSource: strict ? 'original' : 'shuffled',
           paper,
-          selectionNotes: strict ? ['Original paper order retained.'] : [],
+          selectionNotes: strict ? ['Original paper order retained.'] : ['Question order shuffled for this sitting.'],
         });
       }
     });

@@ -10,7 +10,7 @@
  */
 
 import { state } from '../../core/state.js';
-import { esc, notice, badge, dataTable, toast } from '../components.js';
+import { esc, notice, badge, dataTable, toast, infoToggle } from '../components.js';
 import { CONFIDENCE_TRACKING, ANSWER_POLICIES } from '../../core/constants.js';
 import { allAttempts } from '../../services/attempts.js';
 import { buildAttemptSummary } from '../../services/select.js';
@@ -54,7 +54,7 @@ function describeMarks(v, paper) {
   if (v.usePaperRules && resolved?.rules) {
     const rules = resolved.rules;
     if (resolved.schemeId === LATEST_MPPSC_PRACTICE_SCHEME && !paper?.user_scoring_override) {
-      return `latest MPPSC practice pattern (+${rules.marks_per_correct} / −${rules.negative_marks_per_incorrect} / ${rules.marks_for_unanswered}; not a claim about historical rules)`;
+      return `MPPSC pattern +${rules.marks_per_correct} / −${rules.negative_marks_per_incorrect} / ${rules.marks_for_unanswered}`;
     }
     return `the paper's scoring rules (+${rules.marks_per_correct}${rules.negative_marking_enabled ? ` / −${rules.negative_marks_per_incorrect}` : ', no negative'})`;
   }
@@ -142,7 +142,7 @@ export function configFields({ prefix = CONFIG_PREFIX, paper = null, defaultCoun
                 <option value="optional" ${s.confidenceTracking === 'optional' ? 'selected' : ''}>${esc(CONFIDENCE_TRACKING.optional)}</option>
                 <option value="required" ${s.confidenceTracking === 'required' ? 'selected' : ''}>${esc(CONFIDENCE_TRACKING.required)}</option>
               </select>
-              <span class="hint">Confidence is stored separately from correctness. Correct guesses are treated as weak recall and returned sooner.</span>
+              <span class="hint">Optional per question. Stored separately from correctness; it never changes your marks.</span>
             </label>
             <label class="field"><span class="label-text">Answer policy (which key is used to judge a response)</span>
               <select id="${prefix}Policy">
@@ -150,7 +150,7 @@ export function configFields({ prefix = CONFIG_PREFIX, paper = null, defaultCoun
                 <option value="supplied" ${s.answerPolicy === 'supplied' ? 'selected' : ''}>${esc(ANSWER_POLICIES.supplied)}</option>
                 <option value="verified_only" ${s.answerPolicy === 'verified_only' ? 'selected' : ''}>${esc(ANSWER_POLICIES.verified_only)}</option>
               </select>
-              <span class="hint">The stored key is never overwritten, whichever policy you choose.</span>
+              <span class="hint">The stored key is never overwritten.</span>
             </label>
             <label class="field"><span class="label-text">If an answer is still unresolved (missing or disputed)</span>
               <select id="${prefix}Unresolved">
@@ -173,9 +173,10 @@ export function configFields({ prefix = CONFIG_PREFIX, paper = null, defaultCoun
             <legend>Scoring</legend>
             ${
               paperRules
-                ? `<label class="check"><input type="checkbox" id="${prefix}UsePaperRules" checked /><span>${esc(paperRulesLabel)} — ${esc(paperRules)}${isLatestPractice ? '; not a claim about historical rules' : ''}</span></label>
-                   <p class="hint">Clear the box to override the marks for this session only.</p>`
-                : `<p class="hint mt-0">${paper ? 'The source paper does not state scoring rules.' : 'No source paper rules apply to this session.'} Set the marks explicitly — nothing is assumed for you.</p>`
+                ? `<label class="check"><input type="checkbox" id="${prefix}UsePaperRules" checked /><span>${esc(paperRulesLabel)} — ${esc(paperRules)}</span></label>
+                   <p class="hint">Clear the box to override the marks for this session only.</p>
+                   ${isLatestPractice ? infoToggle('About this scoring', '<p class="small m-0">The latest reported MPPSC pattern (+3/−1/0) is applied to every bundled paper as a practice policy. It is not a claim about the historical rules of any particular year.</p>') : ''}`
+                : `<p class="hint mt-0">Scoring below starts from the MPPSC +3 / −1 / 0 default. Change it for this session if you want different marks.</p>`
             }
             <div class="field-row">
               <label class="field"><span class="label-text">Marks per correct answer</span><input type="number" step="0.25" id="${prefix}MarksCorrect" value="${esc(String(s.defaultScoring.marksPerCorrect))}" /></label>
@@ -313,32 +314,14 @@ export function availabilityTable(availability, { subjectLabel = 'Subject' } = {
 }
 
 export function countSummary(availability, extra = '') {
-  return `<div class="row my-2">
-    ${badge(`${availability.total} matching`, 'accent')}
-    ${badge(`${availability.unseen} never attempted`, 'info')}
-    ${badge(`${availability.incorrect} answered wrong before`, availability.incorrect ? 'bad' : '')}
-    ${badge(`${availability.skipped} skipped before`, availability.skipped ? 'warn' : '')}
-    ${extra}
-  </div>`;
-}
-
-export function incompletePaperNotice(paperSummary) {
-  if (!paperSummary) return '';
-  if (paperSummary.complete === false) {
-    return notice(
-      `This paper declares <strong>${esc(String(paperSummary.declared))}</strong> questions but only <strong>${esc(String(paperSummary.present))}</strong> are stored locally (${esc(String(paperSummary.missingCount))} missing). The simulation will include only the questions that exist; nothing is invented to fill the gap.`,
-      'warn',
-      { title: 'Incomplete paper' },
-    );
-  }
-  return '';
+  return `<p class="small muted my-2"><strong>${availability.total} matching</strong> · ${availability.unseen} never attempted · ${availability.incorrect} answered wrong before · ${availability.skipped} skipped before${extra}</p>`;
 }
 
 export function scoringUnknownNotice(paper) {
   if (!paper) return '';
   const resolved = resolveScoringRules({ paper });
   if (resolved.schemeId === LATEST_MPPSC_PRACTICE_SCHEME && !paper.user_scoring_override) {
-    return notice('The latest reported MPPSC +3/−1/0 pattern is applied here as a practice policy. It is not evidence of the historical rules for this paper.', 'info', { title: 'Latest-pattern practice scoring' });
+    return infoToggle('About this scoring', '<p class="small m-0">The latest reported MPPSC +3/−1/0 pattern is applied here as a practice policy. It is not evidence of the historical rules for this paper.</p>');
   }
   if (!resolved.rules) {
     return notice("No applicable marking scheme is available for this paper. Configure scoring before the test can be scored.", 'warn', { title: 'Scoring rules unknown' });

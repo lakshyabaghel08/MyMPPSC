@@ -143,3 +143,25 @@ test('revision effectiveness compares first and latest scored attempts only', ()
   assert.equal(result.improved, 1);
   assert.equal(result.worsened, 1);
 });
+
+test('turning "unanswered is a miss" off holds the schedule instead of resetting it', () => {
+  const relaxed = structuredClone(settings);
+  relaxed.revision.unansweredIsMiss = false;
+  const prev = { level: 3, ease: 1, streak: 3, lapses: 0 };
+  const held = m.revision.computeSchedule({ prev, outcome: 'unanswered', confidence: null, settings: relaxed });
+  assert.equal(held.level, 3, 'the level is held, not reset');
+  assert.equal(held.lapses, 0, 'no lapse is counted');
+  assert.match(held.reason, /not treated as misses/i);
+});
+
+test('the due queue caps one sitting and reports the remainder, at bank scale', () => {
+  const today = new Date().toISOString().slice(0, 10);
+  const records = Array.from({ length: 1600 }, (_, i) => ({ question_id: `Q-${i}`, next_due: today }));
+  const queue = m.revision.dueQueue(records);
+  assert.equal(queue.ids.length, m.revision.REVISION_SESSION_CAP, 'one sitting is capped');
+  assert.equal(queue.total, 1600);
+  assert.equal(queue.remaining, 1600 - m.revision.REVISION_SESSION_CAP, 'the backlog is reported, not hidden');
+  const buckets = m.revision.bucketise(records);
+  assert.equal(buckets.dueToday.length, 1600, 'bucketising a whole bank of records stays a single pass');
+  assert.ok(m.revision.REVISION_PAGE_SIZE >= 10 && m.revision.REVISION_PAGE_SIZE <= 100, 'the queue renders in pages');
+});

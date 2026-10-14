@@ -104,7 +104,6 @@ export function filterMetas(metas, f = {}, attemptSummary = new Map()) {
     if (f.onlyWithExplanation && !meta.hasExplanation) continue;
     if (f.onlyMissingAnswers && !(meta.needsAttention && !meta.hasSuppliedAnswer)) continue;
     if (f.onlyDisputed && !meta.disputed) continue;
-    if (f.onlyIncompletePapers && !meta.paper_incomplete) continue;
 
     const summary = attemptSummary.get(meta.id) || null;
     const attempted = Boolean(summary && summary.attempts);
@@ -522,8 +521,6 @@ export function paperSummary(paper, metas) {
   return {
     present: inPaper.length,
     declared,
-    complete: declared === null ? null : declared === inPaper.length,
-    missingCount: declared === null ? null : Math.max(0, declared - inPaper.length),
     withAnswers,
     missingAnswers: inPaper.length - withAnswers,
     disputed,

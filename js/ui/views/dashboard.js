@@ -8,7 +8,7 @@
  */
 
 import { state } from '../../core/state.js';
-import { esc, card, badge, icon, dataTable, confirmDialog, toast, sourceChip, evidenceMeter } from '../components.js';
+import { esc, card, badge, icon, dataTable, confirmDialog, toast, evidenceMeter } from '../components.js';
 import { fmtPct, fmtDuration, fmtDate, fmtRelative } from '../../core/util.js';
 import { loadAnalytics, dashboardSummary, studyPriorities } from '../../services/analytics.js';
 import * as testsSvc from '../../services/tests.js';
@@ -47,7 +47,6 @@ function noBankCard() {
     <h1>Welcome to MyMPPSC</h1>
     ${card({
       title: 'Start by importing a question bank',
-      right: sourceChip('supplied', 'local IndexedDB'),
       body: `
         <p>MyMPPSC is a local-first study app. Nothing you do here is uploaded anywhere: the question bank, your answers, your mistakes and your revision schedule all live in this browser's storage, on this device.</p>
         <ol class="small">
@@ -235,7 +234,6 @@ export default {
 
       ${card({
         title: 'Practise now',
-        right: sourceChip('supplied', 'all modes'),
         body: `
           <div class="row">
             <a class="btn btn-primary" href="#/test-centre">Paper simulations</a>
@@ -252,7 +250,6 @@ export default {
           ${card({
             title: 'Study priorities',
             subtitle: 'From your recorded performance, bank coverage and syllabus status',
-            right: sourceChip('derived'),
             body: priorityRows.length
               ? dataTable({ columns: [{ label: 'Topic' }, { label: 'Qs', num: true }, { label: 'Accuracy', num: true }, { label: 'Basis' }, { label: '' }], rows: priorityRows, className: 'compact' })
               : '<p class="muted small">No topics to prioritise yet.</p>',
@@ -261,11 +258,10 @@ export default {
         </div>
 
         <div>
-          ${attention.length ? card({ title: 'Needs your attention', right: sourceChip('disputed'), body: `<ul class="small">${attention.map((a) => `<li>${esc(a)}</li>`).join('')}</ul><div class="row mt-2"><a class="btn btn-sm" href="#/bank">Open Question Bank &amp; Imports</a></div>` }) : card({ title: 'Answer-key and content integrity', right: sourceChip('verified'), body: '<p class="small">Every stored question has an answer key or is flagged as unresolved, and every classification is traceable. Nothing needs attention right now.</p>' })}
+          ${attention.length ? card({ title: 'Needs your attention', body: `<ul class="small">${attention.map((a) => `<li>${esc(a)}</li>`).join('')}</ul><div class="row mt-2"><a class="btn btn-sm" href="#/bank">Open Question Bank &amp; Imports</a></div>` }) : card({ title: 'Answer-key and content integrity', body: '<p class="small">Every stored question has an answer key or is flagged as unresolved, and every classification is traceable. Nothing needs attention right now.</p>' })}
 
           ${card({
             title: 'Recent tests',
-            right: sourceChip('measured'),
             body: recentTestRows.length
               ? dataTable({ columns: [{ label: 'Test' }, { label: 'Score', num: true }, { label: 'Accuracy', num: true }], rows: recentTestRows, className: 'compact' })
               : '<p class="muted small">No submitted tests yet.</p>',
@@ -275,7 +271,6 @@ export default {
 
       ${card({
         title: 'Syllabus progress',
-        right: sourceChip('supplied', 'manual checklist'),
         body: `
           <div class="row mb-2">
             ${badge(`${curriculum.progress.done} of ${curriculum.progress.total} item(s) done`, 'info')}
@@ -293,13 +288,12 @@ export default {
   async mount(ctx, root) {
     document.getElementById('dashReviseDue')?.addEventListener('click', async () => {
       const records = await revision.allRevisionRecords();
-      const buckets = revision.bucketise(records);
-      const ids = [...buckets.overdue, ...buckets.dueToday].map((r) => r.question_id).filter((id) => state.questionIndex.has(id));
-      if (!ids.length) {
+      const queue = revision.dueQueue(records);
+      const capped = queue.ids.filter((id) => state.questionIndex.has(id));
+      if (!capped.length) {
         toast('Nothing is due for revision.', 'info');
         return;
       }
-      const capped = ids.slice(0, 30);
       await startPracticeTest(ctx, {
         kind: 'revision',
         label: `Revision — ${capped.length} due question(s)`,

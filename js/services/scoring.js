@@ -138,7 +138,7 @@ export function resolveScoringRules({ paper = null, override = null, defaults = 
     );
     return { rules: null, source: 'unknown', rulesSourceNote: s.notes || null, needsConfiguration: true, warnings, paperId: paper.paper_id };
   }
-  const d = defaults || { marksPerCorrect: 1, negativeMarksPerIncorrect: 0, negativeMarkingEnabled: false, marksForUnanswered: 0 };
+  const d = defaults || { marksPerCorrect: 3, negativeMarksPerIncorrect: 1, negativeMarkingEnabled: true, marksForUnanswered: 0 };
   warnings.push('No source paper rules apply to this test; the configured default rules are used.');
   return {
     rules: {

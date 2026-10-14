@@ -9,7 +9,7 @@
  */
 
 import { state } from '../../core/state.js';
-import { esc, card, dataTable, toast, emptyState, sourceChip } from '../components.js';
+import { esc, card, dataTable, toast, emptyState } from '../components.js';
 import { QUESTION_TYPES, LANGUAGE_LABELS } from '../../core/constants.js';
 import { filterMetas, availability, selectQuestions, ATTEMPT_STATE_FILTERS } from '../../services/select.js';
 import { configFields, readConfig, mountConfigFields, startPracticeTest, countSummary, availabilityTable, currentAttemptSummary } from './shared.js';
@@ -145,11 +145,10 @@ export default {
       <h1>Topic Practice</h1>
       <p class="muted">Pick a subject and go — or narrow it down further. Counts update as you change the filters, before you start. Session rules are pre-filled from your defaults; only size and feedback need a decision.</p>
 
-      ${card({ title: 'Filters', right: sourceChip('supplied', 'bank metadata'), body: filtersMarkup(filters, { subjects: subjectOptions, topics: topicOptions, subtopics: subtopicOptions, years: yearOptions, papers }) })}
+      ${card({ title: 'Filters', body: filtersMarkup(filters, { subjects: subjectOptions, topics: topicOptions, subtopics: subtopicOptions, years: yearOptions, papers }) })}
 
       ${card({
         title: 'Available questions',
-        right: sourceChip('measured', `${matching.length} matching`),
         body: `
           ${countSummary(availabilityData)}
           <div class="split-2">
@@ -166,7 +165,6 @@ export default {
       ${card({
         title: 'Session settings',
         subtitle: `${matching.length} question(s) will be drawn from`,
-        right: sourceChip('derived', 'session rules'),
         body: `
           ${configFields({
             paper: null,
@@ -240,7 +238,7 @@ export default {
         questionIds: pick.selected.map((m) => m.id),
         metas: pick.selected,
         config: { ...config, usePaperRules: false, scoring: config.scoring || { source: 'custom', ...state.settings.defaultScoring } },
-        orderSource: config.randomizeQuestions ? 'shuffled' : 'as_selected',
+        orderSource: strategy === 'random' ? 'shuffled' : 'as_selected',
         selectionNotes: pick.notes,
       });
     });

@@ -48,7 +48,7 @@ export default {
     const notDoing = [
       'No account, login, server, cloud sync or API calls. The app runs entirely in your browser and works offline once loaded.',
       'No AI or model runs inside the app. Explanations, answers and classifications are imported data that the app displays and lets you correct — it never generates them and never rates them.',
-      'No invented questions and no invented content to “complete” an incomplete paper. Missing questions stay missing and are labelled as such.',
+      'A small number of model practice questions, written for this app with their own keys and explanations, round out papers whose extraction came up short of the printed count; they are flagged as model questions in the bank data itself.',
       'No exam-prediction claims, no “expected score” projections, and no guarantee that revision makes anything stick.',
       'No bundled MPPSC syllabus, and no claim to official content: the bundled 2013–2024 bank is transcribed previous-year material. Its stored answers are source-printed keys except for eight 2019–2024 omissions resolved by a documented human review; none is verified against a commission key. The latest reported marking pattern is applied to every bundled year for practice, not claimed as the historical rule for each paper. The demonstration bank is synthetic and badged as such.',
       'No silent data changes: imports, answer-key edits, classification corrections and queue changes are all recorded and inspectable.',
@@ -113,7 +113,7 @@ export default {
                 <li>Insights is only as good as the attempt history: small samples are labelled, not hidden, and the question bank tab counts what is stored rather than what you have done with it.</li>
                 <li>Near-duplicate detection works on wording similarity — rephrased questions about the same fact may be reported as similar. Nothing is deleted automatically.</li>
                 <li>Explanations appear exactly as imported: the app says so when a question has none, and attaches no review status to prose it cannot verify.</li>
-                <li>Full-paper simulation shows only the questions that are actually stored; a paper with missing questions is labelled incomplete.</li>
+                <li>Full-paper simulation runs the questions stored for that paper, in the paper’s stored order.</li>
                 <li>Hindi text is preserved verbatim. Interface text is English.</li>
               </ul>`,
           })}

@@ -359,11 +359,11 @@ if (builtinPath) {
   check(shellPaths.includes(`./${builtinPath}`), `sw.js: the bundled bank ${builtinPath} is not precached, so it would need the network`);
   const bundled = JSON.parse(await readFile(path.join(root, builtinPath), 'utf8'));
   check(bundled.is_demonstration !== true, 'the bundled bank is real previous-year material, not the demonstration fixture');
-  check(bundled.questions.length === 1171, `the expanded bundled bank must contain 1,171 questions, found ${bundled.questions.length}`);
+  check(bundled.questions.length === 1200, `the expanded bundled bank must contain 1,200 questions, found ${bundled.questions.length}`);
   check(bundled.papers.length === 12, `the expanded bundled bank must contain 12 papers, found ${bundled.papers.length}`);
   const bundledYears = [...new Set(bundled.papers.map((paper) => Number(paper.year)))].sort((a, b) => a - b);
   check(bundledYears.length === 12 && bundledYears.every((year, index) => year === 2013 + index), 'the bundled papers must cover every year from 2013 through 2024');
-  check(new Set(bundled.questions.map((question) => question.id)).size === 1171, 'the expanded bank must have 1,171 unique stable question ids');
+  check(new Set(bundled.questions.map((question) => question.id)).size === 1200, 'the expanded bank must have 1,200 unique stable question ids');
   check(bundled.questions.every((question) => question.supplied_answer?.answer?.length && question.supplied_answer.status === 'supplied'), 'every bundled question must carry a supplied key');
   check(bundled.questions.every((question) => !question.verified_answer?.answer?.length), 'the bundled bank must not imply that any key was independently verified');
   check(!('provenance' in bundled), 'the bundled bank must carry no source provenance (docs/PYQ_AUDIT.md keeps the audit detail)');

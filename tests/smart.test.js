@@ -101,23 +101,25 @@ test('unclassified questions stay visible and filterable', () => {
   assert.equal(all.length, 34, 'every imported question remains selectable');
 });
 
-test('paper order and completeness summary describe the source faithfully', () => {
+test('paper order and summary describe the source faithfully', () => {
   const p1 = m.appState.papers.get('DEMO-P1');
   const summary = m.select.paperSummary(p1, metas());
   assert.equal(summary.present, 18);
   assert.equal(summary.declared, 18);
-  assert.equal(summary.complete, true);
+  assert.equal('complete' in summary, false, 'papers carry no completeness tag');
+  assert.equal('missingCount' in summary, false, 'and no missing-question count');
   assert.equal(summary.disputed, 0);
   assert.equal(summary.bilingual, 12);
 
   const p3 = m.appState.papers.get('DEMO-P3');
-  const incomplete = m.select.paperSummary(p3, metas());
-  assert.equal(incomplete.complete, false);
-  assert.equal(incomplete.missingCount, 9, 'the paper declares 15 questions but only 6 were imported');
+  const partial = m.select.paperSummary(p3, metas());
+  assert.equal(partial.present, 6, 'six questions of the paper were imported');
+  assert.equal(partial.declared, 15, 'the paper metadata still states the printed count, untagged');
+  assert.equal('complete' in partial, false);
 
   const order = m.select.paperOrder(p1, metas());
   assert.deepEqual(order.ordered.map((q) => q.id), p1.question_order);
-  assert.equal(order.reconstructed, false, 'original paper order is preserved for a complete paper');
+  assert.equal(order.reconstructed, false, 'original paper order is preserved');
 });
 
 test('near-duplicate detection finds the deliberate paraphrase and not unrelated questions', () => {

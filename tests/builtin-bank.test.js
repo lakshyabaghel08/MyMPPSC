@@ -28,9 +28,9 @@ test('a fresh install loads the committed bank with no manual import', async () 
 
   assert.equal(result.status, 'loaded');
   assert.equal(result.meta.bank_id, 'mppsc-prelims-paper1-2019-2024');
-  assert.equal(result.meta.questions, 1171);
+  assert.equal(result.meta.questions, 1200);
   assert.equal(result.meta.papers, 12);
-  assert.equal(m.appState.questionIndex.size, 1171, 'every question is in the live index');
+  assert.equal(m.appState.questionIndex.size, 1200, 'every question is in the live index');
   assert.equal(m.appState.papers.size, 12);
 
   // The latest practice scheme is applied uniformly, including to past years.
@@ -110,7 +110,7 @@ test('an upgraded bank refreshes records and keeps the user\'s own work', async 
   assert.equal(result.status, 'updated', 'a rebuilt file is applied');
   assert.ok(result.stats.questionsUpdated >= 1, 'the corrected record is refreshed');
   assert.equal(result.stats.questionsAdded, 0, 'no question is added by an update');
-  assert.equal(await m.db.count(m.constants.STORES.QUESTIONS), 1171, 'and none is duplicated');
+  assert.equal(await m.db.count(m.constants.STORES.QUESTIONS), 1200, 'and none is duplicated');
 
   const after = await m.db.get(m.constants.STORES.QUESTIONS, 'MPPSC-2019-001');
   assert.match(after.language_variants.en.options[1].text, /corrected in a later build/, 'the corrected option text is stored');
@@ -150,21 +150,21 @@ test('a user\'s own bank is untouched when the bundled bank reloads or is remove
   await bootApp();
   await builtin.ensureBuiltinBank({ text: bankText });
   await importDemoBank();
-  assert.equal(await m.db.count(m.constants.STORES.QUESTIONS), 1205);
+  assert.equal(await m.db.count(m.constants.STORES.QUESTIONS), 1234);
 
   await builtin.ensureBuiltinBank({ text: bankText, force: true });
-  assert.equal(await m.db.count(m.constants.STORES.QUESTIONS), 1205, 'a forced reload duplicates nothing');
+  assert.equal(await m.db.count(m.constants.STORES.QUESTIONS), 1234, 'a forced reload duplicates nothing');
   assert.ok(await m.db.get(m.constants.STORES.QUESTIONS, 'DEMO-P1-001'), 'the user\'s own question is still there');
 
   const removed = await builtin.removeBuiltinBank();
-  assert.equal(removed.removedQuestions, 1171, 'exactly the bundled questions are removed');
+  assert.equal(removed.removedQuestions, 1200, 'exactly the bundled questions are removed');
   assert.equal(await m.db.count(m.constants.STORES.QUESTIONS), 34, 'the user\'s own 34 questions remain');
   assert.equal(await m.db.count(m.constants.STORES.PAPERS), 3, 'and their papers remain');
   assert.equal((await builtin.builtinBankInfo()).loaded, false, 'the app knows the bundled bank is gone');
 
   const reloaded = await builtin.ensureBuiltinBank({ text: bankText });
   assert.equal(reloaded.status, 'loaded');
-  assert.equal(await m.db.count(m.constants.STORES.QUESTIONS), 1205, 'and it can be loaded again in full');
+  assert.equal(await m.db.count(m.constants.STORES.QUESTIONS), 1234, 'and it can be loaded again in full');
 });
 
 test('a bank that fails validation is never half-imported', async () => {

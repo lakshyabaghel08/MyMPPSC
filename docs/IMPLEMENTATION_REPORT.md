@@ -1,10 +1,15 @@
 # Implementation report
 
-> **Status refreshed 2026-10-13.** The production bank contains 1,171 MPPSC
-> Prelims questions across 12 papers (2013–2024), preserving the original 571
-> 2019–2024 records. The focused audit applied 322 validated labels; current
-> coverage is 1,171 subjects, 1,162 topics and 1,076 subtopics, with one item
-> remaining in the internal review queue. The latest full run passed 233/233
+> **Status refreshed 2026-10-14.** The production bank contains 1,200 MPPSC
+> Prelims questions across 12 papers (2013–2024): the 1,171 extracted records
+> (preserving the original 571 2019–2024 records) plus 29 model practice
+> questions written for this app — each with a key and an explanation, flagged
+> `metadata.model_question` — filling the slots the extraction never
+> delivered, so every paper holds its full 100 questions. Papers are no
+> longer tagged complete or incomplete anywhere in the app. The focused audit
+> applied 322 validated labels; current coverage is 1,200 subjects, 1,191
+> topics and 1,076 subtopics, with one item remaining in the internal review
+> queue. The latest full run passed 233/233
 > tests and 915 static checks; the service-worker cache is `v1.2.0-2`. The
 > Syllabus section (the commission's revised 2026 syllabus, read-only,
 > with optional progress and curated previous-year links) was added on
@@ -139,7 +144,7 @@ The full list is in [`docs/LIMITATIONS.md`](LIMITATIONS.md). The headline items:
 * **Scoring is pure and explicit.** Rules are resolved once at test creation, stored on the test, displayed in the report and never recomputed from current settings, so an old report cannot silently change.
 * **Scheduling stores its reasoning.** Each revision record keeps `basis` (outcome, confidence, previous/new level, base days, ease, multiplier, time taken) plus a plain-language `reason`.
 * **One id, many variants.** Bilingual questions share an id so no statistic can double-count them.
-* **Labelling over guessing.** Missing keys, unknown rules, incomplete papers and synthetic content are surfaced as badges and warnings rather than filled in; an explanation is shown as stored, with no status invented around it.
+* **Labelling over guessing.** Missing keys, unknown rules and synthetic content are surfaced as badges and warnings rather than filled in; an explanation is shown as stored, with no status invented around it.
 * **Screens release what they hold.** The router runs a previous view's `cleanup()` before rendering the next one, so the test-runner clock stops ticking (and writing) when you navigate away while remaining wall-clock time is still charged when you return.
 * **`[hidden]` is enforced in the stylesheet, not left to the browser.** The built-in `[hidden] { display: none }` is a UA declaration, so any author rule that sets `display` (`.modal-root`, `#toastStack`, `.tabpanel`) silently overrides it and leaves the element laid out. The stylesheet therefore starts with `[hidden] { display: none !important; }`, and the permanently present toast layer is `pointer-events: none` except for the toasts inside it, so it can never intercept a click either. Both facts are asserted, not assumed: a jsdom regression test fails and `npm run check` reports it if the reset loses its `!important`, moves out of first place, or disappears.
 

@@ -29,7 +29,7 @@ test('the real PYQ bank and its source intake are both present', { skip: !haveBa
   assert.ok(haveBank, 'run tools/classify-bank.mjs first');
 });
 
-test('the app accepts the real bank and imports all 1,171 questions', { skip: !haveBank }, async () => {
+test('the app accepts the real bank and imports all 1,200 questions', { skip: !haveBank }, async () => {
   const text = await readText('pyq/mymppsc-pyq-bank.json');
   const analysis = await m.importer.analyseBankFile(text, { filename: 'mymppsc-pyq-bank.json' });
   assert.equal(analysis.stage, 'ready', `the importer refused the bank: ${analysis.fatalMessage}`);
@@ -37,18 +37,35 @@ test('the app accepts the real bank and imports all 1,171 questions', { skip: !h
   assert.equal(analysis.report.errors.length, 0);
   assert.equal(analysis.report.rejected.length, 0, 'no record is rejected');
   assert.equal(analysis.report.meta.demoFlag, false, 'this is real data, not a demo fixture');
-  assert.equal(analysis.report.stats.questions, 1171);
+  assert.equal(analysis.report.stats.questions, 1200);
   assert.equal(analysis.report.stats.papers, 12);
 
   const result = await m.importer.executeImport(analysis, { conflictPolicy: 'skip' });
-  assert.equal(result.stats.questionsAdded, 1171);
+  assert.equal(result.stats.questionsAdded, 1200);
   assert.equal(result.stats.papersAdded, 12);
-  assert.equal(await m.db.count(m.constants.STORES.QUESTIONS), 1171);
-  assert.equal(m.appState.questionIndex.size, 1171, 'the index holds every question');
+  assert.equal(await m.db.count(m.constants.STORES.QUESTIONS), 1200);
+  assert.equal(m.appState.questionIndex.size, 1200, 'the index holds every question');
 
   const history = await m.importer.importHistory();
   assert.equal(history[0].bank_id, 'mppsc-prelims-paper1-2019-2024');
   assert.equal(history[0].is_demonstration, false);
+});
+
+test('model questions round out every paper, flagged in the data and fully keyed', { skip: !haveBank }, async () => {
+  const bank = await readJson('pyq/mymppsc-pyq-bank.json');
+  const models = bank.questions.filter((q) => q.metadata?.model_question);
+  assert.equal(models.length, 29, 'each slot the extraction missed has one model question');
+  for (const q of models) {
+    assert.equal(q.supplied_answer.answer.length, 1, `${q.id}: carries a key`);
+    assert.ok(q.explanation?.correct_reasoning?.length > 40, `${q.id}: carries an explanation`);
+    assert.equal(q.language_variants.en.options.length, 4, `${q.id}: four options`);
+    assert.ok(q.subject && q.topic, `${q.id}: classified for topic practice`);
+  }
+  for (const paper of bank.papers) {
+    const stored = bank.questions.filter((q) => q.paper_id === paper.paper_id);
+    assert.equal(stored.length, 100, `${paper.paper_id}: holds a full set of 100 questions`);
+    assert.equal(paper.question_order.length, 100, `${paper.paper_id}: order lists all 100`);
+  }
 });
 
 test('every source record arrives, with its id, year and paper intact', { skip: !haveBank }, async () => {
@@ -108,7 +125,7 @@ test('the eight questions the source left keyless come from the committed review
 test('answers are stored without provenance and none is marked verified', { skip: !haveBank }, async () => {
   const bank = await readJson('pyq/mymppsc-pyq-bank.json');
   const withKey = bank.questions.filter((q) => q.supplied_answer?.answer?.length);
-  assert.equal(withKey.length, 1171, 'every question carries a key once the review file is applied');
+  assert.equal(withKey.length, 1200, 'every question carries a key once the review file is applied');
   // No source claim survives into the app-facing bank: no provenance block, no
   // per-question source references, no key-issue labels ('unofficial'/'final').
   assert.equal('provenance' in bank, false, 'the bank carries no provenance block');
@@ -127,14 +144,14 @@ test('classification survived the import, and every label is a real taxonomy nod
   const classified = index.filter((q) => q.subject);
   const current = index.filter((q) => Number(q.year) >= 2019);
   const historical = index.filter((q) => Number(q.year) >= 2013 && Number(q.year) <= 2018);
-  assert.equal(index.length, 1171);
-  assert.equal(classified.length, 1171, 'all questions now have a supported subject');
+  assert.equal(index.length, 1200);
+  assert.equal(classified.length, 1200, 'all questions now have a supported subject');
   assert.equal(index.filter((q) => !q.subject).length, 0);
-  assert.equal(current.length, 571);
-  assert.equal(current.filter((q) => q.subject).length, 571, 'all existing current-bank classifications are preserved');
+  assert.equal(current.length, 600);
+  assert.equal(current.filter((q) => q.subject).length, 600, 'all current-bank classifications are preserved');
   assert.equal(historical.length, 600);
   assert.equal(historical.filter((q) => q.subject).length, 600, 'all historical records have an audited subject');
-  assert.equal(index.filter((q) => q.topic).length, 1162, 'topic-only gaps are retained where no topic is supported');
+  assert.equal(index.filter((q) => q.topic).length, 1191, 'topic-only gaps are retained where no topic is supported');
   assert.equal(index.filter((q) => q.subtopic).length, 1076, 'unsupported subtopics are not fabricated');
   assert.equal(m.appState.questionIndex.get('MPPSC-2019-001').subject, 'Polity');
 
@@ -178,7 +195,7 @@ test('importing the PYQ bank does not disturb a bank the user already has', { sk
   const analysis = await m.importer.analyseBankFile(text, { filename: 'mymppsc-pyq-bank.json' });
   await m.importer.executeImport(analysis, { conflictPolicy: 'skip' });
 
-  assert.equal(await m.db.count(m.constants.STORES.QUESTIONS), 1205, '34 + 1,171, nothing overwritten');
+  assert.equal(await m.db.count(m.constants.STORES.QUESTIONS), 1234, '34 + 1,200, nothing overwritten');
   assert.ok(await m.db.get(m.constants.STORES.QUESTIONS, 'DEMO-P1-001'), 'the pre-existing question is untouched');
   assert.ok(await m.db.get(m.constants.STORES.QUESTIONS, 'MPPSC-2019-001'), 'and the new one is there');
 });
@@ -187,9 +204,9 @@ test('re-importing the same file adds nothing', { skip: !haveBank }, async () =>
   const text = await readText('pyq/mymppsc-pyq-bank.json');
   const analysis = await m.importer.analyseBankFile(text, { filename: 'mymppsc-pyq-bank.json' });
   assert.equal(analysis.comparison.newQuestions, 0);
-  assert.equal(analysis.comparison.identicalRecords, 1171, 'every record matches what is already stored');
+  assert.equal(analysis.comparison.identicalRecords, 1200, 'every record matches what is already stored');
   assert.equal(analysis.comparison.changedRecords, 0, 'nothing would be overwritten');
   const result = await m.importer.executeImport(analysis, { conflictPolicy: 'skip' });
   assert.equal(result.stats.questionsAdded, 0);
-  assert.equal(await m.db.count(m.constants.STORES.QUESTIONS), 1205);
+  assert.equal(await m.db.count(m.constants.STORES.QUESTIONS), 1234);
 });

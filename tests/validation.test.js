@@ -21,7 +21,7 @@ test('demonstration bank validates with the expected warnings and no fatals', as
   assert.equal(report.stats.papers, 3);
   assert.equal(report.duplicateIds.length, 0);
   assert.equal(report.nearDuplicates.length > 0, true, 'demo bank contains a deliberate near-duplicate pair');
-  assert.ok(report.warnings.some((w) => w.code === 'question_count_mismatch'), 'incomplete paper must be flagged');
+  assert.equal(report.warnings.some((w) => w.code === 'question_count_mismatch'), false, 'papers are no longer tagged complete or incomplete');
   assert.ok(report.infos.some((i) => i.code === 'demonstration_bank'), 'demonstration banks must be labelled');
   assert.equal(report.stats.missingAnswers, 1, 'exactly one demo question has no answer key entry');
   assert.equal(report.stats.disputedAnswers, 1, 'exactly one demo question has a disputed key');

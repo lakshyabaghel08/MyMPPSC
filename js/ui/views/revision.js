@@ -21,16 +21,15 @@ import {
   progressBar,
   renderExplanation,
   answerKeyBadge,
-  sourceChip,
+  infoToggle,
 } from '../components.js';
 import { fmtDate, fmtRelative, todayKey } from '../../core/util.js';
 import * as revision from '../../services/revision.js';
 import { allAttempts, attemptHistoryForQuestion, attemptTrend } from '../../services/attempts.js';
 import { getQuestions } from '../../services/questions.js';
-import { buildAnalytics } from '../../services/analytics.js';
 import { startPracticeTest } from './shared.js';
 
-const viewState = { filter: 'due', subject: 'all', topic: 'all' };
+const viewState = { filter: 'due', subject: 'all', topic: 'all', limit: revision.REVISION_PAGE_SIZE };
 
 function stateLabel(value) {
   return { new: 'new', learning: 'learning', review: 'review', mastered: 'mastered' }[value] || value;
@@ -47,22 +46,21 @@ function dueTone(rec) {
 function rulesCard() {
   const cfg = state.settings.revision;
   const intervals = Object.entries(cfg.intervals).map(([level, days]) => `level ${level} → ${days} day(s)`).join(' · ');
-  return card({
-    title: 'How the revision schedule is decided',
-    right: sourceChip('derived', 'transparent rules'),
-    body: `
-      <p class="small">Every scheduled date comes from the outcome of your last attempt on that question, the confidence you marked (if you mark it) and how long the answer took. Reading the date does not require trusting a black box — the basis for each question is listed with it.</p>
+  return infoToggle(
+    'How the revision schedule is decided',
+    `
+      <p class="small">Every scheduled date comes from the outcome of your last attempt on that question, the confidence you marked (if you mark it) and how long the answer took. The basis for each question is listed with it.</p>
       <ul class="small">
         <li><strong>Correct and confident</strong> moves the question up one level: ${esc(intervals)}.</li>
         <li><strong>Correct but unsure</strong> keeps the level but shortens the interval by ${Math.round((1 - cfg.uncertainMultiplier) * 100)}%.</li>
         <li><strong>Correct but guessed</strong> drops back to level ${esc(String(cfg.hardResetTo))} with a ${Math.round(cfg.guessMultiplier * 100)}% interval — a lucky guess is treated as weak recall, not mastery.</li>
         <li><strong>Incorrect</strong> resets to level ${esc(String(cfg.hardResetTo))}, counts a lapse and is scheduled again within days.</li>
-        <li><strong>Unanswered</strong> is treated as a miss (settable) but stays labelled separately from a wrong answer.</li>
+        <li><strong>Unanswered</strong> is treated as a miss (settable in Settings) but stays labelled separately from a wrong answer.</li>
         <li><strong>Slow answers</strong> (over ${esc(String(cfg.slowAnswerSeconds))}s) shorten the next interval by 25%.</li>
         <li>Intervals are clamped between ${esc(String(cfg.minIntervalDays))} and ${esc(String(cfg.maxIntervalDays))} days.</li>
       </ul>
-      <p class="tiny muted mb-0">This is a spaced-repetition heuristic based on your own recorded answers. It cannot guarantee that anything is remembered, and it is not a prediction about any examination.</p>`,
-  });
+      <p class="tiny muted mb-0">This is a spaced-repetition heuristic based on your own recorded answers. It cannot guarantee that anything is remembered, and it is not a prediction about any examination. The queue holds at most one record per bank question, so it stays manageable however large the bank grows; each sitting takes at most ${revision.REVISION_SESSION_CAP} due questions.</p>`,
+  );
 }
 
 function reasonCell(rec) {
@@ -96,7 +94,12 @@ export default {
     const buckets = revision.bucketise(records);
     const attempts = await allAttempts();
     const effectiveness = revision.revisionEffectiveness(records, attempts);
-    const analytics = buildAnalytics({ metas, attempts, revisionRecords: records, mistakes: [], papers: state.papers });
+    // A single pass over the attempts is all this screen needs. (It used to
+    // build the full analytics roll-up on every render, which grows with
+    // every attempt ever recorded and made the centre slower the more the
+    // bank was used.)
+    const scoredAttempts = attempts.filter((a) => a.outcome === 'correct' || a.outcome === 'incorrect');
+    const revisionAccuracy = scoredAttempts.length ? scoredAttempts.filter((a) => a.outcome === 'correct').length / scoredAttempts.length : NaN;
 
     const filtered = [...buckets.overdue, ...buckets.dueToday, ...buckets.upcoming]
       .filter((r) => (viewState.filter === 'all' ? true : viewState.filter === 'due' ? r.next_due <= todayKey() : viewState.filter === 'upcoming' ? r.next_due > todayKey() : true))
@@ -108,12 +111,13 @@ export default {
     const topics = Array.from(new Set(records.filter((r) => viewState.subject === 'all' || (r.subject || 'Unclassified') === viewState.subject).map((r) => r.topic || 'Unclassified'))).sort();
 
     const upcomingByDay = new Map();
-    for (const rec of [...buckets.dueToday, ...buckets.overdue, ...buckets.upcoming]) {
+    for (const rec of [...buckets.dueToday, ...buckets.upcoming]) {
       const key = rec.next_due;
       upcomingByDay.set(key, (upcomingByDay.get(key) || 0) + 1);
     }
 
-    const rows = filtered.map((rec) => {
+    const visible = filtered.slice(0, viewState.limit);
+    const rows = visible.map((rec) => {
       const meta = state.questionIndex.get(rec.question_id);
       const today = todayKey();
       return [
@@ -135,44 +139,36 @@ export default {
       <p class="muted">Questions scheduled from your own recorded outcomes, with the reason for each date. Everything here can be inspected and overridden.</p>
 
       <div class="grid tiles mb-4">
-        ${tile({ label: 'Due today', value: String(buckets.dueToday.length), tone: buckets.dueToday.length ? 'warn' : '', source: 'derived', where: 'Scheduled for today’s date' })}
-        ${tile({ label: 'Overdue', value: String(buckets.overdue.length), sub: 'scheduled for an earlier day', tone: buckets.overdue.length ? 'bad' : 'ok', source: 'derived', where: 'Scheduled before today' })}
-        ${tile({ label: 'Upcoming', value: String(buckets.upcoming.length), sub: 'scheduled ahead', source: 'derived', where: 'Scheduled for future dates' })}
-        ${tile({ label: 'Mastered', value: String(records.filter((r) => r.state === 'mastered').length), sub: `of ${records.length} tracked question(s)`, source: 'derived', where: 'Reached highest interval level' })}
+        ${tile({ label: 'Due today', value: String(buckets.dueToday.length), tone: buckets.dueToday.length ? 'warn' : '' })}
+        ${tile({ label: 'Overdue', value: String(buckets.overdue.length), sub: 'scheduled for an earlier day', tone: buckets.overdue.length ? 'bad' : 'ok' })}
+        ${tile({ label: 'Upcoming', value: String(buckets.upcoming.length), sub: 'scheduled ahead' })}
+        ${tile({ label: 'Mastered', value: String(records.filter((r) => r.state === 'mastered').length), sub: `of ${records.length} tracked question(s)` })}
       </div>
 
       ${card({
         title: 'Revise the due queue',
-        right: sourceChip('derived', 'due_first order'),
         body: `
           <div class="row">
             <button class="btn btn-primary" type="button" data-action="revise-due" ${buckets.dueToday.length + buckets.overdue.length ? '' : 'disabled'}>
-              Start a session with all ${buckets.dueToday.length + buckets.overdue.length} due question(s)
+              Start revision (${Math.min(revision.REVISION_SESSION_CAP, buckets.dueToday.length + buckets.overdue.length)} of ${buckets.dueToday.length + buckets.overdue.length} due)
             </button>
             <button class="btn" type="button" data-action="add-manual">Add a question to the queue</button>
           </div>
-          <p class="tiny muted mt-2 mb-0">Due questions are kept in the order they were scheduled. The session records one attempt per question and reschedules each one from its outcome.</p>`,
+          <p class="tiny muted mt-2 mb-0">Most overdue first, at most ${revision.REVISION_SESSION_CAP} questions in one sitting — the rest stay due for the next one.</p>`,
       })}
 
       ${effectiveness.withHistory
         ? card({
             title: 'Is revision working?',
             subtitle: `${effectiveness.withHistory} question(s) with at least two scored attempts`,
-            right: sourceChip('measured', 'first vs latest'),
             body: `
               ${progressBar(effectiveness.improved / effectiveness.withHistory, 'ok')}
-              <div class="row mt-2">
-                ${badge(`${effectiveness.improved} improved (wrong → right)`, 'ok')}
-                ${badge(`${effectiveness.worsened} declined (right → wrong)`, effectiveness.worsened ? 'bad' : '')}
-                ${badge(`${effectiveness.unchanged} unchanged`, 'info')}
-              </div>
-              <p class="tiny muted mb-0">This compares the first and most recent scored attempt per question. A small number of questions proves nothing on its own.</p>`,
+              <p class="small mt-2 mb-0">${effectiveness.improved} improved (wrong → right) · ${effectiveness.worsened} declined (right → wrong) · ${effectiveness.unchanged} unchanged</p>`,
           })
         : notice('There is not yet enough attempt history to judge whether revision is working. At least two scored attempts are needed on a question.', 'info')}
 
       ${card({
         title: `Queue (${filtered.length} of ${records.length})`,
-        right: sourceChip('derived', 'spaced repetition'),
         body: `
           <div class="filters">
             <label class="field"><span class="label-text">Show</span>
@@ -194,13 +190,17 @@ export default {
             rows,
             empty: 'Nothing matches this filter.',
             className: 'compact',
-          })}`,
+          })}
+          ${
+            filtered.length > visible.length
+              ? `<div class="row mt-2"><button class="btn btn-sm" type="button" data-action="show-more">Show more (${visible.length} of ${filtered.length} shown)</button></div>`
+              : ''
+          }}`,
       })}
 
       ${card({
         title: 'Upcoming load',
-        subtitle: 'How many questions fall due on each of the next days',
-        right: sourceChip('derived'),
+        subtitle: 'Questions falling due from today onwards',
         body: dataTable({
           columns: [{ label: 'Date' }, { label: 'Questions due', num: true }],
           rows: Array.from(upcomingByDay.entries())
@@ -213,13 +213,12 @@ export default {
 
       ${card({
         title: 'Revision statistics',
-        right: sourceChip('measured'),
         body: `
           <div class="grid tiles">
-            ${tile({ label: 'Tracked questions', value: String(records.length), sub: `${Math.round((records.length / Math.max(1, metas.length)) * 100)}% of the bank`, source: 'measured' })}
-            ${tile({ label: 'Average interval', value: `${Math.round(records.reduce((a, r) => a + (r.interval_days || 0), 0) / records.length)} days`, sub: 'across tracked questions', source: 'derived' })}
-            ${tile({ label: 'Lapses', value: String(records.reduce((a, r) => a + (r.lapses || 0), 0)), sub: 'wrong or unanswered after being scheduled', source: 'measured' })}
-            ${tile({ label: 'Revision accuracy', value: analytics.accuracy.all !== analytics.accuracy.all ? '—' : `${Math.round((analytics.accuracy.all || 0) * 100)}%`, sub: 'all scored attempts, repeats included', source: 'measured' })}
+            ${tile({ label: 'Tracked questions', value: String(records.length), sub: `${Math.round((records.length / Math.max(1, metas.length)) * 100)}% of the bank` })}
+            ${tile({ label: 'Average interval', value: `${Math.round(records.reduce((a, r) => a + (r.interval_days || 0), 0) / records.length)} days`, sub: 'across tracked questions' })}
+            ${tile({ label: 'Lapses', value: String(records.reduce((a, r) => a + (r.lapses || 0), 0)), sub: 'wrong or unanswered after being scheduled' })}
+            ${tile({ label: 'Revision accuracy', value: Number.isNaN(revisionAccuracy) ? '—' : `${Math.round(revisionAccuracy * 100)}%`, sub: 'all scored attempts, repeats included' })}
           </div>`,
       })}
 
@@ -228,6 +227,7 @@ export default {
 
   async mount(ctx, root) {
     const rerender = async () => {
+      viewState.limit = revision.REVISION_PAGE_SIZE;
       viewState.filter = document.getElementById('revFilter')?.value || 'due';
       viewState.subject = document.getElementById('revSubject')?.value || 'all';
       viewState.topic = document.getElementById('revTopic')?.value || 'all';
@@ -253,19 +253,26 @@ export default {
         return;
       }
 
+      if (action === 'show-more') {
+        viewState.limit += revision.REVISION_PAGE_SIZE;
+        await ctx.refresh();
+        return;
+      }
+
       if (action === 'revise-due') {
         const records = await revision.allRevisionRecords();
-        const buckets = revision.bucketise(records);
-        const ids = [...buckets.overdue, ...buckets.dueToday].map((r) => r.question_id).filter((id) => state.questionIndex.has(id));
+        const queue = revision.dueQueue(records);
+        const ids = queue.ids.filter((id) => state.questionIndex.has(id));
         if (!ids.length) {
           toast('Nothing is due right now.', 'info');
           return;
         }
+        if (queue.remaining > 0) toast(`${queue.total} questions are due; this sitting takes the first ${ids.length}. The rest stay due.`, 'info');
         await startPracticeTest(ctx, {
           kind: 'revision',
           label: `Revision — ${ids.length} due question(s)`,
-          questionIds: ids.slice(0, 40),
-          metas: ids.slice(0, 40).map((id) => state.questionIndex.get(id)).filter(Boolean),
+          questionIds: ids,
+          metas: ids.map((id) => state.questionIndex.get(id)).filter(Boolean),
           config: { feedbackMode: 'learning', confidence: state.settings.confidenceTracking, durationMinutes: null },
           orderSource: 'due_first',
         });

@@ -33,7 +33,7 @@ const subjectRank = (subject) => {
  * @param {Array<object>} papers paper summaries (default: everything in memory)
  * @returns {{
  *   total: number, unclassified: number, withKey: number, withoutKey: number, explanation: number,
- *   demonstration: number, papers: number, papersComplete: number,
+ *   demonstration: number, papers: number,
  *   years: Array<number>, yearSpan: string,
  *   subjects: Array<{subject: string, questions: number, share: number, topics: number, withKey: number, withoutKey: number, explanation: number, demonstration: number, years: Array<number>, byYear: Object<string, number>}>,
  *   topics: Array<{subject: string, topic: string, questions: number, share: number, shareOfSubject: number, withKey: number, withoutKey: number, explanation: number, years: Array<number>, byYear: Object<string, number>}>,
@@ -117,7 +117,6 @@ export function summariseBank(metas = Array.from(state.questionIndex.values()), 
     explanation: list.filter((m) => m.hasExplanation).length,
     demonstration: list.filter((m) => m.isDemonstration).length,
     papers: papers.length,
-    papersComplete: papers.filter((p) => p.complete !== false).length,
     years,
     yearSpan: years.length ? (years.length === 1 ? String(years[0]) : `${years[0]}–${years[years.length - 1]}`) : '—',
     subjects,

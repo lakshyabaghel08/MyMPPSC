@@ -13,7 +13,7 @@
 import { STORES } from '../../core/constants.js';
 import * as db from '../../core/db.js';
 import { state } from '../../core/state.js';
-import { esc, card, notice, dataTable, tile, toast, emptyState, sourceChip, evidenceMeter } from '../components.js';
+import { esc, card, notice, dataTable, tile, toast, emptyState, infoToggle } from '../components.js';
 import { allAttempts } from '../../services/attempts.js';
 import { buildAttemptSummary, smartPracticePlan, SMART_BUCKETS, computeTopicStats } from '../../services/select.js';
 import { configFields, readConfig, mountConfigFields, startPracticeTest, currentAttemptSummary } from './shared.js';
@@ -78,7 +78,6 @@ export default {
 
       ${card({
         title: 'How this session will be built',
-        right: sourceChip('derived', `${plan.questionIds.length} picked`),
         body: `
           ${dataTable({ columns: [{ label: 'Source of questions' }, { label: 'Available', num: true }, { label: 'In this session', num: true }, { label: 'Why' }], rows: bucketRows, className: 'compact' })}
           <div class="row mt-3">
@@ -87,12 +86,11 @@ export default {
           </div>
           <details class="disclosure mt-3"><summary>Why this session was generated (${plan.explain.length} point(s))</summary><ul class="small">${plan.explain.map((line) => `<li>${esc(line)}</li>`).join('')}</ul></details>
         `,
-        footer: 'Historical question frequency is a study-prioritisation aid only. It is not evidence about what a future examination will contain.',
+        footer: infoToggle('About this plan', '<p class="small m-0">Historical question frequency is a study-prioritisation aid only. It is not evidence about what a future examination will contain.</p>'),
       })}
 
       ${card({
         title: 'Session settings',
-        right: sourceChip('derived', 'session rules'),
         body: `${configFields({ paper: null, defaultCount: viewState.count, maxCount: metas.length, allowCustomScoring: true })}
         <div class="sticky-actions">
           <button class="btn btn-primary" type="button" id="startSmart">Start smart practice</button>
@@ -102,11 +100,10 @@ export default {
 
       ${card({
         title: 'Topics driving this session',
-        right: sourceChip('derived', 'min 3 judged'),
         body: weakTopicRows.length
           ? dataTable({
               columns: [{ label: 'Topic' }, { label: 'Subject' }, { label: 'Judged answers', num: true }, { label: 'Accuracy', num: true }],
-              rows: weakTopicRows.map((t) => [esc(t.topic), esc(t.subject), `${String(t.scored)} ${evidenceMeter(t.scored)}`, `${Math.round(t.accuracy * 100)}%`]),
+              rows: weakTopicRows.map((t) => [esc(t.topic), esc(t.subject), `${String(t.scored)}`, `${Math.round(t.accuracy * 100)}%`]),
               className: 'compact',
             })
           : notice('Not enough judged answers exist yet to call any topic weak. Smart practice is therefore weighted towards unseen questions and due revisions.', 'info'),

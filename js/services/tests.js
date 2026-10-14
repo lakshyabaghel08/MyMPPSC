@@ -53,12 +53,6 @@ export function buildTest({
   const warnings = [...resolvedRules.warnings];
   if (paper) {
     const meta = state.questionIndex;
-    const declared = paper.original_question_count;
-    if (declared !== null && declared !== undefined && questionIds.length !== declared) {
-      warnings.push(
-        `This paper declares ${declared} original question(s) but ${questionIds.length} question(s) are stored locally, so this simulation is incomplete. Missing questions are not invented.`,
-      );
-    }
     if (!paper.original_order_preserved && paper.question_order?.length) {
       warnings.push('The original question order for this paper was reconstructed at import time; verify it against the source paper before relying on numbering.');
     }

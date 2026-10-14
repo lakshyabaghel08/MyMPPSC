@@ -123,7 +123,7 @@ test('boots, renders the shell and the demonstration prompt', async () => {
   // First run with an empty database: the repository-backed MPPSC bank loads by
   // itself, so the app does not have to fall back to the demonstration prompt.
   await waitFor(() => state.questionIndex.size > 0, { label: 'bundled bank load' });
-  assert.equal(state.questionIndex.size, 1171, 'the committed 2013-2024 bank is loaded from the repository');
+  assert.equal(state.questionIndex.size, 1200, 'the committed 2013-2024 bank is loaded from the repository');
 
   await goto('test-centre');
   assert.match(viewText(), /MPPSC 2019|MPPSC\s*2019|2019/, 'the Test Centre lists the real papers');
@@ -148,7 +148,7 @@ test('PYQ Analysis counts the bundled bank and deep-links into practice', async 
   assert.match(viewText(), /Questions per subject/);
   assert.match(viewText(), /Subject-by-year breakdown/);
   assert.match(viewText(), /Questions per topic/);
-  assert.match(viewText(), /(?:1,171|1171)/, 'the whole bundled bank is counted');
+  assert.match(viewText(), /(?:1,200|1200)/, 'the whole bundled bank is counted');
   assert.match(viewText(), /2013–2024/, 'year columns and span include the historical papers');
 
   const link = $$('#view a[href^="#/topic/"]')[0];
@@ -294,6 +294,7 @@ test('practice setup screens start real sessions from the shared configuration f
   // Topic practice: change the configured size, then start.
   await goto('topic');
   change($('#practiceCfgCount'), '4');
+  change($('#practiceCfgConfidence'), 'optional');
   click($('#startTopic'));
   await waitFor(() => /#\/runner\//.test(window.location.hash), { label: 'topic session route' });
   await waitFor(() => /Question 1 of/.test(viewText()), { label: 'topic runner markup' });
@@ -303,6 +304,25 @@ test('practice setup screens start real sessions from the shared configuration f
   assert.equal(record.question_ids.length, 4, 'the configured session size should be honoured');
   assert.equal(new Set(record.question_ids).size, record.question_ids.length, 'a practice set must not repeat a question');
   for (const id of record.question_ids) assert.ok(appState.questionIndex.has(id), `${id} should come from the stored index`);
+
+  // The palette counts in test order (1, 2, 3…), and the question box says
+  // where the question came from: its year and its number in its own paper.
+  const paletteLabels = $$('#view .palette [data-action="goto"]').map((b) => b.textContent.replace(/\D/g, ''));
+  assert.deepEqual(paletteLabels, ['1', '2', '3', '4'], 'palette numbers are sequential in test order, not paper numbers');
+  assert.match($('#view .question-origin')?.textContent || '', /Paper Q\d+/, 'the question box shows the paper question number');
+  assert.match($('#view .question-num-pill')?.textContent || '', /^Q1$/, 'the question box leads with the sequential number');
+
+  // Optional confidence: nothing is marked by default, there is no "Clear"
+  // button, and a mark can be removed with "Remove mark".
+  const confButtons = $$('#view [data-action="confidence"]');
+  assert.ok(confButtons.length >= 3, 'confidence choices are offered');
+  assert.ok(confButtons.every((b) => b.getAttribute('aria-pressed') === 'false' || b.dataset.value === ''), 'no confidence choice is pressed by default');
+  assert.ok(!confButtons.some((b) => /^clear$/i.test(b.textContent.trim())), 'the ambiguous "Clear" button is gone');
+  assert.match(viewText(), /Not marked/, 'an unmarked question says so in words');
+  click(confButtons.find((b) => b.dataset.value === 'guessed'));
+  await waitFor(() => $$('#view [data-action="confidence"]').some((b) => /Remove mark/.test(b.textContent)), { label: 'remove-mark control after marking' });
+  click($$('#view [data-action="confidence"]').find((b) => /Remove mark/.test(b.textContent)));
+  await waitFor(() => /Not marked/.test(viewText()) && $$('#view [data-action="confidence"]').every((b) => b.getAttribute('aria-pressed') !== 'true'), { label: 'confidence removed again' });
 
   // Answer one question so the session is genuinely in progress, then leave it
   // unfinished on purpose: the dashboard should offer to resume it.
@@ -354,9 +374,9 @@ test('practice setup is progressive: essentials first, advanced collapsed and su
   assert.equal(advanced.open, false, 'the advanced settings start collapsed');
 
   change($('#practiceCfgMarksCorrect'), '5');
-  assert.match($('#practiceCfgSummary').textContent, /\+5 marks, no negative marking/, 'the summary follows advanced changes');
+  assert.match($('#practiceCfgSummary').textContent, /\+5 \/ −1 marks/, 'the summary follows advanced changes');
   click($('#practiceCfgReset'));
-  assert.match($('#practiceCfgSummary').textContent, /\+2 marks, no negative marking/, 'reset returns to the saved defaults');
+  assert.match($('#practiceCfgSummary').textContent, /\+3 \/ −1 marks/, 'reset returns to the saved MPPSC +3/−1 defaults');
 
   await goto('smart');
   assert.ok($('#practiceCfgCount'), 'smart practice has one size control in the session form');
@@ -599,9 +619,9 @@ test('theme setting and header toggle apply data-theme to html and update theme-
   assert.equal($('#themeToggle').getAttribute('aria-pressed'), 'false');
 });
 
-test('runner supports focus mode, keyboard hints, Hindi lang="hi" tagging, and provenance chips', async () => {
+test('runner supports focus mode, keyboard hints, Hindi lang="hi" tagging, and a clean dashboard', async () => {
   await goto('dashboard');
-  assert.ok($$('#view [data-source]').length >= 5, 'dashboard must render provenance source chips');
+  assert.equal($$('#view [data-source]').length, 0, 'dashboard stats no longer carry provenance chips on every tile');
   assert.ok($$('#view .evidence-meter').length >= 1, 'dashboard must render evidence strength meters');
 
   await goto('topic');
@@ -636,6 +656,34 @@ test('the offline notice and service worker registration are wired without error
   assert.equal($('#offlinePill').hidden, false);
   window.dispatchEvent(new window.Event('online'));
   assert.equal($('#offlinePill').hidden, true);
+});
+
+test('refreshing a screen in place keeps the reader’s focus (and so their place)', async () => {
+  await goto('topic');
+  const select = document.getElementById('fSubject');
+  select.focus();
+  assert.equal(document.activeElement, select);
+  select.value = 'all';
+  select.dispatchEvent(new window.Event('change', { bubbles: true }));
+  await waitFor(() => document.getElementById('fSubject') && document.activeElement?.id === 'fSubject', { label: 'focus restored to the same filter after refresh' });
+});
+
+test('the revision centre renders its queue in pages at bank scale', async () => {
+  const revisionSvc = await import('../js/services/revision.js');
+  const ids = Array.from(state.questionIndex.keys()).slice(0, revisionSvc.REVISION_PAGE_SIZE + 5);
+  const today = new Date().toISOString().slice(0, 10);
+  for (const id of ids) {
+    await revisionSvc.ensureRevisionRecord(id, { reason: 'Scale test entry', dueDays: 0 });
+    await revisionSvc.reschedule(id, today, 'scale test');
+  }
+  await goto('revision');
+  assert.match(viewText(), /Revision Centre/);
+  const shown = () => $$('#view [data-action="revise"]').length;
+  assert.equal(shown(), revisionSvc.REVISION_PAGE_SIZE, 'the queue renders exactly one page of rows');
+  const more = $$('#view [data-action="show-more"]')[0];
+  assert.ok(more, 'a Show more control offers the rest of the queue');
+  click(more);
+  await waitFor(() => shown() > revisionSvc.REVISION_PAGE_SIZE, { label: 'second page of the queue' });
 });
 
 /* ------------------------------------------------- stylesheet regression -- */

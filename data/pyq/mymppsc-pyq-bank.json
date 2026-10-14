@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "bank_id": "mppsc-prelims-paper1-2019-2024",
   "bank_name": "MPPSC Prelims Paper I (General Studies) 2013–2024",
-  "generated_at": "2026-10-12T16:23:47.136Z",
+  "generated_at": "2026-10-14T12:43:30.095Z",
   "is_demonstration": false,
   "default_language": "en",
   "app_compatibility": {
@@ -75,8 +75,10 @@
         "MPPSC-2019-041",
         "MPPSC-2019-042",
         "MPPSC-2019-043",
+        "MPPSC-2019-044",
         "MPPSC-2019-045",
         "MPPSC-2019-046",
+        "MPPSC-2019-047",
         "MPPSC-2019-048",
         "MPPSC-2019-049",
         "MPPSC-2019-050",
@@ -90,6 +92,7 @@
         "MPPSC-2019-058",
         "MPPSC-2019-059",
         "MPPSC-2019-060",
+        "MPPSC-2019-061",
         "MPPSC-2019-062",
         "MPPSC-2019-063",
         "MPPSC-2019-064",
@@ -103,6 +106,7 @@
         "MPPSC-2019-072",
         "MPPSC-2019-073",
         "MPPSC-2019-074",
+        "MPPSC-2019-075",
         "MPPSC-2019-076",
         "MPPSC-2019-077",
         "MPPSC-2019-078",
@@ -125,6 +129,7 @@
         "MPPSC-2019-095",
         "MPPSC-2019-096",
         "MPPSC-2019-097",
+        "MPPSC-2019-098",
         "MPPSC-2019-099",
         "MPPSC-2019-100"
       ],
@@ -161,6 +166,7 @@
         "MPPSC-2020-006",
         "MPPSC-2020-007",
         "MPPSC-2020-008",
+        "MPPSC-2020-009",
         "MPPSC-2020-010",
         "MPPSC-2020-011",
         "MPPSC-2020-012",
@@ -184,6 +190,7 @@
         "MPPSC-2020-030",
         "MPPSC-2020-031",
         "MPPSC-2020-032",
+        "MPPSC-2020-033",
         "MPPSC-2020-034",
         "MPPSC-2020-035",
         "MPPSC-2020-036",
@@ -227,6 +234,8 @@
         "MPPSC-2020-074",
         "MPPSC-2020-075",
         "MPPSC-2020-076",
+        "MPPSC-2020-077",
+        "MPPSC-2020-078",
         "MPPSC-2020-079",
         "MPPSC-2020-080",
         "MPPSC-2020-081",
@@ -244,6 +253,7 @@
         "MPPSC-2020-093",
         "MPPSC-2020-094",
         "MPPSC-2020-095",
+        "MPPSC-2020-096",
         "MPPSC-2020-097",
         "MPPSC-2020-098",
         "MPPSC-2020-099",
@@ -337,6 +347,7 @@
         "MPPSC-2021-061",
         "MPPSC-2021-062",
         "MPPSC-2021-063",
+        "MPPSC-2021-064",
         "MPPSC-2021-065",
         "MPPSC-2021-066",
         "MPPSC-2021-067",
@@ -348,11 +359,16 @@
         "MPPSC-2021-073",
         "MPPSC-2021-074",
         "MPPSC-2021-075",
+        "MPPSC-2021-076",
         "MPPSC-2021-077",
         "MPPSC-2021-078",
         "MPPSC-2021-079",
+        "MPPSC-2021-080",
+        "MPPSC-2021-081",
+        "MPPSC-2021-082",
         "MPPSC-2021-083",
         "MPPSC-2021-084",
+        "MPPSC-2021-085",
         "MPPSC-2021-086",
         "MPPSC-2021-087",
         "MPPSC-2021-088",
@@ -397,6 +413,7 @@
         "MPPSC-2022-001",
         "MPPSC-2022-002",
         "MPPSC-2022-003",
+        "MPPSC-2022-004",
         "MPPSC-2022-005",
         "MPPSC-2022-006",
         "MPPSC-2022-007",
@@ -411,6 +428,7 @@
         "MPPSC-2022-016",
         "MPPSC-2022-017",
         "MPPSC-2022-018",
+        "MPPSC-2022-019",
         "MPPSC-2022-020",
         "MPPSC-2022-021",
         "MPPSC-2022-022",
@@ -475,6 +493,7 @@
         "MPPSC-2022-081",
         "MPPSC-2022-082",
         "MPPSC-2022-083",
+        "MPPSC-2022-084",
         "MPPSC-2022-085",
         "MPPSC-2022-086",
         "MPPSC-2022-087",
@@ -518,6 +537,7 @@
       },
       "question_order": [
         "MPPSC-2023-001",
+        "MPPSC-2023-002",
         "MPPSC-2023-003",
         "MPPSC-2023-004",
         "MPPSC-2023-005",
@@ -562,16 +582,20 @@
         "MPPSC-2023-044",
         "MPPSC-2023-045",
         "MPPSC-2023-046",
+        "MPPSC-2023-047",
         "MPPSC-2023-048",
         "MPPSC-2023-049",
         "MPPSC-2023-050",
         "MPPSC-2023-051",
         "MPPSC-2023-052",
+        "MPPSC-2023-053",
         "MPPSC-2023-054",
         "MPPSC-2023-055",
         "MPPSC-2023-056",
         "MPPSC-2023-057",
+        "MPPSC-2023-058",
         "MPPSC-2023-059",
+        "MPPSC-2023-060",
         "MPPSC-2023-061",
         "MPPSC-2023-062",
         "MPPSC-2023-063",
@@ -656,6 +680,7 @@
         "MPPSC-2024-016",
         "MPPSC-2024-017",
         "MPPSC-2024-018",
+        "MPPSC-2024-019",
         "MPPSC-2024-020",
         "MPPSC-2024-021",
         "MPPSC-2024-022",
@@ -675,6 +700,7 @@
         "MPPSC-2024-036",
         "MPPSC-2024-037",
         "MPPSC-2024-038",
+        "MPPSC-2024-039",
         "MPPSC-2024-040",
         "MPPSC-2024-041",
         "MPPSC-2024-042",
@@ -708,6 +734,7 @@
         "MPPSC-2024-070",
         "MPPSC-2024-071",
         "MPPSC-2024-072",
+        "MPPSC-2024-073",
         "MPPSC-2024-074",
         "MPPSC-2024-075",
         "MPPSC-2024-076",
@@ -715,6 +742,7 @@
         "MPPSC-2024-078",
         "MPPSC-2024-079",
         "MPPSC-2024-080",
+        "MPPSC-2024-081",
         "MPPSC-2024-082",
         "MPPSC-2024-083",
         "MPPSC-2024-084",
@@ -724,6 +752,7 @@
         "MPPSC-2024-088",
         "MPPSC-2024-089",
         "MPPSC-2024-090",
+        "MPPSC-2024-091",
         "MPPSC-2024-092",
         "MPPSC-2024-093",
         "MPPSC-2024-094",
@@ -3602,6 +3631,58 @@
       "subtopic": "Delhi Sultanate"
     },
     {
+      "id": "MPPSC-2019-044",
+      "paper_id": "MPPSC-2019-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2019,
+      "set_code": null,
+      "question_number": 44,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "Which Article of the Indian Constitution empowers the President of India to grant pardons, reprieves, respites or remissions of punishment?",
+          "instructions": null,
+          "options": [
+            {
+              "key": "A",
+              "text": "Article 61"
+            },
+            {
+              "key": "B",
+              "text": "Article 72"
+            },
+            {
+              "key": "C",
+              "text": "Article 74"
+            },
+            {
+              "key": "D",
+              "text": "Article 161"
+            }
+          ]
+        }
+      },
+      "supplied_answer": {
+        "answer": [
+          "B"
+        ],
+        "status": "supplied",
+        "source": null,
+        "notes": null
+      },
+      "answer_key_status": "supplied",
+      "explanation": {
+        "correct_reasoning": "Article 72 empowers the President to grant pardons, reprieves, respites or remissions of punishment, including in court-martial cases and death sentences. Article 161 gives a similar power to a Governor, but a Governor cannot pardon a death sentence. Article 74 deals with the Council of Ministers aiding and advising the President.",
+        "language": "en"
+      },
+      "subject": "Polity",
+      "topic": "Constitution of India",
+      "subtopic": null,
+      "metadata": {
+        "model_question": true
+      }
+    },
+    {
       "id": "MPPSC-2019-045",
       "paper_id": "MPPSC-2019-P1",
       "exam": "MPPSC State Service Preliminary Examination",
@@ -3698,6 +3779,58 @@
       "subject": "Geography",
       "topic": "Geography of India",
       "subtopic": "Physiography of India"
+    },
+    {
+      "id": "MPPSC-2019-047",
+      "paper_id": "MPPSC-2019-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2019,
+      "set_code": null,
+      "question_number": 47,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "The Brahmaputra river is known by which name in Tibet?",
+          "instructions": null,
+          "options": [
+            {
+              "key": "A",
+              "text": "Yarlung Tsangpo"
+            },
+            {
+              "key": "B",
+              "text": "Lohit"
+            },
+            {
+              "key": "C",
+              "text": "Manas"
+            },
+            {
+              "key": "D",
+              "text": "Subansiri"
+            }
+          ]
+        }
+      },
+      "supplied_answer": {
+        "answer": [
+          "A"
+        ],
+        "status": "supplied",
+        "source": null,
+        "notes": null
+      },
+      "answer_key_status": "supplied",
+      "explanation": {
+        "correct_reasoning": "In Tibet the Brahmaputra is called the Yarlung Tsangpo. Entering Arunachal Pradesh it becomes the Siang (or Dihang), and in Bangladesh it is known as the Jamuna before joining the Ganga. The Lohit, Manas and Subansiri are its tributaries, not names of the main river.",
+        "language": "en"
+      },
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": null,
+      "metadata": {
+        "model_question": true
+      }
     },
     {
       "id": "MPPSC-2019-048",
@@ -4338,6 +4471,58 @@
       "subtopic": "Sports awards"
     },
     {
+      "id": "MPPSC-2019-061",
+      "paper_id": "MPPSC-2019-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2019,
+      "set_code": null,
+      "question_number": 61,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "The first session of the Indian National Congress, held in December 1885, was organised at which place?",
+          "instructions": null,
+          "options": [
+            {
+              "key": "A",
+              "text": "Calcutta"
+            },
+            {
+              "key": "B",
+              "text": "Madras"
+            },
+            {
+              "key": "C",
+              "text": "Bombay"
+            },
+            {
+              "key": "D",
+              "text": "Poona"
+            }
+          ]
+        }
+      },
+      "supplied_answer": {
+        "answer": [
+          "C"
+        ],
+        "status": "supplied",
+        "source": null,
+        "notes": null
+      },
+      "answer_key_status": "supplied",
+      "explanation": {
+        "correct_reasoning": "The Indian National Congress first met on 28 December 1885 at Gokuldas Tejpal Sanskrit College, Bombay, with 72 delegates. Womesh Chunder Bonnerjee presided over the session, and A. O. Hume played a leading role in organising it. The venue had originally been planned as Poona but was shifted because of a cholera outbreak there.",
+        "language": "en"
+      },
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": null,
+      "metadata": {
+        "model_question": true
+      }
+    },
+    {
       "id": "MPPSC-2019-062",
       "paper_id": "MPPSC-2019-P1",
       "exam": "MPPSC State Service Preliminary Examination",
@@ -4973,6 +5158,58 @@
       "subject": "Science and Technology",
       "topic": "Science and technology developments",
       "subtopic": "Information technology"
+    },
+    {
+      "id": "MPPSC-2019-075",
+      "paper_id": "MPPSC-2019-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2019,
+      "set_code": null,
+      "question_number": 75,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "At the time of the formation of Madhya Pradesh in 1956, which city became its capital?",
+          "instructions": null,
+          "options": [
+            {
+              "key": "A",
+              "text": "Indore"
+            },
+            {
+              "key": "B",
+              "text": "Bhopal"
+            },
+            {
+              "key": "C",
+              "text": "Jabalpur"
+            },
+            {
+              "key": "D",
+              "text": "Gwalior"
+            }
+          ]
+        }
+      },
+      "supplied_answer": {
+        "answer": [
+          "B"
+        ],
+        "status": "supplied",
+        "source": null,
+        "notes": null
+      },
+      "answer_key_status": "supplied",
+      "explanation": {
+        "correct_reasoning": "When Madhya Pradesh was formed on 1 November 1956, Bhopal — till then the capital of the small Bhopal State — was made the capital of the new State. Indore had been the seat of Madhya Bharat’s government in rotation with Gwalior, and Jabalpur was an important administrative centre of the old Central Provinces, but neither became the capital.",
+        "language": "en"
+      },
+      "subject": "Madhya Pradesh Special",
+      "topic": "Formation of Madhya Pradesh",
+      "subtopic": null,
+      "metadata": {
+        "model_question": true
+      }
     },
     {
       "id": "MPPSC-2019-076",
@@ -6038,6 +6275,58 @@
       "subtopic": "Transport in India"
     },
     {
+      "id": "MPPSC-2019-098",
+      "paper_id": "MPPSC-2019-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2019,
+      "set_code": null,
+      "question_number": 98,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "Which one of the following organelles is known as the powerhouse of the cell?",
+          "instructions": null,
+          "options": [
+            {
+              "key": "A",
+              "text": "Nucleus"
+            },
+            {
+              "key": "B",
+              "text": "Ribosome"
+            },
+            {
+              "key": "C",
+              "text": "Mitochondria"
+            },
+            {
+              "key": "D",
+              "text": "Golgi apparatus"
+            }
+          ]
+        }
+      },
+      "supplied_answer": {
+        "answer": [
+          "C"
+        ],
+        "status": "supplied",
+        "source": null,
+        "notes": null
+      },
+      "answer_key_status": "supplied",
+      "explanation": {
+        "correct_reasoning": "Mitochondria generate most of the cell’s chemical energy as adenosine triphosphate (ATP) through cellular respiration, and are therefore called the powerhouse of the cell. Ribosomes synthesise proteins, the Golgi apparatus packages and modifies them, and the nucleus stores the genetic material.",
+        "language": "en"
+      },
+      "subject": "Science and Technology",
+      "topic": "Biology",
+      "subtopic": null,
+      "metadata": {
+        "model_question": true
+      }
+    },
+    {
       "id": "MPPSC-2019-099",
       "paper_id": "MPPSC-2019-P1",
       "exam": "MPPSC State Service Preliminary Examination",
@@ -6526,6 +6815,58 @@
       "subject": "Economy",
       "topic": "Indian Economy",
       "subtopic": "Public sector undertakings"
+    },
+    {
+      "id": "MPPSC-2020-009",
+      "paper_id": "MPPSC-2020-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2020,
+      "set_code": null,
+      "question_number": 9,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "‘Harshacharita’, the biography of King Harshavardhana, was composed by:",
+          "instructions": null,
+          "options": [
+            {
+              "key": "A",
+              "text": "Banabhatta"
+            },
+            {
+              "key": "B",
+              "text": "Kalidasa"
+            },
+            {
+              "key": "C",
+              "text": "Harisena"
+            },
+            {
+              "key": "D",
+              "text": "Vishakhadatta"
+            }
+          ]
+        }
+      },
+      "supplied_answer": {
+        "answer": [
+          "A"
+        ],
+        "status": "supplied",
+        "source": null,
+        "notes": null
+      },
+      "answer_key_status": "supplied",
+      "explanation": {
+        "correct_reasoning": "Banabhatta, the court poet of Harshavardhana, wrote the Harshacharita, an early Sanskrit prose biography of the king; he also authored the novel Kadambari. Harisena composed the Prayaga Prashasti of Samudragupta, while Vishakhadatta wrote the play Mudrarakshasa.",
+        "language": "en"
+      },
+      "subject": "History",
+      "topic": "Ancient India",
+      "subtopic": null,
+      "metadata": {
+        "model_question": true
+      }
     },
     {
       "id": "MPPSC-2020-010",
@@ -7653,6 +7994,58 @@
       "subject": "History",
       "topic": "History of Madhya Pradesh",
       "subtopic": "Mahajanapadas in Madhya Pradesh"
+    },
+    {
+      "id": "MPPSC-2020-033",
+      "paper_id": "MPPSC-2020-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2020,
+      "set_code": null,
+      "question_number": 33,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "Which Article of the Indian Constitution was described by Dr. B. R. Ambedkar as the ‘heart and soul’ of the Constitution?",
+          "instructions": null,
+          "options": [
+            {
+              "key": "A",
+              "text": "Article 19"
+            },
+            {
+              "key": "B",
+              "text": "Article 21"
+            },
+            {
+              "key": "C",
+              "text": "Article 32"
+            },
+            {
+              "key": "D",
+              "text": "Article 226"
+            }
+          ]
+        }
+      },
+      "supplied_answer": {
+        "answer": [
+          "C"
+        ],
+        "status": "supplied",
+        "source": null,
+        "notes": null
+      },
+      "answer_key_status": "supplied",
+      "explanation": {
+        "correct_reasoning": "Article 32 empowers a citizen to move the Supreme Court directly for enforcement of Fundamental Rights, and lets the Court issue writs such as habeas corpus and mandamus. Dr. Ambedkar called it the ‘heart and soul’ of the Constitution because rights would be meaningless without an effective remedy. Article 226 gives a similar writ power to High Courts.",
+        "language": "en"
+      },
+      "subject": "Polity",
+      "topic": "Constitution of India",
+      "subtopic": null,
+      "metadata": {
+        "model_question": true
+      }
     },
     {
       "id": "MPPSC-2020-034",
@@ -9763,6 +10156,110 @@
       "subtopic": "State Legislature"
     },
     {
+      "id": "MPPSC-2020-077",
+      "paper_id": "MPPSC-2020-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2020,
+      "set_code": null,
+      "question_number": 77,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "The Securities and Exchange Board of India (SEBI) was given statutory status in the year:",
+          "instructions": null,
+          "options": [
+            {
+              "key": "A",
+              "text": "1988"
+            },
+            {
+              "key": "B",
+              "text": "1992"
+            },
+            {
+              "key": "C",
+              "text": "1999"
+            },
+            {
+              "key": "D",
+              "text": "2002"
+            }
+          ]
+        }
+      },
+      "supplied_answer": {
+        "answer": [
+          "B"
+        ],
+        "status": "supplied",
+        "source": null,
+        "notes": null
+      },
+      "answer_key_status": "supplied",
+      "explanation": {
+        "correct_reasoning": "SEBI was first set up in 1988 as a non-statutory body. It received statutory status through the SEBI Act, 1992, which empowered it to regulate the securities market, register intermediaries and protect investors.",
+        "language": "en"
+      },
+      "subject": "Economy",
+      "topic": "Banking and finance",
+      "subtopic": null,
+      "metadata": {
+        "model_question": true
+      }
+    },
+    {
+      "id": "MPPSC-2020-078",
+      "paper_id": "MPPSC-2020-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2020,
+      "set_code": null,
+      "question_number": 78,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "The first Earth Summit — the United Nations Conference on Environment and Development, 1992 — was held at:",
+          "instructions": null,
+          "options": [
+            {
+              "key": "A",
+              "text": "Stockholm"
+            },
+            {
+              "key": "B",
+              "text": "Rio de Janeiro"
+            },
+            {
+              "key": "C",
+              "text": "Kyoto"
+            },
+            {
+              "key": "D",
+              "text": "Johannesburg"
+            }
+          ]
+        }
+      },
+      "supplied_answer": {
+        "answer": [
+          "B"
+        ],
+        "status": "supplied",
+        "source": null,
+        "notes": null
+      },
+      "answer_key_status": "supplied",
+      "explanation": {
+        "correct_reasoning": "The Earth Summit was held at Rio de Janeiro, Brazil, in June 1992; it produced Agenda 21 and opened the climate and biodiversity conventions for signature. Stockholm hosted the first UN environment conference in 1972, and Kyoto hosted the 1997 climate conference that adopted the Kyoto Protocol.",
+        "language": "en"
+      },
+      "subject": "Environment",
+      "topic": "Ecology and biodiversity",
+      "subtopic": null,
+      "metadata": {
+        "model_question": true
+      }
+    },
+    {
       "id": "MPPSC-2020-079",
       "paper_id": "MPPSC-2020-P1",
       "exam": "MPPSC State Service Preliminary Examination",
@@ -10594,6 +11091,58 @@
       "subject": "Science and Technology",
       "topic": "Science and technology developments",
       "subtopic": "Information technology"
+    },
+    {
+      "id": "MPPSC-2020-096",
+      "paper_id": "MPPSC-2020-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2020,
+      "set_code": null,
+      "question_number": 96,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "The largest hot desert in the world is:",
+          "instructions": null,
+          "options": [
+            {
+              "key": "A",
+              "text": "Sahara"
+            },
+            {
+              "key": "B",
+              "text": "Arabian"
+            },
+            {
+              "key": "C",
+              "text": "Gobi"
+            },
+            {
+              "key": "D",
+              "text": "Thar"
+            }
+          ]
+        }
+      },
+      "supplied_answer": {
+        "answer": [
+          "A"
+        ],
+        "status": "supplied",
+        "source": null,
+        "notes": null
+      },
+      "answer_key_status": "supplied",
+      "explanation": {
+        "correct_reasoning": "The Sahara of northern Africa, covering about 9.2 million square kilometres, is the largest hot desert in the world. The Gobi of Central Asia is a cold desert, and the Arabian and Thar deserts are much smaller. Only the polar deserts of Antarctica and the Arctic are larger in area.",
+        "language": "en"
+      },
+      "subject": "Geography",
+      "topic": "World Geography",
+      "subtopic": null,
+      "metadata": {
+        "model_question": true
+      }
     },
     {
       "id": "MPPSC-2020-097",
@@ -13888,6 +14437,58 @@
       "subtopic": "Information technology"
     },
     {
+      "id": "MPPSC-2021-064",
+      "paper_id": "MPPSC-2021-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2021,
+      "set_code": null,
+      "question_number": 64,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "Which is the largest tribal group of Madhya Pradesh?",
+          "instructions": null,
+          "options": [
+            {
+              "key": "A",
+              "text": "Gond"
+            },
+            {
+              "key": "B",
+              "text": "Bhil"
+            },
+            {
+              "key": "C",
+              "text": "Baiga"
+            },
+            {
+              "key": "D",
+              "text": "Sahariya"
+            }
+          ]
+        }
+      },
+      "supplied_answer": {
+        "answer": [
+          "B"
+        ],
+        "status": "supplied",
+        "source": null,
+        "notes": null
+      },
+      "answer_key_status": "supplied",
+      "explanation": {
+        "correct_reasoning": "The Bhil are the largest tribal group of Madhya Pradesh and also the largest tribal community of India, concentrated in the western districts such as Jhabua, Alirajpur and Khargone. The Gond, treated as a group of related tribes, are spread mainly over the eastern and southern districts. Baiga and Sahariya are among the Particularly Vulnerable Tribal Groups of the State.",
+        "language": "en"
+      },
+      "subject": "Madhya Pradesh Special",
+      "topic": "Tribes of Madhya Pradesh",
+      "subtopic": null,
+      "metadata": {
+        "model_question": true
+      }
+    },
+    {
       "id": "MPPSC-2021-065",
       "paper_id": "MPPSC-2021-P1",
       "exam": "MPPSC State Service Preliminary Examination",
@@ -14432,6 +15033,58 @@
       "subtopic": "NITI Aayog"
     },
     {
+      "id": "MPPSC-2021-076",
+      "paper_id": "MPPSC-2021-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2021,
+      "set_code": null,
+      "question_number": 76,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "The 73rd Constitutional Amendment, which gave constitutional status to Panchayati Raj institutions, was enacted in the year:",
+          "instructions": null,
+          "options": [
+            {
+              "key": "A",
+              "text": "1989"
+            },
+            {
+              "key": "B",
+              "text": "1992"
+            },
+            {
+              "key": "C",
+              "text": "1996"
+            },
+            {
+              "key": "D",
+              "text": "2002"
+            }
+          ]
+        }
+      },
+      "supplied_answer": {
+        "answer": [
+          "B"
+        ],
+        "status": "supplied",
+        "source": null,
+        "notes": null
+      },
+      "answer_key_status": "supplied",
+      "explanation": {
+        "correct_reasoning": "The Constitution (73rd Amendment) Act was passed in 1992 and came into force on 24 April 1993. It inserted Part IX and the Eleventh Schedule, providing for a three-tier Panchayati Raj system, regular elections and reservation for women and weaker sections. The 74th Amendment of the same period covers urban municipalities.",
+        "language": "en"
+      },
+      "subject": "Polity",
+      "topic": "Local self-government",
+      "subtopic": null,
+      "metadata": {
+        "model_question": true
+      }
+    },
+    {
       "id": "MPPSC-2021-077",
       "paper_id": "MPPSC-2021-P1",
       "exam": "MPPSC State Service Preliminary Examination",
@@ -14579,6 +15232,162 @@
       "subtopic": "Panchayati Raj"
     },
     {
+      "id": "MPPSC-2021-080",
+      "paper_id": "MPPSC-2021-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2021,
+      "set_code": null,
+      "question_number": 80,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "The Second Battle of Tarain, fought in 1192 CE, was fought between Prithviraj Chauhan and:",
+          "instructions": null,
+          "options": [
+            {
+              "key": "A",
+              "text": "Muhammad Ghori"
+            },
+            {
+              "key": "B",
+              "text": "Mahmud of Ghazni"
+            },
+            {
+              "key": "C",
+              "text": "Qutb-ud-din Aibak"
+            },
+            {
+              "key": "D",
+              "text": "Timur"
+            }
+          ]
+        }
+      },
+      "supplied_answer": {
+        "answer": [
+          "A"
+        ],
+        "status": "supplied",
+        "source": null,
+        "notes": null
+      },
+      "answer_key_status": "supplied",
+      "explanation": {
+        "correct_reasoning": "At the Second Battle of Tarain (1192) Muhammad Ghori defeated Prithviraj Chauhan III, reversing the result of the first battle of 1191 on the same field. The victory opened the way for the establishment of Turkish rule in northern India; Ghori’s slave-general Qutb-ud-din Aibak later founded the Delhi Sultanate in 1206.",
+        "language": "en"
+      },
+      "subject": "History",
+      "topic": "Medieval India",
+      "subtopic": null,
+      "metadata": {
+        "model_question": true
+      }
+    },
+    {
+      "id": "MPPSC-2021-081",
+      "paper_id": "MPPSC-2021-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2021,
+      "set_code": null,
+      "question_number": 81,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "The SI unit of force is:",
+          "instructions": null,
+          "options": [
+            {
+              "key": "A",
+              "text": "Joule"
+            },
+            {
+              "key": "B",
+              "text": "Pascal"
+            },
+            {
+              "key": "C",
+              "text": "Newton"
+            },
+            {
+              "key": "D",
+              "text": "Watt"
+            }
+          ]
+        }
+      },
+      "supplied_answer": {
+        "answer": [
+          "C"
+        ],
+        "status": "supplied",
+        "source": null,
+        "notes": null
+      },
+      "answer_key_status": "supplied",
+      "explanation": {
+        "correct_reasoning": "Force is measured in newtons: one newton is the force that accelerates a mass of one kilogram by one metre per second squared (1 N = 1 kg·m/s²). The joule measures energy, the pascal measures pressure, and the watt measures power.",
+        "language": "en"
+      },
+      "subject": "Science and Technology",
+      "topic": "Physics",
+      "subtopic": null,
+      "metadata": {
+        "model_question": true
+      }
+    },
+    {
+      "id": "MPPSC-2021-082",
+      "paper_id": "MPPSC-2021-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2021,
+      "set_code": null,
+      "question_number": 82,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "In India, the one-rupee note is issued by:",
+          "instructions": null,
+          "options": [
+            {
+              "key": "A",
+              "text": "Reserve Bank of India"
+            },
+            {
+              "key": "B",
+              "text": "Ministry of Finance"
+            },
+            {
+              "key": "C",
+              "text": "State Bank of India"
+            },
+            {
+              "key": "D",
+              "text": "Securities and Exchange Board of India"
+            }
+          ]
+        }
+      },
+      "supplied_answer": {
+        "answer": [
+          "B"
+        ],
+        "status": "supplied",
+        "source": null,
+        "notes": null
+      },
+      "answer_key_status": "supplied",
+      "explanation": {
+        "correct_reasoning": "Currency notes of one rupee, like all coins, are issued by the Government of India through the Ministry of Finance and bear the signature of the Finance Secretary. The Reserve Bank of India issues banknotes of higher denominations under the RBI Act, 1934, and those carry the RBI Governor’s signature.",
+        "language": "en"
+      },
+      "subject": "Economy",
+      "topic": "Banking and finance",
+      "subtopic": null,
+      "metadata": {
+        "model_question": true
+      }
+    },
+    {
       "id": "MPPSC-2021-083",
       "paper_id": "MPPSC-2021-P1",
       "exam": "MPPSC State Service Preliminary Examination",
@@ -14675,6 +15484,58 @@
       "subject": "Geography",
       "topic": "Rivers of Madhya Pradesh",
       "subtopic": "Dams and reservoirs"
+    },
+    {
+      "id": "MPPSC-2021-085",
+      "paper_id": "MPPSC-2021-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2021,
+      "set_code": null,
+      "question_number": 85,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "The Narmada river originates from:",
+          "instructions": null,
+          "options": [
+            {
+              "key": "A",
+              "text": "Satpura range"
+            },
+            {
+              "key": "B",
+              "text": "Amarkantak plateau"
+            },
+            {
+              "key": "C",
+              "text": "Vindhya range"
+            },
+            {
+              "key": "D",
+              "text": "Aravalli range"
+            }
+          ]
+        }
+      },
+      "supplied_answer": {
+        "answer": [
+          "B"
+        ],
+        "status": "supplied",
+        "source": null,
+        "notes": null
+      },
+      "answer_key_status": "supplied",
+      "explanation": {
+        "correct_reasoning": "The Narmada rises from the Amarkantak plateau in Anuppur district, where the Maikal hills meet the Vindhya and Satpura systems. It flows about 1,312 km westward through a rift valley between the Vindhyas and the Satpuras before entering the Gulf of Khambhat.",
+        "language": "en"
+      },
+      "subject": "Geography",
+      "topic": "Rivers of Madhya Pradesh",
+      "subtopic": null,
+      "metadata": {
+        "model_question": true
+      }
     },
     {
       "id": "MPPSC-2021-086",
@@ -15553,6 +16414,58 @@
       "subtopic": "Information technology"
     },
     {
+      "id": "MPPSC-2022-004",
+      "paper_id": "MPPSC-2022-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2022,
+      "set_code": null,
+      "question_number": 4,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "What is the maximum permissible strength of the Rajya Sabha under the Constitution?",
+          "instructions": null,
+          "options": [
+            {
+              "key": "A",
+              "text": "238"
+            },
+            {
+              "key": "B",
+              "text": "245"
+            },
+            {
+              "key": "C",
+              "text": "250"
+            },
+            {
+              "key": "D",
+              "text": "260"
+            }
+          ]
+        }
+      },
+      "supplied_answer": {
+        "answer": [
+          "C"
+        ],
+        "status": "supplied",
+        "source": null,
+        "notes": null
+      },
+      "answer_key_status": "supplied",
+      "explanation": {
+        "correct_reasoning": "Article 80 fixes the maximum strength of the Rajya Sabha at 250: up to 238 representatives of the States and Union Territories elected indirectly, plus 12 members nominated by the President. Its present sanctioned strength is 245, and it is a permanent body with one-third of its members retiring every two years.",
+        "language": "en"
+      },
+      "subject": "Polity",
+      "topic": "Union Legislature",
+      "subtopic": null,
+      "metadata": {
+        "model_question": true
+      }
+    },
+    {
       "id": "MPPSC-2022-005",
       "paper_id": "MPPSC-2022-P1",
       "exam": "MPPSC State Service Preliminary Examination",
@@ -16237,6 +17150,58 @@
       "subject": "Current Affairs",
       "topic": "Awards and honours",
       "subtopic": "Sports awards"
+    },
+    {
+      "id": "MPPSC-2022-019",
+      "paper_id": "MPPSC-2022-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2022,
+      "set_code": null,
+      "question_number": 19,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "The Jallianwala Bagh massacre at Amritsar took place on:",
+          "instructions": null,
+          "options": [
+            {
+              "key": "A",
+              "text": "13 April 1919"
+            },
+            {
+              "key": "B",
+              "text": "13 April 1920"
+            },
+            {
+              "key": "C",
+              "text": "23 March 1919"
+            },
+            {
+              "key": "D",
+              "text": "5 February 1922"
+            }
+          ]
+        }
+      },
+      "supplied_answer": {
+        "answer": [
+          "A"
+        ],
+        "status": "supplied",
+        "source": null,
+        "notes": null
+      },
+      "answer_key_status": "supplied",
+      "explanation": {
+        "correct_reasoning": "On 13 April 1919, the day of Baisakhi, troops under Brigadier-General Reginald Dyer fired on an unarmed crowd gathered at Jallianwala Bagh in Amritsar to protest against the Rowlatt Act and the arrest of local leaders. The massacre intensified the freedom struggle and led Rabindranath Tagore to return his knighthood.",
+        "language": "en"
+      },
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": null,
+      "metadata": {
+        "model_question": true
+      }
     },
     {
       "id": "MPPSC-2022-020",
@@ -19387,6 +20352,58 @@
       "subtopic": "Minerals of Madhya Pradesh"
     },
     {
+      "id": "MPPSC-2022-084",
+      "paper_id": "MPPSC-2022-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2022,
+      "set_code": null,
+      "question_number": 84,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "Which gas is the most abundant in the Earth’s atmosphere?",
+          "instructions": null,
+          "options": [
+            {
+              "key": "A",
+              "text": "Oxygen"
+            },
+            {
+              "key": "B",
+              "text": "Argon"
+            },
+            {
+              "key": "C",
+              "text": "Nitrogen"
+            },
+            {
+              "key": "D",
+              "text": "Carbon dioxide"
+            }
+          ]
+        }
+      },
+      "supplied_answer": {
+        "answer": [
+          "C"
+        ],
+        "status": "supplied",
+        "source": null,
+        "notes": null
+      },
+      "answer_key_status": "supplied",
+      "explanation": {
+        "correct_reasoning": "Nitrogen makes up about 78 percent of the atmosphere by volume, followed by oxygen at about 21 percent. Argon accounts for roughly 0.93 percent, while carbon dioxide is present only in trace amounts of about 0.04 percent, though it is vital for photosynthesis and the greenhouse effect.",
+        "language": "en"
+      },
+      "subject": "Science and Technology",
+      "topic": "Chemistry",
+      "subtopic": null,
+      "metadata": {
+        "model_question": true
+      }
+    },
+    {
       "id": "MPPSC-2022-085",
       "paper_id": "MPPSC-2022-P1",
       "exam": "MPPSC State Service Preliminary Examination",
@@ -20218,6 +21235,58 @@
       "subject": "Economy",
       "topic": "Agriculture and rural economy",
       "subtopic": "Irrigation"
+    },
+    {
+      "id": "MPPSC-2023-002",
+      "paper_id": "MPPSC-2023-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2023,
+      "set_code": null,
+      "question_number": 2,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "The principal seat of the Madhya Pradesh High Court is located at:",
+          "instructions": null,
+          "options": [
+            {
+              "key": "A",
+              "text": "Bhopal"
+            },
+            {
+              "key": "B",
+              "text": "Indore"
+            },
+            {
+              "key": "C",
+              "text": "Gwalior"
+            },
+            {
+              "key": "D",
+              "text": "Jabalpur"
+            }
+          ]
+        }
+      },
+      "supplied_answer": {
+        "answer": [
+          "D"
+        ],
+        "status": "supplied",
+        "source": null,
+        "notes": null
+      },
+      "answer_key_status": "supplied",
+      "explanation": {
+        "correct_reasoning": "The Madhya Pradesh High Court has its principal seat at Jabalpur, continuing the position of the Nagpur High Court’s successor arrangements after 1956; permanent benches function at Indore and Gwalior. Bhopal is the State capital and seat of the government, but not of the High Court.",
+        "language": "en"
+      },
+      "subject": "Madhya Pradesh Special",
+      "topic": "Administrative structure of Madhya Pradesh",
+      "subtopic": null,
+      "metadata": {
+        "model_question": true
+      }
     },
     {
       "id": "MPPSC-2023-003",
@@ -22384,6 +23453,58 @@
       "subtopic": "Information technology"
     },
     {
+      "id": "MPPSC-2023-047",
+      "paper_id": "MPPSC-2023-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2023,
+      "set_code": null,
+      "question_number": 47,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "Through how many Indian States does the Tropic of Cancer pass?",
+          "instructions": null,
+          "options": [
+            {
+              "key": "A",
+              "text": "6"
+            },
+            {
+              "key": "B",
+              "text": "7"
+            },
+            {
+              "key": "C",
+              "text": "8"
+            },
+            {
+              "key": "D",
+              "text": "9"
+            }
+          ]
+        }
+      },
+      "supplied_answer": {
+        "answer": [
+          "C"
+        ],
+        "status": "supplied",
+        "source": null,
+        "notes": null
+      },
+      "answer_key_status": "supplied",
+      "explanation": {
+        "correct_reasoning": "The Tropic of Cancer (23½° N) crosses eight Indian States: Gujarat, Rajasthan, Madhya Pradesh, Chhattisgarh, Jharkhand, West Bengal, Tripura and Mizoram. In Madhya Pradesh it passes close to Ujjain, which is why the city has an old association with astronomical observation.",
+        "language": "en"
+      },
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": null,
+      "metadata": {
+        "model_question": true
+      }
+    },
+    {
       "id": "MPPSC-2023-048",
       "paper_id": "MPPSC-2023-P1",
       "exam": "MPPSC State Service Preliminary Examination",
@@ -22629,6 +23750,58 @@
       "subtopic": null
     },
     {
+      "id": "MPPSC-2023-053",
+      "paper_id": "MPPSC-2023-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2023,
+      "set_code": null,
+      "question_number": 53,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "The words ‘Socialist’ and ‘Secular’ were added to the Preamble of the Constitution by:",
+          "instructions": null,
+          "options": [
+            {
+              "key": "A",
+              "text": "The 42nd Amendment, 1976"
+            },
+            {
+              "key": "B",
+              "text": "The 44th Amendment, 1978"
+            },
+            {
+              "key": "C",
+              "text": "The 61st Amendment, 1989"
+            },
+            {
+              "key": "D",
+              "text": "The 73rd Amendment, 1992"
+            }
+          ]
+        }
+      },
+      "supplied_answer": {
+        "answer": [
+          "A"
+        ],
+        "status": "supplied",
+        "source": null,
+        "notes": null
+      },
+      "answer_key_status": "supplied",
+      "explanation": {
+        "correct_reasoning": "The Constitution (42nd Amendment) Act, 1976 inserted ‘Socialist’ and ‘Secular’ (and also ‘integrity’) into the Preamble, which originally described India only as a ‘Sovereign Democratic Republic’. The 44th Amendment (1978) is better known for deleting the right to property from the Fundamental Rights.",
+        "language": "en"
+      },
+      "subject": "Polity",
+      "topic": "Constitution of India",
+      "subtopic": null,
+      "metadata": {
+        "model_question": true
+      }
+    },
+    {
       "id": "MPPSC-2023-054",
       "paper_id": "MPPSC-2023-P1",
       "exam": "MPPSC State Service Preliminary Examination",
@@ -22825,6 +23998,58 @@
       "subtopic": "Rivers of India"
     },
     {
+      "id": "MPPSC-2023-058",
+      "paper_id": "MPPSC-2023-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2023,
+      "set_code": null,
+      "question_number": 58,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "Which one of the following was the first National Park established in India?",
+          "instructions": null,
+          "options": [
+            {
+              "key": "A",
+              "text": "Kanha National Park"
+            },
+            {
+              "key": "B",
+              "text": "Jim Corbett National Park"
+            },
+            {
+              "key": "C",
+              "text": "Kaziranga National Park"
+            },
+            {
+              "key": "D",
+              "text": "Bandhavgarh National Park"
+            }
+          ]
+        }
+      },
+      "supplied_answer": {
+        "answer": [
+          "B"
+        ],
+        "status": "supplied",
+        "source": null,
+        "notes": null
+      },
+      "answer_key_status": "supplied",
+      "explanation": {
+        "correct_reasoning": "India’s first National Park was created in 1936 in present-day Uttarakhand as Hailey National Park; it was later renamed Ramganga and then Jim Corbett National Park. Kanha and Bandhavgarh in Madhya Pradesh were notified much later (1955 and 1968 respectively), and Project Tiger began from Corbett in 1973.",
+        "language": "en"
+      },
+      "subject": "Environment",
+      "topic": "Protected areas",
+      "subtopic": null,
+      "metadata": {
+        "model_question": true
+      }
+    },
+    {
       "id": "MPPSC-2023-059",
       "paper_id": "MPPSC-2023-P1",
       "exam": "MPPSC State Service Preliminary Examination",
@@ -22872,6 +24097,58 @@
       "subject": "Geography",
       "topic": "Economic and human geography",
       "subtopic": "Energy resources"
+    },
+    {
+      "id": "MPPSC-2023-060",
+      "paper_id": "MPPSC-2023-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2023,
+      "set_code": null,
+      "question_number": 60,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "Who is regarded as the father of the Green Revolution in India?",
+          "instructions": null,
+          "options": [
+            {
+              "key": "A",
+              "text": "M. S. Swaminathan"
+            },
+            {
+              "key": "B",
+              "text": "Norman Borlaug"
+            },
+            {
+              "key": "C",
+              "text": "Verghese Kurien"
+            },
+            {
+              "key": "D",
+              "text": "C. Subramaniam"
+            }
+          ]
+        }
+      },
+      "supplied_answer": {
+        "answer": [
+          "A"
+        ],
+        "status": "supplied",
+        "source": null,
+        "notes": null
+      },
+      "answer_key_status": "supplied",
+      "explanation": {
+        "correct_reasoning": "M. S. Swaminathan led the introduction of high-yielding dwarf wheat varieties in India during the 1960s and is regarded as the father of the Green Revolution in India. Norman Borlaug, whose Mexican wheat lines Swaminathan adapted, is called the father of the Green Revolution worldwide, while Verghese Kurien led the White Revolution in milk.",
+        "language": "en"
+      },
+      "subject": "Economy",
+      "topic": "Agriculture and rural economy",
+      "subtopic": null,
+      "metadata": {
+        "model_question": true
+      }
     },
     {
       "id": "MPPSC-2023-061",
@@ -25717,6 +26994,58 @@
       "subtopic": "Supreme Court"
     },
     {
+      "id": "MPPSC-2024-019",
+      "paper_id": "MPPSC-2024-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2024,
+      "set_code": null,
+      "question_number": 19,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "The Brahmi script used in the Ashokan edicts was first deciphered in 1837 by:",
+          "instructions": null,
+          "options": [
+            {
+              "key": "A",
+              "text": "Alexander Cunningham"
+            },
+            {
+              "key": "B",
+              "text": "James Prinsep"
+            },
+            {
+              "key": "C",
+              "text": "John Marshall"
+            },
+            {
+              "key": "D",
+              "text": "William Jones"
+            }
+          ]
+        }
+      },
+      "supplied_answer": {
+        "answer": [
+          "B"
+        ],
+        "status": "supplied",
+        "source": null,
+        "notes": null
+      },
+      "answer_key_status": "supplied",
+      "explanation": {
+        "correct_reasoning": "James Prinsep, an officer of the East India Company and scholar of the Asiatic Society, deciphered the Brahmi script in 1837 by comparing bilingual coin legends and pillar inscriptions. His reading of ‘Devanampiya Piyadasi’ made it possible to identify King Ashoka and read the edicts.",
+        "language": "en"
+      },
+      "subject": "History",
+      "topic": "Ancient India",
+      "subtopic": null,
+      "metadata": {
+        "model_question": true
+      }
+    },
+    {
       "id": "MPPSC-2024-020",
       "paper_id": "MPPSC-2024-P1",
       "exam": "MPPSC State Service Preliminary Examination",
@@ -26657,6 +27986,58 @@
       "subject": "History",
       "topic": "History of Madhya Pradesh",
       "subtopic": "Chandela dynasty"
+    },
+    {
+      "id": "MPPSC-2024-039",
+      "paper_id": "MPPSC-2024-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2024,
+      "set_code": null,
+      "question_number": 39,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "Which Indian State has the longest coastline?",
+          "instructions": null,
+          "options": [
+            {
+              "key": "A",
+              "text": "Andhra Pradesh"
+            },
+            {
+              "key": "B",
+              "text": "Tamil Nadu"
+            },
+            {
+              "key": "C",
+              "text": "Gujarat"
+            },
+            {
+              "key": "D",
+              "text": "Kerala"
+            }
+          ]
+        }
+      },
+      "supplied_answer": {
+        "answer": [
+          "C"
+        ],
+        "status": "supplied",
+        "source": null,
+        "notes": null
+      },
+      "answer_key_status": "supplied",
+      "explanation": {
+        "correct_reasoning": "Gujarat has the longest coastline among Indian States, about 1,600 km, because of the deep indentations of the Gulfs of Khambhat and Kachchh. Tamil Nadu (about 1,076 km) and Andhra Pradesh (about 974 km) come next; no other State’s coastline crosses a thousand kilometres.",
+        "language": "en"
+      },
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": null,
+      "metadata": {
+        "model_question": true
+      }
     },
     {
       "id": "MPPSC-2024-040",
@@ -28276,6 +29657,58 @@
       "subtopic": "Energy resources"
     },
     {
+      "id": "MPPSC-2024-073",
+      "paper_id": "MPPSC-2024-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2024,
+      "set_code": null,
+      "question_number": 73,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "The Fundamental Duties were inserted into the Constitution on the recommendation of which committee?",
+          "instructions": null,
+          "options": [
+            {
+              "key": "A",
+              "text": "Sarkaria Committee"
+            },
+            {
+              "key": "B",
+              "text": "Swaran Singh Committee"
+            },
+            {
+              "key": "C",
+              "text": "Balwantrai Mehta Committee"
+            },
+            {
+              "key": "D",
+              "text": "L. M. Singhvi Committee"
+            }
+          ]
+        }
+      },
+      "supplied_answer": {
+        "answer": [
+          "B"
+        ],
+        "status": "supplied",
+        "source": null,
+        "notes": null
+      },
+      "answer_key_status": "supplied",
+      "explanation": {
+        "correct_reasoning": "On the recommendation of the Swaran Singh Committee, the 42nd Amendment of 1976 added Part IVA and Article 51A, listing ten Fundamental Duties; an eleventh duty was added by the 86th Amendment in 2002. The Sarkaria Committee dealt with Centre–State relations, while the Balwantrai Mehta Committee is associated with Panchayati Raj.",
+        "language": "en"
+      },
+      "subject": "Polity",
+      "topic": "Constitution of India",
+      "subtopic": null,
+      "metadata": {
+        "model_question": true
+      }
+    },
+    {
       "id": "MPPSC-2024-074",
       "paper_id": "MPPSC-2024-P1",
       "exam": "MPPSC State Service Preliminary Examination",
@@ -28622,6 +30055,58 @@
       "subject": "Geography",
       "topic": "Geography of India",
       "subtopic": "Population of India"
+    },
+    {
+      "id": "MPPSC-2024-081",
+      "paper_id": "MPPSC-2024-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2024,
+      "set_code": null,
+      "question_number": 81,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "The BCG vaccine is administered for protection against:",
+          "instructions": null,
+          "options": [
+            {
+              "key": "A",
+              "text": "Polio"
+            },
+            {
+              "key": "B",
+              "text": "Tuberculosis"
+            },
+            {
+              "key": "C",
+              "text": "Measles"
+            },
+            {
+              "key": "D",
+              "text": "Hepatitis B"
+            }
+          ]
+        }
+      },
+      "supplied_answer": {
+        "answer": [
+          "B"
+        ],
+        "status": "supplied",
+        "source": null,
+        "notes": null
+      },
+      "answer_key_status": "supplied",
+      "explanation": {
+        "correct_reasoning": "BCG (Bacillus Calmette–Guérin) is a vaccine against tuberculosis, given to infants soon after birth under the Universal Immunisation Programme. Polio is prevented by OPV/IPV, measles by the MR vaccine, and hepatitis B by the hepatitis B vaccine introduced in a pentavalent combination.",
+        "language": "en"
+      },
+      "subject": "Science and Technology",
+      "topic": "Health and diseases",
+      "subtopic": null,
+      "metadata": {
+        "model_question": true
+      }
     },
     {
       "id": "MPPSC-2024-082",
@@ -29063,6 +30548,58 @@
       "subject": "History",
       "topic": "History of Madhya Pradesh",
       "subtopic": "Revolt of 1857 in Madhya Pradesh"
+    },
+    {
+      "id": "MPPSC-2024-091",
+      "paper_id": "MPPSC-2024-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2024,
+      "set_code": null,
+      "question_number": 91,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "The Khajuraho group of temples was built mainly under the patronage of which dynasty?",
+          "instructions": null,
+          "options": [
+            {
+              "key": "A",
+              "text": "Gupta dynasty"
+            },
+            {
+              "key": "B",
+              "text": "Pratihara dynasty"
+            },
+            {
+              "key": "C",
+              "text": "Chandela dynasty"
+            },
+            {
+              "key": "D",
+              "text": "Kalchuri dynasty"
+            }
+          ]
+        }
+      },
+      "supplied_answer": {
+        "answer": [
+          "C"
+        ],
+        "status": "supplied",
+        "source": null,
+        "notes": null
+      },
+      "answer_key_status": "supplied",
+      "explanation": {
+        "correct_reasoning": "The Khajuraho temples of Madhya Pradesh were built between about 950 and 1050 CE under the Chandela dynasty, whose capital was at Jejabhukti (Bundelkhand). The western group, including the Kandariya Mahadeva temple, is a UNESCO World Heritage Site noted for Nagara-style architecture and sculpture.",
+        "language": "en"
+      },
+      "subject": "Art and Culture",
+      "topic": "Heritage Sites",
+      "subtopic": null,
+      "metadata": {
+        "model_question": true
+      }
     },
     {
       "id": "MPPSC-2024-092",
