@@ -8,7 +8,7 @@
  *     Analytics and the Dashboard never need to read the whole bank from disk.
  */
 
-import { STORES, DEFAULT_SETTINGS, LS_KEYS } from './constants.js';
+import { STORES, DEFAULT_SETTINGS, LS_KEYS, stripRetiredSettings } from './constants.js';
 import * as db from './db.js';
 import { deepClone, logEvent } from './util.js';
 
@@ -136,6 +136,11 @@ export async function loadSettings() {
     }
   }
   state.settings = mergeSettings(DEFAULT_SETTINGS, stored || {});
+  // Settings that are no longer preferences are dropped here, so an install
+  // upgraded from an older build (or a backup restored from one) cannot keep a
+  // rule that `FIXED_TEST_RULES` now decides, or a control that never did
+  // anything, alive in the stored object.
+  stripRetiredSettings(state.settings);
   // One-time upgrade for installs created before the MPPSC +3/−1/0 pattern
   // became the default: a stored default that is exactly the old shipped
   // default (+2, no negative marking) was never a deliberate choice, so it

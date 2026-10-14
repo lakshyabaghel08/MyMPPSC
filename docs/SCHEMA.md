@@ -139,20 +139,60 @@ can be imported into another. The full backup (**Settings & Backup**) is a
 separate format (`mymppsc-backup`) that includes tests, attempts, mistakes,
 revision records, syllabus, tasks and sessions — see `docs/LIMITATIONS.md`.
 
+## The syllabus renderings file
+
+`data/syllabus/translations/en.json` holds the hand-written English renderings of
+the syllabus lines the commission published in Hindi only. It is a **reading aid
+for the English interface**, not syllabus data: nothing in it is ever written
+back into `data/syllabus/mppsc-2026-syllabus.json`, and no official wording is
+ever replaced by it.
+
+```json
+{
+  "format": "mymppsc-syllabus-translations",
+  "format_version": "1.0.0",
+  "language": "en",
+  "notice": "…what this file is and is not…",
+  "source": "data/syllabus/mppsc-2026-syllabus.json",
+  "entries": {
+    "prelims/paper-1/s1":    { "title": { "hi": "भारत का इतिहास", "en": "History of India" } },
+    "prelims/paper-1/s1/t1": { "text":  { "hi": "संकल्पना एवं विचार- …", "en": "Concepts and Ideas - …" } }
+  }
+}
+```
+
+* Keys are official node ids; the field is `title` for a heading and `text` for a
+  line of the syllabus — the field the notification itself left Hindi-only.
+* Each entry stores the **official Hindi verbatim beside the English**, which is
+  what makes staleness detectable: `tests/syllabus-analysis.test.js` fails if an
+  entry's `hi` no longer equals the notification's own wording, if a node id has
+  disappeared, if a line has gained an official English rendition, or if a
+  Hindi-only line has no rendering at all.
+* The English is written by hand. No machine translation is used, generated or
+  implied, and the interface says so wherever a rendering is shown.
+* `loadSyllabus()` fetches the file and `buildModel()` attaches each entry to its
+  node as `node.translation`; `node.text` and `node.titles` stay exactly what the
+  notification says. A missing or unreadable file is not an error — the screen
+  falls back to the official Hindi.
+* The file is precached by `sw.js`, so the renderings are available offline.
+
 ## The two syllabus stores
 
-The Syllabus section reads from two stores and writes to whichever one owns the
-item in front of you. They were **not** merged into one when the screens were:
+The Syllabus section now reads and writes one of these stores. They were **not**
+merged into one when the screens were, and neither was dropped when the *My
+plan* tab was removed — both still exist, both still round-trip through a
+backup, and `DB_VERSION` is unchanged:
 
-| Store | Holds | Key |
-| --- | --- | --- |
-| `syllabus` | the items you typed or imported, including any nesting of your own | your item id |
-| `syllabus_progress` | what you marked on a line of the commission's syllabus | the official node id |
+| Store | Holds | Key | Read by the UI |
+| --- | --- | --- | --- |
+| `syllabus` | the items you typed or imported, including any nesting of your own | your item id | no — preserved for backups |
+| `syllabus_progress` | what you marked on a line of the commission's syllabus | the official node id | yes |
 
 Nothing in the shipped syllabus is writable, so there is no row to store for an
 official line until you mark one — a reader who marks nothing has an empty
-`syllabus_progress`. Keeping the stores apart also keeps the promise that the
-tree you built is yours alone: no official node is ever written into it.
+`syllabus_progress`. Keeping the stores apart keeps the promise that the tree you
+built is yours alone: no official node is ever written into it, and removing the
+plan UI neither migrates nor deletes a row of it.
 
 Merging the screens added fields to both row shapes and removed none, so
 `DB_VERSION` stays **2** and no migration runs. A backup written by an older
@@ -160,11 +200,16 @@ build restores unchanged (`js/services/data.js` backs up whole rows), and a
 backup written by this build opens in an older one with the new fields ignored.
 
 * `syllabus_progress` rows gained optional `priority`, `target_date` and
-  `notes` — the planning fields, now available on an official line.
+  `notes` — the planning fields, now available on an official line. **No screen
+  offers them any more**: the *My plan* tab that used them was removed, so they
+  are preserved rather than presented. `js/services/syllabus.js` still reads and
+  writes them (`PLAN_FIELDS`, `setProgressPlan()`) so a backup taken before the
+  removal restores with them intact, and clearing or resetting a status never
+  deletes them.
 * `syllabus` rows gained an optional `attached_node_id`: the official heading
-  you pinned an item under. Unset means *work it out from the curated mapping,
-  or leave it in My plan*; it is a display relationship, never a copy of
-  official text.
+  you pinned an item under. It is a display relationship, never a copy of
+  official text, and like the rest of that store it is now only carried, not
+  shown.
 
 Status is one vocabulary across both: `not_started`, `in_progress`,
 `completed`, `revised`. Rows written by older builds as `revising` are read as

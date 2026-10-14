@@ -106,19 +106,39 @@ async function goto(route) {
   return viewText();
 }
 
+/**
+ * Topic & Custom Practice keeps what the reader ticked for the rest of the
+ * session, so a test that asserts the screen's *defaults* has to ask for them
+ * back first: clear the selection, then fold any group an earlier test opened.
+ * Folding is a DOM toggle (that is the point of it), so it needs no re-render.
+ */
+async function resetPracticeScreen() {
+  await goto('topic');
+  await waitFor(() => $('#view [data-action="clear-selection"]'), { label: 'the practice picker' });
+  const clear = $('#view [data-action="clear-selection"]');
+  if (!clear.disabled) {
+    click(clear);
+    await waitFor(() => $('#view [data-action="clear-selection"]').disabled, { label: 'the selection to clear' });
+  }
+  for (const caret of $$('#view [data-action="pick-expand"][aria-expanded="true"]')) click(caret);
+}
+
 /* ---------------------------------------------------------------- tests --- */
 
 test('boots, renders the shell and the demonstration prompt', async () => {
   await waitFor(() => $$('#navList .nav-link').length >= 10, { label: 'navigation links' });
   assert.equal(state.dbError, null);
   const labels = $$('#navList .nav-link').map((b) => b.textContent.trim());
-  for (const required of ['Dashboard', 'PYQ Test Centre', 'Topic Practice', 'Smart Practice', 'Mistake Book', 'Revision Centre', 'Syllabus', 'Insights', 'Question Bank & Imports', 'Settings & Backup']) {
+  for (const required of ['Dashboard', 'PYQ Test Centre', 'Topic & Custom Practice', 'Smart Practice', 'Mistake Book', 'Revision Centre', 'Syllabus', 'Insights', 'Question Bank & Imports', 'Settings & Backup']) {
     assert.ok(labels.some((l) => l.includes(required)), `navigation should offer ${required}`);
   }
-  // The syllabus planner merged into the syllabus screen, and the question-bank
-  // analysis into Insights: each pair is one destination, advertised once.
+  // The syllabus planner merged into the syllabus screen, the question-bank
+  // analysis into Insights, and the Custom Test builder into Topic & Custom
+  // Practice: each pair is one destination, advertised once.
   assert.equal(labels.filter((l) => /Syllabus/.test(l)).length, 1, 'one syllabus destination, not two');
   assert.equal(labels.filter((l) => /Analytics|Analysis|Insights/.test(l)).length, 1, 'one destination for the numbers, not two');
+  assert.equal(labels.filter((l) => /Custom Test/.test(l)).length, 0, 'the Custom Test builder is not a second navigation entry');
+  assert.equal(labels.filter((l) => /Practice/.test(l) && /Topic/.test(l)).length, 1, 'one practice builder, not two');
 
   // First run with an empty database: the repository-backed MPPSC bank loads by
   // itself, so the app does not have to fall back to the demonstration prompt.
@@ -155,17 +175,17 @@ test('PYQ Analysis counts the bundled bank and deep-links into practice', async 
   assert.ok(link, 'a subject row offers a way to practise it');
   const target = decodeURIComponent(link.getAttribute('href').replace('#/topic/', ''));
   const [subject] = target.split('||');
+  const subjectBox = (name) => $(`#view input[data-action="pick-subject"][data-value="${window.CSS.escape(name)}"]`);
 
   await goto(`topic/${encodeURIComponent(target)}`);
-  assert.equal(document.getElementById('fSubject').value, subject, 'the link preselects the subject it was clicked from');
+  assert.equal(subjectBox(subject)?.checked, true, 'the link ticks the subject it was clicked from');
+  assert.match($('#pickMatch').textContent, /question/, 'the deep link reports how many questions it selected');
 
-  // …and editing a filter afterwards sticks: the route param is applied once per
-  // navigation, not on every re-render.
-  const select = document.getElementById('fSubject');
-  select.value = 'all';
-  select.dispatchEvent(new window.Event('change', { bubbles: true }));
-  await waitFor(() => document.getElementById('fSubject')?.value === 'all', { label: 'the edited filter to survive the re-render' });
-  assert.equal(document.getElementById('fSubject').value, 'all', 'the route does not snap the filter back');
+  // …and editing the selection afterwards sticks: the route param is applied
+  // once per arrival, not re-imposed on every in-place re-render.
+  click(subjectBox(subject));
+  await waitFor(() => subjectBox(subject) && subjectBox(subject).checked === false, { label: 'the subject to be unticked' });
+  assert.equal(subjectBox(subject).checked, false, 'the route does not snap the selection back');
 
   // Returning to PYQ Analysis, filtering by a subject chip, and following a topic-level Practice link
   await goto('pyq-analysis');
@@ -175,8 +195,10 @@ test('PYQ Analysis counts the bundled bank and deep-links into practice', async 
   const [topicSubject, topicName] = topicTarget.split('||');
 
   await goto(`topic/${encodeURIComponent(topicTarget)}`);
-  assert.equal(document.getElementById('fSubject').value, topicSubject, 'topic Practice link preselects the subject');
-  assert.equal(document.getElementById('fTopic').value, topicName, 'topic Practice link preselects the topic');
+  const topicBox = $(`#view input[data-action="pick-topic"][data-value="${window.CSS.escape(`${topicSubject}||${topicName}`)}"]`);
+  assert.ok(topicBox, 'the topic the link named is listed under its own subject');
+  assert.equal(topicBox.checked, true, 'topic Practice link ticks that one topic');
+  assert.equal(subjectBox(topicSubject).indeterminate, true, 'one topic inside a subject leaves the subject half-ticked, not whole');
 });
 
 test('the question bank screen imports the demonstration bank through the UI', async () => {
@@ -219,14 +241,21 @@ test('the question bank screen imports the demonstration bank through the UI', a
 });
 
 test('practice setup screens describe what is available before starting', async () => {
-  await goto('topic');
-  assert.match(viewText(), /Available questions/);
-  assert.match(viewText(), /matching/);
+  await resetPracticeScreen();
+  // The availability tables are gone; what remains is one live figure that says
+  // exactly how big the pool the session will be drawn from is.
+  assert.match(viewText(), /What to include/);
+  // The demonstration bank was imported by an earlier test, so the figure is
+  // whatever the device holds — the point is that it is *all* of it.
+  assert.equal($('#pickMatch').textContent.trim(), `${state.questionIndex.size} questions match`, 'nothing ticked means the whole bank');
+  assert.ok(!/Available questions/.test(viewText()), 'the per-subject availability table is gone');
   await goto('smart');
   assert.match(viewText(), /How this session will be built/);
   assert.match(viewText(), /not evidence about what a future examination will contain/i);
   await goto('custom');
-  assert.match(viewText(), /not an authentic previous-year paper/i);
+  assert.match(viewText(), /never labelled as an authentic paper/i);
+  assert.match(viewText(), /Topic & Custom Practice/, '#/custom opens the merged screen');
+  assert.equal($('.nav-link[aria-current="page"]')?.dataset.route, 'topic', 'the old address highlights the merged navigation item');
   await goto('test-centre');
   assert.match(viewText(), /Previous-year papers|Paper simulations|Test Centre/i);
 });
@@ -291,16 +320,21 @@ test('practice setup screens start real sessions from the shared configuration f
   const { loadTest } = await import('../js/services/tests.js');
   const { state: appState } = await import('../js/core/state.js');
 
-  // Topic practice: change the configured size, then start.
-  await goto('topic');
+  // Topic practice: pick one subject, change the configured size, then start.
+  await resetPracticeScreen();
+  click($$('#view input[data-action="pick-subject"]')[0]);
+  await waitFor(() => $$('#view input[data-action="pick-subject"]').some((b) => b.checked), { label: 'a subject to be ticked' });
   change($('#practiceCfgCount'), '4');
-  change($('#practiceCfgConfidence'), 'optional');
-  click($('#startTopic'));
+  click($('#view [data-action="start-practice"]'));
   await waitFor(() => /#\/runner\//.test(window.location.hash), { label: 'topic session route' });
   await waitFor(() => /Question 1 of/.test(viewText()), { label: 'topic runner markup' });
   let testId = window.location.hash.split('/').pop();
   let record = await loadTest(testId);
-  assert.equal(record.kind, 'topic');
+  assert.equal(record.kind, 'topic', 'exactly one subject is still recorded as a topic session');
+  // The three rules no session can change are written into the test itself.
+  assert.equal(record.config.confidence, 'optional');
+  assert.equal(record.config.answer_policy, 'verified_preferred');
+  assert.equal(record.config.unresolved_policy, 'supplied');
   assert.equal(record.question_ids.length, 4, 'the configured session size should be honoured');
   assert.equal(new Set(record.question_ids).size, record.question_ids.length, 'a practice set must not repeat a question');
   for (const id of record.question_ids) assert.ok(appState.questionIndex.has(id), `${id} should come from the stored index`);
@@ -381,24 +415,37 @@ test('practice setup is progressive: essentials first, advanced collapsed and su
   await goto('smart');
   assert.ok($('#practiceCfgCount'), 'smart practice has one size control in the session form');
   assert.ok(!$('#smartCount'), 'the duplicate size selector is gone');
+  // Rebuilding the plan re-renders the screen, which used to hand the reader
+  // back the saved defaults instead of the form they had just filled in.
+  change($('#practiceCfgFeedback'), 'learning');
   change($('#practiceCfgCount'), '15');
   await waitFor(() => /This session: 15 questions/.test($('#practiceCfgSummary')?.textContent || ''), { label: 'size change rebuilds the smart plan' });
+  assert.equal($('#practiceCfgFeedback').value, 'learning', 'the smart screen keeps what the reader chose through its own re-render');
 
   await goto('syllabus');
   const plannerText = viewText();
-  // One section now: the official tree is the spine and the planner lives in
-  // it, so the screen offers both the papers and the user's own branch.
-  assert.match(plannerText, /My plan/);
+  // One section, and one tree: the commission's syllabus is the spine. *My plan*
+  // — the second tree of typed items — is gone from the interface.
+  assert.ok(!/My plan/.test(plannerText), 'My plan is no longer offered on the syllabus screen');
+  assert.ok(!/Add paper to My plan/.test(plannerText), 'papers are no longer added to a plan');
+  assert.ok(!/Your items here/.test(plannerText) && !/your item/.test(plannerText), 'the reader\u2019s own items are no longer shown in the tree');
   assert.ok(!/Log a study session/.test(plannerText), 'study-session logging is gone from the planner');
   assert.ok(!/Study minutes per day/.test(plannerText), 'the study-minutes chart is gone from the planner');
   assert.ok(!/Recent sessions/.test(plannerText), 'the recent-sessions table is gone from the planner');
   assert.ok(!/Open tasks/.test(plannerText) && !/Suggested tasks/.test(plannerText) && !/New task/.test(plannerText), 'tasks are gone from the planner');
+  assert.equal($$('#view .syl-switch [role="tab"]').length, 2, 'the stage switch is Prelims and Mains only');
 
+  await resetPracticeScreen();
   await goto('custom');
-  assert.ok($('#assembleCustom'), 'the custom builder still assembles tests');
+  assert.ok($('#view [data-action="start-practice"]'), 'the merged builder still assembles tests from its old address');
   const moreNarrowing = $$('#view details.disclosure').find((d) => /Narrow further/.test(d.querySelector('summary')?.textContent || ''));
   assert.ok(moreNarrowing, 'year/paper/type pickers are tucked away');
   assert.equal(moreNarrowing.open, false, 'the optional pickers start collapsed');
+  assert.match(moreNarrowing.querySelector('summary').textContent, /^Narrow further$/, 'a collapsed disclosure with nothing filtered says so plainly');
+  assert.ok(!/Include questions I have already attempted/.test(viewText()), 'the repeat checkbox is gone; attempt history is a filter');
+  const groups = $$('#view .pick-group');
+  assert.ok(groups.length > 1, 'subjects are listed as collapsible groups');
+  assert.ok(groups.every((g) => g.querySelector('.pick-topics').hidden), 'every subject group starts collapsed');
 
   await goto('dashboard');
   assert.ok(!/Today's tasks/.test(viewText()), 'the dashboard no longer advertises the removed planner tasks');
@@ -407,7 +454,7 @@ test('practice setup is progressive: essentials first, advanced collapsed and su
 test('the mistake book, revision centre and analytics reflect the submitted test', async () => {
   await goto('mistakes');
   assert.match(viewText(), /Mistake Book/);
-  assert.ok(!/No mistakes recorded yet/.test(viewText()) || state.settings.confidenceTracking !== 'off', 'the mistake book should reflect stored attempts');
+  assert.ok(!/No mistakes recorded yet/.test(viewText()), 'the mistake book should reflect stored attempts');
 
   await goto('revision');
   assert.match(viewText(), /Revision Centre/);
@@ -427,11 +474,24 @@ test('settings persist, diagnostics run and the keyboard entry point works', asy
   await goto('settings');
   assert.match(viewText(), /Language, theme and defaults/);
 
-  const select = $('#setConfidence');
-  change(select, 'required');
-  await waitFor(() => state.settings.confidenceTracking === 'required', { label: 'setting persisted' });
-  change($('#setConfidence'), 'off');
-  await waitFor(() => state.settings.confidenceTracking === 'off', { label: 'setting restored' });
+  const select = $('#setFeedback');
+  change(select, 'learning');
+  await waitFor(() => state.settings.feedbackMode === 'learning', { label: 'setting persisted' });
+  change($('#setFeedback'), 'exam');
+  await waitFor(() => state.settings.feedbackMode === 'exam', { label: 'setting restored' });
+
+  // Confidence, the answer policy and the unresolved-key policy are the same in
+  // every test now, so they are stated rather than offered as preferences — and
+  // the three settings that never did anything are gone with them.
+  for (const gone of ['#setConfidence', '#setPolicy', '#setUnresolved', '#setDailyTarget', '#setWarnUnanswered', '#setAllowRepeatsCustom']) {
+    assert.equal($(gone), null, `${gone} is no longer a preference`);
+  }
+  assert.match(viewText(), /Confidence marking is always optional/, 'the fixed rules are stated on the screen');
+  assert.ok(!/independelty/.test(viewText()), 'no typo survives in the settings copy');
+  for (const retired of ['confidenceTracking', 'answerPolicy', 'scoringPolicyWhenUnresolved', 'dailyTaskTarget', 'warnOnSubmitUnanswered']) {
+    assert.equal(retired in state.settings, false, `${retired} is not a setting any more`);
+  }
+  assert.equal('allowRepeatsInCustom' in state.settings.repeatPolicy, false, 'allowRepeatsInCustom is not a setting any more');
 
   click($('#backupCheck'));
   await waitFor(() => /Round-trip self-test passed/.test($('#toastStack').textContent), { label: 'self-test toast' });
@@ -624,9 +684,11 @@ test('runner supports focus mode, keyboard hints, Hindi lang="hi" tagging, and a
   assert.equal($$('#view [data-source]').length, 0, 'dashboard stats no longer carry provenance chips on every tile');
   assert.ok($$('#view .evidence-meter').length >= 1, 'dashboard must render evidence strength meters');
 
-  await goto('topic');
+  await resetPracticeScreen();
+  click($$('#view input[data-action="pick-subject"]')[0]);
+  await waitFor(() => $$('#view input[data-action="pick-subject"]').some((b) => b.checked), { label: 'a subject to be ticked' });
   change($('#practiceCfgCount'), '2');
-  click($('#startTopic'));
+  click($('#view [data-action="start-practice"]'));
   await waitFor(() => /#\/runner\//.test(window.location.hash), { label: 'runner started' });
   await waitFor(() => /Question 1 of/.test(viewText()), { label: 'runner rendered' });
 
@@ -660,12 +722,16 @@ test('the offline notice and service worker registration are wired without error
 
 test('refreshing a screen in place keeps the reader’s focus (and so their place)', async () => {
   await goto('topic');
-  const select = document.getElementById('fSubject');
-  select.focus();
-  assert.equal(document.activeElement, select);
-  select.value = 'all';
-  select.dispatchEvent(new window.Event('change', { bubbles: true }));
-  await waitFor(() => document.getElementById('fSubject') && document.activeElement?.id === 'fSubject', { label: 'focus restored to the same filter after refresh' });
+  const box = document.getElementById('practiceShuffleOrder');
+  box.focus();
+  assert.equal(document.activeElement, box);
+  const before = $('#view').innerHTML;
+  box.checked = true;
+  box.dispatchEvent(new window.Event('change', { bubbles: true }));
+  await waitFor(() => document.activeElement?.id === 'practiceShuffleOrder' && $('#view').innerHTML !== before, {
+    label: 'focus restored to the same control after the re-render',
+  });
+  assert.equal(document.getElementById('practiceShuffleOrder').checked, true, 'the tick survived the re-render');
 });
 
 test('the revision centre renders its queue in pages at bank scale', async () => {

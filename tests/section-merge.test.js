@@ -13,9 +13,12 @@
  *
  * What is asserted here is the part of the merge that could silently rot:
  * one status vocabulary that never over-claims, one roll-up that reaches the
- * dashboard, plan items that attach to the official tree without becoming
- * part of it, planning fields that survive a status change, and the legacy
- * routes that outside links still use.
+ * dashboard, planning data that survives a status change without being counted,
+ * and the legacy routes that outside links still use.
+ *
+ * *My plan* has since been removed from the interface. Its stores are still on
+ * disk and still travel in backups, so what is asserted about them now is the
+ * opposite of what it was: they are preserved, and they are ignored.
  */
 
 import test from 'node:test';
@@ -122,100 +125,89 @@ test('1. the merged vocabulary never promotes a legacy status into a done state'
 
 /* ------------------------------------------------------------ attachment -- */
 
-test('2. plan items attach to official nodes only where the curated mapping says so', async () => {
+test('2. the curated mapping is the only bridge between the bank and the syllabus', async () => {
   const model = await syllabus.loadSyllabus();
   assert.equal(model.ok, true, 'the syllabus loads');
 
+  // The mapping is what lets a mark on an official heading speak about a
+  // question-bank topic. It is built from the curated pyq-links file alone, so
+  // it can only ever associate what that file associated.
   const index = hub.buildAttachmentIndex(model);
   assert.ok(index.byTopic.size > 0, 'the curated pyq-links mapping yields topic lookups');
+  for (const nodeId of index.byTopic.values()) {
+    assert.equal(model.nodes.has(nodeId), true, 'every association points at a real syllabus node');
+  }
+  assert.ok(index.bySubject.size > 0, 'subject-level associations are resolved too');
 
-  // A subject+topic the mapping knows resolves to the heading it was curated against.
-  const known = { subject: 'History', topic: 'Ancient India' };
-  const hit = hub.suggestAttachment(model, known, index);
-  assert.ok(hit, 'a mapped topic finds a home');
-  assert.equal(hit.basis, 'mapping');
-  assert.equal(model.nodes.has(hit.nodeId), true, 'and that home is a real syllabus node');
-
-  // Something the mapping has never heard of gets no suggestion at all, rather
-  // than a guess from fuzzy title matching.
-  assert.equal(hub.suggestAttachment(model, { subject: 'Knitting', topic: 'Cables' }, index), null);
-  assert.equal(hub.suggestAttachment(model, { title: 'A loose note' }, index), null);
-
-  // An explicit pin always wins, and a pin to a node that no longer exists is
-  // ignored instead of hiding the item.
-  const pinned = { subject: 'History', topic: 'Ancient India', attach_mode: 'manual', attached_node_id: 'prelims/paper-1/s5' };
-  assert.deepEqual(hub.suggestAttachment(model, pinned, index), { nodeId: 'prelims/paper-1/s5', basis: 'pinned' });
-  assert.equal(hub.suggestAttachment(model, { attach_mode: 'manual', attached_node_id: 'not/a/node' }, index), null);
-
-  // "Manual, nowhere" is a real decision: it parks the item in My plan.
-  assert.equal(hub.suggestAttachment(model, { ...known, attach_mode: 'manual', attached_node_id: null }, index), null);
+  const known = [...index.byTopic.entries()][0];
+  assert.match(known[0], /\|\|/, 'a topic association is keyed subject||topic, the way the bank is keyed');
+  assert.equal(index.byTopic.get('Knitting||Cables'), undefined, 'a topic the mapping never saw has no home');
 });
 
-test('3. an attached item is shown under its node without joining the official tree', async () => {
+test('3. plan rows are preserved on disk and ignored by every figure', async () => {
   const model = await syllabus.loadSyllabus();
+  await syllabus.resetProgress();
+
+  // A reader who used *My plan* before it was removed still has these rows.
   const mapped = await planner.addSyllabusItem({ title: 'Ancient India', subject: 'History', topic: 'Ancient India' });
   const loose = await planner.addSyllabusItem({ title: 'Weekly current affairs digest' });
-  const child = await planner.addSyllabusItem({ parentId: mapped.id, title: 'Harappan sites revision' });
+  await planner.setSyllabusStatuses(new Map([[mapped.id, 'completed'], [loose.id, 'in_progress']]));
 
-  const plan = await hub.loadPlan({ model });
-  const host = hub.suggestAttachment(model, await db.get(STORES.SYLLABUS, mapped.id), plan.index);
-  assert.ok(host, 'the mapped item has a host node');
+  const clean = hub.combinedProgress(model, await syllabus.loadProgress());
+  assert.equal(clean.done, 0, 'nothing is marked on the official syllabus');
 
-  assert.deepEqual(
-    hub.planItemsFor(plan, host.nodeId).map((row) => row.id),
-    [mapped.id],
-    'only the root item is attached; its children travel with it',
-  );
-  assert.equal(
-    hub.planSubtreeFor(plan, host.nodeId).length,
-    2,
-    'the subtree under the host counts the child too',
-  );
-  assert.deepEqual(plan.unattached.map((row) => row.id), [loose.id], 'an unmapped item waits in My plan');
+  // The planner's rows are still exactly where they were...
+  const rows = await db.getAll(STORES.SYLLABUS);
+  assert.equal(rows.length, 2, 'the syllabus store still holds the reader\u2019s own items');
+  assert.equal(rows.find((r) => r.id === mapped.id)?.status, 'completed', 'with the statuses it was given');
 
-  // The official model is data that ships with the app: attaching must not
-  // have added anything to it.
-  const node = model.nodes.get(host.nodeId);
-  assert.equal(
-    node.childIds.includes(mapped.id),
-    false,
-    'the official node did not gain the plan item as a child',
-  );
-  assert.equal(node.childIds.every((id) => model.nodes.has(id)), true, 'its children are all official nodes');
+  // ...and they change nothing: not the total, not the done count, not the
+  // per-topic index that study priorities read.
+  const withPlan = hub.combinedProgress(model, await syllabus.loadProgress());
+  assert.equal(withPlan.total, clean.total, 'legacy plan rows do not change the total');
+  assert.equal(withPlan.done, clean.done, 'legacy plan rows do not count as done');
+  assert.equal(withPlan.byTopic.size, 0, 'a plan row no longer speaks for a bank topic');
+
+  // The official tree never gained them as children, either.
+  const host = 'prelims/paper-1/s1';
+  assert.equal(model.nodes.get(host).childIds.includes(mapped.id), false);
+  assert.equal(model.nodes.has(mapped.id), false, 'a plan item is not a syllabus node');
 
   await planner.deleteSyllabusItem(mapped.id, { withChildren: true });
   await planner.deleteSyllabusItem(loose.id, { withChildren: true });
   assert.equal((await planner.listSyllabus()).length, 0, 'the fixtures are cleaned up');
-  void child;
 });
 
 /* --------------------------------------------------------------- roll-up -- */
 
-test('4. one roll-up counts both stores, and it is what the dashboard quotes', async () => {
+test('4. one roll-up counts the official syllabus, and it is what the dashboard quotes', async () => {
   const model = await syllabus.loadSyllabus();
   await syllabus.resetProgress();
 
-  const before = hub.combinedProgress(model, await syllabus.loadProgress(), await hub.loadPlan({ model }));
+  const before = hub.combinedProgress(model, await syllabus.loadProgress());
   assert.equal(before.done, 0);
-  assert.equal(before.total, before.official.total, 'with no plan items the total is the official one');
+  assert.equal(before.total, before.official.total, 'the headline figure is the official one');
+  assert.ok(before.total > 200, 'the official syllabus has hundreds of topics to count');
 
-  // One official leaf, and one item of the user's own.
   const leaf = model.leafIds.find((id) => id.startsWith('prelims/'));
   await syllabus.setProgressStatus(leaf, 'completed');
-  const mine = await planner.addSyllabusItem({ title: 'Map practice' });
-  await hub.setStatus({ scope: 'plan', id: mine.id }, 'revised');
 
-  const after = hub.combinedProgress(model, await syllabus.loadProgress(), await hub.loadPlan({ model }));
+  const after = hub.combinedProgress(model, await syllabus.loadProgress());
   assert.equal(after.official.done, 1, 'the official mark is counted');
-  assert.equal(after.plan.done, 1, 'the plan mark is counted');
-  assert.equal(after.done, 2, 'and the section reports one figure over both');
-  assert.equal(after.total, before.total + 1);
+  assert.equal(after.done, 1, 'and it is the only thing the section reports');
+  assert.equal(after.total, before.total, 'marking a topic never changes how many there are');
 
-  // The dashboard was blind to official progress before the merge; now it is
-  // the combined figure that reaches the screen.
+  // A plan row added alongside it moves nothing.
+  const mine = await planner.addSyllabusItem({ title: 'Map practice' });
+  await planner.setSyllabusStatuses(new Map([[mine.id, 'revised']]));
+  const withPlan = hub.combinedProgress(model, await syllabus.loadProgress());
+  assert.equal(withPlan.done, 1, 'an item of the reader\u2019s own is not counted any more');
+  assert.equal(withPlan.total, before.total);
+
   const text = await goto('dashboard');
   assert.match(text, new RegExp(`${after.done} of ${after.total} item\\(s\\) done`));
   assert.match(text, /marked on the commission's 2026 syllabus/);
+  assert.ok(!/items you added yourself/.test(text), 'the dashboard no longer quotes a second, plan figure');
 
   await planner.deleteSyllabusItem(mine.id, { withChildren: true });
   await syllabus.resetProgress();
@@ -223,89 +215,96 @@ test('4. one roll-up counts both stores, and it is what the dashboard quotes', a
 
 /* ------------------------------------------------------- planning fields -- */
 
-test('5. planning fields work on an official node and survive a status change', async () => {
+test('5. planning fields already stored on a row survive a status change', async () => {
   const model = await syllabus.loadSyllabus();
   await syllabus.resetProgress();
   const node = 'prelims/paper-1/s1';
 
-  // A target date with no status: the row exists for the plan alone.
-  await hub.setPlanFields({ scope: 'official', id: node }, { target_date: '2026-02-01', notes: 'Finish NCERT first' }, { model });
+  // *My plan* is gone from the interface, but a target date and a note written
+  // before that are still on the reader's device, still in every backup, and
+  // still not the app's to delete.
+  await syllabus.setProgressPlan(node, { target_date: '2026-02-01', notes: 'Finish NCERT first' }, { model });
   let row = await db.get(STORES.SYLLABUS_PROGRESS, node);
   assert.equal(row.target_date, '2026-02-01');
-  assert.equal(row.status, 'not_started', 'a plan does not imply progress');
+  assert.equal(row.status, 'not_started', 'a stored plan does not imply progress');
+  assert.equal(hub.combinedProgress(model, await syllabus.loadProgress()).done, 0, 'and it is not counted as progress');
 
-  // Marking it keeps the plan.
-  await hub.setStatus({ scope: 'official', id: node }, 'in_progress', { model });
+  // Marking the node keeps what was typed.
+  await hub.setStatus(node, 'in_progress', { model });
   row = await db.get(STORES.SYLLABUS_PROGRESS, node);
   assert.equal(row.status, 'in_progress');
   assert.equal(row.notes, 'Finish NCERT first', 'the note survived the status change');
 
   // Clearing the status must not silently delete text the user typed.
-  await hub.setStatus({ scope: 'official', id: node }, 'not_started', { model });
+  await hub.setStatus(node, 'not_started', { model });
   row = await db.get(STORES.SYLLABUS_PROGRESS, node);
-  assert.ok(row, 'the row is kept because it still holds a plan');
+  assert.ok(row, 'the row is kept because it still holds planning data');
   assert.equal(row.status, 'not_started');
   assert.equal(row.target_date, '2026-02-01');
 
-  // Once the plan is emptied too, the row goes: "unmarked" leaves nothing behind.
-  await hub.setPlanFields({ scope: 'official', id: node }, { target_date: null, notes: null, priority: null }, { model });
+  // Once the stored plan is emptied too, the row goes: "unmarked" leaves nothing behind.
+  await syllabus.setProgressPlan(node, { target_date: null, notes: null, priority: null }, { model });
   assert.equal(await db.get(STORES.SYLLABUS_PROGRESS, node), undefined);
 
   // A node with a status but no plan still clears completely, as it always did.
-  await hub.setStatus({ scope: 'official', id: node }, 'completed', { model });
+  await hub.setStatus(node, 'completed', { model });
   assert.ok(await db.get(STORES.SYLLABUS_PROGRESS, node));
-  await hub.setStatus({ scope: 'official', id: node }, 'not_started', { model });
+  await hub.setStatus(node, 'not_started', { model });
   assert.equal(await db.get(STORES.SYLLABUS_PROGRESS, node), undefined);
 });
 
 test('6. the two stores stay separate on disk', async () => {
   const model = await syllabus.loadSyllabus();
   const mine = await planner.addSyllabusItem({ title: 'My own unit' });
-  await hub.setStatus({ scope: 'plan', id: mine.id }, 'completed');
-  await hub.setStatus({ scope: 'official', id: 'prelims/paper-1/s1' }, 'completed', { model });
+  await planner.setSyllabusStatuses(new Map([[mine.id, 'completed']]));
+  await hub.setStatus('prelims/paper-1/s1', 'completed', { model });
 
   const official = await db.getAll(STORES.SYLLABUS_PROGRESS);
   const plan = await db.getAll(STORES.SYLLABUS);
   assert.equal(official.length, 1);
   assert.equal(official[0].node_id, 'prelims/paper-1/s1');
   assert.equal(plan.length, 1);
-  assert.equal(plan[0].id, mine.id, 'the planner store holds only the user tree');
+  assert.equal(plan[0].id, mine.id, 'the planner store holds only the reader\u2019s own tree');
   assert.equal(
     official.some((row) => row.node_id === mine.id),
     false,
     'a plan item never becomes a row in the official progress store',
   );
 
-  // Resetting official progress leaves the user's own items alone.
+  // Resetting official progress leaves the reader's own items alone.
   await syllabus.resetProgress();
   assert.equal((await db.getAll(STORES.SYLLABUS_PROGRESS)).length, 0);
-  assert.equal((await db.getAll(STORES.SYLLABUS)).length, 1, 'the plan is untouched by an official reset');
+  assert.equal((await db.getAll(STORES.SYLLABUS)).length, 1, 'the planner store is untouched by an official reset');
   await planner.deleteSyllabusItem(mine.id, { withChildren: true });
 });
 
 /* ------------------------------------------------------------ the screens - */
 
-test('7. the Syllabus section carries the official tree and the plan together', async () => {
-  const model = await syllabus.loadSyllabus();
+test('7. the Syllabus section carries the official tree, and only that', async () => {
   const mine = await planner.addSyllabusItem({ title: 'Ancient India', subject: 'History', topic: 'Ancient India' });
   const loose = await planner.addSyllabusItem({ title: 'Weekly current affairs digest' });
 
   const text = await goto('syllabus');
   assert.equal($$('#view h1').length, 1, 'exactly one h1');
-  assert.match(text, /भारत का इतिहास|PAPER-I GENERAL STUDIES/, 'the official tree is the spine');
-  assert.match(text, /My plan/, 'the plan has its own branch in the rail');
+  assert.match(text, /PAPER-I GENERAL STUDIES/, 'the official tree is the spine');
+  assert.ok(!/My plan/.test(text), 'there is no plan tab any more');
+  assert.ok(!/Weekly current affairs digest/.test(text), 'an item the reader typed is not shown in the tree');
+  assert.ok(!/your item/.test(text), 'and nothing is badged as the reader\u2019s own');
+  assert.equal($$('#view .syl-switch [role="tab"]').length, 2, 'the switch is Prelims and Mains');
 
-  // The mapped item appears inside the paper, badged as the reader's own.
-  const host = hub.suggestAttachment(model, await db.get(STORES.SYLLABUS, mine.id), hub.buildAttachmentIndex(model));
-  await goto(`syllabus/official/${host.nodeId}`);
-  await waitFor(() => /your item/.test(viewText()), { label: 'the attached plan item' });
-  assert.match(viewText(), /Ancient India/);
-  assert.match(viewText(), /Your plan/, 'planning fields are offered on an official node');
+  // A heading's panel offers progress and the commission's wording — no plan.
+  await goto('syllabus/official/prelims/paper-1/s1');
+  await waitFor(() => /Official wording/.test(viewText()), { label: 'the deep-linked node' });
+  assert.match(viewText(), /Your progress/);
+  assert.ok(!/Your plan/.test(viewText()), 'no planning fields are offered');
+  assert.ok(!/Add to My plan/.test(viewText()));
+  assert.ok(!/Your items here/.test(viewText()));
 
-  // The unmapped one is in My plan, not lost.
+  // The old plan deep link falls back to the section home instead of throwing.
   await goto(`syllabus/plan/${loose.id}`);
-  await waitFor(() => /Weekly current affairs digest/.test(viewText()), { label: 'the plan item detail' });
-  assert.match(viewText(), /Your own item/, 'and it is labelled as the reader\u2019s, not the commission\u2019s');
+  assert.ok(!/could not be displayed/i.test(viewText()), 'a legacy plan link renders without an error');
+  assert.match($('#view h1').textContent, /Syllabus/);
+  assert.equal($$('#view .syl-row.selected').length, 0, 'and selects nothing');
 
   await planner.deleteSyllabusItem(mine.id, { withChildren: true });
   await planner.deleteSyllabusItem(loose.id, { withChildren: true });
@@ -345,7 +344,11 @@ test('9. the routes the merge replaced still resolve', async () => {
   const node = 'prelims/paper-1/s1';
   await goto(`syllabus-analysis/${node}`);
   await waitFor(() => /Official syllabus/.test(viewText()), { label: 'the deep-linked node' });
-  assert.match(viewText(), /Your plan/, 'a legacy deep link lands on the merged detail panel');
+  assert.match(viewText(), /Your progress/, 'a legacy deep link lands on the merged detail panel');
+  assert.equal($('.nav-link[aria-current="page"]')?.dataset.route, 'syllabus', 'and the legacy address highlights the section that absorbed it');
+
+  await goto('pyq-analysis');
+  assert.equal($('.nav-link[aria-current="page"]')?.dataset.route, 'analytics', 'the other legacy address highlights Insights');
 
   const legacyBank = await goto('pyq-analysis');
   assert.ok(!/could not be displayed/i.test(legacyBank));
@@ -365,12 +368,11 @@ test('9. the routes the merge replaced still resolve', async () => {
 
 /* ----------------------------------------- the roll-up reaching priorities -- */
 
-test('10. study priorities read the curriculum from both stores', async () => {
-  // `studyPriorities()` has always had a branch that weighs what the reader
-  // marked on the curriculum, but nothing ever built the `byTopic` index it
-  // reads, so the branch could not run: the planner's roll-up did not carry
-  // the field, and progress on the official syllabus had no route into it at
-  // all. The merged roll-up answers for both stores.
+test('10. study priorities read the curriculum the reader marked', async () => {
+  // `studyPriorities()` weighs what the reader marked on the curriculum through
+  // a `byTopic` index keyed the way the question bank is keyed. Nothing ever
+  // built one before the sections merged, so the branch could not run and
+  // official progress was invisible to priorities.
   const { loadAnalytics, studyPriorities } = await import('../js/services/analytics.js');
   const model = await syllabus.loadSyllabus();
   await syllabus.resetProgress();
@@ -384,7 +386,7 @@ test('10. study priorities read the curriculum from both stores', async () => {
 
   const priorityFor = async () => {
     const { progress } = await hub.loadSyllabusWorkspace();
-    assert.ok(progress.byTopic instanceof Map, 'the one roll-up carries the topic index priorities need');
+    assert.ok(progress.byTopic instanceof Map, 'the roll-up carries the topic index priorities need');
     return studyPriorities({ analytics, syllabusProgress: progress, limit: 500 })
       .find((row) => hub.topicKey(row.subject, row.topic) === key);
   };
@@ -393,30 +395,22 @@ test('10. study priorities read the curriculum from both stores', async () => {
   assert.ok(before, 'the topic is ranked');
   assert.equal(before.syllabus, null, 'nothing is claimed about a curriculum the reader has not marked');
 
-  // Marking the OFFICIAL heading — the half that was invisible to priorities.
-  await hub.setStatus({ scope: 'official', id: nodeId }, 'in_progress', { model });
-  await hub.setPlanFields({ scope: 'official', id: nodeId }, { priority: 'high' }, { model });
-
+  await hub.setStatus(nodeId, 'in_progress', { model });
   const after = await priorityFor();
-  assert.equal(after.syllabus.status, 'in_progress');
-  assert.equal(after.syllabus.priority, 'high');
-  assert.ok(after.priorityScore > before.priorityScore, 'a high-priority unfinished topic ranks higher than before');
-  assert.ok(after.reasons.some((r) => /high priority/i.test(r)), 'and says why');
+  assert.equal(after.syllabus.status, 'in_progress', 'a mark on the official heading reaches the ranking');
+  assert.ok(after.priorityScore > before.priorityScore, 'an unfinished topic ranks higher than before');
+  assert.ok(after.reasons.some((r) => /syllabus item in progress/i.test(r)), 'and says why');
 
-  // A plan item of the reader's own speaks for the same topic. Where the two
-  // disagree the merge must not conclude more than either store on its own:
-  // the least advanced status wins.
-  const topic = analytics.byTopic.find((t) => hub.topicKey(t.subject, t.topic) === key);
-  const mine = await planner.addSyllabusItem({
-    title: 'My own line on this topic',
-    level: 'topic',
-    subject: topic.subject,
-    topic: topic.topic,
-  });
-  await hub.setStatus({ scope: 'official', id: nodeId }, 'completed', { model });
-  const split = await priorityFor();
-  assert.equal(split.syllabus.status, 'not_started', 'an open item of the reader\u2019s own is not done because the official line was ticked');
+  // A priority stored on the row is the reader's own planning data. It is kept
+  // on disk, but it no longer moves a suggestion: *My plan* is not part of the
+  // interface, so nothing on screen would explain why the order changed.
+  await syllabus.setProgressPlan(nodeId, { priority: 'high' }, { model });
+  const withPriority = await priorityFor();
+  assert.equal(withPriority.priorityScore, after.priorityScore, 'a stored plan priority changes nothing');
+  assert.equal(withPriority.syllabus.priority, undefined, 'and is not reported as a reason');
+  assert.ok(!withPriority.reasons.some((r) => /priority/i.test(r)));
+  assert.equal((await db.get(STORES.SYLLABUS_PROGRESS, nodeId)).priority, 'high', 'but it is still stored');
 
-  await planner.deleteSyllabusItem(mine.id, { withChildren: true });
   await syllabus.resetProgress();
+  await syllabus.setProgressPlan(nodeId, { priority: null }, { model });
 });

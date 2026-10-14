@@ -271,7 +271,11 @@ test('10. a custom test uses user-selected filters, custom scoring and shuffled 
     orderSource: 'shuffled',
     config: {
       feedbackMode: 'learning',
+      // Asked for 'required' on purpose: the three test rules are frozen, so
+      // what a caller passes here must not reach the stored test.
       confidence: 'required',
+      answerPolicy: 'supplied',
+      unresolvedPolicy: 'exclude',
       durationMinutes: 10,
       randomizeOptions: true,
       usePaperRules: false,
@@ -282,7 +286,10 @@ test('10. a custom test uses user-selected filters, custom scoring and shuffled 
   assert.equal(test.config.scoring.source, 'user_configured');
   assert.match(test.config.scoring.rulesSourceNote, /Custom rules/);
   assert.equal(test.config.is_authentic_paper, false);
-  assert.equal(test.config.confidence, 'required');
+  // The frozen rules win over whatever the caller asked for.
+  assert.equal(test.config.confidence, 'optional');
+  assert.equal(test.config.answer_policy, 'verified_preferred');
+  assert.equal(test.config.unresolved_policy, 'supplied');
 
   const questions = await m.questions.getQuestions(test.question_ids);
   // option shuffling is applied to normal questions but never to matching questions

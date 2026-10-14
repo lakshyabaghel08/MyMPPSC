@@ -19,7 +19,7 @@
 import { STORES } from '../core/constants.js';
 import * as db from '../core/db.js';
 import { state } from '../core/state.js';
-import { nowIso, logEvent } from '../core/util.js';
+import { nowIso, logEvent, topicPracticeHref } from '../core/util.js';
 
 /* ------------------------------------------------------------- locations -- */
 
@@ -33,6 +33,14 @@ export const SYLLABUS_PATHS = {
     'data/syllabus/study-guide/mains-papers-5-6.json',
   ],
   pyqLinks: 'data/syllabus/pyq-links.json',
+  /**
+   * Hand-written English renderings of the lines the commission published in
+   * Hindi only. A reading aid for the English interface, kept beside the
+   * official data rather than inside it: nothing here is ever written back into
+   * `mppsc-2026-syllabus.json`, and every entry carries the official Hindi it
+   * renders so a stale entry can be detected.
+   */
+  translations: 'data/syllabus/translations/en.json',
 };
 
 export const PROGRESS_STATUSES = {
@@ -70,12 +78,15 @@ export async function loadSyllabus({ force = false } = {}) {
   if (inFlight && !force) return inFlight;
   inFlight = (async () => {
     try {
-      const [official, pyqLinks, ...guides] = await Promise.all([
+      const [official, pyqLinks, translations, ...guides] = await Promise.all([
         fetchJson(SYLLABUS_PATHS.official),
         fetchJson(SYLLABUS_PATHS.pyqLinks),
+        // A missing rendering file must not take the syllabus down with it: the
+        // official Hindi is always enough to render every line.
+        fetchJson(SYLLABUS_PATHS.translations).catch(() => ({ entries: {} })),
         ...SYLLABUS_PATHS.guides.map(fetchJson),
       ]);
-      const model = buildModel({ official, guides, pyqLinks });
+      const model = buildModel({ official, guides, pyqLinks, translations });
       cache = { ok: true, ...model };
       return cache;
     } catch (error) {
@@ -110,7 +121,73 @@ export function pickText(titles, lang = displayLanguage()) {
   return titles[lang] || titles[other] || '';
 }
 
-export function buildModel({ official, guides, pyqLinks }) {
+/* ------------------------------------------------------- label choosing -- */
+
+/**
+ * The pair a node's own wording lives in: a topic carries `text`, a heading
+ * carries `titles`. Both are `{hi, en}` with either half possibly absent.
+ */
+export const wordingOf = (node) => node?.text || node?.titles || null;
+
+/** Which field of the rendering file holds this node's English. */
+const renderingFieldOf = (node) => (node?.text ? 'text' : 'title');
+
+/** This node's hand-written English rendering, or null when it has none. */
+export function renderingOf(node) {
+  const entry = node?.translation;
+  if (!entry) return null;
+  const pair = entry[renderingFieldOf(node)];
+  return pair?.en ? pair : null;
+}
+
+/**
+ * The one place a label's language is decided, for the tree, the detail title,
+ * breadcrumbs, the paper rail, the overview and search results alike.
+ *
+ * English mode takes the commission's own English where it published one, then
+ * this app's hand-written rendering, and falls back to the official Hindi only
+ * when there is neither — so a reader in English mode is never shown Hindi with
+ * no explanation, and is never shown a machine guess. Hindi mode is unchanged:
+ * the official Hindi, or the official English for the handful of lines that were
+ * published in English only.
+ *
+ * `source` says which of those happened, because a rendering is this app's
+ * wording and has to be labelled as such where it is shown as a title.
+ */
+export function nodeLabel(node, lang = displayLanguage()) {
+  const pair = wordingOf(node);
+  if (!pair) return { text: '', lang: null, source: 'none' };
+  if (lang === 'hi') {
+    if (pair.hi) return { text: pair.hi, lang: 'hi', source: 'official' };
+    return { text: pair.en || '', lang: pair.en ? 'en' : null, source: pair.en ? 'official-only-en' : 'none' };
+  }
+  if (pair.en) return { text: pair.en, lang: 'en', source: 'official' };
+  const rendering = renderingOf(node);
+  if (rendering) return { text: rendering.en, lang: 'en', source: 'rendering' };
+  return { text: pair.hi || '', lang: pair.hi ? 'hi' : null, source: pair.hi ? 'hindi' : 'none' };
+}
+
+/** The label to show for a node in the current display language. */
+export function labelText(node, lang = displayLanguage()) {
+  return nodeLabel(node, lang).text;
+}
+
+/**
+ * The commission's own wording for a node, for the blocks that must never carry
+ * anything this app wrote: the "Official wording" panel and the "Official
+ * syllabus" list. Returns the Hindi where the notification has Hindi — which is
+ * every line but five — and says so when a line was published in English only.
+ */
+export function officialWording(node) {
+  const pair = wordingOf(node);
+  if (!pair) return null;
+  if (pair.hi) return { text: pair.hi, lang: 'hi', englishOnly: false };
+  if (pair.en) return { text: pair.en, lang: 'en', englishOnly: true };
+  return null;
+}
+
+export function buildModel({ official, guides, pyqLinks, translations = null }) {
+  const rendered = translations?.entries || {};
   const guideHeadings = Object.assign({}, ...guides.map((g) => g.headings || {}));
   const connections = guides.flatMap((g) => g.connections || []);
   const revisionGroups = guides.flatMap((g) => g.revisionGroups || []);
@@ -121,6 +198,13 @@ export function buildModel({ official, guides, pyqLinks }) {
   let order = 0;
 
   const addNode = (node) => {
+    /**
+     * The hand-written English rendering of this node's own wording, attached
+     * beside it and never merged into it: `node.text` and `node.titles` stay
+     * exactly what the notification says, so the "Official wording" block can
+     * always show the commission's Hindi and nothing else.
+     */
+    node.translation = rendered[node.id] || null;
     nodes.set(node.id, node);
     node.order = order;
     order += 1;
@@ -370,32 +454,39 @@ export function searchSyllabus(model, query, { limit = 60, examId = null } = {})
     if (examId && node.examId !== examId) continue;
     if (node.kind === 'exam') continue;
 
-    const fields = [];
-    if (node.text) {
-      fields.push(['topic', node.text.hi], ['topic', node.text.en]);
-    } else {
-      fields.push(['heading', node.titles?.hi], ['heading', node.titles?.en]);
-    }
+    const field = node.text ? 'topic' : 'heading';
+    const pair = wordingOf(node);
+    // A reader may search in either language, and may search the English this
+    // app wrote for a line the commission published in Hindi only — so all
+    // three wordings are searchable, and the official Hindi stays first.
+    const fields = [[field, pair?.hi], [field, pair?.en]];
+    const rendering = renderingOf(node);
+    if (rendering) fields.push([field, rendering.en]);
     const guideEntry = model.guide.get(node.id);
     for (const unit of guideEntry?.units || []) fields.push(['study unit', unit.title]);
 
     let hit = null;
-    for (const [field, value] of fields) {
+    for (const [name, value] of fields) {
       const hay = normalise(value);
       if (!hay) continue;
       const at = hay.indexOf(needle);
       if (at === -1) continue;
-      hit = { field, value, at };
+      hit = { field: name, value, at };
       break;
     }
     if (!hit) continue;
 
+    const shown = nodeLabel(node);
     results.push({
       id: node.id,
       kind: node.kind,
       field: hit.field,
-      label: node.text ? node.text.hi || node.text.en : pickText(node.titles, 'hi') || pickText(node.titles, 'en'),
-      path: pathOf(model.nodes, node).map((n) => n.titles ? pickText(n.titles) : '').filter(Boolean),
+      matched: hit.value,
+      label: shown.text,
+      labelSource: shown.source,
+      path: pathOf(model.nodes, node)
+        .map((n) => labelText(n))
+        .filter(Boolean),
       pathIds: pathOf(model.nodes, node).map((n) => n.id),
     });
     if (results.length >= limit) break;
@@ -763,7 +854,7 @@ export function pyqLinksFor(model, nodeId) {
     subject: entry.subject,
     topic: entry.topic || null,
     label: entry.topic || entry.subject,
-    practiceHref: entry.topic ? `#/topic/${encodeURIComponent(entry.subject)}||${encodeURIComponent(entry.topic)}` : `#/topic/${encodeURIComponent(entry.subject)}`,
+    practiceHref: topicPracticeHref(entry.subject, entry.topic),
     analysisHref: `#/pyq-analysis/${encodeURIComponent(entry.subject)}`,
   }));
 }

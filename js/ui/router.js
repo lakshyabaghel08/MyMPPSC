@@ -9,10 +9,41 @@
 
 import { loadingState, notice, esc } from './components.js';
 
+/**
+ * Decode one route parameter without ever throwing.
+ *
+ * `decodeURIComponent('50%')` raises `URIError: URI malformed`, and a hash a
+ * reader typed or an old note pasted can contain exactly that
+ * (`#/bank/question/50%`). The throw escaped `parse()`, so `resolve()` never
+ * ran: the address bar showed the new route while the screen still displayed
+ * the old one, and the only trace was an unhandled rejection in the console.
+ * A malformed escape is data, not an error — the literal text is recovered by
+ * escaping the stray `%` and, failing even that, the raw segment is used.
+ */
+export function safeDecodeParam(value) {
+  const raw = String(value ?? '');
+  try {
+    return decodeURIComponent(raw);
+  } catch {
+    try {
+      return decodeURIComponent(raw.replace(/%(?![0-9a-fA-F]{2})/g, '%25'));
+    } catch {
+      return raw;
+    }
+  }
+}
+
 export class Router {
-  constructor({ container, routes = {}, fallback = 'dashboard', onNavigate = null }) {
+  constructor({ container, routes = {}, aliases = {}, fallback = 'dashboard', onNavigate = null }) {
     this.container = container;
     this.routes = { ...routes };
+    /**
+     * Route names that open another route's screen: `#/custom` is the merged
+     * Topic & Custom Practice screen under its old address. Resolved in
+     * `parse()`, so everything downstream — the view, `ctx.route`, the
+     * navigation highlight — agrees on the canonical name.
+     */
+    this.aliases = { ...aliases };
     this.fallback = fallback;
     this.onNavigate = onNavigate;
     this.currentRoute = null;
@@ -28,6 +59,10 @@ export class Router {
      * an explicit navigate) both paint, which is harmless.
      */
     this.pendingTarget = null;
+    /** Monotonic counter for latest-wins rendering (see `renderTarget()`). */
+    this.renderSeq = 0;
+    /** The render currently in flight, so a duplicate ask can join it. */
+    this.inFlight = null;
     /** The target of the last screen actually painted. A resolve() for the
      * same target is a view refreshing itself (a filter changed, a box was
      * ticked), not a navigation, so it must keep the reader's place. */
@@ -39,6 +74,11 @@ export class Router {
 
   register(name, view) {
     this.routes[name] = view;
+  }
+
+  /** Point one route name at another's screen (see `this.aliases`). */
+  alias(from, to) {
+    this.aliases[from] = to;
   }
 
   start() {
@@ -84,19 +124,60 @@ export class Router {
   parse() {
     const raw = window.location.hash.replace(/^#\/?/, '');
     const [name = '', ...params] = raw.split('/').filter((p) => p !== '');
-    return { name: name || this.fallback, params: params.map(decodeURIComponent) };
+    const requested = name || this.fallback;
+    // An alias opens the canonical screen, so `#/custom`, `#/custom/anything`
+    // and `#/topic` all arrive at the same view under the same name.
+    const resolved = this.aliases[requested] || requested;
+    return { name: resolved, requested, params: params.map(safeDecodeParam) };
   }
 
-  async resolve() {
+  /**
+   * Resolve the current hash into a screen.
+   *
+   * One navigation can ask twice: `navigate()` sets the hash and the
+   * hashchange event that follows arrives a moment later. Both used to run a
+   * full render of the same destination, and since a render now leaves the
+   * existing DOM alone until its own markup is ready, the second ask superseded
+   * the first *after* the first had painted a placeholder — so the screen sat
+   * on "Loading local data…" until the second render happened to finish. A
+   * duplicate ask for the destination already being rendered now joins that
+   * render and resolves with it.
+   *
+   * `dedupe: false` is what `ctx.refresh()` passes: a view re-rendering itself
+   * is a new render of the same destination, not a duplicate of one in flight.
+   */
+  resolve({ dedupe = true } = {}) {
     const { name, params } = this.parse();
     const view = this.routes[name] || this.routes[this.fallback];
     const routeName = this.routes[name] ? name : this.fallback;
-    this.currentRoute = { name: routeName, params, view };
-
     const target = `${routeName}/${params.join('/')}`;
+    if (dedupe && this.inFlight && this.inFlight.target === target) return this.inFlight.promise;
+
+    const promise = this.renderTarget({ routeName, params, view, target });
+    this.inFlight = { target, promise };
+    const settled = () => {
+      if (this.inFlight && this.inFlight.promise === promise) this.inFlight = null;
+    };
+    return promise.then(settled, (error) => {
+      settled();
+      throw error;
+    });
+  }
+
+  async renderTarget({ routeName, params, view, target }) {
+    this.currentRoute = { name: routeName, params, view };
     this.pendingTarget = target;
-    /** False once a different destination has been asked for. */
-    const current = () => this.pendingTarget === target;
+    /**
+     * Latest-wins token. `pendingTarget` alone lets two renders of the *same*
+     * destination both paint, which was harmless while every render started by
+     * clearing the container but is not now that a refresh keeps the screen the
+     * reader is looking at: a slow first render could still land on top of the
+     * newer one. Only the most recent render may paint.
+     */
+    this.renderSeq = (this.renderSeq || 0) + 1;
+    const seq = this.renderSeq;
+    /** False once another destination — or another render of this one — has been asked for. */
+    const current = () => this.pendingTarget === target && this.renderSeq === seq;
     // Same screen refreshing itself (ctx.refresh() after ticking a filter,
     // changing a setting, submitting a form…) rather than a navigation.
     const isRefresh = this.renderedTarget === target;
@@ -121,7 +202,7 @@ export class Router {
       router: this,
       state: this.viewState,
       setState: (patch) => Object.assign(this.viewState, patch),
-      refresh: () => this.resolve(),
+      refresh: () => this.resolve({ dedupe: false }),
     };
 
     if (typeof document !== 'undefined') {
@@ -167,7 +248,11 @@ export class Router {
               : null
         : null;
 
-    this.container.innerHTML = this.placeholderFor(view, ctx);
+    // A screen refreshing itself keeps the DOM the reader is looking at until
+    // the new markup is ready. Painting the placeholder first collapsed the
+    // page (a full practice screen dropped from roughly 4,900 px to the 900 px
+    // loading line and back) on every ticked checkbox and every filter change.
+    if (!isRefresh) this.container.innerHTML = this.placeholderFor(view, ctx);
     try {
       const markup = await view.render(ctx);
       // A newer navigation started while this screen was loading its data:

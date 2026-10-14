@@ -31,6 +31,7 @@ import { state } from '../../core/state.js';
 import { summariseBank, UNCLASSIFIED_SUBJECT } from '../../services/pyq-analysis.js';
 import { esc, badge, card, tile, dataTable, barChart, emptyState, infoToggle, pct, fmtPct, icon } from '../components.js';
 import { insightsSkeleton } from '../skeletons.js';
+import { topicPracticeHref } from '../../core/util.js';
 
 /** Topics charted before "Show all". Every subject in the bundled bank has fewer. */
 export const TOPIC_LIMIT = 15;
@@ -70,7 +71,9 @@ function sortSubjects(subjects, mode = 'count') {
   });
 }
 
-const practiseHref = (subject, topic = null) => `#/topic/${encodeURIComponent(topic ? `${subject}||${topic}` : subject)}`;
+// One shared builder, so this panel, the syllabus chips and the dashboard all
+// produce the same address for the same subject and topic.
+const practiseHref = (subject, topic = null) => topicPracticeHref(subject, topic);
 const practiseLink = (subject, topic = null) => `<a class="btn btn-sm pyq-practice-btn" href="${practiseHref(subject, topic)}">Practise</a>`;
 const subjectTag = (subject) => `<span class="pyq-subject-tag ${subject === UNCLASSIFIED_SUBJECT ? 'warn' : ''}">${esc(subject)}</span>`;
 

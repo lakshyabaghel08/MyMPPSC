@@ -1,5 +1,14 @@
 # Proposal — merging the duplicated sections
 
+> **Superseded in part (2026-10-15).** This proposal is the record of the merge
+> that created the Syllabus and Insights sections. The *My plan* branch it
+> describes — the third tab, the `+` toggles, *Add paper to My plan*, the reader's
+> own items in the tree — was later removed from the interface, so the Syllabus
+> section now shows the commission's lines only and every figure counts official
+> topics. The stores and their plan fields were kept, and backups still
+> round-trip them. See `docs/IMPLEMENTATION_REPORT.md` §7 and `docs/UI.md` §6 for
+> the current behaviour.
+
 Status: **implemented, 2026-10-13** — Option B, both pairs, on `arena/db290179-mymppsc`.
 What was actually built is recorded in
 [`docs/IMPLEMENTATION_REPORT.md` §6](IMPLEMENTATION_REPORT.md). This document is

@@ -15,7 +15,7 @@
  * list, like an import; a deletion cannot, and the dialog says so.
  */
 
-import { STORES } from '../../core/constants.js';
+import { STORES, ANSWER_POLICIES, FIXED_TEST_RULES } from '../../core/constants.js';
 import { state, refreshQuestionIndex } from '../../core/state.js';
 import * as db from '../../core/db.js';
 import { esc, badge, card, tile, notice, dataTable, toast, openModal, confirmDialog, tabs, mountTabs, renderExplanation, questionTypeLabel, answerKeyBadge, demoBadge, langAttr } from '../components.js';
@@ -268,7 +268,9 @@ async function openQuestionEditor(questionId, ctx) {
     return;
   }
   const meta = state.questionIndex.get(questionId);
-  const effective = effectiveAnswer(question, state.settings.answerPolicy);
+  // The answer-key policy is fixed for the whole app (see FIXED_TEST_RULES), so
+  // the dialog shows that one policy rather than reading a preference.
+  const effective = effectiveAnswer(question, FIXED_TEST_RULES.answerPolicy);
   const integrity = answerIntegrity(question);
   const variant = displayVariant(question, state.settings.language).variant || Object.values(question.language_variants)[0];
   const history = questions.correctionHistory(question);
@@ -417,7 +419,7 @@ async function openQuestionEditor(questionId, ctx) {
         rows: [
           ['Stored with the question', esc((question.supplied?.answer || []).join(', ') || 'none'), answerKeyBadge(question.supplied?.status) || '<span class="soft tiny">answer stored</span>'],
           ['Your verified answer', esc((question.verified?.answer || []).join(', ') || 'none'), question.verified?.answer ? esc(`recorded ${fmtRelative(question.verified.verified_at)}`) : '<span class="soft tiny">not recorded</span>'],
-          ['Used for scoring now', esc((effective.answer || []).join(', ') || 'none'), esc(effective.reason ? `${effective.reason} (policy: ${state.settings.answerPolicy})` : `policy: ${state.settings.answerPolicy}`)],
+          ['Used for scoring now', esc((effective.answer || []).join(', ') || 'none'), esc(effective.reason ? `${effective.reason} (policy: ${ANSWER_POLICIES[FIXED_TEST_RULES.answerPolicy]})` : `policy: ${ANSWER_POLICIES[FIXED_TEST_RULES.answerPolicy]}`)],
         ],
         className: 'compact',
       })}

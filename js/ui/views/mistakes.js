@@ -193,7 +193,7 @@ export default {
           label: 'Mistake retry — single question',
           questionIds: [id],
           metas: [state.questionIndex.get(id)].filter(Boolean),
-          config: { feedbackMode: 'learning', confidence: state.settings.confidenceTracking, durationMinutes: null },
+          config: { feedbackMode: 'learning', durationMinutes: null },
         });
         return test;
       }
@@ -210,7 +210,7 @@ export default {
           label: `Mistake retry — ${ids.length} question(s)`,
           questionIds: ids,
           metas: ids.map((id) => state.questionIndex.get(id)).filter(Boolean),
-          config: { feedbackMode: 'learning', confidence: state.settings.confidenceTracking, durationMinutes: null },
+          config: { feedbackMode: 'learning', durationMinutes: null },
         });
         return;
       }
@@ -226,7 +226,7 @@ export default {
           label: `Mistake retry — ${topic}`,
           questionIds: ids,
           metas: ids.map((id) => state.questionIndex.get(id)).filter(Boolean),
-          config: { feedbackMode: 'learning', confidence: state.settings.confidenceTracking, durationMinutes: null },
+          config: { feedbackMode: 'learning', durationMinutes: null },
         });
         return;
       }

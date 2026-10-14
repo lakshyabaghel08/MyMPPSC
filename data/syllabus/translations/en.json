@@ -1,0 +1,369 @@
+{
+  "format": "mymppsc-syllabus-translations",
+  "format_version": "1.0.0",
+  "language": "en",
+  "notice": "Hand-written English renderings of the syllabus lines the commission published in Hindi only. They are a reading aid for the English interface: they are never written back into the official syllabus data, never replace the commission's own English where it exists, and the detail panel says so wherever one is shown. The Hindi stored beside each rendering is the official wording, copied verbatim, so a stale entry can be detected.",
+  "source": "data/syllabus/mppsc-2026-syllabus.json",
+  "entries": {
+    "prelims/paper-1/s1": {
+      "title": {
+        "hi": "भारत का इतिहास",
+        "en": "History of India"
+      }
+    },
+    "prelims/paper-1/s1/t1": {
+      "text": {
+        "hi": "संकल्पना एवं विचार- प्राचीन भारतीय ज्ञान परंपरा, भारतवर्ष, वेद, उपनिषद, आरण्यक, ब्राह्मण ग्रंथ, षड्दर्शन, स्मृतियाँ, ऋत सभा समिति, गणतंत्र, वर्णाश्रम, पुरुषार्थ, ऋण संस्कार, पंचमहायज्ञ/यज्ञ, कर्म का सिद्धांत, बोधिसत्व, तीर्थंकर।",
+        "en": "Concepts and Ideas - Ancient Indian Knowledge Tradition, Bharatavarsha, the Vedas, the Upanishads, the Aranyakas, the Brahmana texts, the Shaddarshan (six schools of philosophy), the Smritis, Rita (cosmic order), Sabha and Samiti (Vedic assemblies), republics, the Varnashrama system, the Purusharthas, Rina and Sanskara, the Panchamahayajna/Yajna, the doctrine of Karma, the Bodhisattva, the Tirthankara."
+      }
+    },
+    "prelims/paper-1/s1/t2": {
+      "text": {
+        "hi": "प्राचीन एवं मध्यकालीन भारत के इतिहास की प्रमुख विशेषताएँ, घटनाएँ एवं उनकी प्रशासनिक, सामाजिक तथा आर्थिक व्यवस्थाएँ।",
+        "en": "Salient Features, Events and the Administrative, Social and Economic Systems of the History of Ancient and Medieval India."
+      }
+    },
+    "prelims/paper-1/s1/t3": {
+      "text": {
+        "hi": "भारत की सांस्कृतिक विरासत- कला प्रारूप, साहित्य, पर्व एवं उत्सव।",
+        "en": "Cultural Heritage of India - Art Forms, Literature, Festivals and Celebrations."
+      }
+    },
+    "prelims/paper-1/s1/t4": {
+      "text": {
+        "hi": "19वीं एवं 20वीं शताब्दी में सामाजिक तथा धार्मिक सुधार आंदोलन।",
+        "en": "Social and Religious Reform Movements in the 19th and 20th Centuries."
+      }
+    },
+    "prelims/paper-1/s1/t5": {
+      "text": {
+        "hi": "स्वतंत्रता संघर्ष एवं भारतीय राष्ट्रीय आंदोलन।",
+        "en": "The Freedom Struggle and the Indian National Movement."
+      }
+    },
+    "prelims/paper-1/s1/t6": {
+      "text": {
+        "hi": "स्वतंत्रता के पश्चात् भारत का एकीकरण एवं पुनर्गठन।",
+        "en": "Integration and Reorganisation of India after Independence."
+      }
+    },
+    "prelims/paper-1/s2": {
+      "title": {
+        "hi": "मध्यप्रदेश का इतिहास, संस्कृति एवं साहित्य",
+        "en": "History, Culture and Literature of Madhya Pradesh"
+      }
+    },
+    "prelims/paper-1/s2/t1": {
+      "text": {
+        "hi": "मध्यप्रदेश के इतिहास की महत्त्वपूर्ण घटनाएँ, प्रमुख राजवंश।",
+        "en": "Important Events in the History of Madhya Pradesh, Major Dynasties."
+      }
+    },
+    "prelims/paper-1/s2/t2": {
+      "text": {
+        "hi": "स्वतंत्रता आंदोलन में मध्यप्रदेश का योगदान।",
+        "en": "Contribution of Madhya Pradesh to the Freedom Movement."
+      }
+    },
+    "prelims/paper-1/s2/t3": {
+      "text": {
+        "hi": "मध्यप्रदेश की प्रमुख कला एवं स्थापत्य कला।",
+        "en": "Major Arts and Architecture of Madhya Pradesh."
+      }
+    },
+    "prelims/paper-1/s2/t4": {
+      "text": {
+        "hi": "मध्यप्रदेश की प्रमुख जनजातियाँ एवं उनकी बोलियाँ।",
+        "en": "Major Tribes of Madhya Pradesh and their Dialects."
+      }
+    },
+    "prelims/paper-1/s2/t5": {
+      "text": {
+        "hi": "मध्यप्रदेश के प्रमुख त्योहार, लोक संगीत, लोक कलाएँ एवं लोक-साहित्य।",
+        "en": "Major Festivals, Folk Music, Folk Arts and Folk Literature of Madhya Pradesh."
+      }
+    },
+    "prelims/paper-1/s2/t6": {
+      "text": {
+        "hi": "मध्यप्रदेश के प्रमुख साहित्यकार एवं उनकी कृतियाँ।",
+        "en": "Major Literary Figures of Madhya Pradesh and their Works."
+      }
+    },
+    "prelims/paper-1/s2/t7": {
+      "text": {
+        "hi": "मध्यप्रदेश के प्रमुख धार्मिक, सांस्कृतिक एवं पुरातात्विक पर्यटन स्थल।",
+        "en": "Major Religious, Cultural and Archaeological Tourist Places of Madhya Pradesh."
+      }
+    },
+    "prelims/paper-1/s2/t8": {
+      "text": {
+        "hi": "मध्यप्रदेश में विश्व धरोहर स्थल।",
+        "en": "World Heritage Sites in Madhya Pradesh."
+      }
+    },
+    "prelims/paper-1/s2/t9": {
+      "text": {
+        "hi": "मध्यप्रदेश के प्रमुख जनजातीय व्यक्तित्व।",
+        "en": "Major Tribal Personalities of Madhya Pradesh."
+      }
+    },
+    "prelims/paper-1/s3": {
+      "title": {
+        "hi": "भारत का भूगोल",
+        "en": "Geography of India"
+      }
+    },
+    "prelims/paper-1/s3/t1": {
+      "text": {
+        "hi": "पर्वत, पहाड़ियाँ, पठार, नदियाँ और झीलें।",
+        "en": "Mountains, Hills, Plateaus, Rivers and Lakes."
+      }
+    },
+    "prelims/paper-1/s3/t2": {
+      "text": {
+        "hi": "जलवायु घटनाएँ- अल-नीनो, ला-नीना, दक्षिणी दोलन, पश्चिमी विक्षोभ, जलवायु परिवर्तन के परिणाम।",
+        "en": "Climate Phenomena - El Nino, La Nina, Southern Oscillation, Western Disturbances, Consequences of Climate Change."
+      }
+    },
+    "prelims/paper-1/s3/t3": {
+      "text": {
+        "hi": "प्राकृतिक संसाधन- वन, खनिज, जल संसाधन।",
+        "en": "Natural Resources - Forest, Mineral and Water Resources."
+      }
+    },
+    "prelims/paper-1/s3/t4": {
+      "text": {
+        "hi": "प्रमुख फसलें, खाद्य सुरक्षा, हरित क्रांति, दूसरी हरित क्रांति की रणनीतियाँ।",
+        "en": "Major Crops, Food Security, the Green Revolution, Strategies of the Second Green Revolution."
+      }
+    },
+    "mains/paper-IV/part-a/unit-4": {
+      "title": {
+        "hi": "लोक प्रशासन में नैतिक मूल्य",
+        "en": "Moral Values in Public Administration"
+      }
+    },
+    "mains/paper-IV/part-a/unit-4/t1": {
+      "text": {
+        "hi": "मानवीय आवश्यकताएँ एवं अभिप्रेरणा- मानव व्यक्तित्व को प्रभावित करने वाले विभिन्न तत्त्व, कर्तव्यपरायणता, मूल्यबोध, जीवन मूल्य, संवेदनशीलता, टेक्नोलॉजी एवं नैतिक मूल्य।",
+        "en": "Human Needs and Motivation - the various elements that influence human personality, sense of duty, value perception, life values, sensitivity, technology and moral values."
+      }
+    },
+    "mains/paper-IV/part-a/unit-4/t2": {
+      "text": {
+        "hi": "लोक प्रशासन में नैतिक सद्गुण एवं मूल्य- प्रशासन में नैतिक तत्व-सत्यनिष्ठा, उत्तरदायित्व एवं पारदर्शिता, नैतिक तर्क एवं नैतिक दुविधा तथा नैतिक मार्गदर्शन के रूप में अंतरात्मा, लोक सेवकों हेतु आचरण संहिता, शासन में उच्च मूल्यों का पालन।",
+        "en": "Moral Virtues and Values in Public Administration - ethical elements in administration: integrity, responsibility and transparency, moral reasoning and moral dilemmas, and conscience as a moral guide, codes of conduct for public servants, observance of high values in governance."
+      }
+    },
+    "mains/paper-IV/part-a/unit-4/t3": {
+      "text": {
+        "hi": "भ्रष्टाचार- भ्रष्टाचार के प्रकार एवं कारण, भ्रष्टाचार का प्रभाव, भ्रष्टाचार को अल्पतम करने के उपाय, समाज, सूचनातंत्र, परिवार एवं व्हिसिलब्लोअर की भूमिका, भ्रष्टाचार पर राष्ट्रसंघ की घोषणा, भ्रष्टाचार का मापन, ट्रांसपरेंसी इन्टरनेशनल, लोकपाल एवं लोकायुक्त।",
+        "en": "Corruption - types and causes of corruption, the impact of corruption, measures to minimise corruption, the role of society, the information system, the family and the whistleblower, the United Nations Declaration on corruption, measurement of corruption, Transparency International, the Lokpal and the Lokayukta."
+      }
+    },
+    "mains/paper-IV/part-a/unit-5": {
+      "title": {
+        "hi": "केस स्टडी- प्रश्नपत्र के खण्ड (अ) में सम्मिलित विषयवस्तु पर आधारित पाठ्यक्रम।",
+        "en": "Case Study - Based on the Contents of the Syllabus in Part-A Question Paper."
+      }
+    },
+    "mains/paper-V": {
+      "title": {
+        "hi": "पंचम प्रश्न पत्र",
+        "en": "FIFTH PAPER"
+      }
+    },
+    "mains/paper-V/part": {
+      "title": {
+        "hi": "सामान्य हिन्दी एवं व्याकरण",
+        "en": "GENERAL HINDI AND GRAMMAR"
+      }
+    },
+    "mains/paper-V/part/unit-1": {
+      "title": {
+        "hi": "लघुत्तरीय प्रश्न- निर्धारित सम्पूर्ण पाठ्यक्रम के अंतर्गत ही पूछे जाएँगे।",
+        "en": "Short Answer Questions - To Be Asked Only from Within the Entire Prescribed Syllabus."
+      }
+    },
+    "mains/paper-V/part/unit-2": {
+      "title": {
+        "hi": "रस- अंग एवं प्रकार।",
+        "en": "Rasa (aesthetic sentiment) - its Elements and Types."
+      }
+    },
+    "mains/paper-V/part/unit-2/t1": {
+      "text": {
+        "hi": "छंद- दोहा, सोरठा, चौपाई।",
+        "en": "Chhand (metre) - Doha, Soratha, Chaupai."
+      }
+    },
+    "mains/paper-V/part/unit-3": {
+      "title": {
+        "hi": "अनुवाद वाक्यों का-",
+        "en": "Translation of Sentences -"
+      }
+    },
+    "mains/paper-V/part/unit-3/t1": {
+      "text": {
+        "hi": "1. हिन्दी से अंग्रेजी",
+        "en": "1. Hindi to English"
+      }
+    },
+    "mains/paper-V/part/unit-3/t2": {
+      "text": {
+        "hi": "2. अँग्रेजी से हिन्दी।",
+        "en": "2. English to Hindi."
+      }
+    },
+    "mains/paper-V/part/unit-3/t3": {
+      "text": {
+        "hi": "3. प्रशासनिक मानक शब्दों के अर्थ",
+        "en": "3. Meanings of Standard Administrative Terms"
+      }
+    },
+    "mains/paper-V/part/unit-3/t4": {
+      "text": {
+        "hi": "हिन्दी से अँग्रेजी शब्द (05 शब्द)",
+        "en": "Words from Hindi to English (05 words)"
+      }
+    },
+    "mains/paper-V/part/unit-3/t5": {
+      "text": {
+        "hi": "अँग्रेजी से हिन्दी शब्द (05 शब्द)",
+        "en": "Words from English to Hindi (05 words)"
+      }
+    },
+    "mains/paper-V/part/unit-4": {
+      "title": {
+        "hi": "1. संधि एवं समास",
+        "en": "1. Sandhi (word combination) and Samas (compound words)"
+      }
+    },
+    "mains/paper-V/part/unit-4/t1": {
+      "text": {
+        "hi": "2. मुहावरे एवं कहावतें",
+        "en": "2. Idioms and Proverbs"
+      }
+    },
+    "mains/paper-V/part/unit-5": {
+      "title": {
+        "hi": "प्रारंभिक व्याकरण एवं शब्दावलियाँ",
+        "en": "Elementary Grammar and Vocabularies"
+      }
+    },
+    "mains/paper-V/part/unit-5/t1": {
+      "text": {
+        "hi": "1. विराम चिह्न",
+        "en": "1. Punctuation"
+      }
+    },
+    "mains/paper-V/part/unit-5/t2": {
+      "text": {
+        "hi": "2. शब्द शक्तियाँ",
+        "en": "2. Shabda Shakti (the powers of a word)"
+      }
+    },
+    "mains/paper-V/part/unit-5/t3": {
+      "text": {
+        "hi": "3. विलोम शब्द",
+        "en": "3. Antonyms"
+      }
+    },
+    "mains/paper-V/part/unit-5/t4": {
+      "text": {
+        "hi": "4. अनेक शब्दों के लिए एक शब्द",
+        "en": "4. One Word for Many Words"
+      }
+    },
+    "mains/paper-V/part/unit-5/t5": {
+      "text": {
+        "hi": "5. तत्सम एवं तद्भव शब्द",
+        "en": "5. Tatsam and Tadbhav Words"
+      }
+    },
+    "mains/paper-V/part/unit-5/t6": {
+      "text": {
+        "hi": "6. पर्यायवाची शब्द",
+        "en": "6. Synonyms"
+      }
+    },
+    "mains/paper-V/part/unit-5/t7": {
+      "text": {
+        "hi": "7. शब्द-युग्म",
+        "en": "7. Word Pairs"
+      }
+    },
+    "mains/paper-V/part/unit-5/t8": {
+      "text": {
+        "hi": "8. वर्तनी शोधन",
+        "en": "8. Spelling Correction"
+      }
+    },
+    "mains/paper-V/part/unit-5/t9": {
+      "text": {
+        "hi": "9. वाक्य संरचना एवं प्रकार",
+        "en": "9. Sentence Structure and Types"
+      }
+    },
+    "mains/paper-V/part/unit-5/t10": {
+      "text": {
+        "hi": "10. शब्दार्थ",
+        "en": "10. Word Meaning"
+      }
+    },
+    "mains/paper-V/part/unit-6": {
+      "title": {
+        "hi": "पल्लवन- रेखांकित अथवा दी गई पंक्तियों का भाव पल्लवन।",
+        "en": "Pallavan (elaboration) - Elaboration of the Sense of the Underlined or Given Lines."
+      }
+    },
+    "mains/paper-V/part/unit-7": {
+      "title": {
+        "hi": "मध्यप्रदेश की प्रमुख बोलियाँ- मालवी, निमाड़ी, बघेली और बुंदेली।",
+        "en": "Major Dialects of Madhya Pradesh - Malvi, Nimadi, Bagheli and Bundeli."
+      }
+    },
+    "mains/paper-V/part/unit-8": {
+      "title": {
+        "hi": "अपठित गद्यांश",
+        "en": "Unseen Prose Passage"
+      }
+    },
+    "mains/paper-VI": {
+      "title": {
+        "hi": "षष्ठ प्रश्न-पत्र",
+        "en": "SIXTH PAPER"
+      }
+    },
+    "mains/paper-VI/part": {
+      "title": {
+        "hi": "हिन्दी निबंध एवं प्रारूप लेखन",
+        "en": "HINDI ESSAY AND DRAFT WRITING"
+      }
+    },
+    "mains/paper-VI/part/unit-1": {
+      "title": {
+        "hi": "प्रथम निबंध - निम्नांकित विषय-क्षेत्रों से निबंध पूछा जा सकता है। जैसे- भारतीय ज्ञान-विज्ञान परंपरा, विकसित भारत @2047, आत्मनिर्भर भारत की संकल्पना, स्वर्णिम मध्यप्रदेश, अंतरिक्ष में भारत के बढ़ते कदम, मध्यप्रदेश का गौरवशाली इतिहास, पर्यावरण, विज्ञान, धर्म-अध्यात्म, विश्व ग्राम की संकल्पना, शिक्षा में गुणवत्ता, राष्ट्रीय शिक्षा नीति- 2020, परंपरागत कौशल आधारित व्यवसाय, आधुनिकीकरण, भूमंडलीकरण, उदारीकरण, कृत्रिम बुद्धिमता, परंपरागत खेल, सांस्कृतिक विरासत, सभ्यता एवं संस्कृति, धार्मिक-सांस्कृतिक पर्यटन, युवा नीति, योग एवं स्वास्थ्य, ई-मार्केटिंग, ई-कॉमर्स, नेतृत्व एवं विकास, सुशासन, नौकरशाही, लोकतंत्र में सिविल सेवाओं की भूमिका, जनजातीय विकास, स्वदेशी, स्वभाषा, राष्ट्रीयता के विभिन्न मुद्दे, राष्ट्रीय एकता एवं सामाजिक समरसता, सामुदायिक जीवन, सामाजिक सरोकार, नवीकरणीय ऊर्जा, सतत् विकास लक्ष्य, समावेशी विकास, ग्राहक जागरूकता-आज की आवश्यकता, मादक पदार्थों का सेवन एवं दुष्प्रभाव, घरेलू हिंसा, बाह्य एवं आंतरिक सुरक्षा के मुद्दे, व्यवसायगत सरलता, सोशल मीडिया का मानव जीवन पर प्रभाव, गौरवशाली भारतीय संस्कृति, वसुधैव कुटुम्बकम्, मानवीय जीवन में संस्कार और जीवन मूल्य, वन नेशन वन हेल्थ सिस्टम/पॉलिसी- 2030 ।",
+        "en": "First Essay - An essay may be asked from the following subject areas, such as: Indian knowledge and science tradition, Developed India @2047, the concept of Self-Reliant India, Golden Madhya Pradesh, India’s advancing steps in space, the glorious history of Madhya Pradesh, environment, science, religion and spirituality, the concept of a world village, quality in education, National Education Policy 2020, traditional skill-based occupations, modernisation, globalisation, liberalisation, artificial intelligence, traditional sports, cultural heritage, civilisation and culture, religious and cultural tourism, youth policy, yoga and health, e-marketing, e-commerce, leadership and development, good governance, bureaucracy, the role of civil services in a democracy, tribal development, Swadeshi, Swabhasha (one’s own language), various issues of nationality, national unity and social harmony, community life, social concerns, renewable energy, Sustainable Development Goals, inclusive development, consumer awareness - the need of today, consumption of intoxicants and its adverse effects, domestic violence, issues of external and internal security, ease of doing business, the impact of social media on human life, the glorious culture of India, Vasudhaiva Kutumbakam (the world is one family), Sanskar and life values in human life, One Nation One Health System/Policy 2030."
+      }
+    },
+    "mains/paper-VI/part/unit-2": {
+      "title": {
+        "hi": "द्वितीय निबंध – समसामयिक समस्याएँ एवं निदान",
+        "en": "Second Essay - Contemporary Problems and Solutions"
+      }
+    },
+    "mains/paper-VI/part/unit-3": {
+      "title": {
+        "hi": "प्रारूप लेखन- शासकीय व अर्धशासकीय पत्र, परिपत्र (सर्क्यूलर), प्रपत्र, विज्ञापन, आदेश, पृष्ठांकन, अनुस्मारक (स्मरण पत्र)। (लगभग-250 शब्दों में)।",
+        "en": "Draft Writing - Official and Semi-official Letters, Circulars, Forms, Advertisements, Orders, Endorsements, Memoranda. (In about 250 words.)"
+      }
+    },
+    "mains/paper-VI/part/unit-4": {
+      "title": {
+        "hi": "प्रतिवेदन (रिपोर्ट राइटिंग), अधिसूचना (नोटिफिकेशन), ज्ञापन (मेमोरेण्डम) टिप्पण लेखन। (लगभग-250 शब्दों में)।",
+        "en": "Report Writing, Notifications, Memoranda and Note Writing. (In about 250 words.)"
+      }
+    }
+  }
+}

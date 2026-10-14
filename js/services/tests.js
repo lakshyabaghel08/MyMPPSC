@@ -6,7 +6,7 @@
  * a refresh, an accidental navigation or a browser restart cannot lose work.
  */
 
-import { STORES } from '../core/constants.js';
+import { STORES, FIXED_TEST_RULES } from '../core/constants.js';
 import * as db from '../core/db.js';
 import { state, emit } from '../core/state.js';
 import { uid, nowIso, logEvent, shuffle, makeRng, round } from '../core/util.js';
@@ -120,7 +120,11 @@ export function buildTest({
     config: {
       duration_minutes: config.durationMinutes ?? (paper?.duration_minutes ?? null),
       feedback_mode: config.feedbackMode || settings.feedbackMode,
-      confidence: config.confidence || settings.confidenceTracking,
+      // Fixed rules, not preferences: every test built from now on carries the
+      // same confidence, answer-key and unresolved-key policy, whatever the
+      // caller asked for (see FIXED_TEST_RULES). Older stored tests keep their
+      // own values and are still scored and reported with them.
+      confidence: FIXED_TEST_RULES.confidence,
       randomize_options: randomizeOptions,
       randomize_questions: Boolean(config.randomizeQuestions),
       usePaperRules: config.usePaperRules !== false,
@@ -133,8 +137,8 @@ export function buildTest({
         qualifying: resolvedRules.qualifying || null,
         needsConfiguration: resolvedRules.needsConfiguration,
       },
-      answer_policy: config.answerPolicy || settings.answerPolicy,
-      unresolved_policy: config.unresolvedPolicy || settings.scoringPolicyWhenUnresolved,
+      answer_policy: FIXED_TEST_RULES.answerPolicy,
+      unresolved_policy: FIXED_TEST_RULES.unresolvedPolicy,
       show_timer: config.showTimer ?? settings.showTimer,
       allow_pause: config.allowPause ?? settings.allowPause,
       auto_submit_on_expiry: config.autoSubmitOnExpiry ?? settings.autoSubmitOnExpiry,

@@ -244,6 +244,37 @@ export function pluralise(count, singular, plural) {
 
 /* --------------------------------------------------------------- files ---- */
 
+/* ------------------------------------------------------------ deep links --- */
+
+/** The separator inside a Topic & Custom Practice route parameter. */
+export const TOPIC_PARAM_SEPARATOR = '||';
+
+/**
+ * Build a deep link into Topic & Custom Practice — the one way to do it.
+ *
+ * Three screens used to build these links and they did not agree: the syllabus
+ * PYQ chips encoded each half separately (`enc(subject)||enc(topic)`), while the
+ * dashboard and the bank panel encoded the joined string
+ * (`enc(subject||topic)`). Both happened to parse, so nothing looked broken; but
+ * only the first form stays unambiguous when a topic label itself contains the
+ * separator, and only one form can be right when a bookmark is shared.
+ *
+ * Each half is encoded on its own, so the `||` in the address is always the
+ * separator and never part of a name.
+ */
+export function topicPracticeHref(subject, topic = null) {
+  const target = topic
+    ? `${encodeURIComponent(subject)}${TOPIC_PARAM_SEPARATOR}${encodeURIComponent(topic)}`
+    : encodeURIComponent(subject || '');
+  return `#/topic/${target}`;
+}
+
+/** The inverse of `topicPracticeHref()`: split one route parameter back apart. */
+export function parseTopicPracticeParam(raw) {
+  const [subject = '', topic = ''] = String(raw ?? '').split(TOPIC_PARAM_SEPARATOR);
+  return { subject: subject || null, topic: topic || null };
+}
+
 export function readFileAsText(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();

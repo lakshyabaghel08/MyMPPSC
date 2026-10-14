@@ -253,7 +253,7 @@ export default {
           label: 'Revision — single question',
           questionIds: [id],
           metas: [state.questionIndex.get(id)].filter(Boolean),
-          config: { feedbackMode: 'learning', confidence: state.settings.confidenceTracking, durationMinutes: null },
+          config: { feedbackMode: 'learning', durationMinutes: null },
           orderSource: 'due_first',
         });
         return;
@@ -279,7 +279,7 @@ export default {
           label: `Revision — ${ids.length} due question(s)`,
           questionIds: ids,
           metas: ids.map((id) => state.questionIndex.get(id)).filter(Boolean),
-          config: { feedbackMode: 'learning', confidence: state.settings.confidenceTracking, durationMinutes: null },
+          config: { feedbackMode: 'learning', durationMinutes: null },
           orderSource: 'due_first',
         });
         return;

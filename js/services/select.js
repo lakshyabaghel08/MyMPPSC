@@ -498,6 +498,41 @@ export function findNearDuplicates(metas, threshold = 0.62, limit = 200) {
 
 /* ------------------------------------------------------ paper utilities --- */
 
+/**
+ * Arrange already-picked questions in paper order: year, then paper, then the
+ * position the question holds in that paper (its printed number where no stored
+ * order exists).
+ *
+ * Selection and arrangement are two different decisions. A strategy
+ * ("weakest-first", "least attempted") ranks the pool so the *right* questions
+ * are picked; that ranking is not a sensible order to read questions in, and
+ * handing it to the runner produced a session that claimed to keep paper order
+ * while arriving as 2019-076, 2021-046, 2019-047. Callers that do not want a
+ * shuffled session sort the picked questions with this instead, so what the
+ * report says about the order is what the runner actually served.
+ */
+export function arrangeForPaper(metas) {
+  const list = Array.from(metas);
+  const storedOrder = new Map();
+  for (const paper of state.papers.values()) {
+    const order = paper.question_order || [];
+    if (order.length) storedOrder.set(paper.paper_id, new Map(order.map((id, index) => [id, index])));
+  }
+  return list.sort((a, b) => {
+    const yearDelta = (Number(a.year) || 0) - (Number(b.year) || 0);
+    if (yearDelta) return yearDelta;
+    const paperDelta = String(a.paper_id || '').localeCompare(String(b.paper_id || ''));
+    if (paperDelta) return paperDelta;
+    const order = storedOrder.get(a.paper_id);
+    if (order) {
+      const ia = order.has(a.id) ? order.get(a.id) : Number.MAX_SAFE_INTEGER;
+      const ib = order.has(b.id) ? order.get(b.id) : Number.MAX_SAFE_INTEGER;
+      if (ia !== ib) return ia - ib;
+    }
+    return (Number(a.question_number) || 0) - (Number(b.question_number) || 0);
+  });
+}
+
 /** Order a paper's questions exactly as the source paper printed them. */
 export function paperOrder(paper, metas) {
   const inPaper = Array.from(metas).filter((m) => m.paper_id === paper?.paper_id);

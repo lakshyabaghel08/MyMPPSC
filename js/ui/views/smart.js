@@ -112,6 +112,11 @@ export default {
 
   async mount(ctx) {
     mountConfigFields({
+      // This screen rebuilds its plan — and re-renders itself — whenever the
+      // size or an inclusion switch changes. `screen` is the per-screen form
+      // memory in shared.js: without it each of those rebuilds threw away the
+      // feedback timing, time limit and scoring the reader had just set.
+      screen: 'smart',
       defaultCount: viewState.count,
       onCountChange: async (n) => {
         viewState.count = n;
