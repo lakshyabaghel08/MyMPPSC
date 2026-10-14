@@ -16,6 +16,7 @@ import { loadSyllabusWorkspace } from '../../services/syllabus-hub.js';
 import * as revision from '../../services/revision.js';
 import { bankSummary } from '../../services/questions.js';
 import { startPracticeTest } from './shared.js';
+import { dashboardSkeleton } from '../skeletons.js';
 
 function tone(value, { good = 0.75, bad = 0.5 } = {}) {
   if (!Number.isFinite(value)) return '';
@@ -65,6 +66,11 @@ function noBankCard() {
 
 export default {
   title: 'Dashboard',
+
+  /** Placeholder while the analytics and test history load (router.js). */
+  skeleton() {
+    return dashboardSkeleton({ hasBank: state.questionIndex.size > 0 });
+  },
 
   async render() {
     const metas = Array.from(state.questionIndex.values());

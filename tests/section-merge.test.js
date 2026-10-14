@@ -330,7 +330,7 @@ test('8. Insights holds both panels and keeps their data sources apart', async (
   // The boundary that makes the merge honest: counting on one side, measured
   // performance on the other.
   assert.equal(/First-attempt accuracy/.test(panels[1].textContent), false, 'the bank panel shows no performance');
-  assert.equal(/Subject-by-year breakdown/.test(panels[0].textContent), false, 'the performance panel does no bank counting');
+  assert.equal(/Questions per subject|Year by year — what each paper contributed/.test(panels[0].textContent), false, 'the performance panel does no bank counting');
   void text;
 });
 

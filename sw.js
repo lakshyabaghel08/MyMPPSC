@@ -10,7 +10,7 @@
 
 // Bump this whenever any precached file changes: the old caches are deleted on
 // activate, so a fixed build cannot keep serving a stale shell.
-const VERSION = 'v1.2.0-5';
+const VERSION = 'v1.2.0-6';
 const SHELL_CACHE = `mymppsc-shell-${VERSION}`;
 const RUNTIME_CACHE = `mymppsc-runtime-${VERSION}`;
 
@@ -22,6 +22,7 @@ const SHELL_FILES = [
   './js/app.js',
   './js/ui/router.js',
   './js/ui/components.js',
+  './js/ui/skeletons.js',
   './js/core/constants.js',
   './js/core/db.js',
   './js/core/state.js',

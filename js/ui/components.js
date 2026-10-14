@@ -87,17 +87,22 @@ export function evidenceMeter(judgedCount, minSample = 3, { showLabel = true } =
   const n = Math.max(0, Number(judgedCount) || 0);
   const steps = Math.min(3, n);
   const insufficient = n < minSample;
-  const cls = insufficient ? 'insufficient' : 'sufficient';
+  // The class names must match css/app.css (`.evidence-meter.insufficient` /
+  // `.solid`, `.evidence-pips` / `.evidence-pip`). This used to emit
+  // `.evidence-dot` and `sufficient`, which nothing styled: the three steps
+  // were empty inline <i> elements (0 × 0 px, invisible) and a met threshold
+  // looked the same as a neutral chip.
+  const cls = insufficient ? 'insufficient' : 'solid';
   // Plain words on the surface; the sample-size maths stays in the tooltip.
   const label = insufficient ? (n === 0 ? 'no attempts yet' : `only ${n} attempt${n === 1 ? '' : 's'} so far`) : `${n} attempt${n === 1 ? '' : 's'}`;
   const title = insufficient
     ? `Insufficient evidence: ${n} of ${minSample} required judged attempts recorded`
     : `Evidence threshold met: ${n} judged attempts recorded (min ${minSample})`;
   return `<span class="evidence-meter ${cls}" title="${esc(title)}" role="img" aria-label="${esc(title)}">
-    <span class="evidence-dots" aria-hidden="true">
-      <i class="evidence-dot ${steps >= 1 ? 'on' : ''}"></i>
-      <i class="evidence-dot ${steps >= 2 ? 'on' : ''}"></i>
-      <i class="evidence-dot ${steps >= 3 ? 'on' : ''}"></i>
+    <span class="evidence-pips" aria-hidden="true">
+      <i class="evidence-pip ${steps >= 1 ? 'on' : ''}"></i>
+      <i class="evidence-pip ${steps >= 2 ? 'on' : ''}"></i>
+      <i class="evidence-pip ${steps >= 3 ? 'on' : ''}"></i>
     </span>
     ${showLabel ? `<span>${esc(label)}</span>` : ''}
   </span>`;
@@ -114,9 +119,9 @@ export function provenanceLine({ source = 'measured', text = '' } = {}) {
  * with keyboard, mouse and touch with no JavaScript.
  * `body` is trusted HTML (callers escape user text, as everywhere else).
  */
-export function infoToggle(summary, body, { open = false } = {}) {
+export function infoToggle(summary, body, { open = false, className = '' } = {}) {
   if (!body) return '';
-  return `<details class="info-toggle"${open ? ' open' : ''}>
+  return `<details class="info-toggle${className ? ` ${esc(className)}` : ''}"${open ? ' open' : ''}>
     <summary><span class="info-i" aria-hidden="true">i</span><span>${esc(summary)}</span></summary>
     <div class="info-body">${body}</div>
   </details>`;
@@ -174,6 +179,66 @@ export const emptyState = ({ title, message = '', body = '', action = '', action
 export const loadingState = (message = 'Loading local data…') =>
   `<div class="loading-block" aria-busy="true" role="status">${esc(message)}</div>`;
 
+/* ------------------------------------------------------------ skeletons --- */
+
+/**
+ * Skeleton placeholder for a screen that is still reading its data: grey
+ * blocks in the rough shape of what is coming, instead of a line of text.
+ *
+ * - The wrapper is the status region. It carries one visually hidden sentence
+ *   for assistive technology — the same words `loadingState()` shows — and
+ *   every block inside it is `aria-hidden`.
+ * - Blocks are coloured from tokens, keep a transparent border so they still
+ *   draw as outlines in forced-colours mode, and pulse only when the OS allows
+ *   motion (`css/app.css`, "Skeleton placeholders").
+ * - Purely presentational: no headings, no controls, nothing focusable.
+ *
+ * `parts` are strings built with the `skeleton.*` helpers below; the screen
+ * layouts themselves live in `js/ui/skeletons.js`.
+ */
+export function skeletonScreen(parts = [], { label = 'Loading local data…' } = {}) {
+  return `<div class="skeleton" role="status" aria-busy="true"><span class="sr-only">${esc(label)}</span><div class="skeleton-body" aria-hidden="true">${parts.join('')}</div></div>`;
+}
+
+/** Widths cycled through so placeholder lines do not look like a ruled pad. */
+const SKELETON_WIDTHS = ['sk-w90', 'sk-w70', 'sk-w80', 'sk-w55', 'sk-w65'];
+const times = (count, make) => Array.from({ length: Math.max(0, count) }, (_, i) => make(i)).join('');
+
+export const skeleton = {
+  /** Stands in for the screen's `<h1>` and, optionally, its one-line lede. */
+  heading: ({ lede = true } = {}) =>
+    `<div class="skeleton-heading"><span class="skeleton-block skeleton-title"></span>${lede ? '<span class="skeleton-line sk-w70"></span>' : ''}</div>`,
+  /** `count` lines of text; the last one is short, like the end of a paragraph. */
+  lines: (count = 3) =>
+    `<div class="skeleton-stack">${times(count, (i) => `<span class="skeleton-line ${i === count - 1 && count > 1 ? 'sk-w40' : SKELETON_WIDTHS[i % SKELETON_WIDTHS.length]}"></span>`)}</div>`,
+  /** A row of stat tiles laid out by a real grid class (`.grid.tiles` by default). */
+  tiles: (count = 4, { className = 'grid tiles' } = {}) =>
+    `<div class="${esc(className)}">${times(count, () => '<div class="skeleton-tile"><span class="skeleton-line sk-w55"></span><span class="skeleton-block skeleton-value"></span><span class="skeleton-line sk-w80"></span></div>')}</div>`,
+  /** A tab bar with `count` tabs. */
+  tabs: (count = 2) => `<div class="skeleton-tabs">${times(count, () => '<span class="skeleton-block skeleton-tab"></span>')}</div>`,
+  /** A card — the real `.card` box, so padding, radius and shadow match — with a heading bar. */
+  card: (body = '', { head = true } = {}) =>
+    `<div class="card skeleton-card">${head ? '<div class="card-head"><span class="skeleton-line skeleton-card-title"></span></div>' : ''}<div class="card-body">${body}</div></div>`,
+  /** Table rows of `cols` cells (the first one wider); `check` adds a leading checkbox cell. */
+  table: (rows = 6, cols = 4, { check = false } = {}) =>
+    `<div class="skeleton-table">${times(
+      rows,
+      (r) =>
+        `<div class="skeleton-row">${check ? '<span class="skeleton-block skeleton-check"></span>' : ''}${times(
+          cols,
+          (c) => `<span class="skeleton-cell${c === 0 ? ' wide' : ''}"><span class="skeleton-line ${SKELETON_WIDTHS[(r + c) % SKELETON_WIDTHS.length]}"></span></span>`,
+        )}</div>`,
+    )}</div>`,
+  /** Horizontal bar-chart rows: a label and a bar of varying length. */
+  chart: (bars = 6) =>
+    `<div class="skeleton-chart">${times(bars, (i) => `<div class="skeleton-chart-row"><span class="skeleton-line skeleton-chart-label"></span><span class="skeleton-cell"><span class="skeleton-block skeleton-bar ${SKELETON_WIDTHS[(i * 2) % SKELETON_WIDTHS.length]}"></span></span></div>`)}</div>`,
+  /** Labelled form fields, laid out like a `.filters` row. */
+  fields: (count = 4) =>
+    `<div class="skeleton-fields">${times(count, () => '<span class="skeleton-field"><span class="skeleton-line sk-w40"></span><span class="skeleton-block skeleton-control"></span></span>')}</div>`,
+  /** A row of buttons. */
+  buttons: (count = 2) => `<div class="skeleton-buttons">${times(count, () => '<span class="skeleton-block skeleton-button"></span>')}</div>`,
+};
+
 export const kv = (pairs = []) =>
   `<dl class="kv">${pairs
     .map(([k, v]) => `<dt>${esc(k)}</dt><dd>${v === null || v === undefined || v === '' ? '<span class="soft">not recorded</span>' : v}</dd>`)
@@ -183,32 +248,43 @@ export const kv = (pairs = []) =>
 
 /**
  * Supports both `{ columns: [{ label, num }], rows, footer }` and `{ headers: ['...'], rows }`.
+ *
+ * A column may also carry `className` (added to its `<th>` and every `<td>`)
+ * and `headerHtml` — trusted markup for the header cell, such as a
+ * select-all checkbox; `label` still names the column for `data-label`.
+ * A row is normally an array of cells; `{ cells, className }` adds a class to
+ * its `<tr>`.
  */
 export function dataTable({ columns = null, headers = [], rows = [], footer = null, empty = 'Nothing to show.', className = '' } = {}) {
   if (!rows.length) return `<p class="muted small m-0">${esc(empty)}</p>`;
   const cols = columns || headers.map((h) => (typeof h === 'string' ? { label: h, num: false } : h));
+  const cellClass = (col) => {
+    const names = [col?.num ? 'num' : '', col?.className || ''].filter(Boolean).join(' ');
+    return names ? `class="${esc(names)}"` : '';
+  };
   const footHtml =
     Array.isArray(footer) && footer.length
       ? `<tfoot><tr>${footer
           .map((cell, i) => {
             const col = cols[i];
-            return `<td ${col?.num ? 'class="num"' : ''}>${cell ?? ''}</td>`;
+            return `<td ${cellClass(col)}>${cell ?? ''}</td>`;
           })
           .join('')}</tr></tfoot>`
       : '';
   return `<div class="table-wrap"><table class="data ${className}">
-    <thead><tr>${cols.map((c) => `<th ${c.num ? 'class="num"' : ''}>${esc(c.label)}</th>`).join('')}</tr></thead>
+    <thead><tr>${cols.map((c) => `<th ${cellClass(c)}>${c.headerHtml ?? esc(c.label)}</th>`).join('')}</tr></thead>
     <tbody>${rows
-      .map(
-        (r) =>
-          `<tr>${r
-            .map((cell, i) => {
-              const col = cols[i];
-              const labelAttr = col?.label ? ` data-label="${esc(col.label)}"` : '';
-              return `<td ${col?.num ? 'class="num"' : ''}${labelAttr}>${cell ?? ''}</td>`;
-            })
-            .join('')}</tr>`,
-      )
+      .map((r) => {
+        const cells = Array.isArray(r) ? r : r?.cells || [];
+        const rowClass = !Array.isArray(r) && r?.className ? ` class="${esc(r.className)}"` : '';
+        return `<tr${rowClass}>${cells
+          .map((cell, i) => {
+            const col = cols[i];
+            const labelAttr = col?.label ? ` data-label="${esc(col.label)}"` : '';
+            return `<td ${cellClass(col)}${labelAttr}>${cell ?? ''}</td>`;
+          })
+          .join('')}</tr>`;
+      })
       .join('')}</tbody>${footHtml}
   </table></div>`;
 }
@@ -281,8 +357,17 @@ function computeAxisTicks(maxVal) {
 export function barChart(arg1 = {}, arg2 = {}) {
   const isArrayArg = Array.isArray(arg1);
   const rawData = isArrayArg ? arg1 : arg1.data || [];
-  const valueFormat = (isArrayArg ? arg2.valueFormat : arg1.valueFormat) || ((v) => String(Math.round(Number(v) || 0)));
-  const yLabel = (isArrayArg ? arg2.yLabel || arg2.title : arg1.yLabel || arg1.title) || 'Bar chart';
+  const opts = isArrayArg ? arg2 : arg1;
+  const valueFormat = opts.valueFormat || ((v) => String(Math.round(Number(v) || 0)));
+  const yLabel = opts.yLabel || opts.title || 'Bar chart';
+  // Column headings of the accessible data table. They default to the subject
+  // chart's wording, which every older caller relies on.
+  const labelHeader = opts.labelHeader || 'Subject';
+  const valueHeader = opts.valueHeader || 'Questions';
+  const shareHeader = opts.shareHeader || 'Share';
+  // A caller that renders the same rows as its own table right under the chart
+  // (with actions the data table cannot carry) can drop the duplicate.
+  const withDataTable = opts.dataTable !== false;
 
   const data = rawData.map((d) => {
     const rawVal = Number(d?.value);
@@ -303,7 +388,11 @@ export function barChart(arg1 = {}, arg2 = {}) {
   if (!data.length) return '<p class="muted small m-0">No data to chart yet.</p>';
 
   const w = 760;
-  const padL = 192;
+  // The label column fits the longest label (topic names run longer than
+  // subject names; a fixed column clipped them at the chart's left edge).
+  // ~7.2 user units per character at the label's size and hover weight.
+  const longestLabel = Math.max(...data.map((d) => d.displayLabel.length));
+  const padL = Math.min(320, Math.max(192, Math.ceil(longestLabel * 7.2) + 20));
   const padR = 112;
   const padT = 10;
   const padB = 28;
@@ -360,9 +449,13 @@ export function barChart(arg1 = {}, arg2 = {}) {
 
   return `<div class="chart-wrap pyq-hbar-wrap">
     <svg class="chart pyq-hbar-chart" viewBox="0 0 ${w} ${h}" role="img" aria-label="${esc(yLabel)}">${gridLines}${bars}${axisBaseline}</svg>
-    <details class="chart-data"><summary>Data table (${data.length} rows)</summary>
-      <div class="table-wrap mt-2"><table class="data compact"><thead><tr><th>Subject</th><th class="num">Questions</th>${hasShareCol ? '<th class="num">Share</th>' : ''}</tr></thead><tbody>${tableRows}</tbody></table></div>
-    </details>
+    ${
+      withDataTable
+        ? `<details class="chart-data"><summary>Data table (${data.length} rows)</summary>
+      <div class="table-wrap mt-2"><table class="data compact"><thead><tr><th>${esc(labelHeader)}</th><th class="num">${esc(valueHeader)}</th>${hasShareCol ? `<th class="num">${esc(shareHeader)}</th>` : ''}</tr></thead><tbody>${tableRows}</tbody></table></div>
+    </details>`
+        : ''
+    }
   </div>`;
 }
 

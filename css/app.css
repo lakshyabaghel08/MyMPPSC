@@ -68,6 +68,10 @@
   --canvas-art: radial-gradient(circle at 78% 0%, rgba(116, 91, 214, 0.10), transparent 34%), radial-gradient(circle at 8% 80%, rgba(39, 174, 152, 0.07), transparent 28%);
   --header-glass: rgba(255, 255, 255, 0.88);
   --border-subtle: #dfe1eb;
+  /* Empty part of a bar, ring or segmented track. The 100% extent is drawn by
+     a --border edge where it matters (progress bars), so the fill only has to
+     be visible and keep every data colour >= 3:1 against it (audited). */
+  --track: var(--bg-sunken);
   --nav-bg: #18142f;
   --nav-bg-hover: #282143;
   --nav-text: #eeeaff;
@@ -191,6 +195,9 @@
   --canvas-art: radial-gradient(circle at 78% 0%, rgba(132, 108, 224, 0.13), transparent 34%), radial-gradient(circle at 8% 80%, rgba(74, 203, 175, 0.07), transparent 28%);
   --header-glass: rgba(22, 27, 38, 0.90);
   --border-subtle: #30384a;
+  /* --bg-sunken is 1.13:1 against a dark card, so an empty bar or ring
+     vanished; this grey stays subtle (1.5:1) but visible. */
+  --track: var(--border-subtle);
   --nav-bg: #0b0918;
   --nav-bg-hover: #211b39;
   --nav-text: #f0ecff;
@@ -241,6 +248,9 @@
     --info: #8ac4ff;
     --info-soft: #13243b;
     --on-info: #081a2e;
+
+    --border-subtle: #30384a;
+    --track: var(--border-subtle);
 
     --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.45);
     --shadow: 0 2px 6px rgba(0, 0, 0, 0.5), 0 8px 20px rgba(0, 0, 0, 0.35);
@@ -1438,7 +1448,7 @@ table.data.compact td {
   min-width: 0;
 }
 
-.pyq-head-copy h1 {
+.pyq-head-copy h2 {
   margin-bottom: 6px;
 }
 
@@ -1446,37 +1456,9 @@ table.data.compact td {
   margin-bottom: 0;
 }
 
-.pyq-head-meta {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  flex-wrap: wrap;
-}
-
-.pyq-meta-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: var(--text-xs);
-  font-weight: 560;
-  font-variant-numeric: tabular-nums;
-  padding: 5px 11px;
-  border-radius: var(--radius-pill);
-  border: 1px solid var(--border-subtle);
-  background: var(--bg-elevated);
-  color: var(--text-muted);
-  box-shadow: var(--shadow-xs);
-  white-space: nowrap;
-}
-
-.pyq-meta-pill strong {
-  color: var(--text);
-  font-weight: 700;
-}
-
 .pyq-summary-grid {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: var(--space-3);
   margin-bottom: var(--space-4);
 }
@@ -1503,40 +1485,12 @@ table.data.compact td {
   line-height: 1.35;
 }
 
-.pyq-chart-readout {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  padding: 8px 12px;
-  margin-bottom: var(--space-3);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-sm);
-  background: var(--bg-sunken);
-  color: var(--text-muted);
-  font-size: var(--text-xs);
-  line-height: 1.4;
-  transition: background-color var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
-}
-
-.pyq-chart-readout.active {
-  background: var(--accent-soft);
-  border-color: var(--accent);
-  color: var(--accent-strong);
-  font-weight: 600;
-}
-
-.pyq-readout-dot {
-  width: 7px;
-  height: 7px;
-  flex: 0 0 7px;
-  border-radius: 50%;
-  background: var(--accent);
-}
-
 .pyq-heat-legend {
   display: inline-flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 4px;
+  margin-bottom: var(--space-2);
   padding: 3px 8px;
   border-radius: var(--radius-sm);
   border: 1px solid var(--border-subtle);
@@ -1559,8 +1513,7 @@ table.data.compact td {
   color: var(--text);
 }
 
-.pyq-subject-matrix tbody td:nth-child(2),
-.pyq-topic-matrix tbody td:nth-last-child(3) {
+.pyq-matrix tbody td.total-col {
   background: color-mix(in oklab, var(--bg-sunken) 55%, transparent);
   font-size: var(--text-sm);
 }
@@ -1572,14 +1525,6 @@ table.data.compact td {
   background: var(--bg-sunken);
   font-size: var(--text-xs);
   color: var(--text);
-}
-
-.pyq-subject-cell,
-.pyq-topic-cell {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  flex-wrap: wrap;
 }
 
 .pyq-topic-name {
@@ -1663,22 +1608,6 @@ table.data.compact td {
   color: var(--text);
 }
 
-.pyq-unplaced-banner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-3);
-  flex-wrap: wrap;
-  padding: 10px 14px;
-  margin-bottom: var(--space-3);
-  border: 1px solid var(--warn);
-  border-left-width: 4px;
-  border-radius: var(--radius-sm);
-  background: var(--warn-soft);
-  color: var(--text);
-  font-size: var(--text-sm);
-}
-
 .pyq-topic-toolbar {
   display: flex;
   flex-direction: column;
@@ -1757,7 +1686,7 @@ button.chip.on .chip-count {
   max-width: 360px;
   min-height: 34px;
   padding: 3px 10px;
-  border: 1px solid var(--border-subtle);
+  border: 1px solid var(--border);
   border-radius: var(--radius-sm);
   background: var(--bg-elevated);
   color: var(--text-soft);
@@ -1791,6 +1720,90 @@ button.chip.on .chip-count {
   .pyq-matrix .heat {
     transition: background var(--dur-fast) var(--ease-out);
   }
+}
+
+/* -------------------------------------------------------------------------
+   9c. Question Bank — bulk selection
+   A bar with a fixed footprint sits above the question table, so ticking the
+   first box enables its buttons instead of pushing the rows down under the
+   pointer. Ticked rows are tinted; the tint never carries meaning alone
+   (the checkbox does).
+   ------------------------------------------------------------------------- */
+
+.bulk-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  min-height: 52px;
+  margin-bottom: var(--space-3);
+  padding: 7px 12px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  background: var(--bg-sunken);
+}
+
+.bulk-bar.has-selection {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.bulk-count {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.bulk-bar.has-selection .bulk-count {
+  color: var(--accent-strong);
+}
+
+.bulk-actions {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  margin-left: auto;
+}
+
+.bulk-result {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-3);
+}
+
+.bulk-result > span {
+  flex: 1 1 260px;
+}
+
+.bulk-preview {
+  margin: var(--space-2) 0 var(--space-3);
+}
+
+table.data th.select-col,
+table.data td.select-col {
+  width: 2.75rem;
+  text-align: center;
+}
+
+.row-select {
+  display: inline-grid;
+  place-items: center;
+  min-width: 32px;
+  min-height: 32px;
+  cursor: pointer;
+}
+
+.bank-questions tr:has(.row-check:checked) td {
+  background: var(--accent-soft);
+}
+
+.field-error {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--bad);
 }
 
 /* -------------------------------------------------------------------------
@@ -2059,6 +2072,60 @@ body.runner-focus .runner {
   color: var(--text-muted);
 }
 
+/* Header "?" legend: a non-modal popover hung off the runner bar (positioned
+   at every width, so it can never spill off the screen edge), overlaying the
+   page instead of pushing it down, so opening it moves nothing. */
+.kbd-legend-toggle {
+  font-weight: 750;
+}
+
+.kbd-legend {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  z-index: 1;
+  width: min(360px, 100%);
+  max-height: min(70vh, 460px);
+  overflow: auto;
+  overscroll-behavior: contain;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--bg-elevated);
+  box-shadow: var(--shadow-lg);
+}
+
+.kbd-legend-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  margin-bottom: var(--space-2);
+}
+
+.kbd-legend-list {
+  display: grid;
+  gap: 7px;
+  margin: 0 0 var(--space-3);
+}
+
+.kbd-legend-list > div {
+  display: grid;
+  grid-template-columns: minmax(104px, auto) minmax(0, 1fr);
+  gap: var(--space-3);
+  align-items: baseline;
+}
+
+.kbd-legend-list dt {
+  white-space: nowrap;
+}
+
+.kbd-legend-list dd {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+
 .palette {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
@@ -2112,6 +2179,20 @@ body.runner-focus .runner {
   line-height: 1;
 }
 
+/* Answered is marked by shape too, not only by green: a bar under the
+   number. It survives the flagged colours (answered + flagged keeps both the
+   bar and the flag) and, being a border, forced-colours mode. */
+.palette button.answered::after {
+  content: "";
+  position: absolute;
+  left: 30%;
+  right: 30%;
+  bottom: 5px;
+  height: 0;
+  border-top: 3px solid currentColor;
+  border-radius: var(--radius-pill);
+}
+
 .legend {
   display: flex;
   gap: var(--space-3);
@@ -2128,21 +2209,43 @@ body.runner-focus .runner {
 }
 
 .swatch {
-  width: 12px;
-  height: 12px;
+  position: relative;
+  width: 14px;
+  height: 14px;
   border-radius: 3px;
   border: 1px solid var(--border-strong);
-  display: inline-block;
+  display: inline-grid;
+  place-items: center;
+  font-size: 9px;
+  font-style: normal;
+  line-height: 1;
 }
 
+/* Each legend swatch carries the same non-colour cue as the palette. */
 .swatch.ok {
   background: var(--ok-soft);
   border-color: var(--ok);
 }
 
+.swatch.ok::after {
+  content: "";
+  position: absolute;
+  left: 3px;
+  right: 3px;
+  bottom: 2px;
+  height: 0;
+  border-top: 2px solid var(--ok);
+}
+
 .swatch.warn {
   background: var(--warn-soft);
   border-color: var(--warn);
+  color: var(--warn);
+}
+
+.swatch.current {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 1px;
 }
 
 .sticky-side {
@@ -2198,7 +2301,7 @@ body.runner-focus .runner {
 }
 
 .chart .bar-track-bg {
-  fill: var(--bg-sunken);
+  fill: var(--track);
 }
 
 .chart .chart-row {
@@ -2278,7 +2381,7 @@ body.runner-focus .runner {
 }
 
 .bar-track {
-  background: var(--bg-sunken);
+  background: var(--track);
   border: 1px solid var(--border);
   border-radius: var(--radius-pill);
   height: 10px;
@@ -2316,9 +2419,19 @@ body.runner-focus .runner {
   height: 8px;
 }
 
+/* The track's 100% extent is part of what a progress bar says, so it gets a
+   >= 3:1 edge (the HTML .progress / .bar-track have the same border). The
+   radius clips the rects, whose corners are stretched by the viewBox. */
+.progress-svg,
+.bar-item .bar-svg {
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+  outline: 1px solid var(--border);
+}
+
 .progress-bg,
 .bar-bg {
-  fill: var(--bg-sunken);
+  fill: var(--track);
 }
 
 .progress-fg,
@@ -2347,7 +2460,7 @@ body.runner-focus .runner {
 }
 
 .progress {
-  background: var(--bg-sunken);
+  background: var(--track);
   border: 1px solid var(--border);
   border-radius: var(--radius-pill);
   height: 10px;
@@ -2416,21 +2529,208 @@ body.runner-focus .runner {
   margin-top: var(--space-3);
 }
 
-.skeleton-stack {
+/* Skeleton placeholders — grey blocks in the rough shape of the screen that
+   is loading (skeletonScreen() / skeleton.* in components.js, layouts in
+   js/ui/skeletons.js). Token colours only. The transparent border makes every
+   block draw as an outline in forced-colours mode, where backgrounds are
+   flattened. The pulse is the one looping animation in the app: opacity only,
+   and only when the OS allows motion. */
+.skeleton,
+.skeleton-body {
   display: grid;
-  gap: var(--space-2);
-  margin-top: var(--space-3);
+  gap: var(--space-4);
+  align-content: start;
+  min-width: 0;
+}
+
+/* Layout classes reused from the real screens (.metrics-grid, .card…) bring
+   their own outer margins; the skeleton's grid gap does the spacing. */
+.skeleton .skeleton-body > *,
+.skeleton .skeleton-body .card {
+  margin: 0;
+}
+
+.skeleton-block,
+.skeleton-line {
+  display: block;
+  background: var(--border-subtle);
+  border: 1px solid transparent;
+  border-radius: var(--radius-xs);
 }
 
 .skeleton-line {
+  width: 100%;
   height: 12px;
-  border-radius: var(--radius-xs);
-  background: var(--bg-sunken);
-  border: 1px solid var(--border);
 }
 
-.skeleton-line.short { width: 45%; }
-.skeleton-line.medium { width: 72%; }
+.skeleton-heading,
+.skeleton-stack {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.skeleton-stack {
+  gap: var(--space-2);
+}
+
+.skeleton-title {
+  width: min(320px, 70%);
+  height: 28px;
+  border-radius: var(--radius-sm);
+}
+
+.skeleton-card-title {
+  width: min(220px, 50%);
+  height: 16px;
+}
+
+.skeleton-tile {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-3);
+  min-height: 132px;
+  padding: 17px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 15px;
+  background: var(--bg-elevated);
+}
+
+.skeleton-value {
+  width: 45%;
+  height: 30px;
+}
+
+.skeleton-tabs {
+  display: flex;
+  gap: 4px;
+  width: fit-content;
+  max-width: 100%;
+  padding: 4px;
+  border-radius: 12px;
+  background: var(--bg-sunken);
+}
+
+.skeleton-tab {
+  width: 120px;
+  max-width: 28vw;
+  height: 30px;
+  border-radius: 9px;
+}
+
+.skeleton-row,
+.skeleton-chart-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.skeleton-row {
+  padding: 12px 2px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.skeleton-row:last-child {
+  border-bottom: 0;
+}
+
+.skeleton-cell {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.skeleton-cell.wide {
+  flex-grow: 2.2;
+}
+
+.skeleton-check {
+  flex: 0 0 16px;
+  height: 16px;
+}
+
+.skeleton-chart {
+  display: grid;
+  gap: 14px;
+}
+
+.skeleton-chart-label {
+  flex: 0 0 26%;
+}
+
+.skeleton-bar {
+  height: 14px;
+}
+
+.skeleton-fields {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: var(--space-3);
+}
+
+.skeleton-field {
+  display: grid;
+  gap: 6px;
+}
+
+.skeleton-control {
+  height: 36px;
+  border-radius: 10px;
+}
+
+.skeleton-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.skeleton-button {
+  width: 132px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+}
+
+.skeleton-toolbar {
+  height: 44px;
+  margin-bottom: var(--space-3);
+  border-radius: var(--radius-sm);
+}
+
+.skeleton-hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: var(--space-3);
+  min-height: 168px;
+  padding: 28px 30px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 22px;
+  background: var(--bg-elevated);
+}
+
+.sk-w40 { width: 40%; }
+.sk-w55 { width: 55%; }
+.sk-w65 { width: 65%; }
+.sk-w70 { width: 70%; }
+.sk-w80 { width: 80%; }
+.sk-w90 { width: 90%; }
+
+@keyframes skeleton-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .skeleton-block,
+  .skeleton-line {
+    animation: skeleton-pulse 1.6s ease-in-out infinite;
+  }
+}
 
 .kv {
   display: grid;
@@ -2568,6 +2868,16 @@ details.disclosure > p {
   margin-top: var(--space-1);
   color: var(--text-muted);
   max-width: var(--measure);
+}
+
+/* A disclosure that holds a table (the Insights year-by-year matrices). */
+.info-toggle.info-wide[open] {
+  display: block;
+}
+
+.info-toggle.info-wide .info-body {
+  max-width: none;
+  min-width: 0;
 }
 
 .info-note {
@@ -3377,6 +3687,13 @@ body {
   background: var(--accent-soft);
 }
 
+/* The corner circle is positioned, so it painted over the (unpositioned)
+   label, value and sub-line wherever they reached the bottom-right corner. */
+.tile > * {
+  position: relative;
+  z-index: 1;
+}
+
 .tile:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow);
@@ -3567,14 +3884,17 @@ body {
 }
 
 /* Cohesive polish for data-heavy screens: controls remain distinct without
-   turning every element into a hard-edged box. */
+   turning every element into a hard-edged box. A field's border is the only
+   thing that shows where it is (its fill is the card's), so it stays at
+   --border (>= 3:1, WCAG 1.4.11); --border-subtle was 1.3:1 in light and
+   1.5:1 in dark, and empty fields all but disappeared. */
 input[type="text"],
 input[type="number"],
 input[type="date"],
 input[type="search"],
 select,
 textarea {
-  border-color: var(--border-subtle);
+  border-color: var(--border);
   border-radius: 10px;
   background: var(--bg-elevated);
   box-shadow: inset 0 1px 2px var(--accent-glow);
@@ -3583,7 +3903,7 @@ textarea {
 input:hover,
 select:hover,
 textarea:hover {
-  border-color: var(--border);
+  border-color: var(--border-strong);
 }
 
 .filters,
@@ -3625,10 +3945,12 @@ textarea:hover {
   border-radius: 9px;
 }
 
+/* The raised fill alone is 1.13:1 against the dark track and shadows do not
+   show on dark surfaces, so the selected tab also gets a >= 3:1 outline. */
 .tab[aria-selected="true"] {
   background: var(--bg-elevated);
   color: var(--text);
-  box-shadow: var(--shadow-xs);
+  box-shadow: var(--shadow-xs), inset 0 0 0 1px var(--border);
 }
 
 .seg {
@@ -3641,11 +3963,19 @@ textarea:hover {
 .seg button {
   border: 0;
   border-radius: 8px;
+  background: transparent;
 }
 
+.seg button:hover {
+  background: var(--bg-elevated);
+}
+
+/* Unpressed segments used to share the pressed one's raised fill, so only
+   the label's weight told them apart; the pressed one is now the raised,
+   outlined pill on the sunken track. */
 .seg button[aria-pressed="true"] {
   background: var(--bg-elevated);
-  box-shadow: var(--shadow-xs);
+  box-shadow: var(--shadow-xs), inset 0 0 0 1px var(--border);
 }
 
 .table-wrap {
@@ -3841,6 +4171,7 @@ table.data td {
   height: 10px;
   border-radius: var(--radius-pill);
   overflow: hidden;
+  outline: 1px solid var(--border);
 }
 
 .syl-bar.mini {
@@ -3849,7 +4180,7 @@ table.data td {
 }
 
 .syl-seg.track {
-  fill: var(--bg-sunken);
+  fill: var(--track);
 }
 
 .syl-seg.in_progress {
@@ -3877,7 +4208,7 @@ table.data td {
 }
 
 .syl-ring-track {
-  stroke: var(--bg-sunken);
+  stroke: var(--track);
 }
 
 .syl-ring-seg.done {
@@ -5597,6 +5928,11 @@ table.data td {
     align-items: center;
   }
 
+  .row-select {
+    min-width: var(--touch-min);
+    min-height: var(--touch-min);
+  }
+
   .check input[type="checkbox"],
   .check input[type="radio"] {
     width: 22px;
@@ -5621,8 +5957,9 @@ table.data td {
     display: none;
   }
 
+  /* Not sticky on phones, but still the legend popover's anchor. */
   .runner-bar {
-    position: static;
+    position: relative;
   }
 
   .question-card {
@@ -5789,6 +6126,7 @@ table.data td {
     --bad-soft: #fbf0f0;
     --info: #103a7d;
     --info-soft: #eff4fb;
+    --track: var(--bg-sunken);
     --shadow: none;
     --shadow-xs: none;
     --shadow-lg: none;

@@ -252,6 +252,6 @@ export default {
           selectionNotes: strict ? ['Original paper order retained.'] : ['Question order shuffled for this sitting.'],
         });
       }
-    });
+    }, { signal: ctx.signal });
   },
 };

@@ -425,7 +425,7 @@ export default {
           actions: [{ label: 'Close', tone: 'btn-primary', value: 'close' }],
         });
       }
-    });
+    }, { signal: ctx.signal });
   },
 };
 

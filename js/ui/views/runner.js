@@ -3,7 +3,9 @@
  *
  * Handles: original question order, timer, question palette, mark for review,
  * clear response, confidence marking, learning-mode feedback, automatic saving,
- * distraction-free focus mode, keyboard shortcut bar + aria-keyshortcuts,
+ * distraction-free focus mode, keyboard shortcut bar + aria-keyshortcuts, a
+ * "?" shortcut legend in the header (lists only the keys wireKeyboard() and
+ * the app shell handle),
  * Devanagari lang="hi" typography, resume after a refresh and submission with
  * confirmation.
  */
@@ -77,6 +79,37 @@ function orderedOptions(question) {
   return keys.map((k) => byKey.get(k)).filter(Boolean);
 }
 
+/**
+ * The header's shortcut legend: a non-modal popover toggled by the "?"
+ * button. It lists exactly the keys this screen answers to — wireKeyboard()
+ * below, plus the app-wide ?, Ctrl/⌘ K and Escape from js/app.js — so it can
+ * never advertise a shortcut that does nothing. It takes no focus when it
+ * opens (so nothing scrolls), traps nothing, closes on Escape, on its ✕ or on
+ * a click elsewhere, and stays open across repaints until then.
+ */
+function shortcutLegend({ optionCount, confidence, open }) {
+  const last = Math.min(9, Math.max(1, optionCount));
+  const rows = [
+    [`<kbd>1</kbd>–<kbd>${last}</kbd>`, 'Choose an option, in the order shown'],
+    ['<kbd>→</kbd> or <kbd>N</kbd>', 'Next question'],
+    ['<kbd>←</kbd> or <kbd>P</kbd>', 'Previous question'],
+    ['<kbd>F</kbd>', 'Mark for review, or remove the flag'],
+    ['<kbd>U</kbd>', 'Clear your response'],
+    ...(confidence ? [['<kbd>C</kbd>', 'Step through confidence: confident, unsure, guessed, not marked']] : []),
+    ['<kbd>?</kbd>', 'Open Help'],
+    ['<kbd>Ctrl</kbd>/<kbd>⌘</kbd> <kbd>K</kbd>', 'Search for a screen or action'],
+    ['<kbd>Esc</kbd>', 'Close this list, or a dialog'],
+  ];
+  return `<div class="kbd-legend" id="runnerKbdLegend" role="group" aria-labelledby="runnerKbdLegendTitle"${open ? '' : ' hidden'}>
+      <div class="kbd-legend-head">
+        <strong id="runnerKbdLegendTitle">Keyboard shortcuts</strong>
+        <button class="btn btn-quiet btn-icon btn-sm" type="button" data-action="kbd-legend-close" aria-label="Close keyboard shortcuts">✕</button>
+      </div>
+      <dl class="kbd-legend-list">${rows.map(([keys, what]) => `<div><dt>${keys}</dt><dd>${esc(what)}</dd></div>`).join('')}</dl>
+      <p class="tiny muted m-0">Shortcuts pause while you type in a field or a dialog is open.</p>
+    </div>`;
+}
+
 function markup() {
   const { test } = session;
   const { id: questionId, question, index } = currentQuestion();
@@ -136,7 +169,7 @@ function markup() {
       const classes = [r.selected?.length ? 'answered' : '', r.flagged ? 'flagged' : '', i === index ? 'current' : ''].filter(Boolean).join(' ');
       const q = session.questions.get(id);
       const origin = [q?.year ? `${q.year}` : null, q?.question_number ? `paper Q${q.question_number}` : null].filter(Boolean).join(' · ');
-      return `<button type="button" class="${classes}" data-action="goto" data-index="${i}" aria-label="Question ${i + 1} of ${totalQuestions}${origin ? ` (${esc(origin)})` : ''}${r.flagged ? ', flagged' : ''}${r.selected?.length ? ', answered' : ''}">${i + 1}${r.flagged ? '<span class="flag-dot" aria-hidden="true">⚑</span>' : ''}</button>`;
+      return `<button type="button" class="${classes}" data-action="goto" data-index="${i}"${i === index ? ' aria-current="step"' : ''} aria-label="Question ${i + 1} of ${totalQuestions}${origin ? ` (${esc(origin)})` : ''}${r.flagged ? ', flagged' : ''}${r.selected?.length ? ', answered' : ''}">${i + 1}${r.flagged ? '<span class="flag-dot" aria-hidden="true">⚑</span>' : ''}</button>`;
     })
     .join('');
 
@@ -179,7 +212,9 @@ function markup() {
       <button class="btn btn-sm" type="button" data-action="print" title="Print question paper">Print</button>
       <button class="btn btn-sm" type="button" data-action="pause">${test.status === 'paused' ? 'Resume' : 'Pause'}</button>
       <button class="btn btn-primary btn-sm" type="button" data-action="submit">Submit</button>
+      <button class="btn btn-sm btn-icon kbd-legend-toggle" type="button" data-action="kbd-legend" aria-expanded="${Boolean(session.legendOpen)}" aria-controls="runnerKbdLegend" aria-label="Keyboard shortcuts" title="Keyboard shortcuts">?</button>
     </div>
+    ${shortcutLegend({ optionCount: options.length, confidence: test.config.confidence !== 'off', open: Boolean(session.legendOpen) })}
   </div>
 
   <div class="runner">
@@ -247,9 +282,10 @@ function markup() {
         <div class="card-body tight">
           <div class="palette">${paletteHtml}</div>
           <div class="legend">
-            <span><i class="swatch ok"></i> answered</span>
-            <span><i class="swatch warn"></i> flagged</span>
-            <span><i class="swatch"></i> not answered</span>
+            <span><i class="swatch ok" aria-hidden="true"></i> answered</span>
+            <span><i class="swatch warn" aria-hidden="true">⚑</i> flagged</span>
+            <span><i class="swatch" aria-hidden="true"></i> not answered</span>
+            <span><i class="swatch current" aria-hidden="true"></i> current</span>
           </div>
         </div>
       </section>
@@ -544,7 +580,9 @@ function attach(ctx, root, { keepTimer = false } = {}) {
     btn.addEventListener('click', async (ev) => {
       const action = btn.dataset.action;
       ev.preventDefault();
-      if (action === 'select') await selectOption(ctx, root, btn.dataset.key);
+      if (action === 'kbd-legend') setLegendOpen(root, !session.legendOpen);
+      else if (action === 'kbd-legend-close') setLegendOpen(root, false, { returnFocus: true });
+      else if (action === 'select') await selectOption(ctx, root, btn.dataset.key);
       else if (action === 'next') await goto(ctx, root, (session.test.current_index || 0) + 1);
       else if (action === 'prev') await goto(ctx, root, (session.test.current_index || 0) - 1);
       else if (action === 'goto') await goto(ctx, root, Number(btn.dataset.index));
@@ -590,11 +628,44 @@ function attach(ctx, root, { keepTimer = false } = {}) {
   }
 }
 
+/**
+ * Show or hide the shortcut legend in place (no repaint, so nothing moves).
+ * Focus is only moved when the legend closes with focus inside it — it is
+ * about to disappear — and then back to the "?" button, without scrolling.
+ */
+function setLegendOpen(root, open, { returnFocus = false } = {}) {
+  if (!session) return;
+  session.legendOpen = open;
+  const panel = root.querySelector('#runnerKbdLegend');
+  const toggle = root.querySelector('[data-action="kbd-legend"]');
+  const hadFocus = Boolean(panel && panel.contains(document.activeElement));
+  if (panel) panel.hidden = !open;
+  if (toggle) toggle.setAttribute('aria-expanded', String(open));
+  if (!open && toggle && (returnFocus || hadFocus)) {
+    try {
+      toggle.focus({ preventScroll: true });
+    } catch {
+      /* focus is best effort */
+    }
+  }
+}
+
 function wireKeyboard(ctx, root) {
   const handler = async (ev) => {
     const tag = ev.target?.tagName;
     if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || ev.target?.isContentEditable) return;
     if (document.getElementById('modalRoot')?.hidden === false) return;
+    if (ev.key === 'Escape') {
+      // A dialog that handled this Escape has already closed (and prevented it).
+      if (session?.legendOpen && !ev.defaultPrevented) {
+        ev.preventDefault();
+        setLegendOpen(root, false);
+      }
+      return;
+    }
+    // Browser and system shortcuts (Ctrl/⌘ + F, P, C, U…, Alt + ←) are not ours:
+    // without this, Ctrl+P "went to the previous question" instead of printing.
+    if (ev.ctrlKey || ev.metaKey || ev.altKey) return;
     const index = session.test.current_index || 0;
     if (/^[1-9]$/.test(ev.key)) {
       const options = orderedOptions(session.questions.get(session.test.question_ids[index]));
@@ -625,6 +696,23 @@ function wireKeyboard(ctx, root) {
   };
   document.addEventListener('keydown', handler);
   session.keyboardHandler = handler;
+
+  // A click anywhere outside the legend (and outside its "?" button) closes it.
+  const dismiss = (ev) => {
+    if (!session?.legendOpen) return;
+    const panel = root.querySelector('#runnerKbdLegend');
+    const toggle = root.querySelector('[data-action="kbd-legend"]');
+    if (panel?.contains(ev.target) || toggle?.contains(ev.target)) return;
+    setLegendOpen(root, false);
+  };
+  document.addEventListener('click', dismiss);
+  session.legendDismissHandler = dismiss;
+}
+
+/** Remove the document listeners wireKeyboard() added. */
+function unwireKeyboard() {
+  if (session?.keyboardHandler) document.removeEventListener('keydown', session.keyboardHandler);
+  if (session?.legendDismissHandler) document.removeEventListener('click', session.legendDismissHandler);
 }
 
 /* ------------------------------------------------------------------ view --- */
@@ -634,7 +722,7 @@ const view = {
 
   async render(ctx) {
     if (session?.ticker) clearInterval(session.ticker);
-    if (session?.keyboardHandler) document.removeEventListener('keydown', session.keyboardHandler);
+    unwireKeyboard();
     const [testId, sessionId] = ctx.params;
     const loaded = await loadSession(testId, { questionIds: sessionId ? idsFromParam(sessionId) : null });
     if (!loaded) {
@@ -675,7 +763,7 @@ const view = {
    */
   async cleanup() {
     if (session?.ticker) clearInterval(session.ticker);
-    if (session?.keyboardHandler) document.removeEventListener('keydown', session.keyboardHandler);
+    unwireKeyboard();
     document.body?.classList.remove('runner-focus');
     if (session?.test && session.test.status === 'in_progress') {
       await tests.saveTest(session.test).catch((err) => console.warn('Could not save the test on leaving the screen', err));

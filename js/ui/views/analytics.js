@@ -36,11 +36,28 @@ import { fmtPct, fmtDate, fmtDuration, downloadJson, todayKey } from '../../core
 import { loadAnalytics, studyPriorities, MIN_SAMPLE_HINT, MIN_SAMPLE_STRONG } from '../../services/analytics.js';
 import { loadSyllabusWorkspace } from '../../services/syllabus-hub.js';
 import { renderBankPanel, mountBankPanel } from './pyq-analysis.js';
+import { insightsSkeleton } from '../skeletons.js';
 
-const viewState = { subject: 'all', priorityLimit: 12 };
+/**
+ * `panel` is the tab the reader is on. A navigation opens the panel its route
+ * names; an in-place refresh (a filter or chip inside a panel) keeps the one
+ * they chose. Without this, every refresh from inside the bank panel — picking
+ * a subject chip, searching topics — re-rendered the section on the
+ * performance tab and hid what the reader had just changed.
+ */
+const viewState = { subject: 'all', priorityLimit: 12, panel: null };
 
 /** Which panel the section opens on. */
 const PANELS = { performance: 'insights-performance', bank: 'insights-bank' };
+
+/** The panel a route opens on: the bank panel's old address opens the bank panel. */
+const routePanel = (ctx) => (ctx?.route === 'pyq-analysis' ? PANELS.bank : PANELS.performance);
+
+/** The panel to show for this render (see `viewState.panel`). */
+function activePanel(ctx) {
+  if (!ctx?.isRefresh || !viewState.panel) viewState.panel = routePanel(ctx);
+  return viewState.panel;
+}
 
 function verdictBadge(row) {
   const tone = row.verdict === 'strong' ? 'ok' : row.verdict === 'weak' ? 'bad' : row.verdict === 'developing' ? 'warn' : 'info';
@@ -395,10 +412,16 @@ function mountPerformancePanel(ctx) {
 export default {
   title: 'Insights',
 
+  /** Placeholder in the shape of the panel that is about to open (router.js). */
+  skeleton(ctx) {
+    const panel = ctx?.isRefresh && viewState.panel ? viewState.panel : routePanel(ctx);
+    return insightsSkeleton({ panel: panel === PANELS.bank ? 'bank' : 'performance' });
+  },
+
   async render(ctx) {
     // `#/pyq-analysis` and `#/pyq-analysis/<Subject>` were the bank panel's own
     // route before the merge, so arriving by them opens that panel.
-    const viaBankRoute = ctx?.route === 'pyq-analysis';
+    const panel = activePanel(ctx);
     const loaded = await loadAnalytics();
     const [performance, bank] = await Promise.all([renderPerformancePanel(loaded), renderBankPanel(ctx)]);
     const counts = loaded.analytics.counts;
@@ -420,7 +443,7 @@ export default {
       <p class="muted">Two readings of the same preparation: what you have done, and what the papers stored on this device actually contain. They are counted from different data and are never mixed.</p>
       ${strip}
       ${tabs({
-        activeId: viaBankRoute ? PANELS.bank : PANELS.performance,
+        activeId: panel,
         items: [
           { id: PANELS.performance, label: 'My performance', body: performance },
           { id: PANELS.bank, label: 'The question bank', body: bank },
@@ -430,7 +453,9 @@ export default {
 
   async mount(ctx, root) {
     const container = root || document.getElementById('view');
-    mountTabs(container);
+    mountTabs(container, (id) => {
+      if (id === PANELS.performance || id === PANELS.bank) viewState.panel = id;
+    });
     mountPerformancePanel(ctx);
     mountBankPanel(ctx, container);
   },

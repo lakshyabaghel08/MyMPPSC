@@ -482,7 +482,10 @@ test('13. the shared progress bars are drawn with theme fills', async () => {
     const escaped = selector.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     return new RegExp(`(^|[\\s,}])${escaped}\\s*(,[^{]*)?\\{[^}]*\\}`, 'm').exec(css)?.[0] || '';
   };
-  assert.match(rule('.progress-bg'), /fill:\s*var\(--bg-sunken\)/);
+  // The empty track has its own token (dark mode used to draw it at 1.13:1
+  // against the card, i.e. not at all), and its 100% extent a >= 3:1 edge.
+  assert.match(rule('.progress-bg'), /fill:\s*var\(--track\)/);
+  assert.match(css, /\.progress-svg,\s*\.bar-item \.bar-svg\s*\{[^}]*outline:\s*1px solid var\(--border\)/, 'progress tracks show their full extent');
   assert.match(rule('.progress-fg'), /fill:\s*var\(--accent\)/);
   assert.match(rule('.progress-fg.ok'), /fill:\s*var\(--ok\)/);
   assert.match(rule('.bar-fg'), /fill:/);

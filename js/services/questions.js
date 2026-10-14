@@ -9,7 +9,7 @@
 
 import { STORES } from '../core/constants.js';
 import * as db from '../core/db.js';
-import { state, emit } from '../core/state.js';
+import { state, emit, refreshQuestionIndex, deriveClassificationTree } from '../core/state.js';
 import { nowIso, logEvent, chunk } from '../core/util.js';
 import { questionFingerprint, questionTextKey } from '../core/schema.js';
 
@@ -96,6 +96,9 @@ async function refreshIndexEntry(question) {
     text_key: question.text_key,
     updated_at: question.updated_at,
   });
+  // The subject → topic tree is derived from the index; rebuild it so a new
+  // or renamed label shows up in the practice filters without a reload.
+  state.subjects = deriveClassificationTree(state.questionIndex);
   emit('question:updated', { id: question.id });
   emit('bank:changed', { questions: state.questionIndex.size, papers: state.papers.size });
 }
@@ -125,6 +128,145 @@ export async function updateClassification(id, { subject, topic, subtopic, note 
     },
     { kind: 'classification', note, before },
   );
+}
+
+/** The labels a question carries now, with the marker that says the reader set them. */
+function classificationSnapshot(question) {
+  const c = question?.classification || {};
+  return { subject: c.subject ?? null, topic: c.topic ?? null, subtopic: c.subtopic ?? null, userEditedAt: c.userEditedAt ?? null };
+}
+
+const cleanLabel = (value) => {
+  const text = typeof value === 'string' ? value.replace(/\s+/g, ' ').trim() : '';
+  return text || null;
+};
+
+/**
+ * Give many questions the same subject and/or topic (the Question Bank's bulk
+ * action). Each question goes through updateClassification() — the same
+ * existence check, correction entry and preserved imported labels as editing
+ * one question by hand — one at a time. A blank field keeps each question's
+ * own value, exactly as in the single-question editor.
+ *
+ * Questions that already carry the requested labels are left alone: no empty
+ * correction is recorded, and they keep following updates of the bank they
+ * came from. For every question that did change, the labels it had before are
+ * returned, which is what restoreClassifications() needs to undo the batch.
+ *
+ * @returns {Promise<{changed: Array<{id, before, after}>, unchanged: string[], failed: Array<{id, reason}>}>}
+ */
+export async function updateClassifications(ids, { subject = null, topic = null, note = null } = {}) {
+  const nextSubject = cleanLabel(subject);
+  const nextTopic = cleanLabel(topic);
+  if (!nextSubject && !nextTopic) throw new Error('Enter a subject, a topic, or both.');
+  const list = Array.from(new Set((ids || []).filter(Boolean)));
+  const stored = await getQuestions(list);
+  const changed = [];
+  const unchanged = [];
+  const failed = [];
+  for (const id of list) {
+    const question = stored.get(id);
+    if (!question) {
+      failed.push({ id, reason: 'This question is no longer stored.' });
+      continue;
+    }
+    const before = classificationSnapshot(question);
+    if ((nextSubject ?? before.subject) === before.subject && (nextTopic ?? before.topic) === before.topic) {
+      unchanged.push(id);
+      continue;
+    }
+    try {
+      const updated = await updateClassification(id, { subject: nextSubject, topic: nextTopic, note });
+      changed.push({ id, before, after: classificationSnapshot(updated) });
+    } catch (err) {
+      failed.push({ id, reason: err.message });
+    }
+  }
+  if (changed.length) logEvent('questions', `Bulk classification change applied to ${changed.length} question(s)`);
+  return { changed, unchanged, failed };
+}
+
+/**
+ * Put a question's classification back exactly as a snapshot recorded it —
+ * the undo for updateClassifications(). Unlike updateClassification(), a null
+ * restores "no label", and the edit marker comes back too: a question that
+ * carried its imported labels before the batch carries them again and keeps
+ * following bank updates. Recorded as a correction like any other edit; the
+ * imported labels under `classification.original` are never touched.
+ */
+export async function restoreClassification(id, snapshot, { note = null } = {}) {
+  const current = await db.get(STORES.QUESTIONS, id);
+  if (!current) throw new Error(`Question ${id} is not in the local database.`);
+  const { subject, topic, subtopic } = classificationSnapshot(current);
+  return withCorrection(
+    id,
+    (question) => {
+      const classification = question.classification || {};
+      classification.original = classification.original || { subject, topic, subtopic };
+      classification.subject = snapshot?.subject ?? null;
+      classification.topic = snapshot?.topic ?? null;
+      classification.subtopic = snapshot?.subtopic ?? null;
+      classification.userEditedAt = snapshot?.userEditedAt ?? null;
+      classification.isUnclassified = !classification.subject && !classification.topic;
+      question.classification = classification;
+    },
+    { kind: 'classification_restored', note, before: { subject, topic, subtopic } },
+  );
+}
+
+/**
+ * Undo a batch made by updateClassifications(). A question whose labels have
+ * changed again since the batch — edited by hand, or refreshed by a bank
+ * update — is skipped rather than overwritten, so an undo never discards
+ * newer work. Deleted questions are skipped too.
+ */
+export async function restoreClassifications(changes = [], { note = null } = {}) {
+  const restored = [];
+  const skipped = [];
+  const stored = await getQuestions(changes.map((c) => c.id));
+  for (const change of changes) {
+    const question = stored.get(change.id);
+    if (!question) {
+      skipped.push({ id: change.id, reason: 'This question is no longer stored.' });
+      continue;
+    }
+    const now = classificationSnapshot(question);
+    const after = change.after;
+    if (after && (now.subject !== after.subject || now.topic !== after.topic || now.subtopic !== after.subtopic)) {
+      skipped.push({ id: change.id, reason: 'Its labels were changed again after the batch.' });
+      continue;
+    }
+    try {
+      await restoreClassification(change.id, change.before, { note });
+      restored.push(change.id);
+    } catch (err) {
+      skipped.push({ id: change.id, reason: err.message });
+    }
+  }
+  return { restored, skipped };
+}
+
+/**
+ * Delete questions from the local bank. This is the one path behind the
+ * question editor's Delete button, the duplicate review and the bulk action.
+ * Ids that are already gone are reported rather than treated as an error.
+ * Attempts recorded against a deleted question stay in the history (they no
+ * longer resolve to a question); nothing else is touched.
+ *
+ * @returns {Promise<{deleted: string[], missing: string[]}>}
+ */
+export async function deleteQuestions(ids) {
+  const list = Array.from(new Set((ids || []).filter(Boolean)));
+  if (!list.length) return { deleted: [], missing: [] };
+  const stored = await getQuestions(list);
+  const deleted = list.filter((id) => stored.has(id));
+  const missing = list.filter((id) => !stored.has(id));
+  if (deleted.length) await db.removeMany(STORES.QUESTIONS, deleted);
+  await refreshQuestionIndex({ silent: true });
+  // The header's bank pill listens for this; a silent rebuild alone left it stale.
+  emit('bank:changed', { questions: state.questionIndex.size, papers: state.papers.size });
+  logEvent('questions', `Deleted ${deleted.length} question(s)`);
+  return { deleted, missing };
 }
 
 /** Restore the imported classification for a question. */

@@ -35,18 +35,25 @@ const subjectRank = (subject) => {
  *   total: number, unclassified: number, withKey: number, withoutKey: number, explanation: number,
  *   demonstration: number, papers: number,
  *   years: Array<number>, yearSpan: string,
- *   subjects: Array<{subject: string, questions: number, share: number, topics: number, withKey: number, withoutKey: number, explanation: number, demonstration: number, years: Array<number>, byYear: Object<string, number>}>,
- *   topics: Array<{subject: string, topic: string, questions: number, share: number, shareOfSubject: number, withKey: number, withoutKey: number, explanation: number, years: Array<number>, byYear: Object<string, number>}>,
+ *   subjects: Array<{subject: string, questions: number, share: number, topics: number, withKey: number, withoutKey: number, explanation: number, demonstration: number, papers: number, years: Array<number>, byYear: Object<string, number>}>,
+ *   topics: Array<{subject: string, topic: string, questions: number, share: number, shareOfSubject: number, withKey: number, withoutKey: number, explanation: number, papers: number, years: Array<number>, byYear: Object<string, number>}>,
  *   byYear: Array<{year: number|string, questions: number, subjects: number, topics: number}>,
  *   subjectCount: number, topicCount: number,
  * }}
+ *
+ * `papers` on a subject or topic row is how many distinct stored papers hold at
+ * least one of its questions (a topic present in 12 of 12 papers is a staple).
+ * A question counts as demonstration content when the index marks it
+ * `demonstration` — the field `state.questionIndex` actually carries
+ * (`isDemonstration` is accepted from older callers).
  */
 export function summariseBank(metas = Array.from(state.questionIndex.values()), papers = Array.from(state.papers.values())) {
   const list = Array.isArray(metas) ? metas : [];
   const years = Array.from(new Set(list.map((m) => m.year).filter((y) => y !== null && y !== undefined && y !== '')))
     .sort((a, b) => Number(a) - Number(b));
 
-  const blank = () => ({ questions: 0, withKey: 0, withoutKey: 0, explanation: 0, demonstration: 0, byYear: {}, topics: new Map() });
+  const blank = () => ({ questions: 0, withKey: 0, withoutKey: 0, explanation: 0, demonstration: 0, byYear: {}, topics: new Map(), paperIds: new Set() });
+  const isDemo = (meta) => Boolean(meta.demonstration ?? meta.isDemonstration);
   const bySubject = new Map();
   const byTopic = new Map();
   const byYear = new Map();
@@ -65,7 +72,8 @@ export function summariseBank(metas = Array.from(state.questionIndex.values()), 
       if (meta.hasSuppliedAnswer || meta.hasVerifiedAnswer) row.withKey += 1;
       else row.withoutKey += 1;
       if (meta.hasExplanation) row.explanation += 1;
-      if (meta.isDemonstration) row.demonstration += 1;
+      if (isDemo(meta)) row.demonstration += 1;
+      if (meta.paper_id) row.paperIds.add(meta.paper_id);
       row.byYear[yearOf(meta)] = (row.byYear[yearOf(meta)] || 0) + 1;
     }
     y.questions += 1;
@@ -87,6 +95,7 @@ export function summariseBank(metas = Array.from(state.questionIndex.values()), 
       withoutKey: row.withoutKey,
       explanation: row.explanation,
       demonstration: row.demonstration,
+      papers: row.paperIds.size,
       years: Object.keys(row.byYear).sort(),
       byYear: row.byYear,
       topicRows: Array.from(row.topics.values()).map((t) => ({
@@ -98,6 +107,7 @@ export function summariseBank(metas = Array.from(state.questionIndex.values()), 
         withKey: t.withKey,
         withoutKey: t.withoutKey,
         explanation: t.explanation,
+        papers: t.paperIds.size,
         unclassified: t.unclassified,
         years: Object.keys(t.byYear).sort(),
         byYear: t.byYear,
@@ -115,7 +125,7 @@ export function summariseBank(metas = Array.from(state.questionIndex.values()), 
     withKey: list.filter((m) => m.hasSuppliedAnswer || m.hasVerifiedAnswer).length,
     withoutKey: list.filter((m) => !(m.hasSuppliedAnswer || m.hasVerifiedAnswer)).length,
     explanation: list.filter((m) => m.hasExplanation).length,
-    demonstration: list.filter((m) => m.isDemonstration).length,
+    demonstration: list.filter(isDemo).length,
     papers: papers.length,
     years,
     yearSpan: years.length ? (years.length === 1 ? String(years[0]) : `${years[0]}–${years[years.length - 1]}`) : '—',
