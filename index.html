@@ -50,11 +50,9 @@
         </div>
       </div>
       <div class="header-actions">
-        <span class="offline-pill" id="offlinePill" role="status" hidden>Offline — all features still work</span>
-        <span class="bank-pill" id="bankPill" title="Questions stored locally">Bank: —</span>
-        <button class="command-trigger" id="commandBtn" type="button" aria-label="Search and navigate" title="Search and navigate (Ctrl+K)">
+        <button class="command-trigger" id="commandBtn" type="button" aria-label="Search and navigate" title="Search, start and find (Ctrl+K)">
           <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><circle cx="11" cy="11" r="7" /><path d="m20 20-4-4" /></svg></span>
-          <span>Search</span><kbd>Ctrl K</kbd>
+          <span class="command-trigger-label">Search</span><kbd>Ctrl K</kbd>
         </button>
         <button class="btn btn-primary btn-sm" id="quickStartBtn" type="button" aria-label="Quick practice" title="Quick practice">
           <span class="icon" aria-hidden="true">
@@ -73,6 +71,10 @@
           </span>
         </button>
       </div>
+      <div class="resume-strip" id="resumeStrip" role="status" hidden>
+        <span class="resume-strip-text" id="resumeStripText"></span>
+        <a class="btn btn-sm btn-primary" id="resumeStripBtn" href="#/dashboard">Resume</a>
+      </div>
     </header>
 
     <div class="app-body" id="appBody">
@@ -80,7 +82,8 @@
         <ul id="navList"></ul>
         <div class="nav-footer">
           <div class="nav-foot-item"><span class="muted">Local store</span><strong id="navDataSummary">—</strong></div>
-          <button class="btn btn-quiet btn-block" id="navBackupBtn" type="button">Backup now</button>
+          <div class="nav-foot-item"><span class="muted">Question bank</span><strong id="bankPill" title="Questions stored locally">—</strong></div>
+          <span class="offline-pill" id="offlinePill" role="status" hidden>Offline — all features still work</span>
         </div>
       </nav>
       <div class="nav-scrim" id="navScrim" hidden aria-hidden="true"></div>
@@ -92,6 +95,8 @@
         </div>
       </main>
     </div>
+
+    <nav class="tab-bar" id="tabBar" aria-label="Quick navigation"></nav>
 
     <div class="toast-stack" id="toastStack" aria-live="polite" aria-atomic="false"></div>
     <div class="modal-root" id="modalRoot" hidden></div>

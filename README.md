@@ -76,11 +76,13 @@ working, and `npm run check` fails if any of them is undone:
 
 ## What it does
 
+Every screen opens with the same anatomy — one title, one line saying what the screen is for, one primary action — and the same card layout (one heading, an optional count, at most one ⓘ, at most one action). A density budget is enforced in `npm run check`: at most **8 cards per screen**, **250 words per card** (table text excluded), **3 disclosures**, **2 ⓘ toggles** and **60 controls outside a table**, measured on the rendered screen. On a phone the five most-used destinations sit in a bottom tab bar, wide tables become labelled card rows, and every target is at least 44px.
+
 | Area | Behaviour |
 | --- | --- |
-| **PYQ Test Centre** | Full-paper practice in the **stored question order** with a configured time limit when available, plus resume/discard for unfinished sessions. The bundled 2013–2024 bank uses the latest reported +3/−1/0 scheme as a practice policy, not as evidence of historical rules. Incomplete papers, unknown scoring rules, disputed keys and missing keys are labelled before you start. The test screen answers to the keyboard; the **?** button in its header lists the shortcuts. |
+| **Start a session** | One sheet — *Practise now* on the dashboard, *Quick practice* in the header, or `#/practise` — asks **what** (smart mix, whole bank, due revision, open mistakes), **how many** and **feedback timing**, then starts. The full **Topic & Custom Practice** screen is one tap away, and the sheet remembers the size and timing you chose. |
 | **Topic &amp; Custom Practice** | One screen for both: tick any subjects and topics — the pool is the **union** of what you tick, and nothing ticked means the whole bank. Every count belongs to its own subject, the live line says how many questions match, and attempt history, years, papers, question types, subtopic, language and search tuck behind **Narrow further**. A **strategy** decides which questions are picked; **shuffle question order** decides how they are arranged (off means paper order — year, then paper, then question number). One subject with at most one topic is recorded as a *topic* session, anything wider as a *custom* set, which is always labelled as such and never as an authentic paper. Deep links (`#/topic/<Subject>` or `#/topic/<Subject>||<Topic>`) preselect it — that is what the Insights and dashboard tables link to — and `#/custom` still opens the same screen. |
-| **Insights → The question bank** | Counts the previous-year questions stored on this device by subject and by topic: a subject bar chart, then a chosen subject's topics as a chart and a short table (count, share, how many papers hold the topic, practice link). What each paper contributed to each group is one tap away behind ⓘ *Year by year*. It stops at the topic level: subtopic labels come from an import, not from the printed paper, so counting them would describe the bank instead of the exam. Every count matches the Question Bank screen's filters and links through to practice on that group. |
+| **PYQ Test Centre** | Every stored paper in one filterable table (year · paper · questions · duration · scheme · your best · start/resume), with per-row details one control away and unfinished sessions pinned at the top. Full-paper practice runs in the **stored question order** with the paper's duration when available. The bundled 2013–2024 bank uses the latest reported +3/−1/0 scheme as a practice policy, not as evidence of historical rules. Incomplete papers and unknown scoring rules are labelled before you start. The test screen answers to the keyboard; the **?** button lists the shortcuts. | Counts the previous-year questions stored on this device by subject and by topic: a subject bar chart, then a chosen subject's topics as a chart and a short table (count, share, how many papers hold the topic, practice link). What each paper contributed to each group is one tap away behind ⓘ *Year by year*. It stops at the topic level: subtopic labels come from an import, not from the printed paper, so counting them would describe the bank instead of the exam. Every count matches the Question Bank screen's filters and links through to practice on that group. |
 | **Smart Practice** | Builds a session from due revisions, repeated mistakes, skipped questions, weak topics, unseen coverage and under-practised topics, and **explains every allocation line**. Historical frequency is described as a study aid, never a prediction. |
 | **Mistake Book** | Wrong answers, skips, flagged questions, repeated mistakes and correct-but-unsure answers, with the full attempt history per question. Resolving keeps the history. |
 | **Revision Centre** | Due / overdue / upcoming queues where each entry shows the numeric basis for its date (outcome, confidence, level, interval, ease, time taken). Manual override at any time. |
@@ -88,6 +90,8 @@ working, and `npm run check` fails if any of them is undone:
 | **Insights → My performance** | Available questions ≠ unique questions attempted ≠ total attempts — the section states the three once, above both tabs, and neither tab mixes them. First-attempt accuracy is reported separately from overall accuracy, small samples are labelled, and every figure comes from stored attempts. |
 | **Question Bank & Imports** | Two-phase import (analyse → confirm) with schema/version validation, a pre-import summary, duplicate detection, provenance retention, rejected-record inspection, import history and undo. User corrections (classification, verified answer, dispute flag) are appended, never overwritten. The question list supports **bulk actions**: tick rows (or the whole page), then change their subject/topic — recorded as a correction on each question and undoable from the list — or delete them; each asks first. |
 | **Settings & Backup** | Preferences, scoring defaults, revision rules, full JSON backup with SHA-256 integrity, validated restore (merge or replace), storage diagnostics and a guarded destructive zone. |
+| **Search, start and find (⌘K / Ctrl K)** | One keyboard-first front door in three groups: **Go** (all eleven screens), **Do** (start a 20-question set, resume the last test, mark a syllabus line, export a backup) and **Find** (subjects and topics from your bank, syllabus lines, and questions by their text). Every result says where it goes. |
+| **Resume strip** | While a session is in progress, the header says which one, how far it has got and offers **Resume** — on every screen except the runner itself. |
 | **Offline / PWA** | Service worker precaches the shell; the app keeps working offline. |
 
 Answer-key integrity is enforced throughout: a **supplied** key is never overwritten, an independently **verified** answer is stored alongside it with evidence, and keys can be **flagged as disputed**. Three test rules are fixed rather than configurable, so every test is scored the same way and results stay comparable: **confidence marking is always optional**, a **verified answer is preferred** over a supplied key, and a **missing or disputed key is judged with the supplied answer** and flagged in the report. The bundled 2013–2024 papers automatically use the latest practice marking pattern (+3/−1/0); the app does not claim that pattern governed every historical sitting.
@@ -113,7 +117,8 @@ js/app.js                  boot, navigation, routing table
 js/core/                   constants, db (IndexedDB), schema, validate, state, util
 js/services/               scoring, attempts, questions, tests, select, revision,
                            analytics, importer, planner, data (backup)
-js/ui/                     router, components, views/ (one file per screen)
+js/ui/                     router, components (kit), budget (density limits),
+                           practicesheet, views/ (one file per screen)
 data/schema/               versioned question-bank JSON Schema
 data/taxonomy/             canonical subject/topic/subtopic vocabulary for the pipeline
 data/demo/                 synthetic demonstration bank
@@ -122,7 +127,8 @@ data/pyq/                  PYQ pipeline output: bank, classification + review re
 data/syllabus/             extracted 2026 syllabus, study guide, curated PYQ links,
                            hand-written English renderings of the Hindi-only lines
 demo/                      sample intake files for the separate pipeline
-tools/                     serve.mjs, check.mjs, build-bank.mjs, classify-bank.mjs,
+tools/                     serve.mjs, check.mjs, density.mjs (renders the screens for
+                           the density guard), build-bank.mjs, classify-bank.mjs,
                            classify/ (rule engine, taxonomy, reports, AI queue)
 tests/                     node:test suites (services, e2e, UI, tools)
 docs/                      schema, data pipeline, testing, limitations, report

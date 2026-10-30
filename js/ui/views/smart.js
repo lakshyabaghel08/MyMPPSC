@@ -13,7 +13,7 @@
 import { STORES } from '../../core/constants.js';
 import * as db from '../../core/db.js';
 import { state } from '../../core/state.js';
-import { esc, card, notice, dataTable, tile, toast, emptyState, infoToggle } from '../components.js';
+import { esc, card, notice, dataTable, tile, toast, emptyState, cardInfo, screenHead, countChip } from '../components.js';
 import { allAttempts } from '../../services/attempts.js';
 import { buildAttemptSummary, smartPracticePlan, SMART_BUCKETS, computeTopicStats } from '../../services/select.js';
 import { configFields, readConfig, mountConfigFields, startPracticeTest, currentAttemptSummary } from './shared.js';
@@ -27,12 +27,17 @@ export default {
     const metas = Array.from(state.questionIndex.values());
     if (!metas.length) {
       return `
-        <h1>Smart Practice</h1>
+        ${screenHead({
+          title: 'Smart Practice',
+          purpose: 'A session assembled from your recorded performance: revision due, repeated mistakes, skipped questions and unseen coverage.',
+          primary: '<a class="btn btn-primary" href="#/bank">Import a question bank</a>',
+        })}
         ${card({
           title: 'Smart practice needs a question bank',
           body: emptyState({
             title: 'No questions stored yet',
             message: 'Import a validated bank first.',
+            willShow: 'A plan that says how many questions come from each source, and why.',
             action: '<a class="btn btn-primary" href="#/bank">Question Bank &amp; Imports</a>',
           }),
         })}`;
@@ -66,8 +71,12 @@ export default {
     ]);
 
     return `
-      <h1>Smart Practice</h1>
-      <p class="muted">A session assembled from your recorded performance: what is due for revision, what you keep getting wrong, what you skipped, and what you have never seen.</p>
+      ${screenHead({
+        title: 'Smart Practice',
+        purpose: 'A session assembled from your recorded performance: what is due for revision, what you keep getting wrong, what you skipped, and what you have never seen.',
+        primary: `<button class="btn btn-primary" type="button" id="startSmart">Start ${plan.questionIds.length}-question session</button>`,
+        secondary: '<a class="btn btn-sm" href="#/topic">Build it myself</a>',
+      })}
 
       <div class="grid tiles mb-4">
         ${tile({ label: 'Questions due for revision', value: String(plan.counts.revisionDue), sub: 'due today or overdue', tone: plan.counts.revisionDue ? 'accent' : '', source: 'derived', where: 'Scheduled from attempt history' })}
@@ -78,6 +87,8 @@ export default {
 
       ${card({
         title: 'How this session will be built',
+        count: countChip(`${plan.questionIds.length} selected`),
+        info: cardInfo('About this plan', '<p class="small m-0">Historical question frequency is a study-prioritisation aid only. It is not evidence about what a future examination will contain.</p>'),
         body: `
           ${dataTable({ columns: [{ label: 'Source of questions' }, { label: 'Available', num: true }, { label: 'In this session', num: true }, { label: 'Why' }], rows: bucketRows, className: 'compact' })}
           <div class="row mt-3">
@@ -86,16 +97,12 @@ export default {
           </div>
           <details class="disclosure mt-3"><summary>Why this session was generated (${plan.explain.length} point(s))</summary><ul class="small">${plan.explain.map((line) => `<li>${esc(line)}</li>`).join('')}</ul></details>
         `,
-        footer: infoToggle('About this plan', '<p class="small m-0">Historical question frequency is a study-prioritisation aid only. It is not evidence about what a future examination will contain.</p>'),
       })}
 
       ${card({
         title: 'Session settings',
         body: `${configFields({ paper: null, defaultCount: viewState.count, maxCount: metas.length, allowCustomScoring: true })}
-        <div class="sticky-actions">
-          <button class="btn btn-primary" type="button" id="startSmart">Start smart practice</button>
-          <span class="tiny muted">${plan.questionIds.length} question(s) will be included.</span>
-        </div>`,
+        <p class="tiny muted mb-0">${plan.questionIds.length} question(s) will be included. The plan is rebuilt from scratch each time you change the size, so the number above is the session you will get.</p>`,
       })}
 
       ${card({

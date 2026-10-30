@@ -316,15 +316,19 @@ test('8. Insights holds both panels and keeps their data sources apart', async (
   assert.match($('#view h1').textContent, /Insights/);
 
   const tabButtons = $$('#view .tabs .tab').map((tab) => tab.textContent.trim());
-  assert.deepEqual(tabButtons, ['My performance', 'The question bank']);
+  // Three readings, in the order the section reads: what you did, what the
+  // papers contain, and what that suggests studying next.
+  assert.deepEqual(tabButtons, ['My performance', 'The question bank', 'Priorities']);
 
-  // Both panels are rendered; the performance one is shown first.
+  // All panels are rendered; the performance one is shown first.
   const panels = $$('#view .tabpanel');
-  assert.equal(panels.length, 2);
+  assert.equal(panels.length, 3);
   assert.equal(panels[0].hidden, false, 'performance is the default panel');
   assert.equal(panels[1].hidden, true);
+  assert.equal(panels[2].hidden, true);
   assert.match(panels[0].textContent, /All figures come from attempts stored on this device/);
   assert.match(panels[1].textContent, /What the stored papers contain/);
+  assert.match(panels[2].textContent, /Topic frequency in your bank/);
 
   // The boundary that makes the merge honest: counting on one side, measured
   // performance on the other.

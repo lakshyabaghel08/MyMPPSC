@@ -8,7 +8,7 @@
  */
 
 import { state } from '../../core/state.js';
-import { esc, card, badge, icon, dataTable, confirmDialog, toast, evidenceMeter } from '../components.js';
+import { esc, card, badge, icon, dataTable, confirmDialog, toast, evidenceMeter, screenHead, countChip, cardInfo, emptyState } from '../components.js';
 import { fmtPct, fmtDuration, fmtDate, fmtRelative, topicPracticeHref } from '../../core/util.js';
 import { loadAnalytics, dashboardSummary, studyPriorities } from '../../services/analytics.js';
 import * as testsSvc from '../../services/tests.js';
@@ -16,6 +16,7 @@ import { loadSyllabusWorkspace } from '../../services/syllabus-hub.js';
 import * as revision from '../../services/revision.js';
 import { bankSummary } from '../../services/questions.js';
 import { startPracticeTest } from './shared.js';
+import { openPracticeSheet } from '../practicesheet.js';
 import { dashboardSkeleton } from '../skeletons.js';
 
 function tone(value, { good = 0.75, bad = 0.5 } = {}) {
@@ -45,20 +46,22 @@ function metricCard({ iconName, label, value, context, secondaryLabel, secondary
 
 function noBankCard() {
   return `
-    <h1>Welcome to MyMPPSC</h1>
+    ${screenHead({
+      title: 'Welcome to MyMPPSC',
+      purpose: 'A local-first MPPSC Prelims practice app: the bank, your answers, mistakes and revision schedule live in this browser.',
+      primary: '<a class="btn btn-primary" href="#/bank">Import a question bank</a>',
+      secondary: '<a class="btn btn-quiet" href="#/help">How this app works</a>',
+    })}
     ${card({
       title: 'Start by importing a question bank',
       body: `
-        <p>MyMPPSC is a local-first study app. Nothing you do here is uploaded anywhere: the question bank, your answers, your mistakes and your revision schedule all live in this browser's storage, on this device.</p>
         <ol class="small">
           <li>Import a question bank JSON file exported by your own data pipeline (or load the clearly-labelled demonstration bank to look around).</li>
           <li>Take a test — a full paper simulation, a topic set, a custom set or a smart session.</li>
           <li>Review the report, work through your mistake book, and let the revision schedule tell you what is due.</li>
         </ol>
-        <div class="row mt-3">
-          <a class="btn btn-primary" href="#/bank">Question Bank &amp; Imports</a>
+        <div class="row">
           <button class="btn" type="button" id="dashLoadDemo">Load the demonstration bank</button>
-          <a class="btn btn-quiet" href="#/help">How this app works</a>
         </div>
         <p class="tiny muted mt-2 mb-0">Demonstration questions are synthetic examples written to show the schema. They are never presented as authentic MPPSC previous-year questions.</p>`,
     })}`;
@@ -183,16 +186,13 @@ export default {
     });
 
     return `
-      <section class="dashboard-hero" aria-labelledby="dashboardTitle">
-        <div class="dashboard-hero-copy">
-          <span class="section-kicker">Your preparation workspace</span>
-          <h1 id="dashboardTitle">Ready for your next win?</h1>
-          <p>Stay focused with a clear daily plan, evidence-led revision and every practice session in one place.</p>
-        </div>
-        <div class="dashboard-hero-actions">
-          <a class="btn btn-primary" href="#/smart">Start smart practice</a>
-        </div>
-      </section>
+      ${screenHead({
+        title: 'Dashboard',
+        purpose: 'Your daily plan, evidence-led revision and every practice session, counted from what this device has recorded.',
+        primary: '<button class="btn btn-primary" type="button" id="dashPractise">Practise now</button>',
+        secondary:
+          '<a class="btn btn-sm" href="#/test-centre">Paper simulations</a><a class="btn btn-sm" href="#/topic">Topic &amp; custom</a><a class="btn btn-sm" href="#/revision">Revision</a>',
+      })}
 
       ${todayPanel}
 
@@ -231,34 +231,31 @@ export default {
           iconName: 'smart',
           label: 'Study today',
           value: esc(fmtDuration(summary.todayAttempts.minutes * 60)),
-          context: `${summary.todayAttempts.attempts} answers · ${summary.streak}-day streak`,
+          context: `${summary.todayAttempts.attempts} answers · ${summary.activityByDay.filter((d) => d.attempts > 0).length} active day(s)`,
           secondaryLabel: 'Last 7 days',
           secondaryValue: esc(String(summary.activityByDay.reduce((a, d) => a + d.attempts, 0))),
           secondaryContext: `answers · ${summary.activityByDay.filter((d) => d.attempts > 0).length} active day(s)`,
         })}
       </div>
 
-      ${card({
-        title: 'Practise now',
-        body: `
-          <div class="row">
-            <a class="btn btn-primary" href="#/test-centre">Paper simulations</a>
-            <a class="btn" href="#/topic">Topic &amp; custom practice</a>
-            <a class="btn" href="#/smart">Smart practice</a>
-            <a class="btn" href="#/mistakes">Mistake book</a>
-            <a class="btn" href="#/revision">Revision centre</a>
-          </div>`,
-      })}
-
       <div class="split-2">
         <div>
           ${card({
             title: 'Study priorities',
+            count: countChip(`${priorityRows.length} topic${priorityRows.length === 1 ? '' : 's'}`),
             subtitle: 'From your recorded performance, bank coverage and syllabus status',
+            info: cardInfo(
+              'How priorities are ranked',
+              '<p class="small m-0">Priorities combine question frequency in your imported bank, your recorded accuracy and your own syllabus notes. Frequency is a study aid, not a forecast of any future examination.</p>',
+            ),
             body: priorityRows.length
               ? dataTable({ columns: [{ label: 'Topic' }, { label: 'Qs', num: true }, { label: 'Accuracy', num: true }, { label: 'Basis' }, { label: '' }], rows: priorityRows, className: 'compact' })
-              : '<p class="muted small">No topics to prioritise yet.</p>',
-            footer: 'Priorities combine question frequency in your imported bank, your recorded accuracy and your own syllabus notes. Frequency is a study aid, not a forecast of any future examination.',
+              : emptyState({
+                  title: 'No priorities yet',
+                  message: 'Priorities appear once the bank is classified and you have recorded an attempt or marked a syllabus line.',
+                  willShow: 'A ranked list of the topics worth your next session, with the reason beside each one.',
+                  action: '<a class="btn btn-primary" href="#/topic">Practise a topic</a>',
+                }),
           })}
         </div>
 
@@ -287,6 +284,8 @@ export default {
   },
 
   async mount(ctx, root) {
+    document.getElementById('dashPractise')?.addEventListener('click', () => openPracticeSheet(ctx, { source: 'dashboard' }));
+
     document.getElementById('dashReviseDue')?.addEventListener('click', async () => {
       const records = await revision.allRevisionRecords();
       const queue = revision.dueQueue(records);

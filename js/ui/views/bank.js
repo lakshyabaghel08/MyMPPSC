@@ -18,7 +18,7 @@
 import { STORES, ANSWER_POLICIES, FIXED_TEST_RULES } from '../../core/constants.js';
 import { state, refreshQuestionIndex } from '../../core/state.js';
 import * as db from '../../core/db.js';
-import { esc, badge, card, tile, notice, dataTable, toast, openModal, confirmDialog, tabs, mountTabs, renderExplanation, questionTypeLabel, answerKeyBadge, demoBadge, langAttr } from '../components.js';
+import { esc, badge, card, tile, notice, dataTable, toast, openModal, confirmDialog, tabs, mountTabs, renderExplanation, questionTypeLabel, answerKeyBadge, demoBadge, langAttr, screenHead, countChip } from '../components.js';
 import { fmtPct, fmtDate, fmtRelative, readFileAsText, downloadJson, todayKey } from '../../core/util.js';
 import * as importer from '../../services/importer.js';
 import * as builtinBank from '../../services/builtin-bank.js';
@@ -593,13 +593,17 @@ export default {
 
       ${card({
         title: `Questions (${filtered.length} of ${metas.length})`,
-        subtitle: `Page ${viewState.page + 1} of ${pageCount}`,
         className: 'bank-questions',
-        actions: `
-          <button class="btn btn-sm" type="button" id="qPrev" ${viewState.page === 0 ? 'disabled' : ''}>Previous</button>
-          <button class="btn btn-sm" type="button" id="qNext" ${viewState.page >= pageCount - 1 ? 'disabled' : ''}>Next</button>
-          <button class="btn btn-sm btn-quiet" type="button" id="exportBank">Export bank</button>`,
-        body: `${bulkResult}${bulkBar}${dataTable({
+        body: `${bulkResult}${bulkBar}
+          <div class="card-toolbar">
+            <span class="tiny muted">Page ${viewState.page + 1} of ${pageCount}</span>
+            <div class="row tight">
+              <button class="btn btn-sm" type="button" id="qPrev" ${viewState.page === 0 ? 'disabled' : ''}>Previous</button>
+              <button class="btn btn-sm" type="button" id="qNext" ${viewState.page >= pageCount - 1 ? 'disabled' : ''}>Next</button>
+              <button class="btn btn-sm btn-quiet" type="button" id="exportBank">Export bank</button>
+            </div>
+          </div>
+          ${dataTable({
           columns: [{ label: 'Select', headerHtml: selectAll, className: 'select-col' }, { label: 'Question' }, { label: 'Paper / year' }, { label: 'Classification' }, { label: 'Keys' }, { label: '' }],
           rows: pageRows.map((m) => [
             `<label class="row-select"><input type="checkbox" class="row-check" data-action="bank-select" data-value="${esc(m.id)}" ${viewState.selected.has(m.id) ? 'checked' : ''} aria-label="Select question Q${esc(String(m.question_number ?? '—'))} (${esc(m.id)})" /></label>`,
@@ -758,8 +762,12 @@ export default {
       })}`;
 
     return `
-      <h1>Question Bank &amp; Imports</h1>
-      <p class="muted">The question bank is data, not code: this app never needs rebuilding to accept a new paper.</p>
+      ${screenHead({
+        title: 'Question Bank &amp; Imports',
+        purpose: 'The question bank is data, not code: import a validated file, correct what the source got wrong, and export it again — nothing leaves this device.',
+        primary: '<button class="btn btn-primary" type="button" data-action="bank-import">Import a file</button>',
+        secondary: '<button class="btn btn-sm" type="button" data-action="bank-export">Export the bank</button>',
+      })}
       ${tabs({
         id: 'bankTabs',
         activeId: viewState.tab,
@@ -1081,7 +1089,19 @@ export default {
 
     /* ------------------------------------------------------------- misc -- */
     root.addEventListener('click', async (ev) => {
-      const exportBtn = ev.target.closest('#exportBank');
+      const importBtn = ev.target.closest('[data-action="bank-import"]');
+      if (importBtn) {
+        viewState.tab = 'import';
+        const input = root.querySelector('#bankFile');
+        if (input) {
+          input.click();
+        } else {
+          await ctx.refresh();
+          root.querySelector('#bankFile')?.click();
+        }
+        return;
+      }
+      const exportBtn = ev.target.closest('#exportBank, [data-action="bank-export"]');
       if (exportBtn) {
         const payload = await data.exportBankJson({ includeProgressNotes: true });
         downloadJson(payload, `mymppsc-bank-${todayKey()}.json`);
