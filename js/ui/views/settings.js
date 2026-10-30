@@ -10,7 +10,7 @@ import { APP_VERSION, DB_NAME, DB_VERSION, SUPPORTED_SCHEMA_VERSIONS, STORES } f
 import { FIXED_RULES_NOTE } from './shared.js';
 import { state, saveSettings, resetSettings, loadSettings, refreshQuestionIndex } from '../../core/state.js';
 import * as db from '../../core/db.js';
-import { esc, badge, card, tile, dataTable, toast, openModal, confirmDialog, tabs, mountTabs } from '../components.js';
+import { esc, badge, card, tile, dataTable, toast, openModal, confirmDialog, tabs, mountTabs, screenHead } from '../components.js';
 import { fmtBytes, fmtDate, fmtRelative, readFileAsText, downloadJson, getLogRing, todayKey } from '../../core/util.js';
 import * as data from '../../services/data.js';
 import * as builtinBank from '../../services/builtin-bank.js';
@@ -196,7 +196,12 @@ export default {
       })}`;
 
     return `
-      <h1>Settings &amp; Backup</h1>
+      ${screenHead({
+        title: 'Settings &amp; Backup',
+        purpose: 'Your defaults for every session, the revision rules, and the one file that holds everything stored on this device.',
+        primary: '<button class="btn btn-primary" type="button" id="settingsBackupNow">Export a backup</button>',
+        secondary: '<a class="btn btn-sm" href="#/help">What each setting does</a>',
+      })}
       ${tabs({
         id: 'settingsTabs',
         activeId: viewState.tab,
@@ -271,6 +276,14 @@ export default {
     bindCheck('setUnansweredIsMiss', (v) => patchSetting({ revision: { unansweredIsMiss: v } }));
 
     /* -------------------------------------------------------------- backup -- */
+    document.getElementById('settingsBackupNow')?.addEventListener('click', async () => {
+      const backup = await data.buildBackup();
+      downloadJson(backup, `mymppsc-backup-${todayKey()}.json`);
+      data.markBackupTaken({ questions: backup.counts.questions, attempts: backup.counts.attempts });
+      toast(`Backup written: ${backup.counts.questions} question(s), ${backup.counts.attempts} attempt(s).`, 'ok');
+      await ctx.refresh();
+    });
+
     document.getElementById('makeBackup')?.addEventListener('click', async () => {
       const includeTests = Boolean(document.getElementById('backupTests')?.checked);
       const includeQuestions = Boolean(document.getElementById('backupQuestions')?.checked);

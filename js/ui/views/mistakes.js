@@ -24,6 +24,10 @@ import {
   questionTypeLabel,
   answerKeyBadge,
   langAttr,
+  screenHead,
+  countChip,
+  filterChip,
+  cardInfo,
 } from '../components.js';
 import { fmtDate, fmtClock, fmtRelative } from '../../core/util.js';
 import { listMistakes, mistakeCounts, resolveMistake, reopenMistake, removeMistake, attemptHistoryForQuestion, attemptTrend } from '../../services/attempts.js';
@@ -31,6 +35,10 @@ import { getQuestions } from '../../services/questions.js';
 import { startPracticeTest } from './shared.js';
 
 const viewState = { status: 'open', type: 'all', subject: 'all', topic: 'all', year: 'all' };
+
+/** How many filters are away from the screen's starting state. */
+const activeFilterCount = () =>
+  [viewState.type !== 'all', viewState.subject !== 'all', viewState.topic !== 'all', viewState.year !== 'all'].filter(Boolean).length;
 
 function filtersMarkup(metas, counts) {
   const subjects = Array.from(new Set(metas.map((m) => m.subject || 'Unclassified'))).sort();
@@ -76,14 +84,20 @@ export default {
     const counts = await mistakeCounts();
     if (!counts.total) {
       return `
-        <h1>Mistake Book</h1>
-        ${card({
+        ${screenHead({
           title: 'Mistake Book',
+          purpose: 'Wrong answers, skipped questions, flagged questions and correct-but-guessed answers, collected automatically from your tests.',
+          primary: '<a class="btn btn-primary" href="#/test-centre">Start a test</a>',
+          secondary: '<a class="btn btn-sm" href="#/topic">Practise a topic</a>',
+        })}
+        ${card({
+          title: 'Nothing to review yet',
           body: emptyState({
             title: 'No mistakes recorded yet',
             message: metas.length
-              ? 'Incorrect answers, skipped questions, questions you flag for review, repeated mistakes and (when confidence tracking is on) correct but uncertain answers appear here automatically after you submit a test.'
+              ? 'Your first submitted test fills this book automatically. Resolving an item never deletes the attempt behind it.'
               : 'Import a question bank and attempt a test; this screen fills itself from your results.',
+            willShow: 'Every wrong, skipped or flagged question, grouped by topic, with Retry, Resolve and History beside each one.',
             action: metas.length ? '<a class="btn btn-primary" href="#/test-centre">Start a test</a>' : '<a class="btn btn-primary" href="#/bank">Import a question bank</a>',
           }),
         })}`;
@@ -127,8 +141,12 @@ export default {
     }
 
     return `
-      <h1>Mistake Book</h1>
-      <p class="muted">Everything recorded automatically from your tests. Resolving an item keeps its attempt history — nothing is erased.</p>
+      ${screenHead({
+        title: 'Mistake Book',
+        purpose: 'Everything recorded automatically from your tests. Resolving an item keeps its attempt history — nothing is erased.',
+        primary: '<button class="btn btn-primary" type="button" data-action="practise-now">Practise now</button>',
+        secondary: `<a class="btn btn-sm" href="#/revision">Revision queue</a>${filterChip(activeFilterCount())}`,
+      })}
 
       <div class="grid tiles mb-4">
         ${tile({ label: 'Open items', value: String(counts.open), sub: `${counts.repeated} repeated`, tone: counts.open ? 'warn' : 'ok', source: 'measured', where: 'Active unresolved entries' })}
@@ -137,10 +155,16 @@ export default {
         ${tile({ label: 'Uncertain correct', value: String(openByType.low_confidence_correct || 0), sub: 'guesses and unsure answers', source: 'measured', where: 'Correct but marked unsure/guessed' })}
       </div>
 
-      ${card({ title: 'Filters', body: filtersMarkup(metas, counts) })}
+      ${card({
+        title: 'Filters',
+        count: countChip(activeFilterCount() ? `${activeFilterCount()} on` : 'none on'),
+        info: cardInfo('What each filter counts', '<p class="small m-0">Status, mistake type, subject, topic and year all narrow the same list. A filter is remembered for this page, and the count beside the Filters title says how many are on.</p>'),
+        body: filtersMarkup(metas, counts),
+      })}
 
       ${card({
-        title: `Items (${rows.length})`,
+        title: 'Items',
+        count: countChip(`${rows.length} shown`),
         actions: `<button class="btn btn-sm btn-primary" type="button" data-action="retry-all">Retry all shown</button>`,
         body: dataTable({
           columns: [{ label: 'Question' }, { label: 'Why it is here' }, { label: 'Confidence' }, { label: 'Actions' }],
@@ -185,6 +209,22 @@ export default {
       const btn = ev.target.closest('[data-action]');
       if (!btn) return;
       const action = btn.dataset.action;
+
+      if (action === 'clear-filters') {
+        viewState.type = 'all';
+        viewState.subject = 'all';
+        viewState.topic = 'all';
+        viewState.year = 'all';
+        viewState.status = 'open';
+        await ctx.refresh();
+        return;
+      }
+
+      if (action === 'practise-now') {
+        const { openPracticeSheet } = await import('../practicesheet.js');
+        await openPracticeSheet(ctx, { pool: 'mistakes', source: 'mistake book' });
+        return;
+      }
 
       if (action === 'retry') {
         const id = btn.dataset.qid;

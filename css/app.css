@@ -126,7 +126,30 @@
   --lh-base: 1.55;
   --lh-reading: 1.65;
   --lh-deva: 1.82;
-  --measure: 70ch;
+  --measure: 65ch;
+
+  /* Four-step type scale. Every size on a screen comes from one of these four
+     steps; the Devanagari pair beside each step carries the font family and the
+     taller leading that Devanagari needs at that size. `.small`/`.tiny` are the
+     caption step, not a fifth size. */
+  --type-display: 2.25rem;      /* hero figures and the one big number on a page */
+  --type-title: var(--text-xl);  /* h1 and h2 */
+  --type-body: var(--text-base); /* paragraphs, controls, table cells */
+  --type-caption: var(--text-sm); /* labels, footnotes, chips */
+  --lh-display: 1.12;
+  --lh-title: 1.3;
+  --lh-body: var(--lh-base);
+  --lh-caption: 1.45;
+  --lh-deva-display: 1.34;
+  --lh-deva-title: 1.45;
+  --lh-deva-body: var(--lh-deva);
+  --lh-deva-caption: 1.7;
+
+  /* The 8px rhythm. Everything laid out in blocks is a multiple of --rhythm;
+     the 4px steps are only for inline gaps inside a control. */
+  --rhythm: 8px;
+  --space-block: var(--space-4);
+  --space-section: var(--space-6);
 
   /* Shell & Z-index scale */
   --header-h: 58px;
@@ -257,13 +280,31 @@
   }
 }
 
+/* Compact density. This is a reading-density setting, not a zoom: the card
+   padding, the table row height and the type leading all shrink, and every
+   screen picks the change up because it is expressed in these tokens rather
+   than in per-component numbers. */
 :root[data-density="compact"] {
   --pad-card: 12px;
   --pad-card-head: 9px 12px;
   --pad-tile: 10px 12px;
-  --pad-cell-y: 5px;
+  --pad-cell-y: 4px;
   --pad-cell-x: 7px;
   --gap-grid: 12px;
+  --lh-base: 1.42;
+  --lh-reading: 1.5;
+  --lh-title: 1.22;
+  --lh-deva-body: 1.62;
+  --lh-deva-reading: 1.7;
+  --card-gap: var(--space-3);
+  --space-block: var(--space-3);
+  --space-section: var(--space-4);
+}
+
+/* Reading density: comfortable (default) keeps a little more air. */
+:root[data-density="comfortable"] {
+  --card-gap: var(--space-4);
+  --lh-deva-reading: 1.95;
 }
 
 @media (prefers-contrast: more) {
@@ -942,6 +983,84 @@ body.runner-focus .view {
 .today-item.ok { border-top-color: var(--ok); }
 
 /* -------------------------------------------------------------------------
+   6. Screen Hierarchy — one heading block, one sticky tab bar, cap titles
+   ------------------------------------------------------------------------- */
+
+/*
+ * Every screen opens with exactly this, built by `screenHead()` in
+ * js/ui/components.js: the single <h1>, one line saying what the screen is for,
+ * and its actions (one primary, then secondaries). Nothing else may introduce
+ * an h1, and no screen repeats its title inside a card.
+ */
+.screen-head-text {
+  min-width: 0;
+  flex: 1 1 320px;
+}
+
+.screen-head h1 {
+  font-size: var(--type-title);
+  line-height: var(--lh-title);
+  margin: 0;
+}
+
+.screen-head .screen-actions .btn-sm {
+  min-height: 34px;
+}
+
+.screen-head h1[lang="hi"] {
+  line-height: var(--lh-deva-title);
+}
+
+.screen-purpose {
+  margin: var(--space-1) 0 0;
+  max-width: var(--measure);
+  color: var(--text-muted);
+  font-size: var(--type-caption);
+  line-height: var(--lh-caption);
+}
+
+.screen-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.screen-actions-secondary {
+  display: flex;
+  gap: var(--space-1);
+  flex-wrap: wrap;
+}
+
+/* Long tables keep their column names while the rows scroll: the wrapper
+   scrolls, the head sticks to the top of it. */
+.card-body .table-wrap {
+  max-height: 72vh;
+  overflow: auto;
+}
+
+table.data thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--bg-elevated);
+}
+
+/* A sticky tab bar hugs the header, so a long screen keeps its sections. */
+.screen-tabs {
+  position: sticky;
+  top: var(--header-h);
+  z-index: var(--z-sticky);
+  background: var(--bg);
+  padding-top: var(--space-1);
+  margin-bottom: var(--space-4);
+}
+
+.screen-tabs .tab {
+  min-height: 40px;
+}
+
+/* -------------------------------------------------------------------------
    7. Cards, Layout Grids & Stat Tiles
    ------------------------------------------------------------------------- */
 
@@ -950,22 +1069,73 @@ body.runner-focus .view {
   border: 1px solid var(--border);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--card-gap, var(--space-4));
 }
 
+/*
+ * One card anatomy (docs/UI.md §7): a title row that holds the h2, an optional
+ * count chip, at most one ⓘ and at most one action; a body; an optional footer.
+ * The title row never wraps into a second line of controls.
+ */
 .card-head {
   padding: var(--pad-card-head);
   border-bottom: 1px solid var(--border);
   border-top-left-radius: var(--radius);
   border-top-right-radius: var(--radius);
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  justify-content: space-between;
   gap: var(--space-2);
   flex-wrap: wrap;
 }
 
-.card-head h2, .card-head h3 {
+.card-head-text {
+  min-width: 0;
+  flex: 1 1 220px;
+}
+
+.card-title-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  min-width: 0;
+}
+
+.card-head h2,
+.card-head h3,
+.card-head h4 {
   margin: 0;
+}
+
+.card-head h2 {
+  font-size: var(--text-lg);
+  line-height: var(--lh-title);
+}
+
+.card-head h3 {
+  font-size: var(--text-base);
+  line-height: var(--lh-title);
+}
+
+.card-head h2[lang="hi"],
+.card-head h3[lang="hi"] {
+  line-height: var(--lh-deva-title);
+}
+
+.card-subtitle {
+  margin-top: 2px;
+  max-width: var(--measure);
+}
+
+/* The one action a card head may carry. A card that needs several controls puts
+   a `.card-toolbar` row at the top of its body instead. */
+.card-head .card-action {
+  margin-left: auto;
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .card-head .card-actions {
@@ -974,6 +1144,72 @@ body.runner-focus .view {
   gap: var(--space-2);
   align-items: center;
   flex-wrap: wrap;
+}
+
+.card-head .card-info {
+  margin: 0;
+}
+
+.count-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 22px;
+  padding: 1px 8px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border);
+  background: var(--bg-sunken);
+  color: var(--text-muted);
+  font-size: var(--text-xs);
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.count-chip.ok { border-color: var(--ok); color: var(--ok); background: var(--ok-soft); }
+.count-chip.warn { border-color: var(--warn); color: var(--warn); background: var(--warn-soft); }
+.count-chip.bad { border-color: var(--bad); color: var(--bad); background: var(--bad-soft); }
+.count-chip.info { border-color: var(--info); color: var(--info); background: var(--info-soft); }
+
+/* A toolbar inside a card body: several controls, one row, never in the head. */
+.card-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-3);
+}
+
+.card-body > p:last-child,
+.card-body > ul:last-child,
+.card-body > ol:last-child {
+  margin-bottom: 0;
+}
+
+/* "N filters on" chip: every filtered screen shows one while it is filtered. */
+.filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 2px 4px 2px 10px;
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-pill);
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+  font-size: var(--text-xs);
+  min-height: 30px;
+}
+
+.filter-chip .btn {
+  min-height: 26px;
+  padding: 2px 8px;
+  color: var(--accent-strong);
+}
+
+.show-all-row {
+  display: flex;
+  justify-content: center;
+  padding-top: var(--space-2);
 }
 
 .card-body {
@@ -3938,11 +4174,18 @@ table.data th, table.data td {
   max-width: 1180px;
 }
 
-.syl-head {
+.syl-controls {
   display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-  margin-bottom: var(--space-5);
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.syl-controls .syl-search {
+  flex: 1 1 260px;
+  max-width: 420px;
 }
 
 .syl-head-top {
@@ -5591,11 +5834,288 @@ details > summary {
   .pyq-heat-legend {
     display: none;
   }
+
+  /* ---- labelled card rows instead of a sideways-scrolling table (≤560px) ---- */
+.app-main {
+    padding-bottom: calc(var(--space-10) + var(--touch-min));
+  }
+
+  .tab-bar {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: var(--z-drawer);
+    background: var(--bg-elevated);
+    border-top: 1px solid var(--border);
+    padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+
+  .tab-bar-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    min-height: var(--touch-min);
+    padding: 6px 2px;
+    border: 0;
+    background: transparent;
+    color: var(--text-muted);
+    font: inherit;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    line-height: 1.2;
+    cursor: pointer;
+  }
+
+  .tab-bar-item[aria-current="page"] {
+    color: var(--accent-strong);
+    background: var(--accent-soft);
+  }
+
+  .tab-bar-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .tab-bar-label {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .resume-strip {
+    order: 5;
+  }
+
+  /* A wide table becomes a list of labelled rows: one card per record, each
+     cell carrying its column name, rather than a horizontal scroll. */
+  table.data.cards-mobile,
+  table.data.cards-mobile tbody,
+  table.data.cards-mobile tr,
+  table.data.cards-mobile td {
+    display: block;
+    width: 100%;
+  }
+
+  table.data.cards-mobile {
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+
+  table.data.cards-mobile thead tr {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  table.data.cards-mobile thead th {
+    display: none;
+  }
+
+  table.data.cards-mobile thead th.select-col {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    width: 100%;
+    border-bottom: 1px solid var(--border);
+  }
+
+  table.data.cards-mobile thead th.select-col::after {
+    content: 'Select all on this page';
+    font-weight: 600;
+    color: var(--text-muted);
+  }
+
+  table.data.cards-mobile tbody tr {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    margin-bottom: var(--space-2);
+    padding: var(--space-2);
+    background: var(--bg-elevated);
+  }
+
+  table.data.cards-mobile td {
+    border: 0;
+    padding: 4px 0;
+    text-align: left;
+  }
+
+  table.data.cards-mobile td[data-label]::before {
+    content: attr(data-label);
+    display: block;
+    font-size: var(--text-xs);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  table.data.cards-mobile td.num {
+    text-align: left;
+  }
+
+  /* Every option in the runner is a full-width target, comfortably above
+     44px, and the answer bar stays in reach at the bottom of the screen. */
+  .option-row {
+    min-height: 56px;
+  }
+
+  .runner-nav {
+    position: sticky;
+    bottom: 0;
+    background: var(--bg-elevated);
+    border-top: 1px solid var(--border);
+    padding: var(--space-2) 0;
+    z-index: var(--z-sticky);
+  }
+
+  .runner-nav .btn {
+    min-height: var(--touch-min);
+  }
+
+  .syl-progress-head {
+    position: sticky;
+    top: var(--header-h);
+    z-index: var(--z-sticky);
+    background: var(--bg);
+  }
 }
 
 /* -------------------------------------------------------------------------
    14. Forced Colors (Windows High Contrast) & Reduced Motion
    ------------------------------------------------------------------------- */
+
+
+/* -------------------------------------------------------------------------
+   Shell additions — resume strip, phone tab bar, command intents, practice
+   sheet, and the labelled card rows that replace wide tables on a phone.
+   ------------------------------------------------------------------------- */
+
+/* The resume strip lives in the header, so a session in progress is one click
+   away on every screen except the runner. It gets its own row on wide screens
+   and sits under the header row on a phone. */
+.resume-strip {
+  flex: 1 1 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  padding: 6px 10px;
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-sm);
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+  font-size: var(--text-xs);
+  font-weight: 600;
+}
+
+.resume-strip-text {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.resume-strip .btn {
+  flex: 0 0 auto;
+}
+
+/* The five most-used destinations on a phone. Above 560px the sidebar already
+   lists every destination, so the bar is not rendered at all. */
+.tab-bar {
+  display: none;
+}
+
+body.tab-bar-open {
+  padding-bottom: calc(var(--touch-min) + 10px);
+}
+
+/* Command palette: intent groups with headings, and a visible active item. */
+.command-group + .command-group,
+.command-results > div + .command-group {
+  margin-top: var(--space-2);
+}
+
+.command-group-title {
+  margin: 6px 0 2px;
+  padding: 0 10px;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  max-width: none;
+}
+
+.command-item-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.command-item-text strong {
+  font-weight: 620;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.command-item-text small {
+  color: var(--text-muted);
+  font-size: var(--text-xs);
+}
+
+.command-where {
+  flex: 0 0 auto;
+  max-width: 45%;
+  font-size: var(--text-xs);
+  color: var(--text-soft);
+  text-align: right;
+}
+
+.command-item[aria-selected="true"],
+.command-item.is-active {
+  background: var(--accent-soft);
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+
+.command-item[hidden] {
+  display: none !important;
+}
+
+/* The practice sheet: what · how many · feedback · Start. */
+.practice-sheet-what {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: var(--space-2) var(--space-3) var(--space-3);
+  margin: 0 0 var(--space-3);
+}
+
+.practice-sheet-what legend {
+  padding: 0 var(--space-1);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .command-item,
+  .tab-bar-item,
+  .resume-strip {
+    transition: background-color var(--dur-fast) var(--ease-out);
+  }
+}
 
 @media (forced-colors: active) {
   :root {

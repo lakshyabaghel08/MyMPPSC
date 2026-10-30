@@ -141,17 +141,152 @@ export const demoBadge = (isDemo) =>
     ? '<span class="demo-flag" title="Synthetic demonstration content — not a genuine previous-year question">demonstration</span>'
     : '';
 
-export function card({ title = null, subtitle = null, actions = '', right = '', body = '', footer = null, tone = '', id = null, className = '' } = {}) {
-  const rightContent = actions || right;
-  const head =
-    title || subtitle || rightContent
-      ? `<div class="card-head"><div>${title ? `<h2>${esc(title)}</h2>` : ''}${subtitle ? `<div class="muted small">${esc(subtitle)}</div>` : ''}</div>${rightContent ? `<div class="card-actions">${rightContent}</div>` : ''}</div>`
-      : '';
+/**
+ * A screen's single title block (see docs/UI.md §6).
+ *
+ *   <header class="screen-head">
+ *     <h1>…</h1>                     ← the only h1 on the screen
+ *     <p class="screen-purpose">…</p> ← one line: what this screen is for
+ *     <div class="screen-actions">    ← one primary, then secondary actions
+ *   </header>
+ *
+ * Every screen renders exactly one of these through `screenHead()`, so the
+ * heading level, the purpose line and the action placement cannot drift
+ * screen by screen. `primary` and `secondary` are trusted markup.
+ */
+export function screenHead({ title, purpose = '', primary = '', secondary = '', className = '' } = {}) {
+  return `<header class="screen-head ${esc(className)}">
+    <div class="screen-head-text">
+      <h1>${title}</h1>
+      ${purpose ? `<p class="screen-purpose">${purpose}</p>` : ''}
+    </div>
+    ${primary || secondary ? `<div class="screen-actions">${primary}${secondary ? `<div class="screen-actions-secondary">${secondary}</div>` : ''}</div>` : ''}
+  </header>`;
+}
+
+/**
+ * A count chip for a card's title row: "12", "3 of 12", "42 questions".
+ * It is a chip, not a heading, so the card keeps exactly one h2.
+ */
+export const countChip = (text, tone = '') => `<span class="count-chip ${esc(tone)}">${esc(String(text))}</span>`;
+
+/**
+ * One card, one fixed anatomy (docs/UI.md §7):
+ *
+ *   .card-head  → h2 + optional count chip + at most one ⓘ + at most one action
+ *   .card-body
+ *   .card-foot  (optional)
+ *
+ * `actions` and `right` are kept as the same single slot for older callers that
+ * pass one control; a caller that needs several controls puts a `.card-toolbar`
+ * row at the top of `body` instead, so the title row stays one line.
+ */
+export function card({ title = null, subtitle = null, count = null, info = '', action = '', actions = '', right = '', body = '', footer = null, tone = '', id = null, className = '', heading = 2 } = {}) {
+  const level = Number(heading) >= 2 && Number(heading) <= 4 ? Number(heading) : 2;
+  const actionContent = action || actions || right;
+  const hasHead = title || subtitle || actionContent;
+  const head = hasHead
+    ? `<div class="card-head">
+        <div class="card-head-text">
+          <div class="card-title-row">${title ? `<h${level}>${title}</h${level}>` : ''}${count !== null && count !== undefined && count !== '' ? countChip(count) : ''}${info}</div>
+          ${subtitle ? `<div class="card-subtitle muted small">${subtitle}</div>` : ''}
+        </div>
+        ${actionContent ? `<div class="card-action">${actionContent}</div>` : ''}
+      </div>`
+    : '';
   return `<section class="card ${tone} ${className}" ${id ? `id="${esc(id)}"` : ''}>
     ${head}
     <div class="card-body">${body}</div>
     ${footer === null || footer === '' ? '' : `<div class="card-foot">${footer}</div>`}
   </section>`;
+}
+
+/**
+ * The card's one ⓘ: methodology, provenance and definitions live here rather
+ * than on the surface. Every screen may carry at most two of these (the density
+ * budget in tools/check.mjs enforces it), so a card title row shows at most one.
+ */
+export const cardInfo = (summary, body) => infoToggle(summary, body, { className: 'card-info' });
+
+/**
+ * A sticky tab bar for a screen (`<div class="screen-tabs">`). Same APG
+ * behaviour as `tabs()`, including `mountTabs()`, with a class that makes it
+ * stick under the header.
+ */
+export function screenTabs({ id = '', items = [], activeId = null } = {}) {
+  if (!items.length) return '';
+  const selectedId = activeId || items[0].id;
+  return `<div class="tabs screen-tabs" role="tablist" ${id ? `id="${esc(id)}"` : ''} aria-label="Sections">
+    ${items
+      .map((item) => {
+        const isSelected = item.id === selectedId;
+        return `<button class="tab" role="tab" type="button" data-tab="${esc(item.id)}" aria-selected="${isSelected}" tabindex="${isSelected ? '0' : '-1'}" aria-controls="${esc(item.id)}-panel" id="${esc(item.id)}-tab">${esc(item.label)}</button>`;
+      })
+      .join('')}
+  </div>
+  ${items
+    .map((item) => {
+      const isSelected = item.id === selectedId;
+      const panelHtml = item.body ?? item.content ?? '';
+      return `<div class="tabpanel" id="${esc(item.id)}-panel" role="tabpanel" tabindex="0" aria-labelledby="${esc(item.id)}-tab" ${isSelected ? '' : 'hidden'}>${panelHtml}</div>`;
+    })
+    .join('')}`;
+}
+
+/**
+ * Per-screen filter memory.
+ *
+ * Every filtered screen re-renders itself in place when a filter changes, and a
+ * reader who comes back to the screen expects the filters they set to still be
+ * on. The state lives for the lifetime of the page, one entry per screen — the
+ * same rule the session form uses (`views/shared.js`). `count` reports how many
+ * values differ from the defaults, which is what the "N filters on" chip shows.
+ */
+export function createFilterState(defaults) {
+  const initial = { ...defaults };
+  let current = { ...defaults };
+  return {
+    get: () => ({ ...current }),
+    set(patch) {
+      current = { ...current, ...patch };
+      return { ...current };
+    },
+    reset() {
+      current = { ...initial };
+      return { ...current };
+    },
+    count() {
+      return Object.keys(initial).filter((key) => {
+        const value = current[key];
+        const base = initial[key];
+        if (Array.isArray(base)) return (Array.isArray(value) ? value : []).length !== base.length;
+        if (typeof base === 'boolean') return value !== base;
+        return String(value) !== String(base);
+      }).length;
+    },
+  };
+}
+
+/**
+ * "N filters on" chip + one way to clear them. Every filtered screen shows one
+ * when filters are active, so a reader can always tell why the list is short.
+ */
+export function filterChip(count, { clearAction = 'clear-filters', unit = 'filter' } = {}) {
+  if (!count) return '';
+  return `<span class="filter-chip" data-filter-count="${count}">
+    <strong>${count} ${esc(unit)}${count === 1 ? '' : 's'} on</strong>
+    <button class="btn btn-quiet btn-sm" type="button" data-action="${esc(clearAction)}">Clear</button>
+  </span>`;
+}
+
+/**
+ * "Show all" under a capped list. `hidden` names how many rows are held back;
+ * the control only appears when there are any, so a short list never carries a
+ * dead button.
+ */
+export function showAll({ action = 'show-all', hidden = 0, label = 'Show all' } = {}) {
+  if (!hidden) return '';
+  return `<div class="show-all-row"><button class="btn btn-sm" type="button" data-action="${esc(action)}">${esc(label)} <span class="muted">(+${hidden})</span></button></div>`;
 }
 
 export function tile({ label, value, sub = '', tone = '' }) {
@@ -170,10 +305,18 @@ export function notice(html, tone = 'info', { title = null } = {}) {
   return `<div class="notice ${tone}">${title ? `<strong>${esc(title)}</strong> ` : ''}${html}</div>`;
 }
 
-export const emptyState = ({ title, message = '', body = '', action = '', actionHref = null, actionLabel = '' } = {}) => {
+/**
+ * An empty state with exactly one way forward (docs/UI.md §6d).
+ *
+ * `willShow` names what appears here once the action is taken, so an empty
+ * screen never leaves the reader guessing what it is for. Callers pass one
+ * action — a button (`action`) or a link (`actionHref` + `actionLabel`) — never
+ * both; the density suite checks it.
+ */
+export const emptyState = ({ title, message = '', body = '', action = '', actionHref = null, actionLabel = '', willShow = '' } = {}) => {
   const text = message || body;
   const actionHtml = action || (actionHref && actionLabel ? `<a class="btn btn-primary" href="${esc(actionHref)}">${esc(actionLabel)}</a>` : '');
-  return `<div class="empty-block"><strong>${esc(title)}</strong>${text ? `<p class="muted small">${text}</p>` : ''}${actionHtml ? `<div class="empty-actions">${actionHtml}</div>` : ''}</div>`;
+  return `<div class="empty-block"><strong>${esc(title)}</strong>${text ? `<p class="muted small">${text}</p>` : ''}${willShow ? `<p class="empty-what tiny">${esc(willShow)}</p>` : ''}${actionHtml ? `<div class="empty-actions">${actionHtml}</div>` : ''}</div>`;
 };
 
 export const loadingState = (message = 'Loading local data…') =>

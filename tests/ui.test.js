@@ -171,7 +171,9 @@ test('PYQ Analysis counts the bundled bank and deep-links into practice', async 
   assert.match(viewText(), /(?:1,200|1200)/, 'the whole bundled bank is counted');
   assert.match(viewText(), /2013–2024/, 'year columns and span include the historical papers');
 
-  const link = $$('#view a[href^="#/topic/"]')[0];
+  // Scope to the bank panel: the performance panel above it also offers
+  // practice links, and this test is about the counts this panel produces.
+  const link = $$('#view #insights-bank-panel a[href^="#/topic/"]')[0];
   assert.ok(link, 'a subject row offers a way to practise it');
   const target = decodeURIComponent(link.getAttribute('href').replace('#/topic/', ''));
   const [subject] = target.split('||');
@@ -189,7 +191,7 @@ test('PYQ Analysis counts the bundled bank and deep-links into practice', async 
 
   // Returning to PYQ Analysis, filtering by a subject chip, and following a topic-level Practice link
   await goto('pyq-analysis');
-  const topicLink = $$('#view a[href^="#/topic/"]').find((a) => decodeURIComponent(a.getAttribute('href')).includes('||'));
+  const topicLink = $$('#view #insights-bank-panel a[href^="#/topic/"]').find((a) => decodeURIComponent(a.getAttribute('href')).includes('||'));
   assert.ok(topicLink, 'a topic row offers a direct Practice link for that subject and topic');
   const topicTarget = decodeURIComponent(topicLink.getAttribute('href').replace('#/topic/', ''));
   const [topicSubject, topicName] = topicTarget.split('||');

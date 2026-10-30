@@ -370,3 +370,77 @@ display languages end to end) and three regressions in
 `tests/ui-improvements.test.js`. The check count fell from 943 to 933 because
 the guards that asserted the deleted Custom Test screen were replaced by guards
 for the alias and the navigation map.
+
+## 8. Information density, screen anatomy and a front door (2026-10-30)
+
+The interface worked, but it read like documentation: Test Centre was twelve
+near-identical 55-word cards with fourteen ⓘ toggles, the Mistake Book had a
+single 2,332-word card with 541 buttons, and no screen had a title block that
+said what it was for. This pass is about the shape of a screen, not about adding
+features.
+
+### What changed
+
+* **One anatomy.** `screenHead()` emits a `<header class="screen-head">` with
+  the screen's only `<h1>`, one purpose line and its actions. All eleven
+  destinations use it. `card()` has one title row — one heading, an optional
+  `countChip()`, at most one `cardInfo()` ⓘ and at most one action.
+* **A density budget, enforced.** `js/ui/budget.js` defines the limits and
+  `tools/check.mjs` measures the *rendered* screens for them (it boots the app in
+  jsdom once, seeds a demonstration bank and a little recorded activity, and
+  renders all eleven). Cards per screen ≤ 8, words per card ≤ 250 (table text
+  excluded), disclosures ≤ 3, ⓘ ≤ 2, controls outside a table ≤ 60. Raising a
+  limit means editing the budget file *and* the pull request.
+* **Test Centre** is one filterable table — year, paper, questions, duration,
+  scheme, best score, start/resume — with per-row details behind a button and
+  unfinished sessions pinned above it. 796 words / 14 ⓘ / 14 disclosures became
+  75 words / 1 ⓘ / 1 disclosure in the measured state.
+* **Insights** is three tabs: *My performance* (eight cards, with weak / strong /
+  too thin merged into one verdict table and coverage gaps in another), *The
+  question bank* (unchanged data source), and *Priorities* (topic frequency and
+  study priorities, both capped at ten rows with *Show all*). The data-source
+  boundary still holds in both directions.
+* **One practice sheet** — dashboard *Practise now*, header *Quick practice* and
+  `#/practise` — asks what, how many and feedback timing, reuses the shared
+  session form (including its per-screen memory), states the three frozen rules
+  instead of offering them, and keeps the full Topic & Custom Practice screen one
+  tap away.
+* **A resume strip** in the header while a session is in progress, on every
+  screen but the runner.
+* **⌘K** is a front door in three groups: Go (all eleven screens), Do (start a
+  20-question set, resume, mark a syllabus line, export a backup) and Find
+  (subjects, topics, syllabus lines, questions by text). Every item says where
+  it goes; the whole flow is keyboard-only.
+* **Shell declutter.** The header keeps brand, search, quick practice, theme and
+  help; the duplicate *Backup now* control left the navigation footer (the one in
+  Settings remains), and the eleven destinations are still listed exactly once.
+* **Phone.** A five-item bottom tab bar with a *More* button that opens the
+  drawer, labelled card rows in place of wide tables, a sticky runner answer bar,
+  larger option targets, and rules asserted from the stylesheet.
+
+### Judgement calls
+
+* The budget counts a card's **prose**, not its tables: a 25-row table's volume
+  is governed by paging, and counting it as words would make the limit
+  meaningless. The same reasoning applies to row controls in a syllabus tree or a
+  practice picker — they belong to the row, like a table cell's, so they are not
+  "controls outside a table".
+* A screen is measured on **what is visible**: hidden tab panels, collapsed
+  `<details>` and `[hidden]` subtrees are excluded. Measuring all tabs at once
+  would fail screens nobody ever sees, and hiding content to pass a limit would
+  be the opposite of the point.
+* Syllabus rows are still not paged; the tree is the navigation, and the budget
+  now treats its rows as data rows. The deeper restructure (h3 per section,
+  paged topics) remains open and is noted in the pull request.
+
+### Verified
+
+`npm test` → **306/306**, `npm run check` → **1042 checks**, both green. New
+suites: `tests/screen-anatomy.test.js` (nine cases: anatomy on every screen,
+heading order, card title rows, the density budget, token-driven card rules,
+compact density, the phone shell, the runner's desktop tools) and
+`tests/practice-flow.test.js` (six cases: three entry points, a real session with
+the frozen rules, form memory, the resume strip, ⌘K's Go/Do/Find). Two existing
+assertions were replaced rather than deleted: the Insights tab list now names
+three panels, and the PYQ deep-link test scopes its link lookup to the bank
+panel because the performance panel above it now has practice links of its own.

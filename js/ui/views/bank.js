@@ -18,7 +18,7 @@
 import { STORES, ANSWER_POLICIES, FIXED_TEST_RULES } from '../../core/constants.js';
 import { state, refreshQuestionIndex } from '../../core/state.js';
 import * as db from '../../core/db.js';
-import { esc, badge, card, tile, notice, dataTable, toast, openModal, confirmDialog, tabs, mountTabs, renderExplanation, questionTypeLabel, answerKeyBadge, demoBadge, langAttr } from '../components.js';
+import { esc, badge, card, tile, notice, dataTable, toast, openModal, confirmDialog, tabs, mountTabs, renderExplanation, questionTypeLabel, answerKeyBadge, demoBadge, langAttr, screenHead, countChip, filterChip, showAll } from '../components.js';
 import { fmtPct, fmtDate, fmtRelative, readFileAsText, downloadJson, todayKey } from '../../core/util.js';
 import * as importer from '../../services/importer.js';
 import * as builtinBank from '../../services/builtin-bank.js';
@@ -41,6 +41,8 @@ const viewState = {
   selected: new Set(),
   /** The last bulk subject/topic change, kept so it can be undone: `{ changes, message }`. */
   lastBulk: null,
+  /** Whether the near-duplicate list is showing every pair or the first ten. */
+  showAllDuplicates: false,
 };
 
 /* ---------------------------------------------------------- bulk helpers -- */
@@ -574,32 +576,54 @@ export default {
         </div>
       </div>`;
 
+    const activeFilters = [
+      viewState.filters.search ? `search “${viewState.filters.search}”` : '',
+      viewState.filters.subject !== 'all' ? viewState.filters.subject : '',
+      viewState.filters.topic !== 'all' ? viewState.filters.topic : '',
+      viewState.filters.year !== 'all' ? `year ${viewState.filters.year}` : '',
+      viewState.filters.paperId !== 'all' ? 'one paper' : '',
+      viewState.filters.demonstration !== 'all' ? 'demonstration split' : '',
+      viewState.filters.attention ? 'needs attention' : '',
+    ].filter(Boolean);
+
     const questionsTab = `
       ${card({
         title: 'Filters',
+        count: countChip(`${filtered.length} of ${metas.length}`),
         body: `
-          <div class="filters">
-            <label class="field"><span class="label-text">Search</span><input type="search" id="qSearch" value="${esc(viewState.filters.search)}" placeholder="id, subject, topic or number" /></label>
-            <label class="field"><span class="label-text">Subject</span><select id="qSubject"><option value="all">All</option>${subjects.map((s) => `<option value="${esc(s)}" ${viewState.filters.subject === s ? 'selected' : ''}>${esc(s)}</option>`).join('')}</select></label>
-            <label class="field"><span class="label-text">Topic</span><select id="qTopic"><option value="all">All</option>${topics.map((t) => `<option value="${esc(t)}" ${viewState.filters.topic === t ? 'selected' : ''}>${esc(t)}</option>`).join('')}</select></label>
-            <label class="field"><span class="label-text">Year</span><select id="qYear"><option value="all">All</option>${years.map((y) => `<option value="${esc(String(y))}" ${String(viewState.filters.year) === String(y) ? 'selected' : ''}>${esc(String(y))}</option>`).join('')}</select></label>
-            <label class="field"><span class="label-text">Paper</span><select id="qPaper"><option value="all">All</option>${papers.map((p) => `<option value="${esc(p.paper_id)}" ${viewState.filters.paperId === p.paper_id ? 'selected' : ''}>${esc(p.paper_name || p.paper_id)}</option>`).join('')}</select></label>
-            <label class="field"><span class="label-text">Demonstration</span><select id="qDemo">
-              <option value="all">Include</option><option value="exclude" ${viewState.filters.demonstration === 'exclude' ? 'selected' : ''}>Exclude synthetic demo questions</option><option value="only" ${viewState.filters.demonstration === 'only' ? 'selected' : ''}>Only synthetic demo questions</option>
-            </select></label>
-            <label class="check self-end"><input type="checkbox" id="qAttention" ${viewState.filters.attention ? 'checked' : ''} /><span>Only questions needing attention</span></label>
-          </div>`,
+          <div class="card-toolbar">
+            <label class="field field-inline m-0"><span class="label-text">Search</span><input type="search" id="qSearch" value="${esc(viewState.filters.search)}" placeholder="id, subject, topic or number" /></label>
+            ${filterChip(activeFilters.length, { clearAction: 'clear-filters' })}
+          </div>
+          <p class="tiny muted">${activeFilters.length ? `Showing: ${esc(activeFilters.join(' · '))}.` : 'Every stored question, newest paper first. Narrow the list below when you need to.'}</p>
+          <details class="disclosure" ${activeFilters.length ? 'open' : ''}>
+            <summary>More filters — subject, topic, year, paper, demonstration and attention</summary>
+            <div class="filters mt-3">
+              <label class="field"><span class="label-text">Subject</span><select id="qSubject"><option value="all">All</option>${subjects.map((s) => `<option value="${esc(s)}" ${viewState.filters.subject === s ? 'selected' : ''}>${esc(s)}</option>`).join('')}</select></label>
+              <label class="field"><span class="label-text">Topic</span><select id="qTopic"><option value="all">All</option>${topics.map((t) => `<option value="${esc(t)}" ${viewState.filters.topic === t ? 'selected' : ''}>${esc(t)}</option>`).join('')}</select></label>
+              <label class="field"><span class="label-text">Year</span><select id="qYear"><option value="all">All</option>${years.map((y) => `<option value="${esc(String(y))}" ${String(viewState.filters.year) === String(y) ? 'selected' : ''}>${esc(String(y))}</option>`).join('')}</select></label>
+              <label class="field"><span class="label-text">Paper</span><select id="qPaper"><option value="all">All</option>${papers.map((p) => `<option value="${esc(p.paper_id)}" ${viewState.filters.paperId === p.paper_id ? 'selected' : ''}>${esc(p.paper_name || p.paper_id)}</option>`).join('')}</select></label>
+              <label class="field"><span class="label-text">Demonstration</span><select id="qDemo">
+                <option value="all">Include</option><option value="exclude" ${viewState.filters.demonstration === 'exclude' ? 'selected' : ''}>Exclude synthetic demo questions</option><option value="only" ${viewState.filters.demonstration === 'only' ? 'selected' : ''}>Only synthetic demo questions</option>
+              </select></label>
+              <label class="check self-end"><input type="checkbox" id="qAttention" ${viewState.filters.attention ? 'checked' : ''} /><span>Only questions needing attention</span></label>
+            </div>
+          </details>`,
       })}
 
       ${card({
         title: `Questions (${filtered.length} of ${metas.length})`,
-        subtitle: `Page ${viewState.page + 1} of ${pageCount}`,
         className: 'bank-questions',
-        actions: `
-          <button class="btn btn-sm" type="button" id="qPrev" ${viewState.page === 0 ? 'disabled' : ''}>Previous</button>
-          <button class="btn btn-sm" type="button" id="qNext" ${viewState.page >= pageCount - 1 ? 'disabled' : ''}>Next</button>
-          <button class="btn btn-sm btn-quiet" type="button" id="exportBank">Export bank</button>`,
-        body: `${bulkResult}${bulkBar}${dataTable({
+        body: `${bulkResult}${bulkBar}
+          <div class="card-toolbar">
+            <span class="tiny muted">Page ${viewState.page + 1} of ${pageCount}</span>
+            <div class="row tight">
+              <button class="btn btn-sm" type="button" id="qPrev" ${viewState.page === 0 ? 'disabled' : ''}>Previous</button>
+              <button class="btn btn-sm" type="button" id="qNext" ${viewState.page >= pageCount - 1 ? 'disabled' : ''}>Next</button>
+              <button class="btn btn-sm btn-quiet" type="button" id="exportBank">Export bank</button>
+            </div>
+          </div>
+          ${dataTable({
           columns: [{ label: 'Select', headerHtml: selectAll, className: 'select-col' }, { label: 'Question' }, { label: 'Paper / year' }, { label: 'Classification' }, { label: 'Keys' }, { label: '' }],
           rows: pageRows.map((m) => [
             `<label class="row-select"><input type="checkbox" class="row-check" data-action="bank-select" data-value="${esc(m.id)}" ${viewState.selected.has(m.id) ? 'checked' : ''} aria-label="Select question Q${esc(String(m.question_number ?? '—'))} (${esc(m.id)})" /></label>`,
@@ -693,6 +717,7 @@ export default {
     /* -------------------------------------------------------- duplicates -- */
     const exactGroups = findExactDuplicateGroups(metas);
     const nearDupes = findNearDuplicates(metas, state.settings.repeatPolicy.nearDuplicateThreshold, 60);
+    const nearShown = viewState.showAllDuplicates ? nearDupes : nearDupes.slice(0, 10);
 
     const duplicatesTab = `
       ${card({
@@ -715,14 +740,14 @@ export default {
         body: nearDupes.length
           ? dataTable({
               columns: [{ label: 'Question A' }, { label: 'Question B' }, { label: 'Similarity', num: true }, { label: '' }],
-              rows: nearDupes.map((d) => [
+              rows: nearShown.map((d) => [
                 `<span class="mono tiny">${esc(d.a)}</span><div class="tiny muted">${esc(state.questionIndex.get(d.a)?.subject || '')}</div>`,
                 `<span class="mono tiny">${esc(d.b)}</span><div class="tiny muted">${esc(state.questionIndex.get(d.b)?.subject || '')}</div>`,
                 fmtPct(d.similarity),
                 `<button class="btn btn-sm" type="button" data-open-question="${esc(d.a)}">Open A</button> <button class="btn btn-sm" type="button" data-open-question="${esc(d.b)}">Open B</button>`,
               ]),
               className: 'compact',
-            })
+            }) + showAll({ action: 'show-all-duplicates', hidden: nearDupes.length - nearShown.length, label: 'Show all pairs' })
           : '<p class="muted small">No near-duplicate pairs were found above the threshold.</p>',
         footer: 'Similarity is a blend of token overlap and shared word sequences. It is a prompt for you to look, not a verdict — rephrased questions about the same fact are often legitimately separate.',
       })}`;
@@ -758,8 +783,12 @@ export default {
       })}`;
 
     return `
-      <h1>Question Bank &amp; Imports</h1>
-      <p class="muted">The question bank is data, not code: this app never needs rebuilding to accept a new paper.</p>
+      ${screenHead({
+        title: 'Question Bank &amp; Imports',
+        purpose: 'The question bank is data, not code: import a validated file, correct what the source got wrong, and export it again — nothing leaves this device.',
+        primary: '<button class="btn btn-primary" type="button" data-action="bank-import">Import a file</button>',
+        secondary: '<button class="btn btn-sm" type="button" data-action="bank-export">Export the bank</button>',
+      })}
       ${tabs({
         id: 'bankTabs',
         activeId: viewState.tab,
@@ -929,6 +958,17 @@ export default {
       await ctx.refresh();
     };
     ['qSubject', 'qTopic', 'qYear', 'qPaper', 'qDemo', 'qAttention'].forEach((id) => document.getElementById(id)?.addEventListener('change', rerenderWithFilters));
+
+    root.querySelector('[data-action="clear-filters"]')?.addEventListener('click', async () => {
+      viewState.filters = { search: '', subject: 'all', topic: 'all', year: 'all', paperId: 'all', demonstration: 'all', attention: false };
+      viewState.page = 0;
+      await ctx.refresh();
+    });
+
+    root.querySelector('[data-action="show-all-duplicates"]')?.addEventListener('click', async () => {
+      viewState.showAllDuplicates = !viewState.showAllDuplicates;
+      await ctx.refresh();
+    });
     let searchTimer = null;
     document.getElementById('qSearch')?.addEventListener('input', () => {
       clearTimeout(searchTimer);
@@ -1081,7 +1121,19 @@ export default {
 
     /* ------------------------------------------------------------- misc -- */
     root.addEventListener('click', async (ev) => {
-      const exportBtn = ev.target.closest('#exportBank');
+      const importBtn = ev.target.closest('[data-action="bank-import"]');
+      if (importBtn) {
+        viewState.tab = 'import';
+        const input = root.querySelector('#bankFile');
+        if (input) {
+          input.click();
+        } else {
+          await ctx.refresh();
+          root.querySelector('#bankFile')?.click();
+        }
+        return;
+      }
+      const exportBtn = ev.target.closest('#exportBank, [data-action="bank-export"]');
       if (exportBtn) {
         const payload = await data.exportBankJson({ includeProgressNotes: true });
         downloadJson(payload, `mymppsc-bank-${todayKey()}.json`);

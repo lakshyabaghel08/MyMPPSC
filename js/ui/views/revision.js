@@ -22,6 +22,10 @@ import {
   renderExplanation,
   answerKeyBadge,
   infoToggle,
+  screenHead,
+  countChip,
+  filterChip,
+  cardInfo,
 } from '../components.js';
 import { fmtDate, fmtRelative, todayKey } from '../../core/util.js';
 import * as revision from '../../services/revision.js';
@@ -31,6 +35,9 @@ import { startPracticeTest } from './shared.js';
 import { revisionSkeleton } from '../skeletons.js';
 
 const viewState = { filter: 'due', subject: 'all', topic: 'all', limit: revision.REVISION_PAGE_SIZE };
+
+/** How many of the queue's filters are away from their starting state. */
+const activeRevisionFilters = () => [viewState.filter !== 'due', viewState.subject !== 'all', viewState.topic !== 'all'].filter(Boolean).length;
 
 function stateLabel(value) {
   return { new: 'new', learning: 'learning', review: 'review', mastered: 'mastered' }[value] || value;
@@ -44,12 +51,10 @@ function dueTone(rec) {
   return 'ok';
 }
 
-function rulesCard() {
+function rulesBody() {
   const cfg = state.settings.revision;
   const intervals = Object.entries(cfg.intervals).map(([level, days]) => `level ${level} → ${days} day(s)`).join(' · ');
-  return infoToggle(
-    'How the revision schedule is decided',
-    `
+  return `
       <p class="small">Every scheduled date comes from the outcome of your last attempt on that question, the confidence you marked (if you mark it) and how long the answer took. The basis for each question is listed with it.</p>
       <ul class="small">
         <li><strong>Correct and confident</strong> moves the question up one level: ${esc(intervals)}.</li>
@@ -60,8 +65,11 @@ function rulesCard() {
         <li><strong>Slow answers</strong> (over ${esc(String(cfg.slowAnswerSeconds))}s) shorten the next interval by 25%.</li>
         <li>Intervals are clamped between ${esc(String(cfg.minIntervalDays))} and ${esc(String(cfg.maxIntervalDays))} days.</li>
       </ul>
-      <p class="tiny muted mb-0">This is a spaced-repetition heuristic based on your own recorded answers. It cannot guarantee that anything is remembered, and it is not a prediction about any examination. The queue holds at most one record per bank question, so it stays manageable however large the bank grows; each sitting takes at most ${revision.REVISION_SESSION_CAP} due questions.</p>`,
-  );
+      <p class="tiny muted mb-0">This is a spaced-repetition heuristic based on your own recorded answers. It cannot guarantee that anything is remembered, and it is not a prediction about any examination. The queue holds at most one record per bank question, so it stays manageable however large the bank grows; each sitting takes at most ${revision.REVISION_SESSION_CAP} due questions.</p>`;
+}
+
+function rulesCard() {
+  return infoToggle('How the revision schedule is decided', rulesBody());
 }
 
 function reasonCell(rec) {
@@ -83,18 +91,23 @@ export default {
 
     if (!records.length) {
       return `
-        <h1>Revision Centre</h1>
+        ${screenHead({
+          title: 'Revision Centre',
+          purpose: 'Questions scheduled from your own recorded outcomes, with the reason for each date. Every date can be inspected and overridden.',
+          primary: metas.length ? '<a class="btn btn-primary" href="#/topic">Start practising</a>' : '<a class="btn btn-primary" href="#/bank">Import a question bank</a>',
+        })}
         ${card({
           title: 'Nothing is scheduled yet',
+          info: cardInfo('How the revision schedule is decided', rulesBody()),
           body: emptyState({
             title: metas.length ? 'Take a test and revision dates appear automatically' : 'Import a question bank first',
             message: metas.length
               ? 'Every question you attempt gets its own revision date, derived from whether you were right, how confident you were and how long you took. You can also add questions to the queue by hand.'
               : 'The revision schedule is built from your own attempts on imported questions.',
+            willShow: 'A queue of questions due today, overdue and upcoming, each with the rule that scheduled it.',
             action: metas.length ? '<a class="btn btn-primary" href="#/topic">Start practising</a>' : '<a class="btn btn-primary" href="#/bank">Import a question bank</a>',
           }),
-        })}
-        ${rulesCard()}`;
+        })}`;
     }
 
     const buckets = revision.bucketise(records);
@@ -141,8 +154,14 @@ export default {
     });
 
     return `
-      <h1>Revision Centre</h1>
-      <p class="muted">Questions scheduled from your own recorded outcomes, with the reason for each date. Everything here can be inspected and overridden.</p>
+      ${screenHead({
+        title: 'Revision Centre',
+        purpose: 'Questions scheduled from your own recorded outcomes, with the reason for each date. Everything here can be inspected and overridden.',
+        primary: `<button class="btn btn-primary" type="button" data-action="revise-due" ${buckets.dueToday.length + buckets.overdue.length ? '' : 'disabled'}>
+            Start revision (${Math.min(revision.REVISION_SESSION_CAP, buckets.dueToday.length + buckets.overdue.length)} of ${buckets.dueToday.length + buckets.overdue.length} due)
+          </button>`,
+        secondary: '<button class="btn btn-sm" type="button" data-action="add-manual">Add a question</button>',
+      })}
 
       <div class="grid tiles mb-4">
         ${tile({ label: 'Due today', value: String(buckets.dueToday.length), tone: buckets.dueToday.length ? 'warn' : '' })}
@@ -150,18 +169,6 @@ export default {
         ${tile({ label: 'Upcoming', value: String(buckets.upcoming.length), sub: 'scheduled ahead' })}
         ${tile({ label: 'Mastered', value: String(records.filter((r) => r.state === 'mastered').length), sub: `of ${records.length} tracked question(s)` })}
       </div>
-
-      ${card({
-        title: 'Revise the due queue',
-        body: `
-          <div class="row">
-            <button class="btn btn-primary" type="button" data-action="revise-due" ${buckets.dueToday.length + buckets.overdue.length ? '' : 'disabled'}>
-              Start revision (${Math.min(revision.REVISION_SESSION_CAP, buckets.dueToday.length + buckets.overdue.length)} of ${buckets.dueToday.length + buckets.overdue.length} due)
-            </button>
-            <button class="btn" type="button" data-action="add-manual">Add a question to the queue</button>
-          </div>
-          <p class="tiny muted mt-2 mb-0">Most overdue first, at most ${revision.REVISION_SESSION_CAP} questions in one sitting — the rest stay due for the next one.</p>`,
-      })}
 
       ${effectiveness.withHistory
         ? card({
@@ -175,7 +182,9 @@ export default {
 
       ${card({
         title: `Queue (${filtered.length} of ${records.length})`,
-        body: `
+        info: cardInfo('How the revision schedule is decided', rulesBody()),
+        body: `${filterChip(activeRevisionFilters(), { unit: 'filter' })}
+          <p class="tiny muted">Most overdue first, at most ${revision.REVISION_SESSION_CAP} questions in one sitting — the rest stay due for the next one.</p>
           <div class="filters">
             <label class="field"><span class="label-text">Show</span>
               <select id="revFilter">
@@ -227,9 +236,7 @@ export default {
             ${tile({ label: 'Revision accuracy', value: Number.isNaN(revisionAccuracy) ? '—' : `${Math.round(revisionAccuracy * 100)}%`, sub: 'all scored attempts, repeats included' })}
           </div>`,
       })}
-
-      ${rulesCard()}`;
-  },
+`;  },
 
   async mount(ctx, root) {
     const rerender = async () => {

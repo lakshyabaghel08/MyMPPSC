@@ -35,7 +35,7 @@
  * interface simply no longer reads them, so they cannot change a count here.
  */
 
-import { esc, toast, confirmDialog, notice, emptyState, icon, langAttr, infoToggle } from '../components.js';
+import { esc, toast, confirmDialog, notice, emptyState, icon, langAttr, infoToggle, screenHead } from '../components.js';
 import {
   loadSyllabus,
   loadProgress,
@@ -554,7 +554,7 @@ function searchResults(ws) {
 function overviewStrip(ws, { examId }) {
   const summary = ws.index.official.get(examId);
   if (!summary?.touched) {
-    return `<section class="syl-overview syl-intro" aria-label="How progress tracking works">
+    return `<section class="syl-overview syl-intro syl-progress-head" aria-label="How progress tracking works">
       <div class="syl-ov-main">
         <p class="syl-ov-title"><strong>Track your preparation, topic by topic</strong></p>
         <p class="syl-intro-text">Tap the circle beside a topic to move it along:</p>
@@ -565,7 +565,7 @@ function overviewStrip(ws, { examId }) {
       </div>
     </section>`;
   }
-  return `<section class="syl-overview" aria-label="${esc(`${EXAM_LABELS[examId]} progress`)}">
+  return `<section class="syl-overview syl-progress-head" aria-label="${esc(`${EXAM_LABELS[examId]} progress`)}">
     ${ring(summary)}
     <div class="syl-ov-main">
       <p class="syl-ov-title"><strong>${summary.done} of ${plural(summary.total, 'topic')}</strong> done in ${esc(EXAM_LABELS[examId])}${summary.inProgress ? ` · ${summary.inProgress} in progress` : ''}</p>
@@ -683,7 +683,7 @@ async function screen(ctx) {
   const ws = await loadWorkspace();
   const { model } = ws;
   if (!model.ok) {
-    return `<h1>Syllabus</h1>
+    return `${screenHead({ title: 'Syllabus', purpose: 'The commission\'s revised 2026 syllabus, as published.' })}
       ${notice(
         `The syllabus data could not be read from this device (${esc(model.error || 'unknown error')}). It ships with the app, so a reload should restore it.`,
         'bad',
@@ -698,31 +698,31 @@ async function screen(ctx) {
   const paper = model.nodes.get(viewState.paperId);
 
   return `<div class="syl">
-    <header class="syl-head">
-      <div class="syl-head-top">
-        <div class="syl-head-text">
-          <h1>Syllabus</h1>
-          <p class="syl-lede">The commission's revised 2026 syllabus for Prelims and Mains, with your progress marked topic by topic.</p>
-        </div>
-        <div class="syl-switch" role="tablist" aria-label="What to show">
-          ${['prelims', 'mains']
-            .map(
-              (examId) =>
-                `<button type="button" role="tab" aria-selected="${viewState.examId === examId}" tabindex="${viewState.examId === examId ? 0 : -1}" class="syl-switch-btn${
-                  viewState.examId === examId ? ' on' : ''
-                }" data-exam="${examId}">${esc(EXAM_LABELS[examId])}</button>`,
-            )
-            .join('')}
-        </div>
+    ${screenHead({
+      title: 'Syllabus',
+      purpose: "The commission's revised 2026 syllabus for Prelims and Mains, with your progress marked topic by topic. Every figure counts the commission's own topics.",
+      primary: '<button class="btn btn-primary" type="button" data-syl-search-focus>Find a topic</button>',
+      secondary: '<a class="btn btn-sm" href="#/topic">Practise a topic</a>',
+    })}
+    <div class="syl-controls">
+      <div class="syl-switch" role="tablist" aria-label="What to show">
+        ${['prelims', 'mains']
+          .map(
+            (examId) =>
+              `<button type="button" role="tab" aria-selected="${viewState.examId === examId}" tabindex="${viewState.examId === examId ? 0 : -1}" class="syl-switch-btn${
+                viewState.examId === examId ? ' on' : ''
+              }" data-exam="${examId}">${esc(EXAM_LABELS[examId])}</button>`,
+          )
+          .join('')}
       </div>
-      ${overviewStrip(ws, { examId: viewState.examId })}
       <label class="syl-search" for="sylSearch">
         ${icon('search', { size: 15 })}
         <span class="sr-only">Search ${EXAM_LABELS[viewState.examId]}</span>
-        <input type="search" id="sylSearch" value="${esc(viewState.search)}" placeholder="Search ${esc(EXAM_LABELS[viewState.examId])} topics and headings" autocomplete="off" />
+        <input type="search" id="sylSearch" value="${esc(viewState.search)}" placeholder="Search ${EXAM_LABELS[viewState.examId]} topics and headings" autocomplete="off" />
         ${viewState.search ? `<button type="button" class="syl-clear" data-clear-search aria-label="Clear search">${icon('close', { size: 13 })}</button>` : ''}
       </label>
-    </header>
+    </div>
+    ${overviewStrip(ws, { examId: viewState.examId })}
 
     <div class="syl-layout">
       <nav class="syl-rail" aria-label="${esc(`${EXAM_LABELS[viewState.examId]} papers`)}">
@@ -877,6 +877,10 @@ async function mount(ctx, root) {
     const model = await loadSyllabus();
     return model.ok ? model : null;
   };
+
+  root.querySelector('[data-syl-search-focus]')?.addEventListener('click', () => {
+    document.getElementById('sylSearch')?.focus();
+  });
 
   root.querySelectorAll('[data-exam]').forEach((button) => {
     button.addEventListener('click', async () => {

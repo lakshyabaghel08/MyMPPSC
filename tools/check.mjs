@@ -491,6 +491,46 @@ for (const file of jsFiles) {
   check(!/\bstyle\s*=\s*["'`]/.test(source), `${file} contains an inline style="..." attribute — move layout/visual rules to css/app.css`);
 }
 
+/* ---------------------------------------------------------- density budget -- */
+
+// The limits live in js/ui/budget.js, so the app and this check cannot drift.
+// Static reading of a template literal cannot know how many cards a screen
+// actually renders or what a card says, so this measures the real screens: it
+// boots index.html in jsdom once and renders each of the eleven destinations
+// with a demonstration bank and a little recorded activity. It costs a couple
+// of seconds and catches exactly the defects the density budget exists for — a
+// twelfth card, a 600-word card, a sixth disclosure, a wall of buttons.
+const { DENSITY_BUDGET } = await import(path.join(root, 'js', 'ui', 'budget.js'));
+check(DENSITY_BUDGET.cardsPerScreen === 8, 'js/ui/budget.js: the cards-per-screen budget changed; restructure the screen, or raise it with a comment and list it in the pull request');
+check(DENSITY_BUDGET.wordsPerCard === 250, 'js/ui/budget.js: the words-per-card budget changed; restructure the card, or raise it with a comment');
+check(DENSITY_BUDGET.disclosuresPerScreen === 3, 'js/ui/budget.js: the disclosures-per-screen budget changed');
+check(DENSITY_BUDGET.infoPerScreen === 2, 'js/ui/budget.js: the ⓘ-per-screen budget changed');
+check(DENSITY_BUDGET.interactiveOutsideTables === 60, 'js/ui/budget.js: the interactive-elements budget changed');
+
+try {
+  const { measureAllScreens, SCREENS } = await import('./density.mjs');
+  const { rows } = await measureAllScreens();
+  check(rows.length === SCREENS.length, `density: expected ${SCREENS.length} measured screens, found ${rows.length}`);
+  for (const row of rows) {
+    for (const breach of row.breaches) {
+      checks += 1;
+      problems.push(`density: ${breach}`);
+    }
+    check(row.h1 === 1, `density: ${row.screen} renders ${row.h1} <h1> element(s); a screen has exactly one, in its .screen-head`);
+    let previous = 0;
+    for (const level of row.headingLevels) {
+      check(level <= previous + 1, `density: ${row.screen} skips a heading level (h${previous} → h${level})`);
+      previous = Math.max(previous, level);
+    }
+  }
+  const worstCards = Math.max(...rows.map((r) => r.cards));
+  const worstWords = Math.max(...rows.map((r) => r.longestCard));
+  const worstControls = Math.max(...rows.map((r) => r.interactiveOutsideTables));
+  note(`density: worst screen has ${worstCards} card(s), the longest card ${worstWords} words, the most controls outside a table ${worstControls} (limits ${DENSITY_BUDGET.cardsPerScreen}/${DENSITY_BUDGET.wordsPerCard}/${DENSITY_BUDGET.interactiveOutsideTables})`);
+} catch (err) {
+  problems.push(`density: the screens could not be measured (${err.message}); the budget cannot be verified`);
+}
+
 /* --------------------------------------------------------------- report -- */
 
 if (problems.length) {

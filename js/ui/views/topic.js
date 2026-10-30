@@ -33,7 +33,7 @@
  */
 
 import { state } from '../../core/state.js';
-import { esc, card, toast, notice, emptyState, infoToggle, confirmDialog } from '../components.js';
+import { esc, card, toast, notice, emptyState, infoToggle, confirmDialog, screenHead, countChip, filterChip, cardInfo } from '../components.js';
 import { QUESTION_TYPES, LANGUAGE_LABELS } from '../../core/constants.js';
 import { parseTopicPracticeParam } from '../../core/util.js';
 import { filterMetas, selectQuestions, ATTEMPT_STATE_FILTERS, arrangeForPaper } from '../../services/select.js';
@@ -402,12 +402,17 @@ export default {
     const metas = Array.from(state.questionIndex.values());
     if (!metas.length) {
       return `
-        <h1>Topic &amp; Custom Practice</h1>
+        ${screenHead({
+          title: 'Topic &amp; Custom Practice',
+          purpose: 'Pick any subjects and topics — the pool is everything you tick, and nothing ticked means the whole bank.',
+          primary: '<a class="btn btn-primary" href="#/bank">Import a question bank</a>',
+        })}
         ${card({
           title: 'Practice needs a question bank',
           body: emptyState({
             title: 'No questions stored yet',
             message: 'Import a validated bank first, then pick the subjects and topics you want to practise.',
+            willShow: 'Every subject in your bank with its own question count, ready to tick.',
             action: '<a class="btn btn-primary" href="#/bank">Question Bank &amp; Imports</a>',
           }),
         })}`;
@@ -425,12 +430,17 @@ export default {
     const matchCount = pool.length;
 
     return `
-      <h1>Topic &amp; Custom Practice</h1>
-      <p class="muted">Pick any subjects and topics — the pool is everything you tick, and nothing ticked means the whole bank. It is assembled from the question bank you imported and is never labelled as an authentic paper.</p>
-      ${infoToggle('About this screen', '<p class="small m-0">Topic Practice and the Custom Test builder were the same screen twice, so they are one screen now. A single subject with at most one topic is recorded as a <strong>topic</strong> session, exactly as before; anything wider is recorded as a <strong>custom</strong> set. <code>#/custom</code> still opens this screen. Choosing a strategy decides <em>which</em> questions are picked; “shuffle question order” decides how they are arranged — with shuffling off they run in paper order (year, then paper, then question number).</p>')}
+      ${screenHead({
+        title: 'Topic &amp; Custom Practice',
+        purpose: 'Pick any subjects and topics — the pool is everything you tick, and nothing ticked means the whole bank. Assembled from your imported bank, never labelled as an authentic paper.',
+        primary: `<button class="btn btn-primary" type="button" data-action="start-practice" ${matchCount ? '' : 'disabled'}>Start practice · ${matchCount} question${matchCount === 1 ? '' : 's'}</button>`,
+        secondary: filterChip(activeFilterCount()),
+      })}
 
       ${card({
         title: 'What to include',
+        count: countChip(`${matchCount} match`),
+        info: cardInfo('About this screen', '<p class="small m-0">Topic Practice and the Custom Test builder were the same screen twice, so they are one screen now. A single subject with at most one topic is recorded as a <strong>topic</strong> session, exactly as before; anything wider is recorded as a <strong>custom</strong> set. <code>#/custom</code> still opens this screen. Choosing a strategy decides <em>which</em> questions are picked; “shuffle question order” decides how they are arranged — with shuffling off they run in paper order (year, then paper, then question number).</p>'),
         body: `
           <p class="small m-0" id="pickSummary">${esc(selectionSentence(groups))}</p>
           <p class="pick-match" role="status"><strong id="pickMatch">${esc(String(matchCount))} question${matchCount === 1 ? '' : 's'} match</strong>${
