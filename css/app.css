@@ -1032,6 +1032,20 @@ body.runner-focus .view {
   flex-wrap: wrap;
 }
 
+/* Long tables keep their column names while the rows scroll: the wrapper
+   scrolls, the head sticks to the top of it. */
+.card-body .table-wrap {
+  max-height: 72vh;
+  overflow: auto;
+}
+
+table.data thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--bg-elevated);
+}
+
 /* A sticky tab bar hugs the header, so a long screen keeps its sections. */
 .screen-tabs {
   position: sticky;

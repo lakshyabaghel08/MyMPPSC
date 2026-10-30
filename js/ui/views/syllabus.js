@@ -554,7 +554,7 @@ function searchResults(ws) {
 function overviewStrip(ws, { examId }) {
   const summary = ws.index.official.get(examId);
   if (!summary?.touched) {
-    return `<section class="syl-overview syl-intro" aria-label="How progress tracking works">
+    return `<section class="syl-overview syl-intro syl-progress-head" aria-label="How progress tracking works">
       <div class="syl-ov-main">
         <p class="syl-ov-title"><strong>Track your preparation, topic by topic</strong></p>
         <p class="syl-intro-text">Tap the circle beside a topic to move it along:</p>
@@ -565,7 +565,7 @@ function overviewStrip(ws, { examId }) {
       </div>
     </section>`;
   }
-  return `<section class="syl-overview" aria-label="${esc(`${EXAM_LABELS[examId]} progress`)}">
+  return `<section class="syl-overview syl-progress-head" aria-label="${esc(`${EXAM_LABELS[examId]} progress`)}">
     ${ring(summary)}
     <div class="syl-ov-main">
       <p class="syl-ov-title"><strong>${summary.done} of ${plural(summary.total, 'topic')}</strong> done in ${esc(EXAM_LABELS[examId])}${summary.inProgress ? ` · ${summary.inProgress} in progress` : ''}</p>
