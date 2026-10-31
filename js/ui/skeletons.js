@@ -27,12 +27,15 @@ export function dashboardSkeleton({ hasBank = true } = {}) {
     // An empty device gets the short welcome card, not a full dashboard.
     return skeletonScreen([sk.heading({ lede: false }), sk.card(`${sk.lines(4)}${sk.buttons(3)}`)]);
   }
-  const deckRows = Array.from({ length: 4 }, () => '<li class="start-row"><span class="skeleton-block skeleton-line"></span><span class="skeleton-block skeleton-line sk-w40"></span></li>').join('');
+  const deckRows = Array.from({ length: 5 }, () => '<li class="start-row"><span class="skeleton-block skeleton-line"></span><span class="skeleton-block skeleton-line sk-w40"></span></li>').join('');
   return skeletonScreen([
     sk.heading(),
-    `<section class="start-deck"><div class="start-deck-head"><span class="skeleton-block skeleton-line sk-w40"></span></div><ul class="start-rows">${deckRows}</ul></section>`,
+    // The command centre: hero (next up / unfinished), the standing strip,
+    // then the deck of start rows and the weakest-topics table.
+    `<section class="cc-hero"><div class="cc-hero-main"><span class="skeleton-line sk-w40"></span><span class="skeleton-block skeleton-title"></span></div><span class="skeleton-block skeleton-button"></span></section>`,
     sk.tiles(4),
-    `<div class="split-2">${sk.card(sk.table(4, 3))}${sk.card(sk.lines(3))}</div>`,
+    `<section class="sheet"><ul class="desk-list start-rows">${deckRows}</ul></section>`,
+    sk.card(sk.table(4, 3)),
   ]);
 }
 

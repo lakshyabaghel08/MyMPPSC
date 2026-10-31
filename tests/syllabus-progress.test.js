@@ -359,7 +359,9 @@ test('9. one click marks a topic, a heading marks all of its topics, and the fig
     await tap('.syl-switch-btn[data-exam="prelims"]');
     await waitFor(() => $('.syl-switch-btn[data-exam="prelims"]').classList.contains('on'), { label: 'Prelims' });
   }
-  assert.match(viewText(), /Track your preparation/, 'until something is marked, the screen explains how marking works');
+  assert.equal($('.syl-intro'), null, 'there is no intro card');
+  assert.match(viewText(), /0 of 77 topics/, 'before anything is marked the strip still shows the stage total');
+  assert.match(viewText(), /tap a topic's circle/i, 'and one quiet line says how marking starts');
 
   const first = linesOf(S1)[0];
   await tap(`[data-cycle="${first}"]`);
@@ -487,40 +489,40 @@ test('13. the shared progress bars are drawn with theme fills', async () => {
   }
 });
 
-test('14. marking a topic keeps it under the pointer when the summary above it changes height', async () => {
+test('14. marking a topic keeps it under the pointer when the strip above it changes height', async () => {
   await clean();
   await goto('syllabus');
   if (!$('.syl-switch-btn[data-exam="prelims"]')?.classList.contains('on')) {
     await tap('.syl-switch-btn[data-exam="prelims"]');
     await waitFor(() => $('.syl-switch-btn[data-exam="prelims"]').classList.contains('on'), { label: 'Prelims' });
   }
-  await waitFor(() => $('.syl-intro'), { label: 'the intro card' });
+  await waitFor(() => $('.syl-ov-hint'), { label: 'the untouched hint line' });
   const first = linesOf(S1)[0];
   const mark = `[data-cycle="${first}"]`;
 
-  // jsdom has no layout, so stand in for it: the intro card is 69px taller
-  // than the progress summary that replaces it, and every row below moves.
+  // jsdom has no layout, so stand in for it: the hint line is 31px tall, and
+  // it disappears on the first mark and comes back when the last one is cleared.
   const proto = window.Element.prototype;
   const realRect = proto.getBoundingClientRect;
   const realScrollTo = window.scrollTo;
   const scrolls = [];
   proto.getBoundingClientRect = function rect() {
-    const top = this.matches(mark) ? ($('.syl-intro') ? 400 : 331) : 0;
+    const top = this.matches(mark) ? ($('.syl-ov-hint') ? 400 : 369) : 0;
     return { top, bottom: top + 44, left: 0, right: 44, width: 44, height: 44, x: 0, y: top };
   };
   window.scrollTo = (x, y) => scrolls.push(y);
   try {
     await tap(mark);
     await waitFor(() => $(mark)?.dataset.current === 'in_progress', { label: 'the first mark' });
-    assert.equal($('.syl-intro'), null, 'the first mark replaces the intro with the summary');
-    assert.deepEqual(scrolls, [-69], 'the page follows the rows up, so the mark stays under the pointer');
+    assert.equal($('.syl-ov-hint'), null, 'the first mark drops the untouched hint line');
+    assert.deepEqual(scrolls, [-31], 'the page follows the rows up, so the mark stays under the pointer');
 
     for (const status of ['completed', 'revised', 'not_started']) {
       await tap(mark);
       await waitFor(() => $(mark)?.dataset.current === status, { label: status });
     }
-    assert.ok($('.syl-intro'), 'clearing the last mark brings the intro back');
-    assert.deepEqual(scrolls, [-69, 69], 'the page follows the rows down again; marks that move nothing do not scroll');
+    assert.ok($('.syl-ov-hint'), 'clearing the last mark brings the hint back');
+    assert.deepEqual(scrolls, [-31, 31], 'the page follows the rows down again; marks that move nothing do not scroll');
     assert.equal(document.activeElement?.dataset?.cycle, first, 'and focus stays on the mark');
   } finally {
     proto.getBoundingClientRect = realRect;
