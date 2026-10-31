@@ -475,7 +475,9 @@ test('the mistake book, revision centre and analytics reflect the submitted test
 
 test('settings persist, diagnostics run and the keyboard entry point works', async () => {
   await goto('settings');
-  assert.match(viewText(), /Language, theme and defaults/);
+  // Two groups, because the reader is changing two different things.
+  assert.match(viewText(), /Reading/);
+  assert.match(viewText(), /How sessions run/);
 
   const select = $('#setFeedback');
   change(select, 'learning');
