@@ -34,25 +34,25 @@ import settingsView from './ui/views/settings.js';
 import helpView from './ui/views/help.js';
 
 const NAV = [
-  { route: 'dashboard', label: 'Dashboard', icon: 'dashboard', group: 'Study' },
-  { route: 'test-centre', label: 'PYQ Test Centre', icon: 'test-centre', group: 'Study' },
+  { route: 'dashboard', label: 'Today', icon: 'dashboard', group: 'Study' },
+  { route: 'test-centre', label: 'Papers', icon: 'test-centre', group: 'Study' },
   // Topic Practice and the Custom Test builder were two screens over the same
   // question bank with the same filters, the same three selection strategies
   // and the same session form; one was simply the single-select version of the
   // other. They are one screen. Picking a single topic is the narrow case of
   // picking any set of subjects and topics.
-  { route: 'topic', label: 'Topic & Custom Practice', icon: 'topic', group: 'Study' },
-  { route: 'smart', label: 'Smart Practice', icon: 'smart', group: 'Study' },
-  { route: 'mistakes', label: 'Mistake Book', icon: 'mistakes', badge: 'mistakes', group: 'Review' },
-  { route: 'revision', label: 'Revision Centre', icon: 'revision', badge: 'revision', group: 'Review' },
+  { route: 'topic', label: 'Practice', icon: 'topic', group: 'Study' },
+  { route: 'smart', label: 'Smart', icon: 'smart', group: 'Study' },
+  { route: 'mistakes', label: 'Mistakes', icon: 'mistakes', badge: 'mistakes', group: 'Review' },
+  { route: 'revision', label: 'Revision', icon: 'revision', badge: 'revision', group: 'Review' },
   // The official syllabus, the study planner, performance analytics and the
   // question-bank analysis used to be four destinations. They are two: one
   // curriculum, and one place for the numbers. The old routes still resolve —
   // see the legacy registrations below — they are simply not advertised twice.
   { route: 'syllabus', label: 'Syllabus', icon: 'syllabus', group: 'Plan' },
   { route: 'analytics', label: 'Insights', icon: 'analytics', group: 'Plan' },
-  { route: 'bank', label: 'Question Bank & Imports', icon: 'bank', group: 'Manage' },
-  { route: 'settings', label: 'Settings & Backup', icon: 'settings', group: 'Manage' },
+  { route: 'bank', label: 'Bank', icon: 'bank', group: 'Manage' },
+  { route: 'settings', label: 'Settings', icon: 'settings', group: 'Manage' },
   { route: 'help', label: 'Help & How it works', icon: 'help', group: 'Manage' },
 ];
 

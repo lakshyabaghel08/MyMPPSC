@@ -129,7 +129,9 @@ test('boots, renders the shell and the demonstration prompt', async () => {
   await waitFor(() => $$('#navList .nav-link').length >= 10, { label: 'navigation links' });
   assert.equal(state.dbError, null);
   const labels = $$('#navList .nav-link').map((b) => b.textContent.trim());
-  for (const required of ['Dashboard', 'PYQ Test Centre', 'Topic & Custom Practice', 'Smart Practice', 'Mistake Book', 'Revision Centre', 'Syllabus', 'Insights', 'Question Bank & Imports', 'Settings & Backup']) {
+  // Phase 3 shortened every navigation label to the word a reader would use
+  // (the full names live in each screen's <h1>).
+  for (const required of ['Today', 'Papers', 'Practice', 'Smart', 'Mistakes', 'Revision', 'Syllabus', 'Insights', 'Bank', 'Settings']) {
     assert.ok(labels.some((l) => l.includes(required)), `navigation should offer ${required}`);
   }
   // The syllabus planner merged into the syllabus screen, the question-bank
@@ -138,7 +140,7 @@ test('boots, renders the shell and the demonstration prompt', async () => {
   assert.equal(labels.filter((l) => /Syllabus/.test(l)).length, 1, 'one syllabus destination, not two');
   assert.equal(labels.filter((l) => /Analytics|Analysis|Insights/.test(l)).length, 1, 'one destination for the numbers, not two');
   assert.equal(labels.filter((l) => /Custom Test/.test(l)).length, 0, 'the Custom Test builder is not a second navigation entry');
-  assert.equal(labels.filter((l) => /Practice/.test(l) && /Topic/.test(l)).length, 1, 'one practice builder, not two');
+  assert.equal(labels.filter((l) => /^Practice$/.test(l)).length, 1, 'one practice builder, not two');
 
   // First run with an empty database: the repository-backed MPPSC bank loads by
   // itself, so the app does not have to fall back to the demonstration prompt.
