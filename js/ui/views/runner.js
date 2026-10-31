@@ -1,13 +1,31 @@
 /**
- * runner.js — The test-taking screen (crown jewel).
+ * runner.js — the test-taking screen.
  *
- * Handles: original question order, timer, question palette, mark for review,
- * clear response, confidence marking, learning-mode feedback, automatic saving,
- * distraction-free focus mode, keyboard shortcut bar + aria-keyshortcuts, a
- * "?" shortcut legend in the header (lists only the keys wireKeyboard() and
- * the app shell handle),
- * Devanagari lang="hi" typography, resume after a refresh and submission with
- * confirmation.
+ * An examination interface has one job: never make the reader think about the
+ * interface. This pass rebuilt the parts that did:
+ *
+ *  - **No full repaint for an answer.** Answering, flagging, clearing, marking
+ *    confidence or revealing an answer now repaints the question card and the
+ *    palette cells only. The timer, the bar, the sidebar and the scroll position
+ *    are never touched, so the reading position and the focused control stay
+ *    exactly where they were. Navigation between questions repaints the card
+ *    and scrolls to it; changing language or focus mode repaints the screen.
+ *  - **The palette answers "what is left?"** It carries live counts and a
+ *    filter (all / unanswered / flagged / answered), and offers jumps to the
+ *    next unanswered (`]`) or the next flagged (`[`) question.
+ *  - **On a narrow screen the palette is a sheet.** A bar button shows the
+ *    progress and opens the palette from the bottom, instead of leaving a long
+ *    grid under the question.
+ *  - **Submitting is a decision sheet, not a warning.** Answered, unanswered,
+ *    flagged, missing confidence marks and the scoring rules in one panel, with
+ *    a route back to the first unanswered question next to the submit button.
+ *
+ * Everything the previous build guaranteed is preserved: original question
+ * order, the timer and pause, mark for review, clear response, optional
+ * confidence, learning-mode feedback, automatic saving with its state, resume
+ * after a refresh, distraction-free mode, the shortcut legend (which lists only
+ * keys that work), Devanagari `lang` handling, print, and submission with the
+ * frozen confidence/answer-key/unresolved rules.
  */
 
 import { CONFIDENCE_LEVELS, STORES } from '../../core/constants.js';
@@ -26,7 +44,6 @@ import {
   demoBadge,
   langAttr,
   toast,
-  confirmDialog,
   openModal,
 } from '../components.js';
 import { getQuestions } from '../../services/questions.js';
@@ -34,7 +51,17 @@ import * as tests from '../../services/tests.js';
 import { displayVariant } from '../../core/schema.js';
 import { fmtDate } from '../../core/util.js';
 
-let session = null; // { test, questions, lang, ticker, lastSwitchAt, saveState }
+let session = null; // { test, questions, lang, ticker, lastSwitchAt, saveState, paletteFilter, legendOpen }
+
+/** Palette filters, in the order they are offered. */
+const PALETTE_FILTERS = [
+  { id: 'all', label: 'All' },
+  { id: 'unanswered', label: 'Unanswered' },
+  { id: 'flagged', label: 'Flagged' },
+  { id: 'answered', label: 'Answered' },
+];
+
+const $ = (id, root = document) => root.querySelector(`#${id}`);
 
 function idsFromParam(param) {
   if (!param) return null;
@@ -50,7 +77,17 @@ export async function loadSession(testId, { questionIds = null } = {}) {
   if (!test) return null;
   const ids = questionIds && questionIds.length ? questionIds : test.question_ids;
   const questions = await getQuestions(ids);
-  return { test, questions, lang: test.language || state.settings.language, ticker: null, lastSwitchAt: Date.now(), saveState: 'saved', pendingIds: questionIds && questionIds.length && !test.question_ids?.length ? ids : null };
+  return {
+    test,
+    questions,
+    lang: test.language || state.settings.language,
+    ticker: null,
+    lastSwitchAt: Date.now(),
+    saveState: 'saved',
+    paletteFilter: 'all',
+    legendOpen: false,
+    pendingIds: questionIds && questionIds.length && !test.question_ids?.length ? ids : null,
+  };
 }
 
 function currentQuestion() {
@@ -79,13 +116,69 @@ function orderedOptions(question) {
   return keys.map((k) => byKey.get(k)).filter(Boolean);
 }
 
+/* ------------------------------------------------------------- palette --- */
+
+/** Counts the palette and the mobile bar both display. */
+function paletteCounts(test) {
+  let answered = 0;
+  let flagged = 0;
+  for (const id of test.question_ids) {
+    const r = responseFor(id);
+    if (r.selected?.length) answered += 1;
+    if (r.flagged) flagged += 1;
+  }
+  const total = test.question_ids.length;
+  return { total, answered, flagged, unanswered: total - answered };
+}
+
+function matchesPaletteFilter(buttonIndex, test, filter) {
+  const response = responseFor(test.question_ids[buttonIndex]);
+  if (filter === 'answered') return Boolean(response.selected?.length);
+  if (filter === 'flagged') return Boolean(response.flagged);
+  if (filter === 'unanswered') return !response.selected?.length;
+  return true;
+}
+
+function paletteGridMarkup(test, index) {
+  const total = test.question_ids.length;
+  return test.question_ids
+    .map((id, i) => {
+      const r = responseFor(id);
+      const classes = [r.selected?.length ? 'answered' : '', r.flagged ? 'flagged' : '', i === index ? 'current' : ''].filter(Boolean).join(' ');
+      const q = session.questions.get(id);
+      const origin = [q?.year ? `${q.year}` : null, q?.question_number ? `paper Q${q.question_number}` : null].filter(Boolean).join(' · ');
+      const hidden = !matchesPaletteFilter(i, test, session.paletteFilter) ? ' hidden' : '';
+      return `<button type="button" class="${classes}" data-action="goto" data-index="${i}"${i === index ? ' aria-current="step"' : ''}${hidden} aria-label="Question ${i + 1} of ${total}${origin ? ` (${esc(origin)})` : ''}${r.flagged ? ', flagged' : ''}${r.selected?.length ? ', answered' : ''}">${i + 1}${r.flagged ? '<span class="flag-dot" aria-hidden="true">⚑</span>' : ''}</button>`;
+    })
+    .join('');
+}
+
+function paletteToolsMarkup(counts) {
+  const countFor = (id) => (id === 'all' ? counts.total : id === 'answered' ? counts.answered : id === 'flagged' ? counts.flagged : counts.unanswered);
+  return `<div class="palette-tools" role="group" aria-label="Filter the question palette">
+    ${PALETTE_FILTERS.map(
+      (filter) =>
+        `<button type="button" class="palette-filter" data-action="palette-filter" data-filter="${filter.id}" aria-pressed="${session.paletteFilter === filter.id}">
+          ${esc(filter.label)} <span class="palette-filter-count">${countFor(filter.id)}</span>
+        </button>`,
+    ).join('')}
+  </div>`;
+}
+
+function paletteJumpsMarkup() {
+  return `<div class="palette-jumps">
+    <button class="btn btn-sm btn-quiet" type="button" data-action="next-unanswered" aria-keyshortcuts="]" title="Jump to the next unanswered question (])">Next unanswered →</button>
+    <button class="btn btn-sm btn-quiet" type="button" data-action="next-flagged" aria-keyshortcuts="[" title="Jump to the next flagged question ([)">Next flagged →</button>
+  </div>`;
+}
+
+/* ------------------------------------------------------------ shortcuts -- */
+
 /**
- * The header's shortcut legend: a non-modal popover toggled by the "?"
- * button. It lists exactly the keys this screen answers to — wireKeyboard()
- * below, plus the app-wide ?, Ctrl/⌘ K and Escape from js/app.js — so it can
- * never advertise a shortcut that does nothing. It takes no focus when it
- * opens (so nothing scrolls), traps nothing, closes on Escape, on its ✕ or on
- * a click elsewhere, and stays open across repaints until then.
+ * The header's shortcut legend: a non-modal popover toggled by the "?" button.
+ * It lists exactly the keys this screen answers to, so it can never advertise a
+ * shortcut that does nothing. It takes no focus when it opens, traps nothing,
+ * closes on Escape, on its ✕ or on a click elsewhere.
  */
 function shortcutLegend({ optionCount, confidence, open }) {
   const last = Math.min(9, Math.max(1, optionCount));
@@ -93,9 +186,12 @@ function shortcutLegend({ optionCount, confidence, open }) {
     [`<kbd>1</kbd>–<kbd>${last}</kbd>`, 'Choose an option, in the order shown'],
     ['<kbd>→</kbd> or <kbd>N</kbd>', 'Next question'],
     ['<kbd>←</kbd> or <kbd>P</kbd>', 'Previous question'],
+    ['<kbd>]</kbd>', 'Next unanswered question'],
+    ['<kbd>[</kbd>', 'Next flagged question'],
     ['<kbd>F</kbd>', 'Mark for review, or remove the flag'],
     ['<kbd>U</kbd>', 'Clear your response'],
     ...(confidence ? [['<kbd>C</kbd>', 'Step through confidence: confident, unsure, guessed, not marked']] : []),
+    ['<kbd>D</kbd>', 'Distraction-free reading'],
     ['<kbd>?</kbd>', 'Open Help'],
     ['<kbd>Ctrl</kbd>/<kbd>⌘</kbd> <kbd>K</kbd>', 'Search for a screen or action'],
     ['<kbd>Esc</kbd>', 'Close this list, or a dialog'],
@@ -110,7 +206,34 @@ function shortcutLegend({ optionCount, confidence, open }) {
     </div>`;
 }
 
-function markup() {
+/* --------------------------------------------------------------- markup --- */
+
+/** The confidence strip for the current question. */
+function confidenceMarkup(test, response) {
+  if (test.config.confidence === 'off') return '';
+  return `<div class="confidence-box">
+    <div class="row tight">
+      <span class="confidence-label" id="confidenceLabel">How sure were you?${test.config.confidence === 'required' ? ' (required)' : ' (optional)'}</span>
+      ${infoToggle('What this is for', '<p class="small m-0">Confidence is stored separately from correctness and never changes your marks. A correct answer you marked as guessed is treated as weak recall and comes back sooner in revision. Leave it unmarked if you prefer — an unmarked question gets no confidence tag at all.</p>')}
+    </div>
+    <div class="row tight mt-2">
+      <span class="seg confidence-seg" role="group" aria-labelledby="confidenceLabel" data-confidence>
+        ${Object.entries(CONFIDENCE_LEVELS)
+          .map(([key, label]) => `<button type="button" data-action="confidence" data-value="${key}" aria-keyshortcuts="c" aria-pressed="${response.confidence === key}">${esc(label)}</button>`)
+          .join('')}
+      </span>
+      ${
+        response.confidence
+          ? `<button class="btn btn-sm btn-quiet" type="button" data-action="confidence" data-value="" aria-keyshortcuts="c">✕ Remove mark</button>
+             <span class="tiny muted" role="status">Marked: ${esc(confidenceLabel(response.confidence))}</span>`
+          : '<span class="tiny muted" role="status">Not marked</span>'
+      }
+    </div>
+  </div>`;
+}
+
+/** The question card only — this is the unit that is repainted on an answer. */
+function questionCardMarkup() {
   const { test } = session;
   const { id: questionId, question, index } = currentQuestion();
   const progress = tests.testProgress(test);
@@ -119,10 +242,9 @@ function markup() {
   const revealed = learningMode && response.revealed;
   const paper = test.paper_snapshot;
   const totalQuestions = test.question_ids.length;
-  const isFocusMode = typeof document !== 'undefined' && document.body.classList.contains('runner-focus');
 
   if (!question) {
-    return `<h1 class="runner-title">${esc(test.label || 'Test')}</h1>${notice('This question could not be loaded from the local database. It may have been removed by undoing an import.', 'bad')}`;
+    return `${notice('This question could not be loaded from the local database. It may have been removed by undoing an import.', 'bad')}`;
   }
 
   const { variant, lang, fallback } = displayVariant(question, session.lang);
@@ -130,48 +252,6 @@ function markup() {
   const answers = new Set();
   const effective = question.verified?.answer?.length ? question.verified.answer : question.supplied?.answer || [];
   if (revealed) effective.forEach((a) => answers.add(a));
-
-  const remaining = test.timer.remaining_seconds;
-  const timerClass = remaining !== null && remaining !== undefined ? (remaining <= 60 ? 'bad' : remaining <= 300 ? 'warn' : '') : '';
-  const saveStateClass = session.saveState === 'saving' ? 'saving' : session.saveState === 'error' ? 'error' : '';
-
-  // Confidence is optional unless the test requires it. Nothing is marked by
-  // default: with no mark, no button is pressed and the question simply reads
-  // "Not marked". Once a mark exists, "Remove mark" takes it off again.
-  const confidenceControl = test.config.confidence === 'off'
-    ? ''
-    : `<div class="confidence-box">
-        <div class="row tight">
-          <span class="confidence-label" id="confidenceLabel">How sure were you?${test.config.confidence === 'required' ? ' (required)' : ' (optional)'}</span>
-          ${infoToggle('What this is for', '<p class="small m-0">Confidence is stored separately from correctness and never changes your marks. A correct answer you marked as guessed is treated as weak recall and comes back sooner in revision. Leave it unmarked if you prefer — an unmarked question gets no confidence tag at all.</p>')}
-        </div>
-        <div class="row tight mt-2">
-          <span class="seg confidence-seg" role="group" aria-labelledby="confidenceLabel" data-confidence>
-            ${Object.entries(CONFIDENCE_LEVELS)
-              .map(([key, label]) => `<button type="button" data-action="confidence" data-value="${key}" aria-keyshortcuts="c" aria-pressed="${response.confidence === key}">${esc(label)}</button>`)
-              .join('')}
-          </span>
-          ${
-            response.confidence
-              ? `<button class="btn btn-sm btn-quiet" type="button" data-action="confidence" data-value="" aria-keyshortcuts="c">✕ Remove mark</button>
-                 <span class="tiny muted" role="status">Marked: ${esc(confidenceLabel(response.confidence))}</span>`
-              : '<span class="tiny muted" role="status">Not marked</span>'
-          }
-        </div>
-      </div>`;
-
-  // The palette always counts 1, 2, 3… in test order, even when the test is a
-  // shuffled mix of papers. Where a question came from (year + its number in
-  // its own paper) is shown in the question box and in each button's label.
-  const paletteHtml = test.question_ids
-    .map((id, i) => {
-      const r = responseFor(id);
-      const classes = [r.selected?.length ? 'answered' : '', r.flagged ? 'flagged' : '', i === index ? 'current' : ''].filter(Boolean).join(' ');
-      const q = session.questions.get(id);
-      const origin = [q?.year ? `${q.year}` : null, q?.question_number ? `paper Q${q.question_number}` : null].filter(Boolean).join(' · ');
-      return `<button type="button" class="${classes}" data-action="goto" data-index="${i}"${i === index ? ' aria-current="step"' : ''} aria-label="Question ${i + 1} of ${totalQuestions}${origin ? ` (${esc(origin)})` : ''}${r.flagged ? ', flagged' : ''}${r.selected?.length ? ', answered' : ''}">${i + 1}${r.flagged ? '<span class="flag-dot" aria-hidden="true">⚑</span>' : ''}</button>`;
-    })
-    .join('');
 
   const explanationBlock = revealed
     ? `<div class="mt-4">
@@ -185,7 +265,6 @@ function markup() {
     : '';
 
   const qLangAttr = langAttr(variant?.question_text, lang);
-
   const originBits = [
     question.year ? `MPPSC ${esc(String(question.year))}` : paper?.year ? `MPPSC ${esc(String(paper.year))}` : null,
     question.question_number ? `Paper Q${esc(String(question.question_number))}` : null,
@@ -194,112 +273,63 @@ function markup() {
   const classificationLine = [question.classification?.subject, question.classification?.topic, question.classification?.subtopic].filter(Boolean).join(' · ');
 
   return `
-  <div class="runner-bar">
-    <div class="grow">
-      <nav class="crumbs" aria-label="Breadcrumb">
-        <ol><li><a href="#/test-centre">Test Centre</a></li><li aria-current="page">${esc(test.label || 'Practice')}</li></ol>
-      </nav>
-      <div class="row tight">
-        <h1 class="runner-title">${esc(test.label || 'Practice')}</h1>
-        <span class="tiny muted">${test.config.feedback_mode === 'learning' ? 'Learning mode — answers revealed as you go' : 'Exam mode — answers revealed after submitting'}</span>
-      </div>
-      <div class="tiny muted">
-        Question ${index + 1} of ${totalQuestions}
-        · ${progress.answered} answered · ${progress.unanswered} left${progress.flagged ? ` · ${progress.flagged} flagged` : ''}
-      </div>
-    </div>
-    <div class="row tight">
-      ${test.config.show_timer && remaining !== null && remaining !== undefined ? `<span class="timer ${timerClass}" id="runnerTimer" role="timer">${fmtClock(remaining)}</span>` : '<span class="tiny muted">No time limit</span>'}
-      <span class="save-state ${saveStateClass}" id="saveState">${session.saveState === 'saving' ? 'saving…' : session.saveState === 'error' ? 'save failed' : 'saved'}</span>
-      <button class="btn btn-sm btn-quiet" type="button" data-action="focus-mode" aria-pressed="${isFocusMode}" title="Toggle distraction-free reading layout">${isFocusMode ? 'Show sidebar' : 'Focus'}</button>
-      <button class="btn btn-sm btn-quiet" type="button" data-action="pause">${test.status === 'paused' ? 'Resume' : 'Pause'}</button>
-      <button class="btn btn-primary btn-sm" type="button" data-action="submit">Submit</button>
-      <button class="btn btn-sm btn-icon kbd-legend-toggle" type="button" data-action="kbd-legend" aria-expanded="${Boolean(session.legendOpen)}" aria-controls="runnerKbdLegend" aria-label="Keyboard shortcuts" title="Keyboard shortcuts">?</button>
-    </div>
-    ${shortcutLegend({ optionCount: options.length, confidence: test.config.confidence !== 'off', open: Boolean(session.legendOpen) })}
-  </div>
-
-  <div class="runner">
-    <div>
-      <article class="question-card" id="questionCard">
-        <div class="question-meta">
-          <span class="question-num-pill">Q${index + 1}</span>
-          ${originBits.length ? `<span class="question-origin">${originBits.join(' · ')}</span>` : ''}
-          ${classificationLine ? `<span class="question-class">${esc(classificationLine)}</span>` : ''}
-          ${answerKeyBadge(question.supplied?.status)}
-          ${demoBadge(question.is_demonstration)}
-          ${fallback && lang !== session.lang ? badge(`showing ${lang === 'hi' ? 'Hindi' : 'English'} (other language unavailable)`, 'warn') : ''}
-          ${Object.keys(question.language_variants).length > 1 ? `<span class="ml-auto" data-lang-wrap>${languageSwitcher(question, session.lang)}</span>` : ''}
-        </div>
-
-        ${variant?.instructions ? `<div class="instructions"${langAttr(variant.instructions, lang)}>${esc(variant.instructions)}</div>` : ''}
-        <p class="question-text ${lang === 'hi' ? 'hi' : ''}"${qLangAttr}>${esc(variant?.question_text || '')}</p>
-
-        <div class="options" role="group" aria-label="Answer options">
-          ${options
-            .map((opt, optIdx) => {
-              const selected = response.selected?.includes(opt.key);
-              const isAnswer = revealed && answers.has(opt.key);
-              const wrongPick = revealed && selected && !answers.has(opt.key);
-              const cls = [isAnswer ? 'correct' : '', wrongPick ? 'incorrect' : ''].filter(Boolean).join(' ');
-              const shortcutKey = optIdx < 9 ? String(optIdx + 1) : '';
-              return `<button class="option-row ${cls}" type="button" data-action="select" data-key="${esc(opt.key)}" aria-pressed="${selected}"${shortcutKey ? ` aria-keyshortcuts="${shortcutKey}"` : ''}${langAttr(opt.text, lang)}>
-                <span class="option-key">${esc(opt.key)}</span>
-                <span class="option-text">${esc(opt.text)}</span>
-                ${shortcutKey ? `<span class="option-kbd" aria-hidden="true">${shortcutKey}</span>` : ''}
-              </button>`;
-            })
-            .join('')}
-        </div>
-
-        ${question.question_type === 'multiple_correct' && !revealed ? '<p class="tiny muted mt-2 mb-0">More than one option may be correct. Select all that apply, then check your answer.</p>' : ''}
-
-        <div class="runner-nav">
-          <button class="btn" type="button" data-action="prev" aria-keyshortcuts="ArrowLeft p" ${index === 0 ? 'disabled' : ''}>← Previous</button>
-          <button class="btn" type="button" data-action="next" aria-keyshortcuts="ArrowRight n" ${index >= totalQuestions - 1 ? 'disabled' : ''}>Next →</button>
-          <button class="btn" type="button" data-action="flag" aria-keyshortcuts="f" aria-pressed="${Boolean(response.flagged)}">${response.flagged ? '⚑ Remove flag' : '⚑ Mark for review'}</button>
-          <button class="btn" type="button" data-action="clear" aria-keyshortcuts="u" ${!response.selected?.length ? 'disabled' : ''}>Clear response</button>
-          <span class="grow"></span>
-          <span class="tiny muted">Time on this question: ${fmtClock(Math.round((response.time_spent_ms || 0) / 1000))}</span>
-          ${learningMode && !revealed ? '<button class="btn btn-primary" type="button" data-action="reveal">Check answer</button>' : ''}
-        </div>
-        ${confidenceControl}
-        <div class="kbd-bar" aria-label="Keyboard shortcuts">
-          <span><kbd>1</kbd>–<kbd>${Math.min(9, Math.max(1, options.length))}</kbd> select option</span>
-          <span><kbd>←</kbd>/<kbd>P</kbd> previous</span>
-          <span><kbd>→</kbd>/<kbd>N</kbd> next</span>
-          <span><kbd>F</kbd> flag</span>
-          <span><kbd>U</kbd> clear</span>
-          ${test.config.confidence !== 'off' ? '<span><kbd>C</kbd> confidence</span>' : ''}
-          <span><kbd>?</kbd> help</span>
-        </div>
-        ${explanationBlock}
-      </article>
-      ${test.config.warnings?.length ? infoToggle('Notes about this test', `<ul class="small">${test.config.warnings.map((w) => `<li>${esc(w)}</li>`).join('')}</ul>`) : ''}
+    <div class="question-meta">
+      <span class="question-num-pill">Q${index + 1}</span>
+      ${originBits.length ? `<span class="question-origin">${originBits.join(' · ')}</span>` : ''}
+      ${classificationLine ? `<span class="question-class">${esc(classificationLine)}</span>` : ''}
+      ${answerKeyBadge(question.supplied?.status)}
+      ${demoBadge(question.is_demonstration)}
+      ${fallback && lang !== session.lang ? badge(`showing ${lang === 'hi' ? 'Hindi' : 'English'} (other language unavailable)`, 'warn') : ''}
+      ${Object.keys(question.language_variants).length > 1 ? `<span class="ml-auto" data-lang-wrap>${languageSwitcher(question, session.lang)}</span>` : ''}
     </div>
 
-    <aside class="sticky-side">
-      <section class="card">
-        <div class="card-head"><h2>Question palette</h2><span class="muted tiny">${progress.answered}/${totalQuestions}</span></div>
-        <div class="card-body tight">
-          <div class="palette">${paletteHtml}</div>
-          <div class="legend">
-            <span><i class="swatch ok" aria-hidden="true"></i> answered</span>
-            <span><i class="swatch warn" aria-hidden="true">⚑</i> flagged</span>
-            <span><i class="swatch" aria-hidden="true"></i> not answered</span>
-            <span><i class="swatch current" aria-hidden="true"></i> current</span>
-          </div>
-          <div class="row mt-3">
-            <button class="btn btn-sm btn-quiet" type="button" data-action="print">Print question paper</button>
-          </div>
-        </div>
-      </section>
-      ${card_summary(test, progress)}
-    </aside>
-  </div>`;
+    ${variant?.instructions ? `<div class="instructions"${langAttr(variant.instructions, lang)}>${esc(variant.instructions)}</div>` : ''}
+    <p class="question-text ${lang === 'hi' ? 'hi' : ''}"${qLangAttr}>${esc(variant?.question_text || '')}</p>
+
+    <div class="options" role="group" aria-label="Answer options">
+      ${options
+        .map((opt, optIdx) => {
+          const selected = response.selected?.includes(opt.key);
+          const isAnswer = revealed && answers.has(opt.key);
+          const wrongPick = revealed && selected && !answers.has(opt.key);
+          const cls = [isAnswer ? 'correct' : '', wrongPick ? 'incorrect' : ''].filter(Boolean).join(' ');
+          const shortcutKey = optIdx < 9 ? String(optIdx + 1) : '';
+          return `<button class="option-row ${cls}" type="button" data-action="select" data-key="${esc(opt.key)}" aria-pressed="${selected}"${shortcutKey ? ` aria-keyshortcuts="${shortcutKey}"` : ''}${langAttr(opt.text, lang)}>
+            <span class="option-key">${esc(opt.key)}</span>
+            <span class="option-text">${esc(opt.text)}</span>
+            ${shortcutKey ? `<span class="option-kbd" aria-hidden="true">${shortcutKey}</span>` : ''}
+          </button>`;
+        })
+        .join('')}
+    </div>
+
+    ${question.question_type === 'multiple_correct' && !revealed ? '<p class="tiny muted mt-2 mb-0">More than one option may be correct. Select all that apply, then check your answer.</p>' : ''}
+
+    <div class="runner-nav">
+      <button class="btn" type="button" data-action="prev" aria-keyshortcuts="ArrowLeft p" ${index === 0 ? 'disabled' : ''}>← Previous</button>
+      <button class="btn" type="button" data-action="next" aria-keyshortcuts="ArrowRight n" ${index >= totalQuestions - 1 ? 'disabled' : ''}>Next →</button>
+      <button class="btn" type="button" data-action="flag" aria-keyshortcuts="f" aria-pressed="${Boolean(response.flagged)}">${response.flagged ? '⚑ Remove flag' : '⚑ Mark for review'}</button>
+      <button class="btn" type="button" data-action="clear" aria-keyshortcuts="u" ${!response.selected?.length ? 'disabled' : ''}>Clear response</button>
+      <span class="grow"></span>
+      <span class="tiny muted">Time on this question: ${fmtClock(Math.round((response.time_spent_ms || 0) / 1000))}</span>
+      ${learningMode && !revealed ? '<button class="btn btn-primary" type="button" data-action="reveal">Check answer</button>' : ''}
+    </div>
+    ${confidenceMarkup(test, response)}
+    <div class="kbd-bar" aria-label="Keyboard shortcuts">
+      <span><kbd>1</kbd>–<kbd>${Math.min(9, Math.max(1, options.length))}</kbd> select option</span>
+      <span><kbd>←</kbd>/<kbd>P</kbd> previous</span>
+      <span><kbd>→</kbd>/<kbd>N</kbd> next</span>
+      <span><kbd>]</kbd> next unanswered</span>
+      <span><kbd>F</kbd> flag</span>
+      <span><kbd>U</kbd> clear</span>
+      ${test.config.confidence !== 'off' ? '<span><kbd>C</kbd> confidence</span>' : ''}
+      <span><kbd>?</kbd> help</span>
+    </div>
+    <div id="explanationSlot">${explanationBlock}</div>`;
 }
 
-function card_summary(test, progress) {
+/** The score/source card under the palette. */
+function scoringCard(test, progress) {
   const marked = progress.confidence.confident + progress.confidence.unsure + progress.confidence.guessed;
   const conf = test.config.confidence !== 'off' && marked ? `<p class="small mt-2 mb-0">Confidence marked on ${marked} question(s).</p>` : '';
   return `<section class="card">
@@ -325,12 +355,152 @@ function card_summary(test, progress) {
   </section>`;
 }
 
-/* --------------------------------------------------------------- actions --- */
+function markup() {
+  const { test } = session;
+  const { question, index } = currentQuestion();
+  const progress = tests.testProgress(test);
+  const totalQuestions = test.question_ids.length;
+  const remaining = test.timer.remaining_seconds;
+  const timerClass = remaining !== null && remaining !== undefined ? (remaining <= 60 ? 'bad' : remaining <= 300 ? 'warn' : '') : '';
+  const saveStateClass = session.saveState === 'saving' ? 'saving' : session.saveState === 'error' ? 'error' : '';
+  const isFocusMode = typeof document !== 'undefined' && document.body.classList.contains('runner-focus');
+  const counts = paletteCounts(test);
+
+  if (!question) {
+    return `<h1 class="runner-title">${esc(test.label || 'Test')}</h1>${notice('This question could not be loaded from the local database. It may have been removed by undoing an import.', 'bad')}`;
+  }
+
+  const options = orderedOptions(question);
+
+  return `
+  <div class="runner-bar">
+    <div class="grow">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <ol><li><a href="#/test-centre">Papers</a></li><li aria-current="page">${esc(test.label || 'Practice')}</li></ol>
+      </nav>
+      <div class="row tight">
+        <h1 class="runner-title">${esc(test.label || 'Practice')}</h1>
+        <span class="tiny muted">${test.config.feedback_mode === 'learning' ? 'Learning mode — answers revealed as you go' : 'Exam mode — answers revealed after submitting'}</span>
+      </div>
+      <div class="tiny muted" id="runnerProgress">
+        Question ${index + 1} of ${totalQuestions}
+        · ${progress.answered} answered · ${progress.unanswered} left${progress.flagged ? ` · ${progress.flagged} flagged` : ''}
+      </div>
+    </div>
+    <div class="row tight">
+      ${test.config.show_timer && remaining !== null && remaining !== undefined ? `<span class="timer ${timerClass}" id="runnerTimer" role="timer">${fmtClock(remaining)}</span>` : '<span class="tiny muted">No time limit</span>'}
+      <span class="save-state ${saveStateClass}" id="saveState">${session.saveState === 'saving' ? 'saving…' : session.saveState === 'error' ? 'save failed' : 'saved'}</span>
+      <button class="btn btn-sm btn-quiet runner-palette-btn" type="button" data-action="palette-toggle" aria-expanded="false" aria-controls="runnerSide" aria-label="Open the question palette">Palette <span class="runner-palette-progress" id="paletteSummary">${counts.answered}/${counts.total}</span></button>
+      <button class="btn btn-sm btn-quiet" type="button" data-action="focus-mode" aria-pressed="${isFocusMode}" title="Toggle distraction-free reading layout (D)">${isFocusMode ? 'Show sidebar' : 'Focus'}</button>
+      <button class="btn btn-sm btn-quiet" type="button" data-action="pause">${test.status === 'paused' ? 'Resume' : 'Pause'}</button>
+      <button class="btn btn-primary btn-sm" type="button" data-action="submit">Submit</button>
+      <button class="btn btn-sm btn-icon kbd-legend-toggle" type="button" data-action="kbd-legend" aria-expanded="${Boolean(session.legendOpen)}" aria-controls="runnerKbdLegend" aria-label="Keyboard shortcuts" title="Keyboard shortcuts">?</button>
+    </div>
+    ${shortcutLegend({ optionCount: options.length, confidence: test.config.confidence !== 'off', open: Boolean(session.legendOpen) })}
+  </div>
+
+  <div class="runner">
+    <div class="runner-main">
+      <article class="question-card" id="questionCard">${questionCardMarkup()}</article>
+      ${test.config.warnings?.length ? infoToggle('Notes about this test', `<ul class="small">${test.config.warnings.map((w) => `<li>${esc(w)}</li>`).join('')}</ul>`) : ''}
+    </div>
+
+    <aside class="sticky-side runner-side" id="runnerSide">
+      <section class="card palette-card">
+        <div class="card-head">
+          <h2>Questions</h2>
+          <span class="muted tiny" id="paletteHeadCount">${counts.answered}/${counts.total}</span>
+          <button class="btn btn-sm btn-quiet palette-close" type="button" data-action="palette-toggle" aria-label="Close the question palette">Close</button>
+        </div>
+        <div class="card-body tight">
+          ${paletteToolsMarkup(counts)}
+          <div class="palette" id="paletteGrid">${paletteGridMarkup(test, index)}</div>
+          <div class="legend">
+            <span><i class="swatch ok" aria-hidden="true"></i> answered</span>
+            <span><i class="swatch warn" aria-hidden="true">⚑</i> flagged</span>
+            <span><i class="swatch" aria-hidden="true"></i> not answered</span>
+            <span><i class="swatch current" aria-hidden="true"></i> current question</span>
+          </div>
+          ${paletteJumpsMarkup()}
+          <div class="row mt-3">
+            <button class="btn btn-sm btn-quiet" type="button" data-action="print">Print question paper</button>
+          </div>
+        </div>
+      </section>
+      ${scoringCard(test, progress)}
+    </aside>
+  </div>`;
+}
+
+/* --------------------------------------------------------------- paints --- */
+
+/** Where focus was, expressed as a selector that survives a card repaint. */
+function focusKeyWithin(root) {
+  const active = typeof document !== 'undefined' ? document.activeElement : null;
+  if (!active || !root.contains(active) || !active.dataset?.action) return null;
+  const bits = [`[data-action="${active.dataset.action}"]`];
+  if (active.dataset.value !== undefined) bits.push(`[data-value="${active.dataset.value}"]`);
+  if (active.dataset.key !== undefined) bits.push(`[data-key="${active.dataset.key}"]`);
+  if (active.dataset.index !== undefined) bits.push(`[data-index="${active.dataset.index}"]`);
+  return bits.join('');
+}
+
+function restoreFocus(root, key) {
+  if (!key) return;
+  const again = root.querySelector(key);
+  if (again && typeof again.focus === 'function') {
+    try {
+      again.focus({ preventScroll: true });
+    } catch {
+      /* focus is best effort */
+    }
+  }
+}
+
+/** Repaint the question card only, keeping focus where it was. */
+function paintCard(root, { keepFocus = true } = {}) {
+  const card = root.querySelector('#questionCard');
+  if (!card) return;
+  const key = keepFocus ? focusKeyWithin(root) : null;
+  card.innerHTML = questionCardMarkup();
+  restoreFocus(root, key);
+}
+
+/** Repaint the palette cells and every count that mirrors them. */
+function paintPalette(root) {
+  const { test } = session;
+  const index = test.current_index || 0;
+  const counts = paletteCounts(test);
+  const grid = root.querySelector('#paletteGrid');
+  if (grid) {
+    const key = focusKeyWithin(grid);
+    grid.innerHTML = paletteGridMarkup(test, index);
+    restoreFocus(root, key);
+  }
+  const tools = root.querySelector('.palette-tools');
+  if (tools) {
+    const key = focusKeyWithin(tools);
+    tools.outerHTML = paletteToolsMarkup(counts);
+    restoreFocus(root, key);
+  }
+  const set = (selector, text) => {
+    const el = root.querySelector(selector);
+    if (el) el.textContent = text;
+  };
+  set('#paletteHeadCount', `${counts.answered}/${counts.total}`);
+  set('#paletteSummary', `${counts.answered}/${counts.total}`);
+  set('#runnerProgress', `Question ${index + 1} of ${counts.total} · ${counts.answered} answered · ${counts.unanswered} left${counts.flagged ? ` · ${counts.flagged} flagged` : ''}`);
+}
+
+/** Repaint everything (language switch, focus mode, resume). */
+function paintAll(root) {
+  root.innerHTML = markup();
+}
+
+/* -------------------------------------------------------------- actions --- */
 
 async function persist() {
-  // The router may have torn the session down while a save was in flight
-  // (leaving the screen mid-answer); writing to the released session then
-  // threw. Bail out quietly instead — cleanup() saves the test itself.
+  // The router may have torn the session down while a save was in flight.
   if (!session) return;
   const mine = session;
   mine.saveState = 'saving';
@@ -367,46 +537,65 @@ function attributeElapsed() {
   session.test.elapsed_seconds = (session.test.elapsed_seconds || 0) + Math.round(elapsed / 1000);
 }
 
-/**
- * Re-render in place without moving the reader. Answering, flagging or marking
- * confidence used to rebuild the whole screen and lose both the scroll
- * position and the focused control; now the scroll offset is restored and
- * focus returns to the equivalent control. Only an explicit move to another
- * question (`toQuestion`) scrolls — to the top of that question.
- */
-async function repaint(ctx, root, { toQuestion = false } = {}) {
-  attributeElapsed();
-  const scrollY = typeof window !== 'undefined' ? window.scrollY || 0 : 0;
-  const active = typeof document !== 'undefined' ? document.activeElement : null;
-  const activeKey =
-    active && root.contains(active) && active.dataset?.action
-      ? `[data-action="${active.dataset.action}"]${active.dataset.value !== undefined ? `[data-value="${active.dataset.value}"]` : ''}${active.dataset.key !== undefined ? `[data-key="${active.dataset.key}"]` : ''}${active.dataset.index !== undefined ? `[data-index="${active.dataset.index}"]` : ''}`
-      : null;
-  root.innerHTML = markup();
-  attach(ctx, root, { keepTimer: true });
-  if (toQuestion) {
-    const card = document.getElementById('questionCard');
-    if (card && typeof card.scrollIntoView === 'function') card.scrollIntoView({ block: 'start' });
-    return;
+/** Everything an answer-level action needs after the model changed. */
+function afterAnswerChange(root) {
+  const { id } = currentQuestion();
+  const response = responseFor(id);
+  // A revealed answer brings its explanation, which is markup the card did not
+  // have before — that repaint is real. Everything else (selecting, flagging,
+  // clearing, marking confidence) is a property of controls that already
+  // exist, so it is patched onto those very controls: the node the reader just
+  // pressed stays the node they are holding, and focus, scroll and reading
+  // position do not move.
+  if (response.revealed) paintCard(root);
+  else syncCardControls(root, response);
+  paintPalette(root);
+}
+
+/** Patch the card's own controls to match the stored response. */
+function syncCardControls(root, response) {
+  const card = root.querySelector('#questionCard');
+  if (!card) return;
+  const selected = new Set(response.selected || []);
+  card.querySelectorAll('[data-action="select"]').forEach((button) => {
+    button.setAttribute('aria-pressed', String(selected.has(button.dataset.key)));
+  });
+  const flag = card.querySelector('[data-action="flag"]');
+  if (flag) {
+    flag.setAttribute('aria-pressed', String(Boolean(response.flagged)));
+    flag.textContent = response.flagged ? '⚑ Remove flag' : '⚑ Mark for review';
   }
-  if (typeof window !== 'undefined') window.scrollTo({ top: scrollY, behavior: 'auto' });
-  if (activeKey) {
-    const again = root.querySelector(activeKey);
-    if (again && typeof again.focus === 'function') {
-      try {
-        again.focus({ preventScroll: true });
-      } catch {
-        /* focus is best effort */
-      }
-    }
+  const clear = card.querySelector('[data-action="clear"]');
+  if (clear) clear.disabled = !selected.size;
+  card.querySelectorAll('[data-action="confidence"]').forEach((button) => {
+    const value = button.dataset.value || null;
+    button.setAttribute('aria-pressed', String(Boolean(value) && response.confidence === value));
+  });
+  // The confidence line changes words ("Not marked" ↔ "Marked: …" ↔ the
+  // remove control), so that one paragraph is rebuilt in place.
+  const status = card.querySelector('.confidence-box [role="status"]');
+  const remove = card.querySelector('.confidence-box [data-action="confidence"][data-value=""]');
+  if (status) status.textContent = response.confidence ? `Marked: ${confidenceLabel(response.confidence)}` : 'Not marked';
+  if (response.confidence && !remove && status?.parentElement) {
+    const button = document.createElement('button');
+    button.className = 'btn btn-sm btn-quiet';
+    button.type = 'button';
+    button.dataset.action = 'confidence';
+    button.dataset.value = '';
+    button.setAttribute('aria-keyshortcuts', 'c');
+    button.textContent = '✕ Remove mark';
+    // Same parent as the status line: inserting into the box rather than its
+    // row would put the button outside the row it belongs to.
+    status.parentElement.insertBefore(button, status);
+  } else if (!response.confidence && remove) {
+    remove.remove();
   }
 }
 
 async function selectOption(ctx, root, key) {
   const { id, question } = currentQuestion();
   const response = responseFor(id);
-  const type = question.question_type;
-  const multi = type === 'multiple_correct';
+  const multi = question.question_type === 'multiple_correct';
   let selected;
   if (multi) {
     const set = new Set(response.selected || []);
@@ -416,24 +605,44 @@ async function selectOption(ctx, root, key) {
   } else {
     selected = [key];
   }
-  // In learning mode a single-answer pick reveals the answer in the same
-  // repaint, instead of repainting twice (which flickered and re-attributed
-  // time). Multiple-correct questions still wait for "Check answer".
+  // Learning mode reveals a single-answer pick in the same repaint.
   const revealNow = session.test.config.feedback_mode === 'learning' && !multi;
-  const patch = { selected, revealed: revealNow };
-  await tests.updateResponse(session.test, id, patch);
+  await tests.updateResponse(session.test, id, { selected, revealed: revealNow });
   await persist();
-  await repaint(ctx, root);
+  afterAnswerChange(root);
 }
 
 async function reveal(ctx, root) {
   const { id } = currentQuestion();
   await tests.updateResponse(session.test, id, { revealed: true });
   await persist();
-  await repaint(ctx, root);
+  afterAnswerChange(root);
 }
 
-async function goto(ctx, root, index) {
+async function toggleFlag(ctx, root) {
+  const { id } = currentQuestion();
+  const response = responseFor(id);
+  await tests.updateResponse(session.test, id, { flagged: !response.flagged });
+  await persist();
+  afterAnswerChange(root);
+}
+
+async function clearResponse(ctx, root) {
+  const { id } = currentQuestion();
+  await tests.updateResponse(session.test, id, { selected: [], revealed: false });
+  await persist();
+  afterAnswerChange(root);
+}
+
+async function setConfidence(ctx, root, value) {
+  const { id } = currentQuestion();
+  await tests.updateResponse(session.test, id, { confidence: value || null });
+  await persist();
+  afterAnswerChange(root);
+}
+
+/** Move to a question. Repaints the card and palette, then scrolls to the card. */
+async function goto(ctx, root, index, { scroll = true } = {}) {
   const { test } = session;
   if (test.config.confidence === 'required') {
     const { id } = currentQuestion();
@@ -449,32 +658,49 @@ async function goto(ctx, root, index) {
   await tests.updateResponse(session.test, id, { visits: (response.visits || 0) + 1 });
   session.lastSwitchAt = Date.now();
   await persist();
-  await repaint(ctx, root, { toQuestion: true });
+  paintCard(root, { keepFocus: false });
+  paintPalette(root);
+  if (scroll) {
+    document.body?.classList.remove('palette-open');
+    const toggle = root.querySelector('[data-action="palette-toggle"]');
+    if (toggle) toggle.setAttribute('aria-expanded', 'false');
+    const card = document.getElementById('questionCard');
+    if (card && typeof card.scrollIntoView === 'function') card.scrollIntoView({ block: 'start' });
+  }
 }
 
-async function toggleFlag(ctx, root) {
-  const { id } = currentQuestion();
-  const response = responseFor(id);
-  await tests.updateResponse(session.test, id, { flagged: !response.flagged });
-  await persist();
-  await repaint(ctx, root);
+/**
+ * Jump to the next question matching a predicate, wrapping once. This is the
+ * "I have two minutes and seven blanks" shortcut: it never changes anything but
+ * the current index.
+ */
+async function jumpTo(ctx, root, predicate, label) {
+  const { test } = session;
+  const total = test.question_ids.length;
+  const from = test.current_index || 0;
+  for (let step = 1; step <= total; step += 1) {
+    const index = (from + step) % total;
+    if (predicate(test.question_ids[index], index)) {
+      if (index === from) {
+        toast(`This is the only ${label} question — you are on it.`, 'info');
+        return;
+      }
+      await goto(ctx, root, index);
+      return;
+    }
+  }
+  toast(`There are no ${label} questions.`, 'info');
 }
 
-async function clearResponse(ctx, root) {
-  const { id } = currentQuestion();
-  await tests.updateResponse(session.test, id, { selected: [], revealed: false });
-  await persist();
-  await repaint(ctx, root);
-}
+/* --------------------------------------------------------- submission --- */
 
-async function setConfidence(ctx, root, value) {
-  const { id } = currentQuestion();
-  await tests.updateResponse(session.test, id, { confidence: value || null });
-  await persist();
-  await repaint(ctx, root);
-}
-
-export async function submitWithConfirmation(ctx, { auto = false, root = null } = {}) {
+/**
+ * The submission sheet: what is answered, what is not, what is still flagged,
+ * the rules that will score it — and, next to Submit, a way back to the first
+ * unanswered question. A prose confirmation told the reader about a problem it
+ * gave them no way to fix.
+ */
+async function submitWithConfirmation(ctx, { auto = false, root = null } = {}) {
   const test = session.test;
   if (!test.config.scoring?.rules) {
     const rules = await askForRules();
@@ -484,21 +710,45 @@ export async function submitWithConfirmation(ctx, { auto = false, root = null } 
   const progress = tests.testProgress(test);
   if (!auto) {
     const requiredMissing = test.config.confidence === 'required' ? test.question_ids.filter((id) => responseFor(id).selected?.length && !responseFor(id).confidence).length : 0;
-    const ok = await confirmDialog({
+    const firstUnanswered = test.question_ids.findIndex((id) => !responseFor(id).selected?.length);
+    const rules = test.config.scoring.rules;
+    const rows = [
+      ['Answered', `${progress.answered} of ${progress.total}`, progress.answered === progress.total ? 'ok' : ''],
+      ['Unanswered', `${progress.unanswered}`, progress.unanswered ? 'warn' : ''],
+      ['Marked for review', `${progress.flagged}`, progress.flagged ? 'warn' : ''],
+      ...(test.config.confidence === 'required' ? [['Confidence missing', `${requiredMissing}`, requiredMissing ? 'bad' : '']] : []),
+    ];
+    const value = await openModal({
       title: 'Submit this test?',
-      message: `You answered <strong>${progress.answered}</strong> of ${progress.total} questions.
-        ${progress.unanswered ? `<br /><strong>${progress.unanswered}</strong> question(s) are unanswered — they stay unanswered rather than being guessed.` : ''}
-        ${progress.flagged ? `<br />${progress.flagged} question(s) are still marked for review.` : ''}
-        ${requiredMissing ? `<br /><span class="text-warn">${requiredMissing} answered question(s) have no confidence mark yet.</span>` : ''}
-        <br /><br />Scoring uses: ${esc(
-          [
-            `+${test.config.scoring.rules.marks_per_correct} correct`,
-            test.config.scoring.rules.negative_marking_enabled ? `−${test.config.scoring.rules.negative_marks_per_incorrect} incorrect` : 'no negative marking',
-          ].join(', '),
-        )}.`,
-      confirmLabel: 'Submit and see results',
+      wide: false,
+      body: `
+        <div class="submit-summary">
+          ${rows
+            .map(
+              ([label, value2, tone]) => `<div class="submit-row ${tone}"><span>${esc(label)}</span><strong>${esc(value2)}</strong></div>`,
+            )
+            .join('')}
+          <div class="submit-row"><span>Scoring</span><strong>${esc(
+            [`+${rules.marks_per_correct} correct`, rules.negative_marking_enabled ? `−${rules.negative_marks_per_incorrect} incorrect` : 'no negative marking', `${rules.marks_for_unanswered} unanswered`].join(' · '),
+          )}</strong></div>
+        </div>
+        <p class="small muted mt-3 mb-0">${
+          progress.unanswered
+            ? `${progress.unanswered} question(s) will be left unanswered — they are not guessed for you. You can go back to them instead of submitting.`
+            : 'Every question has an answer. Submitting now scores the test as it stands.'
+        }</p>`,
+      actions: [
+        { label: 'Keep working', value: 'cancel' },
+        { label: 'Submit and see results', tone: 'btn-primary', value: 'submit' },
+        ...(progress.unanswered || progress.flagged ? [{ label: progress.unanswered ? 'Go to first unanswered' : 'Go to first flagged', value: 'fix' }] : []),
+      ],
     });
-    if (!ok) return false;
+    if (value === 'fix') {
+      const target = progress.unanswered ? firstUnanswered : test.question_ids.findIndex((id) => responseFor(id).flagged);
+      if (root && target >= 0) await goto(ctx, root, target);
+      return false;
+    }
+    if (value !== 'submit') return false;
   }
   attributeElapsed();
   try {
@@ -506,6 +756,7 @@ export async function submitWithConfirmation(ctx, { auto = false, root = null } 
     if (session.ticker) clearInterval(session.ticker);
     session.ticker = null;
     document.body?.classList.remove('runner-focus');
+    document.body?.classList.remove('palette-open');
     toast(auto ? 'Time is up — the test was submitted automatically.' : 'Test submitted. Results are ready.', auto ? 'warn' : 'ok');
     ctx.navigate(`report/${test.id}`);
     return true;
@@ -550,6 +801,8 @@ async function askForRules(paper = null) {
   return { marks_per_correct: marksPerCorrect, negative_marks_per_incorrect: Math.abs(negativeMarksPerIncorrect), negative_marking_enabled: negativeMarkingEnabled, marks_for_unanswered: marksForUnanswered };
 }
 
+/* ------------------------------------------------------------- ticking --- */
+
 function startTicker(ctx, root) {
   if (session.ticker) clearInterval(session.ticker);
   session.ticker = setInterval(async () => {
@@ -580,63 +833,86 @@ function startTicker(ctx, root) {
   session.ticker?.unref?.();
 }
 
+/* -------------------------------------------------------------- attach --- */
+
+/**
+ * All controls are handled by one delegated listener on `#view`, so repainting
+ * part of the screen can never leave a control without a handler — or bind the
+ * same handler twice.
+ */
 function attach(ctx, root, { keepTimer = false } = {}) {
-  root.querySelectorAll('[data-action]').forEach((btn) => {
-    btn.addEventListener('click', async (ev) => {
-      const action = btn.dataset.action;
-      ev.preventDefault();
-      if (action === 'kbd-legend') setLegendOpen(root, !session.legendOpen);
-      else if (action === 'kbd-legend-close') setLegendOpen(root, false, { returnFocus: true });
-      else if (action === 'select') await selectOption(ctx, root, btn.dataset.key);
-      else if (action === 'next') await goto(ctx, root, (session.test.current_index || 0) + 1);
-      else if (action === 'prev') await goto(ctx, root, (session.test.current_index || 0) - 1);
-      else if (action === 'goto') await goto(ctx, root, Number(btn.dataset.index));
-      else if (action === 'flag') await toggleFlag(ctx, root);
-      else if (action === 'clear') await clearResponse(ctx, root);
-      else if (action === 'confidence') await setConfidence(ctx, root, btn.dataset.value || null);
-      else if (action === 'reveal') await reveal(ctx, root);
-      else if (action === 'submit') await submitWithConfirmation(ctx, { root });
-      else if (action === 'focus-mode') {
-        document.body?.classList.toggle('runner-focus');
-        await repaint(ctx, root);
-      } else if (action === 'print') {
-        window.print?.();
-      } else if (action === 'pause') {
-        const test = session.test;
-        if (test.status === 'paused') {
-          test.status = 'in_progress';
-          test.timer.running = true;
-          test.timer.last_tick_at = new Date().toISOString();
-          toast('Timer resumed.', 'info');
-        } else {
-          test.status = 'paused';
-          tests.pauseTimer(test);
-          toast('Test paused. The clock is stopped; your answers are saved.', 'info');
+  {
+    // One delegated listener per render of this screen. The router aborts the
+    // previous render's signal before a new screen paints, so this can never
+    // pile up — and because the listener is on the container, repainting the
+    // card or the palette never costs a re-bind.
+    root.addEventListener(
+      'click',
+      async (ev) => {
+        const langBtn = ev.target.closest('[data-lang]');
+        if (langBtn && root.contains(langBtn)) {
+          session.lang = langBtn.dataset.lang;
+          session.test.language = langBtn.dataset.lang;
+          await persist();
+          paintAll(root);
+          return;
         }
-        await persist();
-        await repaint(ctx, root);
-        if (test.status === 'in_progress') startTicker(ctx, root);
-      } else if (action === 'lang') return;
-    });
-  });
-  root.querySelectorAll('[data-lang]').forEach((btn) => {
-    btn.addEventListener('click', async () => {
-      session.lang = btn.dataset.lang;
-      session.test.language = btn.dataset.lang;
-      await persist();
-      await repaint(ctx, root);
-    });
-  });
-  if (keepTimer && session.ticker === null && session.test.status === 'in_progress') startTicker(ctx, root);
-  if (!keepTimer) {
+        const btn = ev.target.closest('[data-action]');
+        if (!btn || !root.contains(btn)) return;
+        const action = btn.dataset.action;
+        if (action === 'lang') return;
+        ev.preventDefault();
+        if (action === 'kbd-legend') setLegendOpen(root, !session.legendOpen);
+        else if (action === 'kbd-legend-close') setLegendOpen(root, false, { returnFocus: true });
+        else if (action === 'select') await selectOption(ctx, root, btn.dataset.key);
+        else if (action === 'next') await goto(ctx, root, (session.test.current_index || 0) + 1);
+        else if (action === 'prev') await goto(ctx, root, (session.test.current_index || 0) - 1);
+        else if (action === 'goto') await goto(ctx, root, Number(btn.dataset.index));
+        else if (action === 'flag') await toggleFlag(ctx, root);
+        else if (action === 'clear') await clearResponse(ctx, root);
+        else if (action === 'confidence') await setConfidence(ctx, root, btn.dataset.value || null);
+        else if (action === 'reveal') await reveal(ctx, root);
+        else if (action === 'submit') await submitWithConfirmation(ctx, { root });
+        else if (action === 'next-unanswered') await jumpTo(ctx, root, (id) => !responseFor(id).selected?.length, 'unanswered');
+        else if (action === 'next-flagged') await jumpTo(ctx, root, (id) => Boolean(responseFor(id).flagged), 'flagged');
+        else if (action === 'palette-filter') {
+          session.paletteFilter = btn.dataset.filter;
+          paintPalette(root);
+        } else if (action === 'palette-toggle') {
+          const open = !document.body.classList.contains('palette-open');
+          document.body.classList.toggle('palette-open', open);
+          root.querySelectorAll('[data-action="palette-toggle"]').forEach((toggle) => toggle.setAttribute('aria-expanded', String(open)));
+        } else if (action === 'focus-mode') {
+          document.body?.classList.toggle('runner-focus');
+          paintAll(root);
+        } else if (action === 'print') {
+          window.print?.();
+        } else if (action === 'pause') {
+          const test = session.test;
+          if (test.status === 'paused') {
+            test.status = 'in_progress';
+            test.timer.running = true;
+            test.timer.last_tick_at = new Date().toISOString();
+            toast('Timer resumed.', 'info');
+          } else {
+            test.status = 'paused';
+            tests.pauseTimer(test);
+            toast('Test paused. The clock is stopped; your answers are saved.', 'info');
+          }
+          await persist();
+          paintAll(root);
+          if (test.status === 'in_progress') startTicker(ctx, root);
+        }
+      },
+      { signal: ctx.signal },
+    );
     wireKeyboard(ctx, root);
   }
+  if (keepTimer && session.ticker === null && session.test.status === 'in_progress') startTicker(ctx, root);
 }
 
 /**
  * Show or hide the shortcut legend in place (no repaint, so nothing moves).
- * Focus is only moved when the legend closes with focus inside it — it is
- * about to disappear — and then back to the "?" button, without scrolling.
  */
 function setLegendOpen(root, open, { returnFocus = false } = {}) {
   if (!session) return;
@@ -655,21 +931,23 @@ function setLegendOpen(root, open, { returnFocus = false } = {}) {
   }
 }
 
-function wireKeyboard(ctx, root) {
+async function wireKeyboard(ctx, root) {
   const handler = async (ev) => {
     const tag = ev.target?.tagName;
     if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || ev.target?.isContentEditable) return;
     if (document.getElementById('modalRoot')?.hidden === false) return;
     if (ev.key === 'Escape') {
-      // A dialog that handled this Escape has already closed (and prevented it).
       if (session?.legendOpen && !ev.defaultPrevented) {
         ev.preventDefault();
         setLegendOpen(root, false);
       }
+      if (document.body.classList.contains('palette-open')) {
+        document.body.classList.remove('palette-open');
+        root.querySelectorAll('[data-action="palette-toggle"]').forEach((toggle) => toggle.setAttribute('aria-expanded', 'false'));
+      }
       return;
     }
-    // Browser and system shortcuts (Ctrl/⌘ + F, P, C, U…, Alt + ←) are not ours:
-    // without this, Ctrl+P "went to the previous question" instead of printing.
+    // Browser and system shortcuts are not ours.
     if (ev.ctrlKey || ev.metaKey || ev.altKey) return;
     const index = session.test.current_index || 0;
     if (/^[1-9]$/.test(ev.key)) {
@@ -685,12 +963,22 @@ function wireKeyboard(ctx, root) {
     } else if (ev.key === 'ArrowLeft' || ev.key.toLowerCase() === 'p') {
       ev.preventDefault();
       await goto(ctx, root, index - 1);
+    } else if (ev.key === ']') {
+      ev.preventDefault();
+      await jumpTo(ctx, root, (id) => !responseFor(id).selected?.length, 'unanswered');
+    } else if (ev.key === '[') {
+      ev.preventDefault();
+      await jumpTo(ctx, root, (id) => Boolean(responseFor(id).flagged), 'flagged');
     } else if (ev.key.toLowerCase() === 'f') {
       ev.preventDefault();
       await toggleFlag(ctx, root);
     } else if (ev.key.toLowerCase() === 'u') {
       ev.preventDefault();
       await clearResponse(ctx, root);
+    } else if (ev.key.toLowerCase() === 'd') {
+      ev.preventDefault();
+      document.body.classList.toggle('runner-focus');
+      paintAll(root);
     } else if (ev.key.toLowerCase() === 'c' && session.test.config.confidence !== 'off') {
       ev.preventDefault();
       const order = ['confident', 'unsure', 'guessed', null];
@@ -714,7 +1002,7 @@ function wireKeyboard(ctx, root) {
   session.legendDismissHandler = dismiss;
 }
 
-/** Remove the document listeners wireKeyboard() added. */
+/** Remove the document listeners added for this session. */
 function unwireKeyboard() {
   if (session?.keyboardHandler) document.removeEventListener('keydown', session.keyboardHandler);
   if (session?.legendDismissHandler) document.removeEventListener('click', session.legendDismissHandler);
@@ -731,7 +1019,7 @@ const view = {
     const [testId, sessionId] = ctx.params;
     const loaded = await loadSession(testId, { questionIds: sessionId ? idsFromParam(sessionId) : null });
     if (!loaded) {
-      return `<h1>Test</h1>${notice('That test session was not found in local storage. It may have been deleted by a restore. <a href="#/test-centre">Back to the test centre</a>.', 'warn')}`;
+      return `<h1>Test</h1>${notice('That test session was not found in local storage. It may have been deleted by a restore. <a href="#/test-centre">Back to Papers</a>.', 'warn')}`;
     }
     session = loaded;
     if (session.test.status === 'submitted') {
@@ -753,6 +1041,7 @@ const view = {
 
   async mount(ctx, root) {
     if (!session) return;
+    document.body?.classList.remove('palette-open');
     attach(ctx, root, {});
     startTicker(ctx, root);
     if (session.test.status === 'paused') {
@@ -761,15 +1050,15 @@ const view = {
   },
 
   /**
-   * Called by the router before another screen renders. The ticker is stopped so
-   * it cannot keep saving in the background, but the test clock is *not*
-   * rewound: reconcileTimer() charges the elapsed wall-clock time when the test
-   * is opened again, exactly as it does after a page refresh.
+   * Called by the router before another screen renders: stop the ticker and
+   * release the document listeners, but never rewind the clock (opening the
+   * test again reconciles the elapsed wall-clock time).
    */
   async cleanup() {
     if (session?.ticker) clearInterval(session.ticker);
     unwireKeyboard();
     document.body?.classList.remove('runner-focus');
+    document.body?.classList.remove('palette-open');
     if (session?.test && session.test.status === 'in_progress') {
       await tests.saveTest(session.test).catch((err) => console.warn('Could not save the test on leaving the screen', err));
     }

@@ -4457,6 +4457,159 @@ a.stat:hover { background: var(--surface-hover); }
 
 a.stat:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: -2px; }
 
+/* ---------------------------------------------------------- start deck --- */
+/* The dashboard's launcher: one row per thing that can be started, the real
+   count behind it, and the button. The deck is a page section, not a card, so
+   the rows carry the hierarchy and the count sits next to the action. */
+
+.start-deck {
+  margin-bottom: var(--space-4);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  background: var(--bg-elevated);
+  overflow: hidden;
+}
+
+.start-deck-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 13px 20px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.start-deck-head h2 {
+  margin: 0;
+  font-size: 0.9375rem;
+  font-weight: 620;
+  letter-spacing: -0.012em;
+}
+
+.start-deck-head p {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+
+.start-rows { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+
+.start-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 11px 20px;
+  border-bottom: 1px solid var(--border-subtle);
+  min-width: 0;
+}
+
+.start-row:last-child { border-bottom: 0; }
+
+.start-row.is-accent { background: var(--bg); }
+
+.start-row.is-empty { opacity: 0.6; }
+
+.start-row-main { flex: 1 1 auto; min-width: 0; }
+
+.start-row-label {
+  margin: 0;
+  color: var(--text);
+  font-size: 0.875rem;
+  font-weight: 560;
+  letter-spacing: -0.006em;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+.start-row-extra { color: var(--text-soft); font-size: 0.6875rem; font-weight: 470; }
+
+.start-row-detail {
+  margin: 2px 0 0;
+  color: var(--text-soft);
+  font-size: 0.75rem;
+  line-height: 1.45;
+}
+
+.start-row-count {
+  flex: 0 0 auto;
+  padding: 2px 7px;
+  border-radius: var(--radius-xs);
+  background: var(--bg-sunken);
+  color: var(--text-muted);
+  font-size: 0.6875rem;
+  font-weight: 560;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.start-row .btn { flex: 0 0 auto; }
+
+/* An action list: a row of text plus the one action that row exists for.
+   Deliberately not a table — these are decisions, not records. */
+.action-rows { display: flex; flex-direction: column; margin: -2px 0; }
+
+.action-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--border-subtle);
+  min-width: 0;
+}
+
+.action-row:last-child { border-bottom: 0; }
+
+.action-row-main { flex: 1 1 auto; min-width: 0; }
+
+.action-row-title {
+  margin: 0;
+  color: var(--text);
+  font-size: 0.8125rem;
+  font-weight: 540;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.action-row-title a { color: inherit; font-weight: inherit; }
+.action-row-title a:hover { color: var(--accent); text-decoration: none; }
+
+.action-row-meta { margin: 1px 0 0; color: var(--text-soft); font-size: 0.6875rem; line-height: 1.45; }
+
+.action-row-value {
+  flex: 0 0 auto;
+  color: var(--text);
+  font-size: 0.8125rem;
+  font-weight: 560;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.action-row-value small { display: block; color: var(--text-soft); font-size: 0.625rem; font-weight: 460; }
+
+.action-row .btn { flex: 0 0 auto; }
+
+/* The same question seen twice: due for revision *and* an open mistake. */
+.cross-signal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 14px;
+}
+
+.cross-signal span { flex: 1 1 240px; font-size: 0.75rem; color: var(--text-soft); line-height: 1.45; }
+
+@media (max-width: 640px) {
+  .start-deck-head { flex-direction: column; gap: 2px; padding: 12px 16px; }
+  .start-row { flex-wrap: wrap; gap: 8px; padding: 12px 16px; }
+  .start-row-count { display: none; }
+  .start-row .btn { flex: 1 1 100%; }
+  .action-row { flex-wrap: wrap; }
+  .action-row .btn { flex: 1 1 auto; }
+}
+
 /* Small facts set inline under a table: label and value, no boxes. */
 .stats-inline { display: flex; flex-wrap: wrap; gap: 6px 20px; color: var(--text-muted); font-size: 0.8125rem; }
 
@@ -4734,6 +4887,222 @@ a.stat:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: -2p
 .palette button.answered::after { border-top-color: currentColor; bottom: 4px; left: 36%; right: 36%; }
 
 .legend { color: var(--text-soft); gap: 12px; }
+
+/* ----------------------------------------------------- runner: palette --- */
+/* The palette answers two questions: what is left, and take me there. Counts
+   and a filter sit above the grid; the jumps sit below it. On a narrow screen
+   the whole panel becomes a sheet opened from the bar, so the grid is never a
+   long scroll under the question. */
+
+.palette-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.palette-filter {
+  flex: 1 1 auto;
+  min-height: 28px;
+  padding: 3px 8px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 0.6875rem;
+  font-weight: 520;
+  cursor: pointer;
+}
+
+.palette-filter:hover { background: var(--bg-sunken); color: var(--text); }
+
+.palette-filter[aria-pressed="true"] {
+  border-color: var(--border-strong);
+  background: var(--bg-sunken);
+  color: var(--text);
+  font-weight: 600;
+}
+
+.palette-filter-count { font-variant-numeric: tabular-nums; color: var(--text-soft); }
+
+.palette-filter[aria-pressed="true"] .palette-filter-count { color: var(--text-muted); }
+
+.palette-jumps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.palette-close,
+.runner-palette-btn { display: none; }
+
+.runner-palette-progress {
+  margin-left: 4px;
+  color: var(--text-soft);
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+}
+
+/* Submission sheet rows: label on the left, figure on the right, one tone. */
+.submit-summary { border-top: 1px solid var(--border-subtle); }
+
+.submit-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: 0.8125rem;
+}
+
+.submit-row > span { color: var(--text-soft); }
+.submit-row > strong { font-variant-numeric: tabular-nums; font-weight: 600; }
+.submit-row.ok > strong { color: var(--ok); }
+.submit-row.warn > strong { color: var(--warn); }
+.submit-row.bad > strong { color: var(--bad); }
+
+/* The scoring card may carry an ⓘ beside its rules; keep it on one line. */
+.palette-card .card-head { gap: 8px; }
+
+@media (max-width: 1040px) {
+  .runner-palette-btn { display: inline-flex; align-items: center; }
+
+  .runner-side {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 45;
+    max-height: 72vh;
+    overflow: auto;
+    margin: 0;
+    padding: 14px 16px calc(16px + env(safe-area-inset-bottom, 0px));
+    border-top: 1px solid var(--border);
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    background: var(--bg);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(102%);
+    transition: transform var(--dur-base) var(--ease-out);
+    visibility: hidden;
+  }
+
+  body.palette-open .runner-side {
+    transform: none;
+    visibility: visible;
+  }
+
+  .runner-side .card { margin-bottom: 8px; box-shadow: none; }
+
+  .palette-close { display: inline-flex; margin-left: auto; }
+
+  .palette button { min-height: 40px; }
+}
+
+/* --------------------------------------------------- 13d. review panel -- */
+/*
+ * One question-review panel shared by the Mistake Book and Revision Centre
+ * (js/ui/reviewpanel.js). The order is the reading order: what happened, the
+ * question, the explanation, the history. Key and "your answer" are marked by
+ * more than colour — each carries a word — so the panel survives greyscale.
+ */
+
+.review-focus {
+  border-left: 3px solid var(--border-strong);
+  padding-left: 10px;
+  color: var(--text-soft);
+  margin-bottom: 12px;
+}
+
+.review-verdict {
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius);
+  background: var(--bg-sunken);
+  padding: 10px 12px;
+  margin-bottom: 14px;
+}
+
+.review-question-text {
+  font-size: 1rem;
+  line-height: 1.55;
+  margin: 0 0 10px;
+  font-weight: 550;
+}
+
+.review-options {
+  list-style: none;
+  margin: 0 0 12px;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
+
+.review-option {
+  display: grid;
+  grid-template-columns: 26px minmax(0, 1fr) auto;
+  gap: 8px;
+  align-items: start;
+  padding: 8px 10px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius);
+  background: var(--bg-raised);
+}
+
+.review-option.is-key { border-color: var(--ok); }
+.review-option.is-chosen:not(.is-key) { border-color: var(--warn); }
+
+.review-option-key {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  color: var(--text-soft);
+}
+
+.review-option-text { min-width: 0; }
+
+.review-history-table { font-variant-numeric: tabular-nums; }
+
+.review-schedule { margin-top: 16px; }
+
+@media (max-width: 640px) {
+  .review-option { grid-template-columns: 22px minmax(0, 1fr); }
+  .review-option .badge { grid-column: 2; justify-self: start; }
+}
+
+/* Inline two-state mark (Revision Centre). The row's own button becomes the
+   choice, so the most common action in the screen costs one click and no
+   dialog. It is a span so the table row keeps its shape. */
+.mark-split {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  align-items: center;
+  padding: 2px 4px;
+  border-radius: var(--radius);
+  background: var(--bg-sunken);
+}
+
+.mark-split[hidden] { display: none; }
+
+/* A table row's own detail panel (Question review inside the Mistake Book,
+   paper details in the Test Centre). It sits under the row it belongs to. */
+.row-detail-row[hidden] { display: none; }
+
+.row-detail-row > td {
+  background: var(--bg-sunken);
+  padding: 12px 14px;
+  border-top: 1px dashed var(--border-subtle);
+}
+
+.review-inline { max-width: 78ch; }
+
+.review-inline .review-question-text { font-size: 0.95rem; }
+
+.row-detail-top {
+  display: flex;
+  justify-content: flex-end;
+  gap: 6px;
+}
 
 .sticky-side { top: calc(var(--header-h) + 16px); }
 
@@ -6269,6 +6638,141 @@ details.disclosure > summary { color: var(--text-muted); font-size: 0.8125rem; }
     padding-left: var(--space-3);
     margin-left: 4px;
   }
+}
+
+/* -------------------------------------------------------------------------
+   Practice builder — two panes: the bank on the left, the session on the right
+   The session pane holds the basket, the size, the strategy and the Start
+   button; it is the confirmation, so there is no confirmation dialog. It stays
+   in view on a wide screen while the bank is scrolled.
+   ------------------------------------------------------------------------- */
+
+.practice-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(300px, 0.9fr);
+  gap: var(--space-4);
+  align-items: start;
+}
+
+.practice-browse { min-width: 0; }
+
+.practice-search {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+}
+
+.field-grow { flex: 1 1 auto; min-width: 0; }
+
+.practice-session {
+  position: sticky;
+  top: calc(var(--header-h) + 16px);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  background: var(--bg-elevated);
+  overflow: hidden;
+}
+
+.practice-session-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.practice-session-head h2 {
+  margin: 0;
+  font-size: 0.9375rem;
+  font-weight: 620;
+  letter-spacing: -0.012em;
+}
+
+.practice-session-head span:first-of-type {
+  color: var(--text-soft);
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.practice-session-body { padding: var(--space-3) 16px 16px; }
+
+.practice-session-body .practice-setup { margin-top: var(--space-3); }
+
+.basket-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.basket-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  max-width: 100%;
+  padding: 3px 4px 3px 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-sunken);
+  color: var(--text);
+  font-size: 0.75rem;
+  line-height: 1.35;
+}
+
+.basket-chip > span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.basket-chip small { color: var(--text-soft); font-size: 0.6875rem; }
+
+.basket-chip.is-more { padding-right: 8px; color: var(--text-soft); }
+
+.basket-chip-x {
+  flex: 0 0 auto;
+  width: 22px;
+  height: 22px;
+  border: 0;
+  border-radius: var(--radius-xs);
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 0.625rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.basket-chip-x:hover { background: var(--surface-hover); color: var(--text); }
+
+.basket-empty { margin: 0; color: var(--text-soft); font-size: 0.75rem; line-height: 1.45; }
+
+.preset-row { display: flex; gap: 6px; margin-top: var(--space-3); }
+
+.preset {
+  flex: 1 1 auto;
+  min-height: 30px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg-elevated);
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  font-weight: 540;
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+}
+
+.preset:hover { background: var(--bg-sunken); color: var(--text); border-color: var(--border-strong); }
+
+.preset:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.practice-start { margin-top: var(--space-4); padding-top: var(--space-3); border-top: 1px solid var(--border-subtle); }
+
+.practice-start .btn-block { width: 100%; }
+
+.practice-start p { margin-top: 6px; }
+
+@media (max-width: 1040px) {
+  .practice-layout { grid-template-columns: minmax(0, 1fr); }
+  .practice-session { position: static; }
+}
+
+@media (max-width: 560px) {
+  .practice-search { flex-direction: column; align-items: stretch; }
+  .practice-search .btn { width: 100%; }
 }
 
 /* -------------------------------------------------------------------------

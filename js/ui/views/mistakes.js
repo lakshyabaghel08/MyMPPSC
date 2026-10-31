@@ -18,7 +18,6 @@ import {
   toast,
   openModal,
   confirmDialog,
-  renderExplanation,
   confidenceLabel,
   questionTypeLabel,
   answerKeyBadge,
@@ -26,10 +25,11 @@ import {
   screenHead,
   filterChip,
 } from '../components.js';
-import { fmtDate, fmtClock, fmtRelative } from '../../core/util.js';
-import { listMistakes, mistakeCounts, resolveMistake, reopenMistake, removeMistake, attemptHistoryForQuestion, attemptTrend } from '../../services/attempts.js';
-import { getQuestions } from '../../services/questions.js';
+import { fmtRelative, todayKey } from '../../core/util.js';
+import { listMistakes, mistakeCounts, resolveMistake, reopenMistake, removeMistake } from '../../services/attempts.js';
+import { allRevisionRecords } from '../../services/revision.js';
 import { startPracticeTest } from './shared.js';
+import { loadReview, reviewBodyMarkup } from '../reviewpanel.js';
 
 const viewState = { status: 'open', type: 'all', subject: 'all', topic: 'all', year: 'all' };
 
@@ -100,6 +100,14 @@ export default {
         })}`;
     }
 
+    // Cross-signal: an item that is also in the revision queue today is worth
+    // more than the same item on its own — the reader can act on both at once.
+    const revisionRecords = await allRevisionRecords();
+    const today = todayKey();
+    const dueByQuestion = new Map(
+      revisionRecords.filter((rec) => rec.next_due && rec.next_due <= today).map((rec) => [rec.question_id, rec.next_due]),
+    );
+
     const rows = await listMistakes({
       status: viewState.status,
       type: viewState.type,
@@ -112,15 +120,17 @@ export default {
     const tableRows = rows.map((m) => {
       const meta = state.questionIndex.get(m.question_id);
       const preview = meta ? `${esc(meta.subject || 'Unclassified')} · ${esc(meta.topic || '—')}` : '<span class="soft">question no longer stored</span>';
-      return [
+      const cells = [
         `<div><strong>Q${esc(String(meta?.question_number ?? '—'))}</strong> <span class="mono tiny">${esc(m.question_id)}</span></div>
          <div class="tiny muted">${preview}</div>`,
-        `${typeBadge(m.type)}${m.occurrences >= 2 ? ` ${badge(`repeated ×${m.occurrences}`, 'bad')}` : ''}
+        `${typeBadge(m.type)}${m.occurrences >= 2 ? ` ${badge(`repeated ×${m.occurrences}`, 'bad')}` : ''}${
+          dueByQuestion.has(m.question_id) ? ` ${badge('due for revision', 'warn')}` : ''
+        }
          <div class="tiny muted">${m.status === 'resolved' ? `resolved ${esc(fmtRelative(m.resolved_at))}` : `seen ${esc(fmtRelative(m.last_seen_at))}`}</div>`,
         m.detail?.confidence ? badge(`confidence: ${confidenceLabel(m.detail.confidence)}`, 'info') : '<span class="soft tiny">—</span>',
         `<div class="row tight">
            <button class="btn btn-sm" type="button" data-action="retry" data-qid="${esc(m.question_id)}">Retry</button>
-           <button class="btn btn-sm" type="button" data-action="view" data-key="${esc(m.key)}">History &amp; explanation</button>
+           <button class="btn btn-sm" type="button" data-action="expand" data-key="${esc(m.key)}" aria-expanded="false" aria-controls="reviewrow-${esc(m.question_id)}">History &amp; explanation</button>
            ${
              m.status === 'resolved'
                ? `<button class="btn btn-sm" type="button" data-action="reopen" data-key="${esc(m.key)}">Reopen</button>`
@@ -129,6 +139,14 @@ export default {
            <button class="btn btn-sm btn-quiet" type="button" data-action="remove" data-key="${esc(m.key)}">Remove</button>
          </div>`,
       ];
+      // The review opens *in the row*, so the reader keeps their filters,
+      // their scroll position and the rest of the list.
+      return {
+        cells,
+        detail: `<div class="review-inline" data-review-for="${esc(m.question_id)}"></div>`,
+        detailId: `reviewrow-${esc(m.question_id)}`,
+        detailHidden: true,
+      };
     });
 
     const topicGroups = new Map();
@@ -298,42 +316,26 @@ export default {
         return;
       }
 
-      if (action === 'view') {
+      if (action === 'expand') {
         const key = btn.dataset.key;
-        const questionId = key.split('::')[0];
-        const attempts = await attemptHistoryForQuestion(questionId);
-        const trend = attemptTrend(attempts);
-        const map = await getQuestions([questionId]);
-        const question = map.get(questionId);
-        const firstVariant = question ? Object.values(question.language_variants)[0] : null;
-        await openModal({
-          title: `Attempt history — ${questionId}`,
-          wide: true,
-          body: `
-            <h3>How performance changed</h3>
-            ${dataTable({
-              columns: [{ label: '#' }, { label: 'When' }, { label: 'Outcome' }, { label: 'Confidence' }, { label: 'Time' }, { label: 'Test kind' }],
-              rows: trend.map((t) => [
-                String(t.index),
-                esc(fmtDate(t.at)),
-                badge(t.outcome, t.outcome === 'correct' ? 'ok' : t.outcome === 'incorrect' ? 'bad' : 'warn'),
-                t.confidence ? esc(confidenceLabel(t.confidence)) : '<span class="soft">—</span>',
-                fmtClock(Math.round((t.time_spent_ms || 0) / 1000)),
-                esc(t.kind || '—'),
-              ]),
-              className: 'compact',
-            })}
-            ${
-              question
-                ? `<h3 class="mt-4">Question (${esc(questionTypeLabel(question.question_type))}) ${answerKeyBadge(question.supplied?.status)}</h3>
-                   <p class="question-text"${langAttr(firstVariant?.question_text)}>${esc(firstVariant?.question_text || '')}</p>
-                   <ol class="small">${(firstVariant?.options || []).map((o) => `<li${langAttr(o.text)}><strong>${esc(o.key)}.</strong> ${esc(o.text)}${(question.supplied.answer || []).includes(o.key) ? ' <span class="badge ok">key</span>' : ''}</li>`).join('')}</ol>
-                   ${renderExplanation(question)}`
-                : '<p class="muted">This question is no longer in the database.</p>'
-            }
-            <p class="tiny muted">Resolving a mistake never removes attempts — the rows above are the permanent record.</p>`,
-          actions: [{ label: 'Close', tone: 'btn-primary', value: 'close' }],
+        const [questionId, type] = String(key).split('::');
+        const row = document.getElementById(`reviewrow-${questionId}`);
+        const panel = row?.querySelector('.review-inline');
+        if (!row || !panel) return;
+        const open = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!open));
+        btn.textContent = open ? 'History & explanation' : 'Hide review';
+        row.hidden = open;
+        if (open) return;
+        if (panel.dataset.filled === '1') return;
+        panel.innerHTML = '<p class="small muted m-0">Loading the question…</p>';
+        const review = await loadReview(questionId);
+        panel.innerHTML = reviewBodyMarkup(review, {
+          focus: `In the Mistake Book as: ${MISTAKE_TYPES[type] || type || 'a mistake'}. Resolving an item never deletes the attempts listed here.`,
         });
+        panel.dataset.filled = '1';
+        row.scrollIntoView?.({ block: 'nearest' });
+        return;
       }
     }, { signal: ctx.signal });
   },

@@ -98,8 +98,10 @@ async function renderPerformancePanel(loaded = null) {
     const priorities = studyPriorities({ analytics, syllabusProgress: curriculum.progress, limit: viewState.priorityLimit });
     const counts = analytics.counts;
 
+    // A subject row opens the builder already filtered to that subject: the
+    // reader's next move after reading a figure is to practise it.
     const subjectRows = analytics.bySubject.map((row) => [
-      `<strong>${esc(row.subject)}</strong>`,
+      `<a href="${esc(topicPracticeHref(row.subject))}"><strong>${esc(row.subject)}</strong></a>`,
       String(row.available),
       String(row.attemptedUnique),
       fmtPct(row.coverage),
@@ -113,7 +115,7 @@ async function renderPerformancePanel(loaded = null) {
       .filter((row) => subjectFilter === 'all' || row.subject === subjectFilter)
       .sort((a, b) => (b.available - a.available) || (a.topic < b.topic ? -1 : 1))
       .map((row) => [
-        `<strong>${esc(row.topic)}</strong><div class="tiny muted">${esc(row.subject)}</div>`,
+        `<a href="${esc(topicPracticeHref(row.subject, row.topic))}"><strong>${esc(row.topic)}</strong></a><div class="tiny muted">${esc(row.subject)}</div>`,
         String(row.available),
         `${String(row.attemptedUnique)} <div class="tiny muted">${fmtPct(row.coverage)} covered</div>`,
         accuracyText(row.accuracy, row.scored),
@@ -224,13 +226,17 @@ async function renderPerformancePanel(loaded = null) {
         subtitle: 'Weak, strong and too thin to judge — the three verdicts side by side',
         body: verdictRows.length
           ? dataTable({
-              columns: [{ label: 'Topic' }, { label: 'Verdict' }, { label: 'Accuracy', num: true }, { label: 'Scored', num: true }, { label: 'Coverage', num: true }],
+              columns: [{ label: 'Topic' }, { label: 'Verdict' }, { label: 'Accuracy', num: true }, { label: 'Scored', num: true }, { label: 'Coverage', num: true }, { label: '' }],
               rows: verdictRows.map((r) => [
                 `<strong>${esc(r.topic)}</strong><div class="tiny muted">${esc(r.subject)}</div>`,
                 badge(r.kind === 'weak' ? 'weak' : r.kind === 'strong' ? 'strong' : 'too thin', r.kind === 'weak' ? 'bad' : r.kind === 'strong' ? 'ok' : 'warn'),
                 r.accuracy === null || r.accuracy === undefined ? '<span class="soft">—</span>' : fmtPct(r.accuracy),
                 String(r.scored || 0),
                 fmtPct(r.coverage),
+                // Every verdict row offers the same next action, whatever the
+                // verdict says: a weak topic needs work, a strong one needs
+                // keeping, and a thin one needs evidence before it is either.
+                `<a class="btn btn-sm" href="${esc(topicPracticeHref(r.subject, r.topic))}">Practise</a>`,
               ]),
               className: 'compact cards-mobile',
             })

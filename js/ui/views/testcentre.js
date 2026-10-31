@@ -34,7 +34,7 @@ import { fmtDate, fmtMarks, fmtPct, fmtClock, shuffle } from '../../core/util.js
 import { paperSummary } from '../../services/select.js';
 import * as tests from '../../services/tests.js';
 import { resolveScoringRules } from '../../services/scoring.js';
-import { configFields, readConfig, mountConfigFields, scoringUnknownNotice, startPracticeTest } from './shared.js';
+import { configFields, readConfig, mountConfigFields, scoringUnknownNotice, startPracticeTest, startPaperSimulation } from './shared.js';
 import { openPracticeSheet } from '../practicesheet.js';
 
 /** The table's filters, remembered per screen (see `createFilterState`). */
@@ -96,7 +96,13 @@ function paperRow({ paper, summary }, unfinishedByPaper) {
     open
       ? `<button class="btn btn-primary btn-sm" type="button" data-action="resume" data-test="${esc(open.id)}">Resume</button>
          <div class="tiny muted">${tests.testProgress(open).answered} answered</div>`
-      : `<button class="btn btn-sm" type="button" data-action="start-paper" data-paper="${esc(paper.paper_id)}" ${summary.present ? '' : 'disabled'}>Start</button>`,
+      : `<div class="row tight">
+          <button class="btn btn-sm btn-primary" type="button" data-action="start-paper" data-paper="${esc(paper.paper_id)}"
+            aria-label="Start ${esc(`${paper.paper_name || paper.paper_id} — ${summary.present} questions${paper.duration_minutes ? `, ${paper.duration_minutes} minutes` : ''}, scored ${scheme}`)}"
+            ${summary.present ? '' : 'disabled'}>Start</button>
+          <button class="btn btn-sm btn-quiet" type="button" data-action="customise-paper" data-paper="${esc(paper.paper_id)}" ${summary.present ? '' : 'disabled'}>Customise…</button>
+        </div>
+        <div class="tiny muted">${summary.present} questions${paper.duration_minutes ? ` · ${Math.round(paper.duration_minutes)} min` : ' · no time limit'} · ${esc(scheme)}</div>`,
   ];
 }
 
@@ -304,13 +310,20 @@ export default {
           actions: [{ label: 'Close', tone: 'btn-primary', value: 'close' }],
         });
       } else if (action === 'start-paper') {
+        // One click starts the faithful sitting: every stored question, in the
+        // paper's order, with the paper's own duration. Nothing is asked first
+        // because the row already states the size, the clock and the marks.
+        const paper = state.papers.get(btn.dataset.paper);
+        if (!paper) return;
+        await startPaperSimulation(ctx, paper);
+      } else if (action === 'customise-paper') {
         const paper = state.papers.get(btn.dataset.paper);
         const answered = await openModal({
-          title: `Start full simulation — ${paper.paper_name || paper.paper_id}`,
+          title: `Customise this simulation — ${paper.paper_name || paper.paper_id}`,
           wide: true,
           body: `
             ${scoringUnknownNotice(paper)}
-            <p class="small">${paper.question_order.length} questions, scored +3 / −1 / 0.</p>
+            <p class="small">${paper.question_order.length} questions, scored +3 / −1 / 0. Starting the paper from the table uses all of them, in the paper's order, with its own duration; change anything here if you want a shorter or reshuffled run.</p>
             ${configFields({ paper, defaultCount: paper.question_order.length, allowCustomScoring: true, allowRepeatOverride: false, maxCount: paper.question_order.length })}
             <label class="check"><input type="checkbox" id="simulationStrict" checked /><span>Keep the exact original order (recommended for a faithful simulation)</span></label>`,
           onMount: () => {
@@ -318,7 +331,7 @@ export default {
           },
           actions: [
             { label: 'Cancel', value: '__cancel' },
-            { label: 'Start simulation', tone: 'btn-primary', value: '__start' },
+            { label: 'Start with these settings', tone: 'btn-primary', value: '__start' },
           ],
         });
         if (answered !== '__start') return;

@@ -14,15 +14,14 @@ import {
   esc,
   badge,
   card,
-  tile,
   notice,
   dataTable,
-  barList,
   pct,
   renderExplanation,
   answerKeyBadge,
   confidenceLabel,
   emptyState,
+  cardInfo,
   tabs,
   mountTabs,
   toast,
@@ -31,12 +30,13 @@ import {
   langAttr,
   infoToggle,
 } from '../components.js';
-import { fmtMarks, fmtClock, fmtDate, fmtDuration, fmtPct } from '../../core/util.js';
+import { fmtMarks, fmtClock, fmtDate, fmtPct, todayKey } from '../../core/util.js';
 import { getQuestion } from '../../services/questions.js';
 import { describeRules } from '../../services/scoring.js';
-import { ensureRevisionRecord } from '../../services/revision.js';
-import { attemptHistoryForQuestion, attemptTrend } from '../../services/attempts.js';
+import { ensureRevisionRecord, allRevisionRecords } from '../../services/revision.js';
 import * as tests from '../../services/tests.js';
+import { startTopicSession } from './shared.js';
+import { openReviewPanel } from '../reviewpanel.js';
 
 const FILTERS = [
   { id: 'all', label: 'All questions' },
@@ -157,9 +157,247 @@ export default {
           : emptyState({ title: 'Nothing matches this filter', message: 'Try another filter — or leave the review here. Reviewing mistakes is useful but not mandatory.' })
       }`;
 
+    const weakTopics = (result.per_topic || [])
+      .filter((t) => t.correct + t.incorrect > 0)
+      .sort((a, b) => a.accuracy - b.accuracy);
+    const incorrectIds = result.per_question.filter((r) => r.outcome === 'incorrect').map((r) => r.question_id);
+    const flaggedRows = result.per_question.filter((r) => r.flagged);
+    const practiceSize = Math.min(20, Math.max(5, weakTopics[0]?.correct + weakTopics[0]?.incorrect || 0));
+
+    // Questions from *this* sitting that are due for revision today, and the
+    // pool the weak-topic action would draw from. Both are real sets, so the
+    // buttons can state their size instead of promising a vague session.
+    const testQuestionIds = new Set(result.per_question.map((row) => row.question_id));
+    const dueFromThisTest = (await allRevisionRecords()).filter(
+      (rec) => testQuestionIds.has(rec.question_id) && rec.next_due && rec.next_due <= todayKey(),
+    ).length;
+    const weakTopicKeys = new Set(
+      weakTopics.filter((t) => t.accuracy < 0.6).map((t) => `${t.subject || 'Unclassified'}||${t.topic || 'Unclassified'}`),
+    );
+    const weakPoolSize = Array.from(state.questionIndex.values()).filter((meta) =>
+      weakTopicKeys.has(`${meta.subject || 'Unclassified'}||${meta.topic || 'Unclassified'}`),
+    ).length;
+
+    // 1 — the result, in the rules that produced it.
+    const resultCard = card({
+      title: 'How this sitting went',
+      subtitle: `${counts.correct} correct · ${counts.incorrect} incorrect · ${counts.unanswered} unanswered · ${counts.unscored} not scored`,
+      body: `
+        <div class="stat-strip" role="group" aria-label="Result of this sitting">
+          <div class="stat">
+            <span class="stat-label">Score</span>
+            <span class="stat-value">${esc(fmtMarks(result.score))} <small>of ${esc(fmtMarks(result.max_marks))}</small></span>
+            <span class="stat-note">${result.score === null ? 'no score could be computed' : 'derived from the rules below'}</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Accuracy</span>
+            <span class="stat-value">${result.accuracy === null ? '—' : esc(fmtPct(result.accuracy, 0))}</span>
+            <span class="stat-note">${judgedCount ? `${counts.correct} correct of ${judgedCount} judged` : 'nothing judged yet'}</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Attempted</span>
+            <span class="stat-value">${counts.attempted} <small>of ${counts.total}</small></span>
+            <span class="stat-note">${counts.unanswered} left unanswered</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Negative marks</span>
+            <span class="stat-value">${esc(fmtMarks(result.negative_marks_applied))}</span>
+            <span class="stat-note">lost to ${counts.incorrect} wrong answer(s)</span>
+          </div>
+        </div>
+        ${infoToggle('Scoring rules actually used', `<p class="small m-0">${esc(describeRules(result.scoring, result.scoring?.source))}</p>
+          ${result.scoring?.rules_source_note ? `<p class="small m-0 mt-1">${esc(result.scoring.rules_source_note)}</p>` : ''}
+          ${result.accuracy_note ? `<p class="small text-warn m-0 mt-1">${esc(result.accuracy_note)}</p>` : ''}
+          ${test.config.feedback_mode === 'learning' ? '<p class="small m-0 mt-1">This test ran in learning mode, so answers were revealed as you went.</p>' : ''}`)}
+        ${result.warnings?.length ? notice(`<ul class="m-0">${result.warnings.map((w) => `<li>${esc(w)}</li>`).join('')}</ul>`, 'warn', { title: 'Read with the score' }) : ''}`,
+    });
+
+    // 2 — what to do about it. Every line is a button that starts something.
+    const actionsCard = card({
+      title: 'Do something about it',
+      subtitle: 'Each action starts a real session or opens the screen that can finish the job.',
+      body: `<div class="action-rows">
+        <div class="action-row">
+          <div class="action-row-main">
+            <p class="action-row-title">Retry the ${incorrectIds.length} question(s) you got wrong</p>
+            <p class="action-row-meta">A learning-mode set made of exactly these questions, in the order they appeared.</p>
+          </div>
+          <button class="btn btn-sm btn-primary" type="button" data-action="retry-incorrect" ${incorrectIds.length ? '' : 'disabled'}>Retry ${incorrectIds.length || ''} incorrect</button>
+        </div>
+        <div class="action-row">
+          <div class="action-row-main">
+            <p class="action-row-title">Practise the ${weakTopicKeys.size} weak topic(s) from this sitting</p>
+            <p class="action-row-meta">${weakPoolSize} stored question(s) across those topics · weakest first, learning mode.</p>
+          </div>
+          <button class="btn btn-sm btn-primary" type="button" data-action="practise-weak" ${weakTopicKeys.size ? '' : 'disabled'}>Practise ${Math.min(practiceSize, weakPoolSize) || ''}</button>
+        </div>
+        <div class="action-row">
+          <div class="action-row-main">
+            <p class="action-row-title">Revise the ${dueFromThisTest} question(s) due from this sitting</p>
+            <p class="action-row-meta">${dueFromThisTest ? 'Scheduled on or before today by the revision rules.' : 'Nothing from this sitting is due yet — the Revision Centre will say when.'}</p>
+          </div>
+          <button class="btn btn-sm" type="button" data-action="revise-due" ${dueFromThisTest ? '' : 'disabled'}>Revise ${dueFromThisTest || ''}</button>
+        </div>
+        <div class="action-row">
+          <div class="action-row-main">
+            <p class="action-row-title">Review what you flagged</p>
+            <p class="action-row-meta">${flaggedRows.length} question(s) were marked for review during the sitting.</p>
+          </div>
+          <button class="btn btn-sm" type="button" data-action="filter" data-filter="flagged" ${flaggedRows.length ? '' : 'disabled'}>Show ${flaggedRows.length} flagged</button>
+        </div>
+        <div class="action-row">
+          <div class="action-row-main">
+            <p class="action-row-title">Work through the explanations</p>
+            <p class="action-row-meta">Every question is listed with its key, your answer and the bank's explanation.</p>
+          </div>
+          <a class="btn btn-sm" href="#/mistakes">Mistake Book</a>
+        </div>
+        <div class="action-row">
+          <div class="action-row-main">
+            <p class="action-row-title">Keep these questions in rotation</p>
+            <p class="action-row-meta">${unresolved.length ? `${unresolved.length} answer(s) still need a verified key. ` : ''}Revision dates were scheduled automatically from this sitting.</p>
+          </div>
+          <a class="btn btn-sm" href="#/revision">Revision Centre</a>
+        </div>
+      </div>
+      ${unresolved.length ? `<div class="cross-signal"><span><strong>${unresolved.length}</strong> question(s) were judged with a missing or disputed key and are flagged in the review below.</span><button class="btn btn-sm" type="button" data-action="resolve">Fix unresolved answers</button></div>` : ''}`,
+    });
+
+    // 3 — weak topics, each with the button that practises it.
+    const weakCard = card({
+      title: 'Weakest topics in this sitting',
+      count: weakTopics.length ? `${weakTopics.length} with judged answers` : null,
+      info: cardInfo(
+        'How a topic is called weak',
+        '<p class="small m-0">A topic is listed once at least one answer on it was judged correct or incorrect, ordered by accuracy in this sitting. The count is this sitting only — it is not a forecast about the examination, and a topic with one judged answer is thin evidence.</p>',
+      ),
+      body: weakTopics.length
+        ? dataTable({
+            columns: [{ label: 'Topic' }, { label: 'This sitting', num: true }, { label: 'Accuracy', num: true }, { label: '' }],
+            rows: weakTopics.slice(0, 8).map((t) => [
+              `${esc(t.topic || t.subject || 'Unclassified')}<div class="tiny muted">${esc(t.subject || '—')}</div>`,
+              `${t.correct}/${t.correct + t.incorrect}`,
+              pct(t.accuracy),
+              `<button class="btn btn-sm" type="button" data-action="practise-topic" data-subject="${esc(t.subject || '')}" data-topic="${esc(t.topic || '')}">Practise ${practiceSize}</button>`,
+            ]),
+            empty: 'No topic had a judged answer in this sitting.',
+            className: 'compact',
+          })
+        : emptyState({
+            title: 'Nothing was scored topic by topic',
+            message: 'Every question here was unanswered or had no usable key, so this sitting says nothing about any topic.',
+          }),
+      footer: weakTopics.length > 8 ? `Showing the 8 weakest of ${weakTopics.length} topic(s) with judged answers.` : '',
+    });
+
+    // 4 — the review, first class rather than a tab.
+    const reviewCard = card({
+      title: 'Question review',
+      count: `${filtered.length} shown`,
+      body: reviewBody,
+      footer: 'Reviewing every question is useful but never required — the score and its rules above are final.',
+    });
+
+    // 5 — the details: confidence, pacing, repeated mistakes, unresolved keys.
+    const detailsCard = card({
+      title: 'The details',
+      body: tabs({
+        id: 'reportTabs',
+        activeId: 'tabs-confidence',
+        items: [
+          {
+            id: 'tabs-confidence',
+            label: 'Confidence',
+            body: test.config.confidence === 'off'
+              ? emptyState({ title: 'Confidence tracking was off for this test', message: 'Turn it on in Settings or when starting a test to see how sure you felt against what you got right. It is always stored separately from correctness.' })
+              : `
+                  <div class="matrix mb-3">
+                    ${['confident', 'unsure', 'guessed'].concat(result.per_question.some((r) => !r.confidence) ? ['none'] : [])
+                      .map((level) => {
+                        const rows = result.per_question.filter((r) => (r.confidence || 'none') === level);
+                        const correct = rows.filter((r) => r.outcome === 'correct').length;
+                        const incorrect = rows.filter((r) => r.outcome === 'incorrect').length;
+                        const label = level === 'none' ? 'not marked' : confidenceLabel(level);
+                        return `<div class="cell"><div class="l">${esc(label)}</div><div class="v">${correct}/${correct + incorrect || 0}</div><div class="l">correct</div></div>`;
+                      })
+                      .join('')}
+                  </div>
+                  ${dataTable({
+                    columns: [{ label: 'Confidence' }, { label: 'Correct', num: true }, { label: 'Incorrect', num: true }, { label: 'Overlooked', num: true }],
+                    rows: ['confident', 'unsure', 'guessed', 'none'].map((level) => {
+                      const rows = result.per_question.filter((r) => (r.confidence || 'none') === level);
+                      return [
+                        esc(level === 'none' ? 'not marked' : confidenceLabel(level)),
+                        String(rows.filter((r) => r.outcome === 'correct').length),
+                        String(rows.filter((r) => r.outcome === 'incorrect').length),
+                        String(rows.filter((r) => r.outcome === 'unanswered').length),
+                      ];
+                    }),
+                    className: 'compact',
+                  })}
+                  ${counts.confidentIncorrect ? notice(`${counts.confidentIncorrect} question(s) you felt confident about were wrong — check whether a concept is being confused with a similar one.`, 'warn') : ''}
+                  ${counts.lowConfidenceCorrect ? notice(`${counts.lowConfidenceCorrect} correct answer(s) were marked unsure or guessed. They are scheduled for additional revision instead of being treated as mastered.`, 'info') : ''}`,
+          },
+          {
+            id: 'tabs-pacing',
+            label: 'Pacing',
+            body: dataTable({
+              columns: [{ label: 'Q' }, { label: 'Topic' }, { label: 'Outcome' }, { label: 'Time', num: true }, { label: 'Confidence' }],
+              rows: result.per_question
+                .map((r, i) => [esc(`Q${i + 1}`), esc(r.topic || r.subject || 'Unclassified'), outcomeBadge(r), fmtClock(Math.round((r.time_spent_ms || 0) / 1000)), r.confidence ? esc(confidenceLabel(r.confidence)) : '<span class="soft">—</span>'])
+                .slice(0, 40),
+              className: 'compact',
+            }),
+            footer: '',
+          },
+          {
+            id: 'tabs-next',
+            label: 'Recommendations',
+            body: recommendations.length
+              ? `<ul class="m-0">${recommendations.map((r) => `<li>${r}</li>`).join('')}</ul>`
+              : '<p class="muted small m-0">Nothing stands out yet — no pattern was strong enough to recommend a change.</p>',
+          },
+          {
+            id: 'tabs-repeated',
+            label: 'Repeated mistakes',
+            body: repeated.length
+              ? dataTable({
+                  columns: [{ label: 'Question' }, { label: 'Topic' }, { label: 'Times wrong', num: true }, { label: '' }],
+                  rows: repeated.map((r) => [
+                    esc(`Q${r.question_number ?? r.question_id}`),
+                    esc(r.topic || r.subject || '—'),
+                    String(r.occurrences),
+                    `<a class="btn btn-sm" href="#/bank/question/${encodeURIComponent(r.question_id)}">Open</a>`,
+                  ]),
+                  className: 'compact',
+                })
+              : '<p class="muted small m-0">No repeated mistakes were detected among these questions.</p>',
+          },
+          {
+            id: 'tabs-unresolved',
+            label: `Unresolved (${unresolved.length})`,
+            body: unresolved.length
+              ? `<p class="small">These questions were judged with an answer key that is missing, disputed or contradicted by a verified answer. The stored key is preserved; nothing was silently rewritten.</p>
+                ${dataTable({
+                  columns: [{ label: 'Question' }, { label: 'Issue' }, { label: 'Stored key' }, { label: 'Your verified answer' }, { label: '' }],
+                  rows: unresolved.map((u) => [
+                    esc(u.question_id),
+                    esc(u.reason),
+                    u.supplied ? esc(u.supplied.join(', ')) : '<span class="soft">missing</span>',
+                    u.verified ? esc(u.verified.join(', ')) : '<span class="soft">none</span>',
+                    `<a class="btn btn-sm" href="#/bank/question/${encodeURIComponent(u.question_id)}">Review</a>`,
+                  ]),
+                  className: 'compact',
+                })}`
+              : '<p class="muted small m-0">Every question in this sitting was judged with a usable key.</p>',
+          },
+        ],
+      }),
+    });
+
     return `
       <nav class="crumbs" aria-label="Breadcrumb">
-        <ol><li><a href="#/dashboard">Dashboard</a></li><li><a href="#/test-centre">Test Centre</a></li><li aria-current="page">Report</li></ol>
+        <ol><li><a href="#/dashboard">Today</a></li><li><a href="#/test-centre">Test Centre</a></li><li aria-current="page">Report</li></ol>
       </nav>
       <div class="spread mb-4">
         <div>
@@ -177,184 +415,15 @@ export default {
         </div>
       </div>
 
-      <div class="grid tiles mb-4">
-        ${tile({
-          label: 'Score',
-          value: `${esc(fmtMarks(result.score))} <small class="muted">/ ${esc(fmtMarks(result.max_marks))}</small>`,
-          sub: esc(describeRules(result.scoring, result.scoring?.source)),
-          tone: 'accent',
-          source: result.score === null ? 'unavailable' : 'derived',
-          where: result.scoring?.source ? `Source: ${result.scoring.source.replace(/_/g, ' ')}` : 'Rules not configured',
-        })}
-        ${tile({
-          label: 'Accuracy',
-          value: result.accuracy === null ? '—' : esc(fmtPct(result.accuracy, 0)),
-          sub: `${counts.correct} correct of ${judgedCount} judged`,
-          tone: result.accuracy === null ? '' : result.accuracy >= 0.6 ? 'ok' : 'warn',
-          source: judgedCount ? 'measured' : 'unavailable',
-          where: `Judged sample n=${judgedCount}`,
-        })}
-        ${tile({
-          label: 'Attempted',
-          value: `${counts.attempted}/${counts.total}`,
-          sub: `${counts.unanswered} left unanswered`,
-          source: 'measured',
-          where: 'Recorded during this session',
-        })}
-        ${tile({
-          label: 'Negative marks',
-          value: esc(fmtMarks(result.negative_marks_applied)),
-          sub: 'lost to wrong answers',
-          tone: result.negative_marks_applied ? 'warn' : '',
-          source: 'derived',
-          where: 'Deducted from incorrect answers',
-        })}
-      </div>
-
-      ${result.warnings?.length ? notice(`<ul>${result.warnings.map((w) => `<li>${esc(w)}</li>`).join('')}</ul>`, 'warn', { title: 'Read with the score' }) : ''}
-
-      ${tabs({
-        id: 'reportTabs',
-        activeId: 'tabs-overview',
-        items: [
-          {
-            id: 'tabs-overview',
-            label: 'Overview',
-            body: `
-              <div class="grid cols-2">
-                ${card({
-                  title: 'Outcome counts',
-                  body: dataTable({
-                    columns: [{ label: 'Outcome' }, { label: 'Count', num: true }, { label: 'Share', num: true }],
-                    rows: [
-                      ['Correct', String(counts.correct), pct(counts.total ? counts.correct / counts.total : NaN)],
-                      ['Incorrect', String(counts.incorrect), pct(counts.total ? counts.incorrect / counts.total : NaN)],
-                      ['Unanswered', String(counts.unanswered), pct(counts.total ? counts.unanswered / counts.total : NaN)],
-                      ['Not scored (no usable key)', String(counts.unscored), pct(counts.total ? counts.unscored / counts.total : NaN)],
-                      ['Flagged for review', String(counts.flagged), '—'],
-                    ],
-                    className: 'compact',
-                  }),
-                })}
-                ${card({
-                  title: 'Weakest topics in this test',
-                  body: barList(
-                    (result.per_topic || [])
-                      .filter((t) => t.correct + t.incorrect > 0)
-                      .slice(0, 6)
-                      .map((t) => ({
-                        label: t.topic || t.subject || 'Unclassified',
-                        value: Number.isFinite(t.accuracy) ? t.accuracy : 0,
-                        tone: t.accuracy >= 0.75 ? 'ok' : t.accuracy >= 0.5 ? 'warn' : 'bad',
-                        right: `${t.correct}/${t.correct + t.incorrect}`,
-                      })),
-                  ),
-                })}
-              </div>
-              ${card({
-                title: 'Time per question',
-                subtitle: `${fmtDuration(Math.round(result.per_question.reduce((a, r) => a + (r.time_spent_ms || 0), 0) / 1000))} in total`,
-                body: dataTable({
-                  columns: [{ label: 'Q' }, { label: 'Topic' }, { label: 'Outcome' }, { label: 'Time', num: true }, { label: 'Confidence' }],
-                  rows: result.per_question
-                    .map((r, i) => [esc(`Q${i + 1}`), esc(r.topic || r.subject || 'Unclassified'), outcomeBadge(r), fmtClock(Math.round((r.time_spent_ms || 0) / 1000)), r.confidence ? esc(confidenceLabel(r.confidence)) : '<span class="soft">—</span>'])
-                    .slice(0, 40),
-                  className: 'compact',
-                }),
-                footer: result.per_question.length > 40 ? `Showing the first 40 of ${result.per_question.length} questions.` : '',
-              })}
-              ${card({
-                title: 'Scoring rules actually used',
-                body: `<p>${esc(describeRules(result.scoring, result.scoring?.source))}</p>
-                  ${result.scoring?.rules_source_note ? infoToggle('Where these rules come from', `<p class="small m-0">${esc(result.scoring.rules_source_note)}</p>`) : ''}
-                  ${result.accuracy_note ? `<p class="small text-warn">${esc(result.accuracy_note)}</p>` : ''}
-                  ${test.config.feedback_mode === 'learning' ? '<p class="small">This test ran in learning mode, so answers were revealed as you went.</p>' : ''}`,
-              })}
-`,
-          },
-          {
-            id: 'tabs-confidence',
-            label: 'Confidence',
-            body: test.config.confidence === 'off'
-              ? emptyState({ title: 'Confidence tracking was off for this test', message: 'Turn it on in Settings or when starting a test to see how sure you felt against what you got right. It is always stored separately from correctness.' })
-              : card({
-                  title: 'Confidence against correctness',
-                  subtitle: 'A correct guess is not strong recall',
-                  body: `
-                    <div class="matrix mb-3">
-                      ${['confident', 'unsure', 'guessed'].concat(result.per_question.some((r) => !r.confidence) ? ['none'] : [])
-                        .map((level) => {
-                          const rows = result.per_question.filter((r) => (r.confidence || 'none') === level);
-                          const correct = rows.filter((r) => r.outcome === 'correct').length;
-                          const incorrect = rows.filter((r) => r.outcome === 'incorrect').length;
-                          const label = level === 'none' ? 'not marked' : confidenceLabel(level);
-                          return `<div class="cell"><div class="l">${esc(label)}</div><div class="v">${correct}/${correct + incorrect || 0}</div><div class="l">correct</div></div>`;
-                        })
-                        .join('')}
-                    </div>
-                    ${dataTable({
-                      columns: [{ label: 'Confidence' }, { label: 'Correct', num: true }, { label: 'Incorrect', num: true }, { label: 'Overlooked', num: true }],
-                      rows: ['confident', 'unsure', 'guessed', 'none'].map((level) => {
-                        const rows = result.per_question.filter((r) => (r.confidence || 'none') === level);
-                        return [
-                          esc(level === 'none' ? 'not marked' : confidenceLabel(level)),
-                          String(rows.filter((r) => r.outcome === 'correct').length),
-                          String(rows.filter((r) => r.outcome === 'incorrect').length),
-                          String(rows.filter((r) => r.outcome === 'unanswered').length),
-                        ];
-                      }),
-                      className: 'compact',
-                    })}
-                    ${counts.confidentIncorrect ? notice(`${counts.confidentIncorrect} question(s) you felt confident about were wrong — check whether a concept is being confused with a similar one.`, 'warn') : ''}
-                    ${counts.lowConfidenceCorrect ? notice(`${counts.lowConfidenceCorrect} correct answer(s) were marked unsure or guessed. They are scheduled for additional revision instead of being treated as mastered.`, 'info') : ''}`,
-                }),
-          },
-          {
-            id: 'tabs-advice',
-            label: 'What to do next',
-            body: `
-              ${card({ title: 'Revision recommendations', body: recommendations.length ? `<ul>${recommendations.map((r) => `<li>${r}</li>`).join('')}</ul>` : '<p class="muted small">Nothing stands out yet — no pattern was strong enough to recommend a change.</p>' })}
-              ${card({
-                title: 'Repeated mistakes touching this test',
-                body: repeated.length
-                  ? dataTable({
-                      columns: [{ label: 'Question' }, { label: 'Topic' }, { label: 'Times wrong', num: true }, { label: '' }],
-                      rows: repeated.map((r) => [
-                        esc(`Q${r.question_number ?? r.question_id}`),
-                        esc(r.topic || r.subject || '—'),
-                        String(r.occurrences),
-                        `<a class="btn btn-sm" href="#/bank/question/${encodeURIComponent(r.question_id)}">Open</a>`,
-                      ]),
-                      className: 'compact',
-                    })
-                  : '<p class="muted small">No repeated mistakes were detected among these questions.</p>',
-              })}
-              ${unresolved.length
-                ? card({
-                    title: 'Answers that remain unresolved',
-                    tone: 'warn',
-                    body: `<p class="small">These questions were judged with an answer key that is missing, disputed or contradicted by a verified answer. The stored key is preserved; nothing was silently rewritten.</p>
-                      ${dataTable({
-                        columns: [{ label: 'Question' }, { label: 'Issue' }, { label: 'Stored key' }, { label: 'Your verified answer' }, { label: '' }],
-                        rows: unresolved.map((u) => [
-                          esc(u.question_id),
-                          esc(u.reason),
-                          u.supplied ? esc(u.supplied.join(', ')) : '<span class="soft">missing</span>',
-                          u.verified ? esc(u.verified.join(', ')) : '<span class="soft">none</span>',
-                          `<a class="btn btn-sm" href="#/bank/question/${encodeURIComponent(u.question_id)}">Review</a>`,
-                        ]),
-                        className: 'compact',
-                      })}`,
-                  })
-                : ''}`,
-          },
-          { id: 'tabs-review', label: `Question review (${result.per_question.length})`, body: reviewBody },
-        ],
-      })}
+      ${resultCard}
+      ${actionsCard}
+      ${weakCard}
+      ${reviewCard}
+      ${detailsCard}
 
       <section class="sticky-actions">
         <a class="btn btn-primary" href="#/test-centre">Done — back to test centre</a>
-        <button class="btn" type="button" data-action="retry-incorrect">Retry the incorrect questions</button>
+        <button class="btn" type="button" data-action="retry-incorrect" ${incorrectIds.length ? '' : 'disabled'}>Retry the incorrect questions</button>
         ${unresolved.length ? '<button class="btn" type="button" data-action="resolve">Fix unresolved answers</button>' : ''}
         <span class="tiny muted">You can leave the review at any time; nothing is lost.</span>
       </section>`;
@@ -376,29 +445,71 @@ export default {
       const action = target.dataset.action;
       if (action === 'print') window.print();
       if (action === 'history') {
-        const attempts = await attemptHistoryForQuestion(target.dataset.qid);
-        const trend = attemptTrend(attempts);
-        await openModal({
-          title: `Attempt history — ${target.dataset.qid}`,
-          body: `${dataTable({
-            columns: [{ label: '#' }, { label: 'When' }, { label: 'Outcome' }, { label: 'Confidence' }, { label: 'Time' }, { label: 'Source' }],
-            rows: trend.map((t) => [
-              String(t.index),
-              esc(fmtDate(t.at)),
-              badge(t.outcome, t.outcome === 'correct' ? 'ok' : t.outcome === 'incorrect' ? 'bad' : 'warn'),
-              t.confidence ? esc(confidenceLabel(t.confidence)) : '<span class="soft">—</span>',
-              fmtClock(Math.round((t.time_spent_ms || 0) / 1000)),
-              esc(t.kind || '—'),
-            ]),
-            className: 'compact',
-          })}
-          <p class="small muted">Resolving a mistake never deletes attempts — this list stays available.</p>`,
-          actions: [{ label: 'Close', tone: 'btn-primary', value: 'close' }],
-        });
+        // One review panel for the whole app: what you answered, the key, the
+        // explanation and every attempt, without leaving the report.
+        const qid = target.dataset.qid;
+        await openReviewPanel(qid, { title: `Attempt history — ${qid}`, focus: 'Every attempt on this question, including this sitting.' });
+        return;
       }
       if (action === 'queue-revision') {
         await ensureRevisionRecord(target.dataset.qid, { reason: 'Added from a test report.' });
         toast('Added to the revision queue.', 'ok');
+      }
+      if (action === 'practise-topic') {
+        await startTopicSession(ctx, {
+          subject: target.dataset.subject || null,
+          topic: target.dataset.topic || null,
+          count: Number(target.textContent.replace(/\D/g, '')) || null,
+          strategy: 'weakest-first',
+          feedbackMode: 'learning',
+        });
+        return;
+      }
+      if (action === 'practise-weak') {
+        const rows = currentResult().per_topic || [];
+        const weak = rows.filter((t) => t.correct + t.incorrect > 0 && t.accuracy < 0.6);
+        const keys = new Set(weak.map((t) => `${t.subject || 'Unclassified'}||${t.topic || 'Unclassified'}`));
+        const ids = Array.from(state.questionIndex.values())
+          .filter((meta) => keys.has(`${meta.subject || 'Unclassified'}||${meta.topic || 'Unclassified'}`))
+          .map((meta) => meta.id)
+          .slice(0, 20);
+        if (!ids.length) {
+          toast('No stored question matches those topics any more.', 'info');
+          return;
+        }
+        const session = await tests.createTest({
+          kind: 'custom',
+          label: `Weak topics from a test — ${ids.length} question(s)`,
+          questionIds: ids,
+          questionMetas: ids.map((id) => state.questionIndex.get(id)).filter(Boolean),
+          config: { feedbackMode: 'learning' },
+          orderSource: 'weakest-first',
+          selectionNotes: ['Built from the topics this sitting scored lowest.', ...weak.slice(0, 5).map((t) => `${t.topic || t.subject}: ${t.correct}/${t.correct + t.incorrect} correct`)],
+        });
+        ctx.navigate(`runner/${encodeURIComponent(session.id)}`);
+        return;
+      }
+      if (action === 'revise-due') {
+        const testIds = new Set(currentResult().per_question.map((row) => row.question_id));
+        const ids = (await allRevisionRecords())
+          .filter((rec) => testIds.has(rec.question_id) && rec.next_due && rec.next_due <= todayKey())
+          .map((rec) => rec.question_id)
+          .filter((id) => state.questionIndex.has(id));
+        if (!ids.length) {
+          toast('Nothing from this sitting is due for revision yet.', 'info');
+          return;
+        }
+        const session = await tests.createTest({
+          kind: 'revision',
+          label: `Revision from a test — ${ids.length} due question(s)`,
+          questionIds: ids,
+          questionMetas: ids.map((id) => state.questionIndex.get(id)).filter(Boolean),
+          config: { feedbackMode: 'learning' },
+          orderSource: 'due',
+          selectionNotes: ['Questions from this sitting whose revision date has arrived.'],
+        });
+        ctx.navigate(`runner/${encodeURIComponent(session.id)}`);
+        return;
       }
       if (action === 'retry-incorrect') {
         const ids = currentResult().per_question.filter((r) => r.outcome === 'incorrect').map((r) => r.question_id);

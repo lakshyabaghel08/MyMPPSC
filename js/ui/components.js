@@ -424,13 +424,22 @@ export function dataTable({ columns = null, headers = [], rows = [], footer = nu
       .map((r) => {
         const cells = Array.isArray(r) ? r : r?.cells || [];
         const rowClass = !Array.isArray(r) && r?.className ? ` class="${esc(r.className)}"` : '';
-        return `<tr${rowClass}>${cells
+        const main = `<tr${rowClass}>${cells
           .map((cell, i) => {
             const col = cols[i];
             const labelAttr = col?.label ? ` data-label="${esc(col.label)}"` : '';
             return `<td ${cellClass(col)}${labelAttr}>${cell ?? ''}</td>`;
           })
           .join('')}</tr>`;
+        // An optional second row holds a panel opened from the row itself
+        // (question review, paper details). It keeps the reader's place in the
+        // table instead of replacing it with a dialog.
+        const detail = !Array.isArray(r) && r?.detail
+          ? `<tr class="row-detail-row"${r.detailId ? ` id="${esc(r.detailId)}"` : ''}${r.detailHidden ? ' hidden' : ''}>
+              <td colspan="${cols.length}">${r.detail}</td>
+            </tr>`
+          : '';
+        return main + detail;
       })
       .join('')}</tbody>${footHtml}
   </table></div>`;

@@ -412,8 +412,8 @@ test('runner: the “?” legend lists the real shortcuts, closes on Escape, mov
   count.value = '3';
   count.dispatchEvent(new window.Event('change', { bubbles: true }));
   click($('#view [data-action="start-practice"]'));
-  await waitFor(() => !$('#modalRoot').hidden, { label: 'the custom-set confirmation' });
-  click($('#modalRoot [data-value="confirm"]'));
+  // The builder starts what its session panel already describes — no second
+  // confirmation of the same summary.
   await waitFor(() => /#\/runner\//.test(window.location.hash), { label: 'the runner' });
   await waitFor(() => /Question 1 of/.test(viewText()), { label: 'runner markup' });
 
@@ -434,7 +434,7 @@ test('runner: the “?” legend lists the real shortcuts, closes on Escape, mov
   const options = $$('#view [data-action="select"]').length;
   const confidenceOn = Boolean($('#view [data-confidence]'));
   const listed = $$('#runnerKbdLegend dt').map((dt) => dt.textContent.replace(/\s+/g, ' ').trim());
-  assert.deepEqual(listed, [`1–${Math.min(9, options)}`, '→ or N', '← or P', 'F', 'U', ...(confidenceOn ? ['C'] : []), '?', 'Ctrl/⌘ K', 'Esc']);
+  assert.deepEqual(listed, [`1–${Math.min(9, options)}`, '→ or N', '← or P', ']', '[', 'F', 'U', ...(confidenceOn ? ['C'] : []), 'D', '?', 'Ctrl/⌘ K', 'Esc']);
 
   // A documented key does what the legend says, and the legend survives the repaint.
   key({ key: 'f' });
@@ -534,7 +534,7 @@ test('a malformed route parameter is data, not a crash (B5)', async () => {
   // The address that used to break is a valid deep link target: it names no
   // subject the bank holds, so the practice screen simply ignores it.
   await goto('topic/50%');
-  assert.match($('#view h1').textContent, /Topic & Custom Practice/);
+  assert.equal($('#view h1').textContent.trim(), 'Practice', 'the merged screen keeps one name');
   assert.equal($('#pickMatch').textContent.trim(), `${state.questionIndex.size} questions match`, 'and the pool is untouched');
   assert.ok($('#view [data-action="clear-selection"]').disabled, 'nothing was selected by the nonsense parameter');
   await goto('dashboard');

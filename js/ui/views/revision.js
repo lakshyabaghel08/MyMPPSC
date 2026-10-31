@@ -18,8 +18,6 @@ import {
   openModal,
   confirmDialog,
   progressBar,
-  renderExplanation,
-  answerKeyBadge,
   infoToggle,
   screenHead,
   countChip,
@@ -28,9 +26,9 @@ import {
 } from '../components.js';
 import { fmtDate, fmtRelative, todayKey } from '../../core/util.js';
 import * as revision from '../../services/revision.js';
-import { allAttempts, attemptHistoryForQuestion, attemptTrend } from '../../services/attempts.js';
-import { getQuestions } from '../../services/questions.js';
+import { allAttempts, listMistakes } from '../../services/attempts.js';
 import { startPracticeTest } from './shared.js';
+import { loadReview, reviewBodyMarkup } from '../reviewpanel.js';
 import { revisionSkeleton } from '../skeletons.js';
 
 const viewState = { filter: 'due', subject: 'all', topic: 'all', limit: revision.REVISION_PAGE_SIZE };
@@ -134,22 +132,41 @@ export default {
       upcomingByDay.set(key, (upcomingByDay.get(key) || 0) + 1);
     }
 
+    // Cross-signal: a due question that is also an open mistake is the
+    // highest-value review on the device, and the reader should not have to
+    // visit two screens to discover that.
+    const openMistakeKeys = new Set((await listMistakes({ status: 'open' })).map((row) => row.question_id));
+
     const visible = filtered.slice(0, viewState.limit);
     const rows = visible.map((rec) => {
       const meta = state.questionIndex.get(rec.question_id);
       const today = todayKey();
-      return [
-        `<div><span class="mono tiny">${esc(rec.question_id)}</span></div>
+      const cells = [
+        `<div><span class="mono tiny">${esc(rec.question_id)}</span>${
+          openMistakeKeys.has(rec.question_id) ? ` <span class="badge warn">open mistake</span>` : ''
+        }</div>
          <div class="tiny muted">${meta ? `${esc(meta.subject || 'Unclassified')} · ${esc(meta.topic || '—')}` : '<span class="soft">not in the bank</span>'}</div>`,
         `${badge(rec.next_due < today ? `overdue · ${esc(rec.next_due)}` : rec.next_due === today ? 'due today' : `due ${esc(rec.next_due)}`, dueTone(rec))}
          <div class="tiny muted">${esc(stateLabel(rec.state))} · level ${esc(String(rec.level))} · every ${esc(String(rec.interval_days))} day(s) · ${esc(String(rec.lapses || 0))} lapse(s)</div>`,
         reasonCell(rec),
         `<div class="row tight">
           <button class="btn btn-sm" type="button" data-action="revise" data-qid="${esc(rec.question_id)}">Practise</button>
-          <button class="btn btn-sm" type="button" data-action="mark" data-qid="${esc(rec.question_id)}">Mark revised</button>
-          <button class="btn btn-sm" type="button" data-action="details" data-qid="${esc(rec.question_id)}">Details</button>
+          <button class="btn btn-sm" type="button" data-action="mark" data-qid="${esc(rec.question_id)}" aria-expanded="false">Mark revised</button>
+          <span class="mark-split" hidden>
+            <button class="btn btn-sm btn-primary" type="button" data-action="mark-outcome" data-outcome="correct" data-qid="${esc(rec.question_id)}">Knew it</button>
+            <button class="btn btn-sm" type="button" data-action="mark-outcome" data-outcome="incorrect" data-qid="${esc(rec.question_id)}">Still unclear</button>
+            <button class="btn btn-sm btn-quiet" type="button" data-action="mark-note" data-qid="${esc(rec.question_id)}">With a note…</button>
+            <button class="btn btn-sm btn-quiet" type="button" data-action="mark-cancel">Cancel</button>
+          </span>
+          <button class="btn btn-sm" type="button" data-action="details" data-qid="${esc(rec.question_id)}" aria-expanded="false" aria-controls="revrow-${esc(rec.question_id)}">Details</button>
         </div>`,
       ];
+      return {
+        cells,
+        detail: `<div class="review-inline" data-review-for="${esc(rec.question_id)}"></div>`,
+        detailId: `revrow-${esc(rec.question_id)}`,
+        detailHidden: true,
+      };
     });
 
     return `
@@ -308,8 +325,42 @@ export default {
       }
 
       if (action === 'mark') {
+        // The common case is a two-state answer, so it happens in the row:
+        // the button becomes the two choices, and the schedule moves on the
+        // click. Nothing is repainted, so the reader keeps their place.
+        const split = btn.parentElement.querySelector('.mark-split');
+        if (!split) return;
+        const open = split.hidden;
+        split.hidden = !open;
+        btn.hidden = open;
+        btn.setAttribute('aria-expanded', String(open));
+        split.querySelector('button')?.focus();
+        return;
+      }
+
+      if (action === 'mark-cancel') {
+        const split = btn.parentElement;
+        const trigger = split.parentElement.querySelector('[data-action="mark"]');
+        split.hidden = true;
+        if (trigger) {
+          trigger.hidden = false;
+          trigger.setAttribute('aria-expanded', 'false');
+          trigger.focus();
+        }
+        return;
+      }
+
+      if (action === 'mark-outcome') {
+        const outcome = btn.dataset.outcome === 'incorrect' ? 'incorrect' : 'correct';
+        await revision.markRevised(btn.dataset.qid, { outcome, confidence: null, note: null });
+        toast(outcome === 'correct' ? 'Marked revised — the question moves on in the schedule.' : 'Recorded as still unclear — the question comes back sooner.', 'ok');
+        await ctx.refresh();
+        return;
+      }
+
+      if (action === 'mark-note') {
         const value = await openModal({
-          title: 'Mark as revised',
+          title: 'Mark as revised, with a note',
           body: `
             <p class="small">Use this when you revised the question outside the app (notes, a book, a group discussion) and want the schedule to move on.</p>
             <label class="field"><span class="label-text">How did it go?</span>
@@ -334,99 +385,107 @@ export default {
       }
 
       if (action === 'details') {
+        // The question, its schedule and its history open *in the row*: the
+        // same panel the Mistake Book shows, so the reader keeps the queue.
         const questionId = btn.dataset.qid;
+        const row = document.getElementById(`revrow-${questionId}`);
+        const panel = row?.querySelector('.review-inline');
+        if (!row || !panel) return;
+        const open = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!open));
+        btn.textContent = open ? 'Details' : 'Hide details';
+        row.hidden = open;
+        if (open || panel.dataset.filled === '1') return;
+        panel.innerHTML = '<p class="small muted m-0">Loading the question…</p>';
         const rec = (await revision.allRevisionRecords()).find((r) => r.question_id === questionId);
-        const attempts = await attemptHistoryForQuestion(questionId);
-        const map = await getQuestions([questionId]);
-        const question = map.get(questionId);
-        const openDetailsActions = (modal, close) => {
-          modal.querySelector('[data-action="reschedule"]')?.addEventListener('click', async () => {
-            const value = await openModal({
-              title: 'Reschedule this question',
-              body: `<label class="field"><span class="label-text">Revise again on</span><input type="date" id="reschedDate" value="${esc(todayKey())}" /></label>
-                     <label class="field"><span class="label-text">Note (stored with the change)</span><input type="text" id="reschedNote" /></label>`,
-              actions: [{ label: 'Cancel', value: 'cancel' }, { label: 'Save', tone: 'btn-primary', value: 'ok' }],
-            });
-            if (value !== 'ok') return;
-            const date = document.getElementById('reschedDate')?.value;
-            if (!date) return;
-            await revision.reschedule(questionId, date, document.getElementById('reschedNote')?.value || '');
-            toast(`Rescheduled to ${date}.`, 'ok');
-            close(null);
-            await ctx.refresh();
-          });
-          modal.querySelector('[data-action="interval"]')?.addEventListener('click', async () => {
-            const value = await openModal({
-              title: 'Set the next interval',
-              body: `<label class="field"><span class="label-text">Days until this question returns</span><input type="number" min="1" max="365" id="intervalDays" value="7" /></label>`,
-              actions: [{ label: 'Cancel', value: 'cancel' }, { label: 'Save', tone: 'btn-primary', value: 'ok' }],
-            });
-            if (value !== 'ok') return;
-            const days = Number(document.getElementById('intervalDays')?.value) || 7;
-            await revision.setManualInterval(questionId, days, 'manual interval set by you');
-            toast(`This question will return in ${days} day(s).`, 'ok');
-            close(null);
-            await ctx.refresh();
-          });
-          modal.querySelector('[data-action="remove"]')?.addEventListener('click', async () => {
-            const ok = await confirmDialog({
-              title: 'Remove from the revision queue?',
-              message: 'The question stops being scheduled. Your attempts and analytics are not affected, and a future attempt will schedule it again.',
-              confirmLabel: 'Remove',
-              danger: true,
-            });
-            if (!ok) return;
-            await revision.removeFromQueue(questionId);
-            toast('Removed from the revision queue.', 'info');
-            close(null);
-            await ctx.refresh();
-          });
-        };
-        await openModal({
-          title: `Revision detail — ${questionId}`,
-          wide: true,
-          onMount: openDetailsActions,
-          body: `
-            <h3>Schedule</h3>
+        const review = await loadReview(questionId);
+        panel.innerHTML = reviewBodyMarkup(review, {
+          focus: rec
+            ? `Scheduled for ${rec.next_due} · level ${rec.level} · every ${rec.interval_days} day(s)${rec.manual_override ? ' · set by you' : ''}. ${rec.reason || ''}`
+            : 'This question is no longer scheduled.',
+          extraBody: `<div class="review-schedule">
+            <h3>Why this date</h3>
+            <p class="small m-0">${esc(rec?.reason || 'No reason recorded.')}</p>
+            <p class="tiny muted mono m-0 mt-1">${esc(rec ? revision.describeScheduleBasis(rec.basis) : '')}</p>
             ${dataTable({
               columns: [{ label: 'Field' }, { label: 'Value' }],
-              rows: [
-                ['State', esc(rec.state)],
-                ['Level', esc(String(rec.level))],
-                ['Interval', `${esc(String(rec.interval_days))} day(s)`],
-                ['Next due', esc(rec.next_due)],
-                ['Lapses', esc(String(rec.lapses || 0))],
-                ['Ease', esc(String(rec.ease))],
-                ['Reason', esc(rec.reason || '—')],
-                ['Basis', esc(revision.describeScheduleBasis(rec.basis))],
-                ['Manual override', rec.manual_override ? 'yes' : 'no'],
-              ],
+              rows: rec
+                ? [
+                    ['State', esc(rec.state)],
+                    ['Interval', `${esc(String(rec.interval_days))} day(s)`],
+                    ['Next due', esc(rec.next_due)],
+                    ['Lapses', esc(String(rec.lapses || 0))],
+                    ['Manual override', rec.manual_override ? 'yes' : 'no'],
+                  ]
+                : [],
+              empty: 'Nothing is scheduled for this question.',
               className: 'compact',
             })}
-            <div class="row my-2">
+            <h3>Schedule history</h3>
+            ${dataTable({
+              columns: [{ label: 'When' }, { label: 'Outcome' }, { label: 'Interval' }, { label: 'Next due' }, { label: 'Reason' }],
+              rows: (rec?.history || []).slice().reverse().map((h) => [esc(fmtRelative(h.at)), esc(h.outcome), `${esc(String(h.interval_days ?? '—'))} d`, esc(h.next_due || '—'), esc(h.reason || '—')]),
+              empty: 'No history yet.',
+              className: 'compact',
+            })}
+            <div class="row mt-2">
               <button class="btn btn-sm" type="button" data-action="reschedule" data-qid="${esc(questionId)}">Reschedule…</button>
               <button class="btn btn-sm" type="button" data-action="interval" data-qid="${esc(questionId)}">Set interval…</button>
               <button class="btn btn-sm btn-danger" type="button" data-action="remove" data-qid="${esc(questionId)}">Remove from queue</button>
             </div>
-            <h3>Schedule history</h3>
-            ${dataTable({
-              columns: [{ label: 'When' }, { label: 'Outcome' }, { label: 'Interval' }, { label: 'Next due' }, { label: 'Reason' }],
-              rows: (rec.history || []).slice().reverse().map((h) => [esc(fmtRelative(h.at)), esc(h.outcome), `${esc(String(h.interval_days ?? '—'))} d`, esc(h.next_due || '—'), esc(h.reason || '—')]),
-              empty: 'No history yet.',
-              className: 'compact',
-            })}
-            <h3>Attempts on this question</h3>
-            ${dataTable({
-              columns: [{ label: '#' }, { label: 'When' }, { label: 'Outcome' }, { label: 'Time' }],
-              rows: attemptTrend(attempts).map((t) => [String(t.index), esc(fmtDate(t.at)), esc(t.outcome), `${Math.round((t.time_spent_ms || 0) / 1000)}s`]),
-              empty: 'No attempts recorded.',
-              className: 'compact',
-            })}
-            ${question ? `<h3 class="mt-3">Question ${answerKeyBadge(question.supplied.status)}</h3>${renderExplanation(question)}` : ''}`,
-          actions: [{ label: 'Close', tone: 'btn-primary', value: 'close' }],
+          </div>`,
         });
+        panel.dataset.filled = '1';
+        row.scrollIntoView?.({ block: 'nearest' });
         return;
       }
+
+      if (action === 'reschedule') {
+        const questionId = btn.dataset.qid;
+        const answer = await openModal({
+          title: 'Reschedule this question',
+          body: `<label class="field"><span class="label-text">Revise again on</span><input type="date" id="reschedDate" value="${esc(todayKey())}" /></label>
+                 <label class="field"><span class="label-text">Note (stored with the change)</span><input type="text" id="reschedNote" /></label>`,
+          actions: [{ label: 'Cancel', value: 'cancel' }, { label: 'Save', tone: 'btn-primary', value: 'ok' }],
+        });
+        if (answer !== 'ok') return;
+        const date = document.getElementById('reschedDate')?.value;
+        if (!date) return;
+        await revision.reschedule(questionId, date, document.getElementById('reschedNote')?.value || '');
+        toast(`Rescheduled to ${date}.`, 'ok');
+        await ctx.refresh();
+        return;
+      }
+
+      if (action === 'interval') {
+        const questionId = btn.dataset.qid;
+        const answer = await openModal({
+          title: 'Set the next interval',
+          body: `<label class="field"><span class="label-text">Days until this question returns</span><input type="number" min="1" max="365" id="intervalDays" value="7" /></label>`,
+          actions: [{ label: 'Cancel', value: 'cancel' }, { label: 'Save', tone: 'btn-primary', value: 'ok' }],
+        });
+        if (answer !== 'ok') return;
+        const days = Number(document.getElementById('intervalDays')?.value) || 7;
+        await revision.setManualInterval(questionId, days, 'manual interval set by you');
+        toast(`This question will return in ${days} day(s).`, 'ok');
+        await ctx.refresh();
+        return;
+      }
+
+      if (action === 'remove') {
+        const ok = await confirmDialog({
+          title: 'Remove from the revision queue?',
+          message: 'The question stops being scheduled. Your attempts and analytics are not affected, and a future attempt will schedule it again.',
+          confirmLabel: 'Remove',
+          danger: true,
+        });
+        if (!ok) return;
+        await revision.removeFromQueue(btn.dataset.qid);
+        toast('Removed from the revision queue.', 'info');
+        await ctx.refresh();
+        return;
+      }
+
     }, { signal: ctx.signal });
   },
 };

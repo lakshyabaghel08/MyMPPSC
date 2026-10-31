@@ -10,7 +10,7 @@
 
 // Bump this whenever any precached file changes: the old caches are deleted on
 // activate, so a fixed build cannot keep serving a stale shell.
-const VERSION = 'v1.5.0-1';
+const VERSION = 'v1.6.0-1';
 const SHELL_CACHE = `mymppsc-shell-${VERSION}`;
 const RUNTIME_CACHE = `mymppsc-runtime-${VERSION}`;
 

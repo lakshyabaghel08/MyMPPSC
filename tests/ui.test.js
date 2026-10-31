@@ -246,7 +246,7 @@ test('practice setup screens describe what is available before starting', async 
   await resetPracticeScreen();
   // The availability tables are gone; what remains is one live figure that says
   // exactly how big the pool the session will be drawn from is.
-  assert.match(viewText(), /What to include/);
+  assert.match(viewText(), /What to practise/);
   // The demonstration bank was imported by an earlier test, so the figure is
   // whatever the device holds — the point is that it is *all* of it.
   assert.equal($('#pickMatch').textContent.trim(), `${state.questionIndex.size} questions match`, 'nothing ticked means the whole bank');
@@ -256,7 +256,7 @@ test('practice setup screens describe what is available before starting', async 
   assert.match(viewText(), /not evidence about what a future examination will contain/i);
   await goto('custom');
   assert.match(viewText(), /never labelled as an authentic paper/i);
-  assert.match(viewText(), /Topic & Custom Practice/, '#/custom opens the merged screen');
+  assert.equal($('#view h1')?.textContent.trim(), 'Practice', '#/custom opens the merged screen');
   assert.equal($('.nav-link[aria-current="page"]')?.dataset.route, 'topic', 'the old address highlights the merged navigation item');
   await goto('test-centre');
   assert.match(viewText(), /Previous-year papers|Paper simulations|Test Centre/i);
@@ -267,10 +267,9 @@ test('a full paper simulation runs, autosaves, submits and reports', async () =>
   const start = $$('#view [data-action="start-paper"]').find((b) => !b.disabled);
   assert.ok(start, 'a paper simulation should be startable');
   const paperId = start.dataset.paper;
+  // One click starts it: the row already states the size, the clock and the
+  // marks, so nothing is confirmed twice. "Customise…" is the other door.
   click(start);
-  await waitFor(() => $('#modalRoot').hidden === false, { label: 'simulation dialog' });
-  click($('#modalRoot').querySelector('[data-modal-action="1"]'));
-
   await waitFor(() => /#\/runner\//.test(window.location.hash), { label: 'runner route' });
   await waitFor(() => /Question 1 of/.test(viewText()), { label: 'runner markup' });
 

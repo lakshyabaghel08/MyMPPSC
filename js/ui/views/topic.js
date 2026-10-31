@@ -1,11 +1,13 @@
 /**
- * topic.js — Topic & Custom Practice.
+ * topic.js — the practice builder (`#/topic`, `#/custom`).
  *
- * Topic Practice and the Custom Test builder were two screens over the same
- * bank with the same filters, the same three selection strategies and the same
- * session form; one was simply the single-select version of the other. They are
- * one screen now, and the single-topic case is just the narrowest selection it
- * can make.
+ * This screen is the only place where "what should this sitting contain?" is
+ * configured, so it is built around that question rather than around a form.
+ * Two panes:
+ *
+ *   left   the bank — search, subjects, their topics, and the optional filters;
+ *   right  the session — what is in the basket, how many questions that is, the
+ *          size, the feedback timing, and the one button that starts it.
  *
  * Selection is a **union**: tick any subjects and any topics inside them and
  * the pool is everything ticked, nothing else. Tick nothing and the pool is the
@@ -14,9 +16,22 @@
  *
  *  - A topic can never be selected "under" a subject that is not selected, so
  *    a stale topic cannot silently narrow the pool to zero questions.
- *  - Every count shown here is counted **within its own subject**. "Unclassified"
- *    under Polity is Polity's own unclassified questions, not the nine from
- *    every subject that happen to have no topic label.
+ *  - Every count shown here is counted **within its own subject**.
+ *
+ * What changed in this pass, and why:
+ *
+ *  - Ticking a box no longer re-renders the whole screen through the router.
+ *    Only the browse pane is rebuilt (in `paintPicker()`), so the session pane —
+ *    and anything typed into it — is never touched, and the reader does not
+ *    lose their place or their focus.
+ *  - The selection has a persistent representation: a basket of chips with an
+ *    × on each, next to the live pool count and the Start button.
+ *  - Size presets (10 / 20 / 40 / all) sit beside the count field; the shared
+ *    session form still owns the value.
+ *  - The confirmation dialog that used to repeat the summary before starting is
+ *    gone: the summary is on screen the whole time and the button states the
+ *    size it will start.
+ *  - "Add all N matching" turns a search into a selection in one click.
  *
  * Two decisions are kept apart on purpose, because conflating them is what made
  * "shuffle off" still hand out a random order:
@@ -24,16 +39,10 @@
  *  - **Strategy** (random / least-attempted / weakest-first) decides *which*
  *    questions are picked from the pool.
  *  - **Shuffle question order** decides how the picked questions are *arranged*.
- *    Off means paper order — year, then paper, then question number — and
- *    `order_source` records which of the two actually happened.
- *
- * The screen re-renders in place whenever the selection or a filter changes;
- * expanding or collapsing a subject group is a DOM toggle only, and the set of
- * expanded groups is remembered across refreshes.
  */
 
 import { state } from '../../core/state.js';
-import { esc, card, toast, notice, emptyState, infoToggle, confirmDialog, screenHead, filterChip, cardInfo } from '../components.js';
+import { esc, card, toast, notice, emptyState, screenHead, filterChip, cardInfo } from '../components.js';
 import { QUESTION_TYPES, LANGUAGE_LABELS } from '../../core/constants.js';
 import { parseTopicPracticeParam } from '../../core/util.js';
 import { filterMetas, selectQuestions, ATTEMPT_STATE_FILTERS, arrangeForPaper } from '../../services/select.js';
@@ -45,12 +54,15 @@ const SCREEN = 'topic';
 /** A question with no topic label is counted under this topic, inside its own subject. */
 const NO_TOPIC = 'Unclassified';
 
+/** Session sizes offered as one-click presets. */
+const SIZE_PRESETS = [10, 20, 40];
+
 const viewState = {
   /** The `#/topic/<param>` string already applied, so it is applied once per arrival. */
   appliedRoute: '',
   /** subject -> { all: boolean, topics: Set<string> }. Empty map = the whole bank. */
   selection: new Map(),
-  /** Subject groups the reader has opened. Survives in-place re-renders. */
+  /** Subject groups the reader has opened. Survives in-place redraws. */
   expanded: new Set(),
   /** Whether the "Narrow further" disclosure is open. */
   narrowOpen: false,
@@ -91,11 +103,6 @@ function activeFilterCount() {
 
 /* ---------------------------------------------------------- selection ---- */
 
-/**
- * The selected (subject, topic) pairs. A whole subject appears once with
- * `topic: null`, which is how "exactly one subject and at most one topic" is
- * recognised when the test kind is decided.
- */
 function selectedPairs() {
   const pairs = [];
   for (const [subject, entry] of viewState.selection) {
@@ -130,11 +137,7 @@ function setTopic(subject, topic, on) {
     }
     entry.topics.add(topic);
     // Every topic of the subject ticked one by one is the same selection as
-    // ticking the subject, and is reported the same way: the box reads as
-    // checked rather than half-ticked, the summary says "whole subject", and a
-    // single subject like that is still a topic session. Only the subject's
-    // full topic list collapses it — a filter can hide topics, and silently
-    // widening the selection behind a filter would surprise the reader later.
+    // ticking the subject, and is reported the same way.
     const all = topicsOfSubject(subject);
     if (all.length && all.every((t) => entry.topics.has(t))) {
       entry.all = true;
@@ -142,7 +145,6 @@ function setTopic(subject, topic, on) {
     }
   } else if (entry) {
     if (entry.all) {
-      // Unticking one topic inside a whole subject keeps every other topic.
       const all = topicsOfSubject(subject);
       entry = { all: false, topics: new Set(all.filter((t) => t !== topic)) };
       viewState.selection.set(subject, entry);
@@ -165,9 +167,7 @@ function topicsOfSubject(subject) {
  *
  * Counts are per subject: the same topic name under two subjects is two
  * different rows with two different numbers, and a subject's "Unclassified"
- * row counts only that subject's questions with no topic label. A subject that
- * is selected but currently holds nothing (a filter narrowed it away) is still
- * listed, so a selection can never become invisible and impossible to undo.
+ * row counts only that subject's questions with no topic label.
  */
 function subjectGroups(pool = null) {
   const source = pool || Array.from(state.questionIndex.values());
@@ -179,7 +179,6 @@ function subjectGroups(pool = null) {
     const topics = bySubject.get(subject);
     topics.set(topic, (topics.get(topic) || 0) + 1);
   }
-  // Anything with a live selection is listed even when the pool no longer holds it.
   for (const subject of viewState.selection.keys()) if (!bySubject.has(subject)) bySubject.set(subject, new Map());
 
   return Array.from(bySubject.entries())
@@ -199,8 +198,6 @@ function narrowedPool(metas, attemptSummary) {
   const f = viewState.filters;
   const pairs = selectedPairs();
   const single = pairs.length === 1 ? pairs[0] : null;
-  // The subtopic control only exists when exactly one topic is selected; a
-  // value left over from an earlier selection must not keep filtering.
   const subtopic = single && single.topic && f.subtopic !== 'all' ? f.subtopic : 'all';
   const base = filterMetas(
     metas,
@@ -340,9 +337,6 @@ function narrowBlock({ narrowed, subtopics }) {
               .join('')}
           </select>
         </label>
-        <label class="field"><span class="label-text">Search text</span>
-          <input type="search" id="fSearch" placeholder="Search the question text" value="${esc(f.search)}" />
-        </label>
       </div>
 
       ${
@@ -390,20 +384,90 @@ function narrowBlock({ narrowed, subtopics }) {
   </details>`;
 }
 
+/** The browse pane. Rebuilt in place whenever the selection or a filter changes. */
+function pickerMarkup({ groups, narrowed, subtopics, matchCount }) {
+  const active = activeFilterCount();
+  const search = viewState.filters.search;
+  return `
+    <div class="practice-search">
+      <label class="field field-grow m-0"><span class="label-text">Search the bank</span>
+        <input type="search" id="pickerSearch" autocomplete="off" placeholder="Topic, subject or question wording…" value="${esc(search)}" />
+      </label>
+      ${
+        search.trim()
+          ? `<button class="btn btn-sm" type="button" data-action="add-matching" ${narrowed.length ? '' : 'disabled'}>Add all ${narrowed.length} matching</button>`
+          : ''
+      }
+    </div>
+
+    <p class="small m-0" id="pickSummary">${esc(selectionSentence(groups))}</p>
+    <p class="pick-match" role="status"><strong id="pickMatch">${esc(String(matchCount))} question${matchCount === 1 ? '' : 's'} match</strong>${
+      matchCount !== narrowed.length ? ` <span class="tiny muted">of ${esc(String(narrowed.length))} after your other filters</span>` : ''
+    }</p>
+
+    ${subjectPicker(groups)}
+
+    <div class="row mt-3">
+      <button class="btn btn-sm" type="button" data-action="clear-selection" ${viewState.selection.size ? '' : 'disabled'}>Clear the selection</button>
+      ${active ? '<span class="tiny muted">Filters are on — open “Narrow further” below to see or clear them.</span>' : '<span class="tiny muted">Counts are per subject, over the questions your other filters leave.</span>'}
+    </div>
+
+    ${narrowBlock({ narrowed, subtopics })}`;
+}
+
+/** Chips for what is in the basket, each removable. */
+function basketMarkup(groups) {
+  if (!viewState.selection.size) return '<p class="basket-empty">Nothing ticked — the whole bank is in this session.</p>';
+  const chips = [];
+  for (const [subject, entry] of viewState.selection) {
+    if (entry.all) {
+      chips.push(
+        `<span class="basket-chip"><span>${esc(subject)} <small>whole subject</small></span><button type="button" class="basket-chip-x" data-action="remove-subject" data-value="${esc(subject)}" aria-label="Remove ${esc(subject)}">✕</button></span>`,
+      );
+    } else if (entry.topics.size === 1) {
+      const topic = Array.from(entry.topics)[0];
+      chips.push(
+        `<span class="basket-chip"><span>${esc(topic)} <small>${esc(subject)}</small></span><button type="button" class="basket-chip-x" data-action="remove-topic" data-subject="${esc(subject)}" data-value="${esc(topic)}" aria-label="Remove ${esc(topic)}">✕</button></span>`,
+      );
+    } else {
+      chips.push(
+        `<span class="basket-chip"><span>${esc(subject)} <small>${entry.topics.size} topics</small></span><button type="button" class="basket-chip-x" data-action="remove-subject" data-value="${esc(subject)}" aria-label="Remove ${esc(subject)}">✕</button></span>`,
+      );
+    }
+  }
+  const shown = chips.slice(0, 8).join('');
+  const more = chips.length > 8 ? `<span class="basket-chip is-more">+${chips.length - 8} more</span>` : '';
+  return `<div class="basket-chips">${shown}${more}</div>`;
+}
+
+function sizesMarkup(matchCount) {
+  const preset = (value, label) =>
+    `<button class="preset" type="button" data-action="preset-count" data-count="${value}" ${matchCount ? '' : 'disabled'}>${esc(label)}</button>`;
+  return `<div class="preset-row" role="group" aria-label="Session size">
+    ${SIZE_PRESETS.map((n) => preset(Math.min(n, matchCount || n), String(n))).join('')}
+    ${preset(matchCount, 'All')}
+  </div>`;
+}
+
+/** The session pane's live parts, refreshed without rebuilding the form. */
+function sessionSummary(matchCount, isTopicPractice) {
+  return `<span id="sessionCount">${matchCount} question${matchCount === 1 ? '' : 's'} ready</span>
+    <span class="tiny muted" id="sessionKind">${isTopicPractice ? 'Recorded as a topic session' : 'Recorded as a custom set'}</span>`;
+}
+
 export default {
-  title: 'Topic & Custom Practice',
+  title: 'Practice',
 
   async render(ctx) {
-    // A deep link is applied once, on arrival. An in-place refresh (a ticked
-    // box, a changed filter) must not re-impose it over what the reader has
-    // just edited — which is what the old hashchange listener worked around.
+    // A deep link is applied once, on arrival. An in-place refresh must not
+    // re-impose it over what the reader has just edited.
     if (!ctx?.isRefresh) applyRouteParams(ctx?.params);
 
     const metas = Array.from(state.questionIndex.values());
     if (!metas.length) {
       return `
         ${screenHead({
-          title: 'Topic &amp; Custom Practice',
+          title: 'Practice',
           purpose: 'Pick any subjects and topics — the pool is everything you tick, and nothing ticked means the whole bank.',
           primary: '<a class="btn btn-primary" href="#/bank">Import a question bank</a>',
         })}
@@ -423,174 +487,287 @@ export default {
     const groups = subjectGroups(narrowed);
     const pool = narrowed.filter(matchesSelection);
     const subtopics = subtopicChoices(narrowed);
-    const pairs = selectedPairs();
-    const topicsTicked = pairs.filter((p) => p.topic).length;
-    const subjectsTicked = viewState.selection.size;
-    const isTopicPractice = subjectsTicked === 1 && topicsTicked <= 1;
     const matchCount = pool.length;
+    const isTopicPractice = viewState.selection.size === 1 && selectedPairs().filter((p) => p.topic).length <= 1;
 
     return `
       ${screenHead({
-        title: 'Topic &amp; Custom Practice',
-        purpose: 'Pick any subjects and topics — the pool is everything you tick, and nothing ticked means the whole bank. Assembled from your imported bank, never labelled as an authentic paper.',
-        primary: `<button class="btn btn-primary" type="button" data-action="start-practice" ${matchCount ? '' : 'disabled'}>Start practice · ${matchCount} question${matchCount === 1 ? '' : 's'}</button>`,
-        secondary: filterChip(activeFilterCount()),
+        title: 'Practice',
+        purpose: 'Choose any mix of subjects and topics. The session panel says exactly what will start, and starts it.',
+        primary: `<button class="btn btn-primary" type="button" data-action="start-practice" ${matchCount ? '' : 'disabled'}>Start ${matchCount} question${matchCount === 1 ? '' : 's'}</button>`,
+        secondary: `${filterChip(activeFilterCount())}<a class="btn btn-sm btn-quiet" href="#/smart">Smart practice</a>`,
       })}
 
-      ${card({
-        title: 'What to include',
-        count: `${matchCount} match`,
-        info: cardInfo('About this screen', '<p class="small m-0">Topic Practice and the Custom Test builder were the same screen twice, so they are one screen now. A single subject with at most one topic is recorded as a <strong>topic</strong> session, exactly as before; anything wider is recorded as a <strong>custom</strong> set. <code>#/custom</code> still opens this screen. Choosing a strategy decides <em>which</em> questions are picked; “shuffle question order” decides how they are arranged — with shuffling off they run in paper order (year, then paper, then question number).</p>'),
-        body: `
-          <p class="small m-0" id="pickSummary">${esc(selectionSentence(groups))}</p>
-          <p class="pick-match" role="status"><strong id="pickMatch">${esc(String(matchCount))} question${matchCount === 1 ? '' : 's'} match</strong>${
-            matchCount !== narrowed.length ? ` <span class="tiny muted">of ${esc(String(narrowed.length))} after your other filters</span>` : ''
-          }</p>
-          ${subjectPicker(groups)}
-          <div class="row mt-3">
-            <button class="btn btn-sm" type="button" data-action="clear-selection" ${viewState.selection.size ? '' : 'disabled'}>Clear the selection</button>
-            <span class="tiny muted">Counts are per subject, over the questions your other filters leave.</span>
-          </div>
-        `,
-      })}
+      <div class="practice-layout">
+        <section class="practice-browse" aria-label="Choose what to practise">
+          ${card({
+            title: 'What to practise',
+            count: `${matchCount} match`,
+            info: cardInfo(
+              'How selection works',
+              '<p class="small m-0">A single subject with at most one topic is recorded as a <strong>topic</strong> session; anything wider is a <strong>custom</strong> set. The strategy decides <em>which</em> questions are picked; “shuffle question order” decides how they are arranged — with shuffling off they run in paper order (year, then paper, then question number). Counts are per subject and always describe your imported bank.</p>',
+            ),
+            body: `<div id="pickerPane">${pickerMarkup({ groups, narrowed, subtopics, matchCount })}</div>`,
+          })}
+        </section>
 
-      ${card({ title: 'Narrow further', body: narrowBlock({ narrowed, subtopics }) })}
+        <aside class="practice-session" id="sessionPanel" aria-label="Your session">
+          <div class="practice-session-head">
+            <h2>Your session</h2>
+            ${sessionSummary(matchCount, isTopicPractice)}
+          </div>
+          <div class="practice-session-body">
+            <div id="practiceBasket">${basketMarkup(groups)}</div>
+            ${sizesMarkup(matchCount)}
 
-      ${card({
-        title: 'Session',
-        body: `
-          <div class="filters mb-3">
-            <label class="field"><span class="label-text">Which questions are picked</span>
-              <select id="practiceStrategy" data-action="strategy">
-                <option value="random" ${viewState.strategy === 'random' ? 'selected' : ''}>Random</option>
-                <option value="least-attempted" ${viewState.strategy === 'least-attempted' ? 'selected' : ''}>Least attempted first</option>
-                <option value="weakest-first" ${viewState.strategy === 'weakest-first' ? 'selected' : ''}>Weakest topics first</option>
-              </select>
-              <span class="hint">Decides which questions are picked from the pool, not the order they come in.</span>
-            </label>
+            <div class="filters mt-3">
+              <label class="field"><span class="label-text">Which questions are picked</span>
+                <select id="practiceStrategy" data-action="strategy">
+                  <option value="random" ${viewState.strategy === 'random' ? 'selected' : ''}>Random</option>
+                  <option value="least-attempted" ${viewState.strategy === 'least-attempted' ? 'selected' : ''}>Least attempted first</option>
+                  <option value="weakest-first" ${viewState.strategy === 'weakest-first' ? 'selected' : ''}>Weakest topics first</option>
+                </select>
+              </label>
+            </div>
+            <label class="check mt-2"><input type="checkbox" id="practiceShuffleOrder" data-action="shuffle-order" ${viewState.shuffleOrder ? 'checked' : ''} /><span>Shuffle question order</span></label>
+            <p class="hint mt-0" id="shuffleHint">${
+              viewState.shuffleOrder
+                ? 'Questions will be arranged at random for this session.'
+                : 'Questions will run in paper order — year, then paper, then question number.'
+            }</p>
+
+            ${configFields({ paper: null, defaultCount: Math.min(20, Math.max(1, matchCount)), maxCount: matchCount, allowCustomScoring: true })}
+
+            <div class="practice-start">
+              <button class="btn btn-primary btn-block" type="button" data-action="start-practice" ${matchCount ? '' : 'disabled'}>
+                Start ${matchCount ? `${matchCount} question${matchCount === 1 ? '' : 's'}` : 'practice'}
+              </button>
+              <p class="tiny muted m-0">A practice set from your own bank — never labelled as an authentic paper. Confidence marking is optional in every session.</p>
+            </div>
           </div>
-          <label class="check"><input type="checkbox" id="practiceShuffleOrder" data-action="shuffle-order" ${viewState.shuffleOrder ? 'checked' : ''} /><span>Shuffle question order</span></label>
-          <p class="hint mt-0">${
-            viewState.shuffleOrder
-              ? 'Questions will be arranged at random for this session.'
-              : 'Questions will run in paper order — year, then paper, then question number.'
-          }</p>
-          ${configFields({ paper: null, defaultCount: Math.min(20, Math.max(1, matchCount)), maxCount: matchCount, allowCustomScoring: true })}
-          <div class="sticky-actions">
-            <button class="btn btn-primary" type="button" data-action="start-practice" ${matchCount ? '' : 'disabled'}>Start practice</button>
-            <span class="tiny muted">${isTopicPractice ? 'Recorded as a topic session' : 'Recorded as a custom set'}.</span>
-          </div>
-        `,
-      })}
-    `;
+        </aside>
+      </div>`;
   },
 
   async mount(ctx, root) {
-    mountConfigFields({ defaultCount: 20, screen: SCREEN });
+    mountConfigFields({ defaultCount: 20, screen: SCREEN, maxCount: null });
 
-    // `indeterminate` is a property, not an attribute, so the tri-state mark has
-    // to be applied after the HTML is in the document.
-    root.querySelectorAll('input[data-action="pick-subject"]').forEach((box) => {
-      const subject = box.dataset.value;
-      const entry = viewState.selection.get(subject);
-      box.indeterminate = Boolean(entry) && !entry.all;
-    });
+    const applyIndeterminate = (scope) => {
+      scope.querySelectorAll('input[data-action="pick-subject"]').forEach((box) => {
+        const entry = viewState.selection.get(box.dataset.value);
+        box.indeterminate = Boolean(entry) && !entry.all;
+      });
+    };
+    applyIndeterminate(root);
 
-    let searchTimer = null;
-    const rerender = async () => {
-      await ctx.refresh();
+    /**
+     * Rebuild the browse pane and the session's live figures in place.
+     *
+     * The session form is deliberately *not* rebuilt: the size, feedback, timing
+     * and scoring the reader has chosen belong to them, and the router-level
+     * refresh this replaces used to make every tick cost a full screen render.
+     */
+    const paintPicker = async ({ restoreSearch = false } = {}) => {
+      const metas = Array.from(state.questionIndex.values());
+      const attemptSummary = await currentAttemptSummary();
+      const narrowed = narrowedPool(metas, attemptSummary);
+      const groups = subjectGroups(narrowed);
+      const matchCount = narrowed.filter(matchesSelection).length;
+      const subtopics = subtopicChoices(narrowed);
+      const pane = root.querySelector('#pickerPane');
+      // The reader navigated away while this update was in flight: the screen
+      // that owns this pane no longer exists, so there is nothing to paint and
+      // nothing to refresh (a refresh here would repaint whatever replaced it).
+      if (!pane || ctx.signal?.aborted) return;
+      pane.innerHTML = pickerMarkup({ groups, narrowed, subtopics, matchCount });
+      applyIndeterminate(pane);
+
+      const basket = root.querySelector('#practiceBasket');
+      if (basket) basket.innerHTML = basketMarkup(groups);
+
+      const isTopicPractice = viewState.selection.size === 1 && selectedPairs().filter((p) => p.topic).length <= 1;
+      const summary = root.querySelector('#sessionCount');
+      if (summary) summary.textContent = `${matchCount} question${matchCount === 1 ? '' : 's'} ready`;
+      const kind = root.querySelector('#sessionKind');
+      if (kind) kind.textContent = isTopicPractice ? 'Recorded as a topic session' : 'Recorded as a custom set';
+
+      // The size the reader can ask for is bounded by the pool they just built.
+      const countInput = root.querySelector('#practiceCfgCount');
+      if (countInput) {
+        countInput.setAttribute('max', String(Math.max(1, matchCount)));
+        if (Number(countInput.value) > matchCount) {
+          countInput.value = String(Math.max(1, matchCount));
+          countInput.dispatchEvent(new Event('change', { bubbles: true }));
+        }
+      }
+      root.querySelectorAll('[data-action="start-practice"]').forEach((button) => {
+        button.disabled = matchCount === 0;
+        button.textContent = matchCount ? `Start ${matchCount} question${matchCount === 1 ? '' : 's'}` : 'Start practice';
+      });
+      const presets = root.querySelector('#sessionPanel .preset-row');
+      if (presets) presets.outerHTML = sizesMarkup(matchCount);
+
+      if (restoreSearch) {
+        const input = root.querySelector('#pickerSearch');
+        if (input) {
+          input.focus({ preventScroll: true });
+          const end = input.value.length;
+          try {
+            input.setSelectionRange(end, end);
+          } catch {
+            /* search inputs without a selection API are fine */
+          }
+        }
+      }
     };
 
-    // Both listeners go on `#view`, which outlives every screen: without the
-    // abort signal they would survive each in-place re-render and pile up, one
-    // more per refresh, until a single tick ran the same handler a dozen times.
-    root.addEventListener('change', async (ev) => {
-      const el = ev.target;
-      const action = el?.dataset?.action;
-      if (!action) return;
-      if (action === 'pick-subject') {
-        setSubject(el.dataset.value, el.checked);
-        await rerender();
-        return;
-      }
-      if (action === 'pick-topic') {
-        const [subject, topic] = String(el.dataset.value).split('||');
-        setTopic(subject, topic, el.checked);
-        await rerender();
-        return;
-      }
-      if (action === 'filter-year' || action === 'filter-paper' || action === 'filter-type') {
-        const key = action === 'filter-year' ? 'years' : action === 'filter-paper' ? 'papers' : 'types';
-        const list = viewState.filters[key];
-        const value = el.dataset.value;
-        if (el.checked && !list.includes(value)) list.push(value);
-        if (!el.checked) viewState.filters[key] = list.filter((v) => v !== value);
-        await rerender();
-        return;
-      }
-      if (action === 'strategy') {
-        viewState.strategy = el.value;
-        return;
-      }
-      if (action === 'shuffle-order') {
-        viewState.shuffleOrder = el.checked;
-        await rerender();
-        return;
-      }
-      if (action === 'filter') {
-        const f = viewState.filters;
-        if (el.id === 'fAttempt') f.attemptState = el.value;
-        else if (el.id === 'fLanguage') f.language = el.value;
-        else if (el.id === 'fSubtopic') f.subtopic = el.value;
-        else if (el.id === 'fExplanation') f.onlyWithExplanation = el.checked;
-        else if (el.id === 'fExcludeDemo') f.excludeDemonstration = el.checked;
-        await rerender();
-      }
-    }, { signal: ctx.signal });
+    root.addEventListener(
+      'change',
+      async (ev) => {
+        const el = ev.target;
+        const action = el?.dataset?.action;
+        if (!action) return;
+        if (action === 'pick-subject') {
+          setSubject(el.dataset.value, el.checked);
+          await paintPicker();
+          return;
+        }
+        if (action === 'pick-topic') {
+          const [subject, topic] = String(el.dataset.value).split('||');
+          setTopic(subject, topic, el.checked);
+          await paintPicker();
+          return;
+        }
+        if (action === 'filter-year' || action === 'filter-paper' || action === 'filter-type') {
+          const key = action === 'filter-year' ? 'years' : action === 'filter-paper' ? 'papers' : 'types';
+          const list = viewState.filters[key];
+          const value = el.dataset.value;
+          if (el.checked && !list.includes(value)) list.push(value);
+          if (!el.checked) viewState.filters[key] = list.filter((v) => v !== value);
+          await paintPicker();
+          return;
+        }
+        if (action === 'strategy') {
+          viewState.strategy = el.value;
+          return;
+        }
+        if (action === 'shuffle-order') {
+          viewState.shuffleOrder = el.checked;
+          const hint = root.querySelector('#shuffleHint');
+          if (hint) {
+            hint.textContent = el.checked
+              ? 'Questions will be arranged at random for this session.'
+              : 'Questions will run in paper order — year, then paper, then question number.';
+          }
+          return;
+        }
+        if (action === 'filter') {
+          const f = viewState.filters;
+          if (el.id === 'fAttempt') f.attemptState = el.value;
+          else if (el.id === 'fLanguage') f.language = el.value;
+          else if (el.id === 'fSubtopic') f.subtopic = el.value;
+          else if (el.id === 'fExplanation') f.onlyWithExplanation = el.checked;
+          else if (el.id === 'fExcludeDemo') f.excludeDemonstration = el.checked;
+          await paintPicker();
+        }
+      },
+      { signal: ctx.signal },
+    );
 
-    root.addEventListener('click', async (ev) => {
-      const button = ev.target.closest('[data-action]');
-      if (!button || !root.contains(button)) return;
-      const action = button.dataset.action;
-      if (action === 'pick-expand') {
-        // Expanding is a DOM toggle: no re-render, no lost scroll position, and
-        // the open set is remembered so a later refresh restores it.
-        const subject = button.dataset.value;
-        const panel = document.getElementById(button.getAttribute('aria-controls'));
-        const open = !viewState.expanded.has(subject);
-        if (open) viewState.expanded.add(subject);
-        else viewState.expanded.delete(subject);
-        if (panel) panel.hidden = !open;
-        button.setAttribute('aria-expanded', open ? 'true' : 'false');
-        return;
-      }
-      if (action === 'clear-selection') {
-        // Back to the screen's starting state: nothing ticked, nothing open.
-        viewState.selection.clear();
-        viewState.expanded.clear();
-        await rerender();
-        return;
-      }
-      if (action === 'clear-filters') {
-        viewState.filters = defaultFilters();
-        await rerender();
-        return;
-      }
-      if (action === 'start-practice') await startPractice(ctx, root);
-    }, { signal: ctx.signal });
+    root.addEventListener(
+      'click',
+      async (ev) => {
+        const button = ev.target.closest('[data-action]');
+        if (!button || !root.contains(button)) return;
+        const action = button.dataset.action;
+        if (action === 'pick-expand') {
+          // Expanding is a DOM toggle: no rebuild, no lost focus, and the open
+          // set is remembered so a later redraw restores it.
+          const subject = button.dataset.value;
+          const panel = document.getElementById(button.getAttribute('aria-controls'));
+          const open = !viewState.expanded.has(subject);
+          if (open) viewState.expanded.add(subject);
+          else viewState.expanded.delete(subject);
+          if (panel) panel.hidden = !open;
+          button.setAttribute('aria-expanded', open ? 'true' : 'false');
+          return;
+        }
+        if (action === 'clear-selection') {
+          viewState.selection.clear();
+          viewState.expanded.clear();
+          await paintPicker();
+          return;
+        }
+        if (action === 'clear-filters') {
+          const keepSearch = viewState.filters.search;
+          viewState.filters = defaultFilters();
+          viewState.filters.search = keepSearch;
+          await paintPicker();
+          return;
+        }
+        if (action === 'remove-subject') {
+          viewState.selection.delete(button.dataset.value);
+          await paintPicker();
+          return;
+        }
+        if (action === 'remove-topic') {
+          const [subject, topic] = [button.dataset.subject, button.dataset.value];
+          setTopic(subject, topic, false);
+          await paintPicker();
+          return;
+        }
+        if (action === 'add-matching') {
+          // Turn the current search/filter result into the selection: every
+          // subject/topic pair that survived the filters is ticked.
+          const metas = Array.from(state.questionIndex.values());
+          const attemptSummary = await currentAttemptSummary();
+          const narrowed = narrowedPool(metas, attemptSummary);
+          for (const meta of narrowed) {
+            viewState.selection.set(meta.subject || NO_TOPIC, { all: true, topics: new Set() });
+          }
+          await paintPicker();
+          toast(`${narrowed.length} matching question(s) added to the session.`, 'ok');
+          return;
+        }
+        if (action === 'preset-count') {
+          const input = root.querySelector('#practiceCfgCount');
+          if (!input) return;
+          input.value = button.dataset.count;
+          input.dispatchEvent(new Event('change', { bubbles: true }));
+          return;
+        }
+        if (action === 'start-practice') await startPractice(ctx, root);
+      },
+      { signal: ctx.signal },
+    );
 
-    root.querySelector('#fSearch')?.addEventListener('input', (ev) => {
-      const value = ev.target.value;
-      clearTimeout(searchTimer);
-      searchTimer = setTimeout(async () => {
-        viewState.filters.search = value;
-        await rerender();
-      }, 350);
-    });
+    // The search field and the filters disclosure are rebuilt with the pane, so
+    // both listeners are delegated: a listener on the element itself would go
+    // with the element on the first redraw.
+    let searchTimer = null;
+    root.addEventListener(
+      'input',
+      (ev) => {
+        if (ev.target?.id !== 'pickerSearch') return;
+        const value = ev.target.value;
+        clearTimeout(searchTimer);
+        searchTimer = setTimeout(async () => {
+          viewState.filters.search = value;
+          await paintPicker({ restoreSearch: true });
+        }, 280);
+      },
+      { signal: ctx.signal },
+    );
 
-    root.querySelector('#narrowFilters')?.addEventListener('toggle', (ev) => {
-      viewState.narrowOpen = ev.target.open;
-    });
+    // `toggle` does not bubble; capturing it on the container does not depend on
+    // the disclosure element surviving a redraw.
+    root.addEventListener(
+      'toggle',
+      (ev) => {
+        if (ev.target?.id === 'narrowFilters') viewState.narrowOpen = ev.target.open;
+      },
+      { capture: true, signal: ctx.signal },
+    );
   },
 };
 
@@ -610,8 +787,6 @@ async function startPractice(ctx, root) {
   const pairs = selectedPairs();
   const topicsTicked = pairs.filter((p) => p.topic).length;
   const subjectsTicked = viewState.selection.size;
-  // Exactly one subject and at most one topic is the old Topic Practice case and
-  // keeps its kind and its label; anything wider is a custom set.
   const isTopicPractice = subjectsTicked === 1 && topicsTicked <= 1;
   const kind = isTopicPractice ? 'topic' : 'custom';
 
@@ -633,28 +808,14 @@ async function startPractice(ctx, root) {
     seed: strategy === 'random' ? null : `${kind}:${pool.length}:${config.count}`,
   });
 
-  // Strategy decides which questions are in; the shuffle decides how they are
-  // arranged. With shuffling off the picked questions are put back into paper
-  // order, so `order_source` states what actually happened.
   const arranged = viewState.shuffleOrder ? pick.selected : arrangeForPaper(pick.selected);
   const orderSource = viewState.shuffleOrder ? 'shuffled' : 'paper_order';
   const questionIds = arranged.map((m) => m.id);
 
-  // A single subject with at most one topic starts straight away, as Topic
-  // Practice always did. A wider set is a custom assembly, so it is confirmed
-  // first — and the confirmation states the order the questions will actually
-  // arrive in, which is the thing the screen used to get wrong.
-  if (!isTopicPractice) {
-    const ok = await confirmDialog({
-      title: 'Start this custom set?',
-      message: `${questionIds.length} question(s) from ${pool.length} matching. Picked by “${strategyLabel(strategy)}”, then ${
-        viewState.shuffleOrder ? 'shuffled' : 'put in paper order (year, then paper, then question number)'
-      }. Recorded as a custom set — not an authentic paper.${pick.notes.length ? ` ${pick.notes.join(' ')}` : ''}`,
-      confirmLabel: 'Start',
-    });
-    if (!ok) return;
-  }
-
+  // No confirmation dialog: the session panel states the pool, the size, the
+  // arrangement and the recorded kind while the reader is choosing, and the
+  // Start button repeats the size. A second dialog would ask them to confirm
+  // what is already on screen.
   await startPracticeTest(ctx, {
     kind,
     label,
@@ -669,6 +830,7 @@ async function startPractice(ctx, root) {
       ...pick.notes,
     ],
   });
+  void root;
 }
 
 function strategyLabel(strategy) {
@@ -679,18 +841,8 @@ function strategyLabel(strategy) {
 
 /**
  * Apply `#/topic/<Subject>` and `#/topic/<Subject>||<Topic>` to the selection.
- *
- * Called only when the screen is entered, never on an in-place refresh, so a
- * filter change cannot re-impose a link the reader has already edited away
- * from. An empty parameter is left alone: arriving at `#/topic` keeps whatever
- * was already ticked instead of wiping it — but it does forget the link that
- * was applied, so arriving at the same address again later still applies it.
- *
- * A link is only applied when the bank can honour it. A subject the bank does
- * not hold (a mistyped address, an old bookmark, a label renamed at import) is
- * ignored rather than selected, because selecting it would leave the reader
- * with "0 questions match" and nothing on screen to explain why; a subject with
- * an unknown topic falls back to the whole subject.
+ * A link is only applied when the bank can honour it; an unknown subject is
+ * ignored rather than selected (which would leave a silent empty pool).
  */
 export function applyRouteParams(params) {
   const raw = String(params?.[0] || '');
@@ -701,7 +853,6 @@ export function applyRouteParams(params) {
   if (raw === viewState.appliedRoute) return false;
   const { subject, topic } = parseTopicPracticeParam(raw);
   if (!subject) return false;
-  // With no bank there is nothing to select against, and the screen says so.
   if (!state.questionIndex.size) return false;
   const group = subjectGroups().find((g) => g.subject === subject);
   if (!group) return false;
@@ -709,7 +860,7 @@ export function applyRouteParams(params) {
   viewState.appliedRoute = raw;
   viewState.selection.clear();
   if (knownTopic) {
-    setTopic(subject, knownTopic, true); // the same path a click takes
+    setTopic(subject, knownTopic, true);
     viewState.expanded.add(subject);
   } else {
     setSubject(subject, true);
