@@ -8591,3 +8591,152 @@ body.runner-focus .runner { max-width: 66ch; }
 .sheet-sub { margin: 3px 0 0; font-size: 12.5px; color: var(--text-soft); max-width: 62ch; }
 .sheet-action { align-items: center; }
 .sheet-foot { margin-top: 10px; }
+
+/* =========================================================================
+   14g. Practice — the working surface
+   The left sheet is the bank (search, count, subjects, topics); the right card
+   is the sitting being assembled. One start button, at the foot of the card.
+   ========================================================================= */
+
+.practice-layout { gap: 36px; grid-template-columns: minmax(0, 1.7fr) minmax(300px, 0.95fr); }
+
+.practice-browse { padding-top: 0; }
+.practice-browse > .sheet-head { margin-bottom: 12px; }
+
+.pick-bar {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 0 8px;
+  border-bottom: 1px solid var(--rule-strong);
+}
+
+.pick-match { margin: 0; font-size: 13px; color: var(--text-soft); }
+.pick-match strong {
+  font-family: var(--serif);
+  font-size: 1.375rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  font-variant-numeric: lining-nums;
+}
+
+.pick-summary { margin: 8px 0 12px; font-size: 12.5px; color: var(--text-soft); max-width: 62ch; }
+
+.pick-list { list-style: none; margin: 0; padding: 0; }
+.pick-group + .pick-group { border-top: 1px solid var(--rule); }
+
+.pick-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 9px 0;
+}
+
+.pick-row .pick-check { display: flex; align-items: baseline; gap: 8px; flex: 1 1 auto; min-width: 0; }
+.pick-row .pick-count { color: var(--text-soft); font-size: 12px; font-variant-numeric: tabular-nums; }
+
+.pick-topics { padding: 0 0 10px 26px; display: grid; gap: 6px; }
+.pick-topics .pick-check { display: flex; align-items: baseline; gap: 8px; font-size: 13.5px; color: var(--text-muted); }
+.pick-topics .pick-count { color: var(--text-soft); font-size: 11.5px; font-variant-numeric: tabular-nums; }
+
+.pick-caret {
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  background: transparent;
+  position: relative;
+  cursor: pointer;
+  flex: 0 0 28px;
+}
+
+.pick-caret::before {
+  content: '';
+  position: absolute;
+  top: 11px;
+  left: 9px;
+  width: 7px;
+  height: 7px;
+  border-right: 1px solid var(--text-soft);
+  border-bottom: 1px solid var(--text-soft);
+  transform: rotate(45deg);
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+
+.pick-caret[aria-expanded="true"]::before { transform: rotate(-135deg); top: 13px; }
+.pick-caret:hover { border-color: var(--rule-strong); background: var(--surface-hover); }
+
+/* The session card: an index card, not a panel. */
+.practice-session {
+  border: 1px solid var(--rule-strong);
+  border-radius: 3px;
+  background: var(--bg-elevated);
+  box-shadow: none;
+}
+
+.practice-session-head {
+  padding: 12px 16px 10px;
+  border-bottom: 1px solid var(--rule);
+  display: block;
+}
+
+.practice-session-head h2 {
+  font-family: var(--serif);
+  font-size: 1.125rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+.practice-session-head #sessionCount {
+  display: inline-block;
+  margin-top: 2px;
+  color: var(--text-muted);
+  font-size: 12.5px;
+  font-variant-numeric: tabular-nums;
+}
+
+.practice-session-head .session-kind {
+  display: block;
+  margin-top: 1px;
+  font-size: 11px;
+  color: var(--text-soft);
+}
+
+.practice-session-body { padding: 12px 16px 16px; }
+.practice-session-body .practice-setup { margin-top: 14px; }
+.practice-session-body .settings-summary { font-size: 11.5px; }
+
+.session-order {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--rule);
+  display: grid;
+  gap: 8px;
+}
+
+.session-order .field { margin: 0; }
+
+.preset-row { display: flex; flex-wrap: wrap; gap: 4px 12px; margin-top: 10px; }
+.preset {
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: 12px;
+  color: var(--text-muted);
+  padding: 2px 0;
+  border-bottom: 1px solid var(--rule-strong);
+  cursor: pointer;
+}
+.preset:hover { color: var(--text); border-bottom-color: var(--text); }
+.preset:disabled { color: var(--text-soft); border-bottom-style: dotted; cursor: not-allowed; }
+
+.practice-start { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--rule); }
+.practice-start .btn-block { min-height: 42px; }
+
+@media (max-width: 1040px) {
+  .practice-layout { gap: 24px; }
+  .practice-session { position: static; }
+}

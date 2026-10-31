@@ -42,7 +42,7 @@
  */
 
 import { state } from '../../core/state.js';
-import { esc, card, toast, notice, emptyState, screenHead, filterChip, cardInfo } from '../components.js';
+import { esc, sheet, infoToggle, toast, notice, emptyState, screenHead } from '../components.js';
 import { QUESTION_TYPES, LANGUAGE_LABELS } from '../../core/constants.js';
 import { parseTopicPracticeParam } from '../../core/util.js';
 import { filterMetas, selectQuestions, ATTEMPT_STATE_FILTERS, arrangeForPaper } from '../../services/select.js';
@@ -353,12 +353,12 @@ function narrowBlock({ narrowed, subtopics }) {
 
       ${
         years.length
-          ? `<h3>Years</h3>${checkboxList({ action: 'filter-year', options: years.map((y) => ({ value: y, label: y })), selectedValues: f.years })}`
+          ? `<p class="section-label">Years</p>${checkboxList({ action: 'filter-year', options: years.map((y) => ({ value: y, label: y })), selectedValues: f.years })}`
           : ''
       }
       ${
         papers.length
-          ? `<h3>Papers</h3>${checkboxList({
+          ? `<p class="section-label">Papers</p>${checkboxList({
               action: 'filter-paper',
               options: papers.map((p) => ({
                 value: p.paper_id,
@@ -368,7 +368,7 @@ function narrowBlock({ narrowed, subtopics }) {
             })}`
           : ''
       }
-      <h3>Question types</h3>
+      <p class="section-label">Question types</p>
       ${checkboxList({ action: 'filter-type', options: Object.entries(QUESTION_TYPES).map(([value, label]) => ({ value, label })), selectedValues: f.types })}
 
       <div class="stack mt-3">
@@ -395,22 +395,21 @@ function pickerMarkup({ groups, narrowed, subtopics, matchCount }) {
       </label>
       ${
         search.trim()
-          ? `<button class="btn btn-sm" type="button" data-action="add-matching" ${narrowed.length ? '' : 'disabled'}>Add all ${narrowed.length} matching</button>`
+          ? `<button class="btn btn-sm" type="button" data-action="add-matching" ${narrowed.length ? '' : 'disabled'}>Add all ${narrowed.length}</button>`
           : ''
       }
     </div>
 
-    <p class="small m-0" id="pickSummary">${esc(selectionSentence(groups))}</p>
-    <p class="pick-match" role="status"><strong id="pickMatch">${esc(String(matchCount))} question${matchCount === 1 ? '' : 's'} match</strong>${
-      matchCount !== narrowed.length ? ` <span class="tiny muted">of ${esc(String(narrowed.length))} after your other filters</span>` : ''
-    }</p>
+    <div class="pick-bar">
+      <p class="pick-match" role="status"><strong id="pickMatch">${esc(String(matchCount))} question${matchCount === 1 ? '' : 's'} match</strong>${
+        matchCount !== narrowed.length ? ` <span class="tiny text-soft">of ${esc(String(narrowed.length))} after your filters</span>` : ''
+      }</p>
+      <button class="quiet-action" type="button" data-action="clear-selection" ${viewState.selection.size ? '' : 'disabled'}>Clear the selection</button>
+    </div>
+
+    <p class="pick-summary" id="pickSummary">${esc(selectionSentence(groups))}</p>
 
     ${subjectPicker(groups)}
-
-    <div class="row mt-3">
-      <button class="btn btn-sm" type="button" data-action="clear-selection" ${viewState.selection.size ? '' : 'disabled'}>Clear the selection</button>
-      ${active ? '<span class="tiny muted">Filters are on — open “Narrow further” below to see or clear them.</span>' : '<span class="tiny muted">Counts are per subject, over the questions your other filters leave.</span>'}
-    </div>
 
     ${narrowBlock({ narrowed, subtopics })}`;
 }
@@ -452,7 +451,7 @@ function sizesMarkup(matchCount) {
 /** The session pane's live parts, refreshed without rebuilding the form. */
 function sessionSummary(matchCount, isTopicPractice) {
   return `<span id="sessionCount">${matchCount} question${matchCount === 1 ? '' : 's'} ready</span>
-    <span class="tiny muted" id="sessionKind">${isTopicPractice ? 'Recorded as a topic session' : 'Recorded as a custom set'}</span>`;
+    <span class="session-kind" id="sessionKind">${isTopicPractice ? 'Recorded as a topic session' : 'Recorded as a custom set'}</span>`;
 }
 
 export default {
@@ -471,8 +470,8 @@ export default {
           purpose: 'Pick any subjects and topics — the pool is everything you tick, and nothing ticked means the whole bank.',
           primary: '<a class="btn btn-primary" href="#/bank">Import a question bank</a>',
         })}
-        ${card({
-          title: 'Practice needs a question bank',
+        ${sheet({
+          label: 'Practice needs a question bank',
           body: emptyState({
             title: 'No questions stored yet',
             message: 'Import a validated bank first, then pick the subjects and topics you want to practise.',
@@ -493,22 +492,20 @@ export default {
     return `
       ${screenHead({
         title: 'Practice',
-        purpose: 'Choose any mix of subjects and topics. The session panel says exactly what will start, and starts it.',
-        primary: `<button class="btn btn-primary" type="button" data-action="start-practice" ${matchCount ? '' : 'disabled'}>Start ${matchCount} question${matchCount === 1 ? '' : 's'}</button>`,
-        secondary: `${filterChip(activeFilterCount())}<a class="btn btn-sm btn-quiet" href="#/smart">Smart practice</a>`,
+        purpose: 'Pick what this sitting covers, then start it.',
+        secondary: '<a class="btn btn-sm btn-quiet" href="#/smart">Let the app choose</a>',
       })}
 
       <div class="practice-layout">
-        <section class="practice-browse" aria-label="Choose what to practise">
-          ${card({
-            title: 'What to practise',
-            count: `${matchCount} match`,
-            info: cardInfo(
+        <section class="sheet practice-browse" aria-label="Choose what to practise">
+          <div class="sheet-head">
+            <p class="section-label">What to practise</p>
+            <div class="sheet-action">${infoToggle(
               'How selection works',
-              '<p class="small m-0">A single subject with at most one topic is recorded as a <strong>topic</strong> session; anything wider is a <strong>custom</strong> set. The strategy decides <em>which</em> questions are picked; “shuffle question order” decides how they are arranged — with shuffling off they run in paper order (year, then paper, then question number). Counts are per subject and always describe your imported bank.</p>',
-            ),
-            body: `<div id="pickerPane">${pickerMarkup({ groups, narrowed, subtopics, matchCount })}</div>`,
-          })}
+              '<p class="small m-0">A single subject with at most one topic is recorded as a <strong>topic</strong> session; anything wider is a <strong>custom</strong> set. The strategy decides <em>which</em> questions are picked; the order decides how they are arranged — with shuffling off they run in paper order (year, then paper, then question number). Counts are per subject and always describe your imported bank.</p>',
+            )}</div>
+          </div>
+          <div id="pickerPane">${pickerMarkup({ groups, narrowed, subtopics, matchCount })}</div>
         </section>
 
         <aside class="practice-session" id="sessionPanel" aria-label="Your session">
@@ -520,29 +517,27 @@ export default {
             <div id="practiceBasket">${basketMarkup(groups)}</div>
             ${sizesMarkup(matchCount)}
 
-            <div class="filters mt-3">
-              <label class="field"><span class="label-text">Which questions are picked</span>
+            ${configFields({ paper: null, defaultCount: Math.min(20, Math.max(1, matchCount)), maxCount: matchCount, allowCustomScoring: true })}
+
+            <div class="session-order">
+              <label class="field"><span class="label-text">Pick questions by</span>
                 <select id="practiceStrategy" data-action="strategy">
                   <option value="random" ${viewState.strategy === 'random' ? 'selected' : ''}>Random</option>
                   <option value="least-attempted" ${viewState.strategy === 'least-attempted' ? 'selected' : ''}>Least attempted first</option>
                   <option value="weakest-first" ${viewState.strategy === 'weakest-first' ? 'selected' : ''}>Weakest topics first</option>
                 </select>
               </label>
+              <label class="check"><input type="checkbox" id="practiceShuffleOrder" data-action="shuffle-order" ${viewState.shuffleOrder ? 'checked' : ''} /><span>Shuffle the order</span></label>
+              <p class="hint m-0" id="shuffleHint">${
+                viewState.shuffleOrder ? 'Questions are arranged at random for this session.' : 'Runs in paper order — year, then paper, then question number.'
+              }</p>
             </div>
-            <label class="check mt-2"><input type="checkbox" id="practiceShuffleOrder" data-action="shuffle-order" ${viewState.shuffleOrder ? 'checked' : ''} /><span>Shuffle question order</span></label>
-            <p class="hint mt-0" id="shuffleHint">${
-              viewState.shuffleOrder
-                ? 'Questions will be arranged at random for this session.'
-                : 'Questions will run in paper order — year, then paper, then question number.'
-            }</p>
-
-            ${configFields({ paper: null, defaultCount: Math.min(20, Math.max(1, matchCount)), maxCount: matchCount, allowCustomScoring: true })}
 
             <div class="practice-start">
               <button class="btn btn-primary btn-block" type="button" data-action="start-practice" ${matchCount ? '' : 'disabled'}>
                 Start ${matchCount ? `${matchCount} question${matchCount === 1 ? '' : 's'}` : 'practice'}
               </button>
-              <p class="tiny muted m-0">A practice set from your own bank — never labelled as an authentic paper. Confidence marking is optional in every session.</p>
+              <p class="tiny text-soft m-0 mt-2">From your own bank — never labelled as an authentic paper.</p>
             </div>
           </div>
         </aside>
@@ -654,11 +649,7 @@ export default {
         if (action === 'shuffle-order') {
           viewState.shuffleOrder = el.checked;
           const hint = root.querySelector('#shuffleHint');
-          if (hint) {
-            hint.textContent = el.checked
-              ? 'Questions will be arranged at random for this session.'
-              : 'Questions will run in paper order — year, then paper, then question number.';
-          }
+          if (hint) hint.textContent = el.checked ? 'Questions are arranged at random for this session.' : 'Runs in paper order — year, then paper, then question number.';
           return;
         }
         if (action === 'filter') {
