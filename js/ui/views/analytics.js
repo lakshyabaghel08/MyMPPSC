@@ -19,13 +19,11 @@
 
 import {
   esc,
-  badge,
   sheet,
   barRows,
   notice,
   dataTable,
   emptyState,
-  progressBar,
   toast,
   evidenceMeter,
   infoToggle,
@@ -103,10 +101,9 @@ async function renderPerformancePanel(loaded = null) {
     // A subject row opens the builder already filtered to that subject: the
     // reader's next move after reading a figure is to practise it.
     const subjectRows = analytics.bySubject.map((row) => [
-      `<a href="${esc(topicPracticeHref(row.subject))}"><strong>${esc(row.subject)}</strong></a><div class="tiny text-soft">${row.attemptedUnique} of them seen</div>`,
+      `<a href="${esc(topicPracticeHref(row.subject))}"><strong>${esc(row.subject)}</strong></a>`,
       String(row.available),
       fmtPct(row.coverage),
-      accuracyText(row.accuracy, row.scored),
       accuracyText(row.firstAttemptAccuracy, row.firstAttemptScored),
     ]);
 
@@ -118,7 +115,6 @@ async function renderPerformancePanel(loaded = null) {
         `<a href="${esc(topicPracticeHref(row.subject, row.topic))}"><strong>${esc(row.topic)}</strong></a><div class="tiny muted">${esc(row.subject)}</div>`,
         String(row.available),
         fmtPct(row.coverage),
-        accuracyText(row.accuracy, row.scored),
         accuracyText(row.firstAttemptAccuracy, row.firstAttemptScored),
         verdictBadge(row),
       ]);
@@ -198,6 +194,8 @@ async function renderPerformancePanel(loaded = null) {
       ...coverageRows.map((r) => ({ ...r, reason: r.reason === 'never attempted' ? 'never attempted' : `only ${r.reason}` })),
     ].slice(0, 12);
 
+    const dueNow = analytics.revision.dueToday + analytics.revision.overdue;
+
     return `
       ${sheet({
         label: 'Your own attempts',
@@ -208,29 +206,6 @@ async function renderPerformancePanel(loaded = null) {
           <span><b>${counts.totalAttempts ? fmtPct(analytics.accuracy.answerRate) : '—'}</b> answer rate <small>${counts.unanswered} left unanswered</small></span>
         </p>`,
         footer: '<p class="tiny text-soft m-0">All figures come from attempts stored on this device. Nothing is estimated, extrapolated or projected.</p>',
-      })}
-
-      ${sheet({
-        label: 'Subjects',
-        body: dataTable({
-          columns: [{ label: 'Subject' }, { label: 'Available', num: true }, { label: 'Coverage', num: true }, { label: 'Accuracy (all)', num: true }, { label: 'First-attempt', num: true }],
-          rows: subjectRows,
-          empty: 'No subjects yet.',
-          className: 'compact cards-mobile',
-        }),
-      })}
-
-      ${sheet({
-        label: 'Topics',
-        count: `${topicRows.length} topic${topicRows.length === 1 ? '' : 's'}`,
-        action: `<label class="field field-inline m-0"><span class="label-text">Subject</span>
-          <select id="anaSubject"><option value="all">All subjects</option>${subjects.map((s) => `<option value="${esc(s)}" ${viewState.subject === s ? 'selected' : ''}>${esc(s)}</option>`).join('')}</select></label>`,
-        body: dataTable({
-          columns: [{ label: 'Topic' }, { label: 'Available', num: true }, { label: 'Coverage', num: true }, { label: 'Accuracy (all)', num: true }, { label: 'First-attempt', num: true }, { label: 'Verdict' }],
-          rows: topicRows,
-          empty: 'No topics match this filter.',
-          className: 'compact cards-mobile',
-        }),
       })}
 
       ${sheet({
@@ -250,6 +225,29 @@ async function renderPerformancePanel(loaded = null) {
       })}
 
       ${sheet({
+        label: 'By subject',
+        body: dataTable({
+          columns: [{ label: 'Subject' }, { label: 'Available', num: true }, { label: 'Coverage', num: true }, { label: 'First-attempt accuracy', num: true }],
+          rows: subjectRows,
+          empty: 'No subjects yet.',
+          className: 'compact cards-mobile',
+        }),
+      })}
+
+      ${sheet({
+        label: 'By topic',
+        count: `${topicRows.length} topic${topicRows.length === 1 ? '' : 's'}`,
+        action: `<label class="field field-inline m-0"><span class="label-text">Subject</span>
+          <select id="anaSubject"><option value="all">All subjects</option>${subjects.map((s) => `<option value="${esc(s)}" ${viewState.subject === s ? 'selected' : ''}>${esc(s)}</option>`).join('')}</select></label>`,
+        body: dataTable({
+          columns: [{ label: 'Topic' }, { label: 'Available', num: true }, { label: 'Coverage', num: true }, { label: 'First-attempt accuracy', num: true }, { label: 'Verdict' }],
+          rows: topicRows,
+          empty: 'No topics match this filter.',
+          className: 'compact cards-mobile',
+        }),
+      })}
+
+      ${sheet({
         label: 'How you answer',
         body: `
           ${
@@ -263,50 +261,35 @@ async function renderPerformancePanel(loaded = null) {
                  <p class="quiet-note m-0"><strong>${analytics.confidence.overconfidence}</strong> confident but wrong, <strong>${analytics.confidence.underconfidence}</strong> correct but unsure or guessed. ${esc(analytics.confidence.note)}</p>`
               : `<p class="small muted">Mark confidence on any question, in any session, to compare how sure you felt with how you did. Correct-but-guessed answers are scheduled for earlier revision.</p>`
           }
-          <div class="row stats-inline mt-3">
-            <span><strong>${analytics.time.avgSecPerQuestion === null ? '—' : `${analytics.time.avgSecPerQuestion}s`}</strong> average per question</span>
-            <span><strong>${analytics.time.medianSecPerQuestion === null ? '—' : `${analytics.time.medianSecPerQuestion}s`}</strong> median</span>
-            <span><strong>${analytics.time.avgSecPerCorrect === null ? '—' : `${analytics.time.avgSecPerCorrect}s`}</strong> per correct answer</span>
-          </div>
+          <p class="facts-line mt-3">
+            <span><b>${analytics.time.avgSecPerQuestion === null ? '—' : `${analytics.time.avgSecPerQuestion}s`}</b> average per question</span>
+            <span><b>${analytics.time.medianSecPerQuestion === null ? '—' : `${analytics.time.medianSecPerQuestion}s`}</b> median</span>
+            <span><b>${analytics.time.avgSecPerCorrect === null ? '—' : `${analytics.time.avgSecPerCorrect}s`}</b> per correct answer</span>
+          </p>
           <details class="disclosure mt-2"><summary>Slowest recorded answers (${slowestRows.length})</summary>
             ${dataTable({ columns: [{ label: 'Question' }, { label: 'Subject' }, { label: 'Topic' }, { label: 'Time', num: true }, { label: 'Outcome' }], rows: slowestRows, empty: 'No timings recorded.', className: 'compact' })}
           </details>`,
       })}
 
       ${sheet({
-        title: 'Signals for the next session',
+        label: 'Mistakes and revision in hand',
         body: `
-          <div class="split-2">
-            <div>
-              <h3 class="card-section-title">Mistake book</h3>
-              <p class="small text-soft">${analytics.mistakes.open} open, ${analytics.mistakes.repeated} repeated, ${counts.unanswered} skipped, ${counts.flagged} flagged.</p>
-              ${analytics.mistakes.top.length
-                ? dataTable({
-                    columns: [{ label: 'Most repeated' }, { label: 'Times', num: true }, { label: 'Last seen' }],
-                    rows: analytics.mistakes.top.slice(0, 6).map((m) => [
-                      `<span class="mono tiny">${esc(m.question_id)}</span><div class="tiny muted">${esc(m.subject || '—')} · ${esc(m.topic || '—')} · ${esc(m.type)}</div>`,
-                      String(m.occurrences),
-                      esc(fmtDate(m.last_seen_at)),
-                    ]),
-                    className: 'compact',
-                  })
-                : '<p class="muted small">No open mistake entries.</p>'}
-              <div class="row mt-2"><a class="btn btn-sm" href="#/mistakes">Open the Mistake Book</a></div>
-            </div>
-            <div>
-              <h3 class="card-section-title">Revision</h3>
-              <p class="small text-soft">${analytics.revision.dueToday + analytics.revision.overdue} due now, ${analytics.revision.upcoming} upcoming, ${analytics.revision.tracked} tracked.</p>
-              ${
-                analytics.revision.effectiveness.withHistory
-                  ? `${progressBar(analytics.revision.effectiveness.improved / analytics.revision.effectiveness.withHistory, 'ok')}
-                     <p class="small mt-2">${analytics.revision.effectiveness.improved} improved · ${analytics.revision.effectiveness.worsened} declined · ${analytics.revision.effectiveness.unchanged} unchanged, across ${analytics.revision.effectiveness.withHistory} question(s).</p>`
-                  : '<p class="muted small">Not enough repeated attempts yet to compare first and latest answers.</p>'
-              }
-              <div class="row mt-2"><a class="btn btn-sm" href="#/revision">Revision Centre</a></div>
-            </div>
-          </div>`,
-      })}
-`;
+          <ul class="handover">
+            <li>
+              <a href="#/mistakes"><strong>Mistake Book</strong></a>
+              <span>${analytics.mistakes.open} open · ${analytics.mistakes.repeated} repeated · ${counts.unanswered} skipped · ${counts.flagged} flagged</span>
+            </li>
+            <li>
+              <a href="#/revision"><strong>Revision Centre</strong></a>
+              <span>${dueNow} due now · ${analytics.revision.upcoming} upcoming · ${analytics.revision.tracked} tracked</span>
+            </li>
+          </ul>
+          <p class="quiet-note m-0">${
+            analytics.revision.effectiveness.withHistory
+              ? `On repeat attempts, revision improved ${analytics.revision.effectiveness.improved} and set back ${analytics.revision.effectiveness.worsened} of ${analytics.revision.effectiveness.withHistory} question(s). The Mistake Book holds the ones still open.`
+              : 'Not enough repeated attempts yet to compare a first answer with the latest one.'
+          }</p>`,
+      })}`;
 }
 
 /**
@@ -430,7 +413,7 @@ export default {
     return `
       ${screenHead({
         title: 'Insights',
-        purpose: 'Two readings of the same preparation: what you have done, and what the papers stored on this device actually contain. They are counted from different data and are never mixed.',
+        purpose: 'What you have done, with what the papers you imported contain — counted from different data, never mixed.',
         primary: '<a class="btn btn-primary" href="#/topic">Practise a weak topic</a>',
         secondary: '<button class="btn btn-sm" type="button" id="anaExportHead">Export these figures</button>',
       })}
