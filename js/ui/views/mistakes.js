@@ -12,7 +12,6 @@ import { state } from '../../core/state.js';
 import {
   esc,
   badge,
-  card,
   dataTable,
   emptyState,
   toast,
@@ -23,7 +22,7 @@ import {
   answerKeyBadge,
   langAttr,
   screenHead,
-  filterChip,
+  sheet,
 } from '../components.js';
 import { fmtRelative, todayKey } from '../../core/util.js';
 import { listMistakes, mistakeCounts, resolveMistake, reopenMistake, removeMistake } from '../../services/attempts.js';
@@ -68,9 +67,10 @@ function filtersMarkup(metas, counts) {
   </div>`;
 }
 
+/** Why an item is here: a word with a tone, not a badge per row. */
 function typeBadge(type) {
-  const tone = { incorrect: 'bad', skipped: 'warn', flagged: 'warn', low_confidence_correct: 'info', repeated: 'bad' }[type] || '';
-  return badge(MISTAKE_TYPES[type] || type, tone);
+  const tone = { incorrect: 'is-bad', skipped: 'is-warn', flagged: 'is-warn', low_confidence_correct: 'is-soft', repeated: 'is-bad' }[type] || 'is-soft';
+  return `<span class="why-word ${tone}">${esc(MISTAKE_TYPES[type] || type)}</span>`;
 }
 
 export default {
@@ -87,8 +87,8 @@ export default {
           primary: '<a class="btn btn-primary" href="#/test-centre">Start a test</a>',
           secondary: '<a class="btn btn-sm" href="#/topic">Practise a topic</a>',
         })}
-        ${card({
-          title: 'Nothing to review yet',
+        ${sheet({
+          label: 'Nothing to review yet',
           body: emptyState({
             title: 'No mistakes recorded yet',
             message: metas.length
@@ -120,23 +120,27 @@ export default {
     const tableRows = rows.map((m) => {
       const meta = state.questionIndex.get(m.question_id);
       const preview = meta ? `${esc(meta.subject || 'Unclassified')} · ${esc(meta.topic || '—')}` : '<span class="soft">question no longer stored</span>';
+      const why = [
+        typeBadge(m.type),
+        m.occurrences >= 2 ? `<span class="why-note">repeated ${m.occurrences} times</span>` : '',
+        dueByQuestion.has(m.question_id) ? '<span class="why-note is-now">due for revision</span>' : '',
+        m.detail?.confidence ? `<span class="why-note">marked ${esc(confidenceLabel(m.detail.confidence))}</span>` : '',
+      ]
+        .filter(Boolean)
+        .join(' ');
       const cells = [
         `<div><strong>Q${esc(String(meta?.question_number ?? '—'))}</strong> <span class="mono tiny">${esc(m.question_id)}</span></div>
-         <div class="tiny muted">${preview}</div>`,
-        `${typeBadge(m.type)}${m.occurrences >= 2 ? ` ${badge(`repeated ×${m.occurrences}`, 'bad')}` : ''}${
-          dueByQuestion.has(m.question_id) ? ` ${badge('due for revision', 'warn')}` : ''
-        }
-         <div class="tiny muted">${m.status === 'resolved' ? `resolved ${esc(fmtRelative(m.resolved_at))}` : `seen ${esc(fmtRelative(m.last_seen_at))}`}</div>`,
-        m.detail?.confidence ? badge(`confidence: ${confidenceLabel(m.detail.confidence)}`, 'info') : '<span class="soft tiny">—</span>',
+         <div class="tiny text-soft">${preview}</div>`,
+        `${why}<div class="tiny text-soft">${m.status === 'resolved' ? `resolved ${esc(fmtRelative(m.resolved_at))}` : `seen ${esc(fmtRelative(m.last_seen_at))}`}</div>`,
         `<div class="row tight">
            <button class="btn btn-sm" type="button" data-action="retry" data-qid="${esc(m.question_id)}">Retry</button>
-           <button class="btn btn-sm" type="button" data-action="expand" data-key="${esc(m.key)}" aria-expanded="false" aria-controls="reviewrow-${esc(m.question_id)}">History &amp; explanation</button>
+           <button class="quiet-action" type="button" data-action="expand" data-key="${esc(m.key)}" aria-expanded="false" aria-controls="reviewrow-${esc(m.question_id)}">History &amp; explanation</button>
            ${
              m.status === 'resolved'
-               ? `<button class="btn btn-sm" type="button" data-action="reopen" data-key="${esc(m.key)}">Reopen</button>`
-               : `<button class="btn btn-sm" type="button" data-action="resolve" data-key="${esc(m.key)}">Resolve</button>`
+               ? `<button class="quiet-action" type="button" data-action="reopen" data-key="${esc(m.key)}">Reopen</button>`
+               : `<button class="quiet-action" type="button" data-action="resolve" data-key="${esc(m.key)}">Resolve</button>`
            }
-           <button class="btn btn-sm btn-quiet" type="button" data-action="remove" data-key="${esc(m.key)}">Remove</button>
+           <button class="quiet-action" type="button" data-action="remove" data-key="${esc(m.key)}">Remove</button>
          </div>`,
       ];
       // The review opens *in the row*, so the reader keeps their filters,
@@ -163,10 +167,10 @@ export default {
         secondary: `<a class="btn btn-sm btn-quiet" href="#/revision">Revision queue</a>`,
       })}
 
-      ${card({
-        title: 'Items',
+      ${sheet({
+        label: 'Items',
         count: `${rows.length} shown`,
-        action: `<button class="btn btn-sm" type="button" data-action="retry-all">Retry all shown</button>`,
+        action: `<button class="quiet-action" type="button" data-action="retry-all">Retry all shown</button>`,
         body: `
           <details class="disclosure">
             <summary>Filters${activeFilterCount() ? ` · ${activeFilterCount()} on` : ''}</summary>
@@ -174,7 +178,7 @@ export default {
             ${activeFilterCount() ? '<div class="row"><button class="btn btn-sm btn-quiet" type="button" data-action="clear-filters">Clear filters</button></div>' : ''}
           </details>
           ${dataTable({
-            columns: [{ label: 'Question' }, { label: 'Why it is here' }, { label: 'Confidence' }, { label: 'Actions' }],
+            columns: [{ label: 'Question' }, { label: 'Why it is here' }, { label: 'What you can do' }],
             rows: tableRows,
             empty: 'No items match these filters.',
             className: 'compact cards-mobile',

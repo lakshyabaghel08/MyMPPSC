@@ -8540,3 +8540,50 @@ body.runner-focus .runner { max-width: 66ch; }
   .queue-entry { border-top-color: var(--rule); }
   .queue-detail { border-bottom: 0; }
 }
+
+/* A sentence of figures: what used to be four tiles, said once. */
+.facts-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 26px;
+  margin: 0;
+  font-size: 12.5px;
+  color: var(--text-soft);
+}
+
+.facts-line span { display: inline-flex; align-items: baseline; gap: 6px; }
+.facts-line b {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--text);
+  font-variant-numeric: lining-nums;
+  letter-spacing: -0.01em;
+}
+.facts-line small { color: var(--text-soft); font-size: 11.5px; }
+
+.sheet .card-section-title {
+  font-size: 10.5px;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  font-weight: 650;
+  margin: 0 0 6px;
+}
+
+/* Verdicts and outcomes as words, so a table row carries no badge. */
+.verdict-strong { color: var(--ok); }
+.verdict-weak { color: var(--now); }
+.verdict-thin { color: var(--text-soft); }
+
+.outcome-word.is-ok { color: var(--ok); }
+.outcome-word.is-bad { color: var(--now); }
+.outcome-word.is-blank { color: var(--text-soft); }
+
+/* Why an item is in the Mistake Book — a word with a tone, in one line. */
+.why-word { font-weight: 600; }
+.why-word.is-bad { color: var(--now); }
+.why-word.is-warn { color: var(--warn); }
+.why-word.is-soft { color: var(--text-muted); }
+.why-note { color: var(--text-soft); font-size: 12px; }
+.why-note.is-now { color: var(--now); font-weight: 600; }

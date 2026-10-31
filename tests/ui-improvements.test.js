@@ -234,10 +234,12 @@ test('Insights keeps the reader on the bank tab when a chip refreshes it; naviga
   assert.equal($$('#view .tabpanel')[0].hidden, false, 'a navigation opens the route’s panel again');
 });
 
-test('the bank panel is lean: four tiles, charts, short tables, detail behind ⓘ, no clutter', async () => {
+test('the bank panel is lean: four figures, charts, short tables, detail behind ⓘ, no clutter', async () => {
   await goto('pyq-analysis');
   const panel = $$('#view .tabpanel')[1];
-  assert.equal(panel.querySelectorAll('.pyq-summary-grid .tile').length, 4);
+  // Phase 3 states the four figures as one line of facts, not four tiles.
+  assert.equal(panel.querySelectorAll('.pyq-summary-grid [data-figure]').length, 4);
+  assert.equal(panel.querySelectorAll('.pyq-summary-grid .tile').length, 0, 'no metric tiles');
   assert.equal(panel.querySelectorAll('.prov-chip, [data-source]').length, 0, 'no provenance chips');
   assert.doesNotMatch(panel.textContent, /\b(in)?complete\b/i, 'no per-paper complete/incomplete labels');
   assert.equal(panel.querySelectorAll('.notice, .pyq-unplaced-banner').length, 0, 'no banners');
@@ -259,8 +261,9 @@ test('the bank panel’s numbers are the Question Bank screen’s numbers', asyn
   const total = chipCount(chips.find((c) => c.dataset.value === 'all'));
   const bySubject = chips.filter((c) => c.dataset.value !== 'all').map((c) => [c.dataset.value, chipCount(c)]);
   assert.equal(bySubject.reduce((a, [, n]) => a + n, 0), total, 'the subjects add up to the total');
-  const keyTile = $$('#view .pyq-summary-grid .tile').find((t) => /Answer keys/.test(t.textContent));
-  const keys = keyTile.querySelector('.tile-value').textContent.match(/(\d+)\/(\d+)/);
+  const keyFigure = $('#view .pyq-summary-grid [data-figure="keys"]');
+  const keys = keyFigure.querySelector('b').textContent.match(/(\d+)\/(\d+)/);
+  assert.ok(keys, 'the answer-key figure still reads x/y');
 
   click($('#view [data-action="pyq-subject"][data-value="History"]'));
   await settle();

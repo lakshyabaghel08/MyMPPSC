@@ -51,10 +51,11 @@ const FILTERS = [
 
 let viewState = { filter: 'all', expanded: {} };
 
+/** Outcome as a marked word in a table cell — no badge per row. */
 function outcomeBadge(row) {
-  const tones = { correct: 'ok', incorrect: 'bad', unanswered: 'warn', unscored: '' };
-  const labels = { correct: 'correct', incorrect: 'incorrect', unanswered: 'unanswered', unscored: 'not scored' };
-  return badge(labels[row.outcome] || row.outcome, tones[row.outcome] || '');
+  const tone = row.outcome === 'correct' ? 'is-ok' : row.outcome === 'incorrect' ? 'is-bad' : 'is-blank';
+  const labels = { correct: 'correct', incorrect: 'incorrect', unanswered: 'left blank', unscored: 'not scored' };
+  return `<span class="outcome-word ${tone}">${esc(labels[row.outcome] || row.outcome)}</span>`;
 }
 
 function rowMatches(row, filter) {
@@ -83,69 +84,80 @@ const OUTCOME_MARK = {
   unscored: { mark: '·', word: 'not scored', tone: 'blank' },
 };
 
-/**
- * One line per question, collapsed. The reader scans a hundred lines, opens the
- * two they want to understand, and the full question, options, key, explanation
- * and actions are all still there when they do. Nothing is deleted: the line is
- * one click from the card it replaces.
- */
-function questionReviewBlock(row, question, lang, position = null) {
-  if (!question) return `<p class="quiet-note">Question ${esc(row.question_id)} is no longer in the local database.</p>`;
+function reviewContext(row, question, lang, position) {
   const variant = question.language_variants?.[lang] || Object.values(question.language_variants || {})[0];
   const selected = row.selected || [];
-  const outcome = OUTCOME_MARK[row.outcome] || OUTCOME_MARK.unscored;
   const origin = [question.year ? `MPPSC ${esc(String(question.year))}` : null, row.question_number ? `Paper Q${esc(String(question.question_number))}` : null].filter(Boolean).join(' · ');
+  return { variant, selected, origin, key: row.answer?.length ? row.answer.join(', ') : 'none' };
+}
+
+/**
+ * One line per question, collapsed. The reader scans a hundred lines and opens
+ * the two they want to understand. The body — full stem, options, key,
+ * explanation, actions — is built the first time the line is opened, so a
+ * hundred explanations are never in the page at once.
+ */
+function questionReviewLine(row, question, lang, position = null) {
+  if (!question) return `<p class="quiet-note">Question ${esc(row.question_id)} is no longer in the local database.</p>`;
+  const { variant, selected, key } = reviewContext(row, question, lang, position);
+  const outcome = OUTCOME_MARK[row.outcome] || OUTCOME_MARK.unscored;
   const stem = esc(variant?.question_text || '');
   const shortStem = stem.length > 116 ? `${stem.slice(0, 116).trimEnd()}…` : stem;
-  const yourAnswer = selected.length ? selected.join(', ') : '—';
-  const key = row.answer?.length ? row.answer.join(', ') : 'none';
   return `
     <article class="review-item" data-review="${esc(row.question_id)}">
       <button class="review-line" type="button" data-action="expand" data-qid="${esc(row.question_id)}" aria-expanded="false">
         <span class="review-num">${position ?? '—'}</span>
         <span class="review-stem${lang === 'hi' ? ' hi' : ''}"${langAttr(variant?.question_text, lang)}>${shortStem}</span>
         <span class="review-mark is-${outcome.tone}" title="${esc(outcome.word)}"><b aria-hidden="true">${outcome.mark}</b><span class="sr-only">${esc(outcome.word)}</span></span>
-        <span class="review-key">you ${esc(yourAnswer)} <span aria-hidden="true">/</span> key ${esc(key)}</span>
+        <span class="review-key">you ${esc(selected.length ? selected.join(', ') : '—')} <span aria-hidden="true">/</span> key ${esc(key)}</span>
         <span class="review-time">${fmtClock(Math.round((row.time_spent_ms || 0) / 1000))}</span>
       </button>
-      <div class="review-body" hidden>
+      <div class="review-body" hidden data-body-for="${esc(row.question_id)}"></div>
+    </article>`;
+}
+
+/** The body the collapsed line opens into. Built on demand (see viewState.bodies). */
+function questionReviewBody(row, question, lang, position = null) {
+  if (!question) return `<p class="quiet-note">This question is no longer stored.</p>`;
+  const { variant, selected, origin, key } = reviewContext(row, question, lang, position);
+  const stem = esc(variant?.question_text || '');
+  return `
         <div class="question-head">
-          <p class="question-meta">
-            <span class="question-num-pill">Q${position ?? '—'}</span>
-            ${origin ? `<span class="question-origin">${origin}</span>` : ''}
-            <span class="question-class">${esc([row.subject, row.topic].filter(Boolean).join(' · ') || 'Unclassified')}</span>
-            ${row.flagged ? `<span class="text-warn">flagged</span>` : ''}
-            ${row.confidence ? `<span>confidence: ${esc(confidenceLabel(row.confidence))}</span>` : ''}
-            ${row.demonstration ? '<span>demonstration</span>' : ''}
-          </p>
-          <div class="question-tools">${answerKeyBadge(question.supplied?.status)}${row.answer?.length ? '' : badge('answer key missing', 'bad')}</div>
+        <p class="question-meta">
+        <span class="question-num-pill">Q${position ?? '—'}</span>
+        ${origin ? `<span class="question-origin">${origin}</span>` : ''}
+        <span class="question-class">${esc([row.subject, row.topic].filter(Boolean).join(' · ') || 'Unclassified')}</span>
+        ${row.flagged ? `<span class="text-warn">flagged</span>` : ''}
+        ${row.confidence ? `<span>confidence: ${esc(confidenceLabel(row.confidence))}</span>` : ''}
+        ${row.demonstration ? '<span>demonstration</span>' : ''}
+        </p>
+        <div class="question-tools">${answerKeyBadge(question.supplied?.status)}${row.answer?.length ? '' : badge('answer key missing', 'bad')}</div>
         </div>
         <p class="question-text ${lang === 'hi' ? 'hi' : ''}"${langAttr(variant?.question_text, lang)}>${stem}</p>
         <table class="review-options"><tbody>
-          ${(variant?.options || [])
-            .map((opt) => {
-              const isAnswer = (row.answer || []).includes(opt.key);
-              const wasSelected = selected.includes(opt.key);
-              const cls = [isAnswer ? 'is-key' : '', wasSelected ? 'is-picked' : ''].filter(Boolean).join(' ');
-              return `<tr class="${cls}"><td class="mono col-key">${esc(opt.key)}</td><td${langAttr(opt.text, lang)}>${esc(opt.text)}</td>
-                <td class="col-choice">${isAnswer ? '<span class="tag">key</span>' : ''}${wasSelected ? '<span class="tag is-you">you</span>' : ''}</td></tr>`;
-            })
-            .join('')}
+        ${(variant?.options || [])
+        .map((opt) => {
+        const isAnswer = (row.answer || []).includes(opt.key);
+        const wasSelected = selected.includes(opt.key);
+        const cls = [isAnswer ? 'is-key' : '', wasSelected ? 'is-picked' : ''].filter(Boolean).join(' ');
+        return `<tr class="${cls}"><td class="mono col-key">${esc(opt.key)}</td><td${langAttr(opt.text, lang)}>${esc(opt.text)}</td>
+        <td class="col-choice">${isAnswer ? '<span class="tag">key</span>' : ''}${wasSelected ? '<span class="tag is-you">you</span>' : ''}</td></tr>`;
+        })
+        .join('')}
         </tbody></table>
         <p class="small mt-2">
-          Answer used for scoring: <strong>${esc(key)}</strong>
-          ${row.answer_basis ? `(${esc(row.answer_basis === 'verified' ? 'your verified answer' : 'the stored answer key')})` : ''}
-          ${row.supplied_answer && row.verified_answer && row.supplied_answer.join(',') !== row.verified_answer.join(',') ? `, the stored key said <strong>${esc(row.supplied_answer.join(', '))}</strong>, your verified answer is <strong>${esc(row.verified_answer.join(', '))}</strong> — both are preserved.` : ''}
-          ${row.note ? `<br /><span class="soft">${esc(row.note)}</span>` : ''}
+        Answer used for scoring: <strong>${esc(key)}</strong>
+        ${row.answer_basis ? `(${esc(row.answer_basis === 'verified' ? 'your verified answer' : 'the stored answer key')})` : ''}
+        ${row.supplied_answer && row.verified_answer && row.supplied_answer.join(',') !== row.verified_answer.join(',') ? `, the stored key said <strong>${esc(row.supplied_answer.join(', '))}</strong>, your verified answer is <strong>${esc(row.verified_answer.join(', '))}</strong> — both are preserved.` : ''}
+        ${row.note ? `<br /><span class="soft">${esc(row.note)}</span>` : ''}
         </p>
         ${renderExplanation(question)}
         <div class="row tight mt-3">
-          <button class="quiet-action" type="button" data-action="history" data-qid="${esc(row.question_id)}">Attempt history</button>
-          <button class="quiet-action" type="button" data-action="queue-revision" data-qid="${esc(row.question_id)}">Add to revision</button>
-          <a class="quiet-action" href="#/bank/question/${encodeURIComponent(row.question_id)}">Open in the bank</a>
+        <button class="quiet-action" type="button" data-action="history" data-qid="${esc(row.question_id)}">Attempt history</button>
+        <button class="quiet-action" type="button" data-action="queue-revision" data-qid="${esc(row.question_id)}">Add to revision</button>
+        <a class="quiet-action" href="#/bank/question/${encodeURIComponent(row.question_id)}">Open in the bank</a>
         </div>
-      </div>
-    </article>`;
+  `;
 }
 
 export default {
@@ -173,6 +185,16 @@ export default {
     const unresolved = result.unresolved_answers || [];
     const repeated = await repeatedMistakesFor(result.per_question.map((r) => r.question_id));
     const recommendations = buildRecommendations(result, test);
+
+    // Bodies are rendered into a map, not into the page: the review is a list
+    // of lines, and a line costs one click to open, not a wall of text to skip.
+    const bodies = new Map();
+    const lang = test.language || state.settings.language;
+    for (const row of result.per_question) {
+      const question = questions.get(row.question_id);
+      if (question) bodies.set(row.question_id, questionReviewBody(row, question, lang, result.per_question.indexOf(row) + 1));
+    }
+    viewState.bodies = bodies;
 
     const weakTopics = (result.per_topic || [])
       .filter((t) => t.correct + t.incorrect > 0)
@@ -211,7 +233,7 @@ export default {
       ${
         filtered.length
           ? `<div class="review-lines">${filtered
-              .map((row) => questionReviewBlock(row, questions.get(row.question_id), test.language || state.settings.language, result.per_question.indexOf(row) + 1))
+              .map((row) => questionReviewLine(row, questions.get(row.question_id), lang, result.per_question.indexOf(row) + 1))
               .join('')}</div>`
           : `<p class="quiet-note">Nothing matches this filter. Leaving the review here is fine — the score above is final.</p>`
       }`;
@@ -459,6 +481,10 @@ export default {
         if (!body) return;
         const open = target.getAttribute('aria-expanded') === 'true';
         target.setAttribute('aria-expanded', String(!open));
+        if (!open && !body.dataset.filled) {
+          body.innerHTML = viewState.bodies?.get(target.dataset.qid) || '<p class="quiet-note">This question is no longer stored.</p>';
+          body.dataset.filled = '1';
+        }
         body.hidden = open;
         return;
       }
