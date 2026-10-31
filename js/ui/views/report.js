@@ -13,7 +13,6 @@ import { state } from '../../core/state.js';
 import {
   esc,
   badge,
-  card,
   notice,
   dataTable,
   pct,
@@ -21,7 +20,6 @@ import {
   answerKeyBadge,
   confidenceLabel,
   emptyState,
-  cardInfo,
   tabs,
   mountTabs,
   toast,
@@ -29,6 +27,9 @@ import {
   demoBadge,
   langAttr,
   infoToggle,
+  segmented,
+  metaLine,
+  barRows,
 } from '../components.js';
 import { fmtMarks, fmtClock, fmtDate, fmtPct, todayKey } from '../../core/util.js';
 import { getQuestion } from '../../services/questions.js';
@@ -75,48 +76,74 @@ function rowMatches(row, filter) {
   }
 }
 
+const OUTCOME_MARK = {
+  correct: { mark: '✓', word: 'correct', tone: 'ok' },
+  incorrect: { mark: '✗', word: 'wrong', tone: 'bad' },
+  unanswered: { mark: '–', word: 'left blank', tone: 'blank' },
+  unscored: { mark: '·', word: 'not scored', tone: 'blank' },
+};
+
+/**
+ * One line per question, collapsed. The reader scans a hundred lines, opens the
+ * two they want to understand, and the full question, options, key, explanation
+ * and actions are all still there when they do. Nothing is deleted: the line is
+ * one click from the card it replaces.
+ */
 function questionReviewBlock(row, question, lang, position = null) {
-  if (!question) return `<p class="muted small">Question ${esc(row.question_id)} is no longer in the local database.</p>`;
+  if (!question) return `<p class="quiet-note">Question ${esc(row.question_id)} is no longer in the local database.</p>`;
   const variant = question.language_variants?.[lang] || Object.values(question.language_variants || {})[0];
   const selected = row.selected || [];
-  const origin = [question.year ? `MPPSC ${esc(String(question.year))}` : null, row.question_number ? `Paper Q${esc(String(row.question_number))}` : null].filter(Boolean).join(' · ');
+  const outcome = OUTCOME_MARK[row.outcome] || OUTCOME_MARK.unscored;
+  const origin = [question.year ? `MPPSC ${esc(String(question.year))}` : null, row.question_number ? `Paper Q${esc(String(question.question_number))}` : null].filter(Boolean).join(' · ');
+  const stem = esc(variant?.question_text || '');
+  const shortStem = stem.length > 116 ? `${stem.slice(0, 116).trimEnd()}…` : stem;
+  const yourAnswer = selected.length ? selected.join(', ') : '—';
+  const key = row.answer?.length ? row.answer.join(', ') : 'none';
   return `
-    <article class="question-card mb-3 review-item">
-      <div class="question-meta">
-        <span class="question-num-pill">Q${position ?? '—'}</span>
-        ${origin ? `<span class="question-origin">${origin}</span>` : ''}
-        ${outcomeBadge(row)}
-        <span class="question-class">${esc([row.subject, row.topic].filter(Boolean).join(' · ') || 'Unclassified')}</span>
-        ${answerKeyBadge(question.supplied?.status)}
-        ${row.answer?.length ? '' : badge('answer key missing', 'bad')}
-        ${row.flagged ? badge('flagged', 'warn') : ''}
-        ${row.confidence ? `<span class="tiny muted">confidence: ${esc(confidenceLabel(row.confidence))}</span>` : ''}
-        ${demoBadge(row.demonstration)}
-        <span class="soft tiny">${fmtClock(Math.round((row.time_spent_ms || 0) / 1000))}</span>
-      </div>
-      <p class="question-text ${lang === 'hi' ? 'hi' : ''}"${langAttr(variant?.question_text, lang)}>${esc(variant?.question_text || '')}</p>
-      <div class="table-wrap"><table class="data compact"><tbody>
-        ${(variant?.options || [])
-          .map((opt) => {
-            const isAnswer = (row.answer || []).includes(opt.key);
-            const wasSelected = selected.includes(opt.key);
-            const mark = isAnswer ? badge('answer key', 'ok') : '';
-            const picked = wasSelected ? badge('your choice', wasSelected && !isAnswer ? 'bad' : 'info') : '';
-            return `<tr><td class="mono col-key">${esc(opt.key)}</td><td${langAttr(opt.text, lang)}>${esc(opt.text)}</td><td class="col-choice">${mark} ${picked}</td></tr>`;
-          })
-          .join('')}
-      </tbody></table></div>
-      <p class="small mt-2">
-        Answer used for scoring: <strong>${row.answer?.length ? esc(row.answer.join(', ')) : 'none available'}</strong>
-        ${row.answer_basis ? `(${esc(row.answer_basis === 'verified' ? 'your verified answer' : 'the stored answer key')})` : ''}
-        ${row.supplied_answer && row.verified_answer && row.supplied_answer.join(',') !== row.verified_answer.join(',') ? ` · the stored key said <strong>${esc(row.supplied_answer.join(', '))}</strong>, your verified answer is <strong>${esc(row.verified_answer.join(', '))}</strong> — both are preserved.` : ''}
-        ${row.note ? `<br /><span class="soft">${esc(row.note)}</span>` : ''}
-      </p>
-      ${renderExplanation(question)}
-      <div class="row tight mt-3">
-        <button class="btn btn-sm" type="button" data-action="history" data-qid="${esc(row.question_id)}">Attempt history</button>
-        <button class="btn btn-sm" type="button" data-action="queue-revision" data-qid="${esc(row.question_id)}">Add to revision queue</button>
-        <a class="btn btn-sm" href="#/bank/question/${encodeURIComponent(row.question_id)}">Open in question bank</a>
+    <article class="review-item" data-review="${esc(row.question_id)}">
+      <button class="review-line" type="button" data-action="expand" data-qid="${esc(row.question_id)}" aria-expanded="false">
+        <span class="review-num">${position ?? '—'}</span>
+        <span class="review-stem${lang === 'hi' ? ' hi' : ''}"${langAttr(variant?.question_text, lang)}>${shortStem}</span>
+        <span class="review-mark is-${outcome.tone}" title="${esc(outcome.word)}"><b aria-hidden="true">${outcome.mark}</b><span class="sr-only">${esc(outcome.word)}</span></span>
+        <span class="review-key">you ${esc(yourAnswer)} <span aria-hidden="true">/</span> key ${esc(key)}</span>
+        <span class="review-time">${fmtClock(Math.round((row.time_spent_ms || 0) / 1000))}</span>
+      </button>
+      <div class="review-body" hidden>
+        <div class="question-head">
+          <p class="question-meta">
+            <span class="question-num-pill">Q${position ?? '—'}</span>
+            ${origin ? `<span class="question-origin">${origin}</span>` : ''}
+            <span class="question-class">${esc([row.subject, row.topic].filter(Boolean).join(' · ') || 'Unclassified')}</span>
+            ${row.flagged ? `<span class="text-warn">flagged</span>` : ''}
+            ${row.confidence ? `<span>confidence: ${esc(confidenceLabel(row.confidence))}</span>` : ''}
+            ${row.demonstration ? '<span>demonstration</span>' : ''}
+          </p>
+          <div class="question-tools">${answerKeyBadge(question.supplied?.status)}${row.answer?.length ? '' : badge('answer key missing', 'bad')}</div>
+        </div>
+        <p class="question-text ${lang === 'hi' ? 'hi' : ''}"${langAttr(variant?.question_text, lang)}>${stem}</p>
+        <table class="review-options"><tbody>
+          ${(variant?.options || [])
+            .map((opt) => {
+              const isAnswer = (row.answer || []).includes(opt.key);
+              const wasSelected = selected.includes(opt.key);
+              const cls = [isAnswer ? 'is-key' : '', wasSelected ? 'is-picked' : ''].filter(Boolean).join(' ');
+              return `<tr class="${cls}"><td class="mono col-key">${esc(opt.key)}</td><td${langAttr(opt.text, lang)}>${esc(opt.text)}</td>
+                <td class="col-choice">${isAnswer ? '<span class="tag">key</span>' : ''}${wasSelected ? '<span class="tag is-you">you</span>' : ''}</td></tr>`;
+            })
+            .join('')}
+        </tbody></table>
+        <p class="small mt-2">
+          Answer used for scoring: <strong>${esc(key)}</strong>
+          ${row.answer_basis ? `(${esc(row.answer_basis === 'verified' ? 'your verified answer' : 'the stored answer key')})` : ''}
+          ${row.supplied_answer && row.verified_answer && row.supplied_answer.join(',') !== row.verified_answer.join(',') ? `, the stored key said <strong>${esc(row.supplied_answer.join(', '))}</strong>, your verified answer is <strong>${esc(row.verified_answer.join(', '))}</strong> — both are preserved.` : ''}
+          ${row.note ? `<br /><span class="soft">${esc(row.note)}</span>` : ''}
+        </p>
+        ${renderExplanation(question)}
+        <div class="row tight mt-3">
+          <button class="quiet-action" type="button" data-action="history" data-qid="${esc(row.question_id)}">Attempt history</button>
+          <button class="quiet-action" type="button" data-action="queue-revision" data-qid="${esc(row.question_id)}">Add to revision</button>
+          <a class="quiet-action" href="#/bank/question/${encodeURIComponent(row.question_id)}">Open in the bank</a>
+        </div>
       </div>
     </article>`;
 }
@@ -147,16 +174,6 @@ export default {
     const repeated = await repeatedMistakesFor(result.per_question.map((r) => r.question_id));
     const recommendations = buildRecommendations(result, test);
 
-    const reviewBody = `
-      <div class="row mb-3">
-        ${FILTERS.map((f) => `<button class="btn btn-sm ${viewState.filter === f.id ? 'btn-primary' : ''}" type="button" data-action="filter" data-filter="${f.id}">${esc(f.label)}${f.id === 'all' ? ` (${result.per_question.length})` : ` (${result.per_question.filter((r) => rowMatches(r, f.id)).length})`}</button>`).join('')}
-      </div>
-      ${
-        filtered.length
-          ? filtered.map((row) => questionReviewBlock(row, questions.get(row.question_id), test.language || state.settings.language)).join('')
-          : emptyState({ title: 'Nothing matches this filter', message: 'Try another filter — or leave the review here. Reviewing mistakes is useful but not mandatory.' })
-      }`;
-
     const weakTopics = (result.per_topic || [])
       .filter((t) => t.correct + t.incorrect > 0)
       .sort((a, b) => a.accuracy - b.accuracy);
@@ -178,257 +195,245 @@ export default {
       weakTopicKeys.has(`${meta.subject || 'Unclassified'}||${meta.topic || 'Unclassified'}`),
     ).length;
 
-    // 1 — the result, in the rules that produced it.
-    const resultCard = card({
-      title: 'How this sitting went',
-      subtitle: `${counts.correct} correct · ${counts.incorrect} incorrect · ${counts.unanswered} unanswered · ${counts.unscored} not scored`,
-      body: `
-        <div class="stat-strip" role="group" aria-label="Result of this sitting">
-          <div class="stat">
-            <span class="stat-label">Score</span>
-            <span class="stat-value">${esc(fmtMarks(result.score))} <small>of ${esc(fmtMarks(result.max_marks))}</small></span>
-            <span class="stat-note">${result.score === null ? 'no score could be computed' : 'derived from the rules below'}</span>
-          </div>
-          <div class="stat">
-            <span class="stat-label">Accuracy</span>
-            <span class="stat-value">${result.accuracy === null ? '—' : esc(fmtPct(result.accuracy, 0))}</span>
-            <span class="stat-note">${judgedCount ? `${counts.correct} correct of ${judgedCount} judged` : 'nothing judged yet'}</span>
-          </div>
-          <div class="stat">
-            <span class="stat-label">Attempted</span>
-            <span class="stat-value">${counts.attempted} <small>of ${counts.total}</small></span>
-            <span class="stat-note">${counts.unanswered} left unanswered</span>
-          </div>
-          <div class="stat">
-            <span class="stat-label">Negative marks</span>
-            <span class="stat-value">${esc(fmtMarks(result.negative_marks_applied))}</span>
-            <span class="stat-note">lost to ${counts.incorrect} wrong answer(s)</span>
-          </div>
-        </div>
-        ${infoToggle('Scoring rules actually used', `<p class="small m-0">${esc(describeRules(result.scoring, result.scoring?.source))}</p>
-          ${result.scoring?.rules_source_note ? `<p class="small m-0 mt-1">${esc(result.scoring.rules_source_note)}</p>` : ''}
-          ${result.accuracy_note ? `<p class="small text-warn m-0 mt-1">${esc(result.accuracy_note)}</p>` : ''}
-          ${test.config.feedback_mode === 'learning' ? '<p class="small m-0 mt-1">This test ran in learning mode, so answers were revealed as you went.</p>' : ''}`)}
-        ${result.warnings?.length ? notice(`<ul class="m-0">${result.warnings.map((w) => `<li>${esc(w)}</li>`).join('')}</ul>`, 'warn', { title: 'Read with the score' }) : ''}`,
-    });
-
-    // 2 — what to do about it. Every line is a button that starts something.
-    const actionsCard = card({
-      title: 'Do something about it',
-      subtitle: 'Each action starts a real session or opens the screen that can finish the job.',
-      body: `<div class="action-rows">
-        <div class="action-row">
-          <div class="action-row-main">
-            <p class="action-row-title">Retry the ${incorrectIds.length} question(s) you got wrong</p>
-            <p class="action-row-meta">A learning-mode set made of exactly these questions, in the order they appeared.</p>
-          </div>
-          <button class="btn btn-sm btn-primary" type="button" data-action="retry-incorrect" ${incorrectIds.length ? '' : 'disabled'}>Retry ${incorrectIds.length || ''} incorrect</button>
-        </div>
-        <div class="action-row">
-          <div class="action-row-main">
-            <p class="action-row-title">Practise the ${weakTopicKeys.size} weak topic(s) from this sitting</p>
-            <p class="action-row-meta">${weakPoolSize} stored question(s) across those topics · weakest first, learning mode.</p>
-          </div>
-          <button class="btn btn-sm btn-primary" type="button" data-action="practise-weak" ${weakTopicKeys.size ? '' : 'disabled'}>Practise ${Math.min(practiceSize, weakPoolSize) || ''}</button>
-        </div>
-        <div class="action-row">
-          <div class="action-row-main">
-            <p class="action-row-title">Revise the ${dueFromThisTest} question(s) due from this sitting</p>
-            <p class="action-row-meta">${dueFromThisTest ? 'Scheduled on or before today by the revision rules.' : 'Nothing from this sitting is due yet — the Revision Centre will say when.'}</p>
-          </div>
-          <button class="btn btn-sm" type="button" data-action="revise-due" ${dueFromThisTest ? '' : 'disabled'}>Revise ${dueFromThisTest || ''}</button>
-        </div>
-        <div class="action-row">
-          <div class="action-row-main">
-            <p class="action-row-title">Review what you flagged</p>
-            <p class="action-row-meta">${flaggedRows.length} question(s) were marked for review during the sitting.</p>
-          </div>
-          <button class="btn btn-sm" type="button" data-action="filter" data-filter="flagged" ${flaggedRows.length ? '' : 'disabled'}>Show ${flaggedRows.length} flagged</button>
-        </div>
-        <div class="action-row">
-          <div class="action-row-main">
-            <p class="action-row-title">Work through the explanations</p>
-            <p class="action-row-meta">Every question is listed with its key, your answer and the bank's explanation.</p>
-          </div>
-          <a class="btn btn-sm" href="#/mistakes">Mistake Book</a>
-        </div>
-        <div class="action-row">
-          <div class="action-row-main">
-            <p class="action-row-title">Keep these questions in rotation</p>
-            <p class="action-row-meta">${unresolved.length ? `${unresolved.length} answer(s) still need a verified key. ` : ''}Revision dates were scheduled automatically from this sitting.</p>
-          </div>
-          <a class="btn btn-sm" href="#/revision">Revision Centre</a>
-        </div>
+    // 1 — the result, as one figure and one bar, with the rules behind a disclosure.
+    const filterCounts = FILTERS.map((f) => ({ ...f, n: result.per_question.filter((r) => rowMatches(r, f.id)).length }));
+    const shownFilters = filterCounts.filter((f) => f.id === 'all' || f.n > 0);
+    const reviewBody = `
+      <div class="filter-row" role="group" aria-label="Filter the review">
+        ${shownFilters
+          .map(
+            (f) => `<button class="quiet-action${viewState.filter === f.id ? ' is-active' : ''}" type="button" data-action="filter" data-filter="${f.id}">${esc(
+              f.id === 'all' ? 'All' : f.label.replace(' questions', '').replace(' answers', ''),
+            )} ${f.n}</button>`,
+          )
+          .join('')}
       </div>
-      ${unresolved.length ? `<div class="cross-signal"><span><strong>${unresolved.length}</strong> question(s) were judged with a missing or disputed key and are flagged in the review below.</span><button class="btn btn-sm" type="button" data-action="resolve">Fix unresolved answers</button></div>` : ''}`,
-    });
+      ${
+        filtered.length
+          ? `<div class="review-lines">${filtered
+              .map((row) => questionReviewBlock(row, questions.get(row.question_id), test.language || state.settings.language, result.per_question.indexOf(row) + 1))
+              .join('')}</div>`
+          : `<p class="quiet-note">Nothing matches this filter. Leaving the review here is fine — the score above is final.</p>`
+      }`;
 
-    // 3 — weak topics, each with the button that practises it.
-    const weakCard = card({
-      title: 'Weakest topics in this sitting',
-      count: weakTopics.length ? `${weakTopics.length} with judged answers` : null,
-      info: cardInfo(
-        'How a topic is called weak',
-        '<p class="small m-0">A topic is listed once at least one answer on it was judged correct or incorrect, ordered by accuracy in this sitting. The count is this sitting only — it is not a forecast about the examination, and a topic with one judged answer is thin evidence.</p>',
-      ),
-      body: weakTopics.length
-        ? dataTable({
-            columns: [{ label: 'Topic' }, { label: 'This sitting', num: true }, { label: 'Accuracy', num: true }, { label: '' }],
-            rows: weakTopics.slice(0, 8).map((t) => [
-              `${esc(t.topic || t.subject || 'Unclassified')}<div class="tiny muted">${esc(t.subject || '—')}</div>`,
-              `${t.correct}/${t.correct + t.incorrect}`,
-              pct(t.accuracy),
-              `<button class="btn btn-sm" type="button" data-action="practise-topic" data-subject="${esc(t.subject || '')}" data-topic="${esc(t.topic || '')}">Practise ${practiceSize}</button>`,
-            ]),
-            empty: 'No topic had a judged answer in this sitting.',
-            className: 'compact',
-          })
-        : emptyState({
-            title: 'Nothing was scored topic by topic',
-            message: 'Every question here was unanswered or had no usable key, so this sitting says nothing about any topic.',
-          }),
-      footer: weakTopics.length > 8 ? `Showing the 8 weakest of ${weakTopics.length} topic(s) with judged answers.` : '',
-    });
+    const headline = `
+      <section class="sheet report-headline">
+        <div class="score-line">
+          <p class="score-figure">${esc(fmtMarks(result.score))}<small> / ${esc(fmtMarks(result.max_marks))}</small></p>
+          <div class="score-aside">
+            ${segmented(
+              [
+                { label: 'correct', value: counts.correct, tone: 'ok' },
+                { label: 'wrong', value: counts.incorrect, tone: 'bad' },
+                { label: 'left blank', value: counts.unanswered, tone: 'blank' },
+              ],
+              { label: `${counts.correct} correct, ${counts.incorrect} wrong, ${counts.unanswered} left blank` },
+            )}
+            ${metaLine([
+              `${result.accuracy === null ? 'no' : esc(fmtPct(result.accuracy, 0))} accuracy over ${judgedCount} judged`,
+              `${counts.unscored} not scored`,
+              `negative marks ${esc(fmtMarks(result.negative_marks_applied))}`,
+            ])}
+          </div>
+        </div>
+        ${result.accuracy_note ? notice(esc(result.accuracy_note), 'warn') : ''}
+        ${result.warnings?.length ? notice(`<ul class="m-0">${result.warnings.map((w) => `<li>${esc(w)}</li>`).join('')}</ul>`, 'warn', { title: 'Read with the score' }) : ''}
+        ${infoToggle(
+          'Scoring rules actually used',
+          `<p class="small m-0">${esc(describeRules(result.scoring, result.scoring?.source))}</p>
+           ${result.scoring?.rules_source_note ? `<p class="small m-0 mt-1">${esc(result.scoring.rules_source_note)}</p>` : ''}
+           ${test.config.feedback_mode === 'learning' ? '<p class="small m-0 mt-1">This sitting ran in learning mode, so answers were revealed as you went.</p>' : ''}`,
+        )}
+      </section>`;
 
-    // 4 — the review, first class rather than a tab.
-    const reviewCard = card({
-      title: 'Question review',
-      count: `${filtered.length} shown`,
-      // The filtered set is itself a practice set: reviewing the wrong answers
-      // and answering them again are one decision away from each other.
-      action: `<button class="btn btn-sm" type="button" data-action="practise-filtered" ${filtered.length ? '' : 'disabled'}>Practise these ${filtered.length}</button>`,
-      body: reviewBody,
-      footer: 'Reviewing every question is useful but never required — the score and its rules above are final.',
-    });
+    // 2 — three lines of work, each of which starts something real.
+    const actions = `
+      <section class="sheet">
+        <p class="section-label">Do something about it</p>
+        <div class="action-rows">
+          <div class="action-row">
+            <div class="action-row-main">
+              <p class="action-row-title">Answer the ${incorrectIds.length || 'no'} you got wrong</p>
+              <p class="action-row-meta">Learning mode, in the order they were asked.</p>
+            </div>
+            <button class="btn btn-sm btn-primary" type="button" data-action="retry-incorrect" ${incorrectIds.length ? '' : 'disabled'}>Retry ${incorrectIds.length || ''} incorrect</button>
+          </div>
+          <div class="action-row">
+            <div class="action-row-main">
+              <p class="action-row-title">Practise the ${weakTopicKeys.size || 'no'} weak topic${weakTopicKeys.size === 1 ? '' : 's'}</p>
+              <p class="action-row-meta">Weakest first, from ${weakPoolSize} stored question${weakPoolSize === 1 ? '' : 's'}.</p>
+            </div>
+            <button class="btn btn-sm" type="button" data-action="practise-weak" ${weakTopicKeys.size ? '' : 'disabled'}>Practise ${Math.min(practiceSize, weakPoolSize) || ''}</button>
+          </div>
+          <div class="action-row">
+            <div class="action-row-main">
+              <p class="action-row-title">Revise the ${dueFromThisTest || 'no'} due from this sitting</p>
+              <p class="action-row-meta">${dueFromThisTest ? 'Scheduled on or before today.' : 'Nothing from this sitting is due yet.'}</p>
+            </div>
+            <button class="btn btn-sm" type="button" data-action="revise-due" ${dueFromThisTest ? '' : 'disabled'}>Revise ${dueFromThisTest || ''}</button>
+          </div>
+        </div>
+        ${
+          unresolved.length
+            ? `<p class="overlap-line"><strong>${unresolved.length}</strong> question(s) were judged with a missing or disputed key. <button class="quiet-action" type="button" data-action="resolve">Fix unresolved answers</button></p>`
+            : ''
+        }
+      </section>`;
+
+    // 3 — weak topics as bars: the same numbers, without a badge per cell.
+    const weak = `
+      <section class="sheet">
+        <div class="sheet-head">
+          <p class="section-label">Weakest topics in this sitting</p>
+          ${flaggedRows.length ? `<button class="quiet-action" type="button" data-action="filter" data-filter="flagged">Show ${flaggedRows.length} flagged</button>` : ''}
+        </div>
+        ${
+          weakTopics.length
+            ? barRows(
+                weakTopics.slice(0, 8).map((t) => ({
+                  name: `${esc(t.topic || t.subject || 'Unclassified')}<small>${esc(t.subject || '—')} <span aria-hidden="true">/</span> ${t.correct} of ${t.correct + t.incorrect} correct</small>`,
+                  value: t.accuracy,
+                  valueLabel: pct(t.accuracy),
+                  action: `<button class="btn btn-sm" type="button" data-action="practise-topic" data-subject="${esc(t.subject || '')}" data-topic="${esc(t.topic || '')}">Practise ${practiceSize}</button>`,
+                })),
+              ) + (weakTopics.length > 8 ? `<p class="tiny text-soft mt-2 mb-0">The eight weakest of ${weakTopics.length} topics with judged answers.</p>` : '')
+            : `<p class="quiet-note m-0">Nothing here was scored topic by topic, so this sitting says nothing about any topic.</p>`
+        }
+      </section>`;
+
+    // 4 — the review: one line per question, opening in place.
+    const review = `
+      <section class="sheet">
+        <div class="sheet-head">
+          <p class="section-label">Question review</p>
+          <button class="quiet-action" type="button" data-action="practise-filtered" ${filtered.length ? '' : 'disabled'}>Practise these ${filtered.length}</button>
+        </div>
+        ${reviewBody}
+      </section>`;
 
     // 5 — the details: confidence, pacing, repeated mistakes, unresolved keys.
-    const detailsCard = card({
-      title: 'The details',
-      body: tabs({
-        id: 'reportTabs',
-        activeId: 'tabs-confidence',
-        items: [
-          {
-            id: 'tabs-confidence',
-            label: 'Confidence',
-            body: test.config.confidence === 'off'
-              ? emptyState({ title: 'Confidence tracking was off for this test', message: 'Turn it on in Settings or when starting a test to see how sure you felt against what you got right. It is always stored separately from correctness.' })
-              : `
-                  <div class="matrix mb-3">
-                    ${['confident', 'unsure', 'guessed'].concat(result.per_question.some((r) => !r.confidence) ? ['none'] : [])
-                      .map((level) => {
+    const details = `
+      <section class="sheet">
+        <p class="section-label">The details</p>
+        ${tabs({
+          id: 'reportTabs',
+          activeId: 'tabs-confidence',
+          items: [
+            {
+              id: 'tabs-confidence',
+              label: 'Confidence',
+              body:
+                test.config.confidence === 'off'
+                  ? emptyState({ title: 'Confidence tracking was off for this sitting', message: 'Turn it on in Settings or when starting a test to see how sure you felt against what you got right.' })
+                  : `${dataTable({
+                      columns: [{ label: 'Confidence' }, { label: 'Correct', num: true }, { label: 'Incorrect', num: true }, { label: 'Left blank', num: true }],
+                      rows: ['confident', 'unsure', 'guessed', 'none'].map((level) => {
                         const rows = result.per_question.filter((r) => (r.confidence || 'none') === level);
-                        const correct = rows.filter((r) => r.outcome === 'correct').length;
-                        const incorrect = rows.filter((r) => r.outcome === 'incorrect').length;
-                        const label = level === 'none' ? 'not marked' : confidenceLabel(level);
-                        return `<div class="cell"><div class="l">${esc(label)}</div><div class="v">${correct}/${correct + incorrect || 0}</div><div class="l">correct</div></div>`;
-                      })
-                      .join('')}
-                  </div>
-                  ${dataTable({
-                    columns: [{ label: 'Confidence' }, { label: 'Correct', num: true }, { label: 'Incorrect', num: true }, { label: 'Overlooked', num: true }],
-                    rows: ['confident', 'unsure', 'guessed', 'none'].map((level) => {
-                      const rows = result.per_question.filter((r) => (r.confidence || 'none') === level);
-                      return [
-                        esc(level === 'none' ? 'not marked' : confidenceLabel(level)),
-                        String(rows.filter((r) => r.outcome === 'correct').length),
-                        String(rows.filter((r) => r.outcome === 'incorrect').length),
-                        String(rows.filter((r) => r.outcome === 'unanswered').length),
-                      ];
-                    }),
+                        return [
+                          esc(level === 'none' ? 'not marked' : confidenceLabel(level)),
+                          String(rows.filter((r) => r.outcome === 'correct').length),
+                          String(rows.filter((r) => r.outcome === 'incorrect').length),
+                          String(rows.filter((r) => r.outcome === 'unanswered').length),
+                        ];
+                      }),
+                      className: 'compact',
+                    })}
+                    ${counts.confidentIncorrect ? `<p class="quiet-note">${counts.confidentIncorrect} confident answer(s) were wrong — check whether two similar concepts are being confused.</p>` : ''}
+                    ${counts.lowConfidenceCorrect ? `<p class="quiet-note">${counts.lowConfidenceCorrect} correct answer(s) were unsure or guessed, so they come back sooner instead of counting as mastered.</p>` : ''}`,
+            },
+            {
+              id: 'tabs-pacing',
+              label: 'Pacing',
+              body: dataTable({
+                columns: [{ label: 'Q' }, { label: 'Topic' }, { label: 'Outcome' }, { label: 'Time', num: true }, { label: 'Confidence' }],
+                rows: result.per_question
+                  .map((r, i) => [
+                    esc(`Q${i + 1}`),
+                    esc(r.topic || r.subject || 'Unclassified'),
+                    outcomeBadge(r),
+                    fmtClock(Math.round((r.time_spent_ms || 0) / 1000)),
+                    r.confidence ? esc(confidenceLabel(r.confidence)) : '<span class="soft">—</span>',
+                  ])
+                  .slice(0, 40),
+                className: 'compact',
+              }),
+            },
+            {
+              id: 'tabs-next',
+              label: 'Recommendations',
+              body: recommendations.length
+                ? `<ul class="m-0">${recommendations.map((r) => `<li>${r}</li>`).join('')}</ul>`
+                : '<p class="muted small m-0">Nothing stands out yet — no pattern was strong enough to recommend a change.</p>',
+            },
+            {
+              id: 'tabs-repeated',
+              label: 'Repeated mistakes',
+              body: repeated.length
+                ? dataTable({
+                    columns: [{ label: 'Question' }, { label: 'Topic' }, { label: 'Times wrong', num: true }, { label: '' }],
+                    rows: repeated.map((r) => [
+                      esc(`Q${r.question_number ?? r.question_id}`),
+                      esc(r.topic || r.subject || '—'),
+                      String(r.occurrences),
+                      `<button class="quiet-action" type="button" data-action="history" data-qid="${esc(r.question_id)}">History</button>`,
+                    ]),
                     className: 'compact',
-                  })}
-                  ${counts.confidentIncorrect ? notice(`${counts.confidentIncorrect} question(s) you felt confident about were wrong — check whether a concept is being confused with a similar one.`, 'warn') : ''}
-                  ${counts.lowConfidenceCorrect ? notice(`${counts.lowConfidenceCorrect} correct answer(s) were marked unsure or guessed. They are scheduled for additional revision instead of being treated as mastered.`, 'info') : ''}`,
-          },
-          {
-            id: 'tabs-pacing',
-            label: 'Pacing',
-            body: dataTable({
-              columns: [{ label: 'Q' }, { label: 'Topic' }, { label: 'Outcome' }, { label: 'Time', num: true }, { label: 'Confidence' }],
-              rows: result.per_question
-                .map((r, i) => [esc(`Q${i + 1}`), esc(r.topic || r.subject || 'Unclassified'), outcomeBadge(r), fmtClock(Math.round((r.time_spent_ms || 0) / 1000)), r.confidence ? esc(confidenceLabel(r.confidence)) : '<span class="soft">—</span>'])
-                .slice(0, 40),
-              className: 'compact',
-            }),
-            footer: '',
-          },
-          {
-            id: 'tabs-next',
-            label: 'Recommendations',
-            body: recommendations.length
-              ? `<ul class="m-0">${recommendations.map((r) => `<li>${r}</li>`).join('')}</ul>`
-              : '<p class="muted small m-0">Nothing stands out yet — no pattern was strong enough to recommend a change.</p>',
-          },
-          {
-            id: 'tabs-repeated',
-            label: 'Repeated mistakes',
-            body: repeated.length
-              ? dataTable({
-                  columns: [{ label: 'Question' }, { label: 'Topic' }, { label: 'Times wrong', num: true }, { label: '' }],
-                  rows: repeated.map((r) => [
-                    esc(`Q${r.question_number ?? r.question_id}`),
-                    esc(r.topic || r.subject || '—'),
-                    String(r.occurrences),
-                    `<a class="btn btn-sm" href="#/bank/question/${encodeURIComponent(r.question_id)}">Open</a>`,
-                  ]),
-                  className: 'compact',
-                })
-              : '<p class="muted small m-0">No repeated mistakes were detected among these questions.</p>',
-          },
-          {
-            id: 'tabs-unresolved',
-            label: `Unresolved (${unresolved.length})`,
-            body: unresolved.length
-              ? `<p class="small">These questions were judged with an answer key that is missing, disputed or contradicted by a verified answer. The stored key is preserved; nothing was silently rewritten.</p>
-                ${dataTable({
-                  columns: [{ label: 'Question' }, { label: 'Issue' }, { label: 'Stored key' }, { label: 'Your verified answer' }, { label: '' }],
-                  rows: unresolved.map((u) => [
-                    esc(u.question_id),
-                    esc(u.reason),
-                    u.supplied ? esc(u.supplied.join(', ')) : '<span class="soft">missing</span>',
-                    u.verified ? esc(u.verified.join(', ')) : '<span class="soft">none</span>',
-                    `<a class="btn btn-sm" href="#/bank/question/${encodeURIComponent(u.question_id)}">Review</a>`,
-                  ]),
-                  className: 'compact',
-                })}`
-              : '<p class="muted small m-0">Every question in this sitting was judged with a usable key.</p>',
-          },
-        ],
-      }),
-    });
+                  })
+                : '<p class="muted small m-0">No repeated mistakes among these questions.</p>',
+            },
+            {
+              id: 'tabs-unresolved',
+              label: `Unresolved (${unresolved.length})`,
+              body: unresolved.length
+                ? `${dataTable({
+                    columns: [{ label: 'Question' }, { label: 'Issue' }, { label: 'Stored key' }, { label: 'Your verified answer' }, { label: '' }],
+                    rows: unresolved.map((u) => [
+                      esc(u.question_id),
+                      esc(u.reason),
+                      u.supplied ? esc(u.supplied.join(', ')) : '<span class="soft">missing</span>',
+                      u.verified ? esc(u.verified.join(', ')) : '<span class="soft">none</span>',
+                      `<a class="quiet-action" href="#/bank/question/${encodeURIComponent(u.question_id)}">Review</a>`,
+                    ]),
+                    className: 'compact',
+                  })}<p class="quiet-note">The stored key is preserved; nothing was rewritten.</p>`
+                : '<p class="muted small m-0">Every question here was judged with a usable key.</p>',
+            },
+          ],
+        })}
+      </section>`;
 
+    const paperBits = [test.paper_snapshot?.exam, test.paper_snapshot?.year, test.paper_snapshot?.set_code ? `set ${test.paper_snapshot.set_code}` : null].filter(Boolean);
     return `
       <nav class="crumbs" aria-label="Breadcrumb">
-        <ol><li><a href="#/dashboard">Today</a></li><li><a href="#/test-centre">Test Centre</a></li><li aria-current="page">Report</li></ol>
+        <ol><li><a href="#/dashboard">Today</a></li><li><a href="#/test-centre">Papers</a></li><li aria-current="page">Report</li></ol>
       </nav>
-      <div class="spread mb-4">
-        <div>
-          <div class="row tight">
-            <h1 class="m-0">${esc(test.label || 'Test report')}</h1>
-          </div>
-          <p class="muted small m-0 mt-1">
-            ${test.paper_snapshot ? `${esc(test.paper_snapshot.exam || '')} ${test.paper_snapshot.year ? `· ${esc(String(test.paper_snapshot.year))}` : ''}${test.paper_snapshot.set_code ? ` · set ${esc(test.paper_snapshot.set_code)}` : ''} · ` : ''}
-            submitted ${esc(fmtDate(test.submitted_at))}${result.auto_submitted ? ' (automatically, when the timer expired)' : ''}
-          </p>
+      <header class="screen-head">
+        <div class="screen-head-text">
+          <p class="eyebrow">How this sitting went</p>
+          <h1>${esc(test.label || 'Test report')}</h1>
+          ${metaLine([
+            paperBits.length ? esc(paperBits.join(', ')) : '',
+            `submitted ${esc(fmtDate(test.submitted_at))}`,
+            result.auto_submitted ? 'automatically, when the timer expired' : '',
+            `${counts.total} questions`,
+          ])}
         </div>
-        <div class="row tight">
-          <button class="btn" type="button" data-action="print">Print / save as PDF</button>
-          <a class="btn" href="#/test-centre">Back to test centre</a>
+        <div class="screen-actions">
+          <button class="btn btn-sm btn-quiet" type="button" data-action="print">Print or save PDF</button>
+          <a class="btn btn-sm btn-quiet" href="#/test-centre">Papers</a>
         </div>
-      </div>
+      </header>
 
-      ${resultCard}
-      ${actionsCard}
-      ${weakCard}
-      ${reviewCard}
-      ${detailsCard}
+      ${headline}
+      ${actions}
+      ${weak}
+      ${review}
+      ${details}
 
       <section class="sticky-actions">
-        <a class="btn btn-primary" href="#/test-centre">Done — back to test centre</a>
+        <a class="btn btn-primary" href="#/test-centre">Done — back to papers</a>
         <button class="btn" type="button" data-action="retry-incorrect" ${incorrectIds.length ? '' : 'disabled'}>Retry the incorrect questions</button>
         ${unresolved.length ? '<button class="btn" type="button" data-action="resolve">Fix unresolved answers</button>' : ''}
-        <span class="tiny muted">You can leave the review at any time; nothing is lost.</span>
       </section>`;
   },
 
@@ -447,6 +452,16 @@ export default {
       if (!target) return;
       const action = target.dataset.action;
       if (action === 'print') window.print();
+      if (action === 'expand') {
+        // One line opens into the full question. The collapsed line is the
+        // whole review at a glance; nothing below it is a second screen.
+        const body = target.parentElement?.querySelector('.review-body');
+        if (!body) return;
+        const open = target.getAttribute('aria-expanded') === 'true';
+        target.setAttribute('aria-expanded', String(!open));
+        body.hidden = open;
+        return;
+      }
       if (action === 'history') {
         // One review panel for the whole app: what you answered, the key, the
         // explanation and every attempt, without leaving the report.
