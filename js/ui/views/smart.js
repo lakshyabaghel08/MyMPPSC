@@ -13,7 +13,7 @@
 import { STORES } from '../../core/constants.js';
 import * as db from '../../core/db.js';
 import { state } from '../../core/state.js';
-import { esc, card, notice, dataTable, tile, toast, emptyState, cardInfo, screenHead, countChip } from '../components.js';
+import { esc, card, notice, dataTable, tile, toast, emptyState, cardInfo, screenHead } from '../components.js';
 import { allAttempts } from '../../services/attempts.js';
 import { buildAttemptSummary, smartPracticePlan, SMART_BUCKETS, computeTopicStats } from '../../services/select.js';
 import { configFields, readConfig, mountConfigFields, startPracticeTest, currentAttemptSummary } from './shared.js';
@@ -87,7 +87,7 @@ export default {
 
       ${card({
         title: 'How this session will be built',
-        count: countChip(`${plan.questionIds.length} selected`),
+        count: `${plan.questionIds.length} selected`,
         info: cardInfo('About this plan', '<p class="small m-0">Historical question frequency is a study-prioritisation aid only. It is not evidence about what a future examination will contain.</p>'),
         body: `
           ${dataTable({ columns: [{ label: 'Source of questions' }, { label: 'Available', num: true }, { label: 'In this session', num: true }, { label: 'Why' }], rows: bucketRows, className: 'compact' })}

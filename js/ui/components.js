@@ -183,12 +183,16 @@ export const countChip = (text, tone = '') => `<span class="count-chip ${esc(ton
  */
 export function card({ title = null, subtitle = null, count = null, info = '', action = '', actions = '', right = '', body = '', footer = null, tone = '', id = null, className = '', heading = 2 } = {}) {
   const level = Number(heading) >= 2 && Number(heading) <= 4 ? Number(heading) : 2;
+  const countText = count === null || count === undefined ? '' : String(count).trim();
+  // Support legacy chips produced by countChip; new callers should pass plain text.
+  const countHtml = !countText ? ''
+    : countText.startsWith('<span class="count-chip') ? countText : countChip(countText);
   const actionContent = action || actions || right;
   const hasHead = title || subtitle || actionContent;
   const head = hasHead
     ? `<div class="card-head">
         <div class="card-head-text">
-          <div class="card-title-row">${title ? `<h${level}>${title}</h${level}>` : ''}${count !== null && count !== undefined && count !== '' ? countChip(count) : ''}${info}</div>
+          <div class="card-title-row">${title ? `<h${level}>${title}</h${level}>` : ''}${countHtml}${info}</div>
           ${subtitle ? `<div class="card-subtitle muted small">${subtitle}</div>` : ''}
         </div>
         ${actionContent ? `<div class="card-action">${actionContent}</div>` : ''}

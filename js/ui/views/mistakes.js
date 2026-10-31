@@ -25,7 +25,6 @@ import {
   answerKeyBadge,
   langAttr,
   screenHead,
-  countChip,
   filterChip,
   cardInfo,
 } from '../components.js';
@@ -157,14 +156,14 @@ export default {
 
       ${card({
         title: 'Filters',
-        count: countChip(activeFilterCount() ? `${activeFilterCount()} on` : 'none on'),
+        count: activeFilterCount() ? `${activeFilterCount()} on` : 'none on',
         info: cardInfo('What each filter counts', '<p class="small m-0">Status, mistake type, subject, topic and year all narrow the same list. A filter is remembered for this page, and the count beside the Filters title says how many are on.</p>'),
         body: filtersMarkup(metas, counts),
       })}
 
       ${card({
         title: 'Items',
-        count: countChip(`${rows.length} shown`),
+        count: `${rows.length} shown`,
         actions: `<button class="btn btn-sm btn-primary" type="button" data-action="retry-all">Retry all shown</button>`,
         body: dataTable({
           columns: [{ label: 'Question' }, { label: 'Why it is here' }, { label: 'Confidence' }, { label: 'Actions' }],

@@ -19,7 +19,6 @@ import {
   esc,
   card,
   screenHead,
-  countChip,
   cardInfo,
   filterChip,
   emptyState,
@@ -207,7 +206,7 @@ export default {
 
       ${card({
         title: 'Previous-year papers',
-        count: countChip(`${total} paper${total === 1 ? '' : 's'}`),
+        count: `${total} paper${total === 1 ? '' : 's'}`,
         info: cardInfo(
           'About scoring and these papers',
           '<p class="small m-0">Full-paper practice follows the stored question order. Source metadata is shown separately from practice scoring: the latest reported MPPSC pattern (+3/−1/0) is applied to the bundled 2013–2024 papers by policy, not as a claim about each paper’s historical rules. Everything is stored in local IndexedDB on this device.</p>',

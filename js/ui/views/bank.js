@@ -18,7 +18,7 @@
 import { STORES, ANSWER_POLICIES, FIXED_TEST_RULES } from '../../core/constants.js';
 import { state, refreshQuestionIndex } from '../../core/state.js';
 import * as db from '../../core/db.js';
-import { esc, badge, card, tile, notice, dataTable, toast, openModal, confirmDialog, tabs, mountTabs, renderExplanation, questionTypeLabel, answerKeyBadge, demoBadge, langAttr, screenHead, countChip, filterChip, showAll } from '../components.js';
+import { esc, badge, card, tile, notice, dataTable, toast, openModal, confirmDialog, tabs, mountTabs, renderExplanation, questionTypeLabel, answerKeyBadge, demoBadge, langAttr, screenHead, filterChip, showAll } from '../components.js';
 import { fmtPct, fmtDate, fmtRelative, readFileAsText, downloadJson, todayKey } from '../../core/util.js';
 import * as importer from '../../services/importer.js';
 import * as builtinBank from '../../services/builtin-bank.js';
@@ -589,7 +589,7 @@ export default {
     const questionsTab = `
       ${card({
         title: 'Filters',
-        count: countChip(`${filtered.length} of ${metas.length}`),
+        count: `${filtered.length} of ${metas.length}`,
         body: `
           <div class="card-toolbar">
             <label class="field field-inline m-0"><span class="label-text">Search</span><input type="search" id="qSearch" value="${esc(viewState.filters.search)}" placeholder="id, subject, topic or number" /></label>

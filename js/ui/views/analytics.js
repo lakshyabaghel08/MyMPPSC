@@ -32,7 +32,6 @@ import {
   tabs,
   mountTabs,
   screenHead,
-  countChip,
   showAll,
 } from '../components.js';
 import { fmtPct, fmtDate, fmtDuration, downloadJson, todayKey, topicPracticeHref } from '../../core/util.js';
@@ -210,7 +209,7 @@ async function renderPerformancePanel(loaded = null) {
 
       ${card({
         title: 'Topics',
-        count: countChip(`${topicRows.length} topic${topicRows.length === 1 ? '' : 's'}`),
+        count: `${topicRows.length} topic${topicRows.length === 1 ? '' : 's'}`,
         actions: `<label class="field field-inline m-0"><span class="label-text">Subject</span>
           <select id="anaSubject"><option value="all">All subjects</option>${subjects.map((s) => `<option value="${esc(s)}" ${viewState.subject === s ? 'selected' : ''}>${esc(s)}</option>`).join('')}</select></label>`,
         body: dataTable({
@@ -297,7 +296,7 @@ async function renderPerformancePanel(loaded = null) {
       <div class="split-2">
         ${card({
           title: 'Mistakes',
-          count: countChip(`${analytics.mistakes.open} open`),
+          count: `${analytics.mistakes.open} open`,
           body: `
             <div class="grid tiles">
               ${tile({ label: 'Open entries', value: String(analytics.mistakes.open), sub: `${analytics.mistakes.repeated} repeated`, source: 'measured' })}
@@ -323,7 +322,7 @@ async function renderPerformancePanel(loaded = null) {
 
         ${card({
           title: 'Revision',
-          count: countChip(`${analytics.revision.dueToday + analytics.revision.overdue} due`),
+          count: `${analytics.revision.dueToday + analytics.revision.overdue} due`,
           body: `
             <div class="grid tiles">
               ${tile({ label: 'Tracked', value: String(analytics.revision.tracked), sub: 'questions with a schedule', source: 'measured' })}
@@ -359,7 +358,7 @@ async function renderPrioritiesPanel(loaded = null) {
   return `
     ${card({
       title: 'Topic frequency in your bank',
-      count: countChip(`${freqAll.length} topic${freqAll.length === 1 ? '' : 's'}`),
+      count: `${freqAll.length} topic${freqAll.length === 1 ? '' : 's'}`,
       body: `
         ${dataTable({
           columns: [{ label: 'Topic' }, { label: 'Questions', num: true }, { label: 'Share of bank', num: true }, { label: 'By year' }],
@@ -378,7 +377,7 @@ async function renderPrioritiesPanel(loaded = null) {
 
     ${card({
       title: 'Study priorities',
-      count: countChip(`${priorityAll.length} ranked`),
+      count: `${priorityAll.length} ranked`,
       body: `
         ${dataTable({
           columns: [{ label: 'Topic' }, { label: 'Score', num: true }, { label: 'Available', num: true }, { label: 'Accuracy', num: true }, { label: 'Why' }],

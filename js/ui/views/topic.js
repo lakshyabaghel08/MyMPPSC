@@ -33,7 +33,7 @@
  */
 
 import { state } from '../../core/state.js';
-import { esc, card, toast, notice, emptyState, infoToggle, confirmDialog, screenHead, countChip, filterChip, cardInfo } from '../components.js';
+import { esc, card, toast, notice, emptyState, infoToggle, confirmDialog, screenHead, filterChip, cardInfo } from '../components.js';
 import { QUESTION_TYPES, LANGUAGE_LABELS } from '../../core/constants.js';
 import { parseTopicPracticeParam } from '../../core/util.js';
 import { filterMetas, selectQuestions, ATTEMPT_STATE_FILTERS, arrangeForPaper } from '../../services/select.js';
@@ -439,7 +439,7 @@ export default {
 
       ${card({
         title: 'What to include',
-        count: countChip(`${matchCount} match`),
+        count: `${matchCount} match`,
         info: cardInfo('About this screen', '<p class="small m-0">Topic Practice and the Custom Test builder were the same screen twice, so they are one screen now. A single subject with at most one topic is recorded as a <strong>topic</strong> session, exactly as before; anything wider is recorded as a <strong>custom</strong> set. <code>#/custom</code> still opens this screen. Choosing a strategy decides <em>which</em> questions are picked; “shuffle question order” decides how they are arranged — with shuffling off they run in paper order (year, then paper, then question number).</p>'),
         body: `
           <p class="small m-0" id="pickSummary">${esc(selectionSentence(groups))}</p>
