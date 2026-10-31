@@ -234,10 +234,12 @@ test('Insights keeps the reader on the bank tab when a chip refreshes it; naviga
   assert.equal($$('#view .tabpanel')[0].hidden, false, 'a navigation opens the route’s panel again');
 });
 
-test('the bank panel is lean: four tiles, charts, short tables, detail behind ⓘ, no clutter', async () => {
+test('the bank panel is lean: four figures, charts, short tables, detail behind ⓘ, no clutter', async () => {
   await goto('pyq-analysis');
   const panel = $$('#view .tabpanel')[1];
-  assert.equal(panel.querySelectorAll('.pyq-summary-grid .tile').length, 4);
+  // Phase 3 states the four figures as one line of facts, not four tiles.
+  assert.equal(panel.querySelectorAll('.pyq-summary-grid [data-figure]').length, 4);
+  assert.equal(panel.querySelectorAll('.pyq-summary-grid .tile').length, 0, 'no metric tiles');
   assert.equal(panel.querySelectorAll('.prov-chip, [data-source]').length, 0, 'no provenance chips');
   assert.doesNotMatch(panel.textContent, /\b(in)?complete\b/i, 'no per-paper complete/incomplete labels');
   assert.equal(panel.querySelectorAll('.notice, .pyq-unplaced-banner').length, 0, 'no banners');
@@ -259,8 +261,9 @@ test('the bank panel’s numbers are the Question Bank screen’s numbers', asyn
   const total = chipCount(chips.find((c) => c.dataset.value === 'all'));
   const bySubject = chips.filter((c) => c.dataset.value !== 'all').map((c) => [c.dataset.value, chipCount(c)]);
   assert.equal(bySubject.reduce((a, [, n]) => a + n, 0), total, 'the subjects add up to the total');
-  const keyTile = $$('#view .pyq-summary-grid .tile').find((t) => /Answer keys/.test(t.textContent));
-  const keys = keyTile.querySelector('.tile-value').textContent.match(/(\d+)\/(\d+)/);
+  const keyFigure = $('#view .pyq-summary-grid [data-figure="keys"]');
+  const keys = keyFigure.querySelector('b').textContent.match(/(\d+)\/(\d+)/);
+  assert.ok(keys, 'the answer-key figure still reads x/y');
 
   click($('#view [data-action="pyq-subject"][data-value="History"]'));
   await settle();
@@ -301,7 +304,11 @@ test('the bank panel’s numbers are the Question Bank screen’s numbers', asyn
     await settle();
   }
   click($$('#bankTabs .tab').find((t) => t.dataset.tab === 'integrity'));
-  assert.match(viewText(), new RegExp(`Answer keys present ${keys[1]}/${keys[2]}`), 'same answer-key coverage as the Integrity tab');
+  assert.match(
+    viewText(),
+    new RegExp(`${keys[1]}/${keys[2]} questions carry a usable answer key`),
+    'same answer-key coverage as the Integrity tab',
+  );
   click($$('#bankTabs .tab').find((t) => t.dataset.tab === 'questions'));
 });
 
@@ -412,8 +419,8 @@ test('runner: the “?” legend lists the real shortcuts, closes on Escape, mov
   count.value = '3';
   count.dispatchEvent(new window.Event('change', { bubbles: true }));
   click($('#view [data-action="start-practice"]'));
-  await waitFor(() => !$('#modalRoot').hidden, { label: 'the custom-set confirmation' });
-  click($('#modalRoot [data-value="confirm"]'));
+  // The builder starts what its session panel already describes — no second
+  // confirmation of the same summary.
   await waitFor(() => /#\/runner\//.test(window.location.hash), { label: 'the runner' });
   await waitFor(() => /Question 1 of/.test(viewText()), { label: 'runner markup' });
 
@@ -434,7 +441,7 @@ test('runner: the “?” legend lists the real shortcuts, closes on Escape, mov
   const options = $$('#view [data-action="select"]').length;
   const confidenceOn = Boolean($('#view [data-confidence]'));
   const listed = $$('#runnerKbdLegend dt').map((dt) => dt.textContent.replace(/\s+/g, ' ').trim());
-  assert.deepEqual(listed, [`1–${Math.min(9, options)}`, '→ or N', '← or P', 'F', 'U', ...(confidenceOn ? ['C'] : []), '?', 'Ctrl/⌘ K', 'Esc']);
+  assert.deepEqual(listed, [`1–${Math.min(9, options)}`, '→ or N', '← or P', ']', '[', 'F', 'U', ...(confidenceOn ? ['C'] : []), 'D', '?', 'Ctrl/⌘ K', 'Esc']);
 
   // A documented key does what the legend says, and the legend survives the repaint.
   key({ key: 'f' });
@@ -484,9 +491,9 @@ test('the revision queue card no longer prints a stray “}”', async () => {
   const revisionSvc = await import('../js/services/revision.js');
   await revisionSvc.ensureRevisionRecord(Array.from(state.questionIndex.keys())[0], { reason: 'probe', dueDays: 0 });
   await goto('revision');
-  const queue = $$('#view .card').find((card) => /^Queue \(/.test(card.querySelector('h2')?.textContent || ''));
-  assert.ok(queue, 'the queue card renders');
-  assert.equal(queue.querySelector('.card-body').textContent.includes('}'), false);
+  const queue = $$('#view .sheet').find((section) => /^Queue/.test(section.querySelector('.section-label')?.textContent || ''));
+  assert.ok(queue, 'the queue section renders');
+  assert.equal(queue.textContent.includes('}'), false);
 });
 
 test('the evidence meter emits only classes the stylesheet styles', () => {
@@ -534,7 +541,7 @@ test('a malformed route parameter is data, not a crash (B5)', async () => {
   // The address that used to break is a valid deep link target: it names no
   // subject the bank holds, so the practice screen simply ignores it.
   await goto('topic/50%');
-  assert.match($('#view h1').textContent, /Topic & Custom Practice/);
+  assert.equal($('#view h1').textContent.trim(), 'Practice', 'the merged screen keeps one name');
   assert.equal($('#pickMatch').textContent.trim(), `${state.questionIndex.size} questions match`, 'and the pool is untouched');
   assert.ok($('#view [data-action="clear-selection"]').disabled, 'nothing was selected by the nonsense parameter');
   await goto('dashboard');

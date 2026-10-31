@@ -20,19 +20,28 @@
   color-scheme: light;
 
   /* Surfaces — warm paper, white content, no tinted decoration. */
-  --bg: #f7f6f2;
-  --bg-elevated: #ffffff;
-  --bg-sunken: #efeee8;
-  --surface-hover: #f3f2ec;
-  --sidebar-bg: #f3f2ed;
+  --bg: #f4f1e7;
+  --bg-elevated: #fdfbf5;
+  --bg-sunken: #eae5d8;
+  --surface-hover: #efeade;
+  --sidebar-bg: #f0ece0;
   --scrim: rgba(24, 24, 19, 0.48);
 
   /* Borders & focus. --border is the audited 3:1 boundary for controls and
      table rules; --border-subtle is decorative and used only for hairlines. */
   --border: #767b72;
   --border-strong: #4f554d;
-  --border-subtle: #e4e2d9;
+  --border-subtle: #ddd6c4;
   --focus-ring: #2c4f8f;
+
+  /* Phase 3 — hairline rules for the page, and the one "now" colour.
+     --rule separates sections (decorative), --rule-strong is the visible
+     boundary of a control group. --now marks only what is happening now:
+     overdue, due today, the current question, a wrong answer. */
+  --rule: #ddd6c4;
+  --rule-strong: #bdb5a1;
+  --now: #8c3520;
+  --now-soft: #f3e2d8;
 
   /* Text */
   --text: #1b1d1b;
@@ -121,6 +130,11 @@
   --sans: "InterVariable", "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "Noto Sans Devanagari", Arial, sans-serif;
   --deva: "Noto Sans Devanagari", "Kohinoor Devanagari", "Mangal", "Nirmala UI", system-ui, sans-serif;
   --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  /* The desk's voice. A system serif with a universal fallback (Georgia and
+     Times ship with every desktop OS); no font file, so offline behaviour and
+     the no-network guard are untouched. Never applied to Devanagari — Hindi
+     keeps --deva so a missing serif cannot degrade the script. */
+  --serif: "Iowan Old Style", "Charter", "Bitstream Charter", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, "Times New Roman", serif;
 
   --text-xs: 0.75rem;      /* 12px */
   --text-sm: 0.8125rem;    /* 13px */
@@ -140,8 +154,8 @@
   /* Four-step type scale. Every size on a screen comes from one of these four
      steps; the Devanagari pair beside each step carries the font family and the
      taller leading that Devanagari needs at that size. */
-  --type-display: 2rem;         /* one big figure on a page */
-  --type-title: var(--text-xl);  /* h1 */
+  --type-display: 2.25rem;      /* the one figure or headline a page leads with */
+  --type-title: 1.875rem;       /* h1 — the screen's voice */
   --type-body: var(--text-base); /* paragraphs, controls, table cells */
   --type-caption: var(--text-sm); /* labels, footnotes, chips */
   --lh-display: 1.15;
@@ -184,17 +198,21 @@
 :root[data-theme="dark"] {
   color-scheme: dark;
 
-  --bg: #131413;
-  --bg-elevated: #1a1b19;
-  --bg-sunken: #0e0f0e;
-  --surface-hover: #222420;
-  --sidebar-bg: #0f100f;
+  --bg: #15160f;
+  --bg-elevated: #1d1e18;
+  --bg-sunken: #0f100b;
+  --surface-hover: #24251d;
+  --sidebar-bg: #101107;
   --scrim: rgba(0, 0, 0, 0.62);
 
   --border: #757a70;
   --border-strong: #9aa093;
-  --border-subtle: #33352f;
+  --border-subtle: #35362c;
   --focus-ring: #a8c0ea;
+  --rule: #35362c;
+  --rule-strong: #4b4d3f;
+  --now: #eaa28c;
+  --now-soft: #2e1a13;
 
   --text: #f1f1ec;
   --text-muted: #c3c6bd;
@@ -4457,6 +4475,159 @@ a.stat:hover { background: var(--surface-hover); }
 
 a.stat:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: -2px; }
 
+/* ---------------------------------------------------------- start deck --- */
+/* The dashboard's launcher: one row per thing that can be started, the real
+   count behind it, and the button. The deck is a page section, not a card, so
+   the rows carry the hierarchy and the count sits next to the action. */
+
+.start-deck {
+  margin-bottom: var(--space-4);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  background: var(--bg-elevated);
+  overflow: hidden;
+}
+
+.start-deck-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 13px 20px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.start-deck-head h2 {
+  margin: 0;
+  font-size: 0.9375rem;
+  font-weight: 620;
+  letter-spacing: -0.012em;
+}
+
+.start-deck-head p {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+
+.start-rows { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+
+.start-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 11px 20px;
+  border-bottom: 1px solid var(--border-subtle);
+  min-width: 0;
+}
+
+.start-row:last-child { border-bottom: 0; }
+
+.start-row.is-accent { background: var(--bg); }
+
+.start-row.is-empty { opacity: 0.6; }
+
+.start-row-main { flex: 1 1 auto; min-width: 0; }
+
+.start-row-label {
+  margin: 0;
+  color: var(--text);
+  font-size: 0.875rem;
+  font-weight: 560;
+  letter-spacing: -0.006em;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+.start-row-extra { color: var(--text-soft); font-size: 0.6875rem; font-weight: 470; }
+
+.start-row-detail {
+  margin: 2px 0 0;
+  color: var(--text-soft);
+  font-size: 0.75rem;
+  line-height: 1.45;
+}
+
+.start-row-count {
+  flex: 0 0 auto;
+  padding: 2px 7px;
+  border-radius: var(--radius-xs);
+  background: var(--bg-sunken);
+  color: var(--text-muted);
+  font-size: 0.6875rem;
+  font-weight: 560;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.start-row .btn { flex: 0 0 auto; }
+
+/* An action list: a row of text plus the one action that row exists for.
+   Deliberately not a table — these are decisions, not records. */
+.action-rows { display: flex; flex-direction: column; margin: -2px 0; }
+
+.action-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--border-subtle);
+  min-width: 0;
+}
+
+.action-row:last-child { border-bottom: 0; }
+
+.action-row-main { flex: 1 1 auto; min-width: 0; }
+
+.action-row-title {
+  margin: 0;
+  color: var(--text);
+  font-size: 0.8125rem;
+  font-weight: 540;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.action-row-title a { color: inherit; font-weight: inherit; }
+.action-row-title a:hover { color: var(--accent); text-decoration: none; }
+
+.action-row-meta { margin: 1px 0 0; color: var(--text-soft); font-size: 0.6875rem; line-height: 1.45; }
+
+.action-row-value {
+  flex: 0 0 auto;
+  color: var(--text);
+  font-size: 0.8125rem;
+  font-weight: 560;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.action-row-value small { display: block; color: var(--text-soft); font-size: 0.625rem; font-weight: 460; }
+
+.action-row .btn { flex: 0 0 auto; }
+
+/* The same question seen twice: due for revision *and* an open mistake. */
+.cross-signal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 14px;
+}
+
+.cross-signal span { flex: 1 1 240px; font-size: 0.75rem; color: var(--text-soft); line-height: 1.45; }
+
+@media (max-width: 640px) {
+  .start-deck-head { flex-direction: column; gap: 2px; padding: 12px 16px; }
+  .start-row { flex-wrap: wrap; gap: 8px; padding: 12px 16px; }
+  .start-row-count { display: none; }
+  .start-row .btn { flex: 1 1 100%; }
+  .action-row { flex-wrap: wrap; }
+  .action-row .btn { flex: 1 1 auto; }
+}
+
 /* Small facts set inline under a table: label and value, no boxes. */
 .stats-inline { display: flex; flex-wrap: wrap; gap: 6px 20px; color: var(--text-muted); font-size: 0.8125rem; }
 
@@ -4735,12 +4906,487 @@ a.stat:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: -2p
 
 .legend { color: var(--text-soft); gap: 12px; }
 
+/* ----------------------------------------------------- runner: palette --- */
+/* The palette answers two questions: what is left, and take me there. Counts
+   and a filter sit above the grid; the jumps sit below it. On a narrow screen
+   the whole panel becomes a sheet opened from the bar, so the grid is never a
+   long scroll under the question. */
+
+.palette-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.palette-filter {
+  flex: 1 1 auto;
+  min-height: 28px;
+  padding: 3px 8px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 0.6875rem;
+  font-weight: 520;
+  cursor: pointer;
+}
+
+.palette-filter:hover { background: var(--bg-sunken); color: var(--text); }
+
+.palette-filter[aria-pressed="true"] {
+  border-color: var(--border-strong);
+  background: var(--bg-sunken);
+  color: var(--text);
+  font-weight: 600;
+}
+
+.palette-filter-count { font-variant-numeric: tabular-nums; color: var(--text-soft); }
+
+.palette-filter[aria-pressed="true"] .palette-filter-count { color: var(--text-muted); }
+
+.palette-jumps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.palette-close,
+.runner-palette-btn { display: none; }
+
+.runner-palette-progress {
+  margin-left: 4px;
+  color: var(--text-soft);
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+}
+
+/* Submission sheet rows: label on the left, figure on the right, one tone. */
+.submit-summary { border-top: 1px solid var(--border-subtle); }
+
+.submit-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: 0.8125rem;
+}
+
+.submit-row > span { color: var(--text-soft); }
+.submit-row > strong { font-variant-numeric: tabular-nums; font-weight: 600; }
+.submit-row.ok > strong { color: var(--ok); }
+.submit-row.warn > strong { color: var(--warn); }
+.submit-row.bad > strong { color: var(--bad); }
+
+/* The scoring card may carry an ⓘ beside its rules; keep it on one line. */
+.palette-card .card-head { gap: 8px; }
+
+@media (max-width: 1040px) {
+  .runner-palette-btn { display: inline-flex; align-items: center; }
+
+  .runner-side {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 45;
+    max-height: 72vh;
+    overflow: auto;
+    margin: 0;
+    padding: 14px 16px calc(16px + env(safe-area-inset-bottom, 0px));
+    border-top: 1px solid var(--border);
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    background: var(--bg);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(102%);
+    transition: transform var(--dur-base) var(--ease-out);
+    visibility: hidden;
+  }
+
+  body.palette-open .runner-side {
+    transform: none;
+    visibility: visible;
+  }
+
+  .runner-side .card { margin-bottom: 8px; box-shadow: none; }
+
+  .palette-close { display: inline-flex; margin-left: auto; }
+
+  .palette button { min-height: 40px; }
+}
+
+/* --------------------------------------------------- 13d. review panel -- */
+/*
+ * One question-review panel shared by the Mistake Book and Revision Centre
+ * (js/ui/reviewpanel.js). The order is the reading order: what happened, the
+ * question, the explanation, the history. Key and "your answer" are marked by
+ * more than colour — each carries a word — so the panel survives greyscale.
+ */
+
+.review-focus {
+  border-left: 3px solid var(--border-strong);
+  padding-left: 10px;
+  color: var(--text-soft);
+  margin-bottom: 12px;
+}
+
+.review-verdict {
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius);
+  background: var(--bg-sunken);
+  padding: 10px 12px;
+  margin-bottom: 14px;
+}
+
+.review-question-text {
+  font-size: 1rem;
+  line-height: 1.55;
+  margin: 0 0 10px;
+  font-weight: 550;
+}
+
+.review-options {
+  list-style: none;
+  margin: 0 0 12px;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
+
+.review-option {
+  display: grid;
+  grid-template-columns: 26px minmax(0, 1fr) auto;
+  gap: 8px;
+  align-items: start;
+  padding: 8px 10px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius);
+  background: var(--bg-raised);
+}
+
+.review-option.is-key { border-color: var(--ok); }
+.review-option.is-chosen:not(.is-key) { border-color: var(--warn); }
+
+.review-option-key {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  color: var(--text-soft);
+}
+
+.review-option-text { min-width: 0; }
+
+.review-history-table { font-variant-numeric: tabular-nums; }
+
+.review-schedule { margin-top: 16px; }
+
+@media (max-width: 640px) {
+  .review-option { grid-template-columns: 22px minmax(0, 1fr); }
+  .review-option .badge { grid-column: 2; justify-self: start; }
+}
+
+/* Inline two-state mark (Revision Centre). The row's own button becomes the
+   choice, so the most common action in the screen costs one click and no
+   dialog. It is a span so the table row keeps its shape. */
+.mark-split {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  align-items: center;
+  padding: 2px 4px;
+  border-radius: var(--radius);
+  background: var(--bg-sunken);
+}
+
+.mark-split[hidden] { display: none; }
+
+/* A table row's own detail panel (Question review inside the Mistake Book,
+   paper details in the Test Centre). It sits under the row it belongs to. */
+.row-detail-row[hidden] { display: none; }
+
+.row-detail-row > td {
+  background: var(--bg-sunken);
+  padding: 12px 14px;
+  border-top: 1px dashed var(--border-subtle);
+}
+
+.review-inline { max-width: 78ch; }
+
+.review-inline .review-question-text { font-size: 0.95rem; }
+
+.row-detail-top {
+  display: flex;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
 .sticky-side { top: calc(var(--header-h) + 16px); }
 
 .kbd-legend { border-radius: var(--radius-lg); border-color: var(--border-subtle); }
 
 
 .matrix .cell { border-color: var(--border-subtle); border-radius: var(--radius); background: var(--bg-sunken); }
+
+
+/* =========================================================================
+   14b. The desk — Phase 3 layout primitives
+   A page divided by rules, not a stack of boxes. `sheet` is the default
+   container; `panel` is reserved for interruptions (dialogs, overlays, a
+   table that scrolls); `margin` holds the metadata that used to be badges.
+   ========================================================================= */
+
+.eyebrow {
+  font-size: 10.5px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  margin: 0 0 6px;
+  font-weight: 600;
+}
+
+/* The screen's voice: a serif headline. Devanagari never uses it. */
+.display-heading {
+  font-family: var(--serif);
+  font-weight: 500;
+  letter-spacing: -0.012em;
+  line-height: 1.08;
+  font-size: var(--type-display);
+  margin: 0;
+}
+
+.screen-head h1 {
+  font-family: var(--serif);
+  font-weight: 500;
+  letter-spacing: -0.012em;
+  font-size: var(--type-title);
+  line-height: 1.12;
+}
+
+.screen-head h1[lang="hi"] { font-family: var(--deva); }
+
+.screen-head { border-bottom: 1px solid var(--rule-strong); padding-bottom: 14px; }
+
+.screen-purpose { max-width: 54ch; }
+
+/* Section label — replaces a card header. */
+.section-label {
+  font-size: 10.5px;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  font-weight: 650;
+  margin: 0 0 10px;
+}
+
+/* A section of the page. No border, no shadow: a hairline above it. */
+.sheet {
+  padding: 22px 0 4px;
+  border-top: 1px solid var(--rule);
+  margin-top: 22px;
+}
+
+.sheet:first-of-type { border-top: 0; margin-top: 0; padding-top: 0; }
+
+.sheet-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.sheet-action { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+
+/* Interrupted content keeps a real boundary. */
+.panel-box {
+  border: 1px solid var(--rule-strong);
+  border-radius: 3px;
+  background: var(--bg-elevated);
+  padding: 14px 16px;
+}
+
+/* Two-column page with a margin for facts. */
+.with-margin {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 190px;
+  gap: 32px;
+  align-items: start;
+}
+
+.margin-note {
+  border-left: 1px solid var(--rule);
+  padding-left: 12px;
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--text-soft);
+  margin: 4px 0 0;
+}
+
+.margin-note b { display: block; color: var(--text-muted); font-weight: 650; font-size: 12px; }
+.margin-note p { margin: 0; }
+
+@media (max-width: 1180px) {
+  .with-margin { grid-template-columns: 1fr; gap: 10px; }
+  .margin-note { border-left: 0; border-top: 1px dotted var(--rule); padding: 6px 0 0; }
+}
+
+/* A single line of metadata, separated by space rather than middots. */
+.meta-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  margin: 0;
+  font-size: 12px;
+  color: var(--text-soft);
+}
+
+/* The stamp: the one date that matters, in a queue's gutter. */
+.stamp {
+  font-size: 10.5px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  line-height: 1.4;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.stamp.is-now { color: var(--now); font-weight: 650; }
+
+/* Segmented result rule — three counts as one bar, with a text legend. */
+.segmented {
+  display: flex;
+  height: 8px;
+  border-radius: 1px;
+  overflow: hidden;
+  background: var(--track);
+  margin: 12px 0 6px;
+  max-width: 560px;
+}
+
+.segmented > i { display: block; height: 100%; }
+.segmented > i.is-ok { background: var(--ink); }
+.segmented > i.is-bad { background: var(--now); }
+.segmented > i.is-blank { background: var(--bg); box-shadow: inset 0 0 0 1px var(--rule-strong); }
+
+.seg-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  font-size: 11.5px;
+  color: var(--text-soft);
+  margin: 0;
+}
+
+.seg-legend b { color: var(--text-muted); font-weight: 650; font-variant-numeric: tabular-nums; }
+
+/* Text actions: the quiet counterpart of a button, used inside rows. */
+.quiet-action {
+  font: inherit;
+  font-size: 12.5px;
+  color: var(--text-muted);
+  background: none;
+  border: 0;
+  border-bottom: 1px solid var(--rule-strong);
+  padding: 1px 0;
+  cursor: pointer;
+}
+
+.quiet-action:hover { border-bottom-color: var(--text); color: var(--text); }
+.quiet-action:disabled { color: var(--text-soft); border-bottom-style: dotted; cursor: not-allowed; }
+
+/* The desk list: each row is a whole action. */
+.desk-list { list-style: none; margin: 0; padding: 0; }
+.desk-list > li + li { border-top: 1px solid var(--rule); }
+
+.desk-row {
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: baseline;
+  padding: 12px 0;
+  color: inherit;
+  text-decoration: none;
+}
+
+.desk-row:hover .desk-title { text-decoration: underline; text-underline-offset: 3px; }
+.desk-row:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 3px; }
+
+.desk-mark { color: var(--now); font-size: 11px; }
+.desk-title { font-size: var(--text-base); }
+.desk-title em { font-style: normal; color: var(--text-soft); }
+.desk-count { font-size: 12.5px; color: var(--text-soft); font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+/* Evidence dots: three marks, not a meter widget. */
+.dots { display: inline-flex; gap: 3px; align-items: center; }
+.dots i {
+  width: 7px; height: 7px; border-radius: 50%;
+  border: 1px solid var(--rule-strong);
+  background: transparent;
+}
+.dots i.on { background: var(--text-muted); border-color: var(--text-muted); }
+
+.look-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 56px auto;
+  gap: 14px;
+  align-items: baseline;
+  padding: 10px 0;
+}
+
+.look-row + .look-row { border-top: 1px dotted var(--rule); }
+.look-topic { font-size: var(--text-base); }
+.look-topic small { color: var(--text-soft); font-size: 12px; margin-left: 6px; }
+
+/* The score line on a marked paper. */
+.score-line { display: flex; align-items: flex-end; gap: 20px; flex-wrap: wrap; }
+.score-figure {
+  font-family: var(--serif);
+  font-size: clamp(2.6rem, 2rem + 2.6vw, 4rem);
+  line-height: .95;
+  letter-spacing: -0.02em;
+  font-variant-numeric: lining-nums;
+  margin: 0;
+}
+.score-figure small { font-size: .34em; color: var(--text-soft); letter-spacing: 0; }
+
+/* Accuracy bars (report + insights). */
+.bar-rows { width: 100%; border-collapse: collapse; }
+.bar-rows td { padding: 9px 0; border-top: 1px dotted var(--rule); font-size: var(--text-sm); vertical-align: middle; }
+.bar-rows tr:first-child td { border-top: 0; }
+.bar-rows .row-name { width: 40%; }
+.bar-rows .row-name small { display: block; color: var(--text-soft); font-size: 11.5px; }
+.bar-rows .bar-track { width: 32%; padding-right: 14px; }
+.bar-rows .bar-track span { display: block; height: 7px; background: var(--track); border-radius: 1px; position: relative; }
+.bar-rows .bar-track span i { position: absolute; inset: 0 auto 0 0; background: var(--text-muted); }
+.bar-rows .row-value { width: 12%; font-variant-numeric: tabular-nums; color: var(--text-muted); }
+.bar-rows .row-act { text-align: right; }
+
+/* A queue entry: stamp, question, actions — the revision centre's unit. */
+.queue-list { display: grid; gap: 0; }
+.queue-entry {
+  display: grid;
+  grid-template-columns: 68px minmax(0, 1fr) auto;
+  gap: 18px;
+  align-items: start;
+  padding: 14px 0;
+  border-top: 1px solid var(--rule);
+}
+.queue-entry:last-child { border-bottom: 1px solid var(--rule); }
+.queue-question { margin: 0; font-size: var(--text-base); line-height: 1.5; max-width: 58ch; }
+.queue-src { margin: 5px 0 0; }
+.queue-actions { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; justify-content: flex-end; }
+
+@media (max-width: 720px) {
+  .queue-entry { grid-template-columns: 1fr; gap: 8px; }
+  .stamp { text-align: left; }
+  .queue-actions { justify-content: flex-start; }
+  .desk-row { grid-template-columns: 14px minmax(0, 1fr); }
+  .desk-count { grid-column: 2; color: var(--text-soft); }
+  .look-row { grid-template-columns: minmax(0, 1fr) auto; }
+}
 
 /* ------------------------------------------------------------- utilities */
 
@@ -6272,6 +6918,141 @@ details.disclosure > summary { color: var(--text-muted); font-size: 0.8125rem; }
 }
 
 /* -------------------------------------------------------------------------
+   Practice builder — two panes: the bank on the left, the session on the right
+   The session pane holds the basket, the size, the strategy and the Start
+   button; it is the confirmation, so there is no confirmation dialog. It stays
+   in view on a wide screen while the bank is scrolled.
+   ------------------------------------------------------------------------- */
+
+.practice-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(300px, 0.9fr);
+  gap: var(--space-4);
+  align-items: start;
+}
+
+.practice-browse { min-width: 0; }
+
+.practice-search {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+}
+
+.field-grow { flex: 1 1 auto; min-width: 0; }
+
+.practice-session {
+  position: sticky;
+  top: calc(var(--header-h) + 16px);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  background: var(--bg-elevated);
+  overflow: hidden;
+}
+
+.practice-session-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.practice-session-head h2 {
+  margin: 0;
+  font-size: 0.9375rem;
+  font-weight: 620;
+  letter-spacing: -0.012em;
+}
+
+.practice-session-head span:first-of-type {
+  color: var(--text-soft);
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.practice-session-body { padding: var(--space-3) 16px 16px; }
+
+.practice-session-body .practice-setup { margin-top: var(--space-3); }
+
+.basket-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.basket-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  max-width: 100%;
+  padding: 3px 4px 3px 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-sunken);
+  color: var(--text);
+  font-size: 0.75rem;
+  line-height: 1.35;
+}
+
+.basket-chip > span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.basket-chip small { color: var(--text-soft); font-size: 0.6875rem; }
+
+.basket-chip.is-more { padding-right: 8px; color: var(--text-soft); }
+
+.basket-chip-x {
+  flex: 0 0 auto;
+  width: 22px;
+  height: 22px;
+  border: 0;
+  border-radius: var(--radius-xs);
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 0.625rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.basket-chip-x:hover { background: var(--surface-hover); color: var(--text); }
+
+.basket-empty { margin: 0; color: var(--text-soft); font-size: 0.75rem; line-height: 1.45; }
+
+.preset-row { display: flex; gap: 6px; margin-top: var(--space-3); }
+
+.preset {
+  flex: 1 1 auto;
+  min-height: 30px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg-elevated);
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  font-weight: 540;
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+}
+
+.preset:hover { background: var(--bg-sunken); color: var(--text); border-color: var(--border-strong); }
+
+.preset:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.practice-start { margin-top: var(--space-4); padding-top: var(--space-3); border-top: 1px solid var(--border-subtle); }
+
+.practice-start .btn-block { width: 100%; }
+
+.practice-start p { margin-top: 6px; }
+
+@media (max-width: 1040px) {
+  .practice-layout { grid-template-columns: minmax(0, 1fr); }
+  .practice-session { position: static; }
+}
+
+@media (max-width: 560px) {
+  .practice-search { flex-direction: column; align-items: stretch; }
+  .practice-search .btn { width: 100%; }
+}
+
+/* -------------------------------------------------------------------------
    14. Responsive Breakpoints & Touch Target Enforcement (<= 860px)
    ------------------------------------------------------------------------- */
 
@@ -7174,3 +7955,879 @@ h3 {
 .nav-storage .nav-foot-item span { display: block; }
 
 .app-body.nav-collapsed .nav-storage { display: none; }
+
+/* =========================================================================
+   14c. Runner — a marked paper, not a panel
+   The stem is set in the serif at a 58-character measure; options are ruled
+   rows; the index is a drawer you open when you need it, never a column that
+   takes 300px from the question for the whole sitting.
+   ========================================================================= */
+
+.runner-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px 20px;
+  padding: 0 0 12px;
+  margin-bottom: 20px;
+  border: 0;
+  border-bottom: 1px solid var(--rule-strong);
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+}
+
+.runner-id { min-width: 0; }
+
+.runner-title {
+  font-family: var(--serif);
+  font-size: 1.0625rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  margin: 0;
+}
+
+.runner-progress {
+  margin: 3px 0 0;
+  font-size: 12px;
+  color: var(--text-soft);
+  font-variant-numeric: tabular-nums;
+}
+
+.runner-progress .sep { color: var(--rule-strong); padding: 0 3px; }
+
+.runner-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.runner-bar .timer {
+  font-family: var(--mono);
+  font-size: 13.5px;
+  font-variant-numeric: tabular-nums;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--text-muted);
+}
+
+.runner-bar .timer.warn { color: var(--warn); background: none; }
+.runner-bar .timer.bad { color: var(--now); background: none; }
+
+.runner-index-btn { white-space: nowrap; }
+.runner-palette-progress { margin-left: 4px; color: var(--text-soft); font-variant-numeric: tabular-nums; }
+
+.runner {
+  display: block;
+  max-width: 74ch;
+}
+
+.question-card {
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  padding: 0;
+  margin: 0 0 24px;
+}
+
+.question-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.question-meta {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  font-size: 10.5px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+}
+
+.question-num-pill {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--text-muted);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .1em;
+}
+
+.question-class { text-transform: none; letter-spacing: .04em; }
+
+.question-tools { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+
+.question-text {
+  font-family: var(--serif);
+  font-size: clamp(1.125rem, 1.02rem + 0.34vw, 1.28rem);
+  line-height: 1.5;
+  letter-spacing: -0.006em;
+  max-width: 58ch;
+  margin: 0 0 20px;
+}
+
+.question-text.hi,
+.question-text[lang="hi"] {
+  font-family: var(--deva);
+  font-size: clamp(1.125rem, 1.04rem + 0.3vw, 1.25rem);
+  line-height: 1.65;
+}
+
+.options { gap: 0; display: block; }
+
+.option-row {
+  width: 100%;
+  display: flex;
+  align-items: baseline;
+  text-align: left;
+  padding: 12px 2px;
+  border: 0;
+  border-top: 1px solid var(--rule);
+  border-radius: 0;
+  background: none;
+  box-shadow: inset 2px 0 0 transparent;
+}
+
+.option-row:last-child { border-bottom: 1px solid var(--rule); }
+
+.option-row:hover {
+  border-color: var(--rule);
+  background: var(--surface-hover);
+  transform: none;
+}
+
+.option-row[aria-pressed="true"] {
+  padding: 12px 2px;
+  border-color: var(--rule);
+  background: var(--bg-sunken);
+  box-shadow: inset 2px 0 0 var(--text);
+}
+
+.option-row.correct {
+  padding: 12px 2px;
+  border-color: var(--rule);
+  background: var(--ok-soft);
+  box-shadow: inset 2px 0 0 var(--ok);
+}
+
+.option-row.incorrect {
+  padding: 12px 2px;
+  border-color: var(--rule);
+  background: var(--bad-soft);
+  box-shadow: inset 2px 0 0 var(--bad);
+}
+
+.option-key {
+  width: 22px;
+  height: auto;
+  flex: 0 0 22px;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  color: var(--text-soft);
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.option-row[aria-pressed="true"] .option-key,
+.option-row.correct .option-key { color: var(--text); }
+.option-row.incorrect .option-key { color: var(--bad); }
+
+.option-text { font-size: 15px; line-height: 1.6; padding-top: 0; max-width: 62ch; }
+.option-row[lang="hi"] .option-text { font-family: var(--deva); font-size: 15.5px; line-height: 1.7; }
+
+.option-kbd { opacity: .4; font-family: var(--mono); font-size: 11px; }
+
+.runner-nav {
+  gap: 8px;
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--rule);
+  background: var(--bg);
+}
+
+.runner-nav .btn { min-height: 34px; }
+
+.kbd-bar {
+  margin-top: 10px;
+  padding: 0;
+  border-radius: 0;
+  background: none;
+  color: var(--text-soft);
+  font-size: 11px;
+  gap: 12px;
+}
+
+/* The index drawer. */
+.runner-index {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 46;
+  width: min(320px, 88vw);
+  overflow: auto;
+  padding: 20px 18px 28px;
+  border-left: 1px solid var(--rule-strong);
+  background: var(--bg-elevated);
+  box-shadow: var(--shadow-lg);
+  transform: translateX(103%);
+  visibility: hidden;
+  transition: transform var(--dur-base) var(--ease-out), visibility var(--dur-base);
+}
+
+body.palette-open .runner-index { transform: none; visibility: visible; }
+
+.runner-index-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+
+.runner-index-head .section-label { margin: 0; }
+
+.runner-index .meta-line { margin: 0 0 4px; font-size: 11.5px; }
+.runner-index .palette-tools { margin: 12px 0 10px; flex-wrap: wrap; }
+.runner-index .palette { margin-bottom: 10px; }
+.runner-index .legend { font-size: 11px; gap: 8px 12px; }
+
+.runner-index-foot {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid var(--rule);
+}
+
+body.runner-focus .runner-index { display: none; }
+body.runner-focus .runner { max-width: 66ch; }
+
+@media (max-width: 1040px) {
+  .runner-index {
+    top: auto;
+    left: 0;
+    width: auto;
+    max-height: 74vh;
+    padding: 14px 16px calc(16px + env(safe-area-inset-bottom, 0px));
+    border-left: 0;
+    border-top: 1px solid var(--rule-strong);
+    border-radius: 0;
+    transform: translateY(103%);
+  }
+}
+
+@media (max-width: 720px) {
+  .option-row { min-height: 56px; align-items: center; }
+  .runner-nav { position: sticky; bottom: 0; z-index: 5; margin: 14px -16px -20px; padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px)); border-top: 1px solid var(--rule-strong); }
+  .runner-title { font-size: 1rem; }
+  .runner-controls { gap: 8px; justify-content: flex-start; }
+  .question-text { font-size: 1.0625rem; }
+}
+
+/* Widths are set by a stepped data attribute so no markup carries style=. */
+.segmented > i[data-pct="0"],
+.bar-rows .bar-track span i[data-pct="0"] { width: 0%; }
+.segmented > i[data-pct="5"],
+.bar-rows .bar-track span i[data-pct="5"] { width: 5%; }
+.segmented > i[data-pct="10"],
+.bar-rows .bar-track span i[data-pct="10"] { width: 10%; }
+.segmented > i[data-pct="15"],
+.bar-rows .bar-track span i[data-pct="15"] { width: 15%; }
+.segmented > i[data-pct="20"],
+.bar-rows .bar-track span i[data-pct="20"] { width: 20%; }
+.segmented > i[data-pct="25"],
+.bar-rows .bar-track span i[data-pct="25"] { width: 25%; }
+.segmented > i[data-pct="30"],
+.bar-rows .bar-track span i[data-pct="30"] { width: 30%; }
+.segmented > i[data-pct="35"],
+.bar-rows .bar-track span i[data-pct="35"] { width: 35%; }
+.segmented > i[data-pct="40"],
+.bar-rows .bar-track span i[data-pct="40"] { width: 40%; }
+.segmented > i[data-pct="45"],
+.bar-rows .bar-track span i[data-pct="45"] { width: 45%; }
+.segmented > i[data-pct="50"],
+.bar-rows .bar-track span i[data-pct="50"] { width: 50%; }
+.segmented > i[data-pct="55"],
+.bar-rows .bar-track span i[data-pct="55"] { width: 55%; }
+.segmented > i[data-pct="60"],
+.bar-rows .bar-track span i[data-pct="60"] { width: 60%; }
+.segmented > i[data-pct="65"],
+.bar-rows .bar-track span i[data-pct="65"] { width: 65%; }
+.segmented > i[data-pct="70"],
+.bar-rows .bar-track span i[data-pct="70"] { width: 70%; }
+.segmented > i[data-pct="75"],
+.bar-rows .bar-track span i[data-pct="75"] { width: 75%; }
+.segmented > i[data-pct="80"],
+.bar-rows .bar-track span i[data-pct="80"] { width: 80%; }
+.segmented > i[data-pct="85"],
+.bar-rows .bar-track span i[data-pct="85"] { width: 85%; }
+.segmented > i[data-pct="90"],
+.bar-rows .bar-track span i[data-pct="90"] { width: 90%; }
+.segmented > i[data-pct="95"],
+.bar-rows .bar-track span i[data-pct="95"] { width: 95%; }
+.segmented > i[data-pct="100"],
+.bar-rows .bar-track span i[data-pct="100"] { width: 100%; }
+
+/* =========================================================================
+   14d. Today — the desk
+   One hero sitting, three rows of work, a short table and a margin. No stat
+   strip, no pair of side-by-side cards, no second copy of anything.
+   ========================================================================= */
+
+.hero-sitting {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.hero-title {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: -0.012em;
+  line-height: 1.2;
+  margin: 0 0 6px;
+}
+
+.hero-title a { color: inherit; text-decoration: none; }
+.hero-title a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+.sheet + .sheet { margin-top: 26px; }
+
+.desk-title { display: block; }
+.desk-sub { display: block; font-size: 12.5px; color: var(--text-soft); margin-top: 3px; }
+.desk-act { white-space: nowrap; }
+.desk-row.is-empty { color: var(--text-soft); }
+.desk-row.is-empty .desk-title { color: var(--text-soft); }
+
+.overlap-line {
+  margin: 12px 0 0;
+  padding-top: 10px;
+  border-top: 1px dotted var(--rule);
+  font-size: 12.5px;
+  color: var(--text-soft);
+}
+
+.overlap-line strong { color: var(--text-muted); }
+
+.bar-rows .row-name small .evidence-meter { margin-left: 8px; }
+
+.margin-note .fig {
+  display: inline;
+  color: var(--text);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.margin-note p + p { margin-top: 7px; }
+.margin-note a { color: var(--accent); }
+
+/* =========================================================================
+   14e. Report — a marked paper
+   A score, a bar, three lines of work, topic bars, and one ruled line per
+   question that opens in place. The review is a list, not a stack of cards.
+   ========================================================================= */
+
+.report-headline { padding-top: 6px; }
+
+.score-line {
+  display: flex;
+  align-items: flex-end;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.score-aside { flex: 1 1 320px; min-width: 260px; padding-bottom: 4px; }
+.score-aside .segmented { margin-top: 0; }
+.score-aside .meta-line { margin-top: 6px; }
+
+.report-headline .notice { margin-top: 14px; }
+.report-headline details { margin-top: 12px; }
+
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.filter-row .quiet-action { border-bottom-color: transparent; color: var(--text-soft); }
+.filter-row .quiet-action.is-active { color: var(--text); border-bottom-color: var(--text); }
+
+.review-lines { margin-top: 2px; }
+
+.review-item { border-bottom: 1px solid var(--rule); }
+
+.review-line {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr) 22px 148px 44px;
+  gap: 12px;
+  align-items: baseline;
+  width: 100%;
+  padding: 10px 2px;
+  border: 0;
+  background: none;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.review-line:hover { background: var(--surface-hover); }
+.review-line:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: -2px; }
+
+.review-num {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  color: var(--text-soft);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.review-stem {
+  font-size: 14px;
+  line-height: 1.45;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--text-muted);
+}
+
+.review-stem.hi { font-family: var(--deva); }
+
+.review-mark { font-size: 13px; text-align: center; }
+.review-mark.is-ok { color: var(--text); }
+.review-mark.is-bad { color: var(--now); }
+.review-mark.is-blank { color: var(--text-soft); }
+
+.review-key {
+  font-size: 11.5px;
+  color: var(--text-soft);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.review-time { font-size: 11.5px; color: var(--text-soft); text-align: right; font-variant-numeric: tabular-nums; }
+
+.review-line[aria-expanded="true"] { background: var(--bg-elevated); }
+.review-line[aria-expanded="true"] .review-stem { white-space: normal; color: var(--text); }
+
+.review-body {
+  padding: 4px 2px 20px 46px;
+}
+
+.review-body .question-text { font-size: 1.0625rem; max-width: 62ch; }
+
+.review-options { width: 100%; border-collapse: collapse; max-width: 72ch; }
+.review-options td { padding: 7px 0; border-top: 1px dotted var(--rule); font-size: 13.5px; line-height: 1.5; vertical-align: baseline; }
+.review-options tr:first-child td { border-top: 0; }
+.review-options .col-key { width: 26px; color: var(--text-soft); font-size: 12px; }
+.review-options .col-choice { width: 60px; text-align: right; white-space: nowrap; }
+.review-options tr.is-key td { color: var(--text); }
+.review-options tr.is-picked .col-key { color: var(--text); font-weight: 700; }
+
+.review-options .tag {
+  display: inline-block;
+  margin-left: 4px;
+  font-size: 10px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+}
+
+.review-options .tag.is-you { color: var(--text); }
+
+@media (max-width: 720px) {
+  .review-line { grid-template-columns: 28px minmax(0, 1fr) 22px; grid-template-areas: 'num stem mark' '. key key'; row-gap: 3px; }
+  .review-num { grid-area: num; }
+  .review-stem { grid-area: stem; }
+  .review-mark { grid-area: mark; }
+  .review-key { grid-area: key; }
+  .review-time { display: none; }
+  .review-body { padding-left: 0; }
+  .score-line { gap: 16px; }
+}
+
+/* =========================================================================
+   14f. Revision Centre — a queue of stamped cards
+   The date sits in the gutter like a filing stamp; the stem is the thing being
+   decided about; the actions are inline words, so the common case is one click.
+   ========================================================================= */
+
+.queue-main { min-width: 0; }
+
+.queue-question {
+  font-family: var(--serif);
+  font-size: 1.0625rem;
+  line-height: 1.45;
+  letter-spacing: -0.004em;
+  margin: 0 0 5px;
+  max-width: 62ch;
+}
+
+.queue-question[lang="hi"] { font-family: var(--deva); line-height: 1.6; }
+
+.queue-stamp { display: grid; gap: 3px; }
+
+.queue-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  align-items: baseline;
+  justify-content: flex-end;
+  max-width: 340px;
+}
+
+.queue-actions .btn-sm { min-height: 30px; }
+
+.queue-detail { padding: 0 0 18px; border-bottom: 1px solid var(--rule); }
+.queue-detail .review-inline { padding-top: 6px; }
+
+.text-now { color: var(--now); font-weight: 600; }
+
+/* Seven-day load: bars, not a table of dates. */
+.load-strip {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+  max-width: 520px;
+  margin-top: 6px;
+}
+
+.load-day { display: grid; gap: 5px; justify-items: center; }
+.load-day i {
+  display: block;
+  width: 100%;
+  max-width: 46px;
+  border-radius: 1px;
+  background: var(--track);
+  border-bottom: 2px solid var(--rule-strong);
+}
+.load-day i.lvl0 { height: 3px; }
+.load-day i.lvl1 { height: 10px; background: var(--rule-strong); }
+.load-day i.lvl2 { height: 18px; background: var(--text-soft); }
+.load-day i.lvl3 { height: 26px; background: var(--text-muted); }
+.load-day i.lvl4 { height: 34px; background: var(--text); }
+.load-day b { font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--text-soft); font-weight: 600; }
+.load-day em { font-style: normal; font-size: 11px; color: var(--text-muted); font-variant-numeric: tabular-nums; min-height: 14px; }
+
+@media (max-width: 720px) {
+  .queue-actions { justify-content: flex-start; max-width: none; }
+  .queue-entry { border-top-color: var(--rule); }
+  .queue-detail { border-bottom: 0; }
+}
+
+/* A sentence of figures: what used to be four tiles, said once. */
+.facts-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 26px;
+  margin: 0;
+  font-size: 12.5px;
+  color: var(--text-soft);
+}
+
+.facts-line span { display: inline-flex; align-items: baseline; gap: 6px; }
+.facts-line b {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--text);
+  font-variant-numeric: lining-nums;
+  letter-spacing: -0.01em;
+}
+.facts-line small { color: var(--text-soft); font-size: 11.5px; }
+
+.sheet .card-section-title {
+  font-size: 10.5px;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  font-weight: 650;
+  margin: 0 0 6px;
+}
+
+/* Verdicts and outcomes as words, so a table row carries no badge. */
+.verdict-strong { color: var(--ok); }
+.verdict-weak { color: var(--now); }
+.verdict-thin { color: var(--text-soft); }
+
+.outcome-word.is-ok { color: var(--ok); }
+.outcome-word.is-bad { color: var(--now); }
+.outcome-word.is-blank { color: var(--text-soft); }
+
+/* Why an item is in the Mistake Book — a word with a tone, in one line. */
+.why-word { font-weight: 600; }
+.why-word.is-bad { color: var(--now); }
+.why-word.is-warn { color: var(--warn); }
+.why-word.is-soft { color: var(--text-muted); }
+.why-note { color: var(--text-soft); font-size: 12px; }
+.why-note.is-now { color: var(--now); font-weight: 600; }
+
+.sheet-sub { margin: 3px 0 0; font-size: 12.5px; color: var(--text-soft); max-width: 62ch; }
+.sheet-action { align-items: center; }
+.sheet-foot { margin-top: 10px; }
+
+/* =========================================================================
+   14g. Practice — the working surface
+   The left sheet is the bank (search, count, subjects, topics); the right card
+   is the sitting being assembled. One start button, at the foot of the card.
+   ========================================================================= */
+
+.practice-layout { gap: 36px; grid-template-columns: minmax(0, 1.7fr) minmax(300px, 0.95fr); }
+
+.practice-browse { padding-top: 0; }
+.practice-browse > .sheet-head { margin-bottom: 12px; }
+
+.pick-bar {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 0 8px;
+  border-bottom: 1px solid var(--rule-strong);
+}
+
+.pick-match { margin: 0; font-size: 13px; color: var(--text-soft); }
+.pick-match strong {
+  font-family: var(--serif);
+  font-size: 1.375rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  font-variant-numeric: lining-nums;
+}
+
+.pick-summary { margin: 8px 0 12px; font-size: 12.5px; color: var(--text-soft); max-width: 62ch; }
+
+.pick-list { list-style: none; margin: 0; padding: 0; }
+.pick-group + .pick-group { border-top: 1px solid var(--rule); }
+
+.pick-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 9px 0;
+}
+
+.pick-row .pick-check { display: flex; align-items: baseline; gap: 8px; flex: 1 1 auto; min-width: 0; }
+.pick-row .pick-count { color: var(--text-soft); font-size: 12px; font-variant-numeric: tabular-nums; }
+
+.pick-topics { padding: 0 0 10px 26px; display: grid; gap: 6px; }
+.pick-topics .pick-check { display: flex; align-items: baseline; gap: 8px; font-size: 13.5px; color: var(--text-muted); }
+.pick-topics .pick-count { color: var(--text-soft); font-size: 11.5px; font-variant-numeric: tabular-nums; }
+
+.pick-caret {
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  background: transparent;
+  position: relative;
+  cursor: pointer;
+  flex: 0 0 28px;
+}
+
+.pick-caret::before {
+  content: '';
+  position: absolute;
+  top: 11px;
+  left: 9px;
+  width: 7px;
+  height: 7px;
+  border-right: 1px solid var(--text-soft);
+  border-bottom: 1px solid var(--text-soft);
+  transform: rotate(45deg);
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+
+.pick-caret[aria-expanded="true"]::before { transform: rotate(-135deg); top: 13px; }
+.pick-caret:hover { border-color: var(--rule-strong); background: var(--surface-hover); }
+
+/* The session card: an index card, not a panel. */
+.practice-session {
+  border: 1px solid var(--rule-strong);
+  border-radius: 3px;
+  background: var(--bg-elevated);
+  box-shadow: none;
+}
+
+.practice-session-head {
+  padding: 12px 16px 10px;
+  border-bottom: 1px solid var(--rule);
+  display: block;
+}
+
+.practice-session-head h2 {
+  font-family: var(--serif);
+  font-size: 1.125rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+.practice-session-head #sessionCount {
+  display: inline-block;
+  margin-top: 2px;
+  color: var(--text-muted);
+  font-size: 12.5px;
+  font-variant-numeric: tabular-nums;
+}
+
+.practice-session-head .session-kind {
+  display: block;
+  margin-top: 1px;
+  font-size: 11px;
+  color: var(--text-soft);
+}
+
+.practice-session-body { padding: 12px 16px 16px; }
+.practice-session-body .practice-setup { margin-top: 14px; }
+.practice-session-body .settings-summary { font-size: 11.5px; }
+
+.session-order {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--rule);
+  display: grid;
+  gap: 8px;
+}
+
+.session-order .field { margin: 0; }
+
+.preset-row { display: flex; flex-wrap: wrap; gap: 4px 12px; margin-top: 10px; }
+.preset {
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: 12px;
+  color: var(--text-muted);
+  padding: 2px 0;
+  border-bottom: 1px solid var(--rule-strong);
+  cursor: pointer;
+}
+.preset:hover { color: var(--text); border-bottom-color: var(--text); }
+.preset:disabled { color: var(--text-soft); border-bottom-style: dotted; cursor: not-allowed; }
+
+.practice-start { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--rule); }
+.practice-start .btn-block { min-height: 42px; }
+
+@media (max-width: 1040px) {
+  .practice-layout { gap: 24px; }
+  .practice-session { position: static; }
+}
+
+/* Smart practice — the plan as a ledger, not a table inside a card. */
+.plan-total { font-size: 12px; color: var(--text-soft); font-variant-numeric: tabular-nums; }
+
+.plan-rows { list-style: none; margin: 6px 0 0; padding: 0; }
+.plan-row {
+  display: grid;
+  grid-template-columns: 2.75rem minmax(0, 1fr) 6.5rem 8.5rem;
+  align-items: baseline;
+  gap: 0 14px;
+  padding: 13px 0 12px;
+  border-bottom: 1px solid var(--rule);
+}
+.plan-row:last-child { border-bottom: 0; }
+
+.plan-num {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--text);
+  font-variant-numeric: lining-nums;
+  text-align: right;
+}
+
+.plan-name { display: block; font-size: 14.5px; color: var(--text); }
+.plan-why { display: block; margin-top: 2px; font-size: 12px; color: var(--text-soft); max-width: 52ch; }
+
+.plan-ticks { display: flex; gap: 3px; align-self: center; }
+.plan-ticks i { width: 7px; height: 12px; border: 1px solid var(--rule-strong); display: block; }
+.plan-ticks i.is-on { background: var(--ink); border-color: var(--ink); }
+
+.plan-avail { font-size: 11.5px; color: var(--text-soft); text-align: right; font-variant-numeric: tabular-nums; }
+
+.plan-empty { margin: 14px 0 0; font-size: 13px; color: var(--text-muted); }
+.plan-caution { margin: 16px 0 0; padding-top: 10px; border-top: 1px solid var(--rule); font-size: 12px; color: var(--text-soft); max-width: 62ch; }
+
+.weak-rows { list-style: none; margin: 8px 0 0; padding: 0; }
+.weak-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto 3.5rem;
+  align-items: baseline;
+  gap: 0 12px;
+  padding: 7px 0;
+  border-bottom: 1px dotted var(--rule-strong);
+}
+.weak-row:last-child { border-bottom: 0; }
+.weak-name { font-size: 13.5px; }
+.weak-sub { font-size: 11.5px; color: var(--text-soft); }
+.weak-acc { font-family: var(--serif); font-size: 15px; text-align: right; font-variant-numeric: lining-nums; }
+
+@media (max-width: 720px) {
+  .plan-row { grid-template-columns: 2.25rem minmax(0, 1fr); gap: 2px 12px; }
+  .plan-ticks, .plan-avail { display: none; }
+}
+
+/* Insights — two destinations the numbers point at, as a handover list. */
+.handover { list-style: none; margin: 0; padding: 0; }
+.handover li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 2px 14px;
+  padding: 8px 0;
+  border-bottom: 1px dotted var(--rule-strong);
+}
+.handover li:last-child { border-bottom: 0; }
+.handover a { font-size: 14.5px; }
+.handover span { font-size: 12.5px; color: var(--text-soft); font-variant-numeric: tabular-nums; }
+
+/* Question Bank — an attention list rather than a wall of health tiles. */
+.attention-count {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  line-height: 1;
+  min-width: 2.25rem;
+  text-align: right;
+  font-variant-numeric: lining-nums;
+  color: var(--now);
+}
+.handover li > span:last-child { display: flex; flex-direction: column; gap: 1px; }
+.handover small { font-size: 12px; color: var(--text-soft); }
+
+/* Mistake Book — a row is a question, its reason, and one way out. */
+.mistake-title { margin: 0; }
+.mistake-why { margin: 4px 0 0; font-size: 12px; display: flex; flex-wrap: wrap; gap: 2px 8px; align-items: baseline; }
+.mistake-why .why-note + .why-note::before { content: '·'; margin-right: 8px; color: var(--text-soft); }
+.row-maintenance { margin-top: 14px; padding-top: 10px; border-top: 1px solid var(--rule); }
+.row-maintenance .tiny { margin-left: auto; }
+
+/* A provenance word, not a badge on every row. */
+.origin-word { font-size: 12.5px; color: var(--text-soft); }

@@ -19,14 +19,11 @@
 
 import {
   esc,
-  badge,
-  card,
-  notice,
+  sheet,
+  barRows,
   dataTable,
   emptyState,
-  progressBar,
   toast,
-  evidenceMeter,
   infoToggle,
   tabs,
   mountTabs,
@@ -60,9 +57,10 @@ function activePanel(ctx) {
   return viewState.panel;
 }
 
+/** A verdict as a word, not a badge: the word is the meaning. */
 function verdictBadge(row) {
-  const tone = row.verdict === 'strong' ? 'ok' : row.verdict === 'weak' ? 'bad' : row.verdict === 'developing' ? 'warn' : 'info';
-  return badge(row.verdict, tone);
+  const cls = row.verdict === 'strong' ? 'verdict-strong' : row.verdict === 'weak' ? 'verdict-weak' : 'verdict-thin';
+  return `<span class="${cls}">${esc(row.verdict)}</span>`;
 }
 
 function accuracyText(value, sample) {
@@ -81,8 +79,8 @@ async function renderPerformancePanel(loaded = null) {
 
     if (!metas.length) {
       return `
-        ${card({
-          title: 'Analytics needs data',
+        ${sheet({
+          label: 'Analytics needs data',
           body: emptyState({
             title: 'No questions stored yet',
             message: 'Import a question bank and record some attempts; this screen reports only measured data.',
@@ -98,14 +96,13 @@ async function renderPerformancePanel(loaded = null) {
     const priorities = studyPriorities({ analytics, syllabusProgress: curriculum.progress, limit: viewState.priorityLimit });
     const counts = analytics.counts;
 
+    // A subject row opens the builder already filtered to that subject: the
+    // reader's next move after reading a figure is to practise it.
     const subjectRows = analytics.bySubject.map((row) => [
-      `<strong>${esc(row.subject)}</strong>`,
+      `<a href="${esc(topicPracticeHref(row.subject))}"><strong>${esc(row.subject)}</strong></a>`,
       String(row.available),
-      String(row.attemptedUnique),
       fmtPct(row.coverage),
-      accuracyText(row.accuracy, row.scored),
       accuracyText(row.firstAttemptAccuracy, row.firstAttemptScored),
-      verdictBadge(row),
     ]);
 
     const subjectFilter = viewState.subject;
@@ -113,12 +110,10 @@ async function renderPerformancePanel(loaded = null) {
       .filter((row) => subjectFilter === 'all' || row.subject === subjectFilter)
       .sort((a, b) => (b.available - a.available) || (a.topic < b.topic ? -1 : 1))
       .map((row) => [
-        `<strong>${esc(row.topic)}</strong><div class="tiny muted">${esc(row.subject)}</div>`,
+        `<a href="${esc(topicPracticeHref(row.subject, row.topic))}"><strong>${esc(row.topic)}</strong></a><div class="tiny muted">${esc(row.subject)}</div>`,
         String(row.available),
-        `${String(row.attemptedUnique)} <div class="tiny muted">${fmtPct(row.coverage)} covered</div>`,
-        accuracyText(row.accuracy, row.scored),
+        fmtPct(row.coverage),
         accuracyText(row.firstAttemptAccuracy, row.firstAttemptScored),
-        row.avgTimeSec === null ? '<span class="soft">—</span>' : `${esc(String(row.avgTimeSec))}s`,
         verdictBadge(row),
       ]);
 
@@ -185,80 +180,73 @@ async function renderPerformancePanel(loaded = null) {
       ...underPractised.map((r) => ({ ...r, reason: `${fmtPct(r.coverage)} covered` })),
     ].slice(0, 10);
 
+    // One list, four reasons: weak, strong, thin evidence, never attempted or
+    // barely touched. They were four tables answering the same question.
+    const nextRows = [
+      ...verdictRows.map((r) => ({
+        subject: r.subject,
+        topic: r.topic,
+        accuracy: r.accuracy,
+        reason: r.kind === 'weak' ? 'weak — needs work' : r.kind === 'strong' ? 'holding up' : `${r.scored || 0} judged — thin evidence`,
+      })),
+      ...coverageRows.map((r) => ({ ...r, reason: r.reason === 'never attempted' ? 'never attempted' : `only ${r.reason}` })),
+    ].slice(0, 12);
+
+    const dueNow = analytics.revision.dueToday + analytics.revision.overdue;
+
     return `
-      <p class="quiet-note">All figures come from attempts stored on this device. Nothing is estimated, extrapolated or projected.</p>
+      ${sheet({
+        label: 'Your own attempts',
+        action: infoToggle('How to read these figures', `<p class="small m-0">Question counts here describe your own imported bank, not the examination. A topic with 3 stored questions cannot support a strong conclusion, so every figure below shows its sample size, and rows with fewer than ${MIN_SAMPLE_HINT} scored answers are marked “small sample”. A “weak topic” verdict needs at least ${MIN_SAMPLE_STRONG}. Nothing is estimated or projected.</p>`),
+        body: `<p class="facts-line">
+          <span><b>${analytics.accuracy.firstAttemptSample ? fmtPct(analytics.accuracy.firstAttempt) : '—'}</b> First-attempt accuracy${analytics.accuracy.firstAttemptSample ? ` <small>on ${analytics.accuracy.firstAttemptSample} first attempts</small>` : ''}</span>
+          <span><b>${counts.correct + counts.incorrect ? fmtPct(analytics.accuracy.all) : '—'}</b> accuracy, all attempts <small>${counts.correct} correct, ${counts.incorrect} wrong</small></span>
+          <span><b>${counts.totalAttempts ? fmtPct(analytics.accuracy.answerRate) : '—'}</b> answer rate <small>${counts.unanswered} left unanswered</small></span>
+        </p>`,
+        footer: '<p class="tiny text-soft m-0">All figures come from attempts stored on this device. Nothing is estimated, extrapolated or projected.</p>',
+      })}
 
-      <div class="stat-strip stat-strip-3" role="group" aria-label="Key figures">
-        <div class="stat"><span class="stat-label">First-attempt accuracy</span><span class="stat-value">${analytics.accuracy.firstAttemptSample ? fmtPct(analytics.accuracy.firstAttempt) : '—'}</span><span class="stat-note">${analytics.accuracy.firstAttemptSample ? `on ${analytics.accuracy.firstAttemptSample} first attempts` : 'no first attempts yet'}</span></div>
-        <div class="stat"><span class="stat-label">Accuracy, all attempts</span><span class="stat-value">${counts.correct + counts.incorrect ? fmtPct(analytics.accuracy.all) : '—'}</span><span class="stat-note">${counts.correct} correct · ${counts.incorrect} incorrect</span></div>
-        <div class="stat"><span class="stat-label">Answer rate</span><span class="stat-value">${counts.totalAttempts ? fmtPct(analytics.accuracy.answerRate) : '—'}</span><span class="stat-note">${counts.unanswered} left unanswered · ${counts.unscored} unscored</span></div>
-      </div>
+      ${sheet({
+        label: 'Where to look next',
+        action: '<a class="quiet-action" href="#/topic">Build a session</a>',
+        body: nextRows.length
+          ? barRows(
+              nextRows.map((r) => ({
+                name: `<a href="${esc(topicPracticeHref(r.subject, r.topic))}">${esc(r.topic)}</a><small>${esc(r.subject)} <span aria-hidden="true">/</span> ${esc(r.reason)}</small>`,
+                value: r.accuracy === null || r.accuracy === undefined ? 0 : r.accuracy,
+                valueLabel: r.accuracy === null || r.accuracy === undefined ? '—' : fmtPct(r.accuracy),
+                action: `<a class="quiet-action" href="${esc(topicPracticeHref(r.subject, r.topic))}">Practise</a>`,
+              })),
+            )
+          : '<p class="quiet-note m-0">No topic has enough judged answers for a verdict yet. A weak or strong verdict needs at least five scored answers.</p>',
+        footer: `<p class="tiny text-soft m-0">A verdict needs at least ${MIN_SAMPLE_STRONG} scored answers, and fewer than ${MIN_SAMPLE_HINT} judged answers is shown as a small sample. A study aid built from your own attempts and the questions you happen to have imported — not a prediction of examination content.</p>`,
+      })}
 
-      ${infoToggle('How to read these figures', `<p class="small m-0">Question counts here describe your own imported bank, not the examination. A topic with 3 stored questions cannot support a strong conclusion, so figures below show their sample size, and rows with fewer than ${MIN_SAMPLE_HINT} scored answers are labelled “insufficient evidence”. A “weak topic” verdict needs at least ${MIN_SAMPLE_STRONG}.</p>`)}
-
-      ${card({
-        title: 'Subjects',
+      ${sheet({
+        label: 'By subject',
         body: dataTable({
-          columns: [{ label: 'Subject' }, { label: 'Available', num: true }, { label: 'Attempted', num: true }, { label: 'Coverage', num: true }, { label: 'Accuracy (all)', num: true }, { label: 'First-attempt accuracy', num: true }, { label: 'Verdict' }],
+          columns: [{ label: 'Subject' }, { label: 'Available', num: true }, { label: 'Coverage', num: true }, { label: 'First-attempt accuracy', num: true }],
           rows: subjectRows,
           empty: 'No subjects yet.',
           className: 'compact cards-mobile',
         }),
       })}
 
-      ${card({
-        title: 'Topics',
+      ${sheet({
+        label: 'By topic',
         count: `${topicRows.length} topic${topicRows.length === 1 ? '' : 's'}`,
-        actions: `<label class="field field-inline m-0"><span class="label-text">Subject</span>
+        action: `<label class="field field-inline m-0"><span class="label-text">Subject</span>
           <select id="anaSubject"><option value="all">All subjects</option>${subjects.map((s) => `<option value="${esc(s)}" ${viewState.subject === s ? 'selected' : ''}>${esc(s)}</option>`).join('')}</select></label>`,
         body: dataTable({
-          columns: [{ label: 'Topic' }, { label: 'Available', num: true }, { label: 'Attempted', num: true }, { label: 'Accuracy (all)', num: true }, { label: 'First-attempt', num: true }, { label: 'Avg time', num: true }, { label: 'Verdict' }],
+          columns: [{ label: 'Topic' }, { label: 'Available', num: true }, { label: 'Coverage', num: true }, { label: 'First-attempt accuracy', num: true }, { label: 'Verdict' }],
           rows: topicRows,
           empty: 'No topics match this filter.',
           className: 'compact cards-mobile',
         }),
       })}
 
-      ${card({
-        title: 'Where the evidence points',
-        subtitle: 'Weak, strong and too thin to judge — the three verdicts side by side',
-        body: verdictRows.length
-          ? dataTable({
-              columns: [{ label: 'Topic' }, { label: 'Verdict' }, { label: 'Accuracy', num: true }, { label: 'Scored', num: true }, { label: 'Coverage', num: true }],
-              rows: verdictRows.map((r) => [
-                `<strong>${esc(r.topic)}</strong><div class="tiny muted">${esc(r.subject)}</div>`,
-                badge(r.kind === 'weak' ? 'weak' : r.kind === 'strong' ? 'strong' : 'too thin', r.kind === 'weak' ? 'bad' : r.kind === 'strong' ? 'ok' : 'warn'),
-                r.accuracy === null || r.accuracy === undefined ? '<span class="soft">—</span>' : fmtPct(r.accuracy),
-                String(r.scored || 0),
-                fmtPct(r.coverage),
-              ]),
-              className: 'compact cards-mobile',
-            })
-          : '<p class="muted small">No topic has enough judged answers for a verdict yet. A weak or strong verdict needs at least five scored answers.</p>',
-        footer: `A verdict needs at least ${MIN_SAMPLE_STRONG} scored answers; fewer than ${MIN_SAMPLE_HINT} is shown as a small sample. Nothing here is a prediction.`,
-      })}
-
-      ${card({
-        title: 'Coverage gaps',
-        subtitle: 'Topics you have never attempted, or touched only lightly',
-        body: coverageRows.length
-          ? dataTable({
-              columns: [{ label: 'Topic' }, { label: 'Available', num: true }, { label: 'Covered', num: true }, { label: 'Why it is here' }, { label: '' }],
-              rows: coverageRows.map((r) => [
-                `<strong>${esc(r.topic)}</strong><div class="tiny muted">${esc(r.subject)}</div>`,
-                String(r.available),
-                fmtPct(r.coverage),
-                esc(r.reason),
-                `<a class="btn btn-sm" href="${esc(topicPracticeHref(r.subject, r.topic))}">Practise</a>`,
-              ]),
-              className: 'compact cards-mobile',
-            })
-          : '<p class="muted small">Every topic with stored questions has been attempted at more than 30% coverage.</p>',
-      })}
-
-      ${card({
-        title: 'How you answer',
-        subtitle: 'Confidence marking and pace, measured across your recorded attempts',
+      ${sheet({
+        label: 'How you answer',
         body: `
           ${
             analytics.confidence.enabled
@@ -268,57 +256,38 @@ async function renderPerformancePanel(loaded = null) {
                   empty: 'No confidence data yet.',
                   className: 'compact cards-mobile',
                 })}
-                 <div class="row mt-2">
-                   ${badge(`${analytics.confidence.overconfidence} confident but wrong`, analytics.confidence.overconfidence ? 'bad' : '')}
-                   ${badge(`${analytics.confidence.underconfidence} correct but unsure/guessed`, 'warn')}
-                 </div>
-                 <p class="tiny muted">${esc(analytics.confidence.note)}</p>`
+                 <p class="quiet-note m-0"><strong>${analytics.confidence.overconfidence}</strong> confident but wrong, <strong>${analytics.confidence.underconfidence}</strong> correct but unsure or guessed. ${esc(analytics.confidence.note)}</p>`
               : `<p class="small muted">Mark confidence on any question, in any session, to compare how sure you felt with how you did. Correct-but-guessed answers are scheduled for earlier revision.</p>`
           }
-          <div class="row stats-inline mt-3">
-            <span><strong>${analytics.time.avgSecPerQuestion === null ? '—' : `${analytics.time.avgSecPerQuestion}s`}</strong> average per question</span>
-            <span><strong>${analytics.time.medianSecPerQuestion === null ? '—' : `${analytics.time.medianSecPerQuestion}s`}</strong> median</span>
-            <span><strong>${analytics.time.avgSecPerCorrect === null ? '—' : `${analytics.time.avgSecPerCorrect}s`}</strong> per correct answer</span>
-          </div>
+          <p class="facts-line mt-3">
+            <span><b>${analytics.time.avgSecPerQuestion === null ? '—' : `${analytics.time.avgSecPerQuestion}s`}</b> average per question</span>
+            <span><b>${analytics.time.medianSecPerQuestion === null ? '—' : `${analytics.time.medianSecPerQuestion}s`}</b> median</span>
+            <span><b>${analytics.time.avgSecPerCorrect === null ? '—' : `${analytics.time.avgSecPerCorrect}s`}</b> per correct answer</span>
+          </p>
           <details class="disclosure mt-2"><summary>Slowest recorded answers (${slowestRows.length})</summary>
             ${dataTable({ columns: [{ label: 'Question' }, { label: 'Subject' }, { label: 'Topic' }, { label: 'Time', num: true }, { label: 'Outcome' }], rows: slowestRows, empty: 'No timings recorded.', className: 'compact' })}
           </details>`,
       })}
 
-      ${card({
-        title: 'Signals for the next session',
+      ${sheet({
+        label: 'Mistakes and revision in hand',
         body: `
-          <div class="split-2">
-            <div>
-              <h3 class="card-section-title">Mistake book</h3>
-              <p class="small muted">${analytics.mistakes.open} open · ${analytics.mistakes.repeated} repeated · ${counts.incorrect} wrong answers · ${counts.unanswered} skipped · ${counts.flagged} flagged</p>
-              ${analytics.mistakes.top.length
-                ? dataTable({
-                    columns: [{ label: 'Most repeated' }, { label: 'Times', num: true }, { label: 'Last seen' }],
-                    rows: analytics.mistakes.top.slice(0, 6).map((m) => [
-                      `<span class="mono tiny">${esc(m.question_id)}</span><div class="tiny muted">${esc(m.subject || '—')} · ${esc(m.topic || '—')} · ${esc(m.type)}</div>`,
-                      String(m.occurrences),
-                      esc(fmtDate(m.last_seen_at)),
-                    ]),
-                    className: 'compact',
-                  })
-                : '<p class="muted small">No open mistake entries.</p>'}
-              <div class="row mt-2"><a class="btn btn-sm" href="#/mistakes">Open the Mistake Book</a></div>
-            </div>
-            <div>
-              <h3 class="card-section-title">Revision</h3>
-              <p class="small muted">${analytics.revision.dueToday + analytics.revision.overdue} due now · ${analytics.revision.upcoming} upcoming · ${analytics.revision.tracked} tracked</p>
-              ${
-                analytics.revision.effectiveness.withHistory
-                  ? `${progressBar(analytics.revision.effectiveness.improved / analytics.revision.effectiveness.withHistory, 'ok')}
-                     <p class="small mt-2">${analytics.revision.effectiveness.improved} improved · ${analytics.revision.effectiveness.worsened} declined · ${analytics.revision.effectiveness.unchanged} unchanged, across ${analytics.revision.effectiveness.withHistory} question(s).</p>`
-                  : '<p class="muted small">Not enough repeated attempts yet to compare first and latest answers.</p>'
-              }
-              <div class="row mt-2"><a class="btn btn-sm" href="#/revision">Revision Centre</a></div>
-            </div>
-          </div>`,
-      })}
-`;
+          <ul class="handover">
+            <li>
+              <a href="#/mistakes"><strong>Mistake Book</strong></a>
+              <span>${analytics.mistakes.open} open · ${analytics.mistakes.repeated} repeated · ${counts.unanswered} skipped · ${counts.flagged} flagged</span>
+            </li>
+            <li>
+              <a href="#/revision"><strong>Revision Centre</strong></a>
+              <span>${dueNow} due now · ${analytics.revision.upcoming} upcoming · ${analytics.revision.tracked} tracked</span>
+            </li>
+          </ul>
+          <p class="quiet-note m-0">${
+            analytics.revision.effectiveness.withHistory
+              ? `On repeat attempts, revision improved ${analytics.revision.effectiveness.improved} and set back ${analytics.revision.effectiveness.worsened} of ${analytics.revision.effectiveness.withHistory} question(s). The Mistake Book holds the ones still open.`
+              : 'Not enough repeated attempts yet to compare a first answer with the latest one.'
+          }</p>`,
+      })}`;
 }
 
 /**
@@ -335,8 +304,8 @@ async function renderPrioritiesPanel(loaded = null) {
   const priorityShown = viewState.showAllPriorities ? priorityAll : priorityAll.slice(0, 10);
 
   return `
-    ${card({
-      title: 'Topic frequency in your bank',
+    ${sheet({
+      label: 'Topic frequency in your bank',
       count: `${freqAll.length} topic${freqAll.length === 1 ? '' : 's'}`,
       body: `
         ${dataTable({
@@ -351,11 +320,11 @@ async function renderPrioritiesPanel(loaded = null) {
           className: 'compact cards-mobile',
         })}
         ${showAll({ action: 'show-all-frequency', hidden: freqAll.length - freqShown.length, label: 'Show all topics' })}`,
-      footer: `${esc(analytics.frequency.disclaimer)} Topics tagged “unclassified” are excluded; ${analytics.frequency.byTopic.filter((r) => r.unclassified).length} group(s) are currently unclassified.`,
+      footer: `<p class="tiny text-soft m-0">${esc(analytics.frequency.disclaimer)} Topics tagged “unclassified” are excluded; ${analytics.frequency.byTopic.filter((r) => r.unclassified).length} group(s) are currently unclassified.</p>`,
     })}
 
-    ${card({
-      title: 'Study priorities',
+    ${sheet({
+      label: 'Study priorities',
       count: `${priorityAll.length} ranked`,
       body: `
         ${dataTable({
@@ -371,7 +340,7 @@ async function renderPrioritiesPanel(loaded = null) {
           className: 'compact cards-mobile',
         })}
         ${showAll({ action: 'show-all-priorities', hidden: priorityAll.length - priorityShown.length, label: 'Show all priorities' })}`,
-      footer: 'A study aid based on your own recorded evidence and the questions you happen to have imported — not a prediction of examination content or of your result.',
+      footer: '<p class="tiny text-soft m-0">A study aid based on your own recorded evidence and the questions you happen to have imported — not a prediction of examination content or of your result.</p>',
     })}`;
 }
 
@@ -429,19 +398,20 @@ export default {
     // The three numbers the two tabs are most often confused for one another.
     // They belong to the section, not to either tab, so they are stated once
     // here and neither panel repeats them.
+    // The three numbers that are easily confused, stated once as a sentence of
+    // facts rather than three tiles. Nothing repeats them in either panel.
     const strip = loaded.metas.length
-      ? `<div class="stat-strip stat-strip-3" role="group" aria-label="Key figures">
-          <div class="stat"><span class="stat-label">Questions available</span><span class="stat-value">${counts.availableQuestions}</span><span class="stat-note">unique questions stored on this device</span></div>
-          <div class="stat"><span class="stat-label">Unique questions attempted</span><span class="stat-value">${counts.attemptedUnique}</span><span class="stat-note">${fmtPct(counts.coverage)} of the bank — repeats do not increase this</span></div>
-          <div class="stat"><span class="stat-label">Total attempts</span><span class="stat-value">${counts.totalAttempts}</span><span class="stat-note">${counts.repeatAttempts} attempt(s) beyond the first on a question</span></div>
-        </div>
-        ${infoToggle('Available, attempted and attempts — what differs', '<p class="small m-0">Three different numbers: what is <em>available</em> to answer, what you have <em>attempted</em> at least once, and how many <em>attempts</em> you have made. The two tabs below never mix them — one reports your attempts, the other counts the stored papers.</p>')}`
+      ? `<p class="facts-line" role="group" aria-label="Key figures">
+          <span><b>${counts.availableQuestions}</b> Questions available <small>stored on this device</small></span>
+          <span><b>${counts.attemptedUnique}</b> Unique questions attempted <small>${fmtPct(counts.coverage)} of the bank</small></span>
+          <span><b>${counts.totalAttempts}</b> Total attempts <small>${counts.repeatAttempts} beyond the first</small></span>
+        </p>`
       : '';
 
     return `
       ${screenHead({
         title: 'Insights',
-        purpose: 'Two readings of the same preparation: what you have done, and what the papers stored on this device actually contain. They are counted from different data and are never mixed.',
+        purpose: 'What you have done, with what the papers you imported contain — counted from different data, never mixed.',
         primary: '<a class="btn btn-primary" href="#/topic">Practise a weak topic</a>',
         secondary: '<button class="btn btn-sm" type="button" id="anaExportHead">Export these figures</button>',
       })}

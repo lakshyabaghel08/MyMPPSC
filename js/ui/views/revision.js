@@ -10,45 +10,31 @@ import { state } from '../../core/state.js';
 import {
   esc,
   badge,
-  card,
   notice,
   dataTable,
   emptyState,
   toast,
   openModal,
   confirmDialog,
-  progressBar,
-  renderExplanation,
-  answerKeyBadge,
   infoToggle,
   screenHead,
-  countChip,
-  filterChip,
-  cardInfo,
+  sheet,
+  marginNote,
+  metaLine,
+  stamp,
 } from '../components.js';
 import { fmtDate, fmtRelative, todayKey } from '../../core/util.js';
+import { getQuestion } from '../../services/questions.js';
 import * as revision from '../../services/revision.js';
-import { allAttempts, attemptHistoryForQuestion, attemptTrend } from '../../services/attempts.js';
-import { getQuestions } from '../../services/questions.js';
+import { allAttempts, listMistakes } from '../../services/attempts.js';
 import { startPracticeTest } from './shared.js';
+import { loadReview, reviewBodyMarkup } from '../reviewpanel.js';
 import { revisionSkeleton } from '../skeletons.js';
 
 const viewState = { filter: 'due', subject: 'all', topic: 'all', limit: revision.REVISION_PAGE_SIZE };
 
 /** How many of the queue's filters are away from their starting state. */
 const activeRevisionFilters = () => [viewState.filter !== 'due', viewState.subject !== 'all', viewState.topic !== 'all'].filter(Boolean).length;
-
-function stateLabel(value) {
-  return { new: 'new', learning: 'learning', review: 'review', mastered: 'mastered' }[value] || value;
-}
-
-function dueTone(rec) {
-  const today = todayKey();
-  if (!rec.next_due) return '';
-  if (rec.next_due < today) return 'bad';
-  if (rec.next_due === today) return 'warn';
-  return 'ok';
-}
 
 function rulesBody() {
   const cfg = state.settings.revision;
@@ -67,15 +53,6 @@ function rulesBody() {
       <p class="tiny muted mb-0">This is a spaced-repetition heuristic based on your own recorded answers. It cannot guarantee that anything is remembered, and it is not a prediction about any examination. The queue holds at most one record per bank question, so it stays manageable however large the bank grows; each sitting takes at most ${revision.REVISION_SESSION_CAP} due questions.</p>`;
 }
 
-function rulesCard() {
-  return infoToggle('How the revision schedule is decided', rulesBody());
-}
-
-function reasonCell(rec) {
-  const basis = rec.basis ? revision.describeScheduleBasis(rec.basis) : 'No basis recorded.';
-  return `<div class="small">${esc(rec.reason || '—')}</div><div class="tiny muted mono">${esc(basis)}</div>`;
-}
-
 export default {
   title: 'Revision Centre',
 
@@ -92,30 +69,20 @@ export default {
       return `
         ${screenHead({
           title: 'Revision Centre',
-          purpose: 'Questions scheduled from your own recorded outcomes, with the reason for each date. Every date can be inspected and overridden.',
-          primary: metas.length ? '<a class="btn btn-primary" href="#/topic">Start practising</a>' : '<a class="btn btn-primary" href="#/bank">Import a question bank</a>',
+          eyebrow: 'Nothing scheduled yet',
+          purpose: metas.length ? 'Dates appear from your own recorded outcomes.' : 'Revision is built from attempts on your own bank.',
+          primary: metas.length ? '<a class="btn btn-primary" href="#/topic">Start practising</a>' : '<a class="btn btn-primary" href="#/bank">Import a bank</a>',
         })}
-        ${card({
-          title: 'Nothing is scheduled yet',
-          info: cardInfo('How the revision schedule is decided', rulesBody()),
-          body: emptyState({
-            title: metas.length ? 'Take a test and revision dates appear automatically' : 'Import a question bank first',
-            message: metas.length
-              ? 'Every question you attempt gets its own revision date, derived from whether you were right, how confident you were and how long you took. You can also add questions to the queue by hand.'
-              : 'The revision schedule is built from your own attempts on imported questions.',
-            willShow: 'A queue of questions due today, overdue and upcoming, each with the rule that scheduled it.',
-            action: metas.length ? '<a class="btn btn-primary" href="#/topic">Start practising</a>' : '<a class="btn btn-primary" href="#/bank">Import a question bank</a>',
-          }),
+        ${sheet({
+          label: 'How it works',
+          body: `<p class="m-0">Every question you attempt gets its own revision date, derived from whether you were right, how confident you were and how long you took. You can also add one by hand.</p>`,
+          footer: infoToggle('How the revision schedule is decided', rulesBody()),
         })}`;
     }
 
     const buckets = revision.bucketise(records);
     const attempts = await allAttempts();
     const effectiveness = revision.revisionEffectiveness(records, attempts);
-    // A single pass over the attempts is all this screen needs. (It used to
-    // build the full analytics roll-up on every render, which grows with
-    // every attempt ever recorded and made the centre slower the more the
-    // bank was used.)
     const scoredAttempts = attempts.filter((a) => a.outcome === 'correct' || a.outcome === 'incorrect');
     const revisionAccuracy = scoredAttempts.length ? scoredAttempts.filter((a) => a.outcome === 'correct').length / scoredAttempts.length : NaN;
 
@@ -128,101 +95,138 @@ export default {
     const subjects = Array.from(new Set(records.map((r) => r.subject || 'Unclassified'))).sort();
     const topics = Array.from(new Set(records.filter((r) => viewState.subject === 'all' || (r.subject || 'Unclassified') === viewState.subject).map((r) => r.topic || 'Unclassified'))).sort();
 
-    const upcomingByDay = new Map();
-    for (const rec of [...buckets.dueToday, ...buckets.upcoming]) {
-      const key = rec.next_due;
-      upcomingByDay.set(key, (upcomingByDay.get(key) || 0) + 1);
-    }
+    const openMistakeKeys = new Set((await listMistakes({ status: 'open' })).map((row) => row.question_id));
+    const today = todayKey();
+    const dueCount = buckets.overdue.length + buckets.dueToday.length;
+    const cap = revision.REVISION_SESSION_CAP;
 
     const visible = filtered.slice(0, viewState.limit);
-    const rows = visible.map((rec) => {
-      const meta = state.questionIndex.get(rec.question_id);
-      const today = todayKey();
-      return [
-        `<div><span class="mono tiny">${esc(rec.question_id)}</span></div>
-         <div class="tiny muted">${meta ? `${esc(meta.subject || 'Unclassified')} · ${esc(meta.topic || '—')}` : '<span class="soft">not in the bank</span>'}</div>`,
-        `${badge(rec.next_due < today ? `overdue · ${esc(rec.next_due)}` : rec.next_due === today ? 'due today' : `due ${esc(rec.next_due)}`, dueTone(rec))}
-         <div class="tiny muted">${esc(stateLabel(rec.state))} · level ${esc(String(rec.level))} · every ${esc(String(rec.interval_days))} day(s) · ${esc(String(rec.lapses || 0))} lapse(s)</div>`,
-        reasonCell(rec),
-        `<div class="row tight">
-          <button class="btn btn-sm" type="button" data-action="revise" data-qid="${esc(rec.question_id)}">Practise</button>
-          <button class="btn btn-sm" type="button" data-action="mark" data-qid="${esc(rec.question_id)}">Mark revised</button>
-          <button class="btn btn-sm" type="button" data-action="details" data-qid="${esc(rec.question_id)}">Details</button>
-        </div>`,
-      ];
+    // The stem is what the reader is deciding about, so it is worth one read
+    // per visible row (a page is at most REVISION_PAGE_SIZE questions).
+    const stems = new Map();
+    await Promise.all(
+      visible.map(async (rec) => {
+        const question = state.questionIndex.has(rec.question_id) ? await getQuestion(rec.question_id) : null;
+        const variant = question?.language_variants?.[state.settings.language] || Object.values(question?.language_variants || {})[0];
+        stems.set(rec.question_id, variant?.question_text || '');
+      }),
+    );
+
+    const entries = visible
+      .map((rec) => {
+        const meta = state.questionIndex.get(rec.question_id);
+        const overdue = rec.next_due < today;
+        const stampText = overdue ? 'overdue' : rec.next_due === today ? 'today' : fmtDate(rec.next_due);
+        const stem = String(stems.get(rec.question_id) || '').replace(/\s+/g, ' ').trim();
+        const clipped = stem.length > 150 ? `${stem.slice(0, 150).trimEnd()}…` : stem;
+        return `<article class="queue-entry">
+          <div class="queue-stamp">
+            ${stamp(stampText, { tone: overdue || rec.next_due === today ? 'now' : '' })}
+            <span class="stamp">level ${esc(String(rec.level))}</span>
+          </div>
+          <div class="queue-main">
+            <p class="queue-question"${meta?.langs?.includes('hi') && state.settings.language === 'hi' ? ' lang="hi"' : ''}>${clipped ? esc(clipped) : `<span class="text-soft">Question ${esc(rec.question_id)} — not in the bank</span>`}</p>
+            <p class="meta-line">
+              ${meta ? `${esc(meta.subject || 'Unclassified')} <span aria-hidden="true">/</span> ${esc(meta.topic || '—')}` : 'not stored'}
+              ${openMistakeKeys.has(rec.question_id) ? '<span class="text-now">also an open mistake</span>' : ''}
+              ${rec.manual_override ? '<span>date set by you</span>' : ''}
+              ${rec.lapses ? `<span>${esc(String(rec.lapses))} lapse(s)</span>` : ''}
+            </p>
+          </div>
+          <div class="queue-actions">
+            <button class="quiet-action" type="button" data-action="mark-outcome" data-outcome="correct" data-qid="${esc(rec.question_id)}">Knew it</button>
+            <button class="quiet-action" type="button" data-action="mark-outcome" data-outcome="incorrect" data-qid="${esc(rec.question_id)}">Still unclear</button>
+            <button class="quiet-action" type="button" data-action="mark-note" data-qid="${esc(rec.question_id)}">With a note…</button>
+            <button class="quiet-action" type="button" data-action="details" data-qid="${esc(rec.question_id)}" aria-expanded="false" aria-controls="revrow-${esc(rec.question_id)}">Why this date</button>
+            <button class="btn btn-sm" type="button" data-action="revise" data-qid="${esc(rec.question_id)}">Practise</button>
+          </div>
+        </article>
+        <div class="queue-detail" id="revrow-${esc(rec.question_id)}" hidden><div class="review-inline" data-review-for="${esc(rec.question_id)}"></div></div>`;
+      })
+      .join('');
+
+    // The next seven days, as a strip: the one visual that answers "what is
+    // coming" without a table of dates.
+    const days = Array.from({ length: 7 }, (_, i) => {
+      const date = new Date();
+      date.setDate(date.getDate() + i);
+      const key = date.toISOString().slice(0, 10);
+      const count = [...buckets.dueToday, ...buckets.upcoming].filter((rec) => rec.next_due === key).length;
+      return { date, key, count };
     });
+    const bucketOf = (count) => (count === 0 ? 0 : count <= 2 ? 1 : count <= 5 ? 2 : count <= 10 ? 3 : 4);
+    const loadStrip = `<div class="load-strip" role="img" aria-label="Questions due over the next seven days: ${days.map((d) => `${d.date.getDate()} ${d.count}`).join(', ')}">
+        ${days
+          .map(
+            (d) => `<span class="load-day"><i class="lvl${bucketOf(d.count)}"></i><b>${d.date.toLocaleDateString('en-GB', { weekday: 'short' }).slice(0, 2)}</b><em>${d.count || ''}</em></span>`,
+          )
+          .join('')}
+      </div>`;
+
+    const margin = marginNote(
+      `<p>Tracked <b class="fig">${records.length}</b> of ${metas.length} questions.</p>
+       <p>Average interval <b class="fig">${Math.round(records.reduce((a, r) => a + (r.interval_days || 0), 0) / records.length)}</b> days.</p>
+       <p>Lapses <b class="fig">${records.reduce((a, r) => a + (r.lapses || 0), 0)}</b> — wrong or blanked after scheduling.</p>
+       <p>Revision accuracy <b class="fig">${Number.isNaN(revisionAccuracy) ? '—' : `${Math.round(revisionAccuracy * 100)}%`}</b> across scored attempts.</p>
+       ${
+         effectiveness.withHistory
+           ? `<p>First to latest attempt: <b class="fig">${effectiveness.improved}</b> improved, ${effectiveness.worsened} declined, ${effectiveness.unchanged} unchanged.</p>`
+           : `<p>Not enough history yet to say whether revision is working — two scored attempts on a question are needed.</p>`
+       }`,
+      { title: 'Schedule health' },
+    );
 
     return `
       ${screenHead({
         title: 'Revision Centre',
-        purpose: `${buckets.overdue.length + buckets.dueToday.length} question${buckets.overdue.length + buckets.dueToday.length === 1 ? '' : 's'} due now${buckets.overdue.length ? ` · ${buckets.overdue.length} overdue` : ''}. Each date comes from your own recorded outcome, and every one can be inspected or overridden.`,
-        primary: `<button class="btn btn-primary" type="button" data-action="revise-due" ${buckets.dueToday.length + buckets.overdue.length ? '' : 'disabled'}>
-            Start revision (${Math.min(revision.REVISION_SESSION_CAP, buckets.dueToday.length + buckets.overdue.length)} of ${buckets.dueToday.length + buckets.overdue.length} due)
-          </button>`,
-        secondary: '<button class="btn btn-sm" type="button" data-action="add-manual">Add a question</button>',
+        eyebrow: dueCount ? `${dueCount} due now${buckets.overdue.length ? `, ${buckets.overdue.length} overdue` : ''}` : 'Nothing due today',
+        purpose: 'Each date comes from your own recorded outcomes, and can be overridden.',
+        primary: `<button class="btn btn-primary" type="button" data-action="revise-due" ${dueCount ? '' : 'disabled'}>Revise ${Math.min(cap, dueCount)} of ${dueCount}</button>`,
+        secondary: '<button class="btn btn-sm btn-quiet" type="button" data-action="add-manual">Add a question</button>',
       })}
 
-      ${card({
-        title: `Queue (${filtered.length} of ${records.length})`,
-        info: cardInfo('How the revision schedule is decided', rulesBody()),
-        body: `${filterChip(activeRevisionFilters(), { unit: 'filter' })}
-          <p class="tiny muted">Most overdue first, at most ${revision.REVISION_SESSION_CAP} questions in one sitting — the rest stay due for the next one.</p>
-          <div class="filters">
-            <label class="field"><span class="label-text">Show</span>
-              <select id="revFilter">
-                <option value="due" ${viewState.filter === 'due' ? 'selected' : ''}>Due now (${buckets.dueToday.length + buckets.overdue.length})</option>
-                <option value="upcoming" ${viewState.filter === 'upcoming' ? 'selected' : ''}>Upcoming (${buckets.upcoming.length})</option>
-                <option value="all" ${viewState.filter === 'all' ? 'selected' : ''}>Everything (${records.length})</option>
-              </select>
-            </label>
-            <label class="field"><span class="label-text">Subject</span>
-              <select id="revSubject"><option value="all">All subjects</option>${subjects.map((s) => `<option value="${esc(s)}" ${viewState.subject === s ? 'selected' : ''}>${esc(s)}</option>`).join('')}</select>
-            </label>
-            <label class="field"><span class="label-text">Topic</span>
-              <select id="revTopic"><option value="all">All topics</option>${topics.map((t) => `<option value="${esc(t)}" ${viewState.topic === t ? 'selected' : ''}>${esc(t)}</option>`).join('')}</select>
-            </label>
-          </div>
-          ${dataTable({
-            columns: [{ label: 'Question' }, { label: 'Schedule' }, { label: 'Why this date' }, { label: 'Actions' }],
-            rows,
-            empty: 'Nothing matches this filter.',
-            className: 'compact',
+      <div class="with-margin">
+        <div>
+          ${sheet({
+            label: `Queue — ${filtered.length} of ${records.length}`,
+            action: infoToggle('How the revision schedule is decided', rulesBody()),
+            body: `
+              <div class="filters">
+                <label class="field"><span class="label-text">Show</span>
+                  <select id="revFilter">
+                    <option value="due" ${viewState.filter === 'due' ? 'selected' : ''}>Due now (${dueCount})</option>
+                    <option value="upcoming" ${viewState.filter === 'upcoming' ? 'selected' : ''}>Upcoming (${buckets.upcoming.length})</option>
+                    <option value="all" ${viewState.filter === 'all' ? 'selected' : ''}>Everything (${records.length})</option>
+                  </select>
+                </label>
+                <label class="field"><span class="label-text">Subject</span>
+                  <select id="revSubject"><option value="all">All subjects</option>${subjects.map((s2) => `<option value="${esc(s2)}" ${viewState.subject === s2 ? 'selected' : ''}>${esc(s2)}</option>`).join('')}</select>
+                </label>
+                <label class="field"><span class="label-text">Topic</span>
+                  <select id="revTopic"><option value="all">All topics</option>${topics.map((t) => `<option value="${esc(t)}" ${viewState.topic === t ? 'selected' : ''}>${esc(t)}</option>`).join('')}</select>
+                </label>
+              </div>
+              ${
+                visible.length
+                  ? `<div class="queue-list">${entries}</div>`
+                  : `<p class="quiet-note">Nothing matches this filter. ${records.length} question(s) are still tracked.</p>`
+              }
+              ${
+                filtered.length > visible.length
+                  ? `<div class="row mt-3"><button class="quiet-action" type="button" data-action="show-more">Show more — ${visible.length} of ${filtered.length} shown</button></div>`
+                  : ''
+              }`,
+            footer: `<p class="tiny text-soft m-0">Most overdue first; one sitting takes at most ${cap} questions, and the rest stay due.</p>`,
           })}
-          ${
-            filtered.length > visible.length
-              ? `<div class="row mt-2"><button class="btn btn-sm" type="button" data-action="show-more">Show more (${visible.length} of ${filtered.length} shown)</button></div>`
-              : ''
-          }`,
-      })}
+        </div>
+        ${margin}
+      </div>
 
-      ${card({
-        title: 'Schedule health',
-        info: cardInfo('How the revision schedule is decided', rulesBody()),
-        body: `
-          <div class="grid tiles">
-            <div class="tile"><span class="tile-label">Tracked</span><span class="tile-value">${records.length}</span><span class="tile-sub">${Math.round((records.length / Math.max(1, metas.length)) * 100)}% of the bank</span></div>
-            <div class="tile"><span class="tile-label">Average interval</span><span class="tile-value">${Math.round(records.reduce((a, r) => a + (r.interval_days || 0), 0) / records.length)} <small>days</small></span><span class="tile-sub">across tracked questions</span></div>
-            <div class="tile"><span class="tile-label">Lapses</span><span class="tile-value">${records.reduce((a, r) => a + (r.lapses || 0), 0)}</span><span class="tile-sub">wrong or unanswered after scheduling</span></div>
-            <div class="tile"><span class="tile-label">Revision accuracy</span><span class="tile-value">${Number.isNaN(revisionAccuracy) ? '—' : `${Math.round(revisionAccuracy * 100)}%`}</span><span class="tile-sub">scored attempts, repeats included</span></div>
-          </div>
-          ${
-            effectiveness.withHistory
-              ? `<div class="mt-3"><p class="quiet-note">Change between first and latest attempt across ${effectiveness.withHistory} question(s)</p>${progressBar(effectiveness.improved / effectiveness.withHistory, 'ok')}
-                 <p class="small mt-2 mb-0">${effectiveness.improved} improved (wrong → right) · ${effectiveness.worsened} declined (right → wrong) · ${effectiveness.unchanged} unchanged</p></div>`
-              : `<p class="quiet-note mt-2">Not enough attempt history yet to judge whether revision is working. At least two scored attempts are needed on a question.</p>`
-          }
-          <details class="disclosure mt-3"><summary>Upcoming load (${upcomingByDay.size} day(s) ahead)</summary>
-            ${dataTable({
-              columns: [{ label: 'Date' }, { label: 'Questions due', num: true }],
-              rows: Array.from(upcomingByDay.entries())
-                .sort((a, b) => (a[0] < b[0] ? -1 : 1))
-                .slice(0, 14)
-                .map(([date, count]) => [esc(fmtDate(date)), String(count)]),
-              className: 'compact',
-            })}
-          </details>`,
-      })}
-`;  },
+      ${sheet({
+        label: 'The next seven days',
+        body: loadStrip,
+      })}`;
+  },
 
   async mount(ctx, root) {
     const rerender = async () => {
@@ -307,9 +311,17 @@ export default {
         return;
       }
 
-      if (action === 'mark') {
+      if (action === 'mark-outcome') {
+        const outcome = btn.dataset.outcome === 'incorrect' ? 'incorrect' : 'correct';
+        await revision.markRevised(btn.dataset.qid, { outcome, confidence: null, note: null });
+        toast(outcome === 'correct' ? 'Marked revised — the question moves on in the schedule.' : 'Recorded as still unclear — the question comes back sooner.', 'ok');
+        await ctx.refresh();
+        return;
+      }
+
+      if (action === 'mark-note') {
         const value = await openModal({
-          title: 'Mark as revised',
+          title: 'Mark as revised, with a note',
           body: `
             <p class="small">Use this when you revised the question outside the app (notes, a book, a group discussion) and want the schedule to move on.</p>
             <label class="field"><span class="label-text">How did it go?</span>
@@ -334,99 +346,107 @@ export default {
       }
 
       if (action === 'details') {
+        // The question, its schedule and its history open *in the row*: the
+        // same panel the Mistake Book shows, so the reader keeps the queue.
         const questionId = btn.dataset.qid;
+        const row = document.getElementById(`revrow-${questionId}`);
+        const panel = row?.querySelector('.review-inline');
+        if (!row || !panel) return;
+        const open = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!open));
+        btn.textContent = open ? 'Details' : 'Hide details';
+        row.hidden = open;
+        if (open || panel.dataset.filled === '1') return;
+        panel.innerHTML = '<p class="small muted m-0">Loading the question…</p>';
         const rec = (await revision.allRevisionRecords()).find((r) => r.question_id === questionId);
-        const attempts = await attemptHistoryForQuestion(questionId);
-        const map = await getQuestions([questionId]);
-        const question = map.get(questionId);
-        const openDetailsActions = (modal, close) => {
-          modal.querySelector('[data-action="reschedule"]')?.addEventListener('click', async () => {
-            const value = await openModal({
-              title: 'Reschedule this question',
-              body: `<label class="field"><span class="label-text">Revise again on</span><input type="date" id="reschedDate" value="${esc(todayKey())}" /></label>
-                     <label class="field"><span class="label-text">Note (stored with the change)</span><input type="text" id="reschedNote" /></label>`,
-              actions: [{ label: 'Cancel', value: 'cancel' }, { label: 'Save', tone: 'btn-primary', value: 'ok' }],
-            });
-            if (value !== 'ok') return;
-            const date = document.getElementById('reschedDate')?.value;
-            if (!date) return;
-            await revision.reschedule(questionId, date, document.getElementById('reschedNote')?.value || '');
-            toast(`Rescheduled to ${date}.`, 'ok');
-            close(null);
-            await ctx.refresh();
-          });
-          modal.querySelector('[data-action="interval"]')?.addEventListener('click', async () => {
-            const value = await openModal({
-              title: 'Set the next interval',
-              body: `<label class="field"><span class="label-text">Days until this question returns</span><input type="number" min="1" max="365" id="intervalDays" value="7" /></label>`,
-              actions: [{ label: 'Cancel', value: 'cancel' }, { label: 'Save', tone: 'btn-primary', value: 'ok' }],
-            });
-            if (value !== 'ok') return;
-            const days = Number(document.getElementById('intervalDays')?.value) || 7;
-            await revision.setManualInterval(questionId, days, 'manual interval set by you');
-            toast(`This question will return in ${days} day(s).`, 'ok');
-            close(null);
-            await ctx.refresh();
-          });
-          modal.querySelector('[data-action="remove"]')?.addEventListener('click', async () => {
-            const ok = await confirmDialog({
-              title: 'Remove from the revision queue?',
-              message: 'The question stops being scheduled. Your attempts and analytics are not affected, and a future attempt will schedule it again.',
-              confirmLabel: 'Remove',
-              danger: true,
-            });
-            if (!ok) return;
-            await revision.removeFromQueue(questionId);
-            toast('Removed from the revision queue.', 'info');
-            close(null);
-            await ctx.refresh();
-          });
-        };
-        await openModal({
-          title: `Revision detail — ${questionId}`,
-          wide: true,
-          onMount: openDetailsActions,
-          body: `
-            <h3>Schedule</h3>
+        const review = await loadReview(questionId);
+        panel.innerHTML = reviewBodyMarkup(review, {
+          focus: rec
+            ? `Scheduled for ${rec.next_due} · level ${rec.level} · every ${rec.interval_days} day(s)${rec.manual_override ? ' · set by you' : ''}. ${rec.reason || ''}`
+            : 'This question is no longer scheduled.',
+          extraBody: `<div class="review-schedule">
+            <h3>Why this date</h3>
+            <p class="small m-0">${esc(rec?.reason || 'No reason recorded.')}</p>
+            <p class="tiny muted mono m-0 mt-1">${esc(rec ? revision.describeScheduleBasis(rec.basis) : '')}</p>
             ${dataTable({
               columns: [{ label: 'Field' }, { label: 'Value' }],
-              rows: [
-                ['State', esc(rec.state)],
-                ['Level', esc(String(rec.level))],
-                ['Interval', `${esc(String(rec.interval_days))} day(s)`],
-                ['Next due', esc(rec.next_due)],
-                ['Lapses', esc(String(rec.lapses || 0))],
-                ['Ease', esc(String(rec.ease))],
-                ['Reason', esc(rec.reason || '—')],
-                ['Basis', esc(revision.describeScheduleBasis(rec.basis))],
-                ['Manual override', rec.manual_override ? 'yes' : 'no'],
-              ],
+              rows: rec
+                ? [
+                    ['State', esc(rec.state)],
+                    ['Interval', `${esc(String(rec.interval_days))} day(s)`],
+                    ['Next due', esc(rec.next_due)],
+                    ['Lapses', esc(String(rec.lapses || 0))],
+                    ['Manual override', rec.manual_override ? 'yes' : 'no'],
+                  ]
+                : [],
+              empty: 'Nothing is scheduled for this question.',
               className: 'compact',
             })}
-            <div class="row my-2">
+            <h3>Schedule history</h3>
+            ${dataTable({
+              columns: [{ label: 'When' }, { label: 'Outcome' }, { label: 'Interval' }, { label: 'Next due' }, { label: 'Reason' }],
+              rows: (rec?.history || []).slice().reverse().map((h) => [esc(fmtRelative(h.at)), esc(h.outcome), `${esc(String(h.interval_days ?? '—'))} d`, esc(h.next_due || '—'), esc(h.reason || '—')]),
+              empty: 'No history yet.',
+              className: 'compact',
+            })}
+            <div class="row mt-2">
               <button class="btn btn-sm" type="button" data-action="reschedule" data-qid="${esc(questionId)}">Reschedule…</button>
               <button class="btn btn-sm" type="button" data-action="interval" data-qid="${esc(questionId)}">Set interval…</button>
               <button class="btn btn-sm btn-danger" type="button" data-action="remove" data-qid="${esc(questionId)}">Remove from queue</button>
             </div>
-            <h3>Schedule history</h3>
-            ${dataTable({
-              columns: [{ label: 'When' }, { label: 'Outcome' }, { label: 'Interval' }, { label: 'Next due' }, { label: 'Reason' }],
-              rows: (rec.history || []).slice().reverse().map((h) => [esc(fmtRelative(h.at)), esc(h.outcome), `${esc(String(h.interval_days ?? '—'))} d`, esc(h.next_due || '—'), esc(h.reason || '—')]),
-              empty: 'No history yet.',
-              className: 'compact',
-            })}
-            <h3>Attempts on this question</h3>
-            ${dataTable({
-              columns: [{ label: '#' }, { label: 'When' }, { label: 'Outcome' }, { label: 'Time' }],
-              rows: attemptTrend(attempts).map((t) => [String(t.index), esc(fmtDate(t.at)), esc(t.outcome), `${Math.round((t.time_spent_ms || 0) / 1000)}s`]),
-              empty: 'No attempts recorded.',
-              className: 'compact',
-            })}
-            ${question ? `<h3 class="mt-3">Question ${answerKeyBadge(question.supplied.status)}</h3>${renderExplanation(question)}` : ''}`,
-          actions: [{ label: 'Close', tone: 'btn-primary', value: 'close' }],
+          </div>`,
         });
+        panel.dataset.filled = '1';
+        row.scrollIntoView?.({ block: 'nearest' });
         return;
       }
+
+      if (action === 'reschedule') {
+        const questionId = btn.dataset.qid;
+        const answer = await openModal({
+          title: 'Reschedule this question',
+          body: `<label class="field"><span class="label-text">Revise again on</span><input type="date" id="reschedDate" value="${esc(todayKey())}" /></label>
+                 <label class="field"><span class="label-text">Note (stored with the change)</span><input type="text" id="reschedNote" /></label>`,
+          actions: [{ label: 'Cancel', value: 'cancel' }, { label: 'Save', tone: 'btn-primary', value: 'ok' }],
+        });
+        if (answer !== 'ok') return;
+        const date = document.getElementById('reschedDate')?.value;
+        if (!date) return;
+        await revision.reschedule(questionId, date, document.getElementById('reschedNote')?.value || '');
+        toast(`Rescheduled to ${date}.`, 'ok');
+        await ctx.refresh();
+        return;
+      }
+
+      if (action === 'interval') {
+        const questionId = btn.dataset.qid;
+        const answer = await openModal({
+          title: 'Set the next interval',
+          body: `<label class="field"><span class="label-text">Days until this question returns</span><input type="number" min="1" max="365" id="intervalDays" value="7" /></label>`,
+          actions: [{ label: 'Cancel', value: 'cancel' }, { label: 'Save', tone: 'btn-primary', value: 'ok' }],
+        });
+        if (answer !== 'ok') return;
+        const days = Number(document.getElementById('intervalDays')?.value) || 7;
+        await revision.setManualInterval(questionId, days, 'manual interval set by you');
+        toast(`This question will return in ${days} day(s).`, 'ok');
+        await ctx.refresh();
+        return;
+      }
+
+      if (action === 'remove') {
+        const ok = await confirmDialog({
+          title: 'Remove from the revision queue?',
+          message: 'The question stops being scheduled. Your attempts and analytics are not affected, and a future attempt will schedule it again.',
+          confirmLabel: 'Remove',
+          danger: true,
+        });
+        if (!ok) return;
+        await revision.removeFromQueue(btn.dataset.qid);
+        toast('Removed from the revision queue.', 'info');
+        await ctx.refresh();
+        return;
+      }
+
     }, { signal: ctx.signal });
   },
 };

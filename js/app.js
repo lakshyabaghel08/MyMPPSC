@@ -14,6 +14,8 @@ import { revisionSummary } from './services/revision.js';
 import * as tests from './services/tests.js';
 import { buildBackup, markBackupTaken, lastBackupInfo } from './services/data.js';
 import { openPracticeSheet } from './ui/practicesheet.js';
+import { buildStartOptions } from './services/nextup.js';
+import { startOption } from './ui/views/shared.js';
 
 import dashboardView from './ui/views/dashboard.js';
 import testCentreView from './ui/views/testcentre.js';
@@ -32,25 +34,25 @@ import settingsView from './ui/views/settings.js';
 import helpView from './ui/views/help.js';
 
 const NAV = [
-  { route: 'dashboard', label: 'Dashboard', icon: 'dashboard', group: 'Study' },
-  { route: 'test-centre', label: 'PYQ Test Centre', icon: 'test-centre', group: 'Study' },
+  { route: 'dashboard', label: 'Today', icon: 'dashboard', group: 'Study' },
+  { route: 'test-centre', label: 'Papers', icon: 'test-centre', group: 'Study' },
   // Topic Practice and the Custom Test builder were two screens over the same
   // question bank with the same filters, the same three selection strategies
   // and the same session form; one was simply the single-select version of the
   // other. They are one screen. Picking a single topic is the narrow case of
   // picking any set of subjects and topics.
-  { route: 'topic', label: 'Topic & Custom Practice', icon: 'topic', group: 'Study' },
-  { route: 'smart', label: 'Smart Practice', icon: 'smart', group: 'Study' },
-  { route: 'mistakes', label: 'Mistake Book', icon: 'mistakes', badge: 'mistakes', group: 'Review' },
-  { route: 'revision', label: 'Revision Centre', icon: 'revision', badge: 'revision', group: 'Review' },
+  { route: 'topic', label: 'Practice', icon: 'topic', group: 'Study' },
+  { route: 'smart', label: 'Smart', icon: 'smart', group: 'Study' },
+  { route: 'mistakes', label: 'Mistakes', icon: 'mistakes', badge: 'mistakes', group: 'Review' },
+  { route: 'revision', label: 'Revision', icon: 'revision', badge: 'revision', group: 'Review' },
   // The official syllabus, the study planner, performance analytics and the
   // question-bank analysis used to be four destinations. They are two: one
   // curriculum, and one place for the numbers. The old routes still resolve —
   // see the legacy registrations below — they are simply not advertised twice.
   { route: 'syllabus', label: 'Syllabus', icon: 'syllabus', group: 'Plan' },
   { route: 'analytics', label: 'Insights', icon: 'analytics', group: 'Plan' },
-  { route: 'bank', label: 'Question Bank & Imports', icon: 'bank', group: 'Manage' },
-  { route: 'settings', label: 'Settings & Backup', icon: 'settings', group: 'Manage' },
+  { route: 'bank', label: 'Bank', icon: 'bank', group: 'Manage' },
+  { route: 'settings', label: 'Settings', icon: 'settings', group: 'Manage' },
   { route: 'help', label: 'Help & How it works', icon: 'help', group: 'Manage' },
 ];
 
@@ -402,24 +404,44 @@ async function openCommandMenu() {
     commandItem({ kind: 'go', id: `go:${item.route}`, label: item.label, hint: item.group, where: `Goes to ${item.label}` }),
   );
 
-  let unfinished = [];
+  // The "Do" group is data-aware: it offers the actions the stored data says
+  // are worth doing now (resume, revision due, the next paper, open mistakes)
+  // rather than a static list, each with the count that justifies it.
+  let options = [];
   try {
-    unfinished = await tests.unfinishedTests();
+    ({ options } = await buildStartOptions({ size: 20 }));
   } catch {
-    unfinished = [];
+    options = [];
   }
+  const optionById = new Map(options.map((option) => [option.id, option]));
+  const resumeOption = optionById.get('resume');
+  const dataActions = ['revision', 'smart', 'paper', 'mistakes']
+    .map((id) => optionById.get(id))
+    .filter((option) => option && option.count > 0);
+
   const doItems = [
+    resumeOption
+      ? commandItem({
+          kind: 'do',
+          id: 'do:option:resume',
+          label: `Resume “${resumeOption.label}”`,
+          hint: resumeOption.detail,
+          where: 'Continues the session in the runner',
+        })
+      : null,
+    ...dataActions.map((option) =>
+      commandItem({
+        kind: 'do',
+        id: `do:option:${option.id}`,
+        label: `${option.label} — ${option.count} question${option.count === 1 ? '' : 's'}`,
+        hint: option.detail,
+        where: 'Starts a session in the runner',
+      }),
+    ),
     commandItem({ kind: 'do', id: 'do:start20', label: 'Start a 20-question set', hint: 'Random questions from the whole bank', where: 'Starts a session in the runner' }),
-    commandItem({
-      kind: 'do',
-      id: 'do:resume',
-      label: unfinished.length ? `Resume “${unfinished[0].label || 'your last test'}”` : 'Resume the last test',
-      hint: unfinished.length ? 'The session in progress' : 'Nothing is in progress right now',
-      where: 'Opens the runner',
-    }),
     commandItem({ kind: 'do', id: 'do:mark', label: 'Mark a syllabus line', hint: 'Opens the first line in the tree', where: 'Goes to Syllabus' }),
     commandItem({ kind: 'do', id: 'do:backup', label: 'Export a backup', hint: 'Every store in one JSON file', where: 'Downloads mymppsc-backup-*.json' }),
-  ];
+  ].filter(Boolean);
 
   openModal({
     title: 'Search, start and find',
@@ -561,6 +583,17 @@ async function openCommandMenu() {
 
 /** The "Do" group's actions. Each finishes before the dialog's promise settles. */
 async function runCommandAction(id) {
+  if (id.startsWith('option:')) {
+    const optionId = id.slice('option:'.length);
+    const { options } = await buildStartOptions({ size: 20 });
+    const option = options.find((entry) => entry.id === optionId);
+    if (!option) {
+      toast('That action is not available with the stored data right now.', 'info');
+      return;
+    }
+    await startOption({ navigate: (path) => router.navigate(path) }, option);
+    return;
+  }
   if (id === 'start20') {
     const ids = shuffle(Array.from(state.questionIndex.keys())).slice(0, 20);
     if (!ids.length) {
@@ -618,7 +651,7 @@ function renderTabBar() {
     .map(
       (item) => `<button class="tab-bar-item" type="button" data-route="${esc(item.route)}">
         <span class="tab-bar-icon" aria-hidden="true">${icon(item.icon, { size: 20 })}</span>
-        <span class="tab-bar-label">${esc(item.label.replace(' & Custom Practice', ''))}</span>
+        <span class="tab-bar-label">${esc(item.route === 'dashboard' ? 'Today' : item.label.replace(' & Custom Practice', '').replace('PYQ ', ''))}</span>
       </button>`,
     )
     .join('')}

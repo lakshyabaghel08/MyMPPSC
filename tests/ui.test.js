@@ -129,7 +129,9 @@ test('boots, renders the shell and the demonstration prompt', async () => {
   await waitFor(() => $$('#navList .nav-link').length >= 10, { label: 'navigation links' });
   assert.equal(state.dbError, null);
   const labels = $$('#navList .nav-link').map((b) => b.textContent.trim());
-  for (const required of ['Dashboard', 'PYQ Test Centre', 'Topic & Custom Practice', 'Smart Practice', 'Mistake Book', 'Revision Centre', 'Syllabus', 'Insights', 'Question Bank & Imports', 'Settings & Backup']) {
+  // Phase 3 shortened every navigation label to the word a reader would use
+  // (the full names live in each screen's <h1>).
+  for (const required of ['Today', 'Papers', 'Practice', 'Smart', 'Mistakes', 'Revision', 'Syllabus', 'Insights', 'Bank', 'Settings']) {
     assert.ok(labels.some((l) => l.includes(required)), `navigation should offer ${required}`);
   }
   // The syllabus planner merged into the syllabus screen, the question-bank
@@ -138,7 +140,7 @@ test('boots, renders the shell and the demonstration prompt', async () => {
   assert.equal(labels.filter((l) => /Syllabus/.test(l)).length, 1, 'one syllabus destination, not two');
   assert.equal(labels.filter((l) => /Analytics|Analysis|Insights/.test(l)).length, 1, 'one destination for the numbers, not two');
   assert.equal(labels.filter((l) => /Custom Test/.test(l)).length, 0, 'the Custom Test builder is not a second navigation entry');
-  assert.equal(labels.filter((l) => /Practice/.test(l) && /Topic/.test(l)).length, 1, 'one practice builder, not two');
+  assert.equal(labels.filter((l) => /^Practice$/.test(l)).length, 1, 'one practice builder, not two');
 
   // First run with an empty database: the repository-backed MPPSC bank loads by
   // itself, so the app does not have to fall back to the demonstration prompt.
@@ -246,7 +248,7 @@ test('practice setup screens describe what is available before starting', async 
   await resetPracticeScreen();
   // The availability tables are gone; what remains is one live figure that says
   // exactly how big the pool the session will be drawn from is.
-  assert.match(viewText(), /What to include/);
+  assert.match(viewText(), /What to practise/);
   // The demonstration bank was imported by an earlier test, so the figure is
   // whatever the device holds — the point is that it is *all* of it.
   assert.equal($('#pickMatch').textContent.trim(), `${state.questionIndex.size} questions match`, 'nothing ticked means the whole bank');
@@ -256,7 +258,7 @@ test('practice setup screens describe what is available before starting', async 
   assert.match(viewText(), /not evidence about what a future examination will contain/i);
   await goto('custom');
   assert.match(viewText(), /never labelled as an authentic paper/i);
-  assert.match(viewText(), /Topic & Custom Practice/, '#/custom opens the merged screen');
+  assert.equal($('#view h1')?.textContent.trim(), 'Practice', '#/custom opens the merged screen');
   assert.equal($('.nav-link[aria-current="page"]')?.dataset.route, 'topic', 'the old address highlights the merged navigation item');
   await goto('test-centre');
   assert.match(viewText(), /Previous-year papers|Paper simulations|Test Centre/i);
@@ -267,10 +269,9 @@ test('a full paper simulation runs, autosaves, submits and reports', async () =>
   const start = $$('#view [data-action="start-paper"]').find((b) => !b.disabled);
   assert.ok(start, 'a paper simulation should be startable');
   const paperId = start.dataset.paper;
+  // One click starts it: the row already states the size, the clock and the
+  // marks, so nothing is confirmed twice. "Customise…" is the other door.
   click(start);
-  await waitFor(() => $('#modalRoot').hidden === false, { label: 'simulation dialog' });
-  click($('#modalRoot').querySelector('[data-modal-action="1"]'));
-
   await waitFor(() => /#\/runner\//.test(window.location.hash), { label: 'runner route' });
   await waitFor(() => /Question 1 of/.test(viewText()), { label: 'runner markup' });
 
@@ -474,7 +475,9 @@ test('the mistake book, revision centre and analytics reflect the submitted test
 
 test('settings persist, diagnostics run and the keyboard entry point works', async () => {
   await goto('settings');
-  assert.match(viewText(), /Language, theme and defaults/);
+  // Two groups, because the reader is changing two different things.
+  assert.match(viewText(), /Reading/);
+  assert.match(viewText(), /How sessions run/);
 
   const select = $('#setFeedback');
   change(select, 'learning');

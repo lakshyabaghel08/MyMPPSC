@@ -75,7 +75,7 @@ Question stems and options use `--text-md` (17px) with `--lh-reading` (1.65) and
 ### 1.5 Navigation architecture
 
 - **Header (56px):** menu toggle (≤860px), wordmark, command trigger (`#commandBtn`, `⌘K`/`Ctrl K`), Quick practice, theme toggle, Help, and the resume strip when a session is unfinished.
-- **Sidebar (desktop):** four groups — **Study** (Dashboard, PYQ Test Centre, Topic & Custom Practice, Smart Practice), **Review** (Mistake Book, Revision Centre), **Plan** (Syllabus, Insights), **Manage** (Question Bank & Imports, Settings & Backup, Help). Group labels are small caps, not boxes. Destructive/rare destinations sit at the bottom with storage and offline state.
+- **Sidebar (desktop):** four groups — **Study** (Today, Papers, Practice, Smart), **Review** (Mistakes, Revision), **Plan** (Syllabus, Insights), **Manage** (Bank, Settings, Help). Phase 3 shortened every label to the word a reader uses; the full name stays as each screen's `<h1>`. Group labels are small caps, not boxes. Destructive/rare destinations sit at the bottom with storage and offline state.
 - **Collapsible rail:** `#navCollapse` hides labels and shrinks the sidebar to 64px; the choice persists in `localStorage['mymppsc.navCollapsed']` and the nav buttons keep `aria-label`/`title`.
 - **Mobile:** the same list becomes an off-canvas drawer with a scrim (`#navToggle`, `#appNav`, `#navScrim`, inert `#main`, focus restore); ≤560px a five-item tab bar plus **More** keeps the frequent destinations one thumb away.
 - **Nested pages:** the test runner and a test report carry a one-line breadcrumb back to Test Centre. Everything else is one level deep.
@@ -191,6 +191,8 @@ The tab boundary is exactly that data-source boundary, and it is the rule that k
 
 Above the tabs the shell states the three numbers the two tabs are most often confused for — *questions available*, *unique questions attempted*, *total attempts* — once, in a shared tile strip with a caption naming the difference. They are section-level facts rather than either tab's findings, so neither panel repeats them: the performance panel starts at first-attempt accuracy. The strip is omitted entirely when no bank is stored, because three zeroes state nothing.
 
+**Every verdict row carries the action it implies.** In *Where the evidence points* each row — weak, strong or too thin — ends in the same *Practise* link, because keeping a strong topic and gathering evidence on a thin one are the same next move as practising a weak one; *Coverage gaps* keeps its Practise links, and the subject and topic names in both tables are deep links into the builder with that subject or topic already ticked (`topicPracticeHref()` in `js/core/util.js`, the one helper every practice link in the app uses). The verdict itself is unchanged: it still needs sample size behind it, and the table still prints that sample beside the figure.
+
 **The question bank panel** is laid out for a full bank (1,200 questions, 12 papers): four tiles (questions, subjects, topics, answer keys); *Questions per subject* — one `barChart` with a sort switch and the subject × year matrix behind ⓘ *Year by year*; *Questions per topic* — subject chips (question counts), a `barChart` of that subject's topics (the 15 largest across all subjects, with *Show all*), and a short table of the same rows (count, share, how many of the stored papers hold the topic, practice link) with its own year-by-year matrix behind ⓘ; and one ⓘ *About these counts*. No open table has more than six columns, and nothing on the panel is a banner, a provenance chip or a per-paper complete/incomplete label. **Its numbers are the Question Bank screen's**: groups use the same keys as that screen's filters (`subject || 'Unclassified'`, `topic || 'Unclassified'`), so filtering its Questions tab by a subject or topic lists exactly the questions counted; topics are counted as named topics plus, separately, each subject's *Unclassified* group, so the tile, the card line and *Show all* add up. `tests/ui-improvements.test.js` compares the two screens subject by subject.
 
 The open tab is part of the section's state: a navigation opens the tab its route names (`#/pyq-analysis` → the bank panel), and an in-place refresh from inside a panel — a chip, the topic search — keeps the reader on the tab they chose.
@@ -205,23 +207,86 @@ The Questions tab of `js/ui/views/bank.js` has a selection column: a checkbox pe
 - **Delete…** lists the questions in a confirmation and says it cannot be undone (questions of the bundled bank come back by reloading it). It calls `questions.deleteQuestions()`, the one delete path the question editor and the duplicate review now share; it reports ids that were already gone and tells the shell, so the bank pill updates.
 - After either action the selection is cleared and focus is parked on the select-all box before the refresh, so the router returns the reader to the list.
 
-## 6c. Test runner shortcut legend
+## 6c. Test runner: legend, palette, submission
 
-The **?** button at the end of the runner header (`data-action="kbd-legend"`, `aria-expanded`, `aria-controls="runnerKbdLegend"`) toggles a non-modal popover listing exactly the keys the screen answers to — `wireKeyboard()` in `runner.js` (1–9, → / N, ← / P, F, U, and C for confidence, which is always available now that marking is fixed to *optional*) plus the app-wide ?, Ctrl/⌘ K and Esc. It opens without taking focus (nothing scrolls), traps nothing, closes on Escape (returning focus to the button only if focus was inside it), on its ✕ (there is no Escape key on a phone) and on a click elsewhere, and stays open across the runner's repaints until then. It hangs off the runner bar at every width, so it cannot spill off a narrow screen. Shortcuts ignore Ctrl/⌘/Alt combinations, so browser shortcuts (Ctrl+P, Ctrl+F, ⌘C…) are never swallowed. The palette marks state by shape as well as colour — a bar under an answered number (kept under the flagged colours), ⚑ on a flagged one, a ring and `aria-current="step"` on the current one — and its legend shows the same cues.
+The runner is one screen with three areas that each answer a different question: the **question**
+(what am I being asked?), the **palette** (where am I, and what is left?) and the **scoring card**
+(what will this be worth?). None of them is a destination; the URL is `#/runner/<testId>` and the
+report is a sibling route.
 
-## 6d. Topic & Custom Practice
+**Answering patches, it does not repaint.** `selectOption()`, `toggleFlag()`, `clearResponse()` and
+`setConfidence()` write through `tests.updateResponse()` and then call `afterAnswerChange()`, which
+patches `aria-pressed`, the flag label, the cleared/disabled state and the confidence line onto the
+controls that already exist (`syncCardControls()`). Only a revealed answer — which brings an
+explanation that was not in the DOM — repaints the question card (`paintCard()`), and only a
+language switch, focus mode or pause/resume calls `paintAll()`. The node the reader just pressed
+stays the node they are holding, so focus, scroll and reading position do not move; `paintPalette()`
+patches the cells and every counter that mirrors them (`12/20 answered · 3 flagged`).
 
-`js/ui/views/topic.js` is the merged practice screen: Topic Practice and the Custom Test builder were the same screen twice — one bank, the same filters, the same three strategies, the same session form — so the single-topic case is now just the narrowest selection the one screen can make. It is `#/topic`; `#/custom` and anything under it are `router.alias`es to it, and `NAV_ALIASES` keeps the navigation item highlighted on the old address.
+**The palette** carries a filter bar — All · Unanswered · Flagged · Answered, each with its own live
+count (`data-action="palette-filter"`, `aria-pressed`) — which hides cells in place rather than
+rebuilding the grid, and two jumps: `]` for the next unanswered question, `[` for the next flagged
+one (`jumpTo()` never changes anything but the current index). A hidden filter cell keeps its
+`aria-label`, so a screen reader hears the same state the reader sees. At ≤1040px the palette becomes
+a bottom sheet opened from a sticky bar that shows the same progress and the answered/unanswered
+split; `body.palette-open` is the only state that scrolls the page.
 
-**What to include** (`.pick-list` / `.pick-group` / `.pick-row` / `.pick-topics`) is a list of collapsible subject groups, all collapsed on arrival. Each group is one row: a **tri-state** subject checkbox (checked = every topic in it, indeterminate = some of them — `indeterminate` is a property, so `mount()` sets it after each render) with the subject's own question count, and a caret (`data-action="pick-expand"`, `aria-expanded` / `aria-controls`) that folds the topic list out. Opening is a **DOM toggle**, not a re-render: no lost scroll position, no lost focus, and the open set is remembered across the refreshes that a tick does cause. Ticking every topic one by one collapses back to "whole subject", because that is the same selection and should read the same way.
+**Submission is a decision sheet**, not a yes/no dialog: answered / unanswered / flagged / missing
+confidence rows, the scoring rules that will be applied, and then *Keep working* · *Submit and see
+results* · *Go to first unanswered* (or *Go to first flagged*). The last one navigates to the
+question instead of asking the reader to find it. Auto-submit at expiry keeps its own path and says
+so in the report. Nothing that was decided here is decided again in the report.
 
-Selection is a **union**: `subject → { all, topics }` in the view's state, `matchesSelection()` over the narrowed pool, and an empty map meaning the whole bank. Two rules fall out of it, and they are the two bugs the screen used to have — a topic can never stay selected under a subject that is not selected (which produced "0 questions match" behind a full-looking form), and every count is counted **inside its own subject**, so *Unclassified* under Polity is Polity's unlabelled questions and not the nine from the whole bank. One line states the selection in words (`#pickSummary`) beside a live `N questions match` (`#pickMatch`, `role="status"`).
+**The shortcut legend** is the **?** button at the end of the runner header (`data-action="kbd-legend"`,
+`aria-expanded`, `aria-controls="runnerKbdLegend"`). It is a non-modal popover listing exactly the
+keys the screen answers to — 1–9, → / N, ← / P, ] , [ , F, U, C (when confidence is on), D, ?, Ctrl/⌘ K, Esc —
+built from the same confidence/language state as the screen, so it cannot advertise a key that does
+nothing. It opens without taking focus (nothing scrolls), traps nothing, closes on Escape (returning
+focus to the button only if focus was inside it), on its ✕ (there is no Escape key on a phone) and
+on a click elsewhere, and survives the runner's repaints. Shortcuts ignore Ctrl/⌘/Alt combinations,
+so browser shortcuts (Ctrl+P, Ctrl+F, ⌘C…) are never swallowed. The palette marks state by shape as
+well as colour — a bar under an answered number, ⚑ on a flagged one, a ring and `aria-current="step"`
+on the current one — and its legend names every state, including the current question.
 
-**Narrow further** is a collapsed `<details id="narrowFilters">` whose summary counts the active filters: attempt history, language, search text, subtopic (rendered only while exactly one topic is selected, so a leftover value cannot keep filtering), years, papers, question types, only-with-explanation and exclude-demonstration. The old "include questions I have already attempted" checkbox and the availability tables are gone: attempt history is a filter like the rest, and the counts in the picker already say what is available.
+## 6d. Practice (Topic & Custom Practice)
 
-**Session** keeps two decisions apart, because conflating them is what made "shuffle off" still hand out a random order: the **strategy** select (`data-action="strategy"`) decides *which* questions are picked, and **shuffle question order** (`#practiceShuffleOrder`) decides how the picked questions are *arranged*. Off means paper order — `arrangeForPaper()` in `js/services/select.js`: year, then paper, then the paper's stored question order, then question number — and the test's `order_source` records which of the two actually happened (`paper_order` / `shuffled`), so the report can never claim an order the session did not use. The kind follows the selection: exactly one subject with at most one topic is a `topic` session and starts straight away; anything wider is a `custom` set and is confirmed first, with the order stated in the confirmation.
+`js/ui/views/topic.js` is the one configuration surface for “what do I want to practise”. Topic
+Practice and the Custom Test builder were the same screen twice — one bank, the same filters, the
+same three strategies, the same session form — so the single-topic case is now just the narrowest
+selection the screen can make. It is `#/topic`; `#/custom` and anything under it are `router.alias`es
+to it, and `NAV_ALIASES` keeps the navigation item highlighted on the old address. The screen's
+heading is **Practice**; the navigation item keeps its longer name because it sits beside *Smart
+Practice*.
 
-The shared session form (`configFields()` in `shared.js`) is mounted with `screen: 'topic'`, which is the per-screen form memory: a re-render keeps the size, feedback timing, time limit and open disclosures the reader set instead of rebuilding them from the Settings defaults. Confidence, answer-key policy and unresolved-key policy are no longer controls anywhere — they are the frozen rules in `FIXED_TEST_RULES`, stated in one line (`FIXED_RULES_NOTE`) under *Advanced settings → Confidence and answer keys*. On a phone the picker rows are compact and every target is at least `--touch-min` (44px).
+**Two panes, one decision.** The left pane is the picker: a search field (`/` focuses it), subject
+rows with a **tri-state** subject checkbox (checked = every topic in it, indeterminate = some of
+them) and a caret that opens the topic list, and an *Add all N matching* action on the search result.
+The right pane is **your session** (`#sessionPanel`), sticky on a wide screen and a drawer on a
+phone: basket chips (each removable), the live pool count, size presets 10 / 20 / 40 / All, the
+strategy and the shuffle toggle, the feedback choice, the advanced form and **Start N questions**.
+
+**Selection is a union** — `Map<subject, { all, topics: Set }>` — so a topic can never stay selected
+under a subject that is not selected (which produced “0 questions match” behind a full-looking form),
+and every count is counted **inside its own subject**. Changing a tick calls `paintPicker()`, which
+patches the picker's rows, the basket and the count *in place*: no router refresh, no lost scroll
+position, no lost open group. A picker paint that arrives after the reader has navigated away bails
+out instead of refreshing whatever replaced it.
+
+**Strategy ≠ order.** The **strategy** decides *which* questions are picked; **shuffle question
+order** decides how the picked questions are *arranged*. Off means paper order —
+`arrangeForPaper()` in `js/services/select.js`: year, then paper, then the paper's stored question
+order, then question number — and the test's `order_source` records which of the two actually
+happened (`paper_order` / `shuffled`), so the report can never claim an order the session did not
+use.
+
+**There is no confirmation dialog.** The session panel is the confirmation: it states the size, the
+recording kind (a single subject with at most one topic is a `topic` session; anything wider is a
+`custom` set), the feedback timing, the clock, the marks and the order, and it updates as the reader
+changes them. *Start* starts exactly what it says. The shared session form (`configFields()` in
+`shared.js`) is mounted with `screen: 'topic'`, so a re-render keeps the size, feedback timing, time
+limit and open disclosures the reader set. Confidence, answer-key policy and unresolved-key policy
+are the frozen rules in `FIXED_TEST_RULES`, stated in one line (`FIXED_RULES_NOTE`), never offered as
+controls.
 
 ## 6e. Screen anatomy, card anatomy and the density budget
 
@@ -246,7 +311,39 @@ Every one of the eleven destinations is built to the same three-part contract, a
 
 Measurement definitions live in the same file, including what counts as "visible": tab panels that are `hidden`, collapsed `<details>` and `[hidden]` subtrees are not measured, because a screen is judged on what the reader is looking at. If a limit genuinely cannot be met without removing behaviour, raise it in `js/ui/budget.js` with a comment, list it in the pull request, and update this table.
 
-**Dashboard anatomy.** The dashboard is a starting point, not a report: `.screen-head` (title + primary *Practise now*), one `.next-up` block (resume an unfinished test, or start the suggested session, with due-revision count in its aside), a four-figure `.stat-strip` (attempted of total, first-attempt accuracy, due revision, syllabus done of total), then a two-column split of "Recommended next" (rows with an evidence meter) and "Recent sessions". A single integrity line follows. There are no charts, no nested cards and no repeated metrics; a bank-less device gets the welcome card instead.
+**Today anatomy.** `js/ui/views/dashboard.js` is a launcher, not a report: `.screen-head` (title
+*Today*, one primary action, *Quick session…* and *Build a session* beside it), then the **start
+deck** (`.start-deck` → `.start-row`), then a four-figure `.stat-strip` (questions attempted,
+first-attempt accuracy, due revision, syllabus done), then two cards — *Needs attention* (ranked
+topics with an evidence meter and a Practise button) and *Recent sittings*. Each deck row is one
+stored fact and one action: a label, a detail line that names the numbers (unanswered count, saved
+when, sample size), the count beside the button, and the verb (`Start`, `Start paper`, `Revise now`,
+`Retry`, `Resume`). The rows come from `js/services/nextup.js`; a row with nothing behind it is
+disabled and says why rather than disappearing. Resume is a real route link (`#/runner/<id>`), so it
+can be opened in a new tab. The deck's options are captured at render time — never rebuilt inside a
+click handler — because they describe the data as it was when the reader saw them. There are no
+charts, no nested cards and no repeated metrics; a bank-less device gets the welcome card instead.
+
+**Row detail panels.** A table row may carry its own panel (`dataTable({ rows: [{ cells, detail,
+detailId, detailHidden }] })`), rendered as a second `<tr class="row-detail-row">` with one
+`colspan` cell. It is where a question review or a paper's details open *inside* the list, so the
+reader keeps their filters and their scroll position instead of handing the screen to a dialog.
+
+**The review panel** (`js/ui/reviewpanel.js`) is the one place a question is looked at again:
+verdict line (outcome, what you answered, the key, time, confidence), the question with both the key
+and your own answer marked in words, the bank's explanation, every previous attempt, then whatever
+the calling screen adds (why the item is in the Mistake Book; how it was scheduled). `loadReview()`
+returns the same facts for a row preview; `reviewBodyMarkup()` renders it for an inline panel;
+`openReviewPanel()` opens it as a modal where a screen has no row to expand. The Mistake Book and the
+Revision Centre both expand it in the row; the test report opens it as a modal from a question.
+
+**Report anatomy.** `js/ui/views/report.js` is ordered by “what next”: *How this sitting went* (four
+figures and the rules that produced them, behind one disclosure), *Do something about it* (rows with
+real buttons — retry the incorrect set, practise the weak topics from this sitting, revise what is
+due from it, review the flagged set), *Weakest topics in this sitting* (per-topic Practise), *Question
+review* (the filterable list, first class rather than a tab) and *The details* (confidence, pacing,
+recommendations, repeated mistakes, unresolved keys). Every action states its count before it is
+pressed, and every one creates a real test rather than a link to a screen that could.
 
 **Compact density.** `:root[data-density="compact"]` changes `--pad-card`, `--pad-card-head`, `--pad-cell-y/x`, `--gap-grid`, `--lh-base`, `--lh-reading` and `--card-gap`; every screen picks the change up because cards, tables and type are expressed in those tokens rather than in per-component numbers.
 

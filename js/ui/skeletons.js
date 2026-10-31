@@ -16,17 +16,23 @@
 
 import { skeletonScreen, skeleton as sk } from './components.js';
 
-/** Dashboard: the next-up block, a four-figure strip, then two columns. */
+/**
+ * Today: the start deck (head row + one row per startable thing), the
+ * four-figure strip, then the attention and recent cards side by side. The
+ * blocks use the real classes, so the deck does not collapse to a card on the
+ * way in.
+ */
 export function dashboardSkeleton({ hasBank = true } = {}) {
   if (!hasBank) {
     // An empty device gets the short welcome card, not a full dashboard.
     return skeletonScreen([sk.heading({ lede: false }), sk.card(`${sk.lines(4)}${sk.buttons(3)}`)]);
   }
+  const deckRows = Array.from({ length: 4 }, () => '<li class="start-row"><span class="skeleton-block skeleton-line"></span><span class="skeleton-block skeleton-line sk-w40"></span></li>').join('');
   return skeletonScreen([
     sk.heading(),
-    sk.card(`${sk.lines(2)}${sk.buttons(2)}`, { head: false }),
+    `<section class="start-deck"><div class="start-deck-head"><span class="skeleton-block skeleton-line sk-w40"></span></div><ul class="start-rows">${deckRows}</ul></section>`,
     sk.tiles(4),
-    `<div class="split-2">${sk.card(sk.table(5, 3))}${sk.card(sk.lines(3))}</div>`,
+    `<div class="split-2">${sk.card(sk.table(4, 3))}${sk.card(sk.lines(3))}</div>`,
   ]);
 }
 

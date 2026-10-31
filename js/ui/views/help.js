@@ -16,7 +16,7 @@
  */
 
 import { APP_VERSION } from '../../core/constants.js';
-import { esc, card, notice, dataTable, badge, sourceChip, evidenceMeter, screenHead } from '../components.js';
+import { esc, sheet, notice, dataTable, sourceChip, evidenceMeter, screenHead } from '../components.js';
 
 const KEYBOARD = [
   ['1 … 9', 'Select option A … I on the current question'],
@@ -36,19 +36,19 @@ const FAQ = [
     id: 'start',
     task: 'Start practising',
     answer:
-      'Press <kbd>Ctrl K</kbd>, use <strong>Quick practice</strong> in the header, or press <strong>Practise now</strong> on the dashboard. The sheet asks what, how many and when to reveal answers.',
+      'Press <kbd>Ctrl K</kbd>, use <strong>Quick session…</strong> on Today, or open <strong>Practice</strong> and tick what the sitting covers. The sheet asks what, how many and when to reveal answers.',
   },
   {
     id: 'paper',
     task: 'Take a full paper simulation',
     answer:
-      'PYQ Test Centre lists every stored paper in one table: <strong>Start</strong> uses the paper\'s own duration and scoring, and an unfinished attempt can be resumed from any screen.',
+      '<strong>Papers</strong> lists every stored paper in one table: <strong>Start</strong> uses the paper\'s own duration and scoring, and an unfinished attempt can be resumed from any screen.',
   },
   {
     id: 'build',
     task: 'Build my own set of questions',
     answer:
-      'Topic &amp; Custom Practice covers both: tick any subjects and topics, or tick nothing for the whole bank. Narrow by year, paper, type or search under <em>Narrow further</em>.',
+      '<strong>Practice</strong> covers both: tick any subjects and topics, or tick nothing for the whole bank. Narrow by year, paper, type or search under <em>Narrow further</em>.',
   },
   {
     id: 'report',
@@ -60,13 +60,13 @@ const FAQ = [
     id: 'mistakes',
     task: 'Work through my mistakes',
     answer:
-      'The Mistake Book collects wrong answers, skips, flags, repeated mistakes and correct-but-guessed answers; <strong>Retry</strong> starts a learning-mode session on one question.',
+      '<strong>Mistakes</strong> collects wrong answers, skips, flags, repeated mistakes and correct-but-guessed answers; <strong>Retry</strong> starts a learning-mode session on one question.',
   },
   {
     id: 'revision',
     task: 'Understand when revision is due',
     answer:
-      'Each attempt schedules its question from the outcome, your confidence and the time taken. The Revision Centre shows the numeric basis for every date; it cannot promise retention.',
+      'Each attempt schedules its question from the outcome, your confidence and the time taken. <strong>Revision</strong> shows the numeric basis for every date; it cannot promise retention.',
   },
   {
     id: 'syllabus',
@@ -78,13 +78,13 @@ const FAQ = [
     id: 'bank',
     task: 'Import, correct or export the bank',
     answer:
-      'The Question Bank validates every file before writing, lists rejected records with reasons, keeps a correction history, and lets bulk changes be undone.',
+      '<strong>Bank</strong> validates every file before writing, lists rejected records with reasons, keeps a correction history, and lets bulk changes be undone.',
   },
   {
     id: 'backup',
     task: 'Back up or restore',
     answer:
-      'Settings &amp; Backup writes one JSON file holding every store and validates any file before restoring it. <strong>Export a backup</strong> in that screen\'s header does it in one click.',
+      '<strong>Settings</strong> writes one JSON file holding every store and validates any file before restoring it. <strong>Export a backup</strong> in that screen\'s header does it in one click.',
   },
   {
     id: 'offline',
@@ -114,9 +114,9 @@ export default {
 
   async render() {
     const faqRow = (item) => `<div class="faq-item">
-        <h3 class="faq-question"><button class="faq-toggle" type="button" id="faq-${esc(item.id)}-button" aria-expanded="false" aria-controls="faq-${esc(item.id)}-panel">
+        <p class="faq-question"><button class="faq-toggle" type="button" id="faq-${esc(item.id)}-button" aria-expanded="false" aria-controls="faq-${esc(item.id)}-panel">
           <span>${esc(item.task)}</span><span class="faq-caret" aria-hidden="true"></span>
-        </button></h3>
+        </button></p>
         <div class="faq-panel" id="faq-${esc(item.id)}-panel" role="region" aria-labelledby="faq-${esc(item.id)}-button" hidden>
           <p class="small">${item.answer}</p>
         </div>
@@ -136,27 +136,26 @@ export default {
       ${screenHead({
         title: 'Help &amp; How it works',
         purpose: `MyMPPSC v${esc(APP_VERSION)} — a local-first MPPSC Prelims practice app. Your data stays in this browser.`,
-        primary: '<a class="btn btn-primary" href="#/dashboard">Go to the dashboard</a>',
-        secondary: '<button class="btn btn-sm" type="button" data-action="open-command">Search everything</button>',
+        primary: '<button class="btn btn-primary" type="button" data-action="open-command">Search everything</button>',
       })}
 
       ${notice('This app is a study tool, not an official source. Always check answer keys and syllabus details against official documents before relying on them.', 'warn')}
 
-      ${card({
-        title: 'Start, practise and review',
+      ${sheet({
+        label: 'Start, practise and review',
         count: '5 tasks',
         body: `<div class="faq-list">${everyday}</div>`,
       })}
 
-      ${card({
-        title: 'Your data, this device',
+      ${sheet({
+        label: 'Your data, this device',
         count: '5 tasks',
         body: `<div class="faq-list">${dataFaq}</div>`,
       })}
 
       <div class="split-2">
-        ${card({
-          title: 'Keyboard shortcuts',
+        ${sheet({
+          label: 'Keyboard shortcuts',
           body: dataTable({
             columns: [{ label: 'Key' }, { label: 'Action' }],
             rows: KEYBOARD.map(([key, action]) => [`<span class="kbd">${esc(key)}</span>`, esc(action)]),
@@ -164,17 +163,16 @@ export default {
           }),
         })}
 
-        ${card({
-          title: 'Check it yourself',
+        ${sheet({
+          label: 'Check it yourself',
           count: `${checklistDone.size} of ${CHECKLIST.length}`,
-          body: `<p class="small">A short hand-check of the interface, in a few minutes. <a href="docs/TESTING.md">docs/TESTING.md</a> lists the automated half.</p>
+          body: `<p class="small">A few minutes of hand-checks; <a href="docs/TESTING.md">docs/TESTING.md</a> lists the automated half.</p>
             <ul class="checklist">${checklist}</ul>`,
-          footer: 'These steps are the manual half of the test plan; docs/TESTING.md lists the automated half.',
         })}
       </div>
 
-      ${card({
-        title: 'Where the detail lives',
+      ${sheet({
+        label: 'Where the detail lives',
         body: `
           <ul class="small">
             <li><a href="docs/LIMITATIONS.md">Everything this app does not do</a> — no AI generation, no verified commission key, no prediction, no guarantee that revision makes anything stick.</li>
@@ -182,11 +180,11 @@ export default {
             <li><a href="docs/UI.md">The interface contract</a> — screen anatomy, card anatomy and the density budget.</li>
             <li><a href="docs/TESTING.md">The test plan</a> — what the automated suites cover and what they do not.</li>
           </ul>
-          <div class="row">${badge('no network calls after load', 'ok')} ${badge('offline capable', 'ok')} ${badge('exportable at any time', 'ok')}</div>`,
+          <p class="tiny text-soft m-0">No network calls after load · works offline · exportable at any time.</p>`,
       })}
 
-      ${card({
-        title: 'How the numbers are defined',
+      ${sheet({
+        label: 'How the numbers are defined',
         body: `
           ${dataTable({
             columns: [{ label: 'Figure' }, { label: 'What it means' }],

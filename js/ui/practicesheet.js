@@ -42,8 +42,16 @@ export const PRACTICE_POOLS = [
   { id: 'mistakes', label: 'Open mistakes', hint: 'Wrong, skipped and flagged questions still open in the Mistake Book.' },
 ];
 
-/** Resolve a pool id to question ids. Returns `{ ids, label, notes }`. */
-async function poolFor(poolId) {
+/**
+ * Resolve a pool id to question ids. Returns `{ ids, label, notes }`.
+ *
+ * `count` is passed in for the smart pool because its plan *is* the answer:
+ * "what is due, what you keep getting wrong, what you have not seen" is a
+ * ranking cut to the size of the session. Building the plan over the whole bank
+ * and slicing it afterwards would start a different set from the one the sheet
+ * explained, so the size travels with the question.
+ */
+async function poolFor(poolId, { count = null } = {}) {
   const metas = Array.from(state.questionIndex.values());
   if (poolId === 'revision') {
     const queue = dueQueue(await allRevisionRecords());
@@ -66,7 +74,7 @@ async function poolFor(poolId) {
     metas,
     attemptSummary: buildAttemptSummary(await allAttempts()),
     revisionRecords: await allRevisionRecords(),
-    count: Math.max(metas.length, 1),
+    count: Math.max(1, Math.min(Number(count) || 20, metas.length)),
   });
   return {
     ids: plan.questionIds.filter((id) => state.questionIndex.has(id)),
@@ -132,13 +140,15 @@ export async function openPracticeSheet(ctx, { pool = 'smart', source = 'dashboa
 
   if (result !== 'start') return null;
   const config = readConfig(PREFIX, { defaultCount: 20 });
-  const picked = await poolFor(chosenPool);
+  const requested = Math.max(1, Number(config.count) || 20);
+  const picked = await poolFor(chosenPool, { count: requested });
   if (!picked.ids.length) {
     toast('There is nothing in that pool right now. Try another one, or import more questions.', 'warn');
     return null;
   }
-  const count = Math.max(1, Math.min(Number(config.count) || 20, picked.ids.length));
-  const questionIds = chosenPool === 'smart' ? picked.ids.slice(0, count) : shuffle(picked.ids).slice(0, count);
+  // The smart plan already returns exactly the requested size, in its own
+  // priority order; every other pool is drawn from at random here.
+  const questionIds = chosenPool === 'smart' ? picked.ids.slice(0, requested) : shuffle(picked.ids).slice(0, requested);
   const metas = questionIds.map((id) => state.questionIndex.get(id)).filter(Boolean);
   const test = await tests.createTest({
     kind: chosenPool === 'smart' ? 'smart' : 'custom',

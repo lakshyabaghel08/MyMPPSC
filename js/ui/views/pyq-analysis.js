@@ -150,27 +150,12 @@ export async function renderBankPanel(ctx) {
   /* ------------------------------------------------------------ tiles -- */
 
   const tiles = `
-    <div class="pyq-summary-grid" role="region" aria-label="Question bank summary">
-      ${tile({ label: 'Questions', value: String(total), sub: `${paperTotal} paper(s) · ${esc(summary.yearSpan)}` })}
-      ${tile({
-        label: 'Subjects',
-        value: String(summary.subjectCount),
-        sub: summary.unclassified ? `${summary.unclassified} question(s) have none — counted as Unclassified` : 'every question has one',
-        tone: summary.unclassified ? 'warn' : '',
-      })}
-      ${tile({
-        label: 'Topics',
-        value: String(summary.topicCount),
-        sub: topicless ? `${topicless} question(s) have none` : `across ${summary.subjectCount} subject(s)`,
-        tone: topicless ? 'warn' : '',
-      })}
-      ${tile({
-        label: 'Answer keys',
-        value: `${summary.withKey}/${total} <small>(${pct(total ? summary.withKey / total : 0, 0)})</small>`,
-        sub: summary.withoutKey ? `${summary.withoutKey} to resolve in the Question Bank` : 'every question has one',
-        tone: summary.withoutKey ? 'warn' : 'ok',
-      })}
-    </div>`;
+    <p class="facts-line pyq-summary-grid" role="region" aria-label="Question bank summary">
+      <span data-figure="questions"><b>${total}</b> Questions <small>${paperTotal} paper(s) · ${esc(summary.yearSpan)}</small></span>
+      <span data-figure="subjects"><b>${summary.subjectCount}</b> Subjects <small>${summary.unclassified ? `${summary.unclassified} question(s) have none — counted as Unclassified` : 'every question has one'}</small></span>
+      <span data-figure="topics"><b>${summary.topicCount}</b> Topics <small>${topicless ? `${topicless} question(s) have none` : `across ${summary.subjectCount} subject(s)`}</small></span>
+      <span data-figure="keys"><b>${summary.withKey}/${total}</b> Answer keys <small>${summary.withoutKey ? `${summary.withoutKey} to resolve in the Bank` : 'every question has one'}</small></span>
+    </p>`;
 
   /* --------------------------------------------------------- subjects -- */
 
@@ -276,7 +261,7 @@ export async function renderBankPanel(ctx) {
       { label: 'Practice' },
     ],
     rows: shown.map((t) => [
-      `<span class="wrap pyq-topic-name">${esc(t.topic)}</span>${t.unclassified ? ` ${badge('no topic label', 'warn')}` : ''}`,
+      `<span class="wrap pyq-topic-name">${esc(t.topic)}</span>${t.unclassified ? ' <span class="tiny text-soft">no topic label</span>' : ''}`,
       ...(selected ? [] : [subjectTag(t.subject)]),
       `<strong>${String(t.questions)}</strong>`,
       pct(shareOf(t), 1),

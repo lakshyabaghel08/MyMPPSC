@@ -557,11 +557,11 @@ function overviewStrip(ws, { examId }) {
     return `<section class="syl-overview syl-intro syl-progress-head" aria-label="How progress tracking works">
       <div class="syl-ov-main">
         <p class="syl-ov-title"><strong>Track your preparation, topic by topic</strong></p>
-        <p class="syl-intro-text">Tap the circle beside a topic to move it along:</p>
+        <p class="syl-intro-text">Tap the circle beside a topic to move it along, and a heading to read its lines:</p>
         <ol class="syl-steps">
           ${STATUS_ORDER.map((status) => `<li>${mark(status, { dot: false })}<span>${STATUS_TITLE[status]}</span></li>`).join('')}
         </ol>
-        <p class="syl-intro-text">A section adds up its topics, and its panel can mark them all at once. Every figure here counts the commission's own topics.</p>
+        <p class="syl-intro-text">A section adds up its topics, and its panel can mark them all at once.</p>
       </div>
     </section>`;
   }
@@ -700,9 +700,8 @@ async function screen(ctx) {
   return `<div class="syl">
     ${screenHead({
       title: 'Syllabus',
-      purpose: "The commission's revised 2026 syllabus for Prelims and Mains, with your progress marked topic by topic. Every figure counts the commission's own topics.",
-      primary: '<button class="btn btn-primary" type="button" data-syl-search-focus>Find a topic</button>',
-      secondary: '<a class="btn btn-sm" href="#/topic">Practise a topic</a>',
+      purpose: "The commission's 2026 syllabus, with your progress marked on its own topics. Every figure counts those topics.",
+      secondary: '<a class="btn btn-sm btn-quiet" href="#/topic">Practise a topic</a>',
     })}
     <div class="syl-controls">
       <div class="syl-switch" role="tablist" aria-label="What to show">

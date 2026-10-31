@@ -10,7 +10,7 @@ import { APP_VERSION, DB_NAME, DB_VERSION, SUPPORTED_SCHEMA_VERSIONS, STORES } f
 import { FIXED_RULES_NOTE } from './shared.js';
 import { state, saveSettings, resetSettings, loadSettings, refreshQuestionIndex } from '../../core/state.js';
 import * as db from '../../core/db.js';
-import { esc, badge, card, tile, dataTable, toast, openModal, confirmDialog, tabs, mountTabs, screenHead } from '../components.js';
+import { esc, badge, sheet, dataTable, toast, openModal, confirmDialog, tabs, mountTabs, screenHead } from '../components.js';
 import { fmtBytes, fmtDate, fmtRelative, readFileAsText, downloadJson, getLogRing, todayKey } from '../../core/util.js';
 import * as data from '../../services/data.js';
 import * as builtinBank from '../../services/builtin-bank.js';
@@ -43,15 +43,22 @@ export default {
     const lastBackup = data.lastBackupInfo();
     const builtinInfo = await builtinBank.builtinBankInfo();
 
+    // Two sheets, because the reader is changing two different things: how the
+    // app reads, and how a session behaves. A hint says what a control does.
     const general = `
-      ${card({
-        title: 'Language, theme and defaults',
+      ${sheet({
+        label: 'Reading',
         body: `
           <div class="field-row">
-            ${selectField('setLanguage', 'Interface and question language', { en: 'English (default)', hi: 'हिन्दी where available' }, s.language, 'Questions are never translated: they are shown in this language when the bank has that variant. The syllabus shows labelled English renderings where the commission published Hindi only, and always its own Hindi wording under “Official wording”.')}
+            ${selectField('setLanguage', 'Interface and question language', { en: 'English (default)', hi: 'हिन्दी where available' }, s.language, "Questions are never translated: the bank's own variant is shown. The syllabus keeps the commission's Hindi wording beside any English rendering.")}
             ${selectField('setTheme', 'Theme', { light: 'Light', dark: 'Dark', system: 'Follow the system' }, s.theme)}
             ${selectField('setDensity', 'Density', { comfortable: 'Comfortable', compact: 'Compact' }, s.density)}
-          </div>
+          </div>`,
+      })}
+
+      ${sheet({
+        label: 'How sessions run',
+        body: `
           <div class="field-row">
             ${selectField('setFeedback', 'Default feedback timing', { exam: 'Exam simulation (reveal after submission)', learning: 'Learning mode (reveal immediately)' }, s.feedbackMode)}
           </div>
@@ -64,35 +71,35 @@ export default {
           <p class="hint">${esc(FIXED_RULES_NOTE)}</p>`,
       })}
 
-      ${card({
-        title: 'Practice defaults',
+      ${sheet({
+        label: 'Practice defaults',
         subtitle: 'Used when a paper has no known rules of its own',
         body: `
-          <h3 class="card-section-title">Scoring</h3>
-          <p class="small">Paper-specific rules always take priority when they are known. These defaults — the MPPSC +3 / −1 / 0 pattern out of the box — are used for every other quiz type and as a starting point you can override per test.</p>
+          <p class="section-label">Scoring</p>
+          <p class="small">Paper-specific rules win when they are known. These defaults cover everything else, and any test can override them.</p>
           <div class="field-row">
             ${numberField('setMarksCorrect', 'Marks per correct answer', s.defaultScoring.marksPerCorrect, { step: '0.25' })}
             ${numberField('setMarksWrong', 'Negative marks per wrong answer (positive number)', s.defaultScoring.negativeMarksPerIncorrect, { step: '0.01', min: 0 })}
             ${numberField('setMarksUnanswered', 'Marks for an unanswered question', s.defaultScoring.marksForUnanswered, { step: '0.25' })}
           </div>
           ${check('setNegative', 'Apply negative marking with the defaults above', s.defaultScoring.negativeMarkingEnabled)}
-          <p class="tiny muted">Scoring is deterministic: the same answers against the same rules always produce the same score. The rules used for every test are stored with that test and displayed in its report.</p>
-          <h3 class="card-section-title mt-4">Repeats and selection</h3>
+          <p class="tiny muted">The rules a test was scored with are stored with it and shown in its report.</p>
+          <p class="section-label mt-4">Repeats and selection</p>
           ${check('setPreferUnseen', 'Prefer questions I have never attempted when building practice sets', s.repeatPolicy.preferUnseen)}
           <div class="field-row">
             ${numberField('setCooldown', 'Cooldown before a question can repeat (days)', s.repeatPolicy.cooldownDays, { min: 0 })}
             ${numberField('setUnseenRatio', 'Target share of unseen questions in smart practice (0–1)', s.repeatPolicy.unseenRatio, { step: '0.05', min: 0, max: 1 })}
             ${numberField('setNearDup', 'Near-duplicate similarity threshold (0–1)', s.repeatPolicy.nearDuplicateThreshold, { step: '0.01', min: 0.3, max: 0.95, hint: 'Used when reporting possible duplicates at import. A higher value reports fewer matches.' })}
           </div>
-          <p class="tiny muted mb-0">Repeats are handled by the cooldown above and by “prefer unseen”; there is no separate rule for custom sets.</p>`,
+          <p class="tiny muted mb-0">Repeats are handled by the cooldown and by “prefer unseen”; there is no separate rule for custom sets.</p>`,
       })}
     `;
 
     const revisionTab = `
-      ${card({
-        title: 'Revision intervals by level',
+      ${sheet({
+        label: 'Revision intervals by level',
         body: `
-          <p class="small">A correct answer that you were confident about moves a question up one level; each level has its own interval. These numbers are the whole scheduling model — nothing is hidden.</p>
+          <p class="small">A confident correct answer moves a question up one level; each level has its own interval. These numbers are the whole scheduling model.</p>
           <div class="field-row">
             ${Object.entries(s.revision.intervals)
               .map(([level, days]) => numberField(`setInterval${level}`, `Level ${level} (days)`, days, { min: 1, max: 365 }))
@@ -109,14 +116,14 @@ export default {
             ${numberField('setSlowSeconds', '“Slow answer” threshold (seconds)', s.revision.slowAnswerSeconds, { min: 10, max: 600 })}
           </div>
           ${check('setUnansweredIsMiss', 'Treat an unanswered question as a miss (it still stays labelled separately from a wrong answer)', s.revision.unansweredIsMiss)}
-          <p class="tiny muted">Changing these values affects future scheduling only. Existing revision records keep the interval they were given, and every record shows the basis it was computed from.</p>`,
+          <p class="tiny muted">These values affect future scheduling only. Existing records keep their interval, and each shows the basis it was computed from.</p>`,
       })}`;
 
     const backupTab = `
-      ${card({
-        title: 'Create a backup',
+      ${sheet({
+        label: 'Create a backup',
         body: `
-          <p class="small">A backup is a single JSON file containing your question bank, papers, tests, attempts, mistakes, revision schedule, syllabus, tasks, study sessions, import history and settings. It is written by your browser to your device — nothing is uploaded.</p>
+          <p class="small">One JSON file: bank, papers, tests, attempts, mistakes, revision schedule, syllabus, tasks, sessions, import history and settings. Your browser writes it to your device — nothing is uploaded.</p>
           <div class="row">
             <label class="check"><input type="checkbox" id="backupTests" checked /><span>Include test sessions and results</span></label>
             <label class="check"><input type="checkbox" id="backupQuestions" checked /><span>Include the question bank (uncheck to back up progress only)</span></label>
@@ -130,31 +137,44 @@ export default {
           <p class="tiny muted">Browser storage can be cleared by you, by the browser, or when a device runs out of space. Keep a backup file outside the browser.</p>`,
       })}
 
-      ${card({
-        title: 'Restore from a backup',
+      ${sheet({
+        label: 'Restore from a backup',
         body: `
-          <p class="small">Restoring validates the file first and shows you exactly what it contains before anything is written. Integrity is checked against the SHA-256 recorded inside the file.</p>
+          <p class="small">The file is validated and its SHA-256 checked before anything is written; you see what it contains first.</p>
           <div class="row"><input type="file" id="restoreFile" accept="application/json,.json" /></div>
           ${viewState.restoreValidation ? renderRestoreSummary() : ''}`,
       })}
 
-      ${card({
-        title: 'Storage',
+      ${sheet({
+        label: 'Storage',
         body: `
-          <div class="grid tiles">
-            ${tile({ label: 'Records stored', value: String(Object.values(report.counts).filter((v) => typeof v === 'number').reduce((a, b) => a + b, 0)), sub: `${Object.keys(report.counts).length} stores`, source: 'measured', where: 'Local IndexedDB stores' })}
-            ${tile({ label: 'Estimated usage', value: report.estimate?.usage === null || report.estimate?.usage === undefined ? '—' : fmtBytes(report.estimate.usage), sub: report.estimate?.quota ? `of about ${fmtBytes(report.estimate.quota)} available` : 'quota unknown', source: report.estimate?.usage !== null && report.estimate?.usage !== undefined ? 'measured' : 'unavailable', where: 'Browser StorageManager API' })}
-            ${tile({ label: 'Persistent storage', value: report.persisted === null ? 'unknown' : report.persisted ? 'granted' : 'not granted', sub: 'asked of the browser, not guaranteed', tone: report.persisted ? 'ok' : '', source: report.persisted === null ? 'unavailable' : 'measured' })}
-            ${tile({ label: 'Last backup', value: lastBackup ? fmtRelative(lastBackup.at) : 'never', tone: lastBackup ? '' : 'warn', source: lastBackup ? 'measured' : 'unavailable' })}
-          </div>
+          <p class="facts-line">
+            <span><b>${String(Object.values(report.counts).filter((v) => typeof v === 'number').reduce((x, y) => x + y, 0))}</b> records <small>in ${Object.keys(report.counts).length} stores</small></span>
+            <span><b>${report.estimate?.usage === null || report.estimate?.usage === undefined ? '—' : fmtBytes(report.estimate.usage)}</b> used <small>${report.estimate?.quota ? `of about ${fmtBytes(report.estimate.quota)}` : 'quota unknown'}</small></span>
+            <span><b>${report.persisted === null ? 'unknown' : report.persisted ? 'granted' : 'not granted'}</b> persistent storage <small>asked of the browser, never guaranteed</small></span>
+            <span><b>${lastBackup ? fmtRelative(lastBackup.at) : 'never'}</b> last backup</span>
+          </p>
           ${dataTable({ columns: [{ label: 'Store' }, { label: 'Records', num: true }], rows: Object.entries(report.counts).map(([k, v]) => [esc(k), typeof v === 'number' ? String(v) : esc(String(v))]), className: 'compact' })}
           <div class="row mt-3"><button class="btn btn-sm" type="button" id="requestPersistence">Ask the browser for persistent storage</button></div>
           <p class="tiny muted">${esc(report.warning)}</p>`,
+      })}
+
+      ${sheet({
+        label: 'Destructive actions',
+        subtitle: 'These cannot be undone — export a backup first',
+        tone: 'bad',
+        body: `
+          <div class="row">
+            <button class="btn" type="button" id="resetSettings">Reset all settings to defaults</button>
+            ${builtinInfo.loaded ? '<button class="btn" type="button" id="removeBuiltinBank">Remove the bundled MPPSC bank</button>' : ''}
+            <button class="btn btn-danger" type="button" id="wipeData">Delete all local data</button>
+          </div>
+          <p class="tiny muted mb-0">${builtinInfo.loaded ? `The bundled bank holds ${builtinInfo.storedQuestions} question(s) loaded from the repository; removing it leaves your own questions, tests, attempts and revision history untouched, and it is loaded again on the next start while the file is unchanged.` : 'The bundled MPPSC bank is not loaded on this device.'}</p>`,
       })}`;
 
     const diagnosticsTab = `
-      ${card({
-        title: 'Application',
+      ${sheet({
+        label: 'Application',
         body: dataTable({
           columns: [{ label: 'Item' }, { label: 'Value' }],
           rows: [
@@ -170,8 +190,8 @@ export default {
         }),
       })}
 
-      ${card({
-        title: 'Recent activity log',
+      ${sheet({
+        label: 'Recent activity log',
         subtitle: 'Kept in memory for this session only',
         body: dataTable({
           columns: [{ label: 'When' }, { label: 'Area' }, { label: 'Event' }],
@@ -179,19 +199,6 @@ export default {
           empty: 'Nothing logged yet in this session.',
           className: 'compact',
         }),
-      })}
-
-      ${card({
-        title: 'Destructive actions',
-        tone: 'bad',
-        body: `
-          <p class="small">These actions cannot be undone. Export a backup first.</p>
-          <div class="row">
-            <button class="btn" type="button" id="resetSettings">Reset all settings to defaults</button>
-            ${builtinInfo.loaded ? '<button class="btn" type="button" id="removeBuiltinBank">Remove the bundled MPPSC bank</button>' : ''}
-            <button class="btn btn-danger" type="button" id="wipeData">Delete all local data</button>
-          </div>
-          <p class="tiny muted mb-0">${builtinInfo.loaded ? `The bundled bank holds ${builtinInfo.storedQuestions} question(s) loaded from the repository; removing it leaves your own questions, tests, attempts and revision history untouched, and it is loaded again on the next start while the file is unchanged.` : 'The bundled MPPSC bank is not loaded on this device.'}</p>`,
       })}`;
 
     return `
@@ -355,7 +362,7 @@ export default {
 
     document.getElementById('removeBuiltinBank')?.addEventListener('click', async () => {
       const ok = await confirmDialog({
-        title: 'Remove the bundled MPPSC bank from this device?',
+        label: 'Remove the bundled MPPSC bank from this device?',
         message: 'The 2013–2024 questions and papers stored from the repository bank are removed from this browser. Your own imported questions, tests, attempts, bookmarks and revision history are untouched; the bank is loaded again the next time you start the app.',
         confirmLabel: 'Remove from this device',
         danger: true,
@@ -369,7 +376,7 @@ export default {
 
     document.getElementById('wipeData')?.addEventListener('click', async () => {
       const value = await openModal({
-        title: 'Delete all local data',
+        label: 'Delete all local data',
         body: `
           <p class="small">This removes the question bank, tests, attempts, mistakes, revision schedule, syllabus, tasks and sessions from this browser. It cannot be undone.</p>
           <p class="small"><strong>Type DELETE in capitals to confirm.</strong></p>

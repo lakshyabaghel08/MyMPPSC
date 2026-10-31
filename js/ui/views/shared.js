@@ -18,14 +18,19 @@
 import { state } from '../../core/state.js';
 import { esc, notice, toast, infoToggle } from '../components.js';
 import { ANSWER_POLICIES, FIXED_TEST_RULES } from '../../core/constants.js';
-import { allAttempts } from '../../services/attempts.js';
-import { buildAttemptSummary } from '../../services/select.js';
+import { allAttempts, listMistakes } from '../../services/attempts.js';
+import { buildAttemptSummary, selectQuestions } from '../../services/select.js';
 import * as tests from '../../services/tests.js';
 import { resolveScoringRules } from '../../services/scoring.js';
+import { allRevisionRecords, dueQueue } from '../../services/revision.js';
+import { shuffle } from '../../core/util.js';
 
 const LATEST_MPPSC_PRACTICE_SCHEME = 'mppsc-sse-prelims-latest-practice';
 
 export const CONFIG_PREFIX = 'practiceCfg';
+
+/** Default size for a session assembled without asking the reader. */
+export const DEFAULT_PRACTICE_SIZE = 20;
 
 /** Attempt summary built once per setup render. */
 export async function currentAttemptSummary() {
@@ -355,4 +360,210 @@ export function scoringUnknownNotice(paper) {
     return notice("No applicable marking scheme is available for this paper. Configure scoring before the test can be scored.", 'warn', { title: 'Scoring rules unknown' });
   }
   return '';
+}
+
+/* ------------------------------------------------- one-click starters ---- */
+
+/**
+ * Start a session from a resolved pool descriptor:
+ * `{ ids, label, notes, config, orderSource, paper, kind }`.
+ *
+ * Every screen that offers "practise this" goes through here, so the session a
+ * row on Today starts is the same shape as the one the builder starts from the
+ * same questions — same fixed rules, same scoring resolution, same navigation.
+ */
+export async function startPool(ctx, pool) {
+  if (!pool?.ids?.length) {
+    toast('There is nothing in that pool right now. Try another option, or import more questions.', 'warn');
+    return null;
+  }
+  const metas = pool.ids.map((id) => state.questionIndex.get(id)).filter(Boolean);
+  return startPracticeTest(ctx, {
+    kind: pool.kind || 'custom',
+    label: pool.label,
+    questionIds: pool.ids,
+    metas,
+    config: {
+      ...(pool.config || {}),
+      usePaperRules: pool.paper ? (pool.config?.usePaperRules ?? true) : false,
+      scoring: pool.paper ? pool.config?.scoring : pool.config?.scoring || { source: 'custom', ...state.settings.defaultScoring },
+    },
+    orderSource: pool.orderSource || 'shuffled',
+    paper: pool.paper || null,
+    selectionNotes: pool.notes || [],
+  });
+}
+
+/** Test kind for the options produced by `services/nextup.js`. */
+const OPTION_KINDS = {
+  resume: null,
+  revision: 'revision',
+  smart: 'smart',
+  paper: 'pyq_full',
+  topic: 'topic',
+  unseen: 'custom',
+  mistakes: 'mistake_retry',
+};
+
+/**
+ * Start one option from `buildStartOptions()`. A resume option carries its own
+ * href and is a navigation, not a new test.
+ */
+export async function startOption(ctx, option) {
+  if (!option) return null;
+  if (option.kind === 'resume') {
+    if (option.href) ctx.navigate(option.href);
+    return null;
+  }
+  if (!option.count) {
+    toast('There is nothing in that pool yet.', 'info');
+    return null;
+  }
+  const resolved = await option.pool();
+  return startPool(ctx, { ...resolved, kind: OPTION_KINDS[option.kind] || 'custom' });
+}
+
+/**
+ * Practise one topic (or a whole subject) immediately.
+ *
+ * This is the action behind every recommendation row: dashboard, results,
+ * Insights, Mistake Book topic roll-up. It picks with the weakest-first
+ * strategy by default, in learning mode, with no time limit — the shape of a
+ * study sitting rather than an exam simulation.
+ */
+export async function startTopicSession(ctx, { subject = null, topic = null, count = null, strategy = 'weakest-first', feedbackMode = 'learning' } = {}) {
+  const metas = Array.from(state.questionIndex.values()).filter(
+    (m) => (!subject || (m.subject || 'Unclassified') === subject) && (!topic || (m.topic || 'Unclassified') === topic),
+  );
+  if (!metas.length) {
+    toast('No stored questions match that selection.', 'warn');
+    return null;
+  }
+  const attemptSummary = await currentAttemptSummary();
+  const size = Math.max(1, Math.min(Number(count) || DEFAULT_PRACTICE_SIZE, metas.length));
+  const picked = selectQuestions(metas, {
+    count: size,
+    strategy,
+    attemptSummary,
+    repeatPolicy: { preferUnseen: true, cooldownDays: state.settings.repeatPolicy.cooldownDays },
+  });
+  const ids = picked.selected.map((m) => m.id);
+  return startPracticeTest(ctx, {
+    kind: 'topic',
+    label: topic ? `Topic practice — ${topic}` : `Subject practice — ${subject}`,
+    questionIds: ids,
+    metas: picked.selected,
+    config: { feedbackMode, durationMinutes: null, usePaperRules: false, scoring: { source: 'custom', ...state.settings.defaultScoring } },
+    orderSource: strategy === 'random' ? 'shuffled' : strategy,
+    selectionNotes: [
+      topic ? `Selected: ${subject} · ${topic}` : `Selected: ${subject}`,
+      `Pick strategy: ${strategy === 'weakest-first' ? 'weakest topics first' : strategy === 'least-attempted' ? 'least attempted first' : 'random'}.`,
+      ...picked.notes,
+    ],
+  });
+}
+
+/** A stored paper, in its own order, as an examination simulation. */
+export async function startPaperSimulation(ctx, paper, { count = null, strict = true } = {}) {
+  if (!paper) return null;
+  const full = (paper.question_order || []).filter((id) => state.questionIndex.has(id));
+  if (!full.length) {
+    toast('This paper has no stored questions to practise.', 'warn');
+    return null;
+  }
+  const size = Math.max(1, Math.min(Number(count) || full.length, full.length));
+  const short = size < full.length;
+  const ordered = strict ? full.slice(0, size) : shuffle(full.slice()).slice(0, size);
+  return startPracticeTest(ctx, {
+    kind: 'pyq_full',
+    label: `${paper.paper_name || paper.exam || paper.paper_id}${paper.year ? ` — ${paper.year}` : ''}${paper.set_code ? ` (set ${paper.set_code})` : ''}${short ? ` · first ${size}` : ''}`,
+    questionIds: ordered,
+    metas: ordered.map((id) => state.questionIndex.get(id)).filter(Boolean),
+    config: {
+      // A shortened run is no longer a timed simulation of the paper; the clock
+      // would otherwise fail the reader on questions they never saw.
+      feedbackMode: 'exam',
+      durationMinutes: short ? null : paper.duration_minutes || null,
+      showTimer: !short,
+    },
+    orderSource: strict ? 'original' : 'shuffled',
+    paper,
+    selectionNotes: short
+      ? [`The first ${size} of ${full.length} questions, in the paper's order.`, 'No time limit: this is a shortened run, not a full simulation.']
+      : [strict ? 'Original paper order retained.' : 'Question order shuffled for this sitting.'],
+  });
+}
+
+/** The smart plan, started from wherever the reader is. */
+export async function startSmartSession(ctx, { count = DEFAULT_PRACTICE_SIZE, includeDemonstration = true, respectCooldown = true } = {}) {
+  const metas = Array.from(state.questionIndex.values());
+  if (!metas.length) return null;
+  const attemptSummary = await currentAttemptSummary();
+  const { smartPracticePlan } = await import('../../services/select.js');
+  const plan = smartPracticePlan({
+    metas,
+    attemptSummary,
+    revisionRecords: await allRevisionRecords(),
+    count,
+    includeDemonstration,
+    respectCooldown,
+  });
+  if (!plan.questionIds.length) {
+    toast('No questions could be selected. Import more questions or relax the filters.', 'warn');
+    return null;
+  }
+  const byId = new Map(metas.map((m) => [m.id, m]));
+  return startPracticeTest(ctx, {
+    kind: 'smart',
+    label: `Smart practice — ${plan.questionIds.length} questions`,
+    questionIds: plan.questionIds.slice(),
+    metas: plan.questionIds.map((id) => byId.get(id)).filter(Boolean),
+    config: {
+      feedbackMode: state.settings.feedbackMode,
+      durationMinutes: null,
+      usePaperRules: false,
+      scoring: { source: 'custom', ...state.settings.defaultScoring },
+    },
+    orderSource: 'shuffled',
+    selectionNotes: plan.explain,
+  });
+}
+
+/** Due revision, capped to one sitting (the schedule keeps the rest due). */
+export async function startRevisionDue(ctx) {
+  const queue = dueQueue(await allRevisionRecords());
+  const ids = queue.ids.filter((id) => state.questionIndex.has(id));
+  if (!ids.length) {
+    toast('Nothing is due for revision right now.', 'info');
+    return null;
+  }
+  if (queue.remaining > 0) toast(`${queue.total} questions are due; this sitting takes the first ${ids.length}. The rest stay due.`, 'info');
+  return startPracticeTest(ctx, {
+    kind: 'revision',
+    label: `Revision — ${ids.length} due question(s)`,
+    questionIds: ids,
+    metas: ids.map((id) => state.questionIndex.get(id)).filter(Boolean),
+    config: { feedbackMode: 'learning', durationMinutes: null },
+    orderSource: 'due_first',
+    selectionNotes: ['Questions whose scheduled revision date has arrived or passed.'],
+  });
+}
+
+/** Every open mistake in one sitting. */
+export async function startOpenMistakes(ctx, { limit = 40 } = {}) {
+  const rows = await listMistakes({ status: 'open' });
+  const ids = Array.from(new Set(rows.map((row) => row.question_id))).filter((id) => state.questionIndex.has(id)).slice(0, limit);
+  if (!ids.length) {
+    toast('Nothing is open in the Mistake Book.', 'info');
+    return null;
+  }
+  return startPracticeTest(ctx, {
+    kind: 'mistake_retry',
+    label: `Mistake retry — ${ids.length} question(s)`,
+    questionIds: ids,
+    metas: ids.map((id) => state.questionIndex.get(id)).filter(Boolean),
+    config: { feedbackMode: 'learning', durationMinutes: null },
+    orderSource: 'due_first',
+    selectionNotes: ['Questions still open in the Mistake Book.'],
+  });
 }

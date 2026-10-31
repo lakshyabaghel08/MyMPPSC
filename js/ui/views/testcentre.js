@@ -17,10 +17,9 @@
 import { state } from '../../core/state.js';
 import {
   esc,
-  card,
   screenHead,
-  cardInfo,
-  filterChip,
+  sheet,
+  infoToggle,
   emptyState,
   dataTable,
   openModal,
@@ -34,11 +33,18 @@ import { fmtDate, fmtMarks, fmtPct, fmtClock, shuffle } from '../../core/util.js
 import { paperSummary } from '../../services/select.js';
 import * as tests from '../../services/tests.js';
 import { resolveScoringRules } from '../../services/scoring.js';
-import { configFields, readConfig, mountConfigFields, scoringUnknownNotice, startPracticeTest } from './shared.js';
+import { configFields, readConfig, mountConfigFields, scoringUnknownNotice, startPracticeTest, startPaperSimulation } from './shared.js';
 import { openPracticeSheet } from '../practicesheet.js';
 
 /** The table's filters, remembered per screen (see `createFilterState`). */
 const filters = createFilterState({ year: 'all', unfinishedOnly: false, showAll: false });
+
+/** The paper's own name without the year the first column already states. */
+function strippedName(paper) {
+  const name = String(paper.paper_name || paper.paper_id);
+  const prefix = paper.year ? `MPPSC ${paper.year} ` : '';
+  return prefix && name.startsWith(prefix) ? name.slice(prefix.length) : name;
+}
 
 /** One row of the papers table: the columns a reader compares across papers. */
 function paperRow({ paper, summary }, unfinishedByPaper) {
@@ -85,18 +91,24 @@ function paperRow({ paper, summary }, unfinishedByPaper) {
   return [
     `<div class="paper-cell">
       <strong>${esc(paper.year ? `MPPSC ${paper.year}` : paper.paper_name || paper.paper_id)}</strong>
-      <div class="tiny muted">${esc(paper.paper_name || paper.paper_id)}${paper.set_code ? ` · set ${esc(paper.set_code)}` : ''}</div>
-      <div class="tiny muted">${isLatestPractice ? 'latest pattern · practice only' : 'source paper'}</div>
+      <div class="tiny text-soft">${esc(strippedName(paper))}${paper.set_code ? `, set ${esc(paper.set_code)}` : ''}</div>
+      <div class="tiny text-soft">${isLatestPractice ? 'latest pattern · practice only' : 'source paper'}</div>
       ${detail}
     </div>`,
-    `${String(summary.present)}<div class="tiny muted">${summary.bilingual ? 'bilingual' : 'single language'}</div>`,
+    `${String(summary.present)}<div class="tiny text-soft">${paper.duration_minutes ? `${Math.round(paper.duration_minutes)} min` : 'no limit'}</div>`,
     best
       ? `${esc(fmtMarks(best.score))} / ${esc(fmtMarks(best.max_marks))}<div class="tiny muted">${esc(fmtPct(best.accuracy, 0))} · ${esc(fmtDate(best.at))}</div>`
       : '<span class="soft">not attempted</span>',
     open
       ? `<button class="btn btn-primary btn-sm" type="button" data-action="resume" data-test="${esc(open.id)}">Resume</button>
          <div class="tiny muted">${tests.testProgress(open).answered} answered</div>`
-      : `<button class="btn btn-sm" type="button" data-action="start-paper" data-paper="${esc(paper.paper_id)}" ${summary.present ? '' : 'disabled'}>Start</button>`,
+      : `<div class="row tight">
+          <button class="btn btn-sm btn-primary" type="button" data-action="start-paper" data-paper="${esc(paper.paper_id)}"
+            aria-label="Start ${esc(`${paper.paper_name || paper.paper_id} — ${summary.present} questions${paper.duration_minutes ? `, ${paper.duration_minutes} minutes` : ''}, scored ${scheme}`)}"
+            ${summary.present ? '' : 'disabled'}>Start</button>
+          <button class="btn btn-sm btn-quiet" type="button" data-action="customise-paper" data-paper="${esc(paper.paper_id)}" ${summary.present ? '' : 'disabled'}>Customise…</button>
+        </div>
+        ${summary.present ? '' : '<div class="tiny text-soft">empty</div>'}`,
   ];
 }
 
@@ -118,8 +130,8 @@ export default {
           purpose: 'Full previous-year paper simulations, in the order the paper stored.',
           primary: '<a class="btn btn-primary" href="#/bank">Import a question bank</a>',
         })}
-        ${card({
-          title: 'No previous-year papers are stored yet',
+        ${sheet({
+          label: 'No previous-year papers are stored yet',
           body: emptyState({
             title: 'Import a validated question bank to begin',
             message: 'MyMPPSC does not ship with MPPSC previous-year papers. Import a bank produced by your separate preparation pipeline — the Question Bank screen explains the format, validates the file and shows a full summary before anything is written.',
@@ -167,7 +179,7 @@ export default {
     if (!current.showAll) rows = rows.slice(0, 12);
     const hidden = total - rows.length;
 
-    const filterRow = `<div class="card-toolbar">
+    const filterRow = `<div class="desk-filters">
       <div class="filters m-0">
         <label class="field"><span class="label-text">Year</span>
           <select id="tcYear"><option value="all">All years</option>${years
@@ -176,7 +188,6 @@ export default {
         </label>
         <label class="check self-end"><input type="checkbox" id="tcUnfinished" ${current.unfinishedOnly ? 'checked' : ''} /><span>Only papers with a session in progress</span></label>
       </div>
-      ${filterChip(filters.count(), { unit: 'filter' })}
     </div>`;
 
     const resumeStrip = unfinished.length
@@ -208,12 +219,12 @@ export default {
         secondary: '<a class="btn btn-sm btn-quiet" href="#/topic">Topic &amp; custom</a>',
       })}
 
-      ${card({
-        title: 'Previous-year papers',
+      ${sheet({
+        label: 'Previous-year papers',
         count: `${total} paper${total === 1 ? '' : 's'}`,
-        info: cardInfo(
+        action: infoToggle(
           'About scoring and these papers',
-          '<p class="small m-0">Full-paper practice follows the stored question order. Source metadata is shown separately from practice scoring: the latest reported MPPSC pattern (+3/−1/0) is applied to the bundled 2013–2024 papers by policy, not as a claim about each paper’s historical rules. Everything is stored in local IndexedDB on this device.</p>',
+          '<p class="small m-0">Full-paper practice follows the stored question order. Source metadata is shown separately from practice scoring: the latest reported MPPSC pattern (+3/−1/0) is applied to the bundled 2013–2024 papers by policy, not as a claim about each paper’s historical rules. Everything stays in local IndexedDB on this device.</p>',
         ),
         body: `${resumeStrip}
           ${filterRow}
@@ -228,8 +239,8 @@ export default {
             empty: 'No paper matches these filters.',
             className: 'compact cards-mobile paper-table',
           })}
-          ${hidden > 0 ? `<div class="show-all-row"><button class="btn btn-sm" type="button" data-action="show-all">Show all ${total} papers <span class="muted">(+${hidden})</span></button></div>` : ''}`,
-        footer: `<span class="tiny">${paperSummaries.filter(({ summary }) => !summary.scoringKnown).length} paper(s) have unknown scoring rules. A paper is never scored with guessed rules — you are asked to configure them first.</span>`,
+          ${hidden > 0 ? `<div class="show-all-row"><button class="quiet-action" type="button" data-action="show-all">Show all ${total} papers (+${hidden})</button></div>` : ''}`,
+        footer: `<p class="tiny text-soft m-0">${paperSummaries.filter(({ summary }) => !summary.scoringKnown).length} paper(s) have unknown scoring rules. A paper is never scored with guessed rules — you are asked to configure them first.</p>`,
       })}`;
   },
 
@@ -304,13 +315,20 @@ export default {
           actions: [{ label: 'Close', tone: 'btn-primary', value: 'close' }],
         });
       } else if (action === 'start-paper') {
+        // One click starts the faithful sitting: every stored question, in the
+        // paper's order, with the paper's own duration. Nothing is asked first
+        // because the row already states the size, the clock and the marks.
+        const paper = state.papers.get(btn.dataset.paper);
+        if (!paper) return;
+        await startPaperSimulation(ctx, paper);
+      } else if (action === 'customise-paper') {
         const paper = state.papers.get(btn.dataset.paper);
         const answered = await openModal({
-          title: `Start full simulation — ${paper.paper_name || paper.paper_id}`,
+          title: `Customise this simulation — ${paper.paper_name || paper.paper_id}`,
           wide: true,
           body: `
             ${scoringUnknownNotice(paper)}
-            <p class="small">${paper.question_order.length} questions, scored +3 / −1 / 0.</p>
+            <p class="small">${paper.question_order.length} questions, scored +3 / −1 / 0. Starting the paper from the table uses all of them, in the paper's order, with its own duration; change anything here if you want a shorter or reshuffled run.</p>
             ${configFields({ paper, defaultCount: paper.question_order.length, allowCustomScoring: true, allowRepeatOverride: false, maxCount: paper.question_order.length })}
             <label class="check"><input type="checkbox" id="simulationStrict" checked /><span>Keep the exact original order (recommended for a faithful simulation)</span></label>`,
           onMount: () => {
@@ -318,7 +336,7 @@ export default {
           },
           actions: [
             { label: 'Cancel', value: '__cancel' },
-            { label: 'Start simulation', tone: 'btn-primary', value: '__start' },
+            { label: 'Start with these settings', tone: 'btn-primary', value: '__start' },
           ],
         });
         if (answered !== '__start') return;

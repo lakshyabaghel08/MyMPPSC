@@ -363,13 +363,13 @@ test('a deep link selects what it names, once per arrival', async () => {
 test('#/custom opens the same screen with the merged item highlighted (B8)', async () => {
   await resetScreen();
   await goto('custom');
-  assert.match($('#view h1').textContent, /Topic & Custom Practice/);
+  assert.match($('#view h1').textContent, /Practice/, 'the merged screen is called Practice');
   assert.ok($('#view [data-action="start-practice"]'), 'the builder is there');
   assert.equal($('.nav-link[aria-current="page"]')?.dataset.route, 'topic', 'the navigation agrees on one destination');
   assert.equal($$('#navList .nav-link').filter((l) => /Custom Test/.test(l.textContent)).length, 0, 'and offers it once');
 
   await goto('custom/anything/at/all');
-  assert.match($('#view h1').textContent, /Topic & Custom Practice/, 'anything under the old address lands here too');
+  assert.match($('#view h1').textContent, /Practice/, 'anything under the old address lands here too');
   assert.equal($('.nav-link[aria-current="page"]')?.dataset.route, 'topic');
   assert.equal(matchCount(), state.questionIndex.size, 'without an empty pool and no explanation');
 
@@ -415,12 +415,12 @@ test('shuffle off really is paper order, and order_source says so (B3)', async (
   assert.match(viewText(), /paper order — year, then paper, then question number/, 'and the screen says what that means');
   $('#practiceCfgCount').value = '30';
   $('#practiceCfgCount').dispatchEvent(new window.Event('change', { bubbles: true }));
+  // Nothing is ticked, so this is a custom set. Phase 2 removed the extra
+  // confirmation dialog: the session pane states the pool, the size and the
+  // arrangement while the reader is choosing, and Start starts.
   click($('#view [data-action="start-practice"]'));
-  // Nothing is ticked, so this is a custom set: it asks first.
-  await waitFor(() => !$('#modalRoot').hidden, { label: 'the confirmation' });
-  assert.match($('#modalRoot').textContent, /paper order/, 'the confirmation states the order too');
-  click($('#modalRoot [data-value="confirm"]'));
   await waitFor(() => /^#\/runner\//.test(window.location.hash), { label: 'the runner' });
+  assert.equal($('#modalRoot').hidden, true, 'no confirmation dialog stands between the reader and the session');
 
   const record = await testsSvc.loadTest(window.location.hash.split('/').pop());
   assert.equal(record.kind, 'custom', 'the whole bank is not one subject, so it is a custom set');

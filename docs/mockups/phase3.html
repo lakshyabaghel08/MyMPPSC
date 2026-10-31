@@ -1,0 +1,951 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="color-scheme" content="light dark" />
+<title>MyMPPSC — Phase 3 artboards</title>
+<style>
+  /* ---------------------------------------------------------------------
+     Phase 3 artboards. A design artefact, not the app: it does not load the
+     app's stylesheet, does not ship, and exists to make the direction
+     reviewable before any screen is rebuilt. Everything below is hand-written
+     so the composition can be judged on its own terms.
+     --------------------------------------------------------------------- */
+
+  :root {
+    --paper: #f4f1e8;
+    --paper-deep: #ece7da;
+    --sheet: #fbf9f4;
+    --ink: #191a17;
+    --ink-soft: #3f413a;
+    --muted: #6a6b60;
+    --faint: #8d8d80;
+    --rule: #d8d2c1;
+    --rule-strong: #b9b2a0;
+    --accent: #8c3520;        /* margin red — used for "now" and nothing else */
+    --accent-soft: #f0e0d7;
+    --good: #2c5d43;
+    --bad: #8c3520;
+    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, "Times New Roman", serif;
+    --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, system-ui, sans-serif;
+    --deva: "Noto Sans Devanagari", "Kohinoor Devanagari", Mangal, system-ui, sans-serif;
+    --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    --measure: 64ch;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { background: var(--paper-deep); }
+
+  body {
+    margin: 0;
+    padding: 40px 24px 96px;
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--ink);
+    background:
+      radial-gradient(1200px 600px at 50% -10%, rgba(255,255,255,.35), transparent 70%),
+      var(--paper-deep);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page-head {
+    max-width: 1080px;
+    margin: 0 auto 40px;
+    border-bottom: 1px solid var(--rule-strong);
+    padding-bottom: 20px;
+  }
+  .kicker {
+    font-size: 11px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--faint);
+    margin: 0 0 10px;
+  }
+  .page-head h1 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 42px;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin: 0 0 12px;
+  }
+  .page-head p {
+    max-width: 68ch;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .page-head p + p { margin-top: 6px; color: var(--muted); font-size: 13.5px; }
+
+  /* ---- artboard frame ---------------------------------------------------- */
+  .board {
+    max-width: 1080px;
+    margin: 0 auto 56px;
+  }
+  .board-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    margin: 0 0 10px;
+  }
+  .board-head h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 24px;
+    margin: 0;
+    letter-spacing: -0.005em;
+  }
+  .board-head .note {
+    font-size: 11px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--faint);
+  }
+  .frame {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    box-shadow: 0 18px 40px -30px rgba(25,26,23,.55);
+    overflow: hidden;
+  }
+  .caption {
+    font-size: 12.5px;
+    color: var(--muted);
+    margin: 10px 2px 0;
+  }
+  .caption b { color: var(--ink-soft); font-weight: 600; }
+
+  /* ---- the three layout primitives -------------------------------------- */
+  .sheet { background: var(--paper); }
+  .panel {
+    background: var(--sheet);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+  }
+
+  /* ---- app chrome shared by the artboards -------------------------------- */
+  .chrome {
+    display: grid;
+    grid-template-columns: 208px minmax(0, 1fr);
+    min-height: 520px;
+  }
+  .side {
+    border-right: 1px solid var(--rule);
+    padding: 18px 14px;
+    background: linear-gradient(180deg, rgba(255,255,255,.35), transparent 40%), var(--paper);
+  }
+  .brand {
+    font-family: var(--serif);
+    font-size: 17px;
+    letter-spacing: .01em;
+    margin: 0 0 18px;
+  }
+  .brand span { color: var(--accent); }
+  .side-label {
+    font-size: 10.5px;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+    color: var(--faint);
+    margin: 18px 0 6px;
+  }
+  .side a {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 5px 8px 5px 9px;
+    margin: 0 -9px;
+    color: var(--ink-soft);
+    text-decoration: none;
+    font-size: 13.5px;
+    border-left: 2px solid transparent;
+  }
+  .side a[aria-current] {
+    border-left-color: var(--accent);
+    color: var(--ink);
+    font-weight: 550;
+    background: rgba(140, 53, 32, .045);
+  }
+  .side a small { color: var(--faint); font-variant-numeric: tabular-nums; font-size: 11.5px; }
+
+  .main { padding: 26px 34px 40px; position: relative; }
+  .eyebrow {
+    font-size: 10.5px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--faint);
+    margin: 0 0 8px;
+  }
+  .display {
+    font-family: var(--serif);
+    font-weight: 500;
+    letter-spacing: -0.012em;
+    line-height: 1.08;
+    margin: 0;
+  }
+  .h1 { font-size: 34px; }
+  .sub {
+    color: var(--muted);
+    font-size: 13.5px;
+    margin: 8px 0 0;
+  }
+
+  /* a hairline rule that sections the page instead of a card */
+  .rule { border: 0; border-top: 1px solid var(--rule); margin: 26px 0; }
+  .rule-strong { border-top-color: var(--rule-strong); }
+
+  /* small caps section label replaces card headers */
+  .label {
+    font-size: 10.5px;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+    color: var(--faint);
+    margin: 0 0 10px;
+  }
+
+  /* marginal note — the metadata home */
+  .with-margin {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 172px;
+    gap: 28px;
+  }
+  .margin {
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--faint);
+    border-left: 1px solid var(--rule);
+    padding-left: 12px;
+    margin-top: 4px;
+  }
+  .margin b { display: block; color: var(--ink-soft); font-weight: 600; font-size: 12px; }
+
+  /* ---- Today ------------------------------------------------------------- */
+  .continue {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    padding: 18px 0 0;
+  }
+  .continue .what {
+    font-family: var(--serif);
+    font-size: 26px;
+    line-height: 1.2;
+    margin: 0;
+  }
+  .continue .where { color: var(--muted); font-size: 13px; margin: 4px 0 0; }
+  .go {
+    margin-left: auto;
+    align-self: center;
+    font: inherit;
+    font-size: 13.5px;
+    padding: 8px 16px;
+    border-radius: 2px;
+    background: var(--ink);
+    color: var(--shell-on-ink, #f7f4ec);
+    border: 1px solid var(--ink);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .progress-rule {
+    position: relative;
+    height: 3px;
+    background: var(--rule);
+    margin: 14px 0 0;
+    overflow: hidden;
+  }
+  .progress-rule i {
+    position: absolute;
+    inset: 0 auto 0 0;
+    background: var(--ink);
+  }
+
+  .desk-list { list-style: none; margin: 0; padding: 0; }
+  .desk-list li + li { border-top: 1px solid var(--rule); }
+  .desk-row {
+    display: grid;
+    grid-template-columns: 22px minmax(0, 1fr) auto;
+    gap: 14px;
+    align-items: baseline;
+    padding: 13px 0;
+    color: inherit;
+    text-decoration: none;
+  }
+  .desk-row:hover .desk-title { text-decoration: underline; text-underline-offset: 3px; }
+  .desk-mark { color: var(--accent); font-size: 12px; letter-spacing: .04em; }
+  .desk-title { font-size: 15px; }
+  .desk-title em { font-style: normal; color: var(--muted); }
+  .desk-count { font-variant-numeric: tabular-nums; color: var(--ink-soft); font-size: 13px; }
+  .desk-count span { color: var(--faint); }
+
+  .look-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 84px auto;
+    gap: 14px;
+    align-items: baseline;
+    padding: 10px 0;
+  }
+  .look-row + .look-row { border-top: 1px dotted var(--rule); }
+  .look-topic { font-size: 14.5px; }
+  .look-topic small { color: var(--faint); font-size: 12px; margin-left: 6px; }
+  .dots { display: inline-flex; gap: 3px; }
+  .dots i {
+    width: 6px; height: 6px; border-radius: 50%;
+    border: 1px solid var(--rule-strong); background: transparent;
+  }
+  .dots i.on { background: var(--ink-soft); border-color: var(--ink-soft); }
+  .quiet-action {
+    font: inherit; font-size: 12.5px; color: var(--ink-soft);
+    background: none; border: 0; padding: 2px 0; cursor: pointer;
+    border-bottom: 1px solid var(--rule-strong);
+  }
+  .quiet-action:hover { border-bottom-color: var(--ink); }
+
+  .footer-line {
+    margin: 26px 0 0;
+    font-size: 11.5px;
+    color: var(--faint);
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+
+  /* ---- Runner ------------------------------------------------------------ */
+  .runner { background: var(--paper); }
+  .runner-top {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 22px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .runner-top .here { font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .runner-top .clock { margin-left: auto; font-variant-numeric: tabular-nums; font-size: 13px; color: var(--ink-soft); }
+  .runner-top .ghost {
+    font: inherit; font-size: 12.5px; color: var(--ink-soft);
+    background: none; border: 1px solid var(--rule-strong); border-radius: 2px;
+    padding: 4px 10px; cursor: pointer;
+  }
+  .runner-body {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 190px;
+    gap: 40px;
+    padding: 30px 34px 34px;
+    max-width: 980px;
+  }
+  .qnum {
+    font-family: var(--serif);
+    font-size: 15px;
+    color: var(--muted);
+    letter-spacing: .02em;
+  }
+  .stem {
+    font-family: var(--serif);
+    font-size: 21px;
+    line-height: 1.5;
+    margin: 8px 0 6px;
+    max-width: 58ch;
+  }
+  .stem .hi { font-family: var(--deva); font-size: 20px; display: block; margin-top: 6px; color: var(--ink-soft); }
+  .option-list { list-style: none; margin: 20px 0 0; padding: 0; max-width: 58ch; }
+  .option {
+    display: grid;
+    grid-template-columns: 26px minmax(0, 1fr);
+    gap: 12px;
+    padding: 11px 2px;
+    border-top: 1px solid var(--rule);
+    align-items: baseline;
+  }
+  .option:last-child { border-bottom: 1px solid var(--rule); }
+  .option .key {
+    font-family: var(--serif);
+    font-size: 15px;
+    color: var(--muted);
+    width: 24px; height: 24px;
+    display: grid; place-items: center;
+    border: 1px solid var(--rule-strong); border-radius: 50%;
+  }
+  .option.chosen { background: rgba(25,26,23,.035); }
+  .option.chosen .key { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .option.chosen .text { font-weight: 550; }
+  .runner-foot {
+    display: flex; align-items: center; gap: 20px;
+    padding: 14px 34px 18px;
+    border-top: 1px solid var(--rule);
+  }
+  .txt-btn {
+    font: inherit; font-size: 13px; color: var(--ink-soft);
+    background: none; border: 0; padding: 4px 0; cursor: pointer;
+  }
+  .txt-btn.strong { color: var(--ink); font-weight: 600; }
+  .txt-btn.muted { color: var(--faint); }
+
+  .index-card {
+    border-left: 1px solid var(--rule);
+    padding-left: 22px;
+  }
+  .index-card .label { margin-bottom: 6px; }
+  .index-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 5px; margin-top: 8px; }
+  .cell {
+    aspect-ratio: 1;
+    display: grid; place-items: center;
+    font-size: 11px;
+    font-variant-numeric: tabular-nums;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    color: var(--ink-soft);
+    background: var(--sheet);
+  }
+  .cell.done { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .cell.flag { border-color: var(--accent); color: var(--accent); }
+  .cell.now { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .index-legend { font-size: 11.5px; color: var(--faint); margin: 10px 0 0; line-height: 1.7; }
+  .index-legend b { color: var(--ink-soft); font-weight: 600; }
+
+  /* ---- Report ------------------------------------------------------------ */
+  .score-line { display: flex; align-items: flex-end; gap: 22px; flex-wrap: wrap; }
+  .score {
+    font-family: var(--serif);
+    font-size: 66px;
+    line-height: .95;
+    letter-spacing: -0.02em;
+    font-variant-numeric: lining-nums;
+  }
+  .score small { font-size: 24px; color: var(--faint); letter-spacing: 0; }
+  .score-meta { color: var(--muted); font-size: 13px; padding-bottom: 6px; }
+  .segmented {
+    display: flex;
+    height: 8px;
+    margin: 18px 0 6px;
+    max-width: 520px;
+    border-radius: 1px;
+    overflow: hidden;
+    background: var(--rule);
+  }
+  .segmented i { display: block; height: 100%; }
+  .segmented .ok { background: var(--ink); }
+  .segmented .bad { background: var(--accent); }
+  .segmented .blank { background: var(--paper); box-shadow: inset 0 0 0 1px var(--rule); }
+  .legend { display: flex; gap: 16px; font-size: 11.5px; color: var(--faint); flex-wrap: wrap; }
+  .legend b { color: var(--ink-soft); font-weight: 600; }
+
+  .do-row {
+    display: grid;
+    grid-template-columns: minmax(0,1fr) auto;
+    gap: 16px;
+    align-items: baseline;
+    padding: 12px 0;
+    border-top: 1px solid var(--rule);
+  }
+  .do-row:last-child { border-bottom: 1px solid var(--rule); }
+  .do-row p { margin: 0; font-size: 14.5px; }
+  .do-row p small { display: block; color: var(--faint); font-size: 12px; margin-top: 2px; }
+  .do-row strong { font-variant-numeric: tabular-nums; }
+
+  .bars { width: 100%; border-collapse: collapse; }
+  .bars td { padding: 9px 0; border-top: 1px dotted var(--rule); font-size: 13.5px; vertical-align: middle; }
+  .bars tr:first-child td { border-top: 0; }
+  .bars .name { width: 38%; }
+  .bars .name small { color: var(--faint); font-size: 11.5px; display: block; }
+  .bars .bar { width: 34%; padding-right: 14px; }
+  .bars .bar span { display: block; height: 7px; background: var(--rule); position: relative; border-radius: 1px; }
+  .bars .bar span i { position: absolute; inset: 0 auto 0 0; background: var(--ink-soft); }
+  .bars .val { font-variant-numeric: tabular-nums; color: var(--ink-soft); width: 12%; }
+  .bars .act { text-align: right; }
+
+  .detail-links { display: flex; gap: 18px; flex-wrap: wrap; font-size: 12.5px; }
+  .detail-links a { color: var(--ink-soft); text-decoration: none; border-bottom: 1px solid var(--rule-strong); padding-bottom: 1px; }
+  .detail-links a:hover { border-bottom-color: var(--ink); }
+
+  /* ---- Revision ---------------------------------------------------------- */
+  .rev-stack { display: grid; gap: 12px; }
+  .rev-card {
+    display: grid;
+    grid-template-columns: 62px minmax(0, 1fr) auto;
+    gap: 18px;
+    align-items: start;
+    padding: 14px 16px 14px 0;
+    border-top: 1px solid var(--rule);
+  }
+  .rev-card:last-child { border-bottom: 1px solid var(--rule); }
+  .stamp {
+    font-size: 10.5px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    text-align: right;
+    padding-top: 2px;
+    line-height: 1.4;
+  }
+  .stamp.later { color: var(--faint); }
+  .rev-q { margin: 0; font-size: 14.5px; line-height: 1.5; max-width: 56ch; }
+  .rev-src { margin: 5px 0 0; font-size: 12px; color: var(--faint); }
+  .rev-actions { display: flex; gap: 12px; align-items: center; }
+  .split-choice { display: inline-flex; gap: 2px; border: 1px solid var(--rule-strong); border-radius: 2px; overflow: hidden; }
+  .split-choice button {
+    font: inherit; font-size: 12px; padding: 5px 9px;
+    background: var(--sheet); border: 0; cursor: pointer; color: var(--ink-soft);
+  }
+  .split-choice button + button { border-left: 1px solid var(--rule); }
+  .split-choice button:hover { background: var(--paper-deep); }
+  .week { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; align-items: end; height: 54px; }
+  .week i { display: block; background: var(--rule-strong); width: 100%; }
+  .week i.today { background: var(--accent); }
+
+  /* ---- kit --------------------------------------------------------------- */
+  .kit { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 22px; padding: 22px; }
+  .kit h3 { font-family: var(--serif); font-weight: 500; font-size: 17px; margin: 0 0 4px; }
+  .kit p { margin: 0 0 10px; font-size: 12.5px; color: var(--muted); }
+  .kit .sample { border-top: 1px solid var(--rule); padding-top: 10px; }
+  .type-scale div { display: flex; align-items: baseline; gap: 12px; padding: 4px 0; }
+  .type-scale span:last-child { font-size: 11.5px; color: var(--faint); }
+
+  .empty-state {
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 26px 0;
+    max-width: 46ch;
+  }
+  .empty-state .mark {
+    font-family: var(--serif); font-size: 30px; color: var(--rule-strong); line-height: 1;
+    margin-bottom: 8px;
+  }
+  .empty-state p { margin: 0; color: var(--muted); font-size: 14px; }
+
+  @media (max-width: 900px) {
+    body { padding: 20px 12px 60px; }
+    .chrome { grid-template-columns: 1fr; }
+    .side { display: none; }
+    .main { padding: 20px 18px 28px; }
+    .with-margin { grid-template-columns: 1fr; gap: 6px; }
+    .margin { border-left: 0; border-top: 1px dotted var(--rule); padding: 6px 0 0; }
+    .runner-body { grid-template-columns: 1fr; gap: 24px; padding: 20px 18px; }
+    .index-card { border-left: 0; border-top: 1px solid var(--rule); padding: 14px 0 0; }
+    .kit { grid-template-columns: 1fr; }
+    .rev-card { grid-template-columns: 1fr; gap: 8px; }
+    .stamp { text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<header class="page-head">
+  <p class="kicker">MyMPPSC · Phase 3 · artboards</p>
+  <h1>The study desk</h1>
+  <p>Four screens, one visual language: warm paper, a serif voice for what matters, hairlines instead of boxes,
+    and a right margin that holds the facts that would otherwise become badges. Nothing on these boards is
+    decorative — every rule separates two different jobs.</p>
+  <p>These are layout proposals for review, not the app. The current build is untouched.</p>
+</header>
+
+<!-- ======================================================== kit ========== -->
+<section class="board">
+  <div class="board-head">
+    <h2>0 · The kit</h2>
+    <span class="note">primitives · type · empty state</span>
+  </div>
+  <div class="frame kit">
+    <div>
+      <h3>Three primitives, not cards</h3>
+      <p>Content sits directly on the page and is separated by a hairline and rhythm. A bordered <b>panel</b>
+        is reserved for things that interrupt the page — a dialog, an overlay, a scrollable table.</p>
+      <div class="sample">
+        <p class="label">Sheet — the default</p>
+        <p style="margin:0;font-size:14px">Paper, ink, a rule between sections.</p>
+        <div class="panel" style="padding:10px 12px;margin-top:12px">
+          <p class="label" style="margin:0 0 4px">Panel — interrupted</p>
+          <p style="margin:0;font-size:13px;color:var(--muted)">Dialog, overlay, scrolling data.</p>
+        </div>
+        <p class="margin" style="margin-top:12px"><b>Margin</b>Metadata, provenance and sample size.</p>
+      </div>
+    </div>
+    <div>
+      <h3>Type does the hierarchy</h3>
+      <p>Serif for the voice of the desk — the date, the next thing, a score, a question stem. Inter for
+        everything operational. Small caps for section labels instead of headings inside boxes.</p>
+      <div class="sample type-scale">
+        <div><span class="display" style="font-size:34px">Today</span><span>display 34 / serif</span></div>
+        <div><span class="display" style="font-size:22px">Continue the 2024 paper</span><span>lead 22 / serif</span></div>
+        <div><span style="font-size:15px">Section body copy, questions, options</span><span>body 15 / Inter</span></div>
+        <div><span class="label" style="margin:0">Section label</span><span>caps 10.5 / +.13em</span></div>
+        <div><span style="font-size:12px;color:var(--faint)">1,234 stored · 62% seen</span><span>margin 12 / faint</span></div>
+      </div>
+    </div>
+    <div>
+      <h3>An empty state is a page, not a card</h3>
+      <p>One mark, one sentence, one action. No illustration set, no list of what will appear later —
+        that sentence belongs in Help.</p>
+      <div class="sample">
+        <div class="empty-state">
+          <div class="mark" aria-hidden="true">¶</div>
+          <p>Nothing is scheduled yet. Sit one test and the queue fills itself.</p>
+          <p style="margin-top:10px"><button class="quiet-action">Start a paper</button></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="caption"><b>Contrast note.</b> Ink on paper is 13.9:1; muted on paper 5.4:1; faint on paper 3.4:1 (used only for
+    non-essential margin text, never for the only copy of anything).</p>
+</section>
+
+<!-- ======================================================== Today ======== -->
+<section class="board">
+  <div class="board-head">
+    <h2>1 · Today — the desk</h2>
+    <span class="note">dashboard</span>
+  </div>
+  <div class="frame sheet">
+    <div class="chrome">
+      <nav class="side" aria-label="Sections (illustrative)">
+        <p class="brand">MyMPPSC<span>.</span></p>
+        <p class="side-label">Study</p>
+        <a href="#" aria-current="page">Today</a>
+        <a href="#">Papers</a>
+        <a href="#">Practice</a>
+        <a href="#">Smart session</a>
+        <p class="side-label">Review</p>
+        <a href="#">Mistakes <small>15</small></a>
+        <a href="#">Revision <small>12</small></a>
+        <p class="side-label">Plan</p>
+        <a href="#">Syllabus <small>1/309</small></a>
+        <a href="#">Insights</a>
+        <p class="side-label">Manage</p>
+        <a href="#">Bank</a>
+        <a href="#">Settings</a>
+        <a href="#">Help</a>
+      </nav>
+
+      <div class="main">
+        <div class="with-margin">
+          <div>
+            <p class="eyebrow">Saturday · 31 October</p>
+            <h1 class="display h1">Good morning.</h1>
+            <p class="sub">One thing is half-finished. Everything else can wait until it is.</p>
+          </div>
+          <p class="margin"><b>Stored here</b>1,234 questions · 15 papers<br />Last backup 3 days ago</p>
+        </div>
+
+        <hr class="rule" />
+
+        <div class="continue">
+          <div>
+            <p class="eyebrow" style="margin-bottom:4px">Unfinished</p>
+            <p class="what">MPPSC 2024 paper</p>
+            <p class="where">38 of 100 answered · 1 h 14 m left on the clock · started yesterday</p>
+          </div>
+          <button class="go">Continue</button>
+        </div>
+        <div class="progress-rule" role="img" aria-label="38 of 100 answered"><i style="width:38%"></i></div>
+
+        <hr class="rule" />
+
+        <p class="label">On the desk</p>
+        <ul class="desk-list">
+          <li><a class="desk-row" href="#">
+            <span class="desk-mark" aria-hidden="true">◆</span>
+            <span class="desk-title">Revision due <em>— 12 questions, 4 of them also in the Mistake Book</em></span>
+            <span class="desk-count">18 min <span>→</span></span>
+          </a></li>
+          <li><a class="desk-row" href="#">
+            <span class="desk-mark" aria-hidden="true">◆</span>
+            <span class="desk-title">Open mistakes <em>— 15 items across 6 topics</em></span>
+            <span class="desk-count">review <span>→</span></span>
+          </a></li>
+          <li><a class="desk-row" href="#">
+            <span class="desk-mark" aria-hidden="true">◆</span>
+            <span class="desk-title">A smart session <em>— 20 questions, unseen first</em></span>
+            <span class="desk-count">24 min <span>→</span></span>
+          </a></li>
+        </ul>
+
+        <hr class="rule" />
+
+        <div class="with-margin">
+          <div>
+            <p class="label">Where the evidence points</p>
+            <div class="look-row">
+              <span class="look-topic">Modern India<small>History · 71 stored</small></span>
+              <span class="dots" aria-label="evidence: 2 of 3"><i class="on"></i><i class="on"></i><i></i></span>
+              <button class="quiet-action">Practise 20</button>
+            </div>
+            <div class="look-row">
+              <span class="look-topic">Economy of Madhya Pradesh<small>Economy · 33 stored</small></span>
+              <span class="dots" aria-label="evidence: 1 of 3"><i class="on"></i><i></i><i></i></span>
+              <button class="quiet-action">Practise 20</button>
+            </div>
+            <div class="look-row">
+              <span class="look-topic">Constitution of India<small>Polity · 55 stored</small></span>
+              <span class="dots" aria-label="no evidence yet"><i></i><i></i><i></i></span>
+              <button class="quiet-action">Practise 20</button>
+            </div>
+          </div>
+          <p class="margin"><b>Why these</b>Ranked by your recorded accuracy and how often the topic appears in
+            the stored papers. A topic with fewer than three judged answers says nothing yet.</p>
+        </div>
+
+        <p class="footer-line"><span>2 sittings this week</span><span>First-attempt accuracy 58%</span><span>Syllabus 1 of 309 marked</span></p>
+      </div>
+    </div>
+  </div>
+  <p class="caption"><b>What left:</b> the four-tile stat strip, the “Start now” card shell and its five-row deck of
+    near-identical rows, the “Recent sittings” card, the six integrity sentences and the ⓘ on the attention card.
+    <b>What arrived:</b> one honest “unfinished thing” at the top, a desk list where each row is a whole action, and a
+    margin that carries storage facts once.</p>
+</section>
+
+<!-- ======================================================== Runner ======= -->
+<section class="board">
+  <div class="board-head">
+    <h2>2 · Runner — the examination page</h2>
+    <span class="note">question screen</span>
+  </div>
+  <div class="frame runner">
+    <div class="runner-top">
+      <span class="here">Q42 of 100</span>
+      <span class="here muted">MPPSC 2024 · paper Q18</span>
+      <span class="clock">1:14:06 left</span>
+      <button class="ghost">Index</button>
+      <button class="ghost">Finish</button>
+    </div>
+    <div class="progress-rule" style="margin:0" role="img" aria-label="42 of 100 answered"><i style="width:42%"></i></div>
+    <div class="runner-body">
+      <div>
+        <p class="qnum">Q42</p>
+        <p class="stem">Which of the following statements about the formation of Madhya Pradesh is
+          <em>not</em> correct?
+          <span class="hi" lang="hi">निम्नलिखित में से कौन-सा कथन मध्य प्रदेश के गठन के बारे में सही नहीं है?</span>
+        </p>
+        <ol class="option-list">
+          <li class="option chosen"><span class="key">A</span><span class="text">It was formed on 1 November 1956.</span></li>
+          <li class="option"><span class="key">B</span><span class="text">Its first capital was Nagpur.</span></li>
+          <li class="option"><span class="key">C</span><span class="text">Bhopal became the capital in 1956.</span></li>
+          <li class="option"><span class="key">D</span><span class="text">It was formed by merging three states.</span></li>
+        </ol>
+      </div>
+      <aside class="index-card" aria-label="Question index">
+        <p class="label">Index</p>
+        <div class="index-grid">
+          <span class="cell done">1</span><span class="cell done">2</span><span class="cell done">3</span><span class="cell done">4</span><span class="cell done">5</span>
+          <span class="cell done">6</span><span class="cell flag done">7</span><span class="cell done">8</span><span class="cell done">9</span><span class="cell done">10</span>
+          <span class="cell done">11</span><span class="cell">12</span><span class="cell">13</span><span class="cell flag">14</span><span class="cell">15</span>
+          <span class="cell">16</span><span class="cell">17</span><span class="cell">18</span><span class="cell">19</span><span class="cell now">20</span>
+        </div>
+        <p class="index-legend"><b>28</b> answered · <b>2</b> flagged<br /><span style="color:var(--accent)">◆</span> flagged &nbsp;
+          <span style="display:inline-block;width:8px;height:8px;background:var(--ink);border-radius:2px"></span> answered</p>
+      </aside>
+    </div>
+    <div class="runner-foot">
+      <button class="txt-btn muted">← Previous</button>
+      <button class="txt-btn strong">Next →</button>
+      <button class="txt-btn">⚑ Flag</button>
+      <button class="txt-btn">Clear</button>
+      <span style="margin-left:auto" class="txt-btn muted">Question shortcuts: ?</span>
+    </div>
+  </div>
+  <p class="caption"><b>Gone:</b> the breadcrumb trail, the question-meta row of five badges, the sidebar card holding a
+    scoring table, and the palette grid sitting permanently beside the question. <b>Kept:</b> the index (now an index card,
+    not a control panel), counts, flags, shortcuts. The reading column is 58ch at 21px serif — the page is the
+    examination, not a dashboard with a question in it.</p>
+</section>
+
+<!-- ======================================================== Report ======= -->
+<section class="board">
+  <div class="board-head">
+    <h2>3 · Report — the marked paper</h2>
+    <span class="note">test report</span>
+  </div>
+  <div class="frame sheet">
+    <div class="chrome">
+      <nav class="side" aria-label="Sections (illustrative)">
+        <p class="brand">MyMPPSC<span>.</span></p>
+        <p class="side-label">Study</p>
+        <a href="#">Today</a>
+        <a href="#" aria-current="page">Papers</a>
+        <a href="#">Practice</a>
+        <a href="#">Smart session</a>
+        <p class="side-label">Review</p>
+        <a href="#">Mistakes <small>15</small></a>
+        <a href="#">Revision <small>12</small></a>
+      </nav>
+      <div class="main">
+        <div class="with-margin">
+          <div>
+            <p class="eyebrow">Marked paper</p>
+            <h1 class="display h1">MPPSC 2024</h1>
+            <p class="sub">Submitted 28 October, 9:42 pm · exam mode</p>
+          </div>
+          <p class="margin"><b>Scaled</b>+3 correct · −1 wrong · 0 blank<br />Rules: latest MPPSC pattern, applied by policy</p>
+        </div>
+
+        <hr class="rule" />
+
+        <div class="score-line">
+          <p class="score">21 <small>/ 60</small></p>
+          <p class="score-meta">7 correct · 5 wrong · 8 left blank<br />35% accuracy over 12 judged answers</p>
+        </div>
+        <div class="segmented" role="img" aria-label="7 correct, 5 wrong, 8 unanswered">
+          <i class="ok" style="width:35%"></i><i class="bad" style="width:25%"></i><i class="blank" style="width:40%"></i>
+        </div>
+        <p class="legend"><span><b>■</b> correct 7</span><span><b style="color:var(--accent)">■</b> wrong 5</span><span><b>□</b> blank 8</span></p>
+
+        <hr class="rule" />
+
+        <p class="label">What to do now</p>
+        <div class="do-row">
+          <p>Practise the two topics this paper exposed <small>Modern India · Constitutional bodies — 20 questions, weakest first</small></p>
+          <button class="quiet-action">Practise</button>
+        </div>
+        <div class="do-row">
+          <p>Retry the five questions you got wrong <small>Learning mode, in the paper's order</small></p>
+          <button class="quiet-action">Retry 5</button>
+        </div>
+        <div class="do-row">
+          <p>Revise what is due from this sitting <small>3 questions are scheduled for today</small></p>
+          <button class="quiet-action">Revise 3</button>
+        </div>
+
+        <hr class="rule" />
+
+        <p class="label">Where it went wrong</p>
+        <table class="bars">
+          <tr>
+            <td class="name">Modern India<small>History</small></td>
+            <td class="bar"><span><i style="width:33%"></i></span></td>
+            <td class="val">2/6</td>
+            <td class="act"><button class="quiet-action">Practise</button></td>
+          </tr>
+          <tr>
+            <td class="name">Constitutional bodies<small>Polity</small></td>
+            <td class="bar"><span><i style="width:50%"></i></span></td>
+            <td class="val">2/4</td>
+            <td class="act"><button class="quiet-action">Practise</button></td>
+          </tr>
+          <tr>
+            <td class="name">Economy of MP<small>Economy</small></td>
+            <td class="bar"><span><i style="width:100%"></i></span></td>
+            <td class="val">2/2</td>
+            <td class="act"><button class="quiet-action">Practise</button></td>
+          </tr>
+        </table>
+
+        <hr class="rule" />
+
+        <p class="label">Question by question</p>
+        <p style="margin:0 0 10px;font-size:13.5px;color:var(--muted)">
+          <span style="color:var(--ink)">Q7</span> Which statement about the formation… — you answered <b>C</b>, key <b>A</b>.
+          <button class="quiet-action">Open</button>
+        </p>
+        <p style="margin:0 0 10px;font-size:13.5px;color:var(--muted)">
+          <span style="color:var(--ink)">Q11</span> The Governor's ordinance power… — you answered <b>B</b>, key <b>D</b>.
+          <button class="quiet-action">Open</button>
+        </p>
+        <p class="detail-links" style="margin-top:16px">
+          <a href="#">Confidence</a><a href="#">Pacing</a><a href="#">Repeated mistakes</a><a href="#">Unresolved keys (1)</a><a href="#">Print</a>
+        </p>
+      </div>
+    </div>
+  </div>
+  <p class="caption"><b>Gone:</b> four metric tiles, the outcome-counts table, the separate “pacing” table duplicated in
+    review, the empty switch of tabs, ninety badges. <b>Kept and moved:</b> the rules (margin), the counts (one segmented
+    rule), every action (three lines, each starting something real), the review list (compact, expandable), and the
+    secondary analysis (one row of links).</p>
+</section>
+
+<!-- ======================================================== Revision ==== -->
+<section class="board">
+  <div class="board-head">
+    <h2>4 · Revision — today's queue</h2>
+    <span class="note">revision centre</span>
+  </div>
+  <div class="frame sheet">
+    <div class="chrome">
+      <nav class="side" aria-label="Sections (illustrative)">
+        <p class="brand">MyMPPSC<span>.</span></p>
+        <p class="side-label">Review</p>
+        <a href="#">Mistakes <small>15</small></a>
+        <a href="#" aria-current="page">Revision <small>12</small></a>
+      </nav>
+      <div class="main">
+        <div class="with-margin">
+          <div>
+            <p class="eyebrow">Saturday · 31 October</p>
+            <h1 class="display h1">12 due today</h1>
+            <p class="sub">Three are overdue. Working from the top is fine — the order is by how late they are.</p>
+          </div>
+          <div class="margin">
+            <b>Next 7 days</b>
+            <div class="week" aria-hidden="true">
+              <i class="today" style="height:78%"></i><i style="height:40%"></i><i style="height:20%"></i>
+              <i style="height:55%"></i><i style="height:12%"></i><i style="height:66%"></i><i style="height:30%"></i>
+            </div>
+            <span style="display:block;margin-top:6px">Sat · Sun · Mon · Tue · Wed · Thu · Fri</span>
+          </div>
+        </div>
+
+        <hr class="rule" />
+
+        <div class="rev-stack">
+          <article class="rev-card">
+            <div class="stamp">2 days<br />overdue</div>
+            <div>
+              <p class="rev-q">Which article of the Constitution provides for the establishment of a
+                Finance Commission?</p>
+              <p class="rev-src">Polity · Constitution of India · paper Q14 · last answered wrong, 6 days ago</p>
+            </div>
+            <div class="rev-actions">
+              <button class="quiet-action">Practise</button>
+              <span class="split-choice">
+                <button>Knew it</button><button>Still unclear</button>
+              </span>
+            </div>
+          </article>
+
+          <article class="rev-card">
+            <div class="stamp">today</div>
+            <div>
+              <p class="rev-q">The Tropic of Cancer passes through how many districts of Madhya Pradesh?</p>
+              <p class="rev-src">Geography · Physical Geography · paper Q31 · last answered correctly, unsure</p>
+            </div>
+            <div class="rev-actions">
+              <button class="quiet-action">Practise</button>
+              <span class="split-choice">
+                <button>Knew it</button><button>Still unclear</button>
+              </span>
+            </div>
+          </article>
+
+          <article class="rev-card">
+            <div class="stamp later">in 2 days</div>
+            <div>
+              <p class="rev-q">Which of these schemes was launched before the formation of NITI Aayog?</p>
+              <p class="rev-src">Madhya Pradesh Special · Schemes · paper Q8 · marked confident, answered right</p>
+            </div>
+            <div class="rev-actions">
+              <button class="quiet-action">Open</button>
+            </div>
+          </article>
+        </div>
+
+        <p class="footer-line">
+          <span>Show: <b style="color:var(--ink)">due</b> · upcoming · all</span>
+          <span>12 in the queue · 20 per sitting</span>
+          <span><button class="quiet-action">How the dates are decided</button></span>
+        </p>
+      </div>
+    </div>
+  </div>
+  <p class="caption"><b>Gone:</b> the four-tile count strip, the “Schedule health” card with its lapses/interval table,
+    the queue table's eleven columns of schedule arithmetic, the filters panel. <b>Kept:</b> every date, every reason
+    (one line under the question), the overrides (inside the review panel), and the rule explanation (one link at the
+    foot, not a permanent paragraph).</p>
+</section>
+
+<footer class="page-head" style="border-bottom:0;border-top:1px solid var(--rule-strong);margin-top:8px">
+  <p class="kicker">Approval gate</p>
+  <p style="color:var(--ink-soft)">Nothing in this direction is implemented yet. The audit, the removal ledger and the
+    four layouts are in <code>docs/UX_PHASE3.md</code>; implementation starts once this direction is approved.</p>
+</footer>
+
+</body>
+</html>
