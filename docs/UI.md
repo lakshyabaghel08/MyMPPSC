@@ -9,63 +9,81 @@ Every visual decision serves three goals:
 
 ---
 
-## 1. Design Tokens (`css/app.css`)
+## 1. Design direction — "Ink & paper"
 
-All colour literals in `css/app.css` live inside the root token blocks (`:root, :root[data-theme="light"]`, `:root[data-theme="dark"]`, `@media (prefers-color-scheme: dark)`, and `@media (forced-colors: active)`). `tools/check.mjs` fails the build if any `#hex`, `rgb()`, or `hsl()` colour appears outside a token block.
+The interface is warm paper, one ink-blue signal, and near-black primary actions. Hierarchy comes from type, space and a single hairline border — not from stacked cards, shadows or colour washes. A screen has one heading, one obvious primary action, and everything explanatory is either one line or behind a disclosure.
 
 ### 1.1 Surface, Border & Text Palette
 
-| Token | Light Theme (`data-theme="light"`) | Dark Theme (`data-theme="dark"`) | Purpose |
+| Token | Light (`data-theme="light"`) | Dark (`data-theme="dark"`) | Purpose |
 | :--- | :--- | :--- | :--- |
-| `--bg` | `#f4f6fa` | `#0f131c` | Page canvas |
-| `--bg-elevated` | `#ffffff` | `#161b26` | Cards, dialogs, table containers |
-| `--bg-sunken` | `#eaeef5` | `#0a0d14` | Wells, code blocks, secondary panels |
-| `--text` | `#141926` | `#f0f3f9` | Primary body & question text (≥ 15.8:1 contrast) |
-| `--text-muted` | `#3d4659` | `#c2cadb` | Secondary labels & metadata (≥ 7.9:1 contrast) |
-| `--text-soft` | `#525c70` | `#9aa5bc` | Captions, hints, axis labels (≥ 5.4:1 contrast) |
-| `--border` | `#6e778c` | `#6e7891` | Card, table & control borders; the boundary of every form field and the edge of every progress track (≥ 3.7:1 contrast) |
-| `--track` | `var(--bg-sunken)` | `var(--border-subtle)` (`#30384a`) | The empty part of a bar, ring or segmented track. In dark, `--bg-sunken` was 1.13:1 against a card, so an empty bar or ring was invisible. Every data colour (`--accent`, `--ok`, `--warn`, `--bad`, `--info`) must be ≥ 3:1 against it (audited); where the 100% extent carries meaning (progress bars) the track also gets a 1px `--border` edge |
-| `--border-strong` | `#50596d` | `#8b95ad` | Input borders, checkbox/radio borders, non-text UI boundaries (≥ 5.6:1 contrast) |
-| `--focus-ring` | `#1f3d7a` | `#93b4ff` | Keyboard `:focus-visible` ring (≥ 8.2:1 contrast) |
+| `--bg` | `#f7f6f2` | `#131413` | Page canvas (warm paper / near-black) |
+| `--bg-elevated` | `#ffffff` | `#1a1b19` | Cards, dialogs, table containers |
+| `--bg-sunken` | `#efeee8` | `#0e0f0e` | Wells, code blocks, segmented controls |
+| `--surface-hover` | `#f3f2ec` | `#222420` | Hover surfaces in rows and menus |
+| `--sidebar-bg` | `#f3f2ed` | `#0f100f` | Navigation rail and drawer |
+| `--text` | `#1b1d1b` | `#f1f1ec` | Primary body & question text |
+| `--text-muted` | `#474b45` | `#c3c6bd` | Secondary labels & metadata |
+| `--text-soft` | `#5f645c` | `#9da196` | Captions, hints, axis labels |
+| `--border` | `#767b72` | `#757a70` | Control and table boundaries (audited ≥ 3:1) |
+| `--border-strong` | `#4f554d` | `#9aa093` | Input borders, checkbox boundaries |
+| `--border-subtle` | `#e4e2d9` | `#33352f` | Decorative hairlines between sections and rows |
+| `--focus-ring` | `#2c4f8f` | `#a8c0ea` | Keyboard `:focus-visible` ring |
+| `--track` | `#e6e4dc` | `var(--border-subtle)` | Empty part of a progress bar or segmented track |
 
-### 1.2 Brand & Semantic Status Tokens
+### 1.2 Accent, Ink & Semantic Tones
 
-| Role | Foreground Token (Light / Dark) | Soft Surface Token (Light / Dark) | Solid Ink Token (Light / Dark) | Contrast (Foreground on Soft Surface) |
-| :--- | :--- | :--- | :--- | :--- |
-| **Accent** (`--accent`, `--accent-soft`, `--on-accent`) | `#1f3d7a` / `#93b4ff` | `#e5ecf9` / `#1b2845` | `#ffffff` / `#0b1528` | ≥ 8.3:1 (Light) / ≥ 6.8:1 (Dark) |
-| **OK / Verified** (`--ok`, `--ok-soft`, `--on-ok`) | `#116139` / `#6ee7a8` | `#e1f3e9` / `#11291e` | `#ffffff` / `#082014` | ≥ 6.4:1 (Light) / ≥ 9.1:1 (Dark) |
-| **Warn / Synthetic** (`--warn`, `--warn-soft`, `--on-warn`) | `#7c4a03` / `#fbbf60` | `#fdefd8` / `#2b2110` | `#ffffff` / `#231602` | ≥ 6.4:1 (Light) / ≥ 8.6:1 (Dark) |
-| **Bad / Disputed** (`--bad`, `--bad-soft`, `--on-bad`) | `#9e1c22` / `#ff9499` | `#fce8e9` / `#2f1619` | `#ffffff` / `#280709` | ≥ 6.4:1 (Light) / ≥ 6.8:1 (Dark) |
-| **Info / Derived** (`--info`, `--info-soft`, `--on-info`) | `#174ea6` / `#8ac4ff` | `#e4eefc` / `#13243b` | `#ffffff` / `#081a2e` | ≥ 6.8:1 (Light) / ≥ 7.8:1 (Dark) |
+The accent is a single restrained blue used for interactive state and focus. Primary buttons are **ink**, not accent, so colour stays a signal.
+
+| Role | Foreground (Light / Dark) | Soft surface | Solid/ink pair |
+| :--- | :--- | :--- | :--- |
+| Accent (links, selected state) | `#33518c` / `#9db6e6` | `#e9edf5` / `#1e2733` | `--on-accent` |
+| Primary action (`--ink`) | `#1f221e` / `#edede7` | — | `--on-ink: #ffffff` / `#191b18` |
+| OK / verified | `#1f6b45` / `#7fd3a4` | `#e6f1e9` / `#14281c` | `--on-ok` |
+| Warn / synthetic | `#7a4a06` / `#ecc37b` | `#f7edd9` / `#2a2214` | `--on-warn` |
+| Bad / disputed | `#9c2230` / `#f09a95` | `#f9e8e8` / `#2d1717` | `--on-bad` |
+| Info / derived | `#1f5a6e` / `#8ec6d6` | `#e6eff1` / `#11252b` | `--on-info` |
+
+Dark mode is a designed surface set (elevated cards, a darker sunken well, lower-chroma borders), not an inversion. `tools/check.mjs` audits every foreground/background pair and fails on a contrast regression.
 
 ### 1.3 Typography & Devanagari Scale
 
-System font stacks are used with zero web-font network requests:
-- `--sans`: `system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "Noto Sans Devanagari", Arial, sans-serif`
-- `--deva`: `"Noto Sans Devanagari", "Kohinoor Devanagari", "Mangal", system-ui, sans-serif`
+Inter is bundled locally (`fonts/inter-variable.woff2`, OFL licence in `fonts/OFL.txt`), so the interface is identical offline with no network request. Devanagari uses the platform's Noto/Kohinoor/Mangal with a taller leading.
+
+- `--sans`: `"InterVariable", "Inter", system-ui, … "Noto Sans Devanagari"`
+- `--deva`: `"Noto Sans Devanagari", "Kohinoor Devanagari", "Mangal", "Nirmala UI", system-ui`
 - `--mono`: `ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace`
 
-| Token | Value | Usage |
+| Step | Value | Usage |
 | :--- | :--- | :--- |
-| `--text-xs` | `0.75rem` (12px) | Badges, provenance chips, keyboard hints, table headers |
-| `--text-sm` | `0.8125rem` (13px) | Secondary copy, filter labels, table cells |
-| `--text-base` | `0.9375rem` (15px) | Default interface body |
-| `--text-md` | `1.0625rem` (17px) | English & Hindi question stems |
-| `--text-lg` | `1.125rem` (18px) | Card `<h2>` headings |
-| `--text-xl` | `1.375rem` (22px) | Screen `<h1>` titles |
-| `--text-2xl` | `1.5rem` (24px) | Stat tile values |
-| `--text-3xl` | `2.25rem` (36px) | Hero report score |
-| `--lh-tight` | `1.25` | Headings & stat values |
-| `--lh-base` | `1.55` | English body copy |
-| `--lh-reading` | `1.65` | English question stems (`--measure: 70ch`) |
-| `--lh-deva` | `1.82` | Hindi (`[lang="hi"]`) stems & options so matras (`ि`, `ी`, `ु`, `ू`, `े`, `ै`) never clip |
+| `--type-display` | `2rem` | One big figure (report score) |
+| `--type-title` | `1.5rem` | Screen `<h1>` |
+| `--type-body` | `0.9375rem` | Paragraphs, controls, table cells |
+| `--type-caption` | `0.8125rem` | Labels, footnotes, provenance chips |
 
-### 1.4 Spacing, Radius, Elevation, Z-Index & Motion Scales
+Question stems and options use `--text-md` (17px) with `--lh-reading` (1.65) and `--measure` (68ch); `[lang="hi"]` uses `--lh-deva` (1.82) so matras never clip. Card headings are 17px (`--text-lg`) at weight 600 — one step above body, not a banner.
 
-- **Spacing (`--space-1` … `--space-10`)**: `4px`, `8px`, `12px`, `16px`, `20px`, `24px`, `32px`, `40px`. Compact density (`html[data-density="compact"]`) scales `--pad-card`, `--pad-tile`, `--pad-cell-y`, and `--gap-grid` down proportionally.
-- **Radii**: `--radius-xs` (`4px`), `--radius-sm` (`7px`), `--radius` (`10px`), `--radius-lg` (`14px`), `--radius-pill` (`999px`).
-- **Z-Index**: `--z-sticky` (`10`), `--z-runner-bar` (`20`), `--z-header` (`30`), `--z-scrim` (`35`), `--z-drawer` (`40`), `--z-toast` (`60`), `--z-modal` (`70`), `--z-skip` (`100`). Note: `.modal-root` also sets literal `z-index: 70` so JSDOM `getComputedStyle(modalRoot).zIndex` resolves without CSS variable evaluation.
-- **Motion**: `--dur-fast` (`90ms`), `--dur-base` (`140ms`), `--ease-out` (`cubic-bezier(0.16, 1, 0.3, 1)`). Transitions are feedback only and never exceed `150ms`. The one looping animation is the skeleton placeholder pulse (opacity only, `1.6s`), declared inside `@media (prefers-reduced-motion: no-preference)` so it never runs for readers who ask for less motion (the global `reduce` block switches everything off as well). `tools/check.mjs` fails on any `animation:` outside such a block and on any literal transition over `150ms`.
+### 1.4 Spacing, Shape, Motion & Shell
+
+- **Spacing:** `4 · 8 · 12 · 16 · 20 · 24 · 32 · 40 · 48px`; component padding is density-aware (`--pad-card`, `--pad-tile`, `--pad-cell-*`). `html[data-density="compact"]` shrinks these plus body leading.
+- **Radii:** `4 / 6 / 8 / 12 / 16px`; `--radius-pill` only for status dots and a half-mark. Cards use 12px, inputs 8px.
+- **Elevation:** `--shadow-xs` and below; cards carry a hairline border and no shadow in normal flow; dialogs and the mobile drawer are the only raised layers.
+- **Motion:** `--dur-fast` 90ms, `--dur-base` 140ms, `--ease-out`; transitions are feedback only. The skeleton pulse is the one looping animation and runs only under `prefers-reduced-motion: no-preference`.
+- **Shell:** `--header-h: 56px`, `--nav-w: 236px`, `--nav-rail-w: 64px`, `--runner-side-w: 288px`, `--max-w: 1120px`, `--touch-min: 44px`.
+- **Z-index:** sticky 10, runner bar 20, header 30, scrim 35, drawer 40, toast 60, modal 70, skip link 100.
+
+### 1.5 Navigation architecture
+
+- **Header (56px):** menu toggle (≤860px), wordmark, command trigger (`#commandBtn`, `⌘K`/`Ctrl K`), Quick practice, theme toggle, Help, and the resume strip when a session is unfinished.
+- **Sidebar (desktop):** four groups — **Study** (Dashboard, PYQ Test Centre, Topic & Custom Practice, Smart Practice), **Review** (Mistake Book, Revision Centre), **Plan** (Syllabus, Insights), **Manage** (Question Bank & Imports, Settings & Backup, Help). Group labels are small caps, not boxes. Destructive/rare destinations sit at the bottom with storage and offline state.
+- **Collapsible rail:** `#navCollapse` hides labels and shrinks the sidebar to 64px; the choice persists in `localStorage['mymppsc.navCollapsed']` and the nav buttons keep `aria-label`/`title`.
+- **Mobile:** the same list becomes an off-canvas drawer with a scrim (`#navToggle`, `#appNav`, `#navScrim`, inert `#main`, focus restore); ≤560px a five-item tab bar plus **More** keeps the frequent destinations one thumb away.
+- **Nested pages:** the test runner and a test report carry a one-line breadcrumb back to Test Centre. Everything else is one level deep.
+- **Command palette:** screens (Go), actions (Do), and questions/topics (Find) in one overlay; it never replaces the sidebar.
+
+---
+
+The implementation history for this pass — what changed per screen and the verification figures — is in [`docs/UI_OVERHAUL.md`](UI_OVERHAUL.md).
 
 ---
 
@@ -211,7 +229,7 @@ Every one of the eleven destinations is built to the same three-part contract, a
 
 | Part | Built by | Rule |
 | :--- | :--- | :--- |
-| `.screen-head` | `screenHead()` in `js/ui/components.js` | Exactly one `<h1>`, one `.screen-purpose` line (65ch measure), one primary action and any secondaries. No screen repeats its title inside a card. |
+| `.screen-head` | `screenHead()` in `js/ui/components.js` | Exactly one `<h1>`, one `.screen-purpose` line (72ch measure), one primary action and any secondaries. No screen repeats its title inside a card. |
 | `.screen-tabs` | `screenTabs()` | Optional, sticky under the header. Screens with tabs (Insights, Question Bank, Settings) put their tab list here. |
 | `.card` | `card()` | `.card-head` = one heading (`<h2>`), optional `countChip()`, at most one `cardInfo()` ⓘ, at most one action. Body, then an optional footer. |
 
@@ -227,6 +245,8 @@ Every one of the eleven destinations is built to the same three-part contract, a
 | Rows before "Show all" | 12 | Capped lists state how many are hidden and offer one control to show the rest. |
 
 Measurement definitions live in the same file, including what counts as "visible": tab panels that are `hidden`, collapsed `<details>` and `[hidden]` subtrees are not measured, because a screen is judged on what the reader is looking at. If a limit genuinely cannot be met without removing behaviour, raise it in `js/ui/budget.js` with a comment, list it in the pull request, and update this table.
+
+**Dashboard anatomy.** The dashboard is a starting point, not a report: `.screen-head` (title + primary *Practise now*), one `.next-up` block (resume an unfinished test, or start the suggested session, with due-revision count in its aside), a four-figure `.stat-strip` (attempted of total, first-attempt accuracy, due revision, syllabus done of total), then a two-column split of "Recommended next" (rows with an evidence meter) and "Recent sessions". A single integrity line follows. There are no charts, no nested cards and no repeated metrics; a bank-less device gets the welcome card instead.
 
 **Compact density.** `:root[data-density="compact"]` changes `--pad-card`, `--pad-card-head`, `--pad-cell-y/x`, `--gap-grid`, `--lh-base`, `--lh-reading` and `--card-gap`; every screen picks the change up because cards, tables and type are expressed in those tokens rather than in per-component numbers.
 
