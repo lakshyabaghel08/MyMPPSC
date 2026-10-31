@@ -695,7 +695,9 @@ export default {
               p.scoring?.rules_known
                 ? `${p.scoring.scheme_id === 'mppsc-sse-prelims-latest-practice' ? 'practice only: ' : ''}+${esc(String(p.scoring.marks_per_correct))}${p.scoring.negative_marking_enabled ? ` / −${esc(String(p.scoring.negative_marks_per_incorrect))}` : ' (no negative marking)'}${p.scoring.scheme_id === 'mppsc-sse-prelims-latest-practice' && !p.user_scoring_override ? `<div class="tiny muted">latest reported pattern; not historical-rule evidence</div>` : ''}${p.user_scoring_override ? ` ${badge('you set this', 'info')}` : ''}`
                 : badge('unknown — must be configured', 'warn'),
-              p.placeholder ? badge('placeholder (metadata absent)', 'warn') : badge(p.is_demonstration ? 'demonstration' : 'imported bank', p.is_demonstration ? 'warn' : ''),
+              p.placeholder
+                ? badge('placeholder — metadata absent', 'warn')
+                : `<span class="origin-word">${esc(p.is_demonstration ? 'demonstration' : 'imported bank')}</span>`,
               `<button class="btn btn-sm" type="button" data-edit-paper="${esc(p.paper_id)}">Edit rules</button>`,
             ];
           }),

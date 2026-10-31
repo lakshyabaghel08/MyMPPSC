@@ -18,9 +18,6 @@ import {
   openModal,
   confirmDialog,
   confidenceLabel,
-  questionTypeLabel,
-  answerKeyBadge,
-  langAttr,
   screenHead,
   sheet,
 } from '../components.js';

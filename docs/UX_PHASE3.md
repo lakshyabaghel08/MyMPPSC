@@ -649,7 +649,45 @@ focus into the search field that is already visible; one quiet link leads to
 practice. The untouched-state introduction says what the circle does in one
 sentence rather than three.
 
-### 9.7 Where this leaves the density audit
+### 9.7 Settings (`#/settings`)
 
-Across the thirteen routes, jsdom measures 11,716 words, **2** card containers,
-581 tiny nodes and 27 badges (Phase-3 start: 14,526 / 53 / 924 / 224).
+The General tab was one long form answering two different questions, so it is now
+**Reading** (language, theme, density) and **How sessions run** (feedback timing,
+timer, auto-submit, pausing, option order), with practice scoring and repeat rules
+in their own sheet. The storage panel states records, usage, persistence and last
+backup as a facts line instead of four tiles. "Destructive actions" moved out of
+Diagnostics into the tab that owns the data, and the backup copy says what the
+file holds in one sentence rather than three.
+
+### 9.8 Help (`#/help`)
+
+The task index now names the screens as the navigation names them (Papers,
+Practice, Mistakes, Revision, Bank, Settings), the header offers one action —
+search — instead of two, three decorative status badges became a sentence, and
+the checklist's repeated sentence about `docs/TESTING.md` was removed.
+
+### 9.9 Mistakes (`#/mistakes`)
+
+A row used to carry four equal weight actions. It now answers two questions: what
+question this is and why it is here; then Retry or Review. Mark resolved, reopen
+and remove are maintenance, so they appear inside the opened item, beside its
+attempt history — 540 words / 75 controls → 508 / 45, and the rules about
+resolving are stated once, where the action is.
+
+### 9.10 Bank provenance
+
+"imported bank" and "demonstration" are words in the Origin column rather than a
+badge on every paper row; only a placeholder paper still earns a badge. Badges
+across the app: 224 → 9.
+
+### 9.11 Reviewed, no restructure needed
+
+Report, Today, Revision and the Runner were rebuilt in Phase 3 and still hold:
+one headline figure with its rules behind a disclosure, one line per question in
+the review that opens in place, a queue with the decision on the row, and a
+runner that never repaints on answer. Their copy and controls were left alone.
+
+### 9.12 Where this leaves the density audit
+
+Across the thirteen routes, jsdom measures 11,566 words, **2** card containers,
+567 tiny nodes and 9 badges (Phase-3 start: 14,526 / 53 / 924 / 224).

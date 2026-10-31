@@ -8828,3 +8828,6 @@ body.runner-focus .runner { max-width: 66ch; }
 .mistake-why .why-note + .why-note::before { content: '·'; margin-right: 8px; color: var(--text-soft); }
 .row-maintenance { margin-top: 14px; padding-top: 10px; border-top: 1px solid var(--rule); }
 .row-maintenance .tiny { margin-left: auto; }
+
+/* A provenance word, not a badge on every row. */
+.origin-word { font-size: 12.5px; color: var(--text-soft); }
