@@ -39,6 +39,13 @@ import { openPracticeSheet } from '../practicesheet.js';
 /** The table's filters, remembered per screen (see `createFilterState`). */
 const filters = createFilterState({ year: 'all', unfinishedOnly: false, showAll: false });
 
+/** The paper's own name without the year the first column already states. */
+function strippedName(paper) {
+  const name = String(paper.paper_name || paper.paper_id);
+  const prefix = paper.year ? `MPPSC ${paper.year} ` : '';
+  return prefix && name.startsWith(prefix) ? name.slice(prefix.length) : name;
+}
+
 /** One row of the papers table: the columns a reader compares across papers. */
 function paperRow({ paper, summary }, unfinishedByPaper) {
   const resolved = resolveScoringRules({ paper });
@@ -84,7 +91,7 @@ function paperRow({ paper, summary }, unfinishedByPaper) {
   return [
     `<div class="paper-cell">
       <strong>${esc(paper.year ? `MPPSC ${paper.year}` : paper.paper_name || paper.paper_id)}</strong>
-      <div class="tiny text-soft">${esc(paper.paper_name || paper.paper_id)}${paper.set_code ? `, set ${esc(paper.set_code)}` : ''}</div>
+      <div class="tiny text-soft">${esc(strippedName(paper))}${paper.set_code ? `, set ${esc(paper.set_code)}` : ''}</div>
       <div class="tiny text-soft">${isLatestPractice ? 'latest pattern · practice only' : 'source paper'}</div>
       ${detail}
     </div>`,
@@ -101,7 +108,7 @@ function paperRow({ paper, summary }, unfinishedByPaper) {
             ${summary.present ? '' : 'disabled'}>Start</button>
           <button class="btn btn-sm btn-quiet" type="button" data-action="customise-paper" data-paper="${esc(paper.paper_id)}" ${summary.present ? '' : 'disabled'}>Customise…</button>
         </div>
-        <div class="tiny text-soft">${summary.present ? `${summary.present} questions` : 'empty'}${paper.duration_minutes ? `, ${Math.round(paper.duration_minutes)} min` : ''}</div>`,
+        ${summary.present ? '' : '<div class="tiny text-soft">empty</div>'}`,
   ];
 }
 

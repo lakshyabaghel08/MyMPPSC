@@ -634,7 +634,22 @@ what is wrong, with the consequence of each, and states coverage as a facts line
 (keyed · explained · classified). An all-clear is one sentence, not five zero
 tiles.
 
-### 9.5 Where this leaves the density audit
+### 9.5 Papers (`#/test-centre`)
 
-Across the thirteen routes, jsdom measures 11,969 words, **2** card containers,
-704 tiny nodes and 27 badges (Phase-3 start: 14,526 / 53 / 924 / 224).
+Each row states the paper once: the year as the heading, then the paper's own
+name without the year repeated under it, the question count with its duration,
+your best, and the action. The second copy of the question count and duration
+that used to sit under Start is gone, and "Details" still holds the source
+metadata and scoring policy.
+
+### 9.6 Syllabus (`#/syllabus`)
+
+The screen is a document reader, so its header lost the button that only moved
+focus into the search field that is already visible; one quiet link leads to
+practice. The untouched-state introduction says what the circle does in one
+sentence rather than three.
+
+### 9.7 Where this leaves the density audit
+
+Across the thirteen routes, jsdom measures 11,716 words, **2** card containers,
+581 tiny nodes and 27 badges (Phase-3 start: 14,526 / 53 / 924 / 224).
