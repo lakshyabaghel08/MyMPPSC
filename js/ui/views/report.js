@@ -294,6 +294,9 @@ export default {
     const reviewCard = card({
       title: 'Question review',
       count: `${filtered.length} shown`,
+      // The filtered set is itself a practice set: reviewing the wrong answers
+      // and answering them again are one decision away from each other.
+      action: `<button class="btn btn-sm" type="button" data-action="practise-filtered" ${filtered.length ? '' : 'disabled'}>Practise these ${filtered.length}</button>`,
       body: reviewBody,
       footer: 'Reviewing every question is useful but never required — the score and its rules above are final.',
     });
@@ -463,6 +466,24 @@ export default {
           strategy: 'weakest-first',
           feedbackMode: 'learning',
         });
+        return;
+      }
+      if (action === 'practise-filtered') {
+        const ids = currentResult().per_question.filter((row) => rowMatches(row, viewState.filter)).map((row) => row.question_id);
+        if (!ids.length) {
+          toast('Nothing is in this filter.', 'info');
+          return;
+        }
+        const session = await tests.createTest({
+          kind: 'custom',
+          label: `Review practice — ${ids.length} question(s)`,
+          questionIds: ids,
+          questionMetas: ids.map((id) => state.questionIndex.get(id)).filter(Boolean),
+          config: { feedbackMode: 'learning' },
+          orderSource: 'review-order',
+          selectionNotes: [`The ${ids.length} question(s) in the “${viewState.filter}” filter of this report, in the order they were asked.`],
+        });
+        ctx.navigate(`runner/${encodeURIComponent(session.id)}`);
         return;
       }
       if (action === 'practise-weak') {

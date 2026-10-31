@@ -401,7 +401,7 @@ function markup() {
 
   <div class="runner">
     <div class="runner-main">
-      <article class="question-card" id="questionCard">${questionCardMarkup()}</article>
+      <article class="question-card" id="questionCard" data-revealed="${String(session.test.config.feedback_mode === 'learning' && Boolean(responseFor(session.test.question_ids[session.test.current_index || 0]).revealed))}">${questionCardMarkup()}</article>
       ${test.config.warnings?.length ? infoToggle('Notes about this test', `<ul class="small">${test.config.warnings.map((w) => `<li>${esc(w)}</li>`).join('')}</ul>`) : ''}
     </div>
 
@@ -463,6 +463,7 @@ function paintCard(root, { keepFocus = true } = {}) {
   if (!card) return;
   const key = keepFocus ? focusKeyWithin(root) : null;
   card.innerHTML = questionCardMarkup();
+  card.dataset.revealed = String(session.test.config.feedback_mode === 'learning' && Boolean(responseFor(currentQuestion().id).revealed));
   restoreFocus(root, key);
 }
 
@@ -547,7 +548,13 @@ function afterAnswerChange(root) {
   // exist, so it is patched onto those very controls: the node the reader just
   // pressed stays the node they are holding, and focus, scroll and reading
   // position do not move.
-  if (response.revealed) paintCard(root);
+  // A reveal (or its removal, when a response is cleared) changes what the card
+  // *is* — explanation, key marking, the "Check answer" control — so that one
+  // transition repaints. Everything else is patched onto the existing controls.
+  const card = root.querySelector('#questionCard');
+  const wasRevealed = card?.dataset.revealed === 'true';
+  const isRevealed = session.test.config.feedback_mode === 'learning' && Boolean(response.revealed);
+  if (isRevealed !== wasRevealed) paintCard(root);
   else syncCardControls(root, response);
   paintPalette(root);
 }
