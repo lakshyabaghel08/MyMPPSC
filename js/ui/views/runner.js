@@ -273,14 +273,18 @@ function questionCardMarkup() {
   const classificationLine = [question.classification?.subject, question.classification?.topic, question.classification?.subtopic].filter(Boolean).join(' · ');
 
   return `
-    <div class="question-meta">
-      <span class="question-num-pill">Q${index + 1}</span>
-      ${originBits.length ? `<span class="question-origin">${originBits.join(' · ')}</span>` : ''}
-      ${classificationLine ? `<span class="question-class">${esc(classificationLine)}</span>` : ''}
-      ${answerKeyBadge(question.supplied?.status)}
-      ${demoBadge(question.is_demonstration)}
-      ${fallback && lang !== session.lang ? badge(`showing ${lang === 'hi' ? 'Hindi' : 'English'} (other language unavailable)`, 'warn') : ''}
-      ${Object.keys(question.language_variants).length > 1 ? `<span class="ml-auto" data-lang-wrap>${languageSwitcher(question, session.lang)}</span>` : ''}
+    <div class="question-head">
+      <p class="question-meta">
+        <span class="question-num-pill">Q${index + 1}</span>
+        ${originBits.length ? `<span class="question-origin">${originBits.join(' · ')}</span>` : ''}
+        ${classificationLine ? `<span class="question-class">${esc(classificationLine)}</span>` : ''}
+        ${fallback && lang !== session.lang ? `<span class="text-warn">showing ${lang === 'hi' ? 'Hindi' : 'English'}</span>` : ''}
+      </p>
+      <div class="question-tools">
+        ${answerKeyBadge(question.supplied?.status)}
+        ${demoBadge(question.is_demonstration)}
+        ${Object.keys(question.language_variants).length > 1 ? `<span data-lang-wrap>${languageSwitcher(question, session.lang)}</span>` : ''}
+      </div>
     </div>
 
     ${variant?.instructions ? `<div class="instructions"${langAttr(variant.instructions, lang)}>${esc(variant.instructions)}</div>` : ''}
@@ -329,31 +333,6 @@ function questionCardMarkup() {
 }
 
 /** The score/source card under the palette. */
-function scoringCard(test, progress) {
-  const marked = progress.confidence.confident + progress.confidence.unsure + progress.confidence.guessed;
-  const conf = test.config.confidence !== 'off' && marked ? `<p class="small mt-2 mb-0">Confidence marked on ${marked} question(s).</p>` : '';
-  return `<section class="card">
-    <div class="card-head"><h2>Scoring</h2></div>
-    <div class="card-body tight small">
-      ${
-        test.config.scoring.rules
-          ? `<p class="m-0"><strong>${esc(
-              [
-                `+${test.config.scoring.rules.marks_per_correct} correct`,
-                test.config.scoring.rules.negative_marking_enabled ? `−${test.config.scoring.rules.negative_marks_per_incorrect} incorrect` : 'no negative marking',
-                `${test.config.scoring.rules.marks_for_unanswered} unanswered`,
-              ].join(' · '),
-            )}</strong></p>
-            ${test.config.scoring.rulesSourceNote ? infoToggle('Where these rules come from', `<p class="small m-0">${esc(test.config.scoring.rulesSourceNote)}</p>`) : ''}`
-          : '<p class="text-bad m-0">Rules are not configured. You can finish the paper, but it cannot be scored until the rules are set.</p>'
-      }
-      ${conf}
-    </div>
-    <div class="card-foot small">
-      Started ${esc(fmtDate(test.started_at || test.created_at))} · ${test.question_ids.length} questions
-    </div>
-  </section>`;
-}
 
 function markup() {
   const { test } = session;
@@ -374,24 +353,19 @@ function markup() {
 
   return `
   <div class="runner-bar">
-    <div class="grow">
-      <nav class="crumbs" aria-label="Breadcrumb">
-        <ol><li><a href="#/test-centre">Papers</a></li><li aria-current="page">${esc(test.label || 'Practice')}</li></ol>
-      </nav>
-      <div class="row tight">
-        <h1 class="runner-title">${esc(test.label || 'Practice')}</h1>
-        <span class="tiny muted">${test.config.feedback_mode === 'learning' ? 'Learning mode — answers revealed as you go' : 'Exam mode — answers revealed after submitting'}</span>
-      </div>
-      <div class="tiny muted" id="runnerProgress">
+    <div class="runner-id">
+      <h1 class="runner-title">${esc(test.label || 'Practice')}</h1>
+      <p class="runner-progress" id="runnerProgress">
         Question ${index + 1} of ${totalQuestions}
-        · ${progress.answered} answered · ${progress.unanswered} left${progress.flagged ? ` · ${progress.flagged} flagged` : ''}
-      </div>
+        <span class="sep" aria-hidden="true">/</span> ${progress.answered} answered
+        <span class="sep" aria-hidden="true">/</span> ${progress.unanswered} left${progress.flagged ? ` <span class="sep" aria-hidden="true">/</span> ${progress.flagged} flagged` : ''}
+      </p>
     </div>
-    <div class="row tight">
-      ${test.config.show_timer && remaining !== null && remaining !== undefined ? `<span class="timer ${timerClass}" id="runnerTimer" role="timer">${fmtClock(remaining)}</span>` : '<span class="tiny muted">No time limit</span>'}
-      <span class="save-state ${saveStateClass}" id="saveState">${session.saveState === 'saving' ? 'saving…' : session.saveState === 'error' ? 'save failed' : 'saved'}</span>
-      <button class="btn btn-sm btn-quiet runner-palette-btn" type="button" data-action="palette-toggle" aria-expanded="false" aria-controls="runnerSide" aria-label="Open the question palette">Palette <span class="runner-palette-progress" id="paletteSummary">${counts.answered}/${counts.total}</span></button>
-      <button class="btn btn-sm btn-quiet" type="button" data-action="focus-mode" aria-pressed="${isFocusMode}" title="Toggle distraction-free reading layout (D)">${isFocusMode ? 'Show sidebar' : 'Focus'}</button>
+    <div class="runner-controls">
+      ${test.config.show_timer && remaining !== null && remaining !== undefined ? `<span class="timer ${timerClass}" id="runnerTimer" role="timer">${fmtClock(remaining)}</span>` : ''}
+      <span class="save-state ${saveStateClass}" id="saveState" aria-live="polite">${session.saveState === 'saving' ? 'saving' : session.saveState === 'error' ? 'not saved' : 'saved'}</span>
+      <button class="quiet-action runner-index-btn" type="button" data-action="palette-toggle" aria-expanded="false" aria-controls="runnerSide" aria-label="Open the question index">Index <span class="runner-palette-progress" id="paletteSummary">${counts.answered}/${counts.total}</span></button>
+      <button class="btn btn-sm btn-quiet" type="button" data-action="focus-mode" aria-pressed="${isFocusMode}" title="Distraction-free reading (D)">${isFocusMode ? 'Exit focus' : 'Focus'}</button>
       <button class="btn btn-sm btn-quiet" type="button" data-action="pause">${test.status === 'paused' ? 'Resume' : 'Pause'}</button>
       <button class="btn btn-primary btn-sm" type="button" data-action="submit">Submit</button>
       <button class="btn btn-sm btn-icon kbd-legend-toggle" type="button" data-action="kbd-legend" aria-expanded="${Boolean(session.legendOpen)}" aria-controls="runnerKbdLegend" aria-label="Keyboard shortcuts" title="Keyboard shortcuts">?</button>
@@ -400,36 +374,39 @@ function markup() {
   </div>
 
   <div class="runner">
-    <div class="runner-main">
-      <article class="question-card" id="questionCard" data-revealed="${String(session.test.config.feedback_mode === 'learning' && Boolean(responseFor(session.test.question_ids[session.test.current_index || 0]).revealed))}">${questionCardMarkup()}</article>
-      ${test.config.warnings?.length ? infoToggle('Notes about this test', `<ul class="small">${test.config.warnings.map((w) => `<li>${esc(w)}</li>`).join('')}</ul>`) : ''}
-    </div>
+    <article class="question-card" id="questionCard" data-revealed="${String(session.test.config.feedback_mode === 'learning' && Boolean(responseFor(session.test.question_ids[session.test.current_index || 0]).revealed))}">${questionCardMarkup()}</article>
+    ${test.config.warnings?.length ? infoToggle('Notes about this paper', `<ul class="small">${test.config.warnings.map((w) => `<li>${esc(w)}</li>`).join('')}</ul>`) : ''}
 
-    <aside class="sticky-side runner-side" id="runnerSide">
-      <section class="card palette-card">
-        <div class="card-head">
-          <h2>Questions</h2>
-          <span class="muted tiny" id="paletteHeadCount">${counts.answered}/${counts.total}</span>
-          <button class="btn btn-sm btn-quiet palette-close" type="button" data-action="palette-toggle" aria-label="Close the question palette">Close</button>
-        </div>
-        <div class="card-body tight">
-          ${paletteToolsMarkup(counts)}
-          <div class="palette" id="paletteGrid">${paletteGridMarkup(test, index)}</div>
-          <div class="legend">
-            <span><i class="swatch ok" aria-hidden="true"></i> answered</span>
-            <span><i class="swatch warn" aria-hidden="true">⚑</i> flagged</span>
-            <span><i class="swatch" aria-hidden="true"></i> not answered</span>
-            <span><i class="swatch current" aria-hidden="true"></i> current question</span>
-          </div>
-          ${paletteJumpsMarkup()}
-          <div class="row mt-3">
-            <button class="btn btn-sm btn-quiet" type="button" data-action="print">Print question paper</button>
-          </div>
-        </div>
-      </section>
-      ${scoringCard(test, progress)}
+    <aside class="runner-index" id="runnerSide" aria-label="Question index">
+      <div class="runner-index-head">
+        <p class="section-label">Index</p>
+        <button class="quiet-action" type="button" data-action="palette-toggle" aria-label="Close the question index">Close</button>
+      </div>
+      <p class="meta-line">${esc(test.label || 'Practice')} <span>${test.config.feedback_mode === 'learning' ? 'answers shown as you go' : 'answers shown after submitting'}</span></p>
+      ${segmentedResultRule(counts)}
+      ${paletteToolsMarkup(counts)}
+      <div class="palette" id="paletteGrid">${paletteGridMarkup(test, index)}</div>
+      <div class="legend">
+        <span><i class="swatch ok" aria-hidden="true"></i> answered</span>
+        <span><i class="swatch warn" aria-hidden="true">⚑</i> flagged</span>
+        <span><i class="swatch" aria-hidden="true"></i> not answered</span>
+        <span><i class="swatch current" aria-hidden="true"></i> current</span>
+      </div>
+      ${paletteJumpsMarkup()}
+      <div class="runner-index-foot">
+        <button class="quiet-action" type="button" data-action="print">Print this paper</button>
+        <span class="tiny text-soft" id="paletteHeadCount">${counts.answered} of ${counts.total} answered</span>
+      </div>
     </aside>
   </div>`;
+}
+
+/** The index's progress rule: answered / not answered, in one line. */
+function segmentedResultRule(counts) {
+  return `<div class="segmented" role="img" aria-label="${counts.answered} answered, ${counts.unanswered} not answered">
+    <i class="is-ok" data-pct="${Math.round((counts.answered / Math.max(1, counts.total)) * 20) * 5}"></i>
+  </div>
+  <p class="seg-legend"><span>▪ answered <b>${counts.answered}</b></span><span>▫ left <b>${counts.unanswered}</b></span></p>`;
 }
 
 /* --------------------------------------------------------------- paints --- */

@@ -1,27 +1,26 @@
 /**
  * dashboard.js — Today: the screen that starts work.
  *
- * The dashboard used to *describe* preparation and then link elsewhere: a
- * next-up block, a stat strip, a recommendation list whose rows only navigated,
- * and a recent-sessions list. A returning learner still had to walk through two
- * or three screens (and a configuration modal) to be answering a question.
+ * Today is a desk, not a report about a desk. It carries, in reading order:
  *
- * Today launches. Every row in the start deck is built from stored data — an
- * unfinished test, the revision schedule, the smart plan, the newest stored
- * paper, never-seen questions, the open mistake book — states its real count,
- * and starts the session in one click (see services/nextup.js for the rules, and
- * views/shared.js for the shared starters). Nothing here estimates anything: a
- * row with no evidence behind it shows 0 and says why, and is not clickable.
+ *   1. the unfinished sitting, if there is one — with a progress rule and the
+ *      one link that continues it;
+ *   2. three rows of work, each built from stored data, each starting a real
+ *      session in one click (services/nextup.js decides what deserves a row);
+ *   3. the weakest topics as a short table, because a table is the right shape
+ *      for numbers you compare;
+ *   4. in the margin, the standing facts that used to fill a stat strip.
  *
- * Beneath the deck: one row per weak topic with a *Practise* button that starts
- * a topic session immediately, the four figures that describe standing, and the
- * recent sittings. Cards are the exception, not the unit: the deck, the figures
- * and the cross-signal live on the page itself.
+ * Everything removed from this screen — the recent-sittings list, the four
+ * figures above the fold, the cross-signal card — still exists: sittings are on
+ * the weekly report, the figures are in the margin, and the overlap sentence is
+ * one line under the rows. Nothing is guessed: a row with no evidence behind it
+ * says so and does not start.
  */
 
 import { state } from '../../core/state.js';
-import { esc, card, confirmDialog, toast, evidenceMeter, screenHead, cardInfo } from '../components.js';
-import { fmtPct, fmtDate, fmtMarks, topicPracticeHref } from '../../core/util.js';
+import { esc, confirmDialog, toast, evidenceMeter, screenHead, sheet, marginNote, segmented, metaLine } from '../components.js';
+import { fmtPct, fmtDate, topicPracticeHref } from '../../core/util.js';
 import { loadAnalytics, studyPriorities } from '../../services/analytics.js';
 import * as testsSvc from '../../services/tests.js';
 import { loadSyllabusWorkspace } from '../../services/syllabus-hub.js';
@@ -47,41 +46,24 @@ function greeting() {
   return 'Good evening';
 }
 
-function noBankCard() {
-  return `
-    ${screenHead({
-      title: 'Today',
-      purpose: 'A local-first MPPSC Prelims practice app. The question bank, your answers, mistakes and revision schedule live in this browser.',
-      primary: '<a class="btn btn-primary" href="#/bank">Import a question bank</a>',
-      secondary: '<a class="btn btn-quiet" href="#/help">How this app works</a>',
-    })}
-    ${card({
-      title: 'Start with a question bank',
-      body: `
-        <ol class="small">
-          <li>Import a bank exported by your own data pipeline, or load the clearly-labelled demonstration bank to look around.</li>
-          <li>Today will then offer the next sitting — a paper, a topic, a smart mix or due revision — in one click.</li>
-          <li>Review the report, work through mistakes, and let the revision schedule tell you what is due.</li>
-        </ol>
-        <div class="row">
-          <button class="btn" type="button" id="dashLoadDemo">Load the demonstration bank</button>
-        </div>
-        <p class="tiny muted mt-2 mb-0">Demonstration questions are synthetic examples written to show the schema. They are never presented as authentic MPPSC previous-year questions.</p>`,
-    })}`;
+function todayLine() {
+  const now = new Date();
+  const weekday = now.toLocaleDateString('en-GB', { weekday: 'long' });
+  const month = now.toLocaleDateString('en-GB', { month: 'long' });
+  return `${weekday} ${now.getDate()} ${month}`;
 }
 
 /** Verb for a start option, so the button says what will happen. */
 const OPTION_VERB = {
   resume: 'Resume',
-  revision: 'Revise now',
+  revision: 'Revise',
   smart: 'Start',
-  paper: 'Start paper',
+  paper: 'Start',
   topic: 'Practise',
   unseen: 'Start',
   mistakes: 'Retry',
 };
 
-/** Legend for the deck rows: an option with a route is a link… */
 function startAction(option, disabled) {
   const verb = OPTION_VERB[option.kind] || 'Start';
   const label = `${verb} — ${option.label}${option.count ? `, ${option.count} question(s)` : ''}`;
@@ -95,54 +77,70 @@ function startAction(option, disabled) {
       ${disabled ? 'disabled' : ''} aria-label="${esc(label)}">${esc(verb)}</button>`;
 }
 
-/**
- * One row of the start deck. The count is the justification for the row, so it
- * sits beside the button rather than in a separate summary elsewhere.
- */
-function startRow(option) {
+/** One row of the desk. The count beside the title is the row's reason to exist. */
+function deskRow(option) {
   const disabled = option.kind === 'resume' ? false : !option.count;
-  const countText = option.countLabel || (option.count ? `${option.count}` : 'none');
-  return `<li class="start-row ${disabled ? 'is-empty' : ''} ${option.tone === 'accent' ? 'is-accent' : ''}">
-    <div class="start-row-main">
-      <p class="start-row-label">${esc(option.label)}${option.extra ? ` <span class="start-row-extra">${esc(option.extra)}</span>` : ''}</p>
-      <p class="start-row-detail">${esc(option.detail)}</p>
-    </div>
-    <span class="start-row-count" aria-hidden="true">${esc(countText)}</span>
-    ${startAction(option, disabled)}
-  </li>`;
+  const count = option.countLabel || (option.count ? `${option.count} question${option.count === 1 ? '' : 's'}` : 'nothing stored');
+  return `<li class="start-row${disabled ? ' is-empty' : ''}"><div class="desk-row">
+    <span class="desk-mark" aria-hidden="true">${option.tone === 'accent' ? '◆' : '◇'}</span>
+    <span class="desk-title">${esc(option.label)}${option.extra ? ` <em>— ${esc(option.extra)}</em>` : ''}
+      <em class="desk-sub">${esc(option.detail)}</em></span>
+    <span class="desk-act"><span class="desk-count">${esc(count)}</span>${startAction(option, disabled)}</span>
+  </div></li>`;
 }
 
-/** One weak-topic row with the practice action attached to it. */
-function attentionRow(priority, maxCount) {
-  const judged = priority.scored || 0;
-  const evidence = judged >= 3 ? `${fmtPct(priority.accuracy)} accuracy over ${judged} judged` : judged ? `${judged} judged — too thin to judge yet` : 'never attempted';
-  const size = Math.min(priority.available, maxCount);
-  return `<div class="action-row">
-    <div class="action-row-main">
-      <p class="action-row-title"><a href="${esc(topicPracticeHref(priority.subject, priority.topic))}">${esc(priority.topic)}</a></p>
-      <p class="action-row-meta">${esc(priority.subject)} · ${esc(evidence)} · ${esc(String(priority.available))} stored</p>
-    </div>
-    ${evidenceMeter(judged)}
-    <button class="btn btn-sm" type="button" data-action="practise-topic" data-subject="${esc(priority.subject)}" data-topic="${esc(priority.topic)}" ${size ? '' : 'disabled'}>
-      Practise${size ? ` ${size}` : ''}
-    </button>
-  </div>`;
+/**
+ * The weakest topics, as a table: name, accuracy bar, sample, the one action.
+ * `tbody` matters — the report's journey test starts a session from this shape.
+ */
+function attentionTable(priorities, size) {
+  return `<table class="bar-rows">
+    <tbody>${priorities
+      .map((priority) => {
+        const judged = priority.scored || 0;
+        const size2 = Math.min(priority.available, size);
+        const accuracy = judged >= 3 ? fmtPct(priority.accuracy) : '—';
+        const pct = Math.max(3, Math.round(Math.max(0, Math.min(1, Number(priority.accuracy) || 0)) * 20) * 5);
+        return `<tr>
+          <td class="row-name">
+            <a href="${esc(topicPracticeHref(priority.subject, priority.topic))}">${esc(priority.topic)}</a>
+            <small>${esc(priority.subject)} <span aria-hidden="true">/</span> ${esc(String(priority.available))} stored ${evidenceMeter(judged)}</small>
+          </td>
+          <td class="bar-track"><span><i data-pct="${pct}"></i></span></td>
+          <td class="row-value">${esc(accuracy)}</td>
+          <td class="row-act">
+            <button class="btn btn-sm" type="button" data-action="practise-topic" data-subject="${esc(priority.subject)}" data-topic="${esc(priority.topic)}" ${size2 ? '' : 'disabled'}>
+              Practise${size2 ? ` ${size2}` : ''}
+            </button>
+          </td>
+        </tr>`;
+      })
+      .join('')}</tbody>
+  </table>`;
 }
 
-/** One row of the recent-sessions list. */
-function recentRow(test) {
-  const score = test.score === null || test.score === undefined
-    ? '—'
-    : `${esc(fmtMarks(test.score))}${test.max ? ` / ${esc(fmtMarks(test.max))}` : ''}`;
-  const accuracy = test.accuracy === null || test.accuracy === undefined ? 'submitted' : `${fmtPct(test.accuracy)} accuracy`;
-  return `<div class="action-row">
-    <div class="action-row-main">
-      <p class="action-row-title"><a href="#/report/${esc(test.id)}">${esc(test.label)}</a></p>
-      <p class="action-row-meta">${esc(fmtDate(test.at))} · ${esc(accuracy)}</p>
-    </div>
-    <span class="action-row-value">${score}<small>marks</small></span>
-    <a class="btn btn-sm btn-quiet" href="#/report/${esc(test.id)}">Debrief</a>
-  </div>`;
+function noBankCard() {
+  return `
+    ${screenHead({
+      title: 'Today',
+      eyebrow: todayLine(),
+      purpose: 'A local-first MPPSC Prelims practice app: the bank, your answers and your mistakes stay in this browser.',
+      primary: '<a class="btn btn-primary" href="#/bank">Import a question bank</a>',
+      secondary: '<a class="btn btn-quiet" href="#/help">How this app works</a>',
+    })}
+    ${sheet({
+      label: 'First, the bank',
+      body: `
+        <ol class="small">
+          <li>Import a bank exported by your own data pipeline, or load the clearly-labelled demonstration bank to look around.</li>
+          <li>Today will then offer the next sitting — a paper, a topic, a revision queue — in one click.</li>
+          <li>Review the report, work through mistakes, and let the revision schedule tell you what is due.</li>
+        </ol>
+        <div class="row">
+          <button class="btn" type="button" id="dashLoadDemo">Load the demonstration bank</button>
+        </div>
+        <p class="tiny text-soft mt-2 mb-0">Demonstration questions are synthetic examples written to show the schema. They are never presented as authentic MPPSC previous-year questions.</p>`,
+    })}`;
 }
 
 export default {
@@ -162,119 +160,104 @@ export default {
       buildStartOptions({ size }),
       reviewOverlap().catch(() => null),
       testsSvc.unfinishedTests().catch(() => []),
-      testsSvc.listTests({ status: 'submitted', limit: 6 }),
+      testsSvc.listTests({ status: 'submitted', limit: 1 }),
     ]);
 
     const { analytics } = await loadAnalytics();
     const curriculum = await loadSyllabusWorkspace();
     const priorities = studyPriorities({ analytics, syllabusProgress: curriculum.progress, limit: 4 });
 
-    // "Practise a weak topic" is the one thing the deck deliberately does not
-    // duplicate: the attention list below is where topics live, with their
-    // evidence and their own counts.
     renderedOptions = new Map(options.map((option) => [option.id, option]));
-    const deck = options.filter((option) => option.id !== 'weak');
+    const unfinished = options.find((option) => option.kind === 'resume') || null;
+    // Five rows at most: the hero carries the unfinished sitting, and "practise
+    // a weak topic" belongs to the table below, with its evidence.
+    const deck = options.filter((option) => option.id !== 'weak' && option.kind !== 'resume').slice(0, 5);
+
     const bankInfo = bankSummary();
     const dueRevision = overlap?.due ?? 0;
     const openMistakes = overlap?.openMistakes ?? 0;
     const both = overlap?.dueAndOpen ?? 0;
 
-    const unfinishedCount = unpublished.length;
-    const purpose = [
-      greeting(),
-      `${bank.total} questions across ${bank.papers} paper${bank.papers === 1 ? '' : 's'} stored`,
-      unfinishedCount ? `${unfinishedCount} unfinished test${unfinishedCount === 1 ? '' : 's'} ready to resume` : null,
-      dueRevision ? `${dueRevision} due for revision` : null,
-    ]
-      .filter(Boolean)
-      .join(' · ');
-
-    const integrity = [];
     const missingKeys = metas.filter((m) => !m.hasSuppliedAnswer && !m.hasVerifiedAnswer).length;
-    if (missingKeys) integrity.push(`${missingKeys} question(s) have no answer key and are excluded from scoring.`);
-    if (bankInfo.unclassified) integrity.push(`${bankInfo.unclassified} question(s) are not classified by subject or topic.`);
 
-    const attentionCard = card({
-      title: 'Needs attention',
-      count: priorities.length ? `${priorities.length} topic${priorities.length === 1 ? '' : 's'}` : null,
-      info: cardInfo(
-        'How this list is ranked',
-        '<p class="small m-0">Topics combine question frequency in your imported bank, your recorded accuracy and your own syllabus marks. Frequency is a study aid, not a forecast of any future examination. A topic needs at least three judged answers before its accuracy is described.</p>',
-      ),
-      action: '<a class="btn btn-sm btn-quiet" href="#/analytics">All insights</a>',
-      body: priorities.length
-        ? `<div class="action-rows">${priorities.map((row) => attentionRow(row, size)).join('')}</div>`
-        : `<p class="quiet-note m-0">Recommendations appear once the bank is classified and you have recorded an attempt or marked a syllabus line. In the meantime, the deck above starts with unseen questions.</p>`,
-      footer: both
-        ? `<div class="cross-signal">
-            <span><strong>${both}</strong> of the ${dueRevision} due question(s) are also open mistakes — the highest-value review there is.</span>
-            <button class="btn btn-sm" type="button" data-action="practise-both">Practise both (${both})</button>
-          </div>`
-        : openMistakes
-          ? `<div class="cross-signal">
-              <span><strong>${openMistakes}</strong> question(s) are open in the Mistake Book.</span>
-              <a class="btn btn-sm" href="#/mistakes">Open the Mistake Book</a>
-            </div>`
-          : '',
-    });
+    const hero = unfinished
+      ? sheet({
+          label: 'Unfinished test',
+          body: `
+            <div class="hero-sitting">
+              <div>
+                <h2 class="hero-title"><a href="#/${esc(unfinished.href || '')}">${esc(unfinished.label)}</a></h2>
+                ${metaLine([
+                  'unfinished test',
+                  `started ${esc(fmtDate(unfinished.startedAt || new Date().toISOString()))}`,
+                  `${unfinished.answered || 0} of ${unfinished.total || 0} answered`,
+                ])}
+              </div>
+              <a class="btn btn-primary" href="#/${esc(unfinished.href || '')}" aria-label="Resume — ${esc(unfinished.label)}">Resume</a>
+            </div>`,
+          footer: `${segmented(
+            [
+              { label: 'answered', value: unfinished.answered || 0, tone: 'ok' },
+              { label: 'left', value: unfinished.count || 0, tone: 'blank' },
+            ],
+            { label: `${unfinished.answered || 0} of ${unfinished.count || 0} questions answered` },
+          )}`,
+        })
+      : '';
 
-    const recentCard = card({
-      title: 'Recent sittings',
-      action: '<a class="btn btn-sm btn-quiet" href="#/analytics">History</a>',
-      body: submitted.length
-        ? `<div class="action-rows">${submitted.slice(0, 4).map(recentRow).join('')}</div>`
-        : '<p class="quiet-note m-0">Nothing submitted yet. The first finished session appears here with its marks and a debrief.</p>',
-    });
+    const overlapLine = both
+      ? `<p class="overlap-line"><strong>${both}</strong> of the ${dueRevision} question(s) due for revision are also open mistakes — the highest-value review there is.
+          <button class="quiet-action" type="button" data-action="practise-both">Practise both</button></p>`
+      : openMistakes
+        ? `<p class="overlap-line"><strong>${openMistakes}</strong> question(s) are open in the Mistake Book. <a href="#/mistakes">Open it</a>.</p>`
+        : '';
 
-    const statStrip = `<div class="stat-strip" role="group" aria-label="Preparation overview">
-      <div class="stat">
-        <span class="stat-label">Questions attempted</span>
-        <span class="stat-value">${esc(String(analytics.counts.attemptedUnique))} <small>of ${esc(String(bank.total))}</small></span>
-        <span class="stat-note">${fmtPct(analytics.counts.coverage)} of the bank covered</span>
-      </div>
-      <div class="stat">
-        <span class="stat-label">First-attempt accuracy</span>
-        <span class="stat-value">${analytics.accuracy.firstAttemptSample ? fmtPct(analytics.accuracy.firstAttempt) : '—'}</span>
-        <span class="stat-note">${analytics.accuracy.firstAttemptSample ? `${analytics.accuracy.firstAttemptSample} first attempts scored` : 'complete a scored attempt to begin'}</span>
-      </div>
-      <a class="stat" href="#/revision">
-        <span class="stat-label">Due for revision</span>
-        <span class="stat-value">${dueRevision}</span>
-        <span class="stat-note">${both ? `${both} also open mistakes` : openMistakes ? `${openMistakes} open mistakes` : 'nothing overdue'}</span>
-      </a>
-      <a class="stat" href="#/syllabus">
-        <span class="stat-label">Syllabus</span>
-        <span class="stat-value">${curriculum.progress.done} <small>of ${curriculum.progress.total}</small></span>
-        <span class="stat-note">item(s) done · marked on the commission's 2026 syllabus</span>
-      </a>
-    </div>`;
+    const attention = priorities.length
+      ? attentionTable(priorities, size)
+      : `<p class="quiet-note m-0">Nothing is ranked yet. Topics appear here once the bank is classified and you have recorded an attempt or marked a syllabus line. Until then, the rows above start with unseen questions.</p>`;
+
+    const margin = marginNote(
+      `<p>Bank <b class="fig">${esc(String(bank.total))}</b> questions, ${esc(String(bank.papers))} paper${bank.papers === 1 ? '' : 's'}.</p>
+       <p>Covered <b class="fig">${esc(String(analytics.counts.attemptedUnique))}</b> (${fmtPct(analytics.counts.coverage)}).</p>
+       <p>First-attempt accuracy <b class="fig">${analytics.accuracy.firstAttemptSample ? fmtPct(analytics.accuracy.firstAttempt) : '—'}</b>${
+         analytics.accuracy.firstAttemptSample ? ` over ${analytics.accuracy.firstAttemptSample} answered` : ' — none scored yet'
+       }.</p>
+       <p>Syllabus <b class="fig">${curriculum.progress.done}</b> of ${curriculum.progress.total} item(s) done, marked on the commission's 2026 syllabus.</p>
+       ${missingKeys ? `<p>${missingKeys} question(s) have no answer key and are excluded from scoring.</p>` : ''}
+       ${bankInfo.unclassified ? `<p>${bankInfo.unclassified} question(s) are unclassified.</p>` : ''}
+       ${submitted.length ? `<p><a href="#/analytics">Recent sittings and the weekly report</a></p>` : ''}`,
+      { title: 'Where you stand' },
+    );
 
     return `
       ${screenHead({
         title: 'Today',
-        purpose: esc(purpose),
-        primary: `<button class="btn btn-primary" type="button" data-action="start-option" data-option="smart">Start a ${size}-question smart session</button>`,
+        eyebrow: `${greeting()} — ${todayLine()}`,
+        purpose: 'What to do next, from what is stored on this device.',
+        primary: `<button class="btn btn-primary" type="button" data-action="start-option" data-option="smart">Start a ${size}-question session</button>`,
         secondary:
           '<button class="btn btn-sm btn-quiet" type="button" id="dashPractise">Quick session…</button>' +
           '<a class="btn btn-sm btn-quiet" href="#/topic">Build a session</a>',
       })}
 
-      <section class="start-deck" aria-labelledby="startDeckTitle">
-        <div class="start-deck-head">
-          <h2 id="startDeckTitle">Start now</h2>
-          <p>Every row is built from what is stored on this device and starts a real session.</p>
+      <div class="with-margin">
+        <div>
+          ${hero}
+          ${sheet({
+            label: 'On the desk',
+            body: `<ul class="desk-list">${deck.map(deskRow).join('')}</ul>${overlapLine}`,
+          })}
+          ${sheet({
+            label: 'Where it is weakest',
+            action: '<a class="quiet-action" href="#/analytics">All insights</a>',
+            body: attention,
+            footer: priorities.length
+              ? '<p class="tiny text-soft m-0">Ranked by question frequency in your bank, your recorded accuracy and your own syllabus marks — a study aid, not a forecast. Accuracy is described only after three judged answers.</p>'
+              : '',
+          })}
         </div>
-        <ul class="start-rows">${deck.map(startRow).join('')}</ul>
-      </section>
-
-      ${statStrip}
-
-      <div class="split-2">
-        ${attentionCard}
-        ${recentCard}
-      </div>
-      ${integrity.length ? `<p class="quiet-note mt-2">${esc(integrity.join(' '))} <a href="#/bank">Review in the question bank</a>.</p>` : ''}
-    `;
+        ${margin}
+      </div>`;
   },
 
   async mount(ctx, root) {

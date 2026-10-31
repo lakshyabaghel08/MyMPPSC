@@ -90,6 +90,9 @@ export async function buildStartOptions({ size = DEFAULT_SESSION_SIZE, includeRe
         : `Saved ${fmtRelative(open.updated_at)}`,
       count: progress ? progress.unanswered : 0,
       countLabel: progress ? `${progress.answered}/${progress.total}` : '',
+      answered: progress ? progress.answered : 0,
+      total: progress ? progress.total : 0,
+      startedAt: open.started_at || open.created_at || open.updated_at,
       tone: 'accent',
       href: `runner/${encodeURIComponent(open.id)}`,
       extra: unfinished.length > 1 ? `${unfinished.length - 1} more in progress` : '',
@@ -106,10 +109,10 @@ export async function buildStartOptions({ size = DEFAULT_SESSION_SIZE, includeRe
     kind: 'revision',
     label: 'Revision due',
     detail: dueIds.length
-      ? `${buckets.overdue.length} overdue · ${buckets.dueToday.length} due today${due.remaining ? ` · ${due.remaining} more scheduled` : ''}`
+      ? `${buckets.overdue.length} overdue, ${buckets.dueToday.length} due today${due.remaining ? `, ${due.remaining} later this week` : ''}`
       : buckets.upcoming.length
-        ? `Nothing due now · next ${buckets.upcoming.length} scheduled`
-        : 'Nothing scheduled yet — attempting questions builds the schedule',
+        ? `nothing due now, ${buckets.upcoming.length} scheduled`
+        : 'nothing scheduled yet',
     count: dueIds.length,
     countLabel: dueIds.length ? `${dueIds.length} question${dueIds.length === 1 ? '' : 's'}` : '',
     pool: async () => ({
@@ -141,8 +144,8 @@ export async function buildStartOptions({ size = DEFAULT_SESSION_SIZE, includeRe
     kind: 'smart',
     label: `Smart session`,
     detail: smartIds.length
-      ? `${smartParts.join(' · ') || 'a balanced mix of the bank'} — assembled from your recorded outcomes`
-      : 'Not enough questions are available to assemble a session',
+      ? `${smartParts.join(', ') || 'a balanced mix of the bank'}`
+      : 'not enough questions are available yet',
     count: smartIds.length,
     countLabel: smartIds.length ? `${smartIds.length} questions` : '',
     pool: async () => ({
@@ -167,8 +170,8 @@ export async function buildStartOptions({ size = DEFAULT_SESSION_SIZE, includeRe
       kind: 'paper',
       label: paper.year ? `MPPSC ${paper.year} paper` : paper.paper_name || 'A stored paper',
       detail: latestUnattempted
-        ? `${total} questions · ${paper.duration_minutes ? `${paper.duration_minutes} minutes · ` : ''}not attempted yet`
-        : `${total} questions · ${submittedPaperIds.has(paper.paper_id) ? 'attempted before — a full simulation again' : 'full simulation'}`,
+        ? `${total} questions, ${paper.duration_minutes ? `${paper.duration_minutes} minutes, ` : ''}not attempted yet`
+        : `${total} questions, ${submittedPaperIds.has(paper.paper_id) ? 'attempted before' : 'a full simulation'}`,
       count: total,
       countLabel: `${total} questions`,
       paper,
@@ -234,8 +237,8 @@ export async function buildStartOptions({ size = DEFAULT_SESSION_SIZE, includeRe
     kind: 'unseen',
     label: 'Questions you have never seen',
     detail: unseenIds.length
-      ? `${unseenIds.length} of ${metas.length} questions have no recorded attempt`
-      : 'Every stored question has been attempted at least once',
+      ? `${unseenIds.length} of ${metas.length} never attempted`
+      : 'every stored question attempted',
     count: Math.min(unseenIds.length, size),
     countLabel: unseenIds.length ? `${Math.min(unseenIds.length, size)} questions` : '',
     pool: async () => ({
@@ -260,8 +263,8 @@ export async function buildStartOptions({ size = DEFAULT_SESSION_SIZE, includeRe
     kind: 'mistakes',
     label: 'Open mistakes',
     detail: mistakeIds.length
-      ? `${mistakeIds.length} question${mistakeIds.length === 1 ? '' : 's'} still open in the Mistake Book`
-      : 'Nothing is open in the Mistake Book',
+      ? `${mistakeIds.length} still open`
+      : 'nothing open',
     count: Math.min(mistakeIds.length, size),
     countLabel: mistakeIds.length ? `${Math.min(mistakeIds.length, size)} questions` : '',
     pool: async () => ({

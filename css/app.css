@@ -20,19 +20,28 @@
   color-scheme: light;
 
   /* Surfaces — warm paper, white content, no tinted decoration. */
-  --bg: #f7f6f2;
-  --bg-elevated: #ffffff;
-  --bg-sunken: #efeee8;
-  --surface-hover: #f3f2ec;
-  --sidebar-bg: #f3f2ed;
+  --bg: #f4f1e7;
+  --bg-elevated: #fdfbf5;
+  --bg-sunken: #eae5d8;
+  --surface-hover: #efeade;
+  --sidebar-bg: #f0ece0;
   --scrim: rgba(24, 24, 19, 0.48);
 
   /* Borders & focus. --border is the audited 3:1 boundary for controls and
      table rules; --border-subtle is decorative and used only for hairlines. */
   --border: #767b72;
   --border-strong: #4f554d;
-  --border-subtle: #e4e2d9;
+  --border-subtle: #ddd6c4;
   --focus-ring: #2c4f8f;
+
+  /* Phase 3 — hairline rules for the page, and the one "now" colour.
+     --rule separates sections (decorative), --rule-strong is the visible
+     boundary of a control group. --now marks only what is happening now:
+     overdue, due today, the current question, a wrong answer. */
+  --rule: #ddd6c4;
+  --rule-strong: #bdb5a1;
+  --now: #8c3520;
+  --now-soft: #f3e2d8;
 
   /* Text */
   --text: #1b1d1b;
@@ -121,6 +130,11 @@
   --sans: "InterVariable", "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "Noto Sans Devanagari", Arial, sans-serif;
   --deva: "Noto Sans Devanagari", "Kohinoor Devanagari", "Mangal", "Nirmala UI", system-ui, sans-serif;
   --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  /* The desk's voice. A system serif with a universal fallback (Georgia and
+     Times ship with every desktop OS); no font file, so offline behaviour and
+     the no-network guard are untouched. Never applied to Devanagari — Hindi
+     keeps --deva so a missing serif cannot degrade the script. */
+  --serif: "Iowan Old Style", "Charter", "Bitstream Charter", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, "Times New Roman", serif;
 
   --text-xs: 0.75rem;      /* 12px */
   --text-sm: 0.8125rem;    /* 13px */
@@ -140,8 +154,8 @@
   /* Four-step type scale. Every size on a screen comes from one of these four
      steps; the Devanagari pair beside each step carries the font family and the
      taller leading that Devanagari needs at that size. */
-  --type-display: 2rem;         /* one big figure on a page */
-  --type-title: var(--text-xl);  /* h1 */
+  --type-display: 2.25rem;      /* the one figure or headline a page leads with */
+  --type-title: 1.875rem;       /* h1 — the screen's voice */
   --type-body: var(--text-base); /* paragraphs, controls, table cells */
   --type-caption: var(--text-sm); /* labels, footnotes, chips */
   --lh-display: 1.15;
@@ -184,17 +198,21 @@
 :root[data-theme="dark"] {
   color-scheme: dark;
 
-  --bg: #131413;
-  --bg-elevated: #1a1b19;
-  --bg-sunken: #0e0f0e;
-  --surface-hover: #222420;
-  --sidebar-bg: #0f100f;
+  --bg: #15160f;
+  --bg-elevated: #1d1e18;
+  --bg-sunken: #0f100b;
+  --surface-hover: #24251d;
+  --sidebar-bg: #101107;
   --scrim: rgba(0, 0, 0, 0.62);
 
   --border: #757a70;
   --border-strong: #9aa093;
-  --border-subtle: #33352f;
+  --border-subtle: #35362c;
   --focus-ring: #a8c0ea;
+  --rule: #35362c;
+  --rule-strong: #4b4d3f;
+  --now: #eaa28c;
+  --now-soft: #2e1a13;
 
   --text: #f1f1ec;
   --text-muted: #c3c6bd;
@@ -5111,6 +5129,265 @@ a.stat:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: -2p
 
 .matrix .cell { border-color: var(--border-subtle); border-radius: var(--radius); background: var(--bg-sunken); }
 
+
+/* =========================================================================
+   14b. The desk — Phase 3 layout primitives
+   A page divided by rules, not a stack of boxes. `sheet` is the default
+   container; `panel` is reserved for interruptions (dialogs, overlays, a
+   table that scrolls); `margin` holds the metadata that used to be badges.
+   ========================================================================= */
+
+.eyebrow {
+  font-size: 10.5px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  margin: 0 0 6px;
+  font-weight: 600;
+}
+
+/* The screen's voice: a serif headline. Devanagari never uses it. */
+.display-heading {
+  font-family: var(--serif);
+  font-weight: 500;
+  letter-spacing: -0.012em;
+  line-height: 1.08;
+  font-size: var(--type-display);
+  margin: 0;
+}
+
+.screen-head h1 {
+  font-family: var(--serif);
+  font-weight: 500;
+  letter-spacing: -0.012em;
+  font-size: var(--type-title);
+  line-height: 1.12;
+}
+
+.screen-head h1[lang="hi"] { font-family: var(--deva); }
+
+.screen-head { border-bottom: 1px solid var(--rule-strong); padding-bottom: 14px; }
+
+.screen-purpose { max-width: 54ch; }
+
+/* Section label — replaces a card header. */
+.section-label {
+  font-size: 10.5px;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  font-weight: 650;
+  margin: 0 0 10px;
+}
+
+/* A section of the page. No border, no shadow: a hairline above it. */
+.sheet {
+  padding: 22px 0 4px;
+  border-top: 1px solid var(--rule);
+  margin-top: 22px;
+}
+
+.sheet:first-of-type { border-top: 0; margin-top: 0; padding-top: 0; }
+
+.sheet-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.sheet-action { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+
+/* Interrupted content keeps a real boundary. */
+.panel-box {
+  border: 1px solid var(--rule-strong);
+  border-radius: 3px;
+  background: var(--bg-elevated);
+  padding: 14px 16px;
+}
+
+/* Two-column page with a margin for facts. */
+.with-margin {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 190px;
+  gap: 32px;
+  align-items: start;
+}
+
+.margin-note {
+  border-left: 1px solid var(--rule);
+  padding-left: 12px;
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--text-soft);
+  margin: 4px 0 0;
+}
+
+.margin-note b { display: block; color: var(--text-muted); font-weight: 650; font-size: 12px; }
+.margin-note p { margin: 0; }
+
+@media (max-width: 1180px) {
+  .with-margin { grid-template-columns: 1fr; gap: 10px; }
+  .margin-note { border-left: 0; border-top: 1px dotted var(--rule); padding: 6px 0 0; }
+}
+
+/* A single line of metadata, separated by space rather than middots. */
+.meta-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  margin: 0;
+  font-size: 12px;
+  color: var(--text-soft);
+}
+
+/* The stamp: the one date that matters, in a queue's gutter. */
+.stamp {
+  font-size: 10.5px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  line-height: 1.4;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.stamp.is-now { color: var(--now); font-weight: 650; }
+
+/* Segmented result rule — three counts as one bar, with a text legend. */
+.segmented {
+  display: flex;
+  height: 8px;
+  border-radius: 1px;
+  overflow: hidden;
+  background: var(--track);
+  margin: 12px 0 6px;
+  max-width: 560px;
+}
+
+.segmented > i { display: block; height: 100%; }
+.segmented > i.is-ok { background: var(--ink); }
+.segmented > i.is-bad { background: var(--now); }
+.segmented > i.is-blank { background: var(--bg); box-shadow: inset 0 0 0 1px var(--rule-strong); }
+
+.seg-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  font-size: 11.5px;
+  color: var(--text-soft);
+  margin: 0;
+}
+
+.seg-legend b { color: var(--text-muted); font-weight: 650; font-variant-numeric: tabular-nums; }
+
+/* Text actions: the quiet counterpart of a button, used inside rows. */
+.quiet-action {
+  font: inherit;
+  font-size: 12.5px;
+  color: var(--text-muted);
+  background: none;
+  border: 0;
+  border-bottom: 1px solid var(--rule-strong);
+  padding: 1px 0;
+  cursor: pointer;
+}
+
+.quiet-action:hover { border-bottom-color: var(--text); color: var(--text); }
+.quiet-action:disabled { color: var(--text-soft); border-bottom-style: dotted; cursor: not-allowed; }
+
+/* The desk list: each row is a whole action. */
+.desk-list { list-style: none; margin: 0; padding: 0; }
+.desk-list > li + li { border-top: 1px solid var(--rule); }
+
+.desk-row {
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: baseline;
+  padding: 12px 0;
+  color: inherit;
+  text-decoration: none;
+}
+
+.desk-row:hover .desk-title { text-decoration: underline; text-underline-offset: 3px; }
+.desk-row:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 3px; }
+
+.desk-mark { color: var(--now); font-size: 11px; }
+.desk-title { font-size: var(--text-base); }
+.desk-title em { font-style: normal; color: var(--text-soft); }
+.desk-count { font-size: 12.5px; color: var(--text-soft); font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+/* Evidence dots: three marks, not a meter widget. */
+.dots { display: inline-flex; gap: 3px; align-items: center; }
+.dots i {
+  width: 7px; height: 7px; border-radius: 50%;
+  border: 1px solid var(--rule-strong);
+  background: transparent;
+}
+.dots i.on { background: var(--text-muted); border-color: var(--text-muted); }
+
+.look-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 56px auto;
+  gap: 14px;
+  align-items: baseline;
+  padding: 10px 0;
+}
+
+.look-row + .look-row { border-top: 1px dotted var(--rule); }
+.look-topic { font-size: var(--text-base); }
+.look-topic small { color: var(--text-soft); font-size: 12px; margin-left: 6px; }
+
+/* The score line on a marked paper. */
+.score-line { display: flex; align-items: flex-end; gap: 20px; flex-wrap: wrap; }
+.score-figure {
+  font-family: var(--serif);
+  font-size: clamp(2.6rem, 2rem + 2.6vw, 4rem);
+  line-height: .95;
+  letter-spacing: -0.02em;
+  font-variant-numeric: lining-nums;
+  margin: 0;
+}
+.score-figure small { font-size: .34em; color: var(--text-soft); letter-spacing: 0; }
+
+/* Accuracy bars (report + insights). */
+.bar-rows { width: 100%; border-collapse: collapse; }
+.bar-rows td { padding: 9px 0; border-top: 1px dotted var(--rule); font-size: var(--text-sm); vertical-align: middle; }
+.bar-rows tr:first-child td { border-top: 0; }
+.bar-rows .row-name { width: 40%; }
+.bar-rows .row-name small { display: block; color: var(--text-soft); font-size: 11.5px; }
+.bar-rows .bar-track { width: 32%; padding-right: 14px; }
+.bar-rows .bar-track span { display: block; height: 7px; background: var(--track); border-radius: 1px; position: relative; }
+.bar-rows .bar-track span i { position: absolute; inset: 0 auto 0 0; background: var(--text-muted); }
+.bar-rows .row-value { width: 12%; font-variant-numeric: tabular-nums; color: var(--text-muted); }
+.bar-rows .row-act { text-align: right; }
+
+/* A queue entry: stamp, question, actions — the revision centre's unit. */
+.queue-list { display: grid; gap: 0; }
+.queue-entry {
+  display: grid;
+  grid-template-columns: 68px minmax(0, 1fr) auto;
+  gap: 18px;
+  align-items: start;
+  padding: 14px 0;
+  border-top: 1px solid var(--rule);
+}
+.queue-entry:last-child { border-bottom: 1px solid var(--rule); }
+.queue-question { margin: 0; font-size: var(--text-base); line-height: 1.5; max-width: 58ch; }
+.queue-src { margin: 5px 0 0; }
+.queue-actions { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; justify-content: flex-end; }
+
+@media (max-width: 720px) {
+  .queue-entry { grid-template-columns: 1fr; gap: 8px; }
+  .stamp { text-align: left; }
+  .queue-actions { justify-content: flex-start; }
+  .desk-row { grid-template-columns: 14px minmax(0, 1fr); }
+  .desk-count { grid-column: 2; color: var(--text-soft); }
+  .look-row { grid-template-columns: minmax(0, 1fr) auto; }
+}
+
 /* ------------------------------------------------------------- utilities */
 
 .mono { font-variant-numeric: tabular-nums; }
@@ -7678,3 +7955,390 @@ h3 {
 .nav-storage .nav-foot-item span { display: block; }
 
 .app-body.nav-collapsed .nav-storage { display: none; }
+
+/* =========================================================================
+   14c. Runner — a marked paper, not a panel
+   The stem is set in the serif at a 58-character measure; options are ruled
+   rows; the index is a drawer you open when you need it, never a column that
+   takes 300px from the question for the whole sitting.
+   ========================================================================= */
+
+.runner-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px 20px;
+  padding: 0 0 12px;
+  margin-bottom: 20px;
+  border: 0;
+  border-bottom: 1px solid var(--rule-strong);
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+}
+
+.runner-id { min-width: 0; }
+
+.runner-title {
+  font-family: var(--serif);
+  font-size: 1.0625rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  margin: 0;
+}
+
+.runner-progress {
+  margin: 3px 0 0;
+  font-size: 12px;
+  color: var(--text-soft);
+  font-variant-numeric: tabular-nums;
+}
+
+.runner-progress .sep { color: var(--rule-strong); padding: 0 3px; }
+
+.runner-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.runner-bar .timer {
+  font-family: var(--mono);
+  font-size: 13.5px;
+  font-variant-numeric: tabular-nums;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--text-muted);
+}
+
+.runner-bar .timer.warn { color: var(--warn); background: none; }
+.runner-bar .timer.bad { color: var(--now); background: none; }
+
+.runner-index-btn { white-space: nowrap; }
+.runner-palette-progress { margin-left: 4px; color: var(--text-soft); font-variant-numeric: tabular-nums; }
+
+.runner {
+  display: block;
+  max-width: 74ch;
+}
+
+.question-card {
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  padding: 0;
+  margin: 0 0 24px;
+}
+
+.question-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.question-meta {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  font-size: 10.5px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+}
+
+.question-num-pill {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--text-muted);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .1em;
+}
+
+.question-class { text-transform: none; letter-spacing: .04em; }
+
+.question-tools { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+
+.question-text {
+  font-family: var(--serif);
+  font-size: clamp(1.125rem, 1.02rem + 0.34vw, 1.28rem);
+  line-height: 1.5;
+  letter-spacing: -0.006em;
+  max-width: 58ch;
+  margin: 0 0 20px;
+}
+
+.question-text.hi,
+.question-text[lang="hi"] {
+  font-family: var(--deva);
+  font-size: clamp(1.125rem, 1.04rem + 0.3vw, 1.25rem);
+  line-height: 1.65;
+}
+
+.options { gap: 0; display: block; }
+
+.option-row {
+  width: 100%;
+  display: flex;
+  align-items: baseline;
+  text-align: left;
+  padding: 12px 2px;
+  border: 0;
+  border-top: 1px solid var(--rule);
+  border-radius: 0;
+  background: none;
+  box-shadow: inset 2px 0 0 transparent;
+}
+
+.option-row:last-child { border-bottom: 1px solid var(--rule); }
+
+.option-row:hover {
+  border-color: var(--rule);
+  background: var(--surface-hover);
+  transform: none;
+}
+
+.option-row[aria-pressed="true"] {
+  padding: 12px 2px;
+  border-color: var(--rule);
+  background: var(--bg-sunken);
+  box-shadow: inset 2px 0 0 var(--text);
+}
+
+.option-row.correct {
+  padding: 12px 2px;
+  border-color: var(--rule);
+  background: var(--ok-soft);
+  box-shadow: inset 2px 0 0 var(--ok);
+}
+
+.option-row.incorrect {
+  padding: 12px 2px;
+  border-color: var(--rule);
+  background: var(--bad-soft);
+  box-shadow: inset 2px 0 0 var(--bad);
+}
+
+.option-key {
+  width: 22px;
+  height: auto;
+  flex: 0 0 22px;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  color: var(--text-soft);
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.option-row[aria-pressed="true"] .option-key,
+.option-row.correct .option-key { color: var(--text); }
+.option-row.incorrect .option-key { color: var(--bad); }
+
+.option-text { font-size: 15px; line-height: 1.6; padding-top: 0; max-width: 62ch; }
+.option-row[lang="hi"] .option-text { font-family: var(--deva); font-size: 15.5px; line-height: 1.7; }
+
+.option-kbd { opacity: .4; font-family: var(--mono); font-size: 11px; }
+
+.runner-nav {
+  gap: 8px;
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--rule);
+  background: var(--bg);
+}
+
+.runner-nav .btn { min-height: 34px; }
+
+.kbd-bar {
+  margin-top: 10px;
+  padding: 0;
+  border-radius: 0;
+  background: none;
+  color: var(--text-soft);
+  font-size: 11px;
+  gap: 12px;
+}
+
+/* The index drawer. */
+.runner-index {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 46;
+  width: min(320px, 88vw);
+  overflow: auto;
+  padding: 20px 18px 28px;
+  border-left: 1px solid var(--rule-strong);
+  background: var(--bg-elevated);
+  box-shadow: var(--shadow-lg);
+  transform: translateX(103%);
+  visibility: hidden;
+  transition: transform var(--dur-base) var(--ease-out), visibility var(--dur-base);
+}
+
+body.palette-open .runner-index { transform: none; visibility: visible; }
+
+.runner-index-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+
+.runner-index-head .section-label { margin: 0; }
+
+.runner-index .meta-line { margin: 0 0 4px; font-size: 11.5px; }
+.runner-index .palette-tools { margin: 12px 0 10px; flex-wrap: wrap; }
+.runner-index .palette { margin-bottom: 10px; }
+.runner-index .legend { font-size: 11px; gap: 8px 12px; }
+
+.runner-index-foot {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid var(--rule);
+}
+
+body.runner-focus .runner-index { display: none; }
+body.runner-focus .runner { max-width: 66ch; }
+
+@media (max-width: 1040px) {
+  .runner-index {
+    top: auto;
+    left: 0;
+    width: auto;
+    max-height: 74vh;
+    padding: 14px 16px calc(16px + env(safe-area-inset-bottom, 0px));
+    border-left: 0;
+    border-top: 1px solid var(--rule-strong);
+    border-radius: 0;
+    transform: translateY(103%);
+  }
+}
+
+@media (max-width: 720px) {
+  .option-row { min-height: 56px; align-items: center; }
+  .runner-nav { position: sticky; bottom: 0; z-index: 5; margin: 14px -16px -20px; padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px)); border-top: 1px solid var(--rule-strong); }
+  .runner-title { font-size: 1rem; }
+  .runner-controls { gap: 8px; justify-content: flex-start; }
+  .question-text { font-size: 1.0625rem; }
+}
+
+/* Widths are set by a stepped data attribute so no markup carries style=. */
+.segmented > i[data-pct="0"],
+.bar-rows .bar-track span i[data-pct="0"] { width: 0%; }
+.segmented > i[data-pct="5"],
+.bar-rows .bar-track span i[data-pct="5"] { width: 5%; }
+.segmented > i[data-pct="10"],
+.bar-rows .bar-track span i[data-pct="10"] { width: 10%; }
+.segmented > i[data-pct="15"],
+.bar-rows .bar-track span i[data-pct="15"] { width: 15%; }
+.segmented > i[data-pct="20"],
+.bar-rows .bar-track span i[data-pct="20"] { width: 20%; }
+.segmented > i[data-pct="25"],
+.bar-rows .bar-track span i[data-pct="25"] { width: 25%; }
+.segmented > i[data-pct="30"],
+.bar-rows .bar-track span i[data-pct="30"] { width: 30%; }
+.segmented > i[data-pct="35"],
+.bar-rows .bar-track span i[data-pct="35"] { width: 35%; }
+.segmented > i[data-pct="40"],
+.bar-rows .bar-track span i[data-pct="40"] { width: 40%; }
+.segmented > i[data-pct="45"],
+.bar-rows .bar-track span i[data-pct="45"] { width: 45%; }
+.segmented > i[data-pct="50"],
+.bar-rows .bar-track span i[data-pct="50"] { width: 50%; }
+.segmented > i[data-pct="55"],
+.bar-rows .bar-track span i[data-pct="55"] { width: 55%; }
+.segmented > i[data-pct="60"],
+.bar-rows .bar-track span i[data-pct="60"] { width: 60%; }
+.segmented > i[data-pct="65"],
+.bar-rows .bar-track span i[data-pct="65"] { width: 65%; }
+.segmented > i[data-pct="70"],
+.bar-rows .bar-track span i[data-pct="70"] { width: 70%; }
+.segmented > i[data-pct="75"],
+.bar-rows .bar-track span i[data-pct="75"] { width: 75%; }
+.segmented > i[data-pct="80"],
+.bar-rows .bar-track span i[data-pct="80"] { width: 80%; }
+.segmented > i[data-pct="85"],
+.bar-rows .bar-track span i[data-pct="85"] { width: 85%; }
+.segmented > i[data-pct="90"],
+.bar-rows .bar-track span i[data-pct="90"] { width: 90%; }
+.segmented > i[data-pct="95"],
+.bar-rows .bar-track span i[data-pct="95"] { width: 95%; }
+.segmented > i[data-pct="100"],
+.bar-rows .bar-track span i[data-pct="100"] { width: 100%; }
+
+/* =========================================================================
+   14d. Today — the desk
+   One hero sitting, three rows of work, a short table and a margin. No stat
+   strip, no pair of side-by-side cards, no second copy of anything.
+   ========================================================================= */
+
+.hero-sitting {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.hero-title {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: -0.012em;
+  line-height: 1.2;
+  margin: 0 0 6px;
+}
+
+.hero-title a { color: inherit; text-decoration: none; }
+.hero-title a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+.sheet + .sheet { margin-top: 26px; }
+
+.desk-title { display: block; }
+.desk-sub { display: block; font-size: 12.5px; color: var(--text-soft); margin-top: 3px; }
+.desk-act { white-space: nowrap; }
+.desk-row.is-empty { color: var(--text-soft); }
+.desk-row.is-empty .desk-title { color: var(--text-soft); }
+
+.overlap-line {
+  margin: 12px 0 0;
+  padding-top: 10px;
+  border-top: 1px dotted var(--rule);
+  font-size: 12.5px;
+  color: var(--text-soft);
+}
+
+.overlap-line strong { color: var(--text-muted); }
+
+.bar-rows .row-name small .evidence-meter { margin-left: 8px; }
+
+.margin-note .fig {
+  display: inline;
+  color: var(--text);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.margin-note p + p { margin-top: 7px; }
+.margin-note a { color: var(--link); }

@@ -154,9 +154,10 @@ export const demoBadge = (isDemo) =>
  * heading level, the purpose line and the action placement cannot drift
  * screen by screen. `primary` and `secondary` are trusted markup.
  */
-export function screenHead({ title, purpose = '', primary = '', secondary = '', className = '' } = {}) {
+export function screenHead({ title, eyebrow = '', purpose = '', primary = '', secondary = '', className = '' } = {}) {
   return `<header class="screen-head ${esc(className)}">
     <div class="screen-head-text">
+      ${eyebrow ? `<p class="eyebrow">${esc(eyebrow)}</p>` : ''}
       <h1>${title}</h1>
       ${purpose ? `<p class="screen-purpose">${purpose}</p>` : ''}
     </div>
@@ -1040,3 +1041,111 @@ export function optionList(name, options, selected) {
 }
 
 export const stat = (label, value, sub = '') => tile({ label, value, sub });
+
+/* ------------------------------------------------------------- the desk -- */
+/*
+ * Phase 3 primitives. `card()` remains for the screens that genuinely hold a
+ * bounded object (a bank import, a dialog body); these replace it everywhere a
+ * screen used it only because there was no other container.
+ *
+ *   sheet()        a section of the page, separated by a hairline
+ *   marginNote()   the metadata column: provenance, sample size, "why this"
+ *   metaLine()     one line of facts, separated by space instead of middots
+ *   stamp()        the one date that matters, in a queue's gutter
+ *   segmented()    three counts as one bar with a text legend
+ */
+
+/**
+ * A section of the page. Deliberately not a card: no border, no shadow, no
+ * nested containers — a hairline above it and rhythm inside it.
+ */
+export function sheet({ label = '', title = '', count = null, action = '', body = '', footer = '', id = null, className = '' } = {}) {
+  const head =
+    label || title || action || count !== null
+      ? `<div class="sheet-head">
+          <div>
+            ${label ? `<p class="section-label">${esc(label)}</p>` : ''}
+            ${title ? `<h2 class="m-0">${title}</h2>` : ''}
+          </div>
+          <div class="sheet-action">${count !== null ? `<span class="small text-soft">${esc(String(count))}</span>` : ''}${action}</div>
+        </div>`
+      : '';
+  return `<section class="sheet ${esc(className)}"${id ? ` id="${esc(id)}"` : ''}>
+    ${head}
+    ${body}
+    ${footer ? `<div class="sheet-foot mt-2">${footer}</div>` : ''}
+  </section>`;
+}
+
+/** The margin: facts written beside the thing they describe, never badges. */
+export function marginNote(body, { title = '' } = {}) {
+  return `<aside class="margin-note">${title ? `<b>${esc(title)}</b>` : ''}${body}</aside>`;
+}
+
+/** Facts on one line, separated by space. `items` may contain markup. */
+export function metaLine(items = []) {
+  const parts = items.filter(Boolean);
+  if (!parts.length) return '';
+  return `<p class="meta-line">${parts.map((item) => `<span>${item}</span>`).join('')}</p>`;
+}
+
+/** The one date that matters. `tone: 'now'` is the margin red. */
+export function stamp(text, { tone = '', as: Tag = 'span' } = {}) {
+  return `<${Tag} class="stamp${tone === 'now' ? ' is-now' : ''}">${esc(text)}</${Tag}>`;
+}
+
+/** Round a percentage to the nearest 5 for a class-based width (no inline styles). */
+function pctStep(value) {
+  return Math.max(0, Math.min(100, Math.round((Number(value) || 0) / 5) * 5));
+}
+
+/**
+ * A result as one bar: correct (ink), wrong (margin red), blank (outline).
+ * The legend is text, so the bar is never the only way to read the numbers.
+ */
+export function segmented(parts = [], { label = '' } = {}) {
+  const total = parts.reduce((sum, part) => sum + (Number(part.value) || 0), 0) || 1;
+  const tones = { ok: 'is-ok', bad: 'is-bad', blank: 'is-blank' };
+  return `<div class="segmented" role="img" aria-label="${esc(label || parts.map((p) => `${p.label} ${p.value}`).join(', '))}">
+      ${parts
+        .filter((part) => Number(part.value) > 0)
+        .map((part) => `<i class="${tones[part.tone] || 'is-ok'}" data-pct="${pctStep(((Number(part.value) || 0) / total) * 100)}"></i>`)
+        .join('')}
+    </div>
+    <p class="seg-legend">${parts
+      .map((part) => `<span>${part.tone === 'bad' ? '▪' : part.tone === 'blank' ? '▫' : '▪'} ${esc(part.label)} <b>${esc(String(part.value))}</b></span>`)
+      .join('')}</p>`;
+}
+
+/** A row whose whole surface is the action. */
+export function deskRow({ href = null, mark = '◆', title, detail = '', right = '', onClickAction = null } = {}) {
+  const inner = `<span class="desk-mark" aria-hidden="true">${mark}</span>
+    <span class="desk-title">${title}${detail ? ` <em>— ${detail}</em>` : ''}</span>
+    <span class="desk-count">${right}</span>`;
+  if (href) return `<li><a class="desk-row" href="${esc(href)}">${inner}</a></li>`;
+  return `<li><span class="desk-row"${onClickAction ? ` role="presentation"` : ''}>${inner}</span></li>`;
+}
+
+/** Evidence as three dots: how much is known, at a glance. */
+export function evidenceDots(judged, { max = 3 } = {}) {
+  const on = Math.max(0, Math.min(max, Number(judged) || 0));
+  return `<span class="dots" role="img" aria-label="${on ? `evidence: ${on} of ${max}` : 'no evidence yet'}">${Array.from({ length: max }, (_, i) => `<i class="${i < on ? 'on' : ''}"></i>`).join('')}</span>`;
+}
+
+/**
+ * A row of accuracy bars — the report's and Insights' one visual for "where is
+ * it weak". Every row carries its own sample size beside the figure.
+ */
+export function barRows(rows = [], { empty = '' } = {}) {
+  if (!rows.length) return empty ? `<p class="muted small m-0">${esc(empty)}</p>` : '';
+  return `<table class="bar-rows"><tbody>${rows
+    .map(
+      (row) => `<tr>
+        <td class="row-name">${row.name}</td>
+        <td class="bar-track"><span><i data-pct="${pctStep(Math.max(0, Math.min(1, Number(row.value) || 0)) * 100)}"></i></span></td>
+        <td class="row-value">${esc(String(row.valueLabel ?? ''))}</td>
+        <td class="row-act">${row.action || ''}</td>
+      </tr>`,
+    )
+    .join('')}</tbody></table>`;
+}
