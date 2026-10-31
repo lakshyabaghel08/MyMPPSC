@@ -32,26 +32,26 @@ import settingsView from './ui/views/settings.js';
 import helpView from './ui/views/help.js';
 
 const NAV = [
-  { route: 'dashboard', label: 'Dashboard', icon: 'dashboard', group: 'Workspace' },
-  { route: 'test-centre', label: 'PYQ Test Centre', icon: 'test-centre', group: 'Practice' },
+  { route: 'dashboard', label: 'Dashboard', icon: 'dashboard', group: 'Study' },
+  { route: 'test-centre', label: 'PYQ Test Centre', icon: 'test-centre', group: 'Study' },
   // Topic Practice and the Custom Test builder were two screens over the same
   // question bank with the same filters, the same three selection strategies
   // and the same session form; one was simply the single-select version of the
   // other. They are one screen. Picking a single topic is the narrow case of
   // picking any set of subjects and topics.
-  { route: 'topic', label: 'Topic & Custom Practice', icon: 'topic', group: 'Practice' },
-  { route: 'smart', label: 'Smart Practice', icon: 'smart', group: 'Practice' },
-  { route: 'mistakes', label: 'Mistake Book', icon: 'mistakes', badge: 'mistakes', group: 'Improve' },
-  { route: 'revision', label: 'Revision Centre', icon: 'revision', badge: 'revision', group: 'Improve' },
+  { route: 'topic', label: 'Topic & Custom Practice', icon: 'topic', group: 'Study' },
+  { route: 'smart', label: 'Smart Practice', icon: 'smart', group: 'Study' },
+  { route: 'mistakes', label: 'Mistake Book', icon: 'mistakes', badge: 'mistakes', group: 'Review' },
+  { route: 'revision', label: 'Revision Centre', icon: 'revision', badge: 'revision', group: 'Review' },
   // The official syllabus, the study planner, performance analytics and the
   // question-bank analysis used to be four destinations. They are two: one
   // curriculum, and one place for the numbers. The old routes still resolve —
   // see the legacy registrations below — they are simply not advertised twice.
-  { route: 'syllabus', label: 'Syllabus', icon: 'syllabus', group: 'Improve' },
-  { route: 'analytics', label: 'Insights', icon: 'analytics', group: 'Improve' },
-  { route: 'bank', label: 'Question Bank & Imports', icon: 'bank', group: 'System' },
-  { route: 'settings', label: 'Settings & Backup', icon: 'settings', group: 'System' },
-  { route: 'help', label: 'Help & How it works', icon: 'help', group: 'System' },
+  { route: 'syllabus', label: 'Syllabus', icon: 'syllabus', group: 'Plan' },
+  { route: 'analytics', label: 'Insights', icon: 'analytics', group: 'Plan' },
+  { route: 'bank', label: 'Question Bank & Imports', icon: 'bank', group: 'Manage' },
+  { route: 'settings', label: 'Settings & Backup', icon: 'settings', group: 'Manage' },
+  { route: 'help', label: 'Help & How it works', icon: 'help', group: 'Manage' },
 ];
 
 /**
@@ -71,6 +71,8 @@ const NAV_ALIASES = {
 
 let router = null;
 let drawerUsedAsModal = false;
+/** Desktop sidebar rail preference (persisted per browser profile). */
+const NAV_COLLAPSED_KEY = 'mymppsc.navCollapsed';
 const badges = { mistakes: 0, revision: 0, imported: false };
 
 function isOffCanvasViewport() {
@@ -92,7 +94,38 @@ function setNavInert(isInert) {
   }
 }
 
-export function syncDrawerState() {
+export function applyNavCollapsed(collapsed, { persist = false } = {}) {
+  const body = document.getElementById('appBody');
+  const button = document.getElementById('navCollapse');
+  if (!body) return;
+  body.classList.toggle('nav-collapsed', Boolean(collapsed));
+  if (button) {
+    button.setAttribute('aria-expanded', String(!collapsed));
+    const label = collapsed ? 'Expand navigation' : 'Collapse navigation';
+    button.setAttribute('aria-label', label);
+    button.setAttribute('title', label);
+  }
+  if (persist) {
+    try {
+      localStorage.setItem(NAV_COLLAPSED_KEY, collapsed ? '1' : '0');
+    } catch {
+      /* a blocked storage API must not stop navigation */
+    }
+  }
+  syncDrawerState();
+}
+
+function restoreNavCollapsed() {
+  let collapsed = false;
+  try {
+    collapsed = localStorage.getItem(NAV_COLLAPSED_KEY) === '1';
+  } catch {
+    collapsed = false;
+  }
+  applyNavCollapsed(collapsed);
+}
+
+function syncDrawerState() {
   const open = document.body.classList.contains('nav-open');
   const navToggle = document.getElementById('navToggle');
   const scrim = document.getElementById('navScrim');
@@ -147,9 +180,9 @@ function renderNav() {
       ? `<li class="nav-section-label" aria-hidden="true">${esc(item.group)}</li>`
       : '';
     currentGroup = item.group;
-    return `${groupLabel}<li><button class="nav-link" type="button" data-route="${item.route}">
+    return `${groupLabel}<li><button class="nav-link" type="button" data-route="${item.route}" aria-label="${esc(item.label)}" title="${esc(item.label)}">
       <span class="nav-icon" aria-hidden="true">${icon(item.icon)}</span>
-      <span>${esc(item.label)}</span>${badgeHtml}
+      <span class="nav-label">${esc(item.label)}</span>${badgeHtml}
     </button></li>`;
   }).join('');
   list.querySelectorAll('.nav-link').forEach((btn) => {
@@ -693,6 +726,11 @@ function wireGlobalActions() {
     syncThemeToggleButton();
   });
 
+  document.getElementById('navCollapse')?.addEventListener('click', () => {
+    const body = document.getElementById('appBody');
+    applyNavCollapsed(!body?.classList.contains('nav-collapsed'), { persist: true });
+  });
+
   const navToggle = document.getElementById('navToggle');
   navToggle?.addEventListener('click', () => {
     const isOpen = document.body.classList.contains('nav-open');
@@ -842,6 +880,7 @@ async function boot() {
   // highlighted navigation item all agree on one destination.
   router.alias('custom', 'topic');
 
+  restoreNavCollapsed();
   renderNav();
   renderTabBar();
   wireGlobalActions();

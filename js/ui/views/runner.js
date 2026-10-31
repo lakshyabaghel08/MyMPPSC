@@ -196,6 +196,9 @@ function markup() {
   return `
   <div class="runner-bar">
     <div class="grow">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <ol><li><a href="#/test-centre">Test Centre</a></li><li aria-current="page">${esc(test.label || 'Practice')}</li></ol>
+      </nav>
       <div class="row tight">
         <h1 class="runner-title">${esc(test.label || 'Practice')}</h1>
         <span class="tiny muted">${test.config.feedback_mode === 'learning' ? 'Learning mode — answers revealed as you go' : 'Exam mode — answers revealed after submitting'}</span>
@@ -208,9 +211,8 @@ function markup() {
     <div class="row tight">
       ${test.config.show_timer && remaining !== null && remaining !== undefined ? `<span class="timer ${timerClass}" id="runnerTimer" role="timer">${fmtClock(remaining)}</span>` : '<span class="tiny muted">No time limit</span>'}
       <span class="save-state ${saveStateClass}" id="saveState">${session.saveState === 'saving' ? 'saving…' : session.saveState === 'error' ? 'save failed' : 'saved'}</span>
-      <button class="btn btn-sm" type="button" data-action="focus-mode" aria-pressed="${isFocusMode}" title="Toggle distraction-free reading layout">${isFocusMode ? 'Show sidebar' : 'Focus mode'}</button>
-      <button class="btn btn-sm" type="button" data-action="print" title="Print question paper">Print</button>
-      <button class="btn btn-sm" type="button" data-action="pause">${test.status === 'paused' ? 'Resume' : 'Pause'}</button>
+      <button class="btn btn-sm btn-quiet" type="button" data-action="focus-mode" aria-pressed="${isFocusMode}" title="Toggle distraction-free reading layout">${isFocusMode ? 'Show sidebar' : 'Focus'}</button>
+      <button class="btn btn-sm btn-quiet" type="button" data-action="pause">${test.status === 'paused' ? 'Resume' : 'Pause'}</button>
       <button class="btn btn-primary btn-sm" type="button" data-action="submit">Submit</button>
       <button class="btn btn-sm btn-icon kbd-legend-toggle" type="button" data-action="kbd-legend" aria-expanded="${Boolean(session.legendOpen)}" aria-controls="runnerKbdLegend" aria-label="Keyboard shortcuts" title="Keyboard shortcuts">?</button>
     </div>
@@ -286,6 +288,9 @@ function markup() {
             <span><i class="swatch warn" aria-hidden="true">⚑</i> flagged</span>
             <span><i class="swatch" aria-hidden="true"></i> not answered</span>
             <span><i class="swatch current" aria-hidden="true"></i> current</span>
+          </div>
+          <div class="row mt-3">
+            <button class="btn btn-sm btn-quiet" type="button" data-action="print">Print question paper</button>
           </div>
         </div>
       </section>

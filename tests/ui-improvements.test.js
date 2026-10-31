@@ -121,7 +121,7 @@ test('skeletons: one hidden status line, decorative blocks only, nothing to focu
   }
   assert.ok(samples['bank questions'].includes('skeleton-check'), 'the question list placeholder has its selection column');
   assert.ok(samples['insights bank'].includes('skeleton-chart'), 'the bank panel placeholder has its charts');
-  assert.ok(samples.dashboard.includes('metrics-grid'), 'the dashboard placeholder uses the real metric grid');
+  assert.ok(samples.dashboard.includes('grid tiles'), 'the dashboard placeholder uses the real stat layout');
 });
 
 test('the router paints a screen’s skeleton while it loads, and the loading line otherwise', async () => {

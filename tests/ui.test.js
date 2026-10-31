@@ -666,11 +666,11 @@ test('theme setting and header toggle apply data-theme to html and update theme-
 
   change(themeSelect, 'dark');
   await waitFor(() => window.document.documentElement.getAttribute('data-theme') === 'dark', { label: 'dark theme applied' });
-  assert.equal($('#themeColorMeta')?.getAttribute('content'), '#0f141c');
+  assert.equal($('#themeColorMeta')?.getAttribute('content'), '#131413');
 
   change(themeSelect, 'light');
   await waitFor(() => window.document.documentElement.getAttribute('data-theme') === 'light', { label: 'light theme applied' });
-  assert.equal($('#themeColorMeta')?.getAttribute('content'), '#f6f3ec');
+  assert.equal($('#themeColorMeta')?.getAttribute('content'), '#f7f6f2');
 
   click($('#themeToggle'));
   await waitFor(() => window.document.documentElement.getAttribute('data-theme') === 'dark', { label: 'header theme toggle to dark' });

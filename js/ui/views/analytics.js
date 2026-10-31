@@ -21,7 +21,6 @@ import {
   esc,
   badge,
   card,
-  tile,
   notice,
   dataTable,
   emptyState,
@@ -187,12 +186,12 @@ async function renderPerformancePanel(loaded = null) {
     ].slice(0, 10);
 
     return `
-      <p class="muted">All figures come from attempts stored on this device. Nothing is estimated, extrapolated or projected.</p>
+      <p class="quiet-note">All figures come from attempts stored on this device. Nothing is estimated, extrapolated or projected.</p>
 
-      <div class="grid tiles mb-3">
-        ${tile({ label: 'First-attempt accuracy', value: analytics.accuracy.firstAttemptSample ? fmtPct(analytics.accuracy.firstAttempt) : '—', sub: analytics.accuracy.firstAttemptSample ? `on ${analytics.accuracy.firstAttemptSample} first attempts` : 'no first attempts yet', source: analytics.accuracy.firstAttemptSample ? 'measured' : 'unavailable', where: 'First scored attempt per unique question' })}
-        ${tile({ label: 'Accuracy (all attempts)', value: counts.correct + counts.incorrect ? fmtPct(analytics.accuracy.all) : '—', sub: `${counts.correct} correct · ${counts.incorrect} incorrect`, source: counts.correct + counts.incorrect ? 'measured' : 'unavailable', where: 'All judged attempts including repeats' })}
-        ${tile({ label: 'Answer rate', value: counts.totalAttempts ? fmtPct(analytics.accuracy.answerRate) : '—', sub: `${counts.unanswered} left unanswered · ${counts.unscored} unscored`, source: counts.totalAttempts ? 'measured' : 'unavailable', where: 'Answered share of total attempts' })}
+      <div class="stat-strip stat-strip-3" role="group" aria-label="Key figures">
+        <div class="stat"><span class="stat-label">First-attempt accuracy</span><span class="stat-value">${analytics.accuracy.firstAttemptSample ? fmtPct(analytics.accuracy.firstAttempt) : '—'}</span><span class="stat-note">${analytics.accuracy.firstAttemptSample ? `on ${analytics.accuracy.firstAttemptSample} first attempts` : 'no first attempts yet'}</span></div>
+        <div class="stat"><span class="stat-label">Accuracy, all attempts</span><span class="stat-value">${counts.correct + counts.incorrect ? fmtPct(analytics.accuracy.all) : '—'}</span><span class="stat-note">${counts.correct} correct · ${counts.incorrect} incorrect</span></div>
+        <div class="stat"><span class="stat-label">Answer rate</span><span class="stat-value">${counts.totalAttempts ? fmtPct(analytics.accuracy.answerRate) : '—'}</span><span class="stat-note">${counts.unanswered} left unanswered · ${counts.unscored} unscored</span></div>
       </div>
 
       ${infoToggle('How to read these figures', `<p class="small m-0">Question counts here describe your own imported bank, not the examination. A topic with 3 stored questions cannot support a strong conclusion, so figures below show their sample size, and rows with fewer than ${MIN_SAMPLE_HINT} scored answers are labelled “insufficient evidence”. A “weak topic” verdict needs at least ${MIN_SAMPLE_STRONG}.</p>`)}
@@ -257,89 +256,69 @@ async function renderPerformancePanel(loaded = null) {
           : '<p class="muted small">Every topic with stored questions has been attempted at more than 30% coverage.</p>',
       })}
 
-      <div class="split-2">
-        ${card({
-          title: 'Confidence analysis',
-          subtitle: analytics.confidence.enabled ? 'Confidence you marked, shown separately from correctness' : 'Confidence marking is optional',
-          body: analytics.confidence.enabled
-            ? `${dataTable({
-                columns: [{ label: 'Marked as' }, { label: 'Correct', num: true }, { label: 'Incorrect', num: true }, { label: 'Unanswered', num: true }, { label: 'Total', num: true }, { label: 'Accuracy', num: true }],
-                rows: confidenceRows,
-                empty: 'No confidence data yet.',
-                className: 'compact cards-mobile',
-              })}
-               <div class="row mt-2">
-                 ${badge(`${analytics.confidence.overconfidence} confident but wrong`, analytics.confidence.overconfidence ? 'bad' : '')}
-                 ${badge(`${analytics.confidence.underconfidence} correct but unsure/guessed`, 'warn')}
-               </div>
-               <p class="tiny muted">${esc(analytics.confidence.note)}</p>`
-            : `<p class="small muted">Mark confidence on any question, in any session, to compare how sure you felt with how you did. Correct-but-guessed answers are scheduled for earlier revision.</p>`,
-        })}
+      ${card({
+        title: 'How you answer',
+        subtitle: 'Confidence marking and pace, measured across your recorded attempts',
+        body: `
+          ${
+            analytics.confidence.enabled
+              ? `${dataTable({
+                  columns: [{ label: 'Marked as' }, { label: 'Correct', num: true }, { label: 'Incorrect', num: true }, { label: 'Unanswered', num: true }, { label: 'Total', num: true }, { label: 'Accuracy', num: true }],
+                  rows: confidenceRows,
+                  empty: 'No confidence data yet.',
+                  className: 'compact cards-mobile',
+                })}
+                 <div class="row mt-2">
+                   ${badge(`${analytics.confidence.overconfidence} confident but wrong`, analytics.confidence.overconfidence ? 'bad' : '')}
+                   ${badge(`${analytics.confidence.underconfidence} correct but unsure/guessed`, 'warn')}
+                 </div>
+                 <p class="tiny muted">${esc(analytics.confidence.note)}</p>`
+              : `<p class="small muted">Mark confidence on any question, in any session, to compare how sure you felt with how you did. Correct-but-guessed answers are scheduled for earlier revision.</p>`
+          }
+          <div class="row stats-inline mt-3">
+            <span><strong>${analytics.time.avgSecPerQuestion === null ? '—' : `${analytics.time.avgSecPerQuestion}s`}</strong> average per question</span>
+            <span><strong>${analytics.time.medianSecPerQuestion === null ? '—' : `${analytics.time.medianSecPerQuestion}s`}</strong> median</span>
+            <span><strong>${analytics.time.avgSecPerCorrect === null ? '—' : `${analytics.time.avgSecPerCorrect}s`}</strong> per correct answer</span>
+          </div>
+          <details class="disclosure mt-2"><summary>Slowest recorded answers (${slowestRows.length})</summary>
+            ${dataTable({ columns: [{ label: 'Question' }, { label: 'Subject' }, { label: 'Topic' }, { label: 'Time', num: true }, { label: 'Outcome' }], rows: slowestRows, empty: 'No timings recorded.', className: 'compact' })}
+          </details>`,
+      })}
 
-        ${card({
-          title: 'Time per question',
-          body: `
-            ${dataTable({
-              columns: [{ label: 'Measure' }, { label: 'Value' }],
-              rows: [
-                ['Average per question', analytics.time.avgSecPerQuestion === null ? '—' : `${analytics.time.avgSecPerQuestion}s`],
-                ['Median per question', analytics.time.medianSecPerQuestion === null ? '—' : `${analytics.time.medianSecPerQuestion}s`],
-                ['Average per correct answer', analytics.time.avgSecPerCorrect === null ? '—' : `${analytics.time.avgSecPerCorrect}s`],
-              ],
-              className: 'compact',
-            })}
-            <h3 class="mt-3">Slowest answers</h3>
-            ${dataTable({ columns: [{ label: 'Question' }, { label: 'Subject' }, { label: 'Topic' }, { label: 'Time', num: true }, { label: 'Outcome' }], rows: slowestRows, empty: 'No timings recorded.', className: 'compact' })}`,
-        })}
-      </div>
-
-      <div class="split-2">
-        ${card({
-          title: 'Mistakes',
-          count: `${analytics.mistakes.open} open`,
-          body: `
-            <div class="grid tiles">
-              ${tile({ label: 'Open entries', value: String(analytics.mistakes.open), sub: `${analytics.mistakes.repeated} repeated`, source: 'measured' })}
-              ${tile({ label: 'Incorrect', value: String(counts.incorrect), sub: 'wrong answers recorded', source: 'measured' })}
-              ${tile({ label: 'Skipped', value: String(counts.unanswered), sub: 'left unanswered', source: 'measured' })}
-              ${tile({ label: 'Flagged for review', value: String(counts.flagged), sub: 'marked during tests', source: 'measured' })}
+      ${card({
+        title: 'Signals for the next session',
+        body: `
+          <div class="split-2">
+            <div>
+              <h3 class="card-section-title">Mistake book</h3>
+              <p class="small muted">${analytics.mistakes.open} open · ${analytics.mistakes.repeated} repeated · ${counts.incorrect} wrong answers · ${counts.unanswered} skipped · ${counts.flagged} flagged</p>
+              ${analytics.mistakes.top.length
+                ? dataTable({
+                    columns: [{ label: 'Most repeated' }, { label: 'Times', num: true }, { label: 'Last seen' }],
+                    rows: analytics.mistakes.top.slice(0, 6).map((m) => [
+                      `<span class="mono tiny">${esc(m.question_id)}</span><div class="tiny muted">${esc(m.subject || '—')} · ${esc(m.topic || '—')} · ${esc(m.type)}</div>`,
+                      String(m.occurrences),
+                      esc(fmtDate(m.last_seen_at)),
+                    ]),
+                    className: 'compact',
+                  })
+                : '<p class="muted small">No open mistake entries.</p>'}
+              <div class="row mt-2"><a class="btn btn-sm" href="#/mistakes">Open the Mistake Book</a></div>
             </div>
-            ${analytics.mistakes.top.length
-              ? `<h3 class="mt-3">Most repeated</h3>
-                 ${dataTable({
-                   columns: [{ label: 'Question' }, { label: 'Type' }, { label: 'Times', num: true }, { label: 'Last seen' }],
-                   rows: analytics.mistakes.top.slice(0, 8).map((m) => [
-                     `<span class="mono tiny">${esc(m.question_id)}</span><div class="tiny muted">${esc(m.subject || '—')} · ${esc(m.topic || '—')}</div>`,
-                     esc(m.type),
-                     String(m.occurrences),
-                     esc(fmtDate(m.last_seen_at)),
-                   ]),
-                   className: 'compact',
-                 })}`
-              : '<p class="muted small">No open mistake entries.</p>'}
-            <div class="row mt-2"><a class="btn btn-sm" href="#/mistakes">Open the Mistake Book</a></div>`,
-        })}
-
-        ${card({
-          title: 'Revision',
-          count: `${analytics.revision.dueToday + analytics.revision.overdue} due`,
-          body: `
-            <div class="grid tiles">
-              ${tile({ label: 'Tracked', value: String(analytics.revision.tracked), sub: 'questions with a schedule', source: 'measured' })}
-              ${tile({ label: 'Due today', value: String(analytics.revision.dueToday), tone: analytics.revision.dueToday ? 'warn' : '', source: 'derived' })}
-              ${tile({ label: 'Overdue', value: String(analytics.revision.overdue), tone: analytics.revision.overdue ? 'bad' : 'ok', source: 'derived' })}
-              ${tile({ label: 'Upcoming', value: String(analytics.revision.upcoming), source: 'derived' })}
+            <div>
+              <h3 class="card-section-title">Revision</h3>
+              <p class="small muted">${analytics.revision.dueToday + analytics.revision.overdue} due now · ${analytics.revision.upcoming} upcoming · ${analytics.revision.tracked} tracked</p>
+              ${
+                analytics.revision.effectiveness.withHistory
+                  ? `${progressBar(analytics.revision.effectiveness.improved / analytics.revision.effectiveness.withHistory, 'ok')}
+                     <p class="small mt-2">${analytics.revision.effectiveness.improved} improved · ${analytics.revision.effectiveness.worsened} declined · ${analytics.revision.effectiveness.unchanged} unchanged, across ${analytics.revision.effectiveness.withHistory} question(s).</p>`
+                  : '<p class="muted small">Not enough repeated attempts yet to compare first and latest answers.</p>'
+              }
+              <div class="row mt-2"><a class="btn btn-sm" href="#/revision">Revision Centre</a></div>
             </div>
-            ${
-              analytics.revision.effectiveness.withHistory
-                ? `<h3 class="mt-3">Change between first and latest scored attempt</h3>
-                   ${progressBar(analytics.revision.effectiveness.improved / analytics.revision.effectiveness.withHistory, 'ok')}
-                   <p class="small mt-2">${analytics.revision.effectiveness.improved} improved · ${analytics.revision.effectiveness.worsened} declined · ${analytics.revision.effectiveness.unchanged} unchanged, across ${analytics.revision.effectiveness.withHistory} question(s).</p>`
-                : '<p class="muted small">Not enough repeated attempts yet to compare first and latest answers.</p>'
-            }
-            <div class="row mt-2"><a class="btn btn-sm" href="#/revision">Revision Centre</a></div>`,
-        })}
-      </div>`;
+          </div>`,
+      })}
+`;
 }
 
 /**
@@ -451,12 +430,12 @@ export default {
     // They belong to the section, not to either tab, so they are stated once
     // here and neither panel repeats them.
     const strip = loaded.metas.length
-      ? `<div class="grid tiles mb-2">
-          ${tile({ label: 'Questions available', value: String(counts.availableQuestions), sub: 'unique questions stored on this device', source: 'supplied', where: 'Stored in local IndexedDB bank' })}
-          ${tile({ label: 'Unique questions attempted', value: String(counts.attemptedUnique), sub: `${fmtPct(counts.coverage)} of the bank — repeats do not increase this`, source: 'measured', where: 'Unique question IDs with ≥1 attempt' })}
-          ${tile({ label: 'Total attempts', value: String(counts.totalAttempts), sub: `${counts.repeatAttempts} attempt(s) beyond the first on a question`, source: 'measured', where: 'Every recorded attempt in local store' })}
+      ? `<div class="stat-strip stat-strip-3" role="group" aria-label="Key figures">
+          <div class="stat"><span class="stat-label">Questions available</span><span class="stat-value">${counts.availableQuestions}</span><span class="stat-note">unique questions stored on this device</span></div>
+          <div class="stat"><span class="stat-label">Unique questions attempted</span><span class="stat-value">${counts.attemptedUnique}</span><span class="stat-note">${fmtPct(counts.coverage)} of the bank — repeats do not increase this</span></div>
+          <div class="stat"><span class="stat-label">Total attempts</span><span class="stat-value">${counts.totalAttempts}</span><span class="stat-note">${counts.repeatAttempts} attempt(s) beyond the first on a question</span></div>
         </div>
-        ${infoToggle('Available, attempted and attempts — what differs', '<p class="small m-0">Three different numbers: what is <em>available</em> to answer, what you have <em>attempted</em> at least once, and how many <em>attempts</em> you have made. The tabs below never mix them — one reports your attempts, the other counts the stored papers.</p>')}`
+        ${infoToggle('Available, attempted and attempts — what differs', '<p class="small m-0">Three different numbers: what is <em>available</em> to answer, what you have <em>attempted</em> at least once, and how many <em>attempts</em> you have made. The two tabs below never mix them — one reports your attempts, the other counts the stored papers.</p>')}`
       : '';
 
     return `

@@ -3,12 +3,12 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <title>Dashboard · MyMPPSC</title>
+    <title>MyMPPSC — local-first MPPSC preparation</title>
     <meta name="description" content="Local-first MPPSC State Service Preliminary Examination preparation app: previous-year paper simulations, topic practice, mistake book, adaptive revision, analytics and syllabus planning. Works offline." />
     <meta name="color-scheme" content="light dark" />
-    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f8fafc" />
-    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f131c" />
-    <meta name="theme-color" content="#f8fafc" id="themeColorMeta" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f6f2" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#131413" />
+    <meta name="theme-color" content="#f7f6f2" id="themeColorMeta" />
     <script>
       (function () {
         try {
@@ -22,7 +22,7 @@
           root.setAttribute('data-theme-pref', pref);
           root.setAttribute('data-density', (parsed && parsed.density) || 'comfortable');
           var meta = document.getElementById('themeColorMeta');
-          if (meta) meta.setAttribute('content', isDark ? '#0f131c' : '#f8fafc');
+          if (meta) meta.setAttribute('content', isDark ? '#131413' : '#f7f6f2');
         } catch (err) {
           document.documentElement.setAttribute('data-theme', 'light');
         }
@@ -46,7 +46,7 @@
         <span class="brand-mark" aria-hidden="true">MP</span>
         <div class="brand-text">
           <strong>MyMPPSC</strong>
-          <span class="brand-sub">Prelims preparation · local-first</span>
+          <span class="brand-sub">Prelims preparation</span>
         </div>
       </div>
       <div class="header-actions">
@@ -58,8 +58,9 @@
           <span class="icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" focusable="false"><path d="M13 2 4.5 13.5H11L10 22l8.5-11.5H12L13 2z" /></svg>
           </span>
-          <span class="btn-label">Quick practice</span>
+          <span class="btn-label">Practise</span>
         </button>
+        <span class="header-divider" aria-hidden="true"></span>
         <button class="btn btn-quiet btn-icon" id="themeToggle" type="button" aria-label="Switch colour theme" title="Switch colour theme">
           <span class="icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" focusable="false"><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" /></svg>
@@ -81,9 +82,15 @@
       <nav class="app-nav" id="appNav" aria-label="Main navigation">
         <ul id="navList"></ul>
         <div class="nav-footer">
-          <div class="nav-foot-item"><span class="muted">Local store</span><strong id="navDataSummary">—</strong></div>
-          <div class="nav-foot-item"><span class="muted">Question bank</span><strong id="bankPill" title="Questions stored locally">—</strong></div>
-          <span class="offline-pill" id="offlinePill" role="status" hidden>Offline — all features still work</span>
+          <span class="offline-pill" id="offlinePill" role="status" hidden>Offline — everything still works</span>
+          <details class="nav-storage">
+            <summary>Local data</summary>
+            <div class="nav-foot-item"><span class="muted" id="bankPill" title="Questions stored locally">—</span></div>
+            <div class="nav-foot-item"><span class="muted" id="navDataSummary">—</span></div>
+          </details>
+          <button class="nav-collapse" id="navCollapse" type="button" aria-label="Collapse navigation" aria-expanded="true" title="Collapse navigation">
+            <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="m11 17-5-5 5-5M18 17l-5-5 5-5" /></svg></span>
+          </button>
         </div>
       </nav>
       <div class="nav-scrim" id="navScrim" hidden aria-hidden="true"></div>

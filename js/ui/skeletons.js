@@ -16,16 +16,16 @@
 
 import { skeletonScreen, skeleton as sk } from './components.js';
 
-/** Dashboard: hero, the "Today" panel, four metric cards, then two columns. */
+/** Dashboard: the next-up block, a four-figure strip, then two columns. */
 export function dashboardSkeleton({ hasBank = true } = {}) {
   if (!hasBank) {
     // An empty device gets the short welcome card, not a full dashboard.
     return skeletonScreen([sk.heading({ lede: false }), sk.card(`${sk.lines(4)}${sk.buttons(3)}`)]);
   }
   return skeletonScreen([
-    '<div class="skeleton-hero"><span class="skeleton-line sk-w40"></span><span class="skeleton-block skeleton-title"></span><span class="skeleton-line sk-w65"></span></div>',
-    sk.card(sk.tiles(3, { className: 'today-grid' })),
-    sk.tiles(4, { className: 'metrics-grid' }),
+    sk.heading(),
+    sk.card(`${sk.lines(2)}${sk.buttons(2)}`, { head: false }),
+    sk.tiles(4),
     `<div class="split-2">${sk.card(sk.table(5, 3))}${sk.card(sk.lines(3))}</div>`,
   ]);
 }
