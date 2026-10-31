@@ -57,6 +57,8 @@ const NO_TOPIC = 'Unclassified';
 /** Session sizes offered as one-click presets. */
 const SIZE_PRESETS = [10, 20, 40];
 
+let lastGroups = [];
+
 const viewState = {
   /** The `#/topic/<param>` string already applied, so it is applied once per arrival. */
   appliedRoute: '',
@@ -272,13 +274,28 @@ function checkboxList({ name, options, selectedValues, action }) {
     .join('')}</div>`;
 }
 
+/** One subject's topic checkboxes, built when the group is opened. */
+function topicRowsFor(group) {
+  const entry = viewState.selection.get(group.subject);
+  const tickedTopics = entry && !entry.all ? entry.topics : new Set();
+  const isAll = Boolean(entry?.all);
+  if (!group.topics.length) return '<p class="tiny muted m-0">No questions in this subject match the current filters.</p>';
+  return group.topics
+    .map(
+      (topic) => `<label class="check pick-check">
+        <input type="checkbox" data-action="pick-topic" data-value="${esc(`${group.subject}||${topic.topic}`)}" ${isAll || tickedTopics.has(topic.topic) ? 'checked' : ''} />
+        <span>${esc(topic.topic)} <span class="pick-count">(${esc(String(topic.count))})</span></span>
+      </label>`,
+    )
+    .join('');
+}
+
 function subjectPicker(groups) {
+  lastGroups = groups;
   if (!groups.length) return notice('No questions match the filters under “Narrow further”.', 'info');
   return `<ul class="pick-list">${groups
     .map((group, groupIndex) => {
-      const entry = viewState.selection.get(group.subject);
-      const tickedTopics = entry && !entry.all ? entry.topics : new Set();
-      const isAll = Boolean(entry?.all);
+      const isAll = Boolean(viewState.selection.get(group.subject)?.all);
       const open = viewState.expanded.has(group.subject);
       const topicsId = `pickTopics${groupIndex}`;
       return `<li class="pick-group">
@@ -291,20 +308,7 @@ function subjectPicker(groups) {
             <span class="sr-only">${open ? 'Hide' : 'Show'} topics in ${esc(group.subject)}</span>
           </button>
         </div>
-        <div class="pick-topics" id="${topicsId}" ${open ? '' : 'hidden'}>
-          ${
-            group.topics.length
-              ? group.topics
-                  .map(
-                    (topic) => `<label class="check pick-check">
-                      <input type="checkbox" data-action="pick-topic" data-value="${esc(`${group.subject}||${topic.topic}`)}" ${isAll || tickedTopics.has(topic.topic) ? 'checked' : ''} />
-                      <span>${esc(topic.topic)} <span class="pick-count">(${esc(String(topic.count))})</span></span>
-                    </label>`,
-                  )
-                  .join('')
-              : '<p class="tiny muted m-0">No questions in this subject match the current filters.</p>'
-          }
-        </div>
+        <div class="pick-topics" id="${topicsId}" ${open ? '' : 'hidden'}>${open ? topicRowsFor(group) : ''}</div>
       </li>`;
     })
     .join('')}</ul>`;
@@ -679,8 +683,17 @@ export default {
           const open = !viewState.expanded.has(subject);
           if (open) viewState.expanded.add(subject);
           else viewState.expanded.delete(subject);
-          if (panel) panel.hidden = !open;
+          if (panel) {
+            if (open && !panel.querySelector('input')) {
+              const group = lastGroups.find((g) => g.subject === subject);
+              if (group) panel.innerHTML = topicRowsFor(group);
+            }
+            panel.hidden = !open;
+          }
           button.setAttribute('aria-expanded', open ? 'true' : 'false');
+          button.title = `${open ? 'Hide' : 'Show'} topics in ${subject}`;
+          const sr = button.querySelector('.sr-only');
+          if (sr) sr.textContent = `${open ? 'Hide' : 'Show'} topics in ${subject}`;
           return;
         }
         if (action === 'clear-selection') {
