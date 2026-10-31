@@ -16,7 +16,7 @@
  */
 
 import { APP_VERSION } from '../../core/constants.js';
-import { esc, card, notice, dataTable, badge, sourceChip, evidenceMeter, screenHead, countChip } from '../components.js';
+import { esc, card, notice, dataTable, badge, sourceChip, evidenceMeter, screenHead } from '../components.js';
 
 const KEYBOARD = [
   ['1 … 9', 'Select option A … I on the current question'],
@@ -144,13 +144,13 @@ export default {
 
       ${card({
         title: 'Start, practise and review',
-        count: countChip('5 tasks'),
+        count: '5 tasks',
         body: `<div class="faq-list">${everyday}</div>`,
       })}
 
       ${card({
         title: 'Your data, this device',
-        count: countChip('5 tasks'),
+        count: '5 tasks',
         body: `<div class="faq-list">${dataFaq}</div>`,
       })}
 
@@ -166,7 +166,7 @@ export default {
 
         ${card({
           title: 'Check it yourself',
-          count: countChip(`${checklistDone.size} of ${CHECKLIST.length}`),
+          count: `${checklistDone.size} of ${CHECKLIST.length}`,
           body: `<p class="small">A short hand-check of the interface, in a few minutes. <a href="docs/TESTING.md">docs/TESTING.md</a> lists the automated half.</p>
             <ul class="checklist">${checklist}</ul>`,
           footer: 'These steps are the manual half of the test plan; docs/TESTING.md lists the automated half.',

@@ -565,6 +565,7 @@ blockquote.passage {
   z-index: var(--z-header);
   min-height: var(--header-h);
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: var(--space-3);
   padding: var(--space-2) var(--space-4);
@@ -6029,8 +6030,10 @@ details > summary {
 
 /* The five most-used destinations on a phone. Above 560px the sidebar already
    lists every destination, so the bar is not rendered at all. */
-.tab-bar {
-  display: none;
+@media (min-width: 561px) {
+  .tab-bar {
+    display: none;
+  }
 }
 
 body.tab-bar-open {

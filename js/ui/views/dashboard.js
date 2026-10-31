@@ -8,7 +8,7 @@
  */
 
 import { state } from '../../core/state.js';
-import { esc, card, badge, icon, dataTable, confirmDialog, toast, evidenceMeter, screenHead, countChip, cardInfo, emptyState } from '../components.js';
+import { esc, card, badge, icon, dataTable, confirmDialog, toast, evidenceMeter, screenHead, cardInfo, emptyState } from '../components.js';
 import { fmtPct, fmtDuration, fmtDate, fmtRelative, topicPracticeHref } from '../../core/util.js';
 import { loadAnalytics, dashboardSummary, studyPriorities } from '../../services/analytics.js';
 import * as testsSvc from '../../services/tests.js';
@@ -242,7 +242,7 @@ export default {
         <div>
           ${card({
             title: 'Study priorities',
-            count: countChip(`${priorityRows.length} topic${priorityRows.length === 1 ? '' : 's'}`),
+            count: `${priorityRows.length} topic${priorityRows.length === 1 ? '' : 's'}`,
             subtitle: 'From your recorded performance, bank coverage and syllabus status',
             info: cardInfo(
               'How priorities are ranked',

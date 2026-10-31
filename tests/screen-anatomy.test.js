@@ -16,7 +16,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import path from 'node:path';
-import { readFile } from 'node:fs/promises';
+import { readFile, readdir } from 'node:fs/promises';
+import { card, countChip } from '../js/ui/components.js';
 import { bootJsdom, SCREENS } from '../tools/density.mjs';
 import { repoRoot } from './helpers.mjs';
 import { measureScreen, auditScreen, DENSITY_BUDGET } from '../js/ui/budget.js';
@@ -139,6 +140,63 @@ test('each card has one title row: h2, at most one ⓘ and at most one action', 
       const actions = card.querySelectorAll('.card-head .card-action > *');
       assert.ok(actions.length <= 1, `${route}: a card head carries at most one action (put the rest in a toolbar)`);
     }
+  }
+});
+
+test('screen text never exposes escaped HTML attributes', async () => {
+  for (const route of SCREENS) {
+    const root = await goto(route);
+    assert.doesNotMatch(root.textContent, /class=["']/i, `${route}: no leaked markup in screen text`);
+  }
+});
+
+test('card count accepts plain text and legacy chips without double escaping', () => {
+  const container = window.document.createElement('div');
+  for (const count of ['12 < items', countChip('12 < items')]) {
+    container.innerHTML = card({ title: 'Test', count });
+    assert.equal(container.querySelectorAll('.count-chip').length, 1);
+    assert.equal(container.querySelector('.count-chip').textContent, '12 < items');
+    assert.doesNotMatch(container.textContent, /class=/);
+  }
+  for (const count of [null, undefined, '', '  ']) {
+    container.innerHTML = card({ title: 'Test', count });
+    assert.equal(container.querySelector('.count-chip'), null);
+  }
+  container.innerHTML = card({ title: 'Test', count: 0 });
+  assert.equal(container.querySelector('.count-chip').textContent, '0');
+});
+
+test('view card count slots do not wrap values in countChip', async () => {
+  const dir = path.join(repoRoot, 'js/ui/views');
+  for (const file of await readdir(dir)) {
+    if (!file.endsWith('.js')) continue;
+    assert.doesNotMatch(await readFile(path.join(dir, file), 'utf8'), /\bcount\s*:\s*countChip\s*\(/, file);
+  }
+});
+
+test('header wraps and tab bar display rules are scoped to their breakpoints', () => {
+  const style = window.document.createElement('style');
+  style.textContent = css;
+  window.document.head.append(style);
+  try {
+    const rules = Array.from(style.sheet.cssRules);
+    assert.ok(rules.some((rule) => rule.selectorText === '.app-header' && rule.style.getPropertyValue('flex-wrap') === 'wrap'));
+    const displays = [];
+    function collect(list, media = '') {
+      for (const rule of list) {
+        if (rule.selectorText === '.tab-bar' && rule.style.getPropertyValue('display')) {
+          displays.push({ media, display: rule.style.getPropertyValue('display') });
+        }
+        if (rule.cssRules?.length) collect(rule.cssRules, rule.conditionText || media);
+      }
+    }
+    collect(rules);
+    assert.deepEqual(displays, [
+      { media: '(max-width: 560px)', display: 'grid' },
+      { media: '(min-width: 561px)', display: 'none' },
+    ]);
+  } finally {
+    style.remove();
   }
 });
 
