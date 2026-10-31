@@ -151,6 +151,54 @@ export function openDrawer() {
   target?.focus?.();
 }
 
+/* -------------------------------------------------- measured header height -- */
+
+/**
+ * The header's real rendered height is written back onto the `--header-h`
+ * token.
+ *
+ * The token's static value is only a fallback. On a notched phone the
+ * safe-area inset grows the bar, the resume strip adds a whole second row to
+ * it, and at phone widths the horizontal padding changes. Everything pinned
+ * under the header — the nav's sticky top, the syllabus rail, scroll margins,
+ * the mobile drawer's padding — reads `--header-h`, so measuring the bar that
+ * is actually on screen keeps all of them aligned at every size, and keeps
+ * the bar itself fully visible instead of cropped at the top. In environments
+ * without layout (tests) the measurement reads 0 and the fallback stays.
+ */
+function observeHeaderHeight() {
+  const header = document.getElementById('appHeader');
+  const rootEl = document.documentElement;
+  if (!header || !rootEl) return;
+  const apply = () => {
+    let height = 0;
+    try {
+      height = header.getBoundingClientRect().height || header.offsetHeight || 0;
+    } catch {
+      height = 0;
+    }
+    if (height > 0) rootEl.style.setProperty('--header-h', `${Math.round(height)}px`);
+  };
+  apply();
+  if (typeof ResizeObserver === 'function') {
+    try {
+      new ResizeObserver(apply).observe(header);
+    } catch {
+      /* no ResizeObserver: the static fallback stays */
+    }
+  }
+  if (typeof MutationObserver === 'function') {
+    try {
+      // The resume strip and the offline pill appear and disappear inside the bar.
+      new MutationObserver(apply).observe(header, { attributes: true, childList: true, subtree: true, attributeFilter: ['hidden', 'class', 'style'] });
+    } catch {
+      /* ignore */
+    }
+  }
+  window.addEventListener('resize', apply);
+  window.addEventListener('orientationchange', apply);
+}
+
 export function closeDrawer({ restoreFocus = false } = {}) {
   const wasOpen = document.body.classList.contains('nav-open');
   document.body.classList.remove('nav-open');
@@ -917,6 +965,7 @@ async function boot() {
   renderNav();
   renderTabBar();
   wireGlobalActions();
+  observeHeaderHeight();
   setOfflinePill();
   router.start();
   await refreshBadges();

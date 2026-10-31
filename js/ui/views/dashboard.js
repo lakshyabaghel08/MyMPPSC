@@ -1,21 +1,28 @@
 /**
- * dashboard.js — Today: the screen that starts work.
+ * dashboard.js — Today: the study command centre.
  *
- * Today is a desk, not a report about a desk. It carries, in reading order:
+ * The screen is built as a desk that starts work, in this reading order:
  *
- *   1. the unfinished sitting, if there is one — with a progress rule and the
- *      one link that continues it;
- *   2. three rows of work, each built from stored data, each starting a real
- *      session in one click (services/nextup.js decides what deserves a row);
- *   3. the weakest topics as a short table, because a table is the right shape
- *      for numbers you compare;
- *   4. in the margin, the standing facts that used to fill a stat strip.
+ *   1. **The hero** — the one thing that matters most right now: the unfinished
+ *      sitting (with its progress bar and one Resume link), or, when nothing
+ *      is half-done, the single next-best sitting with its real question count
+ *      and a one-click Start.
+ *   2. **The standing strip** — six figures that say where the reader stands:
+ *      bank size, coverage, first-attempt accuracy, syllabus progress (split
+ *      Prelims/Mains), revision due, open mistakes. Each cell is a link to the
+ *      screen that owns the number.
+ *   3. **The deck** — every startable sitting as a row (services/nextup.js
+ *      decides what deserves a row and what the row would contain), plus the
+ *      revision∩mistakes cross-signal when both are non-empty.
+ *   4. **The weakest topics** — a short table with an evidence-strength meter
+ *      per row, because a table is the right shape for numbers you compare.
+ *   5. **The margin** — the standing facts about this device's data (missing
+ *      keys, unclassified questions) and where the full reports live.
  *
- * Everything removed from this screen — the recent-sittings list, the four
- * figures above the fold, the cross-signal card — still exists: sittings are on
- * the weekly report, the figures are in the margin, and the overlap sentence is
- * one line under the rows. Nothing is guessed: a row with no evidence behind it
- * says so and does not start.
+ * Nothing is guessed: a row with no evidence behind it says so and does not
+ * start. The DOM contract the journeys rely on is kept: `.start-row` rows with
+ * `button[data-option]` (or a `#/runner/…` Resume link), `.evidence-meter`s in
+ * the weakest table, and no provenance chips on this screen.
  */
 
 import { state } from '../../core/state.js';
@@ -64,6 +71,17 @@ const OPTION_VERB = {
   mistakes: 'Retry',
 };
 
+/** A small glyph per option kind, so the deck scans by shape before by words. */
+const OPTION_GLYPH = {
+  resume: '▶',
+  revision: '↻',
+  smart: '◆',
+  paper: '▤',
+  topic: '◇',
+  unseen: '✦',
+  mistakes: '⚑',
+};
+
 function startAction(option, disabled) {
   const verb = OPTION_VERB[option.kind] || 'Start';
   const label = `${verb} — ${option.label}${option.count ? `, ${option.count} question(s)` : ''}`;
@@ -77,12 +95,12 @@ function startAction(option, disabled) {
       ${disabled ? 'disabled' : ''} aria-label="${esc(label)}">${esc(verb)}</button>`;
 }
 
-/** One row of the desk. The count beside the title is the row's reason to exist. */
+/** One deck row. The count beside the title is the row's reason to exist. */
 function deskRow(option) {
   const disabled = option.kind === 'resume' ? false : !option.count;
   const count = option.countLabel || (option.count ? `${option.count} question${option.count === 1 ? '' : 's'}` : 'nothing stored');
   return `<li class="start-row${disabled ? ' is-empty' : ''}"><div class="desk-row">
-    <span class="desk-mark" aria-hidden="true">${option.tone === 'accent' ? '◆' : '◇'}</span>
+    <span class="desk-mark" aria-hidden="true">${OPTION_GLYPH[option.kind] || '◇'}</span>
     <span class="desk-title">${esc(option.label)}${option.extra ? ` <em>— ${esc(option.extra)}</em>` : ''}
       <em class="desk-sub">${esc(option.detail)}</em></span>
     <span class="desk-act"><span class="desk-count">${esc(count)}</span>${startAction(option, disabled)}</span>
@@ -118,6 +136,108 @@ function attentionTable(priorities, size) {
       .join('')}</tbody>
   </table>`;
 }
+
+/* ------------------------------------------------------------------ hero -- */
+
+/**
+ * The one thing that matters most right now. An unfinished sitting always wins
+ * (it is literally half-done work); otherwise the first deck row that can
+ * actually start.
+ */
+function heroBlock(unfinished, nextUp) {
+  if (unfinished) {
+    const answered = unfinished.answered || 0;
+    const total = unfinished.total || unfinished.count || 0;
+    return `<section class="cc-hero cc-hero-resume" aria-label="Unfinished test">
+      <div class="cc-hero-main">
+        <p class="cc-kicker">Unfinished test</p>
+        <h2 class="cc-hero-title"><a href="#/${esc(unfinished.href || '')}">${esc(unfinished.label)}</a></h2>
+        ${metaLine([
+          `started ${esc(fmtDate(unfinished.startedAt || new Date().toISOString()))}`,
+          `${answered} of ${total} answered`,
+          unfinished.extra ? esc(unfinished.extra) : '',
+        ])}
+        <div class="cc-hero-bar">${segmented(
+          [
+            { label: 'answered', value: answered, tone: 'ok' },
+            { label: 'left', value: Math.max(0, total - answered), tone: 'blank' },
+          ],
+          { label: `${answered} of ${total} questions answered` },
+        )}</div>
+      </div>
+      <a class="btn btn-primary cc-hero-cta" href="#/${esc(unfinished.href || '')}" aria-label="Resume — ${esc(unfinished.label)}">Resume</a>
+    </section>`;
+  }
+  if (nextUp) {
+    const verb = OPTION_VERB[nextUp.kind] || 'Start';
+    return `<section class="cc-hero" aria-label="Next up">
+      <div class="cc-hero-main">
+        <p class="cc-kicker">Next up</p>
+        <h2 class="cc-hero-title">${esc(nextUp.label)}</h2>
+        <p class="cc-hero-detail">${esc(nextUp.detail)}</p>
+      </div>
+      <div class="cc-hero-count" role="img" aria-label="${esc(String(nextUp.count || 0))} questions">
+        <b>${esc(String(nextUp.count || 0))}</b><span>question${nextUp.count === 1 ? '' : 's'}</span>
+      </div>
+      <button class="btn btn-primary cc-hero-cta" type="button" data-action="start-option" data-option="${esc(nextUp.id)}"
+        aria-label="${esc(`${verb} — ${nextUp.label}, ${nextUp.count || 0} question(s)`)}">${esc(verb)}</button>
+    </section>`;
+  }
+  return '';
+}
+
+/* ----------------------------------------------------------- standing strip -- */
+
+/** One figure of the standing strip; a link when the number has a home screen. */
+function statCell({ label, value, sub = '', href = null, tone = '' }) {
+  const inner = `<span class="cc-stat-label">${esc(label)}</span>
+    <span class="cc-stat-value${tone ? ` ${tone}` : ''}">${value}</span>
+    ${sub ? `<span class="cc-stat-sub">${sub}</span>` : ''}`;
+  if (href) return `<a class="cc-stat" href="${esc(href)}">${inner}</a>`;
+  return `<div class="cc-stat">${inner}</div>`;
+}
+
+function standingStrip({ bank, analytics, curriculum, dueRevision, openMistakes }) {
+  const prelims = curriculum.index.official.get('prelims');
+  const mains = curriculum.index.official.get('mains');
+  const sylTotal = curriculum.progress.total || 0;
+  const sylDone = curriculum.progress.done || 0;
+  // The segmented bar uses the same order as the Syllabus screen: revised,
+  // completed, in progress, over the track.
+  let x = 0;
+  const segs = [];
+  for (const status of ['revised', 'completed', 'in_progress']) {
+    const count = curriculum.progress.byStatus?.[status] || 0;
+    if (!count || !sylTotal) continue;
+    const width = (count / sylTotal) * 100;
+    segs.push(`<rect class="syl-seg ${status}" x="${x.toFixed(2)}" y="0" width="${width.toFixed(2)}" height="10"></rect>`);
+    x += width;
+  }
+  const bar = `<svg class="syl-bar mini cc-stat-bar" viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true" focusable="false"><rect class="syl-seg track" x="0" y="0" width="100" height="10"></rect>${segs.join('')}</svg>`;
+
+  const sylSub = `${bar}<span>Prelims ${prelims?.done || 0}/${prelims?.total || 0} · Mains ${mains?.done || 0}/${mains?.total || 0}</span>`;
+
+  return `<section class="cc-stats" aria-label="Where you stand">
+    ${statCell({ label: 'Question bank', value: esc(String(bank.total)), sub: `${esc(String(bank.papers))} paper${bank.papers === 1 ? '' : 's'} stored`, href: '#/bank' })}
+    ${statCell({
+      label: 'Covered',
+      value: `${esc(String(analytics.counts.attemptedUnique))}<small>/${esc(String(analytics.counts.availableQuestions))}</small>`,
+      sub: `${fmtPct(analytics.counts.coverage)} of the bank attempted`,
+      href: '#/analytics',
+    })}
+    ${statCell({
+      label: 'First-attempt accuracy',
+      value: analytics.accuracy.firstAttemptSample ? fmtPct(analytics.accuracy.firstAttempt) : '—',
+      sub: analytics.accuracy.firstAttemptSample ? `over ${analytics.accuracy.firstAttemptSample} answered` : 'none scored yet',
+      href: '#/analytics',
+    })}
+    ${statCell({ label: 'Syllabus done', value: `${esc(String(sylDone))}<small>/${esc(String(sylTotal))}</small>`, sub: sylSub, href: '#/syllabus' })}
+    ${statCell({ label: 'Revision due', value: esc(String(dueRevision)), sub: dueRevision ? 'scheduled review is waiting' : 'nothing due now', href: '#/revision', tone: dueRevision ? 'warn' : '' })}
+    ${statCell({ label: 'Open mistakes', value: esc(String(openMistakes)), sub: openMistakes ? 'in the Mistake Book' : 'nothing open', href: '#/mistakes', tone: openMistakes ? 'bad' : '' })}
+  </section>`;
+}
+
+/* -------------------------------------------------------------- empty state -- */
 
 function noBankCard() {
   return `
@@ -156,10 +276,9 @@ export default {
     if (!metas.length) return noBankCard();
 
     const size = DEFAULT_SESSION_SIZE;
-    const [{ options, bank }, overlap, unpublished, submitted] = await Promise.all([
+    const [{ options, bank }, overlap, submitted] = await Promise.all([
       buildStartOptions({ size }),
       reviewOverlap().catch(() => null),
-      testsSvc.unfinishedTests().catch(() => []),
       testsSvc.listTests({ status: 'submitted', limit: 1 }),
     ]);
 
@@ -169,9 +288,11 @@ export default {
 
     renderedOptions = new Map(options.map((option) => [option.id, option]));
     const unfinished = options.find((option) => option.kind === 'resume') || null;
-    // Five rows at most: the hero carries the unfinished sitting, and "practise
-    // a weak topic" belongs to the table below, with its evidence.
+    // Five rows at most: the hero carries the unfinished sitting (or the next
+    // best start), and "practise a weak topic" belongs to the table below,
+    // with its evidence.
     const deck = options.filter((option) => option.id !== 'weak' && option.kind !== 'resume').slice(0, 5);
+    const nextUp = deck.find((option) => option.count > 0) || null;
 
     const bankInfo = bankSummary();
     const dueRevision = overlap?.due ?? 0;
@@ -179,31 +300,6 @@ export default {
     const both = overlap?.dueAndOpen ?? 0;
 
     const missingKeys = metas.filter((m) => !m.hasSuppliedAnswer && !m.hasVerifiedAnswer).length;
-
-    const hero = unfinished
-      ? sheet({
-          label: 'Unfinished test',
-          body: `
-            <div class="hero-sitting">
-              <div>
-                <h2 class="hero-title"><a href="#/${esc(unfinished.href || '')}">${esc(unfinished.label)}</a></h2>
-                ${metaLine([
-                  'unfinished test',
-                  `started ${esc(fmtDate(unfinished.startedAt || new Date().toISOString()))}`,
-                  `${unfinished.answered || 0} of ${unfinished.total || 0} answered`,
-                ])}
-              </div>
-              <a class="btn btn-primary" href="#/${esc(unfinished.href || '')}" aria-label="Resume — ${esc(unfinished.label)}">Resume</a>
-            </div>`,
-          footer: `${segmented(
-            [
-              { label: 'answered', value: unfinished.answered || 0, tone: 'ok' },
-              { label: 'left', value: unfinished.count || 0, tone: 'blank' },
-            ],
-            { label: `${unfinished.answered || 0} of ${unfinished.count || 0} questions answered` },
-          )}`,
-        })
-      : '';
 
     const overlapLine = both
       ? `<p class="overlap-line"><strong>${both}</strong> of the ${dueRevision} question(s) due for revision are also open mistakes — the highest-value review there is.
@@ -240,23 +336,27 @@ export default {
           '<a class="btn btn-sm btn-quiet" href="#/topic">Build a session</a>',
       })}
 
-      <div class="with-margin">
-        <div>
-          ${hero}
-          ${sheet({
-            label: 'On the desk',
-            body: `<ul class="desk-list">${deck.map(deskRow).join('')}</ul>${overlapLine}`,
-          })}
-          ${sheet({
-            label: 'Where it is weakest',
-            action: '<a class="quiet-action" href="#/analytics">All insights</a>',
-            body: attention,
-            footer: priorities.length
-              ? '<p class="tiny text-soft m-0">Ranked by question frequency in your bank, your recorded accuracy and your own syllabus marks — a study aid, not a forecast. Accuracy is described only after three judged answers.</p>'
-              : '',
-          })}
+      <div class="cc">
+        ${heroBlock(unfinished, nextUp)}
+        ${standingStrip({ bank, analytics, curriculum, dueRevision, openMistakes })}
+
+        <div class="with-margin">
+          <div>
+            ${sheet({
+              label: 'On the desk',
+              body: `<ul class="desk-list">${deck.map(deskRow).join('')}</ul>${overlapLine}`,
+            })}
+            ${sheet({
+              label: 'Where it is weakest',
+              action: '<a class="quiet-action" href="#/analytics">All insights</a>',
+              body: attention,
+              footer: priorities.length
+                ? '<p class="tiny text-soft m-0">Ranked by question frequency in your bank, your recorded accuracy and your own syllabus marks — a study aid, not a forecast. Accuracy is described only after three judged answers.</p>'
+                : '',
+            })}
+          </div>
+          ${margin}
         </div>
-        ${margin}
       </div>`;
   },
 

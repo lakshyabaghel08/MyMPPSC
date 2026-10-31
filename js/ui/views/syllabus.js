@@ -550,28 +550,36 @@ function searchResults(ws) {
 
 /* --------------------------------------------------------------- header ---- */
 
-/** The progress strip under the title: how far the reader is through this stage. */
+/**
+ * The introduction of the screen: one strip that says which stage you are
+ * in, how far through it you are, and how marking works until the first
+ * mark — plus, as a quiet second ring, the other stage, so the
+ * Prelims/Mains separation stays visible while working in either. The other
+ * stage's ring is a button: one click switches.
+ */
 function overviewStrip(ws, { examId }) {
-  const summary = ws.index.official.get(examId);
-  if (!summary?.touched) {
-    return `<section class="syl-overview syl-intro syl-progress-head" aria-label="How progress tracking works">
-      <div class="syl-ov-main">
-        <p class="syl-ov-title"><strong>Track your preparation, topic by topic</strong></p>
-        <p class="syl-intro-text">Tap the circle beside a topic to move it along, and a heading to read its lines:</p>
-        <ol class="syl-steps">
-          ${STATUS_ORDER.map((status) => `<li>${mark(status, { dot: false })}<span>${STATUS_TITLE[status]}</span></li>`).join('')}
-        </ol>
-        <p class="syl-intro-text">A section adds up its topics, and its panel can mark them all at once.</p>
-      </div>
-    </section>`;
-  }
+  const summary = ws.index.official.get(examId) || { done: 0, total: 0, inProgress: 0, touched: false, completion: 0, byStatus: {} };
+  const paperCount = ws.model.nodes.get(examId)?.childIds?.length || 0;
+  const otherId = examId === 'prelims' ? 'mains' : 'prelims';
+  const other = ws.index.official.get(otherId);
+  const otherSwitch = `<button type="button" class="syl-ov-other" data-exam="${otherId}"
+      aria-label="Switch to ${esc(EXAM_LABELS[otherId])}: ${other?.done || 0} of ${other?.total || 0} topics done">
+    ${ring(other)}
+    <span class="syl-ov-other-text"><b>${esc(EXAM_LABELS[otherId])}</b><span>${other?.done || 0}/${other?.total || 0} done</span></span>
+  </button>`;
+  const hint = summary.touched
+    ? ''
+    : `<p class="syl-ov-hint">${icon('help', { size: 14 })}<span>Nothing marked yet — tap a topic's circle to start, or open a heading to mark everything under it at once.</span></p>`;
   return `<section class="syl-overview syl-progress-head" aria-label="${esc(`${EXAM_LABELS[examId]} progress`)}">
     ${ring(summary)}
     <div class="syl-ov-main">
-      <p class="syl-ov-title"><strong>${summary.done} of ${plural(summary.total, 'topic')}</strong> done in ${esc(EXAM_LABELS[examId])}${summary.inProgress ? ` · ${summary.inProgress} in progress` : ''}</p>
+      <p class="syl-ov-kicker">${esc(EXAM_LABELS[examId])} · ${plural(paperCount, 'paper')}</p>
+      <p class="syl-ov-title"><strong>${summary.done} of ${plural(summary.total, 'topic')}</strong> done${summary.inProgress ? ` · ${summary.inProgress} in progress` : ''}</p>
       ${statusBar(summary)}
       ${legend(summary)}
+      ${hint}
     </div>
+    ${otherSwitch}
   </section>`;
 }
 
@@ -583,11 +591,17 @@ function paperToolbar(ws, paper) {
   const size = allLines
     ? plural(children.length, childKind)
     : `${plural(children.length, childKind)} · ${plural(summary?.total || 0, 'topic')}`;
-  const progress = summary?.touched ? ` · ${summary.done} done${summary.inProgress ? ` · ${summary.inProgress} in progress` : ''}` : '';
+  const paperBar = summary?.touched
+    ? `<div class="syl-toolbar-bar">
+        ${statusBar(summary)}
+        <span>${esc(summary.done)} of ${plural(summary.total, 'topic')} done${summary.inProgress ? ` · ${summary.inProgress} in progress` : ''}</span>
+      </div>`
+    : '';
   return `<div class="syl-toolbar">
       <div class="syl-toolbar-head">
         <h2 class="syl-toolbar-title"${langAttr(label(paper))}>${esc(label(paper))}</h2>
-        <p class="syl-toolbar-sub">${esc(size + progress)}</p>
+        <p class="syl-toolbar-sub">${esc(size)}</p>
+        ${paperBar}
       </div>
       <span class="syl-toolbar-actions">
         <button type="button" class="btn btn-quiet btn-sm" data-expand-all>Expand all</button>
@@ -700,7 +714,8 @@ async function screen(ctx) {
   return `<div class="syl">
     ${screenHead({
       title: 'Syllabus',
-      purpose: "The commission's 2026 syllabus, with your progress marked on its own topics. Every figure counts those topics.",
+      purpose:
+        "The commission's revised 2026 syllabus, line by line as published. Mark your progress right on the official topics — every count on this screen includes only those.",
       secondary: '<a class="btn btn-sm btn-quiet" href="#/topic">Practise a topic</a>',
     })}
     <div class="syl-controls">
@@ -735,7 +750,7 @@ async function screen(ctx) {
                 <span class="syl-rail-label"${langAttr(label(candidate))}>${esc(label(candidate))}</span>
                 <span class="syl-rail-meta">${
                   summary?.touched
-                    ? `${statusBar(summary, { size: 'mini', decorative: true })}<span class="syl-rail-pct">${percent(summary)}%</span><span class="sr-only"> done</span>`
+                    ? `${statusBar(summary, { size: 'mini', decorative: true })}<span class="syl-rail-done">${summary.done}/${summary.total}</span><span class="syl-rail-pct">${percent(summary)}%</span><span class="sr-only"> done</span>`
                     : `<span class="syl-rail-size">${esc(plural(summary?.total || 0, 'topic'))}</span>`
                 }</span>
               </button>`;
@@ -784,11 +799,11 @@ function topOnScreen(element) {
 
 /**
  * Scroll so that `element` is back at `top`, where it was in the viewport
- * before a render. What is above it can change height in between — the intro
- * card gives way to the shorter progress summary on the first mark and comes
- * back after the last one is cleared, a detail panel closes — and the control
- * that was used must not slide out from under the pointer, or a quick second
- * click lands on another topic.
+ * before a render. What is above it can change height in between — the
+ * untouched hint line in the progress strip disappears on the first mark and
+ * comes back after the last one is cleared, a detail panel closes — and the
+ * control that was used must not slide out from under the pointer, or a quick
+ * second click lands on another topic.
  */
 function keepOnScreen(element, top) {
   if (!element || typeof top !== 'number') return;
