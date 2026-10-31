@@ -506,7 +506,7 @@ export default {
             <p class="section-label">What to practise</p>
             <div class="sheet-action">${infoToggle(
               'How selection works',
-              '<p class="small m-0">A single subject with at most one topic is recorded as a <strong>topic</strong> session; anything wider is a <strong>custom</strong> set. The strategy decides <em>which</em> questions are picked; the order decides how they are arranged — with shuffling off they run in paper order (year, then paper, then question number). Counts are per subject and always describe your imported bank.</p>',
+              '<p class="small m-0">One subject with one topic is recorded as a <strong>topic</strong> session; anything wider is a <strong>custom</strong> set. Counts describe your imported bank, not the filtered pool.</p>',
             )}</div>
           </div>
           <div id="pickerPane">${pickerMarkup({ groups, narrowed, subtopics, matchCount })}</div>
