@@ -128,19 +128,19 @@ export default {
       ]
         .filter(Boolean)
         .join(' ');
+      // Two columns, because a row asks two questions: which question is this
+      // and why is it here, then what do I do about it. Resolving or removing
+      // an item is maintenance, so it lives inside the opened row rather than
+      // competing with Retry on every line.
       const cells = [
-        `<div><strong>Q${esc(String(meta?.question_number ?? '—'))}</strong> <span class="mono tiny">${esc(m.question_id)}</span></div>
-         <div class="tiny text-soft">${preview}</div>`,
-        `${why}<div class="tiny text-soft">${m.status === 'resolved' ? `resolved ${esc(fmtRelative(m.resolved_at))}` : `seen ${esc(fmtRelative(m.last_seen_at))}`}</div>`,
+        `<div class="mistake-what">
+           <p class="mistake-title"><strong>Q${esc(String(meta?.question_number ?? '—'))}</strong> <span class="mono tiny">${esc(m.question_id)}</span></p>
+           <p class="tiny text-soft m-0">${preview}</p>
+           <p class="mistake-why">${why}<span class="why-note">${m.status === 'resolved' ? `resolved ${esc(fmtRelative(m.resolved_at))}` : `seen ${esc(fmtRelative(m.last_seen_at))}`}</span></p>
+         </div>`,
         `<div class="row tight">
-           <button class="btn btn-sm" type="button" data-action="retry" data-qid="${esc(m.question_id)}">Retry</button>
-           <button class="quiet-action" type="button" data-action="expand" data-key="${esc(m.key)}" aria-expanded="false" aria-controls="reviewrow-${esc(m.question_id)}">History &amp; explanation</button>
-           ${
-             m.status === 'resolved'
-               ? `<button class="quiet-action" type="button" data-action="reopen" data-key="${esc(m.key)}">Reopen</button>`
-               : `<button class="quiet-action" type="button" data-action="resolve" data-key="${esc(m.key)}">Resolve</button>`
-           }
-           <button class="quiet-action" type="button" data-action="remove" data-key="${esc(m.key)}">Remove</button>
+           <button class="btn btn-sm btn-primary" type="button" data-action="retry" data-qid="${esc(m.question_id)}">Retry</button>
+           <button class="quiet-action" type="button" data-action="expand" data-key="${esc(m.key)}" data-status="${esc(m.status)}" aria-expanded="false" aria-controls="reviewrow-${esc(m.question_id)}" aria-label="Review this question: its attempt history, the explanation and the actions on this item">Review</button>
          </div>`,
       ];
       // The review opens *in the row*, so the reader keeps their filters,
@@ -163,7 +163,7 @@ export default {
       ${screenHead({
         title: 'Mistake Book',
         purpose: `${counts.open} open item${counts.open === 1 ? '' : 's'}${counts.repeated ? ` · ${counts.repeated} repeated` : ''}. Everything here was recorded automatically; resolving an item never erases its attempt history.`,
-        primary: '<button class="btn btn-primary" type="button" data-action="practise-now">Practise now</button>',
+        primary: '<button class="btn btn-primary" type="button" data-action="practise-now">Practise these mistakes</button>',
         secondary: `<a class="btn btn-sm btn-quiet" href="#/revision">Revision queue</a>`,
       })}
 
@@ -178,7 +178,7 @@ export default {
             ${activeFilterCount() ? '<div class="row"><button class="btn btn-sm btn-quiet" type="button" data-action="clear-filters">Clear filters</button></div>' : ''}
           </details>
           ${dataTable({
-            columns: [{ label: 'Question' }, { label: 'Why it is here' }, { label: 'What you can do' }],
+            columns: [{ label: 'Question, and why it is here' }, { label: 'Do' }],
             rows: tableRows,
             empty: 'No items match these filters.',
             className: 'compact cards-mobile',
@@ -200,7 +200,7 @@ export default {
                 </details>`
               : ''
           }`,
-        footer: topicGroups.size ? `Spread across ${topicGroups.size} topic group(s). Use “Retry all shown” to practise the filtered set.` : '',
+        footer: topicGroups.size ? `Spread across ${topicGroups.size} topic group(s). “Retry all shown” practises the filtered set.` : '',
       })}`;
   },
 
@@ -328,7 +328,7 @@ export default {
         if (!row || !panel) return;
         const open = btn.getAttribute('aria-expanded') === 'true';
         btn.setAttribute('aria-expanded', String(!open));
-        btn.textContent = open ? 'History & explanation' : 'Hide review';
+        btn.textContent = open ? 'Review' : 'Close';
         row.hidden = open;
         if (open) return;
         if (panel.dataset.filled === '1') return;
@@ -337,6 +337,21 @@ export default {
         panel.innerHTML = reviewBodyMarkup(review, {
           focus: `In the Mistake Book as: ${MISTAKE_TYPES[type] || type || 'a mistake'}. Resolving an item never deletes the attempts listed here.`,
         });
+        // Maintenance belongs to the item the reader has opened, not to every
+        // row on the screen: two buttons per line instead of four.
+        const resolved = btn.dataset.status === 'resolved';
+        panel.insertAdjacentHTML(
+          'beforeend',
+          `<div class="row tight row-maintenance">
+            ${
+              resolved
+                ? `<button class="btn btn-sm" type="button" data-action="reopen" data-key="${esc(key)}">Reopen this item</button>`
+                : `<button class="btn btn-sm" type="button" data-action="resolve" data-key="${esc(key)}">Mark resolved</button>`
+            }
+            <button class="btn btn-sm btn-quiet" type="button" data-action="remove" data-key="${esc(key)}">Remove from the book</button>
+            <span class="tiny text-soft">Resolving never deletes the attempts above.</span>
+          </div>`,
+        );
         panel.dataset.filled = '1';
         row.scrollIntoView?.({ block: 'nearest' });
         return;
