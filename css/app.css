@@ -8471,3 +8471,72 @@ body.runner-focus .runner { max-width: 66ch; }
   .review-body { padding-left: 0; }
   .score-line { gap: 16px; }
 }
+
+/* =========================================================================
+   14f. Revision Centre — a queue of stamped cards
+   The date sits in the gutter like a filing stamp; the stem is the thing being
+   decided about; the actions are inline words, so the common case is one click.
+   ========================================================================= */
+
+.queue-main { min-width: 0; }
+
+.queue-question {
+  font-family: var(--serif);
+  font-size: 1.0625rem;
+  line-height: 1.45;
+  letter-spacing: -0.004em;
+  margin: 0 0 5px;
+  max-width: 62ch;
+}
+
+.queue-question[lang="hi"] { font-family: var(--deva); line-height: 1.6; }
+
+.queue-stamp { display: grid; gap: 3px; }
+
+.queue-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  align-items: baseline;
+  justify-content: flex-end;
+  max-width: 340px;
+}
+
+.queue-actions .btn-sm { min-height: 30px; }
+
+.queue-detail { padding: 0 0 18px; border-bottom: 1px solid var(--rule); }
+.queue-detail .review-inline { padding-top: 6px; }
+
+.text-now { color: var(--now); font-weight: 600; }
+
+/* Seven-day load: bars, not a table of dates. */
+.load-strip {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+  max-width: 520px;
+  margin-top: 6px;
+}
+
+.load-day { display: grid; gap: 5px; justify-items: center; }
+.load-day i {
+  display: block;
+  width: 100%;
+  max-width: 46px;
+  border-radius: 1px;
+  background: var(--track);
+  border-bottom: 2px solid var(--rule-strong);
+}
+.load-day i.lvl0 { height: 3px; }
+.load-day i.lvl1 { height: 10px; background: var(--rule-strong); }
+.load-day i.lvl2 { height: 18px; background: var(--text-soft); }
+.load-day i.lvl3 { height: 26px; background: var(--text-muted); }
+.load-day i.lvl4 { height: 34px; background: var(--text); }
+.load-day b { font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--text-soft); font-weight: 600; }
+.load-day em { font-style: normal; font-size: 11px; color: var(--text-muted); font-variant-numeric: tabular-nums; min-height: 14px; }
+
+@media (max-width: 720px) {
+  .queue-actions { justify-content: flex-start; max-width: none; }
+  .queue-entry { border-top-color: var(--rule); }
+  .queue-detail { border-bottom: 0; }
+}

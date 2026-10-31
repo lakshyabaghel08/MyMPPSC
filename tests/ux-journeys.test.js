@@ -280,22 +280,19 @@ test('E. Review happens inside the row, and marking revised is one click', async
 
   // The Revision Centre uses the same panel, and marks revised in place.
   await goto('revision');
-  const mark = $$('#view [data-action="mark"]')[0];
-  if (!mark) {
+  const knew = $$('#view [data-action="mark-outcome"][data-outcome="correct"]')[0];
+  if (!knew) {
     assert.match(text(), /Nothing is scheduled/i, 'an empty queue says so');
     return;
   }
-  const split = mark.parentElement.querySelector('.mark-split');
-  assert.equal(split.hidden, true, 'the two-state choice starts closed');
-  click(mark);
-  await waitFor(() => split.hidden === false, { label: 'the inline choice' });
-  assert.equal($('#modalRoot').hidden, true, 'no dialog was opened for the common action');
-  const knew = split.querySelector('[data-action="mark-outcome"][data-outcome="correct"]');
-  assert.ok(knew, 'the reader can say they knew it');
-  const before = (await revisionSvc.allRevisionRecords()).find((r) => r.question_id === mark.dataset.qid);
+  // In Phase 3 the two-state choice is the row itself: no trigger, no split,
+  // no dialog — the common action is one click and the schedule moves.
+  assert.equal(knew.closest('.queue-entry') !== null, true, 'the choice lives on the queue row');
+  assert.equal($('#modalRoot').hidden, true, 'no dialog is open for the common action');
+  const before = (await revisionSvc.allRevisionRecords()).find((r) => r.question_id === knew.dataset.qid);
   click(knew);
   await waitFor(async () => {
-    const after = (await revisionSvc.allRevisionRecords()).find((r) => r.question_id === mark.dataset.qid);
+    const after = (await revisionSvc.allRevisionRecords()).find((r) => r.question_id === knew.dataset.qid);
     return after && before && (after.next_due !== before.next_due || after.level !== before.level) ? after : null;
   }, { label: 'the schedule to move' });
 });

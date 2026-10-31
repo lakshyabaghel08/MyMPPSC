@@ -484,9 +484,9 @@ test('the revision queue card no longer prints a stray “}”', async () => {
   const revisionSvc = await import('../js/services/revision.js');
   await revisionSvc.ensureRevisionRecord(Array.from(state.questionIndex.keys())[0], { reason: 'probe', dueDays: 0 });
   await goto('revision');
-  const queue = $$('#view .card').find((card) => /^Queue \(/.test(card.querySelector('h2')?.textContent || ''));
-  assert.ok(queue, 'the queue card renders');
-  assert.equal(queue.querySelector('.card-body').textContent.includes('}'), false);
+  const queue = $$('#view .sheet').find((section) => /^Queue/.test(section.querySelector('.section-label')?.textContent || ''));
+  assert.ok(queue, 'the queue section renders');
+  assert.equal(queue.textContent.includes('}'), false);
 });
 
 test('the evidence meter emits only classes the stylesheet styles', () => {
