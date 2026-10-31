@@ -75,7 +75,7 @@ Question stems and options use `--text-md` (17px) with `--lh-reading` (1.65) and
 ### 1.5 Navigation architecture
 
 - **Header (56px):** menu toggle (≤860px), wordmark, command trigger (`#commandBtn`, `⌘K`/`Ctrl K`), Quick practice, theme toggle, Help, and the resume strip when a session is unfinished.
-- **Sidebar (desktop):** four groups — **Study** (Dashboard, PYQ Test Centre, Topic & Custom Practice, Smart Practice), **Review** (Mistake Book, Revision Centre), **Plan** (Syllabus, Insights), **Manage** (Question Bank & Imports, Settings & Backup, Help). Group labels are small caps, not boxes. Destructive/rare destinations sit at the bottom with storage and offline state.
+- **Sidebar (desktop):** four groups — **Study** (Today, Papers, Practice, Smart), **Review** (Mistakes, Revision), **Plan** (Syllabus, Insights), **Manage** (Bank, Settings, Help). Phase 3 shortened every label to the word a reader uses; the full name stays as each screen's `<h1>`. Group labels are small caps, not boxes. Destructive/rare destinations sit at the bottom with storage and offline state.
 - **Collapsible rail:** `#navCollapse` hides labels and shrinks the sidebar to 64px; the choice persists in `localStorage['mymppsc.navCollapsed']` and the nav buttons keep `aria-label`/`title`.
 - **Mobile:** the same list becomes an off-canvas drawer with a scrim (`#navToggle`, `#appNav`, `#navScrim`, inert `#main`, focus restore); ≤560px a five-item tab bar plus **More** keeps the frequent destinations one thumb away.
 - **Nested pages:** the test runner and a test report carry a one-line breadcrumb back to Test Centre. Everything else is one level deep.

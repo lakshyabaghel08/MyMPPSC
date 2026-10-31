@@ -8587,3 +8587,7 @@ body.runner-focus .runner { max-width: 66ch; }
 .why-word.is-soft { color: var(--text-muted); }
 .why-note { color: var(--text-soft); font-size: 12px; }
 .why-note.is-now { color: var(--now); font-weight: 600; }
+
+.sheet-sub { margin: 3px 0 0; font-size: 12.5px; color: var(--text-soft); max-width: 62ch; }
+.sheet-action { align-items: center; }
+.sheet-foot { margin-top: 10px; }

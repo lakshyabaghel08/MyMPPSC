@@ -16,7 +16,7 @@
  */
 
 import { APP_VERSION } from '../../core/constants.js';
-import { esc, card, notice, dataTable, badge, sourceChip, evidenceMeter, screenHead } from '../components.js';
+import { esc, sheet, notice, dataTable, badge, sourceChip, evidenceMeter, screenHead } from '../components.js';
 
 const KEYBOARD = [
   ['1 … 9', 'Select option A … I on the current question'],
@@ -114,9 +114,9 @@ export default {
 
   async render() {
     const faqRow = (item) => `<div class="faq-item">
-        <h3 class="faq-question"><button class="faq-toggle" type="button" id="faq-${esc(item.id)}-button" aria-expanded="false" aria-controls="faq-${esc(item.id)}-panel">
+        <p class="faq-question"><button class="faq-toggle" type="button" id="faq-${esc(item.id)}-button" aria-expanded="false" aria-controls="faq-${esc(item.id)}-panel">
           <span>${esc(item.task)}</span><span class="faq-caret" aria-hidden="true"></span>
-        </button></h3>
+        </button></p>
         <div class="faq-panel" id="faq-${esc(item.id)}-panel" role="region" aria-labelledby="faq-${esc(item.id)}-button" hidden>
           <p class="small">${item.answer}</p>
         </div>
@@ -142,21 +142,21 @@ export default {
 
       ${notice('This app is a study tool, not an official source. Always check answer keys and syllabus details against official documents before relying on them.', 'warn')}
 
-      ${card({
-        title: 'Start, practise and review',
+      ${sheet({
+        label: 'Start, practise and review',
         count: '5 tasks',
         body: `<div class="faq-list">${everyday}</div>`,
       })}
 
-      ${card({
-        title: 'Your data, this device',
+      ${sheet({
+        label: 'Your data, this device',
         count: '5 tasks',
         body: `<div class="faq-list">${dataFaq}</div>`,
       })}
 
       <div class="split-2">
-        ${card({
-          title: 'Keyboard shortcuts',
+        ${sheet({
+          label: 'Keyboard shortcuts',
           body: dataTable({
             columns: [{ label: 'Key' }, { label: 'Action' }],
             rows: KEYBOARD.map(([key, action]) => [`<span class="kbd">${esc(key)}</span>`, esc(action)]),
@@ -164,8 +164,8 @@ export default {
           }),
         })}
 
-        ${card({
-          title: 'Check it yourself',
+        ${sheet({
+          label: 'Check it yourself',
           count: `${checklistDone.size} of ${CHECKLIST.length}`,
           body: `<p class="small">A short hand-check of the interface, in a few minutes. <a href="docs/TESTING.md">docs/TESTING.md</a> lists the automated half.</p>
             <ul class="checklist">${checklist}</ul>`,
@@ -173,8 +173,8 @@ export default {
         })}
       </div>
 
-      ${card({
-        title: 'Where the detail lives',
+      ${sheet({
+        label: 'Where the detail lives',
         body: `
           <ul class="small">
             <li><a href="docs/LIMITATIONS.md">Everything this app does not do</a> — no AI generation, no verified commission key, no prediction, no guarantee that revision makes anything stick.</li>
@@ -185,8 +185,8 @@ export default {
           <div class="row">${badge('no network calls after load', 'ok')} ${badge('offline capable', 'ok')} ${badge('exportable at any time', 'ok')}</div>`,
       })}
 
-      ${card({
-        title: 'How the numbers are defined',
+      ${sheet({
+        label: 'How the numbers are defined',
         body: `
           ${dataTable({
             columns: [{ label: 'Figure' }, { label: 'What it means' }],

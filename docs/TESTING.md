@@ -5,7 +5,7 @@ Everything here has actually been run. No test in this document is aspirational.
 **Latest verified run (2026-10-31, against `data/pyq/mymppsc-pyq-bank.json`):**
 `npm test` passed **316/316 tests** (0 failures, 0 skips); `npm run check`
 passed **1078 checks**. The production bank loaded by these runs contains 1,200
-questions across 12 papers (2013–2024); service-worker cache `v1.6.0-1`. All
+questions across 12 papers (2013–2024); service-worker cache `v1.7.0-1`. All
 years use the latest MPPSC marking pattern (+3/−1/0) as a uniform **practice
 policy only**; this does not establish the historical rules for any paper.
 

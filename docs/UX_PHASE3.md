@@ -1,6 +1,7 @@
 # Phase 3 — The study desk
 
-**Status:** design deliverable, awaiting approval. **Nothing in this document is implemented yet.**
+**Status:** **implemented** (steps 1–9 of §6), with §7 decided and §8 recording the result. §1–§5 are the reasoning the
+implementation was held to; read them as the brief, not as a proposal.
 **Branch:** `arena/9e120550-mymppsc` · **Compared against:** the Phase-2 build (316 tests, 1078 checks, cache `v1.6.0-1`)
 **Companion artboards:** `docs/mockups/phase3.html` (open it in the preview: `/docs/mockups/phase3.html`)
 
@@ -512,3 +513,72 @@ moves on answer, index overlay keyboard-reachable). Contrast and token guards st
 
 Once these are answered I will implement §6 in order, starting with the primitives and the runner, and re-run
 `npm test` / `npm run check` at every step.
+
+
+---
+
+## 8. What was built, and what it measures
+
+### 8.1 Decisions taken (the §7 questions, self-approved)
+
+| Question | Decision |
+|---|---|
+| Serif voice? | Yes — `--serif` for the screen `<h1>`, section-opening headings, the question stem and scores. Devanagari always uses `--deva`. |
+| Navigation labels | Shortened to the words a reader uses: **Today · Papers · Practice · Smart · Mistakes · Revision · Syllabus · Insights · Bank · Settings · Help**. Full names remain each screen's `<h1>`. |
+| The margin | A third column of facts, 190px, folding to a dotted caption below a hairline under 1180px. |
+| The "now" colour | Margin red (`--now`) marks overdue, wrong and "act on this". Blue is links only. |
+| Report review | One line per question; the line opens in place. Bodies are built on first open. |
+
+### 8.2 The primitives (`js/ui/components.js`, `css/app.css` §14b–14f)
+
+`sheet()` — a section of the page, separated by a hairline, with an optional label, count, action, footer and info toggle.
+`panel-box` is reserved for interruptions (dialogs, scrollable tables), which is why bordered panels dropped to ≤2 per screen.
+`marginNote()` — the metadata column. `metaLine()` — facts on one line, separated by space instead of middots.
+`stamp()` — the one date that matters, in a queue's gutter. `segmented()` — correct/wrong/blank as one bar with a text legend.
+`barRows()` — accuracy as bars without a badge per cell. `evidenceDots()` — three marks for sample size.
+`deskRow()`, `queue-entry`, `review-line` — the three list units (work to start, work to revise, work to review).
+
+### 8.3 Screen by screen
+
+| Screen | What changed |
+|---|---|
+| **Today** | Unfinished sitting is a hero with a progress rule and one Resume link; the deck is a ruled list of at most five rows; weakest topics are a bar table; standing figures moved to the margin as facts. The stat strip and the recent-sittings list are gone (sittings live on Insights). |
+| **Papers** | Table kept; every row's scheme/policy detail moved behind its own *Details*, per-row "practice policy" line retained, and the section is a `sheet`, not a card. |
+| **Runner** | The stem is serif at a 58-character measure; options are ruled rows; the palette became a drawer (Index) that no longer takes a permanent column; scoring rules and mode are stated in the submit sheet that already asks the question. |
+| **Report** | Score as one figure with a segmented rule and a legend; three ruled action lines; topic bars; **one line per question** that expands, with the body built on demand (2,844 → 1,052 words in the DOM); confidence/pacing/repeated/unresolved stay in *The details*. |
+| **Revision** | A stamped queue: date in the gutter, the stem in the body, `Knew it / Still unclear / With a note…` inline (one click, no trigger, no dialog), `Why this date` opening in the row, and a seven-day load strip. Schedule health moved to the margin. |
+| **Mistakes** | Why-an-item-is-here became words with tone instead of three badges per row; the confidence column joined the review panel; actions are one button plus quiet words. |
+| **Insights** | The three confusable counts are one line of facts; verdicts are words; "Where the evidence points" and "Coverage gaps" merged into one **Where to look next** bar list; per-row badges removed. |
+| **Bank** | Every section is a `sheet`; the two wall-of-text paragraphs (bundled bank, import validation) became one-line statements with the detail behind ⓘ; the two import disclosures merged into one. |
+| **Settings, Help** | Sections instead of cards; the same controls, copy and ids. |
+
+### 8.4 Measured before → after (same 13 routes, same jsdom harness, same demo bank + bundled 1,200 questions)
+
+| Measure | Phase 2 | Phase 3 | Change |
+|---|---|---|---|
+| Words in the page | 14,526 | **12,291** | −15.4% |
+| Cards (`.card`) | 53 | **5** | −91% |
+| Badges | 224 | **27** | −88% |
+| Tiny-text nodes (≤11px) | 924 | **704** | −24% |
+| Tiny-text words | 3,078 | **2,525** | −18% |
+| `·`-joined metadata lines | 256 | (see per-screen) | reduced on every rewritten screen |
+| Report page words | 2,764 | **1,052** | −62% (lazy review bodies) |
+
+Remaining weight is concentrated where it is data, not chrome: Insights 2,768 words (its three panels, including the
+bank panel and the frequency/priority tables) and the Bank screen 1,638 (question list and import detail).
+
+### 8.5 Verification
+
+- `npm test` — 316/316, including the journeys (Today launcher, builder, runner, report→practice, review-in-place).
+- `npm run check` — all checks pass, including the density budget and the contrast/token audit on the new palette.
+- Tests updated where the composition changed on purpose: the ten navigation labels (`tests/ui.test.js`), the Revision
+  in-row outcome (`tests/ux-journeys.test.js`), the queue section (`tests/ui-improvements.test.js`), the bank panel's four
+  figures (`.pyq-summary-grid [data-figure]`), and the Insights word-and-figure contract.
+- Service-worker cache bumped to `v1.7.0-1`.
+
+### 8.6 What is deliberately not done yet
+
+- The runner's keyboard legend, the syllabus tree and the practice builder still use their Phase-2 structures: they are
+  controls, not containers, and restyling them would be the cosmetic change this phase exists to avoid. Their words and
+  controls were left alone on purpose rather than changed for the look of it.
+- `docs/mockups/phase3.html` stays as the artboard of the kit; the app CSS now implements it.

@@ -1059,15 +1059,17 @@ export const stat = (label, value, sub = '') => tile({ label, value, sub });
  * A section of the page. Deliberately not a card: no border, no shadow, no
  * nested containers — a hairline above it and rhythm inside it.
  */
-export function sheet({ label = '', title = '', count = null, action = '', body = '', footer = '', id = null, className = '' } = {}) {
+export function sheet({ label = '', title = '', subtitle = '', count = null, action = '', actions = '', info = '', right = '', body = '', footer = '', id = null, className = '' } = {}) {
+  const act = [right, actions, action].filter(Boolean).join(' ');
   const head =
-    label || title || action || count !== null
+    label || title || act || count !== null || info
       ? `<div class="sheet-head">
           <div>
             ${label ? `<p class="section-label">${esc(label)}</p>` : ''}
             ${title ? `<h2 class="m-0">${title}</h2>` : ''}
+            ${subtitle ? `<p class="sheet-sub">${subtitle}</p>` : ''}
           </div>
-          <div class="sheet-action">${count !== null ? `<span class="small text-soft">${esc(String(count))}</span>` : ''}${action}</div>
+          <div class="sheet-action">${count !== null ? `<span class="small text-soft">${esc(String(count))}</span>` : ''}${info}${act}</div>
         </div>`
       : '';
   return `<section class="sheet ${esc(className)}"${id ? ` id="${esc(id)}"` : ''}>

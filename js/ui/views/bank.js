@@ -18,7 +18,7 @@
 import { STORES, ANSWER_POLICIES, FIXED_TEST_RULES } from '../../core/constants.js';
 import { state, refreshQuestionIndex } from '../../core/state.js';
 import * as db from '../../core/db.js';
-import { esc, badge, card, tile, notice, dataTable, toast, openModal, confirmDialog, tabs, mountTabs, renderExplanation, questionTypeLabel, answerKeyBadge, demoBadge, langAttr, screenHead, filterChip, showAll } from '../components.js';
+import { esc, badge, sheet, infoToggle, tile, notice, dataTable, toast, openModal, confirmDialog, tabs, mountTabs, renderExplanation, questionTypeLabel, answerKeyBadge, demoBadge, langAttr, screenHead, filterChip, showAll } from '../components.js';
 import { fmtPct, fmtDate, fmtRelative, readFileAsText, downloadJson, todayKey } from '../../core/util.js';
 import * as importer from '../../services/importer.js';
 import * as builtinBank from '../../services/builtin-bank.js';
@@ -27,6 +27,13 @@ import * as questions from '../../services/questions.js';
 import { findExactDuplicateGroups, findNearDuplicates } from '../../services/select.js';
 import { displayVariant, effectiveAnswer, answerIntegrity } from '../../core/schema.js';
 import { bankSkeleton } from '../skeletons.js';
+
+/**
+ * Phase 3: the bank's sections are parts of the page, not boxes on it. The old
+ * `card({ title })` shape is translated here, so every section keeps its copy
+ * and its controls while losing the container.
+ */
+const card = ({ title = '', ...rest }) => sheet({ ...rest, label: title });
 
 const PAGE_SIZE = 25;
 
@@ -498,11 +505,11 @@ export default {
       title: 'Bundled MPPSC bank (2013–2024)',
       right: builtinMeta ? badge('loaded', 'ok') : badge('not loaded', 'warn'),
       body: `
-        <p class="small">This repository ships the classified MPPSC previous-year question bank. It is loaded automatically from
-        <span class="mono tiny">${esc(builtinBank.BUILTIN_BANK_PATH)}</span> when the app starts, so a fresh installation has real papers
-        without importing anything by hand. The load is checked against a recorded fingerprint: an unchanged bank is never re-written,
-        and an updated one refreshes the stored records while keeping your corrections, bookmarks, attempts and revision history.
-        Its latest reported +3/−1/0 marking pattern is used for practice across all years; this does not establish historical rules.</p>
+        <p class="small m-0">Loaded automatically from the repository, and used for practice only.</p>
+        ${infoToggle(
+          'Where the bundled bank comes from',
+          `<p class="small m-0">This repository ships the classified MPPSC previous-year question bank (<span class="mono">${esc(builtinBank.BUILTIN_BANK_PATH)}</span>), so a fresh installation has real papers without importing anything by hand. The load is checked against a recorded fingerprint: an unchanged bank is never re-written, and an updated one refreshes stored records while keeping your corrections, bookmarks, attempts and revision history. Its latest reported +3/−1/0 marking pattern is applied across all years; that is a practice policy, not a claim about each paper's historical rules.</p>`,
+        )}
         ${dataTable({
           columns: [{ label: 'Bank' }, { label: 'Questions' }, { label: 'Papers' }, { label: 'Loaded' }],
           rows: [
@@ -528,15 +535,14 @@ export default {
       ${card({
         title: 'Import a question bank',
         body: `
-          <p class="small">A bank is a UTF-8 JSON file following the documented schema. It is validated before anything is written: schema version, required fields, option keys, answer keys, language variants and paper metadata. Invalid records are rejected <em>and listed</em>; nothing is dropped silently.</p>
+          <p class="small m-0">A UTF-8 JSON file in the documented schema. Validated before anything is written.</p>
+          ${infoToggle('What is checked before writing', '<p class="small m-0">Schema version, required fields, option keys, answer keys, language variants and paper metadata. Invalid records are rejected <em>and listed</em>: nothing is dropped silently.</p>')}
           <div class="row mt-3 mb-3">
             <input type="file" id="bankFile" accept="application/json,.json" />
           </div>
-          <details class="disclosure"><summary>Or paste JSON directly</summary>
-            <textarea id="bankPaste" rows="6" placeholder='{"schema_version":"1.0.0", ...}' class="w-full"></textarea>
+          <details class="disclosure"><summary>Or paste JSON, or load the demonstration data</summary>
+            <textarea id="bankPaste" rows="6" placeholder='{"schema_version":"1.0.0", ...}' class="w-full mt-2"></textarea>
             <div class="row mt-2"><button class="btn btn-sm" type="button" id="analysePaste">Analyse pasted JSON</button></div>
-          </details>
-          <details class="disclosure"><summary>Demonstration data</summary>
             <p class="small">A small synthetic bank is bundled so you can explore every screen without a real question set. Its questions are flagged <code>is_demonstration: true</code> and are never presented as authentic previous-year questions.</p>
             <div class="row"><button class="btn btn-sm" type="button" id="loadDemo">Load demonstration bank</button><button class="btn btn-sm" type="button" id="loadExample">Load the schema example (also synthetic)</button></div>
           </details>`,

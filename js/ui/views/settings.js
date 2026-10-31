@@ -10,7 +10,7 @@ import { APP_VERSION, DB_NAME, DB_VERSION, SUPPORTED_SCHEMA_VERSIONS, STORES } f
 import { FIXED_RULES_NOTE } from './shared.js';
 import { state, saveSettings, resetSettings, loadSettings, refreshQuestionIndex } from '../../core/state.js';
 import * as db from '../../core/db.js';
-import { esc, badge, card, tile, dataTable, toast, openModal, confirmDialog, tabs, mountTabs, screenHead } from '../components.js';
+import { esc, badge, sheet, tile, dataTable, toast, openModal, confirmDialog, tabs, mountTabs, screenHead } from '../components.js';
 import { fmtBytes, fmtDate, fmtRelative, readFileAsText, downloadJson, getLogRing, todayKey } from '../../core/util.js';
 import * as data from '../../services/data.js';
 import * as builtinBank from '../../services/builtin-bank.js';
@@ -44,8 +44,8 @@ export default {
     const builtinInfo = await builtinBank.builtinBankInfo();
 
     const general = `
-      ${card({
-        title: 'Language, theme and defaults',
+      ${sheet({
+        label: 'Language, theme and defaults',
         body: `
           <div class="field-row">
             ${selectField('setLanguage', 'Interface and question language', { en: 'English (default)', hi: 'हिन्दी where available' }, s.language, 'Questions are never translated: they are shown in this language when the bank has that variant. The syllabus shows labelled English renderings where the commission published Hindi only, and always its own Hindi wording under “Official wording”.')}
@@ -64,11 +64,11 @@ export default {
           <p class="hint">${esc(FIXED_RULES_NOTE)}</p>`,
       })}
 
-      ${card({
-        title: 'Practice defaults',
+      ${sheet({
+        label: 'Practice defaults',
         subtitle: 'Used when a paper has no known rules of its own',
         body: `
-          <h3 class="card-section-title">Scoring</h3>
+          <p class="section-label">Scoring</p>
           <p class="small">Paper-specific rules always take priority when they are known. These defaults — the MPPSC +3 / −1 / 0 pattern out of the box — are used for every other quiz type and as a starting point you can override per test.</p>
           <div class="field-row">
             ${numberField('setMarksCorrect', 'Marks per correct answer', s.defaultScoring.marksPerCorrect, { step: '0.25' })}
@@ -77,7 +77,7 @@ export default {
           </div>
           ${check('setNegative', 'Apply negative marking with the defaults above', s.defaultScoring.negativeMarkingEnabled)}
           <p class="tiny muted">Scoring is deterministic: the same answers against the same rules always produce the same score. The rules used for every test are stored with that test and displayed in its report.</p>
-          <h3 class="card-section-title mt-4">Repeats and selection</h3>
+          <p class="section-label mt-4">Repeats and selection</p>
           ${check('setPreferUnseen', 'Prefer questions I have never attempted when building practice sets', s.repeatPolicy.preferUnseen)}
           <div class="field-row">
             ${numberField('setCooldown', 'Cooldown before a question can repeat (days)', s.repeatPolicy.cooldownDays, { min: 0 })}
@@ -89,8 +89,8 @@ export default {
     `;
 
     const revisionTab = `
-      ${card({
-        title: 'Revision intervals by level',
+      ${sheet({
+        label: 'Revision intervals by level',
         body: `
           <p class="small">A correct answer that you were confident about moves a question up one level; each level has its own interval. These numbers are the whole scheduling model — nothing is hidden.</p>
           <div class="field-row">
@@ -113,8 +113,8 @@ export default {
       })}`;
 
     const backupTab = `
-      ${card({
-        title: 'Create a backup',
+      ${sheet({
+        label: 'Create a backup',
         body: `
           <p class="small">A backup is a single JSON file containing your question bank, papers, tests, attempts, mistakes, revision schedule, syllabus, tasks, study sessions, import history and settings. It is written by your browser to your device — nothing is uploaded.</p>
           <div class="row">
@@ -130,16 +130,16 @@ export default {
           <p class="tiny muted">Browser storage can be cleared by you, by the browser, or when a device runs out of space. Keep a backup file outside the browser.</p>`,
       })}
 
-      ${card({
-        title: 'Restore from a backup',
+      ${sheet({
+        label: 'Restore from a backup',
         body: `
           <p class="small">Restoring validates the file first and shows you exactly what it contains before anything is written. Integrity is checked against the SHA-256 recorded inside the file.</p>
           <div class="row"><input type="file" id="restoreFile" accept="application/json,.json" /></div>
           ${viewState.restoreValidation ? renderRestoreSummary() : ''}`,
       })}
 
-      ${card({
-        title: 'Storage',
+      ${sheet({
+        label: 'Storage',
         body: `
           <div class="grid tiles">
             ${tile({ label: 'Records stored', value: String(Object.values(report.counts).filter((v) => typeof v === 'number').reduce((a, b) => a + b, 0)), sub: `${Object.keys(report.counts).length} stores`, source: 'measured', where: 'Local IndexedDB stores' })}
@@ -153,8 +153,8 @@ export default {
       })}`;
 
     const diagnosticsTab = `
-      ${card({
-        title: 'Application',
+      ${sheet({
+        label: 'Application',
         body: dataTable({
           columns: [{ label: 'Item' }, { label: 'Value' }],
           rows: [
@@ -170,8 +170,8 @@ export default {
         }),
       })}
 
-      ${card({
-        title: 'Recent activity log',
+      ${sheet({
+        label: 'Recent activity log',
         subtitle: 'Kept in memory for this session only',
         body: dataTable({
           columns: [{ label: 'When' }, { label: 'Area' }, { label: 'Event' }],
@@ -181,8 +181,8 @@ export default {
         }),
       })}
 
-      ${card({
-        title: 'Destructive actions',
+      ${sheet({
+        label: 'Destructive actions',
         tone: 'bad',
         body: `
           <p class="small">These actions cannot be undone. Export a backup first.</p>
@@ -355,7 +355,7 @@ export default {
 
     document.getElementById('removeBuiltinBank')?.addEventListener('click', async () => {
       const ok = await confirmDialog({
-        title: 'Remove the bundled MPPSC bank from this device?',
+        label: 'Remove the bundled MPPSC bank from this device?',
         message: 'The 2013–2024 questions and papers stored from the repository bank are removed from this browser. Your own imported questions, tests, attempts, bookmarks and revision history are untouched; the bank is loaded again the next time you start the app.',
         confirmLabel: 'Remove from this device',
         danger: true,
@@ -369,7 +369,7 @@ export default {
 
     document.getElementById('wipeData')?.addEventListener('click', async () => {
       const value = await openModal({
-        title: 'Delete all local data',
+        label: 'Delete all local data',
         body: `
           <p class="small">This removes the question bank, tests, attempts, mistakes, revision schedule, syllabus, tasks and sessions from this browser. It cannot be undone.</p>
           <p class="small"><strong>Type DELETE in capitals to confirm.</strong></p>
