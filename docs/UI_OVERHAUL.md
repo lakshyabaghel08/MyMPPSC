@@ -2,6 +2,8 @@
 
 Date: 2026-10-31 · App version 1.1.0 · Service-worker cache `v1.5.0-1`
 
+> **Superseded visually by the 2026-10-31 “Study Desk” refresh.** This report remains the record of the earlier Ink & paper overhaul. The current presentation layer, verification results and screenshots are documented in [`VISUAL_REFRESH.md`](VISUAL_REFRESH.md).
+
 This was a full interface pass over MyMPPSC: a new design system, a rebuilt shell, and a screen-by-screen reduction of visual noise. The question bank, papers, tests, scoring, attempts, bookmarks, mistakes, revision schedule, syllabus marks, imports, backups, IndexedDB stores, routing and offline behaviour were **not modified**. Only the presentation layer changed.
 
 ---

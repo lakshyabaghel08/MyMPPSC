@@ -460,6 +460,7 @@ function sessionSummary(matchCount, isTopicPractice) {
 
 export default {
   title: 'Practice',
+  eyebrow: 'Your session, your selection',
 
   async render(ctx) {
     // A deep link is applied once, on arrival. An in-place refresh must not
@@ -471,6 +472,7 @@ export default {
       return `
         ${screenHead({
           title: 'Practice',
+          eyebrow: 'Your session, your selection',
           purpose: 'Pick any subjects and topics — the pool is everything you tick, and nothing ticked means the whole bank.',
           primary: '<a class="btn btn-primary" href="#/bank">Import a question bank</a>',
         })}
@@ -496,6 +498,7 @@ export default {
     return `
       ${screenHead({
         title: 'Practice',
+        eyebrow: 'Your session, your selection',
         purpose: 'Pick what this sitting covers, then start it.',
         secondary: '<a class="btn btn-sm btn-quiet" href="#/smart">Let the app choose</a>',
       })}

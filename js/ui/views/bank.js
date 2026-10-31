@@ -815,6 +815,7 @@ export default {
     return `
       ${screenHead({
         title: 'Question Bank &amp; Imports',
+        eyebrow: 'Your local question library',
         purpose: 'The bank is data, not code: import a validated file, correct what the source got wrong, export it again — nothing leaves this device.',
         primary: '<button class="btn btn-primary" type="button" data-action="bank-import">Import a file</button>',
         secondary: '<button class="btn btn-sm" type="button" data-action="bank-export">Export the bank</button>',

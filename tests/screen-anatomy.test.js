@@ -211,7 +211,7 @@ test('every screen is inside the density budget', async () => {
 });
 
 test('the card anatomy is styled from tokens, not from per-screen rules', () => {
-  assert.match(css, /\.screen-head\s*\{[^}]*border-bottom:\s*1px solid var\(--border\)/, '.screen-head keeps its rule');
+  assert.match(css, /\.screen-head\s*\{[^}]*border-bottom:\s*1px solid var\(--border-subtle\)/, '.screen-head keeps a quiet rule');
   assert.match(css, /\.card-head\s*\{[^}]*padding:\s*var\(--pad-card-head\)/, '.card-head takes its padding from the density token');
   assert.match(css, /\.card-body\s*\{[^}]*padding:\s*var\(--pad-card\)/, '.card-body takes its padding from the density token');
   assert.match(css, /\.count-chip\s*\{[^}]*font-size:\s*var\(--text-xs\)/, 'a count chip is a caption, not a second title');

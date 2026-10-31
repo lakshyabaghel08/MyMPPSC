@@ -14,7 +14,7 @@ export { esc, fmtPct, fmtMarks, fmtDate, fmtClock, fmtDuration, round };
 /* --------------------------------------------------------------- icons ---- */
 
 const ICONS = {
-  dashboard: '<path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/>',
+  dashboard: '<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>',
   'test-centre': '<path d="M9 3h6a2 2 0 0 1 2 2v1h2a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h2V5a2 2 0 0 1 2-2zm0 3h6V5H9v1zm-1 5h8m-8 4h5"/>',
   topic: '<path d="M4 6h16M4 12h16M4 18h10"/><circle cx="18" cy="18" r="2"/>',
   custom: '<path d="M4 21v-7m0-4V3m8 18v-9m0-4V3m8 18v-5m0-4V3M1 14h6m2-6h6m2 8h6"/>',
@@ -36,6 +36,10 @@ const ICONS = {
   plus: '<path d="M12 5v14M5 12h14"/>',
   check: '<path d="M20 6 9 17l-5-5"/>',
   bookmark: '<path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>',
+  'arrow-right': '<path d="M5 12h14m-6-6 6 6-6 6"/>',
+  'book-open': '<path d="M12 7v14m0-14C9 4 5 4 2 5v15c4-1 7-1 10 1 3-2 6-2 10-1V5c-3-1-7-1-10 2z"/>',
+  shield: '<path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6l8-3z"/><path d="m8 12 3 3 5-6"/>',
+  target: '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/>',
   calendar: '<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>',
 };
 
@@ -668,7 +672,7 @@ export function languageSwitcher(question, activeLang, { languages = null } = {}
     ${available
       .map(
         (lang) =>
-          `<button type="button" data-lang="${esc(lang)}" aria-pressed="${lang === activeLang}">${esc(LANGUAGE_LABELS[lang] || lang)}</button>`,
+          `<button type="button" data-lang="${esc(lang)}"${lang === 'hi' ? ' lang="hi"' : ''} aria-pressed="${lang === activeLang}">${esc(LANGUAGE_LABELS[lang] || lang)}</button>`,
       )
       .join('')}
   </span>`;
@@ -1065,7 +1069,7 @@ export function sheet({ label = '', title = '', subtitle = '', count = null, act
     label || title || act || count !== null || info
       ? `<div class="sheet-head">
           <div>
-            ${label ? `<p class="section-label">${esc(label)}</p>` : ''}
+            ${label ? `<h2 class="section-label">${esc(label)}</h2>` : ''}
             ${title ? `<h2 class="m-0">${title}</h2>` : ''}
             ${subtitle ? `<p class="sheet-sub">${subtitle}</p>` : ''}
           </div>
@@ -1081,7 +1085,7 @@ export function sheet({ label = '', title = '', subtitle = '', count = null, act
 
 /** The margin: facts written beside the thing they describe, never badges. */
 export function marginNote(body, { title = '' } = {}) {
-  return `<aside class="margin-note">${title ? `<b>${esc(title)}</b>` : ''}${body}</aside>`;
+  return `<aside class="margin-note">${title ? `<div class="margin-note-title">${icon('shield', { size: 18 })}<h2 class="section-label">${esc(title)}</h2></div>` : ''}${body}</aside>`;
 }
 
 /** Facts on one line, separated by space. `items` may contain markup. */

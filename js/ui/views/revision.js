@@ -55,6 +55,7 @@ function rulesBody() {
 
 export default {
   title: 'Revision Centre',
+  eyebrow: 'Review what is ready to be reviewed',
 
   /** Placeholder while the schedule and attempt history load (router.js). */
   skeleton() {
@@ -179,7 +180,7 @@ export default {
     return `
       ${screenHead({
         title: 'Revision Centre',
-        eyebrow: dueCount ? `${dueCount} due now${buckets.overdue.length ? `, ${buckets.overdue.length} overdue` : ''}` : 'Nothing due today',
+        eyebrow: dueCount ? `${dueCount} due now${buckets.overdue.length ? `, ${buckets.overdue.length} overdue` : ''} · review queue` : 'Nothing due today · review queue',
         purpose: 'Each date comes from your own recorded outcomes, and can be overridden.',
         primary: `<button class="btn btn-primary" type="button" data-action="revise-due" ${dueCount ? '' : 'disabled'}>Revise ${Math.min(cap, dueCount)} of ${dueCount}</button>`,
         secondary: '<button class="btn btn-sm btn-quiet" type="button" data-action="add-manual">Add a question</button>',

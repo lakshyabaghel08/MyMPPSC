@@ -112,9 +112,13 @@ export function applyTheme(settings = state.settings) {
   root.setAttribute('data-theme-pref', pref);
   root.setAttribute('data-density', density);
   const meta = document.getElementById('themeColorMeta');
-  if (meta) meta.setAttribute('content', effective === 'dark' ? '#131413' : '#f7f6f2');
+  if (meta) meta.setAttribute('content', effective === 'dark' ? '#14232d' : '#ffffff');
   const toggle = document.getElementById('themeToggle');
-  if (toggle) toggle.setAttribute('aria-pressed', String(effective === 'dark'));
+  if (toggle) {
+    toggle.setAttribute('aria-pressed', String(effective === 'dark'));
+    toggle.setAttribute('aria-label', `Switch to ${effective === 'dark' ? 'light' : 'dark'} theme (current: ${effective})`);
+    toggle.setAttribute('title', toggle.getAttribute('aria-label'));
+  }
   return effective;
 }
 

@@ -116,6 +116,7 @@ const badgeHtml = (text, tone) => `<span class="badge ${tone}">${esc(text)}</spa
 
 export default {
   title: 'PYQ Test Centre',
+  eyebrow: 'Previous-year papers · your practice archive',
 
   async render(ctx) {
     const metas = Array.from(state.questionIndex.values());
@@ -127,6 +128,7 @@ export default {
       return `
         ${screenHead({
           title: 'PYQ Test Centre',
+          eyebrow: 'Previous-year papers · your practice archive',
           purpose: 'Full previous-year paper simulations, in the order the paper stored.',
           primary: '<a class="btn btn-primary" href="#/bank">Import a question bank</a>',
         })}
@@ -214,6 +216,7 @@ export default {
     return `
       ${screenHead({
         title: 'PYQ Test Centre',
+        eyebrow: 'Previous-year papers · your practice archive',
         purpose: 'Full previous-year simulations in their stored order. Start a paper, or pick up one still in progress.',
         primary: '<button class="btn btn-primary" type="button" data-action="practise-now">Quick practice</button>',
         secondary: '<a class="btn btn-sm btn-quiet" href="#/topic">Topic &amp; custom</a>',

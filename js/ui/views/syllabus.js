@@ -697,7 +697,8 @@ async function screen(ctx) {
   const ws = await loadWorkspace();
   const { model } = ws;
   if (!model.ok) {
-    return `${screenHead({ title: 'Syllabus', purpose: 'The commission\'s revised 2026 syllabus, as published.' })}
+    return `${screenHead({ title: 'Syllabus',
+        eyebrow: 'MPPSC 2026 · the official study map', purpose: 'The commission\'s revised 2026 syllabus, as published.' })}
       ${notice(
         `The syllabus data could not be read from this device (${esc(model.error || 'unknown error')}). It ships with the app, so a reload should restore it.`,
         'bad',
@@ -714,6 +715,7 @@ async function screen(ctx) {
   return `<div class="syl">
     ${screenHead({
       title: 'Syllabus',
+      eyebrow: 'MPPSC 2026 · the official study map',
       purpose:
         "The commission's revised 2026 syllabus, line by line as published. Mark your progress right on the official topics — every count on this screen includes only those.",
       secondary: '<a class="btn btn-sm btn-quiet" href="#/topic">Practise a topic</a>',
@@ -1110,6 +1112,7 @@ async function mount(ctx, root) {
 
 export default {
   title: 'Syllabus',
+  eyebrow: 'MPPSC 2026 · the official study map',
 
   render(ctx) {
     return screen(ctx);

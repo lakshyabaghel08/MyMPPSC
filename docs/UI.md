@@ -2,6 +2,8 @@
 
 MyMPPSC is a local-first, zero-dependency, static single-page study application for MPPSC Prelims preparation. The interface is built with vanilla HTML, a token-driven stylesheet (`css/app.css`), and a dependency-free component kit (`js/ui/components.js`).
 
+> **Current visual direction (2026-10-31): “Study Desk.”** The app now uses the refreshed shell, local Inter/Manrope/Noto Sans Devanagari fonts, teal/violet/coral/info route accents and the final `STUDY DESK — visual refresh` layer in `css/app.css`. See [`VISUAL_REFRESH.md`](VISUAL_REFRESH.md) and [`visual-refresh/README.md`](visual-refresh/README.md) for the current palette, screen identities, verification and before/after captures. The “Ink & paper” details below are retained as the previous baseline for history; where they differ, the stylesheet and the refresh report are authoritative.
+
 Every visual decision serves three goals:
 1. **Long-session reading comfort** across English and Hindi (Devanagari) question stems, passages, and explanations.
 2. **Epistemic honesty (North Star)** — every figure, badge, and question card answers *what should I do now?*, *what do I actually know?*, and *where did it come from?* using a shared provenance vocabulary.

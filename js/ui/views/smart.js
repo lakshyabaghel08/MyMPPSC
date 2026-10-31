@@ -51,6 +51,7 @@ function planRows(plan, total) {
 
 export default {
   title: 'Smart Practice',
+  eyebrow: 'A plan that follows your progress',
 
   async render() {
     const metas = Array.from(state.questionIndex.values());
@@ -58,6 +59,7 @@ export default {
       return `
         ${screenHead({
           title: 'Smart Practice',
+          eyebrow: 'A plan that follows your progress',
           purpose: 'A session assembled from your recorded performance: revision due, repeated mistakes, skipped questions and unseen coverage.',
           primary: '<a class="btn btn-primary" href="#/bank">Import a question bank</a>',
         })}
@@ -98,6 +100,7 @@ export default {
     return `
       ${screenHead({
         title: 'Smart Practice',
+        eyebrow: 'A plan that follows your progress',
         purpose: 'One sitting assembled from what is due, what you keep getting wrong, what you skipped and what you have never seen.',
         secondary: '<a class="btn btn-sm btn-quiet" href="#/topic">Build it myself</a>',
       })}

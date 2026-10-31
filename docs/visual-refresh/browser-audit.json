@@ -1,0 +1,974 @@
+{
+  "generatedAt": "2026-10-31T17:36:46.125Z",
+  "passed": 193,
+  "failed": 0,
+  "total": 193,
+  "errors": [],
+  "results": [
+    {
+      "name": "dashboard renders real metrics",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "all three local fonts load",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "dashboard has no horizontal overflow at 320px",
+      "ok": true,
+      "detail": "0px"
+    },
+    {
+      "name": "dashboard header stays inside viewport at 320px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "dashboard has one screen heading at 320px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "test-centre has no horizontal overflow at 320px",
+      "ok": true,
+      "detail": "0px"
+    },
+    {
+      "name": "test-centre header stays inside viewport at 320px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "test-centre has one screen heading at 320px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "topic has no horizontal overflow at 320px",
+      "ok": true,
+      "detail": "0px"
+    },
+    {
+      "name": "topic header stays inside viewport at 320px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "topic has one screen heading at 320px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "smart has no horizontal overflow at 320px",
+      "ok": true,
+      "detail": "0px"
+    },
+    {
+      "name": "smart header stays inside viewport at 320px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "smart has one screen heading at 320px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "revision has no horizontal overflow at 320px",
+      "ok": true,
+      "detail": "0px"
+    },
+    {
+      "name": "revision header stays inside viewport at 320px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "revision has one screen heading at 320px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "mistakes has no horizontal overflow at 320px",
+      "ok": true,
+      "detail": "0px"
+    },
+    {
+      "name": "mistakes header stays inside viewport at 320px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "mistakes has one screen heading at 320px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "syllabus has no horizontal overflow at 320px",
+      "ok": true,
+      "detail": "0px"
+    },
+    {
+      "name": "syllabus header stays inside viewport at 320px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "syllabus has one screen heading at 320px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "analytics has no horizontal overflow at 320px",
+      "ok": true,
+      "detail": "0px"
+    },
+    {
+      "name": "analytics header stays inside viewport at 320px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "analytics has one screen heading at 320px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "bank has no horizontal overflow at 320px",
+      "ok": true,
+      "detail": "0px"
+    },
+    {
+      "name": "bank header stays inside viewport at 320px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "bank has one screen heading at 320px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "settings has no horizontal overflow at 320px",
+      "ok": true,
+      "detail": "0px"
+    },
+    {
+      "name": "settings header stays inside viewport at 320px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "settings has one screen heading at 320px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "help has no horizontal overflow at 320px",
+      "ok": true,
+      "detail": "0px"
+    },
+    {
+      "name": "help header stays inside viewport at 320px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "help has one screen heading at 320px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "dashboard has no horizontal overflow at 390px",
+      "ok": true,
+      "detail": "0px"
+    },
+    {
+      "name": "dashboard header stays inside viewport at 390px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "dashboard has one screen heading at 390px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "test-centre has no horizontal overflow at 390px",
+      "ok": true,
+      "detail": "0px"
+    },
+    {
+      "name": "test-centre header stays inside viewport at 390px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "test-centre has one screen heading at 390px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "topic has no horizontal overflow at 390px",
+      "ok": true,
+      "detail": "0px"
+    },
+    {
+      "name": "topic header stays inside viewport at 390px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "topic has one screen heading at 390px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "smart has no horizontal overflow at 390px",
+      "ok": true,
+      "detail": "0px"
+    },
+    {
+      "name": "smart header stays inside viewport at 390px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "smart has one screen heading at 390px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "revision has no horizontal overflow at 390px",
+      "ok": true,
+      "detail": "0px"
+    },
+    {
+      "name": "revision header stays inside viewport at 390px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "revision has one screen heading at 390px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "mistakes has no horizontal overflow at 390px",
+      "ok": true,
+      "detail": "0px"
+    },
+    {
+      "name": "mistakes header stays inside viewport at 390px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "mistakes has one screen heading at 390px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "syllabus has no horizontal overflow at 390px",
+      "ok": true,
+      "detail": "0px"
+    },
+    {
+      "name": "syllabus header stays inside viewport at 390px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "syllabus has one screen heading at 390px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "analytics has no horizontal overflow at 390px",
+      "ok": true,
+      "detail": "0px"
+    },
+    {
+      "name": "analytics header stays inside viewport at 390px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "analytics has one screen heading at 390px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "bank has no horizontal overflow at 390px",
+      "ok": true,
+      "detail": "0px"
+    },
+    {
+      "name": "bank header stays inside viewport at 390px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "bank has one screen heading at 390px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "settings has no horizontal overflow at 390px",
+      "ok": true,
+      "detail": "0px"
+    },
+    {
+      "name": "settings header stays inside viewport at 390px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "settings has one screen heading at 390px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "help has no horizontal overflow at 390px",
+      "ok": true,
+      "detail": "0px"
+    },
+    {
+      "name": "help header stays inside viewport at 390px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "help has one screen heading at 390px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "dashboard has no horizontal overflow at 768px",
+      "ok": true,
+      "detail": "0px"
+    },
+    {
+      "name": "dashboard header stays inside viewport at 768px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "dashboard has one screen heading at 768px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "test-centre has no horizontal overflow at 768px",
+      "ok": true,
+      "detail": "0px"
+    },
+    {
+      "name": "test-centre header stays inside viewport at 768px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "test-centre has one screen heading at 768px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "topic has no horizontal overflow at 768px",
+      "ok": true,
+      "detail": "0px"
+    },
+    {
+      "name": "topic header stays inside viewport at 768px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "topic has one screen heading at 768px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "smart has no horizontal overflow at 768px",
+      "ok": true,
+      "detail": "0px"
+    },
+    {
+      "name": "smart header stays inside viewport at 768px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "smart has one screen heading at 768px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "revision has no horizontal overflow at 768px",
+      "ok": true,
+      "detail": "0px"
+    },
+    {
+      "name": "revision header stays inside viewport at 768px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "revision has one screen heading at 768px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "mistakes has no horizontal overflow at 768px",
+      "ok": true,
+      "detail": "0px"
+    },
+    {
+      "name": "mistakes header stays inside viewport at 768px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "mistakes has one screen heading at 768px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "syllabus has no horizontal overflow at 768px",
+      "ok": true,
+      "detail": "0px"
+    },
+    {
+      "name": "syllabus header stays inside viewport at 768px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "syllabus has one screen heading at 768px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "analytics has no horizontal overflow at 768px",
+      "ok": true,
+      "detail": "0px"
+    },
+    {
+      "name": "analytics header stays inside viewport at 768px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "analytics has one screen heading at 768px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "bank has no horizontal overflow at 768px",
+      "ok": true,
+      "detail": "0px"
+    },
+    {
+      "name": "bank header stays inside viewport at 768px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "bank has one screen heading at 768px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "settings has no horizontal overflow at 768px",
+      "ok": true,
+      "detail": "0px"
+    },
+    {
+      "name": "settings header stays inside viewport at 768px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "settings has one screen heading at 768px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "help has no horizontal overflow at 768px",
+      "ok": true,
+      "detail": "0px"
+    },
+    {
+      "name": "help header stays inside viewport at 768px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "help has one screen heading at 768px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "dashboard has no horizontal overflow at 1024px",
+      "ok": true,
+      "detail": "0px"
+    },
+    {
+      "name": "dashboard header stays inside viewport at 1024px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "dashboard has one screen heading at 1024px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "test-centre has no horizontal overflow at 1024px",
+      "ok": true,
+      "detail": "0px"
+    },
+    {
+      "name": "test-centre header stays inside viewport at 1024px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "test-centre has one screen heading at 1024px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "topic has no horizontal overflow at 1024px",
+      "ok": true,
+      "detail": "0px"
+    },
+    {
+      "name": "topic header stays inside viewport at 1024px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "topic has one screen heading at 1024px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "smart has no horizontal overflow at 1024px",
+      "ok": true,
+      "detail": "0px"
+    },
+    {
+      "name": "smart header stays inside viewport at 1024px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "smart has one screen heading at 1024px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "revision has no horizontal overflow at 1024px",
+      "ok": true,
+      "detail": "0px"
+    },
+    {
+      "name": "revision header stays inside viewport at 1024px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "revision has one screen heading at 1024px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "mistakes has no horizontal overflow at 1024px",
+      "ok": true,
+      "detail": "0px"
+    },
+    {
+      "name": "mistakes header stays inside viewport at 1024px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "mistakes has one screen heading at 1024px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "syllabus has no horizontal overflow at 1024px",
+      "ok": true,
+      "detail": "0px"
+    },
+    {
+      "name": "syllabus header stays inside viewport at 1024px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "syllabus has one screen heading at 1024px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "analytics has no horizontal overflow at 1024px",
+      "ok": true,
+      "detail": "0px"
+    },
+    {
+      "name": "analytics header stays inside viewport at 1024px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "analytics has one screen heading at 1024px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "bank has no horizontal overflow at 1024px",
+      "ok": true,
+      "detail": "0px"
+    },
+    {
+      "name": "bank header stays inside viewport at 1024px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "bank has one screen heading at 1024px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "settings has no horizontal overflow at 1024px",
+      "ok": true,
+      "detail": "0px"
+    },
+    {
+      "name": "settings header stays inside viewport at 1024px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "settings has one screen heading at 1024px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "help has no horizontal overflow at 1024px",
+      "ok": true,
+      "detail": "0px"
+    },
+    {
+      "name": "help header stays inside viewport at 1024px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "help has one screen heading at 1024px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "dashboard has no horizontal overflow at 1440px",
+      "ok": true,
+      "detail": "0px"
+    },
+    {
+      "name": "dashboard header stays inside viewport at 1440px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "dashboard has one screen heading at 1440px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "test-centre has no horizontal overflow at 1440px",
+      "ok": true,
+      "detail": "0px"
+    },
+    {
+      "name": "test-centre header stays inside viewport at 1440px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "test-centre has one screen heading at 1440px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "topic has no horizontal overflow at 1440px",
+      "ok": true,
+      "detail": "0px"
+    },
+    {
+      "name": "topic header stays inside viewport at 1440px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "topic has one screen heading at 1440px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "smart has no horizontal overflow at 1440px",
+      "ok": true,
+      "detail": "0px"
+    },
+    {
+      "name": "smart header stays inside viewport at 1440px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "smart has one screen heading at 1440px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "revision has no horizontal overflow at 1440px",
+      "ok": true,
+      "detail": "0px"
+    },
+    {
+      "name": "revision header stays inside viewport at 1440px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "revision has one screen heading at 1440px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "mistakes has no horizontal overflow at 1440px",
+      "ok": true,
+      "detail": "0px"
+    },
+    {
+      "name": "mistakes header stays inside viewport at 1440px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "mistakes has one screen heading at 1440px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "syllabus has no horizontal overflow at 1440px",
+      "ok": true,
+      "detail": "0px"
+    },
+    {
+      "name": "syllabus header stays inside viewport at 1440px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "syllabus has one screen heading at 1440px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "analytics has no horizontal overflow at 1440px",
+      "ok": true,
+      "detail": "0px"
+    },
+    {
+      "name": "analytics header stays inside viewport at 1440px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "analytics has one screen heading at 1440px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "bank has no horizontal overflow at 1440px",
+      "ok": true,
+      "detail": "0px"
+    },
+    {
+      "name": "bank header stays inside viewport at 1440px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "bank has one screen heading at 1440px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "settings has no horizontal overflow at 1440px",
+      "ok": true,
+      "detail": "0px"
+    },
+    {
+      "name": "settings header stays inside viewport at 1440px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "settings has one screen heading at 1440px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "help has no horizontal overflow at 1440px",
+      "ok": true,
+      "detail": "0px"
+    },
+    {
+      "name": "help header stays inside viewport at 1440px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "help has one screen heading at 1440px",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "toggle applies dark theme",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "dark browser chrome matches surface",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "toggle returns to light theme",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "system preference resolves to dark",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "command palette navigates",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "quick practice opens a dialog",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "escape closes quick practice",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "runner offers four options",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "option selection is reflected",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "flag is reflected in palette",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "answer survives reload",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "flag survives reload",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "desktop question index is visible",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "focus mode hides chrome",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "focus mode hides desktop index",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "focus toggle leaves focus mode",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "pause stops the clock",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "resume restarts the clock",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "mobile palette opens",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "mobile palette closes",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "submit produces a report",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "drawer opens",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "drawer closes after navigation",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "offline dashboard renders",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "offline bank remains available",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "no browser errors",
+      "ok": true,
+      "detail": ""
+    }
+  ]
+}
