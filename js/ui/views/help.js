@@ -135,6 +135,7 @@ export default {
     return `
       ${screenHead({
         title: 'Help &amp; How it works',
+        eyebrow: 'A guide to your study companion',
         purpose: `MyMPPSC v${esc(APP_VERSION)} — a local-first MPPSC Prelims practice app. Your data stays in this browser.`,
         primary: '<button class="btn btn-primary" type="button" data-action="open-command">Search everything</button>',
       })}

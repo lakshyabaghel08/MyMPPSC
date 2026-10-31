@@ -380,6 +380,7 @@ function mountPerformancePanel(ctx) {
 
 export default {
   title: 'Insights',
+  eyebrow: 'Your evidence, not a prediction',
 
   /** Placeholder in the shape of the panel that is about to open (router.js). */
   skeleton(ctx) {
@@ -411,6 +412,7 @@ export default {
     return `
       ${screenHead({
         title: 'Insights',
+        eyebrow: 'Your evidence, not a prediction',
         purpose: 'What you have done, with what the papers you imported contain — counted from different data, never mixed.',
         primary: '<a class="btn btn-primary" href="#/topic">Practise a weak topic</a>',
         secondary: '<button class="btn btn-sm" type="button" id="anaExportHead">Export these figures</button>',

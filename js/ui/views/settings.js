@@ -204,6 +204,7 @@ export default {
     return `
       ${screenHead({
         title: 'Settings &amp; Backup',
+        eyebrow: 'Make the app work your way',
         purpose: 'Your defaults for every session, the revision rules, and the one file that holds everything stored on this device.',
         primary: '<button class="btn btn-primary" type="button" id="settingsBackupNow">Export a backup</button>',
         secondary: '<a class="btn btn-sm" href="#/help">What each setting does</a>',

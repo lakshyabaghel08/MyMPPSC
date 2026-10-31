@@ -509,8 +509,8 @@ test('the evidence meter emits only classes the stylesheet styles', () => {
 
 test('dark-mode polish: states keep a non-colour cue and decorations stay behind text', () => {
   assert.match(css, /\.palette button\.answered::after\s*\{[^}]*border-top:\s*3px solid currentColor/, 'answered has a shape cue');
-  assert.match(css, /\.tab\[aria-selected="true"\]\s*\{[^}]*inset 0 0 0 1px var\(--border\)/, 'the selected tab is outlined');
-  assert.match(css, /\.seg button\[aria-pressed="true"\]\s*\{[^}]*inset 0 0 0 1px var\(--border\)/, 'so is the pressed segment');
+  assert.match(css, /\.tab\[aria-selected="true"\]\s*\{[^}]*inset 0 0 0 1px var\(--border-subtle\)/, 'the selected tab is outlined');
+  assert.match(css, /\.seg button\[aria-pressed="true"\]\s*\{[^}]*inset 0 0 0 1px var\(--border-subtle\)/, 'so is the pressed segment');
   assert.match(css, /\.tile > \*\s*\{\s*position: relative;\s*z-index: 1;/, 'tile text paints above the corner circle');
   assert.match(css, /select,\s*textarea\s*\{\s*border-color: var\(--border\);/, 'form fields keep a 3:1 boundary');
   const dark = css.match(/:root\[data-theme="dark"\]\s*\{([^}]*)\}/)[1];

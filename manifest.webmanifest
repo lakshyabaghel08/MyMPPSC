@@ -9,8 +9,8 @@
   "display": "standalone",
   "display_override": ["standalone", "minimal-ui", "browser"],
   "orientation": "any",
-  "background_color": "#f5f6f9",
-  "theme_color": "#1f2a44",
+  "background_color": "#f3f6f7",
+  "theme_color": "#067565",
   "categories": ["education", "productivity"],
   "prefer_related_applications": false,
   "icons": [

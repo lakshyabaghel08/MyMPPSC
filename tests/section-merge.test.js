@@ -205,8 +205,10 @@ test('4. one roll-up counts the official syllabus, and it is what the dashboard 
   assert.equal(withPlan.total, before.total);
 
   const text = await goto('dashboard');
-  assert.match(text, new RegExp(`${after.done} of ${after.total} item\\(s\\) done`));
-  assert.match(text, /marked on the commission's 2026 syllabus/);
+  const syllabusStat = document.querySelector('#view .cc-stat[href="#/syllabus"]');
+  assert.ok(syllabusStat, 'the dashboard links the official syllabus figure to its screen');
+  assert.equal(syllabusStat.querySelector('.cc-stat-value').textContent.replace(/\s+/g, ''), `${after.done}/${after.total}`);
+  assert.match(syllabusStat.querySelector('.cc-stat-sub').textContent, /Prelims 1\/77 · Mains 0\/232/);
   assert.ok(!/items you added yourself/.test(text), 'the dashboard no longer quotes a second, plan figure');
 
   await planner.deleteSyllabusItem(mine.id, { withChildren: true });

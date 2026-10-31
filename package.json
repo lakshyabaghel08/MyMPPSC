@@ -9,7 +9,9 @@
     "test:verbose": "node --test --test-reporter=spec tests/*.test.js",
     "serve": "node tools/serve.mjs",
     "check": "node tools/check.mjs",
-    "audit:ui": "node tools/check.mjs"
+    "audit:ui": "node tools/check.mjs",
+    "audit:visual": "node tools/visual-audit.mjs",
+    "capture:visual": "node tools/capture-visual.mjs"
   },
   "devDependencies": {
     "fake-indexeddb": "^6.0.0",

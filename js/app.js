@@ -247,6 +247,7 @@ function renderNav() {
 
 function markActiveNav(routeName) {
   const destination = NAV_ALIASES[routeName] || routeName;
+  document.body.dataset.route = destination || 'dashboard';
   document.querySelectorAll('.nav-link').forEach((btn) => {
     if (btn.dataset.route === destination) btn.setAttribute('aria-current', 'page');
     else btn.removeAttribute('aria-current');

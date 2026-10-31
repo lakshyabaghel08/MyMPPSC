@@ -26,7 +26,7 @@
  */
 
 import { state } from '../../core/state.js';
-import { esc, confirmDialog, toast, evidenceMeter, screenHead, sheet, marginNote, segmented, metaLine } from '../components.js';
+import { esc, confirmDialog, toast, evidenceMeter, screenHead, sheet, marginNote, segmented, metaLine, icon } from '../components.js';
 import { fmtPct, fmtDate, topicPracticeHref } from '../../core/util.js';
 import { loadAnalytics, studyPriorities } from '../../services/analytics.js';
 import * as testsSvc from '../../services/tests.js';
@@ -100,7 +100,7 @@ function deskRow(option) {
   const disabled = option.kind === 'resume' ? false : !option.count;
   const count = option.countLabel || (option.count ? `${option.count} question${option.count === 1 ? '' : 's'}` : 'nothing stored');
   return `<li class="start-row${disabled ? ' is-empty' : ''}"><div class="desk-row">
-    <span class="desk-mark" aria-hidden="true">${OPTION_GLYPH[option.kind] || '◇'}</span>
+    <span class="desk-mark kind-${esc(option.kind)}" aria-hidden="true">${icon({revision:'revision',smart:'smart',paper:'test-centre',unseen:'book-open',mistakes:'mistakes',topic:'topic'}[option.kind] || 'topic', { size: 20 })}</span>
     <span class="desk-title">${esc(option.label)}${option.extra ? ` <em>— ${esc(option.extra)}</em>` : ''}
       <em class="desk-sub">${esc(option.detail)}</em></span>
     <span class="desk-act"><span class="desk-count">${esc(count)}</span>${startAction(option, disabled)}</span>
@@ -112,29 +112,23 @@ function deskRow(option) {
  * `tbody` matters — the report's journey test starts a session from this shape.
  */
 function attentionTable(priorities, size) {
-  return `<table class="bar-rows">
-    <tbody>${priorities
-      .map((priority) => {
-        const judged = priority.scored || 0;
-        const size2 = Math.min(priority.available, size);
-        const accuracy = judged >= 3 ? fmtPct(priority.accuracy) : '—';
-        const pct = Math.max(3, Math.round(Math.max(0, Math.min(1, Number(priority.accuracy) || 0)) * 20) * 5);
-        return `<tr>
-          <td class="row-name">
-            <a href="${esc(topicPracticeHref(priority.subject, priority.topic))}">${esc(priority.topic)}</a>
-            <small>${esc(priority.subject)} <span aria-hidden="true">/</span> ${esc(String(priority.available))} stored ${evidenceMeter(judged)}</small>
-          </td>
-          <td class="bar-track"><span><i data-pct="${pct}"></i></span></td>
-          <td class="row-value">${esc(accuracy)}</td>
-          <td class="row-act">
-            <button class="btn btn-sm" type="button" data-action="practise-topic" data-subject="${esc(priority.subject)}" data-topic="${esc(priority.topic)}" ${size2 ? '' : 'disabled'}>
-              Practise${size2 ? ` ${size2}` : ''}
-            </button>
-          </td>
-        </tr>`;
-      })
-      .join('')}</tbody>
-  </table>`;
+  return `<div class="focus-list">${priorities.map((priority, index) => {
+    const judged = priority.scored || 0;
+    const size2 = Math.min(priority.available, size);
+    const accuracy = judged >= 3 ? fmtPct(priority.accuracy) : '—';
+    return `<article class="focus-row">
+      <div class="focus-row-top"><span class="focus-number" aria-hidden="true">0${index + 1}</span>
+        <a href="${esc(topicPracticeHref(priority.subject, priority.topic))}">${esc(priority.topic)}</a>
+        <span class="focus-accuracy" aria-label="First-attempt accuracy">${esc(accuracy)}</span>
+      </div>
+      <p class="focus-sub">${esc(priority.subject)} · ${esc(String(priority.available))} stored</p>
+      <div class="focus-row-foot">${evidenceMeter(judged)}
+        <button class="quiet-action" type="button" data-action="practise-topic" data-subject="${esc(priority.subject)}" data-topic="${esc(priority.topic)}" ${size2 ? '' : 'disabled'}>
+          Practise${size2 ? ` ${size2}` : ''} <span aria-hidden="true">→</span>
+        </button>
+      </div>
+    </article>`;
+  }).join('')}</div>`;
 }
 
 /* ------------------------------------------------------------------ hero -- */
@@ -144,43 +138,52 @@ function attentionTable(priorities, size) {
  * (it is literally half-done work); otherwise the first deck row that can
  * actually start.
  */
+function studyArtwork() {
+  return `<div class="cc-hero-art" aria-hidden="true">
+    <svg viewBox="0 0 240 190" fill="none" focusable="false">
+      <circle class="art-orbit" cx="127" cy="92" r="77" />
+      <circle class="art-dot" cx="190" cy="42" r="9" />
+      <path class="art-spark" d="M40 48v16m-8-8h16M195 133v12m-6-6h12" />
+      <g transform="rotate(-9 120 100)">
+        <rect class="art-book-back" x="57" y="40" width="125" height="119" rx="10" />
+        <rect class="art-book-page" x="48" y="31" width="125" height="119" rx="10" />
+        <path class="art-rule" d="M68 57h57M68 70h83M68 83h65" />
+        <rect class="art-check-bg" x="68" y="102" width="17" height="17" rx="5" />
+        <path class="art-check" d="m72 110 3 3 6-7" />
+        <path class="art-rule" d="M96 110h48M68 131h76" />
+      </g>
+      <g transform="rotate(9 166 125)">
+        <rect class="art-book-front" x="125" y="91" width="66" height="65" rx="10" />
+        <path class="art-book-mark" d="M146 92v27l10-6 10 6V92" />
+      </g>
+      <circle class="art-small-dot" cx="57" cy="155" r="5" />
+    </svg>
+  </div>`;
+}
+
 function heroBlock(unfinished, nextUp) {
   if (unfinished) {
     const answered = unfinished.answered || 0;
     const total = unfinished.total || unfinished.count || 0;
     return `<section class="cc-hero cc-hero-resume" aria-label="Unfinished test">
       <div class="cc-hero-main">
-        <p class="cc-kicker">Unfinished test</p>
+        <p class="cc-kicker"><span class="live-dot"></span>Unfinished test</p>
         <h2 class="cc-hero-title"><a href="#/${esc(unfinished.href || '')}">${esc(unfinished.label)}</a></h2>
-        ${metaLine([
-          `started ${esc(fmtDate(unfinished.startedAt || new Date().toISOString()))}`,
-          `${answered} of ${total} answered`,
-          unfinished.extra ? esc(unfinished.extra) : '',
-        ])}
-        <div class="cc-hero-bar">${segmented(
-          [
-            { label: 'answered', value: answered, tone: 'ok' },
-            { label: 'left', value: Math.max(0, total - answered), tone: 'blank' },
-          ],
-          { label: `${answered} of ${total} questions answered` },
-        )}</div>
-      </div>
-      <a class="btn btn-primary cc-hero-cta" href="#/${esc(unfinished.href || '')}" aria-label="Resume — ${esc(unfinished.label)}">Resume</a>
+        ${metaLine([`Started ${esc(fmtDate(unfinished.startedAt || new Date().toISOString()))}`,`${answered} of ${total} answered`,unfinished.extra ? esc(unfinished.extra) : ''])}
+        <div class="cc-hero-bar">${segmented([{ label: 'answered', value: answered, tone: 'ok' }, { label: 'left', value: Math.max(0, total - answered), tone: 'blank' }], { label: `${answered} of ${total} questions answered` })}</div>
+        <div class="cc-hero-actions"><a class="btn btn-primary cc-hero-cta" href="#/${esc(unfinished.href || '')}" aria-label="Resume — ${esc(unfinished.label)}">Resume session <span aria-hidden="true">→</span></a><span class="cc-hero-note">Right where you left off.</span></div>
+      </div>${studyArtwork()}
     </section>`;
   }
   if (nextUp) {
     const verb = OPTION_VERB[nextUp.kind] || 'Start';
     return `<section class="cc-hero" aria-label="Next up">
       <div class="cc-hero-main">
-        <p class="cc-kicker">Next up</p>
+        <p class="cc-kicker">${icon('smart', { size: 14 })} Recommended next</p>
         <h2 class="cc-hero-title">${esc(nextUp.label)}</h2>
         <p class="cc-hero-detail">${esc(nextUp.detail)}</p>
-      </div>
-      <div class="cc-hero-count" role="img" aria-label="${esc(String(nextUp.count || 0))} questions">
-        <b>${esc(String(nextUp.count || 0))}</b><span>question${nextUp.count === 1 ? '' : 's'}</span>
-      </div>
-      <button class="btn btn-primary cc-hero-cta" type="button" data-action="start-option" data-option="${esc(nextUp.id)}"
-        aria-label="${esc(`${verb} — ${nextUp.label}, ${nextUp.count || 0} question(s)`)}">${esc(verb)}</button>
+        <div class="cc-hero-actions"><button class="btn btn-primary cc-hero-cta" type="button" data-action="start-option" data-option="${esc(nextUp.id)}" aria-label="${esc(`${verb} — ${nextUp.label}, ${nextUp.count || 0} question(s)`)}">${esc(verb)} ${nextUp.count || 0} questions <span aria-hidden="true">→</span></button><span class="cc-hero-note">One session. A little more confidence.</span></div>
+      </div>${studyArtwork()}
     </section>`;
   }
   return '';
@@ -189,12 +192,12 @@ function heroBlock(unfinished, nextUp) {
 /* ----------------------------------------------------------- standing strip -- */
 
 /** One figure of the standing strip; a link when the number has a home screen. */
-function statCell({ label, value, sub = '', href = null, tone = '' }) {
-  const inner = `<span class="cc-stat-label">${esc(label)}</span>
+function statCell({ label, value, sub = '', href = null, tone = '', symbol = 'bank' }) {
+  const inner = `<span class="cc-stat-label"><span class="cc-stat-icon">${icon(symbol, { size: 16 })}</span>${esc(label)}</span>
     <span class="cc-stat-value${tone ? ` ${tone}` : ''}">${value}</span>
     ${sub ? `<span class="cc-stat-sub">${sub}</span>` : ''}`;
-  if (href) return `<a class="cc-stat" href="${esc(href)}">${inner}</a>`;
-  return `<div class="cc-stat">${inner}</div>`;
+  if (href) return `<a class="cc-stat tone-${tone || 'accent'}" href="${esc(href)}">${inner}</a>`;
+  return `<div class="cc-stat tone-${tone || 'accent'}">${inner}</div>`;
 }
 
 function standingStrip({ bank, analytics, curriculum, dueRevision, openMistakes }) {
@@ -218,22 +221,22 @@ function standingStrip({ bank, analytics, curriculum, dueRevision, openMistakes 
   const sylSub = `${bar}<span>Prelims ${prelims?.done || 0}/${prelims?.total || 0} · Mains ${mains?.done || 0}/${mains?.total || 0}</span>`;
 
   return `<section class="cc-stats" aria-label="Where you stand">
-    ${statCell({ label: 'Question bank', value: esc(String(bank.total)), sub: `${esc(String(bank.papers))} paper${bank.papers === 1 ? '' : 's'} stored`, href: '#/bank' })}
+    ${statCell({ label: 'Question bank', value: esc(String(bank.total)), sub: `${esc(String(bank.papers))} papers stored`, href: '#/bank', symbol: 'bank', tone: 'accent' })}
     ${statCell({
       label: 'Covered',
       value: `${esc(String(analytics.counts.attemptedUnique))}<small>/${esc(String(analytics.counts.availableQuestions))}</small>`,
       sub: `${fmtPct(analytics.counts.coverage)} of the bank attempted`,
-      href: '#/analytics',
+      href: '#/analytics', symbol: 'book-open', tone: 'info',
     })}
     ${statCell({
       label: 'First-attempt accuracy',
       value: analytics.accuracy.firstAttemptSample ? fmtPct(analytics.accuracy.firstAttempt) : '—',
       sub: analytics.accuracy.firstAttemptSample ? `over ${analytics.accuracy.firstAttemptSample} answered` : 'none scored yet',
-      href: '#/analytics',
+      href: '#/analytics', symbol: 'target', tone: 'ok',
     })}
-    ${statCell({ label: 'Syllabus done', value: `${esc(String(sylDone))}<small>/${esc(String(sylTotal))}</small>`, sub: sylSub, href: '#/syllabus' })}
-    ${statCell({ label: 'Revision due', value: esc(String(dueRevision)), sub: dueRevision ? 'scheduled review is waiting' : 'nothing due now', href: '#/revision', tone: dueRevision ? 'warn' : '' })}
-    ${statCell({ label: 'Open mistakes', value: esc(String(openMistakes)), sub: openMistakes ? 'in the Mistake Book' : 'nothing open', href: '#/mistakes', tone: openMistakes ? 'bad' : '' })}
+    ${statCell({ label: 'Syllabus done', value: `${esc(String(sylDone))}<small>/${esc(String(sylTotal))}</small>`, sub: sylSub, href: '#/syllabus', symbol: 'syllabus', tone: 'violet' })}
+    ${statCell({ label: 'Revision due', value: esc(String(dueRevision)), sub: dueRevision ? 'scheduled review is waiting' : 'nothing due now', href: '#/revision', tone: 'warn', symbol: 'revision' })}
+    ${statCell({ label: 'Open mistakes', value: esc(String(openMistakes)), sub: openMistakes ? 'in the Mistake Book' : 'nothing open', href: '#/mistakes', tone: 'bad', symbol: 'mistakes' })}
   </section>`;
 }
 
@@ -313,49 +316,51 @@ export default {
       : `<p class="quiet-note m-0">Nothing is ranked yet. Topics appear here once the bank is classified and you have recorded an attempt or marked a syllabus line. Until then, the rows above start with unseen questions.</p>`;
 
     const margin = marginNote(
-      `<p>Bank <b class="fig">${esc(String(bank.total))}</b> questions, ${esc(String(bank.papers))} paper${bank.papers === 1 ? '' : 's'}.</p>
-       <p>Covered <b class="fig">${esc(String(analytics.counts.attemptedUnique))}</b> (${fmtPct(analytics.counts.coverage)}).</p>
-       <p>First-attempt accuracy <b class="fig">${analytics.accuracy.firstAttemptSample ? fmtPct(analytics.accuracy.firstAttempt) : '—'}</b>${
-         analytics.accuracy.firstAttemptSample ? ` over ${analytics.accuracy.firstAttemptSample} answered` : ' — none scored yet'
-       }.</p>
-       <p>Syllabus <b class="fig">${curriculum.progress.done}</b> of ${curriculum.progress.total} item(s) done, marked on the commission's 2026 syllabus.</p>
-       ${missingKeys ? `<p>${missingKeys} question(s) have no answer key and are excluded from scoring.</p>` : ''}
+      `<p>Your questions, attempts and progress stay in this browser. No account. No uploads.</p>
+       <p>Export a backup to keep a copy outside this device.</p>
+       ${missingKeys ? `<p class="margin-warning">${missingKeys} question(s) have no answer key and are excluded from scoring.</p>` : ''}
        ${bankInfo.unclassified ? `<p>${bankInfo.unclassified} question(s) are unclassified.</p>` : ''}
-       ${submitted.length ? `<p><a href="#/analytics">Recent sittings and the weekly report</a></p>` : ''}`,
-      { title: 'Where you stand' },
+       <a href="#/settings">Backup &amp; storage <span aria-hidden="true">→</span></a>
+       ${submitted.length ? '<a href="#/analytics">Recent sessions &amp; insights <span aria-hidden="true">→</span></a>' : ''}`,
+      { title: 'Local by design' },
     );
 
     return `
       ${screenHead({
         title: 'Today',
-        eyebrow: `${greeting()} — ${todayLine()}`,
-        purpose: 'What to do next, from what is stored on this device.',
-        primary: `<button class="btn btn-primary" type="button" data-action="start-option" data-option="smart">Start a ${size}-question session</button>`,
+        className: 'today-head',
+        eyebrow: `${greeting()} · ${todayLine()}`,
+        purpose: 'A little progress, every day. Make your next session count.',
+        primary: '<a class="btn" href="#/topic">Build a session <span aria-hidden="true">↗</span></a>',
         secondary:
-          '<button class="btn btn-sm btn-quiet" type="button" id="dashPractise">Quick session…</button>' +
-          '<a class="btn btn-sm btn-quiet" href="#/topic">Build a session</a>',
+          '<button class="btn btn-sm btn-quiet" type="button" id="dashPractise">Quick session…</button>',
       })}
 
       <div class="cc">
         ${heroBlock(unfinished, nextUp)}
         ${standingStrip({ bank, analytics, curriculum, dueRevision, openMistakes })}
 
-        <div class="with-margin">
-          <div>
+        <div class="cc-lower">
+          <div class="cc-desk">
             ${sheet({
-              label: 'On the desk',
+              className: 'desk-sheet',
+              label: 'Your study shortcuts',
               body: `<ul class="desk-list">${deck.map(deskRow).join('')}</ul>${overlapLine}`,
-            })}
-            ${sheet({
-              label: 'Where it is weakest',
-              action: '<a class="quiet-action" href="#/analytics">All insights</a>',
-              body: attention,
-              footer: priorities.length
-                ? '<p class="tiny text-soft m-0">Ranked by question frequency in your bank, your recorded accuracy and your own syllabus marks — a study aid, not a forecast. Accuracy is described only after three judged answers.</p>'
-                : '',
+              footer: '<a class="quiet-action" href="#/test-centre">Explore all previous-year papers <span aria-hidden="true">→</span></a>',
             })}
           </div>
-          ${margin}
+          <aside class="cc-aside">
+            ${sheet({
+              className: 'focus-sheet',
+              label: 'A little extra focus',
+              action: '<a class="quiet-action" href="#/analytics">Insights ↗</a>',
+              body: attention,
+              footer: priorities.length
+                ? '<p class="tiny text-soft m-0">Based on your bank, recorded accuracy and syllabus marks. A study aid, not a forecast. Accuracy appears after three judged answers.</p>'
+                : '',
+            })}
+            ${margin}
+          </aside>
         </div>
       </div>`;
   },

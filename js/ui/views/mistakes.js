@@ -72,6 +72,7 @@ function typeBadge(type) {
 
 export default {
   title: 'Mistake Book',
+  eyebrow: 'Every mistake is a place to improve',
 
   async render() {
     const metas = Array.from(state.questionIndex.values());
@@ -80,6 +81,7 @@ export default {
       return `
         ${screenHead({
           title: 'Mistake Book',
+          eyebrow: 'Every mistake is a place to improve',
           purpose: 'Wrong answers, skipped questions, flagged questions and correct-but-guessed answers, collected automatically from your tests.',
           primary: '<a class="btn btn-primary" href="#/test-centre">Start a test</a>',
           secondary: '<a class="btn btn-sm" href="#/topic">Practise a topic</a>',
@@ -159,6 +161,7 @@ export default {
     return `
       ${screenHead({
         title: 'Mistake Book',
+        eyebrow: 'Every mistake is a place to improve',
         purpose: `${counts.open} open item${counts.open === 1 ? '' : 's'}${counts.repeated ? ` · ${counts.repeated} repeated` : ''}. Everything here was recorded automatically; resolving an item never erases its attempt history.`,
         primary: '<button class="btn btn-primary" type="button" data-action="practise-now">Practise these mistakes</button>',
         secondary: `<a class="btn btn-sm btn-quiet" href="#/revision">Revision queue</a>`,
