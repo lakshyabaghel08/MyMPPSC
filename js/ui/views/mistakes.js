@@ -13,7 +13,6 @@ import {
   esc,
   badge,
   card,
-  tile,
   dataTable,
   emptyState,
   toast,
@@ -26,7 +25,6 @@ import {
   langAttr,
   screenHead,
   filterChip,
-  cardInfo,
 } from '../components.js';
 import { fmtDate, fmtClock, fmtRelative } from '../../core/util.js';
 import { listMistakes, mistakeCounts, resolveMistake, reopenMistake, removeMistake, attemptHistoryForQuestion, attemptTrend } from '../../services/attempts.js';
@@ -37,7 +35,7 @@ const viewState = { status: 'open', type: 'all', subject: 'all', topic: 'all', y
 
 /** How many filters are away from the screen's starting state. */
 const activeFilterCount = () =>
-  [viewState.type !== 'all', viewState.subject !== 'all', viewState.topic !== 'all', viewState.year !== 'all'].filter(Boolean).length;
+  [viewState.status !== 'open', viewState.type !== 'all', viewState.subject !== 'all', viewState.topic !== 'all', viewState.year !== 'all'].filter(Boolean).length;
 
 function filtersMarkup(metas, counts) {
   const subjects = Array.from(new Set(metas.map((m) => m.subject || 'Unclassified'))).sort();
@@ -142,53 +140,45 @@ export default {
     return `
       ${screenHead({
         title: 'Mistake Book',
-        purpose: 'Everything recorded automatically from your tests. Resolving an item keeps its attempt history — nothing is erased.',
+        purpose: `${counts.open} open item${counts.open === 1 ? '' : 's'}${counts.repeated ? ` · ${counts.repeated} repeated` : ''}. Everything here was recorded automatically; resolving an item never erases its attempt history.`,
         primary: '<button class="btn btn-primary" type="button" data-action="practise-now">Practise now</button>',
-        secondary: `<a class="btn btn-sm" href="#/revision">Revision queue</a>${filterChip(activeFilterCount())}`,
-      })}
-
-      <div class="grid tiles mb-4">
-        ${tile({ label: 'Open items', value: String(counts.open), sub: `${counts.repeated} repeated`, tone: counts.open ? 'warn' : 'ok', source: 'measured', where: 'Active unresolved entries' })}
-        ${tile({ label: 'Incorrect', value: String(openByType.incorrect || 0), sub: 'wrong answers', tone: 'bad', source: 'measured', where: 'Scored wrong in a test' })}
-        ${tile({ label: 'Skipped', value: String(openByType.skipped || 0), sub: 'kept separate from wrong answers', source: 'measured', where: 'Left blank in a test' })}
-        ${tile({ label: 'Uncertain correct', value: String(openByType.low_confidence_correct || 0), sub: 'guesses and unsure answers', source: 'measured', where: 'Correct but marked unsure/guessed' })}
-      </div>
-
-      ${card({
-        title: 'Filters',
-        count: activeFilterCount() ? `${activeFilterCount()} on` : 'none on',
-        info: cardInfo('What each filter counts', '<p class="small m-0">Status, mistake type, subject, topic and year all narrow the same list. A filter is remembered for this page, and the count beside the Filters title says how many are on.</p>'),
-        body: filtersMarkup(metas, counts),
+        secondary: `<a class="btn btn-sm btn-quiet" href="#/revision">Revision queue</a>`,
       })}
 
       ${card({
         title: 'Items',
         count: `${rows.length} shown`,
-        actions: `<button class="btn btn-sm btn-primary" type="button" data-action="retry-all">Retry all shown</button>`,
-        body: dataTable({
-          columns: [{ label: 'Question' }, { label: 'Why it is here' }, { label: 'Confidence' }, { label: 'Actions' }],
-          rows: tableRows,
-          empty: 'No items match these filters.',
-          className: 'compact',
-        }),
-        footer: topicGroups.size ? `Spread across ${topicGroups.size} topic group(s). Use “Retry all shown” to practise the filtered set, or retry a single topic from the list below.` : '',
-      })}
-
-      ${card({
-        title: 'Topics with the most open items',
-        body: topicGroups.size
-          ? dataTable({
-              columns: [{ label: 'Topic' }, { label: 'Open items', num: true }, { label: '' }],
-              rows: Array.from(topicGroups.entries())
-                .sort((a, b) => b[1] - a[1])
-                .slice(0, 12)
-                .map(([key, count]) => {
-                  const [subject, topic] = key.split('||');
-                  return [esc(`${topic} · ${subject}`), String(count), `<button class="btn btn-sm" type="button" data-action="retry-topic" data-subject="${esc(subject)}" data-topic="${esc(topic)}">Retry this topic</button>`];
-                }),
-              className: 'compact',
-            })
-          : '<p class="muted small">No open items.</p>',
+        action: `<button class="btn btn-sm" type="button" data-action="retry-all">Retry all shown</button>`,
+        body: `
+          <details class="disclosure">
+            <summary>Filters${activeFilterCount() ? ` · ${activeFilterCount()} on` : ''}</summary>
+            <div class="mt-2">${filtersMarkup(metas, counts)}</div>
+            ${activeFilterCount() ? '<div class="row"><button class="btn btn-sm btn-quiet" type="button" data-action="clear-filters">Clear filters</button></div>' : ''}
+          </details>
+          ${dataTable({
+            columns: [{ label: 'Question' }, { label: 'Why it is here' }, { label: 'Confidence' }, { label: 'Actions' }],
+            rows: tableRows,
+            empty: 'No items match these filters.',
+            className: 'compact cards-mobile',
+          })}
+          ${
+            topicGroups.size
+              ? `<details class="disclosure mt-3"><summary>Topics with the most open items</summary>
+                  ${dataTable({
+                    columns: [{ label: 'Topic' }, { label: 'Open items', num: true }, { label: '' }],
+                    rows: Array.from(topicGroups.entries())
+                      .sort((a, b) => b[1] - a[1])
+                      .slice(0, 12)
+                      .map(([key, count]) => {
+                        const [subject, topic] = key.split('||');
+                        return [esc(`${topic} · ${subject}`), String(count), `<button class="btn btn-sm" type="button" data-action="retry-topic" data-subject="${esc(subject)}" data-topic="${esc(topic)}">Retry this topic</button>`];
+                      }),
+                    className: 'compact',
+                  })}
+                </details>`
+              : ''
+          }`,
+        footer: topicGroups.size ? `Spread across ${topicGroups.size} topic group(s). Use “Retry all shown” to practise the filtered set.` : '',
       })}`;
   },
 

@@ -158,6 +158,9 @@ export default {
       }`;
 
     return `
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <ol><li><a href="#/dashboard">Dashboard</a></li><li><a href="#/test-centre">Test Centre</a></li><li aria-current="page">Report</li></ol>
+      </nav>
       <div class="spread mb-4">
         <div>
           <div class="row tight">
@@ -218,13 +221,6 @@ export default {
             id: 'tabs-overview',
             label: 'Overview',
             body: `
-              ${card({
-                title: 'Scoring rules actually used',
-                body: `<p>${esc(describeRules(result.scoring, result.scoring?.source))}</p>
-                  ${result.scoring?.rules_source_note ? infoToggle('Where these rules come from', `<p class="small m-0">${esc(result.scoring.rules_source_note)}</p>`) : ''}
-                  ${result.accuracy_note ? `<p class="small text-warn">${esc(result.accuracy_note)}</p>` : ''}
-                  ${test.config.feedback_mode === 'learning' ? '<p class="small">This test ran in learning mode, so answers were revealed as you went.</p>' : ''}`,
-              })}
               <div class="grid cols-2">
                 ${card({
                   title: 'Outcome counts',
@@ -266,7 +262,15 @@ export default {
                   className: 'compact',
                 }),
                 footer: result.per_question.length > 40 ? `Showing the first 40 of ${result.per_question.length} questions.` : '',
-              })}`,
+              })}
+              ${card({
+                title: 'Scoring rules actually used',
+                body: `<p>${esc(describeRules(result.scoring, result.scoring?.source))}</p>
+                  ${result.scoring?.rules_source_note ? infoToggle('Where these rules come from', `<p class="small m-0">${esc(result.scoring.rules_source_note)}</p>`) : ''}
+                  ${result.accuracy_note ? `<p class="small text-warn">${esc(result.accuracy_note)}</p>` : ''}
+                  ${test.config.feedback_mode === 'learning' ? '<p class="small">This test ran in learning mode, so answers were revealed as you went.</p>' : ''}`,
+              })}
+`,
           },
           {
             id: 'tabs-confidence',

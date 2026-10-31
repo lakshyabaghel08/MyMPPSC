@@ -187,29 +187,29 @@ export default {
 
       ${card({
         title: 'How the numbers are defined',
-        body: dataTable({
-          columns: [{ label: 'Figure' }, { label: 'What it means' }],
-          rows: [
-            ['Questions available', 'Unique questions stored in your bank. Duplicate imports do not increase the useful total.'],
-            ['Unique questions attempted', 'Questions with at least one recorded attempt. Answering the same question five times still counts once here.'],
-            ['Total attempts', 'Every recorded answer event, including repeats, skips and unscored attempts.'],
-            ['First-attempt accuracy', 'Correct share of scored <em>first</em> attempts. Repeats cannot inflate it.'],
-            ['Accuracy (all attempts)', 'Correct share of all scored attempts, repeats included.'],
-            ['Small samples', 'Fewer than 3 scored answers is displayed as “insufficient evidence”; a weak/strong verdict needs at least 5.'],
-            ['Unscored', 'A question with no usable answer key is excluded from the score rather than counted wrong.'],
-            ['Question frequency', 'How often a topic appears <em>in your imported bank</em>. A study aid only — never a prediction.'],
-          ].map(([term, text]) => [`<strong>${term}</strong>`, text]),
-          className: 'compact cards-mobile',
-        }),
+        body: `
+          ${dataTable({
+            columns: [{ label: 'Figure' }, { label: 'What it means' }],
+            rows: [
+              ['Questions available', 'Unique questions stored in your bank. Duplicate imports do not increase the useful total.'],
+              ['Unique questions attempted', 'Questions with at least one recorded attempt. Answering the same question five times still counts once here.'],
+              ['Total attempts', 'Every recorded answer event, including repeats, skips and unscored attempts.'],
+              ['First-attempt accuracy', 'Correct share of scored <em>first</em> attempts. Repeats cannot inflate it.'],
+              ['Accuracy (all attempts)', 'Correct share of all scored attempts, repeats included.'],
+              ['Small samples', 'Fewer than 3 scored answers is displayed as “insufficient evidence”; a weak/strong verdict needs at least 5.'],
+              ['Unscored', 'A question with no usable answer key is excluded from the score rather than counted wrong.'],
+              ['Question frequency', 'How often a topic appears <em>in your imported bank</em>. A study aid only — never a prediction.'],
+            ].map(([term, text]) => [`<strong>${term}</strong>`, text]),
+            className: 'compact cards-mobile',
+          })}
+          <details class="disclosure mt-3"><summary>Where a number came from</summary>
+            <p class="small">Where a number came from is stated rather than implied:</p>
+            <div class="row mb-2">${sourceChip('measured')} ${sourceChip('derived')} ${sourceChip('unavailable')} ${sourceChip('synthetic')} ${sourceChip('supplied')} ${sourceChip('verified')} ${sourceChip('disputed')}</div>
+            <div class="row mb-2">${evidenceMeter(1)} ${evidenceMeter(3)} ${evidenceMeter(5)}</div>
+            <p class="small mb-0">Every question carries two keys and they are never mixed up: the <strong>supplied key</strong> (what the source said, never overwritten) and a <strong>verified answer</strong> you can add with evidence. Three rules are the same in every test — confidence marking is always optional, a verified answer is preferred over a supplied key, and a missing or disputed key is judged with the supplied answer and flagged in the report.</p>
+          </details>`,
       })}
-
-      ${card({
-        title: 'Provenance vocabulary',
-        body: `<p class="small">Where a number came from is stated rather than implied:</p>
-          <div class="row mb-2">${sourceChip('measured')} ${sourceChip('derived')} ${sourceChip('unavailable')} ${sourceChip('synthetic')} ${sourceChip('supplied')} ${sourceChip('verified')} ${sourceChip('disputed')}</div>
-          <div class="row mb-2">${evidenceMeter(1)} ${evidenceMeter(3)} ${evidenceMeter(5)}</div>
-          <p class="small mb-0">Every question carries two keys and they are never mixed up: the <strong>supplied key</strong> (what the source said, never overwritten) and a <strong>verified answer</strong> you can add with evidence. Three rules are the same in every test — confidence marking is always optional, a verified answer is preferred over a supplied key, and a missing or disputed key is judged with the supplied answer and flagged in the report.</p>`,
-      })}`;
+`;
   },
 
   async mount(ctx, root) {

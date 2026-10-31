@@ -65,8 +65,10 @@ export default {
       })}
 
       ${card({
-        title: 'Default scoring (used when no paper rules apply)',
+        title: 'Practice defaults',
+        subtitle: 'Used when a paper has no known rules of its own',
         body: `
+          <h3 class="card-section-title">Scoring</h3>
           <p class="small">Paper-specific rules always take priority when they are known. These defaults — the MPPSC +3 / −1 / 0 pattern out of the box — are used for every other quiz type and as a starting point you can override per test.</p>
           <div class="field-row">
             ${numberField('setMarksCorrect', 'Marks per correct answer', s.defaultScoring.marksPerCorrect, { step: '0.25' })}
@@ -74,12 +76,8 @@ export default {
             ${numberField('setMarksUnanswered', 'Marks for an unanswered question', s.defaultScoring.marksForUnanswered, { step: '0.25' })}
           </div>
           ${check('setNegative', 'Apply negative marking with the defaults above', s.defaultScoring.negativeMarkingEnabled)}
-          <p class="tiny muted">Scoring is deterministic: the same answers against the same rules always produce the same score. The rules used for every test are stored with that test and displayed in its report.</p>`,
-      })}
-
-      ${card({
-        title: 'Practice and repeat behaviour',
-        body: `
+          <p class="tiny muted">Scoring is deterministic: the same answers against the same rules always produce the same score. The rules used for every test are stored with that test and displayed in its report.</p>
+          <h3 class="card-section-title mt-4">Repeats and selection</h3>
           ${check('setPreferUnseen', 'Prefer questions I have never attempted when building practice sets', s.repeatPolicy.preferUnseen)}
           <div class="field-row">
             ${numberField('setCooldown', 'Cooldown before a question can repeat (days)', s.repeatPolicy.cooldownDays, { min: 0 })}
@@ -87,7 +85,8 @@ export default {
             ${numberField('setNearDup', 'Near-duplicate similarity threshold (0–1)', s.repeatPolicy.nearDuplicateThreshold, { step: '0.01', min: 0.3, max: 0.95, hint: 'Used when reporting possible duplicates at import. A higher value reports fewer matches.' })}
           </div>
           <p class="tiny muted mb-0">Repeats are handled by the cooldown above and by “prefer unseen”; there is no separate rule for custom sets.</p>`,
-      })}`;
+      })}
+    `;
 
     const revisionTab = `
       ${card({

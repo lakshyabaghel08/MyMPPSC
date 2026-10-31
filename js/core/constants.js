@@ -5,7 +5,7 @@
 
 export const APP_NAME = 'MyMPPSC';
 export const APP_TITLE = 'MyMPPSC — MPPSC Prelims Preparation';
-export const APP_VERSION = '1.0.0';
+export const APP_VERSION = '1.1.0';
 
 /** Question-bank interchange schema version supported by this build. */
 export const SUPPORTED_SCHEMA_MAJOR = 1;

@@ -65,27 +65,31 @@ function paperRow({ paper, summary }, unfinishedByPaper) {
       <p class="m-0">${esc(paper.exam || 'Examination not stated')}${paper.year ? ` · ${esc(String(paper.year))}` : ''}${
         paper.set_code ? ` · set ${esc(paper.set_code)}` : ''
       }${paper.paper_code ? ` · ${esc(paper.paper_code)}` : ''}</p>
-      <p class="m-0 mt-1">${
+      <p class="m-0 mt-1">${paper.duration_minutes ? `Duration: ${esc(String(paper.duration_minutes))} minutes. ` : 'Duration not recorded. '}${
         hasScoring
           ? `Scoring: +${fmtMarks(resolved.rules.marks_per_correct)} per correct${
               resolved.rules.negative_marking_enabled ? `, −${fmtMarks(resolved.rules.negative_marks_per_incorrect)} per incorrect` : ', no negative marking'
             }, ${fmtMarks(resolved.rules.marks_for_unanswered)} unanswered.`
           : 'Scoring rules are not known for this paper yet.'
       }${isLatestPractice ? ' Current-pattern practice policy — not a historical-rule claim.' : ''}</p>
+      <p class="m-0 mt-1 text-soft">${esc(scheme)}${summary.present ? ` · ${String(summary.present)} question(s) in this paper` : ''}</p>
       <p class="m-0 mt-1">${summary.bilingual || 0} question(s) carry both English and Hindi text.${flags.length ? ` ${flags.join(' ')}` : ''}</p>
       <div class="row tight mt-2">
         <button class="btn btn-sm" type="button" data-action="paper-details" data-paper="${esc(paper.paper_id)}">Open the question list</button>
       </div>
     </div>`;
 
+  // Four columns carry the decision: which paper, how big, how you did, start.
+  // Duration, scoring policy and source metadata live in the row's Details
+  // panel, where a reader comparing papers can open exactly the one they need.
   return [
-    esc(String(paper.year ?? '—')),
-    `<strong>${esc(paper.paper_name || paper.paper_id)}</strong>
-     <div class="tiny muted">${isLatestPractice ? 'latest pattern · practice only' : 'source paper'}</div>
-     ${detail}`,
-    `${String(summary.present)}<div class="tiny muted">${summary.bilingual ? `${summary.bilingual} bilingual` : 'single language'}</div>`,
-    paper.duration_minutes ? `${esc(String(paper.duration_minutes))} min` : '<span class="soft">—</span>',
-    `${scheme}<div class="tiny muted">${isLatestPractice ? 'practice policy' : 'from the paper'}</div>`,
+    `<div class="paper-cell">
+      <strong>${esc(paper.year ? `MPPSC ${paper.year}` : paper.paper_name || paper.paper_id)}</strong>
+      <div class="tiny muted">${esc(paper.paper_name || paper.paper_id)}${paper.set_code ? ` · set ${esc(paper.set_code)}` : ''}</div>
+      <div class="tiny muted">${isLatestPractice ? 'latest pattern · practice only' : 'source paper'}</div>
+      ${detail}
+    </div>`,
+    `${String(summary.present)}<div class="tiny muted">${summary.bilingual ? 'bilingual' : 'single language'}</div>`,
     best
       ? `${esc(fmtMarks(best.score))} / ${esc(fmtMarks(best.max_marks))}<div class="tiny muted">${esc(fmtPct(best.accuracy, 0))} · ${esc(fmtDate(best.at))}</div>`
       : '<span class="soft">not attempted</span>',
@@ -199,9 +203,9 @@ export default {
     return `
       ${screenHead({
         title: 'PYQ Test Centre',
-        purpose: 'Every stored paper in one table: questions, duration, scoring and your best attempt. Start a full simulation, or resume one still in progress.',
-        primary: '<button class="btn btn-primary" type="button" data-action="practise-now">Practise now</button>',
-        secondary: '<a class="btn btn-sm" href="#/topic">Topic &amp; custom practice</a>',
+        purpose: 'Full previous-year simulations in their stored order. Start a paper, or pick up one still in progress.',
+        primary: '<button class="btn btn-primary" type="button" data-action="practise-now">Quick practice</button>',
+        secondary: '<a class="btn btn-sm btn-quiet" href="#/topic">Topic &amp; custom</a>',
       })}
 
       ${card({
@@ -215,11 +219,8 @@ export default {
           ${filterRow}
           ${dataTable({
             columns: [
-              { label: 'Year' },
               { label: 'Paper' },
               { label: 'Questions', num: true },
-              { label: 'Duration' },
-              { label: 'Scheme' },
               { label: 'Your best' },
               { label: 'Action' },
             ],
@@ -228,7 +229,7 @@ export default {
             className: 'compact cards-mobile paper-table',
           })}
           ${hidden > 0 ? `<div class="show-all-row"><button class="btn btn-sm" type="button" data-action="show-all">Show all ${total} papers <span class="muted">(+${hidden})</span></button></div>` : ''}`,
-        footer: `<span class="tiny">Rules unknown: ${paperSummaries.filter(({ summary }) => !summary.scoringKnown).length} paper(s). A paper is never scored with guessed rules — you are asked to configure them first.</span>`,
+        footer: `<span class="tiny">${paperSummaries.filter(({ summary }) => !summary.scoringKnown).length} paper(s) have unknown scoring rules. A paper is never scored with guessed rules — you are asked to configure them first.</span>`,
       })}`;
   },
 

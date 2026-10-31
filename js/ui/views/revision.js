@@ -11,7 +11,6 @@ import {
   esc,
   badge,
   card,
-  tile,
   notice,
   dataTable,
   emptyState,
@@ -156,29 +155,12 @@ export default {
     return `
       ${screenHead({
         title: 'Revision Centre',
-        purpose: 'Questions scheduled from your own recorded outcomes, with the reason for each date. Everything here can be inspected and overridden.',
+        purpose: `${buckets.overdue.length + buckets.dueToday.length} question${buckets.overdue.length + buckets.dueToday.length === 1 ? '' : 's'} due now${buckets.overdue.length ? ` · ${buckets.overdue.length} overdue` : ''}. Each date comes from your own recorded outcome, and every one can be inspected or overridden.`,
         primary: `<button class="btn btn-primary" type="button" data-action="revise-due" ${buckets.dueToday.length + buckets.overdue.length ? '' : 'disabled'}>
             Start revision (${Math.min(revision.REVISION_SESSION_CAP, buckets.dueToday.length + buckets.overdue.length)} of ${buckets.dueToday.length + buckets.overdue.length} due)
           </button>`,
         secondary: '<button class="btn btn-sm" type="button" data-action="add-manual">Add a question</button>',
       })}
-
-      <div class="grid tiles mb-4">
-        ${tile({ label: 'Due today', value: String(buckets.dueToday.length), tone: buckets.dueToday.length ? 'warn' : '' })}
-        ${tile({ label: 'Overdue', value: String(buckets.overdue.length), sub: 'scheduled for an earlier day', tone: buckets.overdue.length ? 'bad' : 'ok' })}
-        ${tile({ label: 'Upcoming', value: String(buckets.upcoming.length), sub: 'scheduled ahead' })}
-        ${tile({ label: 'Mastered', value: String(records.filter((r) => r.state === 'mastered').length), sub: `of ${records.length} tracked question(s)` })}
-      </div>
-
-      ${effectiveness.withHistory
-        ? card({
-            title: 'Is revision working?',
-            subtitle: `${effectiveness.withHistory} question(s) with at least two scored attempts`,
-            body: `
-              ${progressBar(effectiveness.improved / effectiveness.withHistory, 'ok')}
-              <p class="small mt-2 mb-0">${effectiveness.improved} improved (wrong → right) · ${effectiveness.worsened} declined (right → wrong) · ${effectiveness.unchanged} unchanged</p>`,
-          })
-        : notice('There is not yet enough attempt history to judge whether revision is working. At least two scored attempts are needed on a question.', 'info')}
 
       ${card({
         title: `Queue (${filtered.length} of ${records.length})`,
@@ -214,27 +196,31 @@ export default {
       })}
 
       ${card({
-        title: 'Upcoming load',
-        subtitle: 'Questions falling due from today onwards',
-        body: dataTable({
-          columns: [{ label: 'Date' }, { label: 'Questions due', num: true }],
-          rows: Array.from(upcomingByDay.entries())
-            .sort((a, b) => (a[0] < b[0] ? -1 : 1))
-            .slice(0, 14)
-            .map(([date, count]) => [esc(fmtDate(date)), String(count)]),
-          className: 'compact',
-        }),
-      })}
-
-      ${card({
-        title: 'Revision statistics',
+        title: 'Schedule health',
+        info: cardInfo('How the revision schedule is decided', rulesBody()),
         body: `
           <div class="grid tiles">
-            ${tile({ label: 'Tracked questions', value: String(records.length), sub: `${Math.round((records.length / Math.max(1, metas.length)) * 100)}% of the bank` })}
-            ${tile({ label: 'Average interval', value: `${Math.round(records.reduce((a, r) => a + (r.interval_days || 0), 0) / records.length)} days`, sub: 'across tracked questions' })}
-            ${tile({ label: 'Lapses', value: String(records.reduce((a, r) => a + (r.lapses || 0), 0)), sub: 'wrong or unanswered after being scheduled' })}
-            ${tile({ label: 'Revision accuracy', value: Number.isNaN(revisionAccuracy) ? '—' : `${Math.round(revisionAccuracy * 100)}%`, sub: 'all scored attempts, repeats included' })}
-          </div>`,
+            <div class="tile"><span class="tile-label">Tracked</span><span class="tile-value">${records.length}</span><span class="tile-sub">${Math.round((records.length / Math.max(1, metas.length)) * 100)}% of the bank</span></div>
+            <div class="tile"><span class="tile-label">Average interval</span><span class="tile-value">${Math.round(records.reduce((a, r) => a + (r.interval_days || 0), 0) / records.length)} <small>days</small></span><span class="tile-sub">across tracked questions</span></div>
+            <div class="tile"><span class="tile-label">Lapses</span><span class="tile-value">${records.reduce((a, r) => a + (r.lapses || 0), 0)}</span><span class="tile-sub">wrong or unanswered after scheduling</span></div>
+            <div class="tile"><span class="tile-label">Revision accuracy</span><span class="tile-value">${Number.isNaN(revisionAccuracy) ? '—' : `${Math.round(revisionAccuracy * 100)}%`}</span><span class="tile-sub">scored attempts, repeats included</span></div>
+          </div>
+          ${
+            effectiveness.withHistory
+              ? `<div class="mt-3"><p class="quiet-note">Change between first and latest attempt across ${effectiveness.withHistory} question(s)</p>${progressBar(effectiveness.improved / effectiveness.withHistory, 'ok')}
+                 <p class="small mt-2 mb-0">${effectiveness.improved} improved (wrong → right) · ${effectiveness.worsened} declined (right → wrong) · ${effectiveness.unchanged} unchanged</p></div>`
+              : `<p class="quiet-note mt-2">Not enough attempt history yet to judge whether revision is working. At least two scored attempts are needed on a question.</p>`
+          }
+          <details class="disclosure mt-3"><summary>Upcoming load (${upcomingByDay.size} day(s) ahead)</summary>
+            ${dataTable({
+              columns: [{ label: 'Date' }, { label: 'Questions due', num: true }],
+              rows: Array.from(upcomingByDay.entries())
+                .sort((a, b) => (a[0] < b[0] ? -1 : 1))
+                .slice(0, 14)
+                .map(([date, count]) => [esc(fmtDate(date)), String(count)]),
+              className: 'compact',
+            })}
+          </details>`,
       })}
 `;  },
 

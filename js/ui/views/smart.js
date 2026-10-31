@@ -13,7 +13,7 @@
 import { STORES } from '../../core/constants.js';
 import * as db from '../../core/db.js';
 import { state } from '../../core/state.js';
-import { esc, card, notice, dataTable, tile, toast, emptyState, cardInfo, screenHead } from '../components.js';
+import { esc, card, notice, dataTable, toast, emptyState, cardInfo, screenHead } from '../components.js';
 import { allAttempts } from '../../services/attempts.js';
 import { buildAttemptSummary, smartPracticePlan, SMART_BUCKETS, computeTopicStats } from '../../services/select.js';
 import { configFields, readConfig, mountConfigFields, startPracticeTest, currentAttemptSummary } from './shared.js';
@@ -73,28 +73,18 @@ export default {
     return `
       ${screenHead({
         title: 'Smart Practice',
-        purpose: 'A session assembled from your recorded performance: what is due for revision, what you keep getting wrong, what you skipped, and what you have never seen.',
+        purpose: 'One session assembled from what is due, what you keep getting wrong, what you skipped and what you have never seen.',
         primary: `<button class="btn btn-primary" type="button" id="startSmart">Start ${plan.questionIds.length}-question session</button>`,
-        secondary: '<a class="btn btn-sm" href="#/topic">Build it myself</a>',
+        secondary: '<a class="btn btn-sm btn-quiet" href="#/topic">Build it myself</a>',
       })}
-
-      <div class="grid tiles mb-4">
-        ${tile({ label: 'Questions due for revision', value: String(plan.counts.revisionDue), sub: 'due today or overdue', tone: plan.counts.revisionDue ? 'accent' : '', source: 'derived', where: 'Scheduled from attempt history' })}
-        ${tile({ label: 'Repeated mistakes', value: String(plan.counts.repeatedMistakes), sub: 'wrong twice or wrong most recently', tone: plan.counts.repeatedMistakes ? 'warn' : '', source: 'measured', where: 'From local Mistake Book' })}
-        ${tile({ label: 'Never attempted', value: String(plan.counts.unseen), sub: `of ${metas.length} stored questions`, source: 'measured', where: 'Zero recorded attempts' })}
-        ${tile({ label: 'Weak topics', value: String(plan.counts.weakTopics), sub: 'at least 3 judged answers each', source: 'derived', where: 'Min 3 judged & low accuracy' })}
-      </div>
 
       ${card({
         title: 'How this session will be built',
         count: `${plan.questionIds.length} selected`,
-        info: cardInfo('About this plan', '<p class="small m-0">Historical question frequency is a study-prioritisation aid only. It is not evidence about what a future examination will contain.</p>'),
         body: `
-          ${dataTable({ columns: [{ label: 'Source of questions' }, { label: 'Available', num: true }, { label: 'In this session', num: true }, { label: 'Why' }], rows: bucketRows, className: 'compact' })}
-          <div class="row mt-3">
-            <label class="check m-0"><input type="checkbox" id="smartOverrideRepeats" ${viewState.overrideRepeats ? 'checked' : ''} /><span>Override repeat rules — allow questions I saw recently</span></label>
-            <label class="check m-0"><input type="checkbox" id="smartIncludeDemo" ${viewState.includeDemonstration ? 'checked' : ''} /><span>Include demonstration questions</span></label>
-          </div>
+          <p class="settings-summary">${plan.counts.revisionDue} due for revision · ${plan.counts.repeatedMistakes} repeated mistake(s) · ${plan.counts.unseen} never attempted · ${plan.counts.weakTopics} weak topic(s). Selection re-weights these sources as you practise.</p>
+          ${dataTable({ columns: [{ label: 'Source of questions' }, { label: 'Available', num: true }, { label: 'In this session', num: true }, { label: 'Why' }], rows: bucketRows, className: 'compact cards-mobile' })}
+          <p class="quiet-note mt-2">Historical question frequency is a study-prioritisation aid only — it is not evidence about what a future examination will contain.</p>
           <details class="disclosure mt-3"><summary>Why this session was generated (${plan.explain.length} point(s))</summary><ul class="small">${plan.explain.map((line) => `<li>${esc(line)}</li>`).join('')}</ul></details>
         `,
       })}
@@ -102,18 +92,22 @@ export default {
       ${card({
         title: 'Session settings',
         body: `${configFields({ paper: null, defaultCount: viewState.count, maxCount: metas.length, allowCustomScoring: true })}
-        <p class="tiny muted mb-0">${plan.questionIds.length} question(s) will be included. The plan is rebuilt from scratch each time you change the size, so the number above is the session you will get.</p>`,
-      })}
-
-      ${card({
-        title: 'Topics driving this session',
-        body: weakTopicRows.length
-          ? dataTable({
-              columns: [{ label: 'Topic' }, { label: 'Subject' }, { label: 'Judged answers', num: true }, { label: 'Accuracy', num: true }],
-              rows: weakTopicRows.map((t) => [esc(t.topic), esc(t.subject), `${String(t.scored)}`, `${Math.round(t.accuracy * 100)}%`]),
-              className: 'compact',
-            })
-          : notice('Not enough judged answers exist yet to call any topic weak. Smart practice is therefore weighted towards unseen questions and due revisions.', 'info'),
+        <p class="tiny muted mb-0">${plan.questionIds.length} question(s) will be included. The plan is rebuilt each time you change the size.</p>
+        <div class="row mt-2">
+          <label class="check m-0"><input type="checkbox" id="smartOverrideRepeats" ${viewState.overrideRepeats ? 'checked' : ''} /><span>Allow questions I saw recently</span></label>
+          <label class="check m-0"><input type="checkbox" id="smartIncludeDemo" ${viewState.includeDemonstration ? 'checked' : ''} /><span>Include demonstration questions</span></label>
+        </div>
+        <details class="disclosure mt-2"><summary>Topics driving this session</summary>
+          ${
+            weakTopicRows.length
+              ? dataTable({
+                  columns: [{ label: 'Topic' }, { label: 'Subject' }, { label: 'Judged', num: true }, { label: 'Accuracy', num: true }],
+                  rows: weakTopicRows.map((t) => [esc(t.topic), esc(t.subject), `${String(t.scored)}`, `${Math.round(t.accuracy * 100)}%`]),
+                  className: 'compact',
+                })
+              : notice('Not enough judged answers exist yet to call any topic weak. Smart practice is therefore weighted towards unseen questions and due revisions.', 'info')
+          }
+        </details>`,
       })}`;
   },
 
