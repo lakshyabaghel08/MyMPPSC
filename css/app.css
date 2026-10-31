@@ -8341,7 +8341,7 @@ body.runner-focus .runner { max-width: 66ch; }
 }
 
 .margin-note p + p { margin-top: 7px; }
-.margin-note a { color: var(--link); }
+.margin-note a { color: var(--accent); }
 
 /* =========================================================================
    14e. Report — a marked paper
