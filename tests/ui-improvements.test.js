@@ -304,7 +304,11 @@ test('the bank panel’s numbers are the Question Bank screen’s numbers', asyn
     await settle();
   }
   click($$('#bankTabs .tab').find((t) => t.dataset.tab === 'integrity'));
-  assert.match(viewText(), new RegExp(`Answer keys present ${keys[1]}/${keys[2]}`), 'same answer-key coverage as the Integrity tab');
+  assert.match(
+    viewText(),
+    new RegExp(`${keys[1]}/${keys[2]} questions carry a usable answer key`),
+    'same answer-key coverage as the Integrity tab',
+  );
   click($$('#bankTabs .tab').find((t) => t.dataset.tab === 'questions'));
 });
 

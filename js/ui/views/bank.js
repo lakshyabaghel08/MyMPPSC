@@ -652,14 +652,36 @@ export default {
     const unknownRulesPapers = papers.filter((p) => !p.scoring?.rules_known);
     const placeholderPapers = papers.filter((p) => p.placeholder);
 
+    // The integrity panel answers one question — what needs attention — so it
+    // lists the things that are wrong and says nothing about the figures that
+    // are already correct. An all-clear is a sentence, not five zero tiles.
+    const attention = [
+      { n: missingKeys.length, what: 'question(s) have no usable answer key', note: 'They are not judged and never counted wrong.' },
+      { n: disputed.length, what: 'key(s) are disputed', note: 'Judged with the supplied key, and flagged in the report.' },
+      { n: withoutExplanation.length, what: 'question(s) have no explanation', note: 'Readable, but the reasoning is missing.' },
+      { n: summary.unclassified, what: 'question(s) are unclassified', note: 'No subject or topic, so topic analytics skip them.' },
+      { n: unknownRulesPapers.length, what: 'paper(s) have unknown scoring rules', note: 'A paper is never scored with guessed rules.' },
+    ].filter((row) => row.n > 0);
+
     const integrityTab = `
-      <div class="grid tiles">
-        ${tile({ label: 'Answer keys present', value: `${metas.length - missingKeys.length}/${metas.length}`, sub: `${missingKeys.length} without any usable key`, tone: missingKeys.length ? 'warn' : 'ok' })}
-        ${tile({ label: 'Disputed keys', value: String(disputed.length), sub: 'flagged for review', tone: disputed.length ? 'bad' : 'ok' })}
-        ${tile({ label: 'Explanations present', value: String(summary.withExplanation), sub: `${withoutExplanation.length} without an explanation`, tone: withoutExplanation.length ? 'warn' : 'ok' })}
-        ${tile({ label: 'Unclassified questions', value: String(summary.unclassified), sub: 'no subject/topic — excluded from topic analytics', tone: summary.unclassified ? 'warn' : 'ok' })}
-        ${tile({ label: 'Papers with unknown rules', value: String(unknownRulesPapers.length), sub: 'cannot be scored until configured', tone: unknownRulesPapers.length ? 'warn' : 'ok' })}
-      </div>
+      <p class="facts-line">
+        <span><b>${metas.length - missingKeys.length}/${metas.length}</b> questions carry a usable answer key</span>
+        <span><b>${summary.withExplanation}/${metas.length}</b> carry an explanation</span>
+        <span><b>${metas.length - summary.unclassified}/${metas.length}</b> are classified</span>
+      </p>
+      ${
+        attention.length
+          ? card({
+              title: 'What needs attention',
+              body: `<ul class="handover">${attention
+                .map((row) => `<li><span class="attention-count">${row.n}</span><span><strong>${esc(row.what)}</strong><small>${esc(row.note)}</small></span></li>`)
+                .join('')}</ul>`,
+            })
+          : card({
+              title: 'The bank is complete',
+              body: `<p class="quiet-note m-0">Every stored question has a usable key and an explanation, every question is classified, and every paper has scoring rules you can rely on.</p>`,
+            })
+      }
 
       ${card({
         title: 'Papers',
@@ -791,7 +813,7 @@ export default {
     return `
       ${screenHead({
         title: 'Question Bank &amp; Imports',
-        purpose: 'The question bank is data, not code: import a validated file, correct what the source got wrong, and export it again — nothing leaves this device.',
+        purpose: 'The bank is data, not code: import a validated file, correct what the source got wrong, export it again — nothing leaves this device.',
         primary: '<button class="btn btn-primary" type="button" data-action="bank-import">Import a file</button>',
         secondary: '<button class="btn btn-sm" type="button" data-action="bank-export">Export the bank</button>',
       })}

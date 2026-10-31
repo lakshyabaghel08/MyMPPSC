@@ -582,3 +582,59 @@ bank panel and the frequency/priority tables) and the Bank screen 1,638 (questio
   controls, not containers, and restyling them would be the cosmetic change this phase exists to avoid. Their words and
   controls were left alone on purpose rather than changed for the look of it.
 - `docs/mockups/phase3.html` stays as the artboard of the kit; the app CSS now implements it.
+
+## 9. Phase 4 — section by section, screen by screen
+
+Phase 3 gave the app one voice. Phase 4 takes each section in turn, asks what
+that screen is actually *for*, and rebuilds its composition around that answer
+while keeping every figure, id and behaviour it had.
+
+### 9.1 Practice (`#/topic`, `#/custom`)
+
+The screen is a desk with two halves: a ruled sheet of the bank on the left, the
+sitting being assembled on the right.
+
+- One start button, at the foot of the session card. The header's duplicate
+  start and the repeated count pill are gone.
+- The picker reads top to bottom: search → **one** bar holding the pool size and
+  "clear the selection" → what is ticked → the subjects. Counts per subject are
+  not explained again under the heading.
+- Subject groups are built when opened: the first paint no longer contains 60
+  collapsed topic checkboxes (898 words / 151 controls → 544 / 81).
+- The session pane orders itself the way a decision is made: basket → size →
+  rules → **pick questions by** and **shuffle the order** (with a one-line
+  statement of what that arrangement means) → start.
+- "How selection works" moved into the ⓘ toggle; the sentence about authentic
+  papers stays, once, beside Start.
+
+### 9.2 Smart Practice (`#/smart`)
+
+The destination of "Let the app choose" now shows the plan as a ledger: one
+line per source that contributes, the number it contributes, a ten-tick
+proportion, and what the source means. Zero-contribution sources are not
+listed. Weakest topics are five lines of name · subject · accuracy, not a
+table. The caution about question frequency stays, as one sentence. Settings
+sit beside the plan in the same session card the practice screen uses.
+
+### 9.3 Insights (`#/analytics`, `#/pyq-analysis`)
+
+- "Where to look next" leads the performance panel: the reader came for the next
+  action, not for a table.
+- Subject and topic tables keep first-attempt accuracy only; all-attempt accuracy
+  is stated once in the facts line. The duplicated "n of them seen" subtitle and
+  the six-column width are gone.
+- "Signals for the next session" became a handover list — two lines that name the
+  Mistake Book and the Revision Centre with their live counts, plus the revision
+  effectiveness sentence. The question-id tables live on those screens.
+
+### 9.4 Question Bank (`#/bank`)
+
+The Integrity tab answers one question — what needs attention — so it lists only
+what is wrong, with the consequence of each, and states coverage as a facts line
+(keyed · explained · classified). An all-clear is one sentence, not five zero
+tiles.
+
+### 9.5 Where this leaves the density audit
+
+Across the thirteen routes, jsdom measures 11,969 words, **2** card containers,
+704 tiny nodes and 27 badges (Phase-3 start: 14,526 / 53 / 924 / 224).
