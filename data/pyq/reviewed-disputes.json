@@ -187,6 +187,24 @@
       "status": "unresolved",
       "reason": "Two rival formulations of the essential features of cyber crime appear in Indian texts: computer technology as modus operandi with the intangibility of the environment, and offender skill with victim ignorance of technology. The paper keys B and that is retained, with A recorded as an equally defensible alternative.",
       "raised_by": "2018 PYQ final answer audit"
+    },
+    "MPPSC-2017-043": {
+      "is_disputed": true,
+      "status": "unresolved",
+      "reason": "The item asks which country has never won the men's T20 World Cup. Australia was the only such side among the four options when the paper was set and B is keyed, but Australia won the 2021 edition, so the question is time-dependent and no option is true today.",
+      "raised_by": "2017 PYQ final answer audit"
+    },
+    "MPPSC-2017-054": {
+      "is_disputed": true,
+      "status": "unresolved",
+      "reason": "The paper keys Mahmud Shah Khilji as the builder of the Jantar Mahal at Mandu, the answer given in most published MPPSC keys, but heritage descriptions record no palace of that name and credit the Mandu ship palace (Jahaz Mahal) to Ghiyasuddin Khilji, who is not among the options. A is retained as the paper answer.",
+      "raised_by": "2017 PYQ final answer audit"
+    },
+    "MPPSC-2017-059": {
+      "is_disputed": true,
+      "status": "unresolved",
+      "reason": "The tenure of the NHRC Chairperson was five years under the Protection of Human Rights Act 1993 as it stood in 2017, which the paper keys as C, but the 2019 amendment reduced it to three years. The correct letter therefore depends on the date from which the item is read.",
+      "raised_by": "2017 PYQ final answer audit"
     }
   }
 }

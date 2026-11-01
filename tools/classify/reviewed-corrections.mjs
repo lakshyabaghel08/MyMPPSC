@@ -158,7 +158,7 @@ export function applyReviewedCorrections(intake, bundle, opts = {}) {
   // 2. repaired option texts
   for (const id of keysOf(Object.fromEntries(bundle.options))) {
     const repaired = bundle.options.get(id);
-    if (deferIds.has(id)) { deferred.options.push(id); continue; }
+    if (deferIds.has(id)) { for (const key of repaired.keys()) deferred.options.push(`${id}:${key}`); continue; }
     const question = requireQuestion(id, 'an option correction');
     const options = question.language_variants?.en?.options || [];
     let touched = 0;
@@ -249,7 +249,7 @@ export function applyReviewedCorrections(intake, bundle, opts = {}) {
     rejected,
     declared: {
       answer_corrections: bundle.answers.size,
-      option_corrections: bundle.options.size,
+      option_corrections: [...bundle.options.values()].reduce((total, repaired) => total + repaired.size, 0),
       narrative_rewritten: bundle.rewrittenIds.size,
       option_reasoning_complete: bundle.completeIds.size,
       disputes: bundle.disputes.size,

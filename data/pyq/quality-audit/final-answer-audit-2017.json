@@ -1,0 +1,1998 @@
+{
+  "report": "Final answer audit of MPPSC 2017 Prelims Paper-I",
+  "audited_at": "2026-11-01",
+  "scope": {
+    "years": [
+      2017
+    ],
+    "papers": [
+      "MPPSC-2017-P1"
+    ],
+    "source": "data/pyq/source/2013-18/MPPSC_Prelims_2017_QBank_Source.json"
+  },
+  "method": "Every one of the 100 questions was re-read and answered independently; the printed key was compared with the stored answer; each explanation was rebuilt to a four-part standard (concept and justification, per-option reasoning tied to that option text, revision facts, takeaway). A correction is recorded only where the evidence contradicts the key and another option is demonstrably right; items with more than one defensible answer, an outdated fact or a contested attribution are recorded as ambiguous instead of being forced to a letter. Scan debris in option text was repaired only where the printed paper makes the intended wording certain.",
+  "summary": {
+    "by_year": {
+      "2017": {
+        "reviewed": 100,
+        "confirmed": 96,
+        "corrected": 1,
+        "ambiguous": 3
+      }
+    },
+    "total": {
+      "reviewed": 100,
+      "confirmed": 96,
+      "corrected": 1,
+      "ambiguous": 3
+    },
+    "corrected_ids": [
+      "MPPSC-2017-100"
+    ],
+    "ambiguous_ids": [
+      "MPPSC-2017-043",
+      "MPPSC-2017-054",
+      "MPPSC-2017-059"
+    ],
+    "answer_corrections": [
+      {
+        "id": "MPPSC-2017-100",
+        "from": [
+          "B"
+        ],
+        "to": [
+          "C"
+        ]
+      }
+    ],
+    "option_repairs": [
+      {
+        "id": "MPPSC-2017-030",
+        "key": "A",
+        "from": "Vitamin A- Maculan",
+        "to": "Vitamin A- McCollum"
+      },
+      {
+        "id": "MPPSC-2017-030",
+        "key": "B",
+        "from": "Vitemin B- Maculan",
+        "to": "Vitamin B- McCollum"
+      },
+      {
+        "id": "MPPSC-2017-030",
+        "key": "C",
+        "from": "Vitemin C- James Lind",
+        "to": "Vitamin C- James Lind"
+      },
+      {
+        "id": "MPPSC-2017-051",
+        "key": "C",
+        "from": "The Government of India Act of 1935 [",
+        "to": "The Government of India Act of 1935"
+      },
+      {
+        "id": "MPPSC-2017-054",
+        "key": "D",
+        "from": "Hoshang Shah [P.T.O.",
+        "to": "Hoshang Shah"
+      },
+      {
+        "id": "MPPSC-2017-058",
+        "key": "C",
+        "from": "N. M. Lolchande",
+        "to": "N. M. Lokhande"
+      },
+      {
+        "id": "MPPSC-2017-077",
+        "key": "C",
+        "from": "Russin",
+        "to": "Russia"
+      }
+    ],
+    "explanations_rebuilt": 100,
+    "model_questions": [],
+    "printed_keys_compared": 100
+  },
+  "questions": [
+    {
+      "id": "MPPSC-2017-001",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 1,
+      "subject": "History",
+      "topic": "Medieval India",
+      "subtopic": "Delhi Sultanate",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Ghazi/Ghani Malik is Ghiyasuddin Tughlaq, founder of the Tughlaq dynasty in 1320; the printed 'Ghani' is a scan variant, so the dynastic question is unaffected and A stands.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-002",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 2,
+      "subject": "History",
+      "topic": "Ancient India",
+      "subtopic": null,
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Alexander Cunningham, first Director-General of the ASI in 1861, is the standard father of Indian archaeology; Marshall and Wheeler came later and Prinsep was an epigraphist.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-003",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 3,
+      "subject": "History",
+      "topic": "Medieval India",
+      "subtopic": "Mughal empire",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Akbar II gave Ram Mohan Roy the title Raja and later sent him to England as his envoy; no other option is chronologically possible.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-004",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 4,
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": "Acts and constitutional development",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "The 1909 Morley-Minto reforms legalised separate electorates for Muslims; decentralisation and dyarchy belong to 1919.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-005",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 5,
+      "subject": "History",
+      "topic": "Medieval India",
+      "subtopic": null,
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Muhammad Ghori defeated Jaichand of Kannauj of the Gahadavala line at Chandawar in 1194, as the stem states; the old explanation's 1193 date was the error and has been corrected.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-006",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 6,
+      "subject": "History",
+      "topic": "Medieval India",
+      "subtopic": "Delhi Sultanate",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Khilji 1290-1320 (about 30 years) is shorter than Sayyid 1414-1451 (about 37 years) and far shorter than Tughlaq and Lodi.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-007",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 7,
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": "Indian National Congress",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "The Indian National Congress was founded in December 1885 while Lord Dufferin was Viceroy (1884-1888).",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-008",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 8,
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": "Indian National Congress",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Abul Kalam Azad became Congress President in 1923 at the age of 35, the youngest ever; Nehru was 40 at Lahore in 1929.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-009",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 9,
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Population of India",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "1881 was the first synchronous census; the 1872 exercise was a scattered, non-synchronous attempt.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-010",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 10,
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": "Gandhian movements",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Nehru was in prison during the Second Round Table Conference in 1931; Desai, Pyarelal and Malaviya were in the Congress delegation.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-011",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 11,
+      "subject": "Geography",
+      "topic": "World Geography",
+      "subtopic": "International boundaries",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "The five Caspian littoral states are Russia, Kazakhstan, Turkmenistan, Iran and Azerbaijan; Iraq's coast is on the Persian Gulf.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-012",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 12,
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Rivers of India",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Kayal is the Malayalam term for Kerala's coastal backwater lagoons such as Vembanad and Ashtamudi.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-013",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 13,
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": "Landforms and their evolution",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "An inselberg is a residual hill of subaerial erosion in arid and savanna country, not a glacial form; the other three pairs are correct.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-014",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 14,
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": "Earthquakes and volcanoes",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Stromboli has erupted almost continuously for centuries and gives its name to Strombolian eruptions, so it is active.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-015",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 15,
+      "subject": "Environment",
+      "topic": "Pollution and climate change",
+      "subtopic": "Water pollution",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The Water (Prevention and Control of Pollution) Act was enacted in 1974 and created the central and state pollution control boards.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-016",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 16,
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Population of India",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Census 2011 density is 382 per sq km, up from 325 in 2001.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-017",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 17,
+      "subject": "Geography",
+      "topic": "Maps and location",
+      "subtopic": "Location",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Nathu La is on the Sikkim-China border; Arunachal's passes include Bum La and Diphu, so this pair is the mismatch.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-018",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 18,
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": "Landforms and their evolution",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "A peneplain is the end product of the normal cycle of river erosion, close to base level.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-019",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 19,
+      "subject": "Geography",
+      "topic": "Economic and human geography",
+      "subtopic": "Tribes of India",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "The Toda are a pastoral community of the Nilgiri Hills in Tamil Nadu, known for barrel-vaulted huts and buffalo-centred ritual.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-020",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 20,
+      "subject": "Geography",
+      "topic": "World Geography",
+      "subtopic": null,
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Ras Tanura is Saudi Aramco's refinery and crude export terminal on the Persian Gulf coast of Saudi Arabia.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-021",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 21,
+      "subject": "Science and Technology",
+      "topic": "Biology",
+      "subtopic": null,
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Papaver somniferum is the opium poppy; the other binomials are amla, sarpagandha and cinchona.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-022",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 22,
+      "subject": "Science and Technology",
+      "topic": "Health and diseases",
+      "subtopic": "Epidemics and pandemics",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The World Health Assembly declared smallpox eradicated in May 1980, after the last natural case in Somalia in 1977.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-023",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 23,
+      "subject": "Science and Technology",
+      "topic": "Biology",
+      "subtopic": null,
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "A bacteriophage is a virus that infects bacteria, literally a bacterium eater.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-024",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 24,
+      "subject": "Science and Technology",
+      "topic": "Biology",
+      "subtopic": "Cell biology",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Meiosis is best studied in anthers, where pollen mother cells divide synchronously and squash well.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-025",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 25,
+      "subject": "Science and Technology",
+      "topic": "Physics",
+      "subtopic": "Sound",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Sound travels fastest in solids because closely packed particles transmit vibration most quickly.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-026",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 26,
+      "subject": "Science and Technology",
+      "topic": "Biology",
+      "subtopic": null,
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "The lens focuses a real inverted image on the retina, which carries the photoreceptors.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-027",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 27,
+      "subject": "Science and Technology",
+      "topic": "Biology",
+      "subtopic": "Human excretory system",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "The kidneys filter nitrogenous waste into urine, which is an excretory function.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-028",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 28,
+      "subject": "Science and Technology",
+      "topic": "Health and diseases",
+      "subtopic": "Communicable diseases",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Malaria is caused by the protozoan Plasmodium, spread by the female Anopheles mosquito.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-029",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 29,
+      "subject": "Science and Technology",
+      "topic": "Physics",
+      "subtopic": "Heat and thermodynamics",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Convection needs a fluid that can flow, so it occurs in liquids and gases but not in solids or vacuum.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-030",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 30,
+      "subject": "Science and Technology",
+      "topic": "Biology",
+      "subtopic": "Nutrition and vitamins",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Vitamins A, B and D are credited to Elmer McCollum and vitamin C to James Lind, so the vitamin D-Paul Muller pair is the only mismatch; the option spellings Maculan, Vitemin and Paul muller are scan errors repaired to the paper's meaning.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-031",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 31,
+      "subject": "Science and Technology",
+      "topic": "Physics",
+      "subtopic": "Light and optics",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Lens power is the reciprocal of focal length in metres, measured in dioptres.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-032",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 32,
+      "subject": "Economy",
+      "topic": "Economy of Madhya Pradesh",
+      "subtopic": "Minerals of Madhya Pradesh",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Graphite's weakly bonded layers slide over one another, which makes it a dry lubricant.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-033",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 33,
+      "subject": "Environment",
+      "topic": "Pollution and climate change",
+      "subtopic": "Greenhouse gases",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Nitrous oxide, N2O, is the laughing gas used as an anaesthetic.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-034",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 34,
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": "Atmosphere and weather",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Lightning is an electrostatic discharge, so the keyed energy is electrical, with the heat that burns the tree as its effect.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-035",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 35,
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Other sports events",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Tajamul Islam of Tral, Kashmir, won the world kickboxing title in 2016 at the age of eight.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-036",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 36,
+      "subject": "Madhya Pradesh Special",
+      "topic": "Personalities and awards of Madhya Pradesh",
+      "subtopic": "Sports from Madhya Pradesh",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Sameer Dad of Bhopal is the India hockey player associated with Madhya Pradesh.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-037",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 37,
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Cricket",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "The Parsee Oriental Cricket Club of Bombay, founded in 1848, began organised Indian cricket.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-038",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 38,
+      "subject": "Madhya Pradesh Special",
+      "topic": "Schemes and institutions of Madhya Pradesh",
+      "subtopic": null,
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "The Roop Singh Stadium, named after the hockey Olympian, is the international cricket ground at Gwalior.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-039",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 39,
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Cricket",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Amitabh Vijayvargiya played 38 first-class matches for Madhya Pradesh between 1986-87 and 1993-94, so his sport is cricket.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-040",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 40,
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Cricket",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "The 1987 World Cup, co-hosted by India and Pakistan, was the Reliance World Cup.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-041",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 41,
+      "subject": "Current Affairs",
+      "topic": "Awards and honours",
+      "subtopic": "Sports awards",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Sachin Tendulkar received the Arjuna Award in 1994, before the Khel Ratna in 1997-98.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-042",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 42,
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Olympic and Asian Games",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "The first British Empire Games, later the Commonwealth Games, were held at Hamilton, Canada, in 1930.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-043",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 43,
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Cricket",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "ambiguous",
+      "note": "Australia had not won the men's T20 World Cup when the paper was set, which is why B is keyed; Australia won the title in 2021, so on current facts no option is true and the item is time-dependent.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-044",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 44,
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Olympic and Asian Games",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "London hosted the Olympics in 1908, 1948 and 2012; the 1968 Games were held in Mexico City.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-045",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 45,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Video conferencing carries audio and video between locations in real time, matching the stem's definition.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-046",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 46,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Opera, Vivaldi and Firefox are browsers, while Google Apps is a cloud productivity suite.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-047",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 47,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Crackers are unauthorised intruders, conventionally labelled black hat hackers.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-048",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 48,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "DuckDuckGo is a privacy-focused search engine, not a browser or a news publisher.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-049",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 49,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Ethernet, IEEE 802.3, is the standard wired local area network technology.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-050",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 50,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "A modem modulates outgoing digital data and demodulates incoming analog signals, so it converts both ways.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-051",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 51,
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": "Acts and constitutional development",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "The Government of India Act 1935 vested executive authority in Governors and the Governor-General on behalf of the Crown, the arrangement called constitutional autocracy; the stray bracket in option C is scan debris and has been removed.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-052",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 52,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Tim Berners-Lee invented the World Wide Web at CERN in 1989-91; Tomlinson is the email pioneer.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-053",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 53,
+      "subject": "Science and Technology",
+      "topic": "Physics",
+      "subtopic": "Motion and force",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Rolling friction and air resistance act opposite to the motion, which is why the ball decelerates to rest.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-054",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 54,
+      "subject": "History",
+      "topic": "Medieval India",
+      "subtopic": "Delhi Sultanate",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "ambiguous",
+      "note": "The paper keys Mahmud Shah Khilji for the Jantar Mahal, the answer repeated in most MPPSC keys, but heritage sources describe no palace under that name and credit the Mandu pleasure palace (Jahaz Mahal) to Ghiyasuddin Khilji, who is not an option; A is retained and the caveat is stated.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-055",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 55,
+      "subject": "History",
+      "topic": "Medieval India",
+      "subtopic": "Delhi Sultanate",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Ain-ul-Mulk Multani served Alauddin Khilji, Muhammad bin Tughlaq and Firoz Shah Tughlaq, so Iltutmish, who died in 1236, is the ruler he did not serve.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-056",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 56,
+      "subject": "Current Affairs",
+      "topic": "Appointments and personalities",
+      "subtopic": "Heads of state and government",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Angela Merkel was Germany's Chancellor, not the President of Cote d'Ivoire, whose president was Alassane Ouattara.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-057",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 57,
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": "Landforms and their evolution",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "The Ajanta hills lie wholly in Maharashtra, whereas the Aravali, Satpura and Sahyadri all cross several states.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-058",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 58,
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": null,
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "N. M. Lokhande organised the Bombay mill workers and founded the Bombay Mill Hands Association in 1890; 'Lolchande' in the paper is a scan error repaired here.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-059",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 59,
+      "subject": "Polity",
+      "topic": "Statutory and regulatory bodies",
+      "subtopic": "National Human Rights Commission",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "ambiguous",
+      "note": "The NHRC Chairperson's tenure was five years under the 1993 Act as it stood in 2017, which is the keyed answer; the 2019 amendment cut it to three years, so the correct letter depends on the date of the question.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-060",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 60,
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Cricket",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Joe Root is an England Test batsman and former captain, so his sport is cricket.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-061",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 61,
+      "subject": "Polity",
+      "topic": "Union Executive",
+      "subtopic": "Prime Minister and Council of Ministers",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Jacob Zuma was President of South Africa from 2009 to 2018.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-062",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 62,
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Other sports events",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Mohun Bagan Athletic Club was founded in 1889 and won the IFA Shield in 1911.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-063",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 63,
+      "subject": "Current Affairs",
+      "topic": "Appointments and personalities",
+      "subtopic": "Heads of state and government",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Tsai Ing-wen took office on 20 May 2016 as Taiwan's first woman president.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-064",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 64,
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Other sports events",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Novak Djokovic beat Andy Murray in the 2016 French Open final at Roland Garros.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-065",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 65,
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Other sports events",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Manohar Aich, 1952 Mr Universe in his height class, was a bodybuilder nicknamed Pocket Hercules.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-066",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 66,
+      "subject": "Economy",
+      "topic": "Agriculture and rural economy",
+      "subtopic": "Cropping patterns",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Ranjit Sub-1 and Bahadur Sub-17 are submergence-tolerant paddy varieties, not aircraft or submarines.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-067",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 67,
+      "subject": "Current Affairs",
+      "topic": "Appointments and personalities",
+      "subtopic": "Heads of state and government",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Rodrigo Duterte won the May 2016 Philippine presidential election and served from 2016 to 2022.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-068",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 68,
+      "subject": "Polity",
+      "topic": "State Government",
+      "subtopic": "Chief Minister and State Council of Ministers",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "West Bengal Governor Keshari Nath Tripathi administered the oath to Mamata Banerjee on 27 May 2016.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-069",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 69,
+      "subject": "Current Affairs",
+      "topic": "Science and technology current affairs",
+      "subtopic": "Technology launches",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Himachal Pradesh commissioned India's first State Data Centre, built on the green data centre concept.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-070",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 70,
+      "subject": "Current Affairs",
+      "topic": "National current affairs",
+      "subtopic": "National events",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Assam was the state where the BJP formed a government for the first time in 2016, under Sarbananda Sonowal.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-071",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 71,
+      "subject": "Art and Culture",
+      "topic": "Literature and languages",
+      "subtopic": "Literature of Madhya Pradesh",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Bhawani Prasad Mishra was born on 29 March 1913 at Tigaria village in Hoshangabad district, now Narmadapuram.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-072",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 72,
+      "subject": "Current Affairs",
+      "topic": "Appointments and personalities",
+      "subtopic": null,
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Admiral Sunil Lanba became the 23rd Chief of the Naval Staff on 31 May 2016.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-073",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 73,
+      "subject": "Current Affairs",
+      "topic": "International current affairs",
+      "subtopic": "International organisations",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Sunil Bharti Mittal was elected Chairman of the International Chamber of Commerce in June 2016, the first Indian to hold the post.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-074",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 74,
+      "subject": "Economy",
+      "topic": "Banking and finance",
+      "subtopic": "Commercial banks",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The State Bank of India was constituted on 1 July 1955 from the Imperial Bank of India under the SBI Act 1955.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-075",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 75,
+      "subject": "Polity",
+      "topic": "Constitutional bodies",
+      "subtopic": "Union Public Service Commission",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "B. S. Bassi, former Delhi Police Commissioner, was appointed a Member of the UPSC in May 2016.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-076",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 76,
+      "subject": "Current Affairs",
+      "topic": "International current affairs",
+      "subtopic": "Bilateral relations",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "President Pranab Mukherjee visited China in May 2016 and met President Xi Jinping and Premier Li Keqiang.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-077",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 77,
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Other sports events",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Ivan Dodig is a Croatian tennis player who partnered Sania Mirza in mixed doubles; 'Russin' in option C is a scan error repaired to Russia.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-078",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 78,
+      "subject": "Art and Culture",
+      "topic": "Literature and languages",
+      "subtopic": "Books and authors",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Suhel Seth's Mantras for Success, a book of interviews with Indian business leaders, was launched in London in June 2016.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-079",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 79,
+      "subject": "Art and Culture",
+      "topic": "Heritage Sites",
+      "subtopic": "Khajuraho group",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "The twelfth-century Parrot Lady sculpture from Khajuraho was returned by Canada in 2016.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-080",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 80,
+      "subject": "Art and Culture",
+      "topic": "Literature and languages",
+      "subtopic": "Books and authors",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Uttararamacharitam is by Bhavabhuti; Meghadutam, Kumarasambhavam and Ritusamharam are Kalidasa's.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-081",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 81,
+      "subject": "Madhya Pradesh Special",
+      "topic": "Schemes and institutions of Madhya Pradesh",
+      "subtopic": "Educational institutions",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Madhav Sangeet College, founded at Gwalior in 1918, is the oldest music college in Madhya Pradesh.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-082",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 82,
+      "subject": "Economy",
+      "topic": "International economy",
+      "subtopic": null,
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "A closed economy has no external trade, so it records neither exports nor imports.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-083",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 83,
+      "subject": "Economy",
+      "topic": "Indian Economy",
+      "subtopic": "Planning in India",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The Twelfth Five-Year Plan ran from 2012 to 2017 and was India's last Five-Year Plan.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-084",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 84,
+      "subject": "Economy",
+      "topic": "Indian Economy",
+      "subtopic": "Planning in India",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "India Vision 2020 was prepared by the S. P. Gupta Committee of the Planning Commission in 2002.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-085",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 85,
+      "subject": "Economy",
+      "topic": "International economy",
+      "subtopic": "International Monetary Fund",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "The IMF lends to its member countries only, normally through the central bank or finance ministry.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-086",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 86,
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Cricket",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "K. L. Rahul was Player of the Series in India's 3-0 one-day series win in Zimbabwe in 2016.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-087",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 87,
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Cricket",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "The IPL 2016 final was played at the M. Chinnaswamy Stadium in Bengaluru, Karnataka.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-088",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 88,
+      "subject": "Art and Culture",
+      "topic": "Literature and languages",
+      "subtopic": "Books and authors",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Rashmirekha is a poetry collection by Bal Krishna Sharma, who wrote as Naveen.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-089",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 89,
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": "Revolutionary movements",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Chandrashekhar Azad was born at Bhabhra village in Jhabua district in 1906.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-090",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 90,
+      "subject": "History",
+      "topic": "History of Madhya Pradesh",
+      "subtopic": "Paramara dynasty",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Gangeyadeva was a Kalachuri of Tripuri; Upendra, Munja and Udayaditya were Paramaras of Malwa.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-091",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 91,
+      "subject": "History",
+      "topic": "History of Madhya Pradesh",
+      "subtopic": "Chandela dynasty",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Dhangadeva ruled the Chandelas of Jejakabhukti, the dynasty of Khajuraho and Mahoba.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-092",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 92,
+      "subject": "Art and Culture",
+      "topic": null,
+      "subtopic": null,
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Habib Tanvir was born at Raipur in 1923 and founded Naya Theatre.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-093",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 93,
+      "subject": "Polity",
+      "topic": "Citizenship and civil rights",
+      "subtopic": null,
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Section 14 of the SC/ST (Prevention of Atrocities) Act 1989 provides for Special Courts and, after 2018, Exclusive Special Courts.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-094",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 94,
+      "subject": "Polity",
+      "topic": "Citizenship and civil rights",
+      "subtopic": null,
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Rule 7 of the SC/ST (Prevention of Atrocities) Rules 1995 requires the investigating officer to submit the report within 30 days.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-095",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 95,
+      "subject": "History",
+      "topic": "Ancient India",
+      "subtopic": "Vedic age",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "The Aitareya Brahmana belongs to the Rigveda; Gopatha is Atharvan, Shatapatha Shukla Yajurvedic and Taittiriya Krishna Yajurvedic.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-096",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 96,
+      "subject": "Economy",
+      "topic": "Budget and taxation",
+      "subtopic": "Goods and Services Tax",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "The GST task force was headed by Vijay Kelkar, whose recommendations shaped the destination-based tax design.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-097",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 97,
+      "subject": "Polity",
+      "topic": "Constitution of India",
+      "subtopic": "Constitutional amendments",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Fundamental Duties were inserted as Part IVA, Article 51A, by the 42nd Amendment in 1976.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-098",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 98,
+      "subject": "Polity",
+      "topic": "Union Executive",
+      "subtopic": "President of India",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Both the Union and the states derive their powers from the Constitution, which distributes them through the Seventh Schedule.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-099",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 99,
+      "subject": "Polity",
+      "topic": null,
+      "subtopic": null,
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "A trade union is an organised interest group outside government that lobbies for its members, the definition of a pressure group.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2017-100",
+      "year": 2017,
+      "paper_id": "MPPSC-2017-P1",
+      "question_number": 100,
+      "subject": "Economy",
+      "topic": "International economy",
+      "subtopic": "International Monetary Fund",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "corrected",
+      "note": "The stored key B (loans only to developed countries) is contradicted by the IMF's practice and by the paper's own explanation; the IMF lends only to member countries, so the answer is corrected to C, the same answer the paper keys to the identical question at number 85.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    }
+  ]
+}

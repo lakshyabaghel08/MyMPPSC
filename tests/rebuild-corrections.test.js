@@ -14,7 +14,7 @@
  *   2. applying them twice is a no-op the second time (applied exactly once);
  *   3. a drifted `from` is a rejection, and a rejection fails the build;
  *   4. a full clean rebuild reproduces the committed bank — including 2021-010,
- *      the 2020 corrections and the 100-question 2020 paper — and is deterministic.
+ *      the 2020 and 2017 corrections and the 100-question papers — and is deterministic.
  */
 
 import test from 'node:test';
@@ -34,7 +34,7 @@ const readJsonl = async (...parts) => (await readFile(dataPath(...parts), 'utf8'
   .filter(Boolean)
   .map((line) => JSON.parse(line));
 
-const [correctionsFile, explanationsFile, disputesFile, modelFile, bank, baseline, audit2020, audit2019] = await Promise.all([
+const [correctionsFile, explanationsFile, disputesFile, modelFile, bank, baseline, audit2020, audit2019, audit2017] = await Promise.all([
   readJson('pyq', 'reviewed-corrections.json'),
   readJson('pyq', 'reviewed-explanations.json'),
   readJson('pyq', 'reviewed-disputes.json'),
@@ -43,6 +43,7 @@ const [correctionsFile, explanationsFile, disputesFile, modelFile, bank, baselin
   readJsonl('pyq', 'quality-audit', 'question-audit-baseline.jsonl'),
   readJson('pyq', 'quality-audit', 'final-answer-audit-2020.json'),
   readJson('pyq', 'quality-audit', 'final-answer-audit-2019.json'),
+  readJson('pyq', 'quality-audit', 'final-answer-audit-2017.json'),
 ]);
 
 const bundle = parseReviewedCorrections({
@@ -96,10 +97,12 @@ test('the corrections reconcile: declared, applied and stored agree', () => {
 test('every correction quotes the printed key the audits recorded', () => {
   const printed2020 = new Map(audit2020.questions.map((r) => [r.id, r.printed_key]));
   const printed2019 = new Map(audit2019.questions.map((r) => [r.id, r.printed_key]));
+  const printed2017 = new Map(audit2017.questions.map((r) => [r.id, r.printed_key]));
   const printed2124 = new Map(baseline.map((q) => [q.id, q.answer?.stored_answer ?? null]));
   for (const [id, entry] of Object.entries(correctionsFile.answer_corrections)) {
     const printed = printed2020.has(id) ? printed2020.get(id)
       : printed2019.has(id) ? printed2019.get(id)
+      : printed2017.has(id) ? printed2017.get(id)
       : printed2124.get(id);
     assert.ok(printed, `${id}: the printed key is recorded in an audit record`);
     assert.deepEqual(entry.from, printed, `${id}: the declaration quotes the printed key`);
@@ -120,11 +123,16 @@ test('every correction quotes the printed key the audits recorded', () => {
   assert.deepEqual(correctionsFile.final_audit_2021_2024.corrected_ids, ['MPPSC-2021-010']);
   assert.ok(fromManifest.includes('MPPSC-2021-010'), 'the 2021 correction is carried too, not only 2020');
   assert.deepEqual(
+    correctionsFile.final_audit_2017.corrected_ids.slice().sort(),
+    fromManifest.filter((id) => id.startsWith('MPPSC-2017-')),
+    'the 2017 audit summary lists exactly the 2017 corrections',
+  );
+  assert.deepEqual(
     correctionsFile.final_audit_2019.corrected_ids.slice().sort(),
     fromManifest.filter((id) => id.startsWith('MPPSC-2019-')),
     'the 2019 audit summary lists exactly the 2019 corrections',
   );
-  assert.equal(fromManifest.length, 27, 'five 2020 keys, five 2019 keys and the seventeen declared for 2021–2024 — the 2018 audit corrected no key');
+  assert.equal(fromManifest.length, 28, 'five 2020 keys, five 2019 keys, the seventeen declared for 2021–2024 and one for 2017 — the 2018 audit corrected no key');
 });
 
 test('a correction is applied once: a second application is a recorded no-op', () => {
@@ -166,7 +174,7 @@ test('drifted data is rejected loudly, not overwritten', () => {
   // Orphans are errors too: a correction may not point at a question that is gone.
   assert.throws(
     () => applyReviewedCorrections({ questions: [{ id: 'MPPSC-2021-010', supplied_answer: { answer: ['A'] } }] }, bundle),
-    /answer correction names MPPSC-2019-027, which is not in the intake/,
+    /answer correction names MPPSC-(2017|2019)-\d+(?:, which is not in the intake)/,
   );
 });
 
@@ -217,11 +225,11 @@ test('a clean rebuild reproduces the shipped bank, corrections included', async 
 
   assert.equal(result.correctionsSummary.rejected.length, 0, 'no correction was rejected during the rebuild');
   assert.equal(result.correctionsSummary.reconciled, true, 'every declaration was applied or already satisfied');
-  assert.equal(result.correctionsSummary.applied.answers, 27, 'all 27 corrected keys were re-applied');
+  assert.equal(result.correctionsSummary.applied.answers, 28, 'all 28 corrected keys were re-applied');
   assert.equal(
     result.correctionsSummary.applied.explanations + result.correctionsSummary.deferred.explanations.length,
-    671,
-    'all 671 reviewed explanations were restored',
+    771,
+    'all 771 reviewed explanations were restored',
   );
   assert.equal(result.modelSummary.added.length, 29, 'the 29 model questions were appended');
 
