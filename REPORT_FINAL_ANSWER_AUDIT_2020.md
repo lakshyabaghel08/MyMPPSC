@@ -58,7 +58,10 @@ These are recorded because "the key looks wrong" is not the same as "the key is 
 | **MPPSC-2020-022** — capital of Raja Vir Singh Dev | Orchha is the obvious name. | **Confirmed B (Gahora).** Vir Singh Dev (1605–27) is described across MP-history sources as ruling from Gahora; Orchha is the kingdom's name. |
 | **MPPSC-2020-079** — Chief Justice of MP HC who did not reach the Supreme Court | Plausible‑sounding candidate list. | **Confirmed C (S. K. Jha, CJ 27.10.1989 – 15.12.1993).** Corroboration rests on the paper's own dated explanation; flagged below as limited‑corroboration, not as ambiguous. |
 
-Two further items are retained with **limited external corroboration** and are named here rather than presented as fully sourced: **2020-097** (crop‑sector growth 34.14 % for 2016‑17 — an official figure of that year that could not be re‑derived from an accessible source) and **2020-041** (Balkavi Bairagi's birth name Nandram Das, and Kailash Nath Katju as the person who gave him the pen name).
+Two items were initially retained with limited corroboration and were **closed with evidence in a follow‑up pass**:
+
+- **2020-041** — confirmed. Hindi Wikipedia, News18's profile and Outlook Hindi's obituary all give his birth name as **Nandram Das Bairagi**, and Kailash Nath Katju as the person who conferred the name Balkavi Bairagi. (One local report expands the name to "Nandramdas Dwarka Das", which folds in his father's name.) Answer D stands.
+- **2020-097** — confirmed. The **Madhya Pradesh Economic Survey 2017‑18** reports growth in crop area of **34.14 % for 2016‑17**, against 28.12 % in 2012‑13 and −1.61 % in 2017‑18, as reported by the Hindustan Times in February 2018; 28.12 % is option A, which is the same figure for a different year. Answer D stands. The paper says "crop sector" where the survey figure is crop *area*, and the explanation now says so.
 
 ---
 
@@ -143,14 +146,21 @@ None. The specific contradictions the scraped 2020 text carried — key versus i
 | `tests/explanation-quality.test.js` | extended: 2020 added to the audited years, with a "all 100 complete" assertion |
 | `REPORT_FINAL_ANSWER_AUDIT_2020.md` | **new** — this report |
 | `REPORT_FINAL_ANSWER_AUDIT_2021_2024.md` | one‑line pointer: the 2020 batch is now settled in this report |
+| `data/pyq/reviewed-explanations.json`, `reviewed-disputes.json`, `model-questions.json` | **new** (follow‑up pass) — the reviewed prose, dispute blocks and model questions a clean rebuild needs |
+| `tools/classify/reviewed-corrections.mjs`, `tools/classify-bank.mjs` | **new / changed** (follow‑up pass) — deterministic application of every reviewed correction during a rebuild |
+| `tests/rebuild-corrections.test.js` | **new** (follow‑up pass) — 7 tests proving a clean rebuild preserves every declared correction |
 
 Branch: `arena/54799d16-mymppsc`. 2021–2024 remain as shipped in PR #27; that PR was neither merged nor altered.
 
 ---
 
-## 12. Known limitation (stated, not hidden)
+## 12. Rebuild pipeline — limitation closed in the 2020 follow‑up
 
-`tools/classify-bank.mjs` rebuilds the bank from the source intake and does **not** apply `reviewed-corrections.json`. The committed bank is the artefact of record and the suite verifies it against *source + declared corrections*, but a full rebuild would reproduce the printed keys — including the five 2020 keys corrected here — and fail those tests until the corrections are re‑applied. This predates this audit and was left untouched rather than half‑fixed.
+At the time of the first pass, `tools/classify-bank.mjs` rebuilt the bank from the source intake and did **not** apply `reviewed-corrections.json`, so a clean rebuild would have restored the printed keys — including the five 2020 keys corrected here.
+
+That is now fixed. The reviewed decisions were moved into three committed data files (`reviewed-corrections.json`, `reviewed-explanations.json`, `reviewed-disputes.json`) and are applied by `tools/classify/reviewed-corrections.mjs` during a rebuild, with the 29 app‑authored model questions appended, so the documented rebuild command reproduces the committed bank record for record. A declared correction that no longer matches the extraction is **rejected and fails the build** rather than being skipped. `tests/rebuild-corrections.test.js` pins it: it runs a clean rebuild and compares it with the shipped bank, field by field.
+
+The two remaining differences between a rebuild and the committed file are the build stamps (`generated_at` and `app_compatibility.built_with`), which record *when* and *by which app version* the file was written.
 
 ---
 

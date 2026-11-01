@@ -10080,7 +10080,7 @@
       "answer_key_status": "supplied",
       "explanation": {
         "language": "en",
-        "correct_reasoning": "Balkavi Bairagi, the poet-politician of Mandsaur, was born Nandram Das in Rampur village of Manasa tehsil. The name Balkavi Bairagi was conferred on him by Kailash Nath Katju, and he wrote in Hindi and Malwi, with collections such as Gaurav Geet and Do Tuk, while also serving as a minister and Member of Parliament from Madhya Pradesh.",
+        "correct_reasoning": "Balkavi Bairagi, the poet-politician of Mandsaur, was born Nandram Das Bairagi on 10 February 1931 in Rampura, Manasa tehsil of Mandsaur district. Hindi Wikipedia, News18's obituary profile and Outlook Hindi all give Nandram Das (or Nandramdas) Bairagi as his birth name; the name Balkavi Bairagi, by which he became known, was conferred on him by Kailash Nath Katju, and he wrote in Hindi and Malwi, with collections such as Gaurav Geet and Do Tuk, while also serving as a minister and Member of Parliament from Madhya Pradesh.",
         "option_explanations": [
           {
             "key": "A",
@@ -10117,9 +10117,14 @@
         ],
         "sources": [
           {
-            "title": "Literature and languages",
-            "citation": "MPPSC 2020 Prelims Paper-I Q41; answer checked against the supplied source explanation and standard subject references",
-            "url": null
+            "title": "बालकवि बैरागी — मूल नाम नंदराम बैरागी",
+            "citation": "Hindi Wikipedia biography",
+            "url": "https://hi.wikipedia.org/wiki/%E0%A4%AC%E0%A4%BE%E0%A4%B2%E0%A4%95%E0%A4%B5%E0%A4%BF_%E0%A4%AC%E0%A5%88%E0%A4%B0%E0%A4%BE%E0%A4%97%E0%A5%80"
+          },
+          {
+            "title": "Balkavi Bairagi — full name Nandram Das Bairagi",
+            "citation": "News18 Hindi profile, 2023",
+            "url": "https://hindi.news18.com/news/literature/balkavi-bairagi-a-hindi-poet-film-lyricist-and-politician-popular-poem-panihari-related-to-malwa-madhya-pradesh-7601283.html"
           }
         ]
       },
@@ -15141,7 +15146,7 @@
       "answer_key_status": "supplied",
       "explanation": {
         "language": "en",
-        "correct_reasoning": "The paper takes the growth rate of the crop sector of Madhya Pradesh for 2016-17 as 34.14 per cent, the figure reported in the state's agricultural statistics for that year, when a good monsoon after two deficient years produced a sharp jump in crop output. The state's own economic survey and budget documents of that period record an exceptionally high agriculture growth rate for 2016-17 after the drought years.",
+        "correct_reasoning": "The Madhya Pradesh Economic Survey 2017-18, the report for the year after the one asked about, records that the growth in crop area in 2016-17 was 34.14 per cent, against 28.12 per cent in 2012-13 and a fall of 1.61 per cent in 2017-18. The paper calls this the growth rate of the crop sector; the underlying survey figure is growth in crop area. The 34.14 per cent figure follows two weak monsoon years, when a normal monsoon in 2016-17 pulled sown area and output up sharply, which is why a double-digit jump is plausible for that year.",
         "option_explanations": [
           {
             "key": "A",
@@ -15178,9 +15183,9 @@
         ],
         "sources": [
           {
-            "title": "Economy of Madhya Pradesh",
-            "citation": "MPPSC 2020 Prelims Paper-I Q97; answer checked against the supplied source explanation and standard subject references",
-            "url": null
+            "title": "Crop area decreases in Madhya Pradesh in 2017-18 (Economic Survey 2017-18: 34.14% in 2016-17, 28.12% in 2012-13)",
+            "citation": "Hindustan Times, Bhopal, 27 February 2018",
+            "url": "https://www.hindustantimes.com/bhopal/crop-area-decreases-in-madhya-pradesh-in-2017-18economic-survey-report-underlines-need-of-more-investment-in-agri-sector/story-wzJwn51eAELdcZoClizsxN.html"
           }
         ]
       },

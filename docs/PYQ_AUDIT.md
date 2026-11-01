@@ -55,6 +55,8 @@ node tools/classify-bank.mjs \
   --in data/pyq/source/MPPSC_PYQ_intake.json \
   --apply-review data/pyq/reviewed-labels.jsonl \
   --apply-answers data/pyq/reviewed-answers.jsonl \
+  --apply-corrections \
+  --include-model-questions \
   --source-review data/pyq/source/MPPSC_PYQ_Review.json \
   --out data/pyq/mymppsc-pyq-bank.json \
   --reports data/pyq

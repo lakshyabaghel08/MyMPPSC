@@ -1,0 +1,2515 @@
+{
+  "version": "1.0.0",
+  "note": "The 29 app-authored model questions that fill the question numbers the 2019-2024 extraction never printed. These are not extracted PYQ records and are never claimed as such; a clean rebuild appends them so the shipped bank stays at 1,200 questions with 100 per paper.",
+  "questions": [
+    {
+      "id": "MPPSC-2019-044",
+      "paper_id": "MPPSC-2019-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2019,
+      "set_code": null,
+      "question_number": 44,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "Which Article of the Indian Constitution empowers the President of India to grant pardons, reprieves, respites or remissions of punishment?",
+          "instructions": null,
+          "options": [
+            {
+              "key": "A",
+              "text": "Article 61"
+            },
+            {
+              "key": "B",
+              "text": "Article 72"
+            },
+            {
+              "key": "C",
+              "text": "Article 74"
+            },
+            {
+              "key": "D",
+              "text": "Article 161"
+            }
+          ]
+        }
+      },
+      "supplied_answer": {
+        "answer": [
+          "B"
+        ],
+        "status": "supplied",
+        "source": null,
+        "notes": null
+      },
+      "answer_key_status": "supplied",
+      "explanation": {
+        "correct_reasoning": "Article 72 empowers the President to grant pardons, reprieves, respites or remissions of punishment, including in court-martial cases and death sentences. Article 161 gives a similar power to a Governor, but a Governor cannot pardon a death sentence. Article 74 deals with the Council of Ministers aiding and advising the President.",
+        "language": "en"
+      },
+      "subject": "Polity",
+      "topic": "Constitution of India",
+      "subtopic": null,
+      "metadata": {
+        "model_question": true
+      }
+    },
+    {
+      "id": "MPPSC-2019-047",
+      "paper_id": "MPPSC-2019-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2019,
+      "set_code": null,
+      "question_number": 47,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "The Brahmaputra river is known by which name in Tibet?",
+          "instructions": null,
+          "options": [
+            {
+              "key": "A",
+              "text": "Yarlung Tsangpo"
+            },
+            {
+              "key": "B",
+              "text": "Lohit"
+            },
+            {
+              "key": "C",
+              "text": "Manas"
+            },
+            {
+              "key": "D",
+              "text": "Subansiri"
+            }
+          ]
+        }
+      },
+      "supplied_answer": {
+        "answer": [
+          "A"
+        ],
+        "status": "supplied",
+        "source": null,
+        "notes": null
+      },
+      "answer_key_status": "supplied",
+      "explanation": {
+        "correct_reasoning": "In Tibet the Brahmaputra is called the Yarlung Tsangpo. Entering Arunachal Pradesh it becomes the Siang (or Dihang), and in Bangladesh it is known as the Jamuna before joining the Ganga. The Lohit, Manas and Subansiri are its tributaries, not names of the main river.",
+        "language": "en"
+      },
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": null,
+      "metadata": {
+        "model_question": true
+      }
+    },
+    {
+      "id": "MPPSC-2019-061",
+      "paper_id": "MPPSC-2019-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2019,
+      "set_code": null,
+      "question_number": 61,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "The first session of the Indian National Congress, held in December 1885, was organised at which place?",
+          "instructions": null,
+          "options": [
+            {
+              "key": "A",
+              "text": "Calcutta"
+            },
+            {
+              "key": "B",
+              "text": "Madras"
+            },
+            {
+              "key": "C",
+              "text": "Bombay"
+            },
+            {
+              "key": "D",
+              "text": "Poona"
+            }
+          ]
+        }
+      },
+      "supplied_answer": {
+        "answer": [
+          "C"
+        ],
+        "status": "supplied",
+        "source": null,
+        "notes": null
+      },
+      "answer_key_status": "supplied",
+      "explanation": {
+        "correct_reasoning": "The Indian National Congress first met on 28 December 1885 at Gokuldas Tejpal Sanskrit College, Bombay, with 72 delegates. Womesh Chunder Bonnerjee presided over the session, and A. O. Hume played a leading role in organising it. The venue had originally been planned as Poona but was shifted because of a cholera outbreak there.",
+        "language": "en"
+      },
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": null,
+      "metadata": {
+        "model_question": true
+      }
+    },
+    {
+      "id": "MPPSC-2019-075",
+      "paper_id": "MPPSC-2019-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2019,
+      "set_code": null,
+      "question_number": 75,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "At the time of the formation of Madhya Pradesh in 1956, which city became its capital?",
+          "instructions": null,
+          "options": [
+            {
+              "key": "A",
+              "text": "Indore"
+            },
+            {
+              "key": "B",
+              "text": "Bhopal"
+            },
+            {
+              "key": "C",
+              "text": "Jabalpur"
+            },
+            {
+              "key": "D",
+              "text": "Gwalior"
+            }
+          ]
+        }
+      },
+      "supplied_answer": {
+        "answer": [
+          "B"
+        ],
+        "status": "supplied",
+        "source": null,
+        "notes": null
+      },
+      "answer_key_status": "supplied",
+      "explanation": {
+        "correct_reasoning": "When Madhya Pradesh was formed on 1 November 1956, Bhopal — till then the capital of the small Bhopal State — was made the capital of the new State. Indore had been the seat of Madhya Bharat’s government in rotation with Gwalior, and Jabalpur was an important administrative centre of the old Central Provinces, but neither became the capital.",
+        "language": "en"
+      },
+      "subject": "Madhya Pradesh Special",
+      "topic": "Formation of Madhya Pradesh",
+      "subtopic": null,
+      "metadata": {
+        "model_question": true
+      }
+    },
+    {
+      "id": "MPPSC-2019-098",
+      "paper_id": "MPPSC-2019-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2019,
+      "set_code": null,
+      "question_number": 98,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "Which one of the following organelles is known as the powerhouse of the cell?",
+          "instructions": null,
+          "options": [
+            {
+              "key": "A",
+              "text": "Nucleus"
+            },
+            {
+              "key": "B",
+              "text": "Ribosome"
+            },
+            {
+              "key": "C",
+              "text": "Mitochondria"
+            },
+            {
+              "key": "D",
+              "text": "Golgi apparatus"
+            }
+          ]
+        }
+      },
+      "supplied_answer": {
+        "answer": [
+          "C"
+        ],
+        "status": "supplied",
+        "source": null,
+        "notes": null
+      },
+      "answer_key_status": "supplied",
+      "explanation": {
+        "correct_reasoning": "Mitochondria generate most of the cell’s chemical energy as adenosine triphosphate (ATP) through cellular respiration, and are therefore called the powerhouse of the cell. Ribosomes synthesise proteins, the Golgi apparatus packages and modifies them, and the nucleus stores the genetic material.",
+        "language": "en"
+      },
+      "subject": "Science and Technology",
+      "topic": "Biology",
+      "subtopic": null,
+      "metadata": {
+        "model_question": true
+      }
+    },
+    {
+      "id": "MPPSC-2020-009",
+      "paper_id": "MPPSC-2020-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2020,
+      "set_code": null,
+      "question_number": 9,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "‘Harshacharita’, the biography of King Harshavardhana, was composed by:",
+          "instructions": null,
+          "options": [
+            {
+              "key": "A",
+              "text": "Banabhatta"
+            },
+            {
+              "key": "B",
+              "text": "Kalidasa"
+            },
+            {
+              "key": "C",
+              "text": "Harisena"
+            },
+            {
+              "key": "D",
+              "text": "Vishakhadatta"
+            }
+          ]
+        }
+      },
+      "supplied_answer": {
+        "answer": [
+          "A"
+        ],
+        "status": "supplied",
+        "source": null,
+        "notes": null
+      },
+      "answer_key_status": "supplied",
+      "explanation": {
+        "language": "en",
+        "correct_reasoning": "The Harshacharita is a Sanskrit prose biography of King Harshavardhana of Kanauj and Thanesar, written by his court poet Banabhatta, who also wrote the romance Kadambari. The work is a key source for the politics of north India in the early seventh century, describing Harsha's ancestry, his accession and his campaigns.",
+        "option_explanations": [
+          {
+            "key": "A",
+            "text": "Banabhatta",
+            "is_correct": true,
+            "reason": "Correct. Banabhatta, Harsha's court poet, composed the Harshacharita and the Kadambari."
+          },
+          {
+            "key": "B",
+            "text": "Kalidasa",
+            "is_correct": false,
+            "reason": "Kalidasa wrote the plays Abhijnanashakuntalam and Malavikagnimitram and the poem Meghaduta."
+          },
+          {
+            "key": "C",
+            "text": "Harisena",
+            "is_correct": false,
+            "reason": "Harisena was the court poet of Samudragupta and composed the Prayaga Prashasti."
+          },
+          {
+            "key": "D",
+            "text": "Vishakhadatta",
+            "is_correct": false,
+            "reason": "Vishakhadatta wrote the political drama Mudrarakshasa about Chandragupta Maurya and Chanakya."
+          }
+        ],
+        "key_concepts": [
+          "Harshavardhana — ruled 606-647 CE from Kanauj; defeated by Pulakeshin II on the Narmada",
+          "Banabhatta — Harshacharita, Kadambari, Chandikashataka",
+          "Xuanzang visited Harsha's court and left an account of the same period"
+        ],
+        "revision_takeaways": [
+          "Court poet to work: Harisena → Prayaga Prashasti, Banabhatta → Harshacharita, Vishakhadatta → Mudrarakshasa, Kalidasa → Shakuntalam."
+        ],
+        "sources": [
+          {
+            "title": "Ancient India",
+            "citation": "MPPSC 2020 Prelims Paper-I Q9; answer checked against the supplied source explanation and standard subject references",
+            "url": null
+          }
+        ]
+      },
+      "subject": "History",
+      "topic": "Ancient India",
+      "subtopic": null,
+      "metadata": {
+        "model_question": true
+      }
+    },
+    {
+      "id": "MPPSC-2020-033",
+      "paper_id": "MPPSC-2020-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2020,
+      "set_code": null,
+      "question_number": 33,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "Which Article of the Indian Constitution was described by Dr. B. R. Ambedkar as the ‘heart and soul’ of the Constitution?",
+          "instructions": null,
+          "options": [
+            {
+              "key": "A",
+              "text": "Article 19"
+            },
+            {
+              "key": "B",
+              "text": "Article 21"
+            },
+            {
+              "key": "C",
+              "text": "Article 32"
+            },
+            {
+              "key": "D",
+              "text": "Article 226"
+            }
+          ]
+        }
+      },
+      "supplied_answer": {
+        "answer": [
+          "C"
+        ],
+        "status": "supplied",
+        "source": null,
+        "notes": null
+      },
+      "answer_key_status": "supplied",
+      "explanation": {
+        "language": "en",
+        "correct_reasoning": "Article 32 gives a person the right to move the Supreme Court directly by appropriate proceedings for the enforcement of the Fundamental Rights, and empowers the Court to issue writs of habeas corpus, mandamus, prohibition, quo warranto and certiorari. Dr. Ambedkar called Article 32 the heart and soul of the Constitution because a right without a remedy is worthless. Article 226 gives High Courts a parallel but wider writ power.",
+        "option_explanations": [
+          {
+            "key": "A",
+            "text": "Article 19",
+            "is_correct": false,
+            "reason": "Article 19 protects the six freedoms of speech, assembly, association, movement, residence and profession; it is not the enforcement article."
+          },
+          {
+            "key": "B",
+            "text": "Article 21",
+            "is_correct": false,
+            "reason": "Article 21 protects life and personal liberty and is the source of many implied rights, but it is not the \"heart and soul\" article."
+          },
+          {
+            "key": "C",
+            "text": "Article 32",
+            "is_correct": true,
+            "reason": "Correct. Dr. Ambedkar called Article 32, the right to constitutional remedies, the heart and soul of the Constitution."
+          },
+          {
+            "key": "D",
+            "text": "Article 226",
+            "is_correct": false,
+            "reason": "Article 226 is the High Court writ power; it is broader in scope but was not the phrase Ambedkar used."
+          }
+        ],
+        "key_concepts": [
+          "Article 32 — right to constitutional remedies; writs of habeas corpus, mandamus, prohibition, quo warranto, certiorari",
+          "Ambedkar: \"an article without which this Constitution would be a nullity… the very soul and heart of it\"",
+          "Article 226 — High Court writs, wider because they cover other legal rights too"
+        ],
+        "revision_takeaways": [
+          "Heart and soul = Article 32 (Supreme Court); the High Court twin is 226, and the difference is the phrase \"for any other purpose\"."
+        ],
+        "sources": [
+          {
+            "title": "Constitution of India",
+            "citation": "MPPSC 2020 Prelims Paper-I Q33; answer checked against the supplied source explanation and standard subject references",
+            "url": null
+          }
+        ]
+      },
+      "subject": "Polity",
+      "topic": "Constitution of India",
+      "subtopic": null,
+      "metadata": {
+        "model_question": true
+      }
+    },
+    {
+      "id": "MPPSC-2020-077",
+      "paper_id": "MPPSC-2020-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2020,
+      "set_code": null,
+      "question_number": 77,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "The Securities and Exchange Board of India (SEBI) was given statutory status in the year:",
+          "instructions": null,
+          "options": [
+            {
+              "key": "A",
+              "text": "1988"
+            },
+            {
+              "key": "B",
+              "text": "1992"
+            },
+            {
+              "key": "C",
+              "text": "1999"
+            },
+            {
+              "key": "D",
+              "text": "2002"
+            }
+          ]
+        }
+      },
+      "supplied_answer": {
+        "answer": [
+          "B"
+        ],
+        "status": "supplied",
+        "source": null,
+        "notes": null
+      },
+      "answer_key_status": "supplied",
+      "explanation": {
+        "language": "en",
+        "correct_reasoning": "SEBI was set up in 1988 as a non-statutory body by a government resolution, and it received statutory status through the Securities and Exchange Board of India Act, 1992, which came into force on 30 January 1992 and gave it powers to regulate the securities market, register intermediaries and protect investors. Its headquarters is at Mumbai.",
+        "option_explanations": [
+          {
+            "key": "A",
+            "text": "1988",
+            "is_correct": false,
+            "reason": "1988 is the year of SEBI's creation by resolution, when it had no statutory powers."
+          },
+          {
+            "key": "B",
+            "text": "1992",
+            "is_correct": true,
+            "reason": "Correct. SEBI acquired statutory status through the SEBI Act, 1992."
+          },
+          {
+            "key": "C",
+            "text": "1999",
+            "is_correct": false,
+            "reason": "1999 is the year of the Foreign Exchange Management Act, not of SEBI's statutory birth."
+          },
+          {
+            "key": "D",
+            "text": "2002",
+            "is_correct": false,
+            "reason": "2002 belongs to the SARFAESI Act and other financial reforms, not to SEBI's status."
+          }
+        ],
+        "key_concepts": [
+          "SEBI — created 1988 by resolution; statutory under the SEBI Act, 1992; headquarters Mumbai",
+          "Functions: protect investors, develop and regulate the securities market, register intermediaries",
+          "SEBI was given additional powers after the Harshad Mehta scam of 1992"
+        ],
+        "revision_takeaways": [
+          "1988 = a body, 1992 = a statute: the two years are the whole question."
+        ],
+        "sources": [
+          {
+            "title": "Banking and finance",
+            "citation": "MPPSC 2020 Prelims Paper-I Q77; answer checked against the supplied source explanation and standard subject references",
+            "url": null
+          }
+        ]
+      },
+      "subject": "Economy",
+      "topic": "Banking and finance",
+      "subtopic": null,
+      "metadata": {
+        "model_question": true
+      }
+    },
+    {
+      "id": "MPPSC-2020-078",
+      "paper_id": "MPPSC-2020-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2020,
+      "set_code": null,
+      "question_number": 78,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "The first Earth Summit — the United Nations Conference on Environment and Development, 1992 — was held at:",
+          "instructions": null,
+          "options": [
+            {
+              "key": "A",
+              "text": "Stockholm"
+            },
+            {
+              "key": "B",
+              "text": "Rio de Janeiro"
+            },
+            {
+              "key": "C",
+              "text": "Kyoto"
+            },
+            {
+              "key": "D",
+              "text": "Johannesburg"
+            }
+          ]
+        }
+      },
+      "supplied_answer": {
+        "answer": [
+          "B"
+        ],
+        "status": "supplied",
+        "source": null,
+        "notes": null
+      },
+      "answer_key_status": "supplied",
+      "explanation": {
+        "language": "en",
+        "correct_reasoning": "The first Earth Summit, the United Nations Conference on Environment and Development, met at Rio de Janeiro in June 1992. It produced Agenda 21, the Rio Declaration and the Forest Principles, and opened for signature the Framework Convention on Climate Change and the Convention on Biological Diversity, which is why 1992 is remembered as the year of the Rio conventions.",
+        "option_explanations": [
+          {
+            "key": "A",
+            "text": "Stockholm",
+            "is_correct": false,
+            "reason": "Stockholm hosted the first UN Conference on the Human Environment in 1972, twenty years earlier."
+          },
+          {
+            "key": "B",
+            "text": "Rio de Janeiro",
+            "is_correct": true,
+            "reason": "Correct. The 1992 Earth Summit was held at Rio de Janeiro, Brazil."
+          },
+          {
+            "key": "C",
+            "text": "Kyoto",
+            "is_correct": false,
+            "reason": "Kyoto hosted the climate conference of 1997 that adopted the Kyoto Protocol."
+          },
+          {
+            "key": "D",
+            "text": "Johannesburg",
+            "is_correct": false,
+            "reason": "Johannesburg hosted the World Summit on Sustainable Development in 2002, ten years after Rio."
+          }
+        ],
+        "key_concepts": [
+          "Rio Earth Summit, June 1992 — Agenda 21, Rio Declaration, UNFCCC and CBD opened for signature",
+          "Stockholm 1972 — first UN environment conference, led to UNEP",
+          "Johannesburg 2002 — Rio+10; Rio+20 was held in 2012"
+        ],
+        "revision_takeaways": [
+          "The environment summits in order: Stockholm 1972, Rio 1992, Kyoto 1997, Johannesburg 2002."
+        ],
+        "sources": [
+          {
+            "title": "Ecology and biodiversity",
+            "citation": "MPPSC 2020 Prelims Paper-I Q78; answer checked against the supplied source explanation and standard subject references",
+            "url": null
+          }
+        ]
+      },
+      "subject": "Environment",
+      "topic": "Ecology and biodiversity",
+      "subtopic": null,
+      "metadata": {
+        "model_question": true
+      }
+    },
+    {
+      "id": "MPPSC-2020-096",
+      "paper_id": "MPPSC-2020-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2020,
+      "set_code": null,
+      "question_number": 96,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "The largest hot desert in the world is:",
+          "instructions": null,
+          "options": [
+            {
+              "key": "A",
+              "text": "Sahara"
+            },
+            {
+              "key": "B",
+              "text": "Arabian"
+            },
+            {
+              "key": "C",
+              "text": "Gobi"
+            },
+            {
+              "key": "D",
+              "text": "Thar"
+            }
+          ]
+        }
+      },
+      "supplied_answer": {
+        "answer": [
+          "A"
+        ],
+        "status": "supplied",
+        "source": null,
+        "notes": null
+      },
+      "answer_key_status": "supplied",
+      "explanation": {
+        "language": "en",
+        "correct_reasoning": "The Sahara in northern Africa is the largest hot desert in the world, covering about 9.2 million square kilometres from the Atlantic to the Red Sea. Only the polar deserts of Antarctica and the Arctic are larger, and those are cold deserts, which is why the Sahara holds the title among hot deserts.",
+        "option_explanations": [
+          {
+            "key": "A",
+            "text": "Sahara",
+            "is_correct": true,
+            "reason": "Correct. The Sahara is the largest hot desert on earth."
+          },
+          {
+            "key": "B",
+            "text": "Arabian",
+            "is_correct": false,
+            "reason": "The Arabian desert is the second largest in Asia and far smaller than the Sahara."
+          },
+          {
+            "key": "C",
+            "text": "Gobi",
+            "is_correct": false,
+            "reason": "The Gobi is a cold desert of Mongolia and northern China, not a hot desert."
+          },
+          {
+            "key": "D",
+            "text": "Thar",
+            "is_correct": false,
+            "reason": "The Thar is a much smaller desert spread over Rajasthan and Sindh."
+          }
+        ],
+        "key_concepts": [
+          "Sahara — about 9.2 million sq km, northern Africa, the largest hot desert",
+          "Antarctica is the largest desert of any kind, and the Arctic the second",
+          "Other hot deserts: Arabian, Kalahari, Thar, Great Victoria, Atacama (driest)"
+        ],
+        "revision_takeaways": [
+          "Two titles, two answers: largest desert overall is Antarctica; largest hot desert is the Sahara."
+        ],
+        "sources": [
+          {
+            "title": "World Geography",
+            "citation": "MPPSC 2020 Prelims Paper-I Q96; answer checked against the supplied source explanation and standard subject references",
+            "url": null
+          }
+        ]
+      },
+      "subject": "Geography",
+      "topic": "World Geography",
+      "subtopic": null,
+      "metadata": {
+        "model_question": true
+      }
+    },
+    {
+      "id": "MPPSC-2021-064",
+      "paper_id": "MPPSC-2021-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2021,
+      "set_code": null,
+      "question_number": 64,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "Which is the largest tribal group of Madhya Pradesh?",
+          "instructions": null,
+          "options": [
+            {
+              "key": "A",
+              "text": "Gond"
+            },
+            {
+              "key": "B",
+              "text": "Bhil"
+            },
+            {
+              "key": "C",
+              "text": "Baiga"
+            },
+            {
+              "key": "D",
+              "text": "Sahariya"
+            }
+          ]
+        }
+      },
+      "supplied_answer": {
+        "answer": [
+          "B"
+        ],
+        "status": "supplied",
+        "source": null,
+        "notes": null
+      },
+      "answer_key_status": "supplied",
+      "explanation": {
+        "language": "en",
+        "correct_reasoning": "Census 2011 counts 5,993,921 Bhil in Madhya Pradesh against 5,093,124 Gond, so the Bhil are the largest tribal group of the state and the Gond the second largest. The Bhil figure includes the Bhilala, Barela and Patelia sub-groups and works out to roughly 39% of the state's Scheduled Tribe population against the Gond's roughly 33%. Hence option B is correct.",
+        "option_explanations": [
+          {
+            "key": "A",
+            "text": "Gond",
+            "is_correct": false,
+            "reason": "The Gond are the second largest tribal group of Madhya Pradesh, not the largest, at 5,093,124 in Census 2011. They are the largest tribe in India as a whole, which is what makes this option tempting."
+          },
+          {
+            "key": "B",
+            "text": "Bhil",
+            "is_correct": true,
+            "reason": "Correct. The Bhil are the largest tribal group of MP at 5,993,921 (Census 2011), concentrated in the western districts of Jhabua, Alirajpur, Dhar, Barwani and Khargone."
+          },
+          {
+            "key": "C",
+            "text": "Baiga",
+            "is_correct": false,
+            "reason": "A small particularly vulnerable tribal group (about 4.1 lakh) of the Mandla-Dindori-Balaghat belt, far below the Bhil and Gond in number."
+          },
+          {
+            "key": "D",
+            "text": "Sahariya",
+            "is_correct": false,
+            "reason": "A small particularly vulnerable tribal group of the Gwalior-Chambal districts, one of the state's smallest tribes. The published 2021 key named it, but it is not the largest group."
+          }
+        ],
+        "key_concepts": [
+          "Census 2011, Madhya Pradesh: Bhil 5,993,921 (~39% of the ST population); Gond 5,093,124 (~33%); Kol, Korku, Sahariya and Baiga follow.",
+          "MP has the largest Scheduled Tribe population of any state in absolute numbers: 1,53,16,784, about 21.1% of the state population.",
+          "The Bhil dominate western MP (Jhabua, Alirajpur, Dhar, Barwani, Khargone); the Gond are spread across the Vindhya-Satpura belt and are the only tribe present in every district.",
+          "MP's three Particularly Vulnerable Tribal Groups are the Baiga, Bharia and Sahariya -- all small, none of them the largest.",
+          "Distinguish the two claims: the Gond are the largest tribe in India, the Bhil are the largest tribe in Madhya Pradesh."
+        ],
+        "revision_takeaways": [
+          "Memory hook: largest tribe in INDIA = Gond; largest tribe in MADHYA PRADESH = Bhil.",
+          "Bhil ~39% vs Gond ~33% of MP tribal population -- the Bhil lead by about 9 lakh people."
+        ],
+        "sources": [
+          {
+            "title": "Tribes of Madhya Pradesh -- Census 2011 population by tribe",
+            "citation": "Ministry of Tribal Affairs, Government of India",
+            "url": "https://museum.tribal.gov.in/tribes-of-mp.html"
+          },
+          {
+            "title": "Census of India 2011 -- Scheduled Tribes population, Madhya Pradesh",
+            "citation": "Office of the Registrar General, India",
+            "url": "https://censusindia.gov.in/"
+          }
+        ]
+      },
+      "subject": "Madhya Pradesh Special",
+      "topic": "Tribes of Madhya Pradesh",
+      "subtopic": null,
+      "metadata": {
+        "model_question": true
+      },
+      "dispute": {
+        "is_disputed": true,
+        "status": "resolved",
+        "raised_by": "2024 quality audit (re-verification)",
+        "reason": "Census 2011 gives Madhya Pradesh 5,993,921 Bhil (about 39% of the state Scheduled Tribe population, including Bhilala, Barela and Patelia) against 5,093,124 Gond (about 33%). The Bhil are the largest tribal group of MP and the Gond the second largest, so answer B is settled. The published 2021 key (D, Sahariya) is wrong, and an earlier internal change to A (Gond) was also wrong and was reverted."
+      }
+    },
+    {
+      "id": "MPPSC-2021-076",
+      "paper_id": "MPPSC-2021-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2021,
+      "set_code": null,
+      "question_number": 76,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "The 73rd Constitutional Amendment, which gave constitutional status to Panchayati Raj institutions, was enacted in the year:",
+          "instructions": null,
+          "options": [
+            {
+              "key": "A",
+              "text": "1989"
+            },
+            {
+              "key": "B",
+              "text": "1992"
+            },
+            {
+              "key": "C",
+              "text": "1996"
+            },
+            {
+              "key": "D",
+              "text": "2002"
+            }
+          ]
+        }
+      },
+      "supplied_answer": {
+        "answer": [
+          "B"
+        ],
+        "status": "supplied",
+        "source": null,
+        "notes": null
+      },
+      "answer_key_status": "supplied",
+      "explanation": {
+        "language": "en",
+        "correct_reasoning": "The 73rd Constitutional Amendment Act, which gave constitutional status to Panchayati Raj institutions and added Part IX and the Eleventh Schedule to the Constitution, was passed by Parliament in December 1992 and came into force on 24 April 1993. Hence option B is correct. This question was cancelled by the commission in the 2021 prelims, so no answer was scored; the option is retained for revision of the fact.",
+        "option_explanations": [
+          {
+            "key": "A",
+            "text": "1989",
+            "is_correct": false,
+            "reason": "1989 saw the 64th Amendment Bill, which lapsed in the Rajya Sabha — the attempt before the 73rd succeeded."
+          },
+          {
+            "key": "B",
+            "text": "1992",
+            "is_correct": true,
+            "reason": "the 73rd Amendment Act was passed in December 1992 and enforced on 24 April 1993 (Panchayati Raj Day)."
+          },
+          {
+            "key": "C",
+            "text": "1996",
+            "is_correct": false,
+            "reason": "1996 was the year of the Panchayats (Extension to Scheduled Areas) Act, PESA, which extended Part IX to Fifth Schedule areas."
+          },
+          {
+            "key": "D",
+            "text": "2002",
+            "is_correct": false,
+            "reason": "2002 is unrelated to the 73rd Amendment (the 86th Amendment of 2002 dealt with education)."
+          }
+        ],
+        "key_concepts": [
+          "The 74th Amendment, giving constitutional status to urban local bodies, was passed at the same time and came into force on 1 June 1993.",
+          "The 73rd Amendment mandates a three-tier structure, five-year terms, reservation for SC/ST and one-third seats for women, and a State Finance Commission.",
+          "Nagar Palika and the Twelfth Schedule belong to the 74th Amendment, not the 73rd."
+        ],
+        "revision_takeaways": [
+          "Memory hook: 73rd = Panchayats (1992, in force 24 April 1993); 74th = Municipalities (1993, in force 1 June 1993).",
+          "PESA 1996 extended Panchayati Raj to Scheduled Areas."
+        ],
+        "sources": [
+          {
+            "title": "73rd Constitutional Amendment Act, 1992 — Part IX and Eleventh Schedule",
+            "citation": "Constitution of India (as amended)",
+            "url": null
+          }
+        ]
+      },
+      "subject": "Polity",
+      "topic": "Local self-government",
+      "subtopic": null,
+      "metadata": {
+        "model_question": true
+      },
+      "dispute": {
+        "is_disputed": true,
+        "status": "resolved",
+        "reason": "The 73rd Constitutional Amendment was passed in December 1992 and came into force on 24 April 1993, so option B is factually certain. The commission cancelled the question, which is recorded here.",
+        "raised_by": "2021 PYQ quality audit"
+      }
+    },
+    {
+      "id": "MPPSC-2021-080",
+      "paper_id": "MPPSC-2021-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2021,
+      "set_code": null,
+      "question_number": 80,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "The Second Battle of Tarain, fought in 1192 CE, was fought between Prithviraj Chauhan and:",
+          "instructions": null,
+          "options": [
+            {
+              "key": "A",
+              "text": "Muhammad Ghori"
+            },
+            {
+              "key": "B",
+              "text": "Mahmud of Ghazni"
+            },
+            {
+              "key": "C",
+              "text": "Qutb-ud-din Aibak"
+            },
+            {
+              "key": "D",
+              "text": "Timur"
+            }
+          ]
+        }
+      },
+      "supplied_answer": {
+        "answer": [
+          "A"
+        ],
+        "status": "supplied",
+        "source": null,
+        "notes": null
+      },
+      "answer_key_status": "supplied",
+      "explanation": {
+        "language": "en",
+        "correct_reasoning": "The Second Battle of Tarain was fought in 1192 CE between Prithviraj Chauhan, the Chahamana (Chauhan) ruler of Ajmer and Delhi, and Muhammad Ghori (Muizzuddin Muhammad Ghori), the Ghorid sultan. Ghori won: Prithviraj was defeated and captured, and Delhi passed to the Turks. Hence option A is correct. The published 2021 key marked D (Timur), which is historically wrong.",
+        "option_explanations": [
+          {
+            "key": "A",
+            "text": "Muhammad Ghori",
+            "is_correct": true,
+            "reason": "Muhammad Ghori defeated Prithviraj Chauhan at the Second Battle of Tarain in 1192."
+          },
+          {
+            "key": "B",
+            "text": "Mahmud of Ghazni",
+            "is_correct": false,
+            "reason": "Mahmud of Ghazni raided India seventeen times between 1000 and 1027 CE and attacked Somnath in 1025 — two centuries earlier."
+          },
+          {
+            "key": "C",
+            "text": "Qutb-ud-din Aibak",
+            "is_correct": false,
+            "reason": "Qutb-ud-din Aibak was Ghori's general (and later the first Sultan of Delhi); he fought at Tarain as a commander, not as Prithviraj's opponent-in-title."
+          },
+          {
+            "key": "D",
+            "text": "Timur",
+            "is_correct": false,
+            "reason": "Timur (Tamerlane) invaded India in 1398, almost 200 years later, and sacked Delhi."
+          }
+        ],
+        "key_concepts": [
+          "The First Battle of Tarain (1191) was won by Prithviraj; the Second (1192) was won by Ghori.",
+          "Ghori was assassinated in 1206, after which Aibak founded the Slave (Mamluk) dynasty — the beginning of the Delhi Sultanate.",
+          "The published key D (Timur) is factually wrong; the bank carries the correct answer and records the conflict."
+        ],
+        "revision_takeaways": [
+          "Memory hook: Tarain I (1191) = Prithviraj won; Tarain II (1192) = GHORI won ➜ Prithviraj defeated.",
+          "Timur = 1398; Mahmud of Ghazni = 1000-1027; do not shift the date."
+        ],
+        "sources": [
+          {
+            "title": "Battles of Tarain (1191, 1192)",
+            "citation": "Medieval Indian history reference",
+            "url": null
+          }
+        ]
+      },
+      "subject": "History",
+      "topic": "Medieval India",
+      "subtopic": null,
+      "metadata": {
+        "model_question": true
+      },
+      "dispute": {
+        "is_disputed": true,
+        "status": "resolved",
+        "reason": "The Second Battle of Tarain (1192) was fought between Prithviraj Chauhan and Muhammad Ghori, so option A is settled. The published key (D, Timur) is historically wrong and is recorded as such.",
+        "raised_by": "2021 PYQ quality audit"
+      }
+    },
+    {
+      "id": "MPPSC-2021-081",
+      "paper_id": "MPPSC-2021-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2021,
+      "set_code": null,
+      "question_number": 81,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "The SI unit of force is:",
+          "instructions": null,
+          "options": [
+            {
+              "key": "A",
+              "text": "Joule"
+            },
+            {
+              "key": "B",
+              "text": "Pascal"
+            },
+            {
+              "key": "C",
+              "text": "Newton"
+            },
+            {
+              "key": "D",
+              "text": "Watt"
+            }
+          ]
+        }
+      },
+      "supplied_answer": {
+        "answer": [
+          "C"
+        ],
+        "status": "supplied",
+        "source": null,
+        "notes": null
+      },
+      "answer_key_status": "supplied",
+      "explanation": {
+        "language": "en",
+        "correct_reasoning": "The SI unit of force is the newton (N), defined as the force that gives a mass of one kilogram an acceleration of one metre per second squared (1 N = 1 kg·m/s²). Hence option C is correct.",
+        "option_explanations": [
+          {
+            "key": "A",
+            "text": "Joule",
+            "is_correct": false,
+            "reason": "the joule is the SI unit of energy or work (1 J = 1 N·m)."
+          },
+          {
+            "key": "B",
+            "text": "Pascal",
+            "is_correct": false,
+            "reason": "the pascal is the SI unit of pressure (1 Pa = 1 N/m²)."
+          },
+          {
+            "key": "C",
+            "text": "Newton",
+            "is_correct": true,
+            "reason": "the newton is the SI unit of force, named after Isaac Newton."
+          },
+          {
+            "key": "D",
+            "text": "Watt",
+            "is_correct": false,
+            "reason": "the watt is the SI unit of power (1 W = 1 J/s)."
+          }
+        ],
+        "key_concepts": [
+          "Derived-unit chain: force = mass × acceleration ➜ N = kg·m/s²; work = force × distance ➜ J = N·m; power = work/time ➜ W = J/s.",
+          "Newton's second law, F = ma, is the definitional basis of the unit.",
+          "Weight is a force, so it is measured in newtons — a common exam trap (mass is in kg)."
+        ],
+        "revision_takeaways": [
+          "Memory hook: Force ➜ Newton; Energy ➜ Joule; Pressure ➜ Pascal; Power ➜ Watt.",
+          "1 N = 1 kg·m/s², and weight is a force (N), mass is kg."
+        ],
+        "sources": [
+          {
+            "title": "SI base and derived units — newton",
+            "citation": "BIPM SI brochure / NCERT Physics",
+            "url": null
+          }
+        ]
+      },
+      "subject": "Science and Technology",
+      "topic": "Physics",
+      "subtopic": null,
+      "metadata": {
+        "model_question": true
+      }
+    },
+    {
+      "id": "MPPSC-2021-082",
+      "paper_id": "MPPSC-2021-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2021,
+      "set_code": null,
+      "question_number": 82,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "In India, the one-rupee note is issued by:",
+          "instructions": null,
+          "options": [
+            {
+              "key": "A",
+              "text": "Reserve Bank of India"
+            },
+            {
+              "key": "B",
+              "text": "Ministry of Finance"
+            },
+            {
+              "key": "C",
+              "text": "State Bank of India"
+            },
+            {
+              "key": "D",
+              "text": "Securities and Exchange Board of India"
+            }
+          ]
+        }
+      },
+      "supplied_answer": {
+        "answer": [
+          "B"
+        ],
+        "status": "supplied",
+        "source": null,
+        "notes": null
+      },
+      "answer_key_status": "supplied",
+      "explanation": {
+        "language": "en",
+        "correct_reasoning": "One-rupee notes and coins are issued by the Government of India through the Ministry of Finance; the Reserve Bank of India issues all other denominations. Hence option B is correct. This question was cancelled by the commission in the 2021 prelims, so no answer was scored; the option is retained for revision.",
+        "option_explanations": [
+          {
+            "key": "A",
+            "text": "Reserve Bank of India",
+            "is_correct": false,
+            "reason": "the RBI issues notes of Rs 2 and above (and coins are minted by the Government), but not the one-rupee note."
+          },
+          {
+            "key": "B",
+            "text": "Ministry of Finance",
+            "is_correct": true,
+            "reason": "the one-rupee note is issued by the Government of India under the Coinage Act, 2011 and the RBI Act, so it carries the signature of the Finance Secretary and not the RBI Governor."
+          },
+          {
+            "key": "C",
+            "text": "State Bank of India",
+            "is_correct": false,
+            "reason": "the State Bank of India is a commercial bank and issues no currency."
+          },
+          {
+            "key": "D",
+            "text": "Securities and Exchange Board of India",
+            "is_correct": false,
+            "reason": "SEBI regulates securities markets, not currency."
+          }
+        ],
+        "key_concepts": [
+          "A useful check: the one-rupee note bears the signature of the Secretary, Ministry of Finance — all other notes bear the RBI Governor's signature.",
+          "Coins are minted by the Government of India (mints at Mumbai, Kolkata, Hyderabad and Noida) and circulated through the RBI.",
+          "Section 22 of the RBI Act gives the RBI the sole right to issue banknotes in India, but that right excludes one-rupee notes."
+        ],
+        "revision_takeaways": [
+          "Memory hook: One-rupee note ➜ Ministry of Finance (Government of India), signed by the Finance Secretary.",
+          "RBI issues Rs 2 and above; coins are minted by the Government."
+        ],
+        "sources": [
+          {
+            "title": "RBI Act, 1934 — Section 22 and Government of India one-rupee notes",
+            "citation": "Reserve Bank of India",
+            "url": null
+          }
+        ]
+      },
+      "subject": "Economy",
+      "topic": "Banking and finance",
+      "subtopic": null,
+      "metadata": {
+        "model_question": true
+      },
+      "dispute": {
+        "is_disputed": true,
+        "status": "resolved",
+        "reason": "One-rupee notes are issued by the Government of India through the Ministry of Finance, so option B is factually certain. The commission cancelled the question, which is recorded here.",
+        "raised_by": "2021 PYQ quality audit"
+      }
+    },
+    {
+      "id": "MPPSC-2021-085",
+      "paper_id": "MPPSC-2021-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2021,
+      "set_code": null,
+      "question_number": 85,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "The Narmada river originates from:",
+          "instructions": null,
+          "options": [
+            {
+              "key": "A",
+              "text": "Satpura range"
+            },
+            {
+              "key": "B",
+              "text": "Amarkantak plateau"
+            },
+            {
+              "key": "C",
+              "text": "Vindhya range"
+            },
+            {
+              "key": "D",
+              "text": "Aravalli range"
+            }
+          ]
+        }
+      },
+      "supplied_answer": {
+        "answer": [
+          "B"
+        ],
+        "status": "supplied",
+        "source": null,
+        "notes": null
+      },
+      "answer_key_status": "supplied",
+      "explanation": {
+        "language": "en",
+        "correct_reasoning": "The Narmada rises from the Narmada Kund on the Amarkantak plateau in Anuppur district, at the meeting point of the Vindhya and Satpura ranges. Hence option B is correct. The published 2021 key marked D (Aravalli range), which is geographically wrong: the Aravalli range lies in western India and has no connection with the Narmada's source.",
+        "option_explanations": [
+          {
+            "key": "A",
+            "text": "Satpura range",
+            "is_correct": false,
+            "reason": "the Narmada flows between the Vindhya and Satpura ranges but does not rise in the Satpura range itself."
+          },
+          {
+            "key": "B",
+            "text": "Amarkantak plateau",
+            "is_correct": true,
+            "reason": "the source is the Narmada Kund at Amarkantak, Anuppur district, on the Amarkantak plateau."
+          },
+          {
+            "key": "C",
+            "text": "Vindhya range",
+            "is_correct": false,
+            "reason": "the Vindhya range forms the northern watershed of the Narmada; the river runs south of it."
+          },
+          {
+            "key": "D",
+            "text": "Aravalli range",
+            "is_correct": false,
+            "reason": "the Aravalli range is in Rajasthan-Gujarat and is unrelated to the Narmada's source."
+          }
+        ],
+        "key_concepts": [
+          "Amarkantak is called 'Teerthraj' and is the source of three rivers: the Narmada, the Johila and the Son (the Son rises nearby at Narmada Kund area).",
+          "The Narmada is the longest west-flowing river of peninsular India (about 1,312 km) and drains into the Arabian Sea through the Gulf of Khambhat.",
+          "The published key D (Aravalli) is factually wrong; the bank carries the correct answer and records the conflict."
+        ],
+        "revision_takeaways": [
+          "Memory hook: Narmada ➜ Amarkantak plateau (Narmada Kund), Anuppur district.",
+          "Amarkantak = source of Narmada + Son + Johila; it is where the Vindhya and Satpura meet."
+        ],
+        "sources": [
+          {
+            "title": "Narmada river — source at Amarkantak",
+            "citation": "NCERT Geography / MP Water Resources Department",
+            "url": null
+          }
+        ]
+      },
+      "subject": "Geography",
+      "topic": "Rivers of Madhya Pradesh",
+      "subtopic": null,
+      "metadata": {
+        "model_question": true
+      },
+      "dispute": {
+        "is_disputed": true,
+        "status": "resolved",
+        "reason": "The Narmada rises from the Amarkantak plateau, so option B is settled. The published key (D, Aravalli) is geographically wrong and is recorded as such.",
+        "raised_by": "2021 PYQ quality audit"
+      }
+    },
+    {
+      "id": "MPPSC-2022-004",
+      "paper_id": "MPPSC-2022-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2022,
+      "set_code": null,
+      "question_number": 4,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "What is the maximum permissible strength of the Rajya Sabha under the Constitution?",
+          "instructions": null,
+          "options": [
+            {
+              "key": "A",
+              "text": "238"
+            },
+            {
+              "key": "B",
+              "text": "245"
+            },
+            {
+              "key": "C",
+              "text": "250"
+            },
+            {
+              "key": "D",
+              "text": "260"
+            }
+          ]
+        }
+      },
+      "supplied_answer": {
+        "answer": [
+          "C"
+        ],
+        "status": "supplied",
+        "source": null,
+        "notes": null
+      },
+      "answer_key_status": "supplied",
+      "explanation": {
+        "language": "en",
+        "correct_reasoning": "Under Article 80 of the Constitution, the maximum permissible strength of the Rajya Sabha is 250 members (238 elected by the States/Union Territories and 12 nominated by the President). Hence option C is correct.",
+        "option_explanations": [
+          {
+            "key": "A",
+            "text": "238",
+            "is_correct": false
+          },
+          {
+            "key": "B",
+            "text": "245",
+            "is_correct": false
+          },
+          {
+            "key": "C",
+            "text": "250",
+            "is_correct": true
+          },
+          {
+            "key": "D",
+            "text": "260",
+            "is_correct": false
+          }
+        ],
+        "key_concepts": [
+          "Article 80: Rajya Sabha max strength 250 (238 representatives of States/UTs + 12 nominated).",
+          "245 is the current working strength (with some seats vacant/nominated), not the constitutional maximum.",
+          "Lok Sabha max strength = 552 (530 elected from States, 20 from UTs, 2 nominated Anglo-Indian — nomination now discontinued).",
+          "Distinguish 'maximum permissible strength' (250) from actual/current strength."
+        ],
+        "revision_takeaways": [
+          "Memory hook: Rajya Sabha max = 250 (Article 80).",
+          "250 = constitutional ceiling; 245 ≈ actual; don't confuse."
+        ],
+        "sources": [
+          {
+            "title": "Article 80 — Composition of Rajya Sabha",
+            "citation": "Constitution of India",
+            "url": null
+          }
+        ]
+      },
+      "subject": "Polity",
+      "topic": "Union Legislature",
+      "subtopic": null,
+      "metadata": {
+        "model_question": true
+      }
+    },
+    {
+      "id": "MPPSC-2022-019",
+      "paper_id": "MPPSC-2022-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2022,
+      "set_code": null,
+      "question_number": 19,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "The Jallianwala Bagh massacre at Amritsar took place on:",
+          "instructions": null,
+          "options": [
+            {
+              "key": "A",
+              "text": "13 April 1919"
+            },
+            {
+              "key": "B",
+              "text": "13 April 1920"
+            },
+            {
+              "key": "C",
+              "text": "23 March 1919"
+            },
+            {
+              "key": "D",
+              "text": "5 February 1922"
+            }
+          ]
+        }
+      },
+      "supplied_answer": {
+        "answer": [
+          "A"
+        ],
+        "status": "supplied",
+        "source": null,
+        "notes": null
+      },
+      "answer_key_status": "supplied",
+      "explanation": {
+        "language": "en",
+        "correct_reasoning": "The Jallianwala Bagh massacre at Amritsar took place on 13 April 1919, when General Dyer's troops fired on an unarmed gathering. Hence option A is correct.",
+        "option_explanations": [
+          {
+            "key": "A",
+            "text": "13 April 1919",
+            "is_correct": true
+          },
+          {
+            "key": "B",
+            "text": "13 April 1920",
+            "is_correct": false
+          },
+          {
+            "key": "C",
+            "text": "23 March 1919",
+            "is_correct": false
+          },
+          {
+            "key": "D",
+            "text": "5 February 1922",
+            "is_correct": false
+          }
+        ],
+        "key_concepts": [
+          "Jallianwala Bagh massacre: 13 April 1919, Amritsar (Baisakhi day), General Reginald Dyer.",
+          "Led to widespread outrage; Rabindranath Tagore renounced his knighthood; Gandhi launched Non-Cooperation Movement (1920).",
+          "5 February 1922 = Chauri Chaura incident; 23 March 1919 = close distractor.",
+          "Modern India: date and place of Jallianwala Bagh is a fixed fact."
+        ],
+        "revision_takeaways": [
+          "Memory hook: Jallianwala Bagh ➜ 13 April 1919, Amritsar, General Dyer.",
+          "Baisakhi day, 1919."
+        ],
+        "sources": [
+          {
+            "title": "Jallianwala Bagh massacre — 13 April 1919",
+            "citation": "Modern Indian history",
+            "url": null
+          }
+        ]
+      },
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": null,
+      "metadata": {
+        "model_question": true
+      }
+    },
+    {
+      "id": "MPPSC-2022-084",
+      "paper_id": "MPPSC-2022-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2022,
+      "set_code": null,
+      "question_number": 84,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "Which gas is the most abundant in the Earth’s atmosphere?",
+          "instructions": null,
+          "options": [
+            {
+              "key": "A",
+              "text": "Oxygen"
+            },
+            {
+              "key": "B",
+              "text": "Argon"
+            },
+            {
+              "key": "C",
+              "text": "Nitrogen"
+            },
+            {
+              "key": "D",
+              "text": "Carbon dioxide"
+            }
+          ]
+        }
+      },
+      "supplied_answer": {
+        "answer": [
+          "C"
+        ],
+        "status": "supplied",
+        "source": null,
+        "notes": null
+      },
+      "answer_key_status": "supplied",
+      "explanation": {
+        "language": "en",
+        "correct_reasoning": "Nitrogen is the most abundant gas in the Earth's atmosphere (about 78% by volume). Hence option C is correct.",
+        "option_explanations": [
+          {
+            "key": "A",
+            "text": "Oxygen",
+            "is_correct": false
+          },
+          {
+            "key": "B",
+            "text": "Argon",
+            "is_correct": false
+          },
+          {
+            "key": "C",
+            "text": "Nitrogen",
+            "is_correct": true
+          },
+          {
+            "key": "D",
+            "text": "Carbon dioxide",
+            "is_correct": false
+          }
+        ],
+        "key_concepts": [
+          "Atmospheric composition: Nitrogen ~78%, Oxygen ~21%, Argon ~0.93%, CO2 ~0.04% — Nitrogen is most abundant.",
+          "Science and Technology: chemistry — composition of air.",
+          "Oxygen is second; Argon and CO2 are trace in comparison.",
+          "Fixed science fact — composition of the atmosphere."
+        ],
+        "revision_takeaways": [
+          "Memory hook: Most abundant gas in atmosphere ➜ Nitrogen (~78%).",
+          "N₂=78%; O₂=21%; Argon & CO₂ = small."
+        ],
+        "sources": [
+          {
+            "title": "Composition of Earth's atmosphere",
+            "citation": "Science/chemistry reference",
+            "url": null
+          }
+        ]
+      },
+      "subject": "Science and Technology",
+      "topic": "Chemistry",
+      "subtopic": null,
+      "metadata": {
+        "model_question": true
+      }
+    },
+    {
+      "id": "MPPSC-2023-002",
+      "paper_id": "MPPSC-2023-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2023,
+      "set_code": null,
+      "question_number": 2,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "The principal seat of the Madhya Pradesh High Court is located at:",
+          "instructions": null,
+          "options": [
+            {
+              "key": "A",
+              "text": "Bhopal"
+            },
+            {
+              "key": "B",
+              "text": "Indore"
+            },
+            {
+              "key": "C",
+              "text": "Gwalior"
+            },
+            {
+              "key": "D",
+              "text": "Jabalpur"
+            }
+          ]
+        }
+      },
+      "supplied_answer": {
+        "answer": [
+          "D"
+        ],
+        "status": "supplied",
+        "source": null,
+        "notes": null
+      },
+      "answer_key_status": "supplied",
+      "explanation": {
+        "language": "en",
+        "correct_reasoning": "The principal seat of the Madhya Pradesh High Court is at Jabalpur. The court also has benches at Indore and Gwalior, but its principal (main) seat remains Jabalpur, a position continuing from the Nagpur Jurisdiction era and reaffirmed when MP High Court was constituted. Hence option D (Jabalpur) is correct.",
+        "option_explanations": [
+          {
+            "key": "A",
+            "text": "Bhopal",
+            "is_correct": false
+          },
+          {
+            "key": "B",
+            "text": "Indore",
+            "is_correct": false
+          },
+          {
+            "key": "C",
+            "text": "Gwalior",
+            "is_correct": false
+          },
+          {
+            "key": "D",
+            "text": "Jabalpur",
+            "is_correct": true
+          }
+        ],
+        "key_concepts": [
+          "The Madhya Pradesh High Court was established as the Nagpur High Court (Central Provinces) and shifted to Jabalpur after reorganisation of states in 1956.",
+          "Indore and Gwalior are additional benches, not the principal seat.",
+          "Article 214 provides for a High Court for each state; Parliament can establish a common High Court for two or more states (Article 231).",
+          "MP-specific fact frequently tested in MPPSC prelims."
+        ],
+        "revision_takeaways": [
+          "Memory hook: MP High Court principal seat ➜ Jabalpur (benches at Indore & Gwalior).",
+          "Do not confuse Bhopal (state capital) with Jabalpur (high court seat)."
+        ],
+        "sources": [
+          {
+            "title": "Madhya Pradesh High Court — seat and benches",
+            "citation": "MP High Court / eCourts",
+            "url": "https://mphc.gov.in/"
+          }
+        ]
+      },
+      "subject": "Madhya Pradesh Special",
+      "topic": "Administrative structure of Madhya Pradesh",
+      "subtopic": null,
+      "metadata": {
+        "model_question": true
+      }
+    },
+    {
+      "id": "MPPSC-2023-047",
+      "paper_id": "MPPSC-2023-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2023,
+      "set_code": null,
+      "question_number": 47,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "Through how many Indian States does the Tropic of Cancer pass?",
+          "instructions": null,
+          "options": [
+            {
+              "key": "A",
+              "text": "6"
+            },
+            {
+              "key": "B",
+              "text": "7"
+            },
+            {
+              "key": "C",
+              "text": "8"
+            },
+            {
+              "key": "D",
+              "text": "9"
+            }
+          ]
+        }
+      },
+      "supplied_answer": {
+        "answer": [
+          "C"
+        ],
+        "status": "supplied",
+        "source": null,
+        "notes": null
+      },
+      "answer_key_status": "supplied",
+      "explanation": {
+        "language": "en",
+        "correct_reasoning": "The Tropic of Cancer (23½° N) passes through eight Indian States: Gujarat, Rajasthan, Madhya Pradesh, Chhattisgarh, Jharkhand, West Bengal, Tripura and Mizoram. Hence option C (8) is correct.",
+        "option_explanations": [
+          {
+            "key": "A",
+            "text": "6",
+            "is_correct": false
+          },
+          {
+            "key": "B",
+            "text": "7",
+            "is_correct": false
+          },
+          {
+            "key": "C",
+            "text": "8",
+            "is_correct": true
+          },
+          {
+            "key": "D",
+            "text": "9",
+            "is_correct": false
+          }
+        ],
+        "key_concepts": [
+          "The Tropic of Cancer crosses India roughly through its middle; MP is one of the eight states it passes through.",
+          "It does NOT pass through Maharashtra, Odisha, Bihar, Uttar Pradesh, Assam, etc.",
+          "The Tropic of Capricorn (23½° S) passes through South America, Southern Africa and Australia — not India.",
+          "The Standard Meridian of India (82½° E, passing near Mirpur, MP) is a different line often tested alongside."
+        ],
+        "revision_takeaways": [
+          "Memory hook: Tropic of Cancer through 8 Indian states (Gujarat, Rajasthan, MP, Chhattisgarh, Jharkhand, WB, Tripura, Mizoram).",
+          "MP lies on the Tropic of Cancer."
+        ],
+        "sources": [
+          {
+            "title": "Tropic of Cancer — India (NCERT Class 9/11 Geography)",
+            "citation": "NCERT",
+            "url": null
+          }
+        ]
+      },
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": null,
+      "metadata": {
+        "model_question": true
+      }
+    },
+    {
+      "id": "MPPSC-2023-053",
+      "paper_id": "MPPSC-2023-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2023,
+      "set_code": null,
+      "question_number": 53,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "The words ‘Socialist’ and ‘Secular’ were added to the Preamble of the Constitution by:",
+          "instructions": null,
+          "options": [
+            {
+              "key": "A",
+              "text": "The 42nd Amendment, 1976"
+            },
+            {
+              "key": "B",
+              "text": "The 44th Amendment, 1978"
+            },
+            {
+              "key": "C",
+              "text": "The 61st Amendment, 1989"
+            },
+            {
+              "key": "D",
+              "text": "The 73rd Amendment, 1992"
+            }
+          ]
+        }
+      },
+      "supplied_answer": {
+        "answer": [
+          "A"
+        ],
+        "status": "supplied",
+        "source": null,
+        "notes": null
+      },
+      "answer_key_status": "supplied",
+      "explanation": {
+        "language": "en",
+        "correct_reasoning": "The words 'Socialist' and 'Secular' (and 'Integrity') were added to the Preamble of the Constitution by the 42nd Constitutional Amendment Act, 1976, during the Emergency. The Preamble now reads: 'We, the people of India, having solemnly resolved to constitute India into a Sovereign Socialist Secular Democratic Republic...' Hence option A is correct.",
+        "option_explanations": [
+          {
+            "key": "A",
+            "text": "The 42nd Amendment, 1976",
+            "is_correct": true
+          },
+          {
+            "key": "B",
+            "text": "The 44th Amendment, 1978",
+            "is_correct": false
+          },
+          {
+            "key": "C",
+            "text": "The 61st Amendment, 1989",
+            "is_correct": false
+          },
+          {
+            "key": "D",
+            "text": "The 73rd Amendment, 1992",
+            "is_correct": false
+          }
+        ],
+        "key_concepts": [
+          "42nd Amendment (1976) is known as a 'mini-Constitution'; it made sweeping changes including Fundamental Duties (Part IVA), and the words Socialist/Secular/Integrity in the Preamble.",
+          "44th Amendment (1978) repealed some 42nd Amendment excesses (e.g., right to property became a legal right under Article 300A, not a Fundamental Right).",
+          "61st Amendment (1989) reduced voting age from 21 to 18; 73rd Amendment (1992) = Panchayats.",
+          "The original Preamble (1950) had 'Sovereign Democratic Republic'; 'Socialist' and 'Secular' were inserted later."
+        ],
+        "revision_takeaways": [
+          "Memory hook: Socialist + Secular added to Preamble ➜ 42nd Amendment, 1976.",
+          "42nd = mini-Constitution; 44th = rolled back emergency excesses."
+        ],
+        "sources": [
+          {
+            "title": "42nd Constitutional Amendment Act, 1976 — Preamble",
+            "citation": "Constitution of India",
+            "url": null
+          }
+        ]
+      },
+      "subject": "Polity",
+      "topic": "Constitution of India",
+      "subtopic": null,
+      "metadata": {
+        "model_question": true
+      }
+    },
+    {
+      "id": "MPPSC-2023-058",
+      "paper_id": "MPPSC-2023-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2023,
+      "set_code": null,
+      "question_number": 58,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "Which one of the following was the first National Park established in India?",
+          "instructions": null,
+          "options": [
+            {
+              "key": "A",
+              "text": "Kanha National Park"
+            },
+            {
+              "key": "B",
+              "text": "Jim Corbett National Park"
+            },
+            {
+              "key": "C",
+              "text": "Kaziranga National Park"
+            },
+            {
+              "key": "D",
+              "text": "Bandhavgarh National Park"
+            }
+          ]
+        }
+      },
+      "supplied_answer": {
+        "answer": [
+          "B"
+        ],
+        "status": "supplied",
+        "source": null,
+        "notes": null
+      },
+      "answer_key_status": "supplied",
+      "explanation": {
+        "language": "en",
+        "correct_reasoning": "India's first National Park was established in 1936 as Hailey National Park (in present-day Uttarakhand), later renamed Ramganga National Park and then Jim Corbett National Park in 1957 (after the hunter-conservationist Jim Corbett). It was also the first park to come under Project Tiger (1973). Hence option B (Jim Corbett National Park) is correct.",
+        "option_explanations": [
+          {
+            "key": "A",
+            "text": "Kanha National Park",
+            "is_correct": false
+          },
+          {
+            "key": "B",
+            "text": "Jim Corbett National Park",
+            "is_correct": true
+          },
+          {
+            "key": "C",
+            "text": "Kaziranga National Park",
+            "is_correct": false
+          },
+          {
+            "key": "D",
+            "text": "Bandhavgarh National Park",
+            "is_correct": false
+          }
+        ],
+        "key_concepts": [
+          "Hailey National Park (1936) → Ramganga (1954–55) → Jim Corbett National Park (1957); first under Project Tiger (1973).",
+          "Kanha (MP, 1955), Kaziranga (Assam, 1905 as reserve/1974 as park), Bandhavgarh (MP, 1968) are not the first.",
+          "Project Tiger launched 1973 at Corbett; MP's Kanha and Bandhavgarh are also tiger reserves.",
+          "MP-specific: Kanha and Bandhavgarh are MP's famous national parks/tiger reserves."
+        ],
+        "revision_takeaways": [
+          "Memory hook: First National Park (1936) ➜ Jim Corbett (Hailey), Uttarakhand; first under Project Tiger 1973.",
+          "Corbett = Uttarakhand; Kanha/Bandhavgarh = MP."
+        ],
+        "sources": [
+          {
+            "title": "Jim Corbett National Park — first National Park of India",
+            "citation": "MoEFCC / NTCA",
+            "url": "https://corbettnationalpark.co.in/"
+          }
+        ]
+      },
+      "subject": "Environment",
+      "topic": "Protected areas",
+      "subtopic": null,
+      "metadata": {
+        "model_question": true
+      }
+    },
+    {
+      "id": "MPPSC-2023-060",
+      "paper_id": "MPPSC-2023-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2023,
+      "set_code": null,
+      "question_number": 60,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "Who is regarded as the father of the Green Revolution in India?",
+          "instructions": null,
+          "options": [
+            {
+              "key": "A",
+              "text": "M. S. Swaminathan"
+            },
+            {
+              "key": "B",
+              "text": "Norman Borlaug"
+            },
+            {
+              "key": "C",
+              "text": "Verghese Kurien"
+            },
+            {
+              "key": "D",
+              "text": "C. Subramaniam"
+            }
+          ]
+        }
+      },
+      "supplied_answer": {
+        "answer": [
+          "A"
+        ],
+        "status": "supplied",
+        "source": null,
+        "notes": null
+      },
+      "answer_key_status": "supplied",
+      "explanation": {
+        "language": "en",
+        "correct_reasoning": "M. S. Swaminathan is regarded as the Father of the Green Revolution in India. He led the introduction of high-yielding dwarf wheat varieties (developed by Norman Borlaug) and worked with the government to launch the Green Revolution in the 1960s, making India self-sufficient in food grains. Hence option A is correct.",
+        "option_explanations": [
+          {
+            "key": "A",
+            "text": "M. S. Swaminathan",
+            "is_correct": true
+          },
+          {
+            "key": "B",
+            "text": "Norman Borlaug",
+            "is_correct": false
+          },
+          {
+            "key": "C",
+            "text": "Verghese Kurien",
+            "is_correct": false
+          },
+          {
+            "key": "D",
+            "text": "C. Subramaniam",
+            "is_correct": false
+          }
+        ],
+        "key_concepts": [
+          "Norman Borlaug = Father of the Green Revolution globally (developed Mexican dwarf wheat); M. S. Swaminathan = Father of the Green Revolution in India (adapted it to Indian conditions).",
+          "Verghese Kurien = Father of the White Revolution (Operation Flood, dairy); C. Subramaniam = Union Minister for Agriculture who championed the Green Revolution in India (often called its political architect).",
+          "High-Yielding Varieties Programme (HYVP) launched in the kharif of 1966; focused on wheat in Punjab, Haryana, western UP.",
+          "MP connection: MP adopted HYV wheat/rice later and is now a major wheat-producing state."
+        ],
+        "revision_takeaways": [
+          "Memory hook: Green Revolution in India ➜ M. S. Swaminathan (globally ➜ Norman Borlaug).",
+          "White Revolution ➜ Verghese Kurien; Green Revolution (political) ➜ C. Subramaniam."
+        ],
+        "sources": [
+          {
+            "title": "M. S. Swaminathan — Father of Green Revolution in India",
+            "citation": "ICAR / agriculture reference",
+            "url": null
+          }
+        ]
+      },
+      "subject": "Economy",
+      "topic": "Agriculture and rural economy",
+      "subtopic": null,
+      "metadata": {
+        "model_question": true
+      }
+    },
+    {
+      "id": "MPPSC-2024-019",
+      "paper_id": "MPPSC-2024-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2024,
+      "set_code": null,
+      "question_number": 19,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "The Brahmi script used in the Ashokan edicts was first deciphered in 1837 by:",
+          "instructions": null,
+          "options": [
+            {
+              "key": "A",
+              "text": "Alexander Cunningham"
+            },
+            {
+              "key": "B",
+              "text": "James Prinsep"
+            },
+            {
+              "key": "C",
+              "text": "John Marshall"
+            },
+            {
+              "key": "D",
+              "text": "William Jones"
+            }
+          ]
+        }
+      },
+      "supplied_answer": {
+        "answer": [
+          "B"
+        ],
+        "status": "supplied",
+        "source": null,
+        "notes": null
+      },
+      "answer_key_status": "supplied",
+      "explanation": {
+        "language": "en",
+        "correct_reasoning": "The Brahmi script used in the Ashokan edicts was first deciphered in 1837 by James Prinsep, an East India Company officer and antiquary of the Asiatic Society of Bengal. By comparing Brahmi inscriptions with the better-known Kharosthi script and bilingual coins, Prinsep unlocked the reading of Ashoka's edicts, which revealed the Mauryan emperor's Dhamma. Hence option B (James Prinsep) is correct.",
+        "option_explanations": [
+          {
+            "key": "A",
+            "text": "Alexander Cunningham",
+            "is_correct": false
+          },
+          {
+            "key": "B",
+            "text": "James Prinsep",
+            "is_correct": true
+          },
+          {
+            "key": "C",
+            "text": "John Marshall",
+            "is_correct": false
+          },
+          {
+            "key": "D",
+            "text": "William Jones",
+            "is_correct": false
+          }
+        ],
+        "key_concepts": [
+          "James Prinsep also deciphered the Kharosthi script and founded the field of Indian epigraphy/numismatics.",
+          "Alexander Cunningham founded the Archaeological Survey of India (1861); John Marshall excavated Indus sites and Sanchi; William Jones founded the Asiatic Society (1784) and championed Sanskrit.",
+          "Brahmi is the ancestor of most modern Indian scripts; Ashokan edicts were written in Brahmi (Prakrit) across the Mauryan empire.",
+          "The decipherment (1837) is a landmark in understanding ancient Indian history."
+        ],
+        "revision_takeaways": [
+          "Memory hook: Brahmi script deciphered 1837 ➜ James Prinsep.",
+          "Prinsep = Brahmi & Kharosthi; Cunningham = ASI; Jones = Asiatic Society; Marshall = Indus/Sanchi."
+        ],
+        "sources": [
+          {
+            "title": "James Prinsep and the decipherment of Brahmi — Asiatic Society / Indian epigraphy",
+            "citation": "Asiatic Society",
+            "url": null
+          }
+        ]
+      },
+      "subject": "History",
+      "topic": "Ancient India",
+      "subtopic": null,
+      "metadata": {
+        "model_question": true
+      }
+    },
+    {
+      "id": "MPPSC-2024-039",
+      "paper_id": "MPPSC-2024-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2024,
+      "set_code": null,
+      "question_number": 39,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "Which Indian State has the longest coastline?",
+          "instructions": null,
+          "options": [
+            {
+              "key": "A",
+              "text": "Andhra Pradesh"
+            },
+            {
+              "key": "B",
+              "text": "Tamil Nadu"
+            },
+            {
+              "key": "C",
+              "text": "Gujarat"
+            },
+            {
+              "key": "D",
+              "text": "Kerala"
+            }
+          ]
+        }
+      },
+      "supplied_answer": {
+        "answer": [
+          "C"
+        ],
+        "status": "supplied",
+        "source": null,
+        "notes": null
+      },
+      "answer_key_status": "supplied",
+      "explanation": {
+        "language": "en",
+        "correct_reasoning": "Gujarat has the longest coastline among Indian states, at about 1,600 km, owing to the Gulfs of Kutch and Khambhat and the long Saurashtra and Kutch peninsulas. Hence option C (Gujarat) is correct.",
+        "option_explanations": [
+          {
+            "key": "A",
+            "text": "Andhra Pradesh",
+            "is_correct": false
+          },
+          {
+            "key": "B",
+            "text": "Tamil Nadu",
+            "is_correct": false
+          },
+          {
+            "key": "C",
+            "text": "Gujarat",
+            "is_correct": true
+          },
+          {
+            "key": "D",
+            "text": "Kerala",
+            "is_correct": false
+          }
+        ],
+        "key_concepts": [
+          "Among states, Andhra Pradesh (~974 km) and Tamil Nadu (~1,076 km) have long coastlines but less than Gujarat; Kerala (~590 km) is shorter.",
+          "India's total coastline is about 7,517 km (including islands); Gujarat alone accounts for the largest state share.",
+          "Gujarat's long coast supports major ports (Kandla, Mundra) and maritime trade.",
+          "Do not confuse 'longest state coastline' (Gujarat) with 'longest coastline including Union Territories' (Andaman & Nicobar Islands)."
+        ],
+        "revision_takeaways": [
+          "Memory hook: Longest state coastline ➜ Gujarat (~1,600 km).",
+          "Gujarat's Gulfs of Kutch & Khambhat and Saurashtra/Kutch peninsulas give it the longest coast."
+        ],
+        "sources": [
+          {
+            "title": "Ministry of Home Affairs / coastal statistics — coastline of India by state",
+            "citation": "MHA / GoI",
+            "url": "https://mha.gov.in/"
+          }
+        ]
+      },
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": null,
+      "metadata": {
+        "model_question": true
+      }
+    },
+    {
+      "id": "MPPSC-2024-073",
+      "paper_id": "MPPSC-2024-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2024,
+      "set_code": null,
+      "question_number": 73,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "The Fundamental Duties were inserted into the Constitution on the recommendation of which committee?",
+          "instructions": null,
+          "options": [
+            {
+              "key": "A",
+              "text": "Sarkaria Committee"
+            },
+            {
+              "key": "B",
+              "text": "Swaran Singh Committee"
+            },
+            {
+              "key": "C",
+              "text": "Balwantrai Mehta Committee"
+            },
+            {
+              "key": "D",
+              "text": "L. M. Singhvi Committee"
+            }
+          ]
+        }
+      },
+      "supplied_answer": {
+        "answer": [
+          "B"
+        ],
+        "status": "supplied",
+        "source": null,
+        "notes": null
+      },
+      "answer_key_status": "supplied",
+      "explanation": {
+        "language": "en",
+        "correct_reasoning": "The Fundamental Duties were inserted into the Constitution (as Part IVA and Article 51A) by the 42nd Constitutional Amendment Act, 1976, on the recommendation of the Swaran Singh Committee (1976). Originally 10 duties, the 86th Amendment (2002) added the 11th duty (education of children aged 6–14). Hence option B (Swaran Singh Committee) is correct.",
+        "option_explanations": [
+          {
+            "key": "A",
+            "text": "Sarkaria Committee",
+            "is_correct": false
+          },
+          {
+            "key": "B",
+            "text": "Swaran Singh Committee",
+            "is_correct": true
+          },
+          {
+            "key": "C",
+            "text": "Balwantrai Mehta Committee",
+            "is_correct": false
+          },
+          {
+            "key": "D",
+            "text": "L. M. Singhvi Committee",
+            "is_correct": false
+          }
+        ],
+        "key_concepts": [
+          "Sarkaria Commission = Centre-State relations (1983); Balwantrai Mehta Committee = democratic decentralisation/Panchayati Raj (1957); L. M. Singhvi Committee = local self-government (1986).",
+          "Fundamental Duties are non-justiciable (like DPSPs) and listed in Article 51A.",
+          "The Swaran Singh Committee was set up to recommend Fundamental Duties during the Emergency period.",
+          "Duties include respecting the Constitution, national flag, anthem, sovereignty, unity and integrity of India."
+        ],
+        "revision_takeaways": [
+          "Memory hook: Fundamental Duties ➜ Swaran Singh Committee ➜ 42nd Amendment (1976) ➜ Article 51A (Part IVA).",
+          "Swaran Singh = Fundamental Duties committee."
+        ],
+        "sources": [
+          {
+            "title": "42nd Constitutional Amendment Act, 1976 — Fundamental Duties (Article 51A, Part IVA)",
+            "citation": "Constitution of India",
+            "url": null
+          }
+        ]
+      },
+      "subject": "Polity",
+      "topic": "Constitution of India",
+      "subtopic": null,
+      "metadata": {
+        "model_question": true
+      }
+    },
+    {
+      "id": "MPPSC-2024-081",
+      "paper_id": "MPPSC-2024-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2024,
+      "set_code": null,
+      "question_number": 81,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "The BCG vaccine is administered for protection against:",
+          "instructions": null,
+          "options": [
+            {
+              "key": "A",
+              "text": "Polio"
+            },
+            {
+              "key": "B",
+              "text": "Tuberculosis"
+            },
+            {
+              "key": "C",
+              "text": "Measles"
+            },
+            {
+              "key": "D",
+              "text": "Hepatitis B"
+            }
+          ]
+        }
+      },
+      "supplied_answer": {
+        "answer": [
+          "B"
+        ],
+        "status": "supplied",
+        "source": null,
+        "notes": null
+      },
+      "answer_key_status": "supplied",
+      "explanation": {
+        "language": "en",
+        "correct_reasoning": "The BCG (Bacillus Calmette–Guérin) vaccine is administered for protection against tuberculosis (TB). It contains a live attenuated strain of Mycobacterium bovis and is given to infants soon after birth under India's Universal Immunisation Programme. Hence option B (Tuberculosis) is correct.",
+        "option_explanations": [
+          {
+            "key": "A",
+            "text": "Polio",
+            "is_correct": false
+          },
+          {
+            "key": "B",
+            "text": "Tuberculosis",
+            "is_correct": true
+          },
+          {
+            "key": "C",
+            "text": "Measles",
+            "is_correct": false
+          },
+          {
+            "key": "D",
+            "text": "Hepatitis B",
+            "is_correct": false
+          }
+        ],
+        "key_concepts": [
+          "Polio is prevented by OPV/IPV; measles by MR/MMR vaccine; Hepatitis B by the Hep-B birth dose — none by BCG.",
+          "BCG is named after Albert Calmette and Camille Guérin, who developed it in the early 20th century.",
+          "BCG does not prevent TB infection in adults reliably but protects children against severe forms (TB meningitis, miliary TB).",
+          "India's Universal Immunisation Programme includes BCG, OPV, Hep-B, pentavalent, rotavirus, MMR/MR, etc."
+        ],
+        "revision_takeaways": [
+          "Memory hook: BCG vaccine ➜ Tuberculosis (given at birth under UIP).",
+          "BCG = Bacillus Calmette-Guérin ➜ TB."
+        ],
+        "sources": [
+          {
+            "title": "BCG vaccine — Universal Immunisation Programme, Ministry of Health and Family Welfare",
+            "citation": "MoHFW, GoI",
+            "url": "https://nhm.gov.in/"
+          }
+        ]
+      },
+      "subject": "Science and Technology",
+      "topic": "Health and diseases",
+      "subtopic": null,
+      "metadata": {
+        "model_question": true
+      }
+    },
+    {
+      "id": "MPPSC-2024-091",
+      "paper_id": "MPPSC-2024-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2024,
+      "set_code": null,
+      "question_number": 91,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "The Khajuraho group of temples was built mainly under the patronage of which dynasty?",
+          "instructions": null,
+          "options": [
+            {
+              "key": "A",
+              "text": "Gupta dynasty"
+            },
+            {
+              "key": "B",
+              "text": "Pratihara dynasty"
+            },
+            {
+              "key": "C",
+              "text": "Chandela dynasty"
+            },
+            {
+              "key": "D",
+              "text": "Kalchuri dynasty"
+            }
+          ]
+        }
+      },
+      "supplied_answer": {
+        "answer": [
+          "C"
+        ],
+        "status": "supplied",
+        "source": null,
+        "notes": null
+      },
+      "answer_key_status": "supplied",
+      "explanation": {
+        "language": "en",
+        "correct_reasoning": "The Khajuraho group of temples was built mainly under the patronage of the Chandela dynasty between about 950 and 1050 CE. The Chandelas ruled the Bundelkhand region (Jejakabhukti), and the temples are famous for their Nagara-style architecture and erotic sculptures. Hence option C (Chandela dynasty) is correct.",
+        "option_explanations": [
+          {
+            "key": "A",
+            "text": "Gupta dynasty",
+            "is_correct": false
+          },
+          {
+            "key": "B",
+            "text": "Pratihara dynasty",
+            "is_correct": false
+          },
+          {
+            "key": "C",
+            "text": "Chandela dynasty",
+            "is_correct": true
+          },
+          {
+            "key": "D",
+            "text": "Kalchuri dynasty",
+            "is_correct": false
+          }
+        ],
+        "key_concepts": [
+          "Gupta dynasty = classical age (earlier, ~4th–6th c. CE); Pratihara = Gurjara-Pratiharas of Kannauj; Kalchuri = Chedi/Tripuri region (MP) — none built Khajuraho.",
+          "Khajuraho is a UNESCO World Heritage Site; about 20 of the original ~85 temples survive (Kandariya Mahadeva, Lakshmana, etc.).",
+          "MP connection: Khajuraho is in Chhatarpur district, Madhya Pradesh — a major heritage and tourism site.",
+          "Built over ~100 years (c. 950–1050 CE) during the Chandela period."
+        ],
+        "revision_takeaways": [
+          "Memory hook: Khajuraho temples ➜ Chandela dynasty (c. 950–1050 CE), Bundelkhand, MP.",
+          "UNESCO site; Nagara style; Kandariya Mahadeva temple."
+        ],
+        "sources": [
+          {
+            "title": "Khajuraho Group of Monuments — UNESCO World Heritage Site",
+            "citation": "UNESCO / ASI",
+            "url": "https://whc.unesco.org/"
+          }
+        ]
+      },
+      "subject": "Art and Culture",
+      "topic": "Heritage Sites",
+      "subtopic": null,
+      "metadata": {
+        "model_question": true
+      }
+    }
+  ]
+}

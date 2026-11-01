@@ -1,0 +1,144 @@
+{
+  "version": "1.0.0",
+  "note": "Reviewed dispute blocks. Applied during a clean rebuild so an ambiguity flag cannot be lost when the bank is regenerated.",
+  "disputes": {
+    "MPPSC-2020-037": {
+      "is_disputed": true,
+      "status": "unresolved",
+      "reason": "Elections to a State legislature appear in two entries: Union List entry 72 (\"elections to Parliament, to the Legislatures of States...; the Election Commission\") and State List entry 37 (\"elections to the Legislature of the State subject to the provisions of any law made by Parliament\"). The paper asks for one entry but both A and C are correct, so the bank keeps the printed double key A+C instead of forcing a single letter.",
+      "raised_by": "2020 PYQ final answer audit"
+    },
+    "MPPSC-2020-045": {
+      "is_disputed": true,
+      "status": "unresolved",
+      "reason": "The printed key treats Tantia (A) as his personal name, with Tantya Mama the popular form. Popular Hindi accounts and Hindi Wikipedia instead record his birth name as Tandra (option D), and the paper offers both. The key is retained, but the naming is genuinely contested.",
+      "raised_by": "2020 PYQ final answer audit"
+    },
+    "MPPSC-2020-093": {
+      "is_disputed": true,
+      "status": "unresolved",
+      "reason": "Microwaves are conventionally given as 300 MHz to 300 GHz, while every option in the paper starts at a different bound; option C (1 GHz to 300 GHz) is the only defensible range and is retained, but its lower bound is a common textbook simplification rather than the full band.",
+      "raised_by": "2020 PYQ final answer audit"
+    },
+    "MPPSC-2020-098": {
+      "is_disputed": true,
+      "status": "unresolved",
+      "reason": "Diamond production in India is indeed confined to the Panna belt of Madhya Pradesh, which makes C the only workable option, but the phrase \"only found in Madhya Pradesh\" overstates the geology: kimberlite occurrences are known in Andhra Pradesh and Chhattisgarh too, without working mines. The answer stands; the wording does not.",
+      "raised_by": "2020 PYQ final answer audit"
+    },
+    "MPPSC-2021-010": {
+      "is_disputed": true,
+      "status": "resolved",
+      "raised_by": "2026-11-01 final answer audit",
+      "reason": "The published 2021 key marked \"All of the above\". The phosphatase test is a milk test only, so the stored answer is corrected to A (Milk) and the official key is recorded as wrong on this item."
+    },
+    "MPPSC-2021-027": {
+      "is_disputed": true,
+      "status": "unresolved",
+      "reason": "The 2021 commission key allowed more than one option here; auctions/dynamic pricing operate in both B2B and C2C markets, so B (C2B) is the only clearly wrong choice. The bank keeps the official A+C and flags the ambiguity rather than guessing a single key.",
+      "raised_by": "2021 PYQ quality audit"
+    },
+    "MPPSC-2021-028": {
+      "is_disputed": true,
+      "status": "unresolved",
+      "reason": "The commission granted marks for more than one option (B and C, the brouter) on this question. B (router) is the standard textbook answer and is retained.",
+      "raised_by": "2021 PYQ quality audit"
+    },
+    "MPPSC-2021-034": {
+      "is_disputed": true,
+      "status": "unresolved",
+      "reason": "Sources disagree on whether Turra-Kalangi belongs to the Nimar or the Malwa region, and the commission accepted multiple options. The bank keeps the official multi-key and flags the uncertainty.",
+      "raised_by": "2021 PYQ quality audit"
+    },
+    "MPPSC-2021-037": {
+      "is_disputed": true,
+      "status": "unresolved",
+      "raised_by": "2026-11-01 final answer audit",
+      "reason": "The Objectives Resolution was moved on 13 December 1946. Whether that date is the second, third, fourth or fifth sitting of the Constituent Assembly depends on how sittings are counted: the Assembly sat on 9, 10, 11 and 13 December 1946, so 13 December is the fourth sitting by date, while accounts that count the Assembly's separate meetings, or begin with the 9 December formal sitting plus the 11 December business meeting, give the third or the fifth. The official key (D, Fifth) is retained and the counting ambiguity is stated."
+    },
+    "MPPSC-2021-056": {
+      "is_disputed": true,
+      "status": "resolved",
+      "raised_by": "2026-11-01 final answer audit",
+      "reason": "The answer (A and C) is settled by section 21(1) of the Protection of Human Rights Act, 1993: the Speaker and the Leader of the Opposition are the members of the recommending committee that appear among the options. An earlier explanation cited the Right to Information Act instead, which was wrong and has been replaced; the exam awarded grace marks on this question."
+    },
+    "MPPSC-2021-057": {
+      "is_disputed": true,
+      "status": "resolved",
+      "reason": "Section 243K(1) vests the State Election Commission in a State Election Commissioner appointed by the Governor, so option A is factually certain. The commission cancelled the question, which is recorded here; the cancellation does not make the underlying fact doubtful.",
+      "raised_by": "2021 PYQ quality audit"
+    },
+    "MPPSC-2021-064": {
+      "is_disputed": true,
+      "status": "resolved",
+      "raised_by": "2024 quality audit (re-verification)",
+      "reason": "Census 2011 gives Madhya Pradesh 5,993,921 Bhil (about 39% of the state Scheduled Tribe population, including Bhilala, Barela and Patelia) against 5,093,124 Gond (about 33%). The Bhil are the largest tribal group of MP and the Gond the second largest, so answer B is settled. The published 2021 key (D, Sahariya) is wrong, and an earlier internal change to A (Gond) was also wrong and was reverted."
+    },
+    "MPPSC-2021-068": {
+      "is_disputed": true,
+      "status": "resolved",
+      "reason": "Sipahi Bahadur Sarkar was established at Sehore, not at Indore, so statement D is the incorrect one and is the answer. The item was previously keyed with both C and D and has been narrowed to the single demonstrably false statement.",
+      "raised_by": "2021 PYQ quality audit"
+    },
+    "MPPSC-2021-076": {
+      "is_disputed": true,
+      "status": "resolved",
+      "reason": "The 73rd Constitutional Amendment was passed in December 1992 and came into force on 24 April 1993, so option B is factually certain. The commission cancelled the question, which is recorded here.",
+      "raised_by": "2021 PYQ quality audit"
+    },
+    "MPPSC-2021-077": {
+      "is_disputed": true,
+      "status": "unresolved",
+      "raised_by": "2026-11-01 final answer audit",
+      "reason": "Printed wording asks about the Leader of the House, an office every Chief Minister holds, so option B (Chief Minister 1967-69) is not the answer on that reading. The official key B matches the Leader of the Opposition version of the question, but on that reading Prakash Chandra Sethi (A) also never held the post, so two options qualify. The item cannot be answered with certainty as printed."
+    },
+    "MPPSC-2021-080": {
+      "is_disputed": true,
+      "status": "resolved",
+      "reason": "The Second Battle of Tarain (1192) was fought between Prithviraj Chauhan and Muhammad Ghori, so option A is settled. The published key (D, Timur) is historically wrong and is recorded as such.",
+      "raised_by": "2021 PYQ quality audit"
+    },
+    "MPPSC-2021-082": {
+      "is_disputed": true,
+      "status": "resolved",
+      "reason": "One-rupee notes are issued by the Government of India through the Ministry of Finance, so option B is factually certain. The commission cancelled the question, which is recorded here.",
+      "raised_by": "2021 PYQ quality audit"
+    },
+    "MPPSC-2021-085": {
+      "is_disputed": true,
+      "status": "resolved",
+      "reason": "The Narmada rises from the Amarkantak plateau, so option B is settled. The published key (D, Aravalli) is geographically wrong and is recorded as such.",
+      "raised_by": "2021 PYQ quality audit"
+    },
+    "MPPSC-2021-092": {
+      "is_disputed": true,
+      "status": "resolved",
+      "reason": "The Third Constitutional Amendment Act, 1954 was the first amendment ratified by the state legislatures under the proviso to Article 368(2), so option C is settled. The commission also awarded grace marks on this question, which is recorded.",
+      "raised_by": "2021 PYQ quality audit"
+    },
+    "MPPSC-2022-003": {
+      "is_disputed": true,
+      "status": "resolved",
+      "raised_by": "2024 quality audit (re-verification)",
+      "reason": "John McCarthy coined the term \"artificial intelligence\" for the 1956 Dartmouth workshop and is the accepted father of the field. Dartmouth is a place, not a person, so the printed key (D) is indefensible and the stored answer B is settled."
+    },
+    "MPPSC-2022-045": {
+      "is_disputed": true,
+      "status": "unresolved",
+      "raised_by": "2024 quality audit (re-verification)",
+      "reason": "The question asks where Buddhist CAVES are not situated. Sanchi is a stupa, temple and monastery site -- its monuments are structural, and the rock-cut caves usually visited with it are those of Udayagiri, about 13 km away. Bulsar (Valsad) has no Buddhist cave complex either. Both C and D are therefore defensible, so the original two-answer key is restored. An earlier internal pass cut this to D only by reasoning that any Buddhist site must have Buddhist caves, which does not follow. The item is defective: it should have had one clearly wrong option."
+    },
+    "MPPSC-2022-053": {
+      "is_disputed": true,
+      "status": "unresolved",
+      "raised_by": "2024 quality audit (re-verification)",
+      "reason": "Both NHRC statements are true, so options A, B and D are each literally true statements and the item has no single clean answer. D is kept because it is the complete answer in this \"answer from the following\" format, and C is false because the two are independent statutory functions. The question itself is poorly constructed; flagged rather than treated as settled."
+    },
+    "MPPSC-2022-083": {
+      "is_disputed": true,
+      "status": "resolved",
+      "raised_by": "2024 quality audit (re-verification)",
+      "reason": "Madhya Pradesh produces roughly 2% of India's iron ore and stands fifth, behind Odisha, Chhattisgarh, Karnataka and Jharkhand, so statement A (MP third) is the incorrect one and is the answer. Statement D, that the reserves shrank after the separation of Chhattisgarh, is true; the printed key (D) contradicted its own statement set."
+    }
+  }
+}

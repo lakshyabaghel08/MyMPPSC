@@ -17,6 +17,11 @@
  *      automatic MPPSC marking scheme per paper (tools/classify/sanitise-bank.mjs);
  *   4b. merge human review decisions (--apply-review) and repair the extraction's
  *      artefacts (tools/classify/repair.mjs);
+ *   4c. apply the reviewed corrections the answer audits declared — corrected
+ *      keys, repaired option texts, rewritten explanations and dispute blocks
+ *      (--apply-corrections, tools/classify/reviewed-corrections.mjs), and append
+ *      the app-authored model questions that fill the numbers the extraction
+ *      never printed (--include-model-questions);
  *   5. validate it with the app's own validator (js/core/validate.js);
  *   6. write the classification report, the review report and the AI queue.
  *
@@ -43,6 +48,7 @@ import { sanitiseBank, APP_BANK_ID } from './classify/sanitise-bank.mjs';
 import { repairIntake } from './classify/repair.mjs';
 import { parseReviewedLabels, applyReviewedLabels, CLASSIFICATION_SOURCE_REVIEWED } from './classify/reviewed-labels.mjs';
 import { parseAnswerReviews, applyAnswerReviews } from './classify/answer-review.mjs';
+import { parseReviewedCorrections, applyReviewedCorrections, applyModelQuestions, applyDeferredCorrections } from './classify/reviewed-corrections.mjs';
 import {
   buildClassificationReport,
   renderClassificationMarkdown,
@@ -52,7 +58,7 @@ import {
   LOW_CONFIDENCE_THRESHOLD,
 } from './classify/reports.mjs';
 
-const TOOL_VERSION = '1.0.0';
+const TOOL_VERSION = '1.1.0';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const resolve = (file) => (path.isAbsolute(file) ? file : path.join(root, file));
 
@@ -333,6 +339,26 @@ export async function runPipeline(source, opts = {}) {
     }
   }
 
+  // 4c. The reviewed corrections. This runs after every classification pass (a
+  // correction must never move a label) and after the answer review (which only
+  // fills keys the source never printed). Without it a clean rebuild would
+  // restore the printed keys, the scanned option text and the scraped prose.
+  let correctionsSummary = null;
+  if (opts.corrections) {
+    correctionsSummary = applyReviewedCorrections(intake, opts.corrections, {
+      files: opts.correctionFiles || null,
+      deferIds: new Set((opts.modelQuestions?.questions || []).map((q) => q.id)),
+    });
+    if (!correctionsSummary.ok) {
+      const detail = correctionsSummary.rejected.map((r) => `${r.id} (${r.kind}): ${r.reason}`).join('\n  - ');
+      throw new Error(`The reviewed corrections do not match this intake:\n  - ${detail}`);
+    }
+    pipelineNotes.push(
+      `Reviewed corrections: ${correctionsSummary.applied.answers} key(s) corrected, ${correctionsSummary.applied.options} option text(s) repaired, ${correctionsSummary.applied.explanations} explanation(s) restored, ${correctionsSummary.applied.disputes} dispute block(s) restored (${correctionsSummary.declared.answer_corrections}/${correctionsSummary.declared.option_corrections}/${correctionsSummary.declared.narrative_rewritten}/${correctionsSummary.declared.disputes} declared).`,
+    );
+    if (!correctionsSummary.reconciled) pipelineNotes.push('Reviewed corrections: the applied counts do not reconcile with the manifest.');
+  }
+
   const byId = new Map(intake.questions.map((q) => [q.id, q]));
 
   const { bank, warnings } = buildBankFromIntake(intake);
@@ -345,6 +371,29 @@ export async function runPipeline(source, opts = {}) {
   const paperIdMap = new Map(Object.entries(sanitisation.paper_id_map || {}));
   if (paperIdMap.size) {
     for (const row of rows) if (paperIdMap.has(row.paperId)) row.paperId = paperIdMap.get(row.paperId);
+  }
+
+  // 4d. The app-authored model questions, which fill the numbers the 2019–2024
+  // extraction never printed. They are appended after sanitisation because they
+  // are already in app-facing form; the paper orders are rebuilt from question
+  // numbers so each lands at its own number.
+  let modelSummary = null;
+  if (opts.modelQuestions) {
+    modelSummary = applyModelQuestions(bank, opts.modelQuestions);
+    pipelineNotes.push(
+      `Model questions: ${modelSummary.added.length} appended, ${modelSummary.already.length} already present (${modelSummary.total} declared).`,
+    );
+    // The corrections that belonged to those records were deferred rather than
+    // skipped; they are applied — and confirmed — here.
+    const deferred = correctionsSummary?.deferred;
+    if (deferred && (deferred.answers.length || deferred.options.length || deferred.explanations.length || deferred.disputes.length)) {
+      const result = applyDeferredCorrections(bank.questions, deferred, opts.corrections);
+      if (result.problems.length) throw new Error(`The deferred reviewed corrections could not be applied:\n  - ${result.problems.join('\n  - ')}`);
+      correctionsSummary.deferred_applied = result.applied;
+      pipelineNotes.push(
+        `Reviewed corrections (deferred to the model questions): ${result.applied.answers.length} key(s), ${result.applied.options.length} option set(s), ${result.applied.explanations.length} explanation(s), ${result.applied.disputes.length} dispute block(s).`,
+      );
+    }
   }
 
   const validation = validateBank(bank, {});
@@ -404,6 +453,20 @@ export async function runPipeline(source, opts = {}) {
           ),
         }
       : null,
+    corrections_merge: correctionsSummary
+      ? {
+          version: correctionsSummary.manifest_version,
+          files: correctionsSummary.files,
+          applied: correctionsSummary.applied,
+          already_applied: correctionsSummary.already_applied,
+          declared: correctionsSummary.declared,
+          rejected: correctionsSummary.rejected.length,
+          reconciled: correctionsSummary.reconciled,
+        }
+      : null,
+    model_question_merge: modelSummary
+      ? { appended: modelSummary.added.length, present: modelSummary.already.length, declared: modelSummary.total }
+      : null,
     answer_merge: answerSummary
       ? {
           applied: answerSummary.applied.length,
@@ -459,6 +522,8 @@ export async function runPipeline(source, opts = {}) {
     repairReport,
     reviewedSummary,
     answerSummary,
+    correctionsSummary,
+    modelSummary,
     meta,
     taxonomy,
   };
@@ -482,6 +547,14 @@ Options:
   --apply-answers <f>  merge human answer + explanation resolutions for questions the source
                        left without a key (JSONL: {id, answer, basis, reason, explanation}).
                        A record that already has a printed key is never overwritten
+  --apply-corrections [f]  apply the reviewed corrections the answer audits declared: corrected
+                       keys, repaired option texts, rewritten explanations and dispute blocks.
+                       Default: data/pyq/reviewed-corrections.json (with the sibling
+                       reviewed-explanations.json and reviewed-disputes.json)
+  --reviewed-explanations <f>  override the reviewed explanation prose file
+  --reviewed-disputes <f>      override the reviewed dispute-block file
+  --include-model-questions [f]  append the app-authored model questions that fill the numbers
+                       the 2019–2024 extraction never printed. Default: data/pyq/model-questions.json
   --source-review <f>  the source parser's own review file; its findings (records it
                        refused to export, numbering gaps) are carried into the review
                        report. Default: MPPSC_PYQ_Review.json next to --in, if present
@@ -551,6 +624,38 @@ async function main() {
     }
   }
 
+  // The audited corrections and the app-authored model questions are read before
+  // the pipeline runs, so a missing or inconsistent file fails the build instead
+  // of quietly producing a bank that has lost its corrections.
+  let corrections = null;
+  let correctionFiles = null;
+  if (parsed.flags.has('apply-corrections') || parsed.values['apply-corrections']) {
+    const correctionsPath = resolve(parsed.values['apply-corrections'] || 'data/pyq/reviewed-corrections.json');
+    const explanationsPath = resolve(parsed.values['reviewed-explanations'] || 'data/pyq/reviewed-explanations.json');
+    const disputesPath = resolve(parsed.values['reviewed-disputes'] || 'data/pyq/reviewed-disputes.json');
+    const [correctionsText, explanationsText, disputesText] = await Promise.all([
+      readFile(correctionsPath, 'utf8'),
+      readFile(explanationsPath, 'utf8'),
+      readFile(disputesPath, 'utf8'),
+    ]);
+    corrections = parseReviewedCorrections({
+      corrections: JSON.parse(correctionsText),
+      explanations: JSON.parse(explanationsText),
+      disputes: JSON.parse(disputesText),
+    });
+    correctionFiles = {
+      corrections: path.relative(root, correctionsPath),
+      explanations: path.relative(root, explanationsPath),
+      disputes: path.relative(root, disputesPath),
+    };
+  }
+
+  let modelQuestions = null;
+  if (parsed.flags.has('include-model-questions') || parsed.values['include-model-questions']) {
+    const modelPath = resolve(parsed.values['include-model-questions'] || 'data/pyq/model-questions.json');
+    modelQuestions = JSON.parse(await readFile(modelPath, 'utf8'));
+  }
+
   const result = await runPipeline(source, {
     sourceAudit,
     historicalSourceAudit,
@@ -558,6 +663,9 @@ async function main() {
     bankName: parsed.values['bank-name'],
     reviewedLabels: parsed.values['apply-review'] ? await readFile(resolve(parsed.values['apply-review']), 'utf8') : null,
     reviewedLabelFile: parsed.values['apply-review'] ? path.relative(root, resolve(parsed.values['apply-review'])) : null,
+    corrections,
+    correctionFiles,
+    modelQuestions,
     answerReviews: parsed.values['apply-answers'] ? await readFile(resolve(parsed.values['apply-answers']), 'utf8') : null,
     answerReviewFile: parsed.values['apply-answers'] ? path.relative(root, resolve(parsed.values['apply-answers'])) : null,
     repair: !parsed.flags.has('no-repair'),
@@ -607,6 +715,15 @@ async function main() {
     console.log(
       `reviewed labels    : ${reviewedSummary.applied.length} applied, ${reviewedSummary.rejected.length} rejected, ${reviewedSummary.malformed.length} malformed`,
     );
+  }
+  if (result.correctionsSummary) {
+    const c = result.correctionsSummary;
+    console.log(
+      `corrections        : ${c.applied.answers} key(s), ${c.applied.options} option(s), ${c.applied.explanations} explanation(s), ${c.applied.disputes} dispute(s) applied — ${c.rejected.length} rejected, reconciled: ${c.reconciled}`,
+    );
+  }
+  if (result.modelSummary) {
+    console.log(`model questions    : ${result.modelSummary.added.length} appended (${result.modelSummary.total} declared)`);
   }
   if (aiSummary) {
     console.log(

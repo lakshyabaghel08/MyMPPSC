@@ -823,9 +823,13 @@
         "D"
       ],
       "status": "confirmed",
-      "note": "Answer and its four option reasons verified; no defect found in the printed key.",
+      "note": "Confirmed: Balkavi Bairagi was born Nandram Das Bairagi. Hindi Wikipedia, News18 and Outlook Hindi obituaries give Nandram Das Bairagi as the birth name and Kailash Nath Katju as the person who gave him the pen name. Answer D confirmed.",
       "explanation_rebuilt": true,
-      "option_reasons": 4
+      "option_reasons": 4,
+      "evidence": [
+        "https://hi.wikipedia.org/wiki/बालकवि_बैरागी",
+        "https://hindi.news18.com/news/literature/balkavi-bairagi-a-hindi-poet-film-lyricist-and-politician-popular-poem-panihari-related-to-malwa-madhya-pradesh-7601283.html"
+      ]
     },
     {
       "id": "MPPSC-2020-042",
@@ -1887,9 +1891,12 @@
         "D"
       ],
       "status": "confirmed",
-      "note": "Answer and its four option reasons verified; no defect found in the printed key.",
+      "note": "Corroborated: the MP Economic Survey 2017-18 reports 34.14 per cent growth in crop area for 2016-17 (and 28.12 per cent for 2012-13), reported by Hindustan Times in February 2018. The paper calls it crop-sector growth; the survey figure is crop-area growth. Answer D confirmed.",
       "explanation_rebuilt": true,
-      "option_reasons": 4
+      "option_reasons": 4,
+      "evidence": [
+        "https://www.hindustantimes.com/bhopal/crop-area-decreases-in-madhya-pradesh-in-2017-18economic-survey-report-underlines-need-of-more-investment-in-agri-sector/story-wzJwn51eAELdcZoClizsxN.html"
+      ]
     },
     {
       "id": "MPPSC-2020-098",
