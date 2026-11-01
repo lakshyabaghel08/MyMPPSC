@@ -209,20 +209,34 @@
     "MPPSC-2016-026": {
       "is_disputed": true,
       "status": "unresolved",
-      "reason": "The paper dates the real beginning of economic planning in Madhya Pradesh to 11 November 1956 and keys D, but standard MP economy texts treat the Third Five-Year Plan (1961-66) as the first plan of the reorganised state, which makes A equally defensible.",
+      "reason": "The paper dates the real beginning of economic planning in Madhya Pradesh to 11 November 1956 and keys D, while standard MP economy texts treat the Third Five-Year Plan (1961-66) as the first plan of the reorganised state, which makes A equally defensible.",
       "raised_by": "2016 PYQ final answer audit"
     },
     "MPPSC-2016-032": {
       "is_disputed": true,
       "status": "unresolved",
-      "reason": "The paper keys Sunderlal Bahuguna as the protagonist of the Chipko movement. Chandi Prasad Bhatt led the Dasholi Gram Swarajya Mandal that organised the first Chipko protests in 1973 and Gaura Devi led the Reni action in 1974, so the leadership is shared and option D is defensible.",
+      "reason": "The paper keys Sunderlal Bahuguna as the protagonist of the Chipko movement. Chandi Prasad Bhatt led the Dasholi Gram Swarajya Mandal that organised the first 1973 protests and Gaura Devi led the Reni action of 1974, so the leadership is shared and option D is defensible.",
       "raised_by": "2016 PYQ final answer audit"
     },
     "MPPSC-2016-054": {
       "is_disputed": true,
       "status": "unresolved",
-      "reason": "The paper keys C, both connecting villages to the main road and constructing roads, but the PMGSY objective is stated as all-weather road connectivity, not concrete construction in particular. Option A alone would match most official formulations.",
+      "reason": "The paper keys both elements, but PMGSY's stated objective is all-weather road connectivity rather than concrete construction in particular, so option A alone matches most official formulations.",
       "raised_by": "2016 PYQ final answer audit"
+    },
+    "MPPSC-2015-045": {
+      "is_disputed": true,
+      "status": "resolved",
+      "resolution": "The item has no correct positive option, so the negative option is the answer and the key has been corrected from A to D.",
+      "reason": "The Central Pollution Control Board is chaired by a person appointed by the Central Government, a technical office rather than the President, Vice President or Prime Minister. The paper anticipated this by offering None of the above, which is the only defensible choice.",
+      "raised_by": "2015 PYQ final answer audit"
+    },
+    "MPPSC-2015-080": {
+      "is_disputed": true,
+      "status": "resolved",
+      "resolution": "The key has been corrected from D to A: the question asks about the 73rd Amendment, which Madhya Pradesh implemented first.",
+      "reason": "Two firsts are easily confused. Rajasthan pioneered panchayati raj in 1959 under the Balwant Rai Mehta scheme, while Madhya Pradesh was the first state to bring the 73rd Constitutional Amendment into operation, through its 1993 Panchayati Raj Act.",
+      "raised_by": "2015 PYQ final answer audit"
     }
   }
 }

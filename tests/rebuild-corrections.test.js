@@ -132,7 +132,14 @@ test('every correction quotes the printed key the audits recorded', () => {
     fromManifest.filter((id) => id.startsWith('MPPSC-2019-')),
     'the 2019 audit summary lists exactly the 2019 corrections',
   );
-  assert.equal(fromManifest.length, 28, 'five 2020 keys, five 2019 keys, the seventeen declared for 2021–2024 and one for 2017 — the 2018 and 2016 audits corrected no key');
+  assert.deepEqual(
+    correctionsFile.final_audit_2015.corrected_ids.slice().sort(),
+    fromManifest.filter((id) => id.startsWith('MPPSC-2015-')),
+    'the 2015 audit summary lists exactly the 2015 corrections',
+  );
+  assert.deepEqual(correctionsFile.final_audit_2016.corrected_ids, [],
+    'the 2016 audit corrected nothing');
+  assert.equal(fromManifest.length, 32, 'five 2020 keys, five 2019 keys, the seventeen declared for 2021–2024, one for 2017 and four for 2015 — the 2018 and 2016 audits corrected no key');
 });
 
 test('a correction is applied once: a second application is a recorded no-op', () => {
@@ -174,7 +181,7 @@ test('drifted data is rejected loudly, not overwritten', () => {
   // Orphans are errors too: a correction may not point at a question that is gone.
   assert.throws(
     () => applyReviewedCorrections({ questions: [{ id: 'MPPSC-2021-010', supplied_answer: { answer: ['A'] } }] }, bundle),
-    /answer correction names MPPSC-(2017|2019)-\d+(?:, which is not in the intake)/,
+    /answer correction names MPPSC-(2015|2017|2019)-\d+(?:, which is not in the intake)/,
   );
 });
 
@@ -225,11 +232,11 @@ test('a clean rebuild reproduces the shipped bank, corrections included', async 
 
   assert.equal(result.correctionsSummary.rejected.length, 0, 'no correction was rejected during the rebuild');
   assert.equal(result.correctionsSummary.reconciled, true, 'every declaration was applied or already satisfied');
-  assert.equal(result.correctionsSummary.applied.answers, 28, 'all 28 corrected keys were re-applied');
+  assert.equal(result.correctionsSummary.applied.answers, 32, 'all 32 corrected keys were re-applied');
   assert.equal(
     result.correctionsSummary.applied.explanations + result.correctionsSummary.deferred.explanations.length,
-    871,
-    'all 871 reviewed explanations were restored',
+    971,
+    'all 971 reviewed explanations were restored',
   );
   assert.equal(result.modelSummary.added.length, 29, 'the 29 model questions were appended');
 

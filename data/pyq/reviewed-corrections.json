@@ -227,6 +227,56 @@
         "from": "Raisen'",
         "to": "Raisen"
       }
+    },
+    "MPPSC-2015-004": {
+      "A": {
+        "from": "P.J. Abdul Kalam",
+        "to": "Vikram Seth"
+      },
+      "C": {
+        "from": "",
+        "to": "A.P.J. Abdul Kalam"
+      }
+    },
+    "MPPSC-2015-013": {
+      "A": {
+        "from": "",
+        "to": "1825"
+      },
+      "D": {
+        "from": "",
+        "to": "1830"
+      }
+    },
+    "MPPSC-2015-036": {
+      "A": {
+        "from": "",
+        "to": "B.R. Ambedkar"
+      }
+    },
+    "MPPSC-2015-044": {
+      "A": {
+        "from": "",
+        "to": "D.D. Basu"
+      }
+    },
+    "MPPSC-2015-045": {
+      "D": {
+        "from": "Environment Minister",
+        "to": "None of the above"
+      }
+    },
+    "MPPSC-2015-054": {
+      "D": {
+        "from": "None of the above",
+        "to": "All of the above"
+      }
+    },
+    "MPPSC-2015-056": {
+      "B": {
+        "from": "J.",
+        "to": "J.C. Bose"
+      }
     }
   },
   "answer_corrections": {
@@ -487,9 +537,145 @@
         "C"
       ],
       "basis": "The IMF lends only to its member countries, not only to developed countries. The stored key B is contradicted by the paper's own explanation and by the identical question at number 85, which the same paper keys C."
+    },
+    "MPPSC-2015-045": {
+      "from": [
+        "A"
+      ],
+      "to": [
+        "D"
+      ],
+      "basis": "The Chairman of the Central Pollution Control Board is appointed by the Central Government and is not one of the constitutional office-holders listed; the paper offers None of the above for exactly this reason."
+    },
+    "MPPSC-2015-054": {
+      "from": [
+        "A"
+      ],
+      "to": [
+        "D"
+      ],
+      "basis": "Sustainable development rests on the social, economic and environmental pillars together, so the inclusive option is right; the social approach alone is one of three bases."
+    },
+    "MPPSC-2015-080": {
+      "from": [
+        "D"
+      ],
+      "to": [
+        "A"
+      ],
+      "basis": "Madhya Pradesh was the first state to implement the 73rd Constitutional Amendment, through the MP Panchayati Raj Act of 1993; Rajasthan's earlier first, at Nagaur in 1959, belongs to panchayati raj before the amendment existed."
+    },
+    "MPPSC-2015-097": {
+      "from": [
+        "B"
+      ],
+      "to": [
+        "A"
+      ],
+      "basis": "Alexander Fleming discovered penicillin in 1928; X-rays were discovered by Wilhelm Roentgen in 1895, so the stored key B is contradicted by the facts the question tests."
     }
   },
   "option_reasoning_complete": [
+    "MPPSC-2015-001",
+    "MPPSC-2015-002",
+    "MPPSC-2015-003",
+    "MPPSC-2015-004",
+    "MPPSC-2015-005",
+    "MPPSC-2015-006",
+    "MPPSC-2015-007",
+    "MPPSC-2015-008",
+    "MPPSC-2015-009",
+    "MPPSC-2015-010",
+    "MPPSC-2015-011",
+    "MPPSC-2015-012",
+    "MPPSC-2015-013",
+    "MPPSC-2015-014",
+    "MPPSC-2015-015",
+    "MPPSC-2015-016",
+    "MPPSC-2015-017",
+    "MPPSC-2015-018",
+    "MPPSC-2015-019",
+    "MPPSC-2015-020",
+    "MPPSC-2015-021",
+    "MPPSC-2015-022",
+    "MPPSC-2015-023",
+    "MPPSC-2015-024",
+    "MPPSC-2015-025",
+    "MPPSC-2015-026",
+    "MPPSC-2015-027",
+    "MPPSC-2015-028",
+    "MPPSC-2015-029",
+    "MPPSC-2015-030",
+    "MPPSC-2015-031",
+    "MPPSC-2015-032",
+    "MPPSC-2015-033",
+    "MPPSC-2015-034",
+    "MPPSC-2015-035",
+    "MPPSC-2015-036",
+    "MPPSC-2015-037",
+    "MPPSC-2015-038",
+    "MPPSC-2015-039",
+    "MPPSC-2015-040",
+    "MPPSC-2015-041",
+    "MPPSC-2015-042",
+    "MPPSC-2015-043",
+    "MPPSC-2015-044",
+    "MPPSC-2015-045",
+    "MPPSC-2015-046",
+    "MPPSC-2015-047",
+    "MPPSC-2015-048",
+    "MPPSC-2015-049",
+    "MPPSC-2015-050",
+    "MPPSC-2015-051",
+    "MPPSC-2015-052",
+    "MPPSC-2015-053",
+    "MPPSC-2015-054",
+    "MPPSC-2015-055",
+    "MPPSC-2015-056",
+    "MPPSC-2015-057",
+    "MPPSC-2015-058",
+    "MPPSC-2015-059",
+    "MPPSC-2015-060",
+    "MPPSC-2015-061",
+    "MPPSC-2015-062",
+    "MPPSC-2015-063",
+    "MPPSC-2015-064",
+    "MPPSC-2015-065",
+    "MPPSC-2015-066",
+    "MPPSC-2015-067",
+    "MPPSC-2015-068",
+    "MPPSC-2015-069",
+    "MPPSC-2015-070",
+    "MPPSC-2015-071",
+    "MPPSC-2015-072",
+    "MPPSC-2015-073",
+    "MPPSC-2015-074",
+    "MPPSC-2015-075",
+    "MPPSC-2015-076",
+    "MPPSC-2015-077",
+    "MPPSC-2015-078",
+    "MPPSC-2015-079",
+    "MPPSC-2015-080",
+    "MPPSC-2015-081",
+    "MPPSC-2015-082",
+    "MPPSC-2015-083",
+    "MPPSC-2015-084",
+    "MPPSC-2015-085",
+    "MPPSC-2015-086",
+    "MPPSC-2015-087",
+    "MPPSC-2015-088",
+    "MPPSC-2015-089",
+    "MPPSC-2015-090",
+    "MPPSC-2015-091",
+    "MPPSC-2015-092",
+    "MPPSC-2015-093",
+    "MPPSC-2015-094",
+    "MPPSC-2015-095",
+    "MPPSC-2015-096",
+    "MPPSC-2015-097",
+    "MPPSC-2015-098",
+    "MPPSC-2015-099",
+    "MPPSC-2015-100",
     "MPPSC-2016-001",
     "MPPSC-2016-002",
     "MPPSC-2016-003",
@@ -1109,6 +1295,106 @@
     "MPPSC-2024-080"
   ],
   "narrative_rewritten": [
+    "MPPSC-2015-001",
+    "MPPSC-2015-002",
+    "MPPSC-2015-003",
+    "MPPSC-2015-004",
+    "MPPSC-2015-005",
+    "MPPSC-2015-006",
+    "MPPSC-2015-007",
+    "MPPSC-2015-008",
+    "MPPSC-2015-009",
+    "MPPSC-2015-010",
+    "MPPSC-2015-011",
+    "MPPSC-2015-012",
+    "MPPSC-2015-013",
+    "MPPSC-2015-014",
+    "MPPSC-2015-015",
+    "MPPSC-2015-016",
+    "MPPSC-2015-017",
+    "MPPSC-2015-018",
+    "MPPSC-2015-019",
+    "MPPSC-2015-020",
+    "MPPSC-2015-021",
+    "MPPSC-2015-022",
+    "MPPSC-2015-023",
+    "MPPSC-2015-024",
+    "MPPSC-2015-025",
+    "MPPSC-2015-026",
+    "MPPSC-2015-027",
+    "MPPSC-2015-028",
+    "MPPSC-2015-029",
+    "MPPSC-2015-030",
+    "MPPSC-2015-031",
+    "MPPSC-2015-032",
+    "MPPSC-2015-033",
+    "MPPSC-2015-034",
+    "MPPSC-2015-035",
+    "MPPSC-2015-036",
+    "MPPSC-2015-037",
+    "MPPSC-2015-038",
+    "MPPSC-2015-039",
+    "MPPSC-2015-040",
+    "MPPSC-2015-041",
+    "MPPSC-2015-042",
+    "MPPSC-2015-043",
+    "MPPSC-2015-044",
+    "MPPSC-2015-045",
+    "MPPSC-2015-046",
+    "MPPSC-2015-047",
+    "MPPSC-2015-048",
+    "MPPSC-2015-049",
+    "MPPSC-2015-050",
+    "MPPSC-2015-051",
+    "MPPSC-2015-052",
+    "MPPSC-2015-053",
+    "MPPSC-2015-054",
+    "MPPSC-2015-055",
+    "MPPSC-2015-056",
+    "MPPSC-2015-057",
+    "MPPSC-2015-058",
+    "MPPSC-2015-059",
+    "MPPSC-2015-060",
+    "MPPSC-2015-061",
+    "MPPSC-2015-062",
+    "MPPSC-2015-063",
+    "MPPSC-2015-064",
+    "MPPSC-2015-065",
+    "MPPSC-2015-066",
+    "MPPSC-2015-067",
+    "MPPSC-2015-068",
+    "MPPSC-2015-069",
+    "MPPSC-2015-070",
+    "MPPSC-2015-071",
+    "MPPSC-2015-072",
+    "MPPSC-2015-073",
+    "MPPSC-2015-074",
+    "MPPSC-2015-075",
+    "MPPSC-2015-076",
+    "MPPSC-2015-077",
+    "MPPSC-2015-078",
+    "MPPSC-2015-079",
+    "MPPSC-2015-080",
+    "MPPSC-2015-081",
+    "MPPSC-2015-082",
+    "MPPSC-2015-083",
+    "MPPSC-2015-084",
+    "MPPSC-2015-085",
+    "MPPSC-2015-086",
+    "MPPSC-2015-087",
+    "MPPSC-2015-088",
+    "MPPSC-2015-089",
+    "MPPSC-2015-090",
+    "MPPSC-2015-091",
+    "MPPSC-2015-092",
+    "MPPSC-2015-093",
+    "MPPSC-2015-094",
+    "MPPSC-2015-095",
+    "MPPSC-2015-096",
+    "MPPSC-2015-097",
+    "MPPSC-2015-098",
+    "MPPSC-2015-099",
+    "MPPSC-2015-100",
     "MPPSC-2016-001",
     "MPPSC-2016-002",
     "MPPSC-2016-003",
@@ -2079,5 +2365,19 @@
       "MPPSC-2016-032",
       "MPPSC-2016-054"
     ]
+  },
+  "final_audit_2015": {
+    "report": "data/pyq/quality-audit/final-answer-audit-2015.json",
+    "reviewed": 100,
+    "confirmed": 96,
+    "corrected": 4,
+    "ambiguous": 0,
+    "corrected_ids": [
+      "MPPSC-2015-045",
+      "MPPSC-2015-054",
+      "MPPSC-2015-080",
+      "MPPSC-2015-097"
+    ],
+    "ambiguous_ids": []
   }
 }
