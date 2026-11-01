@@ -154,7 +154,14 @@ test('every correction quotes the printed key the audits recorded', () => {
     fromManifest.filter((id) => id.startsWith('MPPSC-2022-')),
     'the 2022 audit summary lists exactly the 2022 corrections',
   );
-  assert.equal(fromManifest.length, 37, 'five 2020 keys, five 2019 keys, the seventeen declared for 2021–2024, one for 2017, four for 2015, three for 2014, one for 2013 and one for 2022 — the 2018 and 2016 audits corrected no key');
+  assert.deepEqual(
+    correctionsFile.final_audit_2023.corrected_ids.slice().sort(),
+    fromManifest.filter((id) => id.startsWith('MPPSC-2023-')),
+    'the 2023 audit summary lists exactly the 2023 corrections',
+  );
+  assert.deepEqual(correctionsFile.final_audit_2023.ambiguous_ids, ['MPPSC-2023-005'],
+    'the 2023 audit records the two-answer item it could not settle');
+  assert.equal(fromManifest.length, 37, 'five 2020 keys, five 2019 keys, the seventeen declared for 2021–2024, one for 2017, four for 2015, three for 2014, one for 2013 and one for 2022 — the 2023 audit re-derived, and confirmed, the six keys already declared for it; the 2018 and 2016 audits corrected no key');
 });
 
 test('a correction is applied once: a second application is a recorded no-op', () => {

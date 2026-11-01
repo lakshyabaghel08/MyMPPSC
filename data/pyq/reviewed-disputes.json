@@ -267,6 +267,12 @@
       "status": "resolved",
       "reason": "Two option texts were lost in the scan. The printed paper reads Jawaharlal Nehru, A. Dalal, Subhash Chandra Bose and Lal Bahadur Shastri, so the two damaged slots are restored; the key C is unaffected, since the Committee was set up by the Congress president Subhash Chandra Bose in 1938 and Nehru only chaired it.",
       "raised_by": "2013 PYQ final answer audit"
+    },
+    "MPPSC-2023-005": {
+      "is_disputed": true,
+      "status": "unresolved",
+      "raised_by": "2023 PYQ final answer audit",
+      "reason": "The printed key is both B and D, and D (National Oral Health Programme) is certainly not a nutritional programme. B (National Programme for Prevention and Control of Fluorosis) is arguable: the Health Ministry lists NPPCF among its national nutritional programmes, although fluorosis is fluoride toxicity rather than a nutritional deficiency. Both keyed letters are retained and the item is recorded as ambiguous instead of being presented as settled."
     }
   }
 }

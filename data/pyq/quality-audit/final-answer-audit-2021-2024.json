@@ -20,9 +20,9 @@
       },
       "2023": {
         "reviewed": 100,
-        "confirmed": 100,
+        "confirmed": 99,
         "corrected": 0,
-        "ambiguous": 0
+        "ambiguous": 1
       },
       "2024": {
         "reviewed": 100,
@@ -33,9 +33,9 @@
     },
     "total": {
       "reviewed": 400,
-      "confirmed": 392,
+      "confirmed": 391,
       "corrected": 1,
-      "ambiguous": 7
+      "ambiguous": 8
     }
   },
   "categories": {
@@ -1711,11 +1711,13 @@
     {
       "id": "MPPSC-2023-005",
       "year": 2023,
-      "status": "confirmed",
+      "status": "ambiguous",
       "answer": [
         "B",
         "D"
-      ]
+      ],
+      "note": "The paper keys both B and D; the National Programme for Prevention and Control of Fluorosis is listed among the Health Ministry's national nutritional programmes, although fluorosis is fluoride toxicity.",
+      "dispute_status": "unresolved"
     },
     {
       "id": "MPPSC-2023-006",

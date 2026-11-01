@@ -202,10 +202,12 @@ test('coverage is counted from the bank and reported per year', () => {
     'every 2013 explanation carries per-option reasoning');
   assert.equal(byYear(2022).filter((q) => declaredSet.has(q.id)).length, 100,
     'every 2022 explanation carries per-option reasoning');
+  assert.equal(byYear(2023).filter((q) => declaredSet.has(q.id)).length, 100,
+    'every 2023 explanation carries per-option reasoning');
   // The remaining years are declared incomplete rather than presented as finished.
   const outstanding = audited.length - standard.length;
-  assert.ok(outstanding > 0, `2023–2024 still owe per-option reasoning: ${outstanding} questions`);
-  for (const y of [2023, 2024]) {
+  assert.ok(outstanding > 0, `2024 still owes per-option reasoning: ${outstanding} questions`);
+  for (const y of [2024]) {
     assert.ok(byYear(y).filter((q) => !declaredSet.has(q.id)).length > 0,
       `${y}: outstanding questions must be visible, not silently claimed complete`);
   }
