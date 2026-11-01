@@ -560,3 +560,27 @@ test('15. a deep link opens its topic in place, and a legacy plan link falls bac
   assert.equal($$('#view .syl-row.selected').length, 0, 'and selects nothing');
   assert.ok($('.syl-tree'), 'the tree is there');
 });
+
+test('16. compact progress details stay available while working through the syllabus', async () => {
+  await clean();
+  await goto('syllabus');
+  if (!$('.syl-switch-btn[data-exam="prelims"]')?.classList.contains('on')) {
+    await tap('.syl-switch-btn[data-exam="prelims"]');
+    await waitFor(() => $('.syl-switch-btn[data-exam="prelims"]').classList.contains('on'));
+  }
+  assert.ok($('.syl-overview > .syl-bar'), 'the progress bar remains visible when details are closed');
+  assert.equal($('.syl-progress-details').open, false);
+  assert.equal($$('.syl-legend li').length, 4, 'all four status counts remain available');
+  assert.ok($('.syl-body').compareDocumentPosition($('.syl-about')) & window.Node.DOCUMENT_POSITION_FOLLOWING, 'background information follows the syllabus');
+  assert.match($('.syl-tree-hint').textContent, /circle.*title/i);
+
+  $('.syl-progress-details').open = true;
+  $('.syl-progress-details').dispatchEvent(new window.Event('toggle'));
+  const first = linesOf(S1)[0];
+  await tap(`[data-cycle="${first}"]`);
+  await waitFor(() => $(`[data-cycle="${first}"]`)?.dataset.current === 'in_progress');
+  assert.equal($('.syl-progress-details').open, true, 'the reader’s expanded progress breakdown survives a status update');
+  assert.match($('.syl-ov-title').textContent, /1 in progress/);
+  assert.match($('.syl-legend').textContent, /In progress\s*1/);
+  assert.match($('.syl-switch-btn[data-exam="mains"]').getAttribute('aria-label'), /Mains: .*topics done/);
+});
