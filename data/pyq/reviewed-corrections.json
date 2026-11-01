@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "note": "Reviewed, intentional divergences from the frozen extraction and the pre-remediation audit baseline, plus the exact list of questions whose explanations meet the per-option reasoning standard. The test suites accept exactly these and nothing else, so undocumented drift still fails. Final answer audit (2026-11-01): every 2021-2024 answer re-verified; one key corrected (2021-010), seven items recorded as ambiguous, eleven earlier dispute flags settled. 2020 final answer audit (2026-11-01): all 100 questions of MPPSC-2020-P1 re-verified, five printed keys corrected, four defective items recorded as ambiguous, all 100 explanations rewritten with per-option reasoning. 2023 final answer audit (2026-11-01): all 100 questions of MPPSC-2023-P1 re-derived from source, six inherited printed keys confirmed, one two-answer item recorded as ambiguous, all 100 explanations rebuilt with per-option reasoning.",
+  "note": "Reviewed, intentional divergences from the frozen extraction and the pre-remediation audit baseline, plus the exact list of questions whose explanations meet the per-option reasoning standard. The test suites accept exactly these and nothing else, so undocumented drift still fails. Final answer audit (2026-11-01): every 2021-2024 answer re-verified; one key corrected (2021-010), seven items recorded as ambiguous, eleven earlier dispute flags settled. 2020 final answer audit (2026-11-01): all 100 questions of MPPSC-2020-P1 re-verified, five printed keys corrected, four defective items recorded as ambiguous, all 100 explanations rewritten with per-option reasoning. 2023 final answer audit (2026-11-01): all 100 questions of MPPSC-2023-P1 re-derived from source, six inherited printed keys confirmed, one two-answer item recorded as ambiguous, all 100 explanations rebuilt with per-option reasoning. 2024 final answer audit (2026-11-01): all 100 questions of MPPSC-2024-P1 re-derived from source, one printed key corrected (090 cricket series) and four inherited keys confirmed, one item recorded as ambiguous, all 100 explanations rebuilt with per-option reasoning.",
   "option_corrections": {
     "MPPSC-2021-014": {
       "D": {
@@ -687,6 +687,15 @@
         "D"
       ],
       "basis": "Ajanta and Bagh are Buddhist rock-cut cave complexes, and Bulsar (Valsad) has none; the printed paper keys Bulsar alone, while the stored two-answer key also named Sanchi, which is a stupa and monastery site rather than a cave site. The official single key is restored and the residual looseness of the question is recorded as an unresolved dispute."
+    },
+    "MPPSC-2024-090": {
+      "from": [
+        "A"
+      ],
+      "to": [
+        "B"
+      ],
+      "basis": "India won the five-Test series against England in January-March 2024 by 4-1: England took only the Hyderabad Test, and India won at Visakhapatnam, Rajkot, Ranchi and Dharamsala. A 3-2 margin is not what the scoreline records."
     }
   },
   "option_reasoning_complete": [
@@ -1790,10 +1799,106 @@
     "MPPSC-2023-098",
     "MPPSC-2023-099",
     "MPPSC-2023-100",
+    "MPPSC-2024-001",
+    "MPPSC-2024-002",
+    "MPPSC-2024-003",
+    "MPPSC-2024-004",
+    "MPPSC-2024-005",
+    "MPPSC-2024-006",
+    "MPPSC-2024-007",
+    "MPPSC-2024-008",
+    "MPPSC-2024-009",
+    "MPPSC-2024-010",
+    "MPPSC-2024-011",
+    "MPPSC-2024-012",
+    "MPPSC-2024-013",
+    "MPPSC-2024-014",
+    "MPPSC-2024-015",
+    "MPPSC-2024-016",
+    "MPPSC-2024-017",
     "MPPSC-2024-018",
+    "MPPSC-2024-019",
+    "MPPSC-2024-020",
+    "MPPSC-2024-021",
+    "MPPSC-2024-022",
+    "MPPSC-2024-023",
+    "MPPSC-2024-024",
+    "MPPSC-2024-025",
+    "MPPSC-2024-026",
+    "MPPSC-2024-027",
+    "MPPSC-2024-028",
     "MPPSC-2024-029",
+    "MPPSC-2024-030",
+    "MPPSC-2024-031",
+    "MPPSC-2024-032",
+    "MPPSC-2024-033",
+    "MPPSC-2024-034",
+    "MPPSC-2024-035",
+    "MPPSC-2024-036",
+    "MPPSC-2024-037",
+    "MPPSC-2024-038",
+    "MPPSC-2024-039",
+    "MPPSC-2024-040",
+    "MPPSC-2024-041",
+    "MPPSC-2024-042",
+    "MPPSC-2024-043",
+    "MPPSC-2024-044",
+    "MPPSC-2024-045",
+    "MPPSC-2024-046",
+    "MPPSC-2024-047",
+    "MPPSC-2024-048",
+    "MPPSC-2024-049",
+    "MPPSC-2024-050",
+    "MPPSC-2024-051",
+    "MPPSC-2024-052",
+    "MPPSC-2024-053",
+    "MPPSC-2024-054",
+    "MPPSC-2024-055",
+    "MPPSC-2024-056",
+    "MPPSC-2024-057",
+    "MPPSC-2024-058",
+    "MPPSC-2024-059",
+    "MPPSC-2024-060",
+    "MPPSC-2024-061",
+    "MPPSC-2024-062",
+    "MPPSC-2024-063",
+    "MPPSC-2024-064",
+    "MPPSC-2024-065",
+    "MPPSC-2024-066",
+    "MPPSC-2024-067",
+    "MPPSC-2024-068",
+    "MPPSC-2024-069",
+    "MPPSC-2024-070",
+    "MPPSC-2024-071",
     "MPPSC-2024-072",
-    "MPPSC-2024-080"
+    "MPPSC-2024-073",
+    "MPPSC-2024-074",
+    "MPPSC-2024-075",
+    "MPPSC-2024-076",
+    "MPPSC-2024-077",
+    "MPPSC-2024-078",
+    "MPPSC-2024-079",
+    "MPPSC-2024-080",
+    "MPPSC-2024-081",
+    "MPPSC-2024-082",
+    "MPPSC-2024-083",
+    "MPPSC-2024-084",
+    "MPPSC-2024-085",
+    "MPPSC-2024-086",
+    "MPPSC-2024-087",
+    "MPPSC-2024-088",
+    "MPPSC-2024-089",
+    "MPPSC-2024-090",
+    "MPPSC-2024-091",
+    "MPPSC-2024-092",
+    "MPPSC-2024-093",
+    "MPPSC-2024-094",
+    "MPPSC-2024-095",
+    "MPPSC-2024-096",
+    "MPPSC-2024-097",
+    "MPPSC-2024-098",
+    "MPPSC-2024-099",
+    "MPPSC-2024-100"
   ],
   "narrative_rewritten": [
     "MPPSC-2013-001",
@@ -2971,11 +3076,22 @@
   "final_audit_2021_2024": {
     "report": "data/pyq/quality-audit/final-answer-audit-2021-2024.json",
     "reviewed": 400,
-    "confirmed": 391,
-    "corrected": 1,
-    "ambiguous": 8,
+    "confirmed": 379,
+    "corrected": 12,
+    "ambiguous": 9,
     "corrected_ids": [
-      "MPPSC-2021-010"
+      "MPPSC-2021-010",
+      "MPPSC-2023-001",
+      "MPPSC-2023-009",
+      "MPPSC-2023-046",
+      "MPPSC-2023-052",
+      "MPPSC-2023-057",
+      "MPPSC-2023-059",
+      "MPPSC-2024-018",
+      "MPPSC-2024-029",
+      "MPPSC-2024-072",
+      "MPPSC-2024-080",
+      "MPPSC-2024-090"
     ],
     "ambiguous_ids": [
       "MPPSC-2021-027",
@@ -2985,8 +3101,10 @@
       "MPPSC-2021-077",
       "MPPSC-2022-045",
       "MPPSC-2022-053",
-      "MPPSC-2023-005"
-    ]
+      "MPPSC-2023-005",
+      "MPPSC-2024-027"
+    ],
+    "note": "Re-derived for 2023 and 2024 from their own year audits; the other years are as originally audited."
   },
   "final_audit_2020": {
     "report": "data/pyq/quality-audit/final-answer-audit-2020.json",
@@ -3140,6 +3258,23 @@
     ],
     "ambiguous_ids": [
       "MPPSC-2023-005"
+    ]
+  },
+  "final_audit_2024": {
+    "record": "data/pyq/quality-audit/final-answer-audit-2024.json",
+    "reviewed": 100,
+    "confirmed": 94,
+    "corrected": 5,
+    "ambiguous": 1,
+    "corrected_ids": [
+      "MPPSC-2024-018",
+      "MPPSC-2024-029",
+      "MPPSC-2024-072",
+      "MPPSC-2024-080",
+      "MPPSC-2024-090"
+    ],
+    "ambiguous_ids": [
+      "MPPSC-2024-027"
     ]
   }
 }

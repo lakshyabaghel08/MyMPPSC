@@ -2237,45 +2237,41 @@
       "answer_key_status": "supplied",
       "explanation": {
         "language": "en",
-        "correct_reasoning": "The Brahmi script used in the Ashokan edicts was first deciphered in 1837 by James Prinsep, an East India Company officer and antiquary of the Asiatic Society of Bengal. By comparing Brahmi inscriptions with the better-known Kharosthi script and bilingual coins, Prinsep unlocked the reading of Ashoka's edicts, which revealed the Mauryan emperor's Dhamma. Hence option B (James Prinsep) is correct.",
+        "correct_reasoning": "James Prinsep, an assay master at the Calcutta mint, deciphered the Brahmi script in 1837 by reading the names of Ashoka's predecessors on the coins and edicts, which opened the whole Mauryan record to study. Cunningham later surveyed the monuments, Marshall excavated them and William Jones had earlier founded the Asiatic Society and worked on Sanskrit.",
         "option_explanations": [
           {
             "key": "A",
             "text": "Alexander Cunningham",
-            "is_correct": false
+            "is_correct": false,
+            "reason": "Cunningham is the father of Indian archaeology and surveyed sites, but he did not decipher Brahmi."
           },
           {
             "key": "B",
             "text": "James Prinsep",
-            "is_correct": true
+            "is_correct": true,
+            "reason": "Correct: Prinsep read Brahmi in 1837."
           },
           {
             "key": "C",
             "text": "John Marshall",
-            "is_correct": false
+            "is_correct": false,
+            "reason": "Marshall directed excavations at Mohenjodaro and Taxila in the twentieth century."
           },
           {
             "key": "D",
             "text": "William Jones",
-            "is_correct": false
+            "is_correct": false,
+            "reason": "Jones founded the Asiatic Society and studied Sanskrit, not the Ashokan script."
           }
         ],
         "key_concepts": [
-          "James Prinsep also deciphered the Kharosthi script and founded the field of Indian epigraphy/numismatics.",
-          "Alexander Cunningham founded the Archaeological Survey of India (1861); John Marshall excavated Indus sites and Sanchi; William Jones founded the Asiatic Society (1784) and championed Sanskrit.",
-          "Brahmi is the ancestor of most modern Indian scripts; Ashokan edicts were written in Brahmi (Prakrit) across the Mauryan empire.",
-          "The decipherment (1837) is a landmark in understanding ancient Indian history."
+          "Brahmi and Kharosthi scripts",
+          "Prinsep's reading of the Ashokan edicts",
+          "Asiatic Society and early Indology"
         ],
         "revision_takeaways": [
-          "Memory hook: Brahmi script deciphered 1837 ➜ James Prinsep.",
-          "Prinsep = Brahmi & Kharosthi; Cunningham = ASI; Jones = Asiatic Society; Marshall = Indus/Sanchi."
-        ],
-        "sources": [
-          {
-            "title": "James Prinsep and the decipherment of Brahmi — Asiatic Society / Indian epigraphy",
-            "citation": "Asiatic Society",
-            "url": null
-          }
+          "Brahmi was deciphered by James Prinsep in 1837.",
+          "Kharosthi, used in the north-west, was read with the help of bilingual coins."
         ]
       },
       "subject": "History",
@@ -2328,45 +2324,41 @@
       "answer_key_status": "supplied",
       "explanation": {
         "language": "en",
-        "correct_reasoning": "Gujarat has the longest coastline among Indian states, at about 1,600 km, owing to the Gulfs of Kutch and Khambhat and the long Saurashtra and Kutch peninsulas. Hence option C (Gujarat) is correct.",
+        "correct_reasoning": "Gujarat has the longest coastline of any Indian state, running about 1,600 km from the Gulf of Kutch round the Saurashtra peninsula to the Gulf of Khambhat, because of its deeply indented shores and two gulfs. Tamil Nadu and Andhra Pradesh follow with roughly 1,000 km each and Kerala has only about 590 km.",
         "option_explanations": [
           {
             "key": "A",
             "text": "Andhra Pradesh",
-            "is_correct": false
+            "is_correct": false,
+            "reason": "Andhra Pradesh has a long coast of about a thousand kilometres, less than Gujarat's."
           },
           {
             "key": "B",
             "text": "Tamil Nadu",
-            "is_correct": false
+            "is_correct": false,
+            "reason": "Tamil Nadu's coastline is about 1,076 km, well short of Gujarat's."
           },
           {
             "key": "C",
             "text": "Gujarat",
-            "is_correct": true
+            "is_correct": true,
+            "reason": "Correct: Gujarat has the longest coastline among Indian states."
           },
           {
             "key": "D",
             "text": "Kerala",
-            "is_correct": false
+            "is_correct": false,
+            "reason": "Kerala's coast is only about 590 km long."
           }
         ],
         "key_concepts": [
-          "Among states, Andhra Pradesh (~974 km) and Tamil Nadu (~1,076 km) have long coastlines but less than Gujarat; Kerala (~590 km) is shorter.",
-          "India's total coastline is about 7,517 km (including islands); Gujarat alone accounts for the largest state share.",
-          "Gujarat's long coast supports major ports (Kandla, Mundra) and maritime trade.",
-          "Do not confuse 'longest state coastline' (Gujarat) with 'longest coastline including Union Territories' (Andaman & Nicobar Islands)."
+          "India's coastline of about 7,500 km",
+          "Gulf of Kutch and Gulf of Khambhat",
+          "Coastal states ranked by shoreline length"
         ],
         "revision_takeaways": [
-          "Memory hook: Longest state coastline ➜ Gujarat (~1,600 km).",
-          "Gujarat's Gulfs of Kutch & Khambhat and Saurashtra/Kutch peninsulas give it the longest coast."
-        ],
-        "sources": [
-          {
-            "title": "Ministry of Home Affairs / coastal statistics — coastline of India by state",
-            "citation": "MHA / GoI",
-            "url": "https://mha.gov.in/"
-          }
+          "Gujarat has India's longest state coastline, about 1,600 km.",
+          "Kerala has one of the shortest coastlines of the coastal states."
         ]
       },
       "subject": "Geography",
@@ -2419,45 +2411,41 @@
       "answer_key_status": "supplied",
       "explanation": {
         "language": "en",
-        "correct_reasoning": "The Fundamental Duties were inserted into the Constitution (as Part IVA and Article 51A) by the 42nd Constitutional Amendment Act, 1976, on the recommendation of the Swaran Singh Committee (1976). Originally 10 duties, the 86th Amendment (2002) added the 11th duty (education of children aged 6–14). Hence option B (Swaran Singh Committee) is correct.",
+        "correct_reasoning": "The Fundamental Duties were inserted as Part IV-A and Article 51-A by the 42nd Amendment in 1976 on the recommendation of the Swaran Singh Committee, which had been set up to suggest constitutional changes during the Emergency. The Sarkaria and Balwantrai Mehta commissions dealt with centre-state relations and panchayati raj.",
         "option_explanations": [
           {
             "key": "A",
             "text": "Sarkaria Committee",
-            "is_correct": false
+            "is_correct": false,
+            "reason": "The Sarkaria Commission examined centre-state relations."
           },
           {
             "key": "B",
             "text": "Swaran Singh Committee",
-            "is_correct": true
+            "is_correct": true,
+            "reason": "Correct: the Swaran Singh Committee recommended the Fundamental Duties."
           },
           {
             "key": "C",
             "text": "Balwantrai Mehta Committee",
-            "is_correct": false
+            "is_correct": false,
+            "reason": "Balwantrai Mehta recommended the panchayati raj structure."
           },
           {
             "key": "D",
             "text": "L. M. Singhvi Committee",
-            "is_correct": false
+            "is_correct": false,
+            "reason": "The Singhvi committee dealt with panchayat finances and constitutional status."
           }
         ],
         "key_concepts": [
-          "Sarkaria Commission = Centre-State relations (1983); Balwantrai Mehta Committee = democratic decentralisation/Panchayati Raj (1957); L. M. Singhvi Committee = local self-government (1986).",
-          "Fundamental Duties are non-justiciable (like DPSPs) and listed in Article 51A.",
-          "The Swaran Singh Committee was set up to recommend Fundamental Duties during the Emergency period.",
-          "Duties include respecting the Constitution, national flag, anthem, sovereignty, unity and integrity of India."
+          "Part IV-A and Article 51-A",
+          "42nd Amendment, 1976",
+          "Swaran Singh Committee recommendations"
         ],
         "revision_takeaways": [
-          "Memory hook: Fundamental Duties ➜ Swaran Singh Committee ➜ 42nd Amendment (1976) ➜ Article 51A (Part IVA).",
-          "Swaran Singh = Fundamental Duties committee."
-        ],
-        "sources": [
-          {
-            "title": "42nd Constitutional Amendment Act, 1976 — Fundamental Duties (Article 51A, Part IVA)",
-            "citation": "Constitution of India",
-            "url": null
-          }
+          "Fundamental Duties came by the 42nd Amendment on the Swaran Singh Committee's advice.",
+          "There are eleven duties today."
         ]
       },
       "subject": "Polity",
@@ -2510,45 +2498,41 @@
       "answer_key_status": "supplied",
       "explanation": {
         "language": "en",
-        "correct_reasoning": "The BCG (Bacillus Calmette–Guérin) vaccine is administered for protection against tuberculosis (TB). It contains a live attenuated strain of Mycobacterium bovis and is given to infants soon after birth under India's Universal Immunisation Programme. Hence option B (Tuberculosis) is correct.",
+        "correct_reasoning": "BCG, the Bacillus Calmette-Guerin vaccine, is given at birth to protect against tuberculosis, especially the severe childhood forms such as miliary tuberculosis and tuberculous meningitis. Polio is prevented by oral and injectable polio vaccines, measles by the MR or MMR vaccine and hepatitis B by its own vaccine.",
         "option_explanations": [
           {
             "key": "A",
             "text": "Polio",
-            "is_correct": false
+            "is_correct": false,
+            "reason": "Polio is covered by the OPV and IPV, not by BCG."
           },
           {
             "key": "B",
             "text": "Tuberculosis",
-            "is_correct": true
+            "is_correct": true,
+            "reason": "Correct: BCG protects against tuberculosis."
           },
           {
             "key": "C",
             "text": "Measles",
-            "is_correct": false
+            "is_correct": false,
+            "reason": "Measles is prevented by the measles-rubella vaccine."
           },
           {
             "key": "D",
             "text": "Hepatitis B",
-            "is_correct": false
+            "is_correct": false,
+            "reason": "Hepatitis B has a separate birth-dose vaccine."
           }
         ],
         "key_concepts": [
-          "Polio is prevented by OPV/IPV; measles by MR/MMR vaccine; Hepatitis B by the Hep-B birth dose — none by BCG.",
-          "BCG is named after Albert Calmette and Camille Guérin, who developed it in the early 20th century.",
-          "BCG does not prevent TB infection in adults reliably but protects children against severe forms (TB meningitis, miliary TB).",
-          "India's Universal Immunisation Programme includes BCG, OPV, Hep-B, pentavalent, rotavirus, MMR/MR, etc."
+          "BCG and tuberculosis prevention",
+          "Universal Immunisation Programme",
+          "Live attenuated versus killed vaccines"
         ],
         "revision_takeaways": [
-          "Memory hook: BCG vaccine ➜ Tuberculosis (given at birth under UIP).",
-          "BCG = Bacillus Calmette-Guérin ➜ TB."
-        ],
-        "sources": [
-          {
-            "title": "BCG vaccine — Universal Immunisation Programme, Ministry of Health and Family Welfare",
-            "citation": "MoHFW, GoI",
-            "url": "https://nhm.gov.in/"
-          }
+          "BCG is given at birth against tuberculosis.",
+          "It is a live attenuated vaccine."
         ]
       },
       "subject": "Science and Technology",
@@ -2601,45 +2585,41 @@
       "answer_key_status": "supplied",
       "explanation": {
         "language": "en",
-        "correct_reasoning": "The Khajuraho group of temples was built mainly under the patronage of the Chandela dynasty between about 950 and 1050 CE. The Chandelas ruled the Bundelkhand region (Jejakabhukti), and the temples are famous for their Nagara-style architecture and erotic sculptures. Hence option C (Chandela dynasty) is correct.",
+        "correct_reasoning": "The Khajuraho temples were built between about 950 and 1050 CE under the Chandela rulers of Bundelkhand, chiefly Dhanga, Vidyadhara and their successors, which is why the group is described as Chandela architecture. The Guptas, Pratiharas and Kalachuris were earlier or neighbouring dynasties.",
         "option_explanations": [
           {
             "key": "A",
             "text": "Gupta dynasty",
-            "is_correct": false
+            "is_correct": false,
+            "reason": "Gupta temple building is earlier and centred on sites such as Deogarh and Udayagiri."
           },
           {
             "key": "B",
             "text": "Pratihara dynasty",
-            "is_correct": false
+            "is_correct": false,
+            "reason": "The Pratiharas ruled further north and west, not at Khajuraho."
           },
           {
             "key": "C",
             "text": "Chandela dynasty",
-            "is_correct": true
+            "is_correct": true,
+            "reason": "Correct: the Khajuraho temples are Chandela work."
           },
           {
             "key": "D",
             "text": "Kalchuri dynasty",
-            "is_correct": false
+            "is_correct": false,
+            "reason": "The Kalachuris ruled the Tripuri region to the south-east."
           }
         ],
         "key_concepts": [
-          "Gupta dynasty = classical age (earlier, ~4th–6th c. CE); Pratihara = Gurjara-Pratiharas of Kannauj; Kalchuri = Chedi/Tripuri region (MP) — none built Khajuraho.",
-          "Khajuraho is a UNESCO World Heritage Site; about 20 of the original ~85 temples survive (Kandariya Mahadeva, Lakshmana, etc.).",
-          "MP connection: Khajuraho is in Chhatarpur district, Madhya Pradesh — a major heritage and tourism site.",
-          "Built over ~100 years (c. 950–1050 CE) during the Chandela period."
+          "Chandela dynasty of Bundelkhand",
+          "Nagara temple architecture of Khajuraho",
+          "UNESCO World Heritage listing of Khajuraho"
         ],
         "revision_takeaways": [
-          "Memory hook: Khajuraho temples ➜ Chandela dynasty (c. 950–1050 CE), Bundelkhand, MP.",
-          "UNESCO site; Nagara style; Kandariya Mahadeva temple."
-        ],
-        "sources": [
-          {
-            "title": "Khajuraho Group of Monuments — UNESCO World Heritage Site",
-            "citation": "UNESCO / ASI",
-            "url": "https://whc.unesco.org/"
-          }
+          "Khajuraho was built under Chandela patronage.",
+          "The temples date from about 950 to 1050 CE."
         ]
       },
       "subject": "Art and Culture",

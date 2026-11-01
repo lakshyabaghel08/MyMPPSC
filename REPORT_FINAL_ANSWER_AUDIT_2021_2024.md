@@ -6,6 +6,8 @@
 **Machine‑readable record:** `data/pyq/quality-audit/final-answer-audit-2021-2024.json` (one row per question, with its classification).
 **Not in scope:** the 2020 batch, audited separately in `REPORT_FINAL_ANSWER_AUDIT_2020.md`.
 
+> **Superseded for 2023 and 2024.** The counts and classifications below were correct for this 2021–2024 pass, but the later per-year audits re-derived those two papers question by question. Their findings — the keys they confirmed or corrected, the items they left flagged, and the option repairs they pinned — are recorded in [`REPORT_FINAL_ANSWER_AUDIT_2023.md`](REPORT_FINAL_ANSWER_AUDIT_2023.md) and [`REPORT_FINAL_ANSWER_AUDIT_2024.md`](REPORT_FINAL_ANSWER_AUDIT_2024.md), and both the table below and `final-answer-audit-2021-2024.json` have been brought into line with them. Where the two disagree, the year audit is the record.
+
 ---
 
 ## 1. Headline counts (computed from the bank, not copied from earlier reports)
@@ -14,11 +16,11 @@
 |---|---|---|---|---|
 | 2021 | 100 | 94 | 1 | 5 |
 | 2022 | 100 | 98 | 0 | 2 |
-| 2023 | 100 | 100 | 0 | 0 |
-| 2024 | 100 | 100 | 0 | 0 |
-| **Total** | **400** | **392** | **1** | **7** |
+| 2023 | 100 | 93 | 6 | 1 |
+| 2024 | 100 | 94 | 5 | 1 |
+| **Total** | **400** | **379** | **12** | **9** |
 
-392 + 1 + 7 = 400. Every year sums to 100. The counts in `reviewed-corrections.json → final_audit_2021_2024` and in the audit record are derived from the same rows, and `tests/answer-accuracy.test.js` recomputes them and fails if they ever drift.
+379 + 12 + 9 = 400. Every year sums to 100. The counts in `reviewed-corrections.json → final_audit_2021_2024` and in the audit record are derived from the same rows, and `tests/answer-accuracy.test.js` recomputes them and fails if they ever drift.
 
 ---
 

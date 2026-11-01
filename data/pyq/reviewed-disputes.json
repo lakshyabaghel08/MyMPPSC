@@ -273,6 +273,12 @@
       "status": "unresolved",
       "raised_by": "2023 PYQ final answer audit",
       "reason": "The printed key is both B and D, and D (National Oral Health Programme) is certainly not a nutritional programme. B (National Programme for Prevention and Control of Fluorosis) is arguable: the Health Ministry lists NPPCF among its national nutritional programmes, although fluorosis is fluoride toxicity rather than a nutritional deficiency. Both keyed letters are retained and the item is recorded as ambiguous instead of being presented as settled."
+    },
+    "MPPSC-2024-027": {
+      "is_disputed": true,
+      "status": "unresolved",
+      "raised_by": "2024 PYQ final answer audit",
+      "reason": "The paper keys Gond, and the Gond tradition of Birha is well documented. The Gazetteer of the Jabalpur district, however, records that Gond as well as Kol women sing and perform Birha, and a candidate petition before the Madhya Pradesh High Court in 2024 raised exactly this point; the court upheld the Commission's key because it rested on an authority. The keyed answer is kept and the item is recorded as admitting a second defensible answer rather than presented as settled."
     }
   }
 }

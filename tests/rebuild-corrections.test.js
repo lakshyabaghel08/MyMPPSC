@@ -34,7 +34,7 @@ const readJsonl = async (...parts) => (await readFile(dataPath(...parts), 'utf8'
   .filter(Boolean)
   .map((line) => JSON.parse(line));
 
-const [correctionsFile, explanationsFile, disputesFile, modelFile, bank, baseline, audit2020, audit2019, audit2017] = await Promise.all([
+const [correctionsFile, explanationsFile, disputesFile, modelFile, bank, baseline, audit2020, audit2019, audit2017, audit2124] = await Promise.all([
   readJson('pyq', 'reviewed-corrections.json'),
   readJson('pyq', 'reviewed-explanations.json'),
   readJson('pyq', 'reviewed-disputes.json'),
@@ -44,6 +44,7 @@ const [correctionsFile, explanationsFile, disputesFile, modelFile, bank, baselin
   readJson('pyq', 'quality-audit', 'final-answer-audit-2020.json'),
   readJson('pyq', 'quality-audit', 'final-answer-audit-2019.json'),
   readJson('pyq', 'quality-audit', 'final-answer-audit-2017.json'),
+  readJson('pyq', 'quality-audit', 'final-answer-audit-2021-2024.json'),
 ]);
 
 const bundle = parseReviewedCorrections({
@@ -120,7 +121,15 @@ test('every correction quotes the printed key the audits recorded', () => {
   for (const id of correctionsFile.final_audit_2021_2024.corrected_ids) {
     assert.ok(fromManifest.includes(id), `${id}: the 2021–2024 audit summary names a declared correction`);
   }
-  assert.deepEqual(correctionsFile.final_audit_2021_2024.corrected_ids, ['MPPSC-2021-010']);
+  // The 2021–2024 record is kept in step with the per-year audits that followed it,
+  // so its summary must name exactly the corrections its own rows record.
+  assert.deepEqual(
+    correctionsFile.final_audit_2021_2024.corrected_ids.slice().sort(),
+    audit2124.questions.filter((r) => r.status === 'corrected').map((r) => r.id).sort(),
+    'the 2021–2024 audit summary lists exactly the corrections its rows record',
+  );
+  assert.ok(correctionsFile.final_audit_2021_2024.corrected_ids.includes('MPPSC-2021-010'),
+    'the 2021 correction is carried too, not only 2020');
   assert.ok(fromManifest.includes('MPPSC-2021-010'), 'the 2021 correction is carried too, not only 2020');
   assert.deepEqual(
     correctionsFile.final_audit_2017.corrected_ids.slice().sort(),
@@ -161,7 +170,14 @@ test('every correction quotes the printed key the audits recorded', () => {
   );
   assert.deepEqual(correctionsFile.final_audit_2023.ambiguous_ids, ['MPPSC-2023-005'],
     'the 2023 audit records the two-answer item it could not settle');
-  assert.equal(fromManifest.length, 37, 'five 2020 keys, five 2019 keys, the seventeen declared for 2021–2024, one for 2017, four for 2015, three for 2014, one for 2013 and one for 2022 — the 2023 audit re-derived, and confirmed, the six keys already declared for it; the 2018 and 2016 audits corrected no key');
+  assert.deepEqual(
+    correctionsFile.final_audit_2024.corrected_ids.slice().sort(),
+    fromManifest.filter((id) => id.startsWith('MPPSC-2024-')),
+    'the 2024 audit summary lists exactly the 2024 corrections',
+  );
+  assert.deepEqual(correctionsFile.final_audit_2024.ambiguous_ids, ['MPPSC-2024-027'],
+    'the 2024 audit records the folk-song item it could not settle');
+  assert.equal(fromManifest.length, 38, 'thirty-eight declared keys: five for 2024, six for 2023, six for 2022, two for 2021, five for 2020, five for 2019, one for 2017, four for 2015, three for 2014 and one for 2013 — the 2024 audit added the cricket-series key and confirmed the rest, the 2023 audit re-derived and confirmed the six keys already declared for it, and the 2018 and 2016 audits corrected no key');
 });
 
 test('a correction is applied once: a second application is a recorded no-op', () => {
@@ -254,7 +270,7 @@ test('a clean rebuild reproduces the shipped bank, corrections included', async 
 
   assert.equal(result.correctionsSummary.rejected.length, 0, 'no correction was rejected during the rebuild');
   assert.equal(result.correctionsSummary.reconciled, true, 'every declaration was applied or already satisfied');
-  assert.equal(result.correctionsSummary.applied.answers, 37, 'all 37 corrected keys were re-applied');
+  assert.equal(result.correctionsSummary.applied.answers, 38, 'all 38 corrected keys were re-applied');
   assert.equal(
     result.correctionsSummary.applied.explanations + result.correctionsSummary.deferred.explanations.length,
     1171,
