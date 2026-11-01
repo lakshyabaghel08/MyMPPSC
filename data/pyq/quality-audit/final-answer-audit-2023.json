@@ -1,0 +1,2025 @@
+{
+  "title": "Final answer audit of MPPSC 2023 Prelims Paper-I",
+  "year": 2023,
+  "paper_id": "MPPSC-2023-P1",
+  "audited_at": "2026-11-01",
+  "summary": {
+    "by_year": {
+      "2023": {
+        "reviewed": 100,
+        "confirmed": 93,
+        "corrected": 6,
+        "ambiguous": 1
+      }
+    },
+    "total": {
+      "reviewed": 100,
+      "confirmed": 93,
+      "corrected": 6,
+      "ambiguous": 1
+    },
+    "corrected_ids": [
+      "MPPSC-2023-001",
+      "MPPSC-2023-009",
+      "MPPSC-2023-046",
+      "MPPSC-2023-052",
+      "MPPSC-2023-057",
+      "MPPSC-2023-059"
+    ],
+    "ambiguous_ids": [
+      "MPPSC-2023-005"
+    ],
+    "answer_corrections": [
+      {
+        "id": "MPPSC-2023-001",
+        "from": [
+          "A"
+        ],
+        "to": [
+          "B"
+        ]
+      },
+      {
+        "id": "MPPSC-2023-009",
+        "from": [
+          "A",
+          "C"
+        ],
+        "to": [
+          "C"
+        ]
+      },
+      {
+        "id": "MPPSC-2023-046",
+        "from": [
+          "B"
+        ],
+        "to": [
+          "C"
+        ]
+      },
+      {
+        "id": "MPPSC-2023-052",
+        "from": [
+          "B"
+        ],
+        "to": [
+          "A"
+        ]
+      },
+      {
+        "id": "MPPSC-2023-057",
+        "from": [
+          "A"
+        ],
+        "to": [
+          "D"
+        ]
+      },
+      {
+        "id": "MPPSC-2023-059",
+        "from": [
+          "C"
+        ],
+        "to": [
+          "A"
+        ]
+      }
+    ],
+    "option_repairs": [
+      {
+        "id": "MPPSC-2023-092",
+        "key": "D",
+        "from": "1942 A.D. 7",
+        "to": "1942 A.D."
+      },
+      {
+        "id": "MPPSC-2023-045",
+        "key": "D",
+        "from": "None of the above 8",
+        "to": "None of the above"
+      }
+    ],
+    "explanations_rebuilt": 100,
+    "option_reasoning_declared_incomplete": [],
+    "model_questions": [
+      "MPPSC-2023-002",
+      "MPPSC-2023-047",
+      "MPPSC-2023-053",
+      "MPPSC-2023-058",
+      "MPPSC-2023-060"
+    ],
+    "printed_keys_compared": 100,
+    "method": "Every one of the 100 questions was re-read and answered independently, without reference to the printed key, and the printed key was then compared with the stored answer. Each explanation was rebuilt to a four-part standard: a concept-and-justification paragraph, per-option reasoning tied to that option's own text, revision facts, and a takeaway. A key was changed only where the evidence contradicts it and another option is demonstrably right; an item whose options cannot express the intended answer is flagged ambiguous rather than forced to a single letter. Five numbers the extraction never printed are app-authored model questions and are listed separately. Scan damage in option text was repaired only where the printed wording is certain."
+  },
+  "questions": [
+    {
+      "id": "MPPSC-2023-001",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 1,
+      "subject": "Economy",
+      "topic": "Agriculture and rural economy",
+      "subtopic": "Irrigation",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "corrected",
+      "note": "A crop is raised in a fixed order: the field is prepared, the seed is sown, water is applied to the sown crop, and only then is the produce harvested.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-002",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 2,
+      "subject": "Madhya Pradesh Special",
+      "topic": "Administrative structure of Madhya Pradesh",
+      "subtopic": null,
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "The principal seat of the Madhya Pradesh High Court is at Jabalpur, where the court was established in 1936 and where its Chief Justice sits.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-003",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 3,
+      "subject": "Environment",
+      "topic": "Ecology and biodiversity",
+      "subtopic": "Biodiversity",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "India's four globally accepted biodiversity hotspots are the Himalaya, the Western Ghats and Sri Lanka, Indo-Burma and Sundaland, so the Naro Hills of Madhya Pradesh is the one that is not a",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-004",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 4,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Space programme",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Aditya-L1 is ISRO's solar observatory, launched on 2 September 2023 to the Sun-Earth Lagrange point L1, about 1.5 million km from Earth, where it studies the corona, the solar wind and space",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-005",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 5,
+      "subject": "Science and Technology",
+      "topic": "Health and diseases",
+      "subtopic": "Public health programmes",
+      "printed_key": [
+        "B",
+        "D"
+      ],
+      "answer": [
+        "B",
+        "D"
+      ],
+      "status": "ambiguous",
+      "note": "The National Oral Health Programme is a dental health programme and not a nutrition programme, which is certain.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4,
+      "dispute_status": "unresolved"
+    },
+    {
+      "id": "MPPSC-2023-006",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 6,
+      "subject": "Environment",
+      "topic": "Ecology and biodiversity",
+      "subtopic": "Ecosystem",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "The marine ecosystem is the most stable because the ocean's enormous volume, thermal inertia and chemical buffering keep temperature, salinity and nutrient conditions nearly constant, so its",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-007",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 7,
+      "subject": "Environment",
+      "topic": "Ecology and biodiversity",
+      "subtopic": "Ecosystem",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Insecticides are synthetic organochlorines, organophosphates or carbamates that micro-organisms cannot readily break down, so they persist and accumulate in the food chain.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-008",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 8,
+      "subject": "Environment",
+      "topic": "Ecology and biodiversity",
+      "subtopic": "Ecosystem",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The decline of energy from one trophic level to the next is an expression of the second law of thermodynamics, which says that in any energy transfer some energy is degraded into heat and be",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-009",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 9,
+      "subject": "Science and Technology",
+      "topic": "Biology",
+      "subtopic": "Human skeletal system",
+      "printed_key": [
+        "A",
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "corrected",
+      "note": "Osteoclasts are the large multinucleate cells that dissolve bone mineral and collagen during remodelling, and they clear the broken ends of a fracture so that new bone can bridge it, which i",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-010",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 10,
+      "subject": "Environment",
+      "topic": "Pollution and climate change",
+      "subtopic": "Air pollution",
+      "printed_key": [
+        "B",
+        "C"
+      ],
+      "answer": [
+        "B",
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "A green muffler is a belt of trees and shrubs planted along roads, and its foliage, branches and leaf litter intercept dust and absorb gaseous pollutants from the air while its mass also def",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-011",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 11,
+      "subject": "Economy",
+      "topic": "Poverty and human development",
+      "subtopic": "Poverty estimation",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "The 2023 report of the MP State Policy and Planning Commission recorded Alirajpur as the district with the largest improvement in multidimensional poverty, a gain driven by improvements in h",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-012",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 12,
+      "subject": "Environment",
+      "topic": "Ecology and biodiversity",
+      "subtopic": "Ecosystem",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "In the Business Reforms Action Plan 2020 assessment released in June 2022, states were placed in four bands instead of being ranked, and Madhya Pradesh was placed in the 'Achievers' band wit",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-013",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 13,
+      "subject": "Madhya Pradesh Special",
+      "topic": "Demography of Madhya Pradesh",
+      "subtopic": "Districts of Madhya Pradesh",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The 2011 Census growth rates for 2001-2011 place Anuppur lowest at about 12.3 per cent, then Betul at 12.9 per cent, Chhindwara at 13.07 per cent and Mandsaur at 13.19 per cent, so the ascen",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-014",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 14,
+      "subject": "Madhya Pradesh Special",
+      "topic": "Schemes and institutions of Madhya Pradesh",
+      "subtopic": "State welfare schemes",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The Tantya Mama Economic Welfare Scheme, launched as a new scheme for Scheduled Tribe beneficiaries below the poverty line, supplies low-cost equipment and working capital so that they can s",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-015",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 15,
+      "subject": "Economy",
+      "topic": "Economy of Madhya Pradesh",
+      "subtopic": "Industry of Madhya Pradesh",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Gwalior has a recognised industrial cluster for transformers, switchgear and allied electrical products, built on the city's older engineering and electrical goods base.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-016",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 16,
+      "subject": "Polity",
+      "topic": "Judiciary",
+      "subtopic": "High Courts",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Article 217 fixes 62 years as the retirement age of a High Court judge, while a Supreme Court judge retires at 65 under Article 124.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-017",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 17,
+      "subject": "Polity",
+      "topic": "Constitution of India",
+      "subtopic": "Constitutional amendments",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "The 74th Constitutional Amendment of 1992 added Part IX-A and the Twelfth Schedule to give constitutional status to urban local bodies such as municipalities, municipal corporations and naga",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-018",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 18,
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": "Governor Generals and Viceroys",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Lord Ripon, Viceroy from 1880 to 1884, is called the father of local self-government in India for his 1882 resolution that set up elected municipal boards with non-official Indian members.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-019",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 19,
+      "subject": "Polity",
+      "topic": "State Government",
+      "subtopic": "State Legislature",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Under Article 199 the Speaker of the Legislative Assembly decides whether a bill is a Money Bill, and that decision is final.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-020",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 20,
+      "subject": "Madhya Pradesh Special",
+      "topic": "Administrative structure of Madhya Pradesh",
+      "subtopic": "Madhya Pradesh legislature",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Pandit Kunjilal Dubey was the first Speaker of the Madhya Pradesh Legislative Assembly, holding the chair from 1956, and the Assembly's library and a state award for parliamentary excellence",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-021",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 21,
+      "subject": "Polity",
+      "topic": "Constitution of India",
+      "subtopic": "Fundamental Rights",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Article 322 says that the expenses of the Union and State Public Service Commissions, including salaries and pensions, are charged on the Consolidated Fund of India or of the state, which ma",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-022",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 22,
+      "subject": "Economy",
+      "topic": "Indian Economy",
+      "subtopic": "NITI Aayog",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "NITI Aayog was constituted on 1 January 2015 by a Cabinet resolution, replacing the Planning Commission that had functioned since 15 March 1950.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-023",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 23,
+      "subject": "Polity",
+      "topic": "Union and State Relations",
+      "subtopic": "Finance Commission",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The Twelfth Finance Commission, whose recommendations covered 2005-10, was chaired by Dr C.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-024",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 24,
+      "subject": "Polity",
+      "topic": "Citizenship and civil rights",
+      "subtopic": "Right to Food",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "The statutory food commission contemplated by the National Food Security Act, 2013 is set up under that Act, which provides for a State Food Commission to monitor implementation and hear gri",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-025",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 25,
+      "subject": "Polity",
+      "topic": "Statutory and regulatory bodies",
+      "subtopic": "National Commission for Women",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Section 10 of the National Commission for Women Act, 1990 lists the commission's functions, including reviewing safeguards for women, examining laws and reporting on complaints.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-026",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 26,
+      "subject": "Polity",
+      "topic": "Statutory and regulatory bodies",
+      "subtopic": "National Human Rights Commission",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Section 2(d) of the Protection of Human Rights Act defines human rights as rights relating to life, liberty, equality and dignity of the individual, so those three are within the Commission'",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-027",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 27,
+      "subject": "Polity",
+      "topic": "Constitutional bodies",
+      "subtopic": "National Commission for SCs and STs",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Article 338A as amended provides that the National Commission for Scheduled Tribes shall consist of a Chairperson, a Vice-Chairperson and three other Members, so besides the two office-beare",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-028",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 28,
+      "subject": "Polity",
+      "topic": "Constitutional bodies",
+      "subtopic": "Comptroller and Auditor General",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Article 148 provides that the Comptroller and Auditor General shall hold office for a term of six years or until attaining the age of 65, whichever is earlier, so the maximum period is six y",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-029",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 29,
+      "subject": "Environment",
+      "topic": "Environmental laws and institutions",
+      "subtopic": "National Green Tribunal",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The National Green Tribunal, established by the NGT Act of 2010, has its principal bench at New Delhi, with zonal benches at Bhopal, Pune, Kolkata and Chennai.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-030",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 30,
+      "subject": "Polity",
+      "topic": "Constitutional bodies",
+      "subtopic": "Union Public Service Commission",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "The committee constituted by the UPSC in July 2000 to review the civil services examination was chaired by Professor Yoginder Kumar Alagh, an economist, and its report of 2001 led to changes",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-031",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 31,
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Other sports events",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "The Amateur Kabaddi Federation of India, the national body that runs kabaddi and sanctions tournaments, is headquartered at Jaipur.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-032",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 32,
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Olympic and Asian Games",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Sushila Chanu, Monika and Vandana Katariya all played in the Indian women's hockey squad at the Tokyo Olympics of 2020, the team that finished fourth after losing the bronze medal match to G",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-033",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 33,
+      "subject": "Current Affairs",
+      "topic": "Awards and honours",
+      "subtopic": "Sports awards",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "The Major Dhyan Chand Khel Ratna Award for 2022 was conferred on the table tennis player Sharath Kamal, India's most decorated paddler and a Commonwealth Games medallist.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-034",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 34,
+      "subject": "Current Affairs",
+      "topic": "Awards and honours",
+      "subtopic": "National awards",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "The Padma Vibhushan for 2023 in the field of Science and Engineering went to Professor S.R.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-035",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 35,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Research institutes",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "The Central Institute of Indian Languages is at Mysuru, not Mumbai, so that pair is the wrong one.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-036",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 36,
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Cricket",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "India played its first One Day International on 13 July 1974 against England at Headingley, Leeds, a match India lost by four wickets.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-037",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 37,
+      "subject": "Current Affairs",
+      "topic": "Days and dates",
+      "subtopic": "International days",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The United Nations General Assembly declared 21 June as the International Day of Yoga in December 2014 on India's proposal, and the first celebration took place on 21 June 2015.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-038",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 38,
+      "subject": "Current Affairs",
+      "topic": "National current affairs",
+      "subtopic": "National events",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Lance Naik Manju of the Corps of Military Police became the first woman soldier of the Indian Army to skydive, jumping from an ALH Dhruv helicopter at about 10,000 feet in 2022 after the Arm",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-039",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 39,
+      "subject": "Current Affairs",
+      "topic": "Appointments and personalities",
+      "subtopic": null,
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Jamshed J. Irani, for long the managing director of Tata Steel, is known as the Steel Man of India for his role in modernising Indian steelmaking.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-040",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 40,
+      "subject": "Economy",
+      "topic": "Banking and finance",
+      "subtopic": "Reserve Bank of India",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "The 'Governor of the Year' award at the Central Banking Awards 2023 went to Shaktikanta Das, Governor of the Reserve Bank of India, in recognition of the Bank's handling of inflation and of",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-041",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 41,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "MP Tendering, GeM and MPLUN are all platforms used for government procurement, MPLUN being the Madhya Pradesh Laghu Udyog Nigam's e-procurement system.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-042",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 42,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "DSL, the digital subscriber line, carries data over ordinary copper telephone lines by using frequencies above those of voice calls, which is why a phone and an internet connection can share",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-043",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 43,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "E-commerce lets a business sell round the clock without shop hours or staff shifts, which is the advantage listed in option A.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-044",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 44,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "A phishing attack deceives a user into revealing passwords or card details through a fake message, site or call, which is exactly the description in the question.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-045",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 45,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "A firewall inspects traffic entering or leaving a network and blocks what the rules do not permit, which is the description in option B.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-046",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 46,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "corrected",
+      "note": "Flipkart, Amazon and Alibaba run marketplaces in which businesses sell goods to individual consumers online, which is the business-to-consumer or B2C model.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-047",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 47,
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": null,
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "The Tropic of Cancer crosses eight Indian states: Gujarat, Rajasthan, Madhya Pradesh, Chhattisgarh, Jharkhand, West Bengal, Tripura and Mizoram.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-048",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 48,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Yahoo is a web portal, news and search service, not browser software, so it is the one that is not a web browser.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-049",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 49,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "ChatGPT was developed by OpenAI, which released it in November 2022 as a conversational model built on the GPT series of large language models.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-050",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 50,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Second generation computers, from the late 1950s, replaced vacuum tubes with transistors, which were smaller, cooler and far more reliable, and they introduced symbolic assembly languages an",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-051",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 51,
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Rivers of India",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "The Tatipaka refinery stands at Tatipaka in the East Godavari district of Andhra Pradesh, a small crude oil and gas processing unit of ONGC that handles the oil found in the Krishna-Godavari",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-052",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 52,
+      "subject": "Geography",
+      "topic": "World Geography",
+      "subtopic": null,
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "corrected",
+      "note": "The Gaza Strip is a narrow territory on the eastern shore of the Mediterranean Sea, with Gaza city as its port, so the sea near it is the Mediterranean.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-053",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 53,
+      "subject": "Polity",
+      "topic": "Constitution of India",
+      "subtopic": null,
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "The 42nd Amendment of 1976, passed during the Emergency, inserted the words socialist and secular into the Preamble along with integrity.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-054",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 54,
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": "Landforms and their evolution",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Diastrophism covers the slow and sudden movements of the earth's crust, including orogenic mountain building, epeirogenic uplift, earthquakes and the plate tectonics that drive them.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-055",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 55,
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Population of India",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "In the 2011 Census Kerala had the highest literacy at about 94 per cent, then Mizoram at 91.3, Goa at 88.7 and Tripura at 87.2, so the descending order among the four is Kerala, Mizoram, Goa",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-056",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 56,
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": "Atmosphere and weather",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "The troposphere is the lowest layer, where almost all water vapour and dust sit and where temperature falls with height, so clouds, rain, storms and every weather event happen there.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-057",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 57,
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Rivers of India",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "corrected",
+      "note": "The Vaitarna river, printed as 'Vaitama' in the option, rises on the Trimbak-Anjaneri hills near Trimbakeshwar in Nashik district and flows west into the Arabian Sea, and it supplies Mumbai",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-058",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 58,
+      "subject": "Environment",
+      "topic": "Protected areas",
+      "subtopic": null,
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Jim Corbett National Park, created as Hailey National Park in 1936 in the Nainital district of Uttarakhand, was the first national park of India and is the park where Project Tiger was launc",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-059",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 59,
+      "subject": "Geography",
+      "topic": "Economic and human geography",
+      "subtopic": "Energy resources",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "corrected",
+      "note": "Boise in Idaho, USA, is where underground heat was first tapped successfully for a district heating network, from the 1890s, and that system still runs today.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-060",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 60,
+      "subject": "Economy",
+      "topic": "Agriculture and rural economy",
+      "subtopic": null,
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "M.S. Swaminathan is called the father of the Green Revolution in India for adapting high-yielding wheat and rice varieties to Indian conditions and for the administrative push that made the",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-061",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 61,
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": "Indian National Congress",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The Congress split into Moderates and Extremists at the Surat session of 1907, where the two wings clashed over the presidency and the programme, and the party remained divided until the Luc",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-062",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 62,
+      "subject": "Geography",
+      "topic": "Physiography of Madhya Pradesh",
+      "subtopic": "Baghelkhand plateau",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "In 1948 the princely states of Bundelkhand and Baghelkhand were merged to form Vindhya Pradesh, with its capital at Rewa, which later became a Part B state and was merged into Madhya Pradesh",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-063",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 63,
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": "Partition and independence",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "The Saurashtra Union, formed on 15 February 1948 with its capital at Rajkot, brought together 222 princely states of the Kathiawar peninsula under the leadership of the Jam Saheb of Nawanaga",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-064",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 64,
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": "Partition and independence",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The word Pakistan was coined by Choudhry Rahmat Ali in his 1933 pamphlet 'Now or Never', formed from the initials of Punjab, Afghania, Kashmir, Sind and Baluchistan.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-065",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 65,
+      "subject": "Polity",
+      "topic": "State Government",
+      "subtopic": "State Legislature",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "In its early phase the Congress demanded more elected members in the legislative councils, more Indian participation in administration and the separation of the executive from the judiciary.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-066",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 66,
+      "subject": "History",
+      "topic": "Medieval India",
+      "subtopic": "Maratha empire",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Bal Gangadhar Tilak started public Ganeshotsav celebrations in Maharashtra in the 1890s, using the festival to bring people together and to spread nationalist ideas, and he followed it with",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-067",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 67,
+      "subject": "History",
+      "topic": "Medieval India",
+      "subtopic": "Mughal empire",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Nadir Shah invaded India in 1739, defeated the Mughal army at Karnal and sacked Delhi, carrying away the Peacock throne and the Kohinoor.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-068",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 68,
+      "subject": "History",
+      "topic": "Ancient India",
+      "subtopic": "Buddhism and Jainism",
+      "printed_key": [
+        "A",
+        "D"
+      ],
+      "answer": [
+        "A",
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "The Aryamanjushrimulakalpa is a Mahayana Sanskrit text built around Manjushri, and its mantras, mandalas and ritual instructions are also treated as an early Vajrayana work, which is why the",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-069",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 69,
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": "Acts and constitutional development",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Lord William Bentinck's government removed prior licensing of the press in 1835, and the change is usually credited to Charles Metcalfe, then the governor-general in waiting.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-070",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 70,
+      "subject": "History",
+      "topic": "Ancient India",
+      "subtopic": "Gupta period",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "After defeating the Western Kshatrapas of Gujarat, Chandragupta II issued silver coins modelled on their bust-and-legend design, and these coins of the Gupta empire circulated in western Ind",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-071",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 71,
+      "subject": "Economy",
+      "topic": "Economy of Madhya Pradesh",
+      "subtopic": "Minerals of Madhya Pradesh",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Madhya Pradesh was the leading copper producing state of India in 2021-22, its output coming almost entirely from the Malanjkhand copper belt in Balaghat district.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-072",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 72,
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": "Latitude and longitude",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "The Mahi rises in Madhya Pradesh, flows through Rajasthan and enters Gujarat before draining into the Gulf of Khambhat, so it is a three-state river.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-073",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 73,
+      "subject": "Geography",
+      "topic": "Climate and soils of Madhya Pradesh",
+      "subtopic": "Soil types",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Black soil is fine-grained clay, rich in iron, lime and magnesia, with very little sand, so the claim of high sand content is the incorrect statement.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-074",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 74,
+      "subject": "Geography",
+      "topic": "Rivers of Madhya Pradesh",
+      "subtopic": "Narmada basin",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The Purna, which drains the Burhanpur and Khandwa tract of Madhya Pradesh, is a tributary of the Tapti and joins it in Maharashtra.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-075",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 75,
+      "subject": "Geography",
+      "topic": "Physiography of Madhya Pradesh",
+      "subtopic": "Satpura range",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Bijagarh hill lies in the Satpura range, the east-west range between the Narmada and the Tapti that forms the state's central highland.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-076",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 76,
+      "subject": "Geography",
+      "topic": "Climate and soils of Madhya Pradesh",
+      "subtopic": "Monsoon in Madhya Pradesh",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Madhya Pradesh lies entirely in the tropical monsoon belt: it is tropical, it depends on the south-west monsoon, and the Tropic of Cancer crosses it near Bhopal.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-077",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 77,
+      "subject": "Environment",
+      "topic": "Forests of Madhya Pradesh",
+      "subtopic": "Forest types",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Alpine forests grow above the tree line in the high Himalayas, above about 3,000 metres, and Madhya Pradesh's highest ground is far below that, so alpine forest is the type absent from the s",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-078",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 78,
+      "subject": "Geography",
+      "topic": "Rivers of Madhya Pradesh",
+      "subtopic": "Narmada basin",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Chachai, in Anuppur district, is the site of the Amarkantak thermal power station of the Madhya Pradesh Power Generating Company, a coal-based plant whose first unit was commissioned in 1977.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-079",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 79,
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Transport in India",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "In Basic Road Statistics 2018-19 Madhya Pradesh had about 8,772 km of national highways, 11,389 km of state highways and more than 50,000 km of district roads, so the first three statements",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-080",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 80,
+      "subject": "Economy",
+      "topic": "Economy of Madhya Pradesh",
+      "subtopic": "Agriculture of Madhya Pradesh",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Khargone, on the Kunda river in the Nimar tract, was the leading cotton producing district of Madhya Pradesh in 2020-21 and is called the state's golden district for cotton, chilli and groun",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-081",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 81,
+      "subject": "Polity",
+      "topic": "Union Executive",
+      "subtopic": "President of India",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Under Article 54 the President is elected by an electoral college of the elected members of both Houses of Parliament and the elected members of the legislative assemblies of the states, inc",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-082",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 82,
+      "subject": "Polity",
+      "topic": "Constitution of India",
+      "subtopic": "Directive Principles",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "The Directive Principles are borrowed from the Irish Constitution, which itself drew on the Spanish republican constitution, so Ireland is the source.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-083",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 83,
+      "subject": "Polity",
+      "topic": "Union Legislature",
+      "subtopic": "Lok Sabha",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Article 79 says that there shall be a Parliament for the Union consisting of the President and the two Houses, the Council of States and the House of the People.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-084",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 84,
+      "subject": "Economy",
+      "topic": "Banking and finance",
+      "subtopic": "NABARD and SIDBI",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "NABARD, the National Bank for Agriculture and Rural Development, was set up on 12 July 1982 on the recommendation of the Sivaraman Committee.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-085",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 85,
+      "subject": "Economy",
+      "topic": "Banking and finance",
+      "subtopic": "NABARD and SIDBI",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "The Small Industries Development Bank of India was established in April 1990 under the SIDBI Act of 1989, as the principal financial institution for the promotion and financing of micro, sma",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-086",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 86,
+      "subject": "Economy",
+      "topic": "Banking and finance",
+      "subtopic": "Commercial banks",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The first round of bank nationalisation in July 1969 took in 14 banks with deposits above 50 crore rupees, and the second round in April 1980 took in 6 more with deposits above 200 crore rup",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-087",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 87,
+      "subject": "Polity",
+      "topic": "Constitution of India",
+      "subtopic": "Constitutional amendments",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "The Constitution (Eighty-sixth Amendment) Act, 2002 inserted Article 21-A, making free and compulsory education for children aged six to fourteen a Fundamental Right, and added the correspon",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-088",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 88,
+      "subject": "Polity",
+      "topic": "Constitution of India",
+      "subtopic": "Fundamental Duties",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Part IV-A began with ten Fundamental Duties in 1976 on the recommendation of the Swaran Singh Committee, and the Constitution (Eighty-sixth Amendment) Act, 2002 added the eleventh, the duty",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-089",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 89,
+      "subject": "Polity",
+      "topic": "Constitution of India",
+      "subtopic": "Constitutional amendments",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "The 42nd Amendment of 1976 rewrote the Preamble to describe India as a sovereign socialist secular democratic republic, and also added the word integrity to the phrase about the unity of the",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-090",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 90,
+      "subject": "Polity",
+      "topic": "Constitution of India",
+      "subtopic": "Making of the Constitution",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The Constituent Assembly was constituted in 1946 under the scheme of the Cabinet Mission, which proposed a single assembly elected by the provincial legislatures and princely states.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-091",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 91,
+      "subject": "History",
+      "topic": "History of Madhya Pradesh",
+      "subtopic": "Princely states and agencies",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Bhima Nayak was a Bhil leader of the Barwani princely state in the Narmada valley who took part in the revolt against British rule and was hanged by the British at Barwani in 1876.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-092",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 92,
+      "subject": "Madhya Pradesh Special",
+      "topic": "Tribes of Madhya Pradesh",
+      "subtopic": "Bhil",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Sitaram Kanwar and the Bhilala chief Raghunath Singh Mandloi joined the anti-British struggle in 1857, the year of the great revolt, when the Bhil and Bhilala chiefs of the Narmada valley ro",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-093",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 93,
+      "subject": "Art and Culture",
+      "topic": "Festivals and fairs",
+      "subtopic": "Festivals of India",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Moni or Moniya is the Bundelkhand dance performed in the Sagar region on Moni Amavasya, the day after Diwali, by men and youths who keep a vow of silence, dress in peacock feathers and go fr",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-094",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 94,
+      "subject": "Art and Culture",
+      "topic": "Heritage Sites",
+      "subtopic": "Temples of Madhya Pradesh",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Chitrakoot, on the Mandakini in the Satna district tract, is known as Brahmpuri, the abode of Brahma, besides being called the Ayodhya of Bundelkhand for Rama's exile.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-095",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 95,
+      "subject": "Art and Culture",
+      "topic": "Literature and languages",
+      "subtopic": "Books and authors",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Mukul is the poetry collection of Subhadra Kumari Chauhan, published in 1930, which carries her famous poem on the rani of Jhansi and her verses on the poverty of the peasant.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-096",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 96,
+      "subject": "Madhya Pradesh Special",
+      "topic": "Tribes of Madhya Pradesh",
+      "subtopic": "Gond",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Nohdora is the clay ornamentation that Gond women make on the walls of a newly built house, part of the Gond wall and floor painting tradition that also produces Gond Chinh and Pithora.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-097",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 97,
+      "subject": "History",
+      "topic": "History of Madhya Pradesh",
+      "subtopic": "Chandela dynasty",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "The Matangeshwar temple stands in the western group of Khajuraho, in Chhatarpur district, and is the only Khajuraho shrine still in active worship.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-098",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 98,
+      "subject": "Art and Culture",
+      "topic": "Literature and languages",
+      "subtopic": "Hindi literature",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Ramchandrika is the Riti-period epic of Keshavdas, a retelling of the Ramayana in Braj verse written for the Bundela ruler Indrajit Singh of Orchha.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-099",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 99,
+      "subject": "Art and Culture",
+      "topic": "Literature and languages",
+      "subtopic": "Literature of Madhya Pradesh",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Balakrishna Sharma Naveen wrote two long poems, printed here as Tranarpan and Atmosarga, on the martyrdom of Ganesh Shankar Vidyarthi, his editor at Pratap who was killed in the Kanpur riots",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2023-100",
+      "year": 2023,
+      "paper_id": "MPPSC-2023-P1",
+      "question_number": 100,
+      "subject": "History",
+      "topic": "History of Madhya Pradesh",
+      "subtopic": "Freedom struggle in Madhya Pradesh",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "The Thona-Luhari firing took place on 8 February 1939, when Congress workers led by Lalaram Bajpai raised the tricolour at the weekly market in Thona-Luhari village of the Orchha state, now",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    }
+  ]
+}

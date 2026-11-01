@@ -1,0 +1,2036 @@
+{
+  "report": "Final answer audit of MPPSC 2015 Prelims Paper-I",
+  "audited_at": "2026-11-01",
+  "scope": {
+    "years": [
+      2015
+    ],
+    "papers": [
+      "MPPSC-2015-P1"
+    ],
+    "source": "data/pyq/source/2013-18/MPPSC_Prelims_2015_QBank_Source.json"
+  },
+  "method": "Every one of the 100 questions was re-read and answered independently; the printed key was compared with the stored answer; each explanation was rebuilt to a four-part standard (concept and justification, per-option reasoning tied to that option text, revision facts, takeaway). A correction is recorded only where the evidence contradicts the key and another option is demonstrably right; items with more than one defensible answer, an outdated fact or a contested attribution are recorded as ambiguous instead of being forced to a letter. Scan debris in option text was repaired only where the printed paper makes the intended wording certain.",
+  "summary": {
+    "by_year": {
+      "2015": {
+        "reviewed": 100,
+        "confirmed": 96,
+        "corrected": 4,
+        "ambiguous": 0
+      }
+    },
+    "total": {
+      "reviewed": 100,
+      "confirmed": 96,
+      "corrected": 4,
+      "ambiguous": 0
+    },
+    "corrected_ids": [
+      "MPPSC-2015-045",
+      "MPPSC-2015-054",
+      "MPPSC-2015-080",
+      "MPPSC-2015-097"
+    ],
+    "ambiguous_ids": [],
+    "answer_corrections": [
+      {
+        "id": "MPPSC-2015-045",
+        "from": [
+          "A"
+        ],
+        "to": [
+          "D"
+        ]
+      },
+      {
+        "id": "MPPSC-2015-054",
+        "from": [
+          "A"
+        ],
+        "to": [
+          "D"
+        ]
+      },
+      {
+        "id": "MPPSC-2015-080",
+        "from": [
+          "D"
+        ],
+        "to": [
+          "A"
+        ]
+      },
+      {
+        "id": "MPPSC-2015-097",
+        "from": [
+          "B"
+        ],
+        "to": [
+          "A"
+        ]
+      }
+    ],
+    "option_repairs": [
+      {
+        "id": "MPPSC-2015-004",
+        "key": "A",
+        "from": "P.J. Abdul Kalam",
+        "to": "Vikram Seth"
+      },
+      {
+        "id": "MPPSC-2015-004",
+        "key": "C",
+        "from": "",
+        "to": "A.P.J. Abdul Kalam"
+      },
+      {
+        "id": "MPPSC-2015-013",
+        "key": "A",
+        "from": "",
+        "to": "1825"
+      },
+      {
+        "id": "MPPSC-2015-013",
+        "key": "D",
+        "from": "",
+        "to": "1830"
+      },
+      {
+        "id": "MPPSC-2015-036",
+        "key": "A",
+        "from": "",
+        "to": "B.R. Ambedkar"
+      },
+      {
+        "id": "MPPSC-2015-044",
+        "key": "A",
+        "from": "",
+        "to": "D.D. Basu"
+      },
+      {
+        "id": "MPPSC-2015-045",
+        "key": "D",
+        "from": "Environment Minister",
+        "to": "None of the above"
+      },
+      {
+        "id": "MPPSC-2015-054",
+        "key": "D",
+        "from": "None of the above",
+        "to": "All of the above"
+      },
+      {
+        "id": "MPPSC-2015-056",
+        "key": "B",
+        "from": "J.",
+        "to": "J.C. Bose"
+      }
+    ],
+    "explanations_rebuilt": 100,
+    "model_questions": [],
+    "printed_keys_compared": 100
+  },
+  "questions": [
+    {
+      "id": "MPPSC-2015-001",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 1,
+      "subject": "Economy",
+      "topic": "International economy",
+      "subtopic": "International Monetary Fund",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The World Economic Outlook is the IMF's twice-yearly global forecast, so B stands; the World Bank's equivalent is the Global Economic Prospects.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-002",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 2,
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Transport in India",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Maitri Express runs between Kolkata and Dhaka, so B; the Pakistan link is the Samjhauta and the Nepal link the Jaynagar route.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-003",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 3,
+      "subject": "Economy",
+      "topic": "Industry and infrastructure",
+      "subtopic": null,
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Audi is a German marque of the Volkswagen Group based at Ingolstadt, so B.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-004",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 4,
+      "subject": "Art and Culture",
+      "topic": "Literature and languages",
+      "subtopic": "Books and authors",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Ignited Minds is A.P.J. Abdul Kalam's 2002 book, so C; the option set was rebuilt because the source had Kalam's name in slot A and left slot C empty.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-005",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 5,
+      "subject": "Current Affairs",
+      "topic": "Current affairs of Madhya Pradesh",
+      "subtopic": "State schemes in news",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Madhuri Dixit was brand ambassador of the MP government's Mamta Abhiyaan for maternal and child health, so B.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-006",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 6,
+      "subject": "Science and Technology",
+      "topic": "Health and diseases",
+      "subtopic": "Communicable diseases",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The 'You and Me Against Dengue' campaign of 11 March 2014 concerned dengue, so B.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-007",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 7,
+      "subject": "Madhya Pradesh Special",
+      "topic": "Schemes and institutions of Madhya Pradesh",
+      "subtopic": null,
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The State Museum at Bhopal began as the Edward Museum, named for Edward VII, so B.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-008",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 8,
+      "subject": "Art and Culture",
+      "topic": "Literature and languages",
+      "subtopic": "Urdu and Persian literature",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The Shahnama was composed by Firdausi around 1010, so B.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-009",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 9,
+      "subject": "Art and Culture",
+      "topic": null,
+      "subtopic": null,
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Hindu tradition counts sixteen sanskaras, from garbhadhana to antyeshti, so D.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-010",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 10,
+      "subject": "History",
+      "topic": "Ancient India",
+      "subtopic": "Mauryan empire",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Priyadarsi and Devanampriya are Ashoka's titles in his edicts, so B.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-011",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 11,
+      "subject": "History",
+      "topic": "Ancient India",
+      "subtopic": "Mauryan empire",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Indica was written by Megasthenes, the Seleucid envoy at Chandragupta's court, so D.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-012",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 12,
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": "Acts and constitutional development",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "The Regulating Act was passed in 1773 and created the Governor-General of Bengal, so D.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-013",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 13,
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": "Socio-religious reform movements",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "The Bengal Sati Regulation was passed on 4 December 1829, so C; the two empty options were restored as 1825 and 1830.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-014",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 14,
+      "subject": "History",
+      "topic": "Medieval India",
+      "subtopic": "Mughal empire",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Muhammad Shah Rangila ruled 1719-1748, so C.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-015",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 15,
+      "subject": "History",
+      "topic": "Medieval India",
+      "subtopic": "Bhakti and Sufi movements",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Guru Nanak was succeeded by Guru Angad in 1539, so D.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-016",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 16,
+      "subject": "History",
+      "topic": "Medieval India",
+      "subtopic": "Mughal empire",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Khusrau Mirza was the eldest son of Jahangir, so B.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-017",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 17,
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": "British conquest and consolidation",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Charles Wood's Despatch of 1854 dealt with education, so A.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-018",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 18,
+      "subject": "Current Affairs",
+      "topic": "Days and dates",
+      "subtopic": "International days",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "World Earth Day is 22 April, first observed in 1970, so A.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-019",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 19,
+      "subject": "Geography",
+      "topic": "World Geography",
+      "subtopic": "Deserts of the world",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Pygmies live in the equatorial rainforests of the Congo basin, so C.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-020",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 20,
+      "subject": "Geography",
+      "topic": "World Geography",
+      "subtopic": "Continents and oceans",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "The Great Barrier Reef lies in the Coral Sea, part of the Pacific, so A.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-021",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 21,
+      "subject": "Science and Technology",
+      "topic": "Biology",
+      "subtopic": null,
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Alfalfa, or lucerne, is a fodder legume, so A.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-022",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 22,
+      "subject": "Environment",
+      "topic": "Pollution and climate change",
+      "subtopic": "Ozone depletion",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "CFCs release chlorine that destroys stratospheric ozone, so D.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-023",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 23,
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": "Climatology",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The roaring forties and their companions are the southern-hemisphere westerlies, so B.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-024",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 24,
+      "subject": "Geography",
+      "topic": "World Geography",
+      "subtopic": "Important ports",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Santos is the coffee port of the world, so B.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-025",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 25,
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Climate of India",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "A line of equal rainfall is an isohyet, so B.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-026",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 26,
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Rivers of India",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The Alaknanda and the Bhagirathi meet at Dev Prayag to form the Ganga, so B.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-027",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 27,
+      "subject": "Environment",
+      "topic": "Protected areas",
+      "subtopic": "Tiger reserves",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Sabarimala is in Pathanamthitta district, Kerala, so C.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-028",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 28,
+      "subject": "Geography",
+      "topic": "Maps and location",
+      "subtopic": "Boundaries and neighbours",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Sikkim alone touches Nepal, Bhutan and China, so D.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-029",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 29,
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Mineral resources of India",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Bailadila in Chhattisgarh is a major iron-ore deposit, so A.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-030",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 30,
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Mineral resources of India",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Andhra Pradesh leads mica production through the Nellore belt, so D; Koderma in Jharkhand is the historic field.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-031",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 31,
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Mineral resources of India",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Talcher is a coalfield in Angul district, Odisha, so D.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-032",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 32,
+      "subject": "Economy",
+      "topic": "Poverty and human development",
+      "subtopic": "Human Development Index",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "HDI has three dimensions, health, education and standard of living, so C; employment is not one of them.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-033",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 33,
+      "subject": "Economy",
+      "topic": "Indian Economy",
+      "subtopic": "Planning in India",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "The Fifth Plan's basic objective was poverty removal, under the garibi hatao slogan, so A.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-034",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 34,
+      "subject": "Economy",
+      "topic": "Indian Economy",
+      "subtopic": "Planning in India",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "The Second Plan was built on the Mahalanobis model, so D.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-035",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 35,
+      "subject": "Polity",
+      "topic": "Union Legislature",
+      "subtopic": "Lok Sabha",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "The first general election was held in 1951-52, so C.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-036",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 36,
+      "subject": "Polity",
+      "topic": "Constitution of India",
+      "subtopic": "Making of the Constitution",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "B.R. Ambedkar called the Constitution a sacred document that is nonetheless alterable, so A; the empty option A was restored as his name.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-037",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 37,
+      "subject": "Polity",
+      "topic": "Constitution of India",
+      "subtopic": "Constitutional amendments",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The anti-defection law comes from the 52nd Amendment, which added the Tenth Schedule, so B.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-038",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 38,
+      "subject": "Polity",
+      "topic": "Constitution of India",
+      "subtopic": "Fundamental Rights",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "The Supreme Court is the custodian of the Constitution through judicial review, so C.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-039",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 39,
+      "subject": "Economy",
+      "topic": "International economy",
+      "subtopic": "Balance of payments",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Foreign trade payments are recorded in the balance of payments, so D.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-040",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 40,
+      "subject": "Economy",
+      "topic": "Poverty and human development",
+      "subtopic": "Sustainable Development Goals",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Sustainable development meets present needs without compromising future generations, so A.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-041",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 41,
+      "subject": "Economy",
+      "topic": "Banking and finance",
+      "subtopic": "NABARD and SIDBI",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "NABARD is the National Bank for Agriculture and Rural Development, so C; the option's expansion is loose but it is the NABARD choice.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-042",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 42,
+      "subject": "Polity",
+      "topic": null,
+      "subtopic": null,
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "The written-constitution tradition began with the US Constitution of 1787, so D.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-043",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 43,
+      "subject": "Polity",
+      "topic": null,
+      "subtopic": null,
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "The Tarkunde Committee of 1974 was constituted for electoral reform, so A.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-044",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 44,
+      "subject": "Polity",
+      "topic": "Statutory and regulatory bodies",
+      "subtopic": "NITI Aayog",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "M.V. Mathur proposed merging the Finance and Planning Commissions, so C; the empty option A was restored as D.D. Basu.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-045",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 45,
+      "subject": "Environment",
+      "topic": "Environmental laws and institutions",
+      "subtopic": "Central Pollution Control Board",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "corrected",
+      "note": "No constitutional office chairs the CPCB, whose chairman is appointed by the Central Government, so the negative option is right; the stored key A (President) is corrected to D.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-046",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 46,
+      "subject": "Geography",
+      "topic": "Economic and human geography",
+      "subtopic": "Energy resources",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Water, solar and geothermal energy are all renewable, so the exception is the negative option D.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-047",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 47,
+      "subject": "Environment",
+      "topic": "Pollution and climate change",
+      "subtopic": "Global warming",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Floral, cryogenic and tectonic features are climate indicators, while long-term change is the phenomenon itself, so D.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-048",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 48,
+      "subject": "Environment",
+      "topic": "Pollution and climate change",
+      "subtopic": "Air pollution",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Agricultural pollution is environmental, not social, so D.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-049",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 49,
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": "Oceanography",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The Gujarat coast faces the Arabian Sea and was outside the 2004 tsunami's reach, so B.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-050",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 50,
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": "Oceanography",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "The Dead Sea has the highest salinity, about 34 per cent, so A.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-051",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 51,
+      "subject": "Polity",
+      "topic": "Constitutional bodies",
+      "subtopic": "National Commission for SCs and STs",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "The Commission's 1990 report lists land alienation, bonded labour and indebtedness, not religious causes, so D.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-052",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 52,
+      "subject": "Polity",
+      "topic": "Union Legislature",
+      "subtopic": "Parliament",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The SC/ST (Prevention of Atrocities) Act was enacted in 1989, so B.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-053",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 53,
+      "subject": "Polity",
+      "topic": "Constitution of India",
+      "subtopic": "Fundamental Rights",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Article 17 abolishes untouchability, so D.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-054",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 54,
+      "subject": "Economy",
+      "topic": "Poverty and human development",
+      "subtopic": "Sustainable Development Goals",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "corrected",
+      "note": "Sustainable development rests on the social, economic and environmental pillars together, so the inclusive option is right; the stored key A is corrected to D.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-055",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 55,
+      "subject": "Science and Technology",
+      "topic": "Physics",
+      "subtopic": "Light and optics",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Black is not a primary colour, so A; the primaries are red, yellow and blue in pigment.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-056",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 56,
+      "subject": "Science and Technology",
+      "topic": "Biology",
+      "subtopic": "Plant physiology",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "J.C. Bose proved plant life with the crescograph, so B; the truncated option text was restored as J.C. Bose.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-057",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 57,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "One byte is eight bits, so B.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-058",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 58,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "The kilobyte is the smallest of the four storage units listed, so A.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-059",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 59,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Binary uses two digits, 0 and 1, so A.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-060",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 60,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The supercomputer is the largest, fastest and costliest class, so B.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-061",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 61,
+      "subject": "History",
+      "topic": "Ancient India",
+      "subtopic": "Gupta period",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Vijay Bhatkar led the PARAM project at C-DAC, so B.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-062",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 62,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Paint Brush is an application, while BASIC, C++ and Java are languages, so D.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-063",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 63,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "A computer does not understand; it computes, processes and outputs, so C.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-064",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 64,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Accessories connect at ports, so A.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-065",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 65,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "The entry page of a website is the home page, so A.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-066",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 66,
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Olympic and Asian Games",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "The 2016 Summer Olympics were held at Rio de Janeiro, so A.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-067",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 67,
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Other sports events",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Djokovic won the 2015 Wimbledon men's singles title, beating Federer, so B.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-068",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 68,
+      "subject": "Madhya Pradesh Special",
+      "topic": "Schemes and institutions of Madhya Pradesh",
+      "subtopic": null,
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The MPCA is headquartered at Indore, so B.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-069",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 69,
+      "subject": "Madhya Pradesh Special",
+      "topic": "Personalities and awards of Madhya Pradesh",
+      "subtopic": "Sports from Madhya Pradesh",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Sandhya Agarwal is a former India women's cricket captain, so B.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-070",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 70,
+      "subject": "Current Affairs",
+      "topic": "Days and dates",
+      "subtopic": "National days",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "National Sports Day is 29 August, Dhyan Chand's birthday, so A.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-071",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 71,
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Other sports events",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "A polo team has four players, so A.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-072",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 72,
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Cricket",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Narendra Hirwani took 16 wickets on debut against West Indies at Chennai in 1988, so B.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-073",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 73,
+      "subject": "Madhya Pradesh Special",
+      "topic": "Schemes and institutions of Madhya Pradesh",
+      "subtopic": null,
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Aishbagh Stadium is in Bhopal, so C.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-074",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 74,
+      "subject": "Polity",
+      "topic": "Statutory and regulatory bodies",
+      "subtopic": "National Human Rights Commission",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "The Protection of Human Rights Act 1993 came into force on 28 September 1993, so A.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-075",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 75,
+      "subject": "Polity",
+      "topic": "Statutory and regulatory bodies",
+      "subtopic": "National Human Rights Commission",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "The Act protects human rights, creates the NHRC and provides for state commissions, so D.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-076",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 76,
+      "subject": "Polity",
+      "topic": "Constitution of India",
+      "subtopic": "Fundamental Rights",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "The ordinance was issued under Article 123, the President's ordinance power, so A.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-077",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 77,
+      "subject": "Madhya Pradesh Special",
+      "topic": "Tribes of Madhya Pradesh",
+      "subtopic": "Gond",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Rani Durgavati ruled the Gondwana kingdom from Garha-Mandla, so A.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-078",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 78,
+      "subject": "History",
+      "topic": "History of Madhya Pradesh",
+      "subtopic": "Revolt of 1857 in Madhya Pradesh",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Bhima Nayak led the Bhil movement in the Sendhawa tract in 1857-58, so A.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-079",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 79,
+      "subject": "Madhya Pradesh Special",
+      "topic": "Tribes of Madhya Pradesh",
+      "subtopic": "Bhil",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Madhya Pradesh has the largest Bhil population, so C.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-080",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 80,
+      "subject": "Polity",
+      "topic": "Constitution of India",
+      "subtopic": "Constitutional amendments",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "corrected",
+      "note": "Madhya Pradesh was the first state to implement the 73rd Amendment through its 1993 Act, so the key is A; Rajasthan's first, in 1959, belongs to the pre-amendment scheme, so the stored key D is corrected.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-081",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 81,
+      "subject": "Madhya Pradesh Special",
+      "topic": "Personalities and awards of Madhya Pradesh",
+      "subtopic": "State awards",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The MP government gives the Allauddin Khan Fellowship in music, so B.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-082",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 82,
+      "subject": "Art and Culture",
+      "topic": "Paintings and sculpture",
+      "subtopic": "Modern Indian painters",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Vishnu Chinchalkar was a painter, that is a chitrakar, so A.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-083",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 83,
+      "subject": "Geography",
+      "topic": "Physiography of Madhya Pradesh",
+      "subtopic": "Baghelkhand plateau",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Sant Singaji belonged to the Nimar region, so D.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-084",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 84,
+      "subject": "Madhya Pradesh Special",
+      "topic": "Schemes and institutions of Madhya Pradesh",
+      "subtopic": "Universities and research institutes",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The state veterinary university is at Jabalpur, so B.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-085",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 85,
+      "subject": "Madhya Pradesh Special",
+      "topic": "Personalities and awards of Madhya Pradesh",
+      "subtopic": "State awards",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "The Ganesh Shankar Vidyarthi award is for journalism, so D.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-086",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 86,
+      "subject": "Geography",
+      "topic": "Physiography of Madhya Pradesh",
+      "subtopic": "Malwa plateau",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "The Bank Note Press is at Dewas, while Neemuch has the paper mill, so A.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-087",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 87,
+      "subject": "Geography",
+      "topic": "Physiography of Madhya Pradesh",
+      "subtopic": "Satpura range",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Dhupgarh is the highest peak of the Satpura range, in the Mahadeo Hills, so A.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-088",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 88,
+      "subject": "Art and Culture",
+      "topic": "Literature and languages",
+      "subtopic": "Hindi literature",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Bikhare Moti is a short-story collection by Subhadra Kumari Chauhan, so C.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-089",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 89,
+      "subject": "Madhya Pradesh Special",
+      "topic": "Personalities and awards of Madhya Pradesh",
+      "subtopic": "Notable personalities",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "G.L. Yadav is the Arjuna awardee in yachting from MP, so A.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-090",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 90,
+      "subject": "Geography",
+      "topic": "World Geography",
+      "subtopic": "Major landforms",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Junko Tabei, printed as Taibei, was the first woman to summit Everest in 1975, so A.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-091",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 91,
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": "Oceanography",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "A fathometer measures ocean depth by echo sounding, so C.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-092",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 92,
+      "subject": "Madhya Pradesh Special",
+      "topic": "Schemes and institutions of Madhya Pradesh",
+      "subtopic": "Universities and research institutes",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The regional forest research institute is at Jabalpur, so B.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-093",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 93,
+      "subject": "Science and Technology",
+      "topic": "Physics",
+      "subtopic": "Light and optics",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "A microscope studies micro and nearby objects, the specimen being minute and close to the lens, so D.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-094",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 94,
+      "subject": "Science and Technology",
+      "topic": "Biology",
+      "subtopic": "Human circulatory system",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Blood group O is the universal donor, so A.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-095",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 95,
+      "subject": "Science and Technology",
+      "topic": "Physics",
+      "subtopic": "Units and measurements",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Milk density is measured with a lactometer, so A.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-096",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 96,
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": "Interior of the Earth",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Earthquake intensity is read from a seismograph, so D.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-097",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 97,
+      "subject": "Science and Technology",
+      "topic": "Biology",
+      "subtopic": null,
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "corrected",
+      "note": "Alexander Fleming discovered penicillin in 1928, so the answer is A; X-rays belong to Roentgen, and the stored key B is corrected.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-098",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 98,
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": "Climatology",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "21 June, the summer solstice, is the longest day in the northern hemisphere, so B.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-099",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 99,
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": "Gandhian movements",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "The Gandhi Peace Prize for 2013 went to the environmentalist Chandi Prasad Bhatt, so D.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2015-100",
+      "year": 2015,
+      "paper_id": "MPPSC-2015-P1",
+      "question_number": 100,
+      "subject": "Economy",
+      "topic": "Banking and finance",
+      "subtopic": "Financial inclusion",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Saansad Adarsh Gram Yojana was launched on 11 October 2014, JP Narayan's birth anniversary, so D.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    }
+  ]
+}

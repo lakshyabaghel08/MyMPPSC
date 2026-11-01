@@ -1,0 +1,284 @@
+{
+  "version": "1.0.0",
+  "note": "Reviewed dispute blocks. Applied during a clean rebuild so an ambiguity flag cannot be lost when the bank is regenerated.",
+  "disputes": {
+    "MPPSC-2020-037": {
+      "is_disputed": true,
+      "status": "unresolved",
+      "reason": "Elections to a State legislature appear in two entries: Union List entry 72 (\"elections to Parliament, to the Legislatures of States...; the Election Commission\") and State List entry 37 (\"elections to the Legislature of the State subject to the provisions of any law made by Parliament\"). The paper asks for one entry but both A and C are correct, so the bank keeps the printed double key A+C instead of forcing a single letter.",
+      "raised_by": "2020 PYQ final answer audit"
+    },
+    "MPPSC-2020-045": {
+      "is_disputed": true,
+      "status": "unresolved",
+      "reason": "The printed key treats Tantia (A) as his personal name, with Tantya Mama the popular form. Popular Hindi accounts and Hindi Wikipedia instead record his birth name as Tandra (option D), and the paper offers both. The key is retained, but the naming is genuinely contested.",
+      "raised_by": "2020 PYQ final answer audit"
+    },
+    "MPPSC-2020-093": {
+      "is_disputed": true,
+      "status": "unresolved",
+      "reason": "Microwaves are conventionally given as 300 MHz to 300 GHz, while every option in the paper starts at a different bound; option C (1 GHz to 300 GHz) is the only defensible range and is retained, but its lower bound is a common textbook simplification rather than the full band.",
+      "raised_by": "2020 PYQ final answer audit"
+    },
+    "MPPSC-2020-098": {
+      "is_disputed": true,
+      "status": "unresolved",
+      "reason": "Diamond production in India is indeed confined to the Panna belt of Madhya Pradesh, which makes C the only workable option, but the phrase \"only found in Madhya Pradesh\" overstates the geology: kimberlite occurrences are known in Andhra Pradesh and Chhattisgarh too, without working mines. The answer stands; the wording does not.",
+      "raised_by": "2020 PYQ final answer audit"
+    },
+    "MPPSC-2021-010": {
+      "is_disputed": true,
+      "status": "resolved",
+      "raised_by": "2026-11-01 final answer audit",
+      "reason": "The published 2021 key marked \"All of the above\". The phosphatase test is a milk test only, so the stored answer is corrected to A (Milk) and the official key is recorded as wrong on this item."
+    },
+    "MPPSC-2021-027": {
+      "is_disputed": true,
+      "status": "unresolved",
+      "reason": "The 2021 commission key allowed more than one option here; auctions/dynamic pricing operate in both B2B and C2C markets, so B (C2B) is the only clearly wrong choice. The bank keeps the official A+C and flags the ambiguity rather than guessing a single key.",
+      "raised_by": "2021 PYQ quality audit"
+    },
+    "MPPSC-2021-028": {
+      "is_disputed": true,
+      "status": "unresolved",
+      "reason": "The commission granted marks for more than one option (B and C, the brouter) on this question. B (router) is the standard textbook answer and is retained.",
+      "raised_by": "2021 PYQ quality audit"
+    },
+    "MPPSC-2021-034": {
+      "is_disputed": true,
+      "status": "unresolved",
+      "reason": "Sources disagree on whether Turra-Kalangi belongs to the Nimar or the Malwa region, and the commission accepted multiple options. The bank keeps the official multi-key and flags the uncertainty.",
+      "raised_by": "2021 PYQ quality audit"
+    },
+    "MPPSC-2021-037": {
+      "is_disputed": true,
+      "status": "unresolved",
+      "raised_by": "2026-11-01 final answer audit",
+      "reason": "The Objectives Resolution was moved on 13 December 1946. Whether that date is the second, third, fourth or fifth sitting of the Constituent Assembly depends on how sittings are counted: the Assembly sat on 9, 10, 11 and 13 December 1946, so 13 December is the fourth sitting by date, while accounts that count the Assembly's separate meetings, or begin with the 9 December formal sitting plus the 11 December business meeting, give the third or the fifth. The official key (D, Fifth) is retained and the counting ambiguity is stated."
+    },
+    "MPPSC-2021-056": {
+      "is_disputed": true,
+      "status": "resolved",
+      "raised_by": "2026-11-01 final answer audit",
+      "reason": "The answer (A and C) is settled by section 21(1) of the Protection of Human Rights Act, 1993: the Speaker and the Leader of the Opposition are the members of the recommending committee that appear among the options. An earlier explanation cited the Right to Information Act instead, which was wrong and has been replaced; the exam awarded grace marks on this question."
+    },
+    "MPPSC-2021-057": {
+      "is_disputed": true,
+      "status": "resolved",
+      "reason": "Section 243K(1) vests the State Election Commission in a State Election Commissioner appointed by the Governor, so option A is factually certain. The commission cancelled the question, which is recorded here; the cancellation does not make the underlying fact doubtful.",
+      "raised_by": "2021 PYQ quality audit"
+    },
+    "MPPSC-2021-064": {
+      "is_disputed": true,
+      "status": "resolved",
+      "raised_by": "2024 quality audit (re-verification)",
+      "reason": "Census 2011 gives Madhya Pradesh 5,993,921 Bhil (about 39% of the state Scheduled Tribe population, including Bhilala, Barela and Patelia) against 5,093,124 Gond (about 33%). The Bhil are the largest tribal group of MP and the Gond the second largest, so answer B is settled. The published 2021 key (D, Sahariya) is wrong, and an earlier internal change to A (Gond) was also wrong and was reverted."
+    },
+    "MPPSC-2021-068": {
+      "is_disputed": true,
+      "status": "resolved",
+      "reason": "Sipahi Bahadur Sarkar was established at Sehore, not at Indore, so statement D is the incorrect one and is the answer. The item was previously keyed with both C and D and has been narrowed to the single demonstrably false statement.",
+      "raised_by": "2021 PYQ quality audit"
+    },
+    "MPPSC-2021-076": {
+      "is_disputed": true,
+      "status": "resolved",
+      "reason": "The 73rd Constitutional Amendment was passed in December 1992 and came into force on 24 April 1993, so option B is factually certain. The commission cancelled the question, which is recorded here.",
+      "raised_by": "2021 PYQ quality audit"
+    },
+    "MPPSC-2021-077": {
+      "is_disputed": true,
+      "status": "unresolved",
+      "raised_by": "2026-11-01 final answer audit",
+      "reason": "Printed wording asks about the Leader of the House, an office every Chief Minister holds, so option B (Chief Minister 1967-69) is not the answer on that reading. The official key B matches the Leader of the Opposition version of the question, but on that reading Prakash Chandra Sethi (A) also never held the post, so two options qualify. The item cannot be answered with certainty as printed."
+    },
+    "MPPSC-2021-080": {
+      "is_disputed": true,
+      "status": "resolved",
+      "reason": "The Second Battle of Tarain (1192) was fought between Prithviraj Chauhan and Muhammad Ghori, so option A is settled. The published key (D, Timur) is historically wrong and is recorded as such.",
+      "raised_by": "2021 PYQ quality audit"
+    },
+    "MPPSC-2021-082": {
+      "is_disputed": true,
+      "status": "resolved",
+      "reason": "One-rupee notes are issued by the Government of India through the Ministry of Finance, so option B is factually certain. The commission cancelled the question, which is recorded here.",
+      "raised_by": "2021 PYQ quality audit"
+    },
+    "MPPSC-2021-085": {
+      "is_disputed": true,
+      "status": "resolved",
+      "reason": "The Narmada rises from the Amarkantak plateau, so option B is settled. The published key (D, Aravalli) is geographically wrong and is recorded as such.",
+      "raised_by": "2021 PYQ quality audit"
+    },
+    "MPPSC-2021-092": {
+      "is_disputed": true,
+      "status": "resolved",
+      "reason": "The Third Constitutional Amendment Act, 1954 was the first amendment ratified by the state legislatures under the proviso to Article 368(2), so option C is settled. The commission also awarded grace marks on this question, which is recorded.",
+      "raised_by": "2021 PYQ quality audit"
+    },
+    "MPPSC-2022-003": {
+      "is_disputed": true,
+      "status": "resolved",
+      "raised_by": "2024 quality audit (re-verification)",
+      "reason": "John McCarthy coined the term \"artificial intelligence\" for the 1956 Dartmouth workshop and is the accepted father of the field. Dartmouth is a place, not a person, so the printed key (D) is indefensible and the stored answer B is settled."
+    },
+    "MPPSC-2022-045": {
+      "is_disputed": true,
+      "status": "unresolved",
+      "reason": "The paper asks which place has no Buddhist caves and keys Bulsar, but Sanchi, the other candidate, is a stupa and monastery site without a cave complex of its own, so the question admits more than one defensible answer. The official single key D is restored and the record is kept as unresolved rather than presented as settled.",
+      "raised_by": "2022 PYQ final answer audit"
+    },
+    "MPPSC-2022-053": {
+      "is_disputed": true,
+      "status": "unresolved",
+      "raised_by": "2024 quality audit (re-verification)",
+      "reason": "Both NHRC statements are true, so options A, B and D are each literally true statements and the item has no single clean answer. D is kept because it is the complete answer in this \"answer from the following\" format, and C is false because the two are independent statutory functions. The question itself is poorly constructed; flagged rather than treated as settled."
+    },
+    "MPPSC-2022-083": {
+      "is_disputed": true,
+      "status": "resolved",
+      "raised_by": "2024 quality audit (re-verification)",
+      "reason": "Madhya Pradesh produces roughly 2% of India's iron ore and stands fifth, behind Odisha, Chhattisgarh, Karnataka and Jharkhand, so statement A (MP third) is the incorrect one and is the answer. Statement D, that the reserves shrank after the separation of Chhattisgarh, is true; the printed key (D) contradicted its own statement set."
+    },
+    "MPPSC-2019-002": {
+      "is_disputed": true,
+      "status": "unresolved",
+      "reason": "Standard references credit Jayaprakash Narayan with the phrase partyless democracy, while Mahatma Gandhi asked the Congress to become a non-partisan Lok Sevak Sangh after independence. Both C and D are defensible and the paper keyed both, so the bank keeps the double key instead of forcing one name.",
+      "raised_by": "2019 PYQ final answer audit"
+    },
+    "MPPSC-2019-067": {
+      "is_disputed": true,
+      "status": "unresolved",
+      "reason": "Urban local body elections are conducted by the State Election Commission under Article 243ZA, which applies Part IXA and refers to the Commission constituted by Article 243K. The paper offers only 243K, 243L, 243M and 243N, so 243K is the only defensible option although it is not the article that governs municipalities directly.",
+      "raised_by": "2019 PYQ final answer audit"
+    },
+    "MPPSC-2019-066": {
+      "is_disputed": true,
+      "status": "resolved",
+      "reason": "The number of panchayat general elections depends on the date of counting: five had been held when the paper was set (1994, 1999, 2004, 2009, 2014) and the sixth followed in 2022. The printed key of five is correct for the paper and the explanation states the date dependency.",
+      "raised_by": "2019 PYQ final answer audit"
+    },
+    "MPPSC-2019-100": {
+      "is_disputed": true,
+      "status": "resolved",
+      "reason": "The question lists only four neighbours but India also has shorter boundaries with Bhutan (699 km) and Myanmar (1,643 km). Among the four countries listed the ascending order is Nepal, Pakistan, China, Bangladesh, so the printed key stands; the wording is incomplete rather than wrong.",
+      "raised_by": "2019 PYQ final answer audit"
+    },
+    "MPPSC-2018-015": {
+      "is_disputed": true,
+      "status": "unresolved",
+      "reason": "Published counts of women elected to the MP assembly in 2013 give 29 or 30 out of 230 members, while the paper keys 28 and no printed option is higher than 28. No option states the verifiable figure, so 28 is kept only as the paper key and the item is treated as defective.",
+      "raised_by": "2018 PYQ final answer audit"
+    },
+    "MPPSC-2018-019": {
+      "is_disputed": true,
+      "status": "unresolved",
+      "reason": "The Kalika Purana is a Shakta Upapurana centred on Kali and Kamakhya, yet the 2018 paper keys Jainism and no textual link to Jain tradition exists. The keyed answer D is retained for exam accuracy and the scholarly position is stated openly in the explanation.",
+      "raised_by": "2018 PYQ final answer audit"
+    },
+    "MPPSC-2018-055": {
+      "is_disputed": true,
+      "status": "unresolved",
+      "reason": "Dhoopgarh stands at Pachmarhi in the Mahadeo Hills, which are part of the Satpura range, so both the narrower B and the broader A are defensible. The paper key A is kept as the umbrella answer.",
+      "raised_by": "2018 PYQ final answer audit"
+    },
+    "MPPSC-2018-078": {
+      "is_disputed": true,
+      "status": "unresolved",
+      "reason": "Two rival formulations of the essential features of cyber crime appear in Indian texts: computer technology as modus operandi with the intangibility of the environment, and offender skill with victim ignorance of technology. The paper keys B and that is retained, with A recorded as an equally defensible alternative.",
+      "raised_by": "2018 PYQ final answer audit"
+    },
+    "MPPSC-2017-043": {
+      "is_disputed": true,
+      "status": "unresolved",
+      "reason": "The item asks which country has never won the men's T20 World Cup. Australia was the only such side among the four options when the paper was set and B is keyed, but Australia won the 2021 edition, so the question is time-dependent and no option is true today.",
+      "raised_by": "2017 PYQ final answer audit"
+    },
+    "MPPSC-2017-054": {
+      "is_disputed": true,
+      "status": "unresolved",
+      "reason": "The paper keys Mahmud Shah Khilji as the builder of the Jantar Mahal at Mandu, the answer given in most published MPPSC keys, but heritage descriptions record no palace of that name and credit the Mandu ship palace (Jahaz Mahal) to Ghiyasuddin Khilji, who is not among the options. A is retained as the paper answer.",
+      "raised_by": "2017 PYQ final answer audit"
+    },
+    "MPPSC-2017-059": {
+      "is_disputed": true,
+      "status": "unresolved",
+      "reason": "The tenure of the NHRC Chairperson was five years under the Protection of Human Rights Act 1993 as it stood in 2017, which the paper keys as C, but the 2019 amendment reduced it to three years. The correct letter therefore depends on the date from which the item is read.",
+      "raised_by": "2017 PYQ final answer audit"
+    },
+    "MPPSC-2016-026": {
+      "is_disputed": true,
+      "status": "unresolved",
+      "reason": "The paper dates the real beginning of economic planning in Madhya Pradesh to 11 November 1956 and keys D, while standard MP economy texts treat the Third Five-Year Plan (1961-66) as the first plan of the reorganised state, which makes A equally defensible.",
+      "raised_by": "2016 PYQ final answer audit"
+    },
+    "MPPSC-2016-032": {
+      "is_disputed": true,
+      "status": "unresolved",
+      "reason": "The paper keys Sunderlal Bahuguna as the protagonist of the Chipko movement. Chandi Prasad Bhatt led the Dasholi Gram Swarajya Mandal that organised the first 1973 protests and Gaura Devi led the Reni action of 1974, so the leadership is shared and option D is defensible.",
+      "raised_by": "2016 PYQ final answer audit"
+    },
+    "MPPSC-2016-054": {
+      "is_disputed": true,
+      "status": "unresolved",
+      "reason": "The paper keys both elements, but PMGSY's stated objective is all-weather road connectivity rather than concrete construction in particular, so option A alone matches most official formulations.",
+      "raised_by": "2016 PYQ final answer audit"
+    },
+    "MPPSC-2015-045": {
+      "is_disputed": true,
+      "status": "resolved",
+      "resolution": "The item has no correct positive option, so the negative option is the answer and the key has been corrected from A to D.",
+      "reason": "The Central Pollution Control Board is chaired by a person appointed by the Central Government, a technical office rather than the President, Vice President or Prime Minister. The paper anticipated this by offering None of the above, which is the only defensible choice.",
+      "raised_by": "2015 PYQ final answer audit"
+    },
+    "MPPSC-2015-080": {
+      "is_disputed": true,
+      "status": "resolved",
+      "resolution": "The key has been corrected from D to A: the question asks about the 73rd Amendment, which Madhya Pradesh implemented first.",
+      "reason": "Two firsts are easily confused. Rajasthan pioneered panchayati raj in 1959 under the Balwant Rai Mehta scheme, while Madhya Pradesh was the first state to bring the 73rd Constitutional Amendment into operation, through its 1993 Panchayati Raj Act.",
+      "raised_by": "2015 PYQ final answer audit"
+    },
+    "MPPSC-2014-065": {
+      "is_disputed": true,
+      "status": "resolved",
+      "reason": "The printed key names the Chairman of the Council of States, who was in fact a member of the NHRC selection committee in 2014. The Leader of the Opposition in the Rajya Sabha was not a member until the 2019 amendment, so the answer is corrected to that option and the date dependence is stated in the prose.",
+      "raised_by": "2014 PYQ final answer audit"
+    },
+    "MPPSC-2014-032": {
+      "is_disputed": true,
+      "status": "resolved",
+      "reason": "The Ghughua fossil park is officially the Mandla Plant Fossils National Park but its villages fall in Dindori district, which is not among the options. Mandla is retained as the keyed and officially named district, and the prose states the Dindori location.",
+      "raised_by": "2014 PYQ final answer audit"
+    },
+    "MPPSC-2013-073": {
+      "is_disputed": true,
+      "status": "resolved",
+      "reason": "The printed key names NH 1, which is about 456 km long. Before the 2010 renumbering NH 7, Varanasi to Kanyakumari, about 2,369 km, was the longest national highway, so the answer is corrected to option D.",
+      "raised_by": "2013 PYQ final answer audit"
+    },
+    "MPPSC-2013-098": {
+      "is_disputed": true,
+      "status": "unresolved",
+      "reason": "The International Decade for Natural Disaster Reduction ran from 1990 to 1999 under UNGA resolution 44/236, and none of the four options states that span. Option A, 1991-2000, is retained as the closest available option and the question is recorded as defective rather than repaired by inventing an option.",
+      "raised_by": "2013 PYQ final answer audit"
+    },
+    "MPPSC-2013-061": {
+      "is_disputed": true,
+      "status": "resolved",
+      "reason": "Two option texts were lost in the scan. The printed paper reads Jawaharlal Nehru, A. Dalal, Subhash Chandra Bose and Lal Bahadur Shastri, so the two damaged slots are restored; the key C is unaffected, since the Committee was set up by the Congress president Subhash Chandra Bose in 1938 and Nehru only chaired it.",
+      "raised_by": "2013 PYQ final answer audit"
+    },
+    "MPPSC-2023-005": {
+      "is_disputed": true,
+      "status": "unresolved",
+      "raised_by": "2023 PYQ final answer audit",
+      "reason": "The printed key is both B and D, and D (National Oral Health Programme) is certainly not a nutritional programme. B (National Programme for Prevention and Control of Fluorosis) is arguable: the Health Ministry lists NPPCF among its national nutritional programmes, although fluorosis is fluoride toxicity rather than a nutritional deficiency. Both keyed letters are retained and the item is recorded as ambiguous instead of being presented as settled."
+    },
+    "MPPSC-2024-027": {
+      "is_disputed": true,
+      "status": "unresolved",
+      "raised_by": "2024 PYQ final answer audit",
+      "reason": "The paper keys Gond, and the Gond tradition of Birha is well documented. The Gazetteer of the Jabalpur district, however, records that Gond as well as Kol women sing and perform Birha, and a candidate petition before the Madhya Pradesh High Court in 2024 raised exactly this point; the court upheld the Commission's key because it rested on an authority. The keyed answer is kept and the item is recorded as admitting a second defensible answer rather than presented as settled."
+    }
+  }
+}

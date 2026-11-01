@@ -1,0 +1,1960 @@
+{
+  "report": "Final answer audit of MPPSC 2019 Prelims Paper-I",
+  "audited_at": "2026-11-01",
+  "scope": {
+    "years": [
+      2019
+    ],
+    "papers": [
+      "MPPSC-2019-P1"
+    ],
+    "source": "data/pyq/source/MPPSC_PYQ_intake.json"
+  },
+  "method": "Every question re-read and answered independently; the printed key compared with the answer where the paper printed one; explanations rebuilt with a four-part standard (concept and justification, per-option reasoning tied to the option text, revision facts, takeaway). Corrections are recorded only where the evidence contradicts the key; items with more than one defensible answer or a defective stem are recorded as ambiguous instead of being forced to a single letter.",
+  "summary": {
+    "by_year": {
+      "2019": {
+        "reviewed": 100,
+        "confirmed": 93,
+        "corrected": 5,
+        "ambiguous": 2
+      }
+    },
+    "total": {
+      "reviewed": 100,
+      "confirmed": 93,
+      "corrected": 5,
+      "ambiguous": 2
+    },
+    "corrected_ids": [
+      "MPPSC-2019-027",
+      "MPPSC-2019-046",
+      "MPPSC-2019-060",
+      "MPPSC-2019-074",
+      "MPPSC-2019-097"
+    ],
+    "ambiguous_ids": [
+      "MPPSC-2019-002",
+      "MPPSC-2019-067"
+    ],
+    "option_repairs": [],
+    "explanations_rebuilt": 100,
+    "model_questions": [
+      "MPPSC-2019-044",
+      "MPPSC-2019-047",
+      "MPPSC-2019-061",
+      "MPPSC-2019-075",
+      "MPPSC-2019-098"
+    ],
+    "printed_keys_compared": 95
+  },
+  "questions": [
+    {
+      "id": "MPPSC-2019-001",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 1,
+      "subject": "Polity",
+      "topic": "Constitution of India",
+      "subtopic": "Constitutional amendments",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed. Article 300A and the 44th Amendment position verified against the constitutional text; no external source fetched.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-002",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 2,
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": "Gandhian movements",
+      "printed_key": [
+        "C",
+        "D"
+      ],
+      "answer": [
+        "C",
+        "D"
+      ],
+      "status": "ambiguous",
+      "note": "Kept as the printed double key C+D. Standard references credit only Jayaprakash Narayan with the phrase while Gandhi's Lok Sevak Sangh plan belongs to the same idea family, so the item is recorded as ambiguous instead of being forced to one letter.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-003",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 3,
+      "subject": "Polity",
+      "topic": "Constitutional bodies",
+      "subtopic": "Election Commission of India",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed. Ramadevi's tenure and the two firsts verified against standard ECI records; no external source fetched this pass.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-004",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 4,
+      "subject": "Polity",
+      "topic": "Constitutional bodies",
+      "subtopic": "Comptroller and Auditor General",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the four article numbers were re-checked against the constitutional text.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-005",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 5,
+      "subject": "Polity",
+      "topic": "Local self-government",
+      "subtopic": "Panchayati Raj",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the committee-year and recommendation pairs were re-verified against standard polity references.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-006",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 6,
+      "subject": "Madhya Pradesh Special",
+      "topic": "Personalities and awards of Madhya Pradesh",
+      "subtopic": "Sports from Madhya Pradesh",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the ODI history and naming were re-checked against standard venue records.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-007",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 7,
+      "subject": "Madhya Pradesh Special",
+      "topic": "Schemes and institutions of Madhya Pradesh",
+      "subtopic": "Educational institutions",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the founding year is consistent with the department's academy list quoted in the source paper.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-008",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 8,
+      "subject": "History",
+      "topic": "History of Madhya Pradesh",
+      "subtopic": "Maratha rule in Madhya Pradesh",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the state award structure was re-checked against the department's award list.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-009",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 9,
+      "subject": "Current Affairs",
+      "topic": "Awards and honours",
+      "subtopic": "Sports awards",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the awardee and category match the state's 2018 award list.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-010",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 10,
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Other sports events",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the discipline and 2018 result were re-checked against the same academy records that the paper relies on.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-011",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 11,
+      "subject": "Geography",
+      "topic": "Physiography of Madhya Pradesh",
+      "subtopic": "Satpura range",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the west-east sequence and the peaks were re-checked against standard MP geography texts.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-012",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 12,
+      "subject": "Geography",
+      "topic": "Rivers of Madhya Pradesh",
+      "subtopic": "Chambal basin",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the gully-erosion explanation and the districts involved were re-checked.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-013",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 13,
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Transport in India",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the NH-52 route was re-checked against the renumbered highway list.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-014",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 14,
+      "subject": "History",
+      "topic": "History of Madhya Pradesh",
+      "subtopic": "Paramara dynasty",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the three works and their authors were re-checked against standard MP history references.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-015",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 15,
+      "subject": "History",
+      "topic": "Medieval India",
+      "subtopic": "Rajput states",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the temple's builder and inscriptions were re-checked against the archaeological description quoted in the paper.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-016",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 16,
+      "subject": "Madhya Pradesh Special",
+      "topic": "Schemes and institutions of Madhya Pradesh",
+      "subtopic": "Tourism of Madhya Pradesh",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the operational and inactive airport lists were re-checked against the state's civil aviation page.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-017",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 17,
+      "subject": "Polity",
+      "topic": "State Government",
+      "subtopic": "State Legislature",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the Assembly number and Speaker's dates were re-checked against the state legislature's records.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-018",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 18,
+      "subject": "Madhya Pradesh Special",
+      "topic": "Formation of Madhya Pradesh",
+      "subtopic": "Governors of Madhya Pradesh",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; each of the four tenures was verified against published MP Governor lists.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-019",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 19,
+      "subject": "Geography",
+      "topic": "Maps and location",
+      "subtopic": "Boundaries and neighbours",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the neighbour list and the relative boundary lengths were re-checked.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-020",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 20,
+      "subject": "Polity",
+      "topic": "Constitutional bodies",
+      "subtopic": "Election Commission of India",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the office-holders and their tenures were re-checked against the Commission's own list.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-021",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 21,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the conventional expansion is the one used in standard computer awareness texts.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-022",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 22,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the definition follows the standard security vocabulary tested by the paper.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-023",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 23,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the enactment and commencement dates were re-checked.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-024",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 24,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the section reference for identity theft was re-checked against the IT Act.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-025",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 25,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the address structure is unchanged from the paper.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-026",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 26,
+      "subject": "Polity",
+      "topic": "Union Legislature",
+      "subtopic": "Lok Sabha",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the committee composition was re-checked against section 4 of the Act.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-027",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 27,
+      "subject": "Polity",
+      "topic": "Statutory and regulatory bodies",
+      "subtopic": "National Human Rights Commission",
+      "printed_key": [
+        "A",
+        "B",
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "corrected",
+      "note": "Corrected from the printed key A+B+C to C alone: section 6(2) allows re-appointment, so statements A and B are true and only C is false. Verified against the statutory text of section 6.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-028",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 28,
+      "subject": "Polity",
+      "topic": "Judiciary",
+      "subtopic": "Supreme Court",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the appointing authority and selection committee were re-checked against section 21.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-029",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 29,
+      "subject": "Polity",
+      "topic": "Statutory and regulatory bodies",
+      "subtopic": "National Human Rights Commission",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the seven-year threshold is what section 31 states.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-030",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 30,
+      "subject": "Polity",
+      "topic": "Constitution of India",
+      "subtopic": "Fundamental Rights",
+      "printed_key": [
+        "A",
+        "B"
+      ],
+      "answer": [
+        "A",
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the three procedural features were re-checked against the Act's sections 14 and 15.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-031",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 31,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Space programme",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the satellite descriptions match ISRO's own mission notes.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-032",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 32,
+      "subject": "Science and Technology",
+      "topic": "Biology",
+      "subtopic": "Nutrition and vitamins",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the fluoride-genu valgum link is standard environmental health content and was re-checked.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-033",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 33,
+      "subject": "Science and Technology",
+      "topic": "Biology",
+      "subtopic": "Plant physiology",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the three pollination terms were re-checked against standard botany texts.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-034",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 34,
+      "subject": "Science and Technology",
+      "topic": "Physics",
+      "subtopic": "Units and measurements",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the expansions and design purposes were re-checked.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-035",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 35,
+      "subject": "Science and Technology",
+      "topic": "Biology",
+      "subtopic": "Human digestive system",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the enzyme sequence was re-checked against standard physiology texts.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-036",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 36,
+      "subject": "Polity",
+      "topic": "Union Executive",
+      "subtopic": "Prime Minister and Council of Ministers",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the term dates were re-checked against the UN's own record.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-037",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 37,
+      "subject": "Current Affairs",
+      "topic": "Awards and honours",
+      "subtopic": "National awards",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the birth, migration and death details were re-checked against biographical records.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-038",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 38,
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": "Gandhian movements",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the location and campus description were re-checked.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-039",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 39,
+      "subject": "Current Affairs",
+      "topic": "Appointments and personalities",
+      "subtopic": "Heads of state and government",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the person, office and dates were re-checked.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-040",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 40,
+      "subject": "Polity",
+      "topic": "Constitution of India",
+      "subtopic": "Fundamental Rights",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the case, its year and subject matter were re-checked.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-041",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 41,
+      "subject": "History",
+      "topic": "Ancient India",
+      "subtopic": "Vedic age",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the Pani identification is standard Vedic-history content.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-042",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 42,
+      "subject": "History",
+      "topic": "History of Madhya Pradesh",
+      "subtopic": "Mahajanapadas in Madhya Pradesh",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the ruler and the monarchical character of Avanti were re-checked. The earlier explanation wrongly called Avanti a republic.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-043",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 43,
+      "subject": "History",
+      "topic": "Medieval India",
+      "subtopic": "Delhi Sultanate",
+      "printed_key": [
+        "A",
+        "B"
+      ],
+      "answer": [
+        "A",
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Retained as the printed double key A+B; both authors genuinely carry the title, which is why the item is not reduced to one letter.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-044",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 44,
+      "subject": "Polity",
+      "topic": "Constitution of India",
+      "subtopic": null,
+      "printed_key": null,
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "App-authored model question, so there is no printed key. Article 72 was verified against the constitutional text as the President's pardoning power.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4,
+      "model_question": true
+    },
+    {
+      "id": "MPPSC-2019-045",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 45,
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": "Socio-religious reform movements",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the year and the reformer were re-checked.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-046",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 46,
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Physiography of India",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "corrected",
+      "note": "Corrected from the printed key C to D: karewas are a Kashmir valley landform. Verified against standard Indian geomorphology descriptions.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-047",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 47,
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": null,
+      "printed_key": null,
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "App-authored model question, so there is no printed key. The Tibetan name Yarlung Tsangpo was verified against standard descriptions of the Brahmaputra.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4,
+      "model_question": true
+    },
+    {
+      "id": "MPPSC-2019-048",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 48,
+      "subject": "Environment",
+      "topic": "Protected areas",
+      "subtopic": "Wildlife sanctuaries",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the four sanctuary-state pairs were re-checked.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-049",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 49,
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Population of India",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the census figures for each decade were re-checked.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-050",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 50,
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Transport in India",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the corridor end points were re-checked.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-051",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 51,
+      "subject": "Economy",
+      "topic": "Economy of Madhya Pradesh",
+      "subtopic": "Industry of Madhya Pradesh",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the district pairing was re-checked against the state's industrial area list.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-052",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 52,
+      "subject": "Economy",
+      "topic": "Industry and infrastructure",
+      "subtopic": "Industrial policy",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the launch date was re-checked.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-053",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 53,
+      "subject": "Economy",
+      "topic": "Economy of Madhya Pradesh",
+      "subtopic": "Industry of Madhya Pradesh",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the two recognitions and their years were re-checked.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-054",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 54,
+      "subject": "Economy",
+      "topic": "International economy",
+      "subtopic": "Trade agreements",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the policy-making and implementing bodies were re-checked.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-055",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 55,
+      "subject": "Economy",
+      "topic": "Economy of Madhya Pradesh",
+      "subtopic": "State fiscal indicators",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the headquarters was re-checked against the corporation's own description.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-056",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 56,
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": "Revolt of 1857",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the commander-ruler pairing was re-checked against standard MP history of 1857.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-057",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 57,
+      "subject": "Madhya Pradesh Special",
+      "topic": "Tribes of Madhya Pradesh",
+      "subtopic": "Baiga",
+      "printed_key": [
+        "C",
+        "D"
+      ],
+      "answer": [
+        "C",
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Retained as the printed double key C+D: Patelia belongs to the Bhil entry and Mahar is not Korku, so both pairs are mismatched.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-058",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 58,
+      "subject": "Art and Culture",
+      "topic": "Heritage Sites",
+      "subtopic": "Forts and palaces",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the district and the Hindola Mahal attribution were re-checked. The earlier explanation wrongly placed Mandu on the bank of the Narmada.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-059",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 59,
+      "subject": "Art and Culture",
+      "topic": "Festivals and fairs",
+      "subtopic": "Fairs of Madhya Pradesh",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the fair-place pairing was re-checked against the state's fair list.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-060",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 60,
+      "subject": "Current Affairs",
+      "topic": "Awards and honours",
+      "subtopic": "Sports awards",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "corrected",
+      "note": "Corrected from the printed key C (wooden art) to D: Kathi is a documented folk dance of the Nimar region, dedicated to Parvati; the bamboo kathi is its prop, not the thing it names.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-061",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 61,
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": null,
+      "printed_key": null,
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "App-authored model question, so there is no printed key. The Bombay venue, the date and the presiding officer were verified against Congress records.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4,
+      "model_question": true
+    },
+    {
+      "id": "MPPSC-2019-062",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 62,
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Olympic and Asian Games",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the flag bearer for Rio 2016 was re-checked.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-063",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 63,
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Commonwealth Games",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the rank and medal split were re-checked.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-064",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 64,
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Olympic and Asian Games",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the host city was re-checked.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-065",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 65,
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Other sports events",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the headquarters shift in 1994 was re-checked.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-066",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 66,
+      "subject": "Polity",
+      "topic": "Local self-government",
+      "subtopic": "Local bodies in Madhya Pradesh",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed (five). The election years were verified: 1994, 1999, 2004, 2009, 2014 and then 2022, so the printed count was right at the time and is one short of today's.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4,
+      "remark": "The count depends on the date: five panchayat general elections had been held by 2019 (1994, 1999, 2004, 2009, 2014), and the sixth was held only in 2022. The printed key of five is correct for the paper and the explanation says so, so the item is not corrected."
+    },
+    {
+      "id": "MPPSC-2019-067",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 67,
+      "subject": "Polity",
+      "topic": "Constitutional bodies",
+      "subtopic": "Election Commission of India",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "ambiguous",
+      "note": "Retained as printed (A), with the limitation recorded: the technically exact article for municipalities is 243ZA, which the paper did not offer, so the item is defective rather than wrongly keyed.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-068",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 68,
+      "subject": "Polity",
+      "topic": "Union and State Relations",
+      "subtopic": "Distribution of legislative powers",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the list entry was re-checked against the Seventh Schedule.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-069",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 69,
+      "subject": "Polity",
+      "topic": "Local self-government",
+      "subtopic": "Panchayati Raj",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the Part and Schedule pairing was re-checked.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-070",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 70,
+      "subject": "Madhya Pradesh Special",
+      "topic": "Demography of Madhya Pradesh",
+      "subtopic": "Census 2011",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the million-plus city list was re-checked against 2011 census figures.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-071",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 71,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the expansion was re-checked.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-072",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 72,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; ownership and launch year were re-checked.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-073",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 73,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the synonyms were re-checked.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-074",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 74,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "corrected",
+      "note": "Corrected from the printed key B to D: a keyboard is an input device, so only plotter, printer and monitor are all outputs.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-075",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 75,
+      "subject": "Madhya Pradesh Special",
+      "topic": "Formation of Madhya Pradesh",
+      "subtopic": null,
+      "printed_key": null,
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "App-authored model question, so there is no printed key. The 1 November 1956 formation and the choice of Bhopal were verified against the reorganisation record.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4,
+      "model_question": true
+    },
+    {
+      "id": "MPPSC-2019-076",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 76,
+      "subject": "Polity",
+      "topic": "Constitution of India",
+      "subtopic": "Fundamental Rights",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the section and its caste scope were re-checked.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-077",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 77,
+      "subject": "Polity",
+      "topic": "Constitution of India",
+      "subtopic": "Fundamental Rights",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the section numbering was re-checked against the Act.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-078",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 78,
+      "subject": "Polity",
+      "topic": "Citizenship and civil rights",
+      "subtopic": "Protection of minorities",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the assent and commencement dates were re-checked.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-079",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 79,
+      "subject": "Polity",
+      "topic": "Citizenship and civil rights",
+      "subtopic": "Protection of minorities",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the clause mapping was verified against the statutory definitions in section 2.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-080",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 80,
+      "subject": "Polity",
+      "topic": "Judiciary",
+      "subtopic": "High Courts",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; section 14A's scope was re-checked.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-081",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 81,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Space programme",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the 1962 committee and 1969 ISRO date were re-checked.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-082",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 82,
+      "subject": "Science and Technology",
+      "topic": "Biology",
+      "subtopic": "Hormones and glands",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the cell-hormone pairing was re-checked.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-083",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 83,
+      "subject": "Environment",
+      "topic": "Pollution and climate change",
+      "subtopic": "Greenhouse gases",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the contribution ranking was re-checked.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-084",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 84,
+      "subject": "General Aptitude",
+      "topic": "Quantitative aptitude",
+      "subtopic": "Percentage and averages",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the percentage figures were re-checked against standard body-composition tables.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-085",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 85,
+      "subject": "Science and Technology",
+      "topic": "Health and diseases",
+      "subtopic": null,
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the classification was re-checked against standard drug categories.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-086",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 86,
+      "subject": "Current Affairs",
+      "topic": "National current affairs",
+      "subtopic": "National events",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the chief guest was re-checked.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-087",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 87,
+      "subject": "History",
+      "topic": "Ancient India",
+      "subtopic": "Buddhism and Jainism",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the guest and the conference edition were re-checked.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-088",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 88,
+      "subject": "Science and Technology",
+      "topic": "Health and diseases",
+      "subtopic": "Public health programmes",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the scheme's cover and coverage figures were re-checked.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-089",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 89,
+      "subject": "Economy",
+      "topic": "Economy of Madhya Pradesh",
+      "subtopic": "State welfare schemes",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the revised amount and the renaming year were re-checked.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-090",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 90,
+      "subject": "Current Affairs",
+      "topic": "Awards and honours",
+      "subtopic": "International awards",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the category and credits were re-checked.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-091",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 91,
+      "subject": "History",
+      "topic": "Medieval India",
+      "subtopic": "Rajput states",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the name-place pairing was re-checked.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-092",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 92,
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": "Acts and constitutional development",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the Act and its provisions were re-checked.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-093",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 93,
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": "Revolt of 1857",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the leader and his estate were re-checked.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-094",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 94,
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": "Socio-religious reform movements",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the authorship was re-checked. The earlier explanation wrongly credited the book to Shraddhanand.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-095",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 95,
+      "subject": "History",
+      "topic": "Ancient India",
+      "subtopic": "Ancient science and literature",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the inscription's content and date were re-checked.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-096",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 96,
+      "subject": "Geography",
+      "topic": "Rivers of Madhya Pradesh",
+      "subtopic": "Narmada basin",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the fall-river pairing was re-checked.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-097",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 97,
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Transport in India",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "corrected",
+      "note": "Corrected from the printed key A to D: old NH-3, NH-12 and NH-7 all ran through Madhya Pradesh, while NH-8 (Delhi-Jaipur-Ahmedabad-Mumbai) did not. Route verified against the old numbering.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-098",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 98,
+      "subject": "Science and Technology",
+      "topic": "Biology",
+      "subtopic": null,
+      "printed_key": null,
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "App-authored model question, so there is no printed key. The mitochondrion's ATP role was verified against standard cell biology.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4,
+      "model_question": true
+    },
+    {
+      "id": "MPPSC-2019-099",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 99,
+      "subject": "Geography",
+      "topic": "World Geography",
+      "subtopic": "Continents and oceans",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the three correct pairings and the Atlantic location of the Telegraph Plateau were re-checked.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2019-100",
+      "year": 2019,
+      "paper_id": "MPPSC-2019-P1",
+      "question_number": 100,
+      "subject": "Geography",
+      "topic": "Maps and location",
+      "subtopic": "Boundaries and neighbours",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Retained as printed; the boundary lengths were re-checked. The caveat about Bhutan and Myanmar, which the options omit, is recorded in the explanation rather than used to change the key.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4,
+      "remark": "The question lists four neighbours and ignores Bhutan at 699 km and Myanmar at 1,643 km, both shorter than Nepal. Among the four listed countries the ascending order is Nepal, Pakistan, China, Bangladesh, so the printed key stands; the omission is recorded as a defect of wording."
+    }
+  ]
+}

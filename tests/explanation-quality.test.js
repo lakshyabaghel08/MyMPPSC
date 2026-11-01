@@ -90,7 +90,7 @@ const [bank, corrections] = await Promise.all([
 const byId = new Map(bank.questions.map((q) => [q.id, q]));
 const declared = corrections.option_reasoning_complete || [];
 const declaredSet = new Set(declared);
-const audited = bank.questions.filter((q) => [2021, 2022, 2023, 2024].includes(Number(q.year)));
+const audited = bank.questions.filter((q) => [2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024].includes(Number(q.year)));
 const standard = audited.filter((q) => declaredSet.has(q.id));
 
 test('every question declared complete exists in the audited bank', () => {
@@ -149,6 +149,11 @@ test('reasoning is about its own question, not boilerplate', () => {
     for (const phrase of generic) assert.ok(!low.includes(phrase), `${q.id}: no placeholder phrasing`);
     const source = [q.language_variants.en.question_text,
       ...q.language_variants.en.options.map((o) => o.text)].join(' ');
+    // A handful of printed stems are so short that no word of five letters
+    // exists in the stem or its options, and then there is no distinctive term
+    // for the prose to reuse. Those questions are listed by name in the next
+    // test, so the exemption cannot quietly cover anything else.
+    if (!norm(source).split(/\s+/).some((w) => w.length >= 5)) continue;
     assert.ok(sharesTerm(source, reasoning),
       `${q.id}: reasoning discusses none of the terms in its own question or options: ${reasoning.slice(0, 80)}…`);
     const key = norm(reasoning);
@@ -165,16 +170,44 @@ test('the completeness list is exact: nothing complete is missing and nothing in
     'option_reasoning_complete must list exactly the questions that meet the standard');
 });
 
+test('the only questions exempt from the term check are the ones whose own text has no long word', () => {
+  const hasLongWord = (q) => norm([q.language_variants.en.question_text,
+    ...q.language_variants.en.options.map((o) => o.text)].join(' '))
+    .split(/\s+/).some((w) => w.length >= 5);
+  const exempt = audited.filter((q) => !hasLongWord(q)).map((q) => q.id).sort();
+  assert.deepEqual(exempt, ['MPPSC-2014-074'],
+    'exactly one audited question has no five-letter term in its own stem and options');
+});
+
 test('coverage is counted from the bank and reported per year', () => {
   const byYear = (y) => audited.filter((q) => Number(q.year) === y);
-  // 2021 was taken to completion in this pass; it must stay there.
+  // 2015, 2016, 2017, 2018, 2019, 2020 and 2021 were taken to completion in separate passes; they must stay there.
+  assert.equal(byYear(2018).filter((q) => declaredSet.has(q.id)).length, 100,
+    'every 2018 explanation carries per-option reasoning');
+  assert.equal(byYear(2019).filter((q) => declaredSet.has(q.id)).length, 100,
+    'every 2019 explanation carries per-option reasoning');
+  assert.equal(byYear(2020).filter((q) => declaredSet.has(q.id)).length, 100,
+    'every 2020 explanation carries per-option reasoning');
   assert.equal(byYear(2021).filter((q) => declaredSet.has(q.id)).length, 100,
     'every 2021 explanation carries per-option reasoning');
-  // The remaining years are declared incomplete rather than presented as finished.
-  const outstanding = audited.length - standard.length;
-  assert.ok(outstanding > 0, `2022–2024 still owe per-option reasoning: ${outstanding} questions`);
-  for (const y of [2022, 2023, 2024]) {
-    assert.ok(byYear(y).filter((q) => !declaredSet.has(q.id)).length > 0,
-      `${y}: outstanding questions must be visible, not silently claimed complete`);
-  }
+  assert.equal(byYear(2017).filter((q) => declaredSet.has(q.id)).length, 100,
+    'every 2017 explanation carries per-option reasoning');
+  assert.equal(byYear(2016).filter((q) => declaredSet.has(q.id)).length, 100,
+    'every 2016 explanation carries per-option reasoning');
+  assert.equal(byYear(2015).filter((q) => declaredSet.has(q.id)).length, 100,
+    'every 2015 explanation carries per-option reasoning');
+  assert.equal(byYear(2014).filter((q) => declaredSet.has(q.id)).length, 100,
+    'every 2014 explanation carries per-option reasoning');
+  assert.equal(byYear(2013).filter((q) => declaredSet.has(q.id)).length, 100,
+    'every 2013 explanation carries per-option reasoning');
+  assert.equal(byYear(2022).filter((q) => declaredSet.has(q.id)).length, 100,
+    'every 2022 explanation carries per-option reasoning');
+  assert.equal(byYear(2023).filter((q) => declaredSet.has(q.id)).length, 100,
+    'every 2023 explanation carries per-option reasoning');
+  assert.equal(byYear(2024).filter((q) => declaredSet.has(q.id)).length, 100,
+    'every 2024 explanation carries per-option reasoning');
+  // Every audited year is now declared complete, and the guard above keeps the
+  // list exact: a question may not be added to it without meeting the standard.
+  assert.equal(audited.length, standard.length,
+    'every audited question is declared complete, and none is declared without meeting the standard');
 });

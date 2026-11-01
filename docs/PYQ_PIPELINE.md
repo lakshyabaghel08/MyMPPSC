@@ -27,8 +27,17 @@ node tools/classify-bank.mjs \
     --reports data/pyq \
     --source-review data/pyq/source/MPPSC_PYQ_Review.json \
     --apply-review data/pyq/reviewed-labels.jsonl \
-    --apply-answers data/pyq/reviewed-answers.jsonl
+    --apply-answers data/pyq/reviewed-answers.jsonl \
+    --apply-corrections \
+    --include-model-questions
 ```
+
+`--apply-corrections` is not optional in practice: the extraction prints the
+papers' own answer keys, so without it a clean rebuild restores the printed keys
+that the 2020 and 2021–2024 audits corrected. `tests/rebuild-corrections.test.js`
+runs exactly the command above and fails if the result differs from the committed
+bank in any field except the two build stamps (`generated_at`,
+`app_compatibility`).
 
 The run is a sequence of named passes, each of which reports what it did:
 
@@ -41,8 +50,10 @@ The run is a sequence of named passes, each of which reports what it did:
 | 4. **Review** | merges the committed human label decisions (`data/pyq/reviewed-labels.jsonl`) over the rule output | `--apply-review <file>` |
 | 5. AI (optional) | merges provider labels for whatever is still unplaced | `--apply-ai <file>` |
 | 6. **Answer review** | merges the committed human answers/explanations for questions the source left keyless (`data/pyq/reviewed-answers.jsonl`) | `--apply-answers <file>` |
+| 6b. **Corrections** | applies the reviewed answer keys, option repairs, explanation prose and dispute blocks the answer audits declared (`data/pyq/reviewed-corrections.json` + `reviewed-explanations.json` + `reviewed-disputes.json`), rejecting — never skipping — anything that no longer matches the extraction | `--apply-corrections [file]` |
 | 7. Build | writes the schema-shaped bank | always |
 | 8. **Sanitise** | writes the app-facing file: provenance out, marking scheme in, ids renamed, no build metadata | always |
+| 8b. **Model questions** | appends the 29 app-authored model questions that fill the numbers the 2019–2024 extraction never printed, in question-number order | `--include-model-questions [file]` |
 
 ## 1. What goes in
 
@@ -394,3 +405,31 @@ bank from this device*.
 4. Choose a conflict policy (keep existing is the default) and confirm.
 
 The app validates the file again on import regardless of what the pipeline said.
+
+## Applying the reviewed corrections
+
+Four kinds of decision live outside the extraction, because they were made by a
+person reading the question against its key:
+
+| File | Holds |
+| --- | --- |
+| `data/pyq/reviewed-corrections.json` | `answer_corrections` (printed key → verified key, each with a `basis`), `option_corrections` (printed option text → repaired text), and the declaration lists `narrative_rewritten` / `option_reasoning_complete` |
+| `data/pyq/reviewed-explanations.json` | the reviewed explanation prose, one entry per id in `narrative_rewritten` |
+| `data/pyq/reviewed-disputes.json` | the dispute blocks that mark an ambiguous or defective question |
+
+`tools/classify/reviewed-corrections.mjs` applies them in one deterministic pass
+and enforces the following, so a manifest line can never be skipped silently:
+
+- every declared id must exist in the intake, exactly once;
+- a declared key must currently hold the printed answer (`from`); if it already
+  holds the corrected answer the entry counts as *already applied*, and if it
+  holds neither, the entry is **rejected** and the build fails;
+- an option repair must still quote the printed text it replaces;
+- the explanation file and `narrative_rewritten` must name the same ids;
+- a corrected key and its explanation must agree about which option is correct;
+- entries belonging to the 29 model questions are deferred to the model-question
+  pass and confirmed applied there, not dropped.
+
+The summary is printed (`corrections : 22 key(s), 23 option(s), 476 explanation(s),
+18 dispute(s) applied — 0 rejected, reconciled: true`) and recorded in
+`meta.corrections_merge` inside the classification report.

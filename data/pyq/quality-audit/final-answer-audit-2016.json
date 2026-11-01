@@ -1,0 +1,1980 @@
+{
+  "report": "Final answer audit of MPPSC 2016 Prelims Paper-I",
+  "audited_at": "2026-11-01",
+  "scope": {
+    "years": [
+      2016
+    ],
+    "papers": [
+      "MPPSC-2016-P1"
+    ],
+    "source": "data/pyq/source/2013-18/MPPSC_Prelims_2016_QBank_Source.json"
+  },
+  "method": "Every one of the 100 questions was re-read and answered independently; the printed key was compared with the stored answer; each explanation was rebuilt to a four-part standard (concept and justification, per-option reasoning tied to that option text, revision facts, takeaway). A correction is recorded only where the evidence contradicts the key and another option is demonstrably right; items with more than one defensible answer, an outdated fact or a contested attribution are recorded as ambiguous instead of being forced to a letter. Scan debris in option text was repaired only where the printed paper makes the intended wording certain.",
+  "summary": {
+    "by_year": {
+      "2016": {
+        "reviewed": 100,
+        "confirmed": 97,
+        "corrected": 0,
+        "ambiguous": 3
+      }
+    },
+    "total": {
+      "reviewed": 100,
+      "confirmed": 97,
+      "corrected": 0,
+      "ambiguous": 3
+    },
+    "corrected_ids": [],
+    "ambiguous_ids": [
+      "MPPSC-2016-026",
+      "MPPSC-2016-032",
+      "MPPSC-2016-054"
+    ],
+    "answer_corrections": [],
+    "option_repairs": [
+      {
+        "id": "MPPSC-2016-004",
+        "key": "B",
+        "from": "III, 1, IV, II",
+        "to": "III, I, IV, II"
+      },
+      {
+        "id": "MPPSC-2016-004",
+        "key": "C",
+        "from": "1, III, IV, II",
+        "to": "I, III, IV, II"
+      },
+      {
+        "id": "MPPSC-2016-004",
+        "key": "D",
+        "from": "III, IV, I, II Rank State Area (km2) 1 Rajasthan 342,239 2 Madhya Pradesh 308,245 3 Maharashtra 307,713 4 Uttar Pradesh 240,928 5 Gujarat 196,024 6 Karnataka 191,791 7 Andhra Pradesh 160,205 8 Odisha 155,707 9 Chhattisgarh 135,191 10 Tamil Nadu 130,058",
+        "to": "III, IV, I, II"
+      },
+      {
+        "id": "MPPSC-2016-006",
+        "key": "B",
+        "from": "Sericulture.",
+        "to": "Sericulture"
+      },
+      {
+        "id": "MPPSC-2016-022",
+        "key": "B",
+        "from": "kilocaloric",
+        "to": "kilocalorie"
+      },
+      {
+        "id": "MPPSC-2016-079",
+        "key": "A",
+        "from": "Raisen'",
+        "to": "Raisen"
+      }
+    ],
+    "explanations_rebuilt": 100,
+    "model_questions": [],
+    "printed_keys_compared": 100
+  },
+  "questions": [
+    {
+      "id": "MPPSC-2016-001",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 1,
+      "subject": "Geography",
+      "topic": "Maps and location",
+      "subtopic": "Boundaries and neighbours",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Bangladesh at about 4,097 km is India's longest land frontier, ahead of China, Pakistan and Nepal, so D stands.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-002",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 2,
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Physiography of India",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Anai Mudi at 2,695 m in the Anaimalai Hills of Kerala is the highest peak in South India; Doda Betta and Mahendragiri are lower and Guru Shikhar is in the Aravallis.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-003",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 3,
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Physiography of India",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The Kashmir Valley lies between the Great Himalayas to the north-east and the Pir Panjal to the south-west, so B is right.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-004",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 4,
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Physiography of India",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "By area the order is Rajasthan, Maharashtra, Karnataka, Tamil Nadu, which is option C; the printed option D also carries a stray ranking table that has been repaired away.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-005",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 5,
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Physiography of India",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Barren Island in the Andaman Sea is India's only active volcano; the Nicobar and Andaman islands in the other options are tectonic or sedimentary in origin.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-006",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 6,
+      "subject": "Economy",
+      "topic": "Agriculture and rural economy",
+      "subtopic": "Agricultural revolutions",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "The Blue Revolution refers to fisheries and aquaculture, so Pisciculture is the answer and the stray full stop after 'Sericulture' has been removed.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-007",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 7,
+      "subject": "Geography",
+      "topic": "Maps and location",
+      "subtopic": "Boundaries and neighbours",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "The Radcliffe line was drawn across an already settled cultural landscape, which makes it a superimposed boundary, so A stands.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-008",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 8,
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Climate of India",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Cyclone Hudhud made landfall near Visakhapatnam in October 2014 and struck the Andhra Pradesh and Odisha coasts, so A is right.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-009",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 9,
+      "subject": "Geography",
+      "topic": "Rivers of Madhya Pradesh",
+      "subtopic": "Chambal basin",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Rana Pratap Sagar at Rawatbhata is a Chambal dam; Nagarjuna Sagar is on the Krishna and Rihand on the Rihand river.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-010",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 10,
+      "subject": "Economy",
+      "topic": "Industry and infrastructure",
+      "subtopic": null,
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Cochin Shipyard Limited is India's largest shipbuilding and repair yard, so B is correct; Vizag and Kolkata have smaller yards.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-011",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 11,
+      "subject": "Geography",
+      "topic": "Economic and human geography",
+      "subtopic": "Energy resources",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Manikaran in the Parvati Valley of Kullu district, Himachal Pradesh, is the geothermal site, so C stands.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-012",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 12,
+      "subject": "Geography",
+      "topic": "Rivers of Madhya Pradesh",
+      "subtopic": "Chambal basin",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "The Chambal badlands of Madhya Pradesh are produced by gully erosion in soft alluvium, which is why A is keyed rather than wind or sheet erosion.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-013",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 13,
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Rivers of India",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "The Central Ganga Authority was constituted in 1985 for the Ganga Action Plan, so D is right; the missing opening quote in the stem is a scan artifact.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-014",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 14,
+      "subject": "Geography",
+      "topic": "Economic and human geography",
+      "subtopic": "Energy resources",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "The Silent Valley is in Palakkad district, Kerala, so C; the hydro-electric project there was abandoned in 1983 after the Save Silent Valley campaign.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-015",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 15,
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Transport in India",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "The Golden Quadrilateral links Delhi, Mumbai, Chennai and Kolkata, so A is correct.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-016",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 16,
+      "subject": "Science and Technology",
+      "topic": "Biology",
+      "subtopic": "Plant physiology",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "The potato is a swollen underground stem tuber, not a root or a bulb, so C stands.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-017",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 17,
+      "subject": "Science and Technology",
+      "topic": "Chemistry",
+      "subtopic": "Periodic table",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Helium is the noble gas among the options, so C; the stem's unbalanced quote is a scan artifact.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-018",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 18,
+      "subject": "Science and Technology",
+      "topic": "Biology",
+      "subtopic": "Human digestive system",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The liver, at about 1.5 kg, is the largest gland in the human body, so B.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-019",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 19,
+      "subject": "Science and Technology",
+      "topic": "Biology",
+      "subtopic": "Human respiratory system",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Mammals respire through lungs, so D; even aquatic mammals surface to breathe.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-020",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 20,
+      "subject": "Science and Technology",
+      "topic": "Chemistry",
+      "subtopic": "Chemistry in everyday life",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Vinegar is a dilute acetic acid solution, so A.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-021",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 21,
+      "subject": "Science and Technology",
+      "topic": "Physics",
+      "subtopic": "Light and optics",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Myopia is short-sightedness, a refractive defect of the eye, so C.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-022",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 22,
+      "subject": "Science and Technology",
+      "topic": "Physics",
+      "subtopic": "Units and measurements",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Watt is a unit of power, not of heat, so D; the option text 'kilocaloric' is a scan artifact of kilocalorie and has been repaired.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-023",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 23,
+      "subject": "Science and Technology",
+      "topic": "Physics",
+      "subtopic": "Units and measurements",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "A simple barometer uses mercury because its high density allows a short column, so B.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-024",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 24,
+      "subject": "Geography",
+      "topic": "Economic and human geography",
+      "subtopic": "Energy resources",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Uranium is a nuclear fuel and not a fossil fuel, so D.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-025",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 25,
+      "subject": "Geography",
+      "topic": "Economic and human geography",
+      "subtopic": "Energy resources",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Solar energy is continuously replenished, so D; coal, petrol and nuclear fuel are non-renewable.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-026",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 26,
+      "subject": "Economy",
+      "topic": "Indian Economy",
+      "subtopic": "Planning in India",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "ambiguous",
+      "note": "The paper dates the real beginning of planning in MP to 11 November 1956 and keys D, while standard MP economy texts treat the Third Five-Year Plan (1961-66) as the first plan of the reorganised state, so A is also defensible. D is retained as the keyed answer.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-027",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 27,
+      "subject": "Science and Technology",
+      "topic": "Chemistry",
+      "subtopic": "Carbon compounds",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Starch is a polysaccharide of glucose, so C.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-028",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 28,
+      "subject": "Environment",
+      "topic": "Ecology and biodiversity",
+      "subtopic": "Food chain and food web",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Trophic level 1 is the producer level, so D green plants.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-029",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 29,
+      "subject": "Science and Technology",
+      "topic": "Chemistry",
+      "subtopic": "Chemistry in everyday life",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Pasteurization is a heat treatment of milk that the paper equates with sterilization, so A; strictly it is milder than true sterilization.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-030",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 30,
+      "subject": "Environment",
+      "topic": "Pollution and climate change",
+      "subtopic": "Ozone depletion",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Chlorofluorocarbons release chlorine in the stratosphere and cause the ozone hole, so C.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-031",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 31,
+      "subject": "Environment",
+      "topic": "Conservation initiatives",
+      "subtopic": null,
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Jal Purush is Rajendra Singh of Tarun Bharat Sangh; the option prints the surname as Choudhary, but B is the Rajendra option and is keyed, so the answer is unaffected by the misprint.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-032",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 32,
+      "subject": "Economy",
+      "topic": "Agriculture and rural economy",
+      "subtopic": "Agricultural revolutions",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "ambiguous",
+      "note": "The paper keys Sunderlal Bahuguna as the protagonist of Chipko and C is retained, but Chandi Prasad Bhatt led the Dasholi Gram Swarajya Mandal that launched the 1973 protests, so D is also defensible; the leadership of the movement is shared.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-033",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 33,
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": "British conquest and consolidation",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "The Survey of India is a mapping agency and not an environmental institution, so D.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-034",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 34,
+      "subject": "Environment",
+      "topic": "Environmental laws and institutions",
+      "subtopic": "Wildlife Protection Act",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "The Wild Life (Protection) Act was passed in 1972, so A.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-035",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 35,
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Population of India",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Arunachal Pradesh recorded the lowest density at 17 per sq km in 2011, so B.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-036",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 36,
+      "subject": "Economy",
+      "topic": "Budget and taxation",
+      "subtopic": "Direct taxes",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "e-Sahyog is an Income Tax Department facility of October 2015, so B.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-037",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 37,
+      "subject": "History",
+      "topic": "Art and architecture",
+      "subtopic": "Indo-Islamic architecture",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Zuckerberg visited the Taj Mahal during his 2015 India visit, so C.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-038",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 38,
+      "subject": "Current Affairs",
+      "topic": "International current affairs",
+      "subtopic": "Summits and conferences",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The 2015 G-20 summit was held at Antalya on 15-16 November, so B; Paris hosted COP21 in the same weeks.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-039",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 39,
+      "subject": "Current Affairs",
+      "topic": "International current affairs",
+      "subtopic": "International organisations",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Spain has never been a G-8 member, so C; Russia was a member until its 2014 suspension.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-040",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 40,
+      "subject": "Art and Culture",
+      "topic": "Literature and languages",
+      "subtopic": "Books and authors",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "O. P. Sabharwal wrote The Killer Instinct, so C.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-041",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 41,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Defence technology",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "INS Sindhurakshak is a Kilo-class submarine, so B; Viraat and Vikrant are carriers and Rajali an air station.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-042",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 42,
+      "subject": "Current Affairs",
+      "topic": "International current affairs",
+      "subtopic": "International organisations",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Canada is not a BRICS member, so D.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-043",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 43,
+      "subject": "Economy",
+      "topic": "International economy",
+      "subtopic": "International Monetary Fund",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Subir Gokarn became the IMF Executive Director for India in November 2015, so A.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-044",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 44,
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Other sports events",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "The 2017 ISSF World Cup was allotted to New Delhi, so C.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-045",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 45,
+      "subject": "Polity",
+      "topic": "Constitution of India",
+      "subtopic": "Making of the Constitution",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "National Unity Day on 31 October marks Sardar Patel's birthday, so C.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-046",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 46,
+      "subject": "Polity",
+      "topic": "Judiciary",
+      "subtopic": "Supreme Court",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "The Supreme Court called the CBI a caged parrot in 2013, so C.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-047",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 47,
+      "subject": "Economy",
+      "topic": "Economy of Madhya Pradesh",
+      "subtopic": "Industry of Madhya Pradesh",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "MP Laghu Udyog Nigam was incorporated on 28 December 1961, so B.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-048",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 48,
+      "subject": "Economy",
+      "topic": "Agriculture and rural economy",
+      "subtopic": "Rural employment programmes",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "MGNREGA was passed in August 2005, so B; it came into force in 2006.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-049",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 49,
+      "subject": "Economy",
+      "topic": "Economy of Madhya Pradesh",
+      "subtopic": "Industry of Madhya Pradesh",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "The Gold Export Promotion Park is at Indore, so A.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-050",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 50,
+      "subject": "Madhya Pradesh Special",
+      "topic": "Demography of Madhya Pradesh",
+      "subtopic": "Census data",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Census 2011 put MP's population at 7.27 crore, so A as printed.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-051",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 51,
+      "subject": "Madhya Pradesh Special",
+      "topic": "Demography of Madhya Pradesh",
+      "subtopic": "Districts of Madhya Pradesh",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Indore district had the largest population in 2011 at about 32.8 lakh, so C.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-052",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 52,
+      "subject": "Economy",
+      "topic": "Indian Economy",
+      "subtopic": "GDP and GNP",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Agriculture dominates the state economy and employs most of the workforce, so A.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-053",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 53,
+      "subject": "Economy",
+      "topic": "Economy of Madhya Pradesh",
+      "subtopic": "Minerals of Madhya Pradesh",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "MP's first Mineral Policy was declared in 1995, so A.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-054",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 54,
+      "subject": "Current Affairs",
+      "topic": "National current affairs",
+      "subtopic": "Government schemes and launches",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "ambiguous",
+      "note": "PMGSY's stated objective is all-weather road connectivity, so connecting villages to the main road (A) is the textbook aim, while the paper keys C on the strength of the additional road-construction element; 'concrete road' is loose wording for an all-weather road. C is retained as keyed.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-055",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 55,
+      "subject": "Economy",
+      "topic": "Economy of Madhya Pradesh",
+      "subtopic": "Industry of Madhya Pradesh",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Finance, energy and raw material shortages all contribute to industrial backwardness, so D.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-056",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 56,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "1024 kilobytes make one megabyte, so A.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-057",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 57,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "The intersection of a row and a column is a cell, so C.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-058",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 58,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Chrome is Google's browser, so D.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-059",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 59,
+      "subject": "Current Affairs",
+      "topic": "Appointments and personalities",
+      "subtopic": null,
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Azim Premji headed Wipro, so A.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-060",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 60,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "A computer virus is a program that replicates by attaching to host files, so B.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-061",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 61,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Spam belongs to computing and the internet, so A.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-062",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 62,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Baidu is a search engine, so A; packets and cookies are networking terms.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-063",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 63,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "A webcam is the compulsory device for videoconferencing among the options, so C.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-064",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 64,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "HTTP expands to Hypertext Transfer Protocol, so B.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-065",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 65,
+      "subject": "Polity",
+      "topic": "State Government",
+      "subtopic": "State Legislature",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Rule 17 of the PoA Rules 1995 provides the District-level Vigilance and Monitoring Committee, so C.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-066",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 66,
+      "subject": "Polity",
+      "topic": "Citizenship and civil rights",
+      "subtopic": null,
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Section 6 of the PoA Act 1989 applies selected IPC provisions, so C.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-067",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 67,
+      "subject": "Polity",
+      "topic": "Citizenship and civil rights",
+      "subtopic": null,
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Section 23 gives the rule-making power to the Central Government, so B.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-068",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 68,
+      "subject": "Polity",
+      "topic": "Citizenship and civil rights",
+      "subtopic": null,
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Section 18 of the PoA Act bars Section 438 CrPC, that is anticipatory bail, so C.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-069",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 69,
+      "subject": "Geography",
+      "topic": "Physiography of Madhya Pradesh",
+      "subtopic": "Satpura range",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Dhupgarh stands in the Mahadeo Hills, so A.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-070",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 70,
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Rivers of India",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The Kaimur range divides the Yamuna from the Son basin, so B.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-071",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 71,
+      "subject": "Geography",
+      "topic": "Physiography of Madhya Pradesh",
+      "subtopic": "Satpura range",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Pachmarhi lies in the Mahadeo Hills, so B.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-072",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 72,
+      "subject": "Geography",
+      "topic": "Rivers of Madhya Pradesh",
+      "subtopic": "Tributaries",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The Tawa is the longest tributary of the Narmada, so B.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-073",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 73,
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Rivers of India",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Dhuandhar Falls is on the Narmada at Bhedaghat, so A.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-074",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 74,
+      "subject": "Geography",
+      "topic": "Physiography of Madhya Pradesh",
+      "subtopic": "Baghelkhand plateau",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "The Chambal valley falls in the Central India Plateau division, so C.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-075",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 75,
+      "subject": "Geography",
+      "topic": "Climate and soils of Madhya Pradesh",
+      "subtopic": "Monsoon in Madhya Pradesh",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "MP has a tropical monsoon climate, so A.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-076",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 76,
+      "subject": "Art and Culture",
+      "topic": null,
+      "subtopic": null,
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Suchitra Sen was a Bengali film actress, so B.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-077",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 77,
+      "subject": "Geography",
+      "topic": "Maps and location",
+      "subtopic": "Location",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Telangana, the twenty-ninth state, has Hyderabad as its capital, so A.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-078",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 78,
+      "subject": "Environment",
+      "topic": "Wildlife of Madhya Pradesh",
+      "subtopic": "National parks",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The Kanha Baba fair is held at Sodalpur in Harda district, so B.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-079",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 79,
+      "subject": "History",
+      "topic": "History of Madhya Pradesh",
+      "subtopic": "Mahajanapadas in Madhya Pradesh",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The Udayagiri caves are in Vidisha district, so B; the stray apostrophe after 'Raisen' has been repaired.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-080",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 80,
+      "subject": "History",
+      "topic": "History of Madhya Pradesh",
+      "subtopic": "Chandela dynasty",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Khajuraho, the Chandelas' sculptural complex, is called the pilgrimage of sculpture, so B.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-081",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 81,
+      "subject": "Madhya Pradesh Special",
+      "topic": "Tribes of Madhya Pradesh",
+      "subtopic": "Korku",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "The Agariya tribe worships Lohasur, so D.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-082",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 82,
+      "subject": "Art and Culture",
+      "topic": "Culture of Madhya Pradesh",
+      "subtopic": "Cultural institutions of Madhya Pradesh",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Bharat Bhawan is in Bhopal, so D.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-083",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 83,
+      "subject": "General Aptitude",
+      "topic": "Quantitative aptitude",
+      "subtopic": "Percentage and averages",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Jhabua has the highest Scheduled Tribe proportion at 86.8 per cent, so A.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-084",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 84,
+      "subject": "Economy",
+      "topic": "Banking and finance",
+      "subtopic": "SEBI and capital markets",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "SAPS is unrelated to share markets, so D; Sensex, BSE and Nifty all belong to them.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-085",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 85,
+      "subject": "Economy",
+      "topic": "Banking and finance",
+      "subtopic": "Commercial banks",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The State Bank of India is the largest commercial bank, so B; NABARD is a development bank.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-086",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 86,
+      "subject": "History",
+      "topic": "Medieval India",
+      "subtopic": null,
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Sher Shah's mausoleum stands at Sasaram in Bihar, so A.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-087",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 87,
+      "subject": "History",
+      "topic": "Medieval India",
+      "subtopic": "Maratha empire",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Samarth Ramdas was Shivaji's guru, so A.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-088",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 88,
+      "subject": "Polity",
+      "topic": "Constitution of India",
+      "subtopic": "Preamble",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "'We, the People of India' opens the Preamble, so D.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-089",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 89,
+      "subject": "Polity",
+      "topic": "Judiciary",
+      "subtopic": "Supreme Court",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "The Supreme Court is the custodian of the Constitution through judicial review, so C.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-090",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 90,
+      "subject": "Polity",
+      "topic": "Local self-government",
+      "subtopic": "Panchayati Raj",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The Balwant Rai Mehta Committee recommended a three-tier structure, so B.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-091",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 91,
+      "subject": "History",
+      "topic": "World History",
+      "subtopic": "Russian Revolution",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Scientific socialism is attributed to Karl Marx, so A.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-092",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 92,
+      "subject": "Polity",
+      "topic": "Union and State Relations",
+      "subtopic": null,
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Andhra Pradesh, formed on 1 October 1953, was the first linguistic state, so B.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-093",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 93,
+      "subject": "History",
+      "topic": "Medieval India",
+      "subtopic": "Vijayanagara and Bahmani",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Nicolo Conti was the Venetian traveller who visited Vijayanagar, so B.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-094",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 94,
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Cricket",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Lord's is called the Mecca of Cricket, so A.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-095",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 95,
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Olympic and Asian Games",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Football entered the Olympic programme at Paris in 1900, so A.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-096",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 96,
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": "Revolutionary movements",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Surya Sen led the Chittagong Armoury Raid of 1930, so A.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-097",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 97,
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": "Acts and constitutional development",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "The Wavell Plan was presented in June 1945, so D.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-098",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 98,
+      "subject": "Polity",
+      "topic": null,
+      "subtopic": null,
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The Land Acquisition Act 1894 was a colonial acquisition law, not a land reform instrument, so the untrue statement is B.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-099",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 99,
+      "subject": "Polity",
+      "topic": "Statutory and regulatory bodies",
+      "subtopic": "NITI Aayog",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "The Prime Minister chairs NITI Aayog, so Narendra Modi is the correct name, A.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2016-100",
+      "year": 2016,
+      "paper_id": "MPPSC-2016-P1",
+      "question_number": 100,
+      "subject": "Polity",
+      "topic": "Statutory and regulatory bodies",
+      "subtopic": "National Human Rights Commission",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Section 2(m) of the Protection of Human Rights Act 1993 defines public servant, so D.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    }
+  ]
+}
