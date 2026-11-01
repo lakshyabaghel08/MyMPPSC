@@ -71,6 +71,7 @@ const viewState = {
   search: '',
   filter: 'all',
   showAbout: false,
+  showProgress: false,
   appliedRoute: null,
   /**
    * Where the reader was when they opened or closed an item: a selector for
@@ -167,21 +168,6 @@ function statusBar(summary, { size = '', decorative = false, title = null } = {}
   const said = title || `${percent(summary)}% done`;
   const a11y = decorative ? 'aria-hidden="true" focusable="false"' : `role="img" aria-label="${esc(said)}"`;
   return `<svg class="syl-bar${size ? ` ${size}` : ''}" viewBox="0 0 100 10" preserveAspectRatio="none" ${a11y}><rect class="syl-seg track" x="0" y="0" width="100" height="10"></rect>${segments.join('')}</svg>`;
-}
-
-/** A ring with the share done, and the share in progress after it. */
-function ring(summary) {
-  const done = (summary?.completion || 0) * 100;
-  const started = summary?.total ? (summary.inProgress / summary.total) * 100 : 0;
-  const arc = (length, cls) =>
-    length > 0
-      ? `<circle class="syl-ring-seg ${cls}" cx="18" cy="18" r="15.9155" stroke-dasharray="${length.toFixed(2)} ${(100 - length).toFixed(2)}" transform="rotate(-90 18 18)"></circle>`
-      : '';
-  return `<svg class="syl-ring" viewBox="0 0 36 36" role="img" aria-label="${percent(summary)}% done">
-    <circle class="syl-ring-track" cx="18" cy="18" r="15.9155"></circle>
-    ${arc(done + started, 'in_progress')}${arc(done, 'done')}
-    <text class="syl-ring-text" x="18" y="18" text-anchor="middle" dominant-baseline="central">${percent(summary)}%</text>
-  </svg>`;
 }
 
 /** The key to the marks, with a count beside each status. */
@@ -550,36 +536,21 @@ function searchResults(ws) {
 
 /* --------------------------------------------------------------- header ---- */
 
-/**
- * The introduction of the screen: one strip that says which stage you are
- * in, how far through it you are, and how marking works until the first
- * mark — plus, as a quiet second ring, the other stage, so the
- * Prelims/Mains separation stays visible while working in either. The other
- * stage's ring is a button: one click switches.
- */
+/** A compact stage summary; the detailed status key stays available on demand. */
 function overviewStrip(ws, { examId }) {
   const summary = ws.index.official.get(examId) || { done: 0, total: 0, inProgress: 0, touched: false, completion: 0, byStatus: {} };
-  const paperCount = ws.model.nodes.get(examId)?.childIds?.length || 0;
-  const otherId = examId === 'prelims' ? 'mains' : 'prelims';
-  const other = ws.index.official.get(otherId);
-  const otherSwitch = `<button type="button" class="syl-ov-other" data-exam="${otherId}"
-      aria-label="Switch to ${esc(EXAM_LABELS[otherId])}: ${other?.done || 0} of ${other?.total || 0} topics done">
-    ${ring(other)}
-    <span class="syl-ov-other-text"><b>${esc(EXAM_LABELS[otherId])}</b><span>${other?.done || 0}/${other?.total || 0} done</span></span>
-  </button>`;
   const hint = summary.touched
     ? ''
-    : `<p class="syl-ov-hint">${icon('help', { size: 14 })}<span>Nothing marked yet — tap a topic's circle to start, or open a heading to mark everything under it at once.</span></p>`;
+    : `<p class="syl-ov-hint">Tap a topic's circle to change its status, or open a heading to mark all its topics.</p>`;
   return `<section class="syl-overview syl-progress-head" aria-label="${esc(`${EXAM_LABELS[examId]} progress`)}">
-    ${ring(summary)}
-    <div class="syl-ov-main">
-      <p class="syl-ov-kicker">${esc(EXAM_LABELS[examId])} · ${plural(paperCount, 'paper')}</p>
-      <p class="syl-ov-title"><strong>${summary.done} of ${plural(summary.total, 'topic')}</strong> done${summary.inProgress ? ` · ${summary.inProgress} in progress` : ''}</p>
-      ${statusBar(summary)}
-      ${legend(summary)}
-      ${hint}
-    </div>
-    ${otherSwitch}
+    <details class="syl-progress-details"${viewState.showProgress ? ' open' : ''}>
+      <summary class="syl-progress-summary">
+        <span class="syl-ov-title"><strong>${summary.done} of ${plural(summary.total, 'topic')}</strong> done${summary.inProgress ? ` · ${summary.inProgress} in progress` : ''}</span>
+        <span class="syl-progress-more">Progress details</span>
+      </summary>
+      <div class="syl-progress-expanded">${legend(summary)}${hint}</div>
+    </details>
+    ${statusBar(summary, { title: `${summaryWords(summary)}; ${percent(summary)}% done` })}
   </section>`;
 }
 
@@ -625,6 +596,7 @@ function paperBody(ws, paper) {
   const rows = children.map((child) => treeNode(ws, child, 1, { filter })).join('');
   const filterName = FILTERS.find((entry) => entry.id === filter)?.label.toLowerCase() || '';
   return `${paperToolbar(ws, paper)}
+    <p class="syl-tree-hint">Tap a circle to update progress · Tap a title for details</p>
     ${
       rows
         ? `<ul class="syl-tree">${rows}</ul>`
@@ -716,8 +688,7 @@ async function screen(ctx) {
     ${screenHead({
       title: 'Syllabus',
       eyebrow: 'MPPSC 2026 · the official study map',
-      purpose:
-        "The commission's revised 2026 syllabus, line by line as published. Mark your progress right on the official topics — every count on this screen includes only those.",
+      purpose: "Explore the official 2026 syllabus and track your progress topic by topic.",
       secondary: '<a class="btn btn-sm btn-quiet" href="#/topic">Practise a topic</a>',
     })}
     <div class="syl-controls">
@@ -727,7 +698,7 @@ async function screen(ctx) {
             (examId) =>
               `<button type="button" role="tab" aria-selected="${viewState.examId === examId}" tabindex="${viewState.examId === examId ? 0 : -1}" class="syl-switch-btn${
                 viewState.examId === examId ? ' on' : ''
-              }" data-exam="${examId}">${esc(EXAM_LABELS[examId])}</button>`,
+              }" data-exam="${examId}" aria-label="${esc(`${EXAM_LABELS[examId]}: ${summaryWords(ws.index.official.get(examId))}`)}">${esc(EXAM_LABELS[examId])}</button>`,
           )
           .join('')}
       </div>
@@ -759,7 +730,6 @@ async function screen(ctx) {
             })
             .join('')}
         </div>
-        ${aboutBlock(ws)}
       </nav>
 
       <section class="syl-body" aria-label="${esc(label(paper) || 'Syllabus')}">
@@ -772,6 +742,7 @@ async function screen(ctx) {
         }
       </section>
     </div>
+    ${aboutBlock(ws)}
   </div>`;
 }
 
@@ -1059,6 +1030,11 @@ async function mount(ctx, root) {
   root.querySelector('[data-clear-search]')?.addEventListener('click', async () => {
     viewState.search = '';
     await rerender('#sylSearch');
+  });
+
+  const progressDetails = root.querySelector('.syl-progress-details');
+  progressDetails?.addEventListener('toggle', () => {
+    viewState.showProgress = progressDetails.open;
   });
 
   const about = root.querySelector('.syl-about');
