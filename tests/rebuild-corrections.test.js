@@ -149,7 +149,12 @@ test('every correction quotes the printed key the audits recorded', () => {
     fromManifest.filter((id) => id.startsWith('MPPSC-2013-')),
     'the 2013 audit summary lists exactly the 2013 corrections',
   );
-  assert.equal(fromManifest.length, 36, 'five 2020 keys, five 2019 keys, the seventeen declared for 2021–2024, one for 2017, four for 2015, three for 2014 and one for 2013 — the 2018 and 2016 audits corrected no key');
+  assert.deepEqual(
+    correctionsFile.final_audit_2022.corrected_ids.slice().sort(),
+    fromManifest.filter((id) => id.startsWith('MPPSC-2022-')),
+    'the 2022 audit summary lists exactly the 2022 corrections',
+  );
+  assert.equal(fromManifest.length, 37, 'five 2020 keys, five 2019 keys, the seventeen declared for 2021–2024, one for 2017, four for 2015, three for 2014, one for 2013 and one for 2022 — the 2018 and 2016 audits corrected no key');
 });
 
 test('a correction is applied once: a second application is a recorded no-op', () => {
@@ -242,7 +247,7 @@ test('a clean rebuild reproduces the shipped bank, corrections included', async 
 
   assert.equal(result.correctionsSummary.rejected.length, 0, 'no correction was rejected during the rebuild');
   assert.equal(result.correctionsSummary.reconciled, true, 'every declaration was applied or already satisfied');
-  assert.equal(result.correctionsSummary.applied.answers, 36, 'all 36 corrected keys were re-applied');
+  assert.equal(result.correctionsSummary.applied.answers, 37, 'all 37 corrected keys were re-applied');
   assert.equal(
     result.correctionsSummary.applied.explanations + result.correctionsSummary.deferred.explanations.length,
     1171,
@@ -256,6 +261,7 @@ test('a clean rebuild reproduces the shipped bank, corrections included', async 
   assert.equal(rebuilt.questions.filter((q) => Number(q.year) === 2019).length, 100, 'the 2019 paper is complete too');
   assert.equal(rebuilt.questions.filter((q) => Number(q.year) === 2014).length, 100, 'the 2014 paper is complete too');
   assert.equal(rebuilt.questions.filter((q) => Number(q.year) === 2013).length, 100, 'the 2013 paper is complete too');
+  assert.equal(rebuilt.questions.filter((q) => Number(q.year) === 2022).length, 100, 'the 2022 paper is complete too');
   for (const paper of rebuilt.papers) {
     assert.equal(paper.question_order.length, 100, `${paper.paper_id}: 100 questions in order`);
   }

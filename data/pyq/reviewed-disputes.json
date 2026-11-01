@@ -125,8 +125,8 @@
     "MPPSC-2022-045": {
       "is_disputed": true,
       "status": "unresolved",
-      "raised_by": "2024 quality audit (re-verification)",
-      "reason": "The question asks where Buddhist CAVES are not situated. Sanchi is a stupa, temple and monastery site -- its monuments are structural, and the rock-cut caves usually visited with it are those of Udayagiri, about 13 km away. Bulsar (Valsad) has no Buddhist cave complex either. Both C and D are therefore defensible, so the original two-answer key is restored. An earlier internal pass cut this to D only by reasoning that any Buddhist site must have Buddhist caves, which does not follow. The item is defective: it should have had one clearly wrong option."
+      "reason": "The paper asks which place has no Buddhist caves and keys Bulsar, but Sanchi, the other candidate, is a stupa and monastery site without a cave complex of its own, so the question admits more than one defensible answer. The official single key D is restored and the record is kept as unresolved rather than presented as settled.",
+      "raised_by": "2022 PYQ final answer audit"
     },
     "MPPSC-2022-053": {
       "is_disputed": true,

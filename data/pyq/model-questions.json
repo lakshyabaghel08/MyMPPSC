@@ -1541,45 +1541,41 @@
       "answer_key_status": "supplied",
       "explanation": {
         "language": "en",
-        "correct_reasoning": "Under Article 80 of the Constitution, the maximum permissible strength of the Rajya Sabha is 250 members (238 elected by the States/Union Territories and 12 nominated by the President). Hence option C is correct.",
+        "correct_reasoning": "Article 80 caps the Rajya Sabha at 250 members, of whom up to 238 represent the states and Union Territories and 12 are nominated by the President. The House currently has 245 members, which is a current figure, not the constitutional maximum the question asks for.",
         "option_explanations": [
           {
             "key": "A",
             "text": "238",
-            "is_correct": false
+            "is_correct": false,
+            "reason": "238 is the ceiling for elected state and UT representatives, not the whole House."
           },
           {
             "key": "B",
             "text": "245",
-            "is_correct": false
+            "is_correct": false,
+            "reason": "245 is the present strength after nominated memberships lapsed; the maximum remains 250."
           },
           {
             "key": "C",
             "text": "250",
-            "is_correct": true
+            "is_correct": true,
+            "reason": "Correct: Article 80 permits a maximum of 250 members."
           },
           {
             "key": "D",
             "text": "260",
-            "is_correct": false
+            "is_correct": false,
+            "reason": "260 exceeds the constitutional ceiling."
           }
         ],
         "key_concepts": [
-          "Article 80: Rajya Sabha max strength 250 (238 representatives of States/UTs + 12 nominated).",
-          "245 is the current working strength (with some seats vacant/nominated), not the constitutional maximum.",
-          "Lok Sabha max strength = 552 (530 elected from States, 20 from UTs, 2 nominated Anglo-Indian — nomination now discontinued).",
-          "Distinguish 'maximum permissible strength' (250) from actual/current strength."
+          "Rajya Sabha maximum 250: 238 elected plus 12 nominated",
+          "Article 80; fourth Schedule allots seats to states",
+          "Present strength 245 after nominated vacancies"
         ],
         "revision_takeaways": [
-          "Memory hook: Rajya Sabha max = 250 (Article 80).",
-          "250 = constitutional ceiling; 245 ≈ actual; don't confuse."
-        ],
-        "sources": [
-          {
-            "title": "Article 80 — Composition of Rajya Sabha",
-            "citation": "Constitution of India",
-            "url": null
-          }
+          "Rajya Sabha maximum strength = 250.",
+          "Lok Sabha maximum = 550 elected members under Article 81."
         ]
       },
       "subject": "Polity",
@@ -1632,45 +1628,41 @@
       "answer_key_status": "supplied",
       "explanation": {
         "language": "en",
-        "correct_reasoning": "The Jallianwala Bagh massacre at Amritsar took place on 13 April 1919, when General Dyer's troops fired on an unarmed gathering. Hence option A is correct.",
+        "correct_reasoning": "The Jallianwala Bagh massacre took place at Amritsar on 13 April 1919, Baisakhi day, when General Dyer's troops fired on an unarmed gathering protesting the Rowlatt Act. The other dates refer to different events of the freedom struggle.",
         "option_explanations": [
           {
             "key": "A",
             "text": "13 April 1919",
-            "is_correct": true
+            "is_correct": true,
+            "reason": "Correct: the massacre occurred on 13 April 1919 at Amritsar."
           },
           {
             "key": "B",
             "text": "13 April 1920",
-            "is_correct": false
+            "is_correct": false,
+            "reason": "The year is wrong; the firing took place in 1919."
           },
           {
             "key": "C",
             "text": "23 March 1919",
-            "is_correct": false
+            "is_correct": false,
+            "reason": "23 March 1919 is the date of the Lahore conspiracy judgment and of Bhagat Singh's execution in 1931."
           },
           {
             "key": "D",
             "text": "5 February 1922",
-            "is_correct": false
+            "is_correct": false,
+            "reason": "5 February 1922 is the Chauri Chaura incident, which led to the withdrawal of the Non-Cooperation Movement."
           }
         ],
         "key_concepts": [
-          "Jallianwala Bagh massacre: 13 April 1919, Amritsar (Baisakhi day), General Reginald Dyer.",
-          "Led to widespread outrage; Rabindranath Tagore renounced his knighthood; Gandhi launched Non-Cooperation Movement (1920).",
-          "5 February 1922 = Chauri Chaura incident; 23 March 1919 = close distractor.",
-          "Modern India: date and place of Jallianwala Bagh is a fixed fact."
+          "Rowlatt Act 1919 and the Jallianwala Bagh firing",
+          "General Dyer, Hunter Committee",
+          "Rabindranath Tagore renounced his knighthood in protest"
         ],
         "revision_takeaways": [
-          "Memory hook: Jallianwala Bagh ➜ 13 April 1919, Amritsar, General Dyer.",
-          "Baisakhi day, 1919."
-        ],
-        "sources": [
-          {
-            "title": "Jallianwala Bagh massacre — 13 April 1919",
-            "citation": "Modern Indian history",
-            "url": null
-          }
+          "Jallianwala Bagh = 13 April 1919.",
+          "Chauri Chaura = 5 February 1922."
         ]
       },
       "subject": "History",
@@ -1723,45 +1715,41 @@
       "answer_key_status": "supplied",
       "explanation": {
         "language": "en",
-        "correct_reasoning": "Nitrogen is the most abundant gas in the Earth's atmosphere (about 78% by volume). Hence option C is correct.",
+        "correct_reasoning": "Nitrogen makes up about 78 per cent of the atmosphere by volume, with oxygen at about 21 per cent, argon under one per cent and carbon dioxide a fraction of that. Nitrogen is therefore the most abundant gas.",
         "option_explanations": [
           {
             "key": "A",
             "text": "Oxygen",
-            "is_correct": false
+            "is_correct": false,
+            "reason": "Oxygen is about 21 per cent of the atmosphere, second to nitrogen."
           },
           {
             "key": "B",
             "text": "Argon",
-            "is_correct": false
+            "is_correct": false,
+            "reason": "Argon is an inert gas at about 0.93 per cent."
           },
           {
             "key": "C",
             "text": "Nitrogen",
-            "is_correct": true
+            "is_correct": true,
+            "reason": "Correct: nitrogen is about 78 per cent of the atmosphere."
           },
           {
             "key": "D",
             "text": "Carbon dioxide",
-            "is_correct": false
+            "is_correct": false,
+            "reason": "Carbon dioxide is about 0.04 per cent, a trace gas."
           }
         ],
         "key_concepts": [
-          "Atmospheric composition: Nitrogen ~78%, Oxygen ~21%, Argon ~0.93%, CO2 ~0.04% — Nitrogen is most abundant.",
-          "Science and Technology: chemistry — composition of air.",
-          "Oxygen is second; Argon and CO2 are trace in comparison.",
-          "Fixed science fact — composition of the atmosphere."
+          "Atmospheric composition by volume: N2 78%, O2 21%, Ar 0.9%",
+          "Greenhouse gases and their small shares",
+          "Nitrogen fixation and the nitrogen cycle"
         ],
         "revision_takeaways": [
-          "Memory hook: Most abundant gas in atmosphere ➜ Nitrogen (~78%).",
-          "N₂=78%; O₂=21%; Argon & CO₂ = small."
-        ],
-        "sources": [
-          {
-            "title": "Composition of Earth's atmosphere",
-            "citation": "Science/chemistry reference",
-            "url": null
-          }
+          "Most abundant atmospheric gas = nitrogen.",
+          "Oxygen is second at 21 per cent."
         ]
       },
       "subject": "Science and Technology",
