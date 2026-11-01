@@ -147,24 +147,47 @@ test('all 322 appended labels carry explicit agent review provenance and valid t
 });
 
 test('all historical question data and all 2019–2024 records are preserved', async () => {
-  const [bank, baseline, finalRows] = await Promise.all([
+  const [bank, baseline, finalRows, corrections] = await Promise.all([
     readJson('pyq', 'mymppsc-pyq-bank.json'),
     readJsonl('pyq', 'quality-audit', 'question-audit-baseline.jsonl'),
     readJsonl('pyq', 'quality-audit', 'question-audit-final.jsonl'),
+    readJson('pyq', 'reviewed-corrections.json'),
   ]);
   const beforeById = new Map(baseline.map((q) => [q.id, q]));
   const finalById = new Map(finalRows.map((q) => [q.id, q]));
+  const rewritten = new Set(corrections.narrative_rewritten);
   for (const q of bank.questions) {
     if (q.metadata?.model_question) continue; // app-written additions are outside the audit's scope
     const before = beforeById.get(q.id);
     const final = finalById.get(q.id);
     assert.ok(before && final, `${q.id}: baseline/final record is present`);
     assert.equal(q.language_variants.en.question_text, before.question_text, `${q.id}: wording`);
-    assert.deepEqual(q.language_variants.en.options, before.options, `${q.id}: options`);
-    assert.deepEqual(q.supplied_answer.answer.map((x) => String(x).toUpperCase()), before.answer.stored_answer, `${q.id}: stored answer`);
-    assert.deepEqual(q.explanation, before.explanation.stored_explanation, `${q.id}: explanation`);
+    // Options and keys may differ from the frozen baseline only where
+    // reviewed-corrections.json declares it, with a stated basis.
+    const repaired = corrections.option_corrections[q.id] || {};
+    const expectedOptions = before.options.map((o) => (repaired[o.key] ? { key: o.key, text: repaired[o.key].to } : o));
+    assert.deepEqual(q.language_variants.en.options, expectedOptions, `${q.id}: options`);
+    const correction = corrections.answer_corrections[q.id];
+    if (correction) {
+      assert.deepEqual(correction.to, q.supplied_answer.answer, `${q.id}: carries the declared key`);
+      assert.ok(correction.basis && correction.basis.trim(), `${q.id}: the re-key states its basis`);
+    } else {
+      assert.deepEqual(q.supplied_answer.answer.map((x) => String(x).toUpperCase()), before.answer.stored_answer, `${q.id}: stored answer`);
+    }
+    // An explanation may be rewritten only if it is declared, and a declared
+    // rewrite has to actually be complete: this is the regression guard that the
+    // frozen-equality check used to provide, applied to the new prose.
+    if (rewritten.has(q.id)) {
+      const e = q.explanation;
+      assert.ok(e && typeof e.correct_reasoning === 'string' && e.correct_reasoning.trim().length > 40, `${q.id}: rewritten explanation has reasoning`);
+      assert.equal(e.option_explanations?.length, 4, `${q.id}: rewritten explanation covers all four options`);
+      assert.ok(e.key_concepts?.length >= 2, `${q.id}: rewritten explanation carries revision facts`);
+      assert.ok(e.revision_takeaways?.length >= 1, `${q.id}: rewritten explanation carries a takeaway`);
+      assert.notDeepEqual(e, before.explanation.stored_explanation, `${q.id}: a declared rewrite is really different`);
+    } else {
+      assert.deepEqual(q.explanation, before.explanation.stored_explanation, `${q.id}: explanation`);
+    }
     assert.deepEqual(final.classification_after, classification(q), `${q.id}: final audit classification`);
-    assert.equal(final.answer.answer_unchanged, true);
     assert.equal(final.answer.independently_verified, false);
     assert.equal(final.internal_provenance_in_student_bank, false);
     if (q.year >= 2019) {
@@ -173,6 +196,17 @@ test('all historical question data and all 2019–2024 records are preserved', a
     for (const internalKey of ['classification_source', 'classification_confidence', 'review_flags', 'reviewed_classification', 'review_method', 'metadata']) {
       assert.equal(Object.hasOwn(q, internalKey), false, `${q.id}: internal field ${internalKey} is not in the app-facing bank`);
     }
+  }
+  // The manifest itself must stay honest: every declared rewrite names a real
+  // question, and every declared re-key is reflected in the bank.
+  for (const id of rewritten) {
+    assert.ok(beforeById.has(id), `${id}: a declared explanation rewrite names a known question`);
+    assert.ok(bank.questions.some((q) => q.id === id), `${id}: a declared explanation rewrite names a present question`);
+  }
+  for (const [id, correction] of Object.entries(corrections.answer_corrections)) {
+    const q = bank.questions.find((x) => x.id === id);
+    assert.ok(q, `${id}: a declared re-key names a present question`);
+    assert.deepEqual(q.supplied_answer.answer, correction.to, `${id}: the declaration matches the bank`);
   }
 });
 

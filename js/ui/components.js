@@ -697,7 +697,9 @@ export function renderExplanation(question) {
         ? `<h3>Option by option</h3><div class="table-wrap"><table class="data compact options-table"><tbody>${rows
             .map(
               (o) =>
-                `<tr><td class="mono col-key">${esc(o.key || '—')}</td><td${langAttr(o.text)}>${esc(o.text)}</td><td class="col-status">${o.is_correct === true ? badge('correct', 'ok') : o.is_correct === false ? badge('not correct', 'plain') : '<span class="soft tiny">unstated</span>'}</td></tr>`,
+                `<tr><td class="mono col-key">${esc(o.key || '—')}</td><td${langAttr(o.text)}>${esc(o.text)}${
+                  o.reason ? `<div class="soft small option-reason"${langAttr(o.reason)}>${esc(o.reason)}</div>` : ''
+                }</td><td class="col-status">${o.is_correct === true ? badge('correct', 'ok') : o.is_correct === false ? badge('not correct', 'plain') : '<span class="soft tiny">unstated</span>'}</td></tr>`,
             )
             .join('')}</tbody></table></div>`
         : ''

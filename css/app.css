@@ -2956,6 +2956,12 @@ body.runner-focus .runner {
   vertical-align: top;
 }
 
+/* The per-option reasoning sits under the option text, quieter than it. */
+.explanation .option-reason {
+  margin-top: var(--space-1);
+  line-height: 1.45;
+}
+
 details.disclosure {
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);

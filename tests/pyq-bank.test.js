@@ -79,6 +79,12 @@ test('every source record arrives, with its id, year and paper intact', { skip: 
   // The committed review file is the one thing allowed to supply an answer the
   // extraction did not print, so those ids are checked against it instead.
   const resolved = new Set(parseAnswerReviews(await readText('pyq/reviewed-answers.jsonl')).resolutions.map((r) => r.id));
+  // `reviewed-corrections.json` declares every reviewed divergence from the
+  // extraction: repaired option text (scan artefacts) and corrected answer keys,
+  // each with the reasoning behind it. Source wording is still enforced exactly —
+  // a question may depart from it only where a declaration exists, so undocumented
+  // drift, a lost option or a silently re-keyed question still fails here.
+  const corrections = await readJson('pyq/reviewed-corrections.json');
   for (const q of source.questions) {
     const meta = m.appState.questionIndex.get(q.id);
     assert.ok(meta, `${q.id} is missing from the imported bank`);
@@ -86,16 +92,38 @@ test('every source record arrives, with its id, year and paper intact', { skip: 
     assert.equal(meta.question_number, q.question_number);
     const stored = await m.db.get(m.constants.STORES.QUESTIONS, q.id);
     assert.equal(stored.language_variants.en.question_text, q.en.question_text, `${q.id}: question text must be verbatim`);
+    const repaired = corrections.option_corrections[q.id] || {};
+    const expectedOptions = (q.en.options || []).map((o) => [o.key, repaired[o.key] ? repaired[o.key].to : o.text]);
     assert.deepEqual(
       stored.language_variants.en.options.map((o) => [o.key, o.text]),
-      (q.en.options || []).map((o) => [o.key, o.text]),
-      `${q.id}: options must be verbatim`,
+      expectedOptions,
+      `${q.id}: options must be verbatim apart from declared repairs`,
     );
     if (resolved.has(q.id)) {
       assert.equal(q.answer, undefined, `${q.id}: the extraction printed no key for it`);
       continue;
     }
+    const correction = corrections.answer_corrections[q.id];
+    if (correction) {
+      assert.ok(correction.basis && correction.basis.trim(), `${q.id}: a re-keyed question states its basis`);
+      assert.deepEqual(correction.from, q.answer ?? null, `${q.id}: the declaration quotes what the extraction printed`);
+      assert.deepEqual(stored.supplied?.answer ?? null, correction.to, `${q.id}: carries the declared key`);
+      continue;
+    }
     assert.deepEqual(stored.supplied?.answer ?? null, q.answer ?? null, `${q.id}: the printed key must not change`);
+  }
+  // Every declared repair must correspond to a real difference, so the manifest
+  // cannot rot into a list of things that no longer happen.
+  const sourceById = new Map(source.questions.map((q) => [q.id, q]));
+  for (const [id, byKey] of Object.entries(corrections.option_corrections)) {
+    const stored = await m.db.get(m.constants.STORES.QUESTIONS, id);
+    for (const [key, entry] of Object.entries(byKey)) {
+      const current = stored.language_variants.en.options.find((o) => o.key === key);
+      assert.equal(current.text, entry.to, `${id} ${key}: the declared repair is still in place`);
+      const printed = (sourceById.get(id)?.en?.options || []).find((o) => o.key === key);
+      assert.equal(printed?.text, entry.from, `${id} ${key}: the declaration quotes the printed text`);
+      assert.notEqual(entry.from, entry.to, `${id} ${key}: a repair must change something`);
+    }
   }
 });
 

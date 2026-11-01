@@ -159,7 +159,8 @@
             "properties": {
               "key": { "type": ["string", "null"] },
               "text": { "type": ["string", "null"] },
-              "is_correct": { "type": ["boolean", "null"] }
+              "is_correct": { "type": ["boolean", "null"] },
+              "reason": { "type": ["string", "null"], "description": "Why this option is or is not the answer. Prose, not a restatement of the option text." }
             }
           }
         },
