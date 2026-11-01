@@ -4,7 +4,7 @@
 **Question asked of every item:** would a learner be taught something false if they trusted this answer?
 **Standing rule:** the printed key is evidence, not authority. An answer was kept because it survives independent subject reasoning, not because it appears in a key sheet.
 **Machine‑readable record:** `data/pyq/quality-audit/final-answer-audit-2021-2024.json` (one row per question, with its classification).
-**Not in scope:** the 2020 batch, which has not been started.
+**Not in scope:** the 2020 batch, audited separately in `REPORT_FINAL_ANSWER_AUDIT_2020.md`.
 
 ---
 
@@ -161,4 +161,4 @@ Branch: `arena/54799d16-mymppsc`, branched from `539a2c5` (PR #26 merge). No com
 
 ## 13. Stop point
 
-Every 2021–2024 question now has either a defensible answer or an explicit statement of why it is unresolved. The 2020 batch has **not** been started.
+Every 2021–2024 question now has either a defensible answer or an explicit statement of why it is unresolved. The 2020 batch was audited afterwards in `REPORT_FINAL_ANSWER_AUDIT_2020.md`; nothing in this report was reopened for it.

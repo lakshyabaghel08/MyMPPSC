@@ -1,6 +1,6 @@
 {
-  "version": 3,
-  "note": "Reviewed, intentional divergences from the frozen extraction and the pre-remediation audit baseline, plus the exact list of questions whose explanations meet the per-option reasoning standard. The test suites accept exactly these and nothing else, so undocumented drift still fails. Final answer audit (2026-11-01): every 2021-2024 answer re-verified; one key corrected (2021-010), seven items recorded as ambiguous, eleven earlier dispute flags settled.",
+  "version": 4,
+  "note": "Reviewed, intentional divergences from the frozen extraction and the pre-remediation audit baseline, plus the exact list of questions whose explanations meet the per-option reasoning standard. The test suites accept exactly these and nothing else, so undocumented drift still fails. Final answer audit (2026-11-01): every 2021-2024 answer re-verified; one key corrected (2021-010), seven items recorded as ambiguous, eleven earlier dispute flags settled. 2020 final answer audit (2026-11-01): all 100 questions of MPPSC-2020-P1 re-verified, five printed keys corrected, four defective items recorded as ambiguous, all 100 explanations rewritten with per-option reasoning.",
   "option_corrections": {
     "MPPSC-2021-014": {
       "D": {
@@ -126,6 +126,18 @@
       "D": {
         "from": "Khargone 9",
         "to": "Khargone"
+      }
+    },
+    "MPPSC-2020-047": {
+      "D": {
+        "from": "Lucknow 1",
+        "to": "Lucknow"
+      }
+    },
+    "MPPSC-2020-100": {
+      "B": {
+        "from": "Coaching for Scheduled Tribe Students for sports 🔾🔾",
+        "to": "Coaching for Scheduled Tribe Students for sports"
       }
     }
   },
@@ -286,9 +298,154 @@
         "A"
       ],
       "basis": "The phosphatase (Scharer) test measures residual alkaline phosphatase in milk to verify pasteurisation; it is not a tea or water test, so \"All of the above\" is indefensible and the answer is Milk (A). The printed key D is wrong."
+    },
+    "MPPSC-2020-008": {
+      "from": [
+        "B"
+      ],
+      "to": [
+        "D"
+      ],
+      "basis": "Coal India Limited has been a Maharatna since 11 April 2011, so it cannot be the answer to a \"does not fall under Maharatna\" question. The non-Maharatna CPSE in the list is Oil India Limited, a Navratna in 2010 and only elevated to Maharatna on 4 August 2023, long after the January 2020 list the question cites."
+    },
+    "MPPSC-2020-032": {
+      "from": [
+        "B"
+      ],
+      "to": [
+        "D"
+      ],
+      "basis": "Kailash Satyarthi was born on 11 January 1954 at Vidisha, Madhya Pradesh, where he studied at the Samrat Ashok Technological Institute. The printed key (Sehore) is wrong; the question's own supplied explanation already said Vidisha."
+    },
+    "MPPSC-2020-054": {
+      "from": [
+        "A"
+      ],
+      "to": [
+        "B"
+      ],
+      "basis": "The States Reorganisation Act, 1956 with the Seventh Amendment abolished the Part A/B/C categories and created 14 states and 6 union territories with effect from 1 November 1956. Eighteen states and nine union territories describe a later political map, not the 1956 Act."
+    },
+    "MPPSC-2020-076": {
+      "from": [
+        "B"
+      ],
+      "to": [
+        "D"
+      ],
+      "basis": "Bhagwat Dayal Sharma was the first Chief Minister of Haryana (November 1966 to March 1967) and later Governor of Madhya Pradesh (30 April 1980 to 14 May 1984). Ram Naresh Yadav, the printed key, was Chief Minister of Uttar Pradesh, so the question's premise does not fit him."
+    },
+    "MPPSC-2020-095": {
+      "from": [
+        "B"
+      ],
+      "to": [
+        "C"
+      ],
+      "basis": "PUMA in robotics expands to Programmable Universal Machine for Assembly, the Unimation/Unimation-Scheinman assembly robot. The printed key \"Programmed Utility Machine for Assembly\" is a reordered distractor; the question's own supplied explanation gave the correct expansion."
     }
   },
   "option_reasoning_complete": [
+    "MPPSC-2020-001",
+    "MPPSC-2020-002",
+    "MPPSC-2020-003",
+    "MPPSC-2020-004",
+    "MPPSC-2020-005",
+    "MPPSC-2020-006",
+    "MPPSC-2020-007",
+    "MPPSC-2020-008",
+    "MPPSC-2020-009",
+    "MPPSC-2020-010",
+    "MPPSC-2020-011",
+    "MPPSC-2020-012",
+    "MPPSC-2020-013",
+    "MPPSC-2020-014",
+    "MPPSC-2020-015",
+    "MPPSC-2020-016",
+    "MPPSC-2020-017",
+    "MPPSC-2020-018",
+    "MPPSC-2020-019",
+    "MPPSC-2020-020",
+    "MPPSC-2020-021",
+    "MPPSC-2020-022",
+    "MPPSC-2020-023",
+    "MPPSC-2020-024",
+    "MPPSC-2020-025",
+    "MPPSC-2020-026",
+    "MPPSC-2020-027",
+    "MPPSC-2020-028",
+    "MPPSC-2020-029",
+    "MPPSC-2020-030",
+    "MPPSC-2020-031",
+    "MPPSC-2020-032",
+    "MPPSC-2020-033",
+    "MPPSC-2020-034",
+    "MPPSC-2020-035",
+    "MPPSC-2020-036",
+    "MPPSC-2020-037",
+    "MPPSC-2020-038",
+    "MPPSC-2020-039",
+    "MPPSC-2020-040",
+    "MPPSC-2020-041",
+    "MPPSC-2020-042",
+    "MPPSC-2020-043",
+    "MPPSC-2020-044",
+    "MPPSC-2020-045",
+    "MPPSC-2020-046",
+    "MPPSC-2020-047",
+    "MPPSC-2020-048",
+    "MPPSC-2020-049",
+    "MPPSC-2020-050",
+    "MPPSC-2020-051",
+    "MPPSC-2020-052",
+    "MPPSC-2020-053",
+    "MPPSC-2020-054",
+    "MPPSC-2020-055",
+    "MPPSC-2020-056",
+    "MPPSC-2020-057",
+    "MPPSC-2020-058",
+    "MPPSC-2020-059",
+    "MPPSC-2020-060",
+    "MPPSC-2020-061",
+    "MPPSC-2020-062",
+    "MPPSC-2020-063",
+    "MPPSC-2020-064",
+    "MPPSC-2020-065",
+    "MPPSC-2020-066",
+    "MPPSC-2020-067",
+    "MPPSC-2020-068",
+    "MPPSC-2020-069",
+    "MPPSC-2020-070",
+    "MPPSC-2020-071",
+    "MPPSC-2020-072",
+    "MPPSC-2020-073",
+    "MPPSC-2020-074",
+    "MPPSC-2020-075",
+    "MPPSC-2020-076",
+    "MPPSC-2020-077",
+    "MPPSC-2020-078",
+    "MPPSC-2020-079",
+    "MPPSC-2020-080",
+    "MPPSC-2020-081",
+    "MPPSC-2020-082",
+    "MPPSC-2020-083",
+    "MPPSC-2020-084",
+    "MPPSC-2020-085",
+    "MPPSC-2020-086",
+    "MPPSC-2020-087",
+    "MPPSC-2020-088",
+    "MPPSC-2020-089",
+    "MPPSC-2020-090",
+    "MPPSC-2020-091",
+    "MPPSC-2020-092",
+    "MPPSC-2020-093",
+    "MPPSC-2020-094",
+    "MPPSC-2020-095",
+    "MPPSC-2020-096",
+    "MPPSC-2020-097",
+    "MPPSC-2020-098",
+    "MPPSC-2020-099",
+    "MPPSC-2020-100",
     "MPPSC-2021-001",
     "MPPSC-2021-002",
     "MPPSC-2021-003",
@@ -408,6 +565,101 @@
     "MPPSC-2024-080"
   ],
   "narrative_rewritten": [
+    "MPPSC-2020-001",
+    "MPPSC-2020-002",
+    "MPPSC-2020-003",
+    "MPPSC-2020-004",
+    "MPPSC-2020-005",
+    "MPPSC-2020-006",
+    "MPPSC-2020-007",
+    "MPPSC-2020-008",
+    "MPPSC-2020-010",
+    "MPPSC-2020-011",
+    "MPPSC-2020-012",
+    "MPPSC-2020-013",
+    "MPPSC-2020-014",
+    "MPPSC-2020-015",
+    "MPPSC-2020-016",
+    "MPPSC-2020-017",
+    "MPPSC-2020-018",
+    "MPPSC-2020-019",
+    "MPPSC-2020-020",
+    "MPPSC-2020-021",
+    "MPPSC-2020-022",
+    "MPPSC-2020-023",
+    "MPPSC-2020-024",
+    "MPPSC-2020-025",
+    "MPPSC-2020-026",
+    "MPPSC-2020-027",
+    "MPPSC-2020-028",
+    "MPPSC-2020-029",
+    "MPPSC-2020-030",
+    "MPPSC-2020-031",
+    "MPPSC-2020-032",
+    "MPPSC-2020-034",
+    "MPPSC-2020-035",
+    "MPPSC-2020-036",
+    "MPPSC-2020-037",
+    "MPPSC-2020-038",
+    "MPPSC-2020-039",
+    "MPPSC-2020-040",
+    "MPPSC-2020-041",
+    "MPPSC-2020-042",
+    "MPPSC-2020-043",
+    "MPPSC-2020-044",
+    "MPPSC-2020-045",
+    "MPPSC-2020-046",
+    "MPPSC-2020-047",
+    "MPPSC-2020-048",
+    "MPPSC-2020-049",
+    "MPPSC-2020-050",
+    "MPPSC-2020-051",
+    "MPPSC-2020-052",
+    "MPPSC-2020-053",
+    "MPPSC-2020-054",
+    "MPPSC-2020-055",
+    "MPPSC-2020-056",
+    "MPPSC-2020-057",
+    "MPPSC-2020-058",
+    "MPPSC-2020-059",
+    "MPPSC-2020-060",
+    "MPPSC-2020-061",
+    "MPPSC-2020-062",
+    "MPPSC-2020-063",
+    "MPPSC-2020-064",
+    "MPPSC-2020-065",
+    "MPPSC-2020-066",
+    "MPPSC-2020-067",
+    "MPPSC-2020-068",
+    "MPPSC-2020-069",
+    "MPPSC-2020-070",
+    "MPPSC-2020-071",
+    "MPPSC-2020-072",
+    "MPPSC-2020-073",
+    "MPPSC-2020-074",
+    "MPPSC-2020-075",
+    "MPPSC-2020-076",
+    "MPPSC-2020-079",
+    "MPPSC-2020-080",
+    "MPPSC-2020-081",
+    "MPPSC-2020-082",
+    "MPPSC-2020-083",
+    "MPPSC-2020-084",
+    "MPPSC-2020-085",
+    "MPPSC-2020-086",
+    "MPPSC-2020-087",
+    "MPPSC-2020-088",
+    "MPPSC-2020-089",
+    "MPPSC-2020-090",
+    "MPPSC-2020-091",
+    "MPPSC-2020-092",
+    "MPPSC-2020-093",
+    "MPPSC-2020-094",
+    "MPPSC-2020-095",
+    "MPPSC-2020-097",
+    "MPPSC-2020-098",
+    "MPPSC-2020-099",
+    "MPPSC-2020-100",
     "MPPSC-2021-001",
     "MPPSC-2021-002",
     "MPPSC-2021-003",
@@ -807,6 +1059,26 @@
       "MPPSC-2021-077",
       "MPPSC-2022-045",
       "MPPSC-2022-053"
+    ]
+  },
+  "final_audit_2020": {
+    "report": "data/pyq/quality-audit/final-answer-audit-2020.json",
+    "reviewed": 100,
+    "confirmed": 91,
+    "corrected": 5,
+    "ambiguous": 4,
+    "corrected_ids": [
+      "MPPSC-2020-008",
+      "MPPSC-2020-032",
+      "MPPSC-2020-054",
+      "MPPSC-2020-076",
+      "MPPSC-2020-095"
+    ],
+    "ambiguous_ids": [
+      "MPPSC-2020-037",
+      "MPPSC-2020-045",
+      "MPPSC-2020-093",
+      "MPPSC-2020-098"
     ]
   }
 }
