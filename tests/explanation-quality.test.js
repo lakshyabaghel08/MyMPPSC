@@ -90,7 +90,7 @@ const [bank, corrections] = await Promise.all([
 const byId = new Map(bank.questions.map((q) => [q.id, q]));
 const declared = corrections.option_reasoning_complete || [];
 const declaredSet = new Set(declared);
-const audited = bank.questions.filter((q) => [2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024].includes(Number(q.year)));
+const audited = bank.questions.filter((q) => [2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024].includes(Number(q.year)));
 const standard = audited.filter((q) => declaredSet.has(q.id));
 
 test('every question declared complete exists in the audited bank', () => {
@@ -198,6 +198,8 @@ test('coverage is counted from the bank and reported per year', () => {
     'every 2015 explanation carries per-option reasoning');
   assert.equal(byYear(2014).filter((q) => declaredSet.has(q.id)).length, 100,
     'every 2014 explanation carries per-option reasoning');
+  assert.equal(byYear(2013).filter((q) => declaredSet.has(q.id)).length, 100,
+    'every 2013 explanation carries per-option reasoning');
   // The remaining years are declared incomplete rather than presented as finished.
   const outstanding = audited.length - standard.length;
   assert.ok(outstanding > 0, `2022–2024 still owe per-option reasoning: ${outstanding} questions`);

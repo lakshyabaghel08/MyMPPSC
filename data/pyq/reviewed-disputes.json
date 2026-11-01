@@ -249,6 +249,24 @@
       "status": "resolved",
       "reason": "The Ghughua fossil park is officially the Mandla Plant Fossils National Park but its villages fall in Dindori district, which is not among the options. Mandla is retained as the keyed and officially named district, and the prose states the Dindori location.",
       "raised_by": "2014 PYQ final answer audit"
+    },
+    "MPPSC-2013-073": {
+      "is_disputed": true,
+      "status": "resolved",
+      "reason": "The printed key names NH 1, which is about 456 km long. Before the 2010 renumbering NH 7, Varanasi to Kanyakumari, about 2,369 km, was the longest national highway, so the answer is corrected to option D.",
+      "raised_by": "2013 PYQ final answer audit"
+    },
+    "MPPSC-2013-098": {
+      "is_disputed": true,
+      "status": "unresolved",
+      "reason": "The International Decade for Natural Disaster Reduction ran from 1990 to 1999 under UNGA resolution 44/236, and none of the four options states that span. Option A, 1991-2000, is retained as the closest available option and the question is recorded as defective rather than repaired by inventing an option.",
+      "raised_by": "2013 PYQ final answer audit"
+    },
+    "MPPSC-2013-061": {
+      "is_disputed": true,
+      "status": "resolved",
+      "reason": "Two option texts were lost in the scan. The printed paper reads Jawaharlal Nehru, A. Dalal, Subhash Chandra Bose and Lal Bahadur Shastri, so the two damaged slots are restored; the key C is unaffected, since the Committee was set up by the Congress president Subhash Chandra Bose in 1938 and Nehru only chaired it.",
+      "raised_by": "2013 PYQ final answer audit"
     }
   }
 }

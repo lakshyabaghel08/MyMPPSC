@@ -1,0 +1,1966 @@
+{
+  "title": "Final answer audit of MPPSC 2013 Prelims Paper-I",
+  "year": 2013,
+  "paper_id": "MPPSC-2013-P1",
+  "audited_at": "2026-11-01",
+  "summary": {
+    "by_year": {
+      "2013": {
+        "reviewed": 100,
+        "confirmed": 98,
+        "corrected": 1,
+        "ambiguous": 1
+      }
+    },
+    "total": {
+      "reviewed": 100,
+      "confirmed": 98,
+      "corrected": 1,
+      "ambiguous": 1
+    },
+    "corrected_ids": [
+      "MPPSC-2013-073"
+    ],
+    "ambiguous_ids": [
+      "MPPSC-2013-098"
+    ],
+    "answer_corrections": [
+      {
+        "id": "MPPSC-2013-073",
+        "from": [
+          "A"
+        ],
+        "to": [
+          "D"
+        ]
+      }
+    ],
+    "option_repairs": [
+      {
+        "id": "MPPSC-2013-061",
+        "key": "A",
+        "from": "Dalal",
+        "to": "Jawaharlal Nehru"
+      },
+      {
+        "id": "MPPSC-2013-061",
+        "key": "B",
+        "from": "",
+        "to": "A. Dalal"
+      },
+      {
+        "id": "MPPSC-2013-087",
+        "key": "A",
+        "from": "V.",
+        "to": "V.D. Savarkar"
+      }
+    ],
+    "explanations_rebuilt": 100,
+    "option_reasoning_declared_incomplete": [],
+    "model_questions": [],
+    "printed_keys_compared": 100,
+    "method": "Every one of the 100 questions was re-read and answered independently; the printed key was compared with the stored answer; each explanation was rebuilt to a four-part standard (concept and justification, per-option reasoning tied to that option text, revision facts, takeaway). A correction is recorded only where the evidence contradicts the key and another option is demonstrably right; an item whose options cannot express the historically correct answer is flagged ambiguous rather than forced. Scan damage in option text was repaired only where the printed paper makes the intended wording certain."
+  },
+  "questions": [
+    {
+      "id": "MPPSC-2013-001",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 1,
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": "Climatology",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "The word monsoon comes from the Arabic mausim, meaning a season or a time of sailing, carried into the Indian languages by Arab traders who timed their voyages to the seasonal winds.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-002",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 2,
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Rivers of India",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "The Gandak barrage project is a joint venture of India and Nepal on the Gandak, a Ganga tributary that rises in Nepal and enters Bihar; Bihar is the Indian state in which the canal system and the barrage lie.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-003",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 3,
+      "subject": "Geography",
+      "topic": "Maps and location",
+      "subtopic": "Location",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Lakshadweep, with an area of only about 32 square kilometres, is the smallest Union Territory of India, a group of coral islands off the Kerala coast.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-004",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 4,
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Rivers of India",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "The Alaknanda and the Bhagirathi meet at Devprayag, and from that confluence the river is called the Ganga.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-005",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 5,
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": "Landforms and their evolution",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "The Great Ice Age belongs to the Pleistocene epoch, the period of repeated glacial and interglacial cycles that ended about 11,700 years ago.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-006",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 6,
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Soils of India",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Regur soil is the local name for the black cotton soil of the Deccan lava plateau, formed from weathered basalt and rich in iron, lime and magnesia.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-007",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 7,
+      "subject": "Polity",
+      "topic": "Constitution of India",
+      "subtopic": "Fundamental Rights",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Article 24 of the International Covenant on Civil and Political Rights gives every child the right to protection by family, society and the state, including birth registration and nationality.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-008",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 8,
+      "subject": "Polity",
+      "topic": "Judiciary",
+      "subtopic": "Public Interest Litigation",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "PIL stands for public interest litigation, the procedure under which any person may approach the court on behalf of those unable to do so themselves, and the court may act on a letter or news report.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-009",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 9,
+      "subject": "Polity",
+      "topic": "Citizenship and civil rights",
+      "subtopic": null,
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "The Universal Declaration of Human Rights, adopted by the UN General Assembly on 10 December 1948, contains 30 articles, from the right to equality in Article 1 to the limits on rights in Article 30.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-010",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 10,
+      "subject": "History",
+      "topic": "World History",
+      "subtopic": null,
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Apartheid was the system of institutionalised racial segregation enforced in South Africa from 1948 until the early 1990s, under which the non-white majority was separated in residence, education, work and voting.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-011",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 11,
+      "subject": "Polity",
+      "topic": "Constitution of India",
+      "subtopic": "Fundamental Duties",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The line runs 'Rights without duties are like men without shadow', which is why the blank takes the word rights: a right with no corresponding duty has no substance.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-012",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 12,
+      "subject": "Current Affairs",
+      "topic": "Days and dates",
+      "subtopic": "International days",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Human Rights Day is observed on 10 December, the date on which the UN General Assembly adopted the Universal Declaration of Human Rights in 1948.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-013",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 13,
+      "subject": "Art and Culture",
+      "topic": "Literature and languages",
+      "subtopic": "Books and authors",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "World of All Human Rights is associated with Soli J. Sorabjee, the former Attorney General of India and a leading civil liberties lawyer, whose writings on human rights are collected in the volume.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-014",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 14,
+      "subject": "Current Affairs",
+      "topic": "International current affairs",
+      "subtopic": "International organisations",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "The United Nations declared 1975 as International Women's Year, and it hosted the first World Conference on Women at Mexico City that year.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-015",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 15,
+      "subject": "Polity",
+      "topic": "Constitution of India",
+      "subtopic": "Fundamental Rights",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Section 12 of the Protection of Civil Rights Act, 1955 lets a court presume that an act was committed on the ground of untouchability where the offence is committed in relation to a member of a Scheduled Caste.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-016",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 16,
+      "subject": "Polity",
+      "topic": "Citizenship and civil rights",
+      "subtopic": null,
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "The Atrocities Act creates no bar on the ordinary defences: an accused may plead private defence, may plead that the harm was too slight to be an offence, and the Act does not disqualify a defence merely because the accu.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-017",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 17,
+      "subject": "Polity",
+      "topic": "Constitution of India",
+      "subtopic": "Fundamental Rights",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Article 17 of the Constitution abolishes untouchability and forbids its practice in any form, and the Protection of Civil Rights Act, 1955 gives it effect.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-018",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 18,
+      "subject": "Polity",
+      "topic": "Citizenship and civil rights",
+      "subtopic": null,
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "A Special Court under the 1989 Act can order removal of a person likely to commit an offence, can forfeit property used in the offence and can order measurements and photographs of the accused.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-019",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 19,
+      "subject": "Polity",
+      "topic": "Citizenship and civil rights",
+      "subtopic": null,
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "The Act requires that an offence under it be investigated by a police officer not below the rank of Deputy Superintendent of Police, so that a senior officer controls the investigation from the start.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-020",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 20,
+      "subject": "Polity",
+      "topic": "Citizenship and civil rights",
+      "subtopic": null,
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Section 18 of the Atrocities Act excludes section 438 of the CrPC, so anticipatory bail is barred, while post-arrest bail remains available on the court's terms.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-021",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 21,
+      "subject": "Polity",
+      "topic": "Judiciary",
+      "subtopic": "High Courts",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The State Government may specify a Court of Session as a Special Court to try offences under the Act only with the concurrence of the Chief Justice of the High Court, which keeps the choice of court with the judiciary.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-022",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 22,
+      "subject": "Polity",
+      "topic": "Citizenship and civil rights",
+      "subtopic": null,
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Section 8 of the Act creates presumptions of abetment where an accused gave financial assistance to a suspected offender, and of common intention or common object where a group offence followed a land or other dispute.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-023",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 23,
+      "subject": "Polity",
+      "topic": "Citizenship and civil rights",
+      "subtopic": null,
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Every offence under the Protection of Civil Rights Act, 1955 is cognizable, so the police may register a case without a magistrate's order, and most are tried summarily.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-024",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 24,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "An e-mail address has two parts separated by the at sign: the user name, which identifies the mailbox, and the domain address, which identifies the mail server, as in user@example.com.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-025",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 25,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "A menu in a graphical interface is a list of commands from which the user selects one, which is why programs group their actions under File, Edit and View menus.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-026",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 26,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Junk e-mail is called spam, the unsolicited bulk mail sent to many recipients at once for advertising or fraud.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-027",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 27,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Excel is application software, a spreadsheet program that runs on a computer, whereas a mouse, a printer and a monitor are physical devices attached to it.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-028",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 28,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "A digital watch contains an embedded computer, a small processor built into the device to run a fixed function such as timekeeping.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-029",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 29,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Tim Berners-Lee invented the World Wide Web at CERN in 1989, writing the first browser, server and the HTML and HTTP standards that make the web work.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-030",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 30,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Objective answer sheets are marked by an OMR, an optical mark reader, which senses the graphite marks in the bubbles.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-031",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 31,
+      "subject": "Madhya Pradesh Special",
+      "topic": "Schemes and institutions of Madhya Pradesh",
+      "subtopic": null,
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Akashvani Indore was commissioned on 22 May 1955, one of the early stations of All India Radio in central India, and it has broadcast from there since.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-032",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 32,
+      "subject": "Polity",
+      "topic": "State Government",
+      "subtopic": "State Legislature",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "The Madhya Pradesh Legislative Assembly has 230 elected members, a figure fixed after the 2008 delimitation and unchanged since.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-033",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 33,
+      "subject": "History",
+      "topic": "Medieval India",
+      "subtopic": "Bhakti and Sufi movements",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Tansen was born Ramtanu Pandey, a Brahmin of Gwalior, and took the name Tansen as a court musician of Raja Ramchandra Singh of Rewa before joining Akbar's court.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-034",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 34,
+      "subject": "Geography",
+      "topic": "Economic and human geography",
+      "subtopic": "Tribes of India",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "The Gond are the largest tribal community in India and also the largest in Madhya Pradesh, spread across central India and speaking Gondi, a Dravidian language.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-035",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 35,
+      "subject": "Economy",
+      "topic": "Economy of Madhya Pradesh",
+      "subtopic": "Industry of Madhya Pradesh",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Dewas houses the Bank Note Press, set up in 1975 to print currency notes for the Reserve Bank, and the town is known for that industry.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-036",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 36,
+      "subject": "Art and Culture",
+      "topic": "Literature and languages",
+      "subtopic": null,
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Bhojpuri is spoken in eastern Uttar Pradesh and western Bihar, outside Madhya Pradesh, while Brijbhasha, Malvi and Nimadi are all dialects spoken within the state.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-037",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 37,
+      "subject": "History",
+      "topic": "History of Madhya Pradesh",
+      "subtopic": "Revolt of 1857 in Madhya Pradesh",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Rani Lakshmibai died at Gwalior on 18 June 1858 after the Rani of Jhansi's forces took the fort, and her samadhi stands near Phool Bagh in Gwalior.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-038",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 38,
+      "subject": "Geography",
+      "topic": "Physiography of Madhya Pradesh",
+      "subtopic": "Satpura range",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "The Bhimbetka rock shelters lie in the Raisen district, in the Abdullaganj tehsil south of Bhopal, on the southern edge of the Vindhyas.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-039",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 39,
+      "subject": "Geography",
+      "topic": "Rivers of Madhya Pradesh",
+      "subtopic": "Lakes and waterfalls",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "The Chachai falls on the Bihad river in Rewa district drop about 130 metres in a single plunge, the highest in Madhya Pradesh.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-040",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 40,
+      "subject": "Geography",
+      "topic": "Rivers of Madhya Pradesh",
+      "subtopic": "Chambal basin",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "The Mahakaleshwar temple at Ujjain stands on the bank of the Kshipra, the river of the city and of the Simhastha fair.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-041",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 41,
+      "subject": "Art and Culture",
+      "topic": "Heritage Sites",
+      "subtopic": "Khajuraho group",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The Khajuraho temples stand near the town of Khajuraho in Chhatarpur district of the Bundelkhand region, built by the Chandela kings between the tenth and twelfth centuries.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-042",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 42,
+      "subject": "Madhya Pradesh Special",
+      "topic": "Schemes and institutions of Madhya Pradesh",
+      "subtopic": "Universities and research institutes",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Dr Hari Singh Gour founded the University of Sagar on 18 July 1946 with his own savings, making it the oldest university in Madhya Pradesh.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-043",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 43,
+      "subject": "Madhya Pradesh Special",
+      "topic": "Formation of Madhya Pradesh",
+      "subtopic": "Capital of Madhya Pradesh",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Singrauli, with the Singrauli coalfield and a cluster of large thermal and hydro stations feeding the national grid, is called the energy capital of Madhya Pradesh.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-044",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 44,
+      "subject": "Art and Culture",
+      "topic": "Paintings and sculpture",
+      "subtopic": "Handicrafts",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Chanderi of Ashoknagar district is the state's famous handloom textile, a fine cotton and silk fabric with zari work known since the Malwa sultanate.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-045",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 45,
+      "subject": "Art and Culture",
+      "topic": "Literature and languages",
+      "subtopic": "Books and authors",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Golden Girl is the autobiography of P.T. Usha, the Kerala sprinter called the Payyoli Express, who dominated Asian athletics in the 1980s.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-046",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 46,
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Cricket",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "The laws of cricket fix a new ball's weight between 155.9 and 163 grams, so the option giving 159.9 to 163 grams is the closest and correct range in this paper.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-047",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 47,
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Olympic and Asian Games",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Kamaljit Sandhu won the 400 metres at the 1970 Bangkok Asian Games, becoming the first Indian woman to take an Asian Games gold. P.T. Usha, M.L.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-048",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 48,
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Olympic and Asian Games",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Cricket is not an Olympic sport, having appeared only in the 1900 Games and not since, whereas skiing, cycling and archery are all on the Olympic programme.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-049",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 49,
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Other sports events",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "A chessboard has eight rows and eight columns, so the number of squares is eight times eight, that is 64.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-050",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 50,
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Other sports events",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Australia won the men's hockey World Cup in 1986, 2002 and 2010, so when this paper was set Australia had won the title three times.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-051",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 51,
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Other sports events",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "The butterfly is a swimming stroke, swum on the breast with both arms recovering together over the water and a dolphin kick.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-052",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 52,
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Other sports events",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "A kho-kho team fields nine players, of whom eight chase in pairs along the lanes while three defenders enter from the opposite side during a turn.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-053",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 53,
+      "subject": "History",
+      "topic": "Ancient India",
+      "subtopic": "Indus Valley Civilisation",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Pataliputra was the Mauryan and Gupta capital on the Ganga in Magadha, founded in the sixth century BCE, long after the Indus cities had decayed, so it is not an Indus Valley site.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-054",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 54,
+      "subject": "History",
+      "topic": "Ancient India",
+      "subtopic": "Vedic age",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Sanskrit literature begins with the Rigveda, the oldest of the four Vedas, composed in Vedic Sanskrit between about 1500 and 1000 BCE.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-055",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 55,
+      "subject": "Art and Culture",
+      "topic": "Literature and languages",
+      "subtopic": "Books and authors",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The Panchatantra is attributed to Vishnu Sharma, who according to its own preamble taught the three princes of a king through animal fables.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-056",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 56,
+      "subject": "Art and Culture",
+      "topic": "Heritage Sites",
+      "subtopic": null,
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "The four dhams of the Chardham circuit are Badrinath in the north, Puri in the east, Rameshwaram in the south and Dwarka in the west, all founded or associated with Adi Shankaracharya.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-057",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 57,
+      "subject": "Art and Culture",
+      "topic": "Festivals and fairs",
+      "subtopic": "Festivals of India",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "The Mahakumbh is held every twelve years at the four Kumbh sites of Prayag, Haridwar, Nashik and Ujjain, and the Purna Kumbh occurs twelve years after the previous Mahakumbh at the same place.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-058",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 58,
+      "subject": "Art and Culture",
+      "topic": "Dance and music",
+      "subtopic": "Musical instruments",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "The shehnai is a double-reed wind instrument of the North Indian temple and wedding tradition, with no Indo-Islamic origin, whereas the sitar, tabla and sarangi developed in the Indo-Persian courts.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-059",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 59,
+      "subject": "Economy",
+      "topic": "Indian Economy",
+      "subtopic": "Planning in India",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "The First Five Year Plan ran from 1951 to 1956, launched after the Planning Commission was set up in 1950, and concentrated on agriculture and irrigation.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-060",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 60,
+      "subject": "Economy",
+      "topic": "Indian Economy",
+      "subtopic": "Planning in India",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The Sarvodaya Plan of 1950 was drafted by Jayaprakash Narayan, who had moved from Marxism to Gandhian socialism and proposed village self-reliance and land gifts. M.N.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-061",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 61,
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": "Revolutionary movements",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "The printed options lost two names in the scan: the paper lists Jawaharlal Nehru, A. Dalal, Subhash Chandra Bose and Lal Bahadur Shastri, and the two damaged slots are restored to Nehru and Dalal. The key stays C, because the Committee was set up in 1938 by the Congress president, Subhash Chandra Bose, and Nehru only chaired it.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-062",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 62,
+      "subject": "Economy",
+      "topic": "Industry and infrastructure",
+      "subtopic": "Core industries",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "India is the world's third largest producer and consumer of fertilisers, behind China and the United States, with urea dominating consumption.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-063",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 63,
+      "subject": "Economy",
+      "topic": "International economy",
+      "subtopic": null,
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "China is the single largest source of India's imports, supplying machinery, electronics, chemicals and APIs, well ahead of the UAE, Saudi Arabia and the United States.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-064",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 64,
+      "subject": "Economy",
+      "topic": "Indian Economy",
+      "subtopic": "Public sector undertakings",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Bharat Electronics Limited is a Navratna defence electronics PSU, a step below Maharatna status.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-065",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 65,
+      "subject": "Economy",
+      "topic": "Agriculture and rural economy",
+      "subtopic": "Cropping patterns",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Viticulture is the cultivation of grapes, from the Latin vitis for vine, and covers both table grapes and wine grapes.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-066",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 66,
+      "subject": "Polity",
+      "topic": "Constitution of India",
+      "subtopic": "Fundamental Rights",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Fundamental Rights are justiciable, which means a person can move the Supreme Court under Article 32 or a High Court under Article 226 when they are violated.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-067",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 67,
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": null,
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "The Rashtriya Swayamsevak Sangh was founded on Vijayadashami in 1925 at Nagpur by Keshav Baliram Hedgewar.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-068",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 68,
+      "subject": "Polity",
+      "topic": null,
+      "subtopic": null,
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The communist parties drew their cadre from industrial and agricultural workers, the educated middle class and students and youth, and not from the business class, whose interests their programme opposed.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-069",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 69,
+      "subject": "Polity",
+      "topic": "State Government",
+      "subtopic": "State Legislature",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "The Government of India Act, 1919, implementing the Montagu-Chelmsford reforms, introduced a bicameral legislature at the centre with a Council of State and a Legislative Assembly, and introduced dyarchy in the provinces.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-070",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 70,
+      "subject": "Polity",
+      "topic": "Constitution of India",
+      "subtopic": "Directive Principles",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The Directive Principles of State Policy are non-justiciable: Article 37 says they are not enforceable in any court, though they are fundamental in governance.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-071",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 71,
+      "subject": "Polity",
+      "topic": "Constitution of India",
+      "subtopic": "Preamble",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The 42nd Amendment, passed in 1976 during the Emergency, added the words socialist and secular to the Preamble and made other sweeping changes.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-072",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 72,
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Agriculture in India",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Rabi crops are sown in October and November with the retreating monsoon's moisture and harvested in spring, which is why wheat, gram, barley and mustard are the rabi staples.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-073",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 73,
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Transport in India",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "corrected",
+      "note": "NH 7, Varanasi to Kanyakumari, about 2,369 km, was the longest national highway before the 2010 renumbering, when it became part of NH 44; NH 1 from Delhi to Amritsar is about 456 km, so the printed key A is a transcription error and the answer is D.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-074",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 74,
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Rivers of India",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "The Narmada flows west through the Vindhya and Satpura rift into the Arabian Sea and forms an estuary at Bharuch rather than a delta, because the rift valley carries little sediment and the tides are strong.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-075",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 75,
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Soils of India",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Deforestation dries up spring-fed streams, destroys habitats and exposes soil to erosion, but urbanisation is a cause of forest loss rather than its effect.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-076",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 76,
+      "subject": "Geography",
+      "topic": "Maps and location",
+      "subtopic": "Cartography",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "The National Atlas and Thematic Mapping Organisation, which prepares the national atlas and thematic maps, is based in Kolkata, having grown out of the map division of the old Survey of India establishment there.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-077",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 77,
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Rivers of India",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "The Bhagirathi rises from the Gomukh snout of the Gangotri glacier in Uttarakhand and joins the Alaknanda at Devprayag to become the Ganga.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-078",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 78,
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": "Landforms and their evolution",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Nanda Devi, at 7,816 metres the highest peak entirely within India, stands in the Garhwal Himalaya of Uttarakhand, in Chamoli district near the Tibet border.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-079",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 79,
+      "subject": "Geography",
+      "topic": "Physiography of Madhya Pradesh",
+      "subtopic": "Satpura range",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "The Shiwaliks are the outermost, southernmost range of the Himalayan system, running from Jammu to Assam below the Lesser Himalaya.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-080",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 80,
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Transport in India",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Cochin, Mangalore and Kandla are all ports on the coast, while Bengaluru is an inland city in the Deccan with no harbour, so it is the one that is not a harbour.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-081",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 81,
+      "subject": "Geography",
+      "topic": "World Geography",
+      "subtopic": "International boundaries",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "India's longest international boundary is with Bangladesh, about 4,096 kilometres, mostly in West Bengal, Assam, Meghalaya and Tripura.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-082",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 82,
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": "Socio-religious reform movements",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Swami Vivekananda addressed the Parliament of Religions at Chicago on 11 September 1893, opening with the words 'Sisters and Brothers of America'.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-083",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 83,
+      "subject": "Economy",
+      "topic": "Indian Economy",
+      "subtopic": "Planning in India",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The Prime Minister was the ex-officio chairman of the Planning Commission from its creation in 1950, which is why the office was abolished with the Commission in 2015.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-084",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 84,
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": "Revolutionary movements",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Subhash Chandra Bose set up the headquarters of the Indian National Army at Rangoon in 1943 after the Azad Hind government was proclaimed in Singapore, and Rangoon remained its base until the Japanese collapse in 1945.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-085",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 85,
+      "subject": "History",
+      "topic": "Medieval India",
+      "subtopic": "Maratha empire",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "The Third Battle of Panipat was fought on 14 January 1761 between Ahmad Shah Abdali and the Maratha confederacy, ending in a decisive Maratha defeat.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-086",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 86,
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": "Socio-religious reform movements",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Satyarth Prakash, the Arya Samaj's foundational text in Hindi, was written by Swami Dayanand Saraswati in 1875 and sets out his programme of Vedic reform and opposition to idolatry.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-087",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 87,
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": "Revolutionary movements",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "The printed option A survived the scan only as the initial \"V.\"; the paper reads V.D. Savarkar, which the answer set confirms, and the option is restored to that name without changing the key D (Lala Har Dayal, who organised the Ghadar Party in 1913).",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-088",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 88,
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": "Acts and constitutional development",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "The Charter Act of 1833 ended the Company's remaining commercial monopoly, including the tea and China trade, and left it with political functions only; the 1813 Act had ended the general Indian trade monopoly while keep.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-089",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 89,
+      "subject": "Current Affairs",
+      "topic": "International current affairs",
+      "subtopic": "International organisations",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "ASEAN's ten members are Indonesia, Malaysia, the Philippines, Singapore, Thailand, Brunei, Vietnam, Laos, Myanmar and Cambodia, so Vietnam, Thailand and Indonesia are members and South Korea is not.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-090",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 90,
+      "subject": "Environment",
+      "topic": "Pollution and climate change",
+      "subtopic": "Air pollution",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "The Bhopal gas tragedy occurred on the night of 2-3 December 1984, when methyl isocyanate escaped from the Union Carbide plant, killing thousands and injuring lakhs.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-091",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 91,
+      "subject": "Current Affairs",
+      "topic": "Science and technology current affairs",
+      "subtopic": "Technology launches",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "China test-launched its first 3D television channel on 1 January 2012, run jointly by CCTV and five local stations in Beijing, Tianjin, Shanghai, Jiangsu and Shenzhen.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-092",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 92,
+      "subject": "Economy",
+      "topic": "Industry and infrastructure",
+      "subtopic": "Transport infrastructure",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "The Pradhan Mantri Bharat Jodo Pariyojana was a proposed road programme to link state capitals and major cities with four-lane highways, so it belongs to the development of highways.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-093",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 93,
+      "subject": "Science and Technology",
+      "topic": "Health and diseases",
+      "subtopic": "Vaccination",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Edward Jenner is called the father of immunology for demonstrating smallpox vaccination in 1796, the first deliberate use of immunity to prevent disease.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-094",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 94,
+      "subject": "Art and Culture",
+      "topic": "Literature and languages",
+      "subtopic": "Books and authors",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "The Namesake is a novel by Jhumpa Lahiri about a Bengali family in America and its son's search for identity.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-095",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 95,
+      "subject": "Polity",
+      "topic": "Judiciary",
+      "subtopic": "Supreme Court",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The Supreme Court of India was inaugurated on 28 January 1950, two days after the Constitution came into force, replacing the Federal Court.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-096",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 96,
+      "subject": "Current Affairs",
+      "topic": "International current affairs",
+      "subtopic": "Bilateral relations",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "In January 2013 a British delegation led by the public health minister Anna Soubry visited Kerala and expressed interest in a partnership in health, covering education, research, training, technology and equipment, so th.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-097",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 97,
+      "subject": "Art and Culture",
+      "topic": "Festivals and fairs",
+      "subtopic": "Festivals of India",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The snake-boat race is the Vallam Kali held during Onam in Kerala, when long chundan vallam crews row to the rhythm of songs.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-098",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 98,
+      "subject": "Environment",
+      "topic": "Conservation initiatives",
+      "subtopic": null,
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "ambiguous",
+      "note": "The UN General Assembly declared the International Decade for Natural Disaster Reduction for 1990-1999 in resolution 44/236, and no option gives that span; 1991-2000 merely overlaps it, so the keyed option A is retained as the closest available and the defect in the question is recorded rather than repaired.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-099",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 99,
+      "subject": "History",
+      "topic": "Art and architecture",
+      "subtopic": "Painting schools",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Madhubani painting, also called Mithila painting, is a folk art of the Mithila region of Bihar, done with twigs, fingers and natural dyes on mud walls and paper.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2013-100",
+      "year": 2013,
+      "paper_id": "MPPSC-2013-P1",
+      "question_number": 100,
+      "subject": "Environment",
+      "topic": "Environmental laws and institutions",
+      "subtopic": "Environment Protection Act",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "The Environment (Protection) Act, 1986 is described as umbrella legislation because it gives the central government wide power to take measures for environmental protection and to set standards, and later rules on hazard.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    }
+  ]
+}
