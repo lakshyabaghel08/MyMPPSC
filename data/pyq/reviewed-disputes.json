@@ -139,6 +139,30 @@
       "status": "resolved",
       "raised_by": "2024 quality audit (re-verification)",
       "reason": "Madhya Pradesh produces roughly 2% of India's iron ore and stands fifth, behind Odisha, Chhattisgarh, Karnataka and Jharkhand, so statement A (MP third) is the incorrect one and is the answer. Statement D, that the reserves shrank after the separation of Chhattisgarh, is true; the printed key (D) contradicted its own statement set."
+    },
+    "MPPSC-2019-002": {
+      "is_disputed": true,
+      "status": "unresolved",
+      "reason": "Standard references credit Jayaprakash Narayan with the phrase partyless democracy, while Mahatma Gandhi asked the Congress to become a non-partisan Lok Sevak Sangh after independence. Both C and D are defensible and the paper keyed both, so the bank keeps the double key instead of forcing one name.",
+      "raised_by": "2019 PYQ final answer audit"
+    },
+    "MPPSC-2019-067": {
+      "is_disputed": true,
+      "status": "unresolved",
+      "reason": "Urban local body elections are conducted by the State Election Commission under Article 243ZA, which applies Part IXA and refers to the Commission constituted by Article 243K. The paper offers only 243K, 243L, 243M and 243N, so 243K is the only defensible option although it is not the article that governs municipalities directly.",
+      "raised_by": "2019 PYQ final answer audit"
+    },
+    "MPPSC-2019-066": {
+      "is_disputed": true,
+      "status": "resolved",
+      "reason": "The number of panchayat general elections depends on the date of counting: five had been held when the paper was set (1994, 1999, 2004, 2009, 2014) and the sixth followed in 2022. The printed key of five is correct for the paper and the explanation states the date dependency.",
+      "raised_by": "2019 PYQ final answer audit"
+    },
+    "MPPSC-2019-100": {
+      "is_disputed": true,
+      "status": "resolved",
+      "reason": "The question lists only four neighbours but India also has shorter boundaries with Bhutan (699 km) and Myanmar (1,643 km). Among the four countries listed the ascending order is Nepal, Pakistan, China, Bangladesh, so the printed key stands; the wording is incomplete rather than wrong.",
+      "raised_by": "2019 PYQ final answer audit"
     }
   }
 }

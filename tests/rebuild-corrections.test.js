@@ -34,7 +34,7 @@ const readJsonl = async (...parts) => (await readFile(dataPath(...parts), 'utf8'
   .filter(Boolean)
   .map((line) => JSON.parse(line));
 
-const [correctionsFile, explanationsFile, disputesFile, modelFile, bank, baseline, audit2020] = await Promise.all([
+const [correctionsFile, explanationsFile, disputesFile, modelFile, bank, baseline, audit2020, audit2019] = await Promise.all([
   readJson('pyq', 'reviewed-corrections.json'),
   readJson('pyq', 'reviewed-explanations.json'),
   readJson('pyq', 'reviewed-disputes.json'),
@@ -42,6 +42,7 @@ const [correctionsFile, explanationsFile, disputesFile, modelFile, bank, baselin
   readJson('pyq', 'mymppsc-pyq-bank.json'),
   readJsonl('pyq', 'quality-audit', 'question-audit-baseline.jsonl'),
   readJson('pyq', 'quality-audit', 'final-answer-audit-2020.json'),
+  readJson('pyq', 'quality-audit', 'final-answer-audit-2019.json'),
 ]);
 
 const bundle = parseReviewedCorrections({
@@ -94,9 +95,12 @@ test('the corrections reconcile: declared, applied and stored agree', () => {
 
 test('every correction quotes the printed key the audits recorded', () => {
   const printed2020 = new Map(audit2020.questions.map((r) => [r.id, r.printed_key]));
+  const printed2019 = new Map(audit2019.questions.map((r) => [r.id, r.printed_key]));
   const printed2124 = new Map(baseline.map((q) => [q.id, q.answer?.stored_answer ?? null]));
   for (const [id, entry] of Object.entries(correctionsFile.answer_corrections)) {
-    const printed = printed2020.has(id) ? printed2020.get(id) : printed2124.get(id);
+    const printed = printed2020.has(id) ? printed2020.get(id)
+      : printed2019.has(id) ? printed2019.get(id)
+      : printed2124.get(id);
     assert.ok(printed, `${id}: the printed key is recorded in an audit record`);
     assert.deepEqual(entry.from, printed, `${id}: the declaration quotes the printed key`);
   }
@@ -115,7 +119,12 @@ test('every correction quotes the printed key the audits recorded', () => {
   }
   assert.deepEqual(correctionsFile.final_audit_2021_2024.corrected_ids, ['MPPSC-2021-010']);
   assert.ok(fromManifest.includes('MPPSC-2021-010'), 'the 2021 correction is carried too, not only 2020');
-  assert.equal(fromManifest.length, 22, 'five 2020 keys plus the seventeen declared for 2021–2024');
+  assert.deepEqual(
+    correctionsFile.final_audit_2019.corrected_ids.slice().sort(),
+    fromManifest.filter((id) => id.startsWith('MPPSC-2019-')),
+    'the 2019 audit summary lists exactly the 2019 corrections',
+  );
+  assert.equal(fromManifest.length, 27, 'five 2020 keys, five 2019 keys and the seventeen declared for 2021–2024');
 });
 
 test('a correction is applied once: a second application is a recorded no-op', () => {
@@ -125,7 +134,11 @@ test('a correction is applied once: a second application is a recorded no-op', (
   assert.equal(first.applied.answers, 0, 'the keys are already corrected');
   assert.equal(first.applied.options, 0, 'the option texts are already repaired');
   assert.equal(first.applied.explanations, 0, 'the reviewed prose is recognised, not rewritten');
-  assert.equal(first.already_applied.explanations, first.declared.narrative_rewritten, 'every reviewed explanation is already in place');
+  assert.equal(
+    first.already_applied.explanations + first.deferred.explanations.length,
+    first.declared.narrative_rewritten,
+    'every reviewed explanation is already in place',
+  );
   assert.equal(first.applied.answers + first.already_applied.answers + first.deferred.answers.length, first.declared.answer_corrections);
   assert.equal(first.reconciled, true, 'applied + already applied + deferred accounts for every declaration');
   const snapshot = JSON.stringify(intake);
@@ -153,7 +166,7 @@ test('drifted data is rejected loudly, not overwritten', () => {
   // Orphans are errors too: a correction may not point at a question that is gone.
   assert.throws(
     () => applyReviewedCorrections({ questions: [{ id: 'MPPSC-2021-010', supplied_answer: { answer: ['A'] } }] }, bundle),
-    /answer correction names MPPSC-2020-008, which is not in the intake/,
+    /answer correction names MPPSC-2019-027, which is not in the intake/,
   );
 });
 
@@ -204,13 +217,18 @@ test('a clean rebuild reproduces the shipped bank, corrections included', async 
 
   assert.equal(result.correctionsSummary.rejected.length, 0, 'no correction was rejected during the rebuild');
   assert.equal(result.correctionsSummary.reconciled, true, 'every declaration was applied or already satisfied');
-  assert.equal(result.correctionsSummary.applied.answers, 22, 'all 22 corrected keys were re-applied');
-  assert.equal(result.correctionsSummary.applied.explanations, 476, 'all 476 reviewed explanations were restored');
+  assert.equal(result.correctionsSummary.applied.answers, 27, 'all 27 corrected keys were re-applied');
+  assert.equal(
+    result.correctionsSummary.applied.explanations + result.correctionsSummary.deferred.explanations.length,
+    571,
+    'all 571 reviewed explanations were restored',
+  );
   assert.equal(result.modelSummary.added.length, 29, 'the 29 model questions were appended');
 
   const rebuilt = result.bank;
   assert.equal(rebuilt.questions.length, 1200);
   assert.equal(rebuilt.questions.filter((q) => Number(q.year) === 2020).length, 100, 'the 2020 paper still has 100 questions');
+  assert.equal(rebuilt.questions.filter((q) => Number(q.year) === 2019).length, 100, 'the 2019 paper is complete too');
   for (const paper of rebuilt.papers) {
     assert.equal(paper.question_order.length, 100, `${paper.paper_id}: 100 questions in order`);
   }
@@ -237,6 +255,10 @@ test('a clean rebuild reproduces the shipped bank, corrections included', async 
   const byId = rebuiltById;
   assert.deepEqual(byId.get('MPPSC-2021-010').supplied_answer.answer, ['A'], 'the 2021 phosphatase correction survives the rebuild');
   assert.deepEqual(byId.get('MPPSC-2020-008').supplied_answer.answer, ['D'], 'the 2020 Maharatna correction survives the rebuild');
+  assert.deepEqual(byId.get('MPPSC-2019-027').supplied_answer.answer, ['C'], 'the 2019 re-appointment correction survives the rebuild');
+  assert.deepEqual(byId.get('MPPSC-2019-046').supplied_answer.answer, ['D'], 'the 2019 karewa correction survives the rebuild');
+  assert.deepEqual(byId.get('MPPSC-2019-097').supplied_answer.answer, ['D'], 'the 2019 highway correction survives the rebuild');
+  assert.equal(byId.get('MPPSC-2019-060').explanation.option_explanations.length, 4, 'the 2019 prose travels with the rebuild');
   assert.equal(byId.get('MPPSC-2020-047').language_variants.en.options.find((o) => o.key === 'D').text, 'Lucknow', 'the repaired option text survives');
   assert.equal(byId.get('MPPSC-2020-037').dispute?.status, 'unresolved', 'the 2020 ambiguity flag survives');
   assert.deepEqual(byId.get('MPPSC-2020-009').supplied_answer.answer, ['A'], 'a model question keeps its key');

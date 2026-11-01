@@ -44,8 +44,42 @@
       },
       "answer_key_status": "supplied",
       "explanation": {
-        "correct_reasoning": "Article 72 empowers the President to grant pardons, reprieves, respites or remissions of punishment, including in court-martial cases and death sentences. Article 161 gives a similar power to a Governor, but a Governor cannot pardon a death sentence. Article 74 deals with the Council of Ministers aiding and advising the President.",
-        "language": "en"
+        "language": "en",
+        "correct_reasoning": "Article 72 empowers the President to grant pardons, reprieves, respites and remissions of punishment, and to suspend, remit or commute sentences, in all cases where the sentence is by a court martial, where the offence is against a law on a matter to which the Union's executive power extends, and in all cases of death sentences. Article 161 gives a parallel power to Governors, but they cannot touch court-martial sentences or death sentences.",
+        "option_explanations": [
+          {
+            "key": "A",
+            "text": "Article 61",
+            "is_correct": false,
+            "reason": "Article 61 is the procedure for impeachment of the President, not a pardoning power."
+          },
+          {
+            "key": "B",
+            "text": "Article 72",
+            "is_correct": true,
+            "reason": "Correct. Article 72 is the President's pardoning power, including death sentences and court martial cases."
+          },
+          {
+            "key": "C",
+            "text": "Article 74",
+            "is_correct": false,
+            "reason": "Article 74 deals with the Council of Ministers aiding and advising the President."
+          },
+          {
+            "key": "D",
+            "text": "Article 161",
+            "is_correct": false,
+            "reason": "Article 161 is the Governor's pardoning power, which is narrower and does not extend to death sentences."
+          }
+        ],
+        "key_concepts": [
+          "Article 72 — President's pardoning power",
+          "Article 161 — Governor's pardoning power, narrower in scope",
+          "Death sentence and court martial — only the President can pardon"
+        ],
+        "revision_takeaways": [
+          "72 versus 161: identical words, different ceilings — the Governor cannot pardon a death sentence."
+        ]
       },
       "subject": "Polity",
       "topic": "Constitution of India",
@@ -96,8 +130,42 @@
       },
       "answer_key_status": "supplied",
       "explanation": {
-        "correct_reasoning": "In Tibet the Brahmaputra is called the Yarlung Tsangpo. Entering Arunachal Pradesh it becomes the Siang (or Dihang), and in Bangladesh it is known as the Jamuna before joining the Ganga. The Lohit, Manas and Subansiri are its tributaries, not names of the main river.",
-        "language": "en"
+        "language": "en",
+        "correct_reasoning": "In Tibet the Brahmaputra is called the Yarlung Tsangpo, and it flows east across the Tibetan plateau before turning south through the great bend. Entering India in Arunachal Pradesh it is the Siang or Dihang, and in Bangladesh it becomes the Jamuna before joining the Ganga.",
+        "option_explanations": [
+          {
+            "key": "A",
+            "text": "Yarlung Tsangpo",
+            "is_correct": true,
+            "reason": "Correct. Yarlung Tsangpo is the Tibetan name of the Brahmaputra."
+          },
+          {
+            "key": "B",
+            "text": "Lohit",
+            "is_correct": false,
+            "reason": "The Lohit is a tributary that joins the Siang to form the Brahmaputra in Arunachal Pradesh."
+          },
+          {
+            "key": "C",
+            "text": "Manas",
+            "is_correct": false,
+            "reason": "The Manas is a northern tributary of the Brahmaputra in Assam and Bhutan."
+          },
+          {
+            "key": "D",
+            "text": "Subansiri",
+            "is_correct": false,
+            "reason": "The Subansiri is another tributary joining from Arunachal Pradesh, not a name of the main river."
+          }
+        ],
+        "key_concepts": [
+          "Yarlung Tsangpo — Brahmaputra in Tibet",
+          "Siang/Dihang — Brahmaputra in Arunachal Pradesh",
+          "Jamuna — Brahmaputra in Bangladesh"
+        ],
+        "revision_takeaways": [
+          "One river, four names: Tsangpo, Siang, Brahmaputra, Jamuna."
+        ]
       },
       "subject": "Geography",
       "topic": "Geography of India",
@@ -148,8 +216,42 @@
       },
       "answer_key_status": "supplied",
       "explanation": {
-        "correct_reasoning": "The Indian National Congress first met on 28 December 1885 at Gokuldas Tejpal Sanskrit College, Bombay, with 72 delegates. Womesh Chunder Bonnerjee presided over the session, and A. O. Hume played a leading role in organising it. The venue had originally been planned as Poona but was shifted because of a cholera outbreak there.",
-        "language": "en"
+        "language": "en",
+        "correct_reasoning": "The first session of the Indian National Congress met on 28 December 1885 at the Gokuldas Tejpal Sanskrit College in Bombay, with 72 delegates and Womesh Chunder Bonnerjee in the chair. The venue had originally been planned as Poona and was shifted because of a cholera outbreak there.",
+        "option_explanations": [
+          {
+            "key": "A",
+            "text": "Calcutta",
+            "is_correct": false,
+            "reason": "Calcutta hosted later sessions, including the 1906 session that first demanded swaraj, but not the first one."
+          },
+          {
+            "key": "B",
+            "text": "Madras",
+            "is_correct": false,
+            "reason": "Madras hosted the 1887 session, the third, not the founding one."
+          },
+          {
+            "key": "C",
+            "text": "Bombay",
+            "is_correct": true,
+            "reason": "Correct. The first Congress session of December 1885 was held at Gokuldas Tejpal Sanskrit College, Bombay."
+          },
+          {
+            "key": "D",
+            "text": "Poona",
+            "is_correct": false,
+            "reason": "Poona was the original plan for 1885 but the venue was moved to Bombay because of cholera."
+          }
+        ],
+        "key_concepts": [
+          "First Congress session — 28 December 1885, Bombay",
+          "72 delegates, W. C. Bonnerjee presiding",
+          "A. O. Hume — organiser and first general secretary"
+        ],
+        "revision_takeaways": [
+          "Bombay first, Calcutta second, Madras third — the early Congress sessions follow that order."
+        ]
       },
       "subject": "History",
       "topic": "Modern India",
@@ -200,8 +302,42 @@
       },
       "answer_key_status": "supplied",
       "explanation": {
-        "correct_reasoning": "When Madhya Pradesh was formed on 1 November 1956, Bhopal — till then the capital of the small Bhopal State — was made the capital of the new State. Indore had been the seat of Madhya Bharat’s government in rotation with Gwalior, and Jabalpur was an important administrative centre of the old Central Provinces, but neither became the capital.",
-        "language": "en"
+        "language": "en",
+        "correct_reasoning": "When the new state of Madhya Pradesh was formed on 1 November 1956 by merging Madhya Bharat, Vindhya Pradesh, Bhopal and the Mahakoshal region of the old Central Provinces, Bhopal, until then the capital of the small Bhopal State, was chosen as the capital. Indore and Gwalior had rotated as the seat of Madhya Bharat's government, and Jabalpur had been a major centre of the old Central Provinces.",
+        "option_explanations": [
+          {
+            "key": "A",
+            "text": "Indore",
+            "is_correct": false,
+            "reason": "Indore was a leading city of Madhya Bharat and shared its capital function with Gwalior, but it did not become the state capital in 1956."
+          },
+          {
+            "key": "B",
+            "text": "Bhopal",
+            "is_correct": true,
+            "reason": "Correct. Bhopal became the capital of the reorganized Madhya Pradesh on 1 November 1956."
+          },
+          {
+            "key": "C",
+            "text": "Jabalpur",
+            "is_correct": false,
+            "reason": "Jabalpur was the chief city of Mahakoshal and of the old Central Provinces, but the capital went to Bhopal."
+          },
+          {
+            "key": "D",
+            "text": "Gwalior",
+            "is_correct": false,
+            "reason": "Gwalior was the other rotating capital of Madhya Bharat, not of the new state."
+          }
+        ],
+        "key_concepts": [
+          "1 November 1956 — States Reorganisation, new Madhya Pradesh",
+          "Bhopal — capital from 1956",
+          "Madhya Bharat's rotating capital — Gwalior and Indore"
+        ],
+        "revision_takeaways": [
+          "1956 reorganisation: Madhya Pradesh's capital became Bhopal, the former Bhopal State's capital."
+        ]
       },
       "subject": "Madhya Pradesh Special",
       "topic": "Formation of Madhya Pradesh",
@@ -252,8 +388,42 @@
       },
       "answer_key_status": "supplied",
       "explanation": {
-        "correct_reasoning": "Mitochondria generate most of the cell’s chemical energy as adenosine triphosphate (ATP) through cellular respiration, and are therefore called the powerhouse of the cell. Ribosomes synthesise proteins, the Golgi apparatus packages and modifies them, and the nucleus stores the genetic material.",
-        "language": "en"
+        "language": "en",
+        "correct_reasoning": "Mitochondria are called the powerhouse of the cell because they generate most of the cell's ATP through the electron transport chain and oxidative phosphorylation, using oxygen and pyruvate from glucose breakdown. Their inner membrane carries the enzymes of respiration, and their number varies with the cell's energy demand.",
+        "option_explanations": [
+          {
+            "key": "A",
+            "text": "Nucleus",
+            "is_correct": false,
+            "reason": "The nucleus stores the genetic material and controls the cell, but it does not produce energy."
+          },
+          {
+            "key": "B",
+            "text": "Ribosome",
+            "is_correct": false,
+            "reason": "Ribosomes synthesise proteins from messenger RNA and are not energy producers."
+          },
+          {
+            "key": "C",
+            "text": "Mitochondria",
+            "is_correct": true,
+            "reason": "Correct. Mitochondria generate ATP and are therefore called the powerhouse of the cell."
+          },
+          {
+            "key": "D",
+            "text": "Golgi apparatus",
+            "is_correct": false,
+            "reason": "The Golgi apparatus modifies, sorts and packages proteins and lipids, which is not energy production."
+          }
+        ],
+        "key_concepts": [
+          "Mitochondria — ATP production by oxidative phosphorylation",
+          "Double membrane with folded cristae",
+          "Ribosome — protein synthesis; Golgi — packaging"
+        ],
+        "revision_takeaways": [
+          "Powerhouse equals ATP, which equals mitochondria — and the cristae are where it happens."
+        ]
       },
       "subject": "Science and Technology",
       "topic": "Biology",

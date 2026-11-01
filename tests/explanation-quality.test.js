@@ -90,7 +90,7 @@ const [bank, corrections] = await Promise.all([
 const byId = new Map(bank.questions.map((q) => [q.id, q]));
 const declared = corrections.option_reasoning_complete || [];
 const declaredSet = new Set(declared);
-const audited = bank.questions.filter((q) => [2020, 2021, 2022, 2023, 2024].includes(Number(q.year)));
+const audited = bank.questions.filter((q) => [2019, 2020, 2021, 2022, 2023, 2024].includes(Number(q.year)));
 const standard = audited.filter((q) => declaredSet.has(q.id));
 
 test('every question declared complete exists in the audited bank', () => {
@@ -167,7 +167,9 @@ test('the completeness list is exact: nothing complete is missing and nothing in
 
 test('coverage is counted from the bank and reported per year', () => {
   const byYear = (y) => audited.filter((q) => Number(q.year) === y);
-  // 2020 and 2021 were taken to completion in separate passes; they must stay there.
+  // 2019, 2020 and 2021 were taken to completion in separate passes; they must stay there.
+  assert.equal(byYear(2019).filter((q) => declaredSet.has(q.id)).length, 100,
+    'every 2019 explanation carries per-option reasoning');
   assert.equal(byYear(2020).filter((q) => declaredSet.has(q.id)).length, 100,
     'every 2020 explanation carries per-option reasoning');
   assert.equal(byYear(2021).filter((q) => declaredSet.has(q.id)).length, 100,
