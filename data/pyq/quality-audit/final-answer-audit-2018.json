@@ -1,0 +1,1962 @@
+{
+  "report": "Final answer audit of MPPSC 2018 Prelims Paper-I",
+  "audited_at": "2026-11-01",
+  "scope": {
+    "years": [
+      2018
+    ],
+    "papers": [
+      "MPPSC-2018-P1"
+    ],
+    "source": "data/pyq/source/MPPSC_PYQ_intake.json"
+  },
+  "method": "Every question re-read and answered independently; the printed key compared with the stored answer; explanations rebuilt with a four-part standard (concept and justification, per-option reasoning tied to the option text, revision facts, takeaway). Corrections are recorded only where the evidence contradicts the key and another option is demonstrably right; items with more than one defensible answer, a defective stem or no option supported by the evidence are recorded as ambiguous instead of being forced to a letter.",
+  "summary": {
+    "by_year": {
+      "2018": {
+        "reviewed": 100,
+        "confirmed": 96,
+        "corrected": 0,
+        "ambiguous": 4
+      }
+    },
+    "total": {
+      "reviewed": 100,
+      "confirmed": 96,
+      "corrected": 0,
+      "ambiguous": 4
+    },
+    "corrected_ids": [],
+    "ambiguous_ids": [
+      "MPPSC-2018-015",
+      "MPPSC-2018-019",
+      "MPPSC-2018-055",
+      "MPPSC-2018-078"
+    ],
+    "option_repairs": [
+      {
+        "id": "MPPSC-2018-010",
+        "key": "D",
+        "from": "Island of Lost - Kunal Basu Girls",
+        "to": "Island of Lost Girls - Kunal Basu"
+      },
+      {
+        "id": "MPPSC-2018-078",
+        "key": "A",
+        "from": "Computer technology as, modus operandi and intangibility of the environment",
+        "to": "Computer technology as modus operandi and intangibility of the environment"
+      },
+      {
+        "id": "MPPSC-2018-096",
+        "key": "C",
+        "from": "The Chairperson of- the National Human Rights Commission",
+        "to": "The Chairperson of the National Human Rights Commission"
+      }
+    ],
+    "explanations_rebuilt": 100,
+    "model_questions": [],
+    "printed_keys_compared": 100
+  },
+  "questions": [
+    {
+      "id": "MPPSC-2018-001",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 1,
+      "subject": "Environment",
+      "topic": "Wildlife of Madhya Pradesh",
+      "subtopic": "State animal and bird",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "State bird verified as paradise flycatcher (Dudhraj), notified in 1994; peacock is the national bird.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-002",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 2,
+      "subject": "Environment",
+      "topic": "Environmental laws and institutions",
+      "subtopic": "National Green Tribunal",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "NGT expansion and its 2010 statute verified; Bhopal hosts a regional bench.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-003",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 3,
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Agriculture in India",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Sikkim confirmed as the first fully organic state; MP leads only in organic area.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-004",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 4,
+      "subject": "Environment",
+      "topic": "Pollution and climate change",
+      "subtopic": "Air pollution",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Standard listing of primary urban pollutants is CO and SO2; CO2 is a greenhouse gas, not a criteria pollutant.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-005",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 5,
+      "subject": "Science and Technology",
+      "topic": "Biology",
+      "subtopic": null,
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Aloe vera is the medicinal crop; mahua has folk uses but is a minor forest produce.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-006",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 6,
+      "subject": "Science and Technology",
+      "topic": "Biology",
+      "subtopic": "Photosynthesis",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Photosynthesis stores light energy as chemical energy in glucose; 'physical energy' is not a storage category.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-007",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 7,
+      "subject": "Science and Technology",
+      "topic": "Physics",
+      "subtopic": "Sound",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Audible range 20 Hz to 20 kHz verified; the other bands are infrasonic or ultrasonic.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-008",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 8,
+      "subject": "Geography",
+      "topic": "World Geography",
+      "subtopic": "Deserts of the world",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "The Indus plain takes in the Thar and its Sindh extension, the only arid region among the four; the option wording is loose but no other option is defensible.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-009",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 9,
+      "subject": "Current Affairs",
+      "topic": "Days and dates",
+      "subtopic": "International days",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Earth Day is 22 April; 5 June and 3 March are Environment Day and Wildlife Day.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-010",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 10,
+      "subject": "Art and Culture",
+      "topic": "Literature and languages",
+      "subtopic": "Books and authors",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "The Island of Lost Girls is by Manjula Padmanabhan, so the pairing with Kunal Basu is the mismatch; option D was reordered from scan debris.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-011",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 11,
+      "subject": "Madhya Pradesh Special",
+      "topic": "Personalities and awards of Madhya Pradesh",
+      "subtopic": "Notable personalities",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Sampatiya Uikey won the 2017 Rajya Sabha by-election caused by Anil Madhav Dave's death.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-012",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 12,
+      "subject": "Current Affairs",
+      "topic": "International current affairs",
+      "subtopic": "Bilateral relations",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Twenty-seventh consecutive exchange on 1 January 2018 under the 1988 agreement verified in press reports.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-013",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 13,
+      "subject": "Current Affairs",
+      "topic": "Appointments and personalities",
+      "subtopic": null,
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Salil Parekh became Infosys CEO in January 2018; Nilekani was non-executive chairman.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-014",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 14,
+      "subject": "Economy",
+      "topic": "International economy",
+      "subtopic": "International Monetary Fund",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "IMF had 189 members in 2018 (191 today); the stored figure matches the question's date and the report notes the change.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-015",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 15,
+      "subject": "Polity",
+      "topic": "State Government",
+      "subtopic": "State Legislature",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "ambiguous",
+      "note": "Published counts of women elected in 2013 give 29 or 30, while the key says 28 and no option exceeds 28, so the item is recorded as defective rather than confirmed.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-016",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 16,
+      "subject": "Economy",
+      "topic": "Economy of Madhya Pradesh",
+      "subtopic": "State fiscal indicators",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "MP FRBM Act is Act 18 of 2005, in force from 1 January 2006; 2006 is the commencement year trap.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-017",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 17,
+      "subject": "Geography",
+      "topic": "Maps and location",
+      "subtopic": "Location",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Recognition of Jerusalem announced 6 December 2017, with the embassy move following in May 2018.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-018",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 18,
+      "subject": "Current Affairs",
+      "topic": "National current affairs",
+      "subtopic": "Reports and indices",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "October 2016 DIPP-World Bank ranking placed Andhra Pradesh and Telangana jointly first.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-019",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 19,
+      "subject": "History",
+      "topic": "Ancient India",
+      "subtopic": "Buddhism and Jainism",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "ambiguous",
+      "note": "Kalika Purana is a Shakta Upapurana on the evidence, but the official key says Jainism; the key is retained and the conflict recorded rather than the answer being rewritten.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-020",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 20,
+      "subject": "History",
+      "topic": "Ancient India",
+      "subtopic": null,
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Sarthavaha is a caravan merchant, an office of the Vaishya varna in Gupta-period records.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-021",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 21,
+      "subject": "History",
+      "topic": "Ancient India",
+      "subtopic": "Post-Mauryan period",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Shunga origins are placed at Ujjain; Pataliputra was the capital, not the homeland.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-022",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 22,
+      "subject": "History",
+      "topic": "Medieval India",
+      "subtopic": "Mughal empire",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Sher Shah's successor was Jalal Khan as Islam Shah, ruling 1545 to 1554.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-023",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 23,
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": "British conquest and consolidation",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Surat was the early Western Presidency; Bombay took over in 1687.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-024",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 24,
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": null,
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "The rotten empire sentence appears in Sister Nivedita's letters; Annie Besant attributions are an online error.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-025",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 25,
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": "Gandhian movements",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Yusuf Meher Ali coined the Quit India slogan that Gandhi adopted for the 1942 movement.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-026",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 26,
+      "subject": "Economy",
+      "topic": "Indian Economy",
+      "subtopic": "Planning in India",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Planned Economy for India (1934) is by M. Visvesvaraya.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-027",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 27,
+      "subject": "History",
+      "topic": "History of Madhya Pradesh",
+      "subtopic": "Freedom struggle in Madhya Pradesh",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Charan Paduka near Indore in 1857 is the massacre known as MP's Jallianwala Bagh.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-028",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 28,
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Rivers of India",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Ganga at about 2,525 km is the longest river within India; Godavari is the longest peninsular river.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-029",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 29,
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Physiography of India",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "The Cardamom Hills are the southernmost range of the Western Ghats.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-030",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 30,
+      "subject": "Geography",
+      "topic": "Maps and location",
+      "subtopic": "States and capitals",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Uttar Pradesh borders eight states, the highest count for any Indian state.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-031",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 31,
+      "subject": "Geography",
+      "topic": "World Geography",
+      "subtopic": "Straits and isthmuses",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Palk Strait separates India from Sri Lanka, with Adam's Bridge across it.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-032",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 32,
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": "Climatology",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "The ITCZ is the equatorial belt of converging trade winds and rising air.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-033",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 33,
+      "subject": "Environment",
+      "topic": "Wildlife of Madhya Pradesh",
+      "subtopic": "National parks",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Kanha is a tiger reserve known also for the barasingha it conserved.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-034",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 34,
+      "subject": "Economy",
+      "topic": "Economy of Madhya Pradesh",
+      "subtopic": "Industry of Madhya Pradesh",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Nepanagar houses India's first newsprint mill, set up in 1955 on the Tapti.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-035",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 35,
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": "Latitude and longitude",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Jabalpur at about 79.9 degrees east is the city nearest the 80 degrees east meridian among the options.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-036",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 36,
+      "subject": "Economy",
+      "topic": "Agriculture and rural economy",
+      "subtopic": "Minimum support price",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Bhavantar Bhugtan Yojana, 2017, is a farm price-difference payment scheme.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-037",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 37,
+      "subject": "Geography",
+      "topic": "Maps and location",
+      "subtopic": "Boundaries and neighbours",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "BSF guards the Pakistan and Bangladesh borders; ITBP holds the China border and SSB Nepal and Bhutan.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-038",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 38,
+      "subject": "Madhya Pradesh Special",
+      "topic": "Formation of Madhya Pradesh",
+      "subtopic": "Governors of Madhya Pradesh",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Acting Governors include P. V. Dixit, G. P. Singh and N. D. Ojha; G. D. Dixit does not appear in the record.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-039",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 39,
+      "subject": "Polity",
+      "topic": "Constitution of India",
+      "subtopic": "Fundamental Rights",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Article 213 is the Governor's ordinance power, parallel to Article 123 for the President.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-040",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 40,
+      "subject": "Economy",
+      "topic": "Economy of Madhya Pradesh",
+      "subtopic": null,
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Constant-price GSDP growth for 2011-12 to 2015-16 is about 7.5 per cent; the higher options are nominal or single-year figures.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-041",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 41,
+      "subject": "Polity",
+      "topic": "Union Executive",
+      "subtopic": "Prime Minister and Council of Ministers",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "The office of Parliamentary Secretary was created in 1951, with the first appointments on 11 June 1951.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-042",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 42,
+      "subject": "Polity",
+      "topic": "Constitution of India",
+      "subtopic": null,
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Article 371C belongs to Manipur, not Meghalaya, so that pairing is the mismatch.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-043",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 43,
+      "subject": "Polity",
+      "topic": "Union Legislature",
+      "subtopic": "Lok Sabha",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Eighty-four Lok Sabha seats are reserved for Scheduled Castes under Article 330.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-044",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 44,
+      "subject": "Polity",
+      "topic": "Union Legislature",
+      "subtopic": "Rajya Sabha",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Andhra Pradesh has had 11 Rajya Sabha seats since 2014, so the figure 18 is the incorrect match.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-045",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 45,
+      "subject": "Madhya Pradesh Special",
+      "topic": "Schemes and institutions of Madhya Pradesh",
+      "subtopic": "Educational institutions",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The Gwalior physical education institute was founded in August 1957 and became a deemed university in 1995.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-046",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 46,
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Other sports events",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "En passant is a chess rule for capturing a pawn that has just advanced two squares.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-047",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 47,
+      "subject": "Current Affairs",
+      "topic": "Awards and honours",
+      "subtopic": "Sports awards",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "The first Khel Ratna went to Viswanathan Anand for 1991-92.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-048",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 48,
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Other sports events",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Libero is volleyball's back-court defensive specialist.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-049",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 49,
+      "subject": "Current Affairs",
+      "topic": "Awards and honours",
+      "subtopic": "Sports awards",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Bhagwat, Bhardwaj and Nambiar shared the first Dronacharya awards in 1985, so all of them is the answer.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-050",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 50,
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Other sports events",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "The marathon is 26 miles 385 yards, or 42.195 km; the flat 42 km option is an approximation.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-051",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 51,
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Olympic and Asian Games",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Abhinav Bindra's 10m air rifle gold at Beijing 2008 is India's first individual Olympic gold.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-052",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 52,
+      "subject": "Current Affairs",
+      "topic": "Days and dates",
+      "subtopic": "National days",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "National Sports Day is 29 August, Dhyan Chand's birthday.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-053",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 53,
+      "subject": "Current Affairs",
+      "topic": "Awards and honours",
+      "subtopic": "Sports awards",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Gopichand holds the Arjuna, Dronacharya, Khel Ratna and Padma honours as player and coach.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-054",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 54,
+      "subject": "Geography",
+      "topic": "Rivers of Madhya Pradesh",
+      "subtopic": "Narmada basin",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Narmada, Tapti and Son occupy rift or fault troughs; the Chambal cuts an erosional ravine valley.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-055",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 55,
+      "subject": "Geography",
+      "topic": "Physiography of Madhya Pradesh",
+      "subtopic": "Satpura range",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "ambiguous",
+      "note": "Dhoopgarh stands in the Mahadeo Hills of the Satpura range, so both A and B are defensible; the paper's umbrella key A is kept with a dispute note.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-056",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 56,
+      "subject": "Geography",
+      "topic": "Rivers of Madhya Pradesh",
+      "subtopic": "Chambal basin",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "The Betwa joins the Yamuna, while the Kshipra, Kali Sindh and Parvati join the Chambal.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-057",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 57,
+      "subject": "Madhya Pradesh Special",
+      "topic": "Demography of Madhya Pradesh",
+      "subtopic": "Districts of Madhya Pradesh",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Jhabua is the only district touching both Rajasthan and Gujarat; Alirajpur touches Gujarat and Maharashtra.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-058",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 58,
+      "subject": "Geography",
+      "topic": "Climate and soils of Madhya Pradesh",
+      "subtopic": "Monsoon in Madhya Pradesh",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "MP has a tropical monsoon climate (Aw), not equatorial, desert or polar.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-059",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 59,
+      "subject": "Economy",
+      "topic": "Economy of Madhya Pradesh",
+      "subtopic": "Minerals of Madhya Pradesh",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Malanjkhand in Balaghat is India's largest copper mine, run by Hindustan Copper Limited.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-060",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 60,
+      "subject": "General Aptitude",
+      "topic": "Quantitative aptitude",
+      "subtopic": "Percentage and averages",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Alirajpur recorded the highest Scheduled Tribe percentage in the 2011 census, above 84 per cent.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-061",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 61,
+      "subject": "Art and Culture",
+      "topic": "Heritage Sites",
+      "subtopic": "Forts and palaces",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Gujari Mahal at Gwalior was built by Raja Man Singh Tomar for queen Mrignayani.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-062",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 62,
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Transport in India",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Shujalpur lies off the old Agra-Mumbai alignment; the question depends on the pre-2010 NH-3 numbering, which the report notes.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-063",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 63,
+      "subject": "Economy",
+      "topic": "Economy of Madhya Pradesh",
+      "subtopic": "Madhya Pradesh Budget",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "The 2017-18 MP budget provided 700 crore for AMRUT, matching the Smart Cities provision.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-064",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 64,
+      "subject": "Madhya Pradesh Special",
+      "topic": "Demography of Madhya Pradesh",
+      "subtopic": "Districts of Madhya Pradesh",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Dindori's sex ratio of about 1,002 is the district figure above 1,000 in the 2011 census.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-065",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 65,
+      "subject": "Madhya Pradesh Special",
+      "topic": "Administrative structure of Madhya Pradesh",
+      "subtopic": null,
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "P. K. Noronha is absent from the list of MP Chief Secretaries, unlike Naik, Dubey and Khanna.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-066",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 66,
+      "subject": "Polity",
+      "topic": "Local self-government",
+      "subtopic": "Local bodies in Madhya Pradesh",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The Zila Yojana Samiti Adhiniyam is Act 19 of 1995, assented to on 19 May 1995.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-067",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 67,
+      "subject": "Economy",
+      "topic": "International economy",
+      "subtopic": "International Monetary Fund",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "IFAD finances the Tejaswini rural women's programme in MP.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-068",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 68,
+      "subject": "Current Affairs",
+      "topic": "Current affairs of Madhya Pradesh",
+      "subtopic": "State schemes in news",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Mukhya Mantri Gram Sadak Yojana was implemented from 2010-11.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-069",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 69,
+      "subject": "Current Affairs",
+      "topic": "Current affairs of Madhya Pradesh",
+      "subtopic": "State schemes in news",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "The MP Incubation and Start-up Policy was introduced in 2016, aligned with Startup India.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-070",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 70,
+      "subject": "Current Affairs",
+      "topic": "Current affairs of Madhya Pradesh",
+      "subtopic": "State events",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "The Friends of MP Conclave of January 2018 was held in Indore on 3 and 4 January.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-071",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 71,
+      "subject": "Current Affairs",
+      "topic": "Current affairs of Madhya Pradesh",
+      "subtopic": "State schemes in news",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Ten hours is MP's minimum agriculture supply norm under Atal Jyoti Abhiyan; one secondary site's twelve-hour figure describes the domestic target.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-072",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 72,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "The linked collection of documents available over the internet is the World Wide Web.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-073",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 73,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "The first page a browser displays for a site is its home page.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-074",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 74,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "A portal bundles search, mail, news and other services on one entry page.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-075",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 75,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Unsolicited junk e-mail is called spam; CRAM and DRAM are memory technologies.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-076",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 76,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Only the virus among the options is disruptive software that spreads between computers.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-077",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 77,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "A telephone is not an essential video-conferencing component; camera, display and microphone are.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-078",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 78,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "ambiguous",
+      "note": "The paper keys offender skill with victim ignorance, while computer technology as modus operandi with intangibility of the environment is the other standard formulation; both are recorded.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-079",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 79,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "A cracker intrudes without authorisation and defaces sites for fraud, unlike a white hat hacker.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-080",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 80,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Flooding a site with fake traffic so customers cannot reach it is a denial of service attack.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-081",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 81,
+      "subject": "Polity",
+      "topic": "Citizenship and civil rights",
+      "subtopic": null,
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Economic boycott is defined in Section 2(bc); the printed spacing 'Section 2(b c)' denotes the same sub-clause and was left as printed.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-082",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 82,
+      "subject": "Polity",
+      "topic": "Citizenship and civil rights",
+      "subtopic": null,
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Section 18 of the PoA Act excludes Section 438 CrPC, which bars anticipatory bail.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-083",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 83,
+      "subject": "Polity",
+      "topic": "Citizenship and civil rights",
+      "subtopic": null,
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Rule 18 of the 1995 Rules is headed Material for Annual Report.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-084",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 84,
+      "subject": "Polity",
+      "topic": "Citizenship and civil rights",
+      "subtopic": null,
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Section 3(2)(zb) carries six months to five years and fine for the witchcraft-allegation offence.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-085",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 85,
+      "subject": "Polity",
+      "topic": "Citizenship and civil rights",
+      "subtopic": null,
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "The 1989 Act as amended contains 23 sections plus the Schedule of relief amounts.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-086",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 86,
+      "subject": "Polity",
+      "topic": "Citizenship and civil rights",
+      "subtopic": null,
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Section 10A gives the state government power to impose a collective fine after inquiry.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-087",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 87,
+      "subject": "Polity",
+      "topic": "Citizenship and civil rights",
+      "subtopic": null,
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Section 14A provides protection for action taken in good faith.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-088",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 88,
+      "subject": "Polity",
+      "topic": "Citizenship and civil rights",
+      "subtopic": null,
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Section 14 covers offences by companies, with a due-diligence defence.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-089",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 89,
+      "subject": "Polity",
+      "topic": "Constitution of India",
+      "subtopic": "Fundamental Rights",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Section 1(2) extends the PCR Act to the whole of India with no exclusion.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-090",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 90,
+      "subject": "Polity",
+      "topic": "Statutory and regulatory bodies",
+      "subtopic": "National Human Rights Commission",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Section 1(3) deems the Human Rights Act in force from 28 September 1993.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-091",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 91,
+      "subject": "Polity",
+      "topic": "Statutory and regulatory bodies",
+      "subtopic": "National Human Rights Commission",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Section 3(3) deems three rights commission chairpersons members; the Law Commission chairperson is not among them.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-092",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 92,
+      "subject": "Polity",
+      "topic": "Statutory and regulatory bodies",
+      "subtopic": "National Human Rights Commission",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Section 8 sets a five-year term and a seventy-year age ceiling.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-093",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 93,
+      "subject": "Polity",
+      "topic": "Statutory and regulatory bodies",
+      "subtopic": "National Human Rights Commission",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Section 13(4) deems the Commission a civil court for the listed IPC contempt and perjury offences.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-094",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 94,
+      "subject": "Polity",
+      "topic": "Statutory and regulatory bodies",
+      "subtopic": "National Human Rights Commission",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Section 19 requires the Commission to seek a report from the Central Government in armed forces cases.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-095",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 95,
+      "subject": "Polity",
+      "topic": "Judiciary",
+      "subtopic": "High Courts",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The proviso to Section 22 requires consultation with the High Court Chief Justice for sitting judges.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-096",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 96,
+      "subject": "Polity",
+      "topic": "Judiciary",
+      "subtopic": "High Courts",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Section 25 lets the Governor authorise a member to act as Chairperson of a State Commission.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-097",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 97,
+      "subject": "Polity",
+      "topic": "Statutory and regulatory bodies",
+      "subtopic": "National Human Rights Commission",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Section 39 deems members and officers public servants under IPC Section 21.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-098",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 98,
+      "subject": "Polity",
+      "topic": "Judiciary",
+      "subtopic": "Supreme Court",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Section 28 directs the State Commission's annual report to the State Government.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-099",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 99,
+      "subject": "Polity",
+      "topic": "Statutory and regulatory bodies",
+      "subtopic": "National Human Rights Commission",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Section 2(a) defines armed forces as Union forces only, excluding armed forces of the state.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2018-100",
+      "year": 2018,
+      "paper_id": "MPPSC-2018-P1",
+      "question_number": 100,
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Rivers of India",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "The Godavari basin at about 3.1 lakh square kilometres is the second largest in India.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    }
+  ]
+}

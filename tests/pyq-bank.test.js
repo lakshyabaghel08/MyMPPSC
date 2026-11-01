@@ -113,8 +113,21 @@ test('every source record arrives, with its id, year and paper intact', { skip: 
     assert.deepEqual(stored.supplied?.answer ?? null, q.answer ?? null, `${q.id}: the printed key must not change`);
   }
   // Every declared repair must correspond to a real difference, so the manifest
-  // cannot rot into a list of things that no longer happen.
+  // cannot rot into a list of things that no longer happen. The 2013–2018 papers
+  // are not in the intake, so their printed option text is read from the
+  // historical source files that the rebuild itself consumes.
   const sourceById = new Map(source.questions.map((q) => [q.id, q]));
+  const historical = await Promise.all([2013, 2014, 2015, 2016, 2017, 2018].map((year) => readJson(
+    `pyq/source/2013-18/MPPSC_Prelims_${year}_QBank_Source.json`,
+  )));
+  for (const file of historical) {
+    for (const q of file.questions) {
+      const id = `MPPSC-${file.year}-${String(q.question_number).padStart(3, '0')}`;
+      if (!sourceById.has(id)) {
+        sourceById.set(id, { id, en: { options: (q.options || []).map((o) => ({ key: o.label, text: o.text })) } });
+      }
+    }
+  }
   for (const [id, byKey] of Object.entries(corrections.option_corrections)) {
     const stored = await m.db.get(m.constants.STORES.QUESTIONS, id);
     for (const [key, entry] of Object.entries(byKey)) {

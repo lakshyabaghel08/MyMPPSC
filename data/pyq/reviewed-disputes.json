@@ -163,6 +163,30 @@
       "status": "resolved",
       "reason": "The question lists only four neighbours but India also has shorter boundaries with Bhutan (699 km) and Myanmar (1,643 km). Among the four countries listed the ascending order is Nepal, Pakistan, China, Bangladesh, so the printed key stands; the wording is incomplete rather than wrong.",
       "raised_by": "2019 PYQ final answer audit"
+    },
+    "MPPSC-2018-015": {
+      "is_disputed": true,
+      "status": "unresolved",
+      "reason": "Published counts of women elected to the MP assembly in 2013 give 29 or 30 out of 230 members, while the paper keys 28 and no printed option is higher than 28. No option states the verifiable figure, so 28 is kept only as the paper key and the item is treated as defective.",
+      "raised_by": "2018 PYQ final answer audit"
+    },
+    "MPPSC-2018-019": {
+      "is_disputed": true,
+      "status": "unresolved",
+      "reason": "The Kalika Purana is a Shakta Upapurana centred on Kali and Kamakhya, yet the 2018 paper keys Jainism and no textual link to Jain tradition exists. The keyed answer D is retained for exam accuracy and the scholarly position is stated openly in the explanation.",
+      "raised_by": "2018 PYQ final answer audit"
+    },
+    "MPPSC-2018-055": {
+      "is_disputed": true,
+      "status": "unresolved",
+      "reason": "Dhoopgarh stands at Pachmarhi in the Mahadeo Hills, which are part of the Satpura range, so both the narrower B and the broader A are defensible. The paper key A is kept as the umbrella answer.",
+      "raised_by": "2018 PYQ final answer audit"
+    },
+    "MPPSC-2018-078": {
+      "is_disputed": true,
+      "status": "unresolved",
+      "reason": "Two rival formulations of the essential features of cyber crime appear in Indian texts: computer technology as modus operandi with the intangibility of the environment, and offender skill with victim ignorance of technology. The paper keys B and that is retained, with A recorded as an equally defensible alternative.",
+      "raised_by": "2018 PYQ final answer audit"
     }
   }
 }

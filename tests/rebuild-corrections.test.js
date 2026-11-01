@@ -124,7 +124,7 @@ test('every correction quotes the printed key the audits recorded', () => {
     fromManifest.filter((id) => id.startsWith('MPPSC-2019-')),
     'the 2019 audit summary lists exactly the 2019 corrections',
   );
-  assert.equal(fromManifest.length, 27, 'five 2020 keys, five 2019 keys and the seventeen declared for 2021–2024');
+  assert.equal(fromManifest.length, 27, 'five 2020 keys, five 2019 keys and the seventeen declared for 2021–2024 — the 2018 audit corrected no key');
 });
 
 test('a correction is applied once: a second application is a recorded no-op', () => {
@@ -220,8 +220,8 @@ test('a clean rebuild reproduces the shipped bank, corrections included', async 
   assert.equal(result.correctionsSummary.applied.answers, 27, 'all 27 corrected keys were re-applied');
   assert.equal(
     result.correctionsSummary.applied.explanations + result.correctionsSummary.deferred.explanations.length,
-    571,
-    'all 571 reviewed explanations were restored',
+    671,
+    'all 671 reviewed explanations were restored',
   );
   assert.equal(result.modelSummary.added.length, 29, 'the 29 model questions were appended');
 
@@ -258,6 +258,10 @@ test('a clean rebuild reproduces the shipped bank, corrections included', async 
   assert.deepEqual(byId.get('MPPSC-2019-027').supplied_answer.answer, ['C'], 'the 2019 re-appointment correction survives the rebuild');
   assert.deepEqual(byId.get('MPPSC-2019-046').supplied_answer.answer, ['D'], 'the 2019 karewa correction survives the rebuild');
   assert.deepEqual(byId.get('MPPSC-2019-097').supplied_answer.answer, ['D'], 'the 2019 highway correction survives the rebuild');
+  assert.equal(byId.get('MPPSC-2018-010').language_variants.en.options.find((o) => o.key === 'D').text, 'Island of Lost Girls - Kunal Basu', 'the 2018 book-pair option repair survives the rebuild');
+  assert.equal(byId.get('MPPSC-2018-078').language_variants.en.options.find((o) => o.key === 'A').text, 'Computer technology as modus operandi and intangibility of the environment', 'the 2018 stray-comma repair survives the rebuild');
+  assert.equal(byId.get('MPPSC-2018-055').dispute?.status, 'unresolved', 'the 2018 multi-key flag survives the rebuild');
+  assert.equal(byId.get('MPPSC-2018-100').explanation.option_explanations.length, 4, 'the 2018 prose travels with the rebuild');
   assert.equal(byId.get('MPPSC-2019-060').explanation.option_explanations.length, 4, 'the 2019 prose travels with the rebuild');
   assert.equal(byId.get('MPPSC-2020-047').language_variants.en.options.find((o) => o.key === 'D').text, 'Lucknow', 'the repaired option text survives');
   assert.equal(byId.get('MPPSC-2020-037').dispute?.status, 'unresolved', 'the 2020 ambiguity flag survives');
