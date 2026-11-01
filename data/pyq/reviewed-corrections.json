@@ -1,0 +1,605 @@
+{
+  "version": 1,
+  "note": "Reviewed, intentional divergences from the frozen extraction and the pre-remediation audit baseline. Each entry was re-verified on the merits in the 2024 quality audit. The test suites accept exactly these changes and nothing else, so any undocumented drift still fails.",
+  "option_corrections": {
+    "MPPSC-2021-014": {
+      "D": {
+        "from": "Pakistan and Afghanistan\"",
+        "to": "Pakistan and Afghanistan"
+      }
+    },
+    "MPPSC-2021-021": {
+      "D": {
+        "from": "Chhindwara 4",
+        "to": "Chhindwara"
+      }
+    },
+    "MPPSC-2021-024": {
+      "D": {
+        "from": "Datia 5",
+        "to": "Datia"
+      }
+    },
+    "MPPSC-2021-038": {
+      "D": {
+        "from": "Consent of the President 9",
+        "to": "Consent of the President"
+      }
+    },
+    "MPPSC-2021-050": {
+      "D": {
+        "from": "31.15% 2",
+        "to": "31.15%"
+      }
+    },
+    "MPPSC-2021-074": {
+      "D": {
+        "from": "By Chairman Union Public Service 9",
+        "to": "By Chairman Union Public Service Commission"
+      }
+    },
+    "MPPSC-2021-083": {
+      "D": {
+        "from": "Dongaliya Mundi, Khargone 2",
+        "to": "Dongaliya Mundi, Khargone"
+      }
+    },
+    "MPPSC-2021-097": {
+      "D": {
+        "from": "Sal 6",
+        "to": "Sal"
+      }
+    },
+    "MPPSC-2022-026": {
+      "D": {
+        "from": "Satpura National Park 3",
+        "to": "Satpura National Park"
+      }
+    },
+    "MPPSC-2022-055": {
+      "D": {
+        "from": "Article 328 1",
+        "to": "Article 328"
+      }
+    },
+    "MPPSC-2022-077": {
+      "D": {
+        "from": "Mayurbhanj of iron ore. district has a significant place in Odisha in terms",
+        "to": "Mayurbhanj district has a significant place in Odisha in terms of iron ore."
+      }
+    },
+    "MPPSC-2022-086": {
+      "D": {
+        "from": "Generally, the winter season is dry",
+        "to": "Generally, the winter season is dry in Madhya Pradesh."
+      }
+    },
+    "MPPSC-2022-099": {
+      "D": {
+        "from": "Minister, Parliamentary Affairs Department 🔾🔾",
+        "to": "Minister, Parliamentary Affairs Department"
+      }
+    },
+    "MPPSC-2023-092": {
+      "D": {
+        "from": "1942 A.D. 7",
+        "to": "1942 A.D."
+      }
+    }
+  },
+  "answer_corrections": {
+    "MPPSC-2021-068": {
+      "from": [
+        "C",
+        "D"
+      ],
+      "to": [
+        "D"
+      ],
+      "basis": "Clarified to a single false statement: Sipahi Bahadur Sarkar was set up at Sehore (14 Jan 1858), not Indore. The other three statements are true."
+    },
+    "MPPSC-2022-018": {
+      "from": [
+        "B"
+      ],
+      "to": [
+        "C"
+      ],
+      "basis": "The Lifetime Dronacharya for hockey 2020 went to Romesh Pathania; Jude Felix got the regular (not lifetime) award."
+    },
+    "MPPSC-2022-053": {
+      "from": [
+        "C",
+        "D"
+      ],
+      "to": [
+        "D"
+      ],
+      "basis": "Both NHRC statements are true and neither explains the other, so the inclusive option D is the answer."
+    },
+    "MPPSC-2022-090": {
+      "from": [
+        "A"
+      ],
+      "to": [
+        "D"
+      ],
+      "basis": "The Narmada has cut the deep gorge between the Akhrani and Mathwar hills, not the Chambal."
+    },
+    "MPPSC-2023-001": {
+      "from": [
+        "A"
+      ],
+      "to": [
+        "B"
+      ],
+      "basis": "The order is soil preparation, sowing, irrigation, harvesting; irrigation cannot precede sowing."
+    },
+    "MPPSC-2023-009": {
+      "from": [
+        "A",
+        "C"
+      ],
+      "to": [
+        "C"
+      ],
+      "basis": "Osteoclasts are the bone-resorbing cells involved in fracture remodelling; bone formation is osteoblast work."
+    },
+    "MPPSC-2023-046": {
+      "from": [
+        "B"
+      ],
+      "to": [
+        "C"
+      ],
+      "basis": "Flipkart, Alibaba and Amazon sell business-to-consumer, so B2C."
+    },
+    "MPPSC-2023-052": {
+      "from": [
+        "B"
+      ],
+      "to": [
+        "A"
+      ],
+      "basis": "The Gaza Strip lies on the Mediterranean coast."
+    },
+    "MPPSC-2023-057": {
+      "from": [
+        "A"
+      ],
+      "to": [
+        "D"
+      ],
+      "basis": "The Vaitarna rises on the Trimbak-Anjaneri hills near Trimbakeshwar in Nashik district."
+    },
+    "MPPSC-2023-059": {
+      "from": [
+        "C"
+      ],
+      "to": [
+        "A"
+      ],
+      "basis": "The first successful tapping of underground heat for district heating was at Boise, Idaho, in 1892."
+    },
+    "MPPSC-2024-018": {
+      "from": [
+        "A"
+      ],
+      "to": [
+        "C"
+      ],
+      "basis": "The Atal Bihari Vajpayee Institute of Good Governance and Policy Analysis is in Bhopal."
+    },
+    "MPPSC-2024-029": {
+      "from": [
+        "B",
+        "C"
+      ],
+      "to": [
+        "C"
+      ],
+      "basis": "The MP tribal self-employment scheme is the Bhagwan Birsa Munda Self-Employment Scheme; Tantya Mama is a separate welfare scheme."
+    },
+    "MPPSC-2024-072": {
+      "from": [
+        "C"
+      ],
+      "to": [
+        "B"
+      ],
+      "basis": "Jharkhand (~26%) and Odisha (~25%) together exceed half of India's coal reserves."
+    },
+    "MPPSC-2024-080": {
+      "from": [
+        "D"
+      ],
+      "to": [
+        "B"
+      ],
+      "basis": "Arunachal Pradesh recorded the lowest density in Census 2011 at 17 persons per sq km."
+    }
+  },
+  "explanations_rewritten": [
+    "MPPSC-2021-001",
+    "MPPSC-2021-002",
+    "MPPSC-2021-003",
+    "MPPSC-2021-004",
+    "MPPSC-2021-005",
+    "MPPSC-2021-006",
+    "MPPSC-2021-007",
+    "MPPSC-2021-008",
+    "MPPSC-2021-009",
+    "MPPSC-2021-010",
+    "MPPSC-2021-011",
+    "MPPSC-2021-012",
+    "MPPSC-2021-013",
+    "MPPSC-2021-014",
+    "MPPSC-2021-015",
+    "MPPSC-2021-016",
+    "MPPSC-2021-017",
+    "MPPSC-2021-018",
+    "MPPSC-2021-019",
+    "MPPSC-2021-020",
+    "MPPSC-2021-021",
+    "MPPSC-2021-022",
+    "MPPSC-2021-023",
+    "MPPSC-2021-024",
+    "MPPSC-2021-025",
+    "MPPSC-2021-026",
+    "MPPSC-2021-027",
+    "MPPSC-2021-028",
+    "MPPSC-2021-029",
+    "MPPSC-2021-030",
+    "MPPSC-2021-031",
+    "MPPSC-2021-032",
+    "MPPSC-2021-033",
+    "MPPSC-2021-034",
+    "MPPSC-2021-035",
+    "MPPSC-2021-036",
+    "MPPSC-2021-037",
+    "MPPSC-2021-038",
+    "MPPSC-2021-039",
+    "MPPSC-2021-040",
+    "MPPSC-2021-041",
+    "MPPSC-2021-042",
+    "MPPSC-2021-043",
+    "MPPSC-2021-044",
+    "MPPSC-2021-045",
+    "MPPSC-2021-046",
+    "MPPSC-2021-047",
+    "MPPSC-2021-048",
+    "MPPSC-2021-049",
+    "MPPSC-2021-050",
+    "MPPSC-2021-051",
+    "MPPSC-2021-052",
+    "MPPSC-2021-053",
+    "MPPSC-2021-054",
+    "MPPSC-2021-055",
+    "MPPSC-2021-056",
+    "MPPSC-2021-057",
+    "MPPSC-2021-058",
+    "MPPSC-2021-059",
+    "MPPSC-2021-060",
+    "MPPSC-2021-061",
+    "MPPSC-2021-062",
+    "MPPSC-2021-063",
+    "MPPSC-2021-065",
+    "MPPSC-2021-066",
+    "MPPSC-2021-067",
+    "MPPSC-2021-068",
+    "MPPSC-2021-069",
+    "MPPSC-2021-070",
+    "MPPSC-2021-071",
+    "MPPSC-2021-072",
+    "MPPSC-2021-073",
+    "MPPSC-2021-074",
+    "MPPSC-2021-075",
+    "MPPSC-2021-077",
+    "MPPSC-2021-078",
+    "MPPSC-2021-079",
+    "MPPSC-2021-083",
+    "MPPSC-2021-084",
+    "MPPSC-2021-086",
+    "MPPSC-2021-087",
+    "MPPSC-2021-088",
+    "MPPSC-2021-089",
+    "MPPSC-2021-090",
+    "MPPSC-2021-091",
+    "MPPSC-2021-092",
+    "MPPSC-2021-093",
+    "MPPSC-2021-094",
+    "MPPSC-2021-095",
+    "MPPSC-2021-096",
+    "MPPSC-2021-097",
+    "MPPSC-2021-098",
+    "MPPSC-2021-099",
+    "MPPSC-2021-100",
+    "MPPSC-2022-001",
+    "MPPSC-2022-002",
+    "MPPSC-2022-003",
+    "MPPSC-2022-005",
+    "MPPSC-2022-006",
+    "MPPSC-2022-007",
+    "MPPSC-2022-008",
+    "MPPSC-2022-009",
+    "MPPSC-2022-010",
+    "MPPSC-2022-011",
+    "MPPSC-2022-012",
+    "MPPSC-2022-013",
+    "MPPSC-2022-014",
+    "MPPSC-2022-015",
+    "MPPSC-2022-016",
+    "MPPSC-2022-017",
+    "MPPSC-2022-018",
+    "MPPSC-2022-020",
+    "MPPSC-2022-021",
+    "MPPSC-2022-022",
+    "MPPSC-2022-023",
+    "MPPSC-2022-024",
+    "MPPSC-2022-025",
+    "MPPSC-2022-026",
+    "MPPSC-2022-027",
+    "MPPSC-2022-028",
+    "MPPSC-2022-029",
+    "MPPSC-2022-030",
+    "MPPSC-2022-031",
+    "MPPSC-2022-032",
+    "MPPSC-2022-033",
+    "MPPSC-2022-034",
+    "MPPSC-2022-035",
+    "MPPSC-2022-036",
+    "MPPSC-2022-037",
+    "MPPSC-2022-038",
+    "MPPSC-2022-039",
+    "MPPSC-2022-040",
+    "MPPSC-2022-041",
+    "MPPSC-2022-042",
+    "MPPSC-2022-043",
+    "MPPSC-2022-044",
+    "MPPSC-2022-045",
+    "MPPSC-2022-046",
+    "MPPSC-2022-047",
+    "MPPSC-2022-048",
+    "MPPSC-2022-049",
+    "MPPSC-2022-050",
+    "MPPSC-2022-051",
+    "MPPSC-2022-052",
+    "MPPSC-2022-053",
+    "MPPSC-2022-054",
+    "MPPSC-2022-055",
+    "MPPSC-2022-056",
+    "MPPSC-2022-057",
+    "MPPSC-2022-058",
+    "MPPSC-2022-059",
+    "MPPSC-2022-060",
+    "MPPSC-2022-061",
+    "MPPSC-2022-062",
+    "MPPSC-2022-063",
+    "MPPSC-2022-064",
+    "MPPSC-2022-065",
+    "MPPSC-2022-066",
+    "MPPSC-2022-067",
+    "MPPSC-2022-068",
+    "MPPSC-2022-069",
+    "MPPSC-2022-070",
+    "MPPSC-2022-071",
+    "MPPSC-2022-072",
+    "MPPSC-2022-073",
+    "MPPSC-2022-074",
+    "MPPSC-2022-075",
+    "MPPSC-2022-076",
+    "MPPSC-2022-077",
+    "MPPSC-2022-078",
+    "MPPSC-2022-079",
+    "MPPSC-2022-080",
+    "MPPSC-2022-081",
+    "MPPSC-2022-082",
+    "MPPSC-2022-083",
+    "MPPSC-2022-085",
+    "MPPSC-2022-086",
+    "MPPSC-2022-087",
+    "MPPSC-2022-088",
+    "MPPSC-2022-089",
+    "MPPSC-2022-090",
+    "MPPSC-2022-091",
+    "MPPSC-2022-092",
+    "MPPSC-2022-093",
+    "MPPSC-2022-094",
+    "MPPSC-2022-095",
+    "MPPSC-2022-096",
+    "MPPSC-2022-097",
+    "MPPSC-2022-098",
+    "MPPSC-2022-099",
+    "MPPSC-2022-100",
+    "MPPSC-2023-001",
+    "MPPSC-2023-003",
+    "MPPSC-2023-004",
+    "MPPSC-2023-005",
+    "MPPSC-2023-006",
+    "MPPSC-2023-007",
+    "MPPSC-2023-008",
+    "MPPSC-2023-009",
+    "MPPSC-2023-010",
+    "MPPSC-2023-011",
+    "MPPSC-2023-012",
+    "MPPSC-2023-013",
+    "MPPSC-2023-014",
+    "MPPSC-2023-015",
+    "MPPSC-2023-016",
+    "MPPSC-2023-017",
+    "MPPSC-2023-018",
+    "MPPSC-2023-019",
+    "MPPSC-2023-020",
+    "MPPSC-2023-021",
+    "MPPSC-2023-022",
+    "MPPSC-2023-023",
+    "MPPSC-2023-024",
+    "MPPSC-2023-025",
+    "MPPSC-2023-026",
+    "MPPSC-2023-027",
+    "MPPSC-2023-028",
+    "MPPSC-2023-029",
+    "MPPSC-2023-030",
+    "MPPSC-2023-031",
+    "MPPSC-2023-032",
+    "MPPSC-2023-033",
+    "MPPSC-2023-034",
+    "MPPSC-2023-035",
+    "MPPSC-2023-036",
+    "MPPSC-2023-037",
+    "MPPSC-2023-038",
+    "MPPSC-2023-039",
+    "MPPSC-2023-040",
+    "MPPSC-2023-041",
+    "MPPSC-2023-042",
+    "MPPSC-2023-043",
+    "MPPSC-2023-044",
+    "MPPSC-2023-045",
+    "MPPSC-2023-046",
+    "MPPSC-2023-048",
+    "MPPSC-2023-049",
+    "MPPSC-2023-050",
+    "MPPSC-2023-051",
+    "MPPSC-2023-052",
+    "MPPSC-2023-054",
+    "MPPSC-2023-055",
+    "MPPSC-2023-056",
+    "MPPSC-2023-057",
+    "MPPSC-2023-059",
+    "MPPSC-2023-061",
+    "MPPSC-2023-062",
+    "MPPSC-2023-063",
+    "MPPSC-2023-064",
+    "MPPSC-2023-065",
+    "MPPSC-2023-066",
+    "MPPSC-2023-067",
+    "MPPSC-2023-068",
+    "MPPSC-2023-069",
+    "MPPSC-2023-070",
+    "MPPSC-2023-071",
+    "MPPSC-2023-072",
+    "MPPSC-2023-073",
+    "MPPSC-2023-074",
+    "MPPSC-2023-075",
+    "MPPSC-2023-076",
+    "MPPSC-2023-077",
+    "MPPSC-2023-078",
+    "MPPSC-2023-079",
+    "MPPSC-2023-080",
+    "MPPSC-2023-081",
+    "MPPSC-2023-082",
+    "MPPSC-2023-083",
+    "MPPSC-2023-084",
+    "MPPSC-2023-085",
+    "MPPSC-2023-086",
+    "MPPSC-2023-087",
+    "MPPSC-2023-088",
+    "MPPSC-2023-089",
+    "MPPSC-2023-090",
+    "MPPSC-2023-091",
+    "MPPSC-2023-092",
+    "MPPSC-2023-093",
+    "MPPSC-2023-094",
+    "MPPSC-2023-095",
+    "MPPSC-2023-096",
+    "MPPSC-2023-097",
+    "MPPSC-2023-098",
+    "MPPSC-2023-099",
+    "MPPSC-2023-100",
+    "MPPSC-2024-001",
+    "MPPSC-2024-002",
+    "MPPSC-2024-003",
+    "MPPSC-2024-004",
+    "MPPSC-2024-005",
+    "MPPSC-2024-006",
+    "MPPSC-2024-007",
+    "MPPSC-2024-008",
+    "MPPSC-2024-009",
+    "MPPSC-2024-010",
+    "MPPSC-2024-011",
+    "MPPSC-2024-012",
+    "MPPSC-2024-013",
+    "MPPSC-2024-014",
+    "MPPSC-2024-015",
+    "MPPSC-2024-016",
+    "MPPSC-2024-017",
+    "MPPSC-2024-018",
+    "MPPSC-2024-020",
+    "MPPSC-2024-021",
+    "MPPSC-2024-022",
+    "MPPSC-2024-023",
+    "MPPSC-2024-024",
+    "MPPSC-2024-025",
+    "MPPSC-2024-026",
+    "MPPSC-2024-027",
+    "MPPSC-2024-028",
+    "MPPSC-2024-029",
+    "MPPSC-2024-030",
+    "MPPSC-2024-031",
+    "MPPSC-2024-032",
+    "MPPSC-2024-033",
+    "MPPSC-2024-034",
+    "MPPSC-2024-035",
+    "MPPSC-2024-036",
+    "MPPSC-2024-037",
+    "MPPSC-2024-038",
+    "MPPSC-2024-040",
+    "MPPSC-2024-041",
+    "MPPSC-2024-042",
+    "MPPSC-2024-043",
+    "MPPSC-2024-044",
+    "MPPSC-2024-045",
+    "MPPSC-2024-046",
+    "MPPSC-2024-047",
+    "MPPSC-2024-048",
+    "MPPSC-2024-049",
+    "MPPSC-2024-050",
+    "MPPSC-2024-051",
+    "MPPSC-2024-052",
+    "MPPSC-2024-053",
+    "MPPSC-2024-054",
+    "MPPSC-2024-055",
+    "MPPSC-2024-056",
+    "MPPSC-2024-057",
+    "MPPSC-2024-058",
+    "MPPSC-2024-059",
+    "MPPSC-2024-060",
+    "MPPSC-2024-061",
+    "MPPSC-2024-062",
+    "MPPSC-2024-063",
+    "MPPSC-2024-064",
+    "MPPSC-2024-065",
+    "MPPSC-2024-066",
+    "MPPSC-2024-067",
+    "MPPSC-2024-068",
+    "MPPSC-2024-069",
+    "MPPSC-2024-070",
+    "MPPSC-2024-071",
+    "MPPSC-2024-072",
+    "MPPSC-2024-074",
+    "MPPSC-2024-075",
+    "MPPSC-2024-076",
+    "MPPSC-2024-077",
+    "MPPSC-2024-078",
+    "MPPSC-2024-079",
+    "MPPSC-2024-080",
+    "MPPSC-2024-082",
+    "MPPSC-2024-083",
+    "MPPSC-2024-084",
+    "MPPSC-2024-085",
+    "MPPSC-2024-086",
+    "MPPSC-2024-087",
+    "MPPSC-2024-088",
+    "MPPSC-2024-089",
+    "MPPSC-2024-090",
+    "MPPSC-2024-092",
+    "MPPSC-2024-093",
+    "MPPSC-2024-094",
+    "MPPSC-2024-095",
+    "MPPSC-2024-096",
+    "MPPSC-2024-097",
+    "MPPSC-2024-098",
+    "MPPSC-2024-099",
+    "MPPSC-2024-100"
+  ]
+}

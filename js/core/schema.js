@@ -176,8 +176,13 @@ export function normaliseQuestion(raw, ctx = {}) {
   let explanation = null;
   if (explanationRaw) {
     const correct = asString(explanationRaw.correct_reasoning ?? explanationRaw.text);
+    // `reason` is the bank's own prose on why an option is or is not correct.
+    // It is carried through untouched so the interface can show the reasoning
+    // instead of only restating the option and labelling it.
     const optionExplanations = asArray(explanationRaw.option_explanations)
-      .map((oe) => (oe && typeof oe === 'object' ? { key: asString(oe.key), text: asString(oe.text), is_correct: asBool(oe.is_correct) } : null))
+      .map((oe) => (oe && typeof oe === 'object'
+        ? { key: asString(oe.key), text: asString(oe.text), is_correct: asBool(oe.is_correct), reason: asString(oe.reason) }
+        : null))
       .filter((oe) => oe && (oe.text || oe.key));
     const hasContent = Boolean(correct) || optionExplanations.length > 0;
     if (hasContent) {
