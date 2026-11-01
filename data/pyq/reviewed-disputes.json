@@ -237,6 +237,18 @@
       "resolution": "The key has been corrected from D to A: the question asks about the 73rd Amendment, which Madhya Pradesh implemented first.",
       "reason": "Two firsts are easily confused. Rajasthan pioneered panchayati raj in 1959 under the Balwant Rai Mehta scheme, while Madhya Pradesh was the first state to bring the 73rd Constitutional Amendment into operation, through its 1993 Panchayati Raj Act.",
       "raised_by": "2015 PYQ final answer audit"
+    },
+    "MPPSC-2014-065": {
+      "is_disputed": true,
+      "status": "resolved",
+      "reason": "The printed key names the Chairman of the Council of States, who was in fact a member of the NHRC selection committee in 2014. The Leader of the Opposition in the Rajya Sabha was not a member until the 2019 amendment, so the answer is corrected to that option and the date dependence is stated in the prose.",
+      "raised_by": "2014 PYQ final answer audit"
+    },
+    "MPPSC-2014-032": {
+      "is_disputed": true,
+      "status": "resolved",
+      "reason": "The Ghughua fossil park is officially the Mandla Plant Fossils National Park but its villages fall in Dindori district, which is not among the options. Mandla is retained as the keyed and officially named district, and the prose states the Dindori location.",
+      "raised_by": "2014 PYQ final answer audit"
     }
   }
 }

@@ -277,6 +277,58 @@
         "from": "J.",
         "to": "J.C. Bose"
       }
+    },
+    "MPPSC-2014-004": {
+      "A": {
+        "from": "",
+        "to": "L.K. Advani"
+      }
+    },
+    "MPPSC-2014-027": {
+      "A": {
+        "from": "",
+        "to": "sikkim"
+      }
+    },
+    "MPPSC-2014-035": {
+      "A": {
+        "from": "",
+        "to": "ponds and swamps"
+      }
+    },
+    "MPPSC-2014-041": {
+      "A": {
+        "from": "",
+        "to": "55 medals"
+      }
+    },
+    "MPPSC-2014-055": {
+      "B": {
+        "from": "W\\.",
+        "to": "I.U.C.N."
+      },
+      "C": {
+        "from": "",
+        "to": "I.B.W.C."
+      },
+      "D": {
+        "from": "W\\.W.F.",
+        "to": "W.W.F."
+      }
+    },
+    "MPPSC-2014-061": {
+      "B": {
+        "from": "R. Ambedkar",
+        "to": "Sardar Patel"
+      },
+      "C": {
+        "from": "",
+        "to": "B.N. Rao"
+      },
+      "D": {
+        "from": "",
+        "to": "B. R. Ambedkar"
+      }
     }
   },
   "answer_corrections": {
@@ -573,9 +625,136 @@
         "A"
       ],
       "basis": "Alexander Fleming discovered penicillin in 1928; X-rays were discovered by Wilhelm Roentgen in 1895, so the stored key B is contradicted by the facts the question tests."
+    },
+    "MPPSC-2014-001": {
+      "from": [
+        "D"
+      ],
+      "to": [
+        "B"
+      ],
+      "basis": "The decision to establish a socialistic pattern of society was taken by the Congress at Avadi in 1955 and became the stated objective of the Second Five year plan; the Fourth Plan (1969-74) pursued growth with stability, so keying D contradicts the record."
+    },
+    "MPPSC-2014-065": {
+      "from": [
+        "B"
+      ],
+      "to": [
+        "D"
+      ],
+      "basis": "Under the Protection of Human Rights Act as it stood in 2014 the selection committee for the NHRC consisted of the Prime Minister, the Speaker, the Home Minister, the Leader of the Opposition in the Lok Sabha and the Chairman of the Council of States, so the Chairman of the Rajya Sabha was a member and the Leader of the Opposition in the Rajya Sabha was not; the 2019 amendment added that post later."
+    },
+    "MPPSC-2014-069": {
+      "from": [
+        "C"
+      ],
+      "to": [
+        "B"
+      ],
+      "basis": "Section 3 of the SC and ST (Prevention of Atrocities) Act, 1989 punishes a public servant who wilfully neglects his duties with imprisonment of not less than six months, extendable to one year; the stored key C is the maximum of that range and the question asks for the minimum."
     }
   },
   "option_reasoning_complete": [
+    "MPPSC-2014-001",
+    "MPPSC-2014-002",
+    "MPPSC-2014-003",
+    "MPPSC-2014-004",
+    "MPPSC-2014-005",
+    "MPPSC-2014-006",
+    "MPPSC-2014-007",
+    "MPPSC-2014-008",
+    "MPPSC-2014-009",
+    "MPPSC-2014-010",
+    "MPPSC-2014-011",
+    "MPPSC-2014-012",
+    "MPPSC-2014-013",
+    "MPPSC-2014-014",
+    "MPPSC-2014-015",
+    "MPPSC-2014-016",
+    "MPPSC-2014-017",
+    "MPPSC-2014-018",
+    "MPPSC-2014-019",
+    "MPPSC-2014-020",
+    "MPPSC-2014-021",
+    "MPPSC-2014-022",
+    "MPPSC-2014-023",
+    "MPPSC-2014-024",
+    "MPPSC-2014-025",
+    "MPPSC-2014-026",
+    "MPPSC-2014-027",
+    "MPPSC-2014-028",
+    "MPPSC-2014-029",
+    "MPPSC-2014-030",
+    "MPPSC-2014-031",
+    "MPPSC-2014-032",
+    "MPPSC-2014-033",
+    "MPPSC-2014-034",
+    "MPPSC-2014-035",
+    "MPPSC-2014-036",
+    "MPPSC-2014-037",
+    "MPPSC-2014-038",
+    "MPPSC-2014-039",
+    "MPPSC-2014-040",
+    "MPPSC-2014-041",
+    "MPPSC-2014-042",
+    "MPPSC-2014-043",
+    "MPPSC-2014-044",
+    "MPPSC-2014-045",
+    "MPPSC-2014-046",
+    "MPPSC-2014-047",
+    "MPPSC-2014-048",
+    "MPPSC-2014-049",
+    "MPPSC-2014-050",
+    "MPPSC-2014-051",
+    "MPPSC-2014-052",
+    "MPPSC-2014-053",
+    "MPPSC-2014-054",
+    "MPPSC-2014-055",
+    "MPPSC-2014-056",
+    "MPPSC-2014-057",
+    "MPPSC-2014-058",
+    "MPPSC-2014-059",
+    "MPPSC-2014-060",
+    "MPPSC-2014-061",
+    "MPPSC-2014-062",
+    "MPPSC-2014-063",
+    "MPPSC-2014-064",
+    "MPPSC-2014-065",
+    "MPPSC-2014-066",
+    "MPPSC-2014-067",
+    "MPPSC-2014-068",
+    "MPPSC-2014-069",
+    "MPPSC-2014-070",
+    "MPPSC-2014-071",
+    "MPPSC-2014-072",
+    "MPPSC-2014-073",
+    "MPPSC-2014-074",
+    "MPPSC-2014-075",
+    "MPPSC-2014-076",
+    "MPPSC-2014-077",
+    "MPPSC-2014-078",
+    "MPPSC-2014-079",
+    "MPPSC-2014-080",
+    "MPPSC-2014-081",
+    "MPPSC-2014-082",
+    "MPPSC-2014-083",
+    "MPPSC-2014-084",
+    "MPPSC-2014-085",
+    "MPPSC-2014-086",
+    "MPPSC-2014-087",
+    "MPPSC-2014-088",
+    "MPPSC-2014-089",
+    "MPPSC-2014-090",
+    "MPPSC-2014-091",
+    "MPPSC-2014-092",
+    "MPPSC-2014-093",
+    "MPPSC-2014-094",
+    "MPPSC-2014-095",
+    "MPPSC-2014-096",
+    "MPPSC-2014-097",
+    "MPPSC-2014-098",
+    "MPPSC-2014-099",
+    "MPPSC-2014-100",
     "MPPSC-2015-001",
     "MPPSC-2015-002",
     "MPPSC-2015-003",
@@ -1295,6 +1474,106 @@
     "MPPSC-2024-080"
   ],
   "narrative_rewritten": [
+    "MPPSC-2014-001",
+    "MPPSC-2014-002",
+    "MPPSC-2014-003",
+    "MPPSC-2014-004",
+    "MPPSC-2014-005",
+    "MPPSC-2014-006",
+    "MPPSC-2014-007",
+    "MPPSC-2014-008",
+    "MPPSC-2014-009",
+    "MPPSC-2014-010",
+    "MPPSC-2014-011",
+    "MPPSC-2014-012",
+    "MPPSC-2014-013",
+    "MPPSC-2014-014",
+    "MPPSC-2014-015",
+    "MPPSC-2014-016",
+    "MPPSC-2014-017",
+    "MPPSC-2014-018",
+    "MPPSC-2014-019",
+    "MPPSC-2014-020",
+    "MPPSC-2014-021",
+    "MPPSC-2014-022",
+    "MPPSC-2014-023",
+    "MPPSC-2014-024",
+    "MPPSC-2014-025",
+    "MPPSC-2014-026",
+    "MPPSC-2014-027",
+    "MPPSC-2014-028",
+    "MPPSC-2014-029",
+    "MPPSC-2014-030",
+    "MPPSC-2014-031",
+    "MPPSC-2014-032",
+    "MPPSC-2014-033",
+    "MPPSC-2014-034",
+    "MPPSC-2014-035",
+    "MPPSC-2014-036",
+    "MPPSC-2014-037",
+    "MPPSC-2014-038",
+    "MPPSC-2014-039",
+    "MPPSC-2014-040",
+    "MPPSC-2014-041",
+    "MPPSC-2014-042",
+    "MPPSC-2014-043",
+    "MPPSC-2014-044",
+    "MPPSC-2014-045",
+    "MPPSC-2014-046",
+    "MPPSC-2014-047",
+    "MPPSC-2014-048",
+    "MPPSC-2014-049",
+    "MPPSC-2014-050",
+    "MPPSC-2014-051",
+    "MPPSC-2014-052",
+    "MPPSC-2014-053",
+    "MPPSC-2014-054",
+    "MPPSC-2014-055",
+    "MPPSC-2014-056",
+    "MPPSC-2014-057",
+    "MPPSC-2014-058",
+    "MPPSC-2014-059",
+    "MPPSC-2014-060",
+    "MPPSC-2014-061",
+    "MPPSC-2014-062",
+    "MPPSC-2014-063",
+    "MPPSC-2014-064",
+    "MPPSC-2014-065",
+    "MPPSC-2014-066",
+    "MPPSC-2014-067",
+    "MPPSC-2014-068",
+    "MPPSC-2014-069",
+    "MPPSC-2014-070",
+    "MPPSC-2014-071",
+    "MPPSC-2014-072",
+    "MPPSC-2014-073",
+    "MPPSC-2014-074",
+    "MPPSC-2014-075",
+    "MPPSC-2014-076",
+    "MPPSC-2014-077",
+    "MPPSC-2014-078",
+    "MPPSC-2014-079",
+    "MPPSC-2014-080",
+    "MPPSC-2014-081",
+    "MPPSC-2014-082",
+    "MPPSC-2014-083",
+    "MPPSC-2014-084",
+    "MPPSC-2014-085",
+    "MPPSC-2014-086",
+    "MPPSC-2014-087",
+    "MPPSC-2014-088",
+    "MPPSC-2014-089",
+    "MPPSC-2014-090",
+    "MPPSC-2014-091",
+    "MPPSC-2014-092",
+    "MPPSC-2014-093",
+    "MPPSC-2014-094",
+    "MPPSC-2014-095",
+    "MPPSC-2014-096",
+    "MPPSC-2014-097",
+    "MPPSC-2014-098",
+    "MPPSC-2014-099",
+    "MPPSC-2014-100",
     "MPPSC-2015-001",
     "MPPSC-2015-002",
     "MPPSC-2015-003",
@@ -2377,6 +2656,19 @@
       "MPPSC-2015-054",
       "MPPSC-2015-080",
       "MPPSC-2015-097"
+    ],
+    "ambiguous_ids": []
+  },
+  "final_audit_2014": {
+    "record": "data/pyq/quality-audit/final-answer-audit-2014.json",
+    "reviewed": 100,
+    "confirmed": 97,
+    "corrected": 3,
+    "ambiguous": 0,
+    "corrected_ids": [
+      "MPPSC-2014-001",
+      "MPPSC-2014-065",
+      "MPPSC-2014-069"
     ],
     "ambiguous_ids": []
   }

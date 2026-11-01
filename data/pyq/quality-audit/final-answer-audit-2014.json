@@ -1,0 +1,2026 @@
+{
+  "title": "Final answer audit of MPPSC 2014 Prelims Paper-I",
+  "year": 2014,
+  "paper_id": "MPPSC-2014-P1",
+  "audited_at": "2026-11-01",
+  "summary": {
+    "by_year": {
+      "2014": {
+        "reviewed": 100,
+        "confirmed": 97,
+        "corrected": 3,
+        "ambiguous": 0
+      }
+    },
+    "total": {
+      "reviewed": 100,
+      "confirmed": 97,
+      "corrected": 3,
+      "ambiguous": 0
+    },
+    "corrected_ids": [
+      "MPPSC-2014-001",
+      "MPPSC-2014-065",
+      "MPPSC-2014-069"
+    ],
+    "ambiguous_ids": [],
+    "answer_corrections": [
+      {
+        "id": "MPPSC-2014-001",
+        "from": [
+          "D"
+        ],
+        "to": [
+          "B"
+        ]
+      },
+      {
+        "id": "MPPSC-2014-065",
+        "from": [
+          "B"
+        ],
+        "to": [
+          "D"
+        ]
+      },
+      {
+        "id": "MPPSC-2014-069",
+        "from": [
+          "C"
+        ],
+        "to": [
+          "B"
+        ]
+      }
+    ],
+    "option_repairs": [
+      {
+        "id": "MPPSC-2014-004",
+        "key": "A",
+        "from": "",
+        "to": "L.K. Advani"
+      },
+      {
+        "id": "MPPSC-2014-027",
+        "key": "A",
+        "from": "",
+        "to": "sikkim"
+      },
+      {
+        "id": "MPPSC-2014-035",
+        "key": "A",
+        "from": "",
+        "to": "ponds and swamps"
+      },
+      {
+        "id": "MPPSC-2014-041",
+        "key": "A",
+        "from": "",
+        "to": "55 medals"
+      },
+      {
+        "id": "MPPSC-2014-055",
+        "key": "B",
+        "from": "W\\.",
+        "to": "I.U.C.N."
+      },
+      {
+        "id": "MPPSC-2014-055",
+        "key": "C",
+        "from": "",
+        "to": "I.B.W.C."
+      },
+      {
+        "id": "MPPSC-2014-055",
+        "key": "D",
+        "from": "W\\.W.F.",
+        "to": "W.W.F."
+      },
+      {
+        "id": "MPPSC-2014-061",
+        "key": "B",
+        "from": "R. Ambedkar",
+        "to": "Sardar Patel"
+      },
+      {
+        "id": "MPPSC-2014-061",
+        "key": "C",
+        "from": "",
+        "to": "B.N. Rao"
+      },
+      {
+        "id": "MPPSC-2014-061",
+        "key": "D",
+        "from": "",
+        "to": "B. R. Ambedkar"
+      }
+    ],
+    "explanations_rebuilt": 100,
+    "option_reasoning_declared_incomplete": [],
+    "model_questions": [],
+    "printed_keys_compared": 100,
+    "method": "Every one of the 100 questions was re-read and answered independently; the printed key was compared with the stored answer; each explanation was rebuilt to a four-part standard (concept and justification, per-option reasoning tied to that option text, revision facts, takeaway). A correction is recorded only where the evidence contradicts the key and another option is demonstrably right; scan damage in option text was repaired only where the printed paper or the paper's own answer set makes the intended wording certain."
+  },
+  "questions": [
+    {
+      "id": "MPPSC-2014-001",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 1,
+      "subject": "Economy",
+      "topic": "Indian Economy",
+      "subtopic": "Planning in India",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "corrected",
+      "note": "The socialistic pattern of society was adopted at Avadi in 1955 and written into the Second Five year plan; the stored key D (Fourth Plan, 1969-74) contradicts the record, so the answer is B.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-002",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 2,
+      "subject": "Polity",
+      "topic": "Local self-government",
+      "subtopic": "Panchayati Raj",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "The Balwant Rai Mehta committee of 1957 examined democratic decentralisation and recommended a three tier Panchayati Raj of village panchayat, panchayat samiti and zila parishad, which most states adopted from 1959.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-003",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 3,
+      "subject": "Economy",
+      "topic": "Indian Economy",
+      "subtopic": "GDP and GNP",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "India's industrial growth for 2013-14 on the 2011-12 base year is reported as 4.5 per cent, the figure the paper expects.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-004",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 4,
+      "subject": "Polity",
+      "topic": null,
+      "subtopic": null,
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The Bharatiya Janata Party was formed in April 1980 out of the Janata Party split, and Atal Bihari Vajpayee became its first president. L.K.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-005",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 5,
+      "subject": "Polity",
+      "topic": "Constitution of India",
+      "subtopic": "Fundamental Rights",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Article 171 of the Constitution provides for a Legislative Council, the upper house, in a state, and leaves its creation or abolition to a resolution of the Assembly followed by Parliament's approval.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-006",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 6,
+      "subject": "Economy",
+      "topic": "Indian Economy",
+      "subtopic": "Inflation",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The Communist Party of India split at its 1964 national council into the CPI and the CPI(Marxist), the latter formed at a parallel congress in Calcutta in 1964.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-007",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 7,
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Rivers of India",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "An inland drainage river has no outlet to the sea: the Ghaggar, ancient Saraswati, dies in the sands of Rajasthan at Hanumangarh.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-008",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 8,
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": "Landforms and their evolution",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Kanchenjunga, at 8,586 m the highest peak on Indian soil, stands in the Sikkim Himalaya on the border with Nepal.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-009",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 9,
+      "subject": "Geography",
+      "topic": "World Geography",
+      "subtopic": null,
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Durban is the largest port city of South Africa, on the Indian Ocean coast of KwaZulu-Natal.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-010",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 10,
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": "Latitude and longitude",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "The Tropic of Cancer runs across Madhya Pradesh (through Bhopal, Jabalpur and Rewa districts), Tripura and Mizoram, so all three states named in the options lie on it.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-011",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 11,
+      "subject": "Economy",
+      "topic": "Banking and finance",
+      "subtopic": "Commercial banks",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Fourteen major private banks were nationalised by ordinance on 19 July 1969, in Indira Gandhi's first big reform, followed by six more in 1980.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-012",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 12,
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": "Partition and independence",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Bangladesh became independent after the Indo-Pakistan war that began on 3 December 1971 and ended with Pakistan's surrender at Dhaka on 16 December 1971.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-013",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 13,
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Lakes and wetlands",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Chilika, printed here as Cilka, is the brackish water lagoon on the Odisha coast at the mouth of the Mahanadi, the largest coastal lagoon in India.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-014",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 14,
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Rivers of India",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "The Sundarbans delta is built by the Ganga and the Brahmaputra, which unite as the Padma and then break into the distributaries that form the mangrove delta.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-015",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 15,
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": null,
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "The All India Muslim League was founded at Dhaka in December 1906, with Aga Khan as its first president, in the aftermath of the partition of Bengal.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-016",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 16,
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": "Governor Generals and Viceroys",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "The Permanent Settlement of Bengal was introduced by Lord Cornwallis in 1793, fixing land revenue in perpetuity with the zamindars as revenue collectors.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-017",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 17,
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": "Partition and independence",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "The Mountbatten Plan, which provided for partition and the transfer of power, was announced by Lord Mountbatten and Attlee's government on 3 June 1947, and the Indian Independence Act followed on 18 July.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-018",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 18,
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": "Indian National Congress",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Subhash Chandra Bose was elected Congress president for 1938 at the Haripura session and re-elected for 1939 at Tripuri, where he defeated Gandhi's candidate Pattabhi Sitaramayya.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-019",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 19,
+      "subject": "History",
+      "topic": "Medieval India",
+      "subtopic": "Mughal empire",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Akbar is credited with the Mughal educational reforms, including the expansion of maktabs and madrasas, a broadened curriculum and the translation of Sanskrit and Persian works at the Ibadat Khana.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-020",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 20,
+      "subject": "History",
+      "topic": "Medieval India",
+      "subtopic": "Bhakti and Sufi movements",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "The Khalsa Panth was instituted by Guru Gobind Singh at Anandpur Sahib on Baisakhi in 1699, when the five beloved ones were initiated and the Sikh order of the baptised was founded.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-021",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 21,
+      "subject": "History",
+      "topic": "Medieval India",
+      "subtopic": "Maratha empire",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "In Shivaji's Ashta Pradhan council the foreign affairs portfolio belonged to the Sumant, who received envoys and handled treaties.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-022",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 22,
+      "subject": "History",
+      "topic": "Medieval India",
+      "subtopic": "Bhakti and Sufi movements",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Tulsidas's Ramcharitmanas, Gitawali, Kavitawali and Vinay Patrika are all his acknowledged works in Awadhi and Braj.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-023",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 23,
+      "subject": "History",
+      "topic": "Medieval India",
+      "subtopic": "Rajput states",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "The Tomar Rajputs are credited with founding Dhillika, the settlement that grew into Delhi, in the eighth century, with Anangpal Tomar as the traditional founder.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-024",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 24,
+      "subject": "History",
+      "topic": "Ancient India",
+      "subtopic": "Gupta period",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Gupta inscriptions such as those from Poona and Damodarpur record tax-free agrarian land granted to brahmins, usually as agrahara or brahmadeya villages, to secure ritual merit and loyalty.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-025",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 25,
+      "subject": "History",
+      "topic": "Medieval India",
+      "subtopic": "Delhi Sultanate",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Alauddin Khilji's market reforms fixed prices for grain, cloth, horses and slaves, created the shahna-i-mandi market officers and controlled the grain trade through royal warehouses.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-026",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 26,
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Physiography of India",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Gujarat has the longest coastline of any Indian state, roughly 1,600 km along the Gulf of Kutch and the Gulf of Khambhat, followed by Andhra Pradesh and Tamil Nadu.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-027",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 27,
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Population of India",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Among the states given, Sikkim has the smallest urban population, about 25 per cent of a total of roughly six lakh people in the 2011 census.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-028",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 28,
+      "subject": "History",
+      "topic": "Ancient India",
+      "subtopic": "Buddhism and Jainism",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "The Sutta Pitaka collects the Buddha's discourses on ethics, doctrine and meditation, and is the source of most of what is known of his teaching.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-029",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 29,
+      "subject": "General Aptitude",
+      "topic": "Quantitative aptitude",
+      "subtopic": "Percentage and averages",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "In the 2011 census Madhya Pradesh had about 7.25 crore people, of whom roughly 5.25 crore lived in villages, leaving the rural population at 72.4 per cent.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-030",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 30,
+      "subject": "Economy",
+      "topic": "Economy of Madhya Pradesh",
+      "subtopic": "Agriculture of Madhya Pradesh",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Legal opium cultivation in Madhya Pradesh is licensed in Mandsaur, Neemuch and Ratlam districts of the Malwa plateau, with Mandsaur as the historic centre of the trade.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-031",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 31,
+      "subject": "General Aptitude",
+      "topic": "Quantitative aptitude",
+      "subtopic": "Ratio and proportion",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Balaghat recorded the highest female-male ratio in Madhya Pradesh in the 2011 census, with 1,021 women per thousand men, ahead of Alirajpur, Mandla and Dindori.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-032",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 32,
+      "subject": "Environment",
+      "topic": "Wildlife of Madhya Pradesh",
+      "subtopic": "National parks",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The Fossil National Park of Madhya Pradesh is the Ghughua plant fossil site, officially the Mandla Plant Fossils National Park, spread over villages that fall in Dindori district near the Mandla border.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-033",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 33,
+      "subject": "Environment",
+      "topic": "Forests of Madhya Pradesh",
+      "subtopic": "Forest types",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Teak, the state's most valuable hardwood, covers about 17.8 per cent of the total forest area of Madhya Pradesh, which makes it the largest single species group in the forest.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-034",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 34,
+      "subject": "Economy",
+      "topic": "Agriculture and rural economy",
+      "subtopic": "Irrigation",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The irrigation potential of Madhya Pradesh is usually quoted as about 44.94 lakh hectares in the state's own irrigation literature, the figure the paper expects.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-035",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 35,
+      "subject": "Environment",
+      "topic": "Ecology and biodiversity",
+      "subtopic": "Ecosystem",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Lentic habitats are standing fresh water bodies such as ponds, lakes and swamps, where the water does not flow, while lotic habitats are running waters such as rivers and waterfalls.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-036",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 36,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Nuclear technology",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Uranium, in its fissile isotope U-235, is the material that sustains the chain reaction in a nuclear bomb, which is why enrichment is the sensitive step in any weapons programme.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-037",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 37,
+      "subject": "Madhya Pradesh Special",
+      "topic": "Demography of Madhya Pradesh",
+      "subtopic": "Districts of Madhya Pradesh",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Betul district is the recognised graphite producer of Madhya Pradesh, with deposits traced in the Tikri, Gauthana and Chiklar areas in quartz mica schist.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-038",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 38,
+      "subject": "Madhya Pradesh Special",
+      "topic": "Formation of Madhya Pradesh",
+      "subtopic": "State reorganisation",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Madhya Pradesh was constituted on 1 November 1956 under the States Reorganisation Act, when the old Central Provinces and Berar were merged with Madhya Bharat, Vindhya Pradesh and Bhopal.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-039",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 39,
+      "subject": "Current Affairs",
+      "topic": "International current affairs",
+      "subtopic": "Summits and conferences",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "The 2014 APEC summit was held in Beijing, where China hosted the leaders' meeting on 10 and 11 November.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-040",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 40,
+      "subject": "Current Affairs",
+      "topic": "International current affairs",
+      "subtopic": "Summits and conferences",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "The 19th SAARC summit was to be held in Islamabad in November 2016, and Pakistan remained the proposed host after India and other members pulled out.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-041",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 41,
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Olympic and Asian Games",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "At the 17th Asian Games at Incheon in 2014 India finished eighth in the medal table with 11 gold, 10 silver and 36 bronze, a total of 57 medals.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-042",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 42,
+      "subject": "Environment",
+      "topic": "Conservation initiatives",
+      "subtopic": null,
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Australia launched the Green Army in 2014, a programme under which young people were recruited for environmental conservation and land care projects.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-043",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 43,
+      "subject": "Current Affairs",
+      "topic": "Awards and honours",
+      "subtopic": "International awards",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "The 2014 Nobel Prize in Chemistry went to Eric Betzig, Stefan W. Hell and William E. Moerner for super-resolved fluorescence microscopy.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-044",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 44,
+      "subject": "Science and Technology",
+      "topic": "Health and diseases",
+      "subtopic": "Epidemics and pandemics",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Liberia was the country worst hit by the 2014 Ebola outbreak in West Africa, with the largest number of cases and deaths recorded by the World Health Organization.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-045",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 45,
+      "subject": "Polity",
+      "topic": "Union Executive",
+      "subtopic": "Prime Minister and Council of Ministers",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Swachh Bharat Mission was launched by Prime Minister Narendra Modi on 2 October 2014, Gandhi Jayanti, with the stated aim of a clean India by 2019, the 150th birth anniversary of Gandhi.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-046",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 46,
+      "subject": "Environment",
+      "topic": "Pollution and climate change",
+      "subtopic": "Global warming",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The Kyoto Protocol sets binding emission reduction targets for greenhouse gases, mainly carbon dioxide, methane and nitrous oxide, for developed country parties.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-047",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 47,
+      "subject": "Science and Technology",
+      "topic": "Biology",
+      "subtopic": null,
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "In the human eye the cornea and lens refract light, but the image is actually formed on the retina, where photoreceptors convert it into nerve signals.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-048",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 48,
+      "subject": "Current Affairs",
+      "topic": "National current affairs",
+      "subtopic": "National events",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "The 102nd Indian Science Congress was held at the University of Mumbai in January 2015, with the theme of science and technology for human development.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-049",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 49,
+      "subject": "Polity",
+      "topic": "State Government",
+      "subtopic": "Chief Minister and State Council of Ministers",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "K. Chandrashekhar Rao was sworn in as the first Chief Minister of Telangana on 2 June 2014, the day the state was formed as India's 29th state.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-050",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 50,
+      "subject": "Science and Technology",
+      "topic": "Biology",
+      "subtopic": "Plant physiology",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Halophytes are plants adapted to live in saline soils or salt water, such as mangroves and salt-marsh grasses, and they manage salt through salt glands, succulence and ion storage.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-051",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 51,
+      "subject": "Science and Technology",
+      "topic": "Health and diseases",
+      "subtopic": null,
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Blue baby syndrome is methaemoglobinaemia caused by high nitrate in drinking water, which infants convert to nitrite, and the nitrite binds haemoglobin so that it cannot carry oxygen.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-052",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 52,
+      "subject": "Science and Technology",
+      "topic": "Physics",
+      "subtopic": null,
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "The Sun's diameter is about 109 times the Earth's, which is the standard figure quoted in school textbooks and the reason the Sun could hold roughly 1.3 million Earths by volume.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-053",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 53,
+      "subject": "Science and Technology",
+      "topic": "Physics",
+      "subtopic": null,
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Neptune is the coldest planet in the solar system, with a cloud-top temperature around minus 214 degrees Celsius, because it is the farthest from the Sun and receives the least solar energy.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-054",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 54,
+      "subject": "Current Affairs",
+      "topic": "Days and dates",
+      "subtopic": "International days",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "The International Day for the Preservation of the Ozone Layer is observed on 16 September, the date in 1987 on which the Montreal Protocol was signed.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-055",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 55,
+      "subject": "Environment",
+      "topic": "Ecology and biodiversity",
+      "subtopic": "Species status",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The organisation related to the Red List and the Red Data Book is the International Union for Conservation of Nature, which assesses species worldwide and assigns each a threat category.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-056",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 56,
+      "subject": "Environment",
+      "topic": "Conservation initiatives",
+      "subtopic": null,
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Sunderlal Bahuguna is the name most associated with the Chipko movement, the 1970s hill women's movement against commercial felling in the Garhwal Himalaya, which he carried to national attention through long fasts and p.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-057",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 57,
+      "subject": "Environment",
+      "topic": "Pollution and climate change",
+      "subtopic": "Ozone depletion",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The Montreal Protocol of 1987 is the treaty that phased out chlorofluorocarbons and other ozone-depleting substances, after the discovery of the Antarctic ozone hole.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-058",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 58,
+      "subject": "Economy",
+      "topic": "Indian Economy",
+      "subtopic": "Public sector undertakings",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "The Rangarajan Committee of 2012 reviewed the disinvestment policy for central public sector enterprises and suggested a differentiated approach between majority and minority stakes.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-059",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 59,
+      "subject": "Polity",
+      "topic": "Constitutional bodies",
+      "subtopic": "Election Commission of India",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Article 324 of the Constitution vests the superintendence, direction and control of elections in the Election Commission, covering Parliament, state legislatures, the President and the Vice-President.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-060",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 60,
+      "subject": "Economy",
+      "topic": "Agriculture and rural economy",
+      "subtopic": null,
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "India is the second largest silk producer in the world after China, with Karnataka, Andhra Pradesh, Tamil Nadu and West Bengal as the leading states.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-061",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 61,
+      "subject": "Polity",
+      "topic": "Constitution of India",
+      "subtopic": "Fundamental Rights",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Sardar Vallabhbhai Patel chaired the Advisory Committee on Fundamental Rights, Minorities and Tribal and Excluded Areas set up by the Constituent Assembly on 24 January 1947.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-062",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 62,
+      "subject": "History",
+      "topic": "Medieval India",
+      "subtopic": "Vijayanagara and Bahmani",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "The Hazara Rama temple at Hampi was built in the early sixteenth century under Krishnadeva Raya of the Tuluva dynasty, and its walls carry narrative panels of the Ramayana.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-063",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 63,
+      "subject": "Polity",
+      "topic": "Constitution of India",
+      "subtopic": "Constitutional amendments",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "The voting age was lowered from 21 to 18 by the 61st Constitutional Amendment Act of 1988, which altered Article 326.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-064",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 64,
+      "subject": "Polity",
+      "topic": "Judiciary",
+      "subtopic": "High Courts",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The chairperson and members of a State Human Rights Commission are appointed by the Governor, on the recommendation of a committee headed by the Chief Minister.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-065",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 65,
+      "subject": "Polity",
+      "topic": "Statutory and regulatory bodies",
+      "subtopic": "National Human Rights Commission",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "corrected",
+      "note": "In 2014 the NHRC selection committee was the Prime Minister, the Speaker, the Home Minister, the Leader of the Opposition in the Lok Sabha and the Chairman of the Council of States, so option B was a member and option D was not; the stored key B was wrong, and the 2019 amendment later added the Leader of the Opposition in the Rajya Sabha.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-066",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 66,
+      "subject": "History",
+      "topic": "Ancient India",
+      "subtopic": "Gupta period",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Abhinavagupta was a Kashmir Shaiva philosopher, famous for the Tantraloka and the Abhinavabharati commentary on Bharata's Natyashastra, not a Vedanta thinker.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-067",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 67,
+      "subject": "Polity",
+      "topic": "Citizenship and civil rights",
+      "subtopic": null,
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Section 16 of the SC and ST (Prevention of Atrocities) Act, 1989 gives the State Government the power to impose and realise a collective fine, applying Section 10A of the Protection of Civil Rights Act, 1955 for that pur.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-068",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 68,
+      "subject": "Polity",
+      "topic": "Citizenship and civil rights",
+      "subtopic": null,
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Under the Protection of Civil Rights Act, 1955 every person in charge of a company's business at the time an offence is committed, whether director, manager, secretary or other officer, is deemed guilty unless he proves .",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-069",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 69,
+      "subject": "Polity",
+      "topic": "Citizenship and civil rights",
+      "subtopic": null,
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "corrected",
+      "note": "Section 3 of the SC and ST (Prevention of Atrocities) Act sets a minimum of six months imprisonment, extendable to one year, so the stored key C (one year) is the ceiling and the answer is six months.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-070",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 70,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Dial-up service is the slowest internet connection of the four, because it carries data over an ordinary telephone line at up to 56 kbps and blocks the phone while connected.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-071",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 71,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "SMPS stands for switched mode power supply, the circuit that converts AC to regulated DC by switching at high frequency, which is why computer power units are small and efficient.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-072",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 72,
+      "subject": "Polity",
+      "topic": "Citizenship and civil rights",
+      "subtopic": null,
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Under the Protection of Civil Rights Act, 1955 every offence is cognizable and, unless punishable with a minimum above three months, may be tried summarily by a Judicial Magistrate of the First Class.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-073",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 73,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Routers, hubs and switches are all connecting devices: a hub repeats signals to every port, a switch forwards frames to the right port and a router joins different networks.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-074",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 74,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "One byte consists of eight bits, which gives 256 possible values and enough room to encode a single ASCII character.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-075",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 75,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "A firewall inspects incoming and outgoing traffic against rules and blocks unauthorised access to or from a private network, which is its defining purpose.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-076",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 76,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "FTP stands for File Transfer Protocol, the standard protocol for moving files between a client and a server over a TCP/IP network.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-077",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 77,
+      "subject": "Geography",
+      "topic": "Rivers of Madhya Pradesh",
+      "subtopic": "Betwa basin",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Orchha, the former Bundela capital in Tikamgarh district, stands on the Betwa and is famous for its fort, palaces and chhatris along the river.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-078",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 78,
+      "subject": "Geography",
+      "topic": "Physiography of Madhya Pradesh",
+      "subtopic": "Baghelkhand plateau",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "White tigers are associated with Baghelkhand, the region around Bandhavgarh and Rewa, where the white tiger was first documented and where Maharaja Martand Singh of Rewa kept the famous Mohan.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-079",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 79,
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Word processing, spreadsheets and photo editors are application software, written to do a particular job for the user.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-080",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 80,
+      "subject": "Current Affairs",
+      "topic": "Current affairs of Madhya Pradesh",
+      "subtopic": "State awards and appointments",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The Tansen Samman for 2014 was awarded to the Hindustani vocalist Prabhakar Karekar, a Gwalior gharana exponent, by the Madhya Pradesh government at the Tansen Sangeet Samaroh in Gwalior.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-081",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 81,
+      "subject": "Madhya Pradesh Special",
+      "topic": "Tribes of Madhya Pradesh",
+      "subtopic": "Baiga",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The Gaur dance, the bison-horn dance of the Mauriya or Muria tribe, is the best-known tribal dance of Madhya Pradesh.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-082",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 82,
+      "subject": "Art and Culture",
+      "topic": "Literature and languages",
+      "subtopic": "Literature of Madhya Pradesh",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "Dharmvir Bharati was born and worked mainly in Uttar Pradesh and is known for Andha Yug and his Allahabad associations, so he is the figure not associated with Madhya Pradesh.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-083",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 83,
+      "subject": "History",
+      "topic": "Medieval India",
+      "subtopic": "Medieval administration and revenue",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "The Cholas are famous for efficient rural administration, built around the village assembly or sabha, the ur and the nadu, with land revenue records and local self-government described in inscriptions.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-084",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 84,
+      "subject": "History",
+      "topic": "History of Madhya Pradesh",
+      "subtopic": "Chandela dynasty",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "The Khajuraho temples were built by the Chandel rulers of Bundelkhand between about 950 and 1050 AD, the most famous being those of Kandariya Mahadev and Vishwanath.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-085",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 85,
+      "subject": "History",
+      "topic": "History of Madhya Pradesh",
+      "subtopic": "Maratha rule in Madhya Pradesh",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The Nimar festival, also called the Nimar Utsav, is held every year at Maheshwar on the Narmada in Khargone district, celebrating the culture of the Nimar region.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-086",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 86,
+      "subject": "Economy",
+      "topic": "Economy of Madhya Pradesh",
+      "subtopic": "Minerals of Madhya Pradesh",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "Malanjkhand in Balaghat district is India's largest copper deposit and the site of the Malanjkhand copper project run by Hindustan Copper Limited.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-087",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 87,
+      "subject": "Economy",
+      "topic": "Economy of Madhya Pradesh",
+      "subtopic": "Industry of Madhya Pradesh",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "The Birsinghpur hydro power station stands on the Son river in Umaria district, near the Birsinghpur Pali area, with a capacity of about 20 MW.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-088",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 88,
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Mineral resources of India",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "Bauxite is the principal ore from which aluminium is extracted, refined into alumina and then smelted in electrolytic cells.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-089",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 89,
+      "subject": "Geography",
+      "topic": "Physiography of Madhya Pradesh",
+      "subtopic": "Satpura range",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "The Narmada flows west through the trough between the Vindhyachal range to the north and the Satpura range to the south, a classic rift valley.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-090",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 90,
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Other sports events",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "The Hockey India League began in 2013 with five franchises, and the first title went to the Ranchi Rhinos.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-091",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 91,
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Rivers of India",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The Narmada valley is a rift valley, formed when the land between two parallel faults subsided, with the Vindhyas on one side and the Satpuras on the other.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-092",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 92,
+      "subject": "Madhya Pradesh Special",
+      "topic": "Personalities and awards of Madhya Pradesh",
+      "subtopic": "State awards",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The Prabhash Joshi award is given by the Madhya Pradesh government for mallakhamb, the traditional sport of pole gymnastics that the state declared its official sport in 2013.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-093",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 93,
+      "subject": "Art and Culture",
+      "topic": "Literature and languages",
+      "subtopic": "Books and authors",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "One-Day Wonders is Sunil Gavaskar's book, written with his account of the 1983 World Cup and of one-day cricket's rise.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-094",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 94,
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Other sports events",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The term libro is the volleyball libero, the specialised defensive player in a contrasting jersey who stays in the back row, and the word is often printed as libro in Indian question papers.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-095",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 95,
+      "subject": "History",
+      "topic": "Medieval India",
+      "subtopic": "Maratha empire",
+      "printed_key": [
+        "B"
+      ],
+      "answer": [
+        "B"
+      ],
+      "status": "confirmed",
+      "note": "The Holkar Trophy is a bridge (card game) trophy, instituted in memory of the Holkar rulers of Indore, and contested in national-level tournaments.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-096",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 96,
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Other sports events",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "Kabaddi has a bonus line, marked about one metre inside the opponent's boundary, which a raider must cross with a foot while touching a defender to earn an extra point.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-097",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 97,
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Other sports events",
+      "printed_key": [
+        "C"
+      ],
+      "answer": [
+        "C"
+      ],
+      "status": "confirmed",
+      "note": "The Black Pearl is the nickname of the Brazilian footballer Pele, which is why the epithet is tied to football.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-098",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 98,
+      "subject": "Economy",
+      "topic": "International economy",
+      "subtopic": "World Trade Organization",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "The General Agreement on Tariffs and Trade was signed in 1947 and its secretariat began work in Geneva in 1948, where the GATT rounds were later held.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-099",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 99,
+      "subject": "Economy",
+      "topic": "Indian Economy",
+      "subtopic": "Public sector undertakings",
+      "printed_key": [
+        "D"
+      ],
+      "answer": [
+        "D"
+      ],
+      "status": "confirmed",
+      "note": "BSNL was the loss-making central public sector enterprise among the four during 2013-14, with heavy losses from falling landline revenue and competition.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    },
+    {
+      "id": "MPPSC-2014-100",
+      "year": 2014,
+      "paper_id": "MPPSC-2014-P1",
+      "question_number": 100,
+      "subject": "Geography",
+      "topic": "Maps and location",
+      "subtopic": "Location",
+      "printed_key": [
+        "A"
+      ],
+      "answer": [
+        "A"
+      ],
+      "status": "confirmed",
+      "note": "The Dr. Bhim Rao Ambedkar International Sports Stadium is at Faizabad in Ayodhya district of Uttar Pradesh, on the Ayodhya-Sultanpur road near the airport.",
+      "explanation_rebuilt": true,
+      "option_reasons": 4
+    }
+  ]
+}

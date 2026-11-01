@@ -137,9 +137,14 @@ test('every correction quotes the printed key the audits recorded', () => {
     fromManifest.filter((id) => id.startsWith('MPPSC-2015-')),
     'the 2015 audit summary lists exactly the 2015 corrections',
   );
+  assert.deepEqual(
+    correctionsFile.final_audit_2014.corrected_ids.slice().sort(),
+    fromManifest.filter((id) => id.startsWith('MPPSC-2014-')),
+    'the 2014 audit summary lists exactly the 2014 corrections',
+  );
   assert.deepEqual(correctionsFile.final_audit_2016.corrected_ids, [],
     'the 2016 audit corrected nothing');
-  assert.equal(fromManifest.length, 32, 'five 2020 keys, five 2019 keys, the seventeen declared for 2021–2024, one for 2017 and four for 2015 — the 2018 and 2016 audits corrected no key');
+  assert.equal(fromManifest.length, 35, 'five 2020 keys, five 2019 keys, the seventeen declared for 2021–2024, one for 2017, four for 2015 and three for 2014 — the 2018 and 2016 audits corrected no key');
 });
 
 test('a correction is applied once: a second application is a recorded no-op', () => {
@@ -181,7 +186,7 @@ test('drifted data is rejected loudly, not overwritten', () => {
   // Orphans are errors too: a correction may not point at a question that is gone.
   assert.throws(
     () => applyReviewedCorrections({ questions: [{ id: 'MPPSC-2021-010', supplied_answer: { answer: ['A'] } }] }, bundle),
-    /answer correction names MPPSC-(2015|2017|2019)-\d+(?:, which is not in the intake)/,
+    /answer correction names MPPSC-(2014|2015|2017|2019)-\d+(?:, which is not in the intake)/,
   );
 });
 
@@ -232,11 +237,11 @@ test('a clean rebuild reproduces the shipped bank, corrections included', async 
 
   assert.equal(result.correctionsSummary.rejected.length, 0, 'no correction was rejected during the rebuild');
   assert.equal(result.correctionsSummary.reconciled, true, 'every declaration was applied or already satisfied');
-  assert.equal(result.correctionsSummary.applied.answers, 32, 'all 32 corrected keys were re-applied');
+  assert.equal(result.correctionsSummary.applied.answers, 35, 'all 35 corrected keys were re-applied');
   assert.equal(
     result.correctionsSummary.applied.explanations + result.correctionsSummary.deferred.explanations.length,
-    971,
-    'all 971 reviewed explanations were restored',
+    1071,
+    'all 1,071 reviewed explanations were restored',
   );
   assert.equal(result.modelSummary.added.length, 29, 'the 29 model questions were appended');
 
@@ -244,6 +249,7 @@ test('a clean rebuild reproduces the shipped bank, corrections included', async 
   assert.equal(rebuilt.questions.length, 1200);
   assert.equal(rebuilt.questions.filter((q) => Number(q.year) === 2020).length, 100, 'the 2020 paper still has 100 questions');
   assert.equal(rebuilt.questions.filter((q) => Number(q.year) === 2019).length, 100, 'the 2019 paper is complete too');
+  assert.equal(rebuilt.questions.filter((q) => Number(q.year) === 2014).length, 100, 'the 2014 paper is complete too');
   for (const paper of rebuilt.papers) {
     assert.equal(paper.question_order.length, 100, `${paper.paper_id}: 100 questions in order`);
   }

@@ -39929,6 +39929,3906 @@
       "revision_takeaways": [
         "11 October 2014 belongs to Saansad Adarsh Gram Yojana."
       ]
+    },
+    "MPPSC-2014-001": {
+      "language": "en",
+      "correct_reasoning": "The commitment to a socialistic pattern of society was made at the Avadi session of the Congress in 1955 and written into the Second Five year plan, whose Mahalanobis model pushed heavy industry and the public sector. The paper keys the Fourth Plan, but that plan came in 1969 and worked on growth with stability, so the answer is the Second Plan.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "I Five year plan",
+          "is_correct": false,
+          "reason": "The First Plan (1951-56) was a Harrod-Domar exercise in agriculture, irrigation and food security; the socialistic pattern was not yet adopted."
+        },
+        {
+          "key": "B",
+          "text": "II Five year plan",
+          "is_correct": true,
+          "reason": "Correct: the 1955 Avadi resolution on a socialistic pattern of society became the stated objective of the Second Plan (1956-61)."
+        },
+        {
+          "key": "C",
+          "text": "III Five year plan",
+          "is_correct": false,
+          "reason": "The Third Plan (1961-66) inherited the goal but aimed at self-reliance and self-sustaining growth; the decision itself was already five years old."
+        },
+        {
+          "key": "D",
+          "text": "IV Five year plan",
+          "is_correct": false,
+          "reason": "The Fourth Plan (1969-74) worked for growth with stability and self-reliance, and the paper's key for this option is a misreading of the record."
+        }
+      ],
+      "key_concepts": [
+        "Avadi session, 1955: Congress adopts the socialistic pattern of society",
+        "Second Plan based on the Mahalanobis model, heavy industry and public sector",
+        "Fourth Plan: growth with stability and progressive self-reliance"
+      ],
+      "revision_takeaways": [
+        "Socialistic pattern of society = Second Five year plan, formally from the 1955 Avadi resolution.",
+        "The Fourth Plan is the answer only in the paper's own key sheet, not in the record."
+      ]
+    },
+    "MPPSC-2014-002": {
+      "language": "en",
+      "correct_reasoning": "The Balwant Rai Mehta committee of 1957 examined democratic decentralisation and recommended a three tier Panchayati Raj of village panchayat, panchayat samiti and zila parishad, which most states adopted from 1959. Later committees either proposed a two tier structure or dealt with district planning rather than the three tier scheme.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "Balwant Rai",
+          "is_correct": true,
+          "reason": "Correct: the Balwant Rai Mehta committee (1957) is the source of the three tier panchayat samiti model."
+        },
+        {
+          "key": "B",
+          "text": "K. Rao",
+          "is_correct": false,
+          "reason": "This scan-damaged entry stands for a Rao committee, but no such committee on local government recommended three tiers."
+        },
+        {
+          "key": "C",
+          "text": "Hanumant Rao",
+          "is_correct": false,
+          "reason": "The Hanumantha Rao committee (1993) reviewed district rural development agencies and district planning, not the structure of panchayati raj."
+        },
+        {
+          "key": "D",
+          "text": "G.",
+          "is_correct": false,
+          "reason": "The entry is truncated in the scan, and in any case the two tier scheme belongs to the Ashok Mehta committee of 1977, not to this option."
+        }
+      ],
+      "key_concepts": [
+        "Balwant Rai Mehta committee, 1957: three tier panchayati raj",
+        "Ashok Mehta committee, 1977: recommended a two tier structure",
+        "L.M. Singhvi committee, 1986: constitutional status for panchayats"
+      ],
+      "revision_takeaways": [
+        "Three tiers = village panchayat, panchayat samiti, zila parishad, all from Balwant Rai Mehta.",
+        "Rajasthan (Nagaur) was the first state to actually launch panchayati raj in 1959."
+      ]
+    },
+    "MPPSC-2014-003": {
+      "language": "en",
+      "correct_reasoning": "India's industrial growth for 2013-14 on the 2011-12 base year is reported as 4.5 per cent, the figure the paper expects. The surrounding options of 2.5, 3.5 and 5.5 per cent are close enough to be tempting but none of them is the published number.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "2.5%",
+          "is_correct": false,
+          "reason": "Too low: it is nearer the industrial growth of the crisis years around 2008-09 than of 2013-14."
+        },
+        {
+          "key": "B",
+          "text": "3.5%",
+          "is_correct": false,
+          "reason": "This figure is in the range of overall GDP growth in the early 2010s, not industrial growth on the new base."
+        },
+        {
+          "key": "C",
+          "text": "4.5%",
+          "is_correct": true,
+          "reason": "Correct: 4.5% is the reported industrial growth rate for 2013-14 with 2011-12 as base year."
+        },
+        {
+          "key": "D",
+          "text": "5.5%",
+          "is_correct": false,
+          "reason": "Too high: it exceeds the industrial growth actually recorded, which stayed below five per cent in that year."
+        }
+      ],
+      "key_concepts": [
+        "2011-12 is the base year for the current IIP and national accounts series",
+        "2013-14: GDP growth about 4.7%, industry the weak sector",
+        "Growth rates are quoted with the base year, because rebasing changes the number"
+      ],
+      "revision_takeaways": [
+        "Industrial growth, 2013-14, 2011-12 base: 4.5%.",
+        "Always attach the base year when a growth figure is asked."
+      ]
+    },
+    "MPPSC-2014-004": {
+      "language": "en",
+      "correct_reasoning": "The Bharatiya Janata Party was formed in April 1980 out of the Janata Party split, and Atal Bihari Vajpayee became its first president. L.K. Advani took over the party presidency later, in 1986, so the founder-president question cannot be answered by the other names.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "L.K. Advani",
+          "is_correct": false,
+          "reason": "Advani became BJP president in 1986 and is the party's longest-serving president, but he was not the first."
+        },
+        {
+          "key": "B",
+          "text": "Vajpayee",
+          "is_correct": true,
+          "reason": "Correct: A.B. Vajpayee was the first president of the BJP after its founding in April 1980."
+        },
+        {
+          "key": "C",
+          "text": "M.M. Joshi",
+          "is_correct": false,
+          "reason": "Murli Manohar Joshi held the presidency in the 1980s, later than the founding year."
+        },
+        {
+          "key": "D",
+          "text": "Sikandar Bakt",
+          "is_correct": false,
+          "reason": "Sikandar Bakht was a founder-era BJP leader from Delhi but not the party's first president."
+        }
+      ],
+      "key_concepts": [
+        "BJS dissolved into the Janata Party in 1977; the BJP was founded on 6 April 1980",
+        "Vajpayee: first BJP president; Advani: president from 1986 to 1990 and 1993 to 2005",
+        "Advani's 1990 Somnath yatra and the 1992 demolition mark the party's rise"
+      ],
+      "revision_takeaways": [
+        "First BJP president = Atal Bihari Vajpayee.",
+        "The option 'L.K. Advani' is the standard trap: he led the party later and far longer."
+      ]
+    },
+    "MPPSC-2014-005": {
+      "language": "en",
+      "correct_reasoning": "Article 171 of the Constitution provides for a Legislative Council, the upper house, in a state, and leaves its creation or abolition to a resolution of the Assembly followed by Parliament's approval. The neighbouring articles deal with the Assembly's size, its duration and the qualification of its members.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "Article 170",
+          "is_correct": false,
+          "reason": "Article 170 fixes the composition of the Legislative Assembly, with 60 to 500 members."
+        },
+        {
+          "key": "B",
+          "text": "Article 171",
+          "is_correct": true,
+          "reason": "Correct: Article 171 provides for the Vidhan Parishad and its composition."
+        },
+        {
+          "key": "C",
+          "text": "Article 172",
+          "is_correct": false,
+          "reason": "Article 172 lays down the duration of the state legislature, five years unless dissolved earlier."
+        },
+        {
+          "key": "D",
+          "text": "Article 173",
+          "is_correct": false,
+          "reason": "Article 173 sets the qualification for membership of the state legislature."
+        }
+      ],
+      "key_concepts": [
+        "Article 169: Parliament may abolish or create a Council on the Assembly's resolution",
+        "Article 171: composition of the Vidhan Parishad, one third of Assembly strength",
+        "Madhya Pradesh has a unicameral legislature"
+      ],
+      "revision_takeaways": [
+        "Vidhan Parishad = Article 171; Vidhan Sabha composition = Article 170.",
+        "Council creation or abolition needs an Assembly resolution plus a parliamentary law (Article 169)."
+      ]
+    },
+    "MPPSC-2014-006": {
+      "language": "en",
+      "correct_reasoning": "The Communist Party of India split at its 1964 national council into the CPI and the CPI(Marxist), the latter formed at a parallel congress in Calcutta in 1964. The split followed differences over the 1962 China war and the party's attitude to the Congress, so the answer is 1964 rather than the later Naxalite break of 1969.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "1962",
+          "is_correct": false,
+          "reason": "In 1962 the party was still formally united, torn by the China war but not yet split."
+        },
+        {
+          "key": "B",
+          "text": "1964",
+          "is_correct": true,
+          "reason": "Correct: the CPI split into CPI and CPI(M) in 1964, the Marxist congress meeting at Tenali and Calcutta that year."
+        },
+        {
+          "key": "C",
+          "text": "1966",
+          "is_correct": false,
+          "reason": "By 1966 both parties existed separately, so no fresh split of the CPI occurred then."
+        },
+        {
+          "key": "D",
+          "text": "1969",
+          "is_correct": false,
+          "reason": "1969 is the year of the Naxalbari-linked break that produced the CPI(ML), not the CPI-CPI(M) split."
+        }
+      ],
+      "key_concepts": [
+        "CPI formed in 1925 at Kanpur",
+        "1964 split produces CPI(M), with its strong base in West Bengal, Kerala and Tripura",
+        "1969 CPI(ML) founded after the Naxalbari uprising of 1967"
+      ],
+      "revision_takeaways": [
+        "CPI / CPI(M) split = 1964; CPI(ML) = 1969.",
+        "The 1962 China war and the Congress alliance debate were the immediate causes."
+      ]
+    },
+    "MPPSC-2014-007": {
+      "language": "en",
+      "correct_reasoning": "An inland drainage river has no outlet to the sea: the Ghaggar, ancient Saraswati, dies in the sands of Rajasthan at Hanumangarh. The other rivers named in the options all reach the ocean, so none of them can be an example of inland drainage.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "Mahi",
+          "is_correct": false,
+          "reason": "The Mahi rises in the Vindhyas, crosses Gujarat and drains into the Gulf of Khambhat."
+        },
+        {
+          "key": "B",
+          "text": "Ghaggar",
+          "is_correct": true,
+          "reason": "Correct: the Ghaggar disappears into the desert and never reaches the sea, the classic Indian example of inland drainage."
+        },
+        {
+          "key": "C",
+          "text": "Narmada",
+          "is_correct": false,
+          "reason": "The Narmada flows west through a rift between the Vindhyas and the Satpuras and reaches the Arabian Sea."
+        },
+        {
+          "key": "D",
+          "text": "Krishna",
+          "is_correct": false,
+          "reason": "The Krishna delta lies on the Bay of Bengal, so it has a clear outlet."
+        }
+      ],
+      "key_concepts": [
+        "Inland drainage: no marine outlet, the stream ends in a desert or salt lake",
+        "Ghaggar and Luni are the standard Indian examples; Sambhar lake belongs to the same basin",
+        "The Narmada and Tapi flow west through rift valleys"
+      ],
+      "revision_takeaways": [
+        "Ghaggar = inland drainage, dying near Hanumangarh in Rajasthan.",
+        "Rivers ending in the Arabian Sea or Bay of Bengal cannot be inland drainage."
+      ]
+    },
+    "MPPSC-2014-008": {
+      "language": "en",
+      "correct_reasoning": "Kanchenjunga, at 8,586 m the highest peak on Indian soil, stands in the Sikkim Himalaya on the border with Nepal. Nepal is a neighbour on the western flank, but the summit and the reserve around it lie in Sikkim, so the answer is Sikkim.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "Kashmir",
+          "is_correct": false,
+          "reason": "The Kashmir Himalaya holds peaks such as Nun Kun, not Kanchenjunga."
+        },
+        {
+          "key": "B",
+          "text": "Nepal",
+          "is_correct": false,
+          "reason": "The peak is on the Sikkim-Nepal frontier, yet the Indian portion and the Kanchenjunga National Park are in Sikkim."
+        },
+        {
+          "key": "C",
+          "text": "Sikkim",
+          "is_correct": true,
+          "reason": "Correct: Kanchenjunga is the highest point of Sikkim and of India."
+        },
+        {
+          "key": "D",
+          "text": "Himachal Pradesh",
+          "is_correct": false,
+          "reason": "Himachal Pradesh has no 8,000 m peak; its highest points are in the Great Himalaya further west."
+        }
+      ],
+      "key_concepts": [
+        "Kanchenjunga: 8,586 m, third highest in the world, highest in India",
+        "Kanchenjunga National Park, Sikkim, a UNESCO World Heritage site",
+        "Sikkim became a state in 1975"
+      ],
+      "revision_takeaways": [
+        "Kanchenjunga = Sikkim, and it is on the Nepal border.",
+        "Everest was climbed in 1953 and Kanchenjunga has been closed to expeditions since 2000 at Sikkim's request."
+      ]
+    },
+    "MPPSC-2014-009": {
+      "language": "en",
+      "correct_reasoning": "Durban is the largest port city of South Africa, on the Indian Ocean coast of KwaZulu-Natal. It hosted the 2011 climate conference, which is usually why the city appears in current-affairs papers, and it belongs to no other continent in the option list.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "South Africa",
+          "is_correct": true,
+          "reason": "Correct: Durban is a South African city and Africa's busiest container port."
+        },
+        {
+          "key": "B",
+          "text": "Australia",
+          "is_correct": false,
+          "reason": "Australia's comparable ports are Sydney, Melbourne and Fremantle; Durban is not Australian."
+        },
+        {
+          "key": "C",
+          "text": "North America",
+          "is_correct": false,
+          "reason": "No major Durban exists in North America, and the city's fame is as an African port."
+        },
+        {
+          "key": "D",
+          "text": "South America",
+          "is_correct": false,
+          "reason": "South American ports such as Santos and Valparaiso are on the other side of the Atlantic."
+        }
+      ],
+      "key_concepts": [
+        "Durban: KwaZulu-Natal, South Africa; busiest port in Africa",
+        "COP17 held at Durban in 2011, launching the Green Climate Fund",
+        "Santos is the busiest port of Brazil, often confused with Durban"
+      ],
+      "revision_takeaways": [
+        "Durban = South Africa, Indian Ocean coast.",
+        "Durban hosted COP17 in 2011."
+      ]
+    },
+    "MPPSC-2014-010": {
+      "language": "en",
+      "correct_reasoning": "The Tropic of Cancer runs across Madhya Pradesh (through Bhopal, Jabalpur and Rewa districts), Tripura and Mizoram, so all three states named in the options lie on it. That makes the inclusive option the correct one rather than any single state.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "Madhya Pradesh",
+          "is_correct": false,
+          "reason": "True in itself, but incomplete: the tropic also crosses Tripura and Mizoram, so this cannot be the whole answer."
+        },
+        {
+          "key": "B",
+          "text": "Tripua",
+          "is_correct": false,
+          "reason": "Tripura is indeed crossed, but only as one of three states, so this option is partial."
+        },
+        {
+          "key": "C",
+          "text": "Mizoram",
+          "is_correct": false,
+          "reason": "Mizoram is crossed too, but again only one of the states that qualify."
+        },
+        {
+          "key": "D",
+          "text": "All of these",
+          "is_correct": true,
+          "reason": "Correct: the Tropic of Cancer passes through all the states listed, so the inclusive option is right."
+        }
+      ],
+      "key_concepts": [
+        "Tropic of Cancer, 23.5 degrees north, crosses eight Indian states",
+        "In Madhya Pradesh it passes near Bhopal, Rajgarh, Vidisha, Sagar, Damoh, Katni, Jabalpur and Rewa",
+        "The tropic marks the northern limit of the sun's vertical rays"
+      ],
+      "revision_takeaways": [
+        "Eight states on the Tropic of Cancer: Gujarat, Rajasthan, Madhya Pradesh, Chhattisgarh, Jharkhand, West Bengal, Tripura, Mizoram.",
+        "When every option is individually true, the inclusive option is the answer."
+      ]
+    },
+    "MPPSC-2014-011": {
+      "language": "en",
+      "correct_reasoning": "Fourteen major private banks were nationalised by ordinance on 19 July 1969, in Indira Gandhi's first big reform, followed by six more in 1980. The bank nationalisation of 1969 was the decision that created the public sector banking structure, so it cannot be dated to 1965, 1968 or 1970.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "1968",
+          "is_correct": false,
+          "reason": "In 1968 the proposal was still being debated under social control of banking; the ordinance came a year later."
+        },
+        {
+          "key": "B",
+          "text": "1970",
+          "is_correct": false,
+          "reason": "The nationalisation had already been carried out and upheld by the Supreme Court by 1970."
+        },
+        {
+          "key": "C",
+          "text": "1969",
+          "is_correct": true,
+          "reason": "Correct: 14 banks with deposits over 50 crore were nationalised on 19 July 1969."
+        },
+        {
+          "key": "D",
+          "text": "1965",
+          "is_correct": false,
+          "reason": "1965 saw the creation of the IDBI and a banking crisis, not nationalisation."
+        }
+      ],
+      "key_concepts": [
+        "19 July 1969: 14 banks nationalised by ordinance",
+        "1980: six more banks nationalised",
+        "RBI founded 1935; State Bank of India created from the Imperial Bank in 1955"
+      ],
+      "revision_takeaways": [
+        "Bank nationalisation = 1969, fourteen banks; 1980 added six.",
+        "The measure was challenged and upheld in R.C. Cooper v. Union of India."
+      ]
+    },
+    "MPPSC-2014-012": {
+      "language": "en",
+      "correct_reasoning": "Bangladesh became independent after the Indo-Pakistan war that began on 3 December 1971 and ended with Pakistan's surrender at Dhaka on 16 December 1971. The earlier dates in the options belong to the 1970 election crisis and to the Pakistani crackdown of March 1971, not to the war.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "December 1970",
+          "is_correct": false,
+          "reason": "December 1970 was the general election in Pakistan whose results were never honoured; no war was fought then."
+        },
+        {
+          "key": "B",
+          "text": "March 1970",
+          "is_correct": false,
+          "reason": "Nothing decisive happened in March 1970; the Awami League's mandate had not yet been repudiated."
+        },
+        {
+          "key": "C",
+          "text": "March 1971",
+          "is_correct": false,
+          "reason": "March 1971 is the month of the Pakistani crackdown and the declaration of independence, but the war with India came in December."
+        },
+        {
+          "key": "D",
+          "text": "December 1971",
+          "is_correct": true,
+          "reason": "Correct: the December 1971 war ended in the creation of Bangladesh."
+        }
+      ],
+      "key_concepts": [
+        "26 March 1971: declaration of independence from East Pakistan",
+        "3-16 December 1971: Indo-Pakistan war, Pakistani surrender at Dhaka",
+        "Simla Agreement, 1972, between India and Pakistan"
+      ],
+      "revision_takeaways": [
+        "Bangladesh's birth follows the December 1971 war.",
+        "March 1971 is the declaration, December 1971 is the victory."
+      ]
+    },
+    "MPPSC-2014-013": {
+      "language": "en",
+      "correct_reasoning": "Chilika, printed here as Cilka, is the brackish water lagoon on the Odisha coast at the mouth of the Mahanadi, the largest coastal lagoon in India. Rajasthan's lakes are inland salt lakes such as Sambhar, and the lagoon has no connection with Andhra Pradesh, Orissa's southern neighbour, or Tamil Nadu.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "Rajasthan",
+          "is_correct": false,
+          "reason": "Rajasthan's famous lake is Sambhar, a salt lake, not the Chilika lagoon."
+        },
+        {
+          "key": "B",
+          "text": "Andhra Pradesh",
+          "is_correct": false,
+          "reason": "Andhra's coastal lakes are Kolleru and Pulicat, not Chilika."
+        },
+        {
+          "key": "C",
+          "text": "Orissa",
+          "is_correct": true,
+          "reason": "Correct: Chilika lies in Odisha, spread over Puri, Khordha and Ganjam districts."
+        },
+        {
+          "key": "D",
+          "text": "Tamil Nadu",
+          "is_correct": false,
+          "reason": "Tamil Nadu's lagoon is Pulicat, shared with Andhra Pradesh, on the opposite coast."
+        }
+      ],
+      "key_concepts": [
+        "Chilika: largest brackish lagoon in Asia, Odisha coast",
+        "Ramsar site, famous for Irrawaddy dolphins",
+        "Kolleru and Pulicat are the Andhra lagoons"
+      ],
+      "revision_takeaways": [
+        "Chilika = Odisha, a lagoon, not a lake in the ordinary sense.",
+        "The paper's spelling 'Cilka' is simply a scan of Chilika."
+      ]
+    },
+    "MPPSC-2014-014": {
+      "language": "en",
+      "correct_reasoning": "The Sundarbans delta is built by the Ganga and the Brahmaputra, which unite as the Padma and then break into the distributaries that form the mangrove delta. The Jhelum and the Indus belong to the Punjab and Sindh systems, so they cannot explain a delta facing the Bay of Bengal.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "Ganga and Brahmputra",
+          "is_correct": true,
+          "reason": "Correct: the Ganga-Brahmaputra distributaries build the Sundarbans."
+        },
+        {
+          "key": "B",
+          "text": "Ganga and Jhelum",
+          "is_correct": false,
+          "reason": "The Jhelum is a Himalayan tributary of the Indus and never reaches Bengal."
+        },
+        {
+          "key": "C",
+          "text": "Sindhu and Jhelum",
+          "is_correct": false,
+          "reason": "The Indus system forms its own delta in Pakistan, not the Sundarbans."
+        },
+        {
+          "key": "D",
+          "text": "Ganga and Sindhu",
+          "is_correct": false,
+          "reason": "The Indus does not join the Ganga; the two deltas are on opposite sides of the subcontinent."
+        }
+      ],
+      "key_concepts": [
+        "Sundarbans: largest mangrove forest, shared by India and Bangladesh",
+        "Ganga-Brahmaputra-Meghna system drains into the Bay of Bengal",
+        "Sundarbans is a UNESCO World Heritage site and a Ramsar site"
+      ],
+      "revision_takeaways": [
+        "Sundarbans delta = Ganga + Brahmaputra, not the Indus.",
+        "The mangrove is the habitat of the Royal Bengal tiger."
+      ]
+    },
+    "MPPSC-2014-015": {
+      "language": "en",
+      "correct_reasoning": "The All India Muslim League was founded at Dhaka in December 1906, with Aga Khan as its first president, in the aftermath of the partition of Bengal. The surrounding years in the options are the years of the Bengal partition (1905) and the Congress split at Surat (1907), not of the League's founding.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "1905",
+          "is_correct": false,
+          "reason": "1905 is the year of Curzon's partition of Bengal, the grievance that produced the League a year later."
+        },
+        {
+          "key": "B",
+          "text": "1904",
+          "is_correct": false,
+          "reason": "1904 predates the Swadeshi movement and the Simla deputation of 1906 that preceded the League."
+        },
+        {
+          "key": "C",
+          "text": "1907",
+          "is_correct": false,
+          "reason": "1907 is the Congress split at Surat into moderates and extremists, not the League's founding."
+        },
+        {
+          "key": "D",
+          "text": "1906",
+          "is_correct": true,
+          "reason": "Correct: the Muslim League was founded at Dhaka on 30 December 1906."
+        }
+      ],
+      "key_concepts": [
+        "Simla deputation, 1 October 1906, led by Aga Khan",
+        "Muslim League founded 30 December 1906 at Dhaka",
+        "Lahore Resolution, 1940, demanded separate states"
+      ],
+      "revision_takeaways": [
+        "Muslim League = 1906, Dhaka; first president Aga Khan.",
+        "1905 is the Bengal partition, 1907 the Surat split."
+      ]
+    },
+    "MPPSC-2014-016": {
+      "language": "en",
+      "correct_reasoning": "The Permanent Settlement of Bengal was introduced by Lord Cornwallis in 1793, fixing land revenue in perpetuity with the zamindars as revenue collectors. Clive and Warren Hastings had experimented with revenue farming, but the permanent land revenue system that became the model for northern India is Cornwallis's.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "Lord John Shore",
+          "is_correct": false,
+          "reason": "Shore's administration continued the revenue experiments but did not institute the Permanent Settlement."
+        },
+        {
+          "key": "B",
+          "text": "Lord Clive",
+          "is_correct": false,
+          "reason": "Clive obtained the Diwani in 1765 and began revenue farming, not the permanent settlement."
+        },
+        {
+          "key": "C",
+          "text": "Lord Cornwallis",
+          "is_correct": true,
+          "reason": "Correct: Cornwallis introduced the Permanent Settlement in 1793."
+        },
+        {
+          "key": "D",
+          "text": "Lord Warren Hastings",
+          "is_correct": false,
+          "reason": "Hastings introduced the five year and one year settlements, which were experimental and later abolished."
+        }
+      ],
+      "key_concepts": [
+        "Permanent Settlement, 1793: zamindars become hereditary owners with fixed revenue",
+        "Ryotwari (Munro) and Mahalwari (Holt Mackenzie) were the other two systems",
+        "Cornwallis is also called the father of the Indian civil service"
+      ],
+      "revision_takeaways": [
+        "Permanent Settlement = Cornwallis, 1793, Bengal.",
+        "The settlement fixed revenue permanently, unlike the temporary settlements that preceded it."
+      ]
+    },
+    "MPPSC-2014-017": {
+      "language": "en",
+      "correct_reasoning": "The Mountbatten Plan, which provided for partition and the transfer of power, was announced by Lord Mountbatten and Attlee's government on 3 June 1947, and the Indian Independence Act followed on 18 July. The other dates in the options refer to Mountbatten's arrival and to the earlier transfer-of-power mission, not to the announcement of the plan.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "04 June 1947",
+          "is_correct": false,
+          "reason": "One day too late: the plan was broadcast on 3 June and welcomed by the leaders the same evening."
+        },
+        {
+          "key": "B",
+          "text": "10 June 1947",
+          "is_correct": false,
+          "reason": "By 10 June the plan was already public and the provincial assemblies were being asked to decide on partition."
+        },
+        {
+          "key": "C",
+          "text": "03 July 1947",
+          "is_correct": false,
+          "reason": "3 July is closer to the introduction of the Independence Bill in the British Parliament, not the plan's announcement."
+        },
+        {
+          "key": "D",
+          "text": "03 June 1947",
+          "is_correct": true,
+          "reason": "Correct: the Mountbatten Plan was officially announced on 3 June 1947."
+        }
+      ],
+      "key_concepts": [
+        "Mountbatten arrived as Viceroy in March 1947",
+        "3 June 1947 plan: partition of Punjab and Bengal, referendum in NWFP and Sylhet",
+        "Indian Independence Act, 18 July 1947, gave legal effect"
+      ],
+      "revision_takeaways": [
+        "Mountbatten Plan = 3 June 1947.",
+        "The Cabinet Mission came in 1946; the Mountbatten Plan is the last step before independence."
+      ]
+    },
+    "MPPSC-2014-018": {
+      "language": "en",
+      "correct_reasoning": "Subhash Chandra Bose was elected Congress president for 1938 at the Haripura session and re-elected for 1939 at Tripuri, where he defeated Gandhi's candidate Pattabhi Sitaramayya. Nehru, Azad and Patel held the presidency in other years, so the 1938 president was Bose.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "Jawaharlal Nehru",
+          "is_correct": false,
+          "reason": "Nehru was Congress president in 1929, 1930, 1936 and 1937, and later 1946, but not in 1938."
+        },
+        {
+          "key": "B",
+          "text": "Subhash Chandra Bose",
+          "is_correct": true,
+          "reason": "Correct: Bose was elected president at Haripura in 1938 and again at Tripuri in 1939."
+        },
+        {
+          "key": "C",
+          "text": "Abul Kalam Azad",
+          "is_correct": false,
+          "reason": "Azad was president from 1940 to 1946, after Bose's resignation."
+        },
+        {
+          "key": "D",
+          "text": "Vallabh Bhai Patel",
+          "is_correct": false,
+          "reason": "Patel was Congress president only in 1931, during the Karachi session."
+        }
+      ],
+      "key_concepts": [
+        "Haripura session, 1938: Bose president, national planning committee set up under Nehru",
+        "Tripuri session, 1939: Bose defeats Pattabhi Sitaramayya and resigns, forming the Forward Bloc",
+        "Azad's long presidency, 1940-46, was the longest"
+      ],
+      "revision_takeaways": [
+        "1938 Congress president = Subhash Chandra Bose.",
+        "Bose's 1939 Tripuri win and resignation led to the Forward Bloc."
+      ]
+    },
+    "MPPSC-2014-019": {
+      "language": "en",
+      "correct_reasoning": "Akbar is credited with the Mughal educational reforms, including the expansion of maktabs and madrasas, a broadened curriculum and the translation of Sanskrit and Persian works at the Ibadat Khana. His predecessors and successors are remembered for architecture, painting and administration rather than for schooling.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "Jahangir",
+          "is_correct": false,
+          "reason": "Jahangir is known for the chain of justice, painting and the Kangra style, not for educational reform."
+        },
+        {
+          "key": "B",
+          "text": "Shahjahan",
+          "is_correct": false,
+          "reason": "Shahjahan's fame rests on architecture such as the Taj Mahal and the Red Fort."
+        },
+        {
+          "key": "C",
+          "text": "Humayun",
+          "is_correct": false,
+          "reason": "Humayun's reign was disrupted by the Sur interregnum and left little room for school reform."
+        },
+        {
+          "key": "D",
+          "text": "Akbar",
+          "is_correct": true,
+          "reason": "Correct: Akbar's administration reformed the maktab and madrasa curriculum and encouraged translation."
+        }
+      ],
+      "key_concepts": [
+        "Akbar: Din-i-Ilahi, Ibadat Khana, mansabdari and Todar Mal's bandobast",
+        "Mughal education centred on maktabs for boys and madrasas for higher learning",
+        "Sher Shah Suri also reformed administration, which Akbar absorbed"
+      ],
+      "revision_takeaways": [
+        "Educational reforms among the Mughals = Akbar.",
+        "Shahjahan is architecture, Jahangir is painting and justice."
+      ]
+    },
+    "MPPSC-2014-020": {
+      "language": "en",
+      "correct_reasoning": "The Khalsa Panth was instituted by Guru Gobind Singh at Anandpur Sahib on Baisakhi in 1699, when the five beloved ones were initiated and the Sikh order of the baptised was founded. Guru Nanak founded the faith and Guru Tegh Bahadur gave his life, but neither of them created the Khalsa.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "Guru Gobind Singh",
+          "is_correct": true,
+          "reason": "Correct: Guru Gobind Singh instituted the Khalsa at Anandpur in 1699."
+        },
+        {
+          "key": "B",
+          "text": "Guru Teg Bahadur",
+          "is_correct": false,
+          "reason": "Guru Tegh Bahadur was the ninth Guru, executed in Delhi in 1675, and became the father of Guru Gobind Singh."
+        },
+        {
+          "key": "C",
+          "text": "Guru Nanak Dev",
+          "is_correct": false,
+          "reason": "Guru Nanak founded Sikhism in the fifteenth century, long before the Khalsa."
+        },
+        {
+          "key": "D",
+          "text": "Guru Granth",
+          "is_correct": false,
+          "reason": "The Guru Granth Sahib is the Sikh scripture, not a person who could institute anything."
+        }
+      ],
+      "key_concepts": [
+        "Khalsa, 1699: baptism of the five beloved ones (panj piare)",
+        "Guru Gobind Singh was the tenth and last human Guru",
+        "Guru Granth Sahib was declared the eternal Guru in 1708 at Nanded"
+      ],
+      "revision_takeaways": [
+        "Khalsa = Guru Gobind Singh, 1699, Anandpur Sahib.",
+        "Guru Granth Sahib is a scripture and the eternal Guru, not a founder of the Khalsa."
+      ]
+    },
+    "MPPSC-2014-021": {
+      "language": "en",
+      "correct_reasoning": "In Shivaji's Ashta Pradhan council the foreign affairs portfolio belonged to the Sumant, who received envoys and handled treaties. The Amatya was the finance minister, the Sachiv the correspondence secretary and the Sar-i-Naubat the commander in chief.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "Sumant",
+          "is_correct": true,
+          "reason": "Correct: the Sumant handled foreign affairs and diplomacy in the Ashta Pradhan."
+        },
+        {
+          "key": "B",
+          "text": "Amatya",
+          "is_correct": false,
+          "reason": "The Amatya was the finance minister, who audited revenue and accounts."
+        },
+        {
+          "key": "C",
+          "text": "Sar-i-Naubat",
+          "is_correct": false,
+          "reason": "The Sar-i-Naubat was the commander in chief of the army, a military post."
+        },
+        {
+          "key": "D",
+          "text": "Sachiv",
+          "is_correct": false,
+          "reason": "The Sachiv was the secretary who handled the ruler's correspondence."
+        }
+      ],
+      "key_concepts": [
+        "Ashta Pradhan: eight ministers of Shivaji's council",
+        "Peshwa (prime minister), Amatya (finance), Sumant (foreign affairs), Sachiv (correspondence)",
+        "Mantri (interior), Senapati/Sar-i-Naubat (army), Pandit Rao (religion), Nyayadhish (justice)"
+      ],
+      "revision_takeaways": [
+        "Foreign minister of Shivaji = Sumant.",
+        "Learn the Ashta Pradhan by portfolio, because the paper mixes them."
+      ]
+    },
+    "MPPSC-2014-022": {
+      "language": "en",
+      "correct_reasoning": "Tulsidas's Ramcharitmanas, Gitawali, Kavitawali and Vinay Patrika are all his acknowledged works in Awadhi and Braj. Sahitya Ratna is a later compilation of devotional verse rather than a composition of Tulsidas himself, which is why it is the odd one out.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "Gitawali",
+          "is_correct": false,
+          "reason": "Gitawali is a genuine Tulsidas collection of Braj songs about Krishna."
+        },
+        {
+          "key": "B",
+          "text": "Kavitawali",
+          "is_correct": false,
+          "reason": "Kavitawali is also Tulsidas, a Braj work on Rama's deeds."
+        },
+        {
+          "key": "C",
+          "text": "Vinay Patrika",
+          "is_correct": false,
+          "reason": "Vinay Patrika is Tulsidas's book of humble petitions to Rama."
+        },
+        {
+          "key": "D",
+          "text": "Sahitya Ratna",
+          "is_correct": true,
+          "reason": "Correct: Sahitya Ratna is a later anthology, not a work composed by Tulsidas."
+        }
+      ],
+      "key_concepts": [
+        "Tulsidas: Ramcharitmanas in Awadhi, 1574 onwards",
+        "His Braj works: Gitawali, Kavitawali, Vinay Patrika, Dohavali",
+        "Surdas wrote Sursagar, a Bhakti work of the same period"
+      ],
+      "revision_takeaways": [
+        "Tulsidas's own works: Ramcharitmanas, Gitawali, Kavitawali, Vinay Patrika, Dohavali.",
+        "Sahitya Ratna is the exception in the option list."
+      ]
+    },
+    "MPPSC-2014-023": {
+      "language": "en",
+      "correct_reasoning": "The Tomar Rajputs are credited with founding Dhillika, the settlement that grew into Delhi, in the eighth century, with Anangpal Tomar as the traditional founder. The Parmars ruled Malwa, the Solankis Gujarat and the Chauhans Ajmer and later Delhi, so the founding dynasty is the Tomar.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "parmar dynasty",
+          "is_correct": false,
+          "reason": "The Parmars ruled Malwa from Dhar and Ujjain, not the Delhi area."
+        },
+        {
+          "key": "B",
+          "text": "solanki dynasty",
+          "is_correct": false,
+          "reason": "The Solankis ruled Gujarat from Anhilwad Patan."
+        },
+        {
+          "key": "C",
+          "text": "tomar dynasty",
+          "is_correct": true,
+          "reason": "Correct: the Tomars are the dynasty credited with founding Dhillika in the eighth century."
+        },
+        {
+          "key": "D",
+          "text": "chauhan dynasty",
+          "is_correct": false,
+          "reason": "The Chauhans took Delhi later, in the twelfth century, from Ajmer; they did not found the city."
+        }
+      ],
+      "key_concepts": [
+        "Dhillika: early Delhi, associated with the Tomar Rajputs",
+        "Anangpal Tomar and the iron pillar at Mehrauli",
+        "Prithviraj Chauhan ruled Delhi in the late twelfth century"
+      ],
+      "revision_takeaways": [
+        "Founders of Dhillika = Tomars, eighth century.",
+        "Chauhans came later; the Tomars are the older dynasty in Delhi."
+      ]
+    },
+    "MPPSC-2014-024": {
+      "language": "en",
+      "correct_reasoning": "Gupta inscriptions such as those from Poona and Damodarpur record tax-free agrarian land granted to brahmins, usually as agrahara or brahmadeya villages, to secure ritual merit and loyalty. Grants to officials and soldiers became common later, under the Palas and the Rashtrakutas, so the classic Gupta grantee is the brahmin.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "military officials",
+          "is_correct": false,
+          "reason": "Military service grants became common in the post-Gupta period, not as the typical Gupta agrarian grant."
+        },
+        {
+          "key": "B",
+          "text": "civil officials",
+          "is_correct": false,
+          "reason": "Civil officials were normally paid in cash or by revenue assignment, not tax-free village grants."
+        },
+        {
+          "key": "C",
+          "text": "brahmins",
+          "is_correct": true,
+          "reason": "Correct: tax-free agrarian land to brahmins, the agrahara grant, is the characteristic Gupta land donation."
+        },
+        {
+          "key": "D",
+          "text": "court scholars",
+          "is_correct": false,
+          "reason": "Court scholars were patronised with cash and titles rather than tax-exempt villages."
+        }
+      ],
+      "key_concepts": [
+        "Agrahara: tax-free village granted to a brahmin",
+        "Land grants are recorded in the Poona and Damodarpur copper plates",
+        "Land grants expanded greatly under the Pallavas and Cholas"
+      ],
+      "revision_takeaways": [
+        "Gupta tax-free land to brahmins = agrahara grants.",
+        "This is a classic example of feudalisation of Indian economy."
+      ]
+    },
+    "MPPSC-2014-025": {
+      "language": "en",
+      "correct_reasoning": "Alauddin Khilji's market reforms fixed prices for grain, cloth, horses and slaves, created the shahna-i-mandi market officers and controlled the grain trade through royal warehouses. Jalal-ud-din Khilji was his lenient predecessor, Muhammad Tughlaq tried token currency and Balban ruled on the theory of kingship.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "jalal-ud-din khilji",
+          "is_correct": false,
+          "reason": "Jalal-ud-din was a mild ruler whose reign saw no price control machinery at all."
+        },
+        {
+          "key": "B",
+          "text": "ala-ud-din khilji",
+          "is_correct": true,
+          "reason": "Correct: Alauddin Khilji's market reforms included fixed prices and market officers."
+        },
+        {
+          "key": "C",
+          "text": "mohammad tughlaq",
+          "is_correct": false,
+          "reason": "Muhammad bin Tughlaq's experiments were the capital shift to Daulatabad and token currency."
+        },
+        {
+          "key": "D",
+          "text": "balban",
+          "is_correct": false,
+          "reason": "Balban's concerns were the dignity of the throne, the sijda and paibos court ritual, and the Ghiyas-Balban blood claim."
+        }
+      ],
+      "key_concepts": [
+        "Alauddin Khilji: price control, 50% land revenue, ban on liquor, dagh and chehra system",
+        "Shahna-i-mandi: market inspector under the Khiljis",
+        "Muhammad bin Tughlaq: token currency, 1329-30"
+      ],
+      "revision_takeaways": [
+        "Market reforms = Alauddin Khilji.",
+        "Price control came with a standing army paid in cash, which made low prices possible."
+      ]
+    },
+    "MPPSC-2014-026": {
+      "language": "en",
+      "correct_reasoning": "Gujarat has the longest coastline of any Indian state, roughly 1,600 km along the Gulf of Kutch and the Gulf of Khambhat, followed by Andhra Pradesh and Tamil Nadu. Maharashtra and Kerala have much shorter coasts, and West Bengal's coast is only a fraction of Gujarat's.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "maharashtra",
+          "is_correct": false,
+          "reason": "Maharashtra's coast of about 720 km is less than half of Gujarat's."
+        },
+        {
+          "key": "B",
+          "text": "kerala",
+          "is_correct": false,
+          "reason": "Kerala's narrow coastal strip runs about 590 km, far short of the longest."
+        },
+        {
+          "key": "C",
+          "text": "gujarat",
+          "is_correct": true,
+          "reason": "Correct: Gujarat's 1,600 km coastline is the longest among the states."
+        },
+        {
+          "key": "D",
+          "text": "west Bengal",
+          "is_correct": false,
+          "reason": "West Bengal's coast, including the Sundarbans, is only a few hundred kilometres long."
+        }
+      ],
+      "key_concepts": [
+        "Gujarat: longest coastline, about 1,600 km",
+        "India's total coastline is about 7,500 km including islands",
+        "Andhra Pradesh is second in coastline length"
+      ],
+      "revision_takeaways": [
+        "Longest coastline state = Gujarat.",
+        "The island territories are counted separately from the state list."
+      ]
+    },
+    "MPPSC-2014-027": {
+      "language": "en",
+      "correct_reasoning": "Among the states given, Sikkim has the smallest urban population, about 25 per cent of a total of roughly six lakh people in the 2011 census. Kerala is the most urbanised of the four and Nagaland and Manipur both report a higher urban population than Sikkim.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "sikkim",
+          "is_correct": true,
+          "reason": "Correct: Sikkim's urban population is the smallest of the four, only about a quarter of the state total."
+        },
+        {
+          "key": "B",
+          "text": "kerala",
+          "is_correct": false,
+          "reason": "Kerala is nearly 48 per cent urban in the 2011 census, the highest of these four options."
+        },
+        {
+          "key": "C",
+          "text": "nagaland",
+          "is_correct": false,
+          "reason": "Nagaland is about 29 per cent urban, higher than Sikkim."
+        },
+        {
+          "key": "D",
+          "text": "manipur",
+          "is_correct": false,
+          "reason": "Manipur is about 30 per cent urban, again above Sikkim."
+        }
+      ],
+      "key_concepts": [
+        "Census 2011: Sikkim urban population about 25%",
+        "Himachal Pradesh has the lowest urban share among all states, at about 10%",
+        "Kerala and Goa are the most urbanised states"
+      ],
+      "revision_takeaways": [
+        "Sikkim, not Kerala, is the least urban of these four.",
+        "The question's stem carries a stray paste of the option text; the option itself is Sikkim."
+      ]
+    },
+    "MPPSC-2014-028": {
+      "language": "en",
+      "correct_reasoning": "The Sutta Pitaka collects the Buddha's discourses on ethics, doctrine and meditation, and is the source of most of what is known of his teaching. The Vinaya Pitaka is monastic discipline, the Abhidhamma Pitaka is scholastic analysis and the Jataka tales are birth stories rather than sermons.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "vinayaka pitaka",
+          "is_correct": false,
+          "reason": "The Vinaya Pitaka sets out the rules of the sangha and the procedure for monks' offences."
+        },
+        {
+          "key": "B",
+          "text": "jataka stories",
+          "is_correct": false,
+          "reason": "The Jataka tales narrate the Buddha's previous births and are stories, not doctrinal sermons."
+        },
+        {
+          "key": "C",
+          "text": "abhidamma pitaka",
+          "is_correct": false,
+          "reason": "The Abhidhamma Pitaka is systematic metaphysics and psychology, not sermons on conduct."
+        },
+        {
+          "key": "D",
+          "text": "sutta pitaka",
+          "is_correct": true,
+          "reason": "Correct: the Sutta Pitaka holds the Buddha's sermons on ethics and doctrine."
+        }
+      ],
+      "key_concepts": [
+        "Tripitaka: Vinaya, Sutta and Abhidhamma Pitakas",
+        "Sutta Pitaka has five nikayas, including Digha and Majjhima",
+        "Jataka tales belong to the Khuddaka Nikaya of the Sutta Pitaka"
+      ],
+      "revision_takeaways": [
+        "Sermons on ethics and doctrine = Sutta Pitaka.",
+        "Vinaya is discipline, Abhidhamma is philosophy, Jataka is birth stories."
+      ]
+    },
+    "MPPSC-2014-029": {
+      "language": "en",
+      "correct_reasoning": "In the 2011 census Madhya Pradesh had about 7.25 crore people, of whom roughly 5.25 crore lived in villages, leaving the rural population at 72.4 per cent. The urban share is therefore about 27.6 per cent, which rules out the lower rural figures in the options.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "72.4",
+          "is_correct": true,
+          "reason": "Correct: 72.4% is the rural share of Madhya Pradesh's population in 2011."
+        },
+        {
+          "key": "B",
+          "text": "67.8",
+          "is_correct": false,
+          "reason": "67.8% understates the rural share; it would imply an urbanisation level Madhya Pradesh had not reached."
+        },
+        {
+          "key": "C",
+          "text": "75.4",
+          "is_correct": false,
+          "reason": "75.4% is too high; that share belongs to states such as Bihar or Odisha."
+        },
+        {
+          "key": "D",
+          "text": "62.8",
+          "is_correct": false,
+          "reason": "62.8% is well below the state's recorded rural percentage."
+        }
+      ],
+      "key_concepts": [
+        "MP population 2011: 7.26 crore, rural about 72.4%",
+        "MP urban population: about 2.0 crore, of which Indore and Bhopal dominate",
+        "Density 2011: 236 per sq km; sex ratio 931"
+      ],
+      "revision_takeaways": [
+        "MP rural share 2011 = 72.4%.",
+        "State sex ratio 931 and literacy 69.3% belong to the same census."
+      ]
+    },
+    "MPPSC-2014-030": {
+      "language": "en",
+      "correct_reasoning": "Legal opium cultivation in Madhya Pradesh is licensed in Mandsaur, Neemuch and Ratlam districts of the Malwa plateau, with Mandsaur as the historic centre of the trade. Dewas and Jhabua do not hold opium licences, so the district named in the answer is Mandsaur.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "dewas",
+          "is_correct": false,
+          "reason": "Dewas grows cotton, soybean and wheat but is not an opium-licensed district."
+        },
+        {
+          "key": "B",
+          "text": "ratlam",
+          "is_correct": false,
+          "reason": "Ratlam has some licensed opium area, but the district at the centre of the trade named in the key is Mandsaur."
+        },
+        {
+          "key": "C",
+          "text": "mandsaur",
+          "is_correct": true,
+          "reason": "Correct: Mandsaur is the best-known opium-growing district of Madhya Pradesh."
+        },
+        {
+          "key": "D",
+          "text": "jhabua",
+          "is_correct": false,
+          "reason": "Jhabua is a tribal, maize-growing district with no legal opium cultivation."
+        }
+      ],
+      "key_concepts": [
+        "Legal opium cultivation is licensed by the Central Bureau of Narcotics",
+        "MP's opium belt: Mandsaur, Neemuch, Ratlam",
+        "Rajasthan, MP and UP are the licensed poppy states"
+      ],
+      "revision_takeaways": [
+        "Opium in MP = Mandsaur (with Neemuch and Ratlam).",
+        "CBN, Gwalior, supervises the licensed crop."
+      ]
+    },
+    "MPPSC-2014-031": {
+      "language": "en",
+      "correct_reasoning": "Balaghat recorded the highest female-male ratio in Madhya Pradesh in the 2011 census, with 1,021 women per thousand men, ahead of Alirajpur, Mandla and Dindori. Bhind, at the other end, had the state's lowest ratio at 837, which shows how wide the district range is.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "jhabua",
+          "is_correct": false,
+          "reason": "Jhabua has a high ratio of about 984 but ranks below Balaghat in the district list."
+        },
+        {
+          "key": "B",
+          "text": "dindori",
+          "is_correct": false,
+          "reason": "Dindori is fourth in the state at about 1,002, behind Balaghat."
+        },
+        {
+          "key": "C",
+          "text": "mandla",
+          "is_correct": false,
+          "reason": "Mandla is third with about 1,008, still below Balaghat's 1,021."
+        },
+        {
+          "key": "D",
+          "text": "balaghat",
+          "is_correct": true,
+          "reason": "Correct: Balaghat's 1,021 is the highest female-male ratio among MP districts in 2011."
+        }
+      ],
+      "key_concepts": [
+        "District sex ratio 2011: Balaghat 1021 highest, Bhind 837 lowest",
+        "State ratio 931 against 919 in 2001",
+        "Child sex ratio (0-6) is highest in Alirajpur"
+      ],
+      "revision_takeaways": [
+        "Highest sex ratio district = Balaghat; lowest = Bhind.",
+        "Distinguish the overall ratio from the 0-6 child sex ratio, whose ranking differs."
+      ]
+    },
+    "MPPSC-2014-032": {
+      "language": "en",
+      "correct_reasoning": "The Fossil National Park of Madhya Pradesh is the Ghughua plant fossil site, officially the Mandla Plant Fossils National Park, spread over villages that fall in Dindori district near the Mandla border. The established name of the park is Mandla, which is why the key names that district rather than Shivpuri or Khandwa.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "sidi",
+          "is_correct": false,
+          "reason": "Sidhi is a coal and dolomite district in the Vindhya region, with no fossil national park."
+        },
+        {
+          "key": "B",
+          "text": "mandla",
+          "is_correct": true,
+          "reason": "Correct: the park is officially the Mandla Plant Fossils National Park, at Ghughua."
+        },
+        {
+          "key": "C",
+          "text": "shivpuri",
+          "is_correct": false,
+          "reason": "Shivpuri is known for its Madhav National Park and its forests, not for plant fossils."
+        },
+        {
+          "key": "D",
+          "text": "khandwa",
+          "is_correct": false,
+          "reason": "Khandwa holds the Omkareshwar and Indira Sagar projects on the Narmada, not the fossil park."
+        }
+      ],
+      "key_concepts": [
+        "Ghughua Fossil National Park declared in 1983, about 75 acres",
+        "Fossils of palms, angiosperms and gymnosperms, 31 genera",
+        "The site was identified in 1970 by Dharmendra Prasad"
+      ],
+      "revision_takeaways": [
+        "Fossil National Park MP = Ghughua, named for Mandla, sited near Dindori.",
+        "It preserves plant fossils, not animal remains."
+      ]
+    },
+    "MPPSC-2014-033": {
+      "language": "en",
+      "correct_reasoning": "Teak, the state's most valuable hardwood, covers about 17.8 per cent of the total forest area of Madhya Pradesh, which makes it the largest single species group in the forest. The higher percentages in the options would overstate teak's share of a forest estate that also holds sal, bamboo and mixed deciduous stands.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "17.8%",
+          "is_correct": true,
+          "reason": "Correct: teak forests occupy roughly 17.8% of the forest area of the state."
+        },
+        {
+          "key": "B",
+          "text": "20.6%",
+          "is_correct": false,
+          "reason": "20.6% is above the recorded teak share and closer to the area of mixed forests."
+        },
+        {
+          "key": "C",
+          "text": "27.8%",
+          "is_correct": false,
+          "reason": "27.8% would leave too little room for sal, bamboo and the other forest types."
+        },
+        {
+          "key": "D",
+          "text": "33.0%",
+          "is_correct": false,
+          "reason": "33% is nearly double the recorded figure and belongs to no forest type of the state."
+        }
+      ],
+      "key_concepts": [
+        "MP has the largest forest cover in India by area",
+        "Teak forests about 17.8% of forest area; sal forests dominate the eastern belt",
+        "Forest cover 2011: about 77,500 sq km, 25% of the state"
+      ],
+      "revision_takeaways": [
+        "Teak share of MP forest = 17.8%.",
+        "Teak grows in Shivpuri, Chhindwara, Betul, Sidhi, Mandla and Jabalpur."
+      ]
+    },
+    "MPPSC-2014-034": {
+      "language": "en",
+      "correct_reasoning": "The irrigation potential of Madhya Pradesh is usually quoted as about 44.94 lakh hectares in the state's own irrigation literature, the figure the paper expects. The other numbers in the options are either the ultimate potential of the whole Narmada basin or plain distractors.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "68.20",
+          "is_correct": false,
+          "reason": "68.20 lakh is above the state's assessed irrigation potential."
+        },
+        {
+          "key": "B",
+          "text": "44.94",
+          "is_correct": true,
+          "reason": "Correct: the present irrigation potential of the state is about 44.94 lakh hectares."
+        },
+        {
+          "key": "C",
+          "text": "78.20",
+          "is_correct": false,
+          "reason": "78.20 lakh is far too high; the state's cultivated area itself is about 150 lakh hectares."
+        },
+        {
+          "key": "D",
+          "text": "34.94",
+          "is_correct": false,
+          "reason": "34.94 lakh is a distractor built off the correct figure."
+        }
+      ],
+      "key_concepts": [
+        "MP irrigation potential about 44.94 lakh hectares",
+        "Canals, tanks and wells are the three sources; canals dominate",
+        "Narmada, Chambal, Betwa and Sone are the main river projects"
+      ],
+      "revision_takeaways": [
+        "MP irrigation potential = 44.94 lakh hectares (approximate).",
+        "Actual irrigation is always less than potential, which is why the two figures differ."
+      ]
+    },
+    "MPPSC-2014-035": {
+      "language": "en",
+      "correct_reasoning": "Lentic habitats are standing fresh water bodies such as ponds, lakes and swamps, where the water does not flow, while lotic habitats are running waters such as rivers and waterfalls. The question asks for the lentic example, so the still-water pair is the answer.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "ponds and swamps",
+          "is_correct": true,
+          "reason": "Correct: ponds and swamps are standing water, the classic lentic habitat."
+        },
+        {
+          "key": "B",
+          "text": "waterfalls and rivers",
+          "is_correct": false,
+          "reason": "Rivers and waterfalls are flowing water, which makes them lotic, not lentic."
+        },
+        {
+          "key": "C",
+          "text": "ponds and river",
+          "is_correct": false,
+          "reason": "The pond qualifies, but a river is lotic, so this pairing is wrong."
+        },
+        {
+          "key": "D",
+          "text": "all of the above",
+          "is_correct": false,
+          "reason": "The inclusive option fails because rivers, waterfalls and flowing water are not lentic."
+        }
+      ],
+      "key_concepts": [
+        "Lentic: standing water, ponds, lakes, swamps",
+        "Lotic: flowing water, rivers, streams, springs",
+        "Wetlands are transitional between the two"
+      ],
+      "revision_takeaways": [
+        "Lentic = still water; lotic = flowing water.",
+        "The stem's duplicated option text is scan debris; the option itself is ponds and swamps."
+      ]
+    },
+    "MPPSC-2014-036": {
+      "language": "en",
+      "correct_reasoning": "Uranium, in its fissile isotope U-235, is the material that sustains the chain reaction in a nuclear bomb, which is why enrichment is the sensitive step in any weapons programme. Zirconium, molybdenum and vanadium are alloying metals used in reactors and steel but none of them is the explosive core.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "zirconium",
+          "is_correct": false,
+          "reason": "Zirconium is used as cladding for fuel rods because it absorbs few neutrons, not as the explosive."
+        },
+        {
+          "key": "B",
+          "text": "uranium",
+          "is_correct": true,
+          "reason": "Correct: enriched uranium, or plutonium bred from it, is the core material of a nuclear bomb."
+        },
+        {
+          "key": "C",
+          "text": "molybdenum",
+          "is_correct": false,
+          "reason": "Molybdenum is a steel alloying element, irrelevant to a fission chain reaction."
+        },
+        {
+          "key": "D",
+          "text": "vanadium",
+          "is_correct": false,
+          "reason": "Vanadium strengthens steel and is not fissile at all."
+        }
+      ],
+      "key_concepts": [
+        "U-235 is the fissile isotope; natural uranium is only 0.7% U-235",
+        "Plutonium-239 is the alternative bomb material, bred in reactors",
+        "India's three-stage nuclear programme: PHWR, fast breeder, thorium"
+      ],
+      "revision_takeaways": [
+        "Nuclear bomb core = uranium (or plutonium).",
+        "Zirconium is reactor cladding, a standard distractor."
+      ]
+    },
+    "MPPSC-2014-037": {
+      "language": "en",
+      "correct_reasoning": "Betul district is the recognised graphite producer of Madhya Pradesh, with deposits traced in the Tikri, Gauthana and Chiklar areas in quartz mica schist. Shivpuri is known for bauxite and pyrophyllite, Satna for china clay and Morena for limestone, not for graphite.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "shivpuri",
+          "is_correct": false,
+          "reason": "Shivpuri is associated with bauxite, diaspore and pyrophyllite."
+        },
+        {
+          "key": "B",
+          "text": "satna",
+          "is_correct": false,
+          "reason": "Satna is known for cement-grade limestone and china clay."
+        },
+        {
+          "key": "C",
+          "text": "morena",
+          "is_correct": false,
+          "reason": "Morena supplies limestone and calcareous shale to the cement industry."
+        },
+        {
+          "key": "D",
+          "text": "betul",
+          "is_correct": true,
+          "reason": "Correct: Betul and Sidhi are the graphite districts of Madhya Pradesh."
+        }
+      ],
+      "key_concepts": [
+        "Graphite: allotrope of carbon, used in pencils, crucibles and batteries",
+        "MP graphite: Betul district, quartz mica schist host rock",
+        "Malanjkhand in Balaghat is copper, not graphite"
+      ],
+      "revision_takeaways": [
+        "Graphite district = Betul (with Sidhi).",
+        "Do not confuse it with Malanjkhand copper in Balaghat."
+      ]
+    },
+    "MPPSC-2014-038": {
+      "language": "en",
+      "correct_reasoning": "Madhya Pradesh was constituted on 1 November 1956 under the States Reorganisation Act, when the old Central Provinces and Berar were merged with Madhya Bharat, Vindhya Pradesh and Bhopal. The state's formation day is therefore 1 November, not September and not 1959.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "1st november1959",
+          "is_correct": false,
+          "reason": "1959 is three years after the reorganisation and has no statehood significance."
+        },
+        {
+          "key": "B",
+          "text": "1st September 1956",
+          "is_correct": false,
+          "reason": "September 1956 is the month before the Act took effect, and no state was formed then."
+        },
+        {
+          "key": "C",
+          "text": "1st November 1956",
+          "is_correct": true,
+          "reason": "Correct: Madhya Pradesh came into being on 1 November 1956."
+        },
+        {
+          "key": "D",
+          "text": "1st September 1951",
+          "is_correct": false,
+          "reason": "1951 predates reorganisation, when the region was still several separate units."
+        }
+      ],
+      "key_concepts": [
+        "States Reorganisation Act, 1956, effective 1 November 1956",
+        "MP formed from CP and Berar, Madhya Bharat, Vindhya Pradesh and Bhopal",
+        "Bhopal became the capital of the reorganised state"
+      ],
+      "revision_takeaways": [
+        "MP formation day = 1 November 1956.",
+        "Chhattisgarh was carved out of MP on 1 November 2000."
+      ]
+    },
+    "MPPSC-2014-039": {
+      "language": "en",
+      "correct_reasoning": "The 2014 APEC summit was held in Beijing, where China hosted the leaders' meeting on 10 and 11 November. Bali hosted the 2013 summit, the Philippines the 2015 one, and Yokohama the 2010 one, so Beijing is the 2014 venue.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "beijing",
+          "is_correct": true,
+          "reason": "Correct: Beijing hosted APEC 2014."
+        },
+        {
+          "key": "B",
+          "text": "philippines",
+          "is_correct": false,
+          "reason": "The Philippines hosted APEC in 2015, at Manila, one year later."
+        },
+        {
+          "key": "C",
+          "text": "yakohama",
+          "is_correct": false,
+          "reason": "Yokohama, printed here as Yakohama, hosted APEC in 2010."
+        },
+        {
+          "key": "D",
+          "text": "bali",
+          "is_correct": false,
+          "reason": "Bali hosted the 2013 summit, the year before the one asked about."
+        }
+      ],
+      "key_concepts": [
+        "APEC: 21 Pacific economies, founded 1989",
+        "2014 Beijing summit produced the Beijing Roadmap on the FTAAP",
+        "APEC host rotates annually among members"
+      ],
+      "revision_takeaways": [
+        "APEC 2014 = Beijing; APEC 2013 = Bali; APEC 2015 = Manila.",
+        "APEC is an economic forum, not a treaty organisation."
+      ]
+    },
+    "MPPSC-2014-040": {
+      "language": "en",
+      "correct_reasoning": "The 19th SAARC summit was to be held in Islamabad in November 2016, and Pakistan remained the proposed host after India and other members pulled out. The summit never took place, so the host country named in the paper is Pakistan rather than India or Sri Lanka.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "India",
+          "is_correct": false,
+          "reason": "India hosted SAARC summits in 1986, 1995 and 2007, but the 19th summit was not allotted to India."
+        },
+        {
+          "key": "B",
+          "text": "Sri Lanka",
+          "is_correct": false,
+          "reason": "Sri Lanka hosted SAARC summits in 1991, 1998 and 2008, not the 19th."
+        },
+        {
+          "key": "C",
+          "text": "Pakistan",
+          "is_correct": true,
+          "reason": "Correct: the 19th SAARC summit was proposed for Islamabad, Pakistan, in 2016."
+        },
+        {
+          "key": "D",
+          "text": "Afganistan",
+          "is_correct": false,
+          "reason": "Afghanistan joined SAARC in 2007 and has never hosted a summit."
+        }
+      ],
+      "key_concepts": [
+        "SAARC founded 1985 at Dhaka, eight members",
+        "18th summit at Kathmandu, 2014; 19th proposed for Islamabad, 2016",
+        "The 2016 summit was postponed indefinitely after the Uri attack"
+      ],
+      "revision_takeaways": [
+        "19th SAARC summit venue = Pakistan (Islamabad), postponed.",
+        "Nepal hosted the 18th summit in 2014."
+      ]
+    },
+    "MPPSC-2014-041": {
+      "language": "en",
+      "correct_reasoning": "At the 17th Asian Games at Incheon in 2014 India finished eighth in the medal table with 11 gold, 10 silver and 36 bronze, a total of 57 medals. The neighbouring totals in the options are close enough to mislead, but 57 is the recorded figure.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "55 medals",
+          "is_correct": false,
+          "reason": "55 is two short of India's actual tally at Incheon."
+        },
+        {
+          "key": "B",
+          "text": "53 medals",
+          "is_correct": false,
+          "reason": "53 would have put India below its real 2014 count."
+        },
+        {
+          "key": "C",
+          "text": "59 medals",
+          "is_correct": false,
+          "reason": "59 overstates the tally; four of these medals do not exist."
+        },
+        {
+          "key": "D",
+          "text": "57 medals",
+          "is_correct": true,
+          "reason": "Correct: India won 57 medals at the 2014 Asian Games."
+        }
+      ],
+      "key_concepts": [
+        "17th Asian Games: Incheon, South Korea, 2014",
+        "India: 11 gold, 10 silver, 36 bronze, 8th place",
+        "2018 Jakarta: India's tally rose to 69 medals"
+      ],
+      "revision_takeaways": [
+        "Incheon 2014: India 57 medals, 8th position.",
+        "The stem's pasted option text is scan debris; the option itself is 55 medals."
+      ]
+    },
+    "MPPSC-2014-042": {
+      "language": "en",
+      "correct_reasoning": "Australia launched the Green Army in 2014, a programme under which young people were recruited for environmental conservation and land care projects. Japan, China and Egypt ran greening campaigns of their own, but the Green Army is the Australian initiative named in the paper.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "Japan",
+          "is_correct": false,
+          "reason": "Japan's environmental programmes are municipal recycling and the Green Purchasing Law, not a Green Army."
+        },
+        {
+          "key": "B",
+          "text": "China",
+          "is_correct": false,
+          "reason": "China's mass afforestation drives are called the Great Green Wall, not a Green Army."
+        },
+        {
+          "key": "C",
+          "text": "Australia",
+          "is_correct": true,
+          "reason": "Correct: Australia launched the Green Army programme in 2014."
+        },
+        {
+          "key": "D",
+          "text": "Egypt",
+          "is_correct": false,
+          "reason": "Egypt's environmental programmes are desert reclamation schemes, with no Green Army."
+        }
+      ],
+      "key_concepts": [
+        "Green Army, Australia, 2014, up to 15,000 young participants",
+        "Great Green Wall is China's afforestation project; Africa has its own Great Green Wall",
+        "Tony Abbott launched the Australian scheme in August 2014"
+      ],
+      "revision_takeaways": [
+        "Green Army = Australia, launched 2014.",
+        "Do not confuse it with the Great Green Wall."
+      ]
+    },
+    "MPPSC-2014-043": {
+      "language": "en",
+      "correct_reasoning": "The 2014 Nobel Prize in Chemistry went to Eric Betzig, Stefan W. Hell and William E. Moerner for super-resolved fluorescence microscopy. Patrick Modiano won the literature prize that year, and the other option pairs mix chemistry laureates of other years with the names of the Nobel medicine laureates.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "Patrick Modiano and Eric Betzig",
+          "is_correct": false,
+          "reason": "Modiano won the 2014 literature prize, so pairing him with a chemist is wrong."
+        },
+        {
+          "key": "B",
+          "text": "Isamu Akasaki and William Moerner",
+          "is_correct": false,
+          "reason": "Akasaki won the 2014 physics prize for blue LEDs, not the chemistry prize."
+        },
+        {
+          "key": "C",
+          "text": "Edward Moser and May Britt",
+          "is_correct": false,
+          "reason": "The Mosers won the 2014 medicine prize for grid cells, not chemistry."
+        },
+        {
+          "key": "D",
+          "text": "Eric Betzig, Stefan W. Hell and William E. Moerner",
+          "is_correct": true,
+          "reason": "Correct: these three shared the 2014 chemistry prize for super-resolution microscopy."
+        }
+      ],
+      "key_concepts": [
+        "Nobel Chemistry 2014: Betzig, Hell, Moerner for super-resolved fluorescence microscopy",
+        "Nobel Physics 2014: Akasaki, Amano, Nakamura for blue LEDs",
+        "Nobel Medicine 2014: O'Keefe and the Mosers for the brain's place and grid cells"
+      ],
+      "revision_takeaways": [
+        "Chemistry 2014 = the microscopy trio.",
+        "Learn the three science Nobels of a year together, because the paper mixes them."
+      ]
+    },
+    "MPPSC-2014-044": {
+      "language": "en",
+      "correct_reasoning": "Liberia was the country worst hit by the 2014 Ebola outbreak in West Africa, with the largest number of cases and deaths recorded by the World Health Organization. Nigeria, Mali and Senegal had imported cases or small outbreaks, but none of them came close to Liberia's toll.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "nigeria",
+          "is_correct": false,
+          "reason": "Nigeria contained its outbreak quickly with a handful of cases and no wide transmission."
+        },
+        {
+          "key": "B",
+          "text": "mali",
+          "is_correct": false,
+          "reason": "Mali reported a small number of imported cases, far fewer than Liberia."
+        },
+        {
+          "key": "C",
+          "text": "liberia",
+          "is_correct": true,
+          "reason": "Correct: Liberia recorded the highest Ebola case and death toll in the 2014 outbreak."
+        },
+        {
+          "key": "D",
+          "text": "Senegal",
+          "is_correct": false,
+          "reason": "Senegal had a single imported case and was declared Ebola-free quickly."
+        }
+      ],
+      "key_concepts": [
+        "Ebola virus disease, first identified in 1976 in Zaire and Sudan",
+        "2014-16 West African epidemic: Guinea, Sierra Leone, Liberia worst affected",
+        "Transmission through body fluids; supportive care and vaccines are the response"
+      ],
+      "revision_takeaways": [
+        "Worst-hit country in 2014 = Liberia.",
+        "Sierra Leone and Guinea were next; Nigeria's rapid response is the control success story."
+      ]
+    },
+    "MPPSC-2014-045": {
+      "language": "en",
+      "correct_reasoning": "Swachh Bharat Mission was launched by Prime Minister Narendra Modi on 2 October 2014, Gandhi Jayanti, with the stated aim of a clean India by 2019, the 150th birth anniversary of Gandhi. The choice of Gandhi Jayanti was deliberate symbolism, linking sanitation to the freedom movement's emphasis on cleanliness.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "independence day",
+          "is_correct": false,
+          "reason": "Independence Day is used for the Prime Minister's address to the nation, not this launch."
+        },
+        {
+          "key": "B",
+          "text": "republic day",
+          "is_correct": false,
+          "reason": "Republic Day is a ceremonial occasion; the mission was not launched then."
+        },
+        {
+          "key": "C",
+          "text": "Gandhi jayanti",
+          "is_correct": true,
+          "reason": "Correct: Swachh Bharat was launched on 2 October 2014, Gandhi Jayanti."
+        },
+        {
+          "key": "D",
+          "text": "environment day",
+          "is_correct": false,
+          "reason": "World Environment Day on 5 June is used for environmental campaigns, not this one."
+        }
+      ],
+      "key_concepts": [
+        "Swachh Bharat Mission launched 2 October 2014",
+        "Two arms: rural (SBM-Gramin) and urban (SBM-Urban)",
+        "Aim: open defecation free India by 2 October 2019"
+      ],
+      "revision_takeaways": [
+        "SBM launch = 2 October 2014, Gandhi Jayanti.",
+        "The mission's deadline was Gandhi's 150th birth anniversary."
+      ]
+    },
+    "MPPSC-2014-046": {
+      "language": "en",
+      "correct_reasoning": "The Kyoto Protocol sets binding emission reduction targets for greenhouse gases, mainly carbon dioxide, methane and nitrous oxide, for developed country parties. It sits inside the climate change convention, but its operative subject is the greenhouse gases whose concentrations drive warming, which is why that option is keyed.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "air pollution",
+          "is_correct": false,
+          "reason": "Air pollution control rests on the Clean Air Act and the Montreal Protocol's ozone provisions, not Kyoto."
+        },
+        {
+          "key": "B",
+          "text": "green house gases",
+          "is_correct": true,
+          "reason": "Correct: Kyoto sets binding targets for greenhouse gas emissions."
+        },
+        {
+          "key": "C",
+          "text": "climate change",
+          "is_correct": false,
+          "reason": "Climate change is the broader framework, the UNFCCC; the protocol addresses the gases that cause it."
+        },
+        {
+          "key": "D",
+          "text": "water pollution",
+          "is_correct": false,
+          "reason": "Water pollution is covered by national laws and the Ramsar Convention, not by Kyoto."
+        }
+      ],
+      "key_concepts": [
+        "Kyoto Protocol, 1997, in force 2005",
+        "Annex I countries took binding targets; the Doha Amendment set a second period",
+        "Replaced in practice by the Paris Agreement of 2015"
+      ],
+      "revision_takeaways": [
+        "Kyoto Protocol = greenhouse gas emission targets.",
+        "The UNFCCC (1992) is the parent treaty; Kyoto is its protocol."
+      ]
+    },
+    "MPPSC-2014-047": {
+      "language": "en",
+      "correct_reasoning": "In the human eye the cornea and lens refract light, but the image is actually formed on the retina, where photoreceptors convert it into nerve signals. The iris controls the size of the pupil and the pupil merely admits light, so neither of them forms an image.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "cornea",
+          "is_correct": false,
+          "reason": "The cornea is the first refracting surface; it bends light but does not form the image."
+        },
+        {
+          "key": "B",
+          "text": "iris",
+          "is_correct": false,
+          "reason": "The iris is the pigmented muscle that adjusts the pupil's size."
+        },
+        {
+          "key": "C",
+          "text": "pupil",
+          "is_correct": false,
+          "reason": "The pupil is only the aperture through which light enters."
+        },
+        {
+          "key": "D",
+          "text": "retina",
+          "is_correct": true,
+          "reason": "Correct: the image is focused on the retina, which holds the rods and cones."
+        }
+      ],
+      "key_concepts": [
+        "The eye is a convex lens system forming a real, inverted image on the retina",
+        "Rods handle dim light and cones colour vision",
+        "Myopia and hypermetropia are defects of image formation"
+      ],
+      "revision_takeaways": [
+        "Image formation in the eye = retina.",
+        "Cornea and lens refract; iris and pupil control light."
+      ]
+    },
+    "MPPSC-2014-048": {
+      "language": "en",
+      "correct_reasoning": "The 102nd Indian Science Congress was held at the University of Mumbai in January 2015, with the theme of science and technology for human development. The previous session had been at Jammu, which is why that city appears among the options as a trap.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "mumbai",
+          "is_correct": true,
+          "reason": "Correct: the 102nd Indian Science Congress met at Mumbai in January 2015."
+        },
+        {
+          "key": "B",
+          "text": "jammu",
+          "is_correct": false,
+          "reason": "Jammu hosted the 101st session in 2014, not the 102nd."
+        },
+        {
+          "key": "C",
+          "text": "kolkata",
+          "is_correct": false,
+          "reason": "Kolkata has hosted the Congress several times, but not the 102nd session."
+        },
+        {
+          "key": "D",
+          "text": "ahemedabad",
+          "is_correct": false,
+          "reason": "Ahmedabad, printed as Ahemedabad, hosted the 100th session in 2013."
+        }
+      ],
+      "key_concepts": [
+        "Indian Science Congress Association, founded 1914, Kolkata",
+        "100th session: Kolkata, 2013; 101st: Jammu, 2014; 102nd: Mumbai, 2015",
+        "The Congress is held in the first week of January"
+      ],
+      "revision_takeaways": [
+        "102nd Indian Science Congress = Mumbai, 2015.",
+        "Ahemedabad in the option list is Ahmedabad, the 100th session host."
+      ]
+    },
+    "MPPSC-2014-049": {
+      "language": "en",
+      "correct_reasoning": "K. Chandrashekhar Rao was sworn in as the first Chief Minister of Telangana on 2 June 2014, the day the state was formed as India's 29th state. Chandrababu Naidu became the first Chief Minister of the residual Andhra Pradesh, and Jayalalithaa was the Chief Minister of Tamil Nadu.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "jayalalitha",
+          "is_correct": false,
+          "reason": "Jayalalithaa was Chief Minister of Tamil Nadu, a different state altogether."
+        },
+        {
+          "key": "B",
+          "text": "chandrababu",
+          "is_correct": false,
+          "reason": "Chandrababu Naidu became the first Chief Minister of residual Andhra Pradesh, not Telangana."
+        },
+        {
+          "key": "C",
+          "text": "K. Chandrashekhar rao",
+          "is_correct": true,
+          "reason": "Correct: KCR was sworn in as the first Chief Minister of Telangana on 2 June 2014."
+        },
+        {
+          "key": "D",
+          "text": "none of these",
+          "is_correct": false,
+          "reason": "The exclusive option fails because KCR is one of the names printed above."
+        }
+      ],
+      "key_concepts": [
+        "Telangana formed 2 June 2014, the 29th state",
+        "Andhra Pradesh Reorganisation Act, 2014",
+        "Hyderabad remained the joint capital for ten years"
+      ],
+      "revision_takeaways": [
+        "Telangana's first Chief Minister = K. Chandrashekhar Rao.",
+        "Chandrababu Naidu led the residual Andhra Pradesh."
+      ]
+    },
+    "MPPSC-2014-050": {
+      "language": "en",
+      "correct_reasoning": "Halophytes are plants adapted to live in saline soils or salt water, such as mangroves and salt-marsh grasses, and they manage salt through salt glands, succulence and ion storage. Acidic, cold and calcium-rich soils each have their own specialist plants, but salt tolerance is what defines a halophyte.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "acidic soils",
+          "is_correct": false,
+          "reason": "Plants of acidic soils are acidophiles, such as rhododendrons and tea; the term halophyte refers to salt."
+        },
+        {
+          "key": "B",
+          "text": "cold soils",
+          "is_correct": false,
+          "reason": "Cold-hardy alpine plants are psychrophiles, not halophytes."
+        },
+        {
+          "key": "C",
+          "text": "soils containing calcium",
+          "is_correct": false,
+          "reason": "Calcicole plants prefer calcium-rich soils; calcium tolerance is not salt tolerance."
+        },
+        {
+          "key": "D",
+          "text": "saline soils",
+          "is_correct": true,
+          "reason": "Correct: halophytes are the salt-tolerant plants of saline soils and coastal marshes."
+        }
+      ],
+      "key_concepts": [
+        "Halophyte: salt-tolerant plant, mangroves and Suaeda are examples",
+        "Xerophyte: drought tolerant; hydrophytes live in water",
+        "Salinity tolerance matters for reclaiming alkaline land"
+      ],
+      "revision_takeaways": [
+        "Halophyte = saline soils.",
+        "Mangroves are the standard halophyte example in Indian geography."
+      ]
+    },
+    "MPPSC-2014-051": {
+      "language": "en",
+      "correct_reasoning": "Blue baby syndrome is methaemoglobinaemia caused by high nitrate in drinking water, which infants convert to nitrite, and the nitrite binds haemoglobin so that it cannot carry oxygen. Iron deficiency causes anaemia, lead poisoning its own set of symptoms, and methaemoglobin is the altered pigment rather than the ingested cause.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "iron",
+          "is_correct": false,
+          "reason": "Excess iron causes haemochromatosis, and shortage causes anaemia, not blue baby syndrome."
+        },
+        {
+          "key": "B",
+          "text": "lead",
+          "is_correct": false,
+          "reason": "Lead poisoning damages nerves and kidneys; it does not produce blue baby syndrome."
+        },
+        {
+          "key": "C",
+          "text": "methamoglobin",
+          "is_correct": false,
+          "reason": "Methaemoglobin is the abnormal haemoglobin formed in the body; the question asks for the substance whose excess in water causes the condition."
+        },
+        {
+          "key": "D",
+          "text": "nitrate",
+          "is_correct": true,
+          "reason": "Correct: nitrate in drinking water, from fertilisers or sewage, is the cause of blue baby syndrome."
+        }
+      ],
+      "key_concepts": [
+        "Blue baby syndrome = methaemoglobinaemia, nitrate in groundwater",
+        "Nitrate converts to nitrite, which oxidises haemoglobin to methaemoglobin",
+        "Infants under six months are most vulnerable"
+      ],
+      "revision_takeaways": [
+        "Blue baby syndrome is linked to nitrate, not to methaemoglobin as the ingested cause.",
+        "It is a classic groundwater contamination issue in agricultural districts."
+      ]
+    },
+    "MPPSC-2014-052": {
+      "language": "en",
+      "correct_reasoning": "The Sun's diameter is about 109 times the Earth's, which is the standard figure quoted in school textbooks and the reason the Sun could hold roughly 1.3 million Earths by volume. The 100 and 115 figures in the options are close but not the accepted ratio.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "124 times",
+          "is_correct": false,
+          "reason": "124 overstates the ratio; it corresponds to no standard measurement of the Sun."
+        },
+        {
+          "key": "B",
+          "text": "100 times",
+          "is_correct": false,
+          "reason": "100 is a round approximation, nine short of the accepted figure."
+        },
+        {
+          "key": "C",
+          "text": "109 times",
+          "is_correct": true,
+          "reason": "Correct: the Sun's diameter is about 109 times that of the Earth."
+        },
+        {
+          "key": "D",
+          "text": "115 times",
+          "is_correct": false,
+          "reason": "115 is above the accepted diameter ratio."
+        }
+      ],
+      "key_concepts": [
+        "Sun diameter about 13.9 lakh km, Earth about 12,742 km",
+        "Sun's mass is about 3.3 lakh times the Earth's",
+        "Light from the Sun takes about 8 minutes 20 seconds to reach the Earth"
+      ],
+      "revision_takeaways": [
+        "Sun / Earth diameter ratio = about 109.",
+        "Distinguish diameter ratio from mass ratio, which is far larger."
+      ]
+    },
+    "MPPSC-2014-053": {
+      "language": "en",
+      "correct_reasoning": "Neptune is the coldest planet in the solar system, with a cloud-top temperature around minus 214 degrees Celsius, because it is the farthest from the Sun and receives the least solar energy. Uranus is close behind, while Saturn and Jupiter generate internal heat that keeps them warmer than their distance alone would suggest.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "neptune",
+          "is_correct": true,
+          "reason": "Correct: Neptune, the outermost planet, has the lowest measured temperature."
+        },
+        {
+          "key": "B",
+          "text": "jupiter",
+          "is_correct": false,
+          "reason": "Jupiter's internal heat keeps it far warmer than Neptune despite its greater size."
+        },
+        {
+          "key": "C",
+          "text": "mars",
+          "is_correct": false,
+          "reason": "Mars is colder than Earth but much warmer than the ice giants."
+        },
+        {
+          "key": "D",
+          "text": "Saturn",
+          "is_correct": false,
+          "reason": "Saturn's temperature is around minus 178 degrees Celsius, warmer than Neptune's."
+        }
+      ],
+      "key_concepts": [
+        "Planet order: Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune",
+        "Neptune: coldest planet, strongest winds, about minus 214 C",
+        "Pluto was reclassified as a dwarf planet in 2006"
+      ],
+      "revision_takeaways": [
+        "Coldest planet = Neptune; hottest = Venus.",
+        "Uranus is the coldest in some measurements of minimum temperature, but the keyed fact is Neptune."
+      ]
+    },
+    "MPPSC-2014-054": {
+      "language": "en",
+      "correct_reasoning": "The International Day for the Preservation of the Ozone Layer is observed on 16 September, the date in 1987 on which the Montreal Protocol was signed. World Environment Day on 5 June and Water Day on 22 March cover different themes, so September is the ozone date.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "16th september",
+          "is_correct": true,
+          "reason": "Correct: 16 September is the International Day for the Preservation of the Ozone Layer."
+        },
+        {
+          "key": "B",
+          "text": "5th june",
+          "is_correct": false,
+          "reason": "5 June is World Environment Day, not the ozone day."
+        },
+        {
+          "key": "C",
+          "text": "23th march",
+          "is_correct": false,
+          "reason": "23 March is World Meteorological Day, unrelated to the ozone layer."
+        },
+        {
+          "key": "D",
+          "text": "21st april",
+          "is_correct": false,
+          "reason": "21 April is observed as World Creativity and Innovation Day, not an ozone day."
+        }
+      ],
+      "key_concepts": [
+        "Montreal Protocol signed 16 September 1987",
+        "Ozone layer in the stratosphere absorbs ultraviolet radiation",
+        "Kigali Amendment to the Montreal Protocol phases down HFCs"
+      ],
+      "revision_takeaways": [
+        "Ozone Day = 16 September, the Montreal Protocol's signing date.",
+        "World Environment Day = 5 June; World Water Day = 22 March."
+      ]
+    },
+    "MPPSC-2014-055": {
+      "language": "en",
+      "correct_reasoning": "The organisation related to the Red List and the Red Data Book is the International Union for Conservation of Nature, which assesses species worldwide and assigns each a threat category. The other acronyms in the option set resemble international bodies but none of them maintains this list.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "U.T.E.S.",
+          "is_correct": false,
+          "reason": "There is no conservation body with this acronym; the letters are a decoy."
+        },
+        {
+          "key": "B",
+          "text": "I.U.C.N.",
+          "is_correct": true,
+          "reason": "Correct: the IUCN publishes the Red List, and its Red Data Books document threatened species."
+        },
+        {
+          "key": "C",
+          "text": "I.B.W.C.",
+          "is_correct": false,
+          "reason": "This is a decoy acronym, not a conservation organisation."
+        },
+        {
+          "key": "D",
+          "text": "W.W.F.",
+          "is_correct": false,
+          "reason": "The WWF campaigns for conservation but does not produce the Red Data Book."
+        }
+      ],
+      "key_concepts": [
+        "IUCN, founded 1948, headquarters at Gland, Switzerland",
+        "Red List categories: least concern to extinct",
+        "Red Data Book of India is compiled with the Zoological and Botanical Surveys"
+      ],
+      "revision_takeaways": [
+        "Red Data Book / Red List = IUCN.",
+        "WWF is the conservation campaign organisation; the Red List is the IUCN's assessment."
+      ]
+    },
+    "MPPSC-2014-056": {
+      "language": "en",
+      "correct_reasoning": "Sunderlal Bahuguna is the name most associated with the Chipko movement, the 1970s hill women's movement against commercial felling in the Garhwal Himalaya, which he carried to national attention through long fasts and padayatras. Medha Patkar leads the Narmada Bachao Andolan, Baba Amte worked for leprosy patients and Kiran Bedi is a police reformer.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "Medha Patekar",
+          "is_correct": false,
+          "reason": "Medha Patkar, printed here as Patekar, leads the Narmada Bachao Andolan, not Chipko."
+        },
+        {
+          "key": "B",
+          "text": "Baba Amte",
+          "is_correct": false,
+          "reason": "Baba Amte founded Anandwan for leprosy patients and the fight for the disabled."
+        },
+        {
+          "key": "C",
+          "text": "Sundarlal Bahuguna",
+          "is_correct": true,
+          "reason": "Correct: Sunderlal Bahuguna is regarded as the leader of the Chipko movement."
+        },
+        {
+          "key": "D",
+          "text": "Kiran Bedi",
+          "is_correct": false,
+          "reason": "Kiran Bedi is associated with police reform and Tihar jail administration."
+        }
+      ],
+      "key_concepts": [
+        "Chipko movement, 1973, Mandal village near Chamoli",
+        "Sunderlal Bahuguna and Chandi Prasad Bhatt were its best-known leaders",
+        "Anti-Tehri dam movement was also led by Bahuguna"
+      ],
+      "revision_takeaways": [
+        "Chipko leader in exam terms = Sunderlal Bahuguna.",
+        "Do not confuse with Medha Patkar's Narmada movement."
+      ]
+    },
+    "MPPSC-2014-057": {
+      "language": "en",
+      "correct_reasoning": "The Montreal Protocol of 1987 is the treaty that phased out chlorofluorocarbons and other ozone-depleting substances, after the discovery of the Antarctic ozone hole. It does not deal with the white tiger, water pollution or agriculture, each of which has its own conventions and laws.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "white tiger",
+          "is_correct": false,
+          "reason": "Wildlife protection comes under the Wildlife Protection Act and CITES, not Montreal."
+        },
+        {
+          "key": "B",
+          "text": "chloroflurocarbon",
+          "is_correct": true,
+          "reason": "Correct: the Montreal Protocol schedules the phase-out of chlorofluorocarbons."
+        },
+        {
+          "key": "C",
+          "text": "water pollution",
+          "is_correct": false,
+          "reason": "Water pollution is addressed by national laws and the Ramsar Convention on wetlands."
+        },
+        {
+          "key": "D",
+          "text": "agriculture",
+          "is_correct": false,
+          "reason": "Agriculture is outside the Montreal Protocol, which deals only with ozone-depleting substances."
+        }
+      ],
+      "key_concepts": [
+        "Montreal Protocol, 1987, in force 1989, 197 parties",
+        "CFCs, halons and HCFCs are the controlled substances",
+        "Kigali Amendment, 2016, adds HFCs to the phase-down"
+      ],
+      "revision_takeaways": [
+        "Montreal Protocol = CFCs and the ozone layer.",
+        "Kyoto and Paris are the climate treaties; Montreal is the ozone treaty."
+      ]
+    },
+    "MPPSC-2014-058": {
+      "language": "en",
+      "correct_reasoning": "The Rangarajan Committee of 2012 reviewed the disinvestment policy for central public sector enterprises and suggested a differentiated approach between majority and minority stakes. Banking reform was the Narasimham committee's subject, tax reform belonged to the Chelliah committee, and foreign trade to the Krishnamurthy committee.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "disinvestment",
+          "is_correct": true,
+          "reason": "Correct: the Rangarajan committee dealt with disinvestment policy in public sector enterprises."
+        },
+        {
+          "key": "B",
+          "text": "banking reforms",
+          "is_correct": false,
+          "reason": "Banking reforms were reviewed by the Narasimham committees of 1991 and 1998."
+        },
+        {
+          "key": "C",
+          "text": "tax reforms",
+          "is_correct": false,
+          "reason": "Tax reform was the subject of the Chelliah committee and later the Kelkar committee."
+        },
+        {
+          "key": "D",
+          "text": "foreign trade",
+          "is_correct": false,
+          "reason": "Foreign trade policy was reviewed by the Krishnamurthy committee before the 1991 reforms."
+        }
+      ],
+      "key_concepts": [
+        "C. Rangarajan chaired a committee on disinvestment in 2012",
+        "Narasimham committee: banking sector reforms, 1991 and 1998",
+        "Chelliah committee: tax reforms, 1991-93"
+      ],
+      "revision_takeaways": [
+        "Rangarajan committee = disinvestment.",
+        "Learn committees with their subject, since the paper mixes them."
+      ]
+    },
+    "MPPSC-2014-059": {
+      "language": "en",
+      "correct_reasoning": "Article 324 of the Constitution vests the superintendence, direction and control of elections in the Election Commission, covering Parliament, state legislatures, the President and the Vice-President. The surrounding articles deal with the Public Service Commissions, not with elections.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "article 320",
+          "is_correct": false,
+          "reason": "Article 320 lists the functions of the Public Service Commissions."
+        },
+        {
+          "key": "B",
+          "text": "article 322",
+          "is_correct": false,
+          "reason": "Article 322 deals with the expenses of the Public Service Commissions, charged on the consolidated fund."
+        },
+        {
+          "key": "C",
+          "text": "article 324",
+          "is_correct": true,
+          "reason": "Correct: Article 324 provides for the Election Commission and its powers."
+        },
+        {
+          "key": "D",
+          "text": "article 326",
+          "is_correct": false,
+          "reason": "Article 326 provides for adult suffrage, that is, elections to the Lok Sabha and Assemblies on the basis of 18 years."
+        }
+      ],
+      "key_concepts": [
+        "Election Commission: Article 324, a constitutional body",
+        "Article 326: universal adult suffrage at 18",
+        "Article 325: one general electoral roll, no discrimination"
+      ],
+      "revision_takeaways": [
+        "Election Commission = Article 324.",
+        "Articles 320-322 belong to the UPSC and state PSCs."
+      ]
+    },
+    "MPPSC-2014-060": {
+      "language": "en",
+      "correct_reasoning": "India is the second largest silk producer in the world after China, with Karnataka, Andhra Pradesh, Tamil Nadu and West Bengal as the leading states. The question asks for the world rank, so the answer is second and not first, which belongs to China.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "first",
+          "is_correct": false,
+          "reason": "China is the largest silk producer, so India cannot be first."
+        },
+        {
+          "key": "B",
+          "text": "second",
+          "is_correct": true,
+          "reason": "Correct: India ranks second in world silk production."
+        },
+        {
+          "key": "C",
+          "text": "third",
+          "is_correct": false,
+          "reason": "Third place is much lower than India's actual output."
+        },
+        {
+          "key": "D",
+          "text": "fourth",
+          "is_correct": false,
+          "reason": "India's raw silk output is well ahead of the countries that occupy this rank."
+        }
+      ],
+      "key_concepts": [
+        "India: second largest silk producer after China",
+        "Karnataka is the largest silk producing state, famous for Mysore silk",
+        "Mulberry silk dominates; eri and muga are the non-mulberry varieties of the northeast"
+      ],
+      "revision_takeaways": [
+        "India's silk rank = second in the world.",
+        "Muga silk is the golden silk of Assam; Karnataka leads in mulberry silk."
+      ]
+    },
+    "MPPSC-2014-061": {
+      "language": "en",
+      "correct_reasoning": "Sardar Vallabhbhai Patel chaired the Advisory Committee on Fundamental Rights, Minorities and Tribal and Excluded Areas set up by the Constituent Assembly on 24 January 1947. Nehru chaired the Union Powers and Union Constitution committees, B.N. Rau was the constitutional adviser and Ambedkar chaired the Drafting Committee.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "Pandit Nehru",
+          "is_correct": false,
+          "reason": "Nehru chaired the Union Powers Committee and the Union Constitution Committee, not this advisory committee."
+        },
+        {
+          "key": "B",
+          "text": "Sardar Patel",
+          "is_correct": true,
+          "reason": "Correct: Patel chaired the Advisory Committee on Fundamental Rights and Minorities."
+        },
+        {
+          "key": "C",
+          "text": "B.N. Rao",
+          "is_correct": false,
+          "reason": "B.N. Rau was the Constitutional Adviser who prepared the draft, not the committee's chairman."
+        },
+        {
+          "key": "D",
+          "text": "B. R. Ambedkar",
+          "is_correct": false,
+          "reason": "Ambedkar chaired the Drafting Committee, which turned the draft into the Constitution."
+        }
+      ],
+      "key_concepts": [
+        "Advisory Committee on Fundamental Rights, Minorities and Tribal Areas: Patel",
+        "Fundamental Rights Sub-Committee: J.B. Kripalani",
+        "Drafting Committee: B.R. Ambedkar; Constitutional Adviser: B.N. Rau"
+      ],
+      "revision_takeaways": [
+        "Patel chaired the fundamental rights advisory committee; Ambedkar the Drafting Committee.",
+        "The paper's scan had lost two options; they are restored from the printed paper."
+      ]
+    },
+    "MPPSC-2014-062": {
+      "language": "en",
+      "correct_reasoning": "The Hazara Rama temple at Hampi was built in the early sixteenth century under Krishnadeva Raya of the Tuluva dynasty, and its walls carry narrative panels of the Ramayana. Deva Raya I and II ruled earlier, and Harihara I founded the empire in 1336, so the temple belongs to Krishnadeva Raya's reign.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "krishnadeva raya",
+          "is_correct": true,
+          "reason": "Correct: the Hazara Rama temple was built during Krishnadeva Raya's reign, 1509-29."
+        },
+        {
+          "key": "B",
+          "text": "deva raya-I",
+          "is_correct": false,
+          "reason": "Deva Raya I ruled in the early fifteenth century, before the temple's construction."
+        },
+        {
+          "key": "C",
+          "text": "deva raya-II",
+          "is_correct": false,
+          "reason": "Deva Raya II ruled in the mid fifteenth century, also earlier than the temple."
+        },
+        {
+          "key": "D",
+          "text": "hariharan-I",
+          "is_correct": false,
+          "reason": "Harihara I founded the Vijayanagara empire in 1336 and never built this temple."
+        }
+      ],
+      "key_concepts": [
+        "Vijayanagara empire, 1336, founded by Harihara and Bukka",
+        "Hazara Rama temple: Ramayana panels, royal chapel of the kings",
+        "Krishnadeva Raya: Amuktamalyada, patron of the Ashtadiggajas"
+      ],
+      "revision_takeaways": [
+        "Hazara Rama temple = Krishnadeva Raya.",
+        "Vitthala temple and the stone chariot also belong to the Vijayanagara period at Hampi."
+      ]
+    },
+    "MPPSC-2014-063": {
+      "language": "en",
+      "correct_reasoning": "The voting age was lowered from 21 to 18 by the 61st Constitutional Amendment Act of 1988, which altered Article 326. The 62nd amendment extended reservation for Scheduled Castes and Tribes in legislatures, the 63rd repealed the emergency provisions for Punjab and the 64th dealt with Panchayat powers.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "61st",
+          "is_correct": true,
+          "reason": "Correct: the 61st Amendment lowered the voting age to 18."
+        },
+        {
+          "key": "B",
+          "text": "62nd",
+          "is_correct": false,
+          "reason": "The 62nd Amendment extended reservation of seats in legislatures for SC and ST."
+        },
+        {
+          "key": "C",
+          "text": "63rd",
+          "is_correct": false,
+          "reason": "The 63rd Amendment repealed the 59th Amendment's special powers in Punjab."
+        },
+        {
+          "key": "D",
+          "text": "64th",
+          "is_correct": false,
+          "reason": "The 64th Amendment dealt with the administration of Punjab in 1990 and left Article 326 untouched."
+        }
+      ],
+      "key_concepts": [
+        "61st Amendment, 1988: voting age 21 to 18, Article 326",
+        "73rd and 74th Amendments, 1992: panchayats and municipalities",
+        "First general election with 18-year voters: 1989"
+      ],
+      "revision_takeaways": [
+        "Voting age 18 = 61st Amendment, 1988.",
+        "Amendment numbers 61-64 belong to the late 1980s; learn them together."
+      ]
+    },
+    "MPPSC-2014-064": {
+      "language": "en",
+      "correct_reasoning": "The chairperson and members of a State Human Rights Commission are appointed by the Governor, on the recommendation of a committee headed by the Chief Minister. The President appoints the National Human Rights Commission, and the Chief Justice of the High Court has no appointing role in either.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "president",
+          "is_correct": false,
+          "reason": "The President appoints the NHRC's chairperson and members, not the state commission's."
+        },
+        {
+          "key": "B",
+          "text": "governor",
+          "is_correct": true,
+          "reason": "Correct: the Governor appoints the State Human Rights Commission's chairperson and members."
+        },
+        {
+          "key": "C",
+          "text": "chief justice of high court",
+          "is_correct": false,
+          "reason": "The Chief Justice of the High Court is consulted on judicial members but does not make the appointment."
+        },
+        {
+          "key": "D",
+          "text": "none of the above",
+          "is_correct": false,
+          "reason": "The exclusive option fails because the Governor is listed above."
+        }
+      ],
+      "key_concepts": [
+        "Protection of Human Rights Act, 1993: NHRC and SHRCs",
+        "SHRC selection committee: Chief Minister, Speaker, Home Minister, Leaders of Opposition",
+        "SHRC chairperson and members hold office for five years, or until 70 years of age"
+      ],
+      "revision_takeaways": [
+        "SHRC appointments = Governor; NHRC = President.",
+        "The 1993 Act created both commissions and human rights courts."
+      ]
+    },
+    "MPPSC-2014-065": {
+      "language": "en",
+      "correct_reasoning": "In 2014 the committee recommending the NHRC chairperson and members consisted of the Prime Minister, the Speaker, the Home Minister, the Leader of the Opposition in the Lok Sabha and the Chairman of the Council of States. The Leader of the Opposition in the Rajya Sabha was not a member until the 2019 amendment added that post, so he is the outsider in this 2014 list.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "speaker of the house of people",
+          "is_correct": false,
+          "reason": "The Speaker of the Lok Sabha has always been a member of the selection committee."
+        },
+        {
+          "key": "B",
+          "text": "chairman of the council of states",
+          "is_correct": false,
+          "reason": "The Chairman of the Rajya Sabha sat on the committee under the original 1993 Act, so he is a member."
+        },
+        {
+          "key": "C",
+          "text": "leader of opposition in the house of people.",
+          "is_correct": false,
+          "reason": "The Leader of the Opposition in the Lok Sabha is a core member of the committee."
+        },
+        {
+          "key": "D",
+          "text": "leader of opposition in the council of states.",
+          "is_correct": true,
+          "reason": "Correct for the 2014 paper: the Leader of the Opposition in the Rajya Sabha was not a member before the 2019 amendment added the post."
+        }
+      ],
+      "key_concepts": [
+        "NHRC selection committee under the 1993 Act",
+        "2019 amendment: adds Leader of the Opposition, Rajya Sabha and Deputy Chairman, Rajya Sabha",
+        "NHRC chairperson appointed by the President on the committee's advice"
+      ],
+      "revision_takeaways": [
+        "For the 2014 paper the odd member out is the Leader of the Opposition in the Rajya Sabha.",
+        "After the 2019 amendment that post became a member, so the item is date-dependent."
+      ]
+    },
+    "MPPSC-2014-066": {
+      "language": "en",
+      "correct_reasoning": "Abhinavagupta was a Kashmir Shaiva philosopher, famous for the Tantraloka and the Abhinavabharati commentary on Bharata's Natyashastra, not a Vedanta thinker. Shankaracharya's Advaita, Ramanuja's Vishishtadvaita and Madhva's Dvaita are the three classic schools of Vedanta.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "shakaracharya",
+          "is_correct": false,
+          "reason": "Shankaracharya founded Advaita Vedanta, the non-dual school, so he belongs to Vedanta."
+        },
+        {
+          "key": "B",
+          "text": "abhinav gupt",
+          "is_correct": true,
+          "reason": "Correct: Abhinavagupta belongs to Kashmir Shaivism and aesthetics, not to Vedanta."
+        },
+        {
+          "key": "C",
+          "text": "ramanuja",
+          "is_correct": false,
+          "reason": "Ramanuja's Vishishtadvaita is a major Vedanta school."
+        },
+        {
+          "key": "D",
+          "text": "madhava",
+          "is_correct": false,
+          "reason": "Madhvacharya founded Dvaita Vedanta, the dualist school."
+        }
+      ],
+      "key_concepts": [
+        "Three Vedanta schools: Advaita (Shankara), Vishishtadvaita (Ramanuja), Dvaita (Madhva)",
+        "Abhinavagupta: Kashmir Shaivism, Tantraloka, rasa theory",
+        "Vedanta means the end of the Vedas, the Upanishads"
+      ],
+      "revision_takeaways": [
+        "Abhinavagupta = Kashmir Shaivism, the outsider in this list.",
+        "The Vedanta trio is Shankara, Ramanuja, Madhva."
+      ]
+    },
+    "MPPSC-2014-067": {
+      "language": "en",
+      "correct_reasoning": "Section 16 of the SC and ST (Prevention of Atrocities) Act, 1989 gives the State Government the power to impose and realise a collective fine, applying Section 10A of the Protection of Civil Rights Act, 1955 for that purpose. The Special Court tries offences and the district magistrate executes orders, but the power to impose the collective fine is the state's.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "district magistrate",
+          "is_correct": false,
+          "reason": "The district magistrate assists in realising the fine but does not impose it under Section 16."
+        },
+        {
+          "key": "B",
+          "text": "state government",
+          "is_correct": true,
+          "reason": "Correct: Section 16 of the Act empowers the State Government to impose and realise the collective fine."
+        },
+        {
+          "key": "C",
+          "text": "special court",
+          "is_correct": false,
+          "reason": "The Special Court tries atrocity offences and can order forfeiture, not a collective fine."
+        },
+        {
+          "key": "D",
+          "text": "high court",
+          "is_correct": false,
+          "reason": "The High Court has appellate and writ jurisdiction, not this statutory power."
+        }
+      ],
+      "key_concepts": [
+        "PoA Act, 1989: Section 16 collective fine, Section 10A of the PCR Act applies",
+        "Special Courts under Section 14 of the PoA Act",
+        "Section 3: punishment for neglect of duties by a public servant"
+      ],
+      "revision_takeaways": [
+        "Collective fine under the Atrocities Act = State Government, Section 16.",
+        "The mechanism is borrowed from Section 10A of the 1955 Civil Rights Act."
+      ]
+    },
+    "MPPSC-2014-068": {
+      "language": "en",
+      "correct_reasoning": "Under the Protection of Civil Rights Act, 1955 every person in charge of a company's business at the time an offence is committed, whether director, manager, secretary or other officer, is deemed guilty unless he proves he had no knowledge and took due care. That is why the inclusive option, naming all three officers, is the answer.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "director",
+          "is_correct": false,
+          "reason": "True only in part: the section covers directors but does not stop at them."
+        },
+        {
+          "key": "B",
+          "text": "manager",
+          "is_correct": false,
+          "reason": "A manager is equally liable, but again this is only one of the officers named."
+        },
+        {
+          "key": "C",
+          "text": "secretary",
+          "is_correct": false,
+          "reason": "The company secretary is included but is not the only responsible person."
+        },
+        {
+          "key": "D",
+          "text": "all of the above",
+          "is_correct": true,
+          "reason": "Correct: the Act makes directors, managers and secretaries all liable for company offences."
+        }
+      ],
+      "key_concepts": [
+        "PCR Act, 1955: offences by companies, officers deemed liable",
+        "Defence: lack of knowledge and due diligence",
+        "The Act penalises the practice of untouchability"
+      ],
+      "revision_takeaways": [
+        "Company offence under the 1955 Act = all officers, not one of them.",
+        "When every option is individually true, the inclusive option wins."
+      ]
+    },
+    "MPPSC-2014-069": {
+      "language": "en",
+      "correct_reasoning": "Section 3 of the SC and ST (Prevention of Atrocities) Act punishes a public servant who wilfully neglects his duties with imprisonment of not less than six months, extendable to one year. The paper keys one year, which is the maximum of that range, but the question asks for the minimum, so six months is correct.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "three months",
+          "is_correct": false,
+          "reason": "Three months is below the statutory minimum fixed by Section 3."
+        },
+        {
+          "key": "B",
+          "text": "six months",
+          "is_correct": true,
+          "reason": "Correct: Section 3 sets a minimum of six months, extendable to one year."
+        },
+        {
+          "key": "C",
+          "text": "one year",
+          "is_correct": false,
+          "reason": "One year is the maximum of the Section 3 range, not the minimum the question asks for."
+        },
+        {
+          "key": "D",
+          "text": "none of the above",
+          "is_correct": false,
+          "reason": "The exclusive option fails because six months is one of the listed choices."
+        }
+      ],
+      "key_concepts": [
+        "PoA Act Section 3: neglect of duty by a public servant",
+        "Punishment: minimum six months, maximum one year",
+        "Non-SC/ST public servants are the class covered"
+      ],
+      "revision_takeaways": [
+        "Minimum under Section 3 = six months; one year is the ceiling.",
+        "Read 'minimum' and 'maximum' in the stem before choosing."
+      ]
+    },
+    "MPPSC-2014-070": {
+      "language": "en",
+      "correct_reasoning": "Dial-up service is the slowest internet connection of the four, because it carries data over an ordinary telephone line at up to 56 kbps and blocks the phone while connected. Digital subscriber line, cable modem and leased lines all work at broadband speeds far above dial-up.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "digital subscriber line",
+          "is_correct": false,
+          "reason": "DSL is a broadband service running at several megabits per second over the same copper pair."
+        },
+        {
+          "key": "B",
+          "text": "dial up service",
+          "is_correct": true,
+          "reason": "Correct: dial-up tops out near 56 kbps, the slowest of these options."
+        },
+        {
+          "key": "C",
+          "text": "leased line",
+          "is_correct": false,
+          "reason": "A leased line is a dedicated high-capacity link used by businesses."
+        },
+        {
+          "key": "D",
+          "text": "cable modem",
+          "is_correct": false,
+          "reason": "A cable modem uses the coaxial cable network and delivers broadband speeds."
+        }
+      ],
+      "key_concepts": [
+        "Dial-up: 56 kbps, uses a modem on the telephone line",
+        "DSL: broadband over telephone copper, separate band from voice",
+        "Leased line: dedicated, symmetric, expensive"
+      ],
+      "revision_takeaways": [
+        "Slowest internet service = dial-up.",
+        "DSL and cable modem are both broadband; leased line is the fastest and costliest."
+      ]
+    },
+    "MPPSC-2014-071": {
+      "language": "en",
+      "correct_reasoning": "SMPS stands for switched mode power supply, the circuit that converts AC to regulated DC by switching at high frequency, which is why computer power units are small and efficient. The other expansions in the options are invented and match no real term.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "switched mode power supply",
+          "is_correct": true,
+          "reason": "Correct: SMPS is a switched mode power supply, the standard power unit inside a desktop computer."
+        },
+        {
+          "key": "B",
+          "text": "start mode power supply",
+          "is_correct": false,
+          "reason": "There is no such device; 'start mode' is not a power supply term."
+        },
+        {
+          "key": "C",
+          "text": "signal mode power supply",
+          "is_correct": false,
+          "reason": "This expansion does not exist in electronics."
+        },
+        {
+          "key": "D",
+          "text": "store mode power supply",
+          "is_correct": false,
+          "reason": "This is a decoy expansion with no technical meaning."
+        }
+      ],
+      "key_concepts": [
+        "SMPS: switched mode power supply, high-frequency switching, high efficiency",
+        "Used in computer power units and phone chargers",
+        "Linear supplies are simpler but heavier and less efficient"
+      ],
+      "revision_takeaways": [
+        "SMPS = switched mode power supply.",
+        "The other three expansions are decoys built by swapping the first word."
+      ]
+    },
+    "MPPSC-2014-072": {
+      "language": "en",
+      "correct_reasoning": "Under the Protection of Civil Rights Act, 1955 every offence is cognizable and, unless punishable with a minimum above three months, may be tried summarily by a Judicial Magistrate of the First Class. That is why the court named in the answer is the first class magistrate rather than the sessions court or the Chief Judicial Magistrate.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "sessions court",
+          "is_correct": false,
+          "reason": "The sessions court tries serious offences under the IPC, not these summary offences."
+        },
+        {
+          "key": "B",
+          "text": "judicial magistrate first class",
+          "is_correct": true,
+          "reason": "Correct: offences under the 1955 Act are tried summarily by a Judicial Magistrate of the First Class."
+        },
+        {
+          "key": "C",
+          "text": "judicial magistrate second class",
+          "is_correct": false,
+          "reason": "A second class magistrate's sentencing powers are limited, and the Act names the first class."
+        },
+        {
+          "key": "D",
+          "text": "chief judicial magistrate",
+          "is_correct": false,
+          "reason": "The CJM supervises magistrates in a district but is not the court named by this Act."
+        }
+      ],
+      "key_concepts": [
+        "PCR Act, 1955: cognizable offences, summary trial",
+        "Summary trial under the CrPC is held by first class magistrates",
+        "The Act targets the practice of untouchability"
+      ],
+      "revision_takeaways": [
+        "Trial court under the 1955 Act = Judicial Magistrate First Class.",
+        "Summary trial keeps these offences quick and low-cost."
+      ]
+    },
+    "MPPSC-2014-073": {
+      "language": "en",
+      "correct_reasoning": "Routers, hubs and switches are all connecting devices: a hub repeats signals to every port, a switch forwards frames to the right port and a router joins different networks. Since all three perform a connecting function, the inclusive option is the correct one.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "router",
+          "is_correct": false,
+          "reason": "A router is certainly a connecting device, but it is only one of the three named."
+        },
+        {
+          "key": "B",
+          "text": "hub",
+          "is_correct": false,
+          "reason": "A hub connects nodes in a LAN, but this answer is incomplete on its own."
+        },
+        {
+          "key": "C",
+          "text": "switch",
+          "is_correct": false,
+          "reason": "A switch connects devices within a network, again only one of the three."
+        },
+        {
+          "key": "D",
+          "text": "all of these",
+          "is_correct": true,
+          "reason": "Correct: router, hub and switch are all network connecting devices."
+        }
+      ],
+      "key_concepts": [
+        "Hub: layer 1 repeater; switch: layer 2 frame forwarding; router: layer 3 routing",
+        "Connecting devices link network segments",
+        "Modem, repeater, bridge and gateway are the other connecting devices"
+      ],
+      "revision_takeaways": [
+        "Hub, switch and router are all connecting devices.",
+        "Know the layer at which each works, because that is the usual follow-up question."
+      ]
+    },
+    "MPPSC-2014-074": {
+      "language": "en",
+      "correct_reasoning": "One byte consists of eight bits, which gives 256 possible values and enough room to encode a single ASCII character. Sixteen, 32 and 64 bits describe word sizes of processors or wider data units, not the byte itself.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "8-bits",
+          "is_correct": true,
+          "reason": "Correct: a byte is eight bits."
+        },
+        {
+          "key": "B",
+          "text": "16-bits",
+          "is_correct": false,
+          "reason": "Sixteen bits are two bytes, the word size of early processors."
+        },
+        {
+          "key": "C",
+          "text": "32-bits",
+          "is_correct": false,
+          "reason": "Thirty-two bits are four bytes, a common word length."
+        },
+        {
+          "key": "D",
+          "text": "64-bits",
+          "is_correct": false,
+          "reason": "Sixty-four bits are eight bytes, a double word."
+        }
+      ],
+      "key_concepts": [
+        "1 byte = 8 bits; 1 nibble = 4 bits",
+        "Byte values range 0 to 255",
+        "1 KB = 1024 bytes in binary convention"
+      ],
+      "revision_takeaways": [
+        "A byte is eight bits.",
+        "Word sizes of 16, 32 and 64 bits are processor architectures, not the byte."
+      ]
+    },
+    "MPPSC-2014-075": {
+      "language": "en",
+      "correct_reasoning": "A firewall inspects incoming and outgoing traffic against rules and blocks unauthorised access to or from a private network, which is its defining purpose. It is not designed against a physical fire, and a virus attack on a host is handled by antivirus software rather than by the firewall's rules alone.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "Unauthorized attack",
+          "is_correct": true,
+          "reason": "Correct: a firewall protects a network by filtering unauthorised traffic."
+        },
+        {
+          "key": "B",
+          "text": "data driven attack",
+          "is_correct": false,
+          "reason": "Data-driven attacks target application inputs, which a firewall does not parse at that level."
+        },
+        {
+          "key": "C",
+          "text": "Fire attack",
+          "is_correct": false,
+          "reason": "The word fire in firewall is metaphorical; a firewall has nothing to do with physical fire."
+        },
+        {
+          "key": "D",
+          "text": "virus attack",
+          "is_correct": false,
+          "reason": "Viruses on a machine are the business of antivirus software, not of packet filtering."
+        }
+      ],
+      "key_concepts": [
+        "Firewall: packet filtering, stateful inspection, proxy",
+        "Placed between a trusted internal network and the internet",
+        "Antivirus handles malware on a host; firewall handles network access"
+      ],
+      "revision_takeaways": [
+        "Firewall = protection from unauthorised network access.",
+        "It is not an antivirus and not a literal fire barrier."
+      ]
+    },
+    "MPPSC-2014-076": {
+      "language": "en",
+      "correct_reasoning": "FTP stands for File Transfer Protocol, the standard protocol for moving files between a client and a server over a TCP/IP network. The other expansions swap the middle word to build plausible-looking decoys that name no real protocol.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "file translate protocol",
+          "is_correct": false,
+          "reason": "There is no protocol with this name; 'translate' is inserted to build a decoy."
+        },
+        {
+          "key": "B",
+          "text": "file transit protocol",
+          "is_correct": false,
+          "reason": "This expansion does not exist in networking standards."
+        },
+        {
+          "key": "C",
+          "text": "file tying protocol",
+          "is_correct": false,
+          "reason": "This is an invented expansion with no technical meaning."
+        },
+        {
+          "key": "D",
+          "text": "file transfer protocol",
+          "is_correct": true,
+          "reason": "Correct: FTP is the File Transfer Protocol, used to move files between machines."
+        }
+      ],
+      "key_concepts": [
+        "FTP uses TCP ports 20 and 21",
+        "SFTP and FTPS are the secure variants",
+        "HTTP, SMTP and FTP are the classic application layer protocols"
+      ],
+      "revision_takeaways": [
+        "FTP = File Transfer Protocol.",
+        "The decoys keep the first and last words and change only the middle one."
+      ]
+    },
+    "MPPSC-2014-077": {
+      "language": "en",
+      "correct_reasoning": "Orchha, the former Bundela capital in Tikamgarh district, stands on the Betwa and is famous for its fort, palaces and chhatris along the river. Ujjain is on the Shipra, Mandideep is an industrial town near Bhopal and Morena lies on the Chambal, so none of them is a Betwa town.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "orchha",
+          "is_correct": true,
+          "reason": "Correct: Orchha is built on the banks of the Betwa in Tikamgarh district."
+        },
+        {
+          "key": "B",
+          "text": "ujjain",
+          "is_correct": false,
+          "reason": "Ujjain is on the Shipra, a tributary of the Chambal."
+        },
+        {
+          "key": "C",
+          "text": "mandideep",
+          "is_correct": false,
+          "reason": "Mandideep is an industrial suburb of Bhopal on the Betwa's tributary belt, not a Betwa town in the sense asked."
+        },
+        {
+          "key": "D",
+          "text": "morena",
+          "is_correct": false,
+          "reason": "Morena sits in the Chambal valley, known for its ravines."
+        }
+      ],
+      "key_concepts": [
+        "Betwa: tributary of the Yamuna, rises in the Vindhyas near Bhopal",
+        "Orchha: Bundela capital, Raja Rudra Pratap founded it in 1531",
+        "Shipra at Ujjain; Chambal at Morena"
+      ],
+      "revision_takeaways": [
+        "Orchha = Betwa.",
+        "Ujjain = Shipra, Morena = Chambal, Mandideep = Bhopal's industrial belt."
+      ]
+    },
+    "MPPSC-2014-078": {
+      "language": "en",
+      "correct_reasoning": "White tigers are associated with Baghelkhand, the region around Bandhavgarh and Rewa, where the white tiger was first documented and where Maharaja Martand Singh of Rewa kept the famous Mohan. Malwa, Nimar and Rohilkhand belong to other regions and other states.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "rohil khand",
+          "is_correct": false,
+          "reason": "Rohilkhand is a region of Uttar Pradesh, not a part of Madhya Pradesh."
+        },
+        {
+          "key": "B",
+          "text": "baghel khand",
+          "is_correct": true,
+          "reason": "Correct: the white tiger is associated with Baghelkhand, around Rewa and Bandhavgarh."
+        },
+        {
+          "key": "C",
+          "text": "malwa",
+          "is_correct": false,
+          "reason": "Malwa is the western plateau of the state, known for its black soil and not for white tigers."
+        },
+        {
+          "key": "D",
+          "text": "nimar",
+          "is_correct": false,
+          "reason": "Nimar is the Narmada valley region of the south-west, with no white tiger record."
+        }
+      ],
+      "key_concepts": [
+        "White tiger: recessive colour variant of the Bengal tiger",
+        "Mohan, the Rewa white tiger, captured in 1951",
+        "Bandhavgarh, in Umaria district, has the highest tiger density in India"
+      ],
+      "revision_takeaways": [
+        "White tigers in MP = Baghelkhand (Rewa, Bandhavgarh).",
+        "Rohilkhand is in UP, a common trap."
+      ]
+    },
+    "MPPSC-2014-079": {
+      "language": "en",
+      "correct_reasoning": "Word processing, spreadsheets and photo editors are application software, written to do a particular job for the user. System software, which includes the operating system and utilities, manages the hardware and provides the platform on which those applications run.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "application software",
+          "is_correct": true,
+          "reason": "Correct: word processors, spreadsheets and image editors are application software."
+        },
+        {
+          "key": "B",
+          "text": "system software",
+          "is_correct": false,
+          "reason": "System software runs the machine itself, examples being the OS, drivers and compilers."
+        },
+        {
+          "key": "C",
+          "text": "operating system software",
+          "is_correct": false,
+          "reason": "The operating system is system software, not the word processor that runs on it."
+        },
+        {
+          "key": "D",
+          "text": "platform software",
+          "is_correct": false,
+          "reason": "Platform software means the OS and runtimes, the base rather than the applications."
+        }
+      ],
+      "key_concepts": [
+        "Application software: general purpose and special purpose",
+        "System software: operating system, utilities, language translators",
+        "Firmware sits between hardware and software"
+      ],
+      "revision_takeaways": [
+        "Word processor, spreadsheet, photo editor = application software.",
+        "The operating system is the platform, not an application."
+      ]
+    },
+    "MPPSC-2014-080": {
+      "language": "en",
+      "correct_reasoning": "The Tansen Samman for 2014 was awarded to the Hindustani vocalist Prabhakar Karekar, a Gwalior gharana exponent, by the Madhya Pradesh government at the Tansen Sangeet Samaroh in Gwalior. Anupam Kher is an actor, Lata Mangeshkar a playback singer and Ravi Shankar a sitarist.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "lata mangeskar",
+          "is_correct": false,
+          "reason": "Lata Mangeshkar is a playback singer and has received other honours, not the 2014 Tansen Samman."
+        },
+        {
+          "key": "B",
+          "text": "prabhakar karekar",
+          "is_correct": true,
+          "reason": "Correct: Prabhakar Karekar received the Tansen Samman in 2014."
+        },
+        {
+          "key": "C",
+          "text": "anupam kher",
+          "is_correct": false,
+          "reason": "Anupam Kher is a film and theatre actor, outside the Tansen Samman's scope."
+        },
+        {
+          "key": "D",
+          "text": "pandit ravi shankar",
+          "is_correct": false,
+          "reason": "Ravi Shankar was a sitarist and received the award in an earlier year."
+        }
+      ],
+      "key_concepts": [
+        "Tansen Samman: Madhya Pradesh's award for Hindustani music",
+        "Tansen Sangeet Samaroh, Gwalior, held every December",
+        "Tansen was one of the Navaratnas of Akbar's court"
+      ],
+      "revision_takeaways": [
+        "Tansen Samman 2014 = Prabhakar Karekar.",
+        "The award is given at Gwalior, Tansen's city."
+      ]
+    },
+    "MPPSC-2014-081": {
+      "language": "en",
+      "correct_reasoning": "The Gaur dance, the bison-horn dance of the Mauriya or Muria tribe, is the best-known tribal dance of Madhya Pradesh. The Baiga, Dandami Madia and Korku have their own dance traditions, but the bison-horn Gaur dance belongs to the Mauriya.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "baiga",
+          "is_correct": false,
+          "reason": "The Baiga are known for the Karma and Saila dances, not the Gaur dance."
+        },
+        {
+          "key": "B",
+          "text": "mauriya",
+          "is_correct": true,
+          "reason": "Correct: the Gaur, or bison-horn dance, is performed by the Mauriya tribe."
+        },
+        {
+          "key": "C",
+          "text": "dandami madia",
+          "is_correct": false,
+          "reason": "The Dandami Madia of Bastar perform the Dandari dance, a different form."
+        },
+        {
+          "key": "D",
+          "text": "korku",
+          "is_correct": false,
+          "reason": "The Korku have their own ritual dances but are not associated with the Gaur dance."
+        }
+      ],
+      "key_concepts": [
+        "Gaur dance: bison-horn dance, Mauriya tribe, Bastar-Dindori belt",
+        "Other MP tribal dances: Karma, Saila, Sua, Bhagoria",
+        "Ghotul is the youth dormitory of the Muria"
+      ],
+      "revision_takeaways": [
+        "Gaur dance = Mauriya (Muria) tribe.",
+        "It imitates the gaur, the Indian bison, and follows a hunt."
+      ]
+    },
+    "MPPSC-2014-082": {
+      "language": "en",
+      "correct_reasoning": "Dharmvir Bharati was born and worked mainly in Uttar Pradesh and is known for Andha Yug and his Allahabad associations, so he is the figure not associated with Madhya Pradesh. Sharad Joshi, Prabhakar Machwe and Harishankar Parsai all belonged to the state's literary world.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "dharmvir bharti",
+          "is_correct": true,
+          "reason": "Correct: Dharmvir Bharati was based in Allahabad, UP, and is the exception here."
+        },
+        {
+          "key": "B",
+          "text": "sharad joshi",
+          "is_correct": false,
+          "reason": "Sharad Joshi was born at Ujjain and wrote his satirical Hindi essays in Madhya Pradesh."
+        },
+        {
+          "key": "C",
+          "text": "prabhakar machwe",
+          "is_correct": false,
+          "reason": "Prabhakar Machwe was a Hindi writer and critic from Madhya Pradesh."
+        },
+        {
+          "key": "D",
+          "text": "harishankar parsai",
+          "is_correct": false,
+          "reason": "Harishankar Parsai lived and taught at Hoshangabad in Madhya Pradesh."
+        }
+      ],
+      "key_concepts": [
+        "Andha Yug by Dharmvir Bharati, a verse play on the Mahabharata",
+        "Harishankar Parsai: Hindi satire, Hoshangabad",
+        "MP's literary figures: Sharad Joshi, Prabhakar Machwe, Subhadra Kumari Chauhan"
+      ],
+      "revision_takeaways": [
+        "Dharmvir Bharati belongs to UP, not MP.",
+        "Parsai and Sharad Joshi are the MP-linked names in the list."
+      ]
+    },
+    "MPPSC-2014-083": {
+      "language": "en",
+      "correct_reasoning": "The Cholas are famous for efficient rural administration, built around the village assembly or sabha, the ur and the nadu, with land revenue records and local self-government described in inscriptions. The Rashtrakutas, Chalukyas and Pallavas had strong administrations too, but the village-level system is the Chola hallmark.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "cholas",
+          "is_correct": true,
+          "reason": "Correct: the Chola village assemblies and the nadu system are the classic examples of rural administration."
+        },
+        {
+          "key": "B",
+          "text": "rashtrakutas",
+          "is_correct": false,
+          "reason": "The Rashtrakutas are remembered for military campaigns and patronage of Ellora, not for village administration."
+        },
+        {
+          "key": "C",
+          "text": "chalukyas",
+          "is_correct": false,
+          "reason": "The Chalukyas of Badami and Kalyani built temples and fought the Pallavas and Cholas."
+        },
+        {
+          "key": "D",
+          "text": "pallavas",
+          "is_correct": false,
+          "reason": "The Pallavas are known for Mahabalipuram and Kanchipuram, and for temple-based administration."
+        }
+      ],
+      "key_concepts": [
+        "Chola local bodies: ur (village), sabha (brahmadeya village), nadu (district)",
+        "Uttaramerur inscription describes the sabha's election rules",
+        "Chola land survey and revenue assessment were unusually detailed"
+      ],
+      "revision_takeaways": [
+        "Efficient rural administration = Cholas.",
+        "Uttaramerur is the inscription to quote for Chola village assemblies."
+      ]
+    },
+    "MPPSC-2014-084": {
+      "language": "en",
+      "correct_reasoning": "The Khajuraho temples were built by the Chandel rulers of Bundelkhand between about 950 and 1050 AD, the most famous being those of Kandariya Mahadev and Vishwanath. The Baghelas, Parmars and Bundelas ruled in the region later or elsewhere, but none of them built Khajuraho.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "baghela",
+          "is_correct": false,
+          "reason": "The Baghelas ruled Rewa and Baghelkhand in later medieval times, long after Khajuraho."
+        },
+        {
+          "key": "B",
+          "text": "parmar",
+          "is_correct": false,
+          "reason": "The Parmars ruled Malwa from Dhar, with their own temple architecture."
+        },
+        {
+          "key": "C",
+          "text": "chandel",
+          "is_correct": true,
+          "reason": "Correct: the Chandels built the Khajuraho temples."
+        },
+        {
+          "key": "D",
+          "text": "bundela",
+          "is_correct": false,
+          "reason": "The Bundelas built Orchha and Datia, several centuries after Khajuraho."
+        }
+      ],
+      "key_concepts": [
+        "Chandels of Mahoba, ninth to thirteenth centuries",
+        "Khajuraho: Nagara style, UNESCO World Heritage site",
+        "Kandariya Mahadev is the largest temple in the group"
+      ],
+      "revision_takeaways": [
+        "Khajuraho = Chandel dynasty.",
+        "Bundelas built Orchha; Parmars ruled Malwa."
+      ]
+    },
+    "MPPSC-2014-085": {
+      "language": "en",
+      "correct_reasoning": "The Nimar festival, also called the Nimar Utsav, is held every year at Maheshwar on the Narmada in Khargone district, celebrating the culture of the Nimar region. Khajuraho has its dance festival, Mandu its own utsav and Omkareshwar is a pilgrimage town, so Maheshwar is the venue for this one.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "khajuraho",
+          "is_correct": false,
+          "reason": "Khajuraho hosts the Khajuraho Dance Festival in February, not the Nimar festival."
+        },
+        {
+          "key": "B",
+          "text": "maheshwar",
+          "is_correct": true,
+          "reason": "Correct: the Nimar festival is organised at Maheshwar every year."
+        },
+        {
+          "key": "C",
+          "text": "omkareshwar",
+          "is_correct": false,
+          "reason": "Omkareshwar is one of the twelve jyotirlingas and hosts religious fairs, not this festival."
+        },
+        {
+          "key": "D",
+          "text": "mandu",
+          "is_correct": false,
+          "reason": "Mandu holds its own monsoon festival among the Afghan-era monuments."
+        }
+      ],
+      "key_concepts": [
+        "Maheshwar: Ahilyabai Holkar's capital, on the Narmada",
+        "Nimar Utsav held in November at Maheshwar",
+        "Other MP festivals: Khajuraho dance, Tansen Samaroh, Mandu utsav, Bhagoria"
+      ],
+      "revision_takeaways": [
+        "Nimar festival = Maheshwar.",
+        "Maheshwar is also famous for Maheshwari handloom sarees."
+      ]
+    },
+    "MPPSC-2014-086": {
+      "language": "en",
+      "correct_reasoning": "Malanjkhand in Balaghat district is India's largest copper deposit and the site of the Malanjkhand copper project run by Hindustan Copper Limited. The state also has manganese and iron ore elsewhere, but the ore associated with Malanjkhand itself is copper.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "manganese",
+          "is_correct": false,
+          "reason": "Manganese comes from Balaghat and Chhindwara belts generally, but Malanjkhand is a copper deposit."
+        },
+        {
+          "key": "B",
+          "text": "copper",
+          "is_correct": true,
+          "reason": "Correct: Malanjkhand is famous for copper ore."
+        },
+        {
+          "key": "C",
+          "text": "iron-ore",
+          "is_correct": false,
+          "reason": "Iron ore in MP is mined in Jabalpur, Katni and Chhatarpur belts, not Malanjkhand."
+        },
+        {
+          "key": "D",
+          "text": "tungsten",
+          "is_correct": false,
+          "reason": "Tungsten occurs in Degana in Rajasthan, with no Malanjkhand link."
+        }
+      ],
+      "key_concepts": [
+        "Malanjkhand: largest copper deposit in India, Balaghat district",
+        "Hindustan Copper Limited operates the Malanjkhand project",
+        "Balaghat also produces manganese"
+      ],
+      "revision_takeaways": [
+        "Malanjkhand = copper, in Balaghat.",
+        "Graphite is Betul; diamond is Panna; coal is Shahdol-Singrauli."
+      ]
+    },
+    "MPPSC-2014-087": {
+      "language": "en",
+      "correct_reasoning": "The Birsinghpur hydro power station stands on the Son river in Umaria district, near the Birsinghpur Pali area, with a capacity of about 20 MW. Shahdol and Jabalpur have their own projects, but Birsinghpur belongs to Umaria.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "Umaria",
+          "is_correct": true,
+          "reason": "Correct: the Birsinghpur power station is in Umaria district."
+        },
+        {
+          "key": "B",
+          "text": "Jabalpur",
+          "is_correct": false,
+          "reason": "Jabalpur's plants are the Bargi hydel project on the Narmada, not Birsinghpur."
+        },
+        {
+          "key": "C",
+          "text": "Balaghat",
+          "is_correct": false,
+          "reason": "Balaghat's hydel projects are on the Wainganga system, not this one."
+        },
+        {
+          "key": "D",
+          "text": "Shahdol",
+          "is_correct": false,
+          "reason": "Shahdol has coal-based and Singrauli-area power, but Birsinghpur falls in Umaria."
+        }
+      ],
+      "key_concepts": [
+        "Birsinghpur: small hydro station on the Son in Umaria",
+        "Bargi dam at Jabalpur on the Narmada",
+        "MP's major hydel projects: Gandhi Sagar, Rana Pratap Sagar, Bargi, Indira Sagar"
+      ],
+      "revision_takeaways": [
+        "Birsinghpur hydel = Umaria district.",
+        "Gandhi Sagar and Rana Pratap Sagar are on the Chambal."
+      ]
+    },
+    "MPPSC-2014-088": {
+      "language": "en",
+      "correct_reasoning": "Bauxite is the principal ore from which aluminium is extracted, refined into alumina and then smelted in electrolytic cells. Iron comes from haematite and magnetite, zinc from sphalerite, and tin from cassiterite, so none of the other metals matches the ore.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "iron",
+          "is_correct": false,
+          "reason": "Iron ores are haematite and magnetite, not bauxite."
+        },
+        {
+          "key": "B",
+          "text": "zinc",
+          "is_correct": false,
+          "reason": "Zinc is obtained from sphalerite and calamine."
+        },
+        {
+          "key": "C",
+          "text": "tin",
+          "is_correct": false,
+          "reason": "Tin is smelted from cassiterite, a different ore altogether."
+        },
+        {
+          "key": "D",
+          "text": "aluminium",
+          "is_correct": true,
+          "reason": "Correct: bauxite is the ore of aluminium."
+        }
+      ],
+      "key_concepts": [
+        "Bauxite to alumina by the Bayer process, then aluminium by Hall-Heroult",
+        "Aluminium is the most abundant metal in the earth's crust",
+        "MP bauxite: Shivpuri, Rewa and Satna belts"
+      ],
+      "revision_takeaways": [
+        "Bauxite = aluminium ore.",
+        "Iron is haematite and magnetite; zinc is sphalerite."
+      ]
+    },
+    "MPPSC-2014-089": {
+      "language": "en",
+      "correct_reasoning": "The Narmada flows west through the trough between the Vindhyachal range to the north and the Satpura range to the south, a classic rift valley. The Aravallis lie far to the north-west and the Bhander and Maikal hills form parts of the Vindhyan and Satpura systems, so the correct pair is Satpura and Vindhyachal.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "bhander and maikal",
+          "is_correct": false,
+          "reason": "The Bhander and Maikal are component ranges, not the two flanks of the Narmada valley."
+        },
+        {
+          "key": "B",
+          "text": "satpura and aravali",
+          "is_correct": false,
+          "reason": "The Aravallis are hundreds of kilometres north-west, in Rajasthan."
+        },
+        {
+          "key": "C",
+          "text": "satpura and vindyachal",
+          "is_correct": true,
+          "reason": "Correct: the Narmada valley lies between the Satpura and Vindhyachal ranges."
+        },
+        {
+          "key": "D",
+          "text": "vindyachal and aravali",
+          "is_correct": false,
+          "reason": "The Aravalli is nowhere near the Narmada valley."
+        }
+      ],
+      "key_concepts": [
+        "Narmada: west-flowing river in a rift between Vindhya and Satpura",
+        "Satpura range: Dhupgarh is its highest point",
+        "Vindhyan range separates the Ganga plain from the Narmada basin"
+      ],
+      "revision_takeaways": [
+        "Narmada valley = Satpura (south) and Vindhyachal (north).",
+        "The Aravalli is the trap option here."
+      ]
+    },
+    "MPPSC-2014-090": {
+      "language": "en",
+      "correct_reasoning": "The Hockey India League began in 2013 with five franchises, and the first title went to the Ranchi Rhinos. The league was suspended after 2017 owing to financial and scheduling problems, so 2013 is the start year the paper expects.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "2010",
+          "is_correct": false,
+          "reason": "2010 was the year of the hockey World Cup in Delhi, not of the league."
+        },
+        {
+          "key": "B",
+          "text": "2011",
+          "is_correct": false,
+          "reason": "In 2011 the league had not yet been launched."
+        },
+        {
+          "key": "C",
+          "text": "2012",
+          "is_correct": false,
+          "reason": "2012 was the year of the players' auction and preparations, with play starting in 2013."
+        },
+        {
+          "key": "D",
+          "text": "2013",
+          "is_correct": true,
+          "reason": "Correct: the Hockey India League started in 2013."
+        }
+      ],
+      "key_concepts": [
+        "Hockey India League, 2013, modelled on the IPL",
+        "Ranchi Rhinos won the first title; Delhi Waveriders later",
+        "Hockey is India's national game, though not officially declared so"
+      ],
+      "revision_takeaways": [
+        "Hockey India League = 2013.",
+        "The last full season was 2017 before the league went into abeyance."
+      ]
+    },
+    "MPPSC-2014-091": {
+      "language": "en",
+      "correct_reasoning": "The Narmada valley is a rift valley, formed when the land between two parallel faults subsided, with the Vindhyas on one side and the Satpuras on the other. A fault scarp is a single exposed fault face and a horst is the uplifted block between faults, so neither describes the whole valley.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "fault scarp",
+          "is_correct": false,
+          "reason": "A fault scarp is the cliff-like face of one fault, not the depression between two."
+        },
+        {
+          "key": "B",
+          "text": "rift valley",
+          "is_correct": true,
+          "reason": "Correct: a rift valley is a trough between two fault lines, as in the Narmada valley."
+        },
+        {
+          "key": "C",
+          "text": "nappe",
+          "is_correct": false,
+          "reason": "A nappe is a huge sheet of rock pushed over others by folding, an alpine structure."
+        },
+        {
+          "key": "D",
+          "text": "horst",
+          "is_correct": false,
+          "reason": "A horst is the raised block between faults, the opposite of a rift."
+        }
+      ],
+      "key_concepts": [
+        "Rift valley: down-faulted trough, Narmada and Tapi valleys",
+        "Horst: uplifted block, the Vosges and Black Forest",
+        "Narmada and Tapi flow west through rift valleys"
+      ],
+      "revision_takeaways": [
+        "Narmada valley = rift valley.",
+        "Horst is the uplift; the rift is the trough."
+      ]
+    },
+    "MPPSC-2014-092": {
+      "language": "en",
+      "correct_reasoning": "The Prabhash Joshi award is given by the Madhya Pradesh government for mallakhamb, the traditional sport of pole gymnastics that the state declared its official sport in 2013. Kabaddi, kho-kho and atya patya are other indigenous sports but have their own awards.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "kabaddi",
+          "is_correct": false,
+          "reason": "Kabaddi is promoted through other state and national championships, not this award."
+        },
+        {
+          "key": "B",
+          "text": "mallakhamb",
+          "is_correct": true,
+          "reason": "Correct: the Prabhash Joshi award recognises contribution to mallakhamb."
+        },
+        {
+          "key": "C",
+          "text": "kho-kho",
+          "is_correct": false,
+          "reason": "Kho-kho is a recognised indigenous sport but not the subject of this award."
+        },
+        {
+          "key": "D",
+          "text": "atya patya",
+          "is_correct": false,
+          "reason": "Atya patya is a chase-and-dodge sport with no link to this award."
+        }
+      ],
+      "key_concepts": [
+        "Prabhash Joshi award, instituted 2013, for mallakhamb",
+        "Mallakhamb declared MP's state sport in April 2013",
+        "Other MP awards: Vikram, Eklavya, Vishwamitra"
+      ],
+      "revision_takeaways": [
+        "Prabhash Joshi award = mallakhamb.",
+        "MP's state sport is mallakhamb, declared in 2013."
+      ]
+    },
+    "MPPSC-2014-093": {
+      "language": "en",
+      "correct_reasoning": "One-Day Wonders is Sunil Gavaskar's book, written with his account of the 1983 World Cup and of one-day cricket's rise. Vengsarkar, Vishwanath and Ravi Shastri have written or been subjects of other books, but none of them wrote this one.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "ravi shastri",
+          "is_correct": false,
+          "reason": "Ravi Shastri wrote his own accounts of later cricket, not One-Day Wonders."
+        },
+        {
+          "key": "B",
+          "text": "sunil gavaskar",
+          "is_correct": true,
+          "reason": "Correct: Sunil Gavaskar is the author of One-Day Wonders."
+        },
+        {
+          "key": "C",
+          "text": "G. vishwanath",
+          "is_correct": false,
+          "reason": "Gundappa Vishwanath has no authorship of this book."
+        },
+        {
+          "key": "D",
+          "text": "dilip vengsarkar",
+          "is_correct": false,
+          "reason": "Vengsarkar wrote columns and a biography subject, not this book."
+        }
+      ],
+      "key_concepts": [
+        "Sunil Gavaskar: first batsman to 10,000 Test runs",
+        "His books: Sunny Days, Idols, One-Day Wonders, Runs and Ruins",
+        "1983 World Cup is the backdrop of the book"
+      ],
+      "revision_takeaways": [
+        "One-Day Wonders = Sunil Gavaskar.",
+        "Sunny Days is his autobiography; do not mix the two titles."
+      ]
+    },
+    "MPPSC-2014-094": {
+      "language": "en",
+      "correct_reasoning": "The term libro is the volleyball libero, the specialised defensive player in a contrasting jersey who stays in the back row, and the word is often printed as libro in Indian question papers. Basketball, handball and softball have no such position.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "basketball",
+          "is_correct": false,
+          "reason": "Basketball positions are point guard, centre, forward and so on, with no libero role."
+        },
+        {
+          "key": "B",
+          "text": "volleyball",
+          "is_correct": true,
+          "reason": "Correct: the libero, printed here as libro, is a volleyball position."
+        },
+        {
+          "key": "C",
+          "text": "handball",
+          "is_correct": false,
+          "reason": "Handball has goalkeepers, backs, wings and pivots but no libero."
+        },
+        {
+          "key": "D",
+          "text": "softball",
+          "is_correct": false,
+          "reason": "Softball uses pitcher, catcher and fielders, with no defensive specialist of this kind."
+        }
+      ],
+      "key_concepts": [
+        "Libero: volleyball defensive specialist, back row only",
+        "Introduced by the FIVB in 1998",
+        "Cannot serve or attack above the net"
+      ],
+      "revision_takeaways": [
+        "Libro/libero = volleyball.",
+        "The libero wears a contrasting jersey so referees can identify him."
+      ]
+    },
+    "MPPSC-2014-095": {
+      "language": "en",
+      "correct_reasoning": "The Holkar Trophy is a bridge (card game) trophy, instituted in memory of the Holkar rulers of Indore, and contested in national-level tournaments. Badminton, cricket and kabaddi have their own trophies, but this one belongs to bridge.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "badminton",
+          "is_correct": false,
+          "reason": "Badminton's famous trophies are the Thomas and Uber Cups, not the Holkar Trophy."
+        },
+        {
+          "key": "B",
+          "text": "bridge",
+          "is_correct": true,
+          "reason": "Correct: the Holkar Trophy is associated with bridge."
+        },
+        {
+          "key": "C",
+          "text": "cricket",
+          "is_correct": false,
+          "reason": "Cricket's domestic trophies are the Ranji, Duleep and Irani, not Holkar."
+        },
+        {
+          "key": "D",
+          "text": "kabaddi",
+          "is_correct": false,
+          "reason": "Kabaddi has no Holkar Trophy in its competition list."
+        }
+      ],
+      "key_concepts": [
+        "Holkar Trophy: bridge tournament, Indore",
+        "Indore's Holkar heritage: Holkar Stadium and the Holkar dynasty",
+        "Other Indian trophies: Ranji (cricket), Agha Khan (hockey), Thomas (badminton)"
+      ],
+      "revision_takeaways": [
+        "Holkar Trophy = bridge.",
+        "It is connected with Indore, the Holkar capital."
+      ]
+    },
+    "MPPSC-2014-096": {
+      "language": "en",
+      "correct_reasoning": "Kabaddi has a bonus line, marked about one metre inside the opponent's boundary, which a raider must cross with a foot while touching a defender to earn an extra point. Rugby, kho-kho and judo have no bonus line of this kind in their rules.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "rugby",
+          "is_correct": false,
+          "reason": "Rugby's markings are the try line, dead ball line and touch lines, with no bonus line."
+        },
+        {
+          "key": "B",
+          "text": "kho-kho",
+          "is_correct": false,
+          "reason": "Kho-kho uses two courts with a central lane and poles, with no bonus line."
+        },
+        {
+          "key": "C",
+          "text": "kabaddi",
+          "is_correct": true,
+          "reason": "Correct: the bonus line is a kabaddi marking that earns the raider an extra point."
+        },
+        {
+          "key": "D",
+          "text": "judo",
+          "is_correct": false,
+          "reason": "Judo is fought on a flat tatami mat with boundary lines, not a bonus line."
+        }
+      ],
+      "key_concepts": [
+        "Kabaddi bonus line: about one metre inside the opponent's half",
+        "Raid, cant, struggle and lona are kabaddi terms",
+        "Kabaddi has two forms: standard and circle style"
+      ],
+      "revision_takeaways": [
+        "Bonus line = kabaddi.",
+        "The bonus point rewards a raider who crosses the line with a touch."
+      ]
+    },
+    "MPPSC-2014-097": {
+      "language": "en",
+      "correct_reasoning": "The Black Pearl is the nickname of the Brazilian footballer Pele, which is why the epithet is tied to football. Golf, snooker and horse riding have their own famous nicknames, but none of them is called the Black Pearl in the same way.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "golf",
+          "is_correct": false,
+          "reason": "Golf's famous nicknames belong to players such as the Golden Bear, not the Black Pearl."
+        },
+        {
+          "key": "B",
+          "text": "snooker",
+          "is_correct": false,
+          "reason": "Snooker players carry nicknames like the Rocket and the Wizard, not the Black Pearl."
+        },
+        {
+          "key": "C",
+          "text": "Football",
+          "is_correct": true,
+          "reason": "Correct: the Black Pearl refers to Pele, so the sport is football."
+        },
+        {
+          "key": "D",
+          "text": "horse riding",
+          "is_correct": false,
+          "reason": "Horse racing has famous horses with colourful names, but the Black Pearl is not a rider or horse nickname."
+        }
+      ],
+      "key_concepts": [
+        "Pele: Edison Arantes do Nascimento, three World Cups",
+        "Other football nicknames: the Golden Boy, the Egyptian King",
+        "Pele was named Athlete of the Century by the IOC"
+      ],
+      "revision_takeaways": [
+        "Black Pearl = Pele = football.",
+        "Nicknames of athletes are a recurring current affairs theme."
+      ]
+    },
+    "MPPSC-2014-098": {
+      "language": "en",
+      "correct_reasoning": "The General Agreement on Tariffs and Trade was signed in 1947 and its secretariat began work in Geneva in 1948, where the GATT rounds were later held. Paris, New York and Rio de Janeiro never hosted the GATT secretariat, so Geneva is the correct city.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "Paris, 1958",
+          "is_correct": false,
+          "reason": "Paris is the home of the OECD, not of GATT, and 1958 comes ten years late."
+        },
+        {
+          "key": "B",
+          "text": "New York, 1948",
+          "is_correct": false,
+          "reason": "New York hosts the United Nations headquarters, but GATT's secretariat sat in Geneva."
+        },
+        {
+          "key": "C",
+          "text": "Rio de Janerio, 1948",
+          "is_correct": false,
+          "reason": "Rio hosted the 1992 Earth Summit, not the GATT secretariat."
+        },
+        {
+          "key": "D",
+          "text": "Geneva, 1948",
+          "is_correct": true,
+          "reason": "Correct: GATT's office was established at Geneva in 1948."
+        }
+      ],
+      "key_concepts": [
+        "GATT signed 1947, in force 1948, replaced by the WTO in 1995",
+        "Geneva hosts the WTO, ILO, WHO and UNCTAD",
+        "GATT rounds: Kennedy, Tokyo, Uruguay"
+      ],
+      "revision_takeaways": [
+        "GATT secretariat = Geneva, 1948.",
+        "The WTO, its successor, is also in Geneva."
+      ]
+    },
+    "MPPSC-2014-099": {
+      "language": "en",
+      "correct_reasoning": "BSNL was the loss-making central public sector enterprise among the four during 2013-14, with heavy losses from falling landline revenue and competition. ONGC, NTPC and IOC were among the largest profit earners of the central public sector that year.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "ONGC",
+          "is_correct": false,
+          "reason": "ONGC was consistently the most profitable public enterprise in that period."
+        },
+        {
+          "key": "B",
+          "text": "NTPC",
+          "is_correct": false,
+          "reason": "NTPC earned large profits as India's biggest power generator."
+        },
+        {
+          "key": "C",
+          "text": "IOC",
+          "is_correct": false,
+          "reason": "Indian Oil was a top profit-making company, helped by refining margins."
+        },
+        {
+          "key": "D",
+          "text": "BSNL",
+          "is_correct": true,
+          "reason": "Correct: BSNL was the loss-making central enterprise among these four in 2013-14."
+        }
+      ],
+      "key_concepts": [
+        "Maharatna companies: ONGC, NTPC, IOC, SAIL, BHEL",
+        "BSNL losses from landline decline and private competition",
+        "Disinvestment policy and the Rangarajan committee belong to the same era"
+      ],
+      "revision_takeaways": [
+        "Loss-making CPSU in 2013-14 = BSNL.",
+        "ONGC, NTPC and IOC are leading profit makers and Maharatnas."
+      ]
+    },
+    "MPPSC-2014-100": {
+      "language": "en",
+      "correct_reasoning": "The Dr. Bhim Rao Ambedkar International Sports Stadium is at Faizabad in Ayodhya district of Uttar Pradesh, on the Ayodhya-Sultanpur road near the airport. Patna, Kanpur and Ghaziabad have their own stadiums, but none carries this name.",
+      "option_explanations": [
+        {
+          "key": "A",
+          "text": "Faizabad",
+          "is_correct": true,
+          "reason": "Correct: the stadium is at Faizabad, in Ayodhya district."
+        },
+        {
+          "key": "B",
+          "text": "Ghaziabad",
+          "is_correct": false,
+          "reason": "Ghaziabad has the Mahamaya Sports Stadium and other grounds, not this one."
+        },
+        {
+          "key": "C",
+          "text": "Patna",
+          "is_correct": false,
+          "reason": "Patna's stadiums include the Moin-ul-Haq ground, not the Ambedkar stadium."
+        },
+        {
+          "key": "D",
+          "text": "Kanpur",
+          "is_correct": false,
+          "reason": "Kanpur is known for the Green Park stadium, a cricket ground."
+        }
+      ],
+      "key_concepts": [
+        "Ayodhya district was called Faizabad until 2018",
+        "The stadium is a multipurpose venue near Ayodhya airport",
+        "Green Park, Kanpur, hosts international cricket"
+      ],
+      "revision_takeaways": [
+        "Dr. Bhim Rao Ambedkar International Sports Stadium = Faizabad (Ayodhya).",
+        "Faizabad and Ayodhya are the same district under different names."
+      ]
     }
   }
 }
