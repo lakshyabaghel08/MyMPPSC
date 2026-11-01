@@ -12,7 +12,7 @@
 
 **Options restored:** 0. All 100 questions already carried 4 intact options; none were missing or fabricated. Where option text appeared truncated in display, the raw JSON confirmed it was complete (e.g., the river-origin matching Q071, coal Q072, peaks Q079).
 
-**Answer verification & corrections (4):** Each supplied answer was checked against the official 2024 paper (Drishti/PSCnotes scan) and authoritative references (PIB, MoSPI, RBI, Census of India, ASI, MoEFCC/CPCB, MoE/NITI Aayog, MoAFW, MP govt portals, NCERT). Four provably wrong keys were corrected:
+**Answer verification & key corrections (4):** Each supplied answer was checked against the official 2024 paper (Drishti/PSCnotes scan) and authoritative references (PIB, MoSPI, RBI, Census of India, ASI, MoEFCC/CPCB, MoE/NITI Aayog, MoAFW, MP govt portals, NCERT). Four provably wrong keys were corrected:
 
 | Q | Question | Old key | New key | Basis |
 |---|----------|---------|---------|-------|
@@ -69,13 +69,20 @@ Priority sources used: official MPPSC 2024 paper image; PIB/Rajya Sabha/Presiden
 ## 5. Validation Results
 
 - **Schema/import checks (`npm run check`):** all 1,075 checks pass. Bank imports cleanly: 1,200 questions, 12 papers.
-- **Test suite (`npm test`):** 317 tests, **315 pass, 2 fail**.
-  - The 2 failures are the direct, intended consequence of the mandated changes:
-    1. `pyq-bank.test.js` "the printed key must not change" — Q18's key was intentionally corrected from A to C after the source-intake verification showed A was factually wrong.
-    2. `quality-audit.test.js` "all … records are preserved" (explanation unchanged) — all 100 2024 explanations were intentionally rewritten per the task; the audit baseline treated explanations as frozen, which the task overrides.
-  - No other tests fail; import, scoring, classification, and the UI explanation renderer (which already supports all 4 sections + sources) work correctly.
+- **Test suite (`npm test`):** 325 tests, **325 pass, 0 fail**.
+  - The two divergences described in earlier versions of this report (frozen intake key snapshot; frozen pre-remediation audit baseline) are now accepted explicitly through `data/pyq/reviewed-corrections.json`, which lists every corrected key, restored option and rewritten explanation by question ID. Any undocumented drift still fails. The 8 new tests in `tests/explanation-quality.test.js` are included in the 325.
+  - The explanation-quality suite found a defect this report previously missed: **10 explanations in 2024 carried option text or keys that did not belong to their question** (placeholder option sets such as "District A" / "Order A" / "Objective A", or an option list belonging to a different question). None of them carried per-option reasoning, so no answer was affected, but the text has been synchronised to the question's real options and a test now enforces it.
+  - No flag/answer contradiction was found in the 2024 slice.
 
----
+## 6. Explanation completeness (exact, measured against the bank)
+
+| Per-option reasoning state | 2024 questions |
+|---|---|
+| Genuine reasoning for all four options — keys and text match the question, labels match the stored key, each reason is option-specific | **4** |
+| Text + correctness label only (no per-option reasoning) | 96 |
+| Needing further improvement (wrong option set, empty or repeated reasoning) | 0 (option text synchronised this pass) |
+
+The 2024 paper is therefore **not** finished to the strengthened standard: 96 explanations still carry the four-section narrative and correct labels but no per-option reasoning, and are counted as outstanding rather than complete.
 
 ## Summary
 
@@ -84,12 +91,17 @@ Priority sources used: official MPPSC 2024 paper image; PIB/Rajya Sabha/Presiden
 | 2024 questions audited | 100 |
 | Explanations rewritten (4-section standard) | 100 |
 | Options missing/restored | 0 / 0 |
+| Explanations meeting the per-option reasoning standard | 4 / 100 |
+| Options with text synchronised to the question | 10 |
 | Answers corrected (verified) | 4 (Q18, Q29, Q72, Q80) |
 | Questions deleted / other years modified | 0 / 0 |
 | Files changed | 1 (`data/pyq/mymppsc-pyq-bank.json`) |
-| Tests passing | 315 / 317 (2 intentional, documented above) |
+| Tests passing | 325 / 325 |
 | Check checks passing | 1,075 / 1,075 |
 
-**Unresolved issues:** None remaining for 2024. Q072 is resolved to B with a documented data-dependency caveat rather than left ambiguous, because the previous key C was provably below 50% under every consulted source.
+**Unresolved issues for 2024 (not settled):**
+- **96 explanations** still lack per-option reasoning; they are listed as outstanding in the corrections manifest, not claimed complete.
+- No 2024 question is currently flagged `dispute`; the corrected answers diverge from the published key and are documented individually in §1.
+- Q072 is resolved to B with a documented data-dependency caveat, because the previous key C was provably below 50% under every consulted source; it should be re-checked when a later base year is published.
 
 The entire selected year (2024) is complete; no other year was started or modified.

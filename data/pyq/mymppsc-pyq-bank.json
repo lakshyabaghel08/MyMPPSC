@@ -12040,7 +12040,7 @@
             "key": "B",
             "text": "Indian Society Research Organisation",
             "is_correct": false,
-            "reason": "Not an agency name at all."
+            "reason": "There is no body called the \"Indian Society Research Organisation\"; the option is a scrambled distractor built from the words of the real name. ISRO is a space agency, not a society for research in general."
           },
           {
             "key": "C",
@@ -13351,7 +13351,7 @@
             "key": "D",
             "text": "12",
             "is_correct": false,
-            "reason": "Twelve overstates the number."
+            "reason": "Twelve overstates the zoning. MP is divided into 11 agro-climatic zones, so adding a twelfth would put a district in two zones at once."
           }
         ],
         "key_concepts": [
@@ -13434,7 +13434,7 @@
             "key": "B",
             "text": "2012",
             "is_correct": false,
-            "reason": "2012 is not the year."
+            "reason": "BHEL did not receive Maharatna status in 2012. Although the Maharatna category was created in 2010, BHEL was granted it only in 2013, a year later than this option claims."
           },
           {
             "key": "C",
@@ -13446,7 +13446,7 @@
             "key": "D",
             "text": "2014",
             "is_correct": false,
-            "reason": "2014 is after the grant."
+            "reason": "2014 is a year after the grant. BHEL had already been a Maharatna since 2013, so this date is too late."
           }
         ],
         "key_concepts": [
@@ -13542,7 +13542,7 @@
             "key": "D",
             "text": "Datia",
             "is_correct": false,
-            "reason": "Datia is not the site."
+            "reason": "Datia is a historic Bundelkhand town with a palace and fort, but it has no campus of the Indira Gandhi National Tribal University; the university is at Amarkantak in Anuppur district."
           }
         ],
         "key_concepts": [
@@ -14010,7 +14010,7 @@
             "key": "D",
             "text": "None of the above",
             "is_correct": false,
-            "reason": "because B names it correctly."
+            "reason": "\"None of the above\" is wrong because option B names the database correctly: the Domain Name System is exactly the distributed database of host names and their IP addresses that the question describes."
           }
         ],
         "key_concepts": [
@@ -16751,7 +16751,7 @@
             "key": "D",
             "text": "Seven members",
             "is_correct": false,
-            "reason": "Seven is well above it."
+            "reason": "Seven is well above the sanctioned strength. The Commission is a Chairman plus four members, that is five in all, so neither six nor seven is possible."
           }
         ],
         "key_concepts": [
@@ -19261,7 +19261,7 @@
             "key": "D",
             "text": "1980",
             "is_correct": false,
-            "reason": "1980 predates the disaster."
+            "reason": "1980 predates the disaster by four years. The Union Carbide plant had been operating since 1969, but the methyl isocyanate leak itself occurred on the night of 2-3 December 1984."
           }
         ],
         "key_concepts": [
@@ -19443,7 +19443,7 @@
             "key": "D",
             "text": "Rome",
             "is_correct": false,
-            "reason": "Rome hosts FAO, WFP and IFAD."
+            "reason": "Rome is the headquarters of the food and agriculture agencies - FAO, the World Food Programme and IFAD - not of UNICEF, which sits with the UN Secretariat in New York."
           }
         ],
         "key_concepts": [
@@ -20773,7 +20773,7 @@
       },
       "supplied_answer": {
         "answer": [
-          "D"
+          "B"
         ],
         "status": "supplied",
         "source": null,
@@ -20782,27 +20782,31 @@
       "answer_key_status": "supplied",
       "explanation": {
         "language": "en",
-        "correct_reasoning": "John McCarthy is known as the Father of Artificial Intelligence — he coined the term 'Artificial Intelligence' in 1956 and organized the Dartmouth Conference where AI was born as a field. Hence option B is correct.",
+        "correct_reasoning": "John McCarthy is known as the father of Artificial Intelligence. He coined the term for the 1956 Dartmouth workshop, organised that workshop, and later created the LISP programming language. The Dartmouth Conference is where the field was born, and Dartmouth is a place, not a person, which makes option D a distractor rather than an answer. Hence option B is correct.",
         "option_explanations": [
           {
             "key": "A",
             "text": "Alan Turing",
-            "is_correct": false
+            "is_correct": false,
+            "reason": "Turing is called the father of computer science and of theoretical AI for the Turing Test, but the title \"father of Artificial Intelligence\" is given to McCarthy, who named the field."
           },
           {
             "key": "B",
             "text": "John McCarthy",
-            "is_correct": true
+            "is_correct": true,
+            "reason": "Correct. McCarthy coined the term \"Artificial Intelligence\" for the 1956 Dartmouth workshop, founded the field and created the LISP language."
           },
           {
             "key": "C",
             "text": "Blaise Pascal",
-            "is_correct": false
+            "is_correct": false,
+            "reason": "Pascal built one of the first mechanical calculators, the Pascaline, in the 17th century. He is not associated with artificial intelligence."
           },
           {
             "key": "D",
             "text": "Dartmouth",
-            "is_correct": false
+            "is_correct": false,
+            "reason": "Dartmouth is a college and the venue of the 1956 workshop where the field was named, not a person. It is the most tempting distractor because it is genuinely connected to the origin of AI."
           }
         ],
         "key_concepts": [
@@ -20825,7 +20829,13 @@
       },
       "subject": "Science and Technology",
       "topic": "Science and technology developments",
-      "subtopic": "Information technology"
+      "subtopic": "Information technology",
+      "dispute": {
+        "is_disputed": true,
+        "status": "unresolved",
+        "raised_by": "2024 quality audit (re-verification)",
+        "reason": "The stored key was D (Dartmouth), which is a place and the name of the 1956 conference, not a person. John McCarthy coined the term \"Artificial Intelligence\", organised the Dartmouth workshop and created LISP, and is universally called the father of AI. The key is corrected to B. The explanation already argued B, so the stored key contradicted its own explanation."
+      }
     },
     {
       "id": "MPPSC-2022-004",
@@ -27848,7 +27858,7 @@
       },
       "supplied_answer": {
         "answer": [
-          "D"
+          "A"
         ],
         "status": "supplied",
         "source": null,
@@ -27857,27 +27867,31 @@
       "answer_key_status": "supplied",
       "explanation": {
         "language": "en",
-        "correct_reasoning": "The statement 'Madhya Pradesh ranks third in the country in the production of iron ore' is not correct — MP is not among the top iron ore-producing states (Odisha, Karnataka, Chhattisgarh lead). The other statements (hematite in north-eastern Jabalpur; high mica/silica content; reserves reduced after Chhattisgarh separation) are correct. Hence option A is the answer (the 'not correct' statement).",
+        "correct_reasoning": "Statement A is wrong, so it is the answer: Madhya Pradesh is the fifth largest iron ore producing state at roughly 2% of the national total, behind Odisha (about 51%), Chhattisgarh (about 18%), Karnataka (about 17%) and Jharkhand (about 10%), so it does not rank third. The other three statements hold: the hematite deposits lie in north-eastern Jabalpur, the ore is siliceous with high mica, and the reserves did shrink sharply when Chhattisgarh was separated in 2000.",
         "option_explanations": [
           {
             "key": "A",
             "text": "Madhya Pradesh ranks third in the country in the production of iron ore.",
-            "is_correct": true
+            "is_correct": true,
+            "reason": "This is the incorrect statement, so it is the answer. MP is the fifth largest iron ore producer at about 2% of national output; Odisha, Chhattisgarh, Karnataka and Jharkhand all rank above it."
           },
           {
             "key": "B",
             "text": "The hematite deposits are in the north-eastern part of Jabalpur district.",
-            "is_correct": false
+            "is_correct": false,
+            "reason": "True statement. The hematite bodies lie in the north-eastern part of Jabalpur district, around Balaghat and Mandla as well."
           },
           {
             "key": "C",
             "text": "The content of mica and silica is high in these deposits.",
-            "is_correct": false
+            "is_correct": false,
+            "reason": "True statement. The Jabalpur ores are siliceous and carry mica, which is why they need beneficiation before use."
           },
           {
             "key": "D",
             "text": "The iron ore reserves have been reduced after the separation of Chhattisgarh State.",
-            "is_correct": false
+            "is_correct": false,
+            "reason": "True statement. When Chhattisgarh was carved out of MP in 2000, the Dalli-Rajhara and Bailadila belts went with it, so the remaining reserves fell sharply."
           }
         ],
         "key_concepts": [
@@ -27900,7 +27914,13 @@
       },
       "subject": "Economy",
       "topic": "Economy of Madhya Pradesh",
-      "subtopic": "Minerals of Madhya Pradesh"
+      "subtopic": "Minerals of Madhya Pradesh",
+      "dispute": {
+        "is_disputed": true,
+        "status": "unresolved",
+        "raised_by": "2024 quality audit (re-verification)",
+        "reason": "The stored key was D, but statement D is true: after Chhattisgarh was separated in 2000 it took the bulk of the undivided state's iron ore reserves with it. Statement A is the false one: Madhya Pradesh is the fifth largest iron ore producing state at roughly 2% of national output, well behind Odisha (~51%), Chhattisgarh (~18%), Karnataka (~17%) and Jharkhand (~10%), so it does not rank third. The key is corrected to A."
+      }
     },
     {
       "id": "MPPSC-2022-084",
@@ -29634,22 +29654,22 @@
         "option_explanations": [
           {
             "key": "A",
-            "text": "Indo-Burma",
+            "text": "Himalayas",
             "is_correct": false
           },
           {
             "key": "B",
-            "text": "Western Ghats and Sri Lanka",
+            "text": "Naro Hills",
             "is_correct": true
           },
           {
             "key": "C",
-            "text": "The Himalaya",
+            "text": "Sundaland",
             "is_correct": false
           },
           {
             "key": "D",
-            "text": "Sundaland",
+            "text": "Western Ghats",
             "is_correct": false
           }
         ],
@@ -29727,17 +29747,17 @@
           },
           {
             "key": "B",
-            "text": "Chandrayaan-3",
+            "text": "Bhaskara-L2",
             "is_correct": false
           },
           {
             "key": "C",
-            "text": "Gaganyaan",
+            "text": "Solar Mission-L1",
             "is_correct": false
           },
           {
             "key": "D",
-            "text": "Mangalyaan",
+            "text": "Solar Orbiter",
             "is_correct": false
           }
         ],
@@ -29899,22 +29919,22 @@
         "option_explanations": [
           {
             "key": "A",
-            "text": "Forest",
+            "text": "Forest ecosystem",
             "is_correct": false
           },
           {
             "key": "B",
-            "text": "Desert",
+            "text": "Desert ecosystem",
             "is_correct": false
           },
           {
             "key": "C",
-            "text": "Ocean",
+            "text": "Marine ecosystem",
             "is_correct": true
           },
           {
             "key": "D",
-            "text": "Mountain",
+            "text": "Grassland ecosystem",
             "is_correct": false
           }
         ],
@@ -29987,22 +30007,22 @@
         "option_explanations": [
           {
             "key": "A",
-            "text": "Sewage",
+            "text": "Paper",
             "is_correct": false
           },
           {
             "key": "B",
-            "text": "Cattle dung",
+            "text": "Food and Plant waste",
             "is_correct": false
           },
           {
             "key": "C",
-            "text": "Plastic / DDT (non-degradable)",
+            "text": "Insecticides",
             "is_correct": true
           },
           {
             "key": "D",
-            "text": "Agricultural waste",
+            "text": "Wood and Cellulose",
             "is_correct": false
           }
         ],
@@ -30075,22 +30095,22 @@
         "option_explanations": [
           {
             "key": "A",
-            "text": "Energy increases at higher trophic levels",
+            "text": "First law of thermodynamics",
             "is_correct": false
           },
           {
             "key": "B",
-            "text": "Energy decreases at higher trophic levels",
+            "text": "Second law of thermodynamics",
             "is_correct": true
           },
           {
             "key": "C",
-            "text": "Energy remains constant at all trophic levels",
+            "text": "Newton's second law",
             "is_correct": false
           },
           {
             "key": "D",
-            "text": "Energy flow is multidirectional",
+            "text": "Newton's third law",
             "is_correct": false
           }
         ],
@@ -30344,22 +30364,22 @@
         "option_explanations": [
           {
             "key": "A",
-            "text": "District A",
+            "text": "Barwani",
             "is_correct": false
           },
           {
             "key": "B",
-            "text": "District B",
+            "text": "Khandwa",
             "is_correct": false
           },
           {
             "key": "C",
-            "text": "District C",
+            "text": "Balaghat",
             "is_correct": false
           },
           {
             "key": "D",
-            "text": "District D",
+            "text": "Alirajpur",
             "is_correct": true
           }
         ],
@@ -30432,22 +30452,22 @@
         "option_explanations": [
           {
             "key": "A",
-            "text": "Low rank / poor performance",
+            "text": "Rated as 'Under Achievers'",
             "is_correct": false
           },
           {
             "key": "B",
-            "text": "Mid-tier performance",
+            "text": "Rated as 'Top Achievers'",
             "is_correct": false
           },
           {
             "key": "C",
-            "text": "Did not participate",
+            "text": "Not rated in the assessment",
             "is_correct": false
           },
           {
             "key": "D",
-            "text": "Top-performing / high rank",
+            "text": "Rated as 'Achievers'",
             "is_correct": true
           }
         ],
@@ -30520,22 +30540,22 @@
         "option_explanations": [
           {
             "key": "A",
-            "text": "Order A",
+            "text": "Anuppur, Mandsaur, Betul, Chhindwara",
             "is_correct": false
           },
           {
             "key": "B",
-            "text": "Order B",
+            "text": "Anuppur, Betul, Chhindwara,Mandsaur",
             "is_correct": true
           },
           {
             "key": "C",
-            "text": "Order C",
+            "text": "Betul, Chhindwara, Mandsaur, Anuppur",
             "is_correct": false
           },
           {
             "key": "D",
-            "text": "Order D",
+            "text": "Betul, Anuppur, Chhindwara, Mandsaur",
             "is_correct": false
           }
         ],
@@ -30608,22 +30628,22 @@
         "option_explanations": [
           {
             "key": "A",
-            "text": "Objective A",
+            "text": "Providing free education to Tribal women",
             "is_correct": false
           },
           {
             "key": "B",
-            "text": "Objective B",
+            "text": "Supplying low-cost equipment and working capital for new industries/businesses to BPL category beneficiaries of Scheduled Tribes",
             "is_correct": true
           },
           {
             "key": "C",
-            "text": "Objective C",
+            "text": "Funding infrastructure development in Tribal regions",
             "is_correct": false
           },
           {
             "key": "D",
-            "text": "Objective D",
+            "text": "Promoting sports among Tribal youth",
             "is_correct": false
           }
         ],
@@ -30706,12 +30726,12 @@
           },
           {
             "key": "C",
-            "text": "Pithampur",
+            "text": "Bhopal",
             "is_correct": false
           },
           {
             "key": "D",
-            "text": "Mandideep",
+            "text": "Jabalpur",
             "is_correct": false
           }
         ],
@@ -30794,12 +30814,12 @@
           },
           {
             "key": "C",
-            "text": "65 years",
+            "text": "58 years",
             "is_correct": false
           },
           {
             "key": "D",
-            "text": "70 years",
+            "text": "56 years",
             "is_correct": false
           }
         ],
@@ -30872,22 +30892,22 @@
         "option_explanations": [
           {
             "key": "A",
-            "text": "42nd Amendment",
+            "text": "71",
             "is_correct": false
           },
           {
             "key": "B",
-            "text": "73rd Amendment",
+            "text": "72",
             "is_correct": false
           },
           {
             "key": "C",
-            "text": "74th Amendment",
+            "text": "74",
             "is_correct": true
           },
           {
             "key": "D",
-            "text": "44th Amendment",
+            "text": "73",
             "is_correct": false
           }
         ],
@@ -30960,17 +30980,17 @@
         "option_explanations": [
           {
             "key": "A",
-            "text": "Lord Mayo",
+            "text": "Lord Dalhousie",
             "is_correct": false
           },
           {
             "key": "B",
-            "text": "Lord Curzon",
+            "text": "Lord Mountbatten",
             "is_correct": false
           },
           {
             "key": "C",
-            "text": "Lord Minto",
+            "text": "Lord Macaulay",
             "is_correct": false
           },
           {
@@ -31048,22 +31068,22 @@
         "option_explanations": [
           {
             "key": "A",
-            "text": "Governor",
-            "is_correct": false
-          },
-          {
-            "key": "B",
             "text": "Chief Minister",
             "is_correct": false
           },
           {
+            "key": "B",
+            "text": "Governor",
+            "is_correct": false
+          },
+          {
             "key": "C",
-            "text": "Speaker",
+            "text": "Speaker of the Vidhan Sabha",
             "is_correct": true
           },
           {
             "key": "D",
-            "text": "President",
+            "text": "Law Minister",
             "is_correct": false
           }
         ],
@@ -31136,22 +31156,22 @@
         "option_explanations": [
           {
             "key": "A",
-            "text": "Shri A",
+            "text": "Bhagwantrao Mandloi",
             "is_correct": false
           },
           {
             "key": "B",
-            "text": "Shri B",
+            "text": "Dwarka Prasad Mishra",
             "is_correct": false
           },
           {
             "key": "C",
-            "text": "Shri C",
+            "text": "Shankar Dayal Sharma",
             "is_correct": false
           },
           {
             "key": "D",
-            "text": "Pandit Kunji Lal Dubey",
+            "text": "Pandit Kunjilal Dubey",
             "is_correct": true
           }
         ],
@@ -31311,22 +31331,22 @@
         "option_explanations": [
           {
             "key": "A",
-            "text": "1950",
+            "text": "31st March, 2014",
             "is_correct": false
           },
           {
             "key": "B",
-            "text": "2014",
+            "text": "15th March, 1950",
             "is_correct": false
           },
           {
             "key": "C",
-            "text": "1 January 2015",
+            "text": "1st January, 2015",
             "is_correct": true
           },
           {
             "key": "D",
-            "text": "2016",
+            "text": "11th January, 2016",
             "is_correct": false
           }
         ],
@@ -31399,7 +31419,7 @@
         "option_explanations": [
           {
             "key": "A",
-            "text": "Dr. Y.V. Reddy",
+            "text": "A.M. Khusro",
             "is_correct": false
           },
           {
@@ -31409,12 +31429,12 @@
           },
           {
             "key": "C",
-            "text": "Dr. A.M. Khusro",
+            "text": "Dr. Vijay Kelkar",
             "is_correct": false
           },
           {
             "key": "D",
-            "text": "Shri N.K. Singh",
+            "text": "Y.V. Reddy",
             "is_correct": false
           }
         ],
@@ -31575,22 +31595,22 @@
         "option_explanations": [
           {
             "key": "A",
-            "text": "Constitution of India",
+            "text": "Section 12 of the National Commission for Women Act, 1990",
             "is_correct": false
           },
           {
             "key": "B",
-            "text": "National Commission for Women Act, 1992",
+            "text": "Section 15 of the National Commission for Women Act, 1990",
             "is_correct": false
           },
           {
             "key": "C",
-            "text": "National Commission for Women Act, 1990",
+            "text": "Section 10 of the National Commission for Women Act, 1990",
             "is_correct": true
           },
           {
             "key": "D",
-            "text": "Protection of Women from Domestic Violence Act, 2005",
+            "text": "Section 3 of the National Commission for Women Act, 1990",
             "is_correct": false
           }
         ],
@@ -32454,7 +32474,7 @@
         "option_explanations": [
           {
             "key": "A",
-            "text": "Aryabhatta Research Institute...",
+            "text": "Aryabhatta Research Institute of Observational Sciences – Nainital",
             "is_correct": false
           },
           {
@@ -32464,7 +32484,7 @@
           },
           {
             "key": "C",
-            "text": "Central Institute of Indian Languages",
+            "text": "Central Institute of Indian Languages – Mumbai",
             "is_correct": true
           },
           {
@@ -33169,7 +33189,7 @@
           },
           {
             "key": "C",
-            "text": "Inability to personalize the shopping",
+            "text": "Inability to personalize the shopping experience",
             "is_correct": false
           },
           {
@@ -33335,12 +33355,12 @@
         "option_explanations": [
           {
             "key": "A",
-            "text": "To allow unrestricted access to a netw",
+            "text": "To allow unrestricted access to a network",
             "is_correct": false
           },
           {
             "key": "B",
-            "text": "To block unauthorized access to a netw",
+            "text": "To block unauthorized access to a network",
             "is_correct": true
           },
           {
@@ -33609,22 +33629,26 @@
           {
             "key": "A",
             "text": "Internet Explorer",
-            "is_correct": false
+            "is_correct": false,
+            "reason": "Internet Explorer is Microsoft's browser, so it is a web browser and does not fit the \"not a browser\" question."
           },
           {
             "key": "B",
             "text": "Mozilla Firefox",
-            "is_correct": false
+            "is_correct": false,
+            "reason": "Firefox is an open-source browser from Mozilla, so it is a web browser."
           },
           {
             "key": "C",
             "text": "Google Chrome",
-            "is_correct": true
+            "is_correct": false,
+            "reason": "Chrome is Google's browser. It is easy to confuse with Google Search, but the browser itself is Google Chrome, so it is a web browser."
           },
           {
             "key": "D",
             "text": "Yahoo",
-            "is_correct": true
+            "is_correct": true,
+            "reason": "Correct. Yahoo is a web portal and search service, not browser software, so it is the one that is not a web browser."
           }
         ],
         "key_concepts": [
@@ -33882,7 +33906,7 @@
           },
           {
             "key": "C",
-            "text": "Andhra Pradesh",
+            "text": "Andhra Pradesh.",
             "is_correct": true
           },
           {
@@ -35128,22 +35152,22 @@
         "option_explanations": [
           {
             "key": "A",
-            "text": "To increase the number of members of",
+            "text": "To increase the number of members of the Legislative Councils",
             "is_correct": false
           },
           {
             "key": "B",
-            "text": "To increase the number of public rep",
+            "text": "To increase the number of public representatives in the Councils",
             "is_correct": false
           },
           {
             "key": "C",
-            "text": "Separation of Executive and Judiciar",
+            "text": "Separation of Executive and Judiciary",
             "is_correct": false
           },
           {
             "key": "D",
-            "text": "Unification of Executive and Judicia",
+            "text": "Unification of Executive and Judiciary",
             "is_correct": true
           }
         ],
@@ -35833,12 +35857,12 @@
         "option_explanations": [
           {
             "key": "A",
-            "text": "Black soil is also known as cotton s",
+            "text": "Black soil is also known as cotton soil.",
             "is_correct": false
           },
           {
             "key": "B",
-            "text": "Black soil is highly retentive of mo",
+            "text": "Black soil is highly retentive of moisture.",
             "is_correct": false
           },
           {
@@ -35848,7 +35872,7 @@
           },
           {
             "key": "D",
-            "text": "Its structure is cloddish but occasi",
+            "text": "Its structure is cloddish but occasionally friable.",
             "is_correct": false
           }
         ],
@@ -39273,7 +39297,7 @@
         "option_explanations": [
           {
             "key": "A",
-            "text": "In case of differences of opinion amongst the CEC and other ECs, the matter is decided by the Law Commission.",
+            "text": "In case of differences of opinion amongst the Chief Election Commissioner and other Election Commissioners, the matter is decided by the Law Commission.",
             "is_correct": true
           },
           {
@@ -39998,7 +40022,7 @@
           },
           {
             "key": "D",
-            "text": "State list",
+            "text": "State list 8",
             "is_correct": false
           }
         ],
@@ -40080,7 +40104,7 @@
           },
           {
             "key": "C",
-            "text": "Rewa and Satna",
+            "text": "Rewa and Satiia",
             "is_correct": false
           },
           {
@@ -41305,22 +41329,22 @@
         "option_explanations": [
           {
             "key": "A",
-            "text": "Providing financial assistance to farmers for purchasing smartphones",
+            "text": "Providing financial assistance to farmers for purchasing smartphones.",
             "is_correct": false
           },
           {
             "key": "B",
-            "text": "Leveraging technology like satellite imagery and drone data to facilitate informed decision-making in agriculture",
+            "text": "Leveraging technology like satellite imagery and drone data to facilitate informed decision- making in agriculture.",
             "is_correct": true
           },
           {
             "key": "C",
-            "text": "Promoting the cultivation of genetically modified crops",
+            "text": "Promoting the cultivation of genetically modified crops.",
             "is_correct": false
           },
           {
             "key": "D",
-            "text": "Establishing a network of agricultural universities across the state",
+            "text": "Establishing a network of agricultural universities across the state.",
             "is_correct": false
           }
         ],
@@ -41408,7 +41432,7 @@
           },
           {
             "key": "D",
-            "text": "Beti Bachao Beti Padhao Abhiyan and Sukanya Samriddhi Yojana",
+            "text": "Beti Bachao Beti Padhao Abhiyan and Sukanya Samriddhi Yojana 3",
             "is_correct": false
           }
         ],
@@ -41753,17 +41777,17 @@
           },
           {
             "key": "B",
-            "text": "Aspirant: 0-49, Performer: 50-64, Front-runner: 65-99, Achiever: 100",
+            "text": "Aspirant: 0-49, Performer: 50-64, Front- runner: 65-99, Achiever: 100",
             "is_correct": true
           },
           {
             "key": "C",
-            "text": "Aspirant: 50-64, Performer: 65-99, Front-runner: 0-49, Achiever: 100",
+            "text": "Aspirant: 50-64, Performer: 65-99, Front- runner: 0-49, Achiever: 100",
             "is_correct": false
           },
           {
             "key": "D",
-            "text": "Aspirant: 65-99, Performer: 50-64, Front-runner: 0-49, Achiever: 100",
+            "text": "Aspirant: 65-99, Performer: 50-64, Front- runner: 0-49, Achiever: 100",
             "is_correct": false
           }
         ],
@@ -43611,7 +43635,7 @@
           },
           {
             "key": "D",
-            "text": "Hemchandra Bandopadhyay",
+            "text": "Hemchandra Bandopadhyay 5",
             "is_correct": false
           }
         ],
@@ -44852,7 +44876,7 @@
           },
           {
             "key": "D",
-            "text": "La Nina strengthens the Indian Monsoon.",
+            "text": "La Nina strengthens the Indian Monsoon. 0",
             "is_correct": false
           }
         ],
@@ -46519,22 +46543,22 @@
         "option_explanations": [
           {
             "key": "A",
-            "text": "Bori – Hoshangabad",
+            "text": "Bori - Hoshangabad",
             "is_correct": false
           },
           {
             "key": "B",
-            "text": "Gangau – Panna",
+            "text": "Gangau - Panna",
             "is_correct": false
           },
           {
             "key": "C",
-            "text": "Karera – Shivpuri",
+            "text": "Karera - Shivpuri",
             "is_correct": false
           },
           {
             "key": "D",
-            "text": "Ghatigaon – Indore",
+            "text": "Ghatigaon - Indore",
             "is_correct": true
           }
         ],
@@ -46798,7 +46822,7 @@
           },
           {
             "key": "D",
-            "text": "Khargone",
+            "text": "Khargone 9",
             "is_correct": false
           }
         ],

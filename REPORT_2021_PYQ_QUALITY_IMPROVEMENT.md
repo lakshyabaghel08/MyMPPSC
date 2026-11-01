@@ -23,22 +23,25 @@
 
 All 100 questions carry 4 intact options with distinct keys; none missing, none invented.
 
-**Answer verification & corrections (2):**
+**Answer verification & corrections (1, after re-verification):**
 
 | Q | Question | Old key | New key | Basis |
 |---|----------|---------|---------|-------|
-| 064 | Largest tribal group of Madhya Pradesh | ['B'] (Bhil) | **['A'] (Gond)** | Census/tribal-research data: the Gond are the largest tribal group of MP (about a third of the tribal population), the Bhil second. The published key (D, Sahariya) is also wrong — Sahariya is one of the state's smallest PVTGs. |
 | 068 | Incorrect statement on the freedom movement in MP | ['C','D'] | **['D']** | Only one statement is false: "Sipahi Bahadur Sarkar was established at Indore". The Bhil leaders, Shankar Shah of Garha Mandla and the Ramgarh chiefs are all genuine 1857 figures; the official key is D. |
 
+**Q064 — the earlier Gond correction was reverted; the bank answer is B (Bhil).**
+
+An intermediate pass of this audit changed Q064 (largest tribal group of Madhya Pradesh) from `['B']` to `['A']` (Gond). That change was **wrong** and has been reverted. Census 2011 figures for Madhya Pradesh put the Bhil at 5,993,921 persons (including Bhilala, Barela and Patelia, ~37.7–39% of the state's scheduled tribes) against 5,093,124 for the Gond, so the Bhil are the largest tribal group and the Gond second. The stored answer is therefore `['B']` (Bhil); the question stays flagged as disputed only because the published key (D, Sahariya) is also wrong.
+
 **Official-key conflicts recorded, answer left factually correct:**
-- **Q064** — published key D (Sahariya) vs fact (Gond).
+- **Q064** — published key D (Sahariya) vs fact: the Bhil are the largest tribal group of MP, the Gond second (bank key B, confirmed by Census 2011).
 - **Q080** — published key D (Timur) vs fact: the Second Battle of Tarain (1192) was fought between Prithviraj Chauhan and **Muhammad Ghori** (bank key A), who won. Timur invaded in 1398.
 - **Q085** — published key D (Aravalli) vs fact: the Narmada rises at the **Amarkantak plateau** (bank key B), Narmada Kund, Anuppur district.
 
 **Flagged as disputed / unresolved (12, via `dispute.open` with reasons):**
 - **Cancelled by the commission:** Q057, Q076, Q082 — the schema has no "cancelled" status, so the stored answers (which are factually correct: Governor / 1992 / Ministry of Finance) are retained for revision only and marked disputed so they are not presented as official keys.
 - **Grace marks / multi-accept on the official key:** Q027 (auctions = B2B and C2C), Q028 (router, brouter also accepted), Q034 (Turra-Kalangi region), Q056 (RTI state committee), Q092 (Third Amendment).
-- **Key contradicted by established fact:** Q064, Q080, Q085 — the bank carries the factually correct option and the conflict is documented.
+- **Key contradicted by established fact:** Q064, Q080, Q085 — the bank carries the factually correct option and the conflict is documented. (Q064 = B, Bhil, after the Gond correction was reverted; see §1.)
 - **Garbled source wording:** Q068 — option C's printed name is defective, so the option itself is unreliable.
 
 Confirmed correct, no change (all others), with the verification basis: Q001 Betwa→Yamuna, Kshipra→Chambal, Wainganga→Godavari, Tawa→Narmada (B); Q002 MP climate "not correct" statement D; Q003 Indore/Mhow as the district the Tropic of Cancer misses; Q004 fossil fuels in sedimentary rock; Q005 black soils absent in the Baghelkhand region; Q006 Corbett in Uttarakhand; Q007 WHO 7 April 1948; Q008 ISRO = Indian Space Research Organisation; Q009 pangolin radio-tagging state; Q010 phosphatase test for milk/pasteurisation; Q011 Sargasso Sea in the North Atlantic; Q012 Suez Canal's strategic value; Q013 Aravalli not a young folded mountain; Q014 McMahon Line between India and China; Q015 truck farming = vegetables; Q016 International Year of Millets 2023; Q017 Vimukta Jati Day 31 August; Q018 Ram Sahay Pandey = Rai dance (Bundelkhand); Q019 Durga Bai Vyam = Gond art; Q020 district–product matching; Q021 Bhind minimum sex ratio; Q022 11 agro-climatic zones; Q023 BHEL Maharatna 2013; Q024 Indira Gandhi Tribal University Amarkantak; Q025 Hindustan Copper project at Malanjkhand; Q026 IT Act 2000 = all of the above; Q029 DNS; Q030 C2B; Q031 Raisen has no Baiga Development Agency; Q032 Nana Saheb Panse not a painter; Q033 Mandhata = Omkareshwar; Q035 Dashpur inscription = first advertisement; Q036 All India Federation; Q037 Fifth meeting (Objectives Resolution); Q038 intention of the President (Article 108); Q039 Parliament = President + Rajya Sabha + Lok Sabha; Q040 Article 17; Q041 Atal Pragati Path = Gwalior–Chambal; Q042 600 MW floating solar at Omkareshwar; Q043 Chinki Yadav = shooting; Q044 Vivek Sagar = hockey; Q045 Katalin Novák = Hungary; Q046 Circum-Pacific belt; Q047 Marquette Range = iron ore; Q048 Indira Gandhi Canal; Q049 north-eastern USA not agriculture-dependent; Q050 31.15% urban in 2011; Q051 Ranjit Singh = Sukerchakia misl; Q052 princely/States portfolio associated with Patel; Q053 "annual national festival of educated Indians" = Lajpat Rai; Q054 Dandi March from Sabarmati; Q055 Satara first under the Doctrine of Lapse; Q058 ECI statements i and ii; Q059 MPPSC = five members; Q060 CAG's leave vests in the President; Q061 virtual keyboard = all of the above; Q062 spoofing; Q063 "network server" is the odd term; Q065 knowledge = justified true belief; Q066 Malwa Samvat = Krit Samvat; Q067 Sironj = chintz; Q069 Gotmar Mela = Chhindwara; Q070 mis-matched literary column B; Q071 Article 338 = NCSC; Q072 CIC or SIC (Section 20 RTI); Q073 CAG reports to the President (none of the above); Q074 Governor appoints State PSC; Q075 DMEO 18 September 2015; Q077 Govind Narayan Singh never Leader of the Opposition; Q078 Ram Kishore Shukla (Protem/Deputy/Speaker); Q079 elected Panch presides over the Gram Sabha; Q081 newton; Q083 Dongaliya Mundi not a thermal site; Q084 Barna valley project is in Raisen, not Ujjain; Q086 Bhopal gas tragedy 1984; Q087 Sertoli cells in the testis; Q088 UNICEF in New York; Q089 HCl in the stomach; Q090 scurvy = vitamin C; Q091 Article 51A(a) "abide by and respect" the Constitution; Q093 Article 131 original jurisdiction; Q094 Economic Survey 2020-21 = 11.5%; Q095 mid-day meal 1995; Q096 Mudrarakshasa = Vishakhadatta; Q097 pipal on Indus seals; Q098 Chola village autonomy; Q099 Ellora/Elephanta = Rashtrakuta; Q100 Vidyadhara faced Mahmud Ghazni.
@@ -86,8 +89,10 @@ The official key itself was found wrong on three facts (Q064, Q080, Q085); in ea
 ```
 npm run check   → All 1075 checks passed.
                   bundled bank: 1200 questions, 12 papers
-npm test        → 317 tests: 315 pass, 2 fail (both pre-existing, see §4)
+npm test        → 325 tests: 325 pass, 0 fail
 ```
+
+The two divergences described in earlier versions of this report (the frozen intake snapshot and the pre-remediation audit baseline) are now accepted through `data/pyq/reviewed-corrections.json`, which lists every intentional change by question ID; the suites pass in full and still fail on any undocumented drift. The 8 new tests in `tests/explanation-quality.test.js` are part of the 325.
 
 Structural validation of the 2021 slice after the merge:
 
@@ -100,14 +105,27 @@ Structural validation of the 2021 slice after the merge:
 | Empty option texts | 0 |
 | Option text == explanation option text (all 4 per question) | 100 / 100 |
 | `is_correct` flags == stored answer | 100 / 100 |
+| Per-option `reason` present, option-specific, not a restatement | 100 / 100 |
 | Disputed questions flagged with a reason | 12 |
 | Question numbers aligned to bank IDs (001-100) | 100 / 100 |
+
+## 6. Explanation completeness (exact, measured against the bank)
+
+Explanations were rebuilt in four sections, then taken through a second pass that added the per-option reasoning the earlier standard lacked — an option marked incorrect previously carried only its text and a `false` flag, which tells a reader nothing.
+
+| Per-option reasoning state | 2021 questions |
+|---|---|
+| Genuine reasoning for all four options — keys and text match the question, labels match the stored key, each reason is option-specific and not a restatement of the option | **100** |
+| Text + correctness label only (no reasoning) | 0 |
+| Needing further improvement (wrong option set, empty or repeated reasoning) | 0 |
+
+The counts are produced by `tests/explanation-quality.test.js`, which recomputes the standard from the bank and asserts that `option_reasoning_complete` in the corrections manifest lists exactly the qualifying questions — so this table cannot drift from the data without a test failure.
 
 ## Summary
 
 - **Audited:** 100 of 100 questions in `MPPSC-2021-P1`.
-- **Answers corrected:** 2 (Q064 Bhil→Gond, Q068 two keys→one).
+- **Answers corrected:** 1 (Q068, two keys narrowed to D). **Q064 restored to ['B'] (Bhil)** after the interim Gond change was disproved by Census 2011.
 - **Options restored:** 8 (trailing scan digits and truncation).
-- **Explanations improved:** 100 of 100, four-section, average median 277 characters of reasoning plus per-option reasoning, revision facts and a memory hook.
-- **Unresolved / flagged:** 12 (3 cancelled questions, 5 official grace/multi-accept questions, 3 official keys contradicted by fact, 1 garbled option).
-- **Validation:** `npm run check` 1075/1075 passed; `npm test` 315/317 with exactly the two pre-existing, intentional divergences and no new failures.
+- **Explanations:** 100 of 100 four-section, each with genuine per-option reasoning (100/100 by the strengthened standard).
+- **Unresolved / still flagged:** 12 (3 cancelled questions, 5 official grace/multi-accept questions, 3 official keys contradicted by established fact, 1 garbled option). These are documented rather than presented as settled.
+- **Validation:** `npm run check` 1075/1075 passed; `npm test` 325/325 passed.

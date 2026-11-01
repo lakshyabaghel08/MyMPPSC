@@ -17,16 +17,23 @@
 
 All 100 questions carry 4 intact options; none missing or fabricated.
 
-**Answer verification & corrections (4):** Each supplied answer was checked against authoritative references (MoD/PIB for Quantum Lab, Hockey India/Ministry of Youth Affairs & Sports for Dronacharya, MP Culture Department for Tulsi Shodh Sansthan, Protection of Human Rights Act for NHRC, MPPSC-specific sources for Akhrani-Mathwar gorge). Four provably wrong keys were corrected:
+**Answer verification & key corrections (5, after re-verification; Q045 handled separately below):** Each supplied answer was checked against authoritative references (MoD/PIB for Quantum Lab, Hockey India/Ministry of Youth Affairs & Sports for Dronacharya, MP Culture Department for Tulsi Shodh Sansthan, Protection of Human Rights Act 1993 for NHRC, IBM/Ministry of Mines for iron-ore output, MPPSC-specific sources for the Akhrani-Mathwar gorge). Five keys were corrected, and one restored to the printed two-answer key:
 
 | Q | Question | Old key | New key | Basis |
 |---|----------|---------|---------|-------|
+| 003 | Father of Artificial Intelligence | ['D'] | **['B']** | John McCarthy coined "artificial intelligence" (Dartmouth workshop, 1956) and is the accepted father of the field; Dartmouth is a place/conference, not a person. |
 | 018 | Lifetime Dronacharya Award Hockey 2020 | ['B'] | **['C']** | Jude Felix Sebastian got the *regular* Dronacharya 2020 (Hockey); the *Lifetime* honour went to Romesh Pathania. Question asks Lifetime → C. |
-| 045 | Buddhist caves not situated where | ['C','D'] | **['D']** | Buddhist caves are not in Bulsar only; Sanchi is a Buddhist site (stupas/monastic remains), so C is wrong. Official MPPSC 2022 answer = Bulsar (D). |
-| 053 | NHRC statements (i) & (ii) | ['C','D'] | **['D']** | Both statements true (encourages NGOs; conducts research) but (i) does not explain (ii) — independent functions under PHRA 1993 §12. C false. |
-| 090 | Deep gorge Akhrani-Mathwar hills | ['A'] | **['D']** | The gorge is on the Narmada, not Chambal. |
+| 053 | NHRC statements (i) & (ii) | ['C','D'] | **['D']** | Both statements are true and both are functions under PHRA 1993 §12, but (i) does not explain (ii). See the caveat below: the item is **flagged unresolved**, not settled. |
+| 083 | Statement about iron ore in MP that is *not* correct | ['D'] | **['A']** | IBM 2020-21: Odisha 51.17%, Chhattisgarh 18.09%, Karnataka 16.89%, Jharkhand 10.48%, Madhya Pradesh ~2% (fifth). Statement D (Chhattisgarh second) is true; statement A (MP third) is the false one. |
+| 090 | Deep gorge between Akhrani-Mathwar hills | ['A'] | **['D']** | The gorge is carved by the **Narmada**, not the Chambal. |
 
-Confirmed correct, no change: Q001 (e-governance = technology-driven governance), Q002 (Cortesa fake VA), Q003 (John McCarthy, Father of AI), Q004 (Rajya Sabha max 250), Q005 (global reach), Q006 (replace jobs = not an advantage), Q007 (SMO = publicity via social networks), Q008 (Ability not an AI-bias source), Q009 (Tunnel diode), Q010 (impurity injection not e-h pair generation), Q011 (AFINDEX-2023 Pune), Q012 (Quantum Lab Mhow/MCTE Dec 2021), Q013 (GIS 2023 Indore), Q014 (G.V. Mavlankar first Speaker), Q015 (FAO Rome), Q016 (Saubhagya = Ministry of Power), Q017 (Manoj Pande COAS), Q019 (Jallianwala Bagh 13 Apr 1919), Q020 (Messi Golden Ball FIFA 2022), Q021 (Sanchi gateway = Ashoka's Bodhi-tree pilgrimage), Q022 (Indore 1857 leaders), Q023 (Tulsi Shodh Sansthan is Chitrakoot not Bhopal), Q024 (Al-Biruni on Gangeyadeva/Tripuri), Q025 (Nirmal Verma Award = Hindi promotion by NRI), Q026 (Kanha mascot Bhoorsingh), Q027 (Dhokra = metal, not cloth art), Q028 (Dwarka Prasad Mishra = Lokmat editor), Q029 (Dharma Rajeshwar = Dashpur), Q030 (Gond Painting artists), Q031 (AYUSH acronym), Q032 (Itai-Itai = cadmium), Q033 (FPO mark on processed fruit), Q034 (Bt brinjal = insect resistance), Q035 (Atlas-Axis pivot = synovial), Q036 (Vitamin K clotting), Q037 (ecotone), Q038 (Western Ghats hotspot), Q039 (anemometer), Q040 (IIFM Bhopal), Q041 (Santhal Revolt Siddho), Q042 (Prarthana Samaj Maharashtra), Q043 (12 Alvars, 63 Nayanars), Q044 (Tahqiq-i-Hind = Al-Biruni), Q046 (Quit India 9 Aug 1942), Q047 (Vijayanagara 1336), Q048 (Champaran Tinkathia), Q049 (Kabir doha), Q050 (Paramahansa Mandali Maharashtra), Q051 (MP OBC Commission 5 non-official members), Q052 (SHRC committee chaired by CM), Q054 (CVC = Santhanam Committee), Q055 (NCSC = Article 338), Q056 (State CIC cannot be State Legislature member), Q057 (CAG salary = Second Schedule), Q058 (NITI VC appointed by PM), Q059 (MP SEC 1 Feb 1994), Q060 (PSC = Article 315), Q061 (HC judge transfer = Article 222), Q062 (RBI nationalised 1949), Q063 (increased competition = benefit), Q064 (pardoning power = Article 72), Q065 (Nehru quote on Fundamental Rights), Q066 (impeachment = Article 61), Q067 (Objectives Resolution 13 Dec 1946), Q068 (91st Amendment = CoM ceiling), Q069 (Dyarchy = GOI Act 1919), Q070 (Gandhi quote on Constituent Assembly), Q071 (Ninety East Ridge = Indian Ocean), Q072 (MP not third in wind power → D is the 'not correct'), Q073 (Thailand not landlocked), Q074 (Meghalaya highest growth 2011), Q076 (Mizoram highest female literacy 2011), Q077 (80% iron ore in Jharkhand+Odisha false → B is 'not correct'), Q078 (Gujarat largest groundnut 2020-21), Q079 (Sundarbans = littoral/tidal), Q080 (Atlas Mountains = Africa), Q081 (MP major irrigation = wells/tubewells), Q082 (Sukta Project = Khandwa not Betul → Sukta-Betul is the incorrect pair), Q083 (MP not third in iron ore → A is 'not correct'), Q084 (Nitrogen most abundant), Q085 (Balaghat manganese), Q086 (Morena/Datia hot in summer → C is 'not correct'), Q087 (Bina tributary of Betwa), Q088 (Mandla highest rainfall), Q089 (Sheopur max forest %), Q091 (Burhanpur cotton & bananas), Q092 (Saharia = Khutia Patel), Q093 (Ladli Bahna ₹1,000/month), Q094 (Dindori least density 2011), Q095 (MP coal rank fourth), Q096 (President's Rule in MP = three times), Q097 (Gram Panchayat min population 1000), Q098 (Ravishankar Shukla first CM), Q099 (Minister nominated by CM presides), Q100 (Sarla Grewal first lady Governor).
+**Q045 — restored to `['C','D']` and flagged defective (previously narrowed to D).**
+
+The question asks in which of the listed places Buddhist **caves** are *not* situated. Bulsar/Valsad (D) has no Buddhist cave group — the Gujarat cave sites are at Junagadh, Khambhalida, Sana, Kadia Dungar, Talaja and Siyot. But Sanchi (C) is a stupa-and-monastery complex, not a rock-cut cave site either, so C is equally defensible as a place without Buddhist caves. The published key (D) is therefore not uniquely correct, and the bank stores both **C and D** with `dispute.is_disputed = true` and a reason explaining the defect, rather than presenting one of them as the answer.
+
+**Q053 — flagged ambiguous, not settled.** Statements (i) and (ii) about the NHRC are both true, and both are independent functions under the Protection of Human Rights Act 1993, so the assertion–reason link the paper expects does not exist; A, B and D are each literally true. D is retained as the best reading (no explanatory link), with `dispute.is_disputed = true` recording that the item is poorly constructed and its answer unresolved.
+
+Confirmed correct, no change: Q001 (e-governance = technology-driven governance), Q002 (Cortesa fake VA), Q004 (Rajya Sabha max 250), Q005 (global reach), Q006 (replace jobs = not an advantage), Q007 (SMO = publicity via social networks), Q008 (Ability not an AI-bias source), Q009 (Tunnel diode), Q010 (impurity injection not e-h pair generation), Q011 (AFINDEX-2023 Pune), Q012 (Quantum Lab Mhow/MCTE Dec 2021), Q013 (GIS 2023 Indore), Q014 (G.V. Mavlankar first Speaker), Q015 (FAO Rome), Q016 (Saubhagya = Ministry of Power), Q017 (Manoj Pande COAS), Q019 (Jallianwala Bagh 13 Apr 1919), Q020 (Messi Golden Ball FIFA 2022), Q021 (Sanchi gateway = Ashoka's Bodhi-tree pilgrimage), Q022 (Indore 1857 leaders), Q023 (Tulsi Shodh Sansthan is Chitrakoot not Bhopal), Q024 (Al-Biruni on Gangeyadeva/Tripuri), Q025 (Nirmal Verma Award = Hindi promotion by NRI), Q026 (Kanha mascot Bhoorsingh), Q027 (Dhokra = metal, not cloth art), Q028 (Dwarka Prasad Mishra = Lokmat editor), Q029 (Dharma Rajeshwar = Dashpur), Q030 (Gond Painting artists), Q031 (AYUSH acronym), Q032 (Itai-Itai = cadmium), Q033 (FPO mark on processed fruit), Q034 (Bt brinjal = insect resistance), Q035 (Atlas-Axis pivot = synovial), Q036 (Vitamin K clotting), Q037 (ecotone), Q038 (Western Ghats hotspot), Q039 (anemometer), Q040 (IIFM Bhopal), Q041 (Santhal Revolt Siddho), Q042 (Prarthana Samaj Maharashtra), Q043 (12 Alvars, 63 Nayanars), Q044 (Tahqiq-i-Hind = Al-Biruni), Q046 (Quit India 9 Aug 1942), Q047 (Vijayanagara 1336), Q048 (Champaran Tinkathia), Q049 (Kabir doha), Q050 (Paramahansa Mandali Maharashtra), Q051 (MP OBC Commission 5 non-official members), Q052 (SHRC committee chaired by CM), Q054 (CVC = Santhanam Committee), Q055 (NCSC = Article 338), Q056 (State CIC cannot be State Legislature member), Q057 (CAG salary = Second Schedule), Q058 (NITI VC appointed by PM), Q059 (MP SEC 1 Feb 1994), Q060 (PSC = Article 315), Q061 (HC judge transfer = Article 222), Q062 (RBI nationalised 1949), Q063 (increased competition = benefit), Q064 (pardoning power = Article 72), Q065 (Nehru quote on Fundamental Rights), Q066 (impeachment = Article 61), Q067 (Objectives Resolution 13 Dec 1946), Q068 (91st Amendment = CoM ceiling), Q069 (Dyarchy = GOI Act 1919), Q070 (Gandhi quote on Constituent Assembly), Q071 (Ninety East Ridge = Indian Ocean), Q072 (MP not third in wind power → D is the 'not correct'), Q073 (Thailand not landlocked), Q074 (Meghalaya highest growth 2011), Q076 (Mizoram highest female literacy 2011), Q077 (80% iron ore in Jharkhand+Odisha false → B is 'not correct'), Q078 (Gujarat largest groundnut 2020-21), Q079 (Sundarbans = littoral/tidal), Q080 (Atlas Mountains = Africa), Q081 (MP major irrigation = wells/tubewells), Q082 (Sukta Project = Khandwa not Betul → Sukta-Betul is the incorrect pair), Q084 (Nitrogen most abundant), Q085 (Balaghat manganese), Q086 (Morena/Datia hot in summer → C is 'not correct'), Q087 (Bina tributary of Betwa), Q088 (Mandla highest rainfall), Q089 (Sheopur max forest %), Q091 (Burhanpur cotton & bananas), Q092 (Saharia = Khutia Patel), Q093 (Ladli Bahna ₹1,000/month), Q094 (Dindori least density 2011), Q095 (MP coal rank fourth), Q096 (President's Rule in MP = three times), Q097 (Gram Panchayat min population 1000), Q098 (Ravishankar Shukla first CM), Q099 (Minister nominated by CM presides), Q100 (Sarla Grewal first lady Governor).
 
 No questions deleted; no IDs or mappings changed.
 
@@ -44,7 +51,7 @@ Plus `sources[]` citing the verification reference per question.
 Applied in four batches: Q001–Q025 (`/tmp/expl_2022_batch1.json`), Q026–Q050 (`/tmp/expl_2022_batch2.json`), Q051–Q075 (`/tmp/expl_2022_batch3.json`), Q076–Q100 (`/tmp/expl_2022_batch4.json`), merged with `/tmp/apply_explanations.py`.
 
 Question-specific treatment includes:
-- Q018/Q045/Q053/Q090: explanations document the answer-key correction and the verified fact.
+- Q003/Q018/Q045/Q053/Q083/Q090: explanations document the correction and the verified fact, and Q045/Q053 carry a dispute flag because the question itself is defective.
 - Q053: assertion-reason format — both NHRC statements true but no explanation link → D.
 - Q072/Q083/Q086: "not correct" questions — identify the single false statement (B/A/C respectively).
 - Q077: option D text restored; Mayurbhanj (Odisha) statement is true, so B (80% claim) is the false one.
@@ -61,18 +68,26 @@ Priority sources: Press Information Bureau/Ministry of Defence (Quantum Lab Mhow
 - Only `data/pyq/mymppsc-pyq-bank.json` modified; no other files touched.
 - Only year-2022 records changed (confirmed via `git diff`: no other year's question IDs appear).
 - Question IDs, `paper_id`, `question_number`, options, `supplied_answer` structure, `answer_key_status`, subject/topic/subtopic classifications, and all data relationships preserved.
-- 100/100 2022 questions now carry complete 4-section explanations; all are single-correct except none remaining multi after Q045/Q053 correction (both now ['D']).
+- 100/100 2022 questions carry 4-section explanations. Answers are single-correct except **Q045, which is intentionally multi-answer (`['C','D']`) and flagged defective**; Q053 is single-key (D) but flagged unresolved and poorly constructed.
 - No questions added or removed; compatibility with attempts, bookmarks, Mistake Book, Revision Centre, progress tracking, imports/exports, and offline function unchanged (schema fields used are all pre-existing and supported by the importer/UI; explanation renderer already supports all 4 sections + sources).
 - No UI or architectural changes.
 
 ## 5. Validation Results
 
 - **Schema/import checks (`npm run check`):** all 1,075 checks pass. Bank imports cleanly: 1,200 questions, 12 papers.
-- **Test suite (`npm test`):** 317 tests, **315 pass, 2 fail**.
-  - The same 2 failures exist on the clean committed tree (verified for prior years) — they are pre-existing and intentional, and are the documented consequence of the mandated changes:
-    1. `pyq-bank.test.js` "the printed key must not change" — asserts stored keys match the source-intake extraction; intentionally violated for corrected keys (Q018 B→C).
-    2. `quality-audit.test.js` "all … records are preserved" (explanation unchanged; `answer_unchanged: true`) — all 100 2022 explanations were intentionally rewritten and 4 answers intentionally corrected per this task; the audit baseline snapshot treats them as frozen, which the task overrides.
-  - No other tests fail; import, scoring, classification, and the UI explanation renderer work correctly.
+- **Test suite (`npm test`):** 325 tests, **325 pass, 0 fail**.
+  - The two divergences described in earlier versions of this report (frozen intake key snapshot; frozen pre-remediation audit baseline) are now accepted explicitly through `data/pyq/reviewed-corrections.json`, which lists every corrected key, every restored option and every rewritten explanation by question ID. Any undocumented drift still fails. The 8 new tests in `tests/explanation-quality.test.js` are included in the 325.
+  - The explanation-quality suite is the one that caught the defects listed below: it compares every explanation's option keys and text against the question's real options, checks the correct/incorrect labels against the stored answer, and rejects a "reason" that merely restates the option.
+
+## 6. Explanation completeness (exact, measured against the bank)
+
+| Per-option reasoning state | 2022 questions |
+|---|---|
+| Genuine reasoning for all four options — keys and text match the question, labels match the stored key, each reason is option-specific | **6** (Q003, 018, 045, 053, 083, 090 — the six re-verified questions) |
+| Text + correctness label only (no per-option reasoning) | 94 |
+| Needing further improvement (wrong option set, empty or repeated reasoning) | 0 |
+
+So the 2022 paper is **not** finished to the strengthened standard: 94 explanations still carry a four-section narrative and correct option labels but no per-option reasoning. They are counted as outstanding, not as complete.
 
 ## Summary
 
@@ -81,12 +96,15 @@ Priority sources: Press Information Bureau/Ministry of Defence (Quantum Lab Mhow
 | 2022 questions audited | 100 |
 | Explanations rewritten (4-section standard) | 100 |
 | Options corrupted/restored | 0 / 5 (Q026, Q055, Q077, Q086, Q099) |
-| Answers corrected (verified) | 4 (Q018, Q045, Q053, Q090) |
+| Key corrections (verified) | 5 (Q003, Q018, Q053, Q083, Q090) |
+| Answer restored to the printed two-answer key | 1 (Q045 → `['C','D']`, flagged defective) |
+| Explanations meeting the per-option reasoning standard | 6 / 100 |
 | Questions deleted / other years modified | 0 / 0 |
-| Files changed | 2 (`data/pyq/mymppsc-pyq-bank.json`, this report) |
-| Tests passing | 315 / 317 (2 pre-existing intentional, documented) |
+| Tests passing | 325 / 325 |
 | Check checks passing | 1,075 / 1,075 |
 
-**Unresolved issues:** None remaining for 2022.
-
-The entire selected year (2022) is complete; no other year was started or modified.
+**Unresolved issues for 2022 (not settled, by design):**
+- **Q045** — multi-answer `['C','D']`, disputed: no listed cave site fits uniquely.
+- **Q053** — answer D retained but the item is poorly constructed (both statements true, no explanatory link); flagged unresolved.
+- **Q003, Q083, Q018, Q090** — answers corrected away from the published key; each carries a documented basis and a dispute flag where the official key conflicts.
+- **94 explanations** still lack per-option reasoning and are listed as outstanding in the corrections manifest.

@@ -1,6 +1,6 @@
 {
-  "version": 1,
-  "note": "Reviewed, intentional divergences from the frozen extraction and the pre-remediation audit baseline. Each entry was re-verified on the merits in the 2024 quality audit. The test suites accept exactly these changes and nothing else, so any undocumented drift still fails.",
+  "version": 2,
+  "note": "Reviewed, intentional divergences from the frozen extraction and the pre-remediation audit baseline, plus the exact list of questions whose explanations meet the per-option reasoning standard. The test suites accept exactly these and nothing else, so undocumented drift still fails.",
   "option_corrections": {
     "MPPSC-2021-014": {
       "D": {
@@ -98,6 +98,15 @@
       ],
       "basis": "Clarified to a single false statement: Sipahi Bahadur Sarkar was set up at Sehore (14 Jan 1858), not Indore. The other three statements are true."
     },
+    "MPPSC-2022-003": {
+      "from": [
+        "D"
+      ],
+      "to": [
+        "B"
+      ],
+      "basis": "The stored key D (Dartmouth) is a place, not a person. John McCarthy coined the term, ran the Dartmouth workshop and created LISP, and is the father of AI."
+    },
     "MPPSC-2022-018": {
       "from": [
         "B"
@@ -116,6 +125,15 @@
         "D"
       ],
       "basis": "Both NHRC statements are true and neither explains the other, so the inclusive option D is the answer."
+    },
+    "MPPSC-2022-083": {
+      "from": [
+        "D"
+      ],
+      "to": [
+        "A"
+      ],
+      "basis": "MP is the fifth largest iron ore producer (~2%), not third, so statement A is the false one. Statement D is true: Chhattisgarh took most of the reserves on separation."
     },
     "MPPSC-2022-090": {
       "from": [
@@ -219,7 +237,126 @@
       "basis": "Arunachal Pradesh recorded the lowest density in Census 2011 at 17 persons per sq km."
     }
   },
-  "explanations_rewritten": [
+  "option_reasoning_complete": [
+    "MPPSC-2021-001",
+    "MPPSC-2021-002",
+    "MPPSC-2021-003",
+    "MPPSC-2021-004",
+    "MPPSC-2021-005",
+    "MPPSC-2021-006",
+    "MPPSC-2021-007",
+    "MPPSC-2021-008",
+    "MPPSC-2021-009",
+    "MPPSC-2021-010",
+    "MPPSC-2021-011",
+    "MPPSC-2021-012",
+    "MPPSC-2021-013",
+    "MPPSC-2021-014",
+    "MPPSC-2021-015",
+    "MPPSC-2021-016",
+    "MPPSC-2021-017",
+    "MPPSC-2021-018",
+    "MPPSC-2021-019",
+    "MPPSC-2021-020",
+    "MPPSC-2021-021",
+    "MPPSC-2021-022",
+    "MPPSC-2021-023",
+    "MPPSC-2021-024",
+    "MPPSC-2021-025",
+    "MPPSC-2021-026",
+    "MPPSC-2021-027",
+    "MPPSC-2021-028",
+    "MPPSC-2021-029",
+    "MPPSC-2021-030",
+    "MPPSC-2021-031",
+    "MPPSC-2021-032",
+    "MPPSC-2021-033",
+    "MPPSC-2021-034",
+    "MPPSC-2021-035",
+    "MPPSC-2021-036",
+    "MPPSC-2021-037",
+    "MPPSC-2021-038",
+    "MPPSC-2021-039",
+    "MPPSC-2021-040",
+    "MPPSC-2021-041",
+    "MPPSC-2021-042",
+    "MPPSC-2021-043",
+    "MPPSC-2021-044",
+    "MPPSC-2021-045",
+    "MPPSC-2021-046",
+    "MPPSC-2021-047",
+    "MPPSC-2021-048",
+    "MPPSC-2021-049",
+    "MPPSC-2021-050",
+    "MPPSC-2021-051",
+    "MPPSC-2021-052",
+    "MPPSC-2021-053",
+    "MPPSC-2021-054",
+    "MPPSC-2021-055",
+    "MPPSC-2021-056",
+    "MPPSC-2021-057",
+    "MPPSC-2021-058",
+    "MPPSC-2021-059",
+    "MPPSC-2021-060",
+    "MPPSC-2021-061",
+    "MPPSC-2021-062",
+    "MPPSC-2021-063",
+    "MPPSC-2021-064",
+    "MPPSC-2021-065",
+    "MPPSC-2021-066",
+    "MPPSC-2021-067",
+    "MPPSC-2021-068",
+    "MPPSC-2021-069",
+    "MPPSC-2021-070",
+    "MPPSC-2021-071",
+    "MPPSC-2021-072",
+    "MPPSC-2021-073",
+    "MPPSC-2021-074",
+    "MPPSC-2021-075",
+    "MPPSC-2021-076",
+    "MPPSC-2021-077",
+    "MPPSC-2021-078",
+    "MPPSC-2021-079",
+    "MPPSC-2021-080",
+    "MPPSC-2021-081",
+    "MPPSC-2021-082",
+    "MPPSC-2021-083",
+    "MPPSC-2021-084",
+    "MPPSC-2021-085",
+    "MPPSC-2021-086",
+    "MPPSC-2021-087",
+    "MPPSC-2021-088",
+    "MPPSC-2021-089",
+    "MPPSC-2021-090",
+    "MPPSC-2021-091",
+    "MPPSC-2021-092",
+    "MPPSC-2021-093",
+    "MPPSC-2021-094",
+    "MPPSC-2021-095",
+    "MPPSC-2021-096",
+    "MPPSC-2021-097",
+    "MPPSC-2021-098",
+    "MPPSC-2021-099",
+    "MPPSC-2021-100",
+    "MPPSC-2022-003",
+    "MPPSC-2022-018",
+    "MPPSC-2022-045",
+    "MPPSC-2022-053",
+    "MPPSC-2022-083",
+    "MPPSC-2022-090",
+    "MPPSC-2023-001",
+    "MPPSC-2023-009",
+    "MPPSC-2023-046",
+    "MPPSC-2023-048",
+    "MPPSC-2023-052",
+    "MPPSC-2023-057",
+    "MPPSC-2023-059",
+    "MPPSC-2024-018",
+    "MPPSC-2024-029",
+    "MPPSC-2024-072",
+    "MPPSC-2024-080"
+  ],
+  "narrative_rewritten": [
     "MPPSC-2021-001",
     "MPPSC-2021-002",
     "MPPSC-2021-003",

@@ -155,7 +155,7 @@ test('all historical question data and all 2019–2024 records are preserved', a
   ]);
   const beforeById = new Map(baseline.map((q) => [q.id, q]));
   const finalById = new Map(finalRows.map((q) => [q.id, q]));
-  const rewritten = new Set(corrections.explanations_rewritten);
+  const rewritten = new Set(corrections.narrative_rewritten);
   for (const q of bank.questions) {
     if (q.metadata?.model_question) continue; // app-written additions are outside the audit's scope
     const before = beforeById.get(q.id);

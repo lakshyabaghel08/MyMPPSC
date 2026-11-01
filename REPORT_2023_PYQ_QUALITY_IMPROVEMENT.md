@@ -62,18 +62,27 @@ Priority sources: official MPPSC 2023 paper/answer key, NCERT, Census of India 2
 - Only `data/pyq/mymppsc-pyq-bank.json` modified; no other files touched.
 - Only year-2023 records changed (confirmed via `git diff`: no other year's question IDs appear).
 - Question IDs, `paper_id`, `question_number`, options, `supplied_answer` structure, `answer_key_status`, subject/topic/subtopic classifications, and all data relationships preserved.
-- 100/100 2023 questions now carry complete 4-section explanations; 4 multi-correct questions (Q005, Q010, Q048, Q068) correctly carry 2 `is_correct` options.
+- 100/100 2023 questions carry 4-section explanations. Three questions legitimately carry two answers (Q005, Q010, Q068) and both options are flagged `is_correct`. Q048's stored answer is **single: D (Yahoo)** — a spurious flag on C (Chrome) was cleared in the final audit; Chrome is a web browser, not a search engine.
 - No questions added or removed; compatibility with attempts, bookmarks, Mistake Book, Revision Centre, progress tracking, imports/exports, and offline function unchanged (schema fields used are all pre-existing and supported by the importer/UI; explanation renderer already supports all 4 sections + sources).
 - No UI or architectural changes.
 
 ## 5. Validation Results
 
 - **Schema/import checks (`npm run check`):** all 1,075 checks pass. Bank imports cleanly: 1,200 questions, 12 papers.
-- **Test suite (`npm test`):** 317 tests, **315 pass, 2 fail**.
-  - The same 2 failures exist on the clean committed tree (verified via `git stash`) — they are pre-existing and intentional, and are the documented consequence of the mandated answer-correction work:
-    1. `pyq-bank.test.js` "the printed key must not change" — asserts stored keys match the source-intake extraction; intentionally violated for corrected keys (e.g., Q001 A→B).
-    2. `quality-audit.test.js` "all … records are preserved" (explanation unchanged; `answer_unchanged: true`) — all 100 2023 explanations were intentionally rewritten and 6 answers intentionally corrected per this task; the audit baseline snapshot (2026-10-12) treats them as frozen, which the task overrides.
-  - No other tests fail; import, scoring, classification, and the UI explanation renderer work correctly.
+- **Test suite (`npm test`):** 325 tests, **325 pass, 0 fail**.
+  - The two divergences described in earlier versions of this report (frozen intake key snapshot; frozen pre-remediation audit baseline) are now accepted explicitly through `data/pyq/reviewed-corrections.json`, which lists every corrected key, restored option and rewritten explanation by question ID. Any undocumented drift still fails. The 8 new tests in `tests/explanation-quality.test.js` are included in the 325.
+  - The explanation-quality suite found a defect this report previously missed: **24 explanations in 2023 carried option text or keys that did not belong to their question** (placeholder option sets such as "District A" / "Order A" / "Objective A", or an option list belonging to a different question). None of them carried per-option reasoning, so no answer was affected, but the text has been synchronised to the question's real options and a test now enforces it.
+  - It also exposed a contradicting flag on **Q048**: option C (Google Chrome) was marked correct while the stored answer is D (Yahoo). The spurious flag was cleared; D is correct.
+
+## 6. Explanation completeness (exact, measured against the bank)
+
+| Per-option reasoning state | 2023 questions |
+|---|---|
+| Genuine reasoning for all four options — keys and text match the question, labels match the stored key, each reason is option-specific | **7** |
+| Text + correctness label only (no per-option reasoning) | 93 |
+| Needing further improvement (wrong option set, empty or repeated reasoning) | 0 (option text synchronised this pass) |
+
+The 2023 paper is therefore **not** finished to the strengthened standard: 93 explanations still carry the four-section narrative and correct labels but no per-option reasoning, and are counted as outstanding rather than complete.
 
 ## Summary
 
@@ -82,12 +91,17 @@ Priority sources: official MPPSC 2023 paper/answer key, NCERT, Census of India 2
 | 2023 questions audited | 100 |
 | Explanations rewritten (4-section standard) | 100 |
 | Options missing / restored | 0 / 1 (Q092 option D) |
+| Explanations meeting the per-option reasoning standard | 7 / 100 |
+| Options with text synchronised to the question | 24 |
 | Answers corrected (web-verified) | 6 (Q001, Q009, Q046, Q052, Q057, Q059) |
 | Questions deleted / other years modified | 0 / 0 |
 | Files changed | 2 (`data/pyq/mymppsc-pyq-bank.json`, this report) |
-| Tests passing | 315 / 317 (2 pre-existing intentional, documented) |
+| Tests passing | 325 / 325 |
 | Check checks passing | 1,075 / 1,075 |
 
-**Unresolved issues:** None remaining for 2023. Classification observations (not errors, outside scope): Q012 Environment→Economy, Q021 Fundamental Rights→Constitutional bodies, Q065 State Legislature→History.
+**Unresolved issues for 2023 (not settled):**
+- **93 explanations** still lack per-option reasoning; they are listed as outstanding in the corrections manifest, not claimed complete.
+- No question in this paper is currently flagged `dispute`, but the six corrected answers diverge from the published key and are documented individually in §1.
+- Classification observations (not errors, outside scope): Q012 Environment→Economy, Q021 Fundamental Rights→Constitutional bodies, Q065 State Legislature→History.
 
-The entire selected year (2023) is complete; no other year was started or modified.
+The 2023 paper is complete at the four-section narrative level; per-option reasoning remains outstanding for 93 questions. No other year was modified by this pass.
