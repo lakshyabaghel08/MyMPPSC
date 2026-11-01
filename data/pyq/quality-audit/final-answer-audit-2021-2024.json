@@ -1,0 +1,3283 @@
+{
+  "version": 1,
+  "audit": "final answer accuracy audit, 2021-2024",
+  "performed_at": "2026-11-01",
+  "scope": "every question of the 2021, 2022, 2023 and 2024 Preliminary Paper-I in data/pyq/mymppsc-pyq-bank.json",
+  "method": "Each stored answer was re-derived from independent subject reasoning and reliable sources rather than accepted from the printed key. Questions whose answers had previously been changed, questions flagged unresolved, questions where the printed key conflicted with the stored answer, multi-answer and defective items, explanation/answer contradictions and malformed option sets were investigated first; the remainder were checked against their explanation and printed key for internal consistency.",
+  "summary": {
+    "by_year": {
+      "2021": {
+        "reviewed": 100,
+        "confirmed": 94,
+        "corrected": 1,
+        "ambiguous": 5
+      },
+      "2022": {
+        "reviewed": 100,
+        "confirmed": 98,
+        "corrected": 0,
+        "ambiguous": 2
+      },
+      "2023": {
+        "reviewed": 100,
+        "confirmed": 100,
+        "corrected": 0,
+        "ambiguous": 0
+      },
+      "2024": {
+        "reviewed": 100,
+        "confirmed": 100,
+        "corrected": 0,
+        "ambiguous": 0
+      }
+    },
+    "total": {
+      "reviewed": 400,
+      "confirmed": 392,
+      "corrected": 1,
+      "ambiguous": 7
+    }
+  },
+  "categories": {
+    "confirmed": "Answer is factually defensible; retained.",
+    "corrected": "Stored answer was demonstrably wrong; changed and synchronised with the explanation, the correction manifest and the reports.",
+    "ambiguous": "Stem defective, evidence conflicting or more than one answer defensible; uncertainty stated and not forced to a single key."
+  },
+  "questions": [
+    {
+      "id": "MPPSC-2021-001",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-002",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-003",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-004",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-005",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-006",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-007",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-008",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-009",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-010",
+      "year": 2021,
+      "status": "corrected",
+      "answer": [
+        "A"
+      ],
+      "note": "Official key D (\"All of the above\") is wrong: the phosphatase test is a milk test.",
+      "dispute_status": "resolved"
+    },
+    {
+      "id": "MPPSC-2021-011",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-012",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-013",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-014",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-015",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-016",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-017",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-018",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-019",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-020",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-021",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-022",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-023",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-024",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-025",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-026",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-027",
+      "year": 2021,
+      "status": "ambiguous",
+      "answer": [
+        "A",
+        "C"
+      ],
+      "note": "Auctions are cited both as B2B and as C2C; two options satisfy the stem.",
+      "dispute_status": "unresolved"
+    },
+    {
+      "id": "MPPSC-2021-028",
+      "year": 2021,
+      "status": "ambiguous",
+      "answer": [
+        "B"
+      ],
+      "note": "A router, a brouter and a gateway each forward packets between networks; the stem does not isolate one.",
+      "dispute_status": "unresolved"
+    },
+    {
+      "id": "MPPSC-2021-029",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-030",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-031",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-032",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-033",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-034",
+      "year": 2021,
+      "status": "ambiguous",
+      "answer": [
+        "A",
+        "B",
+        "C"
+      ],
+      "note": "Turra-Kalangi is staged in Malwa, Nimar and Bundelkhand; sources disagree on the single home region.",
+      "dispute_status": "unresolved"
+    },
+    {
+      "id": "MPPSC-2021-035",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-036",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-037",
+      "year": 2021,
+      "status": "ambiguous",
+      "answer": [
+        "D"
+      ],
+      "note": "The 13 December 1946 sitting is counted as second, third, fourth or fifth by different sources.",
+      "dispute_status": "unresolved"
+    },
+    {
+      "id": "MPPSC-2021-038",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-039",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-040",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-041",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-042",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-043",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-044",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-045",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-046",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-047",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-048",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-049",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-050",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-051",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-052",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-053",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-054",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-055",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-056",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "A",
+        "C"
+      ],
+      "dispute_status": "resolved"
+    },
+    {
+      "id": "MPPSC-2021-057",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ],
+      "dispute_status": "resolved"
+    },
+    {
+      "id": "MPPSC-2021-058",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-059",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-060",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-061",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-062",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-063",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-064",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ],
+      "dispute_status": "resolved"
+    },
+    {
+      "id": "MPPSC-2021-065",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-066",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-067",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-068",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ],
+      "dispute_status": "resolved"
+    },
+    {
+      "id": "MPPSC-2021-069",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-070",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-071",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-072",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-073",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-074",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-075",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-076",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ],
+      "dispute_status": "resolved"
+    },
+    {
+      "id": "MPPSC-2021-077",
+      "year": 2021,
+      "status": "ambiguous",
+      "answer": [
+        "B"
+      ],
+      "note": "Stem says \"leader of the house\" but the key follows the Leader of the Opposition reading, on which option A also qualifies.",
+      "dispute_status": "unresolved"
+    },
+    {
+      "id": "MPPSC-2021-078",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-079",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-080",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ],
+      "dispute_status": "resolved"
+    },
+    {
+      "id": "MPPSC-2021-081",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-082",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ],
+      "dispute_status": "resolved"
+    },
+    {
+      "id": "MPPSC-2021-083",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-084",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-085",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ],
+      "dispute_status": "resolved"
+    },
+    {
+      "id": "MPPSC-2021-086",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-087",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-088",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-089",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-090",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-091",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-092",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ],
+      "dispute_status": "resolved"
+    },
+    {
+      "id": "MPPSC-2021-093",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-094",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-095",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-096",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-097",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-098",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-099",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2021-100",
+      "year": 2021,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-001",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-002",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-003",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ],
+      "dispute_status": "resolved"
+    },
+    {
+      "id": "MPPSC-2022-004",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-005",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-006",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-007",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-008",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-009",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-010",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-011",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-012",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-013",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-014",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-015",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-016",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-017",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-018",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-019",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-020",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-021",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-022",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-023",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-024",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-025",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-026",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-027",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-028",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-029",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-030",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-031",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-032",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-033",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-034",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-035",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-036",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-037",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-038",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-039",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-040",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-041",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-042",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-043",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-044",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-045",
+      "year": 2022,
+      "status": "ambiguous",
+      "answer": [
+        "C",
+        "D"
+      ],
+      "note": "Sanchi and Bulsar both lack Buddhist caves; two options satisfy the stem.",
+      "dispute_status": "unresolved"
+    },
+    {
+      "id": "MPPSC-2022-046",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-047",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-048",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-049",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-050",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-051",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-052",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-053",
+      "year": 2022,
+      "status": "ambiguous",
+      "answer": [
+        "D"
+      ],
+      "note": "Statements (i) and (ii) are both true, and options A, B and D are each literally true.",
+      "dispute_status": "unresolved"
+    },
+    {
+      "id": "MPPSC-2022-054",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-055",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-056",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-057",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-058",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-059",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-060",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-061",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-062",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-063",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-064",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-065",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-066",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-067",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-068",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-069",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-070",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-071",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-072",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-073",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-074",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-075",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-076",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-077",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-078",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-079",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-080",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-081",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-082",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-083",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ],
+      "dispute_status": "resolved"
+    },
+    {
+      "id": "MPPSC-2022-084",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-085",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-086",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-087",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-088",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-089",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-090",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-091",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-092",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-093",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-094",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-095",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-096",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-097",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-098",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-099",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2022-100",
+      "year": 2022,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-001",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-002",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-003",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-004",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-005",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "B",
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-006",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-007",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-008",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-009",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-010",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "B",
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-011",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-012",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-013",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-014",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-015",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-016",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-017",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-018",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-019",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-020",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-021",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-022",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-023",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-024",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-025",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-026",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-027",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-028",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-029",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-030",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-031",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-032",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-033",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-034",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-035",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-036",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-037",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-038",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-039",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-040",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-041",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-042",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-043",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-044",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-045",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-046",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-047",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-048",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-049",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-050",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-051",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-052",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-053",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-054",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-055",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-056",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-057",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-058",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-059",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-060",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-061",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-062",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-063",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-064",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-065",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-066",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-067",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-068",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "A",
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-069",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-070",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-071",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-072",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-073",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-074",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-075",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-076",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-077",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-078",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-079",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-080",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-081",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-082",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-083",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-084",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-085",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-086",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-087",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-088",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-089",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-090",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-091",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-092",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-093",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-094",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-095",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-096",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-097",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-098",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-099",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2023-100",
+      "year": 2023,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-001",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-002",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-003",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-004",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-005",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-006",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-007",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-008",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-009",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-010",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-011",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-012",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-013",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-014",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-015",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-016",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-017",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-018",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-019",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-020",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-021",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-022",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-023",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-024",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-025",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-026",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-027",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-028",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-029",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-030",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-031",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-032",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-033",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-034",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-035",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-036",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-037",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-038",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-039",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-040",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-041",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-042",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-043",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-044",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-045",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-046",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-047",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-048",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-049",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-050",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-051",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-052",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-053",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-054",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-055",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-056",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-057",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-058",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-059",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-060",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-061",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-062",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-063",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-064",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-065",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-066",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-067",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-068",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-069",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-070",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-071",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-072",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-073",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-074",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-075",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-076",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-077",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-078",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-079",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-080",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-081",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-082",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-083",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-084",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-085",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-086",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-087",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-088",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-089",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-090",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-091",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-092",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-093",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-094",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-095",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-096",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-097",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-098",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-099",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "id": "MPPSC-2024-100",
+      "year": 2024,
+      "status": "confirmed",
+      "answer": [
+        "B"
+      ]
+    }
+  ]
+}

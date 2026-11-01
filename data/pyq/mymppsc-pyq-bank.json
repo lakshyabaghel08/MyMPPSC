@@ -12207,7 +12207,7 @@
       },
       "supplied_answer": {
         "answer": [
-          "D"
+          "A"
         ],
         "status": "supplied",
         "source": null,
@@ -12216,42 +12216,40 @@
       "answer_key_status": "supplied",
       "explanation": {
         "language": "en",
-        "correct_reasoning": "The phosphatase test is used to check whether milk has been properly pasteurized — alkaline phosphatase is destroyed by pasteurization temperatures, so its presence indicates inadequate or no pasteurization. Hence option D (All of the above, i.e. applicable to milk/tea/water contexts) is the keyed answer; in standard food-safety usage the test is specifically for milk.",
+        "correct_reasoning": "The phosphatase test (the Scharer test) is the standard check on whether milk has been properly pasteurised. The enzyme alkaline phosphatase is naturally present in raw milk and is destroyed at a temperature just above the pasteurisation range, so any phosphatase activity left in the sample means the milk was under-heated or was mixed with raw milk afterwards. It is a dairy test: there is no standard phosphatase test for tea, and phosphatase activity is not the test used to analyse water. Hence option A (Milk) is correct. The answer printed with this paper, \"All of the above\", cannot be defended once tea and water are taken into account.",
         "option_explanations": [
           {
             "key": "A",
             "text": "Milk",
-            "is_correct": false,
-            "reason": "The phosphatase test is indeed applied to milk, but on its own this option is incomplete because it is also applied to the other materials listed."
+            "is_correct": true,
+            "reason": "Correct. Alkaline phosphatase in milk is destroyed by pasteurisation, so its residual activity is the accepted index that the milk was properly heat-treated."
           },
           {
             "key": "B",
             "text": "Tea",
             "is_correct": false,
-            "reason": "Tea is not analysed with the phosphatase test."
+            "reason": "Tea is not analysed with a phosphatase test; the test belongs to the dairy industry and to heat treatment of milk."
           },
           {
             "key": "C",
             "text": "Water",
             "is_correct": false,
-            "reason": "The test is applied to water as well, but again this option is incomplete on its own."
+            "reason": "Water is analysed for coliforms, BOD, COD and specific chemical parameters, not by the phosphatase test described here."
           },
           {
             "key": "D",
             "text": "All of the above",
-            "is_correct": true,
-            "reason": "Correct. The phosphatase test detects the enzyme phosphatase as an indicator of pasteurisation failure and contamination, and is used on milk, water and other fluids, so \"all of the above\" is the inclusive answer."
+            "is_correct": false,
+            "reason": "Cannot be right once tea and water are excluded. The published key marked this option, but the test it names is specifically a milk test."
           }
         ],
         "key_concepts": [
-          "Phosphatase test: verifies pasteurization of milk (alkaline phosphatase enzyme is heat-labile).",
-          "Negative phosphatase test = proper pasteurization; positive = raw or inadequately pasteurized milk.",
-          "Food chemistry/analysis — common milk-quality test in S&T/chemistry questions.",
-          "Exam key uses 'All of the above'; treat D as the official answer while noting milk is the primary application."
+          "Phosphatase (Scharer) test — checks adequacy of milk pasteurisation",
+          "Alkaline phosphatase is destroyed at pasteurisation temperature",
+          "A positive test means under-pasteurised milk or post-pasteurisation contamination with raw milk"
         ],
         "revision_takeaways": [
-          "Memory hook: Phosphatase test ➜ pasteurization check of milk (exam key: D all of the above).",
-          "Phosphatase destroyed by heat — presence means unpasteurized."
+          "Phosphatase test = milk, not tea or water. Residual enzyme activity means the milk was not properly pasteurised."
         ],
         "sources": [
           {
@@ -12263,7 +12261,13 @@
       },
       "subject": "Science and Technology",
       "topic": "Chemistry",
-      "subtopic": "Chemistry in everyday life"
+      "subtopic": "Chemistry in everyday life",
+      "dispute": {
+        "is_disputed": true,
+        "status": "resolved",
+        "raised_by": "2026-11-01 final answer audit",
+        "reason": "The published 2021 key marked \"All of the above\". The phosphatase test is a milk test only, so the stored answer is corrected to A (Milk) and the official key is recorded as wrong on this item."
+      }
     },
     {
       "id": "MPPSC-2021-011",
@@ -13140,7 +13144,7 @@
       "answer_key_status": "supplied",
       "explanation": {
         "language": "en",
-        "correct_reasoning": "Matching districts to their tentative products: Balaghat – Teakwood (Sagon) (c), Betul – Kodo Kutki (d), Khargone – Chilli (a? actually chilli is Khargone), Narsinghpur – Pea (Tuar) and Jaggery (b). The correct matching is a–d, b–c, c–a, d–b? Reviewing: the keyed correct option is D (d c b a), i.e. Balaghat–d(Kodo Kutki)? — the option set in the bank is internally consistent with option D as the official answer.",
+        "correct_reasoning": "The four districts are to be matched with the products printed beside them: Balaghat with Kodo-Kutki (d), Betul with teakwood, Sagon (c), Khargone with chilli and chilli products (b), and Narsinghpur with pea (tuar) and jaggery (a). Taking the districts in the order printed — Balaghat, Betul, Khargone, Narsinghpur — gives d, c, b, a, which is option D. The printed solution supports the same pairing: Kodo-Kutki in the tribal district of Balaghat, teak and sal forest around Betul, the chilli market at Sanavad in Khargone, and the jaggery of Kareli and the gram of Gadarwara in Narsinghpur. The option column reproduces only the code sequences, so the pairs above are what the letters stand for.",
         "option_explanations": [
           {
             "key": "A",
@@ -14767,7 +14771,13 @@
       },
       "subject": "Polity",
       "topic": "Constitution of India",
-      "subtopic": "Making of the Constitution"
+      "subtopic": "Making of the Constitution",
+      "dispute": {
+        "is_disputed": true,
+        "status": "unresolved",
+        "raised_by": "2026-11-01 final answer audit",
+        "reason": "The Objectives Resolution was moved on 13 December 1946. Whether that date is the second, third, fourth or fifth sitting of the Constituent Assembly depends on how sittings are counted: the Assembly sat on 9, 10, 11 and 13 December 1946, so 13 December is the fourth sitting by date, while accounts that count the Assembly's separate meetings, or begin with the 9 December formal sitting plus the 11 December business meeting, give the third or the fifth. The official key (D, Fifth) is retained and the counting ambiguity is stated."
+      }
     },
     {
       "id": "MPPSC-2021-038",
@@ -16443,37 +16453,37 @@
       "answer_key_status": "supplied",
       "explanation": {
         "language": "en",
-        "correct_reasoning": "The selection committee that recommends the Chairperson and members of a State Information Commission, under Section 15 of the Right to Information Act 2005, consists of the Chief Minister (chairperson), the Leader of the Opposition in the Legislative Assembly, and a Cabinet minister nominated by the Chief Minister. In Madhya Pradesh the presiding officer's role is discharged by the Speaker of the Legislative Assembly in the same spirit, and the official key accordingly marks the Speaker of the Legislative Assembly and the Leader of the Opposition. Hence options A and C are correct.",
+        "correct_reasoning": "Section 21(1) of the Protection of Human Rights Act, 1993 provides that the Chairperson and members of a State Human Rights Commission are appointed by the Governor on the recommendation of a committee consisting of the Chief Minister (chairperson), the Speaker of the Legislative Assembly, the Leader of the Opposition in the Legislative Assembly and, in a State that has a Legislative Council, the Chairman of that Council. The Governor appoints but is not a member of the recommending committee, and the Chief Justice of the High Court has no place on it. Of the four options, the Speaker of the Legislative Assembly (A) and the Leader of the Opposition (C) are the two who sit on the committee, so both are correct — this question was scored with two keys.",
         "option_explanations": [
           {
             "key": "A",
             "text": "Speaker of the Legislative Assembly",
             "is_correct": true,
-            "reason": "is part of the official key: the legislative presiding element of the state is represented on the selection committee."
+            "reason": "Correct. The Speaker of the Legislative Assembly is a member of the committee under section 21(1) of the Protection of Human Rights Act, 1993."
           },
           {
             "key": "B",
             "text": "Governor",
             "is_correct": false,
-            "reason": "the Governor appoints the State Chief Information Commissioner and Commissioners, but is not a member of the recommending committee."
+            "reason": "The Governor appoints the Chairperson and members on the committee's recommendation; he does not sit on the committee itself."
           },
           {
             "key": "C",
             "text": "Leader of opposition",
             "is_correct": true,
-            "reason": "the Leader of the Opposition in the Assembly is a mandatory member of the committee."
+            "reason": "Correct. The Leader of the Opposition in the Legislative Assembly is a member of the recommending committee under section 21(1) of the Act."
           },
           {
             "key": "D",
             "text": "Chief Justice of High Court",
             "is_correct": false,
-            "reason": "the Chief Justice of the High Court has no role in this selection."
+            "reason": "The Chief Justice of the High Court is not on the selection committee; the Act lists the Chief Minister, the Speaker, the Leader of the Opposition and, where there is one, the Chairman of the Legislative Council."
           }
         ],
         "key_concepts": [
-          "Under Section 15(3) of the RTI Act, the state committee = Chief Minister + Leader of the Opposition in the Assembly + a Cabinet Minister nominated by the CM.",
-          "Under Section 12(3), the central committee = Prime Minister + Leader of the Opposition in the Lok Sabha + a Union Cabinet Minister nominated by the PM.",
-          "The commission consists of a State Chief Information Commissioner and up to 10 State Information Commissioners, appointed by the Governor."
+          "Protection of Human Rights Act, 1993 — section 21(1)",
+          "Committee: Chief Minister, Speaker, Leader of the Opposition (+ Council Chairman where a Council exists)",
+          "Appointment is made by the Governor on the committee's recommendation"
         ],
         "revision_takeaways": [
           "Memory hook: RTI selection committee ➜ CM + LoP + one Cabinet Minister (Centre: PM + LoP + one Cabinet Minister).",
@@ -16492,9 +16502,9 @@
       "subtopic": "High Courts",
       "dispute": {
         "is_disputed": true,
-        "status": "unresolved",
-        "reason": "The commission key accepted more than one option for this multi-correct question; the bank retains the official A+C combination.",
-        "raised_by": "2021 PYQ quality audit"
+        "status": "resolved",
+        "raised_by": "2026-11-01 final answer audit",
+        "reason": "The answer (A and C) is settled by section 21(1) of the Protection of Human Rights Act, 1993: the Speaker and the Leader of the Opposition are the members of the recommending committee that appear among the options. An earlier explanation cited the Right to Information Act instead, which was wrong and has been replaced; the exam awarded grace marks on this question."
       }
     },
     {
@@ -16588,8 +16598,8 @@
       "subtopic": null,
       "dispute": {
         "is_disputed": true,
-        "status": "unresolved",
-        "reason": "This question was cancelled by the commission in the 2021 prelims, so no answer is scored. The stored option (Governor, which is also the correct constitutional position) is kept for revision only and must not be presented as an official key.",
+        "status": "resolved",
+        "reason": "Section 243K(1) vests the State Election Commission in a State Election Commissioner appointed by the Governor, so option A is factually certain. The commission cancelled the question, which is recorded here; the cancellation does not make the underlying fact doubtful.",
         "raised_by": "2021 PYQ quality audit"
       }
     },
@@ -16636,7 +16646,7 @@
       "answer_key_status": "supplied",
       "explanation": {
         "language": "en",
-        "correct_reasoning": "Of the three statements about the Election Commission of India, the ones that are constitutionally true are that the Chief Election Commissioner can be removed only in the manner of a Supreme Court judge and that the Commission is a constitutional body created directly by the Constitution. Statement iii (that the Election Commission is a statutory body) is false, so the correct combination is i and ii, option B.",
+        "correct_reasoning": "Statement (i) is correct: the Chief Election Commissioner is paid the salary of a Judge of the Supreme Court. Statement (ii) is correct: under section 4 of the Election Commission (Conditions of Service of Election Commissioners and Transaction of Business) Act, 1991 the term is six years from the date of assuming office, or until the age of 65 years, whichever is earlier. Statement (iii) is incorrect as printed: the Chief Election Commissioner or an Election Commissioner resigns by writing under his hand addressed to the President, not to the Chief Election Commissioner. Only (i) and (ii) are therefore true, and option B is correct.",
         "option_explanations": [
           {
             "key": "A",
@@ -16664,9 +16674,10 @@
           }
         ],
         "key_concepts": [
-          "The Election Commission of India is a constitutional body under Article 324 — it is not statutory.",
-          "The CEC can be removed only by impeachment by Parliament on the grounds and in the manner of a Supreme Court judge (Article 324(5)); other Election Commissioners can be removed on the recommendation of the CEC.",
-          "The Commission was a single-member body until 1993, when it became a three-member body (CEC + 2 ECs)."
+          "Article 324 — Election Commission of India",
+          "Section 4, Election Commission (Conditions of Service) Act, 1991 — six years or 65 years",
+          "Resignation is addressed to the President",
+          "Salary equal to a Judge of the Supreme Court"
         ],
         "revision_takeaways": [
           "Memory hook: ECI = Article 324 = CONSTITUTIONAL body ➜ any 'statutory body' statement is false.",
@@ -17240,9 +17251,9 @@
       },
       "dispute": {
         "is_disputed": true,
-        "status": "unresolved",
+        "status": "resolved",
         "raised_by": "2024 quality audit (re-verification)",
-        "reason": "Census 2011 figures for Madhya Pradesh give the Bhil 5,993,921 (about 39% of the state Scheduled Tribe population, including Bhilala, Barela and Patelia) against the Gond 5,093,124 (about 33%). The Bhil are therefore the largest tribal group of MP and the Gond the second largest. Answer B is correct. The published 2021 key (D, Sahariya) is wrong, and an earlier internal pass that changed this to A (Gond) was also wrong and has been reverted."
+        "reason": "Census 2011 gives Madhya Pradesh 5,993,921 Bhil (about 39% of the state Scheduled Tribe population, including Bhilala, Barela and Patelia) against 5,093,124 Gond (about 33%). The Bhil are the largest tribal group of MP and the Gond the second largest, so answer B is settled. The published 2021 key (D, Sahariya) is wrong, and an earlier internal change to A (Gond) was also wrong and was reverted."
       }
     },
     {
@@ -17607,8 +17618,8 @@
       "subtopic": "Freedom struggle in Madhya Pradesh",
       "dispute": {
         "is_disputed": true,
-        "status": "unresolved",
-        "reason": "Only one statement is false, but the bank previously carried two keys (C and D); it is now narrowed to D. Option C is also garbled in the paper (the Ramgarh prince name is misprinted), so that wording itself is unreliable.",
+        "status": "resolved",
+        "reason": "Sipahi Bahadur Sarkar was established at Sehore, not at Indore, so statement D is the incorrect one and is the answer. The item was previously keyed with both C and D and has been narrowed to the single demonstrably false statement.",
         "raised_by": "2021 PYQ quality audit"
       }
     },
@@ -17745,7 +17756,7 @@
       "answer_key_status": "supplied",
       "explanation": {
         "language": "en",
-        "correct_reasoning": "The pairs list Hindi writers of MP with their works. Harishankar Parsai did write 'Hanste Hain Rote Hain' and 'Nagfani ki Kahani', Gajanan Madhav Muktibodh wrote 'Chand ka Munh Tera Hai' and 'Kath ka Sapna', and Keshavdas wrote 'Rasikpriya' and 'Kavipriya'. The mis-match is option B, which pairs 'Bhawani Geet Farosh' and 'Satpura ke Prasad' with 'Ghane Jangal Himtarangini' — that work belongs to a different writer. Hence option B is the incorrectly matched pair.",
+        "correct_reasoning": "Each option pairs a Hindi writer of Madhya Pradesh with works, and one pair is wrong. Harishankar Parsai wrote \"Hanste Hain Rote Hain\" and \"Nagfani ki Kahani\"; Gajanan Madhav Muktibodh wrote \"Chand ka Munh Tera Hai\" and \"Kath ka Sapna\"; Keshavdas wrote \"Rasikpriya\" and \"Kavipriya\". Option B attaches \"Him Tarangini\" to Bhavani Prasad Mishra, but that work is Makhanlal Chaturvedi's (it won him the first Sahitya Akademi award in 1955); Mishra's own collections include \"Geet Farosh\" and \"Satpura ke Jangal\". Hence option B is the pair that is not correctly matched. The option as extracted has lost the separating names and dashes of the two-column print, but the titles are intact.",
         "option_explanations": [
           {
             "key": "A",
@@ -18342,8 +18353,8 @@
       },
       "dispute": {
         "is_disputed": true,
-        "status": "unresolved",
-        "reason": "This question was cancelled by the commission in the 2021 prelims. The stored answer (1992) states the correct fact about the 73rd Amendment but is not an official key for a scored question.",
+        "status": "resolved",
+        "reason": "The 73rd Constitutional Amendment was passed in December 1992 and came into force on 24 April 1993, so option B is factually certain. The commission cancelled the question, which is recorded here.",
         "raised_by": "2021 PYQ quality audit"
       }
     },
@@ -18390,7 +18401,7 @@
       "answer_key_status": "supplied",
       "explanation": {
         "language": "en",
-        "correct_reasoning": "The question asks which Chief Minister of Madhya Pradesh did NOT hold the office of Leader of the Opposition in the state Assembly. Prakash Chandra Sethi, Babulal Gaur and Kailash Joshi all served as Leader of the Opposition at some point, whereas Govind Narayan Singh served as Chief Minister (1967-69) and later as a Union minister but did not hold the post of Leader of the Opposition in the MP Assembly. Hence option B is correct.",
+        "correct_reasoning": "Read literally, this question asks which Chief Minister did not hold the office of Leader of the House — an office the Chief Minister holds in the Assembly. Govind Narayan Singh was Chief Minister from 1967 to 1969 and therefore was Leader of the House, so on the printed wording option B is not the answer. The official key B instead follows the Leader of the Opposition form of this question, which the commission asked in its 2020 paper: Kailash Joshi (1972-77 and 1985-90) and Babulal Gaur (2002-03) led the opposition, and Govind Narayan Singh never did. Even on that reading the item is not clean, because Prakash Chandra Sethi never held the Leader of the Opposition's post either — he was Chief Minister from 1972 to 1975 and then a Union minister and Rajya Sabha member — so option A would be equally true. The word \"house\" in the printed paper should probably read \"opposition\". The key B is retained as the official answer, and the item is flagged as defective.",
         "option_explanations": [
           {
             "key": "A",
@@ -18435,7 +18446,13 @@
       },
       "subject": "Polity",
       "topic": "State Government",
-      "subtopic": "Chief Minister and State Council of Ministers"
+      "subtopic": "Chief Minister and State Council of Ministers",
+      "dispute": {
+        "is_disputed": true,
+        "status": "unresolved",
+        "raised_by": "2026-11-01 final answer audit",
+        "reason": "Printed wording asks about the Leader of the House, an office every Chief Minister holds, so option B (Chief Minister 1967-69) is not the answer on that reading. The official key B matches the Leader of the Opposition version of the question, but on that reading Prakash Chandra Sethi (A) also never held the post, so two options qualify. The item cannot be answered with certainty as printed."
+      }
     },
     {
       "id": "MPPSC-2021-078",
@@ -18714,8 +18731,8 @@
       },
       "dispute": {
         "is_disputed": true,
-        "status": "unresolved",
-        "reason": "The published 2021 key gives D (Timur), which is historically wrong: the Second Battle of Tarain (1192 CE) was fought between Prithviraj Chauhan and Muhammad Ghori, who won. The bank carries the factually correct answer A and records the conflict.",
+        "status": "resolved",
+        "reason": "The Second Battle of Tarain (1192) was fought between Prithviraj Chauhan and Muhammad Ghori, so option A is settled. The published key (D, Timur) is historically wrong and is recorded as such.",
         "raised_by": "2021 PYQ quality audit"
       }
     },
@@ -18908,8 +18925,8 @@
       },
       "dispute": {
         "is_disputed": true,
-        "status": "unresolved",
-        "reason": "This question was cancelled by the commission in the 2021 prelims. The stored answer (Ministry of Finance) is factually correct for one-rupee notes but is not an official key for a scored question.",
+        "status": "resolved",
+        "reason": "One-rupee notes are issued by the Government of India through the Ministry of Finance, so option B is factually certain. The commission cancelled the question, which is recorded here.",
         "raised_by": "2021 PYQ quality audit"
       }
     },
@@ -19189,8 +19206,8 @@
       },
       "dispute": {
         "is_disputed": true,
-        "status": "unresolved",
-        "reason": "The published 2021 key gives D (Aravalli range), which is geographically wrong: the Narmada rises from the Narmada Kund on the Amarkantak plateau. The bank carries the factually correct answer B and records the conflict.",
+        "status": "resolved",
+        "reason": "The Narmada rises from the Amarkantak plateau, so option B is settled. The published key (D, Aravalli) is geographically wrong and is recorded as such.",
         "raised_by": "2021 PYQ quality audit"
       }
     },
@@ -19830,8 +19847,8 @@
       "subtopic": "Constitutional amendments",
       "dispute": {
         "is_disputed": true,
-        "status": "unresolved",
-        "reason": "The commission granted grace marks on this question; the bank retains C (Third Amendment, 1954), the amendment whose ratification by state legislatures was the first under Article 368(2).",
+        "status": "resolved",
+        "reason": "The Third Constitutional Amendment Act, 1954 was the first amendment ratified by the state legislatures under the proviso to Article 368(2), so option C is settled. The commission also awarded grace marks on this question, which is recorded.",
         "raised_by": "2021 PYQ quality audit"
       }
     },
@@ -20832,9 +20849,9 @@
       "subtopic": "Information technology",
       "dispute": {
         "is_disputed": true,
-        "status": "unresolved",
+        "status": "resolved",
         "raised_by": "2024 quality audit (re-verification)",
-        "reason": "The stored key was D (Dartmouth), which is a place and the name of the 1956 conference, not a person. John McCarthy coined the term \"Artificial Intelligence\", organised the Dartmouth workshop and created LISP, and is universally called the father of AI. The key is corrected to B. The explanation already argued B, so the stored key contradicted its own explanation."
+        "reason": "John McCarthy coined the term \"artificial intelligence\" for the 1956 Dartmouth workshop and is the accepted father of the field. Dartmouth is a place, not a person, so the printed key (D) is indefensible and the stored answer B is settled."
       }
     },
     {
@@ -25218,7 +25235,7 @@
       "answer_key_status": "supplied",
       "explanation": {
         "language": "en",
-        "correct_reasoning": "Both statements about the National Human Rights Commission are true — (i) it encourages organisations working in human rights, and (ii) it conducts/promotes research in human rights (functions under Section 12 of the Protection of Human Rights Act, 1993). However, statement (i) is not the correct explanation of statement (ii); they are independent functions. Hence option D (both statements true) is correct; the earlier multi key was corrected to D only.",
+        "correct_reasoning": "Both statements about the National Human Rights Commission are true — (i) it encourages organisations working in the field of human rights, and (ii) it conducts and promotes research in that field, both under section 12 of the Protection of Human Rights Act, 1993. Statement (i) is not the explanation of statement (ii); the two are independent functions, so option C is wrong. Option D (\"both statements are true\") is the keyed answer, but the item is poorly constructed: options A and B are also literally true statements, and the paper relies on D being read as the complete statement rather than as a combination of A and B. Hence option D is correct on the intended reading, and the question is flagged as defective.",
         "option_explanations": [
           {
             "key": "A",
@@ -27917,9 +27934,9 @@
       "subtopic": "Minerals of Madhya Pradesh",
       "dispute": {
         "is_disputed": true,
-        "status": "unresolved",
+        "status": "resolved",
         "raised_by": "2024 quality audit (re-verification)",
-        "reason": "The stored key was D, but statement D is true: after Chhattisgarh was separated in 2000 it took the bulk of the undivided state's iron ore reserves with it. Statement A is the false one: Madhya Pradesh is the fifth largest iron ore producing state at roughly 2% of national output, well behind Odisha (~51%), Chhattisgarh (~18%), Karnataka (~17%) and Jharkhand (~10%), so it does not rank third. The key is corrected to A."
+        "reason": "Madhya Pradesh produces roughly 2% of India's iron ore and stands fifth, behind Odisha, Chhattisgarh, Karnataka and Jharkhand, so statement A (MP third) is the incorrect one and is the answer. Statement D, that the reserves shrank after the separation of Chhattisgarh, is true; the printed key (D) contradicted its own statement set."
       }
     },
     {
@@ -32294,7 +32311,7 @@
       "answer_key_status": "supplied",
       "explanation": {
         "language": "en",
-        "correct_reasoning": "The Major Dhyan Chand Khel Ratna Award for 2022 was conferred on G. Sathiyan? No — it was awarded to table tennis player A. Sharath Kamal for his outstanding achievements, including a historic medal haul at the 2022 Commonwealth Games and Asian Games. Hence option D (Sharath Kamal) is correct.",
+        "correct_reasoning": "The Major Dhyan Chand Khel Ratna Award for 2022 was conferred on the table-tennis player Achanta Sharath Kamal, for a year in which he won a historic haul of medals at the 2022 Commonwealth Games in Birmingham. Manika Batra, an earlier Khel Ratna winner, and Kamlesh Mehta were not the 2022 awardees. Hence option D (Sharath Kamal) is correct.",
         "option_explanations": [
           {
             "key": "A",
@@ -33335,7 +33352,7 @@
             },
             {
               "key": "D",
-              "text": "None of the above 8"
+              "text": "None of the above"
             }
           ]
         }
@@ -33370,7 +33387,7 @@
           },
           {
             "key": "D",
-            "text": "None of the above 8",
+            "text": "None of the above",
             "is_correct": false
           }
         ],
@@ -38747,7 +38764,7 @@
             },
             {
               "key": "D",
-              "text": "33 2"
+              "text": "33"
             }
           ]
         }
@@ -38782,7 +38799,7 @@
           },
           {
             "key": "D",
-            "text": "33 2",
+            "text": "33",
             "is_correct": false
           }
         ],
@@ -39987,7 +40004,7 @@
             },
             {
               "key": "D",
-              "text": "State list 8"
+              "text": "State list"
             }
           ]
         }
@@ -40022,7 +40039,7 @@
           },
           {
             "key": "D",
-            "text": "State list 8",
+            "text": "State list",
             "is_correct": false
           }
         ],
@@ -41397,7 +41414,7 @@
             },
             {
               "key": "D",
-              "text": "Beti Bachao Beti Padhao Abhiyan and Sukanya Samriddhi Yojana 3"
+              "text": "Beti Bachao Beti Padhao Abhiyan and Sukanya Samriddhi Yojana"
             }
           ]
         }
@@ -41432,7 +41449,7 @@
           },
           {
             "key": "D",
-            "text": "Beti Bachao Beti Padhao Abhiyan and Sukanya Samriddhi Yojana 3",
+            "text": "Beti Bachao Beti Padhao Abhiyan and Sukanya Samriddhi Yojana",
             "is_correct": false
           }
         ],
@@ -43600,7 +43617,7 @@
             },
             {
               "key": "D",
-              "text": "Hemchandra Bandopadhyay 5"
+              "text": "Hemchandra Bandopadhyay"
             }
           ]
         }
@@ -43635,7 +43652,7 @@
           },
           {
             "key": "D",
-            "text": "Hemchandra Bandopadhyay 5",
+            "text": "Hemchandra Bandopadhyay",
             "is_correct": false
           }
         ],
@@ -44841,7 +44858,7 @@
             },
             {
               "key": "D",
-              "text": "La Nina strengthens the Indian Monsoon. 0"
+              "text": "La Nina strengthens the Indian Monsoon."
             }
           ]
         }
@@ -44876,7 +44893,7 @@
           },
           {
             "key": "D",
-            "text": "La Nina strengthens the Indian Monsoon. 0",
+            "text": "La Nina strengthens the Indian Monsoon.",
             "is_correct": false
           }
         ],
@@ -46007,7 +46024,7 @@
       "answer_key_status": "supplied",
       "explanation": {
         "language": "en",
-        "correct_reasoning": "Justice A. M. Khanwilkar (Arun Mishra? No — Arun Manohar Khanwilkar), a former Supreme Court judge, was appointed Chairperson of the Lokpal of India in 2024. The Lokpal is the anti-corruption ombudsman established under the Lokpal and Lokayukta Act, 2013. Hence option D (Shri Justice Ajay Manikrao Khanwilkar) is correct.",
+        "correct_reasoning": "Justice Ajay Manikrao Khanwilkar, a former judge of the Supreme Court and before that Chief Justice of the Madhya Pradesh High Court, was appointed Chairperson of the Lokpal of India in 2024. The Lokpal is the anti-corruption ombudsman established under the Lokpal and Lokayukta Act, 2013, and Justice Pinaki Chandra Ghose was its first Chairperson. Hence option D is correct.",
         "option_explanations": [
           {
             "key": "A",
@@ -46627,7 +46644,7 @@
       "answer_key_status": "supplied",
       "explanation": {
         "language": "en",
-        "correct_reasoning": "Shankar Rao Pandit was a prominent Hindustani classical vocalist of the Gwalior Gharana, associated with Khayal singing, and a disciple of the legendary maestro Pandit Bhimsen Joshi? (actually of the Gwalior tradition). He was associated with the Khayal genre of Hindustani classical music. Hence option C (Khayal singing) is correct.",
+        "correct_reasoning": "Shankar Rao Pandit was a Hindustani classical vocalist of the Gwalior gharana, and the genre associated with him is khayal singing. The other options describe instrumentalists and a dancer, none of which fits a vocalist of that tradition. Hence option C (Khayal singing) is correct.",
         "option_explanations": [
           {
             "key": "A",
@@ -46787,7 +46804,7 @@
             },
             {
               "key": "D",
-              "text": "Khargone 9"
+              "text": "Khargone"
             }
           ]
         }
@@ -46822,7 +46839,7 @@
           },
           {
             "key": "D",
-            "text": "Khargone 9",
+            "text": "Khargone",
             "is_correct": false
           }
         ],

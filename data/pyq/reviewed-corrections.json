@@ -1,6 +1,6 @@
 {
-  "version": 2,
-  "note": "Reviewed, intentional divergences from the frozen extraction and the pre-remediation audit baseline, plus the exact list of questions whose explanations meet the per-option reasoning standard. The test suites accept exactly these and nothing else, so undocumented drift still fails.",
+  "version": 3,
+  "note": "Reviewed, intentional divergences from the frozen extraction and the pre-remediation audit baseline, plus the exact list of questions whose explanations meet the per-option reasoning standard. The test suites accept exactly these and nothing else, so undocumented drift still fails. Final answer audit (2026-11-01): every 2021-2024 answer re-verified; one key corrected (2021-010), seven items recorded as ambiguous, eleven earlier dispute flags settled.",
   "option_corrections": {
     "MPPSC-2021-014": {
       "D": {
@@ -84,6 +84,48 @@
       "D": {
         "from": "1942 A.D. 7",
         "to": "1942 A.D."
+      }
+    },
+    "MPPSC-2023-045": {
+      "D": {
+        "from": "None of the above 8",
+        "to": "None of the above"
+      }
+    },
+    "MPPSC-2024-006": {
+      "D": {
+        "from": "33 2",
+        "to": "33"
+      }
+    },
+    "MPPSC-2024-020": {
+      "D": {
+        "from": "State list 8",
+        "to": "State list"
+      }
+    },
+    "MPPSC-2024-036": {
+      "D": {
+        "from": "Beti Bachao Beti Padhao Abhiyan and Sukanya Samriddhi Yojana 3",
+        "to": "Beti Bachao Beti Padhao Abhiyan and Sukanya Samriddhi Yojana"
+      }
+    },
+    "MPPSC-2024-061": {
+      "D": {
+        "from": "Hemchandra Bandopadhyay 5",
+        "to": "Hemchandra Bandopadhyay"
+      }
+    },
+    "MPPSC-2024-075": {
+      "D": {
+        "from": "La Nina strengthens the Indian Monsoon. 0",
+        "to": "La Nina strengthens the Indian Monsoon."
+      }
+    },
+    "MPPSC-2024-097": {
+      "D": {
+        "from": "Khargone 9",
+        "to": "Khargone"
       }
     }
   },
@@ -235,6 +277,15 @@
         "B"
       ],
       "basis": "Arunachal Pradesh recorded the lowest density in Census 2011 at 17 persons per sq km."
+    },
+    "MPPSC-2021-010": {
+      "from": [
+        "D"
+      ],
+      "to": [
+        "A"
+      ],
+      "basis": "The phosphatase (Scharer) test measures residual alkaline phosphatase in milk to verify pasteurisation; it is not a tea or water test, so \"All of the above\" is indefensible and the answer is Milk (A). The printed key D is wrong."
     }
   },
   "option_reasoning_complete": [
@@ -738,5 +789,24 @@
     "MPPSC-2024-098",
     "MPPSC-2024-099",
     "MPPSC-2024-100"
-  ]
+  ],
+  "final_audit_2021_2024": {
+    "report": "data/pyq/quality-audit/final-answer-audit-2021-2024.json",
+    "reviewed": 400,
+    "confirmed": 392,
+    "corrected": 1,
+    "ambiguous": 7,
+    "corrected_ids": [
+      "MPPSC-2021-010"
+    ],
+    "ambiguous_ids": [
+      "MPPSC-2021-027",
+      "MPPSC-2021-028",
+      "MPPSC-2021-034",
+      "MPPSC-2021-037",
+      "MPPSC-2021-077",
+      "MPPSC-2022-045",
+      "MPPSC-2022-053"
+    ]
+  }
 }

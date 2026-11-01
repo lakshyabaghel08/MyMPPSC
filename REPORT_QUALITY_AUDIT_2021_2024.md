@@ -1,5 +1,7 @@
 # MyMPPSC — 2021–2024 Quality Audit (final pre-merge report)
 
+> **Superseded in part — final answer audit, 1 Nov 2026.** Every 2021–2024 answer has since been re-verified in a dedicated accuracy pass: one further key was corrected (`MPPSC-2021-010`, phosphatase test, D → A), seven items are recorded as ambiguous, and eleven of the dispute flags listed below were settled. See [`REPORT_FINAL_ANSWER_AUDIT_2021_2024.md`](REPORT_FINAL_ANSWER_AUDIT_2021_2024.md) and `data/pyq/quality-audit/final-answer-audit-2021-2024.json`. The sections below are retained as the history of that earlier pass, not as current status.
+
 **Branch:** `arena/fe11e1bf-mymppsc`
 **Scope:** independent re-verification of every answer key changed in the 2021–2024 passes, re-examination of the disputed items, a structural audit of how explanations are stored and rendered, and an exact count of how much of the per-option explanation standard is actually met.
 **Standing rule applied:** factual correctness governs. The official key is evidence, not authority — an official key that is wrong is recorded as wrong, and a previous internal correction is re-opened on its merits. Nothing below is carried over from an earlier pass without being re-derived.
