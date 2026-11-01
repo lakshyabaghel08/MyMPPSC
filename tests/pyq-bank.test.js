@@ -124,7 +124,7 @@ test('every source record arrives, with its id, year and paper intact', { skip: 
     for (const q of file.questions) {
       const id = `MPPSC-${file.year}-${String(q.question_number).padStart(3, '0')}`;
       if (!sourceById.has(id)) {
-        sourceById.set(id, { id, en: { options: (q.options || []).map((o) => ({ key: o.label, text: o.text })) } });
+        sourceById.set(id, { id, en: { options: (q.options || []).map((o) => ({ key: o.key ?? o.label, text: o.text })) } });
       }
     }
   }

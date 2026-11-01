@@ -132,7 +132,7 @@ test('every correction quotes the printed key the audits recorded', () => {
     fromManifest.filter((id) => id.startsWith('MPPSC-2019-')),
     'the 2019 audit summary lists exactly the 2019 corrections',
   );
-  assert.equal(fromManifest.length, 28, 'five 2020 keys, five 2019 keys, the seventeen declared for 2021–2024 and one for 2017 — the 2018 audit corrected no key');
+  assert.equal(fromManifest.length, 28, 'five 2020 keys, five 2019 keys, the seventeen declared for 2021–2024 and one for 2017 — the 2018 and 2016 audits corrected no key');
 });
 
 test('a correction is applied once: a second application is a recorded no-op', () => {
@@ -228,8 +228,8 @@ test('a clean rebuild reproduces the shipped bank, corrections included', async 
   assert.equal(result.correctionsSummary.applied.answers, 28, 'all 28 corrected keys were re-applied');
   assert.equal(
     result.correctionsSummary.applied.explanations + result.correctionsSummary.deferred.explanations.length,
-    771,
-    'all 771 reviewed explanations were restored',
+    871,
+    'all 871 reviewed explanations were restored',
   );
   assert.equal(result.modelSummary.added.length, 29, 'the 29 model questions were appended');
 

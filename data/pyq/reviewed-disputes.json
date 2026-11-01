@@ -205,6 +205,24 @@
       "status": "unresolved",
       "reason": "The tenure of the NHRC Chairperson was five years under the Protection of Human Rights Act 1993 as it stood in 2017, which the paper keys as C, but the 2019 amendment reduced it to three years. The correct letter therefore depends on the date from which the item is read.",
       "raised_by": "2017 PYQ final answer audit"
+    },
+    "MPPSC-2016-026": {
+      "is_disputed": true,
+      "status": "unresolved",
+      "reason": "The paper dates the real beginning of economic planning in Madhya Pradesh to 11 November 1956 and keys D, but standard MP economy texts treat the Third Five-Year Plan (1961-66) as the first plan of the reorganised state, which makes A equally defensible.",
+      "raised_by": "2016 PYQ final answer audit"
+    },
+    "MPPSC-2016-032": {
+      "is_disputed": true,
+      "status": "unresolved",
+      "reason": "The paper keys Sunderlal Bahuguna as the protagonist of the Chipko movement. Chandi Prasad Bhatt led the Dasholi Gram Swarajya Mandal that organised the first Chipko protests in 1973 and Gaura Devi led the Reni action in 1974, so the leadership is shared and option D is defensible.",
+      "raised_by": "2016 PYQ final answer audit"
+    },
+    "MPPSC-2016-054": {
+      "is_disputed": true,
+      "status": "unresolved",
+      "reason": "The paper keys C, both connecting villages to the main road and constructing roads, but the PMGSY objective is stated as all-weather road connectivity, not concrete construction in particular. Option A alone would match most official formulations.",
+      "raised_by": "2016 PYQ final answer audit"
     }
   }
 }
