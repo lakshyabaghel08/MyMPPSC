@@ -58,3 +58,8 @@ classification script validates subject labels against the existing taxonomy.
 ## 2011 classification review (2026-11-03)
 
 The 118 complete question records were reviewed individually against the canonical taxonomy. The 2011 source remains geography-focused; the distribution is not being artificially balanced. Two subject labels were corrected (Q6 and Q8 from Economy to Geography). Topic/subtopic precision was improved for Q14, Q22, Q28–29, Q33, Q35–36, Q40, Q45, Q68, Q101, Q108–109, Q111–112 and Q115. Q7 and Q38 remain excluded from the integrated bank because their source transcription is damaged/incomplete. The paper's identity remains disputed; classification does not authenticate the year or source.
+
+
+## Active bank removal (2026-11-03)
+
+The 2009, 2010 and 2011 records have been removed from the active practice bank. A complete copy of their three paper records and 384 integrated question records is preserved at `data/pyq/archive/mppsc-2009-2011-papers.json`. The archived 2011 records carry the reviewed taxonomy labels. The source-identity and transcription-completeness caveats above remain in force.

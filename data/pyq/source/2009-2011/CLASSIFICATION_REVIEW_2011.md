@@ -54,6 +54,6 @@ All remaining complete questions were reviewed and retained where their existing
 
 - Exactly 118 final taxonomy labels, matching the 118 integrated 2011 records.
 - Every subject/topic/subtopic path validated against the canonical taxonomy.
-- A dedicated regression test checks bank-to-taxonomy agreement and the corrected decisions.
-- The integrated bank update is applied by the accompanying branch workflow; the workflow runs the test suite and project checks before committing the bank change.
-- No other year or any question wording/options is modified.
+- A dedicated regression test checks the reviewed 118-label taxonomy and the corrected decisions.
+- The 118 reviewed records are preserved in `data/pyq/archive/mppsc-2009-2011-papers.json`; their corrected subject/topic/subtopic fields are included there.
+- The active bank now excludes all 2009, 2010 and 2011 paper metadata and questions. No other year or question wording/options was modified.
