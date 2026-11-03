@@ -53,3 +53,8 @@ Run `python3 tools/transcribe-2009-2010.py --check`,
 emphasis and page furniture is the only text normalization, aside from
 trimming whitespace. Source hashes are recorded in the staging files. The
 classification script validates subject labels against the existing taxonomy.
+
+
+## 2011 classification review (2026-11-03)
+
+The 118 complete question records were reviewed individually against the canonical taxonomy. The 2011 source remains geography-focused; the distribution is not being artificially balanced. Two subject labels were corrected (Q6 and Q8 from Economy to Geography). Topic/subtopic precision was improved for Q14, Q22, Q28–29, Q33, Q35–36, Q40, Q45, Q68, Q101, Q108–109, Q111–112 and Q115. Q7 and Q38 remain excluded from the integrated bank because their source transcription is damaged/incomplete. The paper's identity remains disputed; classification does not authenticate the year or source.
