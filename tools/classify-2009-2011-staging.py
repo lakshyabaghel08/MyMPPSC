@@ -35,12 +35,12 @@ GROUPS = {
     },
     2010: {'History': '1-118', 'Current Affairs': '119', 'Polity': '120'},
     2011: {
-        'Economy': '6,8,36-37,46,48',
-        'Environment': '11,49,89',
+        'Economy': '36-37,46,48',
+        'Environment': '11,49',
         'Science and Technology': '50',
         'Art and Culture': '57,60',
         'Madhya Pradesh Special': '59',
-        'Geography': '1-5,7,9-10,12-35,38-45,47,51-56,58,61-88,90-112,113-120',
+        'Geography': '1-10,12-35,38-45,47,51-56,58,61-120',
     },
 }
 

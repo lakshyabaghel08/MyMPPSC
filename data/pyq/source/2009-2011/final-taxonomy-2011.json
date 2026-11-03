@@ -27,13 +27,13 @@
       "subtopic": null
     },
     "MPPSC-2011-006": {
-      "subject": "Economy",
-      "topic": "Indian Economy",
+      "subject": "Geography",
+      "topic": "Economic and human geography",
       "subtopic": null
     },
     "MPPSC-2011-008": {
-      "subject": "Economy",
-      "topic": "Indian Economy",
+      "subject": "Geography",
+      "topic": "World Geography",
       "subtopic": null
     },
     "MPPSC-2011-009": {
@@ -63,8 +63,8 @@
     },
     "MPPSC-2011-014": {
       "subject": "Geography",
-      "topic": "Geography of India",
-      "subtopic": "Physiography of India"
+      "topic": "Physical Geography",
+      "subtopic": "Rocks and minerals"
     },
     "MPPSC-2011-015": {
       "subject": "Geography",
@@ -104,7 +104,7 @@
     "MPPSC-2011-022": {
       "subject": "Geography",
       "topic": "Geography of India",
-      "subtopic": null
+      "subtopic": "Rivers of India"
     },
     "MPPSC-2011-023": {
       "subject": "Geography",
@@ -133,13 +133,13 @@
     },
     "MPPSC-2011-028": {
       "subject": "Geography",
-      "topic": null,
-      "subtopic": null
+      "topic": "Geography of India",
+      "subtopic": "Agriculture in India"
     },
     "MPPSC-2011-029": {
       "subject": "Geography",
-      "topic": null,
-      "subtopic": null
+      "topic": "Geography of India",
+      "subtopic": "Agriculture in India"
     },
     "MPPSC-2011-030": {
       "subject": "Geography",
@@ -158,8 +158,8 @@
     },
     "MPPSC-2011-033": {
       "subject": "Geography",
-      "topic": null,
-      "subtopic": null
+      "topic": "Geography of India",
+      "subtopic": "Agriculture in India"
     },
     "MPPSC-2011-034": {
       "subject": "Geography",
@@ -169,12 +169,12 @@
     "MPPSC-2011-035": {
       "subject": "Geography",
       "topic": "Economic and human geography",
-      "subtopic": null
+      "subtopic": "Human settlement"
     },
     "MPPSC-2011-036": {
       "subject": "Economy",
       "topic": "Agriculture and rural economy",
-      "subtopic": "Cropping patterns"
+      "subtopic": null
     },
     "MPPSC-2011-037": {
       "subject": "Economy",
@@ -189,7 +189,7 @@
     "MPPSC-2011-040": {
       "subject": "Geography",
       "topic": "Economic and human geography",
-      "subtopic": null
+      "subtopic": "Industries"
     },
     "MPPSC-2011-041": {
       "subject": "Geography",
@@ -213,8 +213,8 @@
     },
     "MPPSC-2011-045": {
       "subject": "Geography",
-      "topic": "Economic and human geography",
-      "subtopic": null
+      "topic": "Geography of India",
+      "subtopic": "Agriculture in India"
     },
     "MPPSC-2011-046": {
       "subject": "Economy",
@@ -329,7 +329,7 @@
     "MPPSC-2011-068": {
       "subject": "Geography",
       "topic": "Physical Geography",
-      "subtopic": "Landforms and their evolution"
+      "subtopic": "Earthquakes and volcanoes"
     },
     "MPPSC-2011-069": {
       "subject": "Geography",
@@ -493,8 +493,8 @@
     },
     "MPPSC-2011-101": {
       "subject": "Geography",
-      "topic": null,
-      "subtopic": null
+      "topic": "Geography of India",
+      "subtopic": "Agriculture in India"
     },
     "MPPSC-2011-102": {
       "subject": "Geography",
@@ -528,13 +528,13 @@
     },
     "MPPSC-2011-108": {
       "subject": "Geography",
-      "topic": "Economic and human geography",
-      "subtopic": null
+      "topic": "Physical Geography",
+      "subtopic": "Rocks and minerals"
     },
     "MPPSC-2011-109": {
       "subject": "Geography",
       "topic": "Economic and human geography",
-      "subtopic": null
+      "subtopic": "Industries"
     },
     "MPPSC-2011-110": {
       "subject": "Geography",
@@ -544,12 +544,12 @@
     "MPPSC-2011-111": {
       "subject": "Geography",
       "topic": "Economic and human geography",
-      "subtopic": null
+      "subtopic": "Industries"
     },
     "MPPSC-2011-112": {
       "subject": "Geography",
       "topic": "Economic and human geography",
-      "subtopic": null
+      "subtopic": "Energy resources"
     },
     "MPPSC-2011-113": {
       "subject": "Geography",
@@ -564,7 +564,7 @@
     "MPPSC-2011-115": {
       "subject": "Geography",
       "topic": "Economic and human geography",
-      "subtopic": null
+      "subtopic": "Energy resources"
     },
     "MPPSC-2011-116": {
       "subject": "Geography",
