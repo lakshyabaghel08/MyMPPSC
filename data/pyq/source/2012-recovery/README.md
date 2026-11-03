@@ -4,7 +4,7 @@ These files are preserved byte-for-byte from the supplied uploads, not approved
 question-bank data. **Do not run the recovered generators in the repository:**
 they overwrite `data/pyq/mymppsc-pyq-bank.json`, are not idempotent, and assert
 unsubstantiated verification. They predate the existing reproducible bank pipeline.
-The source transcription remains keyless. The app-facing bank separately applies the independent reassessment: 79 source-supported answers and explanations, seven disputed and fourteen unresolved unkeyed records. These are not an authenticated MPPSC key. The recovered generators remain quarantined and were not used to build the live 2012 records.
+The source transcription remains keyless. The app-facing bank separately applies the final independent reassessment: 89 source-supported answers (79 preserved, 10 resolved), 100 four-part explanations, and three disputed plus eight unresolved unkeyed records. These are not an authenticated MPPSC key. The recovered generators remain quarantined and were not used to build the live 2012 records.
 
 | Upload | Preserved as | Scope |
 | --- | --- | --- |
@@ -65,6 +65,4 @@ The Q31/Q96 comparisons are focused findings, not a complete bilingual
 transcription audit. The two researched answers are not an audit of all 100.
 The independent research completed so far, including option-by-option explanations
 and unresolved questions, is in [ANSWER_AUDIT_BATCH_1.md](ANSWER_AUDIT_BATCH_1.md).
-The later independent reassessment and its evidence are in `answer-reassessment-2012.json`. The rebuild adapter requires and validates that file. Disputed and unresolved records remain unkeyed; source limitations remain documented there. Existing scoring
-policy for 2013 onward does not by itself establish 2012 policy. Application
-validator acceptance is structural, not proof of source or answer accuracy.
+The final independent reassessment and its evidence are in `answer-reassessment-2012.json` (the pre-audit copy is preserved as `answer-reassessment-2012-pre-final-audit.json`). The rebuild adapter requires and validates that file, together with `../../reviewed-corrections-2012.json` and `../../reviewed-explanations-2012.json`. It now integrates 89 independently verified answers and 100 full four-part explanations; three disputed and eight unresolved records remain unkeyed. The per-question decision record is `../../quality-audit/final-answer-audit-2012.json`, with the narrative in `../../../REPORT_FINAL_ANSWER_AUDIT_2012.md`. No authenticated MPPSC 2012 Paper I answer key was located; every `verified_answer` says so. Existing scoring policy for 2013 onward does not by itself establish 2012 policy. Application validator acceptance is structural, not proof of source or answer accuracy.

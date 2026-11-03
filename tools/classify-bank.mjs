@@ -399,9 +399,14 @@ export async function runPipeline(source, opts = {}) {
   }
 
   if (opts.paper2012) {
-    const count = append2012(bank, opts.paper2012.source, opts.paper2012.labels, taxonomy, opts.paper2012.reassessment);
-    for (const q of bank.questions.slice(-count)) rows.push({ id: q.id, paperId: q.paper_id, year: q.year, subject: q.subject, topic: q.topic, subtopic: q.subtopic, confidence: null, source: 'source', flags: q.verified_answer ? [] : ['missing_answer_key'], reason: '2012 taxonomy and answer reassessment', candidates: [], mpSpecific: q.subject === 'Madhya Pradesh Special', excerpt: excerpt(q) });
-    pipelineNotes.push(`2012 source transcription and independent reassessment: ${count} bilingual questions appended.`);
+    // The 2012 paper is appended after the 2013–2024 correction pass, so its
+    // reviewed explanations live in a separate declaration/prose pair. Either a
+    // parsed 2012 corrections bundle (CLI) or a plain prose map (tests) is
+    // accepted; append2012 validates the declarations against the reassessment.
+    const explanations2012 = opts.corrections2012?.explanations || opts.paper2012.explanations || null;
+    const count = append2012(bank, opts.paper2012.source, opts.paper2012.labels, taxonomy, opts.paper2012.reassessment, explanations2012);
+    for (const q of bank.questions.slice(-count)) rows.push({ id: q.id, paperId: q.paper_id, year: q.year, subject: q.subject, topic: q.topic, subtopic: q.subtopic, confidence: null, source: 'source', flags: q.verified_answer ? [] : ['missing_answer_key'], reason: '2012 taxonomy, answer reassessment and final explanations', candidates: [], mpSpecific: q.subject === 'Madhya Pradesh Special', excerpt: excerpt(q) });
+    pipelineNotes.push(`2012 source transcription, independent reassessment and ${count} four-part explanations: ${count} bilingual questions appended.`);
   }
   if (opts.papers2009to2011) {
     const count = append2009to2011(bank, opts.papers2009to2011, taxonomy);
@@ -565,7 +570,8 @@ Options:
                        reviewed-explanations.json and reviewed-disputes.json)
   --reviewed-explanations <f>  override the reviewed explanation prose file
   --reviewed-disputes <f>      override the reviewed dispute-block file
-  --include-2012       append the 2012 transcription, taxonomy and required independent reassessment
+  --include-2012       append the 2012 transcription, taxonomy, required independent reassessment
+                       and the required 100 four-part reviewed explanations
   --include-2009-2011  append English PDF-derived questions; apply required unofficial 2009–2011 answer reviews
   --include-model-questions [f]  append the app-authored model questions that fill the numbers
                        the 2019–2024 extraction never printed. Default: data/pyq/model-questions.json
@@ -670,6 +676,22 @@ async function main() {
     modelQuestions = JSON.parse(await readFile(modelPath, 'utf8'));
   }
 
+  // The 2012 explanation prose is validated through the same declaration/prose
+  // parser the 2013–2024 audits use, so a missing or undeclared explanation
+  // fails the build instead of shipping a one-line restatement.
+  let corrections2012 = null;
+  if (parsed.flags.has('include-2012')) {
+    const [correctionsText, explanationsText] = await Promise.all([
+      readFile(resolve('data/pyq/reviewed-corrections-2012.json'), 'utf8'),
+      readFile(resolve('data/pyq/reviewed-explanations-2012.json'), 'utf8'),
+    ]);
+    corrections2012 = parseReviewedCorrections({
+      corrections: JSON.parse(correctionsText),
+      explanations: JSON.parse(explanationsText),
+      disputes: { disputes: {} },
+    });
+  }
+
   const paper2012 = parsed.flags.has('include-2012') ? {
     source: JSON.parse(await readFile(resolve('data/pyq/source/2012-recovery/transcription-staging.json'), 'utf8')),
     labels: JSON.parse(await readFile(resolve('data/pyq/source/2012-recovery/taxonomy-2012.json'), 'utf8')),
@@ -682,6 +704,7 @@ async function main() {
   }]))) : null;
   const result = await runPipeline(source, {
     paper2012,
+    corrections2012,
     papers2009to2011,
     sourceAudit,
     historicalSourceAudit,

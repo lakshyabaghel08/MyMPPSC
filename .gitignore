@@ -2,6 +2,10 @@
 node_modules/
 package-lock.json
 
+# Generated Python bytecode from the recovery / pipeline helpers
+__pycache__/
+*.py[cod]
+
 # Scratch / editor files
 *.log
 .DS_Store

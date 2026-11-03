@@ -174,7 +174,7 @@ test('supplied answers remain separate from the 2012 independent reassessment', 
   assert.equal(bank.questions.filter((q) => q.supplied_answer?.source).length, 262, 'only 2009–2011 PDF-derived answers name their unofficial source');
   const statuses = new Set(bank.questions.map((q) => q.answer_key_status));
   assert.deepEqual([...statuses].sort(), ['disputed', 'missing', 'supplied', 'unofficial']);
-  assert.equal(bank.questions.filter((q) => q.verified_answer?.answer?.length).length, 79);
+  assert.equal(bank.questions.filter((q) => q.verified_answer?.answer?.length).length, 89);
   const meta = m.appState.questionIndex.get('MPPSC-2019-001');
   assert.equal(meta.answerStatus, 'supplied');
   assert.equal(meta.hasSuppliedAnswer, true);

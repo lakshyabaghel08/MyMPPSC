@@ -51,6 +51,7 @@ test('2012 staged answer review inventories the live paper and keeps uncertainty
 test('reassessed 2012 answers integrate only source-supported single answers', async () => {
   const bank = await load('../data/pyq/mymppsc-pyq-bank.json');
   const audit = await load('../data/pyq/source/2012-recovery/answer-reassessment-2012.json');
+  const explanations = await load('../data/pyq/reviewed-explanations-2012.json');
   const qs = bank.questions.filter(q => q.year === 2012).sort((a, b) => a.question_number - b.question_number);
   assert.equal(audit.records.length, 100);
   const counts = { verified: 0, disputed: 0, unresolved: 0 };
@@ -67,15 +68,21 @@ test('reassessed 2012 answers integrate only source-supported single answers', a
       assert.ok(q.language_variants.en.options.some(o => o.key === r.proposed_answer));
       assert.deepEqual(q.verified_answer.answer, [r.proposed_answer]);
       assert.match(q.verified_answer.verified_by, /not an official MPPSC key/);
-      assert.equal(q.explanation.correct_reasoning, r.reasoning);
+      assert.deepEqual(q.explanation, explanations.explanations[q.id], `${q.id}: the audited four-part prose is what shipped`);
+      assert.deepEqual(q.explanation.option_explanations.filter(o => o.is_correct === true).map(o => o.key), [r.proposed_answer]);
       assert.deepEqual(q.verified_answer.evidence.map(e => e.url), r.sources);
+      assert.deepEqual(q.explanation.sources.map(s => s.url), r.sources);
     } else {
       assert.ok(!q.verified_answer?.answer?.length);
-      assert.equal(q.explanation, null);
+      assert.deepEqual(q.explanation, explanations.explanations[q.id], `${q.id}: an unkeyed item still gets a full explanation`);
+      assert.deepEqual(q.explanation.option_explanations.filter(o => o.is_correct === true).map(o => o.key), [], `${q.id}: no option is forced`);
+      assert.deepEqual(q.explanation.option_explanations.map(o => o.is_correct), [null, null, null, null], `${q.id}: every correctness flag is unstated`);
       assert.equal(q.dispute.status, 'unresolved');
       assert.equal(q.dispute.is_disputed, r.status === 'disputed');
       assert.ok(q.dispute.reason.includes(r.ambiguity_or_limitation));
+      assert.deepEqual(q.verification_evidence.map(e => e.url), r.sources);
     }
   }
-  assert.deepEqual(counts, { verified: 79, disputed: 7, unresolved: 14 });
+  assert.deepEqual(counts, { verified: 89, disputed: 3, unresolved: 8 });
+  assert.equal(Object.keys(explanations.explanations).length, 100);
 });

@@ -508,7 +508,7 @@ export default {
         <p class="small m-0">Loaded automatically from the repository, and used for practice only.</p>
         ${infoToggle(
           'Where the bundled bank comes from',
-          `<p class="small m-0">This repository ships the classified MPPSC previous-year question bank (<span class="mono">${esc(builtinBank.BUILTIN_BANK_PATH)}</span>), so a fresh installation has real papers without importing anything by hand. The load is checked against a recorded fingerprint: an unchanged bank is never re-written, and an updated one refreshes stored records while keeping your corrections, bookmarks, attempts and revision history. The 2013–2024 papers use the latest reported +3/−1/0 practice pattern, not a claim about historical rules. The 2012 paper has no supplied answer key or configured scoring rules.</p>`,
+          `<p class="small m-0">This repository ships the classified MPPSC previous-year question bank (<span class="mono">${esc(builtinBank.BUILTIN_BANK_PATH)}</span>), so a fresh installation has real papers without importing anything by hand. The load is checked against a recorded fingerprint: an unchanged bank is never re-written, and an updated one refreshes stored records while keeping your corrections, bookmarks, attempts and revision history. The 2013–2024 papers use the latest reported +3/−1/0 practice pattern, not a claim about historical rules. The 2012 paper has no supplied MPPSC answer key: it carries 89 independently source-supported answers (not an official key), leaves 11 defective or ambiguous questions unkeyed, and has no configured scoring rules.</p>`,
         )}
         ${dataTable({
           columns: [{ label: 'Bank' }, { label: 'Questions' }, { label: 'Papers' }, { label: 'Loaded' }],
