@@ -46,6 +46,7 @@ test('2012 integration preserves the previous bank and reproduces every source v
   const source = await readJson('data/pyq/source/2012-recovery/transcription-staging.json');
   const labels = await readJson('data/pyq/source/2012-recovery/taxonomy-2012.json');
   const reassessment = await readJson('data/pyq/source/2012-recovery/answer-reassessment-2012.json');
+  const explanations = await readJson('data/pyq/reviewed-explanations-2012.json');
   const oldQuestions = bank.questions.filter((q) => q.year > 2012);
   const oldPapers = bank.papers.filter((p) => p.year > 2012);
   const hash = (v) => createHash('sha256').update(JSON.stringify(v)).digest('hex');
@@ -53,10 +54,10 @@ test('2012 integration preserves the previous bank and reproduces every source v
   assert.equal(hash(oldPapers), '9c05c5d142bdfc3e0b83f53b72c9970c4ca619ed246f5dc4abb1368ee98d84fd');
   const candidate = { questions: structuredClone(oldQuestions), papers: structuredClone(oldPapers) };
   const taxonomy = await loadTaxonomy();
-  assert.equal(append2012(candidate, source, labels, taxonomy, reassessment), 100);
+  assert.equal(append2012(candidate, source, labels, taxonomy, reassessment, explanations), 100);
   assert.deepEqual(candidate.questions, bank.questions.filter((q) => q.year >= 2012));
   assert.deepEqual(candidate.papers, bank.papers.filter((p) => p.year >= 2012));
-  assert.throws(() => append2012(candidate, source, labels, taxonomy, reassessment), /already exists/);
+  assert.throws(() => append2012(candidate, source, labels, taxonomy, reassessment, explanations), /already exists/);
   const paper = bank.papers.find((p) => p.year === 2012);
   assert.equal(paper.scoring.rules_known, false);
   assert.deepEqual(paper.question_order, source.questions.map((q) => q.id));
@@ -69,12 +70,14 @@ test('2012 integration preserves the previous bank and reproduces every source v
     assert.equal(q.supplied_answer.answer, null);
     const r = reassessment.records[q.question_number - 1];
     assert.equal(q.answer_key_status, r.status === 'disputed' ? 'disputed' : 'missing');
+    assert.deepEqual(q.explanation, explanations.explanations[q.id], `${q.id}: the four-part prose is what shipped`);
+    const correct = q.explanation.option_explanations.filter((o) => o.is_correct === true).map((o) => o.key);
     if (r.status === 'verified') {
       assert.deepEqual(q.verified_answer.answer, [r.proposed_answer]);
-      assert.equal(q.explanation.correct_reasoning, r.reasoning);
+      assert.deepEqual(correct, [r.proposed_answer], `${q.id}: exactly the verified option is flagged correct`);
     } else {
       assert.equal(q.verified_answer, undefined);
-      assert.equal(q.explanation, null);
+      assert.deepEqual(correct, [], `${q.id}: an unkeyed item never ticks an option`);
       assert.equal(q.dispute.status, 'unresolved');
     }
   }
@@ -85,6 +88,7 @@ test('2012 append rejects missing or corrupt reassessment without modifying the 
   const source = await readJson('data/pyq/source/2012-recovery/transcription-staging.json');
   const labels = await readJson('data/pyq/source/2012-recovery/taxonomy-2012.json');
   const review = await readJson('data/pyq/source/2012-recovery/answer-reassessment-2012.json');
+  const explanations = await readJson('data/pyq/reviewed-explanations-2012.json');
   const taxonomy = await loadTaxonomy();
   for (const mutate of [
     () => undefined,
@@ -94,7 +98,18 @@ test('2012 append rejects missing or corrupt reassessment without modifying the 
     () => { const r = structuredClone(review); r.records[0].sources = []; return r; },
   ]) {
     const bank = { questions: [], papers: [] };
-    assert.throws(() => append2012(bank, source, labels, taxonomy, mutate()), /2012/);
+    assert.throws(() => append2012(bank, source, labels, taxonomy, mutate(), explanations), /2012/);
+    assert.deepEqual(bank, { questions: [], papers: [] });
+  }
+  for (const mutate of [
+    () => undefined,
+    () => { const e = structuredClone(explanations); delete e.explanations['MPPSC-2012-001']; return e; },
+    () => { const e = structuredClone(explanations); e.explanations['MPPSC-2012-001'].option_explanations[1].is_correct = false; return e; },
+    () => { const e = structuredClone(explanations); e.explanations['MPPSC-2012-015'].option_explanations[3].is_correct = true; return e; },
+    () => { const e = structuredClone(explanations); e.explanations['MPPSC-2012-001'].sources = []; return e; },
+  ]) {
+    const bank = { questions: [], papers: [] };
+    assert.throws(() => append2012(bank, source, labels, taxonomy, review, mutate()), /2012/);
     assert.deepEqual(bank, { questions: [], papers: [] });
   }
 });

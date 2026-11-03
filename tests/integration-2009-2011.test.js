@@ -15,7 +15,7 @@ test('complete PDF-derived questions integrate without changing prior records, k
   const bank = await read('data/pyq/mymppsc-pyq-bank.json');
   const oldQuestions = bank.questions.filter((q) => q.year >= 2012);
   const oldPapers = bank.papers.filter((p) => p.year >= 2012);
-  assert.equal(hash(oldQuestions), 'a4896e24a9faca0b67927385095373bc1e45a49d7d72ecc8c990bcf8fadfb967');
+  assert.equal(hash(oldQuestions), 'db9a956393fc9f90b84caa0b0dce8cff0b2d04e4293d941a4c29c831403aa20f');
   assert.equal(hash(oldPapers), '9512bea56b3718080f9b56d6e3bcef11bd0d65c9eb671947708298a5a50a1e14');
   const inputs = {};
   for (const year of [2009, 2010, 2011]) inputs[year] = {

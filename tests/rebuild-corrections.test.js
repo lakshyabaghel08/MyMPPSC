@@ -254,7 +254,7 @@ test('a clean rebuild reproduces the shipped bank, corrections included', async 
     readFile(dataPath('pyq', 'reviewed-answers.jsonl'), 'utf8'),
   ]);
   const combined = await loadCombinedHistoricalIntake(base, path.join(root, 'data/pyq/source/2013-18'));
-  const paper2012 = { source: await readJson('pyq', 'source', '2012-recovery', 'transcription-staging.json'), labels: await readJson('pyq', 'source', '2012-recovery', 'taxonomy-2012.json'), reassessment: await readJson('pyq', 'source', '2012-recovery', 'answer-reassessment-2012.json') };
+  const paper2012 = { source: await readJson('pyq', 'source', '2012-recovery', 'transcription-staging.json'), labels: await readJson('pyq', 'source', '2012-recovery', 'taxonomy-2012.json'), reassessment: await readJson('pyq', 'source', '2012-recovery', 'answer-reassessment-2012.json'), explanations: (await readJson('pyq', 'reviewed-explanations-2012.json')).explanations };
   const papers2009to2011 = Object.fromEntries(await Promise.all([2009, 2010, 2011].map(async (year) => [year, { source: await readJson('pyq', 'source', '2009-2011', `pdf-transcription-${year}.json`), labels: await readJson('pyq', 'source', '2009-2011', `final-taxonomy-${year}.json`), review: await readJson('pyq', 'source', '2009-2011', `answer-review-${year}.json`) }])));
   const result = await runPipeline(combined.intake, {
     paper2012,

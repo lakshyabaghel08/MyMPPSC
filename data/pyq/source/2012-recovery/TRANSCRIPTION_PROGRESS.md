@@ -59,7 +59,11 @@ The source differences above are retained rather than harmonised or guessed.
 Q82 remains potentially truncated in the supplied English transcription;
 none can be resolved against a scan because no scan was supplied. A complete
 manual comparison of both languages and all options against an original scan
-remains pending. 2012 scoring is unknown and all answers/explanations are absent.
+remains pending. 2012 scoring remains unknown. The transcription itself still
+contains no answers or explanations; the shipped bank now attaches 89
+independently verified answers and 100 four-part explanations from the separate
+final reassessment and explanation bundle (see `README.md` and
+`../../../REPORT_FINAL_ANSWER_AUDIT_2012.md`). No MPPSC key is called official.
 The 2012 labels cover all 100 subjects; four stop at subject and nine more at
 topic rather than inventing an unsupported lower level.
 
@@ -69,5 +73,9 @@ cross-year matches (2012-094/2013-023, 2012-074/2022-098, and
 2012-096/2018-089). The Q94/Q2013-023 and Q96/Q2018-089 pairs have similar subjects but different
 options; Q74 asks for the first *woman* chief minister, unlike Q2022-098. Each
 has a distinct year and paper ID and is retained. Other lower-similarity matches
-are not grounds for removing records. Step 2 must independently research answers and explanations.
-No answer verification or explanation generation was performed in this step.
+are not grounds for removing records. Step 2 (independent answer research and
+explanation generation) was subsequently completed: see `answer-reassessment-2012.json`,
+`../../reviewed-explanations-2012.json` and
+`../../quality-audit/final-answer-audit-2012.json`. This transcription file itself
+was not altered by that work. No answer verification or explanation generation
+was performed in the transcription step described above.

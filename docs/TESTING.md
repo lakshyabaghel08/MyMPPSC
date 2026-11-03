@@ -2,17 +2,22 @@
 
 Everything here has actually been run. No test in this document is aspirational.
 
-**Latest verified run (2026-10-31, against `data/pyq/mymppsc-pyq-bank.json`):**
-`npm test` passed **316/316 tests** (0 failures, 0 skips); `npm run check`
-passed **1078 checks**. The production bank loaded by these runs contains 1,200
-questions across 12 papers (2013–2024); service-worker cache `v1.7.2-1`. All
-years use the latest MPPSC marking pattern (+3/−1/0) as a uniform **practice
-policy only**; this does not establish the historical rules for any paper.
+**Latest verified run (2026-11-03, against `data/pyq/mymppsc-pyq-bank.json`):**
+`npm test` passed **461/461 tests** (0 failures, 0 skips); `npm run check`
+passed **1084 checks**. The production bank loaded by these runs contains 1,684
+questions across 16 papers (2009–2024). The 2012 paper now carries 89
+independently verified answers, 11 deliberately unkeyed defective/ambiguous
+items and 100 four-part explanations; 2009–2012 scoring remains unknown. The
+2013–2024 papers use the latest MPPSC marking pattern (+3/−1/0) as a uniform
+**practice policy only**; this does not establish the historical rules for any
+paper.
 
 ```bash
-npm test          # all 316 tests
-npm run check     # all 1078 static integrity checks (the density guard renders every screen once)
+npm test          # all 461 tests
+npm run check     # all 1084 static integrity checks (the density guard renders every screen once)
 npm run audit:ui  # alias for npm run check (static UI + contrast + token audit)
+sha256sum -c checkpoints/2012-final-answer-audit/SHA256SUMS
+node checkpoints/2012-final-answer-audit/verify.mjs
 ```
 
 Requirements: Node 20+ (developed on Node 22). `npm install` fetches
@@ -46,6 +51,7 @@ Requirements: Node 20+ (developed on Node 22). `npm install` fetches
 | `tests/builtin-bank.test.js` | 9 | The **repository-backed loader** in an isolated database: a fresh install loads 1,171 questions / 12 papers; repeat and forced loads are idempotent; rebuilt data refreshes while local classification corrections, verified answers, disputes, bookmarks, attempts and user questions survive; stale stored scoring metadata upgrades to the latest practice scheme while explicit user scoring overrides survive; explanation-only rebuild behavior remains documented; removing/reloading the bundled bank touches only its own records; invalid JSON/schema is refused; a real 2019 session scores +3/−1/0. |
 | `tests/pipeline.test.js` | 11 | Pipeline repair, reviewed-label merging and review-method metadata, taxonomy checks, app-facing id normalization, source/provenance/build-metadata sanitisation, missing-answer handling, latest-pattern scoring across covered MPPSC years, safe fallback outside coverage, stable demonstration identity, and clean committed-bank sanitisation. |
 | `tests/historical-sources.test.js` | 7 | Six strict year-specific source adapters; all 600 source records, 100 question numbers and four option slots per paper; printed answer/explanation preservation; exact placeholder cleanup and 11 questions with 13 blank option cells retained; README/review counts and flags; complete correction decisions in the markdown audit; loud failures on schema/count/number/key mismatch; combine preserves the existing 571 intake records and rejects collisions; integrated 1,171-question classifier output keeps repeated PYQs, applies 566 reviewed labels and 8 answer reviews, uses current-pattern practice scoring, and removes audit-only metadata. |
+| `tests/final-answer-audit-2012.test.js` | 8 | The 2012 final answer audit, recomputed from the shipped bank: all 100 rows covered once; 79 preserved / 10 resolved / 7 defective / 4 ambiguous; zero corrections to integrated keys; 89 independently verified answers and 11 unkeyed defective/ambiguous items; all 100 four-part explanations with per-option reasoning, unique substantive reasons, key concepts, takeaways and no bookkeeping fields; source references preserved in evidence and explanation sources; disputes and uncertainty records still visible; unkeyed items normalise to `is_correct: null` ("unstated") rather than four "not correct" badges; 2012 explanation declarations parsed through the existing corrections pipeline. |
 | `tests/quality-audit.test.js` | 5 | The focused 2013–2024 audit report: all 1,171 audited question-level records (the bank's 29 model questions sit outside the audit) and 323 original queue dispositions, 322 taxonomy-valid review labels, the single unresolved queue item, the targeted MPPSC-2015-078 reaffirmation, repository-only answer-key comparison status, missing explanations, blank options, incomplete taxonomy levels, scoring scope, and proof that internal metadata is excluded from the app-facing bank. |
 | `tests/classification.test.js` | 47 | The PYQ classification pipeline: the taxonomy only contains subjects from `SUBJECT_ORDER` and every rule (and rule fallback) points at a node that exists; an MP river question is Madhya-Pradesh geography while the same river in Gujarat is *Geography of India*; `mpSignal` weights the question stem above options and the printed explanation; a Hindi question about the state's first Chief Minister is Madhya Pradesh Special while a Chief Minister question about another state stays in Polity; a question with no usable evidence is left unclassified **with a reason** rather than labelled; the printed answer never changes a classification; explanation-only evidence is capped at confidence 0.7; the rule engine is deterministic; the adapter reshapes option shapes, maps an answer given as option text, **refuses to guess an unmappable key**, preserves `verified_answer` separately from the printed key, detects Devanagari as Hindi, infers question types only from unambiguous signals, and reports unmapped source keys and duplicate ids instead of dropping records; the end-to-end run produces a bank the app's validator accepts with zero rejected records and imports through the real importer with `isUnclassified` intact; the reports agree with the bank's own stats, list every missing key and suspected duplicate, and record `records_removed: 0`; the AI queue holds exactly the unsettled questions and carries the taxonomy's 435 valid combinations by reference to a shared sidecar, every offered combination reconciles against the taxonomy, a stubbed provider request carries that vocabulary and an out-of-taxonomy subject is warned about before the merge, a completion that is empty, non-JSON or not an object is refused rather than guessed at, invented labels are rejected and never stored, a bogus topic or subtopic is dropped while a still-valid existing level is kept, malformed provider lines are reported with their line numbers instead of being dropped silently, an empty provider file changes no record, an empty reply never erases an existing classification, a low-confidence label is flagged, the rule engine's classification survives an unusable reply end to end with every decision recorded in the review report, resume skips the ids that already have a label without duplicating or losing work, and with no provider configured the AI step reports the limitation and changes nothing. |
 

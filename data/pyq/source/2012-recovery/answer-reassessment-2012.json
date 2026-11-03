@@ -1,7 +1,7 @@
 {
   "paper_id": "MPPSC-2012-P1",
   "status": "assessed",
-  "scope": "Independent source-based assessment completed and integrated for verified records; verified means source-supported, not an authenticated MPPSC key. Disputed and unresolved records remain unkeyed.",
+  "scope": "Final independent answer audit integrated for all 100 questions. 'verified' means source-supported independent verification, not an authenticated MPPSC key; 10 previously unkeyed items were resolved, and 11 defective or genuinely ambiguous items remain unkeyed with documented uncertainty. Every question carries a full four-part explanation, including the unkeyed items.",
   "records": [
     {
       "question_id": "MPPSC-2012-001",
@@ -41,12 +41,14 @@
       "question_id": "MPPSC-2012-004",
       "question_number": 4,
       "proposed_answer": "C",
-      "status": "disputed",
+      "status": "verified",
       "sources": [
-        "https://www.weather.gov/media/meg/education/Weather_Instruments_handout1.pdf"
+        "https://www.weather.gov/media/meg/education/Weather_Instruments_handout1.pdf",
+        "https://www.weather.gov/otx/full_weather_glossary",
+        "https://www.weather.gov/tsa/weather_glossary"
       ],
-      "reasoning": "Anemometer measures wind speed, which matches Hindi option C (पवन वेग).",
-      "ambiguity_or_limitation": "English option C says “force of the wind”, not speed; the two language versions are not equivalent. No single key is assigned."
+      "reasoning": "An NWS/NOAA glossary defines an anemometer as the instrument that measures wind speed; the Hindi option C reads पवन वेग (wind velocity), so 'Force of the wind' is an imprecise English rendering of the same intended option.",
+      "ambiguity_or_limitation": "English option C says 'Force of the wind' while the Hindi says पवन वेग; the translation defect is preserved. The key is independently reconstructed, not an authenticated MPPSC key."
     },
     {
       "question_id": "MPPSC-2012-005",
@@ -129,13 +131,14 @@
       "question_id": "MPPSC-2012-012",
       "question_number": 12,
       "proposed_answer": "C",
-      "status": "unresolved",
+      "status": "verified",
       "sources": [
         "https://www.scientificamerican.com/article/uncovering-the-keys-to-the-lost-ind/",
-        "https://examrobot.com/content/regarding-indus-valley-civilization-consider-following-statements-1-it-was-predominantly"
+        "https://examrobot.com/content/regarding-indus-valley-civilization-consider-following-statements-1-it-was-predominantly",
+        "https://www.drishtiias.com/daily-updates/daily-news-analysis/100-years-of-discovery-of-ivc"
       ],
-      "reasoning": "Archaeological discussion reports cotton textiles; a solved-question source proposes both statements.",
-      "ambiguity_or_limitation": "The broad assertion that religious elements did not dominate is interpretive; a reliable scholarly basis for that characterization or an authenticated key is still needed."
+      "reasoning": "The identical UPSC 2011 item carries the official answer 'Both 1 and 2'; NCERT material records early Harappan cotton textiles, and standard textbooks describe the civilisation as predominantly secular because religious elements did not dominate its urban remains.",
+      "ambiguity_or_limitation": "Statement 2 is a conventional interpretive characterisation, not a measurable archaeological fact. This is an independently verified answer, not an authenticated MPPSC key."
     },
     {
       "question_id": "MPPSC-2012-013",
@@ -168,10 +171,12 @@
       ],
       "status": "disputed",
       "sources": [
-        "https://www.insightsonindia.com/modern-indian-history/freedom-to-partition-1939-1947/n-a-trials/"
+        "https://www.insightsonindia.com/modern-indian-history/freedom-to-partition-1939-1947/n-a-trials/",
+        "https://oldhistoricity.lbp.world/Administrator/UploadedArticle/423.pdf",
+        "https://www.livelaw.in/articles/two-monumental-red-fort-trials-bahadur-shah-zafar-ina-301090"
       ],
-      "reasoning": "The source identifies both Asaf Ali and Bhulabhai Desai as INA defence lawyers.",
-      "ambiguity_or_limitation": "The question does not say chief or lead advocate; more than one listed lawyer fits. Secondary source only."
+      "reasoning": "Both Asaf Ali and Bhulabhai Desai sat on the nine-member INA defence committee at the Red Fort trials; Desai was the lead counsel. An unauthenticated third-party key prints D, but two listed lawyers genuinely fit the stem.",
+      "ambiguity_or_limitation": "The question does not say 'chief' or 'lead' advocate; more than one option is factually correct. No authenticated MPPSC key was located, so the item stays unkeyed."
     },
     {
       "question_id": "MPPSC-2012-016",
@@ -210,17 +215,14 @@
     {
       "question_id": "MPPSC-2012-019",
       "question_number": 19,
-      "proposed_answer": [
-        "A",
-        "B"
-      ],
-      "status": "disputed",
+      "proposed_answer": "A",
+      "status": "verified",
       "sources": [
         "https://youngintach.org/files/medieval_period36.pdf",
         "https://www.britannica.com/biography/Amir-Khosrow"
       ],
-      "reasoning": "INTACH associates Khusro with kings up to Muhammad bin Tughlaq and with Alauddin Khalji; both appear as options.",
-      "ambiguity_or_limitation": "INTACH cites tertiary web sources and contains an apparent chronological error elsewhere; the strength of the Muhammad association needs independent scholarly confirmation."
+      "reasoning": "Britannica dates Amir Khusrau's death to 1325 and names Alauddin Khalji among the roughly seven Delhi sultans he served; the Khazain-ul-Futuh chronicles Khalji's reign. Muhammad bin Tughlaq only acceded in 1325, so the Khalji association is the reliable one.",
+      "ambiguity_or_limitation": "Khusrau served several sultans and some secondary accounts loosely add Muhammad bin Tughlaq; the chronology selects A. This is an independently verified answer, not an authenticated MPPSC key."
     },
     {
       "question_id": "MPPSC-2012-020",
@@ -252,10 +254,11 @@
       "status": "unresolved",
       "sources": [
         "https://dcmsme.gov.in/dips/20%20DIPS%20Saharanpur.pdf",
-        "https://www.britannica.com/place/India/The-Himalayas"
+        "https://www.britannica.com/place/India/The-Himalayas",
+        "https://www.lotusarise.com/himalayan-ranges-in-india-upsc/"
       ],
-      "reasoning": "A government district profile describes Shivalik hills in Saharanpur, Uttar Pradesh; Britannica calls Shivalik the Outer Himalayas.",
-      "ambiguity_or_limitation": "The commonly intended answer UP conflicts with inclusion of Shivaliks as Himalayan ranges; no unambiguous listed answer identified."
+      "reasoning": "The conventional exam answer is Uttar Pradesh, but official material also places Shivalik/Dundwa foothills in northern Uttar Pradesh, and those are part of the Outer Himalaya by geological definition. Uttarakhand, Sikkim and Himachal Pradesh are unambiguously Himalayan states.",
+      "ambiguity_or_limitation": "Conventional state classification conflicts with the geological classification of the Shivalik outliers. No single option can be independently verified, so the item stays unkeyed."
     },
     {
       "question_id": "MPPSC-2012-023",
@@ -327,17 +330,16 @@
     {
       "question_id": "MPPSC-2012-029",
       "question_number": 29,
-      "proposed_answer": [
-        "A",
-        "C"
-      ],
-      "status": "disputed",
+      "proposed_answer": "C",
+      "status": "verified",
       "sources": [
         "https://www.perfectlyplannedjourneys.com/blog/amsterdam-city-of-canals",
-        "https://www.abcboathire.com/blog/6-best-canal-cities-in-europe"
+        "https://www.abcboathire.com/blog/6-best-canal-cities-in-europe",
+        "https://www.iexamworld.com/blog/mppsc-solved-question-paper-2",
+        "https://www.waytoadventure.com/nicknames-of-european-cities/"
       ],
-      "reasoning": "Both Amsterdam and Venice are explicitly called a city of canals by travel sources.",
-      "ambiguity_or_limitation": "The nickname is not exclusive; sources are secondary, and a conventional intended answer cannot eliminate the other."
+      "reasoning": "The conventional place nickname 'City of Canals' belongs to Venice; Amsterdam is more often called the 'Venice of the North'. An independently hosted solved-paper key also prints Venice (C).",
+      "ambiguity_or_limitation": "Amsterdam also has canals and a few travel sites use the phrase loosely, so the nickname is conventional rather than exclusive. The key is independent, not officially authenticated."
     },
     {
       "question_id": "MPPSC-2012-030",
@@ -467,10 +469,12 @@
       "proposed_answer": "B",
       "status": "unresolved",
       "sources": [
-        "https://testbook.com/question-answer/the-biggest-indoor-stadium-of-madhya-pradesh-is-si--5f50f5adb18955d3745d6ec3"
+        "https://testbook.com/question-answer/the-biggest-indoor-stadium-of-madhya-pradesh-is-si--5f50f5adb18955d3745d6ec3",
+        "https://www.smartcityindore.org/sports/",
+        "https://www.wikiwand.com/en/TT_Nagar_Sports_Complex"
       ],
-      "reasoning": "A solved-question source proposes Indore.",
-      "ambiguity_or_limitation": "No independent comparison of indoor stadium capacities at the examination date found."
+      "reasoning": "Smart City Indore and Testbook name Abhay Prashal in Indore (10,000 seats) as Madhya Pradesh's biggest indoor stadium, while an unauthenticated third-party key prints Bhopal and TT Nagar Sports Complex there reports a 20,000-capacity multi-purpose stadium.",
+      "ambiguity_or_limitation": "Two credible-looking city answers conflict and no authoritative comparative capacity survey was located. The superlative cannot be settled, so the item stays unkeyed."
     },
     {
       "question_id": "MPPSC-2012-042",
@@ -512,21 +516,24 @@
       "status": "unresolved",
       "sources": [
         "https://www.iasbook.com/miscellaneous-mppsc-prelim-questions/",
-        "https://www.studyadda.com/solved-papers/mppsc-preliminary-solved-papers-2012-shift-i_q86/1067/506166"
+        "https://www.studyadda.com/solved-papers/mppsc-preliminary-solved-papers-2012-shift-i_q86/1067/506166",
+        "https://www.indianemployees.com/gazette-notifications/details/disintegration-of-madhya-pradesh-sports-authority-committee-and-madhya-pradesh-sports-council",
+        "https://www.studyadda.com/solved-papers/mppsc/state-psc-prelims/mppsc-prelims-exam-24-02-2013-paper-1"
       ],
-      "reasoning": "A solved-question source proposes Tukojirao Pawar, whereas another says none of the listed options.",
-      "ambiguity_or_limitation": "No independent contemporaneous source identifying the council chairman has been located."
+      "reasoning": "Madhya Pradesh gazette notification No. 326 dated 8 July 2011 dissolved the Madhya Pradesh Sports Council and constituted the Madhya Pradesh Sports Authority; one third-party key prints Tukoji Rao Pawar and another solved version offers an extra 'None of these' option.",
+      "ambiguity_or_limitation": "The body named in the stem had been dissolved before the 2013 examination, making 'at present' unverifiable. No official key was authenticated, so the item stays unkeyed."
     },
     {
       "question_id": "MPPSC-2012-046",
       "question_number": 46,
       "proposed_answer": "C",
-      "status": "unresolved",
+      "status": "verified",
       "sources": [
-        "https://www.olympics.com/en/news/kho-kho-history-rules-how-to-play"
+        "https://www.olympics.com/en/news/kho-kho-history-rules-how-to-play",
+        "https://www.britannica.com/sports/kho-kho"
       ],
-      "reasoning": "Nine chasing players in Kho-Kho corresponds to the commonly intended sequence C.",
-      "ambiguity_or_limitation": "The same source says the defending team sends only three onto the ground, so the unqualified stem is ambiguous as to role."
+      "reasoning": "Britannica states that nine kho-kho players from a team take the field, and standard rules give kabaddi seven, volleyball six and basketball five, so the sequence 9, 7, 6, 5 is correct.",
+      "ambiguity_or_limitation": "Kho-kho names twelve players in a squad with defenders entering in batches of three; the stem asks how many play on the ground. This is independently verified, not an authenticated MPPSC key."
     },
     {
       "question_id": "MPPSC-2012-047",
@@ -535,10 +542,11 @@
       "status": "unresolved",
       "sources": [
         "https://timesofindia.indiatimes.com/city/bhopal/mps-malviya-and-lohia-bag-national-sports-awards/amp_articleshow/77827579.cms",
-        "https://www.iasbook.com/honour-award-mppsc-prelim-questions/"
+        "https://www.iasbook.com/honour-award-mppsc-prelim-questions/",
+        "https://www.bhaskarenglish.in/local/mp/bhopal/news/madhya-pradesh-government-announces-state-level-shikhar-sports-awards-2023-134767292.html"
       ],
-      "reasoning": "A report says MP gave its Vishwamitra coaching award in 2012, and a solved-paper source says none of the listed awards is correct.",
-      "ambiguity_or_limitation": "Vishwamitra is absent from the bank options; alternative transcriptions differ. No option is assigned."
+      "reasoning": "Madhya Pradesh's dedicated honour for coaches is the Vishwamitra Award, given since 1995-96 alongside the Vikram Award for senior players and the Eklavya Award for juniors. None of the four listed options names the Vishwamitra Award.",
+      "ambiguity_or_limitation": "No listed option is correct. An unauthenticated third-party key prints 'Parashuram award', but MP government award lists do not support it; the item is defective and stays unkeyed."
     },
     {
       "question_id": "MPPSC-2012-048",
@@ -572,10 +580,11 @@
       ],
       "status": "disputed",
       "sources": [
-        "https://www.ibsf.info/index.php?option=com_k2&view=item&id=71%3Apast-champions&Itemid=367"
+        "https://www.ibsf.info/index.php?option=com_k2&view=item&id=71%3Apast-champions&Itemid=367",
+        "https://www.ibsf.info/index.php?option=com_k2&view=item&layout=item&id=71&Itemid=367"
       ],
-      "reasoning": "IBSF lists Rupesh Shah as the 2012 points champion and Pankaj Advani as the timed champion.",
-      "ambiguity_or_limitation": "The stem does not distinguish formats."
+      "reasoning": "IBSF's own past-champions list records two 2012 world billiards champions: Rupesh Shah in the points format and Pankaj Advani in the timed format. A third-party key prints Pankaj Advani (D) without naming the format.",
+      "ambiguity_or_limitation": "The stem says only 'World Billiard Championship, 2012' and two listed players won different 2012 world titles, so no single answer is compelled. The item stays unkeyed."
     },
     {
       "question_id": "MPPSC-2012-051",
@@ -604,13 +613,17 @@
       "question_id": "MPPSC-2012-053",
       "question_number": 53,
       "proposed_answer": "D",
-      "status": "disputed",
+      "status": "verified",
       "sources": [
         "https://www.mppcb.mp.gov.in/proc/Tech/DEP%20SHEOPUR.pdf",
-        "https://www.iasbook.com/geography-mppsc-prelim-questions/"
+        "https://www.iasbook.com/geography-mppsc-prelim-questions/",
+        "https://bhind.nic.in/en/geography/",
+        "https://satna.nic.in/en/map-of-district/",
+        "https://shivpuri.nic.in/en/about-district/",
+        "https://en.wikipedia.org/wiki/Sheopur_district"
       ],
-      "reasoning": "A secondary source proposes Sheopur, but the MP Pollution Control Board district plan says Sheopur borders Uttar Pradesh.",
-      "ambiguity_or_limitation": "Sources conflict; an authoritative boundary map or official key is needed. Other options have not been independently excluded."
+      "reasoning": "Official district profiles state that Bhind borders Agra/Etawah (UP), Satna borders Banda (UP) and Shivpuri borders Jhansi (UP); by elimination Sheopur is the district whose boundary does not touch Uttar Pradesh.",
+      "ambiguity_or_limitation": "An MP Pollution Control Board environment plan claims Sheopur borders Uttar Pradesh, conflicting with the official district profiles; that conflict is preserved. The key is independent, not officially authenticated."
     },
     {
       "question_id": "MPPSC-2012-054",
@@ -719,10 +732,11 @@
       "status": "unresolved",
       "sources": [
         "https://ispr.gov.pk/press-release-archive.php?cat=army&p=370",
-        "https://www.nation.com.pk/01-Mar-2014/sino-pak-military-drill-this-year"
+        "https://www.nation.com.pk/01-Mar-2014/sino-pak-military-drill-this-year",
+        "https://tribune.com.pk/story/292020/joint-military-exercise-pakistan-china-begin-war-games-near-jhelum"
       ],
-      "reasoning": "Pakistan’s military describes the November 2011 exercise as near Jhelum; another report specifies Tilla firing range near Jhelum.",
-      "ambiguity_or_limitation": "Jhelum is also a city; the sources do not establish that the exercise was along the river."
+      "reasoning": "The ISPR's own November 2011 press release says exercise YOUYI-IV was held 'near Jhelum', a place in Punjab province; the Express Tribune repeats the wording. A third-party key prints Jhelum (C) without evidence that the exercise ran along the river.",
+      "ambiguity_or_limitation": "The stem asks 'along which of the following rivers' while the primary source names a location, so 'None of the above' is defensible. The item is defective and stays unkeyed."
     },
     {
       "question_id": "MPPSC-2012-064",
@@ -763,10 +777,12 @@
       "proposed_answer": null,
       "status": "unresolved",
       "sources": [
-        "https://indianexpress.com/article/india/anna-hazare-lokpal-bill-protest-supreme-court-5548932/"
+        "https://indianexpress.com/article/india/anna-hazare-lokpal-bill-protest-supreme-court-5548932/",
+        "https://www.ndtv.com/india-news/anna-hazare-makes-it-to-time-magazines-top-10-list-570556",
+        "https://www.reuters.com/article/lifestyle/time-names-the-protester-2011-person-of-the-year-idUSTRE7BD0ZV/"
       ],
-      "reasoning": "The report says the movement was in TIME’s top ten news stories, not that Hazare personally had one of the listed rankings.",
-      "ambiguity_or_limitation": "The referenced list of 36 and ranking have not been located."
+      "reasoning": "TIME's 2011 'The Protester' package presented 36 portraits and pictures of demonstrators without publishing a First, Fifth, Tenth or Fifteenth rank; separate features named ten top news stories and a Person of the Year. A third-party key prints Tenth.",
+      "ambiguity_or_limitation": "The premise of a ranked list of 36 demonstrators is false. No ordinal can be independently verified, so the item stays unkeyed."
     },
     {
       "question_id": "MPPSC-2012-068",
@@ -832,8 +848,8 @@
         "https://www.embibe.com/questions/In-Madhya-Pradesh-Railway-Sleeper-Factory-was-established-in:/EM4784792",
         "https://www.railtrack.in/"
       ],
-      "reasoning": "An exam-oriented source suggests Sehore; a manufacturer identifies a separate MP sleeper plant in Vidisha.",
-      "ambiguity_or_limitation": "The historic location and identity of the factory intended by the question have not been established independently."
+      "reasoning": "Solved papers name Sehore for the railway sleeper factory and an unauthenticated key prints A, but modern private concrete-sleeper plants are documented at Vidisha and Hoshangabad and no Indian Railways primary source confirming a single Sehore factory was located.",
+      "ambiguity_or_limitation": "Competing public/private plant locations and missing primary evidence leave the district unverifiable. The item stays unkeyed."
     },
     {
       "question_id": "MPPSC-2012-074",
@@ -851,12 +867,14 @@
       "question_id": "MPPSC-2012-075",
       "question_number": 75,
       "proposed_answer": "A",
-      "status": "unresolved",
+      "status": "verified",
       "sources": [
-        "https://www.iasbook.com/reviewplan-project-mppsc-prelim-questions/"
+        "https://www.iasbook.com/reviewplan-project-mppsc-prelim-questions/",
+        "https://gwaliortimes.wordpress.com/2007/12/10/%E0%A4%9C%E0%A4%B2%E0%A4%A6%E0%A5%80%E0%A4%AA-%E0%A4%AF%E0%A5%8B%E0%A4%9C%E0%A4%A8%E0%A4%BE-%E0%A4%AE%E0%A4%A4%E0%A5%8D%E0%A4%B8%E0%A5%8D%E0%A4%AF-%E0%A4%AE%E0%A4%A8%E0%A5%8D%E0%A4%B9/",
+        "https://www.examveda.com/jaldeep-yojana-was-initially-started-by-madhya-pradesh-government-from-which-reservoir-143316/"
       ],
-      "reasoning": "A solved-paper source proposes Indira Sagar.",
-      "ambiguity_or_limitation": "An independent source establishing the scheme’s initial reservoir has not been located."
+      "reasoning": "A contemporaneous 2007 Gwalior press note says Jaldeep Yojana was 'initially' started on the Indira Sagar reservoir, and multiple exam references agree; Gandhi Sagar, Baan Sagar and Yeshwant Sagar are other MP reservoirs.",
+      "ambiguity_or_limitation": "The scheme is date-dependent because the stem says 'initially'. This is an independently verified answer, not an authenticated MPPSC key."
     },
     {
       "question_id": "MPPSC-2012-076",
@@ -994,13 +1012,14 @@
       "question_id": "MPPSC-2012-088",
       "question_number": 88,
       "proposed_answer": "B",
-      "status": "unresolved",
+      "status": "verified",
       "sources": [
         "https://www.cisa.gov/news-events/news/what-cybersecurity",
-        "https://niccs.cisa.gov/training/catalog/global-information-technology/certified-ethical-hacker-ceh"
+        "https://niccs.cisa.gov/training/catalog/global-information-technology/certified-ethical-hacker-ceh",
+        "https://www.eac.gov/sites/default/files/document_library/files/Glossary_Cybersecurity_Terms(v.2.0).pdf"
       ],
-      "reasoning": "Option B describes a malicious hacker, but CISA also describes ethical hackers and non-malicious motives.",
-      "ambiguity_or_limitation": "B is not a general definition of every hacker; the stem has no malicious qualifier."
+      "reasoning": "The US Election Assistance Commission glossary, citing NIST/CNSSI 4009, defines a hacker as an 'unauthorised user who attempts to or gains access to an information system'. Only option B describes malicious, unauthorised intrusion.",
+      "ambiguity_or_limitation": "Ethical or white-hat hackers exist with permission, but none of the other options describes one. This is independently verified, not an authenticated MPPSC key."
     },
     {
       "question_id": "MPPSC-2012-089",
@@ -1017,12 +1036,13 @@
       "question_id": "MPPSC-2012-090",
       "question_number": 90,
       "proposed_answer": "D",
-      "status": "unresolved",
+      "status": "verified",
       "sources": [
-        "https://www.unodc.org/documents/organized-crime/Guidance_Note_on_Cybercrime_5_January_2010.pdf"
+        "https://www.unodc.org/documents/organized-crime/Guidance_Note_on_Cybercrime_5_January_2010.pdf",
+        "https://www.unodc.org/e4j/en/cybercrime/module-2/key-issues/computer-related-offences.html"
       ],
-      "reasoning": "UNODC includes illegal hacking, cyberstalking and denial-of-service attacks among cybercrime examples.",
-      "ambiguity_or_limitation": "The option says stalking, not cyberstalking, and does not specify illegal hacking; all stalking or hacking is not necessarily cybercrime."
+      "reasoning": "UNODC's cybercrime guidance lists illegal access (hacking), stalking/harassment through ICT and denial-of-service attacks as cybercrime categories, so 'All of the above' is the exam's intended composite key.",
+      "ambiguity_or_limitation": "Stalking is a cybercrime only when it is ICT-mediated cyberstalking, and hacking only when access is unauthorised. This is independently verified, not an authenticated MPPSC key."
     },
     {
       "question_id": "MPPSC-2012-091",
@@ -1044,10 +1064,12 @@
       ],
       "status": "disputed",
       "sources": [
-        "https://cag.gov.in/uploads/media/Manual-of-Office-Procedure-IInd-edition-2013-english-20200627105908.pdf"
+        "https://cag.gov.in/uploads/media/Manual-of-Office-Procedure-IInd-edition-2013-english-20200627105908.pdf",
+        "https://cag.gov.in/ag1/madhya-pradesh/en/page-ag1-madhya-pradesh-page-gssa-madhya-pradesh-introduction-of-this-office",
+        "https://cag.gov.in/uploads/tenders/tenders-amc-retender-documents-06165519cf00591-21410437.pdf"
       ],
-      "reasoning": "The 2013 CAG manual places Accountant General offices at both Bhopal and Gwalior after the 2012 restructuring.",
-      "ambiguity_or_limitation": "The question does not specify which AG office."
+      "reasoning": "CAG's own pages place the Principal Accountant General (Audit-I) and AG (A&E)-II in Gwalior, while a CAG tender records an AG branch office at Arera Hills, Bhopal, and a third-party CAG manual describes offices in both cities.",
+      "ambiguity_or_limitation": "Primary CAG documents support both Bhopal (A) and Gwalior (B) for different Accountant General functions. The singular stem cannot be settled, so the item stays unkeyed."
     },
     {
       "question_id": "MPPSC-2012-093",
@@ -1064,13 +1086,15 @@
       "question_id": "MPPSC-2012-094",
       "question_number": 94,
       "proposed_answer": "B",
-      "status": "unresolved",
+      "status": "verified",
       "sources": [
         "https://www.indiacode.nic.in/bitstream/123456789/15434/1/protection_of_civil_rights_act,_1955.pdf",
-        "https://ijsw.tiss.edu/greenstone/collect/ijsw/index/assoc/HASH01fd/56231f23.dir/doc.pdf"
+        "https://ijsw.tiss.edu/greenstone/collect/ijsw/index/assoc/HASH01fd/56231f23.dir/doc.pdf",
+        "https://www.latestlaws.com/bare-acts/central-acts-rules/human-rights-laws/protection-of-civil-rights-act-1955/",
+        "https://cdnbbsr.s3waas.gov.in/s32b8eba3cb0d0f1d761cb74d94a5ace36/uploads/2024/03/2024032822923272.pdf"
       ],
-      "reasoning": "Section 15 makes offences cognizable; a scholarly article discusses non-compoundability after the amendment.",
-      "ambiguity_or_limitation": "The article also documents judicial uncertainty, and another transcription differs in option B. The exact 2013 legal position and original option wording need confirmation."
+      "reasoning": "Section 15 of the Protection of Civil Rights Act, 1955 makes every offence under the Act cognizable and triable summarily; B is the only option that correctly states the cognizability limb.",
+      "ambiguity_or_limitation": "The bank transcribes option B as 'Cognizable and non-compoundable' while the printed paper says 'Cognizable and Try summarily' and the statute says 'triable summarily'. The transcription conflict is preserved, and no official key was authenticated."
     },
     {
       "question_id": "MPPSC-2012-095",
@@ -1078,10 +1102,12 @@
       "proposed_answer": null,
       "status": "unresolved",
       "sources": [
-        "https://indiankanoon.org/doc/337685/"
+        "https://indiankanoon.org/doc/337685/",
+        "https://cdnbbsr.s3waas.gov.in/s32b8eba3cb0d0f1d761cb74d94a5ace36/uploads/2024/03/2024032822923272.pdf",
+        "https://egyankosh.ac.in/bitstream/123456789/69181/1/Unit-15.pdf"
       ],
-      "reasoning": "The 1957 court decision discusses disabilities arising from birth and caste.",
-      "ambiguity_or_limitation": "It does not settle all four broadly worded choices; option C is also unclear."
+      "reasoning": "Section 4(vi) and (xi) of the PCR Act expressly cover denial of a charitable-trust benefit and use of jewellery or finery, so A and B are offences; Devarajiah v. Padmanna supports D only for religious social boycott within a group. A third-party key prints B.",
+      "ambiguity_or_limitation": "The statute, the case law and an unauthenticated key point in incompatible directions, and option C is grammatically defective. The item stays unkeyed."
     },
     {
       "question_id": "MPPSC-2012-096",

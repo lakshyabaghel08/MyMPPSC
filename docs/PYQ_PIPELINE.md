@@ -23,11 +23,16 @@ The alleged 2011 paper identity is disputed: see
 third-party key nor the paper identity is official or independently authenticated.
 See also `data/pyq/source/2009-2011/PDF_REVIEW.md`.
 
-`--include-2012` requires both the bilingual transcription and the separate
-`answer-reassessment-2012.json`. It restores 79 independently source-supported
-answers and explanations; seven disputed and fourteen unresolved records remain
-unkeyed. These are not an authenticated MPPSC answer key. A missing or malformed
-reassessment fails the build instead of silently producing an unkeyed paper.
+`--include-2012` requires the bilingual transcription, the separate
+`answer-reassessment-2012.json`, and the reviewed explanation pair
+`data/pyq/reviewed-corrections-2012.json` + `reviewed-explanations-2012.json`.
+It restores 89 independently source-supported answers (79 preserved and 10
+newly resolved) and 100 full four-part explanations; three disputed and eight
+unresolved records remain unkeyed. These are not an authenticated MPPSC answer
+key. The explanation declarations are parsed through the same
+`parseReviewedCorrections` routine as the 2013–2024 audits, then applied by the
+2012 append pass. A missing or malformed reassessment or explanation fails the
+build instead of silently producing an unkeyed or one-line-explanation paper.
 
 `--include-2013-2018` loads six strict year-specific adapters from
 `data/pyq/source/2013-18/`. It checks all 18 source JSON/report/README files,
@@ -75,11 +80,13 @@ The run is a sequence of named passes, each of which reports what it did:
 | 7. Build | writes the schema-shaped bank | always |
 | 8. **Sanitise** | writes the app-facing file: provenance out, marking scheme in, ids renamed, no build metadata | always |
 | 8b. **Model questions** | appends the 29 app-authored model questions that fill the numbers the 2019–2024 extraction never printed, in question-number order | `--include-model-questions [file]` |
-| 8c. **2012 paper** | appends the bilingual 2012 transcription and taxonomy, then applies the required independent reassessment; rejects ID collisions and invalid reviews; scoring rules remain unknown | `--include-2012` |
+| 8c. **2012 paper** | appends the bilingual 2012 transcription and taxonomy, applies the required independent reassessment and the required 100 reviewed explanations; rejects ID collisions, invalid reviews and mis-ticked explanations; scoring rules remain unknown | `--include-2012` |
 
 The 2012 transcription and known source uncertainties are documented in
-`data/pyq/source/2012-recovery/TRANSCRIPTION_PROGRESS.md`. The transcription itself contains no answers; the independent reassessment is
-required and applied separately. The existing bank ID and name remain
+`data/pyq/source/2012-recovery/TRANSCRIPTION_PROGRESS.md`. The transcription itself contains no answers; the independent reassessment and the
+explanation bundle are required and applied separately. The final answer audit
+is `data/pyq/quality-audit/final-answer-audit-2012.json` and
+`REPORT_FINAL_ANSWER_AUDIT_2012.md`. The existing bank ID and name remain
 unchanged for compatibility; year coverage is read from the paper records.
 
 ## 1. What goes in

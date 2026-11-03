@@ -6,13 +6,18 @@ This is the honest list, written to be read before trusting any screen.
 three English-only solved sources have unconfirmed paper identities; 2009 and
 2011 are incomplete. The 2009 records carry 94 unofficial PDF-derived answers, with 12 disputed and 40 unresolved unkeyed. The 2010 records carry 80 unofficial PDF-derived answers, with 14 disputed and 26 unresolved unkeyed; their paper identity is unconfirmed. The 2011 records carry 88 unofficial PDF-derived answers and explanations, with 12 disputed and 18 unresolved unkeyed. The 2011 paper identity is disputed; see [identity warning](../data/pyq/source/2009-2011/2011-paper-identity-warning.md). Historical scoring remains unconfigured. See [PDF review](../data/pyq/source/2009-2011/PDF_REVIEW.md).
 
-**2012 update:** The 2012 integration added 100 records. The
-100 added 2012 questions have no supplied keys. An independent reassessment
-provides 79 supported answers and explanations; seven disputed and fourteen
-unresolved questions remain unkeyed. The source is not an authenticated
-official answer key, and scoring is unconfigured. The supplied Markdown transcription contains several
-language differences and a potentially truncated word; see
-[`TRANSCRIPTION_PROGRESS.md`](../data/pyq/source/2012-recovery/TRANSCRIPTION_PROGRESS.md).
+**2012 update:** The 2012 integration added 100 records, all with four-part
+English explanations. The 100 added 2012 questions have no supplied keys. A
+final independent reassessment provides 89 supported answers (79 preserved and
+10 resolved with cited evidence); three disputed and eight unresolved questions
+remain unkeyed, with `is_correct: null` on every option so the app says
+“unstated” rather than teaching that all four are incorrect. These are
+independently source-supported answers, **not** an authenticated official MPPSC
+key, and scoring is unconfigured. The supplied Markdown transcription contains
+several language differences and a potentially truncated word; see
+[`TRANSCRIPTION_PROGRESS.md`](../data/pyq/source/2012-recovery/TRANSCRIPTION_PROGRESS.md),
+[`REPORT_FINAL_ANSWER_AUDIT_2012.md`](../REPORT_FINAL_ANSWER_AUDIT_2012.md) and
+[`docs/PYQ_AUDIT.md`](PYQ_AUDIT.md).
 Figures below describing 2013–2024 are historical and exclude this paper.
 
 ## Scope and content

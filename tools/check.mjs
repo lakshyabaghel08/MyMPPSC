@@ -417,14 +417,20 @@ if (builtinPath) {
   check(bundled.questions.every((q) => (q.year === 2011 || q.year === 2010 || q.year === 2009) ? (!q.supplied_answer?.answer?.length || q.supplied_answer.status === 'unofficial') : q.year <= 2012 ? !q.supplied_answer?.answer?.length : q.supplied_answer?.answer?.length && q.supplied_answer.status === 'supplied'), '2009–2011 supplied keys must be unofficial; 2012 has no supplied keys and 2013–2024 retain theirs');
   check(bundled.questions.filter((q) => q.year !== 2012).every((q) => !q.verified_answer?.answer?.length), 'independent reassessment applies only to 2012');
   const review2012 = JSON.parse(await readFile(path.join(root, 'data/pyq/source/2012-recovery/answer-reassessment-2012.json'), 'utf8'));
+  const reviewedExplanations2012 = JSON.parse(await readFile(path.join(root, 'data/pyq/reviewed-explanations-2012.json'), 'utf8'));
   const questions2012 = bundled.questions.filter((q) => q.year === 2012);
   const reviewedById = new Map(review2012.records.map((r) => [r.question_id, r]));
+  check(Object.keys(reviewedExplanations2012.explanations).length === 100, '2012 has one reviewed explanation per question');
   check(reviewedById.size === 100 && questions2012.length === 100 && questions2012.every((q) => {
     const r = reviewedById.get(q.id);
-    if (!r) return false;
-    if (r.status === 'verified') return q.verified_answer?.answer?.length === 1 && q.verified_answer.answer[0] === r.proposed_answer && q.explanation?.correct_reasoning === r.reasoning && q.verified_answer.verified_by?.includes('not an official MPPSC key');
-    return ['disputed', 'unresolved'].includes(r.status) && !q.verified_answer?.answer?.length && !q.explanation && q.dispute?.status === 'unresolved' && q.dispute.is_disputed === (r.status === 'disputed');
-  }), '2012 bank records must match the independent reassessment and preserve unresolved flags');
+    const prose = reviewedExplanations2012.explanations[q.id];
+    if (!r || !prose || JSON.stringify(q.explanation) !== JSON.stringify(prose)) return false;
+    const flagged = q.explanation.option_explanations.filter((o) => o.is_correct === true).map((o) => o.key);
+    const urls = q.explanation.sources.map((s) => s.url);
+    if (JSON.stringify(urls) !== JSON.stringify(r.sources)) return false;
+    if (r.status === 'verified') return q.verified_answer?.answer?.length === 1 && q.verified_answer.answer[0] === r.proposed_answer && flagged.length === 1 && flagged[0] === r.proposed_answer && q.verified_answer.verified_by?.includes('not an official MPPSC key') && JSON.stringify(q.verified_answer.evidence.map((e) => e.url)) === JSON.stringify(r.sources);
+    return ['disputed', 'unresolved'].includes(r.status) && !q.verified_answer?.answer?.length && flagged.length === 0 && q.explanation.option_explanations.every((o) => o.is_correct === null) && q.dispute?.status === 'unresolved' && q.dispute.is_disputed === (r.status === 'disputed') && JSON.stringify(q.verification_evidence.map((e) => e.url)) === JSON.stringify(r.sources);
+  }), '2012 bank records must match the independent reassessment, the full four-part explanations and the unresolved flags');
   const review2011 = JSON.parse(await readFile(path.join(root, 'data/pyq/source/2009-2011/answer-review-2011.json'), 'utf8'));
   const q2011 = bundled.questions.filter(q => q.year === 2011);
   const by2011 = new Map(review2011.records.map(r => [r.question_id, r]));
