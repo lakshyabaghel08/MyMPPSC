@@ -208,8 +208,8 @@ test('the horizontal subject chart renders all 1,684 bank questions across 2009�
   assert.equal(summary.total, 1684);
   assert.equal(summary.papers, 16);
   assert.equal(summary.yearSpan, '2009–2024');
-  assert.equal(summary.withKey, 1447);
-  assert.match(html, /1447\/1684/);
+  assert.equal(summary.withKey, 1541);
+  assert.match(html, /1541\/1684/);
   assert.doesNotMatch(html, /verified key/i, 'answer-key coverage is measured, not represented as independent verification');
   assert.match(html, /16<\/strong>\s*paper\(s\)|16 paper\(s\)/);
   assert.match(html, /2009–2024/);

@@ -318,7 +318,7 @@ test('the committed bank is the sanitised one: scheme written, no provenance, no
   assert.equal(bank.bank_id, APP_BANK_ID);
   assert.equal('provenance' in bank, false);
   assert.equal(JSON.stringify(bank).includes('YOUR_BOOK'), false, 'the source file name is not in the bank');
-  assert.equal(bank.questions.filter(q => q.year !== 2011 && q.year !== 2010).some(q => JSON.stringify(q).includes('unofficial')), false, 'only the 2010–2011 third-party keys is labelled unofficial');
+  assert.equal(bank.questions.filter(q => q.year !== 2011 && q.year !== 2010 && q.year !== 2009).some(q => JSON.stringify(q).includes('unofficial')), false, 'only the 2009–2011 third-party keys is labelled unofficial');
   assert.equal(bank.questions.filter((q) => q.source_reference).length, 0);
   const rawEscapes = [];
   const walk = (value, where) => {

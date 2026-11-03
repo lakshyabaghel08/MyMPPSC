@@ -160,18 +160,18 @@ test('the eight questions the source left keyless come from the committed review
 
   // Nothing may quietly invent a key either: a question outside the review file
   // keeps whatever the source printed, and the source printed none of these.
-  assert.equal(bank.questions.filter((x) => !x.supplied_answer?.answer?.length).length, 316, 'unkeyed source questions remain without supplied answers');
+  assert.equal(bank.questions.filter((x) => !x.supplied_answer?.answer?.length).length, 222, 'unkeyed source questions remain without supplied answers');
 });
 
 test('supplied answers remain separate from the 2012 independent reassessment', { skip: !haveBank }, async () => {
   const bank = await readJson('pyq/mymppsc-pyq-bank.json');
   const withKey = bank.questions.filter((q) => q.supplied_answer?.answer?.length);
-  assert.equal(withKey.length, 1368, 'the 2011 PDF-derived keys supplement the 1200 existing supplied answers');
+  assert.equal(withKey.length, 1462, 'the 2011 PDF-derived keys supplement the 1200 existing supplied answers');
   // No source claim survives into the app-facing bank: no provenance block, no
   // per-question source references, no key-issue labels ('unofficial'/'final').
   assert.equal('provenance' in bank, false, 'the bank carries no provenance block');
   assert.equal(bank.questions.filter((q) => q.source_reference).length, 0, 'no question carries a source reference');
-  assert.equal(bank.questions.filter((q) => q.supplied_answer?.source).length, 168, 'only 2010–2011 PDF-derived answers name their unofficial source');
+  assert.equal(bank.questions.filter((q) => q.supplied_answer?.source).length, 262, 'only 2009–2011 PDF-derived answers name their unofficial source');
   const statuses = new Set(bank.questions.map((q) => q.answer_key_status));
   assert.deepEqual([...statuses].sort(), ['disputed', 'missing', 'supplied', 'unofficial']);
   assert.equal(bank.questions.filter((q) => q.verified_answer?.answer?.length).length, 79);

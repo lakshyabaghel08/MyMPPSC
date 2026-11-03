@@ -12,7 +12,9 @@ normal imports.
 
 `--include-2009-2011` appends 384 complete English-only records from
 PDF-derived staging and taxonomy decisions; 2009 and 2011 remain incomplete.
-It requires both `answer-review-2010.json` and `answer-review-2011.json`.
+It requires the three `answer-review-{year}.json` files.
+The 2009 review integrates 94 unofficial answers and leaves 12 disputed and 40
+unresolved unkeyed; Q75–78 are excluded and paper identity is unconfirmed.
 The 2010 review restores 80 unofficial PDF-key answers and explanations,
 leaving 14 disputed and 26 unresolved unkeyed; its paper identity is unconfirmed.
 The 2011 review restores 88 answers and leaves 12 disputed and 18 unresolved unkeyed.

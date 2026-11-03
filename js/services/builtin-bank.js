@@ -138,10 +138,10 @@ export async function ensureBuiltinBank(opts = {}) {
   // content and none has changed, there is nothing to do regardless of how the
   // app got there (first load, re-open, or a manual import of the same file).
   // Text fingerprints deliberately omit keys and explanations. Refresh the
-  // reviewed 2010–2011 source fields even when the wording is unchanged, otherwise
+  // reviewed 2009–2011 source fields even when the wording is unchanged, otherwise
   // existing installations never receive this paper's answers or uncertainty.
   const refreshHistorical = new Set();
-  for (const incoming of analysis.report.questions.filter((q) => (q.year === 2010 || q.year === 2011))) {
+  for (const incoming of analysis.report.questions.filter((q) => (q.year === 2009 || q.year === 2010 || q.year === 2011))) {
     const prior = await db.get(STORES.QUESTIONS, incoming.id);
     if (!prior || prior.fingerprint !== incoming.fingerprint) continue;
     const sourceView = (q) => ({ answer: q.supplied?.answer || null,

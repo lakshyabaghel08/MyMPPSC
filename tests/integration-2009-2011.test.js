@@ -21,7 +21,7 @@ test('complete PDF-derived questions integrate without changing prior records, k
   for (const year of [2009, 2010, 2011]) inputs[year] = {
     source: await read(`data/pyq/source/2009-2011/pdf-transcription-${year}.json`),
     labels: await read(`data/pyq/source/2009-2011/final-taxonomy-${year}.json`),
-    ...(year !== 2009 ? { review: await read(`data/pyq/source/2009-2011/answer-review-${year}.json`) } : {}),
+    review: await read(`data/pyq/source/2009-2011/answer-review-${year}.json`),
   };
   const candidate = { questions: structuredClone(oldQuestions), papers: structuredClone(oldPapers) };
   const taxonomy = await loadTaxonomy();
@@ -43,11 +43,7 @@ test('complete PDF-derived questions integrate without changing prior records, k
       assert.equal(q.language_variants.en.instructions, source.instructions ?? null);
       assert.deepEqual(Object.keys(q.language_variants), ['en']);
       assert.deepEqual([q.subject, q.topic, q.subtopic], Object.values(inputs[year].labels.labels[q.id]));
-      if (year === 2009) {
-        assert.equal(q.supplied_answer.answer, null);
-        assert.equal(q.answer_key_status, 'missing');
-        assert.equal(q.explanation, null);
-      } else {
+      {
         const r = inputs[year].review.records.find(row => row.question_id === q.id);
         assert.ok(r);
         if (r.status === 'supported') {

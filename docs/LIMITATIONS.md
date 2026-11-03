@@ -4,7 +4,7 @@ This is the honest list, written to be read before trusting any screen.
 
 **2009–2011 update:** The bank has 1,684 records across 16 papers. These
 three English-only solved sources have unconfirmed paper identities; 2009 and
-2011 are incomplete. The 2009 records have no keys. The 2010 records carry 80 unofficial PDF-derived answers, with 14 disputed and 26 unresolved unkeyed; their paper identity is unconfirmed. The 2011 records carry 88 unofficial PDF-derived answers and explanations, with 12 disputed and 18 unresolved unkeyed. The 2011 paper identity is disputed; see [identity warning](../data/pyq/source/2009-2011/2011-paper-identity-warning.md). Historical scoring remains unconfigured. See [PDF review](../data/pyq/source/2009-2011/PDF_REVIEW.md).
+2011 are incomplete. The 2009 records carry 94 unofficial PDF-derived answers, with 12 disputed and 40 unresolved unkeyed. The 2010 records carry 80 unofficial PDF-derived answers, with 14 disputed and 26 unresolved unkeyed; their paper identity is unconfirmed. The 2011 records carry 88 unofficial PDF-derived answers and explanations, with 12 disputed and 18 unresolved unkeyed. The 2011 paper identity is disputed; see [identity warning](../data/pyq/source/2009-2011/2011-paper-identity-warning.md). Historical scoring remains unconfigured. See [PDF review](../data/pyq/source/2009-2011/PDF_REVIEW.md).
 
 **2012 update:** The 2012 integration added 100 records. The
 100 added 2012 questions have no supplied keys or explanations, and their

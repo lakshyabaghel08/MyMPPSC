@@ -17,7 +17,7 @@ test('2010 reviewed answers match the unofficial PDF key and uncertainties stay 
  assert.deepEqual(counts,{supported:80,disputed:14,unresolved:26});
 });
 test('2010 rebuild rejects missing, duplicate, and invalid review records',async()=>{
- const inputs={};for(const y of [2009,2010,2011])inputs[y]={source:await load(`data/pyq/source/2009-2011/pdf-transcription-${y}.json`),labels:await load(`data/pyq/source/2009-2011/final-taxonomy-${y}.json`),...(y===2011?{review:await load('data/pyq/source/2009-2011/answer-review-2011.json')}:{})};
+ const inputs={};for(const y of [2009,2010,2011])inputs[y]={source:await load(`data/pyq/source/2009-2011/pdf-transcription-${y}.json`),labels:await load(`data/pyq/source/2009-2011/final-taxonomy-${y}.json`),...(y!==2010?{review:await load(`data/pyq/source/2009-2011/answer-review-${y}.json`)}:{})};
  const review=await load('data/pyq/source/2009-2011/answer-review-2010.json'), taxonomy=await loadTaxonomy();
  for(const bad of [undefined,{...review,records:review.records.slice(1)},{...review,records:review.records.map((r,i)=>i===1?review.records[0]:r)},{...review,records:review.records.map((r,i)=>i===0?{...r,answer:'Z'}:r)}]){inputs[2010].review=bad;assert.throws(()=>append2009to2011({questions:[],papers:[]},inputs,taxonomy),/2010/);}
 });

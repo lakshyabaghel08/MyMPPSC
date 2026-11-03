@@ -406,7 +406,7 @@ export async function runPipeline(source, opts = {}) {
   if (opts.papers2009to2011) {
     const count = append2009to2011(bank, opts.papers2009to2011, taxonomy);
     for (const q of bank.questions.slice(-count)) rows.push({ id: q.id, paperId: q.paper_id, year: q.year, subject: q.subject, topic: q.topic, subtopic: q.subtopic, confidence: null, source: 'source', flags: q.supplied_answer?.answer ? [] : ['missing_answer_key'], reason: 'English transcription and review', candidates: [], mpSpecific: q.subject === 'Madhya Pradesh Special', excerpt: excerpt(q) });
-    pipelineNotes.push(`2009–2011 source transcriptions: ${count} complete English questions appended; 2010–2011 third-party answer reviews applied, incomplete questions excluded.`);
+    pipelineNotes.push(`2009–2011 source transcriptions: ${count} complete English questions appended; 2009–2011 third-party answer reviews applied, incomplete questions excluded.`);
   }
   const validation = validateBank(bank, {});
 
@@ -566,7 +566,7 @@ Options:
   --reviewed-explanations <f>  override the reviewed explanation prose file
   --reviewed-disputes <f>      override the reviewed dispute-block file
   --include-2012       append the 2012 transcription, taxonomy and required independent reassessment
-  --include-2009-2011  append English PDF-derived questions; apply required unofficial 2010–2011 answer reviews
+  --include-2009-2011  append English PDF-derived questions; apply required unofficial 2009–2011 answer reviews
   --include-model-questions [f]  append the app-authored model questions that fill the numbers
                        the 2019–2024 extraction never printed. Default: data/pyq/model-questions.json
   --source-review <f>  the source parser's own review file; its findings (records it
@@ -678,7 +678,7 @@ async function main() {
   const papers2009to2011 = parsed.flags.has('include-2009-2011') ? Object.fromEntries(await Promise.all([2009, 2010, 2011].map(async (year) => [year, {
     source: JSON.parse(await readFile(resolve(`data/pyq/source/2009-2011/pdf-transcription-${year}.json`), 'utf8')),
     labels: JSON.parse(await readFile(resolve(`data/pyq/source/2009-2011/final-taxonomy-${year}.json`), 'utf8')),
-    ...(year === 2010 || year === 2011 ? { review: JSON.parse(await readFile(resolve(`data/pyq/source/2009-2011/answer-review-${year}.json`), 'utf8')) } : {}),
+    review: JSON.parse(await readFile(resolve(`data/pyq/source/2009-2011/answer-review-${year}.json`), 'utf8')),
   }]))) : null;
   const result = await runPipeline(source, {
     paper2012,

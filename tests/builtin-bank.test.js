@@ -303,3 +303,18 @@ test('2010 answer-only upgrade preserves existing user work and unkeys disputed 
   const paper=await m.db.get(m.constants.STORES.PAPERS,'MPPSC-2010-P1');assert.match(paper.paper_name,/identity unconfirmed/);
   assert.equal((await builtin.ensureBuiltinBank({text:bankText})).status,'current');
 });
+
+test('2009 answer-only upgrade preserves learner work and leaves disputed answers unkeyed', async () => {
+  await bootApp();
+  const old=JSON.parse(bankText);
+  old.papers.find(p=>p.year===2009).paper_name='MPPSC 2009 Prelims General Studies (partial transcription)';
+  for(const q of old.questions.filter(q=>q.year===2009)) { q.supplied_answer={answer:null,status:'missing',source:null,notes:null};q.answer_key_status='missing';q.explanation=null;delete q.dispute;delete q.verification_evidence; }
+  await builtin.ensureBuiltinBank({text:JSON.stringify(old)});
+  await m.questions.setVerifiedAnswer('MPPSC-2009-002',{answer:['A'],evidence:[{note:'personal evidence'}]});
+  await m.questions.setDispute('MPPSC-2009-002',{isDisputed:true,reason:'personal concern'});
+  assert.equal((await builtin.ensureBuiltinBank({text:bankText})).status,'updated');
+  const q=await m.db.get(m.constants.STORES.QUESTIONS,'MPPSC-2009-002');assert.deepEqual(q.supplied.answer,['A']);assert.equal(q.supplied.status,'disputed');assert.equal(q.verified.source,'user_correction');assert.equal(q.dispute.reason,'personal concern');assert.match(q.explanation.correct_reasoning,/Malwa/);
+  const disputed=await m.db.get(m.constants.STORES.QUESTIONS,'MPPSC-2009-081');assert.equal(disputed.supplied.answer,null);assert.equal(disputed.dispute.is_disputed,true);
+  const paper=await m.db.get(m.constants.STORES.PAPERS,'MPPSC-2009-P1');assert.match(paper.paper_name,/identity unconfirmed/);
+  assert.equal((await builtin.ensureBuiltinBank({text:bankText})).status,'current');
+});

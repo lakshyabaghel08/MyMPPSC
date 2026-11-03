@@ -1,4 +1,4 @@
-/* Append complete source-derived English candidates and the 2011 review. */
+/* Append complete source-derived English candidates and the 2009–2011 reviews. */
 export function append2009to2011(bank, inputs, taxonomy) {
   const existing = new Set(bank.questions.map((q) => q.id));
   const specs = [
@@ -7,7 +7,7 @@ export function append2009to2011(bank, inputs, taxonomy) {
     { year: 2011, count: 118, original: 120, exclude: new Set([7, 38]) },
   ];
   const reviews = {};
-  for (const [year, count] of [[2010, 120], [2011, 118]]) {
+  for (const [year, count] of [[2009, 146], [2010, 120], [2011, 118]]) {
     const review = inputs[year]?.review;
     if (review?.paper_id !== `MPPSC-${year}-P1` || review.status !== 'assessed' || !Array.isArray(review.records) || review.records.length !== count) throw new Error(`${year} review must contain ${count} assessed records`);
     const byId = new Map(review.records.map((r) => [r.question_id, r]));
@@ -39,7 +39,7 @@ export function append2009to2011(bank, inputs, taxonomy) {
         question_number: n, question_type: year === 2009 && n >= 101 && n <= 110 ? 'assertion_reason' : /^Match the following/i.test(v.question_text) ? 'matching' : /^Consider the following statements/i.test(v.question_text) ? 'statement_based' : 'single_correct',
         language_variants: { en: variant }, supplied_answer: { answer: null, status: 'missing', source: null, notes: null },
         answer_key_status: 'missing', explanation: null, subject: label.subject, topic: label.topic ?? null, subtopic: label.subtopic ?? null };
-      if (year === 2010 || year === 2011) {
+      if (year >= 2009 && year <= 2011) {
         const { review, byId } = reviews[year];
         const r = byId.get(id);
         if (!r || r.question_number !== n || !['supported', 'disputed', 'unresolved'].includes(r.status) || typeof r.reasoning !== 'string' || !r.reasoning.trim() || !Array.isArray(r.sources) || r.sources.some((url) => typeof url !== 'string' || !/^https?:\/\//.test(url))) throw new Error(`Invalid ${year} review: ${id}`);
@@ -59,7 +59,7 @@ export function append2009to2011(bank, inputs, taxonomy) {
     });
     const partial = count !== original;
     bank.papers.push({ paper_id: paperId, exam: 'MPPSC State Service Preliminary Examination', year,
-      paper_name: `MPPSC ${year} Prelims General Studies${year === 2011 ? ' (partial transcription; paper identity disputed)' : year === 2010 ? ' (English transcription; paper identity unconfirmed)' : partial ? ' (partial transcription)' : ' (English transcription)'}`,
+      paper_name: `MPPSC ${year} Prelims General Studies${year === 2011 ? ' (partial transcription; paper identity disputed)' : year === 2010 ? ' (English transcription; paper identity unconfirmed)' : year === 2009 ? ' (partial transcription; paper identity unconfirmed)' : partial ? ' (partial transcription)' : ' (English transcription)'}`,
       paper_code: 'GS-I', set_code: null, language: 'English', original_question_count: original,
       duration_minutes: null, total_marks: null, scoring: { rules_known: false },
       question_order: records.map((q) => q.id), import_validation: null, is_demonstration: false });

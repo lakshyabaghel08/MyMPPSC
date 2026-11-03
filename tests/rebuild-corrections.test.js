@@ -79,7 +79,7 @@ test('the corrections reconcile: declared, applied and stored agree', () => {
     assert.ok(bankById.has(id), `${id}: dispute block names a shipped question`);
   }
   // Every dispute block in the shipped bank is declared, so a rebuild restores it.
-  const shippedDisputes = bank.questions.filter((q) => q.dispute && q.year !== 2012 && q.year !== 2011 && q.year !== 2010).map((q) => q.id).sort();
+  const shippedDisputes = bank.questions.filter((q) => q.dispute && q.year !== 2012 && q.year !== 2011 && q.year !== 2010 && q.year !== 2009).map((q) => q.id).sort();
   assert.deepEqual(shippedDisputes, Object.keys(disputesFile.disputes).sort(), 'every shipped dispute block is declared');
   // And every shipped answer/option/explanation that a correction describes is in force.
   for (const [id, entry] of Object.entries(correctionsFile.answer_corrections)) {
@@ -255,7 +255,7 @@ test('a clean rebuild reproduces the shipped bank, corrections included', async 
   ]);
   const combined = await loadCombinedHistoricalIntake(base, path.join(root, 'data/pyq/source/2013-18'));
   const paper2012 = { source: await readJson('pyq', 'source', '2012-recovery', 'transcription-staging.json'), labels: await readJson('pyq', 'source', '2012-recovery', 'taxonomy-2012.json'), reassessment: await readJson('pyq', 'source', '2012-recovery', 'answer-reassessment-2012.json') };
-  const papers2009to2011 = Object.fromEntries(await Promise.all([2009, 2010, 2011].map(async (year) => [year, { source: await readJson('pyq', 'source', '2009-2011', `pdf-transcription-${year}.json`), labels: await readJson('pyq', 'source', '2009-2011', `final-taxonomy-${year}.json`), ...(year !== 2009 ? { review: await readJson('pyq', 'source', '2009-2011', `answer-review-${year}.json`) } : {}) }])));
+  const papers2009to2011 = Object.fromEntries(await Promise.all([2009, 2010, 2011].map(async (year) => [year, { source: await readJson('pyq', 'source', '2009-2011', `pdf-transcription-${year}.json`), labels: await readJson('pyq', 'source', '2009-2011', `final-taxonomy-${year}.json`), review: await readJson('pyq', 'source', '2009-2011', `answer-review-${year}.json`) }])));
   const result = await runPipeline(combined.intake, {
     paper2012,
     papers2009to2011,

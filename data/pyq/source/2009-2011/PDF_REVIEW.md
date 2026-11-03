@@ -93,3 +93,7 @@ The existing 2011-labelled paper has disputed identity: a 2010 publication conta
 ## 2010 answer review update
 
 The English source is a third-party paper labelled 2010; paper identity is not independently authenticated. `answer-review-2010.json` reviews its unofficial PDF answer list: 80 answers and explanations are integrated, with 14 disputed and 26 unresolved unkeyed. These are not an official key.
+
+## 2009 answer review update
+
+The third-party source labels this paper 2009; its identity and key are not authenticated. `answer-review-2009.json` integrates 94 supported unofficial PDF answers with explanations and leaves 12 disputed and 40 unresolved unkeyed. The PDF prints an asterisk instead of a letter for Q15; its source mark is preserved. Q75–78 remain excluded because the supplied diagrams or table cannot be reconstructed reliably. Some correct historical facts or legal provisions may change after the paper date.

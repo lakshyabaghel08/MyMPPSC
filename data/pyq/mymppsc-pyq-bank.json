@@ -1639,7 +1639,7 @@
       "paper_id": "MPPSC-2009-P1",
       "exam": "MPPSC State Service Preliminary Examination",
       "year": 2009,
-      "paper_name": "MPPSC 2009 Prelims General Studies (partial transcription)",
+      "paper_name": "MPPSC 2009 Prelims General Studies (partial transcription; paper identity unconfirmed)",
       "paper_code": "GS-I",
       "set_code": null,
       "language": "English",
@@ -112787,13 +112787,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "D"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "Gondwana included the landmasses now comprising South America, Africa and Australia.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Geography",
       "topic": "Physical Geography",
       "subtopic": null
@@ -112831,13 +112840,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "A"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "The Malwa Plateau lies south of the Aravallis and north of the Vindhyan region.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Geography",
       "topic": "Geography of India",
       "subtopic": null
@@ -112875,13 +112893,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "D"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "Sikkim borders Nepal, Bhutan and China.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Geography",
       "topic": "Geography of India",
       "subtopic": null
@@ -112919,13 +112946,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "C"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "Uttar Pradesh led Indian wheat production in the period of this question.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Geography",
       "topic": "Geography of India",
       "subtopic": null
@@ -112972,7 +113008,14 @@
       "explanation": null,
       "subject": "Geography",
       "topic": "Geography of India",
-      "subtopic": null
+      "subtopic": null,
+      "dispute": {
+        "is_disputed": false,
+        "status": "unresolved",
+        "reason": "The third-party answer has not been independently established against the exact wording and options.",
+        "raised_by": "2009 third-party key review"
+      },
+      "verification_evidence": []
     },
     {
       "id": "MPPSC-2009-006",
@@ -113007,13 +113050,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "B"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "The greater one-horned rhinoceros occurs in Assam and West Bengal.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Environment",
       "topic": "Ecology and biodiversity",
       "subtopic": null
@@ -113051,13 +113103,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "D"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "Bauxite is an aluminium ore; haematite, magnetite and limonite are iron ores.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Geography",
       "topic": "Geography of India",
       "subtopic": null
@@ -113095,13 +113156,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "B"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "In the 2001 census, West Bengal had the highest state population density and Arunachal Pradesh the lowest; this is a historical comparison.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Geography",
       "topic": "Geography of India",
       "subtopic": null
@@ -113139,13 +113209,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "C"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "Hirakud is in Odisha, Haldia in West Bengal, Tarapur in Maharashtra and Kudremukh in Karnataka.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Geography",
       "topic": null,
       "subtopic": null
@@ -113183,13 +113262,25 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "C"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "Descending planetary size is Jupiter, Saturn, Uranus, Earth.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          },
+          {
+            "url": "https://cesar.esa.int/upload/201905/jupiter_moons_booklet_pdf.pdf"
+          }
+        ]
+      },
       "subject": "Geography",
       "topic": null,
       "subtopic": null
@@ -113227,13 +113318,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "B"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "From west to east the cities are Lisbon, London, Frankfurt and Beirut.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Geography",
       "topic": "World Geography",
       "subtopic": null
@@ -113271,13 +113371,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "B"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "Kenya–Nairobi, Uganda–Kampala, Uzbekistan–Tashkent and Ukraine–Kyiv give the code 2, 4, 1, 3.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Geography",
       "topic": "World Geography",
       "subtopic": null
@@ -113315,13 +113424,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "C"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "The historical constitutional maximum was 552, including nominated Anglo-Indian members. The nominated seats were subsequently abolished; this answer is time-specific.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Polity",
       "topic": "Union Legislature",
       "subtopic": "Lok Sabha"
@@ -113368,7 +113486,14 @@
       "explanation": null,
       "subject": "Polity",
       "topic": "Constitutional bodies",
-      "subtopic": "Election Commission of India"
+      "subtopic": "Election Commission of India",
+      "dispute": {
+        "is_disputed": false,
+        "status": "unresolved",
+        "reason": "The third-party answer has not been independently established against the exact wording and options.",
+        "raised_by": "2009 third-party key review"
+      },
+      "verification_evidence": []
     },
     {
       "id": "MPPSC-2009-015",
@@ -113408,11 +113533,22 @@
         "source": null,
         "notes": null
       },
-      "answer_key_status": "missing",
+      "answer_key_status": "disputed",
       "explanation": null,
       "subject": "Polity",
       "topic": "Union Legislature",
-      "subtopic": "Rajya Sabha"
+      "subtopic": "Rajya Sabha",
+      "dispute": {
+        "is_disputed": true,
+        "status": "unresolved",
+        "reason": "The PDF prints an asterisk instead of a key. Residence in the electing state was removed as a general Rajya Sabha qualification, and the office-of-profit statement has statutory exceptions.",
+        "raised_by": "2009 third-party key review"
+      },
+      "verification_evidence": [
+        {
+          "url": "https://www.eci.gov.in/eci-backend/public/uploads/monthly_2019_03/2098794446_FormsandinformationrelatedwithNomination_pdf.1165add67a57dfa50e224e9f32e9b43b"
+        }
+      ]
     },
     {
       "id": "MPPSC-2009-016",
@@ -113447,13 +113583,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "C"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "The 44th Amendment removed the right to property from the fundamental rights; it remains protected under Article 300A.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Polity",
       "topic": "Constitution of India",
       "subtopic": "Fundamental Rights"
@@ -113491,13 +113636,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "C"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "The services or tertiary sector contributed the largest share of Indian GDP at the time.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Economy",
       "topic": "Indian Economy",
       "subtopic": "National income"
@@ -113544,7 +113698,14 @@
       "explanation": null,
       "subject": "Economy",
       "topic": "Indian Economy",
-      "subtopic": "Planning in India"
+      "subtopic": "Planning in India",
+      "dispute": {
+        "is_disputed": false,
+        "status": "unresolved",
+        "reason": "The third-party answer has not been independently established against the exact wording and options.",
+        "raised_by": "2009 third-party key review"
+      },
+      "verification_evidence": []
     },
     {
       "id": "MPPSC-2009-019",
@@ -113588,7 +113749,14 @@
       "explanation": null,
       "subject": "Economy",
       "topic": "Indian Economy",
-      "subtopic": "Economic reforms of 1991"
+      "subtopic": "Economic reforms of 1991",
+      "dispute": {
+        "is_disputed": false,
+        "status": "unresolved",
+        "reason": "The third-party answer has not been independently established against the exact wording and options.",
+        "raised_by": "2009 third-party key review"
+      },
+      "verification_evidence": []
     },
     {
       "id": "MPPSC-2009-020",
@@ -113632,7 +113800,14 @@
       "explanation": null,
       "subject": "Environment",
       "topic": "Environmental laws and institutions",
-      "subtopic": null
+      "subtopic": null,
+      "dispute": {
+        "is_disputed": false,
+        "status": "unresolved",
+        "reason": "The third-party answer has not been independently established against the exact wording and options.",
+        "raised_by": "2009 third-party key review"
+      },
+      "verification_evidence": []
     },
     {
       "id": "MPPSC-2009-021",
@@ -113667,13 +113842,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "D"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "The public distribution system sought to provide essential goods and food security while limiting market abuse.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Economy",
       "topic": "Agriculture and rural economy",
       "subtopic": null
@@ -113720,7 +113904,14 @@
       "explanation": null,
       "subject": "Polity",
       "topic": "Statutory and regulatory bodies",
-      "subtopic": "Central Vigilance Commission"
+      "subtopic": "Central Vigilance Commission",
+      "dispute": {
+        "is_disputed": false,
+        "status": "unresolved",
+        "reason": "The third-party answer has not been independently established against the exact wording and options.",
+        "raised_by": "2009 third-party key review"
+      },
+      "verification_evidence": []
     },
     {
       "id": "MPPSC-2009-023",
@@ -113755,13 +113946,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "C"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "The historical HDI combined health, education and income indicators, not a separate social-inequality component.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Economy",
       "topic": "Poverty and human development",
       "subtopic": "Human Development Index"
@@ -113808,7 +114008,14 @@
       "explanation": null,
       "subject": "Economy",
       "topic": "Agriculture and rural economy",
-      "subtopic": null
+      "subtopic": null,
+      "dispute": {
+        "is_disputed": false,
+        "status": "unresolved",
+        "reason": "The third-party answer has not been independently established against the exact wording and options.",
+        "raised_by": "2009 third-party key review"
+      },
+      "verification_evidence": []
     },
     {
       "id": "MPPSC-2009-025",
@@ -113852,7 +114059,14 @@
       "explanation": null,
       "subject": "Economy",
       "topic": "Indian Economy",
-      "subtopic": "Planning in India"
+      "subtopic": "Planning in India",
+      "dispute": {
+        "is_disputed": false,
+        "status": "unresolved",
+        "reason": "The third-party answer has not been independently established against the exact wording and options.",
+        "raised_by": "2009 third-party key review"
+      },
+      "verification_evidence": []
     },
     {
       "id": "MPPSC-2009-026",
@@ -113887,13 +114101,25 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "A"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "Bindra won shooting gold; Sushil Kumar won a wrestling bronze, not a boxing medal.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          },
+          {
+            "url": "https://www.olympics.com/en/news/medals-won-india-olympics-2008-beijing-table-gold-bronze"
+          }
+        ]
+      },
       "subject": "Current Affairs",
       "topic": "Sports current affairs",
       "subtopic": "Olympic and Asian Games"
@@ -113931,13 +114157,25 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "D"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "India last won Olympic hockey gold in Moscow in 1980.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          },
+          {
+            "url": "https://www.olympics.com/en/news/how-indian-hockey-team-olympic-games-gold-medals"
+          }
+        ]
+      },
       "subject": "Current Affairs",
       "topic": "Sports current affairs",
       "subtopic": "Olympic and Asian Games"
@@ -113984,7 +114222,14 @@
       "explanation": null,
       "subject": "Current Affairs",
       "topic": "Sports current affairs",
-      "subtopic": "Olympic and Asian Games"
+      "subtopic": "Olympic and Asian Games",
+      "dispute": {
+        "is_disputed": false,
+        "status": "unresolved",
+        "reason": "The third-party answer has not been independently established against the exact wording and options.",
+        "raised_by": "2009 third-party key review"
+      },
+      "verification_evidence": []
     },
     {
       "id": "MPPSC-2009-029",
@@ -114019,13 +114264,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "D"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "Bradman and Lara had previously scored two Test triple centuries.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Current Affairs",
       "topic": "Sports current affairs",
       "subtopic": "Cricket"
@@ -114063,13 +114317,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "A"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "M. S. Dhoni received the Rajiv Gandhi Khel Ratna for 2007–08.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Current Affairs",
       "topic": "Sports current affairs",
       "subtopic": null
@@ -114107,13 +114370,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "A"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "Phelps won eight golds and Bolt won the 100 m and 200 m; Federer did not win the singles title.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Current Affairs",
       "topic": "Sports current affairs",
       "subtopic": "Olympic and Asian Games"
@@ -114160,7 +114432,14 @@
       "explanation": null,
       "subject": "Current Affairs",
       "topic": "Sports current affairs",
-      "subtopic": "Other sports events"
+      "subtopic": "Other sports events",
+      "dispute": {
+        "is_disputed": false,
+        "status": "unresolved",
+        "reason": "The third-party answer has not been independently established against the exact wording and options.",
+        "raised_by": "2009 third-party key review"
+      },
+      "verification_evidence": []
     },
     {
       "id": "MPPSC-2009-033",
@@ -114195,13 +114474,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "A"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "Leander Paes and Cara Black won the 2008 US Open mixed doubles title.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Current Affairs",
       "topic": "Sports current affairs",
       "subtopic": "Other sports events"
@@ -114248,7 +114536,14 @@
       "explanation": null,
       "subject": "Current Affairs",
       "topic": "Sports current affairs",
-      "subtopic": "Other sports events"
+      "subtopic": "Other sports events",
+      "dispute": {
+        "is_disputed": false,
+        "status": "unresolved",
+        "reason": "The third-party answer has not been independently established against the exact wording and options.",
+        "raised_by": "2009 third-party key review"
+      },
+      "verification_evidence": []
     },
     {
       "id": "MPPSC-2009-035",
@@ -114283,13 +114578,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "B"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "The Vikram Award is a Madhya Pradesh sports award.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Current Affairs",
       "topic": "Sports current affairs",
       "subtopic": null
@@ -114336,7 +114640,14 @@
       "explanation": null,
       "subject": "Current Affairs",
       "topic": "Sports current affairs",
-      "subtopic": "Other sports events"
+      "subtopic": "Other sports events",
+      "dispute": {
+        "is_disputed": false,
+        "status": "unresolved",
+        "reason": "The third-party answer has not been independently established against the exact wording and options.",
+        "raised_by": "2009 third-party key review"
+      },
+      "verification_evidence": []
     },
     {
       "id": "MPPSC-2009-037",
@@ -114371,13 +114682,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "A"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "India won the 2008 AFC Challenge Cup.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Current Affairs",
       "topic": "Sports current affairs",
       "subtopic": "Other sports events"
@@ -114415,13 +114735,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "A"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "Koneru Humpy became the first Indian woman to cross a 2600 Elo rating.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Current Affairs",
       "topic": "Sports current affairs",
       "subtopic": "Other sports events"
@@ -114468,7 +114797,14 @@
       "explanation": null,
       "subject": "Current Affairs",
       "topic": "Sports current affairs",
-      "subtopic": "Other sports events"
+      "subtopic": "Other sports events",
+      "dispute": {
+        "is_disputed": false,
+        "status": "unresolved",
+        "reason": "The third-party answer has not been independently established against the exact wording and options.",
+        "raised_by": "2009 third-party key review"
+      },
+      "verification_evidence": []
     },
     {
       "id": "MPPSC-2009-040",
@@ -114503,13 +114839,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "B"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "Amay Khurasiya played one-day internationals but did not play a Test for India.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Current Affairs",
       "topic": "Sports current affairs",
       "subtopic": "Cricket"
@@ -114547,13 +114892,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "D"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "Singrauli and Alirajpur were created as districts in 2008.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Madhya Pradesh Special",
       "topic": "Administrative structure of Madhya Pradesh",
       "subtopic": null
@@ -114591,13 +114945,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "A"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "Rewa lies farther east than the other listed Madhya Pradesh cities and is closest to the 82.5° E standard meridian.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Geography",
       "topic": "Maps and location",
       "subtopic": null
@@ -114644,7 +115007,14 @@
       "explanation": null,
       "subject": "Geography",
       "topic": "Geography of India",
-      "subtopic": "Transport in India"
+      "subtopic": "Transport in India",
+      "dispute": {
+        "is_disputed": false,
+        "status": "unresolved",
+        "reason": "The third-party answer has not been independently established against the exact wording and options.",
+        "raised_by": "2009 third-party key review"
+      },
+      "verification_evidence": []
     },
     {
       "id": "MPPSC-2009-044",
@@ -114684,11 +115054,18 @@
         "source": null,
         "notes": null
       },
-      "answer_key_status": "missing",
+      "answer_key_status": "disputed",
       "explanation": null,
       "subject": "Geography",
       "topic": "Maps and location",
-      "subtopic": null
+      "subtopic": null,
+      "dispute": {
+        "is_disputed": true,
+        "status": "unresolved",
+        "reason": "The PDF says Jhabua is earlier, but Sidhi is farther east; local sunrise varies by date and location.",
+        "raised_by": "2009 third-party key review"
+      },
+      "verification_evidence": []
     },
     {
       "id": "MPPSC-2009-045",
@@ -114723,13 +115100,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "C"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "Bharia–Chhindwara, Gond–Mandla, Bhil–Jhabua and Sahariya–Shivpuri give 2, 3, 1, 4.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Madhya Pradesh Special",
       "topic": "Tribes of Madhya Pradesh",
       "subtopic": null
@@ -114767,13 +115153,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "B"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "Maharishi Panini Sanskrit university was established at Ujjain.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Art and Culture",
       "topic": null,
       "subtopic": null
@@ -114811,13 +115206,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "D"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "Khajuraho, Bhimbetka and Sanchi are UNESCO World Heritage sites; Mandu palace is not separately inscribed.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Art and Culture",
       "topic": "Heritage Sites",
       "subtopic": null
@@ -114860,11 +115264,18 @@
         "source": null,
         "notes": null
       },
-      "answer_key_status": "missing",
+      "answer_key_status": "disputed",
       "explanation": null,
       "subject": "History",
       "topic": null,
-      "subtopic": null
+      "subtopic": null,
+      "dispute": {
+        "is_disputed": true,
+        "status": "unresolved",
+        "reason": "The PDF selects D although its sequence does not match the conventional Bhoj–Dhar and Durgawati–Gondwana associations; the other associations require review.",
+        "raised_by": "2009 third-party key review"
+      },
+      "verification_evidence": []
     },
     {
       "id": "MPPSC-2009-049",
@@ -114899,13 +115310,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "C"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "The Son joins the Ganga; the Ken, Betwa and Chambal drain into the Yamuna.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Geography",
       "topic": "Geography of India",
       "subtopic": null
@@ -114943,13 +115363,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "D"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "Bansagar is on the Son, whereas the other listed dams are on the Narmada.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Geography",
       "topic": "Rivers of Madhya Pradesh",
       "subtopic": "Dams and reservoirs"
@@ -114996,7 +115425,14 @@
       "explanation": null,
       "subject": "Art and Culture",
       "topic": "Dance and music",
-      "subtopic": null
+      "subtopic": null,
+      "dispute": {
+        "is_disputed": false,
+        "status": "unresolved",
+        "reason": "The third-party answer has not been independently established against the exact wording and options.",
+        "raised_by": "2009 third-party key review"
+      },
+      "verification_evidence": []
     },
     {
       "id": "MPPSC-2009-052",
@@ -115031,13 +115467,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "C"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "Morena is associated with the Chambal ravines and severe soil erosion.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Geography",
       "topic": "Climate and soils of Madhya Pradesh",
       "subtopic": "Soil types"
@@ -115075,13 +115520,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "B"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "IIITDM is at Jabalpur, IIITM at Gwalior, IIM at Indore and IISER at Bhopal.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Madhya Pradesh Special",
       "topic": "Schemes and institutions of Madhya Pradesh",
       "subtopic": null
@@ -115119,13 +115573,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "D"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "Kuno–Palpur was selected as a potential second home for Asiatic lions from Gir.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Environment",
       "topic": "Wildlife of Madhya Pradesh",
       "subtopic": null
@@ -115172,7 +115635,14 @@
       "explanation": null,
       "subject": "Art and Culture",
       "topic": "Culture of Madhya Pradesh",
-      "subtopic": null
+      "subtopic": null,
+      "dispute": {
+        "is_disputed": false,
+        "status": "unresolved",
+        "reason": "The third-party answer has not been independently established against the exact wording and options.",
+        "raised_by": "2009 third-party key review"
+      },
+      "verification_evidence": []
     },
     {
       "id": "MPPSC-2009-056",
@@ -115216,7 +115686,14 @@
       "explanation": null,
       "subject": "Polity",
       "topic": "State Government",
-      "subtopic": "Chief Minister and State Council of Ministers"
+      "subtopic": "Chief Minister and State Council of Ministers",
+      "dispute": {
+        "is_disputed": false,
+        "status": "unresolved",
+        "reason": "The third-party answer has not been independently established against the exact wording and options.",
+        "raised_by": "2009 third-party key review"
+      },
+      "verification_evidence": []
     },
     {
       "id": "MPPSC-2009-057",
@@ -115260,7 +115737,14 @@
       "explanation": null,
       "subject": "Polity",
       "topic": null,
-      "subtopic": null
+      "subtopic": null,
+      "dispute": {
+        "is_disputed": false,
+        "status": "unresolved",
+        "reason": "The third-party answer has not been independently established against the exact wording and options.",
+        "raised_by": "2009 third-party key review"
+      },
+      "verification_evidence": []
     },
     {
       "id": "MPPSC-2009-058",
@@ -115304,7 +115788,14 @@
       "explanation": null,
       "subject": "Polity",
       "topic": "Local self-government",
-      "subtopic": "Panchayati Raj"
+      "subtopic": "Panchayati Raj",
+      "dispute": {
+        "is_disputed": false,
+        "status": "unresolved",
+        "reason": "The third-party answer has not been independently established against the exact wording and options.",
+        "raised_by": "2009 third-party key review"
+      },
+      "verification_evidence": []
     },
     {
       "id": "MPPSC-2009-059",
@@ -115339,13 +115830,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "A"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "Pithampur is a major Madhya Pradesh automobile manufacturing cluster.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Economy",
       "topic": "Economy of Madhya Pradesh",
       "subtopic": "Industry of Madhya Pradesh"
@@ -115383,13 +115883,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "D"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "Madhya Pradesh was a leading soybean-producing state in the period of the question.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Economy",
       "topic": "Economy of Madhya Pradesh",
       "subtopic": "Agriculture of Madhya Pradesh"
@@ -115436,7 +115945,14 @@
       "explanation": null,
       "subject": "Economy",
       "topic": "Economy of Madhya Pradesh",
-      "subtopic": "Agriculture of Madhya Pradesh"
+      "subtopic": "Agriculture of Madhya Pradesh",
+      "dispute": {
+        "is_disputed": false,
+        "status": "unresolved",
+        "reason": "The third-party answer has not been independently established against the exact wording and options.",
+        "raised_by": "2009 third-party key review"
+      },
+      "verification_evidence": []
     },
     {
       "id": "MPPSC-2009-062",
@@ -115471,13 +115987,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "A"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "Jamunapari is a goat, Bhadawari a buffalo, Kadaknath poultry and Malwi cattle.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Economy",
       "topic": "Economy of Madhya Pradesh",
       "subtopic": null
@@ -115515,13 +116040,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "A"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "Coal-bed methane has been developed in the Shahdol region.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Economy",
       "topic": "Economy of Madhya Pradesh",
       "subtopic": "Minerals of Madhya Pradesh"
@@ -115568,7 +116102,14 @@
       "explanation": null,
       "subject": "Economy",
       "topic": "Economy of Madhya Pradesh",
-      "subtopic": "Minerals of Madhya Pradesh"
+      "subtopic": "Minerals of Madhya Pradesh",
+      "dispute": {
+        "is_disputed": false,
+        "status": "unresolved",
+        "reason": "The third-party answer has not been independently established against the exact wording and options.",
+        "raised_by": "2009 third-party key review"
+      },
+      "verification_evidence": []
     },
     {
       "id": "MPPSC-2009-065",
@@ -115612,7 +116153,14 @@
       "explanation": null,
       "subject": "Economy",
       "topic": "Economy of Madhya Pradesh",
-      "subtopic": null
+      "subtopic": null,
+      "dispute": {
+        "is_disputed": false,
+        "status": "unresolved",
+        "reason": "The third-party answer has not been independently established against the exact wording and options.",
+        "raised_by": "2009 third-party key review"
+      },
+      "verification_evidence": []
     },
     {
       "id": "MPPSC-2009-066",
@@ -115656,7 +116204,14 @@
       "explanation": null,
       "subject": "Economy",
       "topic": "Economy of Madhya Pradesh",
-      "subtopic": null
+      "subtopic": null,
+      "dispute": {
+        "is_disputed": false,
+        "status": "unresolved",
+        "reason": "The third-party answer has not been independently established against the exact wording and options.",
+        "raised_by": "2009 third-party key review"
+      },
+      "verification_evidence": []
     },
     {
       "id": "MPPSC-2009-067",
@@ -115700,7 +116255,14 @@
       "explanation": null,
       "subject": "Madhya Pradesh Special",
       "topic": "Demography of Madhya Pradesh",
-      "subtopic": "Sex ratio"
+      "subtopic": "Sex ratio",
+      "dispute": {
+        "is_disputed": false,
+        "status": "unresolved",
+        "reason": "The third-party answer has not been independently established against the exact wording and options.",
+        "raised_by": "2009 third-party key review"
+      },
+      "verification_evidence": []
     },
     {
       "id": "MPPSC-2009-068",
@@ -115744,7 +116306,14 @@
       "explanation": null,
       "subject": "Madhya Pradesh Special",
       "topic": "Demography of Madhya Pradesh",
-      "subtopic": "Literacy"
+      "subtopic": "Literacy",
+      "dispute": {
+        "is_disputed": false,
+        "status": "unresolved",
+        "reason": "The third-party answer has not been independently established against the exact wording and options.",
+        "raised_by": "2009 third-party key review"
+      },
+      "verification_evidence": []
     },
     {
       "id": "MPPSC-2009-069",
@@ -115788,7 +116357,14 @@
       "explanation": null,
       "subject": "Economy",
       "topic": "Agriculture and rural economy",
-      "subtopic": "Rural employment programmes"
+      "subtopic": "Rural employment programmes",
+      "dispute": {
+        "is_disputed": false,
+        "status": "unresolved",
+        "reason": "The third-party answer has not been independently established against the exact wording and options.",
+        "raised_by": "2009 third-party key review"
+      },
+      "verification_evidence": []
     },
     {
       "id": "MPPSC-2009-070",
@@ -115832,7 +116408,14 @@
       "explanation": null,
       "subject": "Madhya Pradesh Special",
       "topic": "Schemes and institutions of Madhya Pradesh",
-      "subtopic": null
+      "subtopic": null,
+      "dispute": {
+        "is_disputed": false,
+        "status": "unresolved",
+        "reason": "The third-party answer has not been independently established against the exact wording and options.",
+        "raised_by": "2009 third-party key review"
+      },
+      "verification_evidence": []
     },
     {
       "id": "MPPSC-2009-071",
@@ -115867,13 +116450,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "C"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "The net displacement is 40 metres west and 30 metres south; Pythagoras gives 50 metres.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "General Aptitude",
       "topic": "Logical reasoning",
       "subtopic": "Direction sense"
@@ -115911,13 +116503,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "A"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "Each third number is the sum of squares of the first two: 13² + 6² = 205.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "General Aptitude",
       "topic": "Quantitative aptitude",
       "subtopic": null
@@ -115955,13 +116556,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "C"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "McCain and Obama were opposing 2008 presidential candidates; Palin and Biden were their respective running mates.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "General Aptitude",
       "topic": "Logical reasoning",
       "subtopic": null
@@ -115999,13 +116609,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "B"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "Alternately double and subtract or add successive odd numbers: 5×2−1=9, 9×2+3=21, …, 81×2−9=153.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "General Aptitude",
       "topic": "Logical reasoning",
       "subtopic": null
@@ -116043,13 +116662,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "C"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "A fall of three years across twelve teachers means the replacement is 36 years younger than 62, or 26.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "General Aptitude",
       "topic": "Quantitative aptitude",
       "subtopic": null
@@ -116087,13 +116715,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "B"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "At 30 km/h the train travels 300 m in 36 seconds; subtracting its 50 m length leaves a 250 m bridge.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "General Aptitude",
       "topic": "Quantitative aptitude",
       "subtopic": "Time speed and distance"
@@ -116136,11 +116773,22 @@
         "source": null,
         "notes": null
       },
-      "answer_key_status": "missing",
+      "answer_key_status": "disputed",
       "explanation": null,
       "subject": "General Aptitude",
       "topic": "Quantitative aptitude",
-      "subtopic": null
+      "subtopic": null,
+      "dispute": {
+        "is_disputed": true,
+        "status": "unresolved",
+        "reason": "The PDF gives 132, which counts only the double round robin. Including the stated final produces 133.",
+        "raised_by": "2009 third-party key review"
+      },
+      "verification_evidence": [
+        {
+          "url": "https://bracketbuddy.io/double-round-robin"
+        }
+      ]
     },
     {
       "id": "MPPSC-2009-082",
@@ -116175,13 +116823,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "C"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "The other caps are brown, white and red. Virendra wears black pants and cannot wear a black cap, leaving blue.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "General Aptitude",
       "topic": "Logical reasoning",
       "subtopic": null
@@ -116219,13 +116876,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "D"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "White pants cannot carry the bat, gloves or pads, already assigned to the brown, blue and red pants, so the remaining item is ball or stumps.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "General Aptitude",
       "topic": "Logical reasoning",
       "subtopic": null
@@ -116263,13 +116929,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "C"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "Ishant cannot wear blue pants, Virendra wears black and Anil brown; blue pants belong to Sachin or Rahul.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "General Aptitude",
       "topic": "Logical reasoning",
       "subtopic": null
@@ -116307,13 +116982,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "D"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "Ishant must wear white pants. With Rahul in red pants, the remaining cap constraints give Ishant the black cap.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "General Aptitude",
       "topic": "Logical reasoning",
       "subtopic": null
@@ -116351,13 +117035,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "A"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "SWAN means State Wide Area Network under the National e-Governance Plan.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Science and Technology",
       "topic": "Science and technology developments",
       "subtopic": "Information technology"
@@ -116395,13 +117088,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "B"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "CSC denotes Common Service Centre under the National e-Governance Plan.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Science and Technology",
       "topic": "Science and technology developments",
       "subtopic": "Information technology"
@@ -116439,13 +117141,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "A"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "Google introduced the Chrome browser in 2008.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Science and Technology",
       "topic": "Science and technology developments",
       "subtopic": "Information technology"
@@ -116492,7 +117203,14 @@
       "explanation": null,
       "subject": "Science and Technology",
       "topic": "Science and technology developments",
-      "subtopic": "Information technology"
+      "subtopic": "Information technology",
+      "dispute": {
+        "is_disputed": false,
+        "status": "unresolved",
+        "reason": "The third-party answer has not been independently established against the exact wording and options.",
+        "raised_by": "2009 third-party key review"
+      },
+      "verification_evidence": []
     },
     {
       "id": "MPPSC-2009-090",
@@ -116527,13 +117245,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "B"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "Narayana Murthy–Infosys, Azim Premji–Wipro, Ramalinga Raju–Satyam and Ramadorai–TCS yield 3, 1, 4, 2.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Science and Technology",
       "topic": "Science and technology developments",
       "subtopic": "Information technology"
@@ -116580,7 +117307,14 @@
       "explanation": null,
       "subject": "Science and Technology",
       "topic": "Science and technology developments",
-      "subtopic": "Information technology"
+      "subtopic": "Information technology",
+      "dispute": {
+        "is_disputed": false,
+        "status": "unresolved",
+        "reason": "The third-party answer has not been independently established against the exact wording and options.",
+        "raised_by": "2009 third-party key review"
+      },
+      "verification_evidence": []
     },
     {
       "id": "MPPSC-2009-092",
@@ -116620,11 +117354,18 @@
         "source": null,
         "notes": null
       },
-      "answer_key_status": "missing",
+      "answer_key_status": "disputed",
       "explanation": null,
       "subject": "Science and Technology",
       "topic": "Science and technology developments",
-      "subtopic": "Information technology"
+      "subtopic": "Information technology",
+      "dispute": {
+        "is_disputed": true,
+        "status": "unresolved",
+        "reason": "The PDF claims both statements true, but assigning IP addresses is normally a DHCP function, not the defining role of a proxy server.",
+        "raised_by": "2009 third-party key review"
+      },
+      "verification_evidence": []
     },
     {
       "id": "MPPSC-2009-093",
@@ -116659,13 +117400,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "B"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "A network covering a single location is generally a local area network.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Science and Technology",
       "topic": "Science and technology developments",
       "subtopic": "Information technology"
@@ -116703,13 +117453,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "D"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "A database field represents a category or attribute of information.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Science and Technology",
       "topic": "Science and technology developments",
       "subtopic": "Information technology"
@@ -116747,13 +117506,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "C"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "A megabyte is approximately one million bytes.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Science and Technology",
       "topic": "Science and technology developments",
       "subtopic": "Information technology"
@@ -116791,13 +117559,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "A"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "A repeater regenerates a signal to extend a network link.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Science and Technology",
       "topic": "Science and technology developments",
       "subtopic": "Information technology"
@@ -116835,13 +117612,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "D"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "The .edu.us domain denotes an educational institution in the United States.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Science and Technology",
       "topic": "Science and technology developments",
       "subtopic": "Information technology"
@@ -116879,13 +117665,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "B"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "Word processors and spreadsheets are application software.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Science and Technology",
       "topic": "Science and technology developments",
       "subtopic": "Information technology"
@@ -116923,13 +117718,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "D"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "A digital camera is an input device; the others are output devices.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Science and Technology",
       "topic": "Science and technology developments",
       "subtopic": "Information technology"
@@ -116967,13 +117771,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "C"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "The Michelangelo computer virus was associated with activation on 6 March 1992.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Science and Technology",
       "topic": "Science and technology developments",
       "subtopic": "Information technology"
@@ -117011,13 +117824,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "C"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "Electricity usage is billed in kilowatt-hours; India’s standard grid frequency is 50 Hz, not 60 Hz.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Science and Technology",
       "topic": "Physics",
       "subtopic": null
@@ -117055,13 +117877,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "A"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "Nitrogen deficiency causes chlorosis and stunting; nitrogen is important for chlorophyll and leaf growth.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Science and Technology",
       "topic": "Biology",
       "subtopic": null
@@ -117104,11 +117935,22 @@
         "source": null,
         "notes": null
       },
-      "answer_key_status": "missing",
+      "answer_key_status": "disputed",
       "explanation": null,
       "subject": "Science and Technology",
       "topic": "Chemistry",
-      "subtopic": null
+      "subtopic": null,
+      "dispute": {
+        "is_disputed": true,
+        "status": "unresolved",
+        "reason": "The PDF says both statements are true; gypsum is added to control and retard rapid cement setting, not speed it up.",
+        "raised_by": "2009 third-party key review"
+      },
+      "verification_evidence": [
+        {
+          "url": "https://shop.rabatec.ca/product/gypsum-caso%E2%82%84%C2%B72h%E2%82%82o-set-regulator/"
+        }
+      ]
     },
     {
       "id": "MPPSC-2009-104",
@@ -117148,11 +117990,18 @@
         "source": null,
         "notes": null
       },
-      "answer_key_status": "missing",
+      "answer_key_status": "disputed",
       "explanation": null,
       "subject": "Science and Technology",
       "topic": "Biology",
-      "subtopic": null
+      "subtopic": null,
+      "dispute": {
+        "is_disputed": true,
+        "status": "unresolved",
+        "reason": "The PDF’s AB universal-recipient assertion omits Rh and product compatibility; AB red cells also do have A and B antigens. The intended ABO-only interpretation differs from the unqualified wording.",
+        "raised_by": "2009 third-party key review"
+      },
+      "verification_evidence": []
     },
     {
       "id": "MPPSC-2009-105",
@@ -117192,11 +118041,18 @@
         "source": null,
         "notes": null
       },
-      "answer_key_status": "missing",
+      "answer_key_status": "disputed",
       "explanation": null,
       "subject": "Geography",
       "topic": "Physical Geography",
-      "subtopic": null
+      "subtopic": null,
+      "dispute": {
+        "is_disputed": true,
+        "status": "unresolved",
+        "reason": "The PDF asserts one rotation direction for all wind patterns. Cyclones and anticyclones rotate in opposite directions, so the assertion is overbroad.",
+        "raised_by": "2009 third-party key review"
+      },
+      "verification_evidence": []
     },
     {
       "id": "MPPSC-2009-106",
@@ -117231,13 +118087,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "A"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "Lala Lajpat Rai led the Lahore protest against the all-British Simon Commission in 1928.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "History",
       "topic": "Modern India",
       "subtopic": null
@@ -117284,7 +118149,14 @@
       "explanation": null,
       "subject": "Economy",
       "topic": "Economy of Madhya Pradesh",
-      "subtopic": null
+      "subtopic": null,
+      "dispute": {
+        "is_disputed": false,
+        "status": "unresolved",
+        "reason": "The third-party answer has not been independently established against the exact wording and options.",
+        "raised_by": "2009 third-party key review"
+      },
+      "verification_evidence": []
     },
     {
       "id": "MPPSC-2009-108",
@@ -117324,11 +118196,22 @@
         "source": null,
         "notes": null
       },
-      "answer_key_status": "missing",
+      "answer_key_status": "disputed",
       "explanation": null,
       "subject": "Polity",
       "topic": "Constitution of India",
-      "subtopic": null
+      "subtopic": null,
+      "dispute": {
+        "is_disputed": true,
+        "status": "unresolved",
+        "reason": "The PDF says both statements are true; state constitutional failure is addressed by Article 356, not Article 352.",
+        "raised_by": "2009 third-party key review"
+      },
+      "verification_evidence": [
+        {
+          "url": "https://prepp.in/question/which-one-of-the-following-article-has-the-provisi-661e2e11742c10dc5f1ab387"
+        }
+      ]
     },
     {
       "id": "MPPSC-2009-109",
@@ -117372,7 +118255,14 @@
       "explanation": null,
       "subject": "Economy",
       "topic": "International economy",
-      "subtopic": null
+      "subtopic": null,
+      "dispute": {
+        "is_disputed": false,
+        "status": "unresolved",
+        "reason": "The third-party answer has not been independently established against the exact wording and options.",
+        "raised_by": "2009 third-party key review"
+      },
+      "verification_evidence": []
     },
     {
       "id": "MPPSC-2009-110",
@@ -117412,11 +118302,22 @@
         "source": null,
         "notes": null
       },
-      "answer_key_status": "missing",
+      "answer_key_status": "disputed",
       "explanation": null,
       "subject": "Science and Technology",
       "topic": "Science and technology developments",
-      "subtopic": null
+      "subtopic": null,
+      "dispute": {
+        "is_disputed": true,
+        "status": "unresolved",
+        "reason": "CERN’s historical acronym is true but does not explain why the laboratory is large; the PDF treats it as a causal explanation.",
+        "raised_by": "2009 third-party key review"
+      },
+      "verification_evidence": [
+        {
+          "url": "https://home.cern/about/who-we-are/our-history/"
+        }
+      ]
     },
     {
       "id": "MPPSC-2009-111",
@@ -117451,13 +118352,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "C"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "The seasonal ozone hole is most pronounced over Antarctica.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Environment",
       "topic": "Pollution and climate change",
       "subtopic": "Ozone depletion"
@@ -117495,13 +118405,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "D"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "Steel is primarily an alloy of iron and carbon.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Science and Technology",
       "topic": "Chemistry",
       "subtopic": "Alloys and mixtures"
@@ -117539,13 +118458,25 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "A"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "India launched the Aryabhata satellite on 19 April 1975.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          },
+          {
+            "url": "https://www.isro.gov.in/ISRO_EN/FAQ.html"
+          }
+        ]
+      },
       "subject": "Science and Technology",
       "topic": "Science and technology developments",
       "subtopic": null
@@ -117583,13 +118514,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "B"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "Project Tiger began in 1973.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Environment",
       "topic": "Conservation initiatives",
       "subtopic": "Project Tiger"
@@ -117627,13 +118567,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "C"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "Methyl isocyanate leaked in the 1984 Bhopal disaster.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Environment",
       "topic": "Pollution and climate change",
       "subtopic": null
@@ -117671,13 +118620,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "B"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "A light-year measures distance, the distance light travels in a year.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Science and Technology",
       "topic": "Physics",
       "subtopic": "Units and measurements"
@@ -117715,13 +118673,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "C"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "Floating ice displaces its own weight in water; melting it leaves the water level unchanged.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Science and Technology",
       "topic": "Physics",
       "subtopic": null
@@ -117764,11 +118731,18 @@
         "source": null,
         "notes": null
       },
-      "answer_key_status": "missing",
+      "answer_key_status": "disputed",
       "explanation": null,
       "subject": "Science and Technology",
       "topic": "Biology",
-      "subtopic": "Nutrition and vitamins"
+      "subtopic": "Nutrition and vitamins",
+      "dispute": {
+        "is_disputed": true,
+        "status": "unresolved",
+        "reason": "Both B and D contain the same correct matching sequence, so no unique option can be scored.",
+        "raised_by": "2009 third-party key review"
+      },
+      "verification_evidence": []
     },
     {
       "id": "MPPSC-2009-119",
@@ -117803,13 +118777,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "B"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "A concave lens diverges light and is used to correct myopia.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Science and Technology",
       "topic": "Physics",
       "subtopic": "Light and optics"
@@ -117847,13 +118830,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "B"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "Tarapur was India’s first nuclear power station.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Science and Technology",
       "topic": "Science and technology developments",
       "subtopic": null
@@ -117891,13 +118883,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "B"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "A fan increases evaporation of perspiration, improving cooling.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Science and Technology",
       "topic": "Physics",
       "subtopic": null
@@ -117935,13 +118936,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "D"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "Iran is not a Nuclear Suppliers Group member; the other listed countries are members.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Current Affairs",
       "topic": "International current affairs",
       "subtopic": null
@@ -117979,13 +118989,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "C"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "The Kosi changed course in 2008 and caused severe flooding in Bihar.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Geography",
       "topic": "Geography of India",
       "subtopic": null
@@ -118023,13 +119042,25 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "A"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "The UN designated 2008 the International Year of Sanitation.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          },
+          {
+            "url": "https://www.who.int/news/item/19-03-2008-poor-sanitation-threatens-public-health"
+          }
+        ]
+      },
       "subject": "Current Affairs",
       "topic": "National current affairs",
       "subtopic": null
@@ -118067,13 +119098,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "D"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "Kandhamal was worst affected by the 2008 violence in Odisha.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Current Affairs",
       "topic": "National current affairs",
       "subtopic": null
@@ -118120,7 +119160,14 @@
       "explanation": null,
       "subject": "Current Affairs",
       "topic": "Awards and honours",
-      "subtopic": null
+      "subtopic": null,
+      "dispute": {
+        "is_disputed": false,
+        "status": "unresolved",
+        "reason": "The third-party answer has not been independently established against the exact wording and options.",
+        "raised_by": "2009 third-party key review"
+      },
+      "verification_evidence": []
     },
     {
       "id": "MPPSC-2009-127",
@@ -118155,13 +119202,25 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "B"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "At the time, the allocation of Lok Sabha seats among states remained frozen on the 1971 census basis; constituency boundaries are a separate issue.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          },
+          {
+            "url": "https://www.understandupsc.com/article-82/"
+          }
+        ]
+      },
       "subject": "Polity",
       "topic": "Union Legislature",
       "subtopic": "Lok Sabha"
@@ -118199,13 +119258,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "D"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "Russia recognized Abkhazia and South Ossetia in 2008.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Current Affairs",
       "topic": "International current affairs",
       "subtopic": null
@@ -118252,7 +119320,14 @@
       "explanation": null,
       "subject": "Current Affairs",
       "topic": "International current affairs",
-      "subtopic": null
+      "subtopic": null,
+      "dispute": {
+        "is_disputed": false,
+        "status": "unresolved",
+        "reason": "The third-party answer has not been independently established against the exact wording and options.",
+        "raised_by": "2009 third-party key review"
+      },
+      "verification_evidence": []
     },
     {
       "id": "MPPSC-2009-130",
@@ -118287,13 +119362,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "D"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "The Forest Rights Act uses 13 December 2005 as its occupation cut-off date.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Current Affairs",
       "topic": "National current affairs",
       "subtopic": null
@@ -118340,7 +119424,14 @@
       "explanation": null,
       "subject": "Current Affairs",
       "topic": "Awards and honours",
-      "subtopic": null
+      "subtopic": null,
+      "dispute": {
+        "is_disputed": false,
+        "status": "unresolved",
+        "reason": "The third-party answer has not been independently established against the exact wording and options.",
+        "raised_by": "2009 third-party key review"
+      },
+      "verification_evidence": []
     },
     {
       "id": "MPPSC-2009-132",
@@ -118375,13 +119466,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "A"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "Chandrayaan-1 was India’s first lunar mission.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Current Affairs",
       "topic": "Science and technology current affairs",
       "subtopic": null
@@ -118419,13 +119519,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "D"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "Duvvuri Subbarao became RBI governor in September 2008 after serving as economic affairs secretary.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Current Affairs",
       "topic": "Appointments and personalities",
       "subtopic": null
@@ -118463,13 +119572,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "C"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "The Nano project moved from Singur to Sanand in Gujarat.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Current Affairs",
       "topic": "National current affairs",
       "subtopic": null
@@ -118516,7 +119634,14 @@
       "explanation": null,
       "subject": "History",
       "topic": "Ancient India",
-      "subtopic": "Indus Valley Civilisation"
+      "subtopic": "Indus Valley Civilisation",
+      "dispute": {
+        "is_disputed": false,
+        "status": "unresolved",
+        "reason": "The third-party answer has not been independently established against the exact wording and options.",
+        "raised_by": "2009 third-party key review"
+      },
+      "verification_evidence": []
     },
     {
       "id": "MPPSC-2009-136",
@@ -118551,13 +119676,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "D"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "Chandragupta Maurya concluded a settlement after conflict with Seleucus I.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "History",
       "topic": "Ancient India",
       "subtopic": null
@@ -118604,7 +119738,14 @@
       "explanation": null,
       "subject": "History",
       "topic": "Modern India",
-      "subtopic": "British conquest and consolidation"
+      "subtopic": "British conquest and consolidation",
+      "dispute": {
+        "is_disputed": false,
+        "status": "unresolved",
+        "reason": "The third-party answer has not been independently established against the exact wording and options.",
+        "raised_by": "2009 third-party key review"
+      },
+      "verification_evidence": []
     },
     {
       "id": "MPPSC-2009-138",
@@ -118644,11 +119785,25 @@
         "source": null,
         "notes": null
       },
-      "answer_key_status": "missing",
+      "answer_key_status": "disputed",
       "explanation": null,
       "subject": "History",
       "topic": "Modern India",
-      "subtopic": "British conquest and consolidation"
+      "subtopic": "British conquest and consolidation",
+      "dispute": {
+        "is_disputed": true,
+        "status": "unresolved",
+        "reason": "The PDF selects Buxar, but Plassey occurred earlier and is also described as the Company’s first decisive military success; sources conflict over the wording.",
+        "raised_by": "2009 third-party key review"
+      },
+      "verification_evidence": [
+        {
+          "url": "https://testbook.com/question-answer/which-battle-marked-the-first-decisive-military-su--59884cb72b6e930be8e49a9d"
+        },
+        {
+          "url": "https://www.iasbook.com/east-india-company-nawabs-of-bengal-questions/"
+        }
+      ]
     },
     {
       "id": "MPPSC-2009-139",
@@ -118692,7 +119847,14 @@
       "explanation": null,
       "subject": "History",
       "topic": "Modern India",
-      "subtopic": null
+      "subtopic": null,
+      "dispute": {
+        "is_disputed": false,
+        "status": "unresolved",
+        "reason": "The third-party answer has not been independently established against the exact wording and options.",
+        "raised_by": "2009 third-party key review"
+      },
+      "verification_evidence": []
     },
     {
       "id": "MPPSC-2009-140",
@@ -118736,7 +119898,14 @@
       "explanation": null,
       "subject": "History",
       "topic": "Modern India",
-      "subtopic": "Revolt of 1857"
+      "subtopic": "Revolt of 1857",
+      "dispute": {
+        "is_disputed": false,
+        "status": "unresolved",
+        "reason": "The third-party answer has not been independently established against the exact wording and options.",
+        "raised_by": "2009 third-party key review"
+      },
+      "verification_evidence": []
     },
     {
       "id": "MPPSC-2009-141",
@@ -118771,13 +119940,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "C"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "Tilak used the Marathi newspaper Kesari to promote nationalist ideas.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "History",
       "topic": "Modern India",
       "subtopic": null
@@ -118815,13 +119993,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "C"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "Gandhi suspended the Non-Cooperation Movement after the Chauri Chaura violence.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "History",
       "topic": "Modern India",
       "subtopic": "Gandhian movements"
@@ -118859,13 +120046,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "B"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "Swadeshi preceded Jallianwala Bagh, the Dandi March and Quit India.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "History",
       "topic": "Modern India",
       "subtopic": "Gandhian movements"
@@ -118903,13 +120099,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "A"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "New India, Vande Mataram, Sandhya and Comrade are matched to Pal, Aurobindo, Upadhyay and Muhammad Ali.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "History",
       "topic": "Modern India",
       "subtopic": null
@@ -118947,13 +120152,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "C"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "Doctrine of Lapse–Dalhousie, Bengal partition–Curzon, dual government–Clive, and social reforms–Bentinck give 3, 1, 2, 4.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "History",
       "topic": "Modern India",
       "subtopic": "British conquest and consolidation"
@@ -119000,7 +120214,14 @@
       "explanation": null,
       "subject": "History",
       "topic": "Modern India",
-      "subtopic": "Revolutionary movements"
+      "subtopic": "Revolutionary movements",
+      "dispute": {
+        "is_disputed": false,
+        "status": "unresolved",
+        "reason": "The third-party answer has not been independently established against the exact wording and options.",
+        "raised_by": "2009 third-party key review"
+      },
+      "verification_evidence": []
     },
     {
       "id": "MPPSC-2009-147",
@@ -119035,13 +120256,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "C"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "The Instrument of Accession was signed on 26 October 1947; the political and legal history is more complex than the question’s phrase.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "History",
       "topic": "Modern India",
       "subtopic": null
@@ -119088,7 +120318,14 @@
       "explanation": null,
       "subject": "History",
       "topic": "Modern India",
-      "subtopic": null
+      "subtopic": null,
+      "dispute": {
+        "is_disputed": false,
+        "status": "unresolved",
+        "reason": "The third-party answer has not been independently established against the exact wording and options.",
+        "raised_by": "2009 third-party key review"
+      },
+      "verification_evidence": []
     },
     {
       "id": "MPPSC-2009-149",
@@ -119123,13 +120360,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "D"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "The Tropic of Cancer is approximately 23°30′ north.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Geography",
       "topic": "Physical Geography",
       "subtopic": null
@@ -119167,13 +120413,22 @@
         }
       },
       "supplied_answer": {
-        "answer": null,
-        "status": "missing",
-        "source": null,
-        "notes": null
+        "answer": [
+          "C"
+        ],
+        "status": "unofficial",
+        "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question",
+        "notes": "Third-party answer list; paper identity unconfirmed, not an official MPPSC key."
       },
-      "answer_key_status": "missing",
-      "explanation": null,
+      "answer_key_status": "unofficial",
+      "explanation": {
+        "correct_reasoning": "India’s westernmost longitude is approximately 68°7′ east in Gujarat.",
+        "sources": [
+          {
+            "citation": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.pdf, answer beneath each question"
+          }
+        ]
+      },
       "subject": "Geography",
       "topic": "Physical Geography",
       "subtopic": null

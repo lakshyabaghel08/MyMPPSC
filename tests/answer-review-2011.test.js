@@ -37,6 +37,7 @@ test('2011 rebuild rejects missing, duplicated or invalid review data', async ()
   for (const y of [2009,2010,2011]) inputs[y] = {source: await load(`data/pyq/source/2009-2011/pdf-transcription-${y}.json`), labels: await load(`data/pyq/source/2009-2011/final-taxonomy-${y}.json`)};
   const review = await load('data/pyq/source/2009-2011/answer-review-2011.json');
   inputs[2010].review = await load('data/pyq/source/2009-2011/answer-review-2010.json');
+  inputs[2009].review = await load('data/pyq/source/2009-2011/answer-review-2009.json');
   const taxonomy = await loadTaxonomy();
   for (const bad of [undefined, {...review, records: review.records.slice(1)}, {...review, records: review.records.map((r,i) => i === 1 ? review.records[0] : r)}, {...review, records: review.records.map((r,i) => i === 2 ? {...r,answer:'Z'} : r)}]) {
     inputs[2011].review = bad;

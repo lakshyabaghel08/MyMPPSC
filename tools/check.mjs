@@ -414,7 +414,7 @@ if (builtinPath) {
   const bundledYears = [...new Set(bundled.papers.map((paper) => Number(paper.year)))].sort((a, b) => a - b);
   check(bundledYears.length === 16 && bundledYears.every((year, index) => year === 2009 + index), 'the bundled papers must cover every year from 2009 through 2024');
   check(new Set(bundled.questions.map((question) => question.id)).size === 1684, 'the expanded bank must have 1,684 unique stable question ids');
-  check(bundled.questions.every((q) => (q.year === 2011 || q.year === 2010) ? (!q.supplied_answer?.answer?.length || q.supplied_answer.status === 'unofficial') : q.year <= 2012 ? !q.supplied_answer?.answer?.length : q.supplied_answer?.answer?.length && q.supplied_answer.status === 'supplied'), '2010–2011 supplied keys must be unofficial; 2009 and 2012 have no supplied keys and 2013–2024 retain theirs');
+  check(bundled.questions.every((q) => (q.year === 2011 || q.year === 2010 || q.year === 2009) ? (!q.supplied_answer?.answer?.length || q.supplied_answer.status === 'unofficial') : q.year <= 2012 ? !q.supplied_answer?.answer?.length : q.supplied_answer?.answer?.length && q.supplied_answer.status === 'supplied'), '2009–2011 supplied keys must be unofficial; 2012 has no supplied keys and 2013–2024 retain theirs');
   check(bundled.questions.filter((q) => q.year !== 2012).every((q) => !q.verified_answer?.answer?.length), 'independent reassessment applies only to 2012');
   const review2012 = JSON.parse(await readFile(path.join(root, 'data/pyq/source/2012-recovery/answer-reassessment-2012.json'), 'utf8'));
   const questions2012 = bundled.questions.filter((q) => q.year === 2012);
@@ -443,6 +443,15 @@ if (builtinPath) {
     if (r.status === 'supported') return q.supplied_answer?.status === 'unofficial' && q.supplied_answer.answer?.length === 1 && q.supplied_answer.answer[0] === r.answer && q.explanation?.correct_reasoning === r.reasoning;
     return ['disputed', 'unresolved'].includes(r.status) && !q.supplied_answer?.answer && !q.explanation && q.dispute?.status === 'unresolved' && q.dispute.is_disputed === (r.status === 'disputed');
   }), '2010 must preserve reviewed unofficial answers, unresolved flags and source warning');
+  const review2009 = JSON.parse(await readFile(path.join(root, 'data/pyq/source/2009-2011/answer-review-2009.json'), 'utf8'));
+  const q2009 = bundled.questions.filter(q => q.year === 2009);
+  const by2009 = new Map(review2009.records.map(r => [r.question_id, r]));
+  check(q2009.length === 146 && by2009.size === 146 && bundled.papers.find(p => p.year === 2009)?.paper_name.includes('identity unconfirmed') && q2009.every(q => {
+    const r = by2009.get(q.id);
+    if (!r) return false;
+    if (r.status === 'supported') return q.supplied_answer?.status === 'unofficial' && q.supplied_answer.answer?.length === 1 && q.supplied_answer.answer[0] === r.answer && q.explanation?.correct_reasoning === r.reasoning;
+    return ['disputed', 'unresolved'].includes(r.status) && !q.supplied_answer?.answer && !q.explanation && q.dispute?.status === 'unresolved' && q.dispute.is_disputed === (r.status === 'disputed');
+  }), '2009 must preserve reviewed unofficial answers, unresolved flags and source warning');
   check(!('provenance' in bundled), 'the bundled bank must carry no source provenance (docs/PYQ_AUDIT.md keeps the audit detail)');
   // Only the technical fields are scanned: the words may legitimately appear
   // inside a question (an option about a coaching scheme, for instance), but a
@@ -466,7 +475,7 @@ if (builtinPath) {
       metadata: q.metadata,
     })),
   };
-  const non2011Technical = { ...technical, questions: technical.questions.filter(q => !q.id.startsWith('MPPSC-2011-') && !q.id.startsWith('MPPSC-2010-')) };
+  const non2011Technical = { ...technical, questions: technical.questions.filter(q => !q.id.startsWith('MPPSC-2011-') && !q.id.startsWith('MPPSC-2010-') && !q.id.startsWith('MPPSC-2009-')) };
   check(!/unofficial|coaching|solved-book|printed key/i.test(JSON.stringify(non2011Technical)), 'other years must not acquire 2011 source labels');
   check(!bundled.questions.some((q) => q.source_reference), 'no bundled question may carry a source reference');
   // The bank is study material, not a pipeline worklog: how a label or an explanation was arrived at
