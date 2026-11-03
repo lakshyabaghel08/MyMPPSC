@@ -1,7 +1,7 @@
 /**
  * builtin-bank.js — the repository-backed question bank.
  *
- * The MPPSC 2013–2024 bank that ships with this repository
+ * The MPPSC 2009–2024 bank that ships with this repository
  * (`data/pyq/mymppsc-pyq-bank.json`) is loaded from the repository itself, so a
  * fresh installation has real previous-year questions without anyone having to
  * download and re-import a file by hand. Manual import keeps working for other
@@ -137,15 +137,29 @@ export async function ensureBuiltinBank(opts = {}) {
   // the recorded hash alone: if every record is already present with identical
   // content and none has changed, there is nothing to do regardless of how the
   // app got there (first load, re-open, or a manual import of the same file).
+  // Text fingerprints deliberately omit keys and explanations. Refresh the
+  // reviewed 2009–2011 source fields even when the wording is unchanged, otherwise
+  // existing installations never receive this paper's answers or uncertainty.
+  const refreshHistorical = new Set();
+  for (const incoming of analysis.report.questions.filter((q) => (q.year === 2009 || q.year === 2010 || q.year === 2011))) {
+    const prior = await db.get(STORES.QUESTIONS, incoming.id);
+    if (!prior || prior.fingerprint !== incoming.fingerprint) continue;
+    const sourceView = (q) => ({ answer: q.supplied?.answer || null,
+      status: q.supplied?.status === 'disputed' && q.dispute?.raised_by === 'user' ? incoming.supplied?.status : q.supplied?.status,
+      explanation: q.explanation?.correct_reasoning || null,
+      dispute: q.dispute?.raised_by === 'user' ? incoming.dispute : q.dispute });
+    if (JSON.stringify(sourceView(prior)) !== JSON.stringify(sourceView(incoming))) refreshHistorical.add(incoming.id);
+  }
   const nothingToDo =
     analysis.comparison.newQuestions === 0 &&
     analysis.comparison.changedRecords === 0 &&
     analysis.comparison.changedPapers === 0 &&
+    refreshHistorical.size === 0 &&
     analysis.report.questions.length > 0;
   const fileIds = analysis.report.questions.map((q) => q.id);
   const storedCount = await countStoredForBank(analysis.report.meta.bankId, fileIds);
 
-  if (!opts.force && (nothingToDo || (previous && previous.sha256 === sha256 && storedCount && analysis.comparison.changedPapers === 0))) {
+  if (!opts.force && (nothingToDo || (previous && previous.sha256 === sha256 && storedCount && analysis.comparison.changedPapers === 0 && refreshHistorical.size === 0))) {
     // Nothing to import. If the file itself changed (a rebuild that touched only
     // text the fingerprint does not cover, such as an explanation), record the
     // new hash so the next boot does not re-download and re-validate the file.
@@ -168,6 +182,7 @@ export async function ensureBuiltinBank(opts = {}) {
     // source fields; user edits, verified answers and locally authored
     // questions are kept (see importer.mergeImportedQuestion).
     conflictPolicy: 'update',
+    refreshIdenticalIds: refreshHistorical,
   });
 
   const meta = {

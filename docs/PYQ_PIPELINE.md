@@ -10,6 +10,25 @@ own validator (`js/core/validate.js`) and bank builder (`tools/build-bank.mjs`)
 are reused, so the app-facing file follows the same schema and validator as
 normal imports.
 
+`--include-2009-2011` appends 384 complete English-only records from
+PDF-derived staging and taxonomy decisions; 2009 and 2011 remain incomplete.
+It requires the three `answer-review-{year}.json` files.
+The 2009 review integrates 94 unofficial answers and leaves 12 disputed and 40
+unresolved unkeyed; Q75–78 are excluded and paper identity is unconfirmed.
+The 2010 review restores 80 unofficial PDF-key answers and explanations,
+leaving 14 disputed and 26 unresolved unkeyed; its paper identity is unconfirmed.
+The 2011 review restores 88 answers and leaves 12 disputed and 18 unresolved unkeyed.
+The alleged 2011 paper identity is disputed: see
+`data/pyq/source/2009-2011/2011-paper-identity-warning.md`. Neither the
+third-party key nor the paper identity is official or independently authenticated.
+See also `data/pyq/source/2009-2011/PDF_REVIEW.md`.
+
+`--include-2012` requires both the bilingual transcription and the separate
+`answer-reassessment-2012.json`. It restores 79 independently source-supported
+answers and explanations; seven disputed and fourteen unresolved records remain
+unkeyed. These are not an authenticated MPPSC answer key. A missing or malformed
+reassessment fails the build instead of silently producing an unkeyed paper.
+
 `--include-2013-2018` loads six strict year-specific adapters from
 `data/pyq/source/2013-18/`. It checks all 18 source JSON/report/README files,
 appends 600 questions to the existing 571-question 2019–2024 intake, and writes
@@ -22,6 +41,8 @@ The app-facing bank never receives source flags or preliminary historical labels
 # the exact command that builds the bank the app loads
 node tools/classify-bank.mjs \
     --include-2013-2018 \
+    --include-2012 \
+    --include-2009-2011 \
     --in data/pyq/source/MPPSC_PYQ_intake.json \
     --out data/pyq/mymppsc-pyq-bank.json \
     --reports data/pyq \
@@ -54,6 +75,12 @@ The run is a sequence of named passes, each of which reports what it did:
 | 7. Build | writes the schema-shaped bank | always |
 | 8. **Sanitise** | writes the app-facing file: provenance out, marking scheme in, ids renamed, no build metadata | always |
 | 8b. **Model questions** | appends the 29 app-authored model questions that fill the numbers the 2019–2024 extraction never printed, in question-number order | `--include-model-questions [file]` |
+| 8c. **2012 paper** | appends the bilingual 2012 transcription and taxonomy, then applies the required independent reassessment; rejects ID collisions and invalid reviews; scoring rules remain unknown | `--include-2012` |
+
+The 2012 transcription and known source uncertainties are documented in
+`data/pyq/source/2012-recovery/TRANSCRIPTION_PROGRESS.md`. The transcription itself contains no answers; the independent reassessment is
+required and applied separately. The existing bank ID and name remain
+unchanged for compatibility; year coverage is read from the paper records.
 
 ## 1. What goes in
 

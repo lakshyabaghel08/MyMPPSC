@@ -30,6 +30,9 @@ test('2. a short paper and an unknown-rules paper are selected', async () => {
   const summary = m.select.paperSummary(p3, Array.from(m.appState.questionIndex.values()));
   assert.equal(summary.present, 6);
   assert.equal('complete' in summary, false, 'papers are not tagged complete or incomplete');
+  const partial = m.tests.buildTest({ kind: 'pyq_full', label: 'Partial paper', paper: p3, questionIds: p3.question_order, config: {} });
+  assert.equal(partial.config.is_authentic_paper, false);
+  assert.ok(partial.config.warnings.some((w) => /incomplete: 6 of 15/i.test(w)));
 
   // Synthetic demonstration papers are excluded from automatic exam schemes,
   // even when their label mentions MPPSC; no rule is guessed for the sample.

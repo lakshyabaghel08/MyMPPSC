@@ -502,13 +502,13 @@ export default {
     const builtinInfo = await builtinBank.builtinBankInfo();
     const builtinMeta = builtinInfo.meta;
     const builtinTab = card({
-      title: 'Bundled MPPSC bank (2013–2024)',
+      title: 'Bundled MPPSC bank (2009–2024)',
       right: builtinMeta ? badge('loaded', 'ok') : badge('not loaded', 'warn'),
       body: `
         <p class="small m-0">Loaded automatically from the repository, and used for practice only.</p>
         ${infoToggle(
           'Where the bundled bank comes from',
-          `<p class="small m-0">This repository ships the classified MPPSC previous-year question bank (<span class="mono">${esc(builtinBank.BUILTIN_BANK_PATH)}</span>), so a fresh installation has real papers without importing anything by hand. The load is checked against a recorded fingerprint: an unchanged bank is never re-written, and an updated one refreshes stored records while keeping your corrections, bookmarks, attempts and revision history. Its latest reported +3/−1/0 marking pattern is applied across all years; that is a practice policy, not a claim about each paper's historical rules.</p>`,
+          `<p class="small m-0">This repository ships the classified MPPSC previous-year question bank (<span class="mono">${esc(builtinBank.BUILTIN_BANK_PATH)}</span>), so a fresh installation has real papers without importing anything by hand. The load is checked against a recorded fingerprint: an unchanged bank is never re-written, and an updated one refreshes stored records while keeping your corrections, bookmarks, attempts and revision history. The 2013–2024 papers use the latest reported +3/−1/0 practice pattern, not a claim about historical rules. The 2012 paper has no supplied answer key or configured scoring rules.</p>`,
         )}
         ${dataTable({
           columns: [{ label: 'Bank' }, { label: 'Questions' }, { label: 'Papers' }, { label: 'Loaded' }],
@@ -912,7 +912,7 @@ export default {
     document.getElementById('removeBuiltin')?.addEventListener('click', async () => {
       const ok = await confirmDialog({
         title: 'Remove the bundled bank from this device?',
-        message: 'The 2013–2024 questions and papers stored from the repository bank are removed from this browser. Your own imported questions, attempts, bookmarks and revision history are untouched, and the bank can be loaded again at any time.',
+        message: 'The 2009–2024 questions and papers stored from the repository bank are removed from this browser. Your own imported questions, attempts, bookmarks and revision history are untouched, and the bank can be loaded again at any time.',
         confirmLabel: 'Remove from this device',
         danger: true,
       });

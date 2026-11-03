@@ -1,0 +1,595 @@
+{
+  "note": "Source-supported manual taxonomy paths for complete PDF-derived records; null lower levels are deliberate.",
+  "labels": {
+    "MPPSC-2011-001": {
+      "subject": "Geography",
+      "topic": "Economic and human geography",
+      "subtopic": null
+    },
+    "MPPSC-2011-002": {
+      "subject": "Geography",
+      "topic": "World Geography",
+      "subtopic": null
+    },
+    "MPPSC-2011-003": {
+      "subject": "Geography",
+      "topic": "World Geography",
+      "subtopic": null
+    },
+    "MPPSC-2011-004": {
+      "subject": "Geography",
+      "topic": "World Geography",
+      "subtopic": null
+    },
+    "MPPSC-2011-005": {
+      "subject": "Geography",
+      "topic": "World Geography",
+      "subtopic": null
+    },
+    "MPPSC-2011-006": {
+      "subject": "Economy",
+      "topic": "Indian Economy",
+      "subtopic": null
+    },
+    "MPPSC-2011-008": {
+      "subject": "Economy",
+      "topic": "Indian Economy",
+      "subtopic": null
+    },
+    "MPPSC-2011-009": {
+      "subject": "Geography",
+      "topic": "Economic and human geography",
+      "subtopic": null
+    },
+    "MPPSC-2011-010": {
+      "subject": "Geography",
+      "topic": "Economic and human geography",
+      "subtopic": null
+    },
+    "MPPSC-2011-011": {
+      "subject": "Environment",
+      "topic": "Ecology and biodiversity",
+      "subtopic": "Food chain and food web"
+    },
+    "MPPSC-2011-012": {
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": null
+    },
+    "MPPSC-2011-013": {
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": null
+    },
+    "MPPSC-2011-014": {
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Physiography of India"
+    },
+    "MPPSC-2011-015": {
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Physiography of India"
+    },
+    "MPPSC-2011-016": {
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Physiography of India"
+    },
+    "MPPSC-2011-017": {
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Rivers of India"
+    },
+    "MPPSC-2011-018": {
+      "subject": "Geography",
+      "topic": "Physiography of Madhya Pradesh",
+      "subtopic": null
+    },
+    "MPPSC-2011-019": {
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Climate of India"
+    },
+    "MPPSC-2011-020": {
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Natural vegetation of India"
+    },
+    "MPPSC-2011-021": {
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Soils of India"
+    },
+    "MPPSC-2011-022": {
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": null
+    },
+    "MPPSC-2011-023": {
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Mineral resources of India"
+    },
+    "MPPSC-2011-024": {
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Mineral resources of India"
+    },
+    "MPPSC-2011-025": {
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Agriculture in India"
+    },
+    "MPPSC-2011-026": {
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Agriculture in India"
+    },
+    "MPPSC-2011-027": {
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Agriculture in India"
+    },
+    "MPPSC-2011-028": {
+      "subject": "Geography",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2011-029": {
+      "subject": "Geography",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2011-030": {
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Agriculture in India"
+    },
+    "MPPSC-2011-031": {
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Agriculture in India"
+    },
+    "MPPSC-2011-032": {
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Agriculture in India"
+    },
+    "MPPSC-2011-033": {
+      "subject": "Geography",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2011-034": {
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Agriculture in India"
+    },
+    "MPPSC-2011-035": {
+      "subject": "Geography",
+      "topic": "Economic and human geography",
+      "subtopic": null
+    },
+    "MPPSC-2011-036": {
+      "subject": "Economy",
+      "topic": "Agriculture and rural economy",
+      "subtopic": "Cropping patterns"
+    },
+    "MPPSC-2011-037": {
+      "subject": "Economy",
+      "topic": "Agriculture and rural economy",
+      "subtopic": "Green Revolution"
+    },
+    "MPPSC-2011-039": {
+      "subject": "Geography",
+      "topic": "Economic and human geography",
+      "subtopic": "Industries"
+    },
+    "MPPSC-2011-040": {
+      "subject": "Geography",
+      "topic": "Economic and human geography",
+      "subtopic": null
+    },
+    "MPPSC-2011-041": {
+      "subject": "Geography",
+      "topic": "Economic and human geography",
+      "subtopic": "Industries"
+    },
+    "MPPSC-2011-042": {
+      "subject": "Geography",
+      "topic": "Economic and human geography",
+      "subtopic": "Industries"
+    },
+    "MPPSC-2011-043": {
+      "subject": "Geography",
+      "topic": "Economic and human geography",
+      "subtopic": null
+    },
+    "MPPSC-2011-044": {
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Agriculture in India"
+    },
+    "MPPSC-2011-045": {
+      "subject": "Geography",
+      "topic": "Economic and human geography",
+      "subtopic": null
+    },
+    "MPPSC-2011-046": {
+      "subject": "Economy",
+      "topic": "Poverty and human development",
+      "subtopic": null
+    },
+    "MPPSC-2011-047": {
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Population of India"
+    },
+    "MPPSC-2011-048": {
+      "subject": "Economy",
+      "topic": "Indian Economy",
+      "subtopic": null
+    },
+    "MPPSC-2011-049": {
+      "subject": "Environment",
+      "topic": "Pollution and climate change",
+      "subtopic": "Global warming"
+    },
+    "MPPSC-2011-050": {
+      "subject": "Science and Technology",
+      "topic": "Health and diseases",
+      "subtopic": null
+    },
+    "MPPSC-2011-051": {
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Population of India"
+    },
+    "MPPSC-2011-052": {
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Population of India"
+    },
+    "MPPSC-2011-053": {
+      "subject": "Geography",
+      "topic": "Maps and location",
+      "subtopic": null
+    },
+    "MPPSC-2011-054": {
+      "subject": "Geography",
+      "topic": "Physiography of Madhya Pradesh",
+      "subtopic": null
+    },
+    "MPPSC-2011-055": {
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": "Landforms and their evolution"
+    },
+    "MPPSC-2011-056": {
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Mineral resources of India"
+    },
+    "MPPSC-2011-057": {
+      "subject": "Art and Culture",
+      "topic": "Festivals and fairs",
+      "subtopic": "Festivals of India"
+    },
+    "MPPSC-2011-058": {
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Mineral resources of India"
+    },
+    "MPPSC-2011-059": {
+      "subject": "Madhya Pradesh Special",
+      "topic": "Administrative structure of Madhya Pradesh",
+      "subtopic": "Districts and divisions"
+    },
+    "MPPSC-2011-060": {
+      "subject": "Art and Culture",
+      "topic": "Culture of Madhya Pradesh",
+      "subtopic": "Handicrafts of Madhya Pradesh"
+    },
+    "MPPSC-2011-061": {
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": null
+    },
+    "MPPSC-2011-062": {
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": null
+    },
+    "MPPSC-2011-063": {
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": "Landforms and their evolution"
+    },
+    "MPPSC-2011-064": {
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": "Landforms and their evolution"
+    },
+    "MPPSC-2011-065": {
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": "Landforms and their evolution"
+    },
+    "MPPSC-2011-066": {
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": "Landforms and their evolution"
+    },
+    "MPPSC-2011-067": {
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": "Landforms and their evolution"
+    },
+    "MPPSC-2011-068": {
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": "Landforms and their evolution"
+    },
+    "MPPSC-2011-069": {
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": "Earthquakes and volcanoes"
+    },
+    "MPPSC-2011-070": {
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": null
+    },
+    "MPPSC-2011-071": {
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": "Earthquakes and volcanoes"
+    },
+    "MPPSC-2011-072": {
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": "Landforms and their evolution"
+    },
+    "MPPSC-2011-073": {
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": "Landforms and their evolution"
+    },
+    "MPPSC-2011-074": {
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": "Atmosphere and weather"
+    },
+    "MPPSC-2011-075": {
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": "Atmosphere and weather"
+    },
+    "MPPSC-2011-076": {
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": "Atmosphere and weather"
+    },
+    "MPPSC-2011-077": {
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": "Atmosphere and weather"
+    },
+    "MPPSC-2011-078": {
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": "Atmosphere and weather"
+    },
+    "MPPSC-2011-079": {
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": "Atmosphere and weather"
+    },
+    "MPPSC-2011-080": {
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": "Atmosphere and weather"
+    },
+    "MPPSC-2011-081": {
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": "Landforms and their evolution"
+    },
+    "MPPSC-2011-082": {
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": "Atmosphere and weather"
+    },
+    "MPPSC-2011-083": {
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": "Atmosphere and weather"
+    },
+    "MPPSC-2011-084": {
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": null
+    },
+    "MPPSC-2011-085": {
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": null
+    },
+    "MPPSC-2011-086": {
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": "Oceanography"
+    },
+    "MPPSC-2011-087": {
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": "Oceanography"
+    },
+    "MPPSC-2011-088": {
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": "Oceanography"
+    },
+    "MPPSC-2011-089": {
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": "Oceanography"
+    },
+    "MPPSC-2011-090": {
+      "subject": "Geography",
+      "topic": "Economic and human geography",
+      "subtopic": null
+    },
+    "MPPSC-2011-091": {
+      "subject": "Geography",
+      "topic": "Economic and human geography",
+      "subtopic": null
+    },
+    "MPPSC-2011-092": {
+      "subject": "Geography",
+      "topic": "Economic and human geography",
+      "subtopic": "Tribes of India"
+    },
+    "MPPSC-2011-093": {
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Population of India"
+    },
+    "MPPSC-2011-094": {
+      "subject": "Geography",
+      "topic": "Economic and human geography",
+      "subtopic": null
+    },
+    "MPPSC-2011-095": {
+      "subject": "Geography",
+      "topic": "Economic and human geography",
+      "subtopic": null
+    },
+    "MPPSC-2011-096": {
+      "subject": "Geography",
+      "topic": "Economic and human geography",
+      "subtopic": null
+    },
+    "MPPSC-2011-097": {
+      "subject": "Geography",
+      "topic": "Economic and human geography",
+      "subtopic": "Human settlement"
+    },
+    "MPPSC-2011-098": {
+      "subject": "Geography",
+      "topic": "Economic and human geography",
+      "subtopic": "Human settlement"
+    },
+    "MPPSC-2011-099": {
+      "subject": "Geography",
+      "topic": "Economic and human geography",
+      "subtopic": null
+    },
+    "MPPSC-2011-100": {
+      "subject": "Geography",
+      "topic": "Economic and human geography",
+      "subtopic": null
+    },
+    "MPPSC-2011-101": {
+      "subject": "Geography",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2011-102": {
+      "subject": "Geography",
+      "topic": "Economic and human geography",
+      "subtopic": null
+    },
+    "MPPSC-2011-103": {
+      "subject": "Geography",
+      "topic": "Economic and human geography",
+      "subtopic": null
+    },
+    "MPPSC-2011-104": {
+      "subject": "Geography",
+      "topic": "Economic and human geography",
+      "subtopic": null
+    },
+    "MPPSC-2011-105": {
+      "subject": "Geography",
+      "topic": "Economic and human geography",
+      "subtopic": null
+    },
+    "MPPSC-2011-106": {
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Natural vegetation of India"
+    },
+    "MPPSC-2011-107": {
+      "subject": "Geography",
+      "topic": "Economic and human geography",
+      "subtopic": null
+    },
+    "MPPSC-2011-108": {
+      "subject": "Geography",
+      "topic": "Economic and human geography",
+      "subtopic": null
+    },
+    "MPPSC-2011-109": {
+      "subject": "Geography",
+      "topic": "Economic and human geography",
+      "subtopic": null
+    },
+    "MPPSC-2011-110": {
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Mineral resources of India"
+    },
+    "MPPSC-2011-111": {
+      "subject": "Geography",
+      "topic": "Economic and human geography",
+      "subtopic": null
+    },
+    "MPPSC-2011-112": {
+      "subject": "Geography",
+      "topic": "Economic and human geography",
+      "subtopic": null
+    },
+    "MPPSC-2011-113": {
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Mineral resources of India"
+    },
+    "MPPSC-2011-114": {
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Mineral resources of India"
+    },
+    "MPPSC-2011-115": {
+      "subject": "Geography",
+      "topic": "Economic and human geography",
+      "subtopic": null
+    },
+    "MPPSC-2011-116": {
+      "subject": "Geography",
+      "topic": "Economic and human geography",
+      "subtopic": null
+    },
+    "MPPSC-2011-117": {
+      "subject": "Geography",
+      "topic": "Economic and human geography",
+      "subtopic": "Industries"
+    },
+    "MPPSC-2011-118": {
+      "subject": "Geography",
+      "topic": "Economic and human geography",
+      "subtopic": "Industries"
+    },
+    "MPPSC-2011-119": {
+      "subject": "Geography",
+      "topic": "Economic and human geography",
+      "subtopic": "Industries"
+    },
+    "MPPSC-2011-120": {
+      "subject": "Geography",
+      "topic": "Economic and human geography",
+      "subtopic": null
+    }
+  }
+}

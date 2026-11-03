@@ -1,0 +1,3580 @@
+{
+  "status": "source-derived staging; manual source comparison required",
+  "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies Solved Question paper 2009.md",
+  "source_sha256": "691117d03a23c1da967e4fe3fbb03e8bd93ec99fcd5ebbc7533ef6e457d7ea5d",
+  "excluded_candidates": [
+    {
+      "question_number": 46,
+      "reason": "missing page, diagram, table or options"
+    },
+    {
+      "question_number": 75,
+      "reason": "missing page, diagram, table or options"
+    },
+    {
+      "question_number": 76,
+      "reason": "missing page, diagram, table or options"
+    },
+    {
+      "question_number": 77,
+      "reason": "missing page, diagram, table or options"
+    },
+    {
+      "question_number": 78,
+      "reason": "missing page, diagram, table or options"
+    },
+    {
+      "question_number": 145,
+      "reason": "missing page, diagram, table or options"
+    }
+  ],
+  "questions": [
+    {
+      "id": "MPPSC-2009-001",
+      "question_number": 1,
+      "language_variants": {
+        "en": {
+          "question_text": "India was part of an ancient super continent called Gondwanaland. It included present day—",
+          "options": [
+            {
+              "key": "A",
+              "text": "South America"
+            },
+            {
+              "key": "B",
+              "text": "Africa"
+            },
+            {
+              "key": "C",
+              "text": "Australia"
+            },
+            {
+              "key": "D",
+              "text": "All of these"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-002",
+      "question_number": 2,
+      "language_variants": {
+        "en": {
+          "question_text": "Which plateau lies between the Aravalli and the Vindhya ranges ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Malwa plateau"
+            },
+            {
+              "key": "B",
+              "text": "Chhota Nagpur plateau"
+            },
+            {
+              "key": "C",
+              "text": "Deccan plateau"
+            },
+            {
+              "key": "D",
+              "text": "Peninsular plateau"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-003",
+      "question_number": 3,
+      "language_variants": {
+        "en": {
+          "question_text": "Which state of India has borders with three countries namely Nepal, Bhutan and China ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Arunachal Pradesh"
+            },
+            {
+              "key": "B",
+              "text": "Meghalaya"
+            },
+            {
+              "key": "C",
+              "text": "West Bengal"
+            },
+            {
+              "key": "D",
+              "text": "Sikkim"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-004",
+      "question_number": 4,
+      "language_variants": {
+        "en": {
+          "question_text": "The leading state in wheat production in India is—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Punjab"
+            },
+            {
+              "key": "B",
+              "text": "Haryana"
+            },
+            {
+              "key": "C",
+              "text": "Uttar Pradesh"
+            },
+            {
+              "key": "D",
+              "text": "Madhya Pradesh"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-005",
+      "question_number": 5,
+      "language_variants": {
+        "en": {
+          "question_text": "Which state is the largest producer of tobacco in India ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Gujarat"
+            },
+            {
+              "key": "B",
+              "text": "Andhra Pradesh"
+            },
+            {
+              "key": "C",
+              "text": "Karnataka"
+            },
+            {
+              "key": "D",
+              "text": "Madhya Pradesh"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-006",
+      "question_number": 6,
+      "language_variants": {
+        "en": {
+          "question_text": "One horned rhinoceros is found in the following states—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Arunachal Pradesh and Tripura"
+            },
+            {
+              "key": "B",
+              "text": "West Bengal and Assam"
+            },
+            {
+              "key": "C",
+              "text": "Arunachal Pradesh and Assam"
+            },
+            {
+              "key": "D",
+              "text": "West Bengal and Tripura"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-007",
+      "question_number": 7,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following is different from the remaining three ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Haematite"
+            },
+            {
+              "key": "B",
+              "text": "Magnetite"
+            },
+            {
+              "key": "C",
+              "text": "Limonite"
+            },
+            {
+              "key": "D",
+              "text": "Bauxite"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-008",
+      "question_number": 8,
+      "language_variants": {
+        "en": {
+          "question_text": "States with the highest and lowest density of population in India are respectively—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Uttar Pradesh and Arunachal Pradesh"
+            },
+            {
+              "key": "B",
+              "text": "West Bengal and Arunachal Pradesh"
+            },
+            {
+              "key": "C",
+              "text": "Uttar Pradesh and Sikkim"
+            },
+            {
+              "key": "D",
+              "text": "West Bengal and Sikkim"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-009",
+      "question_number": 9,
+      "language_variants": {
+        "en": {
+          "question_text": "Match the following and select the correct answer from the codes given below—\n(a) Hirakud Project\n(b) Haldia Refinery\n(c) Tarapur Nuclear Station\n(d) Kudremukh Hills\n1. West Bengal\n2. Orissa\n3. Karnataka\n4. Maharashtra\nCodes :\n(a) (b) (c) (d)",
+          "options": [
+            {
+              "key": "A",
+              "text": "2 1 3 4"
+            },
+            {
+              "key": "B",
+              "text": "1 2 4 3"
+            },
+            {
+              "key": "C",
+              "text": "2 1 4 3"
+            },
+            {
+              "key": "D",
+              "text": "1 2 3 4"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-010",
+      "question_number": 10,
+      "language_variants": {
+        "en": {
+          "question_text": "Arrange the following in decreasing order of size and select the correct answer from the codes\ngiven below—\n1. Jupiter\n2. Uranus\n3. Earth\n4. Saturn\nCodes :",
+          "options": [
+            {
+              "key": "A",
+              "text": "1, 4, 3, 2"
+            },
+            {
+              "key": "B",
+              "text": "4, 1, 2, 3"
+            },
+            {
+              "key": "C",
+              "text": "1, 4, 2, 3"
+            },
+            {
+              "key": "D",
+              "text": "4, 1, 3, 2"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-011",
+      "question_number": 11,
+      "language_variants": {
+        "en": {
+          "question_text": "Arrange the following from west to east and select the correct answer from the codes given below—\n1. London\n2. Lisbon\n3. Frankfurt\n4. Beirut\nCodes :",
+          "options": [
+            {
+              "key": "A",
+              "text": "1, 2, 3, 4"
+            },
+            {
+              "key": "B",
+              "text": "2, 1, 3, 4"
+            },
+            {
+              "key": "C",
+              "text": "2, 1, 4, 3"
+            },
+            {
+              "key": "D",
+              "text": "1, 2, 4, 3"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-012",
+      "question_number": 12,
+      "language_variants": {
+        "en": {
+          "question_text": "Match the following and select the correct answer from the codes given below—\n(a) Kenya\n(b) Uganda\n(c) Uzbekistan\n(d) Ukraine\n1. Tashkent\n2. Nairobi\n3. Kiev\n4. Kampala\nCodes :\n(a) (b) (c) (d)",
+          "options": [
+            {
+              "key": "A",
+              "text": "4 2 1 3"
+            },
+            {
+              "key": "B",
+              "text": "2 4 1 3"
+            },
+            {
+              "key": "C",
+              "text": "2 4 3 1"
+            },
+            {
+              "key": "D",
+              "text": "4 2 3 1"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-013",
+      "question_number": 13,
+      "language_variants": {
+        "en": {
+          "question_text": "Maximum strength of Lok Sabha as stipulated in the Constitution of India is—",
+          "options": [
+            {
+              "key": "A",
+              "text": "547"
+            },
+            {
+              "key": "B",
+              "text": "545"
+            },
+            {
+              "key": "C",
+              "text": "552"
+            },
+            {
+              "key": "D",
+              "text": "None of these"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-014",
+      "question_number": 14,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following political parties is not a national party as recognized by the Election Commission of India ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Nationalist Congress Party"
+            },
+            {
+              "key": "B",
+              "text": "Bahujan Samaj Party"
+            },
+            {
+              "key": "C",
+              "text": "Communist Party of India"
+            },
+            {
+              "key": "D",
+              "text": "Samajwadi Party"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-015",
+      "question_number": 15,
+      "language_variants": {
+        "en": {
+          "question_text": "Consider the following statements with respect to qualification to become the member of Rajya Sabha and select the correct answer from the codes given below—\n1. should be at least 30 years of age\n2. should be registered as a voter on the list of voters in the state from which the candidate is to be elected\n3. should not hold office of profit under the state\nCodes :",
+          "options": [
+            {
+              "key": "A",
+              "text": "1 and 2 are correct"
+            },
+            {
+              "key": "B",
+              "text": "1 and 3 are correct"
+            },
+            {
+              "key": "C",
+              "text": "2 and 3 are correct"
+            },
+            {
+              "key": "D",
+              "text": "1, 2 and 3 are correct"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-016",
+      "question_number": 16,
+      "language_variants": {
+        "en": {
+          "question_text": "The 44th Amendment in the Constitution of India removed the following right from the category of Fundamental Right—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Freedom of speech"
+            },
+            {
+              "key": "B",
+              "text": "Constitutional remedies"
+            },
+            {
+              "key": "C",
+              "text": "Property"
+            },
+            {
+              "key": "D",
+              "text": "Freedom of religion"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-017",
+      "question_number": 17,
+      "language_variants": {
+        "en": {
+          "question_text": "Which among the following sectors contributes most to the GDP of India ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Primary sector"
+            },
+            {
+              "key": "B",
+              "text": "Secondary sector"
+            },
+            {
+              "key": "C",
+              "text": "Tertiary sector"
+            },
+            {
+              "key": "D",
+              "text": "All three contribute equally"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-018",
+      "question_number": 18,
+      "language_variants": {
+        "en": {
+          "question_text": "Which is the final authority in India to approve Five Year Plans ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Union Council of Ministers"
+            },
+            {
+              "key": "B",
+              "text": "Planning Commission"
+            },
+            {
+              "key": "C",
+              "text": "Prime Minister"
+            },
+            {
+              "key": "D",
+              "text": "None of these"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-019",
+      "question_number": 19,
+      "language_variants": {
+        "en": {
+          "question_text": "Who is called the pioneer of liberalization of Indian Economy ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Dr. Manmohan Singh"
+            },
+            {
+              "key": "B",
+              "text": "P.V. Narsimha Rao"
+            },
+            {
+              "key": "C",
+              "text": "Dr. Bimal Jalan"
+            },
+            {
+              "key": "D",
+              "text": "P. Chidambaram"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-020",
+      "question_number": 20,
+      "language_variants": {
+        "en": {
+          "question_text": "Green Index has been developed by—",
+          "options": [
+            {
+              "key": "A",
+              "text": "World Bank's environmentally and socially sustainable development division"
+            },
+            {
+              "key": "B",
+              "text": "United Nations environment programme"
+            },
+            {
+              "key": "C",
+              "text": "United Nations development programme"
+            },
+            {
+              "key": "D",
+              "text": "Kyoto Protocol"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-021",
+      "question_number": 21,
+      "language_variants": {
+        "en": {
+          "question_text": "Public Distribution System is aimed at—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Providing food security to the poor"
+            },
+            {
+              "key": "B",
+              "text": "To prevent hoarding and black-marketing"
+            },
+            {
+              "key": "C",
+              "text": "To prevent overcharging by traders"
+            },
+            {
+              "key": "D",
+              "text": "All of the above"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-022",
+      "question_number": 22,
+      "language_variants": {
+        "en": {
+          "question_text": "Who among the following released “Citizens guide to fight corruption” ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Ministry of Family Welfare"
+            },
+            {
+              "key": "B",
+              "text": "Consumer Co-operative Societies"
+            },
+            {
+              "key": "C",
+              "text": "Central Vigilance Commission"
+            },
+            {
+              "key": "D",
+              "text": "Transparency International"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-023",
+      "question_number": 23,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following is not included in Human Development Index ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Life Expectary"
+            },
+            {
+              "key": "B",
+              "text": "Real per Capita Income"
+            },
+            {
+              "key": "C",
+              "text": "Social Inequality"
+            },
+            {
+              "key": "D",
+              "text": "Adult Literacy"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-024",
+      "question_number": 24,
+      "language_variants": {
+        "en": {
+          "question_text": "Bharat Nirman includes (select the correct answer from the codes given below)—\n1. Bring an additional one crore hectares under assured irrigation\n2. To provide road connectivity to all villages that have a population of 2000\n3. To give telephone connectivity to the remaining villages\nCodes :",
+          "options": [
+            {
+              "key": "A",
+              "text": "1 and 2 are correct"
+            },
+            {
+              "key": "B",
+              "text": "1 and 3 are correct"
+            },
+            {
+              "key": "C",
+              "text": "2 and 3 are correct"
+            },
+            {
+              "key": "D",
+              "text": "None of the above"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-025",
+      "question_number": 25,
+      "language_variants": {
+        "en": {
+          "question_text": "What is the size of the eleventh five year plan of India ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Rs. 3,64,471 crore"
+            },
+            {
+              "key": "B",
+              "text": "Rs. 36,447 crore"
+            },
+            {
+              "key": "C",
+              "text": "Rs. 36,44,718 crore"
+            },
+            {
+              "key": "D",
+              "text": "Rs. 3,64,47,185 crore"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-026",
+      "question_number": 26,
+      "language_variants": {
+        "en": {
+          "question_text": "Consider the following statements and select the correct answer from the codes given below—\n1. In Beijing Olympics, Abhinav Bindra won gold medal in 10 metres rifle shooting.\n2. In Beijing Olympics, Sushil Kumar won bronze medal in fly weight boxing.\nCodes :",
+          "options": [
+            {
+              "key": "A",
+              "text": "1 is correct"
+            },
+            {
+              "key": "B",
+              "text": "2 is correct"
+            },
+            {
+              "key": "C",
+              "text": "Both are correct"
+            },
+            {
+              "key": "D",
+              "text": "None of these"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-027",
+      "question_number": 27,
+      "language_variants": {
+        "en": {
+          "question_text": "When did India last win a hockey gold medal at the Olympics ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "1964 Tokyo"
+            },
+            {
+              "key": "B",
+              "text": "1972 Munich"
+            },
+            {
+              "key": "C",
+              "text": "1976 Montreal"
+            },
+            {
+              "key": "D",
+              "text": "1980 Moscow"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-028",
+      "question_number": 28,
+      "language_variants": {
+        "en": {
+          "question_text": "This great hockey player was the prolific goal scorer (24 goals approximately) in 1932 and 1936 Olympics. There was demand in the media to celebrate his birth centenary on 8th September 2008. He spent his later life in Gwalior. Identify him,",
+          "options": [
+            {
+              "key": "A",
+              "text": "Dhyan Chand"
+            },
+            {
+              "key": "B",
+              "text": "Captain Roop Singh"
+            },
+            {
+              "key": "C",
+              "text": "Gurmeet Singh"
+            },
+            {
+              "key": "D",
+              "text": "A.I.S. Dara"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-029",
+      "question_number": 29,
+      "language_variants": {
+        "en": {
+          "question_text": "Virendra Sehwag scored his second triple century in the test cricket. He became only the third player in the history to do so. The other two are—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Brian Lara and Gary Sobers"
+            },
+            {
+              "key": "B",
+              "text": "Donald Bradman and Wally Hammond"
+            },
+            {
+              "key": "C",
+              "text": "Gary Sobers and Wally Hammond"
+            },
+            {
+              "key": "D",
+              "text": "Donald Bradman and Brian Lara"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-030",
+      "question_number": 30,
+      "language_variants": {
+        "en": {
+          "question_text": "Who among the following won the Rajeev Gandhi Khel Ratna Award last year (2008) ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "M.S. Dhoni"
+            },
+            {
+              "key": "B",
+              "text": "Vishwanathan Anand"
+            },
+            {
+              "key": "C",
+              "text": "Abhinav Bindra"
+            },
+            {
+              "key": "D",
+              "text": "Sachin Tendulkar"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-031",
+      "question_number": 31,
+      "language_variants": {
+        "en": {
+          "question_text": "Consider the following statements with reference to Beijing Olympics and select the correct answer from the codes given below—\n1. Michael Phelps won eight gold medals.\n2. Usain Bolt became the fastest man by winning 100 m and 200 m races.\n3. Roger Federer won gold medal in Men's Singles Tennis.\nCodes :",
+          "options": [
+            {
+              "key": "A",
+              "text": "1 and 2 are correct"
+            },
+            {
+              "key": "B",
+              "text": "1 and 3 are correct"
+            },
+            {
+              "key": "C",
+              "text": "2 and 3 are correct"
+            },
+            {
+              "key": "D",
+              "text": "1, 2 and 3 are correct"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-032",
+      "question_number": 32,
+      "language_variants": {
+        "en": {
+          "question_text": "Who won the ONGC-IBSF World Billiards Championship in September 2008 at Bangaluru ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Pankaj Advani"
+            },
+            {
+              "key": "B",
+              "text": "Geet Sethi"
+            },
+            {
+              "key": "C",
+              "text": "Rupesh Shah"
+            },
+            {
+              "key": "D",
+              "text": "Peter Gilchrist"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-033",
+      "question_number": 33,
+      "language_variants": {
+        "en": {
+          "question_text": "Who won the mixed doubles at US Open 2008 ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Leander Paes—Cara Black"
+            },
+            {
+              "key": "B",
+              "text": "Leander Paes—Lisa Raymond"
+            },
+            {
+              "key": "C",
+              "text": "Mahesh Bhupathi—Martina Hingis"
+            },
+            {
+              "key": "D",
+              "text": "Mahesh Bhupathi—Mary Pierce"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-034",
+      "question_number": 34,
+      "language_variants": {
+        "en": {
+          "question_text": "Madhya Pradesh won record number of medals in the 33rd National Games at Guwahati in 2007. In which game did Madhya Pradesh win maximum gold medals ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Karate"
+            },
+            {
+              "key": "B",
+              "text": "Wushu"
+            },
+            {
+              "key": "C",
+              "text": "Shooting"
+            },
+            {
+              "key": "D",
+              "text": "Athletics"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-035",
+      "question_number": 35,
+      "language_variants": {
+        "en": {
+          "question_text": "Which among the following awards is given to sportspersons by the Government of Madhya Pradesh ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Arjun Award"
+            },
+            {
+              "key": "B",
+              "text": "Vikram Award"
+            },
+            {
+              "key": "C",
+              "text": "Dronacharya Award"
+            },
+            {
+              "key": "D",
+              "text": "Khel Ratna Award"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-036",
+      "question_number": 36,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following is not a style of swimming ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Free-style"
+            },
+            {
+              "key": "B",
+              "text": "Back stroke"
+            },
+            {
+              "key": "C",
+              "text": "Front stroke"
+            },
+            {
+              "key": "D",
+              "text": "Butterfly"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-037",
+      "question_number": 37,
+      "language_variants": {
+        "en": {
+          "question_text": "Who won the AFC Challenge Cup Football Championship in August 2008 ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "India"
+            },
+            {
+              "key": "B",
+              "text": "Tajikistan"
+            },
+            {
+              "key": "C",
+              "text": "Turkmenistan"
+            },
+            {
+              "key": "D",
+              "text": "DPR Korea"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-038",
+      "question_number": 38,
+      "language_variants": {
+        "en": {
+          "question_text": "Who is the first Indian woman chess player to cross 2600 ELO rating ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Koneru Humpy"
+            },
+            {
+              "key": "B",
+              "text": "Tania Sachdev"
+            },
+            {
+              "key": "C",
+              "text": "P. Harika"
+            },
+            {
+              "key": "D",
+              "text": "S. Vijay Laxmi"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-039",
+      "question_number": 39,
+      "language_variants": {
+        "en": {
+          "question_text": "Where was $2^{\\text{nd}}$ All Star Asian Athletics Championship organized in September 2008 ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Pune"
+            },
+            {
+              "key": "B",
+              "text": "Bangaluru"
+            },
+            {
+              "key": "C",
+              "text": "Indore"
+            },
+            {
+              "key": "D",
+              "text": "Bhopal"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-040",
+      "question_number": 40,
+      "language_variants": {
+        "en": {
+          "question_text": "Who among the following cricketers from Madhya Pradesh has not played for India in a test match ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Narendra Hirwani"
+            },
+            {
+              "key": "B",
+              "text": "Amay Khurasiya"
+            },
+            {
+              "key": "C",
+              "text": "Mushtaq Ali"
+            },
+            {
+              "key": "D",
+              "text": "Rajesh Chauhan"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-041",
+      "question_number": 41,
+      "language_variants": {
+        "en": {
+          "question_text": "Two new districts were formed in Madhya Pradesh in the year 2008. Identify—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Alirajpur and Burhanpur"
+            },
+            {
+              "key": "B",
+              "text": "Burhanpur and Anooppur"
+            },
+            {
+              "key": "C",
+              "text": "Singrauli and Anooppur"
+            },
+            {
+              "key": "D",
+              "text": "Singrauli and Alirajpur"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-042",
+      "question_number": 42,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following cities is closest to IST (Indian Standard Time) meridian ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Rewa"
+            },
+            {
+              "key": "B",
+              "text": "Sagar"
+            },
+            {
+              "key": "C",
+              "text": "Ujjain"
+            },
+            {
+              "key": "D",
+              "text": "Hoshangabad"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-043",
+      "question_number": 43,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following national highways has the longest length in Madhya Pradesh ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "NH-3 Agra-Gwalior-Dewas-Bombay (Mumbai)"
+            },
+            {
+              "key": "B",
+              "text": "NH-7 Varanasi-Rewa-Jabalpur-Salem"
+            },
+            {
+              "key": "C",
+              "text": "NH-12 Jabalpur-Bhopal-Jaipur"
+            },
+            {
+              "key": "D",
+              "text": "NH-26 Jhansi-Sagar-Lakhnadon"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-044",
+      "question_number": 44,
+      "language_variants": {
+        "en": {
+          "question_text": "Consider the time of sun rise in Sidhi and Jhabua, and choose the correct option—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Sidhi will have sun rise 1 hour earlier"
+            },
+            {
+              "key": "B",
+              "text": "Jhabua will have sun rise 1 hour earlier"
+            },
+            {
+              "key": "C",
+              "text": "Sidhi will have sun rise ½ hour earlier"
+            },
+            {
+              "key": "D",
+              "text": "Jhabua will have sun rise ½ hour earlier"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-045",
+      "question_number": 45,
+      "language_variants": {
+        "en": {
+          "question_text": "Match the following and select the correct answer from the codes given below—\n(a) Chhindwara\n(b) Mandala\n(c) Jhabua\n(d) Shivpuri\n1. Bhil\n2. Bharia\n3. Gond\n4. Sahariya\nCodes :\n(a) (b) (c) (d)",
+          "options": [
+            {
+              "key": "A",
+              "text": "2 4 1 3"
+            },
+            {
+              "key": "B",
+              "text": "1 3 2 4"
+            },
+            {
+              "key": "C",
+              "text": "2 3 1 4"
+            },
+            {
+              "key": "D",
+              "text": "1 4 2 3"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-051",
+      "question_number": 51,
+      "language_variants": {
+        "en": {
+          "question_text": "‘Badhai’ is—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Folk dance of Bundelkhand"
+            },
+            {
+              "key": "B",
+              "text": "Folk dance of Malwa"
+            },
+            {
+              "key": "C",
+              "text": "Festival celebrated in Bhopal on 2nd day after Diwali"
+            },
+            {
+              "key": "D",
+              "text": "Folk music of Bundelkhand"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-052",
+      "question_number": 52,
+      "language_variants": {
+        "en": {
+          "question_text": "Which among the following districts of Madhya Pradesh has a problem of soil erosion ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Jabalpur"
+            },
+            {
+              "key": "B",
+              "text": "Bhopal"
+            },
+            {
+              "key": "C",
+              "text": "Morena"
+            },
+            {
+              "key": "D",
+              "text": "Khandwa"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-053",
+      "question_number": 53,
+      "language_variants": {
+        "en": {
+          "question_text": "Match the following and select the correct answer from the codes given below—\n(a) Indian Institute of Information Technology, Design and Manufacturing (IIITDM)\n(b) Indian Institute of Information Technology and Management (IIITM)\n(c) Indian Institute of Management (IIM)\n(d) Indian Institute of Science, Education and Research (IISER)\n1. Indore\n2. Bhopal\n3. Jabalpur\n4. Gwalior\nCodes :\n(a) (b) (c) (d)",
+          "options": [
+            {
+              "key": "A",
+              "text": "3 4 2 1"
+            },
+            {
+              "key": "B",
+              "text": "3 4 1 2"
+            },
+            {
+              "key": "C",
+              "text": "4 3 1 2"
+            },
+            {
+              "key": "D",
+              "text": "4 3 2 1"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-054",
+      "question_number": 54,
+      "language_variants": {
+        "en": {
+          "question_text": "Which National Park/Sanctuary has been selected to house Gir lions ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Pench"
+            },
+            {
+              "key": "B",
+              "text": "Kanha"
+            },
+            {
+              "key": "C",
+              "text": "Bandhavgarh"
+            },
+            {
+              "key": "D",
+              "text": "Palpur Kuno"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-055",
+      "question_number": 55,
+      "language_variants": {
+        "en": {
+          "question_text": "Match the following and select the correct answer from the codes given below—\n(a) Zari Batua\n(b) Bhairavagarh prints\n(c) Handicrafts of Bagh\n(d) Sarees of Chanderi\n1. Ujjain\n2. Dhar\n3. Bhopal\n4. Ashok Nagar\nCodes :\n(a) (b) (c) (d)",
+          "options": [
+            {
+              "key": "A",
+              "text": "3 1 2 4"
+            },
+            {
+              "key": "B",
+              "text": "1 3 4 2"
+            },
+            {
+              "key": "C",
+              "text": "1 3 2 4"
+            },
+            {
+              "key": "D",
+              "text": "3 1 4 2"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-056",
+      "question_number": 56,
+      "language_variants": {
+        "en": {
+          "question_text": "Who amongst the following has served longest as Chief Minister ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Pandit Ravishankar Shukla"
+            },
+            {
+              "key": "B",
+              "text": "Arjun Singh"
+            },
+            {
+              "key": "C",
+              "text": "Dr. Kailashnath Katju"
+            },
+            {
+              "key": "D",
+              "text": "Digvijay Singh"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-057",
+      "question_number": 57,
+      "language_variants": {
+        "en": {
+          "question_text": "Which party amongst the following is neither nationally recognised party nor a party recognized for the state of Madhya Pradesh ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Bahujan Samaj Party"
+            },
+            {
+              "key": "B",
+              "text": "Samajwadi Party"
+            },
+            {
+              "key": "C",
+              "text": "Gondwana Ganatantra Party"
+            },
+            {
+              "key": "D",
+              "text": "Communist Party of India"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-058",
+      "question_number": 58,
+      "language_variants": {
+        "en": {
+          "question_text": "Consider the following statements and select the correct answer from the codes given below—\nIn Madhya Pradesh :\n1. Zila Panchayat Adhyaksha (President) is elected through indirect election.\n2. 50% seats are reserved for women in Panchayati Raj.\n3. Sarpanch is elected through direct election.\nCodes :",
+          "options": [
+            {
+              "key": "A",
+              "text": "1 and 2 are correct"
+            },
+            {
+              "key": "B",
+              "text": "1 and 3 are correct"
+            },
+            {
+              "key": "C",
+              "text": "2 and 3 are correct"
+            },
+            {
+              "key": "D",
+              "text": "1, 2 and 3 are correct"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-059",
+      "question_number": 59,
+      "language_variants": {
+        "en": {
+          "question_text": "Where is the automobile industry cluster of Madhya Pradesh ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Pithampur"
+            },
+            {
+              "key": "B",
+              "text": "Malanpur"
+            },
+            {
+              "key": "C",
+              "text": "Mandideep"
+            },
+            {
+              "key": "D",
+              "text": "Maneri"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-060",
+      "question_number": 60,
+      "language_variants": {
+        "en": {
+          "question_text": "Of which crop is Madhya Pradesh the largest producer in the country ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Rice"
+            },
+            {
+              "key": "B",
+              "text": "Wheat"
+            },
+            {
+              "key": "C",
+              "text": "Jowar"
+            },
+            {
+              "key": "D",
+              "text": "Soyabean"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-061",
+      "question_number": 61,
+      "language_variants": {
+        "en": {
+          "question_text": "Arrange the following districts in decreasing order of per hectare fertilizer consumption and select the correct answer from the codes given below—\n1. Indore\n2. Dindori\n3. Hoshangabad\n4. Mandala\nCodes :",
+          "options": [
+            {
+              "key": "A",
+              "text": "1, 3, 4, 2"
+            },
+            {
+              "key": "B",
+              "text": "4, 2, 1, 3"
+            },
+            {
+              "key": "C",
+              "text": "4, 1, 3, 2"
+            },
+            {
+              "key": "D",
+              "text": "1, 2, 3, 4"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-062",
+      "question_number": 62,
+      "language_variants": {
+        "en": {
+          "question_text": "Match the following and select the correct answer from the codes given below—\n(a) Jamunapari\n(b) Bhadawari\n(c) Kadaknath\n(d) Malwi\n1. Cow\n2. Goat\n3. Buffalo\n4. Poultry\nCodes :\n(a) (b) (c) (d)",
+          "options": [
+            {
+              "key": "A",
+              "text": "2 3 4 1"
+            },
+            {
+              "key": "B",
+              "text": "2 1 4 3"
+            },
+            {
+              "key": "C",
+              "text": "4 1 2 3"
+            },
+            {
+              "key": "D",
+              "text": "4 3 2 1"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-063",
+      "question_number": 63,
+      "language_variants": {
+        "en": {
+          "question_text": "Coal Bed Methane has been found in—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Shahdol"
+            },
+            {
+              "key": "B",
+              "text": "Sagar"
+            },
+            {
+              "key": "C",
+              "text": "Jabalpur"
+            },
+            {
+              "key": "D",
+              "text": "Ujjain"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-064",
+      "question_number": 64,
+      "language_variants": {
+        "en": {
+          "question_text": "Madhya Pradesh is the largest producer of the following minerals in the country—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Coal and Diamond"
+            },
+            {
+              "key": "B",
+              "text": "Copper and Iron"
+            },
+            {
+              "key": "C",
+              "text": "Coal and Copper"
+            },
+            {
+              "key": "D",
+              "text": "Copper and Diamond"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-065",
+      "question_number": 65,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following sectors has been given the maximum allocation in the XI five year plan of Madhya Pradesh ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Health"
+            },
+            {
+              "key": "B",
+              "text": "Education"
+            },
+            {
+              "key": "C",
+              "text": "Power"
+            },
+            {
+              "key": "D",
+              "text": "Irrigation"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-066",
+      "question_number": 66,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following places has 500 MW unit for electricity generation ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Birsinghpur"
+            },
+            {
+              "key": "B",
+              "text": "Sarani"
+            },
+            {
+              "key": "C",
+              "text": "Chachai"
+            },
+            {
+              "key": "D",
+              "text": "Chhindwara"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-067",
+      "question_number": 67,
+      "language_variants": {
+        "en": {
+          "question_text": "Which among the following districts has most adverse sex ratio ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Morena"
+            },
+            {
+              "key": "B",
+              "text": "Balaghat"
+            },
+            {
+              "key": "C",
+              "text": "Jhabua"
+            },
+            {
+              "key": "D",
+              "text": "Rewa"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-068",
+      "question_number": 68,
+      "language_variants": {
+        "en": {
+          "question_text": "Which among the following districts has the highest literacy rate ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Bhopal"
+            },
+            {
+              "key": "B",
+              "text": "Narsinghpur"
+            },
+            {
+              "key": "C",
+              "text": "Jabalpur"
+            },
+            {
+              "key": "D",
+              "text": "Indore"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-069",
+      "question_number": 69,
+      "language_variants": {
+        "en": {
+          "question_text": "How many districts of Madhya Pradesh are covered under NREGA ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "All districts"
+            },
+            {
+              "key": "B",
+              "text": "18 districts"
+            },
+            {
+              "key": "C",
+              "text": "31 districts"
+            },
+            {
+              "key": "D",
+              "text": "None of these"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-070",
+      "question_number": 70,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following cities is not covered under JNNURM ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Indore"
+            },
+            {
+              "key": "B",
+              "text": "Jabalpur"
+            },
+            {
+              "key": "C",
+              "text": "Gwalior"
+            },
+            {
+              "key": "D",
+              "text": "Ujjain"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-071",
+      "question_number": 71,
+      "language_variants": {
+        "en": {
+          "question_text": "In an open ground, Rakesh walks 20 metres towards north, takes a left turn and walks 40 metres; again takes a left turn and walks 50 metres. How far is he from the starting point ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "110 metres"
+            },
+            {
+              "key": "B",
+              "text": "70 metres"
+            },
+            {
+              "key": "C",
+              "text": "50 metres"
+            },
+            {
+              "key": "D",
+              "text": "40 metres"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-072",
+      "question_number": 72,
+      "language_variants": {
+        "en": {
+          "question_text": "Fill up the blank—\n5 7 74\n11 8 185\n...... 6 205",
+          "options": [
+            {
+              "key": "A",
+              "text": "13"
+            },
+            {
+              "key": "B",
+              "text": "15"
+            },
+            {
+              "key": "C",
+              "text": "10"
+            },
+            {
+              "key": "D",
+              "text": "12"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-073",
+      "question_number": 73,
+      "language_variants": {
+        "en": {
+          "question_text": "Fill in the blank—\nMcCain : Obama : : Palin : .........",
+          "options": [
+            {
+              "key": "A",
+              "text": "Gore"
+            },
+            {
+              "key": "B",
+              "text": "Rice"
+            },
+            {
+              "key": "C",
+              "text": "Biden"
+            },
+            {
+              "key": "D",
+              "text": "Clinton"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-074",
+      "question_number": 74,
+      "language_variants": {
+        "en": {
+          "question_text": "Fill up the blank—\n5 9 21 37 81 ......",
+          "options": [
+            {
+              "key": "A",
+              "text": "163"
+            },
+            {
+              "key": "B",
+              "text": "153"
+            },
+            {
+              "key": "C",
+              "text": "183"
+            },
+            {
+              "key": "D",
+              "text": "203"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-079",
+      "question_number": 79,
+      "language_variants": {
+        "en": {
+          "question_text": "A school has 12 teachers. One of them retires at the age of 62 years and a new teacher replaces him. The change reduces the average age of the staff by 3 years. What is the age of the new teacher ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "22 years"
+            },
+            {
+              "key": "B",
+              "text": "24 years"
+            },
+            {
+              "key": "C",
+              "text": "26 years"
+            },
+            {
+              "key": "D",
+              "text": "28 years"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-080",
+      "question_number": 80,
+      "language_variants": {
+        "en": {
+          "question_text": "A 50 metres long train passes over a bridge at a velocity of $30\\text{ km/hour}$. If it takes 36 seconds to cross the bridge, the length of the bridge is—",
+          "options": [
+            {
+              "key": "A",
+              "text": "$200\\text{ m}$"
+            },
+            {
+              "key": "B",
+              "text": "$250\\text{ m}$"
+            },
+            {
+              "key": "C",
+              "text": "$300\\text{ m}$"
+            },
+            {
+              "key": "D",
+              "text": "$350\\text{ m}$"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-081",
+      "question_number": 81,
+      "language_variants": {
+        "en": {
+          "question_text": "A football league has 12 teams. Tournament is to be played on double round robin followed by the two top teams playing the Final. Round robin means that each team plays every other team. How many matches will be played in the tournament ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "132"
+            },
+            {
+              "key": "B",
+              "text": "133"
+            },
+            {
+              "key": "C",
+              "text": "67"
+            },
+            {
+              "key": "D",
+              "text": "66"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-086",
+      "question_number": 86,
+      "language_variants": {
+        "en": {
+          "question_text": "Under National e-Governance Plan, SWAN is—",
+          "options": [
+            {
+              "key": "A",
+              "text": "State Wide Area Network"
+            },
+            {
+              "key": "B",
+              "text": "Systems Wide Area Network"
+            },
+            {
+              "key": "C",
+              "text": "State Wise Area Network"
+            },
+            {
+              "key": "D",
+              "text": "Systems Wise Area Network"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-087",
+      "question_number": 87,
+      "language_variants": {
+        "en": {
+          "question_text": "Under National e-Governance Plan, CSC is—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Citizen Service Centre"
+            },
+            {
+              "key": "B",
+              "text": "Common Service Centre"
+            },
+            {
+              "key": "C",
+              "text": "Community Service Centre"
+            },
+            {
+              "key": "D",
+              "text": "Computer Service Centre"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-088",
+      "question_number": 88,
+      "language_variants": {
+        "en": {
+          "question_text": "Google company has launched a new browser in third quarter of 2008. It is—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Chrome"
+            },
+            {
+              "key": "B",
+              "text": "Lycos"
+            },
+            {
+              "key": "C",
+              "text": "Alta-vista"
+            },
+            {
+              "key": "D",
+              "text": "Mozilla Firefox"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-089",
+      "question_number": 89,
+      "language_variants": {
+        "en": {
+          "question_text": "First fully computer literate district in the country is—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Ernakulam"
+            },
+            {
+              "key": "B",
+              "text": "Villupuram"
+            },
+            {
+              "key": "C",
+              "text": "Thiruvallur"
+            },
+            {
+              "key": "D",
+              "text": "Malappuram"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-090",
+      "question_number": 90,
+      "language_variants": {
+        "en": {
+          "question_text": "Match the following and select the correct answer from the codes given below—\n(a) Narayan Murthy\n(b) Azim Premji\n(c) Ramlingam Raju\n(d) Ramadurai\n1. Wipro\n2. TCS\n3. Infosys\n4. Satyam Computers\nCodes :\n(a) (b) (c) (d)",
+          "options": [
+            {
+              "key": "A",
+              "text": "2 1 4 3"
+            },
+            {
+              "key": "B",
+              "text": "3 1 4 2"
+            },
+            {
+              "key": "C",
+              "text": "3 4 1 2"
+            },
+            {
+              "key": "D",
+              "text": "2 4 1 3"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-091",
+      "question_number": 91,
+      "language_variants": {
+        "en": {
+          "question_text": "Consider the following statements and select the correct answer from the codes given below—\n1. . Net (Dot Net) Framework has been developed by Microsoft\n2. Java is an open source technology developed by Sun Microsystems\nCodes :",
+          "options": [
+            {
+              "key": "A",
+              "text": "Only 1 is correct"
+            },
+            {
+              "key": "B",
+              "text": "Only 2 is correct"
+            },
+            {
+              "key": "C",
+              "text": "Both 1 and 2 are correct"
+            },
+            {
+              "key": "D",
+              "text": "None is correct"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-092",
+      "question_number": 92,
+      "language_variants": {
+        "en": {
+          "question_text": "Consider the following statements and select the correct answer from the codes given below—\n1. Proxy server provides TCP/IP address\n2. Proxy server processes clients requests by forwarding the requests to other servers.\nCodes :",
+          "options": [
+            {
+              "key": "A",
+              "text": "Only 1 is correct"
+            },
+            {
+              "key": "B",
+              "text": "Only 2 is correct"
+            },
+            {
+              "key": "C",
+              "text": "Both 1 and 2 are correct"
+            },
+            {
+              "key": "D",
+              "text": "None is correct"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-093",
+      "question_number": 93,
+      "language_variants": {
+        "en": {
+          "question_text": "An exclusively private network used by employees of a company in a single location will be classified as—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Internet"
+            },
+            {
+              "key": "B",
+              "text": "Local Area Network"
+            },
+            {
+              "key": "C",
+              "text": "Wide Area Network"
+            },
+            {
+              "key": "D",
+              "text": "ARPANET"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-094",
+      "question_number": 94,
+      "language_variants": {
+        "en": {
+          "question_text": "In a database, field is—",
+          "options": [
+            {
+              "key": "A",
+              "text": "label"
+            },
+            {
+              "key": "B",
+              "text": "table of information"
+            },
+            {
+              "key": "C",
+              "text": "group of related records"
+            },
+            {
+              "key": "D",
+              "text": "category of information"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-095",
+      "question_number": 95,
+      "language_variants": {
+        "en": {
+          "question_text": "A million bytes is approximately—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Gigabyte"
+            },
+            {
+              "key": "B",
+              "text": "Kilobyte"
+            },
+            {
+              "key": "C",
+              "text": "Megabyte"
+            },
+            {
+              "key": "D",
+              "text": "Terabyte"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-096",
+      "question_number": 96,
+      "language_variants": {
+        "en": {
+          "question_text": "To increase the length of a network without loss of signal strength, we would use—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Repeater"
+            },
+            {
+              "key": "B",
+              "text": "Router"
+            },
+            {
+              "key": "C",
+              "text": "Gateway"
+            },
+            {
+              "key": "D",
+              "text": "Switch"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-097",
+      "question_number": 97,
+      "language_variants": {
+        "en": {
+          "question_text": "If a domain name ends with .edu.us, then it is—",
+          "options": [
+            {
+              "key": "A",
+              "text": "An international organization"
+            },
+            {
+              "key": "B",
+              "text": "A non-profit organization"
+            },
+            {
+              "key": "C",
+              "text": "An educational institute in Australia"
+            },
+            {
+              "key": "D",
+              "text": "An educational institute in USA"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-098",
+      "question_number": 98,
+      "language_variants": {
+        "en": {
+          "question_text": "Word Processors, Spread sheets are examples of—",
+          "options": [
+            {
+              "key": "A",
+              "text": "System Software"
+            },
+            {
+              "key": "B",
+              "text": "Application Software"
+            },
+            {
+              "key": "C",
+              "text": "Platform Software"
+            },
+            {
+              "key": "D",
+              "text": "None of these"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-099",
+      "question_number": 99,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following is not an output device ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Drum pen plotter"
+            },
+            {
+              "key": "B",
+              "text": "CRT monitor"
+            },
+            {
+              "key": "C",
+              "text": "Earphones"
+            },
+            {
+              "key": "D",
+              "text": "Digital camera"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-100",
+      "question_number": 100,
+      "language_variants": {
+        "en": {
+          "question_text": "One of the first viruses to attract wide spread public attention was designed to infect MS-DOS on 6th March 1992. Name of the virus is—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Brain"
+            },
+            {
+              "key": "B",
+              "text": "Catch me if you can"
+            },
+            {
+              "key": "C",
+              "text": "Michelangelo"
+            },
+            {
+              "key": "D",
+              "text": "Friday the thirteenth"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-101",
+      "question_number": 101,
+      "language_variants": {
+        "en": {
+          "question_text": "Assertion (A) : In India, electricity distribution companies calculate the consumption of electricity in kWh.\nReason (R) : Electrical System in India works at a frequency of 60 Hz.",
+          "options": [
+            {
+              "key": "A",
+              "text": "Both (A) and (R) are individually true and (R) is the correct explanation of (A)."
+            },
+            {
+              "key": "B",
+              "text": "Both (A) and (R) are individually true but (R) is not correct explanation of (A)."
+            },
+            {
+              "key": "C",
+              "text": "(A) is true but (R) is false."
+            },
+            {
+              "key": "D",
+              "text": "(A) is false but (R) is true."
+            }
+          ],
+          "instructions": "Directions—(Q. 101 to 110) : The following ten questions consist of two statements; one labelled as the ‘Assertion (A)’ and the other as ‘Reason (R)’. You have to examine the two statements and select the answer to these questions using the code below—"
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-102",
+      "question_number": 102,
+      "language_variants": {
+        "en": {
+          "question_text": "Assertion (A) : A plant which has nitrogen deficiency will show symptoms like stunted growth and pale green and yellow leaves.\nReason (R): Nitrogen is responsible for green leaf growth.",
+          "options": [
+            {
+              "key": "A",
+              "text": "Both (A) and (R) are individually true and (R) is the correct explanation of (A)."
+            },
+            {
+              "key": "B",
+              "text": "Both (A) and (R) are individually true but (R) is not correct explanation of (A)."
+            },
+            {
+              "key": "C",
+              "text": "(A) is true but (R) is false."
+            },
+            {
+              "key": "D",
+              "text": "(A) is false but (R) is true."
+            }
+          ],
+          "instructions": "Directions—(Q. 101 to 110) : The following ten questions consist of two statements; one labelled as the ‘Assertion (A)’ and the other as ‘Reason (R)’. You have to examine the two statements and select the answer to these questions using the code below—"
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-103",
+      "question_number": 103,
+      "language_variants": {
+        "en": {
+          "question_text": "Assertion (A) : Gypsum is added to cooled clinkers of cement.\nReason (R) : Gypsum speeds up the setting time of cement.",
+          "options": [
+            {
+              "key": "A",
+              "text": "Both (A) and (R) are individually true and (R) is the correct explanation of (A)."
+            },
+            {
+              "key": "B",
+              "text": "Both (A) and (R) are individually true but (R) is not correct explanation of (A)."
+            },
+            {
+              "key": "C",
+              "text": "(A) is true but (R) is false."
+            },
+            {
+              "key": "D",
+              "text": "(A) is false but (R) is true."
+            }
+          ],
+          "instructions": "Directions—(Q. 101 to 110) : The following ten questions consist of two statements; one labelled as the ‘Assertion (A)’ and the other as ‘Reason (R)’. You have to examine the two statements and select the answer to these questions using the code below—"
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-104",
+      "question_number": 104,
+      "language_variants": {
+        "en": {
+          "question_text": "Assertion (A) : People with AB blood groups are universal recipients.\nReason (R) : Red blood cell of blood group AB has no antigen and so agglutination does not occur with any other blood group.",
+          "options": [
+            {
+              "key": "A",
+              "text": "Both (A) and (R) are individually true and (R) is the correct explanation of (A)."
+            },
+            {
+              "key": "B",
+              "text": "Both (A) and (R) are individually true but (R) is not correct explanation of (A)."
+            },
+            {
+              "key": "C",
+              "text": "(A) is true but (R) is false."
+            },
+            {
+              "key": "D",
+              "text": "(A) is false but (R) is true."
+            }
+          ],
+          "instructions": "Directions—(Q. 101 to 110) : The following ten questions consist of two statements; one labelled as the ‘Assertion (A)’ and the other as ‘Reason (R)’. You have to examine the two statements and select the answer to these questions using the code below—"
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-105",
+      "question_number": 105,
+      "language_variants": {
+        "en": {
+          "question_text": "Assertion (A) : Wind patterns are clockwise in southern hemisphere and anticlockwise in northern hemisphere.\nReason (R) : The directions of wind patterns in northern and southern hemisphere are governed by Coriolis effect.",
+          "options": [
+            {
+              "key": "A",
+              "text": "Both (A) and (R) are individually true and (R) is the correct explanation of (A)."
+            },
+            {
+              "key": "B",
+              "text": "Both (A) and (R) are individually true but (R) is not correct explanation of (A)."
+            },
+            {
+              "key": "C",
+              "text": "(A) is true but (R) is false."
+            },
+            {
+              "key": "D",
+              "text": "(A) is false but (R) is true."
+            }
+          ],
+          "instructions": "Directions—(Q. 101 to 110) : The following ten questions consist of two statements; one labelled as the ‘Assertion (A)’ and the other as ‘Reason (R)’. You have to examine the two statements and select the answer to these questions using the code below—"
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-106",
+      "question_number": 106,
+      "language_variants": {
+        "en": {
+          "question_text": "Assertion (A) : Protest, led by Lala Lajpat Rai, was organized in Lahore in 1928 against Simon Commission.\nReason (R) : Simon Commission did not have a single Indian member in it.",
+          "options": [
+            {
+              "key": "A",
+              "text": "Both (A) and (R) are individually true and (R) is the correct explanation of (A)."
+            },
+            {
+              "key": "B",
+              "text": "Both (A) and (R) are individually true but (R) is not correct explanation of (A)."
+            },
+            {
+              "key": "C",
+              "text": "(A) is true but (R) is false."
+            },
+            {
+              "key": "D",
+              "text": "(A) is false but (R) is true."
+            }
+          ],
+          "instructions": "Directions—(Q. 101 to 110) : The following ten questions consist of two statements; one labelled as the ‘Assertion (A)’ and the other as ‘Reason (R)’. You have to examine the two statements and select the answer to these questions using the code below—"
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-107",
+      "question_number": 107,
+      "language_variants": {
+        "en": {
+          "question_text": "Assertion (A) : Foodgrain production per capita in Madhya Pradesh is less than the national average.\nReason (R) : The productivity of foodgrains in Madhya Pradesh is less than the national average.",
+          "options": [
+            {
+              "key": "A",
+              "text": "Both (A) and (R) are individually true and (R) is the correct explanation of (A)."
+            },
+            {
+              "key": "B",
+              "text": "Both (A) and (R) are individually true but (R) is not correct explanation of (A)."
+            },
+            {
+              "key": "C",
+              "text": "(A) is true but (R) is false."
+            },
+            {
+              "key": "D",
+              "text": "(A) is false but (R) is true."
+            }
+          ],
+          "instructions": "Directions—(Q. 101 to 110) : The following ten questions consist of two statements; one labelled as the ‘Assertion (A)’ and the other as ‘Reason (R)’. You have to examine the two statements and select the answer to these questions using the code below—"
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-108",
+      "question_number": 108,
+      "language_variants": {
+        "en": {
+          "question_text": "Assertion (A) : The Indian Constitution is basically federal in form.\nReason (R) : Article 352 has provisions in case of failure of constitutional machinery in states.",
+          "options": [
+            {
+              "key": "A",
+              "text": "Both (A) and (R) are individually true and (R) is the correct explanation of (A)."
+            },
+            {
+              "key": "B",
+              "text": "Both (A) and (R) are individually true but (R) is not correct explanation of (A)."
+            },
+            {
+              "key": "C",
+              "text": "(A) is true but (R) is false."
+            },
+            {
+              "key": "D",
+              "text": "(A) is false but (R) is true."
+            }
+          ],
+          "instructions": "Directions—(Q. 101 to 110) : The following ten questions consist of two statements; one labelled as the ‘Assertion (A)’ and the other as ‘Reason (R)’. You have to examine the two statements and select the answer to these questions using the code below—"
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-109",
+      "question_number": 109,
+      "language_variants": {
+        "en": {
+          "question_text": "Assertion (A) : Lehman Brothers (an investment banking company of US) filed for chapter 11 bankruptcy protection in September 2008.\nReason (R) : Subprime lending was one of the major causes of financial crisis.",
+          "options": [
+            {
+              "key": "A",
+              "text": "Both (A) and (R) are individually true and (R) is the correct explanation of (A)."
+            },
+            {
+              "key": "B",
+              "text": "Both (A) and (R) are individually true but (R) is not correct explanation of (A)."
+            },
+            {
+              "key": "C",
+              "text": "(A) is true but (R) is false."
+            },
+            {
+              "key": "D",
+              "text": "(A) is false but (R) is true."
+            }
+          ],
+          "instructions": "Directions—(Q. 101 to 110) : The following ten questions consist of two statements; one labelled as the ‘Assertion (A)’ and the other as ‘Reason (R)’. You have to examine the two statements and select the answer to these questions using the code below—"
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-110",
+      "question_number": 110,
+      "language_variants": {
+        "en": {
+          "question_text": "Assertion (A) : CERN (European Organization for Nuclear Research) is the world's largest particle Physics laboratory.\nReason (R) : CERN is French aeronym of the name of the provisional body founded 2 years before the organization came into existence.",
+          "options": [
+            {
+              "key": "A",
+              "text": "Both (A) and (R) are individually true and (R) is the correct explanation of (A)."
+            },
+            {
+              "key": "B",
+              "text": "Both (A) and (R) are individually true but (R) is not correct explanation of (A)."
+            },
+            {
+              "key": "C",
+              "text": "(A) is true but (R) is false."
+            },
+            {
+              "key": "D",
+              "text": "(A) is false but (R) is true."
+            }
+          ],
+          "instructions": "Directions—(Q. 101 to 110) : The following ten questions consist of two statements; one labelled as the ‘Assertion (A)’ and the other as ‘Reason (R)’. You have to examine the two statements and select the answer to these questions using the code below—"
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-111",
+      "question_number": 111,
+      "language_variants": {
+        "en": {
+          "question_text": "Formation of Ozone hole is maximum over—",
+          "options": [
+            {
+              "key": "A",
+              "text": "India"
+            },
+            {
+              "key": "B",
+              "text": "Africa"
+            },
+            {
+              "key": "C",
+              "text": "Antarctica"
+            },
+            {
+              "key": "D",
+              "text": "Europe"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-112",
+      "question_number": 112,
+      "language_variants": {
+        "en": {
+          "question_text": "Steel is mainly an alloy of Iron and—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Chromium"
+            },
+            {
+              "key": "B",
+              "text": "Nickel"
+            },
+            {
+              "key": "C",
+              "text": "Manganese"
+            },
+            {
+              "key": "D",
+              "text": "Carbon"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-113",
+      "question_number": 113,
+      "language_variants": {
+        "en": {
+          "question_text": "Aryabhatta was launched on—",
+          "options": [
+            {
+              "key": "A",
+              "text": "19th April, 1975"
+            },
+            {
+              "key": "B",
+              "text": "6th December, 1957"
+            },
+            {
+              "key": "C",
+              "text": "31st January, 1958"
+            },
+            {
+              "key": "D",
+              "text": "2nd October, 1980"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-114",
+      "question_number": 114,
+      "language_variants": {
+        "en": {
+          "question_text": "‘Project Tiger’ in India was started in—",
+          "options": [
+            {
+              "key": "A",
+              "text": "1970"
+            },
+            {
+              "key": "B",
+              "text": "1973"
+            },
+            {
+              "key": "C",
+              "text": "1981"
+            },
+            {
+              "key": "D",
+              "text": "1984"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-115",
+      "question_number": 115,
+      "language_variants": {
+        "en": {
+          "question_text": "Gas released during Bhopal gas tragedy was—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Methyl isothiocyanate"
+            },
+            {
+              "key": "B",
+              "text": "Ethyl isothiocyanate"
+            },
+            {
+              "key": "C",
+              "text": "Methyl isocyanate"
+            },
+            {
+              "key": "D",
+              "text": "Ethyl isocyanate"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-116",
+      "question_number": 116,
+      "language_variants": {
+        "en": {
+          "question_text": "Light year is the unit of—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Time"
+            },
+            {
+              "key": "B",
+              "text": "Distance"
+            },
+            {
+              "key": "C",
+              "text": "Speed of light"
+            },
+            {
+              "key": "D",
+              "text": "Speed with respect to speed of light"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-117",
+      "question_number": 117,
+      "language_variants": {
+        "en": {
+          "question_text": "An ice cube is floating in a glass of water. What happens to the water level when the ice melts ?\nIt—",
+          "options": [
+            {
+              "key": "A",
+              "text": "rises"
+            },
+            {
+              "key": "B",
+              "text": "falls"
+            },
+            {
+              "key": "C",
+              "text": "remains the same"
+            },
+            {
+              "key": "D",
+              "text": "first rises and then falls"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-118",
+      "question_number": 118,
+      "language_variants": {
+        "en": {
+          "question_text": "Match the following and select the correct answer from the codes given below—\n(a) Anaemia\n(b) Goiter\n(c) Night blindness\n(d) Beri-beri\n1. Vitamin B deficiency\n2. Iron deficiency\n3. Iodine deficiency\n4. Vitamin A deficiency\nCodes :\n(a) (b) (c) (d)",
+          "options": [
+            {
+              "key": "A",
+              "text": "2 1 3 4"
+            },
+            {
+              "key": "B",
+              "text": "2 3 4 1"
+            },
+            {
+              "key": "C",
+              "text": "1 2 3 4"
+            },
+            {
+              "key": "D",
+              "text": "2 3 4 1"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-119",
+      "question_number": 119,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following lens is used to minimize Myopia ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Convex lens"
+            },
+            {
+              "key": "B",
+              "text": "Concave lens"
+            },
+            {
+              "key": "C",
+              "text": "Cylindrical lens"
+            },
+            {
+              "key": "D",
+              "text": "None of these"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-120",
+      "question_number": 120,
+      "language_variants": {
+        "en": {
+          "question_text": "India's first atomic power station is—",
+          "options": [
+            {
+              "key": "A",
+              "text": "BARC"
+            },
+            {
+              "key": "B",
+              "text": "Tarapur Atomic Power Station"
+            },
+            {
+              "key": "C",
+              "text": "Narora Atomic Power Station"
+            },
+            {
+              "key": "D",
+              "text": "None of these"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-121",
+      "question_number": 121,
+      "language_variants": {
+        "en": {
+          "question_text": "A fan produces feeling of comfort during hot weather because—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Fan supplies cold air"
+            },
+            {
+              "key": "B",
+              "text": "Our perspiration evaporates rapidly"
+            },
+            {
+              "key": "C",
+              "text": "Out body radiates more heat"
+            },
+            {
+              "key": "D",
+              "text": "Conductivity of air increases"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-122",
+      "question_number": 122,
+      "language_variants": {
+        "en": {
+          "question_text": "Which among the following countries is not a member of Nuclear Suppliers Group ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "China"
+            },
+            {
+              "key": "B",
+              "text": "New Zealand"
+            },
+            {
+              "key": "C",
+              "text": "Ireland"
+            },
+            {
+              "key": "D",
+              "text": "Iran"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-123",
+      "question_number": 123,
+      "language_variants": {
+        "en": {
+          "question_text": "Which river in Bihar changed its course in the year 2008 and caused calamity ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Ganga"
+            },
+            {
+              "key": "B",
+              "text": "Gandak"
+            },
+            {
+              "key": "C",
+              "text": "Kosi"
+            },
+            {
+              "key": "D",
+              "text": "Ghaghra"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-124",
+      "question_number": 124,
+      "language_variants": {
+        "en": {
+          "question_text": "United Nations declared the year 2008 as the International Year of—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Sanitation"
+            },
+            {
+              "key": "B",
+              "text": "Drinking water"
+            },
+            {
+              "key": "C",
+              "text": "Literacy"
+            },
+            {
+              "key": "D",
+              "text": "Reduction of infant mortality"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-125",
+      "question_number": 125,
+      "language_variants": {
+        "en": {
+          "question_text": "Violence against Christians erupted in Orissa after the murder of Swami Lakshmanananda Saraswati in August 2008. Which district was the worst affected ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Keonjhar"
+            },
+            {
+              "key": "B",
+              "text": "Bargarh"
+            },
+            {
+              "key": "C",
+              "text": "Sambalpur"
+            },
+            {
+              "key": "D",
+              "text": "Kandhamal"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-126",
+      "question_number": 126,
+      "language_variants": {
+        "en": {
+          "question_text": "Which film received the best feature film award at the 54th National Film Awards ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Pulijanmam (Malayalam)"
+            },
+            {
+              "key": "B",
+              "text": "Kabul Express"
+            },
+            {
+              "key": "C",
+              "text": "Lage Raho Munna Bhai"
+            },
+            {
+              "key": "D",
+              "text": "Podokkhep (Bengali)"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-127",
+      "question_number": 127,
+      "language_variants": {
+        "en": {
+          "question_text": "According to the Article 82 of the Constitution of India, the allocation of seats in Lok Sabha to the states is on the basis of the ........ census.",
+          "options": [
+            {
+              "key": "A",
+              "text": "1961"
+            },
+            {
+              "key": "B",
+              "text": "1971"
+            },
+            {
+              "key": "C",
+              "text": "1981"
+            },
+            {
+              "key": "D",
+              "text": "1991"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-128",
+      "question_number": 128,
+      "language_variants": {
+        "en": {
+          "question_text": "Russia recognized independence of Georgia's two territories in August 2008. The two territories are—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Kosovo and Dushanbe"
+            },
+            {
+              "key": "B",
+              "text": "Kosovo and South Ossetia"
+            },
+            {
+              "key": "C",
+              "text": "Abkhazia and Dushanbe"
+            },
+            {
+              "key": "D",
+              "text": "South Ossetia and Abkhazia"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-129",
+      "question_number": 129,
+      "language_variants": {
+        "en": {
+          "question_text": "Which country was the first after the ban on India was lifted by the Nuclear Suppliers Group, to sign an agreement that would allow supply of civil nuclear technology to India ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "USA"
+            },
+            {
+              "key": "B",
+              "text": "Italy"
+            },
+            {
+              "key": "C",
+              "text": "Russia"
+            },
+            {
+              "key": "D",
+              "text": "France"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-130",
+      "question_number": 130,
+      "language_variants": {
+        "en": {
+          "question_text": "What is the cut-off date for recognition of rights under \"The Scheduled Tribes and other traditional Forest Dwellers (Recognition of Forest Rights) Act, 2006\" ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "13th September, 1976"
+            },
+            {
+              "key": "B",
+              "text": "13th December, 2006"
+            },
+            {
+              "key": "C",
+              "text": "13th September, 2005"
+            },
+            {
+              "key": "D",
+              "text": "13th December, 2005"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-131",
+      "question_number": 131,
+      "language_variants": {
+        "en": {
+          "question_text": "Who amongst the following did not share Nobel Prize for Physics in 2008 ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Tohide Yasakawa"
+            },
+            {
+              "key": "B",
+              "text": "Makoto Kabayashi"
+            },
+            {
+              "key": "C",
+              "text": "Toshihide Maskawa"
+            },
+            {
+              "key": "D",
+              "text": "Yoichiro Nambu"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-132",
+      "question_number": 132,
+      "language_variants": {
+        "en": {
+          "question_text": "Name of the spacecraft for India's mission moon is—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Chandrayaan-I"
+            },
+            {
+              "key": "B",
+              "text": "Chandrayaan-II"
+            },
+            {
+              "key": "C",
+              "text": "Antariksha"
+            },
+            {
+              "key": "D",
+              "text": "Change I"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-133",
+      "question_number": 133,
+      "language_variants": {
+        "en": {
+          "question_text": "Who among the following was Secretary, Economic Affairs, Government of India and then became Governor, Reserve Bank of India in September 2008 ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Y.V. Reddy"
+            },
+            {
+              "key": "B",
+              "text": "D. Rangarajan"
+            },
+            {
+              "key": "C",
+              "text": "T.K. Nair"
+            },
+            {
+              "key": "D",
+              "text": "D. Subbarao"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-134",
+      "question_number": 134,
+      "language_variants": {
+        "en": {
+          "question_text": "To which place did Ratan Tata decide to move the Nano Project from Singur ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Pithampur"
+            },
+            {
+              "key": "B",
+              "text": "Pune"
+            },
+            {
+              "key": "C",
+              "text": "Sanand"
+            },
+            {
+              "key": "D",
+              "text": "Gopalpur"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-135",
+      "question_number": 135,
+      "language_variants": {
+        "en": {
+          "question_text": "Consider the following statements and select the correct answer from the codes given below—\n1. Mohenjo Daro, Harappa, Ropar and Kalibangan are important places of Indus Valley Civilization\n2. Harappan people developed planned cities with network of streets and drainage system\n3. Harappan people did not know use of metals\nCodes :",
+          "options": [
+            {
+              "key": "A",
+              "text": "1 and 2 are correct"
+            },
+            {
+              "key": "B",
+              "text": "1 and 3 are correct"
+            },
+            {
+              "key": "C",
+              "text": "2 and 3 are correct"
+            },
+            {
+              "key": "D",
+              "text": "1, 2 and 3 are correct"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-136",
+      "question_number": 136,
+      "language_variants": {
+        "en": {
+          "question_text": "Which Indian king defeated Seleucus, the administrator of Sindh and Afghanistan appointed by Alexander ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Samudragupta"
+            },
+            {
+              "key": "B",
+              "text": "Ashok"
+            },
+            {
+              "key": "C",
+              "text": "Bindusar"
+            },
+            {
+              "key": "D",
+              "text": "Chandragupta"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-137",
+      "question_number": 137,
+      "language_variants": {
+        "en": {
+          "question_text": "Which English Governor of East India Company in India was expelled by Aurangzeb ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Aungier"
+            },
+            {
+              "key": "B",
+              "text": "Sir John Child"
+            },
+            {
+              "key": "C",
+              "text": "Sir John Gayer"
+            },
+            {
+              "key": "D",
+              "text": "Sir Nicholas Waite"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-138",
+      "question_number": 138,
+      "language_variants": {
+        "en": {
+          "question_text": "First decisive military success of English East India Company in India is marked by—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Battle of Buxar"
+            },
+            {
+              "key": "B",
+              "text": "Battle of Plassey"
+            },
+            {
+              "key": "C",
+              "text": "Battle of Panipat"
+            },
+            {
+              "key": "D",
+              "text": "Battle of Haldighati"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-139",
+      "question_number": 139,
+      "language_variants": {
+        "en": {
+          "question_text": "Bhils revolted against the British in—",
+          "options": [
+            {
+              "key": "A",
+              "text": "M.P. and Maharashtra"
+            },
+            {
+              "key": "B",
+              "text": "M.P. and Bihar"
+            },
+            {
+              "key": "C",
+              "text": "Bihar and Bengal"
+            },
+            {
+              "key": "D",
+              "text": "Bengal and Maharashtra"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-140",
+      "question_number": 140,
+      "language_variants": {
+        "en": {
+          "question_text": "The modern historian who called the revolt of 1857 as the first war of indepdence was—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Dr. R.C. Majumdar"
+            },
+            {
+              "key": "B",
+              "text": "Dr. S.N. Sen"
+            },
+            {
+              "key": "C",
+              "text": "V.D. Savarkar"
+            },
+            {
+              "key": "D",
+              "text": "Ashok Mehta"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-141",
+      "question_number": 141,
+      "language_variants": {
+        "en": {
+          "question_text": "The newspaper brought out by Bal Gangadhar Tilak to promote nationalism was—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Yugantar"
+            },
+            {
+              "key": "B",
+              "text": "Deshbhakti"
+            },
+            {
+              "key": "C",
+              "text": "Kesari"
+            },
+            {
+              "key": "D",
+              "text": "Kranti"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-142",
+      "question_number": 142,
+      "language_variants": {
+        "en": {
+          "question_text": "Why did Mahatma Gandhi withdraw Non-Cooperation Movement in 1922 ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Most of the leaders were arrested and were in prison"
+            },
+            {
+              "key": "B",
+              "text": "British agreed to partly fulfil the demands"
+            },
+            {
+              "key": "C",
+              "text": "Because of Chauri-Chaura violence"
+            },
+            {
+              "key": "D",
+              "text": "He saw no chance of success of the movement"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-143",
+      "question_number": 143,
+      "language_variants": {
+        "en": {
+          "question_text": "Arrange the following in chronological order and select the correct answer from the codes given below—\n1. Dandi March\n2. Jallianwala Bagh Massacre\n3. Quit India Movement\n4. Swadeshi Movement\nCodes :",
+          "options": [
+            {
+              "key": "A",
+              "text": "2, 4, 1, 3"
+            },
+            {
+              "key": "B",
+              "text": "4, 2, 1, 3"
+            },
+            {
+              "key": "C",
+              "text": "2, 1, 4, 3"
+            },
+            {
+              "key": "D",
+              "text": "4, 2, 3, 1"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2009-144",
+      "question_number": 144,
+      "language_variants": {
+        "en": {
+          "question_text": "Match the following and select the correct answer from the codes given below—\n(a) Bipin Chandra Pal\n(b) Aurobindo Ghosh\n(c) Brahmobandhab Upadhyay\n(d) Muhammad Ali\n1. New India\n2. Comrade\n3. Vande Mataram\n4. Sandhya\nCodes :\n(a) (b) (c) (d)",
+          "options": [
+            {
+              "key": "A",
+              "text": "1 3 4 2"
+            },
+            {
+              "key": "B",
+              "text": "2 1 3 4"
+            },
+            {
+              "key": "C",
+              "text": "2 1 4 3"
+            },
+            {
+              "key": "D",
+              "text": "1 3 2 4"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

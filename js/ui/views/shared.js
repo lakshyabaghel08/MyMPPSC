@@ -472,11 +472,12 @@ export async function startPaperSimulation(ctx, paper, { count = null, strict = 
     return null;
   }
   const size = Math.max(1, Math.min(Number(count) || full.length, full.length));
-  const short = size < full.length;
+  const incomplete = Number.isFinite(paper.original_question_count) && full.length < paper.original_question_count;
+  const short = size < full.length || incomplete;
   const ordered = strict ? full.slice(0, size) : shuffle(full.slice()).slice(0, size);
   return startPracticeTest(ctx, {
     kind: 'pyq_full',
-    label: `${paper.paper_name || paper.exam || paper.paper_id}${paper.year ? ` — ${paper.year}` : ''}${paper.set_code ? ` (set ${paper.set_code})` : ''}${short ? ` · first ${size}` : ''}`,
+    label: `${paper.paper_name || paper.exam || paper.paper_id}${paper.year ? ` — ${paper.year}` : ''}${paper.set_code ? ` (set ${paper.set_code})` : ''}${incomplete ? ' · partial paper' : short ? ` · first ${size}` : ''}`,
     questionIds: ordered,
     metas: ordered.map((id) => state.questionIndex.get(id)).filter(Boolean),
     config: {
@@ -489,7 +490,7 @@ export async function startPaperSimulation(ctx, paper, { count = null, strict = 
     orderSource: strict ? 'original' : 'shuffled',
     paper,
     selectionNotes: short
-      ? [`The first ${size} of ${full.length} questions, in the paper's order.`, 'No time limit: this is a shortened run, not a full simulation.']
+      ? [`${size} of ${full.length} available questions${strict ? ", in the paper's order" : ', shuffled'}.`, ...(incomplete ? [`The source paper has ${paper.original_question_count} questions; this transcription is incomplete.`] : []), 'No time limit: this is not a full-paper simulation.']
       : [strict ? 'Original paper order retained.' : 'Question order shuffled for this sitting.'],
   });
 }

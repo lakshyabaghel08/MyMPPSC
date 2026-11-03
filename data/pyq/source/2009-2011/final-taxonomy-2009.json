@@ -1,0 +1,735 @@
+{
+  "note": "Source-supported manual taxonomy paths for complete PDF-derived records; null lower levels are deliberate.",
+  "labels": {
+    "MPPSC-2009-001": {
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": null
+    },
+    "MPPSC-2009-002": {
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": null
+    },
+    "MPPSC-2009-003": {
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": null
+    },
+    "MPPSC-2009-004": {
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": null
+    },
+    "MPPSC-2009-005": {
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": null
+    },
+    "MPPSC-2009-006": {
+      "subject": "Environment",
+      "topic": "Ecology and biodiversity",
+      "subtopic": null
+    },
+    "MPPSC-2009-007": {
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": null
+    },
+    "MPPSC-2009-008": {
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": null
+    },
+    "MPPSC-2009-009": {
+      "subject": "Geography",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-010": {
+      "subject": "Geography",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-011": {
+      "subject": "Geography",
+      "topic": "World Geography",
+      "subtopic": null
+    },
+    "MPPSC-2009-012": {
+      "subject": "Geography",
+      "topic": "World Geography",
+      "subtopic": null
+    },
+    "MPPSC-2009-013": {
+      "subject": "Polity",
+      "topic": "Union Legislature",
+      "subtopic": "Lok Sabha"
+    },
+    "MPPSC-2009-014": {
+      "subject": "Polity",
+      "topic": "Constitutional bodies",
+      "subtopic": "Election Commission of India"
+    },
+    "MPPSC-2009-015": {
+      "subject": "Polity",
+      "topic": "Union Legislature",
+      "subtopic": "Rajya Sabha"
+    },
+    "MPPSC-2009-016": {
+      "subject": "Polity",
+      "topic": "Constitution of India",
+      "subtopic": "Fundamental Rights"
+    },
+    "MPPSC-2009-017": {
+      "subject": "Economy",
+      "topic": "Indian Economy",
+      "subtopic": "National income"
+    },
+    "MPPSC-2009-018": {
+      "subject": "Economy",
+      "topic": "Indian Economy",
+      "subtopic": "Planning in India"
+    },
+    "MPPSC-2009-019": {
+      "subject": "Economy",
+      "topic": "Indian Economy",
+      "subtopic": "Economic reforms of 1991"
+    },
+    "MPPSC-2009-020": {
+      "subject": "Environment",
+      "topic": "Environmental laws and institutions",
+      "subtopic": null
+    },
+    "MPPSC-2009-021": {
+      "subject": "Economy",
+      "topic": "Agriculture and rural economy",
+      "subtopic": null
+    },
+    "MPPSC-2009-022": {
+      "subject": "Polity",
+      "topic": "Statutory and regulatory bodies",
+      "subtopic": "Central Vigilance Commission"
+    },
+    "MPPSC-2009-023": {
+      "subject": "Economy",
+      "topic": "Poverty and human development",
+      "subtopic": "Human Development Index"
+    },
+    "MPPSC-2009-024": {
+      "subject": "Economy",
+      "topic": "Agriculture and rural economy",
+      "subtopic": null
+    },
+    "MPPSC-2009-025": {
+      "subject": "Economy",
+      "topic": "Indian Economy",
+      "subtopic": "Planning in India"
+    },
+    "MPPSC-2009-026": {
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Olympic and Asian Games"
+    },
+    "MPPSC-2009-027": {
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Olympic and Asian Games"
+    },
+    "MPPSC-2009-028": {
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Olympic and Asian Games"
+    },
+    "MPPSC-2009-029": {
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Cricket"
+    },
+    "MPPSC-2009-030": {
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": null
+    },
+    "MPPSC-2009-031": {
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Olympic and Asian Games"
+    },
+    "MPPSC-2009-032": {
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Other sports events"
+    },
+    "MPPSC-2009-033": {
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Other sports events"
+    },
+    "MPPSC-2009-034": {
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Other sports events"
+    },
+    "MPPSC-2009-035": {
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": null
+    },
+    "MPPSC-2009-036": {
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Other sports events"
+    },
+    "MPPSC-2009-037": {
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Other sports events"
+    },
+    "MPPSC-2009-038": {
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Other sports events"
+    },
+    "MPPSC-2009-039": {
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Other sports events"
+    },
+    "MPPSC-2009-040": {
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Cricket"
+    },
+    "MPPSC-2009-041": {
+      "subject": "Madhya Pradesh Special",
+      "topic": "Administrative structure of Madhya Pradesh",
+      "subtopic": null
+    },
+    "MPPSC-2009-042": {
+      "subject": "Geography",
+      "topic": "Maps and location",
+      "subtopic": null
+    },
+    "MPPSC-2009-043": {
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Transport in India"
+    },
+    "MPPSC-2009-044": {
+      "subject": "Geography",
+      "topic": "Maps and location",
+      "subtopic": null
+    },
+    "MPPSC-2009-045": {
+      "subject": "Madhya Pradesh Special",
+      "topic": "Tribes of Madhya Pradesh",
+      "subtopic": null
+    },
+    "MPPSC-2009-046": {
+      "subject": "Art and Culture",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-047": {
+      "subject": "Art and Culture",
+      "topic": "Heritage Sites",
+      "subtopic": null
+    },
+    "MPPSC-2009-048": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-049": {
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": null
+    },
+    "MPPSC-2009-050": {
+      "subject": "Geography",
+      "topic": "Rivers of Madhya Pradesh",
+      "subtopic": "Dams and reservoirs"
+    },
+    "MPPSC-2009-051": {
+      "subject": "Art and Culture",
+      "topic": "Dance and music",
+      "subtopic": null
+    },
+    "MPPSC-2009-052": {
+      "subject": "Geography",
+      "topic": "Climate and soils of Madhya Pradesh",
+      "subtopic": "Soil types"
+    },
+    "MPPSC-2009-053": {
+      "subject": "Madhya Pradesh Special",
+      "topic": "Schemes and institutions of Madhya Pradesh",
+      "subtopic": null
+    },
+    "MPPSC-2009-054": {
+      "subject": "Environment",
+      "topic": "Wildlife of Madhya Pradesh",
+      "subtopic": null
+    },
+    "MPPSC-2009-055": {
+      "subject": "Art and Culture",
+      "topic": "Culture of Madhya Pradesh",
+      "subtopic": null
+    },
+    "MPPSC-2009-056": {
+      "subject": "Polity",
+      "topic": "State Government",
+      "subtopic": "Chief Minister and State Council of Ministers"
+    },
+    "MPPSC-2009-057": {
+      "subject": "Polity",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-058": {
+      "subject": "Polity",
+      "topic": "Local self-government",
+      "subtopic": "Panchayati Raj"
+    },
+    "MPPSC-2009-059": {
+      "subject": "Economy",
+      "topic": "Economy of Madhya Pradesh",
+      "subtopic": "Industry of Madhya Pradesh"
+    },
+    "MPPSC-2009-060": {
+      "subject": "Economy",
+      "topic": "Economy of Madhya Pradesh",
+      "subtopic": "Agriculture of Madhya Pradesh"
+    },
+    "MPPSC-2009-061": {
+      "subject": "Economy",
+      "topic": "Economy of Madhya Pradesh",
+      "subtopic": "Agriculture of Madhya Pradesh"
+    },
+    "MPPSC-2009-062": {
+      "subject": "Economy",
+      "topic": "Economy of Madhya Pradesh",
+      "subtopic": null
+    },
+    "MPPSC-2009-063": {
+      "subject": "Economy",
+      "topic": "Economy of Madhya Pradesh",
+      "subtopic": "Minerals of Madhya Pradesh"
+    },
+    "MPPSC-2009-064": {
+      "subject": "Economy",
+      "topic": "Economy of Madhya Pradesh",
+      "subtopic": "Minerals of Madhya Pradesh"
+    },
+    "MPPSC-2009-065": {
+      "subject": "Economy",
+      "topic": "Economy of Madhya Pradesh",
+      "subtopic": null
+    },
+    "MPPSC-2009-066": {
+      "subject": "Economy",
+      "topic": "Economy of Madhya Pradesh",
+      "subtopic": null
+    },
+    "MPPSC-2009-067": {
+      "subject": "Madhya Pradesh Special",
+      "topic": "Demography of Madhya Pradesh",
+      "subtopic": "Sex ratio"
+    },
+    "MPPSC-2009-068": {
+      "subject": "Madhya Pradesh Special",
+      "topic": "Demography of Madhya Pradesh",
+      "subtopic": "Literacy"
+    },
+    "MPPSC-2009-069": {
+      "subject": "Economy",
+      "topic": "Agriculture and rural economy",
+      "subtopic": "Rural employment programmes"
+    },
+    "MPPSC-2009-070": {
+      "subject": "Madhya Pradesh Special",
+      "topic": "Schemes and institutions of Madhya Pradesh",
+      "subtopic": null
+    },
+    "MPPSC-2009-071": {
+      "subject": "General Aptitude",
+      "topic": "Logical reasoning",
+      "subtopic": "Direction sense"
+    },
+    "MPPSC-2009-072": {
+      "subject": "General Aptitude",
+      "topic": "Quantitative aptitude",
+      "subtopic": null
+    },
+    "MPPSC-2009-073": {
+      "subject": "General Aptitude",
+      "topic": "Logical reasoning",
+      "subtopic": null
+    },
+    "MPPSC-2009-074": {
+      "subject": "General Aptitude",
+      "topic": "Logical reasoning",
+      "subtopic": null
+    },
+    "MPPSC-2009-079": {
+      "subject": "General Aptitude",
+      "topic": "Quantitative aptitude",
+      "subtopic": null
+    },
+    "MPPSC-2009-080": {
+      "subject": "General Aptitude",
+      "topic": "Quantitative aptitude",
+      "subtopic": "Time speed and distance"
+    },
+    "MPPSC-2009-081": {
+      "subject": "General Aptitude",
+      "topic": "Quantitative aptitude",
+      "subtopic": null
+    },
+    "MPPSC-2009-082": {
+      "subject": "General Aptitude",
+      "topic": "Logical reasoning",
+      "subtopic": null
+    },
+    "MPPSC-2009-083": {
+      "subject": "General Aptitude",
+      "topic": "Logical reasoning",
+      "subtopic": null
+    },
+    "MPPSC-2009-084": {
+      "subject": "General Aptitude",
+      "topic": "Logical reasoning",
+      "subtopic": null
+    },
+    "MPPSC-2009-085": {
+      "subject": "General Aptitude",
+      "topic": "Logical reasoning",
+      "subtopic": null
+    },
+    "MPPSC-2009-086": {
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
+    },
+    "MPPSC-2009-087": {
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
+    },
+    "MPPSC-2009-088": {
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
+    },
+    "MPPSC-2009-089": {
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
+    },
+    "MPPSC-2009-090": {
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
+    },
+    "MPPSC-2009-091": {
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
+    },
+    "MPPSC-2009-092": {
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
+    },
+    "MPPSC-2009-093": {
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
+    },
+    "MPPSC-2009-094": {
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
+    },
+    "MPPSC-2009-095": {
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
+    },
+    "MPPSC-2009-096": {
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
+    },
+    "MPPSC-2009-097": {
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
+    },
+    "MPPSC-2009-098": {
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
+    },
+    "MPPSC-2009-099": {
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
+    },
+    "MPPSC-2009-100": {
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
+    },
+    "MPPSC-2009-101": {
+      "subject": "Science and Technology",
+      "topic": "Physics",
+      "subtopic": null
+    },
+    "MPPSC-2009-102": {
+      "subject": "Science and Technology",
+      "topic": "Biology",
+      "subtopic": null
+    },
+    "MPPSC-2009-103": {
+      "subject": "Science and Technology",
+      "topic": "Chemistry",
+      "subtopic": null
+    },
+    "MPPSC-2009-104": {
+      "subject": "Science and Technology",
+      "topic": "Biology",
+      "subtopic": null
+    },
+    "MPPSC-2009-105": {
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": null
+    },
+    "MPPSC-2009-106": {
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": null
+    },
+    "MPPSC-2009-107": {
+      "subject": "Economy",
+      "topic": "Economy of Madhya Pradesh",
+      "subtopic": null
+    },
+    "MPPSC-2009-108": {
+      "subject": "Polity",
+      "topic": "Constitution of India",
+      "subtopic": null
+    },
+    "MPPSC-2009-109": {
+      "subject": "Economy",
+      "topic": "International economy",
+      "subtopic": null
+    },
+    "MPPSC-2009-110": {
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": null
+    },
+    "MPPSC-2009-111": {
+      "subject": "Environment",
+      "topic": "Pollution and climate change",
+      "subtopic": "Ozone depletion"
+    },
+    "MPPSC-2009-112": {
+      "subject": "Science and Technology",
+      "topic": "Chemistry",
+      "subtopic": "Alloys and mixtures"
+    },
+    "MPPSC-2009-113": {
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": null
+    },
+    "MPPSC-2009-114": {
+      "subject": "Environment",
+      "topic": "Conservation initiatives",
+      "subtopic": "Project Tiger"
+    },
+    "MPPSC-2009-115": {
+      "subject": "Environment",
+      "topic": "Pollution and climate change",
+      "subtopic": null
+    },
+    "MPPSC-2009-116": {
+      "subject": "Science and Technology",
+      "topic": "Physics",
+      "subtopic": "Units and measurements"
+    },
+    "MPPSC-2009-117": {
+      "subject": "Science and Technology",
+      "topic": "Physics",
+      "subtopic": null
+    },
+    "MPPSC-2009-118": {
+      "subject": "Science and Technology",
+      "topic": "Biology",
+      "subtopic": "Nutrition and vitamins"
+    },
+    "MPPSC-2009-119": {
+      "subject": "Science and Technology",
+      "topic": "Physics",
+      "subtopic": "Light and optics"
+    },
+    "MPPSC-2009-120": {
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": null
+    },
+    "MPPSC-2009-121": {
+      "subject": "Science and Technology",
+      "topic": "Physics",
+      "subtopic": null
+    },
+    "MPPSC-2009-122": {
+      "subject": "Current Affairs",
+      "topic": "International current affairs",
+      "subtopic": null
+    },
+    "MPPSC-2009-123": {
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": null
+    },
+    "MPPSC-2009-124": {
+      "subject": "Current Affairs",
+      "topic": "National current affairs",
+      "subtopic": null
+    },
+    "MPPSC-2009-125": {
+      "subject": "Current Affairs",
+      "topic": "National current affairs",
+      "subtopic": null
+    },
+    "MPPSC-2009-126": {
+      "subject": "Current Affairs",
+      "topic": "Awards and honours",
+      "subtopic": null
+    },
+    "MPPSC-2009-127": {
+      "subject": "Polity",
+      "topic": "Union Legislature",
+      "subtopic": "Lok Sabha"
+    },
+    "MPPSC-2009-128": {
+      "subject": "Current Affairs",
+      "topic": "International current affairs",
+      "subtopic": null
+    },
+    "MPPSC-2009-129": {
+      "subject": "Current Affairs",
+      "topic": "International current affairs",
+      "subtopic": null
+    },
+    "MPPSC-2009-130": {
+      "subject": "Current Affairs",
+      "topic": "National current affairs",
+      "subtopic": null
+    },
+    "MPPSC-2009-131": {
+      "subject": "Current Affairs",
+      "topic": "Awards and honours",
+      "subtopic": null
+    },
+    "MPPSC-2009-132": {
+      "subject": "Current Affairs",
+      "topic": "Science and technology current affairs",
+      "subtopic": null
+    },
+    "MPPSC-2009-133": {
+      "subject": "Current Affairs",
+      "topic": "Appointments and personalities",
+      "subtopic": null
+    },
+    "MPPSC-2009-134": {
+      "subject": "Current Affairs",
+      "topic": "National current affairs",
+      "subtopic": null
+    },
+    "MPPSC-2009-135": {
+      "subject": "History",
+      "topic": "Ancient India",
+      "subtopic": "Indus Valley Civilisation"
+    },
+    "MPPSC-2009-136": {
+      "subject": "History",
+      "topic": "Ancient India",
+      "subtopic": null
+    },
+    "MPPSC-2009-137": {
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": "British conquest and consolidation"
+    },
+    "MPPSC-2009-138": {
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": "British conquest and consolidation"
+    },
+    "MPPSC-2009-139": {
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": null
+    },
+    "MPPSC-2009-140": {
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": "Revolt of 1857"
+    },
+    "MPPSC-2009-141": {
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": null
+    },
+    "MPPSC-2009-142": {
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": "Gandhian movements"
+    },
+    "MPPSC-2009-143": {
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": "Gandhian movements"
+    },
+    "MPPSC-2009-144": {
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": null
+    },
+    "MPPSC-2009-145": {
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": "British conquest and consolidation"
+    },
+    "MPPSC-2009-146": {
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": "Revolutionary movements"
+    },
+    "MPPSC-2009-147": {
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": null
+    },
+    "MPPSC-2009-148": {
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": null
+    },
+    "MPPSC-2009-149": {
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": null
+    },
+    "MPPSC-2009-150": {
+      "subject": "Geography",
+      "topic": "Physical Geography",
+      "subtopic": null
+    }
+  }
+}

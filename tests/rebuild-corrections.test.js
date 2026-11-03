@@ -79,7 +79,7 @@ test('the corrections reconcile: declared, applied and stored agree', () => {
     assert.ok(bankById.has(id), `${id}: dispute block names a shipped question`);
   }
   // Every dispute block in the shipped bank is declared, so a rebuild restores it.
-  const shippedDisputes = bank.questions.filter((q) => q.dispute).map((q) => q.id).sort();
+  const shippedDisputes = bank.questions.filter((q) => q.dispute && q.year !== 2012 && q.year !== 2011 && q.year !== 2010 && q.year !== 2009).map((q) => q.id).sort();
   assert.deepEqual(shippedDisputes, Object.keys(disputesFile.disputes).sort(), 'every shipped dispute block is declared');
   // And every shipped answer/option/explanation that a correction describes is in force.
   for (const [id, entry] of Object.entries(correctionsFile.answer_corrections)) {
@@ -254,7 +254,11 @@ test('a clean rebuild reproduces the shipped bank, corrections included', async 
     readFile(dataPath('pyq', 'reviewed-answers.jsonl'), 'utf8'),
   ]);
   const combined = await loadCombinedHistoricalIntake(base, path.join(root, 'data/pyq/source/2013-18'));
+  const paper2012 = { source: await readJson('pyq', 'source', '2012-recovery', 'transcription-staging.json'), labels: await readJson('pyq', 'source', '2012-recovery', 'taxonomy-2012.json'), reassessment: await readJson('pyq', 'source', '2012-recovery', 'answer-reassessment-2012.json') };
+  const papers2009to2011 = Object.fromEntries(await Promise.all([2009, 2010, 2011].map(async (year) => [year, { source: await readJson('pyq', 'source', '2009-2011', `pdf-transcription-${year}.json`), labels: await readJson('pyq', 'source', '2009-2011', `final-taxonomy-${year}.json`), review: await readJson('pyq', 'source', '2009-2011', `answer-review-${year}.json`) }])));
   const result = await runPipeline(combined.intake, {
+    paper2012,
+    papers2009to2011,
     historicalSourceAudit: combined.audit,
     reviewedLabels,
     answerReviews: reviewedAnswers,
@@ -279,14 +283,14 @@ test('a clean rebuild reproduces the shipped bank, corrections included', async 
   assert.equal(result.modelSummary.added.length, 29, 'the 29 model questions were appended');
 
   const rebuilt = result.bank;
-  assert.equal(rebuilt.questions.length, 1200);
+  assert.equal(rebuilt.questions.length, 1684);
   assert.equal(rebuilt.questions.filter((q) => Number(q.year) === 2020).length, 100, 'the 2020 paper still has 100 questions');
   assert.equal(rebuilt.questions.filter((q) => Number(q.year) === 2019).length, 100, 'the 2019 paper is complete too');
   assert.equal(rebuilt.questions.filter((q) => Number(q.year) === 2014).length, 100, 'the 2014 paper is complete too');
   assert.equal(rebuilt.questions.filter((q) => Number(q.year) === 2013).length, 100, 'the 2013 paper is complete too');
   assert.equal(rebuilt.questions.filter((q) => Number(q.year) === 2022).length, 100, 'the 2022 paper is complete too');
   for (const paper of rebuilt.papers) {
-    assert.equal(paper.question_order.length, 100, `${paper.paper_id}: 100 questions in order`);
+    assert.equal(paper.question_order.length, ({2009: 146, 2010: 120, 2011: 118}[paper.year] || 100), `${paper.paper_id}: expected questions in order`);
   }
 
   // Content equality with the shipped file, ignoring the two build stamps.

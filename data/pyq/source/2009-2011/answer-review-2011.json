@@ -1,0 +1,1125 @@
+{
+  "paper_id": "MPPSC-2011-P1",
+  "status": "assessed",
+  "scope": "Review of existing user-approved questions only. Identity as 2011 is disputed; the supplied third-party PDF labels them 2011 but a 2010 publication labels the same questions 2008 geography. Answers derive from its unofficial answer list and practical review, not an official or independently verified key. Two damaged questions remain excluded. Time-sensitive questions use cautious historical interpretation.",
+  "key_source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies  Solved Question paper 2011.pdf, final page",
+  "identity_warning": "data/pyq/source/2009-2011/2011-paper-identity-warning.md",
+  "records": [
+    {
+      "question_id": "MPPSC-2011-001",
+      "question_number": 1,
+      "status": "unresolved",
+      "source_key": "D",
+      "answer": null,
+      "reasoning": "The Canadian Pacific pairing and historic route terminology need checking; the question also presents the incomplete Cape-to-Cairo project as a railway.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-002",
+      "question_number": 2,
+      "status": "unresolved",
+      "source_key": "D",
+      "answer": null,
+      "reasoning": "The word largest lacks a metric and canal type; Bhakra cannot be established as the world’s largest.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-003",
+      "question_number": 3,
+      "status": "supported",
+      "source_key": "C",
+      "answer": "C",
+      "reasoning": "The Suez Canal joins the Mediterranean and Red seas.",
+      "sources": [
+        "https://www.britannica.com/topic/Suez-Canal"
+      ]
+    },
+    {
+      "question_id": "MPPSC-2011-004",
+      "question_number": 4,
+      "status": "supported",
+      "source_key": "D",
+      "answer": "D",
+      "reasoning": "Miami is on Florida’s Atlantic coast; the other ports are Pacific-facing.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-005",
+      "question_number": 5,
+      "status": "unresolved",
+      "source_key": "D",
+      "answer": null,
+      "reasoning": "No single fixed New York–Tokyo air route is specified; routes vary.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-006",
+      "question_number": 6,
+      "status": "supported",
+      "source_key": "B",
+      "answer": "B",
+      "reasoning": "Hunting and gathering are primary-sector activities, unlike transport, trade and communication.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-008",
+      "question_number": 8,
+      "status": "supported",
+      "source_key": "C",
+      "answer": "C",
+      "reasoning": "Nepal is less industrialized and has lower income than the listed developed regions.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-009",
+      "question_number": 9,
+      "status": "unresolved",
+      "source_key": "A",
+      "answer": null,
+      "reasoning": "A unique birthplace for environmental determinism as a school is not established by the supplied key.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-010",
+      "question_number": 10,
+      "status": "supported",
+      "source_key": "C",
+      "answer": "C",
+      "reasoning": "Paul Vidal de la Blache is associated with geographic possibilism.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-011",
+      "question_number": 11,
+      "status": "disputed",
+      "source_key": "D",
+      "answer": null,
+      "reasoning": "The supplied key says none, but a lion eating herbivores is a secondary consumer in that food chain.",
+      "sources": [
+        "https://education.nationalgeographic.org/resource/autotroph/"
+      ]
+    },
+    {
+      "question_id": "MPPSC-2011-012",
+      "question_number": 12,
+      "status": "supported",
+      "source_key": "A",
+      "answer": "A",
+      "reasoning": "India’s stated geographical area is 3,287,263 square kilometres.",
+      "sources": [
+        "https://archive.india.gov.in/knowindia/profile.php?id=2"
+      ]
+    },
+    {
+      "question_id": "MPPSC-2011-013",
+      "question_number": 13,
+      "status": "supported",
+      "source_key": "C",
+      "answer": "C",
+      "reasoning": "Indira Point in the Nicobar Islands is India’s southernmost point.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-014",
+      "question_number": 14,
+      "status": "unresolved",
+      "source_key": "A",
+      "answer": null,
+      "reasoning": "Economic importance of rock groups is a subjective, unqualified comparison.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-015",
+      "question_number": 15,
+      "status": "supported",
+      "source_key": "B",
+      "answer": "B",
+      "reasoning": "The Indus–Sutlej section is conventionally called the Punjab Himalayas.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-016",
+      "question_number": 16,
+      "status": "supported",
+      "source_key": "B",
+      "answer": "B",
+      "reasoning": "Khadar is the newer alluvium of floodplains.",
+      "sources": [
+        "https://ncert.nic.in/textbook/pdf/jess101.pdf"
+      ]
+    },
+    {
+      "question_id": "MPPSC-2011-017",
+      "question_number": 17,
+      "status": "supported",
+      "source_key": "A",
+      "answer": "A",
+      "reasoning": "The Kosi is known as the Sorrow of Bihar because of its destructive floods.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-018",
+      "question_number": 18,
+      "status": "supported",
+      "source_key": "C",
+      "answer": "C",
+      "reasoning": "The Mahadeo Hills are part of the Satpura region of Madhya Pradesh.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-019",
+      "question_number": 19,
+      "status": "supported",
+      "source_key": "D",
+      "answer": "D",
+      "reasoning": "Kalbaisakhi are pre-monsoon thunderstorms associated with the hot season.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-020",
+      "question_number": 20,
+      "status": "supported",
+      "source_key": "A",
+      "answer": "A",
+      "reasoning": "The Sundarbans are tidal mangrove forests.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-021",
+      "question_number": 21,
+      "status": "supported",
+      "source_key": "B",
+      "answer": "B",
+      "reasoning": "Regur is black soil.",
+      "sources": [
+        "https://ncert.nic.in/textbook/pdf/jess101.pdf"
+      ]
+    },
+    {
+      "question_id": "MPPSC-2011-022",
+      "question_number": 22,
+      "status": "disputed",
+      "source_key": "B",
+      "answer": null,
+      "reasoning": "The PDF selects Indus, while CWC lists higher estimated usable surface water for the Ganga; the measure and geographic scope are unspecified.",
+      "sources": [
+        "https://cwc.gov.in/en/water-information"
+      ]
+    },
+    {
+      "question_id": "MPPSC-2011-023",
+      "question_number": 23,
+      "status": "supported",
+      "source_key": "B",
+      "answer": "B",
+      "reasoning": "Odisha led iron-ore production in 2008–09 and 2009–10.",
+      "sources": [
+        "https://www.reuters.com/article/world/us/factbox-indian-iron-ore-industry-output-exports-idUSSGE71H02W/"
+      ]
+    },
+    {
+      "question_id": "MPPSC-2011-024",
+      "question_number": 24,
+      "status": "unresolved",
+      "source_key": "C",
+      "answer": null,
+      "reasoning": "Black gold can denote both coal and petroleum; the question provides no context.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-025",
+      "question_number": 25,
+      "status": "supported",
+      "source_key": "C",
+      "answer": "C",
+      "reasoning": "Rice occupies the largest area among India’s food-grain crops.",
+      "sources": [
+        "https://ncert.nic.in/textbook/pdf/legy203.pdf"
+      ]
+    },
+    {
+      "question_id": "MPPSC-2011-026",
+      "question_number": 26,
+      "status": "supported",
+      "source_key": "B",
+      "answer": "B",
+      "reasoning": "Uttar Pradesh is a leading wheat producer and the PDF selects it among these states.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-027",
+      "question_number": 27,
+      "status": "supported",
+      "source_key": "A",
+      "answer": "A",
+      "reasoning": "Maharashtra is a major jowar-producing state and the PDF identifies it as the leader.",
+      "sources": [
+        "https://ncert.nic.in/textbook/pdf/legy203.pdf"
+      ]
+    },
+    {
+      "question_id": "MPPSC-2011-028",
+      "question_number": 28,
+      "status": "supported",
+      "source_key": "D",
+      "answer": "D",
+      "reasoning": "Sugarcane is commonly classified as a commercial or cash crop.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-029",
+      "question_number": 29,
+      "status": "supported",
+      "source_key": "B",
+      "answer": "B",
+      "reasoning": "Jute is grown for its fibre.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-030",
+      "question_number": 30,
+      "status": "supported",
+      "source_key": "A",
+      "answer": "A",
+      "reasoning": "Uttar Pradesh is a major sugarcane producer and the PDF identifies it as the leading state.",
+      "sources": [
+        "https://ncert.nic.in/textbook/pdf/legy203.pdf"
+      ]
+    },
+    {
+      "question_id": "MPPSC-2011-031",
+      "question_number": 31,
+      "status": "unresolved",
+      "source_key": "D",
+      "answer": null,
+      "reasoning": "Cotton yield ranking changes by year; the paper identity and reference year are uncertain.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-032",
+      "question_number": 32,
+      "status": "supported",
+      "source_key": "A",
+      "answer": "A",
+      "reasoning": "Assam accounted for more than half of India’s tea output around 2009.",
+      "sources": [
+        "https://tea.assam.gov.in/sites/default/files/swf_utility_folder/departments/dot_industry_uneecopscloud_com_oid_64/menu/document/Tea%20Brochure%20DIC_11%20x%208.pdf"
+      ]
+    },
+    {
+      "question_id": "MPPSC-2011-033",
+      "question_number": 33,
+      "status": "supported",
+      "source_key": "D",
+      "answer": "D",
+      "reasoning": "Agriculture can be classified by cropping, water availability and land availability.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-034",
+      "question_number": 34,
+      "status": "supported",
+      "source_key": "D",
+      "answer": "D",
+      "reasoning": "Jhum, Kumari and Penda are regional names for shifting cultivation.",
+      "sources": [
+        "https://ncert.nic.in/textbook/pdf/jess104.pdf"
+      ]
+    },
+    {
+      "question_id": "MPPSC-2011-035",
+      "question_number": 35,
+      "status": "supported",
+      "source_key": "D",
+      "answer": "D",
+      "reasoning": "Indore was the largest of the listed MP cities in the 2001 census.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-036",
+      "question_number": 36,
+      "status": "supported",
+      "source_key": "D",
+      "answer": "D",
+      "reasoning": "Fragmented holdings, limited capital and marketing constraints can all affect farmers.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-037",
+      "question_number": 37,
+      "status": "supported",
+      "source_key": "D",
+      "answer": "D",
+      "reasoning": "Regional imbalance is a criticism, not a benefit, of the Green Revolution.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-039",
+      "question_number": 39,
+      "status": "supported",
+      "source_key": "C",
+      "answer": "C",
+      "reasoning": "Mumbai is historically associated with cotton mills and the nickname Cottonopolis.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-040",
+      "question_number": 40,
+      "status": "supported",
+      "source_key": "A",
+      "answer": "A",
+      "reasoning": "Bagasse is commonly burned as fuel after sugarcane crushing.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-041",
+      "question_number": 41,
+      "status": "supported",
+      "source_key": "D",
+      "answer": "D",
+      "reasoning": "Limestone, shells and steel slag can be used in different cement formulations.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-042",
+      "question_number": 42,
+      "status": "supported",
+      "source_key": "A",
+      "answer": "A",
+      "reasoning": "Satna is in Madhya Pradesh and has cement plants.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-043",
+      "question_number": 43,
+      "status": "unresolved",
+      "source_key": "D",
+      "answer": null,
+      "reasoning": "The temperature option is poorly worded and its contribution to regional disparities is not established.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-044",
+      "question_number": 44,
+      "status": "supported",
+      "source_key": "C",
+      "answer": "C",
+      "reasoning": "The question contrasts Madhya Pradesh with the more productive irrigated regions listed.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-045",
+      "question_number": 45,
+      "status": "unresolved",
+      "source_key": "C",
+      "answer": null,
+      "reasoning": "The historical claim about first use in India has not been independently established.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-046",
+      "question_number": 46,
+      "status": "supported",
+      "source_key": "D",
+      "answer": "D",
+      "reasoning": "Productive investment, savings and population policies have all been proposed as responses to poverty.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-047",
+      "question_number": 47,
+      "status": "unresolved",
+      "source_key": "C",
+      "answer": null,
+      "reasoning": "Rapid growth period depends on whether absolute or percentage growth is intended.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-048",
+      "question_number": 48,
+      "status": "supported",
+      "source_key": "D",
+      "answer": "D",
+      "reasoning": "Trade, foreign banking and direct investment can all expand with globalization.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-049",
+      "question_number": 49,
+      "status": "supported",
+      "source_key": "A",
+      "answer": "A",
+      "reasoning": "The greenhouse effect contributes to warming by trapping outgoing heat.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-050",
+      "question_number": 50,
+      "status": "supported",
+      "source_key": "D",
+      "answer": "D",
+      "reasoning": "AIDS is caused by HIV, not by drinking polluted water.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-051",
+      "question_number": 51,
+      "status": "supported",
+      "source_key": "B",
+      "answer": "B",
+      "reasoning": "Kerala has the highest female-to-male sex ratio among the listed states.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-052",
+      "question_number": 52,
+      "status": "disputed",
+      "source_key": "D",
+      "answer": null,
+      "reasoning": "2001 Hyderabad municipal city population was below five million; the larger urban agglomeration exceeded it. The stem says city.",
+      "sources": [
+        "https://www.indiaonlinepages.com/population/hyderabad-population.html"
+      ]
+    },
+    {
+      "question_id": "MPPSC-2011-053",
+      "question_number": 53,
+      "status": "disputed",
+      "source_key": "D",
+      "answer": null,
+      "reasoning": "Neither Jharkhand nor Bihar borders present-day Madhya Pradesh; both C and D fit.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-054",
+      "question_number": 54,
+      "status": "supported",
+      "source_key": "B",
+      "answer": "B",
+      "reasoning": "Pulicat Lake lies on the Andhra Pradesh–Tamil Nadu coast, not in Madhya Pradesh.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-055",
+      "question_number": 55,
+      "status": "supported",
+      "source_key": "B",
+      "answer": "B",
+      "reasoning": "Badland ravines occur in the Chambal valley.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-056",
+      "question_number": 56,
+      "status": "supported",
+      "source_key": "A",
+      "answer": "A",
+      "reasoning": "Madhya Pradesh is associated with diamond production, notably Panna.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-057",
+      "question_number": 57,
+      "status": "supported",
+      "source_key": "B",
+      "answer": "B",
+      "reasoning": "The tea festival is associated with tea-growing regions rather than Haryana.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-058",
+      "question_number": 58,
+      "status": "disputed",
+      "source_key": "D",
+      "answer": null,
+      "reasoning": "The PDF selects Madhya Pradesh, but Chhattisgarh was the sole tin-concentrate producer and is not an option.",
+      "sources": [
+        "https://www.ibm.gov.in/writereaddata/files/07092014123756IMYB_2012_11_06%20CHHATTISGARH.pdf"
+      ]
+    },
+    {
+      "question_id": "MPPSC-2011-059",
+      "question_number": 59,
+      "status": "disputed",
+      "source_key": "B",
+      "answer": null,
+      "reasoning": "The PDF selects 48, but Madhya Pradesh had 50 districts after May 2008; the stated year and options conflict.",
+      "sources": [
+        "https://districts.ecourts.gov.in/singrauli"
+      ]
+    },
+    {
+      "question_id": "MPPSC-2011-060",
+      "question_number": 60,
+      "status": "supported",
+      "source_key": "D",
+      "answer": "D",
+      "reasoning": "Mriganayanee is the Madhya Pradesh handicrafts emporium name.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-061",
+      "question_number": 61,
+      "status": "supported",
+      "source_key": "A",
+      "answer": "A",
+      "reasoning": "Wegener called the ocean surrounding Pangaea Panthalassa.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-062",
+      "question_number": 62,
+      "status": "disputed",
+      "source_key": "B",
+      "answer": null,
+      "reasoning": "The PDF selects oceanic–continental convergence, while oceanic–oceanic convergence also creates island arcs and trenches.",
+      "sources": [
+        "https://pubs.usgs.gov/gip/dynamic/understanding.html"
+      ]
+    },
+    {
+      "question_id": "MPPSC-2011-063",
+      "question_number": 63,
+      "status": "supported",
+      "source_key": "D",
+      "answer": "D",
+      "reasoning": "Large daily temperature ranges in dry areas have traditionally been associated with exfoliation.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-064",
+      "question_number": 64,
+      "status": "disputed",
+      "source_key": "A",
+      "answer": null,
+      "reasoning": "A rift valley, glacial crevasse and wind-eroded yardang are not uniquely weathering landforms.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-065",
+      "question_number": 65,
+      "status": "supported",
+      "source_key": "B",
+      "answer": "B",
+      "reasoning": "Deflation is wind removal of loose material, not river erosion.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-066",
+      "question_number": 66,
+      "status": "supported",
+      "source_key": "A",
+      "answer": "A",
+      "reasoning": "A tarn is a lake associated with a glacial cirque.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-067",
+      "question_number": 67,
+      "status": "unresolved",
+      "source_key": "B",
+      "answer": null,
+      "reasoning": "Inselbergs and hamadas have complex formation histories; both cannot safely be attributed exclusively to wind erosion.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-068",
+      "question_number": 68,
+      "status": "supported",
+      "source_key": "C",
+      "answer": "C",
+      "reasoning": "Lake Toba occupies a volcanic caldera.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-069",
+      "question_number": 69,
+      "status": "unresolved",
+      "source_key": "A",
+      "answer": null,
+      "reasoning": "A seismograph records shaking; earthquake intensity in the Mercalli sense is traditionally determined from observed effects.",
+      "sources": [
+        "https://pubs.usgs.gov/gip/earthq1/measure.html"
+      ]
+    },
+    {
+      "question_id": "MPPSC-2011-070",
+      "question_number": 70,
+      "status": "supported",
+      "source_key": "C",
+      "answer": "C",
+      "reasoning": "William Morris Davis proposed the geographical cycle of erosion.",
+      "sources": [
+        "https://www.britannica.com/biography/William-Morris-Davis"
+      ]
+    },
+    {
+      "question_id": "MPPSC-2011-071",
+      "question_number": 71,
+      "status": "supported",
+      "source_key": "B",
+      "answer": "B",
+      "reasoning": "Mount Fuji is a volcanic mountain; the option spells its name Fujiyoma.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-072",
+      "question_number": 72,
+      "status": "supported",
+      "source_key": "A",
+      "answer": "A",
+      "reasoning": "The Bolivian Altiplano lies between Andean mountain ranges.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-073",
+      "question_number": 73,
+      "status": "supported",
+      "source_key": "C",
+      "answer": "C",
+      "reasoning": "Monadnocks are resistant residual hills rising above a peneplain.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-074",
+      "question_number": 74,
+      "status": "supported",
+      "source_key": "B",
+      "answer": "B",
+      "reasoning": "The main atmospheric ozone layer is in the stratosphere.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-075",
+      "question_number": 75,
+      "status": "supported",
+      "source_key": "B",
+      "answer": "B",
+      "reasoning": "Insolation is incoming solar radiation received at Earth.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-076",
+      "question_number": 76,
+      "status": "supported",
+      "source_key": "D",
+      "answer": "D",
+      "reasoning": "Continental interiors at high northern latitudes have large annual temperature ranges.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-077",
+      "question_number": 77,
+      "status": "supported",
+      "source_key": "A",
+      "answer": "A",
+      "reasoning": "Horse latitudes occur around 30 degrees north and south.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-078",
+      "question_number": 78,
+      "status": "unresolved",
+      "source_key": "D",
+      "answer": null,
+      "reasoning": "Several absolute pressure–temperature statements are oversimplified; air rising is not a unique direct measure of pressure change.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-079",
+      "question_number": 79,
+      "status": "supported",
+      "source_key": "D",
+      "answer": "D",
+      "reasoning": "The bora is associated with the Adriatic region, not North America.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-080",
+      "question_number": 80,
+      "status": "supported",
+      "source_key": "D",
+      "answer": "D",
+      "reasoning": "Sirocco is a wind, rather than a cyclone.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-081",
+      "question_number": 81,
+      "status": "supported",
+      "source_key": "A",
+      "answer": "A",
+      "reasoning": "A cirque is a glacial erosion landform, not a wind erosion landform.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-082",
+      "question_number": 82,
+      "status": "supported",
+      "source_key": "A",
+      "answer": "A",
+      "reasoning": "Winter rain in north-west India is associated with western disturbances and cyclonic systems.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-083",
+      "question_number": 83,
+      "status": "supported",
+      "source_key": "D",
+      "answer": "D",
+      "reasoning": "The conventional average environmental lapse rate is associated with the troposphere.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-084",
+      "question_number": 84,
+      "status": "supported",
+      "source_key": "B",
+      "answer": "B",
+      "reasoning": "Approximately 71% of Earth’s surface is ocean and 29% land.",
+      "sources": [
+        "https://www.britannica.com/science/ocean"
+      ]
+    },
+    {
+      "question_id": "MPPSC-2011-085",
+      "question_number": 85,
+      "status": "supported",
+      "source_key": "A",
+      "answer": "A",
+      "reasoning": "The Northern Hemisphere contains most of Earth’s land, hence the common name.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-086",
+      "question_number": 86,
+      "status": "supported",
+      "source_key": "C",
+      "answer": "C",
+      "reasoning": "The Mariana Trench contains the ocean’s deepest known point.",
+      "sources": [
+        "https://kids.britannica.com/kids/article/ocean/346185"
+      ]
+    },
+    {
+      "question_id": "MPPSC-2011-087",
+      "question_number": 87,
+      "status": "supported",
+      "source_key": "A",
+      "answer": "A",
+      "reasoning": "High evaporation contributes to high salinity in subtropical ocean regions.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-088",
+      "question_number": 88,
+      "status": "supported",
+      "source_key": "A",
+      "answer": "A",
+      "reasoning": "The Kuroshio is a warm western boundary current in the Pacific.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-089",
+      "question_number": 89,
+      "status": "unresolved",
+      "source_key": "A",
+      "answer": null,
+      "reasoning": "The Ellice group includes coral atolls, but the singular island and other listed volcanic groups need more precise source evidence.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-090",
+      "question_number": 90,
+      "status": "unresolved",
+      "source_key": "C",
+      "answer": null,
+      "reasoning": "Both groups have diverse livelihoods; a single generalized characterization risks misleading stereotyping.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-091",
+      "question_number": 91,
+      "status": "supported",
+      "source_key": "A",
+      "answer": "A",
+      "reasoning": "The San, called Bushmen in the question, are historically associated with the Kalahari.",
+      "sources": [
+        "https://www.britannica.com/place/Kalahari-Desert/People-and-economy"
+      ]
+    },
+    {
+      "question_id": "MPPSC-2011-092",
+      "question_number": 92,
+      "status": "supported",
+      "source_key": "D",
+      "answer": "D",
+      "reasoning": "The Santhal homeland is concentrated in eastern India rather than Punjab.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-093",
+      "question_number": 93,
+      "status": "supported",
+      "source_key": "A",
+      "answer": "A",
+      "reasoning": "Among the listed states, Mizoram has the largest proportion of Scheduled Tribe residents.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-094",
+      "question_number": 94,
+      "status": "supported",
+      "source_key": "A",
+      "answer": "A",
+      "reasoning": "Africa has had the highest regional population growth among these continents.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-095",
+      "question_number": 95,
+      "status": "supported",
+      "source_key": "C",
+      "answer": "C",
+      "reasoning": "South-East Asia is much more densely populated than the listed deserts and polar region.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-096",
+      "question_number": 96,
+      "status": "unresolved",
+      "source_key": "B",
+      "answer": null,
+      "reasoning": "Maximum farmhouses is undefined and no date or comparative dataset is supplied.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-097",
+      "question_number": 97,
+      "status": "supported",
+      "source_key": "A",
+      "answer": "A",
+      "reasoning": "Kalgoorlie is a historic Australian gold-mining city.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-098",
+      "question_number": 98,
+      "status": "supported",
+      "source_key": "A",
+      "answer": "A",
+      "reasoning": "E. W. Burgess proposed the concentric-zone model of urban structure.",
+      "sources": [
+        "https://nowgonggirlscollege.co.in/attendence/classnotes/files/1623051424.pdf"
+      ]
+    },
+    {
+      "question_id": "MPPSC-2011-099",
+      "question_number": 99,
+      "status": "supported",
+      "source_key": "C",
+      "answer": "C",
+      "reasoning": "China is the leading rice-producing country among the options.",
+      "sources": [
+        "https://ncert.nic.in/textbook/pdf/legy203.pdf"
+      ]
+    },
+    {
+      "question_id": "MPPSC-2011-100",
+      "question_number": 100,
+      "status": "supported",
+      "source_key": "C",
+      "answer": "C",
+      "reasoning": "Very heavy rainfall exceeding 250 cm is not a typical favourable wheat-growing condition.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-101",
+      "question_number": 101,
+      "status": "supported",
+      "source_key": "C",
+      "answer": "C",
+      "reasoning": "Fodder maize can be grown during the summer zaid season.",
+      "sources": [
+        "https://ncert.nic.in/textbook/pdf/legy203.pdf"
+      ]
+    },
+    {
+      "question_id": "MPPSC-2011-102",
+      "question_number": 102,
+      "status": "disputed",
+      "source_key": "A",
+      "answer": null,
+      "reasoning": "Tea can be grown on hill slopes and also on plains such as the Brahmaputra valley.",
+      "sources": [
+        "https://www.asthabharati.org/Dia_July%20010/moon.htm"
+      ]
+    },
+    {
+      "question_id": "MPPSC-2011-103",
+      "question_number": 103,
+      "status": "supported",
+      "source_key": "D",
+      "answer": "D",
+      "reasoning": "Coffee is commonly grown as a plantation crop.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-104",
+      "question_number": 104,
+      "status": "supported",
+      "source_key": "D",
+      "answer": "D",
+      "reasoning": "Thailand, India and Sri Lanka all produce natural rubber.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-105",
+      "question_number": 105,
+      "status": "supported",
+      "source_key": "A",
+      "answer": "A",
+      "reasoning": "Cotton is grown in tropical and subtropical regions.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-106",
+      "question_number": 106,
+      "status": "supported",
+      "source_key": "B",
+      "answer": "B",
+      "reasoning": "Madhya Pradesh has the largest forest area among the listed states.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-107",
+      "question_number": 107,
+      "status": "supported",
+      "source_key": "B",
+      "answer": "B",
+      "reasoning": "The Grand Banks off Newfoundland are noted marine fishing grounds.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-108",
+      "question_number": 108,
+      "status": "supported",
+      "source_key": "D",
+      "answer": "D",
+      "reasoning": "Limonite is an iron ore; the other three are forms of coal.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-109",
+      "question_number": 109,
+      "status": "unresolved",
+      "source_key": "D",
+      "answer": null,
+      "reasoning": "Steel and pigments use manganese, but the phrase making china clay is insufficiently supported.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-110",
+      "question_number": 110,
+      "status": "disputed",
+      "source_key": "B",
+      "answer": null,
+      "reasoning": "The PDF selects Rajasthan, but a comparison reports Madhya Pradesh led copper ore production in 2005–06 and 2011–12; product and year are unspecified.",
+      "sources": [
+        "https://content.patnawomenscollege.in/geography/Copper%20Ore-%20India-B.A-sem-IV%20GE.pdf"
+      ]
+    },
+    {
+      "question_id": "MPPSC-2011-111",
+      "question_number": 111,
+      "status": "supported",
+      "source_key": "C",
+      "answer": "C",
+      "reasoning": "Bauxite is the principal ore used to produce aluminium.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-112",
+      "question_number": 112,
+      "status": "unresolved",
+      "source_key": "A",
+      "answer": null,
+      "reasoning": "The ranking depends on reserve definition, year and how transcontinental Russia is assigned; the PDF does not specify these.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-113",
+      "question_number": 113,
+      "status": "supported",
+      "source_key": "A",
+      "answer": "A",
+      "reasoning": "The Jharia coalfield is in Jharkhand.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-114",
+      "question_number": 114,
+      "status": "supported",
+      "source_key": "B",
+      "answer": "B",
+      "reasoning": "Oil and natural gas are typically found in sedimentary basins.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-115",
+      "question_number": 115,
+      "status": "disputed",
+      "source_key": "B",
+      "answer": null,
+      "reasoning": "Nagarjuna Sagar is not in Karnataka and Pong Dam is in Himachal Pradesh, so B and D both mismatch.",
+      "sources": [
+        "https://www.britannica.com/place/Himachal-Pradesh"
+      ]
+    },
+    {
+      "question_id": "MPPSC-2011-116",
+      "question_number": 116,
+      "status": "disputed",
+      "source_key": null,
+      "answer": null,
+      "reasoning": "The PDF uses an asterisk, not a letter; Bokaro is not a gold mine and Paradip is a port, making C and D problematic.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-117",
+      "question_number": 117,
+      "status": "supported",
+      "source_key": "D",
+      "answer": "D",
+      "reasoning": "Pulp is associated primarily with paper manufacture, unlike spinning, weaving and jute textiles.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-118",
+      "question_number": 118,
+      "status": "supported",
+      "source_key": "A",
+      "answer": "A",
+      "reasoning": "The Digboi refinery in Assam is India’s oldest operating oil refinery.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-119",
+      "question_number": 119,
+      "status": "supported",
+      "source_key": "C",
+      "answer": "C",
+      "reasoning": "Manchester became famous for cotton textiles during industrialization.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2011-120",
+      "question_number": 120,
+      "status": "supported",
+      "source_key": "A",
+      "answer": "A",
+      "reasoning": "Road transport provides flexible local access and is widely used.",
+      "sources": []
+    }
+  ]
+}

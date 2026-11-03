@@ -28,10 +28,10 @@ test('a fresh install loads the committed bank with no manual import', async () 
 
   assert.equal(result.status, 'loaded');
   assert.equal(result.meta.bank_id, 'mppsc-prelims-paper1-2019-2024');
-  assert.equal(result.meta.questions, 1200);
-  assert.equal(result.meta.papers, 12);
-  assert.equal(m.appState.questionIndex.size, 1200, 'every question is in the live index');
-  assert.equal(m.appState.papers.size, 12);
+  assert.equal(result.meta.questions, 1684);
+  assert.equal(result.meta.papers, 16);
+  assert.equal(m.appState.questionIndex.size, 1684, 'every question is in the live index');
+  assert.equal(m.appState.papers.size, 16);
 
   // The latest practice scheme is applied uniformly, including to past years.
   const paper = await m.db.get(m.constants.STORES.PAPERS, 'MPPSC-2019-P1');
@@ -48,7 +48,7 @@ test('opening the app again changes nothing and duplicates nothing', async () =>
   const again = await builtin.ensureBuiltinBank({ text: bankText });
   assert.equal(again.status, 'current', 'an unchanged bank is not re-imported');
   assert.equal(await m.db.count(m.constants.STORES.QUESTIONS), before);
-  assert.equal(await m.db.count(m.constants.STORES.PAPERS), 12, 'papers are not duplicated either');
+  assert.equal(await m.db.count(m.constants.STORES.PAPERS), 16, 'papers are not duplicated either');
   // The expanded bank still records one repository import.
   const history = await m.importer.importHistory();
   assert.equal(history.filter((row) => row.bank_id === 'mppsc-prelims-paper1-2019-2024').length, 1, 'the bank was imported exactly once');
@@ -110,7 +110,7 @@ test('an upgraded bank refreshes records and keeps the user\'s own work', async 
   assert.equal(result.status, 'updated', 'a rebuilt file is applied');
   assert.ok(result.stats.questionsUpdated >= 1, 'the corrected record is refreshed');
   assert.equal(result.stats.questionsAdded, 0, 'no question is added by an update');
-  assert.equal(await m.db.count(m.constants.STORES.QUESTIONS), 1200, 'and none is duplicated');
+  assert.equal(await m.db.count(m.constants.STORES.QUESTIONS), 1684, 'and none is duplicated');
 
   const after = await m.db.get(m.constants.STORES.QUESTIONS, 'MPPSC-2019-001');
   assert.match(after.language_variants.en.options[1].text, /corrected in a later build/, 'the corrected option text is stored');
@@ -150,21 +150,41 @@ test('a user\'s own bank is untouched when the bundled bank reloads or is remove
   await bootApp();
   await builtin.ensureBuiltinBank({ text: bankText });
   await importDemoBank();
-  assert.equal(await m.db.count(m.constants.STORES.QUESTIONS), 1234);
+  assert.equal(await m.db.count(m.constants.STORES.QUESTIONS), 1718);
 
   await builtin.ensureBuiltinBank({ text: bankText, force: true });
-  assert.equal(await m.db.count(m.constants.STORES.QUESTIONS), 1234, 'a forced reload duplicates nothing');
+  assert.equal(await m.db.count(m.constants.STORES.QUESTIONS), 1718, 'a forced reload duplicates nothing');
   assert.ok(await m.db.get(m.constants.STORES.QUESTIONS, 'DEMO-P1-001'), 'the user\'s own question is still there');
 
   const removed = await builtin.removeBuiltinBank();
-  assert.equal(removed.removedQuestions, 1200, 'exactly the bundled questions are removed');
+  assert.equal(removed.removedQuestions, 1684, 'exactly the bundled questions are removed');
   assert.equal(await m.db.count(m.constants.STORES.QUESTIONS), 34, 'the user\'s own 34 questions remain');
   assert.equal(await m.db.count(m.constants.STORES.PAPERS), 3, 'and their papers remain');
   assert.equal((await builtin.builtinBankInfo()).loaded, false, 'the app knows the bundled bank is gone');
 
   const reloaded = await builtin.ensureBuiltinBank({ text: bankText });
   assert.equal(reloaded.status, 'loaded');
-  assert.equal(await m.db.count(m.constants.STORES.QUESTIONS), 1234, 'and it can be loaded again in full');
+  assert.equal(await m.db.count(m.constants.STORES.QUESTIONS), 1718, 'and it can be loaded again in full');
+});
+
+test('upgrading the old bundled bank adds the keyless 2012 paper without overwriting user edits', async () => {
+  await bootApp();
+  const old = JSON.parse(bankText);
+  old.questions = old.questions.filter((q) => q.year !== 2012);
+  old.papers = old.papers.filter((p) => p.year !== 2012);
+  await builtin.ensureBuiltinBank({ text: JSON.stringify(old) });
+  await m.questions.updateClassification('MPPSC-2019-001', { subject: 'History', topic: 'Modern India', subtopic: 'Indian National Congress' });
+  await m.questions.setVerifiedAnswer('MPPSC-2019-001', { answer: ['C'], evidence: [{ note: 'checked by hand' }] });
+  const result = await builtin.ensureBuiltinBank({ text: bankText });
+  assert.equal(result.status, 'updated');
+  assert.equal(result.stats.questionsAdded, 100);
+  const existing = await m.db.get(m.constants.STORES.QUESTIONS, 'MPPSC-2019-001');
+  assert.equal(existing.classification.subject, 'History');
+  assert.deepEqual(existing.verified.answer, ['C']);
+  const added = await m.db.get(m.constants.STORES.QUESTIONS, 'MPPSC-2012-031');
+  assert.equal(added.supplied.answer, null);
+  assert.match(added.language_variants.en.options[2].text, /universal adult franchise/);
+  assert.equal((await m.db.get(m.constants.STORES.PAPERS, 'MPPSC-2012-P1')).scoring.rules_known, false);
 });
 
 test('a bank that fails validation is never half-imported', async () => {
@@ -240,4 +260,61 @@ test('the same latest pattern is selected for 2026 and the historical bundled pa
   assert.equal(was.schemeId, 'mppsc-sse-prelims-latest-practice');
   assert.equal(was.rules.marks_per_correct, 3);
   assert.equal(was.rules.negative_marking_enabled, true);
+});
+
+test('2011 source-only answer and identity upgrades reach existing installations without losing user edits', async () => {
+  await bootApp();
+  const original = JSON.parse(bankText);
+  const old = structuredClone(original);
+  old.papers.find(p => p.year === 2011).paper_name = 'MPPSC 2011 Prelims General Studies (partial transcription)';
+  for (const q of old.questions.filter(q => q.year === 2011)) {
+    q.supplied_answer = {answer:null,status:'missing',source:null,notes:null};
+    q.answer_key_status = 'missing'; q.explanation = null;
+    delete q.dispute; delete q.verification_evidence;
+  }
+  await builtin.ensureBuiltinBank({text:JSON.stringify(old)});
+  await m.questions.setVerifiedAnswer('MPPSC-2011-003', {answer:['C'], evidence:[{note:'user evidence'}]});
+  await m.questions.setDispute('MPPSC-2011-003', {isDisputed:true,reason:'user concern'});
+  const result = await builtin.ensureBuiltinBank({text:bankText});
+  assert.equal(result.status, 'updated');
+  const q = await m.db.get(m.constants.STORES.QUESTIONS,'MPPSC-2011-003');
+  assert.deepEqual(q.supplied.answer,['C']); assert.equal(q.supplied.status,'disputed');
+  assert.equal(q.verified.source,'user_correction'); assert.equal(q.dispute.reason,'user concern');
+  assert.match(q.explanation.correct_reasoning,/Mediterranean and Red seas/);
+  const unresolved = await m.db.get(m.constants.STORES.QUESTIONS,'MPPSC-2011-053');
+  assert.equal(unresolved.supplied.answer,null); assert.equal(unresolved.dispute.is_disputed,true);
+  const paper = await m.db.get(m.constants.STORES.PAPERS,'MPPSC-2011-P1');
+  assert.match(paper.paper_name,/identity disputed/);
+  const again = await builtin.ensureBuiltinBank({text:bankText});
+  assert.equal(again.status,'current');
+});
+
+test('2010 answer-only upgrade preserves existing user work and unkeys disputed records', async () => {
+  await bootApp();
+  const old=JSON.parse(bankText);
+  old.papers.find(p=>p.year===2010).paper_name='MPPSC 2010 Prelims General Studies (English transcription)';
+  for(const q of old.questions.filter(q=>q.year===2010)) { q.supplied_answer={answer:null,status:'missing',source:null,notes:null};q.answer_key_status='missing';q.explanation=null;delete q.dispute;delete q.verification_evidence; }
+  await builtin.ensureBuiltinBank({text:JSON.stringify(old)});
+  await m.questions.setVerifiedAnswer('MPPSC-2010-002',{answer:['A'],evidence:[{note:'personal evidence'}]});
+  await m.questions.setDispute('MPPSC-2010-002',{isDisputed:true,reason:'personal concern'});
+  const result=await builtin.ensureBuiltinBank({text:bankText});assert.equal(result.status,'updated');
+  const q=await m.db.get(m.constants.STORES.QUESTIONS,'MPPSC-2010-002');assert.deepEqual(q.supplied.answer,['A']);assert.equal(q.supplied.status,'disputed');assert.equal(q.verified.source,'user_correction');assert.equal(q.dispute.reason,'personal concern');assert.match(q.explanation.correct_reasoning,/Sindh/);
+  const disputed=await m.db.get(m.constants.STORES.QUESTIONS,'MPPSC-2010-082');assert.equal(disputed.supplied.answer,null);assert.equal(disputed.dispute.is_disputed,true);
+  const paper=await m.db.get(m.constants.STORES.PAPERS,'MPPSC-2010-P1');assert.match(paper.paper_name,/identity unconfirmed/);
+  assert.equal((await builtin.ensureBuiltinBank({text:bankText})).status,'current');
+});
+
+test('2009 answer-only upgrade preserves learner work and leaves disputed answers unkeyed', async () => {
+  await bootApp();
+  const old=JSON.parse(bankText);
+  old.papers.find(p=>p.year===2009).paper_name='MPPSC 2009 Prelims General Studies (partial transcription)';
+  for(const q of old.questions.filter(q=>q.year===2009)) { q.supplied_answer={answer:null,status:'missing',source:null,notes:null};q.answer_key_status='missing';q.explanation=null;delete q.dispute;delete q.verification_evidence; }
+  await builtin.ensureBuiltinBank({text:JSON.stringify(old)});
+  await m.questions.setVerifiedAnswer('MPPSC-2009-002',{answer:['A'],evidence:[{note:'personal evidence'}]});
+  await m.questions.setDispute('MPPSC-2009-002',{isDisputed:true,reason:'personal concern'});
+  assert.equal((await builtin.ensureBuiltinBank({text:bankText})).status,'updated');
+  const q=await m.db.get(m.constants.STORES.QUESTIONS,'MPPSC-2009-002');assert.deepEqual(q.supplied.answer,['A']);assert.equal(q.supplied.status,'disputed');assert.equal(q.verified.source,'user_correction');assert.equal(q.dispute.reason,'personal concern');assert.match(q.explanation.correct_reasoning,/Malwa/);
+  const disputed=await m.db.get(m.constants.STORES.QUESTIONS,'MPPSC-2009-081');assert.equal(disputed.supplied.answer,null);assert.equal(disputed.dispute.is_disputed,true);
+  const paper=await m.db.get(m.constants.STORES.PAPERS,'MPPSC-2009-P1');assert.match(paper.paper_name,/identity unconfirmed/);
+  assert.equal((await builtin.ensureBuiltinBank({text:bankText})).status,'current');
 });

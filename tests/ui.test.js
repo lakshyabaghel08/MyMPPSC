@@ -145,14 +145,14 @@ test('boots, renders the shell and the demonstration prompt', async () => {
   // First run with an empty database: the repository-backed MPPSC bank loads by
   // itself, so the app does not have to fall back to the demonstration prompt.
   await waitFor(() => state.questionIndex.size > 0, { label: 'bundled bank load' });
-  assert.equal(state.questionIndex.size, 1200, 'the committed 2013-2024 bank is loaded from the repository');
+  assert.equal(state.questionIndex.size, 1684, 'the committed 2013-2024 bank is loaded from the repository');
 
   await goto('test-centre');
   assert.match(viewText(), /MPPSC 2019|MPPSC\s*2019|2019/, 'the Test Centre lists the real papers');
   assert.match(viewText(), /latest pattern · practice only/i, 'the current scheme is identified as a practice policy, not source evidence');
   assert.match(viewText(), /not as a claim about each paper.s historical rules/i);
   await goto('bank');
-  assert.match(viewText(), /2013–2024|2013-2024/, 'the Question Bank screen names the bundled bank');
+  assert.match(viewText(), /2009–2024|2009-2024/, 'the Question Bank screen names the bundled bank');
 });
 
 test('every route renders without an error notice', async () => {
@@ -170,8 +170,8 @@ test('PYQ Analysis counts the bundled bank and deep-links into practice', async 
   assert.match(viewText(), /Questions per subject/);
   assert.match(viewText(), /Year by year — what each paper contributed/);
   assert.match(viewText(), /Questions per topic/);
-  assert.match(viewText(), /(?:1,200|1200)/, 'the whole bundled bank is counted');
-  assert.match(viewText(), /2013–2024/, 'year columns and span include the historical papers');
+  assert.match(viewText(), /(?:1,684|1684)/, 'the whole bundled bank is counted');
+  assert.match(viewText(), /2009–2024/, 'year columns and span include the historical papers');
 
   // Scope to the bank panel: the performance panel above it also offers
   // practice links, and this test is about the counts this panel produces.

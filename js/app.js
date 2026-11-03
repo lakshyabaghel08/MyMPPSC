@@ -325,7 +325,7 @@ function helpDialog() {
         <h3>What this app does not do</h3>
         <ul class="small">
           <li>It does not generate explanations, answers or classifications with AI. Those arrive with the imported question bank, produced and reviewed by your separate preparation pipeline.</li>
-          <li>It does not verify anything for you. The bundled 2013–2024 bank is transcribed previous-year material whose stored keys have not been checked against an official MPPSC key. The latest reported marking pattern is used for practice across every bundled year, not claimed as the historical rule for each paper.</li>
+          <li>It does not verify anything for you. The bundled 2009–2024 bank includes transcribed papers. The 2009–2011 source documents are English-only and their paper identities are unconfirmed; 2009 and 2011 are incomplete. The 2009–2012 questions have no supplied answers or explanations and their scoring is unconfigured. Other stored keys have not been checked against an official MPPSC key. The latest reported marking pattern is used for practice for 2013–2024, not claimed as the historical rule for each paper.</li>
           <li>It does not predict future examinations. Topic frequency is a study-prioritisation aid only.</li>
           <li>It does not schedule revision as a guarantee of retention — the interval is a study aid based on your recorded performance.</li>
           <li>Multiple-correct questions use exact set matching (no partial credit) unless a future scoring rule adds it.</li>

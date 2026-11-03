@@ -1,0 +1,661 @@
+{
+  "status": "provisional subject-level staging; manual review required",
+  "note": "Lower levels intentionally left unset rather than guessed; source uncertainty remains.",
+  "labels": {
+    "MPPSC-2009-001": {
+      "subject": "Geography",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-002": {
+      "subject": "Geography",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-003": {
+      "subject": "Geography",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-004": {
+      "subject": "Geography",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-005": {
+      "subject": "Geography",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-006": {
+      "subject": "Environment",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-007": {
+      "subject": "Geography",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-008": {
+      "subject": "Geography",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-009": {
+      "subject": "Geography",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-010": {
+      "subject": "Geography",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-011": {
+      "subject": "Geography",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-012": {
+      "subject": "Geography",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-013": {
+      "subject": "Polity",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-014": {
+      "subject": "Polity",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-015": {
+      "subject": "Polity",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-016": {
+      "subject": "Polity",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-017": {
+      "subject": "Economy",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-018": {
+      "subject": "Economy",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-019": {
+      "subject": "Economy",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-020": {
+      "subject": "Environment",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-021": {
+      "subject": "Economy",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-022": {
+      "subject": "Polity",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-023": {
+      "subject": "Economy",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-024": {
+      "subject": "Economy",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-025": {
+      "subject": "Economy",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-026": {
+      "subject": "Current Affairs",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-027": {
+      "subject": "Current Affairs",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-028": {
+      "subject": "Current Affairs",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-029": {
+      "subject": "Current Affairs",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-030": {
+      "subject": "Current Affairs",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-031": {
+      "subject": "Current Affairs",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-032": {
+      "subject": "Current Affairs",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-033": {
+      "subject": "Current Affairs",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-034": {
+      "subject": "Current Affairs",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-035": {
+      "subject": "Current Affairs",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-036": {
+      "subject": "Current Affairs",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-037": {
+      "subject": "Current Affairs",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-038": {
+      "subject": "Current Affairs",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-039": {
+      "subject": "Current Affairs",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-040": {
+      "subject": "Current Affairs",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-041": {
+      "subject": "Madhya Pradesh Special",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-042": {
+      "subject": "Geography",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-043": {
+      "subject": "Geography",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-044": {
+      "subject": "Geography",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-045": {
+      "subject": "Madhya Pradesh Special",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-051": {
+      "subject": "Art and Culture",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-052": {
+      "subject": "Geography",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-053": {
+      "subject": "Madhya Pradesh Special",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-054": {
+      "subject": "Environment",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-055": {
+      "subject": "Art and Culture",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-056": {
+      "subject": "Polity",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-057": {
+      "subject": "Polity",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-058": {
+      "subject": "Polity",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-059": {
+      "subject": "Economy",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-060": {
+      "subject": "Economy",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-061": {
+      "subject": "Economy",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-062": {
+      "subject": "Economy",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-063": {
+      "subject": "Economy",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-064": {
+      "subject": "Economy",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-065": {
+      "subject": "Economy",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-066": {
+      "subject": "Economy",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-067": {
+      "subject": "Madhya Pradesh Special",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-068": {
+      "subject": "Madhya Pradesh Special",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-069": {
+      "subject": "Economy",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-070": {
+      "subject": "Madhya Pradesh Special",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-071": {
+      "subject": "General Aptitude",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-072": {
+      "subject": "General Aptitude",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-073": {
+      "subject": "General Aptitude",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-074": {
+      "subject": "General Aptitude",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-079": {
+      "subject": "General Aptitude",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-080": {
+      "subject": "General Aptitude",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-081": {
+      "subject": "General Aptitude",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-086": {
+      "subject": "Science and Technology",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-087": {
+      "subject": "Science and Technology",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-088": {
+      "subject": "Science and Technology",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-089": {
+      "subject": "Science and Technology",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-090": {
+      "subject": "Science and Technology",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-091": {
+      "subject": "Science and Technology",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-092": {
+      "subject": "Science and Technology",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-093": {
+      "subject": "Science and Technology",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-094": {
+      "subject": "Science and Technology",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-095": {
+      "subject": "Science and Technology",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-096": {
+      "subject": "Science and Technology",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-097": {
+      "subject": "Science and Technology",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-098": {
+      "subject": "Science and Technology",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-099": {
+      "subject": "Science and Technology",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-100": {
+      "subject": "Science and Technology",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-101": {
+      "subject": "Science and Technology",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-102": {
+      "subject": "Science and Technology",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-103": {
+      "subject": "Science and Technology",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-104": {
+      "subject": "Science and Technology",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-105": {
+      "subject": "Geography",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-106": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-107": {
+      "subject": "Economy",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-108": {
+      "subject": "Polity",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-109": {
+      "subject": "Economy",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-110": {
+      "subject": "Science and Technology",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-111": {
+      "subject": "Environment",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-112": {
+      "subject": "Science and Technology",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-113": {
+      "subject": "Science and Technology",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-114": {
+      "subject": "Environment",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-115": {
+      "subject": "Environment",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-116": {
+      "subject": "Science and Technology",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-117": {
+      "subject": "Science and Technology",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-118": {
+      "subject": "Science and Technology",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-119": {
+      "subject": "Science and Technology",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-120": {
+      "subject": "Science and Technology",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-121": {
+      "subject": "Science and Technology",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-122": {
+      "subject": "Current Affairs",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-123": {
+      "subject": "Geography",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-124": {
+      "subject": "Current Affairs",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-125": {
+      "subject": "Current Affairs",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-126": {
+      "subject": "Current Affairs",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-127": {
+      "subject": "Polity",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-128": {
+      "subject": "Current Affairs",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-129": {
+      "subject": "Current Affairs",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-130": {
+      "subject": "Current Affairs",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-131": {
+      "subject": "Current Affairs",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-132": {
+      "subject": "Current Affairs",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-133": {
+      "subject": "Current Affairs",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-134": {
+      "subject": "Current Affairs",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-135": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-136": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-137": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-138": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-139": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-140": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-141": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-142": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-143": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2009-144": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    }
+  }
+}

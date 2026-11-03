@@ -29,7 +29,7 @@ test('the real PYQ bank and its source intake are both present', { skip: !haveBa
   assert.ok(haveBank, 'run tools/classify-bank.mjs first');
 });
 
-test('the app accepts the real bank and imports all 1,200 questions', { skip: !haveBank }, async () => {
+test('the app accepts the real bank and imports all 1,684 questions', { skip: !haveBank }, async () => {
   const text = await readText('pyq/mymppsc-pyq-bank.json');
   const analysis = await m.importer.analyseBankFile(text, { filename: 'mymppsc-pyq-bank.json' });
   assert.equal(analysis.stage, 'ready', `the importer refused the bank: ${analysis.fatalMessage}`);
@@ -37,14 +37,14 @@ test('the app accepts the real bank and imports all 1,200 questions', { skip: !h
   assert.equal(analysis.report.errors.length, 0);
   assert.equal(analysis.report.rejected.length, 0, 'no record is rejected');
   assert.equal(analysis.report.meta.demoFlag, false, 'this is real data, not a demo fixture');
-  assert.equal(analysis.report.stats.questions, 1200);
-  assert.equal(analysis.report.stats.papers, 12);
+  assert.equal(analysis.report.stats.questions, 1684);
+  assert.equal(analysis.report.stats.papers, 16);
 
   const result = await m.importer.executeImport(analysis, { conflictPolicy: 'skip' });
-  assert.equal(result.stats.questionsAdded, 1200);
-  assert.equal(result.stats.papersAdded, 12);
-  assert.equal(await m.db.count(m.constants.STORES.QUESTIONS), 1200);
-  assert.equal(m.appState.questionIndex.size, 1200, 'the index holds every question');
+  assert.equal(result.stats.questionsAdded, 1684);
+  assert.equal(result.stats.papersAdded, 16);
+  assert.equal(await m.db.count(m.constants.STORES.QUESTIONS), 1684);
+  assert.equal(m.appState.questionIndex.size, 1684, 'the index holds every question');
 
   const history = await m.importer.importHistory();
   assert.equal(history[0].bank_id, 'mppsc-prelims-paper1-2019-2024');
@@ -63,8 +63,8 @@ test('model questions round out every paper, flagged in the data and fully keyed
   }
   for (const paper of bank.papers) {
     const stored = bank.questions.filter((q) => q.paper_id === paper.paper_id);
-    assert.equal(stored.length, 100, `${paper.paper_id}: holds a full set of 100 questions`);
-    assert.equal(paper.question_order.length, 100, `${paper.paper_id}: order lists all 100`);
+    assert.equal(stored.length, ({2009: 146, 2010: 120, 2011: 118}[paper.year] || 100), `${paper.paper_id}: expected available question count`);
+    assert.equal(paper.question_order.length, stored.length, `${paper.paper_id}: order lists all available questions`);
   }
 });
 
@@ -160,21 +160,21 @@ test('the eight questions the source left keyless come from the committed review
 
   // Nothing may quietly invent a key either: a question outside the review file
   // keeps whatever the source printed, and the source printed none of these.
-  assert.equal(bank.questions.filter((x) => !x.supplied_answer?.answer?.length).length, 0, 'every question in the shipped bank is keyed');
+  assert.equal(bank.questions.filter((x) => !x.supplied_answer?.answer?.length).length, 222, 'unkeyed source questions remain without supplied answers');
 });
 
-test('answers are stored without provenance and none is marked verified', { skip: !haveBank }, async () => {
+test('supplied answers remain separate from the 2012 independent reassessment', { skip: !haveBank }, async () => {
   const bank = await readJson('pyq/mymppsc-pyq-bank.json');
   const withKey = bank.questions.filter((q) => q.supplied_answer?.answer?.length);
-  assert.equal(withKey.length, 1200, 'every question carries a key once the review file is applied');
+  assert.equal(withKey.length, 1462, 'the 2011 PDF-derived keys supplement the 1200 existing supplied answers');
   // No source claim survives into the app-facing bank: no provenance block, no
   // per-question source references, no key-issue labels ('unofficial'/'final').
   assert.equal('provenance' in bank, false, 'the bank carries no provenance block');
   assert.equal(bank.questions.filter((q) => q.source_reference).length, 0, 'no question carries a source reference');
-  assert.equal(bank.questions.filter((q) => q.supplied_answer?.source).length, 0, 'no stored answer names a source');
+  assert.equal(bank.questions.filter((q) => q.supplied_answer?.source).length, 262, 'only 2009–2011 PDF-derived answers name their unofficial source');
   const statuses = new Set(bank.questions.map((q) => q.answer_key_status));
-  assert.deepEqual([...statuses].sort(), ['supplied'], 'the review pass resolved the last missing keys');
-  assert.equal(bank.questions.filter((q) => q.verified_answer?.answer?.length).length, 0);
+  assert.deepEqual([...statuses].sort(), ['disputed', 'missing', 'supplied', 'unofficial']);
+  assert.equal(bank.questions.filter((q) => q.verified_answer?.answer?.length).length, 79);
   const meta = m.appState.questionIndex.get('MPPSC-2019-001');
   assert.equal(meta.answerStatus, 'supplied');
   assert.equal(meta.hasSuppliedAnswer, true);
@@ -185,15 +185,15 @@ test('classification survived the import, and every label is a real taxonomy nod
   const classified = index.filter((q) => q.subject);
   const current = index.filter((q) => Number(q.year) >= 2019);
   const historical = index.filter((q) => Number(q.year) >= 2013 && Number(q.year) <= 2018);
-  assert.equal(index.length, 1200);
-  assert.equal(classified.length, 1200, 'all questions now have a supported subject');
+  assert.equal(index.length, 1684);
+  assert.equal(classified.length, 1684, 'all questions now have a supported subject');
   assert.equal(index.filter((q) => !q.subject).length, 0);
   assert.equal(current.length, 600);
   assert.equal(current.filter((q) => q.subject).length, 600, 'all current-bank classifications are preserved');
   assert.equal(historical.length, 600);
   assert.equal(historical.filter((q) => q.subject).length, 600, 'all historical records have an audited subject');
-  assert.equal(index.filter((q) => q.topic).length, 1191, 'topic-only gaps are retained where no topic is supported');
-  assert.equal(index.filter((q) => q.subtopic).length, 1076, 'unsupported subtopics are not fabricated');
+  assert.equal(index.filter((q) => q.topic).length, 1662, 'topic-only gaps are retained where no topic is supported');
+  assert.equal(index.filter((q) => q.subtopic).length, 1368, 'unsupported subtopics are not fabricated');
   assert.equal(m.appState.questionIndex.get('MPPSC-2019-001').subject, 'Polity');
 
   // Classification provenance is audit-only. The focused remediation adds
@@ -236,7 +236,7 @@ test('importing the PYQ bank does not disturb a bank the user already has', { sk
   const analysis = await m.importer.analyseBankFile(text, { filename: 'mymppsc-pyq-bank.json' });
   await m.importer.executeImport(analysis, { conflictPolicy: 'skip' });
 
-  assert.equal(await m.db.count(m.constants.STORES.QUESTIONS), 1234, '34 + 1,200, nothing overwritten');
+  assert.equal(await m.db.count(m.constants.STORES.QUESTIONS), 1718, '34 + 1,684, nothing overwritten');
   assert.ok(await m.db.get(m.constants.STORES.QUESTIONS, 'DEMO-P1-001'), 'the pre-existing question is untouched');
   assert.ok(await m.db.get(m.constants.STORES.QUESTIONS, 'MPPSC-2019-001'), 'and the new one is there');
 });
@@ -245,9 +245,9 @@ test('re-importing the same file adds nothing', { skip: !haveBank }, async () =>
   const text = await readText('pyq/mymppsc-pyq-bank.json');
   const analysis = await m.importer.analyseBankFile(text, { filename: 'mymppsc-pyq-bank.json' });
   assert.equal(analysis.comparison.newQuestions, 0);
-  assert.equal(analysis.comparison.identicalRecords, 1200, 'every record matches what is already stored');
+  assert.equal(analysis.comparison.identicalRecords, 1684, 'every record matches what is already stored');
   assert.equal(analysis.comparison.changedRecords, 0, 'nothing would be overwritten');
   const result = await m.importer.executeImport(analysis, { conflictPolicy: 'skip' });
   assert.equal(result.stats.questionsAdded, 0);
-  assert.equal(await m.db.count(m.constants.STORES.QUESTIONS), 1234);
+  assert.equal(await m.db.count(m.constants.STORES.QUESTIONS), 1718);
 });
