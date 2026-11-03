@@ -1,0 +1,2605 @@
+{
+  "status": "source-derived staging; manual source comparison required",
+  "source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies  Solved Question paper 2010.md",
+  "source_sha256": "31bebf697bb35609044af4faee1a7fd6ffdb5d2a48e3835491475890fc46406d",
+  "excluded_candidates": [
+    {
+      "question_number": 17,
+      "reason": "missing page; following options belong to another question"
+    }
+  ],
+  "questions": [
+    {
+      "id": "MPPSC-2010-001",
+      "question_number": 1,
+      "language_variants": {
+        "en": {
+          "question_text": "Where is the Indus Civilization city Lothal ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Gujarat"
+            },
+            {
+              "key": "B",
+              "text": "Rajasthan"
+            },
+            {
+              "key": "C",
+              "text": "Punjab"
+            },
+            {
+              "key": "D",
+              "text": "Haryana"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-002",
+      "question_number": 2,
+      "language_variants": {
+        "en": {
+          "question_text": "Mohenjo Daro is situated in—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Sindh Province of Pakistan"
+            },
+            {
+              "key": "B",
+              "text": "Gujarat"
+            },
+            {
+              "key": "C",
+              "text": "Punjab"
+            },
+            {
+              "key": "D",
+              "text": "Afghanistan"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-003",
+      "question_number": 3,
+      "language_variants": {
+        "en": {
+          "question_text": "Which deity was not worshipped by the Vedic Aryans ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Indra"
+            },
+            {
+              "key": "B",
+              "text": "Marut"
+            },
+            {
+              "key": "C",
+              "text": "Varun"
+            },
+            {
+              "key": "D",
+              "text": "Pashupati"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-004",
+      "question_number": 4,
+      "language_variants": {
+        "en": {
+          "question_text": "The Vedanga consists of the—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Kalp, Shiksha, Nirukta, Vyakaran, Chhanda, Jyotish"
+            },
+            {
+              "key": "B",
+              "text": "Kalp, Shiksha, Brahman, Vyakaran, Chhanda, Jyotish"
+            },
+            {
+              "key": "C",
+              "text": "Kalp, Shiksha, Nirukta, Aranyak, Chhanda, Jyotish"
+            },
+            {
+              "key": "D",
+              "text": "Kalp, Upanishad, Nirukta, Vyakaran, Chhanda"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-005",
+      "question_number": 5,
+      "language_variants": {
+        "en": {
+          "question_text": "The earliest available work of the Sangam Tamils is—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Pattinappalai"
+            },
+            {
+              "key": "B",
+              "text": "Tirumurugarruppadai"
+            },
+            {
+              "key": "C",
+              "text": "Maduraikanchi"
+            },
+            {
+              "key": "D",
+              "text": "Tolkappiyam"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-006",
+      "question_number": 6,
+      "language_variants": {
+        "en": {
+          "question_text": "The Mahavir belonged to the clan—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Kalams"
+            },
+            {
+              "key": "B",
+              "text": "Bhaggas"
+            },
+            {
+              "key": "C",
+              "text": "Lichhivis"
+            },
+            {
+              "key": "D",
+              "text": "Bulis"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-007",
+      "question_number": 7,
+      "language_variants": {
+        "en": {
+          "question_text": "The Jain text which contains the biographies of the Tirthankaras is known as—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Bhagwatisutra"
+            },
+            {
+              "key": "B",
+              "text": "Uvasagadasao"
+            },
+            {
+              "key": "C",
+              "text": "Adi Purana"
+            },
+            {
+              "key": "D",
+              "text": "Kalpasutra"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-008",
+      "question_number": 8,
+      "language_variants": {
+        "en": {
+          "question_text": "The first Buddhist Sangeeti (conference) was held at—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Vaishali"
+            },
+            {
+              "key": "B",
+              "text": "Pataliputra"
+            },
+            {
+              "key": "C",
+              "text": "Rajgriha"
+            },
+            {
+              "key": "D",
+              "text": "Ujjain"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-009",
+      "question_number": 9,
+      "language_variants": {
+        "en": {
+          "question_text": "The propounder of the Madhyamika Philosophy was—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Bhadrabahu"
+            },
+            {
+              "key": "B",
+              "text": "Parshwanath"
+            },
+            {
+              "key": "C",
+              "text": "Sheelbhadra"
+            },
+            {
+              "key": "D",
+              "text": "Nagarjuna"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-010",
+      "question_number": 10,
+      "language_variants": {
+        "en": {
+          "question_text": "The rules of Buddhist monistic life are laid down, primarily, in—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Tripitaka"
+            },
+            {
+              "key": "B",
+              "text": "Vinayapitaka"
+            },
+            {
+              "key": "C",
+              "text": "Abhidhammapitaka"
+            },
+            {
+              "key": "D",
+              "text": "Suttapitaka"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-011",
+      "question_number": 11,
+      "language_variants": {
+        "en": {
+          "question_text": "The battle between Alexander and Porus took place on the bank of river—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Sutlej"
+            },
+            {
+              "key": "B",
+              "text": "Ravi"
+            },
+            {
+              "key": "C",
+              "text": "Jhelum"
+            },
+            {
+              "key": "D",
+              "text": "Ganga"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-012",
+      "question_number": 12,
+      "language_variants": {
+        "en": {
+          "question_text": "The first Persian ruler who occupied part of Indian Territory was—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Cyrus"
+            },
+            {
+              "key": "B",
+              "text": "Darius I"
+            },
+            {
+              "key": "C",
+              "text": "Cambyses"
+            },
+            {
+              "key": "D",
+              "text": "Xerxes"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-013",
+      "question_number": 13,
+      "language_variants": {
+        "en": {
+          "question_text": "Alexander remained in India for—",
+          "options": [
+            {
+              "key": "A",
+              "text": "29 months"
+            },
+            {
+              "key": "B",
+              "text": "39 months"
+            },
+            {
+              "key": "C",
+              "text": "19 months"
+            },
+            {
+              "key": "D",
+              "text": "10 months"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-014",
+      "question_number": 14,
+      "language_variants": {
+        "en": {
+          "question_text": "Gedrosia corresponds to modern—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Baluchistan"
+            },
+            {
+              "key": "B",
+              "text": "Lahore"
+            },
+            {
+              "key": "C",
+              "text": "Multan"
+            },
+            {
+              "key": "D",
+              "text": "Peshawar"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-015",
+      "question_number": 15,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following statements is not true ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Formal accession of Asoka was very probably delayed"
+            },
+            {
+              "key": "B",
+              "text": "The fifth rock edict proves the existence of Harems of Asoka's brothers"
+            },
+            {
+              "key": "C",
+              "text": "Asoka held the viceroyalty of Taxila and Ujjain in the reign of Bindusara"
+            },
+            {
+              "key": "D",
+              "text": "Asoka was the younger brother of Bindusara"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-016",
+      "question_number": 16,
+      "language_variants": {
+        "en": {
+          "question_text": "The nirvasita (excluded) and anirvasita (not excluded) Shudras have been referred to—",
+          "options": [
+            {
+              "key": "A",
+              "text": "in the Nirukta of Yaska"
+            },
+            {
+              "key": "B",
+              "text": "in the Ashtadhyayi of Panini"
+            },
+            {
+              "key": "C",
+              "text": "in the Arthashastra of Kautilya"
+            },
+            {
+              "key": "D",
+              "text": "None of the above"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-029",
+      "question_number": 29,
+      "language_variants": {
+        "en": {
+          "question_text": "Which one of the following indicates the correct chronological order of era in India ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Gupta—Harsha—Vikram—Shaka"
+            },
+            {
+              "key": "B",
+              "text": "Vikram—Harsha—Gupta—Shaka"
+            },
+            {
+              "key": "C",
+              "text": "Gupta—Shaka—Vikram—Harsha"
+            },
+            {
+              "key": "D",
+              "text": "Vikram—Shaka—Gupta—Harsha"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-030",
+      "question_number": 30,
+      "language_variants": {
+        "en": {
+          "question_text": "During Pre-Gupta period what was Kahapan ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "An office"
+            },
+            {
+              "key": "B",
+              "text": "A luxury item"
+            },
+            {
+              "key": "C",
+              "text": "A coin"
+            },
+            {
+              "key": "D",
+              "text": "A port"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-031",
+      "question_number": 31,
+      "language_variants": {
+        "en": {
+          "question_text": "Which port was known to the author of \"Periplus of the Erithrian Sea\" as Padouke ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Tamralipti"
+            },
+            {
+              "key": "B",
+              "text": "Arikmedu"
+            },
+            {
+              "key": "C",
+              "text": "Broach"
+            },
+            {
+              "key": "D",
+              "text": "Cochin"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-032",
+      "question_number": 32,
+      "language_variants": {
+        "en": {
+          "question_text": "Chandragupta-II married his daughter Prabhavati to—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Rudrasena-I"
+            },
+            {
+              "key": "B",
+              "text": "Rudrasena-II"
+            },
+            {
+              "key": "C",
+              "text": "Agnimitra"
+            },
+            {
+              "key": "D",
+              "text": "Nagsena"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-033",
+      "question_number": 33,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following law givers of the post-Gupta period declared that Sudras were not slaves by nature ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Medhatithi"
+            },
+            {
+              "key": "B",
+              "text": "Vigynaeshwar"
+            },
+            {
+              "key": "C",
+              "text": "Narad"
+            },
+            {
+              "key": "D",
+              "text": "Jimutwahan"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-034",
+      "question_number": 34,
+      "language_variants": {
+        "en": {
+          "question_text": "Who was the founder of Gahadwala dynasty who made Kannauj the main centre of his power ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Jaichandra"
+            },
+            {
+              "key": "B",
+              "text": "Vijaychandra"
+            },
+            {
+              "key": "C",
+              "text": "Chandradev"
+            },
+            {
+              "key": "D",
+              "text": "Govind"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-035",
+      "question_number": 35,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following Rashtrakut kings defeated the Pratihar ruler Nagabhatta I ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Indra II"
+            },
+            {
+              "key": "B",
+              "text": "Krishna III"
+            },
+            {
+              "key": "C",
+              "text": "Amoghvarsha I"
+            },
+            {
+              "key": "D",
+              "text": "Govind III"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-036",
+      "question_number": 36,
+      "language_variants": {
+        "en": {
+          "question_text": "Who among the following rulers patronized Jayadev, the composer of ‘Geetgovinda’ ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Laxman Sen"
+            },
+            {
+              "key": "B",
+              "text": "Kharvel"
+            },
+            {
+              "key": "C",
+              "text": "Kumarpala"
+            },
+            {
+              "key": "D",
+              "text": "Shashank"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-037",
+      "question_number": 37,
+      "language_variants": {
+        "en": {
+          "question_text": "Who out of the following ousted Jainism from Mysore ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Naynars"
+            },
+            {
+              "key": "B",
+              "text": "Lingayats"
+            },
+            {
+              "key": "C",
+              "text": "Alwars"
+            },
+            {
+              "key": "D",
+              "text": "Shankaracharya"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-038",
+      "question_number": 38,
+      "language_variants": {
+        "en": {
+          "question_text": "Which was the word used for the royal military troops of the Cholas ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Kattupaddi"
+            },
+            {
+              "key": "B",
+              "text": "Kaikkolar"
+            },
+            {
+              "key": "C",
+              "text": "Bhrtaka"
+            },
+            {
+              "key": "D",
+              "text": "Kadgham"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-039",
+      "question_number": 39,
+      "language_variants": {
+        "en": {
+          "question_text": "The Chola rulers undertook extensive land survey to ascertain—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Right of ownership"
+            },
+            {
+              "key": "B",
+              "text": "Government's share of revenue"
+            },
+            {
+              "key": "C",
+              "text": "Production of grains"
+            },
+            {
+              "key": "D",
+              "text": "Limit of the sources of irrigation"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-040",
+      "question_number": 40,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following taxes of Chola period was for educational purpose ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Devadana"
+            },
+            {
+              "key": "B",
+              "text": "Salabhoga"
+            },
+            {
+              "key": "C",
+              "text": "Brahmadeva"
+            },
+            {
+              "key": "D",
+              "text": "Sarvamanya"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-041",
+      "question_number": 41,
+      "language_variants": {
+        "en": {
+          "question_text": "The writer of Tabqat-i-Nasiri was—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Barani"
+            },
+            {
+              "key": "B",
+              "text": "Nizamuddin"
+            },
+            {
+              "key": "C",
+              "text": "Minhaj-us-Siraj"
+            },
+            {
+              "key": "D",
+              "text": "Isami"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-042",
+      "question_number": 42,
+      "language_variants": {
+        "en": {
+          "question_text": "The following works were written by Ziauddin Barani—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Tarikh-i-Firozshahi and Qiranussadain"
+            },
+            {
+              "key": "B",
+              "text": "Fatwa-i-Jahandari and Ashiqa"
+            },
+            {
+              "key": "C",
+              "text": "Tarikh-i-Firozshahi and Fatwa-i-Jahandari"
+            },
+            {
+              "key": "D",
+              "text": "Futuhus-salatin and Tarikhi-Firozshahi"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-043",
+      "question_number": 43,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following books were written by Amir Khusro ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Ashiqa, Qiranussadain, Khazain-ul-Futuh"
+            },
+            {
+              "key": "B",
+              "text": "Qiranussadain, Ashiqa, Tarikh-i-Mubarakshahi"
+            },
+            {
+              "key": "C",
+              "text": "Khazainul Futuh, Tarikh-i-Mubarakshahi, Ashiqa"
+            },
+            {
+              "key": "D",
+              "text": "Tarikh-i-Mubarakshahi, Nuh-i-Siphr, Ashiqa"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-044",
+      "question_number": 44,
+      "language_variants": {
+        "en": {
+          "question_text": "Who wrote ‘Qanun-i-Humayuni’ ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Gulbadan Begum"
+            },
+            {
+              "key": "B",
+              "text": "Yahya"
+            },
+            {
+              "key": "C",
+              "text": "Khwandmir"
+            },
+            {
+              "key": "D",
+              "text": "Nizamuddin"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-051",
+      "question_number": 51,
+      "language_variants": {
+        "en": {
+          "question_text": "Bahlul Lodi's significant achievement was the successful war against the underwritten kingdom of—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Mewat"
+            },
+            {
+              "key": "B",
+              "text": "Jaunpur"
+            },
+            {
+              "key": "C",
+              "text": "Chandwar"
+            },
+            {
+              "key": "D",
+              "text": "Sambhal"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-052",
+      "question_number": 52,
+      "language_variants": {
+        "en": {
+          "question_text": "Rulers of which kingdom built Atala Masjid and Lal Darwaza Masjid ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Bengal"
+            },
+            {
+              "key": "B",
+              "text": "Khandesh"
+            },
+            {
+              "key": "C",
+              "text": "Malwa"
+            },
+            {
+              "key": "D",
+              "text": "Jaunpur"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-053",
+      "question_number": 53,
+      "language_variants": {
+        "en": {
+          "question_text": "Rai Bharmal wrote on Muslim Literary traditions in the following language—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Persian"
+            },
+            {
+              "key": "B",
+              "text": "Sanskrit"
+            },
+            {
+              "key": "C",
+              "text": "Arabic"
+            },
+            {
+              "key": "D",
+              "text": "Turkish"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-054",
+      "question_number": 54,
+      "language_variants": {
+        "en": {
+          "question_text": "'Chaitanya Charitamrita' was authored by—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Wasweshwara"
+            },
+            {
+              "key": "B",
+              "text": "Madhav"
+            },
+            {
+              "key": "C",
+              "text": "Ramanand"
+            },
+            {
+              "key": "D",
+              "text": "Krishnadas Kaviraj"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-055",
+      "question_number": 55,
+      "language_variants": {
+        "en": {
+          "question_text": "Who succeeded Nizamuddin Aulia ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Sheikh Farid"
+            },
+            {
+              "key": "B",
+              "text": "Sheikh Nasiruddin Chiraghi-Delhi"
+            },
+            {
+              "key": "C",
+              "text": "Sheikh Salim Chishti"
+            },
+            {
+              "key": "D",
+              "text": "None of the above"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-062",
+      "question_number": 62,
+      "language_variants": {
+        "en": {
+          "question_text": "Who was Mehdi Khwaza ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Ruler of Bihar"
+            },
+            {
+              "key": "B",
+              "text": "Prime Minister of Ibrahim Lodi"
+            },
+            {
+              "key": "C",
+              "text": "Brother-in-law of Humayun"
+            },
+            {
+              "key": "D",
+              "text": "Brother of Babur"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-063",
+      "question_number": 63,
+      "language_variants": {
+        "en": {
+          "question_text": "Humayun ascended the throne at Agra on—",
+          "options": [
+            {
+              "key": "A",
+              "text": "7th January 1530"
+            },
+            {
+              "key": "B",
+              "text": "29th December 1530"
+            },
+            {
+              "key": "C",
+              "text": "23rd September 1530"
+            },
+            {
+              "key": "D",
+              "text": "16th February 1530"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-064",
+      "question_number": 64,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following statements is true of the Sher Shah Suri ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "He was a fanatic Muslim"
+            },
+            {
+              "key": "B",
+              "text": "He was a staunch Muslim but not a fanatic"
+            },
+            {
+              "key": "C",
+              "text": "He was a staunch Muslim and ill-treated Hindus"
+            },
+            {
+              "key": "D",
+              "text": "He was intolerant towards other religions"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-065",
+      "question_number": 65,
+      "language_variants": {
+        "en": {
+          "question_text": "Which out of the following was not one of the purposes of 'Sarais' built during Sher Shah ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Post-house"
+            },
+            {
+              "key": "B",
+              "text": "For travellers"
+            },
+            {
+              "key": "C",
+              "text": "For officers"
+            },
+            {
+              "key": "D",
+              "text": "Warehouse for arms and ammunition"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-066",
+      "question_number": 66,
+      "language_variants": {
+        "en": {
+          "question_text": "Who was not appointed as Vazir during Akbar's reign ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Bahadurkhan Uzbeg"
+            },
+            {
+              "key": "B",
+              "text": "Shamsuddin Atkakhan"
+            },
+            {
+              "key": "C",
+              "text": "Todarmal"
+            },
+            {
+              "key": "D",
+              "text": "Nizamuddin Khalifa"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-067",
+      "question_number": 67,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following pairs is incorrect ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Akbar—Ralph Fich"
+            },
+            {
+              "key": "B",
+              "text": "Darashikoh—Manucci"
+            },
+            {
+              "key": "C",
+              "text": "Jahangir—Sir Thomas Roe"
+            },
+            {
+              "key": "D",
+              "text": "Shah Jahan—Jourdon"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-068",
+      "question_number": 68,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following statements is true of Akbar’s policy towards the Hindus ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "He abolished the pilgrim tax but not the Jaziya"
+            },
+            {
+              "key": "B",
+              "text": "He abolished the Jaziya, but not the pilgrim tax"
+            },
+            {
+              "key": "C",
+              "text": "He abolished both the Jaziya and the pilgrim tax"
+            },
+            {
+              "key": "D",
+              "text": "He neither abolished the pilgrim tax nor the Jaziya"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-069",
+      "question_number": 69,
+      "language_variants": {
+        "en": {
+          "question_text": "Who was the author of ‘Nuskhai-Dilkusha’ ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Khafi Khan"
+            },
+            {
+              "key": "B",
+              "text": "Murshidkuli Khan"
+            },
+            {
+              "key": "C",
+              "text": "Abul Fazl"
+            },
+            {
+              "key": "D",
+              "text": "Bhimsen Burhanpuri"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-070",
+      "question_number": 70,
+      "language_variants": {
+        "en": {
+          "question_text": "Guru Govind Singh was killed in 1708 at—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Amritsar"
+            },
+            {
+              "key": "B",
+              "text": "Keeratpur"
+            },
+            {
+              "key": "C",
+              "text": "Nanded"
+            },
+            {
+              "key": "D",
+              "text": "Anandpur"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-071",
+      "question_number": 71,
+      "language_variants": {
+        "en": {
+          "question_text": "Mir Sayyed Ali and Abdusamad were the court painter during the time of—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Humayun, Akbar"
+            },
+            {
+              "key": "B",
+              "text": "Akbar, Jahangir"
+            },
+            {
+              "key": "C",
+              "text": "Jahangir, Shah Jahan"
+            },
+            {
+              "key": "D",
+              "text": "Shah Jahan, Aurangzeb"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-072",
+      "question_number": 72,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following elements was not found in Akbar’s architecture ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Use of red sandstone"
+            },
+            {
+              "key": "B",
+              "text": "Hindu elements"
+            },
+            {
+              "key": "C",
+              "text": "Foliated arches"
+            },
+            {
+              "key": "D",
+              "text": "Charbagh surrounding the tombs"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-073",
+      "question_number": 73,
+      "language_variants": {
+        "en": {
+          "question_text": "Who composed ‘Ganga Lahri’ ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Tulsidas"
+            },
+            {
+              "key": "B",
+              "text": "Surdas"
+            },
+            {
+              "key": "C",
+              "text": "Panditraj Jagannath"
+            },
+            {
+              "key": "D",
+              "text": "Haridasa"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-074",
+      "question_number": 74,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following was not a silver coin during Akbar ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Jalal"
+            },
+            {
+              "key": "B",
+              "text": "Dam"
+            },
+            {
+              "key": "C",
+              "text": "Darab"
+            },
+            {
+              "key": "D",
+              "text": "Pandau"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-075",
+      "question_number": 75,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following revolts had agrarian causes at its root ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Rajput revolt"
+            },
+            {
+              "key": "B",
+              "text": "Satnami and Jat revolt"
+            },
+            {
+              "key": "C",
+              "text": "Sikh revolt"
+            },
+            {
+              "key": "D",
+              "text": "Maratha revolt"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-076",
+      "question_number": 76,
+      "language_variants": {
+        "en": {
+          "question_text": "From whom Shahji received the jagir of Poona ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Mughals"
+            },
+            {
+              "key": "B",
+              "text": "Adilshah"
+            },
+            {
+              "key": "C",
+              "text": "Nizamshahi"
+            },
+            {
+              "key": "D",
+              "text": "Portuguese"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-077",
+      "question_number": 77,
+      "language_variants": {
+        "en": {
+          "question_text": "What is ‘Mokasa’ ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Jagir"
+            },
+            {
+              "key": "B",
+              "text": "Religious practice"
+            },
+            {
+              "key": "C",
+              "text": "Cavalry"
+            },
+            {
+              "key": "D",
+              "text": "Religious endowment"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-078",
+      "question_number": 78,
+      "language_variants": {
+        "en": {
+          "question_text": "Who was not alive at the time of Shivaji’s Coronation ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Ganga Bhatt"
+            },
+            {
+              "key": "B",
+              "text": "Tukaram"
+            },
+            {
+              "key": "C",
+              "text": "Ramdas"
+            },
+            {
+              "key": "D",
+              "text": "Dadaji Konddeva"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-079",
+      "question_number": 79,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following Peshwas is connected with the treaty of Sagola ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Balaji Bajirao"
+            },
+            {
+              "key": "B",
+              "text": "Balaji Vishwanath"
+            },
+            {
+              "key": "C",
+              "text": "Bajirao I"
+            },
+            {
+              "key": "D",
+              "text": "Bajirao II"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-080",
+      "question_number": 80,
+      "language_variants": {
+        "en": {
+          "question_text": "In which year Ahilyabai Holkar breathed her last ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "1792"
+            },
+            {
+              "key": "B",
+              "text": "1793"
+            },
+            {
+              "key": "C",
+              "text": "1794"
+            },
+            {
+              "key": "D",
+              "text": "1795"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-081",
+      "question_number": 81,
+      "language_variants": {
+        "en": {
+          "question_text": "The French East India Company was formed in—",
+          "options": [
+            {
+              "key": "A",
+              "text": "1664 AD"
+            },
+            {
+              "key": "B",
+              "text": "1660 AD"
+            },
+            {
+              "key": "C",
+              "text": "1656 AD"
+            },
+            {
+              "key": "D",
+              "text": "1680 AD"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-082",
+      "question_number": 82,
+      "language_variants": {
+        "en": {
+          "question_text": "La Bourdonnais was the Governor of—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Madras"
+            },
+            {
+              "key": "B",
+              "text": "Pondicherry"
+            },
+            {
+              "key": "C",
+              "text": "Mauritius"
+            },
+            {
+              "key": "D",
+              "text": "None of these"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-083",
+      "question_number": 83,
+      "language_variants": {
+        "en": {
+          "question_text": "Mir Kasim removed his court from Calcutta to—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Patna"
+            },
+            {
+              "key": "B",
+              "text": "Dacca"
+            },
+            {
+              "key": "C",
+              "text": "Monghir"
+            },
+            {
+              "key": "D",
+              "text": "Purnea"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-084",
+      "question_number": 84,
+      "language_variants": {
+        "en": {
+          "question_text": "The battle of Wandiwash was fought between—",
+          "options": [
+            {
+              "key": "A",
+              "text": "English and the French"
+            },
+            {
+              "key": "B",
+              "text": "English and the Marathas"
+            },
+            {
+              "key": "C",
+              "text": "English and the Nawab of Carnatic"
+            },
+            {
+              "key": "D",
+              "text": "English and Hyderali"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-085",
+      "question_number": 85,
+      "language_variants": {
+        "en": {
+          "question_text": "At the battle of Biddera the English crushed the power of—",
+          "options": [
+            {
+              "key": "A",
+              "text": "French"
+            },
+            {
+              "key": "B",
+              "text": "Dutch"
+            },
+            {
+              "key": "C",
+              "text": "Portuguese"
+            },
+            {
+              "key": "D",
+              "text": "Danes"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-086",
+      "question_number": 86,
+      "language_variants": {
+        "en": {
+          "question_text": "The Treaty of Surat was concluded by the British with the following Maratha chief—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Narayan Rao"
+            },
+            {
+              "key": "B",
+              "text": "Madhav Rao"
+            },
+            {
+              "key": "C",
+              "text": "Nana Phadnvis"
+            },
+            {
+              "key": "D",
+              "text": "Raghoba"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-087",
+      "question_number": 87,
+      "language_variants": {
+        "en": {
+          "question_text": "The triple alliance against Tipu was formed by Cornwallis consisted of the following—",
+          "options": [
+            {
+              "key": "A",
+              "text": "The English, Nizam and the Marathas"
+            },
+            {
+              "key": "B",
+              "text": "The English, Nizam and Awadh"
+            },
+            {
+              "key": "C",
+              "text": "The English, Nizam and Carnatic"
+            },
+            {
+              "key": "D",
+              "text": "The English, Marathas and Carnatic"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-088",
+      "question_number": 88,
+      "language_variants": {
+        "en": {
+          "question_text": "In the Second Sikh War the decisive battle was fought at—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Chilianwala"
+            },
+            {
+              "key": "B",
+              "text": "Peshawar"
+            },
+            {
+              "key": "C",
+              "text": "Gujarat"
+            },
+            {
+              "key": "D",
+              "text": "Multan"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-089",
+      "question_number": 89,
+      "language_variants": {
+        "en": {
+          "question_text": "In the Third Maratha War, the English defeated Peshwa Bajirao II at—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Mahidpur"
+            },
+            {
+              "key": "B",
+              "text": "Sitabuldi"
+            },
+            {
+              "key": "C",
+              "text": "Kirki"
+            },
+            {
+              "key": "D",
+              "text": "Bassein"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-090",
+      "question_number": 90,
+      "language_variants": {
+        "en": {
+          "question_text": "The Treaty of Shrirangpattam took place in—",
+          "options": [
+            {
+              "key": "A",
+              "text": "1791"
+            },
+            {
+              "key": "B",
+              "text": "1792"
+            },
+            {
+              "key": "C",
+              "text": "1793"
+            },
+            {
+              "key": "D",
+              "text": "1794"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-091",
+      "question_number": 91,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following states was not annexed to British Empire by Dalhousie under the doctrine of Lapse ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Baghat"
+            },
+            {
+              "key": "B",
+              "text": "Nagpur"
+            },
+            {
+              "key": "C",
+              "text": "Sambalpur"
+            },
+            {
+              "key": "D",
+              "text": "Benaras"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-092",
+      "question_number": 92,
+      "language_variants": {
+        "en": {
+          "question_text": "Which one of the following rebellions is associated with Sidhu and Kanhu ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Munda Rebellion"
+            },
+            {
+              "key": "B",
+              "text": "Kole Rebellion"
+            },
+            {
+              "key": "C",
+              "text": "Santhal Rebellion"
+            },
+            {
+              "key": "D",
+              "text": "Bhil Rebellion"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-093",
+      "question_number": 93,
+      "language_variants": {
+        "en": {
+          "question_text": "The following officer was connected with the suppression of Thugee—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Hastings"
+            },
+            {
+              "key": "B",
+              "text": "Sleeman"
+            },
+            {
+              "key": "C",
+              "text": "Bentinck"
+            },
+            {
+              "key": "D",
+              "text": "Aukland"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-094",
+      "question_number": 94,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following British Officers was not in favour of annexation of Awadh ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Outram"
+            },
+            {
+              "key": "B",
+              "text": "Napier"
+            },
+            {
+              "key": "C",
+              "text": "Hugh Rose"
+            },
+            {
+              "key": "D",
+              "text": "Sleeman"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-095",
+      "question_number": 95,
+      "language_variants": {
+        "en": {
+          "question_text": "Charles Metcalf was the Governor General of India during—",
+          "options": [
+            {
+              "key": "A",
+              "text": "1835-36"
+            },
+            {
+              "key": "B",
+              "text": "1839-40"
+            },
+            {
+              "key": "C",
+              "text": "1837-38"
+            },
+            {
+              "key": "D",
+              "text": "1832-33"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-096",
+      "question_number": 96,
+      "language_variants": {
+        "en": {
+          "question_text": "Sindh was invaded during the following Governor General's time—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Lord Aukland"
+            },
+            {
+              "key": "B",
+              "text": "Lord Ellenborough"
+            },
+            {
+              "key": "C",
+              "text": "Lord Hardinge"
+            },
+            {
+              "key": "D",
+              "text": "Lord Dalhousie"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-097",
+      "question_number": 97,
+      "language_variants": {
+        "en": {
+          "question_text": "The Second Burmese War was fought in the year—",
+          "options": [
+            {
+              "key": "A",
+              "text": "1849"
+            },
+            {
+              "key": "B",
+              "text": "1850"
+            },
+            {
+              "key": "C",
+              "text": "1851"
+            },
+            {
+              "key": "D",
+              "text": "1852"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-098",
+      "question_number": 98,
+      "language_variants": {
+        "en": {
+          "question_text": "Which one of the following Acts abolished the trading rights of the East India Company?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Regulating Act of 1773"
+            },
+            {
+              "key": "B",
+              "text": "Charter Act of 1813"
+            },
+            {
+              "key": "C",
+              "text": "Charter Act of 1833"
+            },
+            {
+              "key": "D",
+              "text": "Charter Act of 1853"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-099",
+      "question_number": 99,
+      "language_variants": {
+        "en": {
+          "question_text": "Which one of the following pairs is not correctly matched?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Ryotwari Settlement : Madras"
+            },
+            {
+              "key": "B",
+              "text": "Talukdari Settlement : Bombay"
+            },
+            {
+              "key": "C",
+              "text": "Permanent Settlement : Bengal"
+            },
+            {
+              "key": "D",
+              "text": "Mahalwari Settlement : North-Western Province"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-100",
+      "question_number": 100,
+      "language_variants": {
+        "en": {
+          "question_text": "The gradual increase in rural indebtedness in India under the British rule was due to—\n1. Fragmentation of Landholdings\n2. Decline of cottage industries\n3. Lack of development of irrigational facilities\n4. Introduction of cash crops Which of these are correct ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "1, 2 and 3"
+            },
+            {
+              "key": "B",
+              "text": "2 and 4"
+            },
+            {
+              "key": "C",
+              "text": "1, 3 and 4"
+            },
+            {
+              "key": "D",
+              "text": "1, 2, 3 and 4"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-101",
+      "question_number": 101,
+      "language_variants": {
+        "en": {
+          "question_text": "At Lucknow the revolt of 1857 broke out on—",
+          "options": [
+            {
+              "key": "A",
+              "text": "May 30, 1857"
+            },
+            {
+              "key": "B",
+              "text": "June 4, 1857"
+            },
+            {
+              "key": "C",
+              "text": "May 15, 1857"
+            },
+            {
+              "key": "D",
+              "text": "June 15, 1857"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-102",
+      "question_number": 102,
+      "language_variants": {
+        "en": {
+          "question_text": "The Asiatic Society of Bengal in Calcutta was founded by—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Raja Ram Mohan Roy"
+            },
+            {
+              "key": "B",
+              "text": "Sir Williams Jones"
+            },
+            {
+              "key": "C",
+              "text": "Warren Hastings"
+            },
+            {
+              "key": "D",
+              "text": "Keshabchandra Sen"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-103",
+      "question_number": 103,
+      "language_variants": {
+        "en": {
+          "question_text": "The Theosophical Society allied itself to the—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Christian revival movement"
+            },
+            {
+              "key": "B",
+              "text": "Islamic revival movement"
+            },
+            {
+              "key": "C",
+              "text": "Hindu revival movement"
+            },
+            {
+              "key": "D",
+              "text": "All of these"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-104",
+      "question_number": 104,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following statements about the Ramakrishna Mission is wrong ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "It held the pure Vedantic doctrine as its ideal"
+            },
+            {
+              "key": "B",
+              "text": "It aimed at the development of the highest spirituality in man"
+            },
+            {
+              "key": "C",
+              "text": "It prohibited the worship of images"
+            },
+            {
+              "key": "D",
+              "text": "It recognised modern developments in Science and Technology"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-105",
+      "question_number": 105,
+      "language_variants": {
+        "en": {
+          "question_text": "Fifth Session of the Indian National Congress was held in 1889 at—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Calcutta"
+            },
+            {
+              "key": "B",
+              "text": "Madras"
+            },
+            {
+              "key": "C",
+              "text": "Bombay"
+            },
+            {
+              "key": "D",
+              "text": "Dacca"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-106",
+      "question_number": 106,
+      "language_variants": {
+        "en": {
+          "question_text": "The moderates and extremists were united in the Congress Session of—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Lahore"
+            },
+            {
+              "key": "B",
+              "text": "Bombay"
+            },
+            {
+              "key": "C",
+              "text": "Allahabad"
+            },
+            {
+              "key": "D",
+              "text": "Lucknow"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-107",
+      "question_number": 107,
+      "language_variants": {
+        "en": {
+          "question_text": "Who among the following was not in Khilafat Committee ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Majhar ul Haq"
+            },
+            {
+              "key": "B",
+              "text": "Hasrat Mohani"
+            },
+            {
+              "key": "C",
+              "text": "Maulana Shauqat Ali"
+            },
+            {
+              "key": "D",
+              "text": "Hakim Azmalkhan"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-108",
+      "question_number": 108,
+      "language_variants": {
+        "en": {
+          "question_text": "Who among the following was the president of All India Trade Union Congress in 1929 ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "M. N. Roy"
+            },
+            {
+              "key": "B",
+              "text": "N. M. Joshi"
+            },
+            {
+              "key": "C",
+              "text": "Jawaharlal Nehru"
+            },
+            {
+              "key": "D",
+              "text": "Jayaprakash Narayan"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-109",
+      "question_number": 109,
+      "language_variants": {
+        "en": {
+          "question_text": "Swaraj Party was formed by—",
+          "options": [
+            {
+              "key": "A",
+              "text": "C. R. Das"
+            },
+            {
+              "key": "B",
+              "text": "Motilal Nehru"
+            },
+            {
+              "key": "C",
+              "text": "Jawaharlal Nehru"
+            },
+            {
+              "key": "D",
+              "text": "C. R. Das and Motilal Nehru"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-110",
+      "question_number": 110,
+      "language_variants": {
+        "en": {
+          "question_text": "‘Lucknow Pact’ was concluded between—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Congress and the British Government"
+            },
+            {
+              "key": "B",
+              "text": "Muslim League and the British Government"
+            },
+            {
+              "key": "C",
+              "text": "Congress and the Muslim League"
+            },
+            {
+              "key": "D",
+              "text": "Congress, the Muslim League and the British Government"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-111",
+      "question_number": 111,
+      "language_variants": {
+        "en": {
+          "question_text": "An All Party Conference appointed a sub-committee with Ali Imam, Tejbahadur Sapru and\nSubhash Bose. Who was presiding this subcommittee ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Maulana Azad"
+            },
+            {
+              "key": "B",
+              "text": "Vallabh Bhai Patel"
+            },
+            {
+              "key": "C",
+              "text": "Madan Mohan Malviya"
+            },
+            {
+              "key": "D",
+              "text": "Motilal Nehru"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-112",
+      "question_number": 112,
+      "language_variants": {
+        "en": {
+          "question_text": "Who among the following participated in all the three Round Table Conferences ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Madan Mohan Malviya"
+            },
+            {
+              "key": "B",
+              "text": "B. R. Ambedkar"
+            },
+            {
+              "key": "C",
+              "text": "Sardar Patel"
+            },
+            {
+              "key": "D",
+              "text": "None of these"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-113",
+      "question_number": 113,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following pairs is correct ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Ramprasad Bismil : Second Lahore Conspiracy Case"
+            },
+            {
+              "key": "B",
+              "text": "Surya Sen : Chatgaon Case"
+            },
+            {
+              "key": "C",
+              "text": "Bhagat Singh : Kakori Conspiracy Case"
+            },
+            {
+              "key": "D",
+              "text": "Chandrashekhar Azad : Delhi Bomb Case"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-114",
+      "question_number": 114,
+      "language_variants": {
+        "en": {
+          "question_text": "When were the Congress Governments formed in seven out of eleven provinces ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "July 1935"
+            },
+            {
+              "key": "B",
+              "text": "July 1936"
+            },
+            {
+              "key": "C",
+              "text": "July 1937"
+            },
+            {
+              "key": "D",
+              "text": "July 1938"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-115",
+      "question_number": 115,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following pairs is correct ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Chelmsford : Rowlatt Act"
+            },
+            {
+              "key": "B",
+              "text": "Lord Reading : Delhi Darbar"
+            },
+            {
+              "key": "C",
+              "text": "Lord Willington : Arriving of Prince of Wales in India"
+            },
+            {
+              "key": "D",
+              "text": "Lord Hardinge : II Round Table Conference"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-116",
+      "question_number": 116,
+      "language_variants": {
+        "en": {
+          "question_text": "Subhash Chandra Bose inaugurated the government of Free India at—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Burma"
+            },
+            {
+              "key": "B",
+              "text": "Japan"
+            },
+            {
+              "key": "C",
+              "text": "Germany"
+            },
+            {
+              "key": "D",
+              "text": "Singapore"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-117",
+      "question_number": 117,
+      "language_variants": {
+        "en": {
+          "question_text": "In December 1931 two school girl students killed the District Judge in Komilla by shooting—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Suniti Choudhary and Bina Das"
+            },
+            {
+              "key": "B",
+              "text": "Shanti Ghosh and Suniti Choudhary"
+            },
+            {
+              "key": "C",
+              "text": "Bina Das and Kalpana Datta"
+            },
+            {
+              "key": "D",
+              "text": "Kalpana Datta and Shanti Ghosh"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-118",
+      "question_number": 118,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following pairs is correct ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Chuar Revolt : Orissa"
+            },
+            {
+              "key": "B",
+              "text": "Sanyasi Revolt : Bihar"
+            },
+            {
+              "key": "C",
+              "text": "Parlakhemundi Revolt : Orissa"
+            },
+            {
+              "key": "D",
+              "text": "Rampa Revolt : Karnatak"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-119",
+      "question_number": 119,
+      "language_variants": {
+        "en": {
+          "question_text": "The following countries undertook the responsibility of organising the Bandung Conference—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Indonesia, Burma, Cambodia"
+            },
+            {
+              "key": "B",
+              "text": "India, Burma, Indonesia"
+            },
+            {
+              "key": "C",
+              "text": "Sri Lanka, Indonesia, Cambodia"
+            },
+            {
+              "key": "D",
+              "text": "China, Japan, Thailand"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2010-120",
+      "question_number": 120,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following Articles of Indian Constitution declares it is a primary duty of the state to raise the level of nutrition and the standard of living of its people and the “Improvement of the Public Health” ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Article 46"
+            },
+            {
+              "key": "B",
+              "text": "Article 47"
+            },
+            {
+              "key": "C",
+              "text": "Article 48"
+            },
+            {
+              "key": "D",
+              "text": "Article 49"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

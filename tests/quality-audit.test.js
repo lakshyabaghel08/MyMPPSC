@@ -27,9 +27,9 @@ test('the final quality-audit report describes the complete bank and applied sco
   assert.equal(summary.status, 'applied');
   // The audit describes the 1,171 extracted records; 29 app-written model
   // questions (metadata.model_question) sit alongside them in the bank.
-  assert.equal(bank.questions.length, 1200);
+  assert.equal(bank.questions.length, 1684);
   assert.equal(bank.questions.filter((q) => q.metadata?.model_question).length, 29);
-  assert.equal(bank.papers.length, 12);
+  assert.equal(bank.papers.length, 16);
   assert.equal(baseline.length, 1171);
   assert.equal(finalRows.length, 1171);
   assert.equal(originalQueue.length, 323);
@@ -157,7 +157,7 @@ test('all historical question data and all 2019–2024 records are preserved', a
   const finalById = new Map(finalRows.map((q) => [q.id, q]));
   const rewritten = new Set(corrections.narrative_rewritten);
   for (const q of bank.questions) {
-    if (q.metadata?.model_question) continue; // app-written additions are outside the audit's scope
+    if (q.year <= 2012 || q.metadata?.model_question) continue; // app-written additions are outside the audit's scope
     const before = beforeById.get(q.id);
     const final = finalById.get(q.id);
     assert.ok(before && final, `${q.id}: baseline/final record is present`);
@@ -239,7 +239,7 @@ test('answer/source limits, explanation gaps, blanks, taxonomy gaps, and practic
   assert.equal(classificationReport.superseded_by, 'data/pyq/quality-audit/quality-audit-final.json');
   assert.equal(reviewReport.superseded_by, 'data/pyq/quality-audit/quality-audit-final.json');
 
-  for (const paper of bank.papers) {
+  for (const paper of bank.papers.filter((p) => p.year >= 2013)) {
     assert.equal(paper.scoring.marks_per_correct, 3);
     assert.equal(paper.scoring.negative_marks_per_incorrect, 1);
     assert.equal(paper.scoring.marks_for_unanswered, 0);

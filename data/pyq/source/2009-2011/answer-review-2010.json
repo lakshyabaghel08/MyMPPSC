@@ -1,0 +1,1124 @@
+{
+  "paper_id": "MPPSC-2010-P1",
+  "status": "assessed",
+  "scope": "The PDF is a third-party history-focused document labelled 2010; neither its identity nor printed answers are authenticated MPPSC material. Supported answers follow its unofficial key and a practical review. Conflicting and unconfirmed choices remain unkeyed.",
+  "key_source": "data/pyq/source/2009-2011/MPPSC Prelims General Studies  Solved Question paper 2010.pdf, answer beneath each question",
+  "records": [
+    {
+      "question_id": "MPPSC-2010-001",
+      "question_number": 1,
+      "status": "supported",
+      "source_key": "A",
+      "answer": "A",
+      "reasoning": "Lothal is an Indus Valley archaeological site in Gujarat.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-002",
+      "question_number": 2,
+      "status": "supported",
+      "source_key": "A",
+      "answer": "A",
+      "reasoning": "Mohenjo-daro is in Sindh, Pakistan.",
+      "sources": [
+        "https://whc.unesco.org/document/198758"
+      ]
+    },
+    {
+      "question_id": "MPPSC-2010-003",
+      "question_number": 3,
+      "status": "unresolved",
+      "source_key": "D",
+      "answer": null,
+      "reasoning": "The third-party answer has not been independently established against the exact wording and options.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-004",
+      "question_number": 4,
+      "status": "supported",
+      "source_key": "A",
+      "answer": "A",
+      "reasoning": "The six Vedangas are Shiksha, Kalpa, Vyakarana, Nirukta, Chandas and Jyotisha.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-005",
+      "question_number": 5,
+      "status": "supported",
+      "source_key": "D",
+      "answer": "D",
+      "reasoning": "Tolkappiyam is an early surviving Tamil grammatical work associated with the Sangam tradition.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-006",
+      "question_number": 6,
+      "status": "disputed",
+      "source_key": "C",
+      "answer": null,
+      "reasoning": "The printed key identifies Licchavi, but Britannica identifies Mahavira’s paternal clan as Jnatri; the listed options do not include it.",
+      "sources": [
+        "https://www.britannica.com/place/India/The-beginning-of-the-historical-period-c-500-150-bce"
+      ]
+    },
+    {
+      "question_id": "MPPSC-2010-007",
+      "question_number": 7,
+      "status": "supported",
+      "source_key": "D",
+      "answer": "D",
+      "reasoning": "The Kalpasutra recounts the lives of the Jain Tirthankaras.",
+      "sources": [
+        "https://kids.britannica.com/scholars/article/Jainism/105858"
+      ]
+    },
+    {
+      "question_id": "MPPSC-2010-008",
+      "question_number": 8,
+      "status": "supported",
+      "source_key": "C",
+      "answer": "C",
+      "reasoning": "Buddhist tradition places the first council at Rajagriha.",
+      "sources": [
+        "https://www.britannica.com/topic/Buddhist-council"
+      ]
+    },
+    {
+      "question_id": "MPPSC-2010-009",
+      "question_number": 9,
+      "status": "supported",
+      "source_key": "D",
+      "answer": "D",
+      "reasoning": "Nagarjuna founded the Madhyamika school of Buddhist philosophy.",
+      "sources": [
+        "https://www.britannica.com/biography/Nagarjuna"
+      ]
+    },
+    {
+      "question_id": "MPPSC-2010-010",
+      "question_number": 10,
+      "status": "supported",
+      "source_key": "B",
+      "answer": "B",
+      "reasoning": "The Vinaya Pitaka sets out monastic discipline.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-011",
+      "question_number": 11,
+      "status": "supported",
+      "source_key": "C",
+      "answer": "C",
+      "reasoning": "The Hydaspes, site of the battle with Porus, is the Jhelum.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-012",
+      "question_number": 12,
+      "status": "unresolved",
+      "source_key": "B",
+      "answer": null,
+      "reasoning": "The third-party answer has not been independently established against the exact wording and options.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-013",
+      "question_number": 13,
+      "status": "unresolved",
+      "source_key": "C",
+      "answer": null,
+      "reasoning": "The third-party answer has not been independently established against the exact wording and options.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-014",
+      "question_number": 14,
+      "status": "supported",
+      "source_key": "A",
+      "answer": "A",
+      "reasoning": "Gedrosia corresponds broadly to the Baluchistan region.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-015",
+      "question_number": 15,
+      "status": "supported",
+      "source_key": "D",
+      "answer": "D",
+      "reasoning": "Bindusara was Ashoka’s father, not his elder brother.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-016",
+      "question_number": 16,
+      "status": "disputed",
+      "source_key": "D",
+      "answer": null,
+      "reasoning": "The PDF selects none of these, but references attributing this distinction to Panini conflict with that answer.",
+      "sources": [
+        "https://www.roundtableindia.co.in/shubhi-rai-2/"
+      ]
+    },
+    {
+      "question_id": "MPPSC-2010-017",
+      "question_number": 17,
+      "status": "unresolved",
+      "source_key": "A",
+      "answer": null,
+      "reasoning": "The third-party answer has not been independently established against the exact wording and options.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-018",
+      "question_number": 18,
+      "status": "supported",
+      "source_key": "A",
+      "answer": "A",
+      "reasoning": "The Lumbini pillar inscription records a tax concession to the village.",
+      "sources": [
+        "https://forumias.com/blog/question/which-of-the-following-pillar-rock-inscription-is-are-located-in-present-india-1-girnar-rock-inscription-2-nigali-sagar-inscription-3-rummindei-inscription-choose-the-correct-answer-from-below-giv/"
+      ]
+    },
+    {
+      "question_id": "MPPSC-2010-019",
+      "question_number": 19,
+      "status": "disputed",
+      "source_key": "A",
+      "answer": null,
+      "reasoning": "The PDF selects Bimbisara; Jain traditions associate him with Mahavira and also complicate any unique answer.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-020",
+      "question_number": 20,
+      "status": "supported",
+      "source_key": "C",
+      "answer": "C",
+      "reasoning": "Deimachus is identified as a Greek ambassador at Bindusara’s court.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-021",
+      "question_number": 21,
+      "status": "unresolved",
+      "source_key": "D",
+      "answer": null,
+      "reasoning": "The third-party answer has not been independently established against the exact wording and options.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-022",
+      "question_number": 22,
+      "status": "supported",
+      "source_key": "B",
+      "answer": "B",
+      "reasoning": "Brihadratha is traditionally identified as the last Mauryan king.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-023",
+      "question_number": 23,
+      "status": "unresolved",
+      "source_key": "B",
+      "answer": null,
+      "reasoning": "The third-party answer has not been independently established against the exact wording and options.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-024",
+      "question_number": 24,
+      "status": "supported",
+      "source_key": "B",
+      "answer": "B",
+      "reasoning": "Simuka is generally identified as the founder of the Satavahana dynasty.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-025",
+      "question_number": 25,
+      "status": "supported",
+      "source_key": "B",
+      "answer": "B",
+      "reasoning": "Yen-Kao-Chen is the Chinese name associated with Vima Kadphises, or Kadphises II.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-026",
+      "question_number": 26,
+      "status": "supported",
+      "source_key": "C",
+      "answer": "C",
+      "reasoning": "The Kalpasutra is traditionally attributed to Bhadrabahu.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-027",
+      "question_number": 27,
+      "status": "supported",
+      "source_key": "B",
+      "answer": "B",
+      "reasoning": "The Brihatkatha is traditionally attributed to Gunadhya.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-028",
+      "question_number": 28,
+      "status": "supported",
+      "source_key": "A",
+      "answer": "A",
+      "reasoning": "Kashyapa Matanga is traditionally associated with bringing Buddhist texts to China.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-029",
+      "question_number": 29,
+      "status": "supported",
+      "source_key": "D",
+      "answer": "D",
+      "reasoning": "The conventional era sequence is Vikram, Shaka, Gupta and Harsha.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-030",
+      "question_number": 30,
+      "status": "supported",
+      "source_key": "C",
+      "answer": "C",
+      "reasoning": "A kahapana was a coin, often a punch-marked coin.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-031",
+      "question_number": 31,
+      "status": "supported",
+      "source_key": "B",
+      "answer": "B",
+      "reasoning": "Padouke is associated with the ancient port site of Arikamedu.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-032",
+      "question_number": 32,
+      "status": "supported",
+      "source_key": "B",
+      "answer": "B",
+      "reasoning": "Prabhavatigupta married the Vakataka ruler Rudrasena II.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-033",
+      "question_number": 33,
+      "status": "unresolved",
+      "source_key": "A",
+      "answer": null,
+      "reasoning": "The third-party answer has not been independently established against the exact wording and options.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-034",
+      "question_number": 34,
+      "status": "supported",
+      "source_key": "C",
+      "answer": "C",
+      "reasoning": "Chandradeva established the Gahadavala line associated with Kannauj.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-035",
+      "question_number": 35,
+      "status": "disputed",
+      "source_key": "D",
+      "answer": null,
+      "reasoning": "The PDF selects Govinda III, but Dantidurga is associated with Nagabhata I and is not among the choices.",
+      "sources": [
+        "https://prepp.in/news/e-492-nagabhata-i-730-760-ce-important-rulers-of-pratiharas-medieval-india-history-notes"
+      ]
+    },
+    {
+      "question_id": "MPPSC-2010-036",
+      "question_number": 36,
+      "status": "supported",
+      "source_key": "A",
+      "answer": "A",
+      "reasoning": "Jayadeva is associated with the patronage of Lakshmana Sena.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-037",
+      "question_number": 37,
+      "status": "unresolved",
+      "source_key": "D",
+      "answer": null,
+      "reasoning": "The third-party answer has not been independently established against the exact wording and options.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-038",
+      "question_number": 38,
+      "status": "supported",
+      "source_key": "B",
+      "answer": "B",
+      "reasoning": "Kaikkolars were Chola military units with links to royal service.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-039",
+      "question_number": 39,
+      "status": "supported",
+      "source_key": "B",
+      "answer": "B",
+      "reasoning": "Land surveys helped assess the state’s share of land revenue.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-040",
+      "question_number": 40,
+      "status": "disputed",
+      "source_key": "A",
+      "answer": null,
+      "reasoning": "The PDF selects Devadana, but educational land grants are associated with Salabhoga; the question calls them taxes.",
+      "sources": [
+        "https://www.mystudyicon.in/2026/05/southern-kingdoms-chola-chera-pandya_99.html"
+      ]
+    },
+    {
+      "question_id": "MPPSC-2010-041",
+      "question_number": 41,
+      "status": "supported",
+      "source_key": "C",
+      "answer": "C",
+      "reasoning": "Minhaj-us-Siraj authored the Tabaqat-i-Nasiri.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-042",
+      "question_number": 42,
+      "status": "supported",
+      "source_key": "C",
+      "answer": "C",
+      "reasoning": "Ziauddin Barani wrote Tarikh-i-Firozshahi and Fatawa-i-Jahandari.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-043",
+      "question_number": 43,
+      "status": "supported",
+      "source_key": "A",
+      "answer": "A",
+      "reasoning": "Ashiqa, Qiran-us-Sadain and Khazain-ul-Futuh are works of Amir Khusrau.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-044",
+      "question_number": 44,
+      "status": "supported",
+      "source_key": "C",
+      "answer": "C",
+      "reasoning": "Khwandmir wrote the Qanun-i-Humayuni.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-045",
+      "question_number": 45,
+      "status": "supported",
+      "source_key": "A",
+      "answer": "A",
+      "reasoning": "Ishwardas Nagar authored Futuhat-i-Alamgiri.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-046",
+      "question_number": 46,
+      "status": "unresolved",
+      "source_key": "D",
+      "answer": null,
+      "reasoning": "The third-party answer has not been independently established against the exact wording and options.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-047",
+      "question_number": 47,
+      "status": "supported",
+      "source_key": "D",
+      "answer": "D",
+      "reasoning": "The Gahadavala dynasty ruled Kannauj under Jayachandra at the time.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-048",
+      "question_number": 48,
+      "status": "supported",
+      "source_key": "B",
+      "answer": "B",
+      "reasoning": "Taj al-Din Yildiz contested Aibak’s control of Punjab.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-049",
+      "question_number": 49,
+      "status": "unresolved",
+      "source_key": "A",
+      "answer": null,
+      "reasoning": "The third-party answer has not been independently established against the exact wording and options.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-050",
+      "question_number": 50,
+      "status": "supported",
+      "source_key": "C",
+      "answer": "C",
+      "reasoning": "Ibn Battuta was appointed to a diplomatic mission to China by Muhammad bin Tughlaq.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-051",
+      "question_number": 51,
+      "status": "supported",
+      "source_key": "B",
+      "answer": "B",
+      "reasoning": "Bahlul Lodi conquered the Sharqi kingdom of Jaunpur.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-052",
+      "question_number": 52,
+      "status": "supported",
+      "source_key": "D",
+      "answer": "D",
+      "reasoning": "Both mosques are associated with the Sharqi rulers of Jaunpur.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-053",
+      "question_number": 53,
+      "status": "unresolved",
+      "source_key": "A",
+      "answer": null,
+      "reasoning": "The third-party answer has not been independently established against the exact wording and options.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-054",
+      "question_number": 54,
+      "status": "supported",
+      "source_key": "D",
+      "answer": "D",
+      "reasoning": "Krishnadas Kaviraj authored Chaitanya Charitamrita.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-055",
+      "question_number": 55,
+      "status": "supported",
+      "source_key": "B",
+      "answer": "B",
+      "reasoning": "Nasiruddin Chiragh-i-Delhi succeeded Nizamuddin Auliya in the Chishti lineage.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-056",
+      "question_number": 56,
+      "status": "unresolved",
+      "source_key": "D",
+      "answer": null,
+      "reasoning": "The third-party answer has not been independently established against the exact wording and options.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-057",
+      "question_number": 57,
+      "status": "unresolved",
+      "source_key": "A",
+      "answer": null,
+      "reasoning": "The third-party answer has not been independently established against the exact wording and options.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-058",
+      "question_number": 58,
+      "status": "unresolved",
+      "source_key": "C",
+      "answer": null,
+      "reasoning": "The third-party answer has not been independently established against the exact wording and options.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-059",
+      "question_number": 59,
+      "status": "supported",
+      "source_key": "A",
+      "answer": "A",
+      "reasoning": "Alauddin Bahman Shah founded the Bahmani kingdom.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-060",
+      "question_number": 60,
+      "status": "supported",
+      "source_key": "D",
+      "answer": "D",
+      "reasoning": "Dilawar Khan established an independent sultanate in Malwa.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-061",
+      "question_number": 61,
+      "status": "supported",
+      "source_key": "C",
+      "answer": "C",
+      "reasoning": "Gulbadan Begum was Babur’s daughter, not his wife.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-062",
+      "question_number": 62,
+      "status": "unresolved",
+      "source_key": "C",
+      "answer": null,
+      "reasoning": "The third-party answer has not been independently established against the exact wording and options.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-063",
+      "question_number": 63,
+      "status": "supported",
+      "source_key": "B",
+      "answer": "B",
+      "reasoning": "The conventional date for Humayun’s accession is 29 December 1530.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-064",
+      "question_number": 64,
+      "status": "unresolved",
+      "source_key": "B",
+      "answer": null,
+      "reasoning": "The third-party answer has not been independently established against the exact wording and options.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-065",
+      "question_number": 65,
+      "status": "supported",
+      "source_key": "D",
+      "answer": "D",
+      "reasoning": "Sher Shah’s sarais served travellers and communications, not principally as weapons warehouses.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-066",
+      "question_number": 66,
+      "status": "unresolved",
+      "source_key": "A",
+      "answer": null,
+      "reasoning": "The third-party answer has not been independently established against the exact wording and options.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-067",
+      "question_number": 67,
+      "status": "unresolved",
+      "source_key": "D",
+      "answer": null,
+      "reasoning": "The third-party answer has not been independently established against the exact wording and options.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-068",
+      "question_number": 68,
+      "status": "supported",
+      "source_key": "C",
+      "answer": "C",
+      "reasoning": "Akbar abolished the pilgrimage tax and jizya during his reign.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-069",
+      "question_number": 69,
+      "status": "supported",
+      "source_key": "D",
+      "answer": "D",
+      "reasoning": "Bhimsen Burhanpuri wrote Nuskha-i-Dilkusha.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-070",
+      "question_number": 70,
+      "status": "supported",
+      "source_key": "C",
+      "answer": "C",
+      "reasoning": "Guru Gobind Singh died at Nanded in 1708.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-071",
+      "question_number": 71,
+      "status": "supported",
+      "source_key": "A",
+      "answer": "A",
+      "reasoning": "Mir Sayyid Ali and Abdus Samad served Humayun and later Akbar.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-072",
+      "question_number": 72,
+      "status": "unresolved",
+      "source_key": "C",
+      "answer": null,
+      "reasoning": "The third-party answer has not been independently established against the exact wording and options.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-073",
+      "question_number": 73,
+      "status": "supported",
+      "source_key": "C",
+      "answer": "C",
+      "reasoning": "Panditaraja Jagannatha composed Ganga Lahari.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-074",
+      "question_number": 74,
+      "status": "supported",
+      "source_key": "B",
+      "answer": "B",
+      "reasoning": "The dam was a copper coin, not a silver coin.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-075",
+      "question_number": 75,
+      "status": "unresolved",
+      "source_key": "B",
+      "answer": null,
+      "reasoning": "The third-party answer has not been independently established against the exact wording and options.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-076",
+      "question_number": 76,
+      "status": "unresolved",
+      "source_key": "B",
+      "answer": null,
+      "reasoning": "The third-party answer has not been independently established against the exact wording and options.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-077",
+      "question_number": 77,
+      "status": "supported",
+      "source_key": "A",
+      "answer": "A",
+      "reasoning": "Mokasa refers to a revenue grant or assignment comparable to a jagir.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-078",
+      "question_number": 78,
+      "status": "disputed",
+      "source_key": "D",
+      "answer": null,
+      "reasoning": "The PDF selects Dadaji Konddev, but Tukaram is also commonly dated as having died before the 1674 coronation.",
+      "sources": [
+        "https://www.portlandindian.com/desi/historicaleventdetails.asp?id=3561"
+      ]
+    },
+    {
+      "question_id": "MPPSC-2010-079",
+      "question_number": 79,
+      "status": "supported",
+      "source_key": "A",
+      "answer": "A",
+      "reasoning": "Balaji Bajirao was Peshwa when the Sangola agreement was concluded.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-080",
+      "question_number": 80,
+      "status": "supported",
+      "source_key": "D",
+      "answer": "D",
+      "reasoning": "Ahilyabai Holkar died in 1795.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-081",
+      "question_number": 81,
+      "status": "supported",
+      "source_key": "A",
+      "answer": "A",
+      "reasoning": "The French East India Company was established in 1664.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-082",
+      "question_number": 82,
+      "status": "disputed",
+      "source_key": "B",
+      "answer": null,
+      "reasoning": "The PDF selects Pondicherry, whereas La Bourdonnais was governor of Île de France, now Mauritius.",
+      "sources": [
+        "https://wiki.fibis.org/w/Bertrand-Fran%C3%A7ois_La_Bourdonnais"
+      ]
+    },
+    {
+      "question_id": "MPPSC-2010-083",
+      "question_number": 83,
+      "status": "unresolved",
+      "source_key": "C",
+      "answer": null,
+      "reasoning": "The third-party answer has not been independently established against the exact wording and options.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-084",
+      "question_number": 84,
+      "status": "supported",
+      "source_key": "A",
+      "answer": "A",
+      "reasoning": "The Battle of Wandiwash was fought between the English and French.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-085",
+      "question_number": 85,
+      "status": "supported",
+      "source_key": "B",
+      "answer": "B",
+      "reasoning": "The English defeated the Dutch at the Battle of Biderra.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-086",
+      "question_number": 86,
+      "status": "supported",
+      "source_key": "D",
+      "answer": "D",
+      "reasoning": "The 1775 Treaty of Surat was made with Raghoba, or Raghunath Rao.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-087",
+      "question_number": 87,
+      "status": "supported",
+      "source_key": "A",
+      "answer": "A",
+      "reasoning": "Cornwallis’s alliance against Tipu included the British, the Nizam and the Marathas.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-088",
+      "question_number": 88,
+      "status": "supported",
+      "source_key": "C",
+      "answer": "C",
+      "reasoning": "The Battle of Gujrat in 1849 was decisive in the Second Anglo-Sikh War.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-089",
+      "question_number": 89,
+      "status": "disputed",
+      "source_key": "D",
+      "answer": null,
+      "reasoning": "The PDF selects Bassein, but Bajirao II was defeated at Kirkee in the Third Anglo-Maratha War.",
+      "sources": [
+        "https://theiashub.com/upsc/list-of-maratha-wars/"
+      ]
+    },
+    {
+      "question_id": "MPPSC-2010-090",
+      "question_number": 90,
+      "status": "disputed",
+      "source_key": "D",
+      "answer": null,
+      "reasoning": "The PDF selects 1794, whereas the Treaty of Seringapatam was concluded in 1792.",
+      "sources": [
+        "https://prepp.in/news/e-492-third-anglo-mysore-war-1790-92-modern-indian-history-notes"
+      ]
+    },
+    {
+      "question_id": "MPPSC-2010-091",
+      "question_number": 91,
+      "status": "supported",
+      "source_key": "D",
+      "answer": "D",
+      "reasoning": "Benaras was not annexed by Dalhousie under the Doctrine of Lapse.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-092",
+      "question_number": 92,
+      "status": "supported",
+      "source_key": "C",
+      "answer": "C",
+      "reasoning": "Sidhu and Kanhu led the Santhal rebellion.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-093",
+      "question_number": 93,
+      "status": "disputed",
+      "source_key": "C",
+      "answer": null,
+      "reasoning": "The PDF selects Bentinck, but William Sleeman also played a leading role in suppressing Thuggee; both are listed.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-094",
+      "question_number": 94,
+      "status": "supported",
+      "source_key": "D",
+      "answer": "D",
+      "reasoning": "William Sleeman opposed annexing Awadh despite reporting on its administration.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-095",
+      "question_number": 95,
+      "status": "supported",
+      "source_key": "A",
+      "answer": "A",
+      "reasoning": "Charles Metcalfe served as acting governor-general in 1835–36.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-096",
+      "question_number": 96,
+      "status": "supported",
+      "source_key": "B",
+      "answer": "B",
+      "reasoning": "Sindh was annexed in 1843 under Governor-General Ellenborough.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-097",
+      "question_number": 97,
+      "status": "disputed",
+      "source_key": "B",
+      "answer": null,
+      "reasoning": "The PDF selects 1850, but the Second Anglo-Burmese War began in 1852.",
+      "sources": [
+        "https://lostfootsteps.org/en/history/second-anglo-burmese-war"
+      ]
+    },
+    {
+      "question_id": "MPPSC-2010-098",
+      "question_number": 98,
+      "status": "disputed",
+      "source_key": "B",
+      "answer": null,
+      "reasoning": "The 1813 act ended the India trade monopoly with exceptions, while the 1833 act ended the remaining commercial activity; the stem does not specify which.",
+      "sources": [
+        "https://examrobot.com/cds-i/2021/history-culture/monopoly-china-trade-lost-east-india-company"
+      ]
+    },
+    {
+      "question_id": "MPPSC-2010-099",
+      "question_number": 99,
+      "status": "supported",
+      "source_key": "B",
+      "answer": "B",
+      "reasoning": "Talukdari is chiefly associated with regions such as Awadh, not the Bombay ryotwari system.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-100",
+      "question_number": 100,
+      "status": "unresolved",
+      "source_key": "D",
+      "answer": null,
+      "reasoning": "The third-party answer has not been independently established against the exact wording and options.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-101",
+      "question_number": 101,
+      "status": "unresolved",
+      "source_key": "B",
+      "answer": null,
+      "reasoning": "The third-party answer has not been independently established against the exact wording and options.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-102",
+      "question_number": 102,
+      "status": "supported",
+      "source_key": "B",
+      "answer": "B",
+      "reasoning": "Sir William Jones founded the Asiatic Society in Calcutta in 1784.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-103",
+      "question_number": 103,
+      "status": "unresolved",
+      "source_key": "C",
+      "answer": null,
+      "reasoning": "The third-party answer has not been independently established against the exact wording and options.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-104",
+      "question_number": 104,
+      "status": "supported",
+      "source_key": "C",
+      "answer": "C",
+      "reasoning": "The Ramakrishna Mission did not prohibit image worship.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-105",
+      "question_number": 105,
+      "status": "supported",
+      "source_key": "C",
+      "answer": "C",
+      "reasoning": "The fifth Indian National Congress session was held at Bombay in 1889.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-106",
+      "question_number": 106,
+      "status": "supported",
+      "source_key": "D",
+      "answer": "D",
+      "reasoning": "The moderates and extremists reunited at the 1916 Lucknow session.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-107",
+      "question_number": 107,
+      "status": "unresolved",
+      "source_key": "A",
+      "answer": null,
+      "reasoning": "The third-party answer has not been independently established against the exact wording and options.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-108",
+      "question_number": 108,
+      "status": "disputed",
+      "source_key": "B",
+      "answer": null,
+      "reasoning": "The PDF selects N. M. Joshi, while Nehru presided over the 1929 Nagpur session of AITUC.",
+      "sources": [
+        "https://www.gktoday.in/formation-of-all-india-trade-union-congress/"
+      ]
+    },
+    {
+      "question_id": "MPPSC-2010-109",
+      "question_number": 109,
+      "status": "supported",
+      "source_key": "D",
+      "answer": "D",
+      "reasoning": "C. R. Das and Motilal Nehru founded the Swaraj Party.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-110",
+      "question_number": 110,
+      "status": "supported",
+      "source_key": "C",
+      "answer": "C",
+      "reasoning": "The Lucknow Pact was concluded between the Congress and the Muslim League.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-111",
+      "question_number": 111,
+      "status": "supported",
+      "source_key": "D",
+      "answer": "D",
+      "reasoning": "Motilal Nehru chaired the committee that produced the Nehru Report.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-112",
+      "question_number": 112,
+      "status": "supported",
+      "source_key": "B",
+      "answer": "B",
+      "reasoning": "B. R. Ambedkar participated in all three Round Table Conferences.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-113",
+      "question_number": 113,
+      "status": "supported",
+      "source_key": "B",
+      "answer": "B",
+      "reasoning": "Surya Sen is associated with the Chittagong armoury raid.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-114",
+      "question_number": 114,
+      "status": "supported",
+      "source_key": "C",
+      "answer": "C",
+      "reasoning": "Congress ministries were formed in several provinces following the 1937 elections.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-115",
+      "question_number": 115,
+      "status": "supported",
+      "source_key": "A",
+      "answer": "A",
+      "reasoning": "The Rowlatt Act was enacted in 1919 during Lord Chelmsford’s viceroyalty.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-116",
+      "question_number": 116,
+      "status": "supported",
+      "source_key": "D",
+      "answer": "D",
+      "reasoning": "Subhas Chandra Bose proclaimed the Provisional Government of Free India in Singapore.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-117",
+      "question_number": 117,
+      "status": "supported",
+      "source_key": "B",
+      "answer": "B",
+      "reasoning": "Shanti Ghosh and Suniti Choudhury shot the district magistrate of Comilla in 1931.",
+      "sources": []
+    },
+    {
+      "question_id": "MPPSC-2010-118",
+      "question_number": 118,
+      "status": "disputed",
+      "source_key": "B",
+      "answer": null,
+      "reasoning": "The PDF selects Sanyasi–Bihar, but Parlakhemundi is also associated with Odisha; the question does not reliably distinguish them.",
+      "sources": [
+        "https://magazines.odisha.gov.in/Orissareview/2022/October/engpdf/9-18.pdf"
+      ]
+    },
+    {
+      "question_id": "MPPSC-2010-119",
+      "question_number": 119,
+      "status": "supported",
+      "source_key": "B",
+      "answer": "B",
+      "reasoning": "India, Burma and Indonesia were among the five sponsoring Colombo powers; Cambodia was not a sponsoring power.",
+      "sources": [
+        "https://pakistanhorizon.wordpress.com/2015/08/27/sarwar-hasan-bandung-memories/"
+      ]
+    },
+    {
+      "question_id": "MPPSC-2010-120",
+      "question_number": 120,
+      "status": "supported",
+      "source_key": "B",
+      "answer": "B",
+      "reasoning": "Article 47 makes nutrition, living standards and public health duties of the state.",
+      "sources": []
+    }
+  ]
+}

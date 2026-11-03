@@ -1,0 +1,3249 @@
+{
+  "status": "PDF-derived staging; Q7 and Q38 contain damaged wording; individual review required",
+  "source_pdf": "data/pyq/source/2009-2011/MPPSC Prelims General Studies  Solved Question paper 2011.pdf",
+  "source_pdf_sha256": "caac4ae1e71525ecc503b431344e608a73f46aa1b818096099fe7b2ba6c4fd5c",
+  "extracted_text": "data/pyq/source/2009-2011/pdf-extracted-2011.txt",
+  "extracted_text_sha256": "e38004a26b1a9fd1728aa57e00f0874e8f9a99cbd6a3a40dec4423c8b436f4dd",
+  "questions": [
+    {
+      "id": "MPPSC-2011-001",
+      "question_number": 1,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following pairs does not match ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Trans Siberian Railway—Moscow to Vladivostok"
+            },
+            {
+              "key": "B",
+              "text": "Canadian Pacific Railway—Halifax to Vancouver"
+            },
+            {
+              "key": "C",
+              "text": "Orient Express Railway—Paris to Istanbul"
+            },
+            {
+              "key": "D",
+              "text": "Cape Cairo Railway—Warsaw to Madrid"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-002",
+      "question_number": 2,
+      "language_variants": {
+        "en": {
+          "question_text": "Which is the largest canal of the world ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Suez canal"
+            },
+            {
+              "key": "B",
+              "text": "Panama canal"
+            },
+            {
+              "key": "C",
+              "text": "Kra canal"
+            },
+            {
+              "key": "D",
+              "text": "Bhakra canal"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-003",
+      "question_number": 3,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following are connected by Suez canal ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Red Sea and Dead Sea"
+            },
+            {
+              "key": "B",
+              "text": "Red Sea and Arabian Sea"
+            },
+            {
+              "key": "C",
+              "text": "Red Sea and Mediterranean Sea"
+            },
+            {
+              "key": "D",
+              "text": "Red Sea and Black Sea"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-004",
+      "question_number": 4,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following ports is not situated at Pacific coast ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Vancouver"
+            },
+            {
+              "key": "B",
+              "text": "Los Angeles"
+            },
+            {
+              "key": "C",
+              "text": "San Francisco"
+            },
+            {
+              "key": "D",
+              "text": "Miami"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-005",
+      "question_number": 5,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following airports is not situated at New York-Tokyo air route ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "London"
+            },
+            {
+              "key": "B",
+              "text": "Paris"
+            },
+            {
+              "key": "C",
+              "text": "Rome"
+            },
+            {
+              "key": "D",
+              "text": "Panama"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-006",
+      "question_number": 6,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following occupations is not related to tertiary economy ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Transport"
+            },
+            {
+              "key": "B",
+              "text": "Hunting and gathering"
+            },
+            {
+              "key": "C",
+              "text": "Trade"
+            },
+            {
+              "key": "D",
+              "text": "Communication"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-007",
+      "question_number": 7,
+      "language_variants": {
+        "en": {
+          "question_text": "In which region of the world are nights the winters ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Tundra region"
+            },
+            {
+              "key": "B",
+              "text": "Mediterranean region"
+            },
+            {
+              "key": "C",
+              "text": "Tropical desert region"
+            },
+            {
+              "key": "D",
+              "text": "Equatorial region"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-008",
+      "question_number": 8,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following is not the most developed part of the world ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Most of the Western Europe"
+            },
+            {
+              "key": "B",
+              "text": "Japan"
+            },
+            {
+              "key": "C",
+              "text": "Nepal"
+            },
+            {
+              "key": "D",
+              "text": "South-East Australia"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-009",
+      "question_number": 9,
+      "language_variants": {
+        "en": {
+          "question_text": "The school of Environmental Determinism was born in—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Germany"
+            },
+            {
+              "key": "B",
+              "text": "India"
+            },
+            {
+              "key": "C",
+              "text": "England"
+            },
+            {
+              "key": "D",
+              "text": "France"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-010",
+      "question_number": 10,
+      "language_variants": {
+        "en": {
+          "question_text": "Who was the father of the school of possibilism ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Davis"
+            },
+            {
+              "key": "B",
+              "text": "Chisolm"
+            },
+            {
+              "key": "C",
+              "text": "Vidal-de-la-Blache"
+            },
+            {
+              "key": "D",
+              "text": "Aristotle"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-011",
+      "question_number": 11,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following is secondary consumer ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Goat"
+            },
+            {
+              "key": "B",
+              "text": "Lion"
+            },
+            {
+              "key": "C",
+              "text": "Reindeer"
+            },
+            {
+              "key": "D",
+              "text": "None of these"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-012",
+      "question_number": 12,
+      "language_variants": {
+        "en": {
+          "question_text": "How much is the area of India ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "32,87,263 sq. km"
+            },
+            {
+              "key": "B",
+              "text": "99,76,140 sq. km"
+            },
+            {
+              "key": "C",
+              "text": "95,97,000 sq. km"
+            },
+            {
+              "key": "D",
+              "text": "31,40,200 sq. km"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-013",
+      "question_number": 13,
+      "language_variants": {
+        "en": {
+          "question_text": "Which is the southern-most point of India ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Kanyakumari"
+            },
+            {
+              "key": "B",
+              "text": "Goa"
+            },
+            {
+              "key": "C",
+              "text": "Indira point"
+            },
+            {
+              "key": "D",
+              "text": "Rameshwaram"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-014",
+      "question_number": 14,
+      "language_variants": {
+        "en": {
+          "question_text": "From economic point of view, the most important rocks are—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Dharwar"
+            },
+            {
+              "key": "B",
+              "text": "Gondwana"
+            },
+            {
+              "key": "C",
+              "text": "Vindhyan"
+            },
+            {
+              "key": "D",
+              "text": "Cuddapah"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-015",
+      "question_number": 15,
+      "language_variants": {
+        "en": {
+          "question_text": "The stretch of the Himalayas between the Indus and the Sutlej rivers is called—",
+          "options": [
+            {
+              "key": "A",
+              "text": "The Assam Himalayas"
+            },
+            {
+              "key": "B",
+              "text": "The Punjab Himalayas"
+            },
+            {
+              "key": "C",
+              "text": "The Nepal Himalayas"
+            },
+            {
+              "key": "D",
+              "text": "The Kumaon Himalayas"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-016",
+      "question_number": 16,
+      "language_variants": {
+        "en": {
+          "question_text": "The flood plain along river banks formed by newer alluvium is called—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Bhabar"
+            },
+            {
+              "key": "B",
+              "text": "Khadar"
+            },
+            {
+              "key": "C",
+              "text": "Tarai"
+            },
+            {
+              "key": "D",
+              "text": "Bangar"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-017",
+      "question_number": 17,
+      "language_variants": {
+        "en": {
+          "question_text": "Which river is known as the 'Sorrow of Bihar' ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Kosi"
+            },
+            {
+              "key": "B",
+              "text": "Chambal"
+            },
+            {
+              "key": "C",
+              "text": "Gandak"
+            },
+            {
+              "key": "D",
+              "text": "Son"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-018",
+      "question_number": 18,
+      "language_variants": {
+        "en": {
+          "question_text": "In which state are the Mahadeo hills located ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Bihar"
+            },
+            {
+              "key": "B",
+              "text": "Rajasthan"
+            },
+            {
+              "key": "C",
+              "text": "Madhya Pradesh"
+            },
+            {
+              "key": "D",
+              "text": "Chhattisgarh"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-019",
+      "question_number": 19,
+      "language_variants": {
+        "en": {
+          "question_text": "The 'Kalabaisakhis' originate during—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Winter season"
+            },
+            {
+              "key": "B",
+              "text": "Rainy season"
+            },
+            {
+              "key": "C",
+              "text": "Period of retreating monsoon"
+            },
+            {
+              "key": "D",
+              "text": "Summers"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-020",
+      "question_number": 20,
+      "language_variants": {
+        "en": {
+          "question_text": "What type of forests are the 'Sunderbans' ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Tidal forests"
+            },
+            {
+              "key": "B",
+              "text": "Monsoon forests"
+            },
+            {
+              "key": "C",
+              "text": "Tropical Evergreen forests"
+            },
+            {
+              "key": "D",
+              "text": "Temperate Evergreen forests"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-021",
+      "question_number": 21,
+      "language_variants": {
+        "en": {
+          "question_text": "The 'Regur' soil is—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Red soil"
+            },
+            {
+              "key": "B",
+              "text": "Black soil"
+            },
+            {
+              "key": "C",
+              "text": "Alluvial soil"
+            },
+            {
+              "key": "D",
+              "text": "None of these"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-022",
+      "question_number": 22,
+      "language_variants": {
+        "en": {
+          "question_text": "Which river basin has the maximum amount of water available for irrigation ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "The Ganga"
+            },
+            {
+              "key": "B",
+              "text": "The Indus"
+            },
+            {
+              "key": "C",
+              "text": "The Brahmaputra"
+            },
+            {
+              "key": "D",
+              "text": "Mahanadi"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-023",
+      "question_number": 23,
+      "language_variants": {
+        "en": {
+          "question_text": "Which state of India is the largest producer of Iron ore ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Karnataka"
+            },
+            {
+              "key": "B",
+              "text": "Orissa"
+            },
+            {
+              "key": "C",
+              "text": "Jharkhand"
+            },
+            {
+              "key": "D",
+              "text": "Madhya Pradesh"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-024",
+      "question_number": 24,
+      "language_variants": {
+        "en": {
+          "question_text": "Which mineral is known as 'Black Gold' ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Iron ore"
+            },
+            {
+              "key": "B",
+              "text": "Bauxite"
+            },
+            {
+              "key": "C",
+              "text": "Coal"
+            },
+            {
+              "key": "D",
+              "text": "Manganese"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-025",
+      "question_number": 25,
+      "language_variants": {
+        "en": {
+          "question_text": "Which food grain occupies the largest cropped area in India ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Maize"
+            },
+            {
+              "key": "B",
+              "text": "Wheat"
+            },
+            {
+              "key": "C",
+              "text": "Rice"
+            },
+            {
+              "key": "D",
+              "text": "Sugarcane"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-026",
+      "question_number": 26,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following states is the largest producer of wheat ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Punjab"
+            },
+            {
+              "key": "B",
+              "text": "Uttar Pradesh"
+            },
+            {
+              "key": "C",
+              "text": "Haryana"
+            },
+            {
+              "key": "D",
+              "text": "Madhya Pradesh"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-027",
+      "question_number": 27,
+      "language_variants": {
+        "en": {
+          "question_text": "The leading jowar (Sorghum) producing state in India is—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Maharashtra"
+            },
+            {
+              "key": "B",
+              "text": "Andhra Pradesh"
+            },
+            {
+              "key": "C",
+              "text": "Karnataka"
+            },
+            {
+              "key": "D",
+              "text": "Bihar"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-028",
+      "question_number": 28,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following is a cash crop ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Rice"
+            },
+            {
+              "key": "B",
+              "text": "Wheat"
+            },
+            {
+              "key": "C",
+              "text": "Jowar"
+            },
+            {
+              "key": "D",
+              "text": "Sugarcane"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-029",
+      "question_number": 29,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following is a fibre crop ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Sugarcane"
+            },
+            {
+              "key": "B",
+              "text": "Jute"
+            },
+            {
+              "key": "C",
+              "text": "Wheat"
+            },
+            {
+              "key": "D",
+              "text": "Maize"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-030",
+      "question_number": 30,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following states is the leading producer of sugarcane in India ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Uttar Pradesh"
+            },
+            {
+              "key": "B",
+              "text": "Madhya Pradesh"
+            },
+            {
+              "key": "C",
+              "text": "Punjab"
+            },
+            {
+              "key": "D",
+              "text": "Bihar"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-031",
+      "question_number": 31,
+      "language_variants": {
+        "en": {
+          "question_text": "Which Indian state has the highest per hectare production of cotton ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Haryana"
+            },
+            {
+              "key": "B",
+              "text": "Maharashtra"
+            },
+            {
+              "key": "C",
+              "text": "Tamil Nadu"
+            },
+            {
+              "key": "D",
+              "text": "Punjab"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-032",
+      "question_number": 32,
+      "language_variants": {
+        "en": {
+          "question_text": "Which state is the largest producer of tea in India ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Assam"
+            },
+            {
+              "key": "B",
+              "text": "West Bengal"
+            },
+            {
+              "key": "C",
+              "text": "Kerala"
+            },
+            {
+              "key": "D",
+              "text": "Karnataka"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-033",
+      "question_number": 33,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following is a basis to divide agriculture into different types ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Cropping system"
+            },
+            {
+              "key": "B",
+              "text": "Water supply and moisture"
+            },
+            {
+              "key": "C",
+              "text": "Availability of land"
+            },
+            {
+              "key": "D",
+              "text": "All of these"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-034",
+      "question_number": 34,
+      "language_variants": {
+        "en": {
+          "question_text": "In India, the local name of shifting cultivation is—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Jhum"
+            },
+            {
+              "key": "B",
+              "text": "Kumari"
+            },
+            {
+              "key": "C",
+              "text": "Penda"
+            },
+            {
+              "key": "D",
+              "text": "All of these"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-035",
+      "question_number": 35,
+      "language_variants": {
+        "en": {
+          "question_text": "Which city of Madhya Pradesh, as per census of 2001, is most populated ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Jabalpur"
+            },
+            {
+              "key": "B",
+              "text": "Mandsaur"
+            },
+            {
+              "key": "C",
+              "text": "Bhopal"
+            },
+            {
+              "key": "D",
+              "text": "Indore"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-036",
+      "question_number": 36,
+      "language_variants": {
+        "en": {
+          "question_text": "What is the problem faced by Indian farmers ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Small and fragmented land holdings"
+            },
+            {
+              "key": "B",
+              "text": "Lack of capital"
+            },
+            {
+              "key": "C",
+              "text": "Faulty marketing system"
+            },
+            {
+              "key": "D",
+              "text": "All of the above"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-037",
+      "question_number": 37,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following is not a merit of green revolution ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Increase in agricultural production"
+            },
+            {
+              "key": "B",
+              "text": "Reduction in the import of food grains"
+            },
+            {
+              "key": "C",
+              "text": "Prosperity of the farmers"
+            },
+            {
+              "key": "D",
+              "text": "Regional imbalance"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-038",
+      "question_number": 38,
+      "language_variants": {
+        "en": {
+          "question_text": "What is National Water Grid Plan ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "To link the Himalayan rivers with peninsular rivers"
+            },
+            {
+              "key": "B",
+              "text": "To link east and west flowing rivers of the peninsular"
+            },
+            {
+              "key": "C",
+              "text": "To link the rivers of India with the rivers of Pakistan"
+            },
+            {
+              "key": "D",
+              "text": "None of the above"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-039",
+      "question_number": 39,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following is called the 'Cottonopolis' of India ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Kanpur"
+            },
+            {
+              "key": "B",
+              "text": "Agra"
+            },
+            {
+              "key": "C",
+              "text": "Mumbai"
+            },
+            {
+              "key": "D",
+              "text": "Ahmedabad"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-040",
+      "question_number": 40,
+      "language_variants": {
+        "en": {
+          "question_text": "After crushing the sugarcane, the left over baggasse is used as :",
+          "options": [
+            {
+              "key": "A",
+              "text": "Fuel"
+            },
+            {
+              "key": "B",
+              "text": "Mixed with jaggery ('gur')"
+            },
+            {
+              "key": "C",
+              "text": "Mixed in sugar"
+            },
+            {
+              "key": "D",
+              "text": "None of the above"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-041",
+      "question_number": 41,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following raw materials is needed for the manufacturing of cement ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Limestone"
+            },
+            {
+              "key": "B",
+              "text": "Sea shells"
+            },
+            {
+              "key": "C",
+              "text": "Slag from steel plant"
+            },
+            {
+              "key": "D",
+              "text": "All of the above"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-042",
+      "question_number": 42,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following cement plants is located in Madhya Pradesh ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Satna"
+            },
+            {
+              "key": "B",
+              "text": "Durg"
+            },
+            {
+              "key": "C",
+              "text": "Narnaul"
+            },
+            {
+              "key": "D",
+              "text": "None of these"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-043",
+      "question_number": 43,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following factors is responsible for regional disparities in India ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Regional variations in relief"
+            },
+            {
+              "key": "B",
+              "text": "High incoherence of temperature in different parts of India"
+            },
+            {
+              "key": "C",
+              "text": "Regional variations in the availability of minerals"
+            },
+            {
+              "key": "D",
+              "text": "All of the above"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-044",
+      "question_number": 44,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following is not an area of the highest agricultural productivity ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Punjab"
+            },
+            {
+              "key": "B",
+              "text": "Haryana"
+            },
+            {
+              "key": "C",
+              "text": "Madhya Pradesh"
+            },
+            {
+              "key": "D",
+              "text": "Western Uttar Pradesh"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-045",
+      "question_number": 45,
+      "language_variants": {
+        "en": {
+          "question_text": "Who used the method of ranking coefficient for the first time in India in order to calculate agricultural\nproductivity ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Prof. Mohammed Shafi"
+            },
+            {
+              "key": "B",
+              "text": "Prof. Jasbir Singh"
+            },
+            {
+              "key": "C",
+              "text": "Prof. M.G. Kendall"
+            },
+            {
+              "key": "D",
+              "text": "Prof. Dudley Stamp"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-046",
+      "question_number": 46,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following is a method to eradicate poverty ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "More investment in productive activities"
+            },
+            {
+              "key": "B",
+              "text": "Increased savings"
+            },
+            {
+              "key": "C",
+              "text": "Population control"
+            },
+            {
+              "key": "D",
+              "text": "All of the above"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-047",
+      "question_number": 47,
+      "language_variants": {
+        "en": {
+          "question_text": "Which is the period of rapid growth of India's population ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "1901–1921"
+            },
+            {
+              "key": "B",
+              "text": "1921–1951"
+            },
+            {
+              "key": "C",
+              "text": "1951–1981"
+            },
+            {
+              "key": "D",
+              "text": "1981–2001"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-048",
+      "question_number": 48,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following is an effect of globalization on India ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Increase in foreign trade"
+            },
+            {
+              "key": "B",
+              "text": "Increase in the number of foreign banks"
+            },
+            {
+              "key": "C",
+              "text": "Direct foreign investment"
+            },
+            {
+              "key": "D",
+              "text": "All of the above"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-049",
+      "question_number": 49,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following is a result of 'Green House Effect' ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Rise in temperature"
+            },
+            {
+              "key": "B",
+              "text": "Industrial development"
+            },
+            {
+              "key": "C",
+              "text": "Population growth"
+            },
+            {
+              "key": "D",
+              "text": "None of these"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-050",
+      "question_number": 50,
+      "language_variants": {
+        "en": {
+          "question_text": "Which disease is not caused by drinking polluted water ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Cholera"
+            },
+            {
+              "key": "B",
+              "text": "Diarrhoea"
+            },
+            {
+              "key": "C",
+              "text": "Jaundice"
+            },
+            {
+              "key": "D",
+              "text": "AIDS"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-051",
+      "question_number": 51,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following states of India has the highest sex ratio ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Chhattisgarh"
+            },
+            {
+              "key": "B",
+              "text": "Kerala"
+            },
+            {
+              "key": "C",
+              "text": "Tamil Nadu"
+            },
+            {
+              "key": "D",
+              "text": "Nagaland"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-052",
+      "question_number": 52,
+      "language_variants": {
+        "en": {
+          "question_text": "Which one of the following Indian cities has population more than 50 lakh, as per the census of 2001 ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Rajkot"
+            },
+            {
+              "key": "B",
+              "text": "Ludhiana"
+            },
+            {
+              "key": "C",
+              "text": "Jaipur"
+            },
+            {
+              "key": "D",
+              "text": "Hyderabad"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-053",
+      "question_number": 53,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following states does not have common boundary with Madhya Pradesh ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Gujarat"
+            },
+            {
+              "key": "B",
+              "text": "Rajasthan"
+            },
+            {
+              "key": "C",
+              "text": "Jharkhand"
+            },
+            {
+              "key": "D",
+              "text": "Bihar"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-054",
+      "question_number": 54,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following landforms is not found in Madhya Pradesh ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Betul Plateau"
+            },
+            {
+              "key": "B",
+              "text": "Pulicat Lake"
+            },
+            {
+              "key": "C",
+              "text": "Bharner Mountain Range"
+            },
+            {
+              "key": "D",
+              "text": "Kaimur Hills"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-055",
+      "question_number": 55,
+      "language_variants": {
+        "en": {
+          "question_text": "The 'Bad land' landform is found in—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Thar desert"
+            },
+            {
+              "key": "B",
+              "text": "Chambal valley"
+            },
+            {
+              "key": "C",
+              "text": "Sundarban delta"
+            },
+            {
+              "key": "D",
+              "text": "Gulf of Kachchh"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-056",
+      "question_number": 56,
+      "language_variants": {
+        "en": {
+          "question_text": "Which state of India is the largest producer of diamond ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Madhya Pradesh"
+            },
+            {
+              "key": "B",
+              "text": "Chhattisgarh"
+            },
+            {
+              "key": "C",
+              "text": "Jharkhand"
+            },
+            {
+              "key": "D",
+              "text": "Rajasthan"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-057",
+      "question_number": 57,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following pairs is not correct ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Assam—Magh Bihu"
+            },
+            {
+              "key": "B",
+              "text": "Haryana—Tea Festival"
+            },
+            {
+              "key": "C",
+              "text": "Punjab—Hola Mohalla"
+            },
+            {
+              "key": "D",
+              "text": "Madhya Pradesh—Fair of Nagaji"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-058",
+      "question_number": 58,
+      "language_variants": {
+        "en": {
+          "question_text": "Which state is the only producer of tin in India ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "West Bengal"
+            },
+            {
+              "key": "B",
+              "text": "Jammu and Kashmir"
+            },
+            {
+              "key": "C",
+              "text": "Assam"
+            },
+            {
+              "key": "D",
+              "text": "Madhya Pradesh"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-059",
+      "question_number": 59,
+      "language_variants": {
+        "en": {
+          "question_text": "The total number of districts in Madhya Pradesh is—",
+          "options": [
+            {
+              "key": "A",
+              "text": "25"
+            },
+            {
+              "key": "B",
+              "text": "48"
+            },
+            {
+              "key": "C",
+              "text": "47"
+            },
+            {
+              "key": "D",
+              "text": "37"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-060",
+      "question_number": 60,
+      "language_variants": {
+        "en": {
+          "question_text": "What is the name of handicrafts emporia centres of Madhya Pradesh ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Koel"
+            },
+            {
+              "key": "B",
+              "text": "Mayur"
+            },
+            {
+              "key": "C",
+              "text": "Kingfisher"
+            },
+            {
+              "key": "D",
+              "text": "Mriganayanee"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-061",
+      "question_number": 61,
+      "language_variants": {
+        "en": {
+          "question_text": "Which ocean, according to Wegener, surrounded Pangaea on all sides ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Panthalassa"
+            },
+            {
+              "key": "B",
+              "text": "Indian Ocean"
+            },
+            {
+              "key": "C",
+              "text": "Atlantic Ocean"
+            },
+            {
+              "key": "D",
+              "text": "Arctic Ocean"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-062",
+      "question_number": 62,
+      "language_variants": {
+        "en": {
+          "question_text": "Many island arcs and peripheral trenches of the Pacific Ocean are the result of—",
+          "options": [
+            {
+              "key": "A",
+              "text": "The convergence of two continental plates"
+            },
+            {
+              "key": "B",
+              "text": "The convergence of a continental plate and an oceanic plate"
+            },
+            {
+              "key": "C",
+              "text": "The convergence of two oceanic plates"
+            },
+            {
+              "key": "D",
+              "text": "None of the above"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-063",
+      "question_number": 63,
+      "language_variants": {
+        "en": {
+          "question_text": "Exfoliation is most active—",
+          "options": [
+            {
+              "key": "A",
+              "text": "in regions where frost occurs regularly"
+            },
+            {
+              "key": "B",
+              "text": "in limestone areas"
+            },
+            {
+              "key": "C",
+              "text": "at high altitudes"
+            },
+            {
+              "key": "D",
+              "text": "in arid or semi-arid regions, which have a large diurnal range of temperature"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-064",
+      "question_number": 64,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following landforms is not formed by weathering ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Rift valley"
+            },
+            {
+              "key": "B",
+              "text": "Crevasses"
+            },
+            {
+              "key": "C",
+              "text": "Talus"
+            },
+            {
+              "key": "D",
+              "text": "Yardang"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-065",
+      "question_number": 65,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following is not a process of river erosion ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Hydraulic action"
+            },
+            {
+              "key": "B",
+              "text": "Deflation"
+            },
+            {
+              "key": "C",
+              "text": "Corrosion"
+            },
+            {
+              "key": "D",
+              "text": "Attrition"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-066",
+      "question_number": 66,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following landforms is formed by glacier ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Tarn"
+            },
+            {
+              "key": "B",
+              "text": "Lagoon"
+            },
+            {
+              "key": "C",
+              "text": "Lappies"
+            },
+            {
+              "key": "D",
+              "text": "Doline"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-067",
+      "question_number": 67,
+      "language_variants": {
+        "en": {
+          "question_text": "With what are the Inselberg and Hamada associated ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Glacial erosion"
+            },
+            {
+              "key": "B",
+              "text": "Wind erosion"
+            },
+            {
+              "key": "C",
+              "text": "River erosion"
+            },
+            {
+              "key": "D",
+              "text": "Wind deposition"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-068",
+      "question_number": 68,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following is a Caldera lake ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Lake Chilka"
+            },
+            {
+              "key": "B",
+              "text": "Lake Pulicat"
+            },
+            {
+              "key": "C",
+              "text": "Lake Toba"
+            },
+            {
+              "key": "D",
+              "text": "None of these"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-069",
+      "question_number": 69,
+      "language_variants": {
+        "en": {
+          "question_text": "Which instrument is used for measuring the intensity of an earthquake ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Seismograph"
+            },
+            {
+              "key": "B",
+              "text": "Hythergraph"
+            },
+            {
+              "key": "C",
+              "text": "Altimeter"
+            },
+            {
+              "key": "D",
+              "text": "None of these"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-070",
+      "question_number": 70,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following pairs is correct ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Alfred Wegener—Plate Tectonics"
+            },
+            {
+              "key": "B",
+              "text": "Archdeacon pratt—Continental Drift Theory"
+            },
+            {
+              "key": "C",
+              "text": "William Moris Davis—Geographical Cycle of Erosion"
+            },
+            {
+              "key": "D",
+              "text": "Walter Penck—Theory of Isostasy"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-071",
+      "question_number": 71,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following is an example of volcanic mountains ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Rockies"
+            },
+            {
+              "key": "B",
+              "text": "Fujiyoma"
+            },
+            {
+              "key": "C",
+              "text": "Salt range"
+            },
+            {
+              "key": "D",
+              "text": "Caucasus"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-072",
+      "question_number": 72,
+      "language_variants": {
+        "en": {
+          "question_text": "The example of an intermontane plateau is—",
+          "options": [
+            {
+              "key": "A",
+              "text": "The Plateau of Bolivia"
+            },
+            {
+              "key": "B",
+              "text": "The Plateau of Antrim"
+            },
+            {
+              "key": "C",
+              "text": "The Deccan Plateau"
+            },
+            {
+              "key": "D",
+              "text": "The Plateau of Pantagonia"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-073",
+      "question_number": 73,
+      "language_variants": {
+        "en": {
+          "question_text": "Monadnocks are situated in—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Mountain"
+            },
+            {
+              "key": "B",
+              "text": "Fold mountain"
+            },
+            {
+              "key": "C",
+              "text": "Peneplain"
+            },
+            {
+              "key": "D",
+              "text": "Loess plain"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-074",
+      "question_number": 74,
+      "language_variants": {
+        "en": {
+          "question_text": "That layer of the atmosphere, where ozone gas is found—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Troposphere"
+            },
+            {
+              "key": "B",
+              "text": "Stratosphere"
+            },
+            {
+              "key": "C",
+              "text": "Mesosphere"
+            },
+            {
+              "key": "D",
+              "text": "Thermosphere"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-075",
+      "question_number": 75,
+      "language_variants": {
+        "en": {
+          "question_text": "Radiant energy from the sun that strikes the earth is called—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Solar constant"
+            },
+            {
+              "key": "B",
+              "text": "Insolation"
+            },
+            {
+              "key": "C",
+              "text": "Heat budget"
+            },
+            {
+              "key": "D",
+              "text": "Terrestrial radiation"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-076",
+      "question_number": 76,
+      "language_variants": {
+        "en": {
+          "question_text": "The maximum annual range of temperature occurs over—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Poles"
+            },
+            {
+              "key": "B",
+              "text": "Near the equator"
+            },
+            {
+              "key": "C",
+              "text": "Coastal regions"
+            },
+            {
+              "key": "D",
+              "text": "Asia and North America at latitude 60°N"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-077",
+      "question_number": 77,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following are horse latitudes ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "30°to 35°latitudes in both the hemispheres"
+            },
+            {
+              "key": "B",
+              "text": "10°North latitude"
+            },
+            {
+              "key": "C",
+              "text": "60°latitude"
+            },
+            {
+              "key": "D",
+              "text": "None of the above"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-078",
+      "question_number": 78,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following statements is not true ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "When the temperature of air increases, the pressure of air decreases"
+            },
+            {
+              "key": "B",
+              "text": "When the temperature of air decreases, the pressure of air increases"
+            },
+            {
+              "key": "C",
+              "text": "A rising thermometer shows a falling barometer"
+            },
+            {
+              "key": "D",
+              "text": "When air rises, the pressure of air increases"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-079",
+      "question_number": 79,
+      "language_variants": {
+        "en": {
+          "question_text": "Which pair is incorrect ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Fohn—Dry and warm wind"
+            },
+            {
+              "key": "B",
+              "text": "Chinook —Snow eater"
+            },
+            {
+              "key": "C",
+              "text": "Mistral —Winter season"
+            },
+            {
+              "key": "D",
+              "text": "Bora —North America"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-080",
+      "question_number": 80,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following is not a cyclone ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Tornado"
+            },
+            {
+              "key": "B",
+              "text": "Hurricane"
+            },
+            {
+              "key": "C",
+              "text": "Typhoon"
+            },
+            {
+              "key": "D",
+              "text": "Sirocco"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-081",
+      "question_number": 81,
+      "language_variants": {
+        "en": {
+          "question_text": "Which one of the following is not erosional landform of wind ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Cirque"
+            },
+            {
+              "key": "B",
+              "text": "Inselberg"
+            },
+            {
+              "key": "C",
+              "text": "Mushroom rock"
+            },
+            {
+              "key": "D",
+              "text": "Zeugen"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-082",
+      "question_number": 82,
+      "language_variants": {
+        "en": {
+          "question_text": "Which type of rainfall occurs over north-west India during winter season ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Cyclonic rainfall"
+            },
+            {
+              "key": "B",
+              "text": "Orographic rainfall"
+            },
+            {
+              "key": "C",
+              "text": "Convectional rainfall"
+            },
+            {
+              "key": "D",
+              "text": "Anticyclonic rainfall"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-083",
+      "question_number": 83,
+      "language_variants": {
+        "en": {
+          "question_text": "In which of the spheres of the atmosphere temperature decreases at the rate of 6.5°centigrade with a\nheight of one thousand metres ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Mesosphere"
+            },
+            {
+              "key": "B",
+              "text": "Ionosphere"
+            },
+            {
+              "key": "C",
+              "text": "Ozonosphere"
+            },
+            {
+              "key": "D",
+              "text": "Troposphere"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-084",
+      "question_number": 84,
+      "language_variants": {
+        "en": {
+          "question_text": "Ratio between water and land on the earth is —",
+          "options": [
+            {
+              "key": "A",
+              "text": "78 : 22"
+            },
+            {
+              "key": "B",
+              "text": "71 : 29"
+            },
+            {
+              "key": "C",
+              "text": "80 : 20"
+            },
+            {
+              "key": "D",
+              "text": "20 : 80"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-085",
+      "question_number": 85,
+      "language_variants": {
+        "en": {
+          "question_text": "The northern hemisphere is called as—",
+          "options": [
+            {
+              "key": "A",
+              "text": "The land hemisphere"
+            },
+            {
+              "key": "B",
+              "text": "The water hemisphere"
+            },
+            {
+              "key": "C",
+              "text": "Water planet"
+            },
+            {
+              "key": "D",
+              "text": "None of these"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-086",
+      "question_number": 86,
+      "language_variants": {
+        "en": {
+          "question_text": "The ocean's greatest depth is—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Aleutian Trench"
+            },
+            {
+              "key": "B",
+              "text": "Japan Trench"
+            },
+            {
+              "key": "C",
+              "text": "Mariana Trench"
+            },
+            {
+              "key": "D",
+              "text": "Java Trench"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-087",
+      "question_number": 87,
+      "language_variants": {
+        "en": {
+          "question_text": "The zone of highest salinity is—",
+          "options": [
+            {
+              "key": "A",
+              "text": "The tropical zone of the sea"
+            },
+            {
+              "key": "B",
+              "text": "The temperate zone of the sea"
+            },
+            {
+              "key": "C",
+              "text": "The polar zone of the sea"
+            },
+            {
+              "key": "D",
+              "text": "None of the above"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-088",
+      "question_number": 88,
+      "language_variants": {
+        "en": {
+          "question_text": "Which one of the following is a warm ocean current ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Kurushio current"
+            },
+            {
+              "key": "B",
+              "text": "California current"
+            },
+            {
+              "key": "C",
+              "text": "Okhotsk current"
+            },
+            {
+              "key": "D",
+              "text": "Falkland current"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-089",
+      "question_number": 89,
+      "language_variants": {
+        "en": {
+          "question_text": "Which one of the following is an example of coral island ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Ellice"
+            },
+            {
+              "key": "B",
+              "text": "Barren"
+            },
+            {
+              "key": "C",
+              "text": "Krakatao"
+            },
+            {
+              "key": "D",
+              "text": "Sandwich"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-090",
+      "question_number": 90,
+      "language_variants": {
+        "en": {
+          "question_text": "Which one of the following is an activity of the Eskimos and Lapps ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Agriculture"
+            },
+            {
+              "key": "B",
+              "text": "Plantation agriculture"
+            },
+            {
+              "key": "C",
+              "text": "Hunting and fishing"
+            },
+            {
+              "key": "D",
+              "text": "None of these"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-091",
+      "question_number": 91,
+      "language_variants": {
+        "en": {
+          "question_text": "Bushman is associated with—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Kalahari desert"
+            },
+            {
+              "key": "B",
+              "text": "Congo basin"
+            },
+            {
+              "key": "C",
+              "text": "Himalaya mountains"
+            },
+            {
+              "key": "D",
+              "text": "Malwa plateau"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-092",
+      "question_number": 92,
+      "language_variants": {
+        "en": {
+          "question_text": "Which one of the following is not a habitat of the Santhals ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "West Bengal"
+            },
+            {
+              "key": "B",
+              "text": "Orissa"
+            },
+            {
+              "key": "C",
+              "text": "Jharkhand"
+            },
+            {
+              "key": "D",
+              "text": "Punjab"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-093",
+      "question_number": 93,
+      "language_variants": {
+        "en": {
+          "question_text": "Which state of India has the highest percentage of scheduled tribe population ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Mizoram"
+            },
+            {
+              "key": "B",
+              "text": "Nagaland"
+            },
+            {
+              "key": "C",
+              "text": "Meghalaya"
+            },
+            {
+              "key": "D",
+              "text": "Assam"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-094",
+      "question_number": 94,
+      "language_variants": {
+        "en": {
+          "question_text": "Which continent has the highest growth of population ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Africa"
+            },
+            {
+              "key": "B",
+              "text": "South America"
+            },
+            {
+              "key": "C",
+              "text": "Europe"
+            },
+            {
+              "key": "D",
+              "text": "Asia"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-095",
+      "question_number": 95,
+      "language_variants": {
+        "en": {
+          "question_text": "Which is not a sparsely populated area ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Cold Polar Region"
+            },
+            {
+              "key": "B",
+              "text": "Sahara"
+            },
+            {
+              "key": "C",
+              "text": "South-Eastern Asia"
+            },
+            {
+              "key": "D",
+              "text": "Kalahari"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-096",
+      "question_number": 96,
+      "language_variants": {
+        "en": {
+          "question_text": "Which one of the following has maximum farm-houses ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "India"
+            },
+            {
+              "key": "B",
+              "text": "United States of America"
+            },
+            {
+              "key": "C",
+              "text": "China"
+            },
+            {
+              "key": "D",
+              "text": "Japan"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-097",
+      "question_number": 97,
+      "language_variants": {
+        "en": {
+          "question_text": "Which one of the following is a mining city ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Kalgoorlie"
+            },
+            {
+              "key": "B",
+              "text": "Oxford"
+            },
+            {
+              "key": "C",
+              "text": "Singapore"
+            },
+            {
+              "key": "D",
+              "text": "Islamabad"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-098",
+      "question_number": 98,
+      "language_variants": {
+        "en": {
+          "question_text": "Which one of the following pairs is correct ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Concentric Zone Theory—E.W. Burgess"
+            },
+            {
+              "key": "B",
+              "text": "Sector Theory—Alfred Weber"
+            },
+            {
+              "key": "C",
+              "text": "Multi-Nuclei Theory—Homer Hoyt"
+            },
+            {
+              "key": "D",
+              "text": "Fused Growth Theory—Griffith Taylor"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-099",
+      "question_number": 99,
+      "language_variants": {
+        "en": {
+          "question_text": "The largest producer of rice in the world is—",
+          "options": [
+            {
+              "key": "A",
+              "text": "India"
+            },
+            {
+              "key": "B",
+              "text": "Sri Lanka"
+            },
+            {
+              "key": "C",
+              "text": "China"
+            },
+            {
+              "key": "D",
+              "text": "Bangladesh"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-100",
+      "question_number": 100,
+      "language_variants": {
+        "en": {
+          "question_text": "Which one of the following geographical conditions is not favourable for wheat cultivation ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "10°celcius temperature at the time of sowing"
+            },
+            {
+              "key": "B",
+              "text": "Loamy soils"
+            },
+            {
+              "key": "C",
+              "text": "More than 250 cm annual rainfall"
+            },
+            {
+              "key": "D",
+              "text": "Level land"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-101",
+      "question_number": 101,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following is also grown as a 'Zaid' crop ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Sugarcane"
+            },
+            {
+              "key": "B",
+              "text": "Cotton"
+            },
+            {
+              "key": "C",
+              "text": "Maize for fodder"
+            },
+            {
+              "key": "D",
+              "text": "Jute"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-102",
+      "question_number": 102,
+      "language_variants": {
+        "en": {
+          "question_text": "Tea can be grown on—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Hill slopes"
+            },
+            {
+              "key": "B",
+              "text": "Plains"
+            },
+            {
+              "key": "C",
+              "text": "Swamps"
+            },
+            {
+              "key": "D",
+              "text": "None of these"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-103",
+      "question_number": 103,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following is a plantation crop ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Wheat"
+            },
+            {
+              "key": "B",
+              "text": "Maize"
+            },
+            {
+              "key": "C",
+              "text": "Barley"
+            },
+            {
+              "key": "D",
+              "text": "Coffee"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-104",
+      "question_number": 104,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following is not a rubber producing country ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Thailand"
+            },
+            {
+              "key": "B",
+              "text": "India"
+            },
+            {
+              "key": "C",
+              "text": "Sri Lanka"
+            },
+            {
+              "key": "D",
+              "text": "None of these"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-105",
+      "question_number": 105,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following statements is correct in relation to cotton production ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Cotton is grown in tropical areas"
+            },
+            {
+              "key": "B",
+              "text": "Sri Lanka is the largest exporter of cotton"
+            },
+            {
+              "key": "C",
+              "text": "Cotton is a dominant crop in areas of over 1000 cm annual rainfall"
+            },
+            {
+              "key": "D",
+              "text": "Cotton can also be grown in Tundra region"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-106",
+      "question_number": 106,
+      "language_variants": {
+        "en": {
+          "question_text": "Which state of India has the largest area under forests ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Punjab"
+            },
+            {
+              "key": "B",
+              "text": "Madhya Pradesh"
+            },
+            {
+              "key": "C",
+              "text": "Maharashtra"
+            },
+            {
+              "key": "D",
+              "text": "Bihar"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-107",
+      "question_number": 107,
+      "language_variants": {
+        "en": {
+          "question_text": "Grand Bank is a major producer of—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Rice"
+            },
+            {
+              "key": "B",
+              "text": "Marine fisheries"
+            },
+            {
+              "key": "C",
+              "text": "Iron ore"
+            },
+            {
+              "key": "D",
+              "text": "Tea"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-108",
+      "question_number": 108,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following is a type of iron ore ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Anthracite"
+            },
+            {
+              "key": "B",
+              "text": "Lignite"
+            },
+            {
+              "key": "C",
+              "text": "Peat"
+            },
+            {
+              "key": "D",
+              "text": "Limonite"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-109",
+      "question_number": 109,
+      "language_variants": {
+        "en": {
+          "question_text": "Manganese is used for making—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Iron and steel"
+            },
+            {
+              "key": "B",
+              "text": "Paint"
+            },
+            {
+              "key": "C",
+              "text": "China clay"
+            },
+            {
+              "key": "D",
+              "text": "In all these"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-110",
+      "question_number": 110,
+      "language_variants": {
+        "en": {
+          "question_text": "Which state of India is the largest producer of copper ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Madhya Pradesh"
+            },
+            {
+              "key": "B",
+              "text": "Rajasthan"
+            },
+            {
+              "key": "C",
+              "text": "Jharkhand"
+            },
+            {
+              "key": "D",
+              "text": "Assam"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-111",
+      "question_number": 111,
+      "language_variants": {
+        "en": {
+          "question_text": "Bauxite is used for making—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Coal"
+            },
+            {
+              "key": "B",
+              "text": "Gold"
+            },
+            {
+              "key": "C",
+              "text": "Aluminium"
+            },
+            {
+              "key": "D",
+              "text": "None of these"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-112",
+      "question_number": 112,
+      "language_variants": {
+        "en": {
+          "question_text": "Which continent of the world has the maximum known coal reserves ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "North America"
+            },
+            {
+              "key": "B",
+              "text": "South America"
+            },
+            {
+              "key": "C",
+              "text": "Australia"
+            },
+            {
+              "key": "D",
+              "text": "Africa"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-113",
+      "question_number": 113,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following pairs is correct ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Jharia coalfield—Jharkhand"
+            },
+            {
+              "key": "B",
+              "text": "Girdih coalfield—West Bengal"
+            },
+            {
+              "key": "C",
+              "text": "Korba coalfield—Madhya Pradesh"
+            },
+            {
+              "key": "D",
+              "text": "Umaria coalfield—Chhattisgarh"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-114",
+      "question_number": 114,
+      "language_variants": {
+        "en": {
+          "question_text": "In which rocks are the oil reserves mainly found in India ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Igneous"
+            },
+            {
+              "key": "B",
+              "text": "Sedimentary"
+            },
+            {
+              "key": "C",
+              "text": "Metamorphic"
+            },
+            {
+              "key": "D",
+              "text": "None of these"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-115",
+      "question_number": 115,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following pairs does not match ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Lower Sileru—Andhra Pradesh"
+            },
+            {
+              "key": "B",
+              "text": "Nagarjun Sagar—Karnataka"
+            },
+            {
+              "key": "C",
+              "text": "Koyna—Maharashtra"
+            },
+            {
+              "key": "D",
+              "text": "Pong—Punjab"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-116",
+      "question_number": 116,
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following pairs is not correct ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Jog—Waterfall"
+            },
+            {
+              "key": "B",
+              "text": "Ankleshwar—Mineral oilfield"
+            },
+            {
+              "key": "C",
+              "text": "Bokaro—Gold mine"
+            },
+            {
+              "key": "D",
+              "text": "Paradwip—Iron and steel plant"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-117",
+      "question_number": 117,
+      "language_variants": {
+        "en": {
+          "question_text": "Not related to textile industry is—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Spinning"
+            },
+            {
+              "key": "B",
+              "text": "Weaving"
+            },
+            {
+              "key": "C",
+              "text": "Jute"
+            },
+            {
+              "key": "D",
+              "text": "Pulp"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-118",
+      "question_number": 118,
+      "language_variants": {
+        "en": {
+          "question_text": "Which is India's first oil refinery ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Digboi"
+            },
+            {
+              "key": "B",
+              "text": "Panipat"
+            },
+            {
+              "key": "C",
+              "text": "Trombay"
+            },
+            {
+              "key": "D",
+              "text": "Vishakhapatnam"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-119",
+      "question_number": 119,
+      "language_variants": {
+        "en": {
+          "question_text": "Manchester is known for—",
+          "options": [
+            {
+              "key": "A",
+              "text": "Silk Industry"
+            },
+            {
+              "key": "B",
+              "text": "Woollen Textile"
+            },
+            {
+              "key": "C",
+              "text": "Cotton Textile"
+            },
+            {
+              "key": "D",
+              "text": "None of these"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2011-120",
+      "question_number": 120,
+      "language_variants": {
+        "en": {
+          "question_text": "Which is the most universal mode of transport ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Road Transport"
+            },
+            {
+              "key": "B",
+              "text": "Rail Transport"
+            },
+            {
+              "key": "C",
+              "text": "Ocean Transport"
+            },
+            {
+              "key": "D",
+              "text": "None of these"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

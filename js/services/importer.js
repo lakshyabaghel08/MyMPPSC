@@ -136,7 +136,7 @@ export async function executeImport(analysis, options = {}) {
       continue;
     }
     const identical = prior.fingerprint === question.fingerprint;
-    if (identical) {
+    if (identical && !options.refreshIdenticalIds?.has(question.id)) {
       stats.questionsSkipped += 1;
       skipped.push({ id: question.id, reason: 'Already stored with identical text and options.' });
       continue;
@@ -223,6 +223,8 @@ export function mergeImportedQuestion(prior, incoming, bankId) {
   const userVerified = prior.verified?.source === 'user_correction';
   return {
     ...incoming,
+    // Preserve a learner's answer-dispute state alongside its dispute object.
+    supplied: prior.dispute?.raised_by === 'user' && incoming.supplied ? { ...incoming.supplied, status: prior.supplied?.status || incoming.supplied.status } : incoming.supplied,
     // preserve user work
     classification: userEditedClassification
       ? {

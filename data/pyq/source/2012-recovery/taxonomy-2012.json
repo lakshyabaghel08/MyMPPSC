@@ -1,0 +1,506 @@
+{
+  "version": "1.0.0",
+  "note": "Taxonomy classifications from 2012 paper transcription; lower levels omitted when unsupported, no answers reviewed.",
+  "labels": {
+    "MPPSC-2012-001": {
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Biotechnology"
+    },
+    "MPPSC-2012-002": {
+      "subject": "Environment",
+      "topic": "Ecology and biodiversity",
+      "subtopic": "Biodiversity"
+    },
+    "MPPSC-2012-003": {
+      "subject": "Environment",
+      "topic": "Conservation initiatives",
+      "subtopic": "Project Tiger"
+    },
+    "MPPSC-2012-004": {
+      "subject": "Science and Technology",
+      "topic": "Physics",
+      "subtopic": "Units and measurements"
+    },
+    "MPPSC-2012-005": {
+      "subject": "Science and Technology",
+      "topic": "Health and diseases",
+      "subtopic": "Vector borne diseases"
+    },
+    "MPPSC-2012-006": {
+      "subject": "Science and Technology",
+      "topic": "Biology",
+      "subtopic": "Human circulatory system"
+    },
+    "MPPSC-2012-007": {
+      "subject": "Science and Technology",
+      "topic": "Physics",
+      "subtopic": "Motion and force"
+    },
+    "MPPSC-2012-008": {
+      "subject": "Science and Technology",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2012-009": {
+      "subject": "Current Affairs",
+      "topic": "Days and dates",
+      "subtopic": "International days"
+    },
+    "MPPSC-2012-010": {
+      "subject": "Economy",
+      "topic": "Industry and infrastructure",
+      "subtopic": "Energy sector"
+    },
+    "MPPSC-2012-011": {
+      "subject": "Art and Culture",
+      "topic": "Heritage Sites",
+      "subtopic": "Buddhist monuments"
+    },
+    "MPPSC-2012-012": {
+      "subject": "History",
+      "topic": "Ancient India",
+      "subtopic": "Indus Valley Civilisation"
+    },
+    "MPPSC-2012-013": {
+      "subject": "History",
+      "topic": "Ancient India",
+      "subtopic": "Buddhism and Jainism"
+    },
+    "MPPSC-2012-014": {
+      "subject": "Art and Culture",
+      "topic": "Literature and languages",
+      "subtopic": "Sanskrit literature"
+    },
+    "MPPSC-2012-015": {
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": "Partition and independence"
+    },
+    "MPPSC-2012-016": {
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": "Acts and constitutional development"
+    },
+    "MPPSC-2012-017": {
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": "Revolutionary movements"
+    },
+    "MPPSC-2012-018": {
+      "subject": "Art and Culture",
+      "topic": "Literature and languages",
+      "subtopic": "Official languages"
+    },
+    "MPPSC-2012-019": {
+      "subject": "History",
+      "topic": "Medieval India",
+      "subtopic": null
+    },
+    "MPPSC-2012-020": {
+      "subject": "History",
+      "topic": "Ancient India",
+      "subtopic": "Indus Valley Civilisation"
+    },
+    "MPPSC-2012-021": {
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Rivers of India"
+    },
+    "MPPSC-2012-022": {
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Physiography of India"
+    },
+    "MPPSC-2012-023": {
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Climate of India"
+    },
+    "MPPSC-2012-024": {
+      "subject": "Geography",
+      "topic": "Geography of India",
+      "subtopic": "Population of India"
+    },
+    "MPPSC-2012-025": {
+      "subject": "Environment",
+      "topic": "Protected areas",
+      "subtopic": "National parks"
+    },
+    "MPPSC-2012-026": {
+      "subject": "Geography",
+      "topic": "Maps and location",
+      "subtopic": "Location"
+    },
+    "MPPSC-2012-027": {
+      "subject": "Geography",
+      "topic": "World Geography",
+      "subtopic": "Major landforms"
+    },
+    "MPPSC-2012-028": {
+      "subject": "Geography",
+      "topic": "Maps and location",
+      "subtopic": "Location"
+    },
+    "MPPSC-2012-029": {
+      "subject": "Geography",
+      "topic": "Maps and location",
+      "subtopic": "Location"
+    },
+    "MPPSC-2012-030": {
+      "subject": "Geography",
+      "topic": "Maps and location",
+      "subtopic": "Location"
+    },
+    "MPPSC-2012-031": {
+      "subject": "Polity",
+      "topic": "Constitution of India",
+      "subtopic": "Making of the Constitution"
+    },
+    "MPPSC-2012-032": {
+      "subject": "Polity",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2012-033": {
+      "subject": "Economy",
+      "topic": "Banking and finance",
+      "subtopic": "Reserve Bank of India"
+    },
+    "MPPSC-2012-034": {
+      "subject": "Polity",
+      "topic": "Union Legislature",
+      "subtopic": "Parliamentary committees"
+    },
+    "MPPSC-2012-035": {
+      "subject": "Economy",
+      "topic": "Indian Economy",
+      "subtopic": "Planning in India"
+    },
+    "MPPSC-2012-036": {
+      "subject": "Economy",
+      "topic": "Indian Economy",
+      "subtopic": "National income"
+    },
+    "MPPSC-2012-037": {
+      "subject": "Economy",
+      "topic": "Agriculture and rural economy",
+      "subtopic": "Agricultural revolutions"
+    },
+    "MPPSC-2012-038": {
+      "subject": "Economy",
+      "topic": "Banking and finance",
+      "subtopic": "Reserve Bank of India"
+    },
+    "MPPSC-2012-039": {
+      "subject": "Polity",
+      "topic": "Union Legislature",
+      "subtopic": "Lok Sabha"
+    },
+    "MPPSC-2012-040": {
+      "subject": "Economy",
+      "topic": "Indian Economy",
+      "subtopic": "Public sector undertakings"
+    },
+    "MPPSC-2012-041": {
+      "subject": "Madhya Pradesh Special",
+      "topic": "Personalities and awards of Madhya Pradesh",
+      "subtopic": "Sports from Madhya Pradesh"
+    },
+    "MPPSC-2012-042": {
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Other sports events"
+    },
+    "MPPSC-2012-043": {
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Olympic and Asian Games"
+    },
+    "MPPSC-2012-044": {
+      "subject": "Current Affairs",
+      "topic": "Awards and honours",
+      "subtopic": "Sports awards"
+    },
+    "MPPSC-2012-045": {
+      "subject": "Madhya Pradesh Special",
+      "topic": "Personalities and awards of Madhya Pradesh",
+      "subtopic": "Sports from Madhya Pradesh"
+    },
+    "MPPSC-2012-046": {
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Other sports events"
+    },
+    "MPPSC-2012-047": {
+      "subject": "Madhya Pradesh Special",
+      "topic": "Personalities and awards of Madhya Pradesh",
+      "subtopic": "Sports from Madhya Pradesh"
+    },
+    "MPPSC-2012-048": {
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Other sports events"
+    },
+    "MPPSC-2012-049": {
+      "subject": "Current Affairs",
+      "topic": "Awards and honours",
+      "subtopic": "Sports awards"
+    },
+    "MPPSC-2012-050": {
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Other sports events"
+    },
+    "MPPSC-2012-051": {
+      "subject": "Madhya Pradesh Special",
+      "topic": "Personalities and awards of Madhya Pradesh",
+      "subtopic": "State awards"
+    },
+    "MPPSC-2012-052": {
+      "subject": "Economy",
+      "topic": "Economy of Madhya Pradesh",
+      "subtopic": "Agriculture of Madhya Pradesh"
+    },
+    "MPPSC-2012-053": {
+      "subject": "Madhya Pradesh Special",
+      "topic": "Administrative structure of Madhya Pradesh",
+      "subtopic": "Districts and divisions"
+    },
+    "MPPSC-2012-054": {
+      "subject": "Madhya Pradesh Special",
+      "topic": "Demography of Madhya Pradesh",
+      "subtopic": "Districts of Madhya Pradesh"
+    },
+    "MPPSC-2012-055": {
+      "subject": "Madhya Pradesh Special",
+      "topic": "Formation of Madhya Pradesh",
+      "subtopic": "Chief Ministers"
+    },
+    "MPPSC-2012-056": {
+      "subject": "Art and Culture",
+      "topic": "Heritage Sites",
+      "subtopic": "Jyotirlingas"
+    },
+    "MPPSC-2012-057": {
+      "subject": "Art and Culture",
+      "topic": "Heritage Sites",
+      "subtopic": "Forts and palaces"
+    },
+    "MPPSC-2012-058": {
+      "subject": "Madhya Pradesh Special",
+      "topic": "Tribes of Madhya Pradesh",
+      "subtopic": null
+    },
+    "MPPSC-2012-059": {
+      "subject": "Art and Culture",
+      "topic": "Culture of Madhya Pradesh",
+      "subtopic": "Cultural institutions of Madhya Pradesh"
+    },
+    "MPPSC-2012-060": {
+      "subject": "Art and Culture",
+      "topic": "Dance and music",
+      "subtopic": "Classical dances"
+    },
+    "MPPSC-2012-061": {
+      "subject": "Current Affairs",
+      "topic": "International current affairs",
+      "subtopic": null
+    },
+    "MPPSC-2012-062": {
+      "subject": "Current Affairs",
+      "topic": "International current affairs",
+      "subtopic": null
+    },
+    "MPPSC-2012-063": {
+      "subject": "Current Affairs",
+      "topic": "Science and technology current affairs",
+      "subtopic": "Defence exercises"
+    },
+    "MPPSC-2012-064": {
+      "subject": "Current Affairs",
+      "topic": "International current affairs",
+      "subtopic": "Summits and conferences"
+    },
+    "MPPSC-2012-065": {
+      "subject": "Current Affairs",
+      "topic": "International current affairs",
+      "subtopic": null
+    },
+    "MPPSC-2012-066": {
+      "subject": "Current Affairs",
+      "topic": "International current affairs",
+      "subtopic": "Bilateral relations"
+    },
+    "MPPSC-2012-067": {
+      "subject": "Current Affairs",
+      "topic": "National current affairs",
+      "subtopic": "Reports and indices"
+    },
+    "MPPSC-2012-068": {
+      "subject": "Current Affairs",
+      "topic": "Days and dates",
+      "subtopic": "National days"
+    },
+    "MPPSC-2012-069": {
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Other sports events"
+    },
+    "MPPSC-2012-070": {
+      "subject": "Current Affairs",
+      "topic": "International current affairs",
+      "subtopic": null
+    },
+    "MPPSC-2012-071": {
+      "subject": "Economy",
+      "topic": "Economy of Madhya Pradesh",
+      "subtopic": "Industry of Madhya Pradesh"
+    },
+    "MPPSC-2012-072": {
+      "subject": "Economy",
+      "topic": "Economy of Madhya Pradesh",
+      "subtopic": "Industry of Madhya Pradesh"
+    },
+    "MPPSC-2012-073": {
+      "subject": "Economy",
+      "topic": "Economy of Madhya Pradesh",
+      "subtopic": "Industry of Madhya Pradesh"
+    },
+    "MPPSC-2012-074": {
+      "subject": "Madhya Pradesh Special",
+      "topic": "Formation of Madhya Pradesh",
+      "subtopic": "Chief Ministers"
+    },
+    "MPPSC-2012-075": {
+      "subject": "Madhya Pradesh Special",
+      "topic": "Schemes and institutions of Madhya Pradesh",
+      "subtopic": "Tourism of Madhya Pradesh"
+    },
+    "MPPSC-2012-076": {
+      "subject": "Madhya Pradesh Special",
+      "topic": "Administrative structure of Madhya Pradesh",
+      "subtopic": "Madhya Pradesh legislature"
+    },
+    "MPPSC-2012-077": {
+      "subject": "Madhya Pradesh Special",
+      "topic": "Formation of Madhya Pradesh",
+      "subtopic": "Chief Ministers"
+    },
+    "MPPSC-2012-078": {
+      "subject": "Economy",
+      "topic": "Economy of Madhya Pradesh",
+      "subtopic": "Minerals of Madhya Pradesh"
+    },
+    "MPPSC-2012-079": {
+      "subject": "Art and Culture",
+      "topic": "Culture of Madhya Pradesh",
+      "subtopic": "Cultural institutions of Madhya Pradesh"
+    },
+    "MPPSC-2012-080": {
+      "subject": "Art and Culture",
+      "topic": "Heritage Sites",
+      "subtopic": "Sanchi"
+    },
+    "MPPSC-2012-081": {
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
+    },
+    "MPPSC-2012-082": {
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
+    },
+    "MPPSC-2012-083": {
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
+    },
+    "MPPSC-2012-084": {
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
+    },
+    "MPPSC-2012-085": {
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
+    },
+    "MPPSC-2012-086": {
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
+    },
+    "MPPSC-2012-087": {
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
+    },
+    "MPPSC-2012-088": {
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
+    },
+    "MPPSC-2012-089": {
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
+    },
+    "MPPSC-2012-090": {
+      "subject": "Science and Technology",
+      "topic": "Science and technology developments",
+      "subtopic": "Information technology"
+    },
+    "MPPSC-2012-091": {
+      "subject": "Current Affairs",
+      "topic": "Awards and honours",
+      "subtopic": "International awards"
+    },
+    "MPPSC-2012-092": {
+      "subject": "Madhya Pradesh Special",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2012-093": {
+      "subject": "Madhya Pradesh Special",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2012-094": {
+      "subject": "Polity",
+      "topic": "Citizenship and civil rights",
+      "subtopic": null
+    },
+    "MPPSC-2012-095": {
+      "subject": "Polity",
+      "topic": "Citizenship and civil rights",
+      "subtopic": null
+    },
+    "MPPSC-2012-096": {
+      "subject": "Polity",
+      "topic": "Citizenship and civil rights",
+      "subtopic": null
+    },
+    "MPPSC-2012-097": {
+      "subject": "Polity",
+      "topic": "Constitution of India",
+      "subtopic": "Fundamental Rights"
+    },
+    "MPPSC-2012-098": {
+      "subject": "Polity",
+      "topic": "Constitution of India",
+      "subtopic": "Fundamental Rights"
+    },
+    "MPPSC-2012-099": {
+      "subject": "Polity",
+      "topic": "Constitution of India",
+      "subtopic": "Fundamental Rights"
+    },
+    "MPPSC-2012-100": {
+      "subject": "Polity",
+      "topic": "Constitution of India",
+      "subtopic": "Fundamental Rights"
+    }
+  }
+}

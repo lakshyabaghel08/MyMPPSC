@@ -1,0 +1,4808 @@
+{
+  "status": "unreviewed transcription staging; not a question bank",
+  "source": "data/pyq/source/2012-recovery/MPPSC-Prelims-Exam-Paper-2012-Paper-I.md",
+  "source_sha256": "43b7face221271072e0a70dc0872daca01cdbd48ae2a73aa77845f25aca9640b",
+  "normalization": "Markdown emphasis and document furniture removed; line breaks retained.",
+  "questions": [
+    {
+      "id": "MPPSC-2012-001",
+      "question_number": 1,
+      "language_variants": {
+        "hi": {
+          "question_text": "एन. डी. आर. आई., करनाल (हरियाणा) के वैज्ञानिकों ने निम्नलिखित में से किस जानवर का दूसरा क्लोन विकसित किया ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "भेड़"
+            },
+            {
+              "key": "B",
+              "text": "भैंस"
+            },
+            {
+              "key": "C",
+              "text": "गाय"
+            },
+            {
+              "key": "D",
+              "text": "बकरा"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "Scientists of N.D.R.I., Karnal (Haryana) developed second clone of which one of the following animals ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Sheep"
+            },
+            {
+              "key": "B",
+              "text": "Buffalo"
+            },
+            {
+              "key": "C",
+              "text": "Cow"
+            },
+            {
+              "key": "D",
+              "text": "Goat"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-002",
+      "question_number": 2,
+      "language_variants": {
+        "hi": {
+          "question_text": "निम्नलिखित में से कौनसा साँप जहरीला नहीं है ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "कोबरा"
+            },
+            {
+              "key": "B",
+              "text": "वाइपर"
+            },
+            {
+              "key": "C",
+              "text": "कोरल-स्नेक"
+            },
+            {
+              "key": "D",
+              "text": "अजगर"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "Which snake of the following is non-poisonous ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Cobra"
+            },
+            {
+              "key": "B",
+              "text": "Viper"
+            },
+            {
+              "key": "C",
+              "text": "Coral-Snake"
+            },
+            {
+              "key": "D",
+              "text": "Python"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-003",
+      "question_number": 3,
+      "language_variants": {
+        "hi": {
+          "question_text": "भारतीय टाइगरों को बचाने के लिये 'प्रोजेक्ट टाइगर' किस वर्ष प्रारम्भ किया गया था ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "1971"
+            },
+            {
+              "key": "B",
+              "text": "1973"
+            },
+            {
+              "key": "C",
+              "text": "1977"
+            },
+            {
+              "key": "D",
+              "text": "1991"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "In which year was the 'Project Tiger' launched to save Indian Tigers ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "1971"
+            },
+            {
+              "key": "B",
+              "text": "1973"
+            },
+            {
+              "key": "C",
+              "text": "1977"
+            },
+            {
+              "key": "D",
+              "text": "1991"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-004",
+      "question_number": 4,
+      "language_variants": {
+        "hi": {
+          "question_text": "'एनीमोमीटर' से निम्नलिखित में से किसका मापन किया जाता है ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "पानी के बहाव की गति"
+            },
+            {
+              "key": "B",
+              "text": "पानी की गहराई"
+            },
+            {
+              "key": "C",
+              "text": "पवन वेग"
+            },
+            {
+              "key": "D",
+              "text": "प्रकाश की तीव्रता"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "Which of the following is measured by 'Anemometer' ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Velocity of water-flow"
+            },
+            {
+              "key": "B",
+              "text": "Depth of water"
+            },
+            {
+              "key": "C",
+              "text": "Force of the wind"
+            },
+            {
+              "key": "D",
+              "text": "Intensity of light"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-005",
+      "question_number": 5,
+      "language_variants": {
+        "hi": {
+          "question_text": "डेंगू एक बुखार है, जो उत्पन्न होता है तथा दूसरे मनुष्य में पहुँचता है :",
+          "options": [
+            {
+              "key": "A",
+              "text": "वायरस और मादा एडीज मच्छर द्वारा"
+            },
+            {
+              "key": "B",
+              "text": "बैक्टीरिया और मादा क्यूलेक्स मच्छर द्वारा"
+            },
+            {
+              "key": "C",
+              "text": "फंगस और मादा एडीज मच्छर द्वारा"
+            },
+            {
+              "key": "D",
+              "text": "प्रोटोज़ोअन और मादा ऐनोफ़िलीज़ मच्छर द्वारा"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "Dengue is a fever caused and transmitted to other human by :",
+          "options": [
+            {
+              "key": "A",
+              "text": "Virus and female Aedes mosquito"
+            },
+            {
+              "key": "B",
+              "text": "Bacteria and female Culex mosquito"
+            },
+            {
+              "key": "C",
+              "text": "Fungus and female Aedes mosquito"
+            },
+            {
+              "key": "D",
+              "text": "Protozoan and female Anopheles mosquito"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-006",
+      "question_number": 6,
+      "language_variants": {
+        "hi": {
+          "question_text": "कार्बन मोनो-ऑक्साइड विषाक्तता निम्नलिखित में से किसको मुख्यतः प्रभावित करती है ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "पाचन क्रिया को"
+            },
+            {
+              "key": "B",
+              "text": "लिवर की कार्यशीलता को"
+            },
+            {
+              "key": "C",
+              "text": "किडनी की कार्यशीलता को"
+            },
+            {
+              "key": "D",
+              "text": "रक्त की ऑक्सीजन को वहन करने की क्षमता को"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "Carbon monoxide poisoning affects mainly which one of the following ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Digestive activity"
+            },
+            {
+              "key": "B",
+              "text": "Liver functioning"
+            },
+            {
+              "key": "C",
+              "text": "Kidney functioning"
+            },
+            {
+              "key": "D",
+              "text": "Oxygen carrying capacity of blood"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-007",
+      "question_number": 7,
+      "language_variants": {
+        "hi": {
+          "question_text": "'स्थितिविज्ञान' निम्नलिखित में से किससे सम्बन्धित है ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "गतिमान स्थिति"
+            },
+            {
+              "key": "B",
+              "text": "विश्राम की स्थिति"
+            },
+            {
+              "key": "C",
+              "text": "मानसिक स्थिति"
+            },
+            {
+              "key": "D",
+              "text": "आँकड़ों का अध्ययन"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "'Statics' is related to which one of the following ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "State of motion"
+            },
+            {
+              "key": "B",
+              "text": "State of rest"
+            },
+            {
+              "key": "C",
+              "text": "State of mind"
+            },
+            {
+              "key": "D",
+              "text": "Study of data"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-008",
+      "question_number": 8,
+      "language_variants": {
+        "hi": {
+          "question_text": "'इंटरनेशनल एस्ट्रोनॉमिकल यूनियन' द्वारा सन् 2006 में दी गई एक नई परिभाषा के अनुसार निम्नलिखित में से कौनसा 'ग्रह' नहीं है ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "यूरेनस"
+            },
+            {
+              "key": "B",
+              "text": "नेप्च्यून"
+            },
+            {
+              "key": "C",
+              "text": "प्लूटो"
+            },
+            {
+              "key": "D",
+              "text": "जुपिटर"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "According to a new definition adopted by 'International Astronomical Union' in 2006, which of the following is not a 'planet' ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Uranus"
+            },
+            {
+              "key": "B",
+              "text": "Neptune"
+            },
+            {
+              "key": "C",
+              "text": "Pluto"
+            },
+            {
+              "key": "D",
+              "text": "Jupiter"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-009",
+      "question_number": 9,
+      "language_variants": {
+        "hi": {
+          "question_text": "'विश्व एड्स दिवस' निम्नलिखित में से किस तारीख को मनाया जाता है ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "12 जनवरी"
+            },
+            {
+              "key": "B",
+              "text": "1 अप्रैल"
+            },
+            {
+              "key": "C",
+              "text": "1 मई"
+            },
+            {
+              "key": "D",
+              "text": "1 दिसम्बर"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "'World AIDS Day' is celebrated on which date ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "12th January"
+            },
+            {
+              "key": "B",
+              "text": "1st April"
+            },
+            {
+              "key": "C",
+              "text": "1st May"
+            },
+            {
+              "key": "D",
+              "text": "1st December"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-010",
+      "question_number": 10,
+      "language_variants": {
+        "hi": {
+          "question_text": "निम्नलिखित में से कौन विद्युत उत्पादन के क्षेत्र से सम्बन्धित है ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "एम. एम. टी. सी."
+            },
+            {
+              "key": "B",
+              "text": "एम. टी. एन. एल."
+            },
+            {
+              "key": "C",
+              "text": "एन. सी. एल."
+            },
+            {
+              "key": "D",
+              "text": "एन. एच. पी. सी."
+            }
+          ]
+        },
+        "en": {
+          "question_text": "Which of the following is related with the field of electricity generation ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "M.M.T.C."
+            },
+            {
+              "key": "B",
+              "text": "M.T.N.L."
+            },
+            {
+              "key": "C",
+              "text": "N.C.L."
+            },
+            {
+              "key": "D",
+              "text": "N.H.P.C."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-011",
+      "question_number": 11,
+      "language_variants": {
+        "hi": {
+          "question_text": "अजन्ता की गुफायें निम्नलिखित में से किससे सम्बन्धित हैं ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "रामायण"
+            },
+            {
+              "key": "B",
+              "text": "महाभारत"
+            },
+            {
+              "key": "C",
+              "text": "जातक कथायें"
+            },
+            {
+              "key": "D",
+              "text": "पंचतंत्र कहानियाँ"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "Ajanta caves are connected with which of the following ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Ramayana"
+            },
+            {
+              "key": "B",
+              "text": "Mahabharata"
+            },
+            {
+              "key": "C",
+              "text": "Jataka Stories"
+            },
+            {
+              "key": "D",
+              "text": "Panchtantra Stories"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-012",
+      "question_number": 12,
+      "language_variants": {
+        "hi": {
+          "question_text": "सिंधु घाटी सभ्यता के संदर्भ में निम्नलिखित कथनों पर विचार कीजिये :\n(1) उस काल में भारत में वस्त्र बनाने में कपास का प्रयोग होता था\n(2) यह सभ्यता मुख्यतः लौकिक सभ्यता थी तथा उसमें धार्मिक तत्व, यद्यपि उपस्थित था, वर्चस्वशाली नहीं था\nउपर्युक्त में से कौन-सा/कौन-से कथन सही है/हैं ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "केवल (1)"
+            },
+            {
+              "key": "B",
+              "text": "केवल (2)"
+            },
+            {
+              "key": "C",
+              "text": "(1) और (2) दोनों"
+            },
+            {
+              "key": "D",
+              "text": "न तो (1) और न ही (2)"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "Regarding the Indus Valley Civilization, consider the following statements :\n(1) During this period cotton was used for manufacturing textiles in India.\n(2) It was predominantly a secular civilization and the religious element, though present, did not dominate the scene.\nWhich of the statements given above is/are correct ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "(1) only"
+            },
+            {
+              "key": "B",
+              "text": "(2) only"
+            },
+            {
+              "key": "C",
+              "text": "Both (1) and (2)"
+            },
+            {
+              "key": "D",
+              "text": "Neither (1) nor (2)"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-013",
+      "question_number": 13,
+      "language_variants": {
+        "hi": {
+          "question_text": "'त्रिपिटक' निम्नलिखित में से किससे सम्बन्धित है ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "जैनियों से"
+            },
+            {
+              "key": "B",
+              "text": "बौद्धों से"
+            },
+            {
+              "key": "C",
+              "text": "सिक्खों से"
+            },
+            {
+              "key": "D",
+              "text": "हिन्दुओं से"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "'Tripitaka' is associated with which of the following ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Jains"
+            },
+            {
+              "key": "B",
+              "text": "Buddhists"
+            },
+            {
+              "key": "C",
+              "text": "Sikhs"
+            },
+            {
+              "key": "D",
+              "text": "Hindus"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-014",
+      "question_number": 14,
+      "language_variants": {
+        "hi": {
+          "question_text": "कल्हण द्वारा रचित 'राजतरंगिनी' निम्नलिखित में से किससे सम्बन्धित है ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "चन्द्रगुप्त के शासन से"
+            },
+            {
+              "key": "B",
+              "text": "गीतों के संकलन से"
+            },
+            {
+              "key": "C",
+              "text": "कश्मीर के इतिहास से"
+            },
+            {
+              "key": "D",
+              "text": "कृष्णदेव राय के शासन से"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "'Rajatarangini' written by Kalhan is associated with which of the following ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Chandragupta's reign"
+            },
+            {
+              "key": "B",
+              "text": "Anthology of lyrics"
+            },
+            {
+              "key": "C",
+              "text": "History of Kashmir"
+            },
+            {
+              "key": "D",
+              "text": "Reign of Krishna Deva Raya"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-015",
+      "question_number": 15,
+      "language_variants": {
+        "hi": {
+          "question_text": "निम्नलिखित में से कौन प्रसिद्ध 'आई.एन.ए. मुकदमे' के वकील थे ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "सुभाष चन्द्र बोस"
+            },
+            {
+              "key": "B",
+              "text": "सी. राजगोपालाचारी"
+            },
+            {
+              "key": "C",
+              "text": "आसफ अली"
+            },
+            {
+              "key": "D",
+              "text": "भुलाभाई देसाई"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "Who among the following was the advocate at the famous 'I.N.A. trials' ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Subhash Chandra Bose"
+            },
+            {
+              "key": "B",
+              "text": "C. Rajagopalachari"
+            },
+            {
+              "key": "C",
+              "text": "Asaf Ali"
+            },
+            {
+              "key": "D",
+              "text": "Bhulabhai Desai"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-016",
+      "question_number": 16,
+      "language_variants": {
+        "hi": {
+          "question_text": "निम्नलिखित में से किसने तीनों गोलमेज सम्मेलनों में भाग लिया था ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "वल्लभभाई पटेल"
+            },
+            {
+              "key": "B",
+              "text": "मदन मोहन मालवीय"
+            },
+            {
+              "key": "C",
+              "text": "बी. आर. अम्बेडकर"
+            },
+            {
+              "key": "D",
+              "text": "उपर्युक्त में से किसी ने नहीं"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "Who amongst the following attended all the three Round Table Conferences ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Vallabhbhai Patel"
+            },
+            {
+              "key": "B",
+              "text": "Madan Mohan Malviya"
+            },
+            {
+              "key": "C",
+              "text": "B.R. Ambedkar"
+            },
+            {
+              "key": "D",
+              "text": "None of the above"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-017",
+      "question_number": 17,
+      "language_variants": {
+        "hi": {
+          "question_text": "निम्नलिखित में से किसने क्रांतिकारियों के संगठन 'अभिनव भारत' को संगठित किया था ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "जतीन्द्रनाथ मुखर्जी"
+            },
+            {
+              "key": "B",
+              "text": "मदनलाल धींगरा"
+            },
+            {
+              "key": "C",
+              "text": "विनायक दामोदर सावरकर"
+            },
+            {
+              "key": "D",
+              "text": "लाला हरदयाल"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "Who among the following organised the society of revolutionaries, 'Abhinav Bharat' ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Jatindra Nath Mukherjee"
+            },
+            {
+              "key": "B",
+              "text": "Madan Lal Dhingra"
+            },
+            {
+              "key": "C",
+              "text": "Vinayak Damodar Savarkar"
+            },
+            {
+              "key": "D",
+              "text": "Lala Hardayal"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-018",
+      "question_number": 18,
+      "language_variants": {
+        "hi": {
+          "question_text": "संयुक्त राष्ट्रसंघ में हिन्दी में भाषण देने वाले निम्न में से पहले व्यक्ति कौन रहे हैं ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "स्वामी विवेकानन्द"
+            },
+            {
+              "key": "B",
+              "text": "लाल बहादुर शास्त्री"
+            },
+            {
+              "key": "C",
+              "text": "अटल बिहारी बाजपेयी"
+            },
+            {
+              "key": "D",
+              "text": "उपर्युक्त में से कोई नहीं"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "Who among the following has been first person who delivered his speech in Hindi in U.N.O. ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Swami Vivekananda"
+            },
+            {
+              "key": "B",
+              "text": "Lal Bahadur Shastri"
+            },
+            {
+              "key": "C",
+              "text": "Atal Bihari Bajpayee"
+            },
+            {
+              "key": "D",
+              "text": "None of the above"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-019",
+      "question_number": 19,
+      "language_variants": {
+        "hi": {
+          "question_text": "अमीर खुसरो निम्नलिखित में से किसके शासनकाल से सम्बन्धित थे ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "अलाउद्दीन खिलजी"
+            },
+            {
+              "key": "B",
+              "text": "मुहम्मद बिन तुगलक"
+            },
+            {
+              "key": "C",
+              "text": "इब्राहिम लोदी"
+            },
+            {
+              "key": "D",
+              "text": "फिरोज शाह"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "'Amir Khusro' was associated with whose reign among the following ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Allauddin Khilzi"
+            },
+            {
+              "key": "B",
+              "text": "Muhammad Bin Tughlaq"
+            },
+            {
+              "key": "C",
+              "text": "Ibrahim Lodi"
+            },
+            {
+              "key": "D",
+              "text": "Firoz Shah"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-020",
+      "question_number": 20,
+      "language_variants": {
+        "hi": {
+          "question_text": "मोहनजोदड़ो निम्नलिखित में से कहाँ पर स्थित है ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "भारत के गुजरात राज्य में"
+            },
+            {
+              "key": "B",
+              "text": "भारत के पंजाब राज्य में"
+            },
+            {
+              "key": "C",
+              "text": "पाकिस्तान के सिन्ध प्रांत में"
+            },
+            {
+              "key": "D",
+              "text": "अफगानिस्तान में"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "Mohenjo Daro is situated in which of the following ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Gujarat state of India"
+            },
+            {
+              "key": "B",
+              "text": "Punjab state of India"
+            },
+            {
+              "key": "C",
+              "text": "Sindh Province in Pakistan"
+            },
+            {
+              "key": "D",
+              "text": "Afghanistan"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-021",
+      "question_number": 21,
+      "language_variants": {
+        "hi": {
+          "question_text": "नागार्जुन सागर बाँध भारत के किस राज्य में स्थित है ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "तमिलनाडु"
+            },
+            {
+              "key": "B",
+              "text": "आन्ध्र प्रदेश"
+            },
+            {
+              "key": "C",
+              "text": "कर्नाटक"
+            },
+            {
+              "key": "D",
+              "text": "उड़ीसा"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "Nagarjun Sagar Dam is situated in which state of India ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Tamil Nadu"
+            },
+            {
+              "key": "B",
+              "text": "Andhra Pradesh"
+            },
+            {
+              "key": "C",
+              "text": "Karnataka"
+            },
+            {
+              "key": "D",
+              "text": "Orissa"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-022",
+      "question_number": 22,
+      "language_variants": {
+        "hi": {
+          "question_text": "हिमालय पर्वत श्रेणियाँ निम्नलिखित में से किस राज्य का हिस्सा नहीं हैं ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "उत्तराखण्ड"
+            },
+            {
+              "key": "B",
+              "text": "उत्तर प्रदेश"
+            },
+            {
+              "key": "C",
+              "text": "सिक्किम"
+            },
+            {
+              "key": "D",
+              "text": "हिमाचल प्रदेश"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "The Himalayan Mountain Ranges are not a part of which of the following states ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Uttarakhand"
+            },
+            {
+              "key": "B",
+              "text": "Uttar Pradesh"
+            },
+            {
+              "key": "C",
+              "text": "Sikkim"
+            },
+            {
+              "key": "D",
+              "text": "Himachal Pradesh"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-023",
+      "question_number": 23,
+      "language_variants": {
+        "hi": {
+          "question_text": "भारत में ग्रीष्मकालीन मानसून के प्रवाह की सामान्य दिशा निम्नलिखित में से कौनसी है ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "दक्षिण से उत्तर"
+            },
+            {
+              "key": "B",
+              "text": "दक्षिण-पश्चिम से दक्षिण-पूर्व"
+            },
+            {
+              "key": "C",
+              "text": "दक्षिण-पूर्व से दक्षिण-पश्चिम"
+            },
+            {
+              "key": "D",
+              "text": "दक्षिण पश्चिम से उत्तर-पूर्व"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "Which of the following is the general direction of flow of summer monsoon in India ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "From South to North"
+            },
+            {
+              "key": "B",
+              "text": "From South-west to South-east"
+            },
+            {
+              "key": "C",
+              "text": "From South-east to South-west"
+            },
+            {
+              "key": "D",
+              "text": "From South-west to North-east"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-024",
+      "question_number": 24,
+      "language_variants": {
+        "hi": {
+          "question_text": "भारत की 2011 की जनगणना के अस्थायी आँकड़ों के अनुसार भारत का लिंगानुपात निम्नलिखित में से क्या है ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "935"
+            },
+            {
+              "key": "B",
+              "text": "940"
+            },
+            {
+              "key": "C",
+              "text": "945"
+            },
+            {
+              "key": "D",
+              "text": "950"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "What is the sex ratio of India as per the provisional data of census of India 2011 from the following ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "935"
+            },
+            {
+              "key": "B",
+              "text": "940"
+            },
+            {
+              "key": "C",
+              "text": "945"
+            },
+            {
+              "key": "D",
+              "text": "950"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-025",
+      "question_number": 25,
+      "language_variants": {
+        "hi": {
+          "question_text": "भारत का सर्वप्रथम राष्ट्रीय उद्यान निम्नलिखित में से कौनसा है ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "कान्हा राष्ट्रीय उद्यान"
+            },
+            {
+              "key": "B",
+              "text": "दुधवा राष्ट्रीय उद्यान"
+            },
+            {
+              "key": "C",
+              "text": "राजाजी राष्ट्रीय उद्यान"
+            },
+            {
+              "key": "D",
+              "text": "कॉर्बेट राष्ट्रीय उद्यान"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "Which one of the following is the first National Park of India ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Kanha National Park"
+            },
+            {
+              "key": "B",
+              "text": "Dudhwa National Park"
+            },
+            {
+              "key": "C",
+              "text": "Rajaji National Park"
+            },
+            {
+              "key": "D",
+              "text": "Corbett National Park"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-026",
+      "question_number": 26,
+      "language_variants": {
+        "hi": {
+          "question_text": "अलास्का निम्नलिखित में से किस देश का हिस्सा है ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "ग्रीनलैण्ड"
+            },
+            {
+              "key": "B",
+              "text": "संयुक्त राज्य अमेरिका"
+            },
+            {
+              "key": "C",
+              "text": "कनाडा"
+            },
+            {
+              "key": "D",
+              "text": "रूस"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "Alaska is a part of which state from the following ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Greenland"
+            },
+            {
+              "key": "B",
+              "text": "United States of America"
+            },
+            {
+              "key": "C",
+              "text": "Canada"
+            },
+            {
+              "key": "D",
+              "text": "Russia"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-027",
+      "question_number": 27,
+      "language_variants": {
+        "hi": {
+          "question_text": "एंडीज पर्वत श्रेणी निम्नलिखित में से किस महाद्वीप में स्थित है ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "ऑस्ट्रेलिया"
+            },
+            {
+              "key": "B",
+              "text": "यूरोप"
+            },
+            {
+              "key": "C",
+              "text": "दक्षिण अमेरिका"
+            },
+            {
+              "key": "D",
+              "text": "उत्तर अमेरिका"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "In which of the following continents the Andes Mountain Range is located ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Australia"
+            },
+            {
+              "key": "B",
+              "text": "Europe"
+            },
+            {
+              "key": "C",
+              "text": "South America"
+            },
+            {
+              "key": "D",
+              "text": "North America"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-028",
+      "question_number": 28,
+      "language_variants": {
+        "hi": {
+          "question_text": "भूमध्यरेखा निम्नलिखित में से किस देश से होकर नहीं गुजरती है ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "कीनिया (केन्या)"
+            },
+            {
+              "key": "B",
+              "text": "मेक्सिको"
+            },
+            {
+              "key": "C",
+              "text": "इंडोनेशिया"
+            },
+            {
+              "key": "D",
+              "text": "ब्राजील"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "The Equator does not pass through which of the following countries ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Kenya"
+            },
+            {
+              "key": "B",
+              "text": "Mexico"
+            },
+            {
+              "key": "C",
+              "text": "Indonesia"
+            },
+            {
+              "key": "D",
+              "text": "Brazil"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-029",
+      "question_number": 29,
+      "language_variants": {
+        "hi": {
+          "question_text": "निम्नलिखित में से कौनसा शहर ‘नहरों का शहर’ कहलाता है ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "एम्स्टरडम"
+            },
+            {
+              "key": "B",
+              "text": "रोम"
+            },
+            {
+              "key": "C",
+              "text": "वेनिस"
+            },
+            {
+              "key": "D",
+              "text": "एथेन्स"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "Which of the following cities is known as the ‘City of Canals’ ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Amsterdam"
+            },
+            {
+              "key": "B",
+              "text": "Rome"
+            },
+            {
+              "key": "C",
+              "text": "Venice"
+            },
+            {
+              "key": "D",
+              "text": "Athens"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-030",
+      "question_number": 30,
+      "language_variants": {
+        "hi": {
+          "question_text": "निम्नलिखित में से किस भारतीय राज्य की सीमायें भूटान राष्ट्र के साथ नहीं मिलती है ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "सिक्किम"
+            },
+            {
+              "key": "B",
+              "text": "मेघालय"
+            },
+            {
+              "key": "C",
+              "text": "अरुणाचल प्रदेश"
+            },
+            {
+              "key": "D",
+              "text": "पश्चिम बंगाल"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "Which one of the following Indian States does not share border with Bhutan ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Sikkim"
+            },
+            {
+              "key": "B",
+              "text": "Meghalaya"
+            },
+            {
+              "key": "C",
+              "text": "Arunachal Pradesh"
+            },
+            {
+              "key": "D",
+              "text": "West Bengal"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-031",
+      "question_number": 31,
+      "language_variants": {
+        "hi": {
+          "question_text": "निम्नलिखित में से संविधान सभा के बारे में गलत कथन कौनसा है ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "इसने बड़ी संख्या में समितियों की मदद से काम किया। उनमें से प्रारूप समिति सबसे महत्वपूर्ण थी।"
+            },
+            {
+              "key": "B",
+              "text": "अल्पसंख्यक समुदाय जैसे ईसाई, एंग्लो-इंडियन और पारसियों को सभा में पर्याप्त प्रतिनिधित्व दिया गया।"
+            },
+            {
+              "key": "C",
+              "text": "इसका निर्वाचन सार्वभौम वयस्क मताधिकार के आधार पर किया गया।"
+            },
+            {
+              "key": "D",
+              "text": "इसकी चुनाव प्रक्रिया 1935 के अधिनियम के 6वें अनुसूची पर आधारित थी। कर, सम्पत्ति और शैक्षणिक योग्यता के कारण मताधिकार सीमित कर दिया था।"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "Which one among the following is incorrect statement about the Constituent Assembly ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "It worked with the help of a large number of committees, the most important among them being the Drafting Committee"
+            },
+            {
+              "key": "B",
+              "text": "Minority communities like Christians, Anglo-Indians and Parsis were adequately represented in the Assembly"
+            },
+            {
+              "key": "C",
+              "text": "It was elected on the basis of universal adult franchise"
+            },
+            {
+              "key": "D",
+              "text": "Its electoral process was based on the sixth schedule of the Act of 1935 which allowed for a restricted franchise based on tax, property and educational qualification"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-032",
+      "question_number": 32,
+      "language_variants": {
+        "hi": {
+          "question_text": "निम्नलिखित में से दलीय व्यवस्था किस एक व्यापक व्यवस्था का अंग है ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "सामाजिक व्यवस्था"
+            },
+            {
+              "key": "B",
+              "text": "आर्थिक व्यवस्था"
+            },
+            {
+              "key": "C",
+              "text": "राजनैतिक व्यवस्था"
+            },
+            {
+              "key": "D",
+              "text": "अन्तर्राष्ट्रीय व्यवस्था"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "The party system is the part of which larger system among the following ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Social system"
+            },
+            {
+              "key": "B",
+              "text": "Economic system"
+            },
+            {
+              "key": "C",
+              "text": "Political system"
+            },
+            {
+              "key": "D",
+              "text": "International system"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-033",
+      "question_number": 33,
+      "language_variants": {
+        "hi": {
+          "question_text": "रिजर्व बैंक ऑफ इण्डिया निम्नलिखित में से किसके बदले में मुद्रा-निर्गमन करता है ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "स्वर्ण"
+            },
+            {
+              "key": "B",
+              "text": "विदेशी प्रतिभूति"
+            },
+            {
+              "key": "C",
+              "text": "भारत सरकार की प्रतिभूति"
+            },
+            {
+              "key": "D",
+              "text": "उपर्युक्त सभी"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "Reserve Bank of India issues currency notes against which of the following ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Gold"
+            },
+            {
+              "key": "B",
+              "text": "Foreign security"
+            },
+            {
+              "key": "C",
+              "text": "Govt. of India security"
+            },
+            {
+              "key": "D",
+              "text": "All of the above"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-034",
+      "question_number": 34,
+      "language_variants": {
+        "hi": {
+          "question_text": "रेलवे जोन के लिए संसद सदस्यों की सलाहकार समिति निम्नलिखित में से किसके द्वारा गठित की जाती है ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "भारत के राष्ट्रपति"
+            },
+            {
+              "key": "B",
+              "text": "रेल मंत्रालय"
+            },
+            {
+              "key": "C",
+              "text": "संसदीय मामलों का मंत्रालय"
+            },
+            {
+              "key": "D",
+              "text": "परिवहन मंत्रालय"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "The Consultative Committee of Members of Parliament for Railway Zones is constituted by which of the following ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "President of India"
+            },
+            {
+              "key": "B",
+              "text": "Ministry of Railways"
+            },
+            {
+              "key": "C",
+              "text": "Ministry of Parliamentary Affairs"
+            },
+            {
+              "key": "D",
+              "text": "Ministry of Transport"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-035",
+      "question_number": 35,
+      "language_variants": {
+        "hi": {
+          "question_text": "निम्नलिखित में से 12वीं पंचवर्षीय योजना की अवधि कब से कब तक है ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "2007-2012"
+            },
+            {
+              "key": "B",
+              "text": "2012-2017"
+            },
+            {
+              "key": "C",
+              "text": "2010-2015"
+            },
+            {
+              "key": "D",
+              "text": "2006-2011"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "Which one of the following is the period of 12th Five Year Plan ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "2007-2012"
+            },
+            {
+              "key": "B",
+              "text": "2012-2017"
+            },
+            {
+              "key": "C",
+              "text": "2010-2015"
+            },
+            {
+              "key": "D",
+              "text": "2006-2011"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-036",
+      "question_number": 36,
+      "language_variants": {
+        "hi": {
+          "question_text": "भारत में राष्ट्रीय आय की गणना निम्नलिखित में से किसके द्वारा की जाती है ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "योजना आयोग"
+            },
+            {
+              "key": "B",
+              "text": "वित्त मंत्रालय"
+            },
+            {
+              "key": "C",
+              "text": "केन्द्रीय सांख्यिकी संगठन"
+            },
+            {
+              "key": "D",
+              "text": "रिज़र्व बैंक ऑफ इण्डिया"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "In India, National Income is computed by which of the following ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Planning Commission"
+            },
+            {
+              "key": "B",
+              "text": "Ministry of Finance"
+            },
+            {
+              "key": "C",
+              "text": "Central Statistical Organisation"
+            },
+            {
+              "key": "D",
+              "text": "Reserve Bank of India"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-037",
+      "question_number": 37,
+      "language_variants": {
+        "hi": {
+          "question_text": "निम्नलिखित में से कौनसा 'श्वेत क्रान्ति' से सम्बन्धित है ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "पी. जे. कुरियन"
+            },
+            {
+              "key": "B",
+              "text": "वर्गीज कुरियन"
+            },
+            {
+              "key": "C",
+              "text": "एम. एस. स्वामीनाथन"
+            },
+            {
+              "key": "D",
+              "text": "एम. एस. रघुनाथन"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "Who among the following is associated with 'White Revolution' ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "P.J. Kurien"
+            },
+            {
+              "key": "B",
+              "text": "Verghese Kurien"
+            },
+            {
+              "key": "C",
+              "text": "M.S. Swaminathan"
+            },
+            {
+              "key": "D",
+              "text": "M.S. Raghunathan"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-038",
+      "question_number": 38,
+      "language_variants": {
+        "hi": {
+          "question_text": "निम्नलिखित में से कौनसा बैंक भारत का केन्द्रीय बैंक है ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "स्टेट बैंक ऑफ इण्डिया"
+            },
+            {
+              "key": "B",
+              "text": "बैंक ऑफ इण्डिया"
+            },
+            {
+              "key": "C",
+              "text": "यूनियन बैंक ऑफ इण्डिया"
+            },
+            {
+              "key": "D",
+              "text": "रिज़र्व बैंक ऑफ इण्डिया"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "Which of the following Banks is the Central Bank of India ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "State Bank of India"
+            },
+            {
+              "key": "B",
+              "text": "Bank of India"
+            },
+            {
+              "key": "C",
+              "text": "Union Bank of India"
+            },
+            {
+              "key": "D",
+              "text": "Reserve Bank of India"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-039",
+      "question_number": 39,
+      "language_variants": {
+        "hi": {
+          "question_text": "निम्नलिखित में से कौन प्रथम लोकसभा के अध्यक्ष थे ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "जी. वी. मावलंकर"
+            },
+            {
+              "key": "B",
+              "text": "के. एम. मुंशी"
+            },
+            {
+              "key": "C",
+              "text": "जी. बी. पन्त"
+            },
+            {
+              "key": "D",
+              "text": "आचार्य कृपलानी"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "Who among the following was the Speaker of first Lok Sabha ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "G.V. Mavalankar"
+            },
+            {
+              "key": "B",
+              "text": "K. M. Munshi"
+            },
+            {
+              "key": "C",
+              "text": "G. B. Pant"
+            },
+            {
+              "key": "D",
+              "text": "Acharya Kriplani"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-040",
+      "question_number": 40,
+      "language_variants": {
+        "hi": {
+          "question_text": "निम्नलिखित में से कौन सार्वजनिक क्षेत्र का उपक्रम नहीं है ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "एन.टी.पी.सी. (N.T.P.C.)"
+            },
+            {
+              "key": "B",
+              "text": "एस.ए.आई.एल. (S.A.I.L.)"
+            },
+            {
+              "key": "C",
+              "text": "बी.एच.ई.एल. (B.H.E.L.)"
+            },
+            {
+              "key": "D",
+              "text": "टिस्को (T.I.S.C.O.)"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "Which of the following is not a public sector undertaking/enterprise ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "N.T.P.C."
+            },
+            {
+              "key": "B",
+              "text": "S.A.I.L."
+            },
+            {
+              "key": "C",
+              "text": "B.H.E.L."
+            },
+            {
+              "key": "D",
+              "text": "T.I.S.C.O."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-041",
+      "question_number": 41,
+      "language_variants": {
+        "hi": {
+          "question_text": "मध्य प्रदेश में सबसे बड़ा इन्डोर स्टेडियम निम्नलिखित में से कहाँ पर स्थित है ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "ग्वालियर"
+            },
+            {
+              "key": "B",
+              "text": "इन्दौर"
+            },
+            {
+              "key": "C",
+              "text": "भोपाल"
+            },
+            {
+              "key": "D",
+              "text": "जबलपुर"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "Where among the following is the biggest indoor stadium situated in M.P. ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Gwalior"
+            },
+            {
+              "key": "B",
+              "text": "Indore"
+            },
+            {
+              "key": "C",
+              "text": "Bhopal"
+            },
+            {
+              "key": "D",
+              "text": "Jabalpur"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-042",
+      "question_number": 42,
+      "language_variants": {
+        "hi": {
+          "question_text": "सुब्रतो कप निम्नलिखित में से किससे सम्बन्धित है ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "फुटबॉल"
+            },
+            {
+              "key": "B",
+              "text": "क्रिकेट"
+            },
+            {
+              "key": "C",
+              "text": "शतरंज"
+            },
+            {
+              "key": "D",
+              "text": "बैडमिन्टन"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "Subrato Cup is associated with which of the following ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Football"
+            },
+            {
+              "key": "B",
+              "text": "Cricket"
+            },
+            {
+              "key": "C",
+              "text": "Chess"
+            },
+            {
+              "key": "D",
+              "text": "Badminton"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-043",
+      "question_number": 43,
+      "language_variants": {
+        "hi": {
+          "question_text": "निम्नलिखित में से किस ओलम्पिक तैराक ने अपने जीवन में 18 स्वर्णपदक जीते हैं ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "माइकल फेल्प्स (यू.एस.ए.)"
+            },
+            {
+              "key": "B",
+              "text": "फ्लोरेन्ट मनौडोव (फ्रान्स)"
+            },
+            {
+              "key": "C",
+              "text": "कूलिन जोन्स (यू.एस.ए.)"
+            },
+            {
+              "key": "D",
+              "text": "इऑन थोर्प (ऑस्ट्रेलिया)"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "Which Olympic Swimmer amongst the following has won 18 Gold medals in his career ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Michel Phelps (U.S.A.)"
+            },
+            {
+              "key": "B",
+              "text": "Florent Manaudov (France)"
+            },
+            {
+              "key": "C",
+              "text": "Cullen Jones (U.S.A.)"
+            },
+            {
+              "key": "D",
+              "text": "Ian Thorpe (Australia)"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-044",
+      "question_number": 44,
+      "language_variants": {
+        "hi": {
+          "question_text": "मेरी कॉम को मिला है/मिले हैं :",
+          "options": [
+            {
+              "key": "A",
+              "text": "2012 ओलम्पिक में कांस्य पदक"
+            },
+            {
+              "key": "B",
+              "text": "अर्जुन पुरस्कार"
+            },
+            {
+              "key": "C",
+              "text": "पद्मश्री"
+            },
+            {
+              "key": "D",
+              "text": "उपर्युक्त सभी"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "Mary Kom is a recipient of :",
+          "options": [
+            {
+              "key": "A",
+              "text": "Bronze medal in 2012 Olympic"
+            },
+            {
+              "key": "B",
+              "text": "Arjun Award"
+            },
+            {
+              "key": "C",
+              "text": "Padma Shree"
+            },
+            {
+              "key": "D",
+              "text": "All of the above"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-045",
+      "question_number": 45,
+      "language_variants": {
+        "hi": {
+          "question_text": "वर्तमान में निम्नलिखित में से मध्य प्रदेश खेल परिषद के अध्यक्ष कौन हैं ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "कैलाश विजयवर्गीय"
+            },
+            {
+              "key": "B",
+              "text": "शिवराज सिंह चौहान"
+            },
+            {
+              "key": "C",
+              "text": "तुकोजिराव पवार"
+            },
+            {
+              "key": "D",
+              "text": "विक्रम वर्मा"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "Who among the following is the chairman of Madhya Pradesh Sports Council at present ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Kailash Vijay Vargiya"
+            },
+            {
+              "key": "B",
+              "text": "Shivraj Singh Chauhan"
+            },
+            {
+              "key": "C",
+              "text": "Tukoji Rao Pawar"
+            },
+            {
+              "key": "D",
+              "text": "Vikram Varma"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-046",
+      "question_number": 46,
+      "language_variants": {
+        "hi": {
+          "question_text": "कितने खिलाड़ी एक टीम से मैदान पर क्रमश: खो-खो, कबड्डी, वॉलीबॉल व बास्केटबॉल में खेलते हैं ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "7, 9, 5, 6"
+            },
+            {
+              "key": "B",
+              "text": "5, 6, 7, 9"
+            },
+            {
+              "key": "C",
+              "text": "9, 7, 6, 5"
+            },
+            {
+              "key": "D",
+              "text": "7, 5, 6, 9"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "How many players play on the ground from one team in Kho-kho, Kabaddi, Volleyball and Basketball respectively ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "7, 9, 5, 6"
+            },
+            {
+              "key": "B",
+              "text": "5, 6, 7, 9"
+            },
+            {
+              "key": "C",
+              "text": "9, 7, 6, 5"
+            },
+            {
+              "key": "D",
+              "text": "7, 5, 6, 9"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-047",
+      "question_number": 47,
+      "language_variants": {
+        "hi": {
+          "question_text": "खेल प्रशिक्षक को उसके समर्पित कार्य हेतु मध्य प्रदेश शासन द्वारा निम्नलिखित में से कौनसा पुरस्कार दिया जाता है ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "द्रोणाचार्य पुरस्कार"
+            },
+            {
+              "key": "B",
+              "text": "परशुराम पुरस्कार"
+            },
+            {
+              "key": "C",
+              "text": "विक्रम पुरस्कार"
+            },
+            {
+              "key": "D",
+              "text": "सांदिपनी पुरस्कार"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "Which of the following awards is given by the Madhya Pradesh government to a coach for his dedication in sports ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Dronacharya award"
+            },
+            {
+              "key": "B",
+              "text": "Parashuram award"
+            },
+            {
+              "key": "C",
+              "text": "Vikram award"
+            },
+            {
+              "key": "D",
+              "text": "Sandipani award"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-048",
+      "question_number": 48,
+      "language_variants": {
+        "hi": {
+          "question_text": "सन् 1956 व 1964 के ओलम्पिक खेलों में स्वर्णपदक जीतने वाली भारतीय हॉकी टीम/टीमों के गोलरक्षक का क्या नाम है ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "ध्यानचन्द"
+            },
+            {
+              "key": "B",
+              "text": "अजितपाल सिंह"
+            },
+            {
+              "key": "C",
+              "text": "रूप सिंह"
+            },
+            {
+              "key": "D",
+              "text": "शंकर लक्ष्मण"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "What is the name of the goalkeeper of Indian Hockey team/teams which won gold medals in 1956 and 1964 Olympic games ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Dhyanchand"
+            },
+            {
+              "key": "B",
+              "text": "Ajitpal Singh"
+            },
+            {
+              "key": "C",
+              "text": "Roop Singh"
+            },
+            {
+              "key": "D",
+              "text": "Shankar Laxman"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-049",
+      "question_number": 49,
+      "language_variants": {
+        "hi": {
+          "question_text": "निम्नलिखित में से किस खिलाड़ी को भारतीय क्रिकेट कंट्रोल बोर्ड ने सी.के. नायडू लाइफ-टाइम अचीवमेंट अवार्ड से नवाज़ा है ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "सुनील गावस्कर"
+            },
+            {
+              "key": "B",
+              "text": "अनिल कुंबले"
+            },
+            {
+              "key": "C",
+              "text": "सचिन तेंदुलकर"
+            },
+            {
+              "key": "D",
+              "text": "सौरभ गांगुली"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "Which cricket player among the following has been honoured by Board of Control for Cricket in India giving him C.K. Naidu Lifetime Achievement Award ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Sunil Gavaskar"
+            },
+            {
+              "key": "B",
+              "text": "Anil Kumble"
+            },
+            {
+              "key": "C",
+              "text": "Sachin Tendulkar"
+            },
+            {
+              "key": "D",
+              "text": "Saurav Ganguli"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-050",
+      "question_number": 50,
+      "language_variants": {
+        "hi": {
+          "question_text": "निम्नलिखित में से 2012 की विश्व बिलियर्ड स्पर्धा किसने जीती ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "माइक रसेल"
+            },
+            {
+              "key": "B",
+              "text": "रूपेश शाह"
+            },
+            {
+              "key": "C",
+              "text": "ध्रुव सिटवाला"
+            },
+            {
+              "key": "D",
+              "text": "पंकज आडवानी"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "Who among the following won the World Billiard Championship, 2012 ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Mike Russel"
+            },
+            {
+              "key": "B",
+              "text": "Rupesh Shah"
+            },
+            {
+              "key": "C",
+              "text": "Dhruva Sitwala"
+            },
+            {
+              "key": "D",
+              "text": "Pankaj Advani"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-051",
+      "question_number": 51,
+      "language_variants": {
+        "hi": {
+          "question_text": "मध्य प्रदेश शासन के प्रतिष्ठित ‘कालिदास सम्मान’ से नवम्बर 2012 में निम्नलिखित में से किसे सम्मानित किया गया था ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "लता मंगेशकर"
+            },
+            {
+              "key": "B",
+              "text": "आमिर खान"
+            },
+            {
+              "key": "C",
+              "text": "अनुपम खेर"
+            },
+            {
+              "key": "D",
+              "text": "पंडित रविशंकर"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "Who among the following was awarded the prestigious ‘Kalidas Samman’ of Madhya Pradesh Government in November 2012 ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Lata Mangeshkar"
+            },
+            {
+              "key": "B",
+              "text": "Amir Khan"
+            },
+            {
+              "key": "C",
+              "text": "Anupam Kher"
+            },
+            {
+              "key": "D",
+              "text": "Pandit Ravishankar"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-052",
+      "question_number": 52,
+      "language_variants": {
+        "hi": {
+          "question_text": "निम्नलिखित में से मध्य प्रदेश में सर्वाधिक सोयाबीन कहाँ होता है ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "मालवा"
+            },
+            {
+              "key": "B",
+              "text": "बुन्देलखण्ड"
+            },
+            {
+              "key": "C",
+              "text": "बघेलखण्ड"
+            },
+            {
+              "key": "D",
+              "text": "उपर्युक्त में से कोई नहीं"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "Maximum Soyabean is produced in which area of Madhya Pradesh among the following ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Malwa"
+            },
+            {
+              "key": "B",
+              "text": "Bundelkhand"
+            },
+            {
+              "key": "C",
+              "text": "Baghelkhand"
+            },
+            {
+              "key": "D",
+              "text": "None of the above"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-053",
+      "question_number": 53,
+      "language_variants": {
+        "hi": {
+          "question_text": "निम्नलिखित में से मध्य प्रदेश के किस जिले की सीमा उत्तर प्रदेश को स्पर्श नहीं करती है ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "भिण्ड"
+            },
+            {
+              "key": "B",
+              "text": "सतना"
+            },
+            {
+              "key": "C",
+              "text": "शिवपुरी"
+            },
+            {
+              "key": "D",
+              "text": "श्योपुर"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "The boundary of which district of M.P. among the following does not touch Uttar Pradesh ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Bhind"
+            },
+            {
+              "key": "B",
+              "text": "Satana"
+            },
+            {
+              "key": "C",
+              "text": "Shivpuri"
+            },
+            {
+              "key": "D",
+              "text": "Sheopur"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-054",
+      "question_number": 54,
+      "language_variants": {
+        "hi": {
+          "question_text": "निम्नलिखित में से कौन, जनसंख्या की दृष्टि से, म. प्र. का सबसे छोटा जिला है ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "श्योपुर"
+            },
+            {
+              "key": "B",
+              "text": "रायसेन"
+            },
+            {
+              "key": "C",
+              "text": "दतिया"
+            },
+            {
+              "key": "D",
+              "text": "हरदा"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "Which one of the following is the smallest district of M.P. (in population) ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Sheopur"
+            },
+            {
+              "key": "B",
+              "text": "Raisen"
+            },
+            {
+              "key": "C",
+              "text": "Datia"
+            },
+            {
+              "key": "D",
+              "text": "Harda"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-055",
+      "question_number": 55,
+      "language_variants": {
+        "hi": {
+          "question_text": "मध्य प्रदेश के प्रथम मुख्य मंत्री निम्नलिखित में से कौन थे ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "रविशंकर शुक्ल"
+            },
+            {
+              "key": "B",
+              "text": "कैलाशनाथ काटजू"
+            },
+            {
+              "key": "C",
+              "text": "पट्टाभि सीतारमैया"
+            },
+            {
+              "key": "D",
+              "text": "उपर्युक्त में से कोई नहीं"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "Who among the following was the first Chief Minister of M.P. ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Ravishankar Shukla"
+            },
+            {
+              "key": "B",
+              "text": "Kailashnath Katju"
+            },
+            {
+              "key": "C",
+              "text": "Pattabhi Sitarammaiya"
+            },
+            {
+              "key": "D",
+              "text": "None of the above"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-056",
+      "question_number": 56,
+      "language_variants": {
+        "hi": {
+          "question_text": "भारत के बारह ज्योतिर्लिंगों में से मध्य प्रदेश में ज्योतिर्लिंगों की संख्या कितनी है ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "1"
+            },
+            {
+              "key": "B",
+              "text": "2"
+            },
+            {
+              "key": "C",
+              "text": "3"
+            },
+            {
+              "key": "D",
+              "text": "4"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "What is the number of Jyotirlings in M.P. out of twelve Jyotirlingas of India ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "1"
+            },
+            {
+              "key": "B",
+              "text": "2"
+            },
+            {
+              "key": "C",
+              "text": "3"
+            },
+            {
+              "key": "D",
+              "text": "4"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-057",
+      "question_number": 57,
+      "language_variants": {
+        "hi": {
+          "question_text": "'माण्डू' निम्नलिखित में से किससे सम्बन्धित है ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "जीवाजी राव"
+            },
+            {
+              "key": "B",
+              "text": "रानी रूपमती"
+            },
+            {
+              "key": "C",
+              "text": "अलाउद्दीन खाँ"
+            },
+            {
+              "key": "D",
+              "text": "झलकारी बाई"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "With whom among the following 'Mandu' is associated ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Jiwaji Rao"
+            },
+            {
+              "key": "B",
+              "text": "Rani Rupmati"
+            },
+            {
+              "key": "C",
+              "text": "Allauddin Khan"
+            },
+            {
+              "key": "D",
+              "text": "Jhalkari Bai"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-058",
+      "question_number": 58,
+      "language_variants": {
+        "hi": {
+          "question_text": "निम्नलिखित में से मध्य प्रदेश की कौनसी जनजाति जनसंख्या की दृष्टि से सबसे बड़ी है ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "सहरिया"
+            },
+            {
+              "key": "B",
+              "text": "भील"
+            },
+            {
+              "key": "C",
+              "text": "कोल"
+            },
+            {
+              "key": "D",
+              "text": "भारिया"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "Which one of the following tribes of M.P. is the biggest in population ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Saharia"
+            },
+            {
+              "key": "B",
+              "text": "Bheel"
+            },
+            {
+              "key": "C",
+              "text": "Cole"
+            },
+            {
+              "key": "D",
+              "text": "Bharia"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-059",
+      "question_number": 59,
+      "language_variants": {
+        "hi": {
+          "question_text": "निम्नलिखित में से मूर्तिकला का प्रसिद्ध स्थान फड़के स्टूडियो कहाँ स्थित है ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "ग्वालियर"
+            },
+            {
+              "key": "B",
+              "text": "रीवा"
+            },
+            {
+              "key": "C",
+              "text": "धार"
+            },
+            {
+              "key": "D",
+              "text": "भोपाल"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "Where among the following famous place for sculpture 'Phadake Studio' is situated ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Gwalior"
+            },
+            {
+              "key": "B",
+              "text": "Rewa"
+            },
+            {
+              "key": "C",
+              "text": "Dhar"
+            },
+            {
+              "key": "D",
+              "text": "Bhopal"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-060",
+      "question_number": 60,
+      "language_variants": {
+        "hi": {
+          "question_text": "मध्य प्रदेश में प्रतिवर्ष अखिल भारतीय शास्त्रीय नृत्य उत्सव कहाँ आयोजित किया जाता है ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "पचमढ़ी"
+            },
+            {
+              "key": "B",
+              "text": "खजुराहो"
+            },
+            {
+              "key": "C",
+              "text": "ग्वालियर"
+            },
+            {
+              "key": "D",
+              "text": "ओरछा"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "Where is the All India Classical Dance Festival organised every year in M.P. ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Pachmarhi"
+            },
+            {
+              "key": "B",
+              "text": "Khajuraho"
+            },
+            {
+              "key": "C",
+              "text": "Gwalior"
+            },
+            {
+              "key": "D",
+              "text": "Orachha"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-061",
+      "question_number": 61,
+      "language_variants": {
+        "hi": {
+          "question_text": "पिछले दिनों किस देश की संसद ने नए संविधान के गठन हेतु संविधान सभा को छः माह का विस्तार दिया है ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "भूटान"
+            },
+            {
+              "key": "B",
+              "text": "नेपाल"
+            },
+            {
+              "key": "C",
+              "text": "चीन"
+            },
+            {
+              "key": "D",
+              "text": "उपर्युक्त में से कोई नहीं"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "Sometimes back, Parliament of which country has given extension of six months to Constitutional Assembly to frame new constitution ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Bhutan"
+            },
+            {
+              "key": "B",
+              "text": "Nepal"
+            },
+            {
+              "key": "C",
+              "text": "China"
+            },
+            {
+              "key": "D",
+              "text": "None of the above"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-062",
+      "question_number": 62,
+      "language_variants": {
+        "hi": {
+          "question_text": "अमेरिका ने अफगानिस्तान से अपने 33,000 सैनिकों को किस वर्ष के अन्त तक बुलाने की घोषणा की है ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "2012"
+            },
+            {
+              "key": "B",
+              "text": "2013"
+            },
+            {
+              "key": "C",
+              "text": "2014"
+            },
+            {
+              "key": "D",
+              "text": "2015"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "By the end of which year, America has given a call to withdraw 33,000 soldiers from Afghanistan ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "2012"
+            },
+            {
+              "key": "B",
+              "text": "2013"
+            },
+            {
+              "key": "C",
+              "text": "2014"
+            },
+            {
+              "key": "D",
+              "text": "2015"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-063",
+      "question_number": 63,
+      "language_variants": {
+        "hi": {
+          "question_text": "नवम्बर 2011 में पाकिस्तान और चीन ने संयुक्त सैनिक अभ्यास निम्न में से किस नदी के किनारे किया था ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "सिन्धु"
+            },
+            {
+              "key": "B",
+              "text": "चेनाब"
+            },
+            {
+              "key": "C",
+              "text": "झेलम"
+            },
+            {
+              "key": "D",
+              "text": "उपर्युक्त में से कोई नहीं"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "In November 2011, the Pakistan and China held a joint military exercise along which of the following rivers ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Indus"
+            },
+            {
+              "key": "B",
+              "text": "Chenab"
+            },
+            {
+              "key": "C",
+              "text": "Jhelum"
+            },
+            {
+              "key": "D",
+              "text": "None of the above"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-064",
+      "question_number": 64,
+      "language_variants": {
+        "hi": {
+          "question_text": "निम्न में से किन देशों ने सीरिया पर होने वाली अन्तर्राष्ट्रीय कान्फ्रेंस का बहिष्कार किया था ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "चीन"
+            },
+            {
+              "key": "B",
+              "text": "रूस"
+            },
+            {
+              "key": "C",
+              "text": "अमेरिका"
+            },
+            {
+              "key": "D",
+              "text": "(A) तथा (B) दोनों"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "Which of the following countries boycotted the International Conference on Syria ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "China"
+            },
+            {
+              "key": "B",
+              "text": "Russia"
+            },
+            {
+              "key": "C",
+              "text": "U.S.A."
+            },
+            {
+              "key": "D",
+              "text": "Both (A) and (B)"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-065",
+      "question_number": 65,
+      "language_variants": {
+        "hi": {
+          "question_text": "ब्रिटिश की संसद के दोनों सदनों को सम्बोधित करने वाली ब्रिटेन की महारानी को छोड़कर प्रथम महिला है :",
+          "options": [
+            {
+              "key": "A",
+              "text": "इन्दिरा गाँधी"
+            },
+            {
+              "key": "B",
+              "text": "बेनजीर भुट्टो"
+            },
+            {
+              "key": "C",
+              "text": "सोनिया गाँधी"
+            },
+            {
+              "key": "D",
+              "text": "आंग सान सूकी"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "First lady, other than the queen of Britain who had addressed both houses of British Parliament is :",
+          "options": [
+            {
+              "key": "A",
+              "text": "Indira Gandhi"
+            },
+            {
+              "key": "B",
+              "text": "Benazir Bhutto"
+            },
+            {
+              "key": "C",
+              "text": "Sonia Gandhi"
+            },
+            {
+              "key": "D",
+              "text": "Aung San Suukyi"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-066",
+      "question_number": 66,
+      "language_variants": {
+        "hi": {
+          "question_text": "सर क्रीक विवाद किन दो देशों के मध्य है ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "भारत-पाकिस्तान"
+            },
+            {
+              "key": "B",
+              "text": "अफगानिस्तान-पाकिस्तान"
+            },
+            {
+              "key": "C",
+              "text": "चीन-भारत"
+            },
+            {
+              "key": "D",
+              "text": "भारत-बाँग्लादेश"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "Sir Creek Dispute is in between which of the following two countries ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "India-Pakistan"
+            },
+            {
+              "key": "B",
+              "text": "Afghanistan-Pakistan"
+            },
+            {
+              "key": "C",
+              "text": "China-India"
+            },
+            {
+              "key": "D",
+              "text": "India-Bangladesh"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-067",
+      "question_number": 67,
+      "language_variants": {
+        "hi": {
+          "question_text": "हाल में 'टाइम' द्वारा जारी विश्व के शीर्ष 36 प्रदर्शनकारियों की सूची में अन्ना हजारे को कौनसा स्थान दिया गया है ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "पहला"
+            },
+            {
+              "key": "B",
+              "text": "पाँचवाँ"
+            },
+            {
+              "key": "C",
+              "text": "दसवाँ"
+            },
+            {
+              "key": "D",
+              "text": "पन्द्रहवाँ"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "Anna Hazare got what place in the list of 36 demonstrators released by TIME now ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "First"
+            },
+            {
+              "key": "B",
+              "text": "Fifth"
+            },
+            {
+              "key": "C",
+              "text": "Tenth"
+            },
+            {
+              "key": "D",
+              "text": "Fifteenth"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-068",
+      "question_number": 68,
+      "language_variants": {
+        "hi": {
+          "question_text": "निम्नांकित में से कौनसा \"नेशनल वोटर्स डे\" है ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "5 जून"
+            },
+            {
+              "key": "B",
+              "text": "1 नवम्बर"
+            },
+            {
+              "key": "C",
+              "text": "25 जनवरी"
+            },
+            {
+              "key": "D",
+              "text": "8 मार्च"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "Which one of the following is the \"National Voters' Day\" ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "5th June"
+            },
+            {
+              "key": "B",
+              "text": "1st November"
+            },
+            {
+              "key": "C",
+              "text": "25th January"
+            },
+            {
+              "key": "D",
+              "text": "8th March"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-069",
+      "question_number": 69,
+      "language_variants": {
+        "hi": {
+          "question_text": "एशियन निशानेबाजी चैम्पियनशिप, 2012 का आयोजन कहाँ किया गया ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "कुआलालम्पुर"
+            },
+            {
+              "key": "B",
+              "text": "कोलम्बो"
+            },
+            {
+              "key": "C",
+              "text": "अजरबेजान"
+            },
+            {
+              "key": "D",
+              "text": "दोहा"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "Where was the Asian Shooting Championship, 2012 organised ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Kuala Lumpur"
+            },
+            {
+              "key": "B",
+              "text": "Colombo"
+            },
+            {
+              "key": "C",
+              "text": "Azerbaijan"
+            },
+            {
+              "key": "D",
+              "text": "Doha"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-070",
+      "question_number": 70,
+      "language_variants": {
+        "hi": {
+          "question_text": "मलाला का इलाज किस देश में चल रहा है ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "पाकिस्तान"
+            },
+            {
+              "key": "B",
+              "text": "ब्रिटेन"
+            },
+            {
+              "key": "C",
+              "text": "अमेरिका"
+            },
+            {
+              "key": "D",
+              "text": "जर्मनी"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "In which country is Malala being treated ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Pakistan"
+            },
+            {
+              "key": "B",
+              "text": "Britain"
+            },
+            {
+              "key": "C",
+              "text": "America"
+            },
+            {
+              "key": "D",
+              "text": "Germany"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-071",
+      "question_number": 71,
+      "language_variants": {
+        "hi": {
+          "question_text": "रेल बजट 2012-13 में मध्य प्रदेश के किस जिले में उच्च क्षमता वाला, डीजल इंजनों के लिए ट्रैक्शन आल्टरनेर्ट्स कारखाना लगाने का प्रस्ताव है ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "सतना"
+            },
+            {
+              "key": "B",
+              "text": "ग्वालियर"
+            },
+            {
+              "key": "C",
+              "text": "विदिशा"
+            },
+            {
+              "key": "D",
+              "text": "भोपाल"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "In which district of M.P. is the Industry of Traction Alternators for diesel engines proposed in the rail budget of 2012-13 ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Satna"
+            },
+            {
+              "key": "B",
+              "text": "Gwalior"
+            },
+            {
+              "key": "C",
+              "text": "Vidisha"
+            },
+            {
+              "key": "D",
+              "text": "Bhopal"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-072",
+      "question_number": 72,
+      "language_variants": {
+        "hi": {
+          "question_text": "मण्डीदीप औद्योगिक क्षेत्र मध्य प्रदेश के किस जिले में स्थित है ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "विदिशा"
+            },
+            {
+              "key": "B",
+              "text": "भोपाल"
+            },
+            {
+              "key": "C",
+              "text": "सीहोर"
+            },
+            {
+              "key": "D",
+              "text": "रायसेन"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "In which district of M.P. Mandideep Industrial Cluster is situated ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Vidisha"
+            },
+            {
+              "key": "B",
+              "text": "Bhopal"
+            },
+            {
+              "key": "C",
+              "text": "Sehore"
+            },
+            {
+              "key": "D",
+              "text": "Raisen"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-073",
+      "question_number": 73,
+      "language_variants": {
+        "hi": {
+          "question_text": "मध्य प्रदेश के किस जिले में रेलवे स्लीपर बनाने का कारखाना स्थित है ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "सीहोर"
+            },
+            {
+              "key": "B",
+              "text": "भोपाल"
+            },
+            {
+              "key": "C",
+              "text": "होशंगाबाद"
+            },
+            {
+              "key": "D",
+              "text": "बेतूल"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "In which district of M.P. is railway sleeper manufacturing factory situated ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Sehore"
+            },
+            {
+              "key": "B",
+              "text": "Bhopal"
+            },
+            {
+              "key": "C",
+              "text": "Hoshangabad"
+            },
+            {
+              "key": "D",
+              "text": "Betul"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-074",
+      "question_number": 74,
+      "language_variants": {
+        "hi": {
+          "question_text": "मध्य प्रदेश की प्रथम महिला मुख्य मंत्री कौन थीं ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "विमला शर्मा"
+            },
+            {
+              "key": "B",
+              "text": "विजयाराजे सिंधिया"
+            },
+            {
+              "key": "C",
+              "text": "निर्मला यादव"
+            },
+            {
+              "key": "D",
+              "text": "उमा भारती"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "Who was the first woman Chief Minister of Madhya Pradesh ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Vimla Sharma"
+            },
+            {
+              "key": "B",
+              "text": "Vijaya Raje Scindia"
+            },
+            {
+              "key": "C",
+              "text": "Nirmala Yadav"
+            },
+            {
+              "key": "D",
+              "text": "Uma Bharti"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-075",
+      "question_number": 75,
+      "language_variants": {
+        "hi": {
+          "question_text": "जलदीप योजना मध्य प्रदेश शासन ने प्रारम्भिक तौर पर किस जलाशय से प्रारम्भ की है ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "इन्दिरा सागर"
+            },
+            {
+              "key": "B",
+              "text": "गांधी सागर"
+            },
+            {
+              "key": "C",
+              "text": "बाण सागर"
+            },
+            {
+              "key": "D",
+              "text": "यशवन्त सागर"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "Jaldeep Yojana was initially started by M.P. Government from which reservoir ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Indira Sagar"
+            },
+            {
+              "key": "B",
+              "text": "Gandhi Sagar"
+            },
+            {
+              "key": "C",
+              "text": "Baan Sagar"
+            },
+            {
+              "key": "D",
+              "text": "Yeshwant Sagar"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-076",
+      "question_number": 76,
+      "language_variants": {
+        "hi": {
+          "question_text": "वर्तमान में मध्य प्रदेश विधान सभा के अध्यक्ष कौन हैं ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "ईश्वरदास रोहर्णी"
+            },
+            {
+              "key": "B",
+              "text": "मुकुन्द नेवालकर"
+            },
+            {
+              "key": "C",
+              "text": "श्रीनिवास तिवारी"
+            },
+            {
+              "key": "D",
+              "text": "उपर्युक्त में से कोई नहीं"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "At present, who is the Speaker of Madhya Pradesh Assembly ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Ishwardas Rohani"
+            },
+            {
+              "key": "B",
+              "text": "Mukund Nevalkar"
+            },
+            {
+              "key": "C",
+              "text": "Shreenivas Tewari"
+            },
+            {
+              "key": "D",
+              "text": "None of the above"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-077",
+      "question_number": 77,
+      "language_variants": {
+        "hi": {
+          "question_text": "1-11-2000 को मध्य प्रदेश के विभाजन के समय मुख्य मंत्री कौन था ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "अर्जुन सिंह"
+            },
+            {
+              "key": "B",
+              "text": "दिग्विजय सिंह"
+            },
+            {
+              "key": "C",
+              "text": "सुंदरलाल पटवा"
+            },
+            {
+              "key": "D",
+              "text": "वीरेन्द्र कुमार सकलेचा"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "Who was the Chief Minister of M.P. on 1-11-2000 at the time of division of state ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Arjun Singh"
+            },
+            {
+              "key": "B",
+              "text": "Digvijay Singh"
+            },
+            {
+              "key": "C",
+              "text": "Sundarlal Patwa"
+            },
+            {
+              "key": "D",
+              "text": "Virendra Kumar Saklecha"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-078",
+      "question_number": 78,
+      "language_variants": {
+        "hi": {
+          "question_text": "रिलायन्स समूह को मध्य प्रदेश में कोल बेड मीथेन के भंडार कहाँ मिले हैं ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "सुहागपुर"
+            },
+            {
+              "key": "B",
+              "text": "गुना"
+            },
+            {
+              "key": "C",
+              "text": "बालाघाट"
+            },
+            {
+              "key": "D",
+              "text": "रीवा"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "From where the Reliance Industries got the coal bed Methane reserve in M.P. ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Suhagpur"
+            },
+            {
+              "key": "B",
+              "text": "Guna"
+            },
+            {
+              "key": "C",
+              "text": "Balaghat"
+            },
+            {
+              "key": "D",
+              "text": "Rewa"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-079",
+      "question_number": 79,
+      "language_variants": {
+        "hi": {
+          "question_text": "दुष्यंत कुमार पाण्डुलिपि संग्रहालय कहाँ स्थित है ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "भोपाल"
+            },
+            {
+              "key": "B",
+              "text": "जबलपुर"
+            },
+            {
+              "key": "C",
+              "text": "उज्जैन"
+            },
+            {
+              "key": "D",
+              "text": "बालाघाट"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "Where is Dushyant Kumar Manuscript Museum situated ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Bhopal"
+            },
+            {
+              "key": "B",
+              "text": "Jabalpur"
+            },
+            {
+              "key": "C",
+              "text": "Ujjain"
+            },
+            {
+              "key": "D",
+              "text": "Balaghat"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-080",
+      "question_number": 80,
+      "language_variants": {
+        "hi": {
+          "question_text": "साँची स्तूप का निर्माण किसने करवाया था ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "चन्द्रगुप्त"
+            },
+            {
+              "key": "B",
+              "text": "गौतम बुद्ध"
+            },
+            {
+              "key": "C",
+              "text": "महावीर"
+            },
+            {
+              "key": "D",
+              "text": "अशोक"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "Who constructed the Sanchi Stupa ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Chandragupta"
+            },
+            {
+              "key": "B",
+              "text": "Gautam Buddha"
+            },
+            {
+              "key": "C",
+              "text": "Mahavira"
+            },
+            {
+              "key": "D",
+              "text": "Ashoka"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-081",
+      "question_number": 81,
+      "language_variants": {
+        "hi": {
+          "question_text": "निम्नांकित में से किस प्रोटोकोल द्वारा वर्ल्ड वाइड वेब में पहुँचा जा सकता है ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "एच.टी.टी.पी."
+            },
+            {
+              "key": "B",
+              "text": "एस.एम.टी.पी."
+            },
+            {
+              "key": "C",
+              "text": "एस.एल.आई.पी."
+            },
+            {
+              "key": "D",
+              "text": "उपर्युक्त में से कोई नहीं"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "Which of the following protocol may be used for accessing world wide web ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "HTTP"
+            },
+            {
+              "key": "B",
+              "text": "SMTP"
+            },
+            {
+              "key": "C",
+              "text": "SLIP"
+            },
+            {
+              "key": "D",
+              "text": "None of the above"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-082",
+      "question_number": 82,
+      "language_variants": {
+        "hi": {
+          "question_text": "निम्नांकित में से कौन एक वैलिड्स (वैध) डोमेन नेम एक्सटेंशन है ?",
+          "options": [
+            {
+              "key": "A",
+              "text": ".com"
+            },
+            {
+              "key": "B",
+              "text": ".gov"
+            },
+            {
+              "key": "C",
+              "text": ".net"
+            },
+            {
+              "key": "D",
+              "text": "उपर्युक्त सभी"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "Which of the following is a val domain name extension ?",
+          "options": [
+            {
+              "key": "A",
+              "text": ".com"
+            },
+            {
+              "key": "B",
+              "text": ".gov"
+            },
+            {
+              "key": "C",
+              "text": ".net"
+            },
+            {
+              "key": "D",
+              "text": "All of the above"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-083",
+      "question_number": 83,
+      "language_variants": {
+        "hi": {
+          "question_text": "यू.आर.एल. का विस्तृत रूप है :",
+          "options": [
+            {
+              "key": "A",
+              "text": "यूनिक रिसोर्स लोकेटर"
+            },
+            {
+              "key": "B",
+              "text": "यूनिवर्सल रिसोर्स लोकेटर"
+            },
+            {
+              "key": "C",
+              "text": "यूनिफार्म रिसोर्स लोकेटर"
+            },
+            {
+              "key": "D",
+              "text": "यूनाइटेड रिसोर्स लोकेटर"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "URL stands for :",
+          "options": [
+            {
+              "key": "A",
+              "text": "Unique Resource Locator"
+            },
+            {
+              "key": "B",
+              "text": "Universal Resource Locator"
+            },
+            {
+              "key": "C",
+              "text": "Uniform Resource Locator"
+            },
+            {
+              "key": "D",
+              "text": "United Resource Locator"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-084",
+      "question_number": 84,
+      "language_variants": {
+        "hi": {
+          "question_text": "ई-मेल का विस्तृत रूप है :",
+          "options": [
+            {
+              "key": "A",
+              "text": "इलेक्ट्रिकल मेल"
+            },
+            {
+              "key": "B",
+              "text": "इलेक्ट्रॉनिक मेल"
+            },
+            {
+              "key": "C",
+              "text": "इलास्टिक मेल"
+            },
+            {
+              "key": "D",
+              "text": "उपर्युक्त में से कोई नहीं"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "e-Mail stands for :",
+          "options": [
+            {
+              "key": "A",
+              "text": "Electrical Mail"
+            },
+            {
+              "key": "B",
+              "text": "Electronic Mail"
+            },
+            {
+              "key": "C",
+              "text": "Elastic Mail"
+            },
+            {
+              "key": "D",
+              "text": "None of the above"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-085",
+      "question_number": 85,
+      "language_variants": {
+        "hi": {
+          "question_text": "निम्नांकित में से कौन निःशुल्क ई-मेल सेवा प्रदाता है ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "हाटमेल"
+            },
+            {
+              "key": "B",
+              "text": "रेडिफमेल"
+            },
+            {
+              "key": "C",
+              "text": "याहू"
+            },
+            {
+              "key": "D",
+              "text": "उपर्युक्त सभी"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "Which of the following is free e-mail service provider ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Hotmail"
+            },
+            {
+              "key": "B",
+              "text": "Rediffmail"
+            },
+            {
+              "key": "C",
+              "text": "Yahoo"
+            },
+            {
+              "key": "D",
+              "text": "All of the above"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-086",
+      "question_number": 86,
+      "language_variants": {
+        "hi": {
+          "question_text": "एच.टी.एम.एल. का विस्तृत रूप है :",
+          "options": [
+            {
+              "key": "A",
+              "text": "हाइब्रिड टेक्स्ट मार्कअप लैंग्वेज"
+            },
+            {
+              "key": "B",
+              "text": "हाइपरटेक्स्ट मार्कअप लैंग्वेज"
+            },
+            {
+              "key": "C",
+              "text": "हायर टेक्स्ट मार्कअप लैंग्वेज"
+            },
+            {
+              "key": "D",
+              "text": "उपर्युक्त में से कोई नहीं"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "HTML stands for :",
+          "options": [
+            {
+              "key": "A",
+              "text": "Hybrid Text Markup Language"
+            },
+            {
+              "key": "B",
+              "text": "Hypertext Markup Language"
+            },
+            {
+              "key": "C",
+              "text": "Higher Text Markup Language"
+            },
+            {
+              "key": "D",
+              "text": "None of the above"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-087",
+      "question_number": 87,
+      "language_variants": {
+        "hi": {
+          "question_text": "कम्प्यूटर वायरस है :",
+          "options": [
+            {
+              "key": "A",
+              "text": "ऐसा कम्प्यूटर प्रोग्राम जो स्वयं की प्रतिलिपियाँ बना सके"
+            },
+            {
+              "key": "B",
+              "text": "ऐसा वायरस जो मनुष्यों के स्वास्थ्य को प्रभावित करे"
+            },
+            {
+              "key": "C",
+              "text": "उपर्युक्त दोनों"
+            },
+            {
+              "key": "D",
+              "text": "उपर्युक्त में से कोई नहीं"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "A computer virus is :",
+          "options": [
+            {
+              "key": "A",
+              "text": "A computer program that can replicate itself"
+            },
+            {
+              "key": "B",
+              "text": "A virus that affects health of human being"
+            },
+            {
+              "key": "C",
+              "text": "Both of the above"
+            },
+            {
+              "key": "D",
+              "text": "None of the above"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-088",
+      "question_number": 88,
+      "language_variants": {
+        "hi": {
+          "question_text": "कम्प्यूटर हैकर है :",
+          "options": [
+            {
+              "key": "A",
+              "text": "एक व्यक्ति जो कम्प्यूटर की सुरक्षा बनाए रखता है"
+            },
+            {
+              "key": "B",
+              "text": "एक व्यक्ति जो व्यक्तिगत लाभ के दूषित इरादों से कम्प्यूटर सुरक्षा का पालन नहीं करता"
+            },
+            {
+              "key": "C",
+              "text": "कम्प्यूटर के सुरक्षित परिचालन हेतु उत्तरदायी एक व्यक्ति"
+            },
+            {
+              "key": "D",
+              "text": "कम्प्यूटर सुधारने वाला एक व्यक्ति"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "A computer hacker is :",
+          "options": [
+            {
+              "key": "A",
+              "text": "a person who maintains computer security"
+            },
+            {
+              "key": "B",
+              "text": "a person who violates computer security with malicious intention for personal gain"
+            },
+            {
+              "key": "C",
+              "text": "a person responsible for safe computer operation"
+            },
+            {
+              "key": "D",
+              "text": "a person who repairs computer"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-089",
+      "question_number": 89,
+      "language_variants": {
+        "hi": {
+          "question_text": "वीडियो कॉन्फ्रेंसिंग है :",
+          "options": [
+            {
+              "key": "A",
+              "text": "दूरसंचार प्रौद्योगिकी का उपयोग करते हुए वीडियो कॉल का परिचालन"
+            },
+            {
+              "key": "B",
+              "text": "दूरभाष पर कॉल का परिचालन"
+            },
+            {
+              "key": "C",
+              "text": "दूरबीन प्रौद्योगिकी का उपयोग करते हुए वीडियो कॉन्फ्रेंस का परिचालन"
+            },
+            {
+              "key": "D",
+              "text": "उपर्युक्त में से कोई नहीं"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "Video conferencing is :",
+          "options": [
+            {
+              "key": "A",
+              "text": "Conduct of video calls using telecom technology"
+            },
+            {
+              "key": "B",
+              "text": "Conduct of telephone calls"
+            },
+            {
+              "key": "C",
+              "text": "Conduct of video conference using a set of telescopic technology"
+            },
+            {
+              "key": "D",
+              "text": "None of the above"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-090",
+      "question_number": 90,
+      "language_variants": {
+        "hi": {
+          "question_text": "साइबर क्राइम कार्य है :",
+          "options": [
+            {
+              "key": "A",
+              "text": "हैंकिंग"
+            },
+            {
+              "key": "B",
+              "text": "स्टाकिंग"
+            },
+            {
+              "key": "C",
+              "text": "सर्विस आघात की मनाही"
+            },
+            {
+              "key": "D",
+              "text": "उपर्युक्त सभी"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "Cyber crime is :",
+          "options": [
+            {
+              "key": "A",
+              "text": "Hacking"
+            },
+            {
+              "key": "B",
+              "text": "Stalking"
+            },
+            {
+              "key": "C",
+              "text": "Denial of service attacks"
+            },
+            {
+              "key": "D",
+              "text": "All of the above"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-091",
+      "question_number": 91,
+      "language_variants": {
+        "hi": {
+          "question_text": "2012 में निम्न में से किस भारतीय संगीतज्ञ को \"लाइफटाइम अचीवमेंट ग्रेमी पुरस्कार\" हेतु चयनित किया गया था ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "पंडित गिरिजाशंकर"
+            },
+            {
+              "key": "B",
+              "text": "जाकिर हुसैन"
+            },
+            {
+              "key": "C",
+              "text": "ए. आर. रहमान"
+            },
+            {
+              "key": "D",
+              "text": "पंडित रविशंकर"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "Which of the following musicians was selected in 2012 for \"Lifetime Achievement Grammy Award\"?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Pandit Girijashankar"
+            },
+            {
+              "key": "B",
+              "text": "Jakir Hussen"
+            },
+            {
+              "key": "C",
+              "text": "A.R. Rehman"
+            },
+            {
+              "key": "D",
+              "text": "Pandit Ravishankar"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-092",
+      "question_number": 92,
+      "language_variants": {
+        "hi": {
+          "question_text": "मध्य प्रदेश का महालेखाकार कार्यालय (ए.जी.एम.पी.) निम्नांकित में से किस शहर में स्थित है ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "भोपाल"
+            },
+            {
+              "key": "B",
+              "text": "ग्वालियर"
+            },
+            {
+              "key": "C",
+              "text": "जबलपुर"
+            },
+            {
+              "key": "D",
+              "text": "रीवा"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "M.P. Accountant General's Office is situated in which of the following cities ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Bhopal"
+            },
+            {
+              "key": "B",
+              "text": "Gwalior"
+            },
+            {
+              "key": "C",
+              "text": "Jabalpur"
+            },
+            {
+              "key": "D",
+              "text": "Rewa"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-093",
+      "question_number": 93,
+      "language_variants": {
+        "hi": {
+          "question_text": "आर.सी.वी.पी. नोरोन्हा प्रशासनिक अकादमी किस शहर में स्थित है ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "जबलपुर"
+            },
+            {
+              "key": "B",
+              "text": "मसूरी"
+            },
+            {
+              "key": "C",
+              "text": "मुंबई"
+            },
+            {
+              "key": "D",
+              "text": "भोपाल"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "In which city is R.C.V.P. Noronha Administrative Academy situated ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Jabalpur"
+            },
+            {
+              "key": "B",
+              "text": "Mussoorie"
+            },
+            {
+              "key": "C",
+              "text": "Mumbai"
+            },
+            {
+              "key": "D",
+              "text": "Bhopal"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-094",
+      "question_number": 94,
+      "language_variants": {
+        "hi": {
+          "question_text": "सिविल अधिकार संरक्षण अधिनियम, 1955 के अधीन सभी दण्डनीय अपराध हैं :",
+          "options": [
+            {
+              "key": "A",
+              "text": "संज्ञेय तथा अजमानतीय"
+            },
+            {
+              "key": "B",
+              "text": "संज्ञेय तथा अशमनीय"
+            },
+            {
+              "key": "C",
+              "text": "असंज्ञेय तथा जमानतीय"
+            },
+            {
+              "key": "D",
+              "text": "असंज्ञेय तथा शमनीय"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "All offences punishable under the Protection of Civil Rights Act, 1955 are :",
+          "options": [
+            {
+              "key": "A",
+              "text": "Cognizable and non-bailable"
+            },
+            {
+              "key": "B",
+              "text": "Cognizable and non-compoundable"
+            },
+            {
+              "key": "C",
+              "text": "Non-cognizable and bailable"
+            },
+            {
+              "key": "D",
+              "text": "Non-cognizable and compoundable"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-095",
+      "question_number": 95,
+      "language_variants": {
+        "hi": {
+          "question_text": "\"अस्पृश्यता\" से उद्भूत अपराध गठित नहीं होगा जबकि :",
+          "options": [
+            {
+              "key": "A",
+              "text": "अभियुक्त का कार्य जनसाधारण के किसी अनुभाग के व्यक्तियों के फायदे के लिये सृष्ट एक पूर्त न्यास के अधीन फायदे के उपभोग करने के संबंध में है"
+            },
+            {
+              "key": "B",
+              "text": "अभियुक्त का कार्य अलंकारों के उपयोग करने के संबंध में है"
+            },
+            {
+              "key": "C",
+              "text": "अभियुक्त के अपराध कारित करने में सक्षम नहीं होने से है"
+            },
+            {
+              "key": "D",
+              "text": "अभियुक्त और परिवादी पीड़ित समान सामाजिक-समूह से है"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "An offence arising out of \"untouchability\" would not made out where :",
+          "options": [
+            {
+              "key": "A",
+              "text": "The act of accused with regard to the enjoyment of benefit under a charitable trust created for the benefit of any section of the general public"
+            },
+            {
+              "key": "B",
+              "text": "The act of accused is with regard to the use of finery"
+            },
+            {
+              "key": "C",
+              "text": "As accused is not being competent to commit an offence"
+            },
+            {
+              "key": "D",
+              "text": "The accused and complainant victim belong to the same social group"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-096",
+      "question_number": 96,
+      "language_variants": {
+        "hi": {
+          "question_text": "सिविल अधिकार संरक्षण अधिनियम का विस्तार है :",
+          "options": [
+            {
+              "key": "A",
+              "text": "सम्पूर्ण भारत पर"
+            },
+            {
+              "key": "B",
+              "text": "अनुसूचित क्षेत्रों के सिवाय सम्पूर्ण भारत पर"
+            },
+            {
+              "key": "C",
+              "text": "जम्मू-कश्मीर राज्य के सिवाय संपूर्ण भारत पर"
+            },
+            {
+              "key": "D",
+              "text": "संघ राज्यक्षेत्र गोवा, दमन तथा दीयू के सिवाय सम्पूर्ण भारत पर"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "The Protection of Civil Rights Act extends to :",
+          "options": [
+            {
+              "key": "A",
+              "text": "The whole of India"
+            },
+            {
+              "key": "B",
+              "text": "The whole of India except the scheduled areas"
+            },
+            {
+              "key": "C",
+              "text": "The whole of India except the state of Jammu & Kashmir"
+            },
+            {
+              "key": "D",
+              "text": "The whole of India except the union territories of Goa, Daman and Diu"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-097",
+      "question_number": 97,
+      "language_variants": {
+        "hi": {
+          "question_text": "अनुसूचित जाति और अनुसूचित जनजाति (अत्याचार निवारण) अधिनियम, 1989 प्रवृत्त हुआ है :",
+          "options": [
+            {
+              "key": "A",
+              "text": "1 जुलाई, 1989"
+            },
+            {
+              "key": "B",
+              "text": "30 जनवरी, 1990"
+            },
+            {
+              "key": "C",
+              "text": "30 जुलाई, 1989"
+            },
+            {
+              "key": "D",
+              "text": "1 जनवरी, 1990"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "The Scheduled Castes and Scheduled Tribes (Prevention of Atrocities) Act, 1989 came into force on :",
+          "options": [
+            {
+              "key": "A",
+              "text": "1st July, 1989"
+            },
+            {
+              "key": "B",
+              "text": "30th January, 1990"
+            },
+            {
+              "key": "C",
+              "text": "30th July, 1989"
+            },
+            {
+              "key": "D",
+              "text": "1st January, 1990"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-098",
+      "question_number": 98,
+      "language_variants": {
+        "hi": {
+          "question_text": "अनुसूचित जाति और अनुसूचित जनजाति (अत्याचार निवारण) अधिनियम, अनुसूचित जाति और अनुसूचित जनजाति की उन्नति के लिए एक प्रावधान है जो निम्न में से किस एक सिद्धान्त पर आधारित है ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "पृथक्करणीयता का सिद्धान्त"
+            },
+            {
+              "key": "B",
+              "text": "अधिमानी स्थिति का सिद्धान्त"
+            },
+            {
+              "key": "C",
+              "text": "संरक्षा विभेद का सिद्धान्त"
+            },
+            {
+              "key": "D",
+              "text": "सामंजस्यपूर्ण अर्थान्वयन का सिद्धान्त"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "The Scheduled Castes and Scheduled Tribes (Prevention of Atrocities) Act is a special provision for the advancement of Scheduled Caste and Scheduled Tribes which is based on which one of the following doctrines ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Doctrine of Severability"
+            },
+            {
+              "key": "B",
+              "text": "Doctrine of Preferred Position"
+            },
+            {
+              "key": "C",
+              "text": "Doctrine of Protective discrimination"
+            },
+            {
+              "key": "D",
+              "text": "Doctrine of Harmonious Construction"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-099",
+      "question_number": 99,
+      "language_variants": {
+        "hi": {
+          "question_text": "निम्न शक्तियों में से कौनसी एक अनुसूचित जाति और अनुसूचित जनजाति (अत्याचार निवारण) अधिनियम के अधीन विनिर्दिष्ट विशेष न्यायालय को नहीं दी गयी है ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "किसी अपराध के दोषसिद्ध अभियुक्त की सम्पत्ति का समपहरण"
+            },
+            {
+              "key": "B",
+              "text": "पुलिस से भिन्न किसी व्यक्ति को अतिरिक्त अन्वेषण करने के लिए अधिकृत करना"
+            },
+            {
+              "key": "C",
+              "text": "ऐसे व्यक्ति को किसी क्षेत्र से हटाना जिसके द्वारा अपराध किये जाने की संभावना है"
+            },
+            {
+              "key": "D",
+              "text": "ऐसे व्यक्ति का माप और फोटोग्राफ लेना जिसके द्वारा अपराध किये जाने की संभावना है"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "Which of the following powers is not provided to specified Special Court under Scheduled Castes and Scheduled Tribes (Prevention of Atrocities) Act?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Forfeiture of property of a convict of an offence"
+            },
+            {
+              "key": "B",
+              "text": "To authorise a person for extra investigation other than police"
+            },
+            {
+              "key": "C",
+              "text": "To remove a person from the area on whom there is a doubt of committing a crime"
+            },
+            {
+              "key": "D",
+              "text": "Take measurement and photograph of a person on whom there is a doubt of committing a crime"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "MPPSC-2012-100",
+      "question_number": 100,
+      "language_variants": {
+        "hi": {
+          "question_text": "अनुसूचित जाति और अनुसूचित जनजाति (अत्याचार निवारण) अधिनियम के अधीन अपराधों का विचारण करने के लिए सेशन न्यायालय को विशेष न्यायालय के रूप में विनिर्दिष्ट करने का प्रयोजन है :",
+          "options": [
+            {
+              "key": "A",
+              "text": "शीघ्र विचारण"
+            },
+            {
+              "key": "B",
+              "text": "समयबद्ध विचारण"
+            },
+            {
+              "key": "C",
+              "text": "पीड़ितों के लिए विशेष सुरक्षा"
+            },
+            {
+              "key": "D",
+              "text": "उपर्युक्त सभी"
+            }
+          ]
+        },
+        "en": {
+          "question_text": "A Court of Session specified as Special Court to try the offences under the Scheduled Castes and Scheduled Tribes (Prevention of Atrocities) Act for the purpose of providing :",
+          "options": [
+            {
+              "key": "A",
+              "text": "Speedy trial"
+            },
+            {
+              "key": "B",
+              "text": "Time-bound trial"
+            },
+            {
+              "key": "C",
+              "text": "Special protection to victims"
+            },
+            {
+              "key": "D",
+              "text": "All of the above"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,1287 @@
+{
+  "paper_id": "MPPSC-2012-P1",
+  "status": "in_progress",
+  "scope": "Independent factual review; no official examination key inspected. Verified means source-supported, not an official key. Staged only: not published to the live bank. Unresolved includes questions not yet researched. No learner explanations are generated.",
+  "records": [
+    {
+      "question_id": "MPPSC-2012-001",
+      "question_number": 1,
+      "status": "verified",
+      "answer": "B",
+      "candidate_options": [],
+      "research_state": "researched",
+      "sources": [
+        "https://www.financialexpress.com/archive/cloning-glory/494395/"
+      ],
+      "evidence": "A contemporary report describes NDRI’s Garima as its second cloned buffalo calf."
+    },
+    {
+      "question_id": "MPPSC-2012-002",
+      "question_number": 2,
+      "status": "verified",
+      "answer": "D",
+      "candidate_options": [],
+      "research_state": "researched",
+      "sources": [
+        "https://kids.britannica.com/students/article/python/313104"
+      ],
+      "evidence": "Pythons are nonvenomous constrictors."
+    },
+    {
+      "question_id": "MPPSC-2012-003",
+      "question_number": 3,
+      "status": "verified",
+      "answer": "B",
+      "candidate_options": [],
+      "research_state": "researched",
+      "sources": [
+        "https://ntca.gov.in/about-us/"
+      ],
+      "evidence": "Project Tiger was launched in April 1973."
+    },
+    {
+      "question_id": "MPPSC-2012-004",
+      "question_number": 4,
+      "status": "disputed",
+      "answer": null,
+      "candidate_options": [
+        "C"
+      ],
+      "research_state": "researched",
+      "sources": [
+        "https://www.weather.gov/media/meg/education/Weather_Instruments_handout1.pdf"
+      ],
+      "evidence": "An anemometer measures wind speed; Hindi option C says velocity but English says force. Candidate C is not an exact bilingual match."
+    },
+    {
+      "question_id": "MPPSC-2012-005",
+      "question_number": 5,
+      "status": "verified",
+      "answer": "A",
+      "candidate_options": [],
+      "research_state": "researched",
+      "sources": [
+        "https://apps.who.int/mediacentre/factsheets/fs117/en/"
+      ],
+      "evidence": "Dengue virus is transmitted by infected female Aedes mosquitoes."
+    },
+    {
+      "question_id": "MPPSC-2012-006",
+      "question_number": 6,
+      "status": "verified",
+      "answer": "D",
+      "candidate_options": [],
+      "research_state": "researched",
+      "sources": [
+        "https://www.cdc.gov/mmwr/preview/mmwrhtml/00000493.htm"
+      ],
+      "evidence": "Carbon monoxide binds hemoglobin, reducing the oxygen-carrying capacity of blood."
+    },
+    {
+      "question_id": "MPPSC-2012-007",
+      "question_number": 7,
+      "status": "verified",
+      "answer": "B",
+      "candidate_options": [],
+      "research_state": "researched",
+      "sources": [
+        "https://www.britannica.com/science/statics"
+      ],
+      "evidence": "Statics concerns forces on bodies at rest under equilibrium conditions."
+    },
+    {
+      "question_id": "MPPSC-2012-008",
+      "question_number": 8,
+      "status": "verified",
+      "answer": "C",
+      "candidate_options": [],
+      "research_state": "researched",
+      "sources": [
+        "https://science.nasa.gov/dwarf-planets/pluto/facts/"
+      ],
+      "evidence": "The IAU reclassified Pluto as a dwarf planet in 2006."
+    },
+    {
+      "question_id": "MPPSC-2012-009",
+      "question_number": 9,
+      "status": "verified",
+      "answer": "D",
+      "candidate_options": [],
+      "research_state": "researched",
+      "sources": [
+        "https://www.emro.who.int/world-aids-campaigns/wad2016/overview.html"
+      ],
+      "evidence": "World AIDS Day is observed on 1 December."
+    },
+    {
+      "question_id": "MPPSC-2012-010",
+      "question_number": 10,
+      "status": "verified",
+      "answer": "D",
+      "candidate_options": [],
+      "research_state": "researched",
+      "sources": [
+        "https://www.nhpcindia.com/assests/pzi_public/pdf_link/6478686332fd3.pdf"
+      ],
+      "evidence": "The contemporary company-hosted analysis describes NHPC as a hydroelectric generator."
+    },
+    {
+      "question_id": "MPPSC-2012-011",
+      "question_number": 11,
+      "status": "verified",
+      "answer": "C",
+      "candidate_options": [],
+      "research_state": "researched",
+      "sources": [
+        "https://whc.unesco.org/document/162845"
+      ],
+      "evidence": "The Ajanta conservation report identifies murals representing Jataka stories."
+    },
+    {
+      "question_id": "MPPSC-2012-012",
+      "question_number": 12,
+      "status": "unresolved",
+      "answer": null,
+      "candidate_options": [],
+      "research_state": "not_started",
+      "sources": [],
+      "evidence": "Independent research not yet completed."
+    },
+    {
+      "question_id": "MPPSC-2012-013",
+      "question_number": 13,
+      "status": "verified",
+      "answer": "B",
+      "candidate_options": [],
+      "research_state": "researched",
+      "sources": [
+        "https://www.britannica.com/topic/Tipitaka"
+      ],
+      "evidence": "Tripitaka is the Buddhist canon of three baskets."
+    },
+    {
+      "question_id": "MPPSC-2012-014",
+      "question_number": 14,
+      "status": "verified",
+      "answer": "C",
+      "candidate_options": [],
+      "research_state": "researched",
+      "sources": [
+        "https://www.britannica.com/topic/Rajatarangini"
+      ],
+      "evidence": "Kalhana’s Rajatarangini chronicles the history of Kashmir."
+    },
+    {
+      "question_id": "MPPSC-2012-015",
+      "question_number": 15,
+      "status": "disputed",
+      "answer": null,
+      "candidate_options": [
+        "C",
+        "D"
+      ],
+      "research_state": "researched",
+      "sources": [
+        "https://www.livelaw.in/articles/two-monumental-red-fort-trials-bahadur-shah-zafar-ina-301090"
+      ],
+      "evidence": "Asaf Ali and Bhulabhai Desai both appear in the defence team; the question does not ask who led it."
+    },
+    {
+      "question_id": "MPPSC-2012-016",
+      "question_number": 16,
+      "status": "unresolved",
+      "answer": null,
+      "candidate_options": [
+        "C"
+      ],
+      "research_state": "in_progress",
+      "sources": [
+        "https://magazines.odisha.gov.in/Orissareview/2011/may/engpdf/31-33.pdf"
+      ],
+      "evidence": "PRELIMINARY LEAD, not yet re-verified against the full source and question: A 2011 Odisha government publication states that B. R. Ambedkar attended all three Round Table Conferences of 1930–32."
+    },
+    {
+      "question_id": "MPPSC-2012-017",
+      "question_number": 17,
+      "status": "unresolved",
+      "answer": null,
+      "candidate_options": [
+        "C"
+      ],
+      "research_state": "in_progress",
+      "sources": [
+        "https://gazetteers.maharashtra.gov.in/cultural.maharashtra.gov.in/english/gazetteer/VOL-II/REVOLUTIONARY_III.pdf"
+      ],
+      "evidence": "PRELIMINARY LEAD, not yet re-verified against the full source and question: The government gazetteer reproduces historical records linking Vinayak Damodar Savarkar and his brother to the founding of Abhinav Bharat."
+    },
+    {
+      "question_id": "MPPSC-2012-018",
+      "question_number": 18,
+      "status": "unresolved",
+      "answer": null,
+      "candidate_options": [
+        "C"
+      ],
+      "research_state": "in_progress",
+      "sources": [
+        "https://www.indiatoday.in/education-today/news/story/6-moving-quotes-atal-bihari-vajpayee-1316130-2018-08-16"
+      ],
+      "evidence": "PRELIMINARY LEAD, not yet re-verified against the full source and question: India Today identifies Vajpayee as the first to address the UN General Assembly in Hindi in 1977."
+    },
+    {
+      "question_id": "MPPSC-2012-019",
+      "question_number": 19,
+      "status": "disputed",
+      "answer": null,
+      "candidate_options": [
+        "A",
+        "B"
+      ],
+      "research_state": "researched",
+      "sources": [
+        "https://www.britannica.com/biography/Amir-Khosrow",
+        "https://youngintach.org/files/medieval_period36.pdf"
+      ],
+      "evidence": "Britannica associates Khusrow with Alauddin Khalji; INTACH says he served through Muhammad bin Tughlaq. Both are listed, and the question does not require a specific role or work."
+    },
+    {
+      "question_id": "MPPSC-2012-020",
+      "question_number": 20,
+      "status": "verified",
+      "answer": "C",
+      "candidate_options": [],
+      "research_state": "researched",
+      "sources": [
+        "https://whc.unesco.org/document/117524"
+      ],
+      "evidence": "UNESCO’s 2012 mission report places Mohenjo-Daro in Sindh province, Pakistan."
+    },
+    {
+      "question_id": "MPPSC-2012-021",
+      "question_number": 21,
+      "status": "verified",
+      "answer": "B",
+      "candidate_options": [],
+      "research_state": "researched",
+      "sources": [
+        "https://www.ndtv.com/topic/nagarjuna-sagar-dam"
+      ],
+      "evidence": "A 2012 report places the dam in Andhra Pradesh, before the 2014 state division."
+    },
+    {
+      "question_id": "MPPSC-2012-022",
+      "question_number": 22,
+      "status": "unresolved",
+      "answer": null,
+      "candidate_options": [],
+      "research_state": "in_progress",
+      "sources": [
+        "https://dcmsme.gov.in/dips/20%20DIPS%20Saharanpur.pdf"
+      ],
+      "evidence": "A central government district profile describes Shivalik hills in northern Saharanpur, Uttar Pradesh. Whether the stem excludes Himalayan foothills is ambiguous and needs a precise contemporary geographic definition."
+    },
+    {
+      "question_id": "MPPSC-2012-023",
+      "question_number": 23,
+      "status": "unresolved",
+      "answer": null,
+      "candidate_options": [
+        "D"
+      ],
+      "research_state": "in_progress",
+      "sources": [
+        "https://www.mapsofindia.com/geography/monsoon-regime-of-india.html"
+      ],
+      "evidence": "PRELIMINARY LEAD, not yet re-verified against the full source and question: The summer southwest monsoon generally blows from southwest toward northeast; local branches and terrain alter wind direction."
+    },
+    {
+      "question_id": "MPPSC-2012-024",
+      "question_number": 24,
+      "status": "verified",
+      "answer": "B",
+      "candidate_options": [],
+      "research_state": "researched",
+      "sources": [
+        "https://www.mospi.gov.in/sites/default/files/Statistical_year_book_india_chapters/Area%20And%20Population-writeup.pdf"
+      ],
+      "evidence": "The 2011 provisional census sex ratio was 940 females per 1,000 males; final figures differ."
+    },
+    {
+      "question_id": "MPPSC-2012-025",
+      "question_number": 25,
+      "status": "verified",
+      "answer": "D",
+      "candidate_options": [],
+      "research_state": "researched",
+      "sources": [
+        "https://forest.uk.gov.in/wildlife-management"
+      ],
+      "evidence": "Uttarakhand Forest Department identifies Corbett as India’s first national park, inaugurated in 1936."
+    },
+    {
+      "question_id": "MPPSC-2012-026",
+      "question_number": 26,
+      "status": "verified",
+      "answer": "B",
+      "candidate_options": [],
+      "research_state": "researched",
+      "sources": [
+        "https://www.britannica.com/summary/Alaska"
+      ],
+      "evidence": "Alaska became a US state in 1959."
+    },
+    {
+      "question_id": "MPPSC-2012-027",
+      "question_number": 27,
+      "status": "verified",
+      "answer": "C",
+      "candidate_options": [],
+      "research_state": "researched",
+      "sources": [
+        "https://pubs.usgs.gov/publication/ofr20081253"
+      ],
+      "evidence": "USGS locates the Andes Mountains in South America."
+    },
+    {
+      "question_id": "MPPSC-2012-028",
+      "question_number": 28,
+      "status": "verified",
+      "answer": "B",
+      "candidate_options": [],
+      "research_state": "researched",
+      "sources": [
+        "https://ntrs.nasa.gov/api/citations/19940024852/downloads/19940024852.pdf",
+        "https://www.britannica.com/quiz/match-the-country-with-its-hemisphere-quiz"
+      ],
+      "evidence": "NASA’s equatorial site table lists Kenya, Indonesia and Brazil along the equator; Mexico is north of it."
+    },
+    {
+      "question_id": "MPPSC-2012-029",
+      "question_number": 29,
+      "status": "disputed",
+      "answer": null,
+      "candidate_options": [
+        "A",
+        "C"
+      ],
+      "research_state": "researched",
+      "sources": [
+        "https://kids.britannica.com/students/article/Venice/277565",
+        "https://www.lugaresincertos.com/en/travel-tips/what-to-see-when-visiting-venice-canals/"
+      ],
+      "evidence": "Venice is widely known as the city of canals, but Amsterdam is also described by that name and is another option; the description is not exclusive."
+    },
+    {
+      "question_id": "MPPSC-2012-030",
+      "question_number": 30,
+      "status": "verified",
+      "answer": "B",
+      "candidate_options": [],
+      "research_state": "researched",
+      "sources": [
+        "https://www.mea.gov.in/Uploads/PublicationDocs/31719_MEA_AR18_19.pdf"
+      ],
+      "evidence": "The Ministry of External Affairs lists Bhutan-bordering states as Assam, Arunachal Pradesh, Sikkim and West Bengal."
+    },
+    {
+      "question_id": "MPPSC-2012-031",
+      "question_number": 31,
+      "status": "unresolved",
+      "answer": null,
+      "candidate_options": [
+        "C"
+      ],
+      "research_state": "in_progress",
+      "sources": [
+        "https://ebooks.inflibnet.ac.in/psp01/chapter/the-constituent-assembly-of-india-functioning/"
+      ],
+      "evidence": "PRELIMINARY LEAD, not yet re-verified against the full source and question: Provincial assemblies elected the Constituent Assembly under a restricted franchise; universal adult suffrage did not elect it. The source also describes the 1935 Act Sixth Schedule."
+    },
+    {
+      "question_id": "MPPSC-2012-032",
+      "question_number": 32,
+      "status": "unresolved",
+      "answer": null,
+      "candidate_options": [],
+      "research_state": "not_started",
+      "sources": [],
+      "evidence": "Independent research not yet completed."
+    },
+    {
+      "question_id": "MPPSC-2012-033",
+      "question_number": 33,
+      "status": "verified",
+      "answer": "D",
+      "candidate_options": [],
+      "research_state": "researched",
+      "sources": [
+        "https://www.rbi.org.in/upload/publications/pdfs/60611.pdf"
+      ],
+      "evidence": "RBI describes gold, foreign securities and Government of India rupee securities as eligible backing assets."
+    },
+    {
+      "question_id": "MPPSC-2012-034",
+      "question_number": 34,
+      "status": "verified",
+      "answer": "C",
+      "candidate_options": [],
+      "research_state": "researched",
+      "sources": [
+        "https://www.mpa.gov.in/sites/default/files/parlia1.pdf"
+      ],
+      "evidence": "The ministry handbook assigns it work on constitution and working of zonal railway informal consultative committees; the recovered key conflicts."
+    },
+    {
+      "question_id": "MPPSC-2012-035",
+      "question_number": 35,
+      "status": "verified",
+      "answer": "B",
+      "candidate_options": [],
+      "research_state": "researched",
+      "sources": [
+        "https://www.niti.gov.in/sites/default/files/2023-08/12fyp_vol2.pdf"
+      ],
+      "evidence": "The Planning Commission titled the plan Twelfth Five Year Plan (2012–2017)."
+    },
+    {
+      "question_id": "MPPSC-2012-036",
+      "question_number": 36,
+      "status": "verified",
+      "answer": "C",
+      "candidate_options": [],
+      "research_state": "researched",
+      "sources": [
+        "https://mospi.gov.in/sites/default/files/publication_reports/brochure_%202004-05.pdf"
+      ],
+      "evidence": "The Central Statistical Organisation published national accounts and national income estimates."
+    },
+    {
+      "question_id": "MPPSC-2012-037",
+      "question_number": 37,
+      "status": "verified",
+      "answer": "B",
+      "candidate_options": [],
+      "research_state": "researched",
+      "sources": [
+        "https://www.nddb.coop/ccnddb/milk-facts"
+      ],
+      "evidence": "NDDB identifies Verghese Kurien as father of the White Revolution."
+    },
+    {
+      "question_id": "MPPSC-2012-038",
+      "question_number": 38,
+      "status": "unresolved",
+      "answer": null,
+      "candidate_options": [
+        "D"
+      ],
+      "research_state": "in_progress",
+      "sources": [
+        "https://www.rbi.org.in/scripts/PaymentSystems_UM.aspx"
+      ],
+      "evidence": "PRELIMINARY LEAD, not yet re-verified against the full source and question: The Reserve Bank identifies itself as India’s central bank."
+    },
+    {
+      "question_id": "MPPSC-2012-039",
+      "question_number": 39,
+      "status": "verified",
+      "answer": "A",
+      "candidate_options": [],
+      "research_state": "researched",
+      "sources": [
+        "https://loksabha.nic.in/Members/lokprelist.aspx?lsno=1"
+      ],
+      "evidence": "Lok Sabha lists G. V. Mavalankar as the first Lok Sabha speaker."
+    },
+    {
+      "question_id": "MPPSC-2012-040",
+      "question_number": 40,
+      "status": "unresolved",
+      "answer": null,
+      "candidate_options": [
+        "D"
+      ],
+      "research_state": "in_progress",
+      "sources": [
+        "https://www.gktoday.in/question/which-among-the-following-is-a-private-sector-indu"
+      ],
+      "evidence": "PRELIMINARY LEAD, not yet re-verified against the full source and question: Tata Steel, originally TISCO, is described as a private-sector steel company, not a public-sector undertaking."
+    },
+    {
+      "question_id": "MPPSC-2012-041",
+      "question_number": 41,
+      "status": "unresolved",
+      "answer": null,
+      "candidate_options": [],
+      "research_state": "not_started",
+      "sources": [],
+      "evidence": "Independent research not yet completed."
+    },
+    {
+      "question_id": "MPPSC-2012-042",
+      "question_number": 42,
+      "status": "verified",
+      "answer": "A",
+      "candidate_options": [],
+      "research_state": "researched",
+      "sources": [
+        "https://dash.subrotocup.in/about/"
+      ],
+      "evidence": "The organising society describes Subroto Cup as a school football tournament."
+    },
+    {
+      "question_id": "MPPSC-2012-043",
+      "question_number": 43,
+      "status": "verified",
+      "answer": "A",
+      "candidate_options": [],
+      "research_state": "researched",
+      "sources": [
+        "https://www.olympics.com/en/news/phelps-ends-career-in-golden-fashion-london-2012-swimming"
+      ],
+      "evidence": "At the end of London 2012 Michael Phelps had 18 Olympic gold medals; his later career total changed."
+    },
+    {
+      "question_id": "MPPSC-2012-044",
+      "question_number": 44,
+      "status": "unresolved",
+      "answer": null,
+      "candidate_options": [
+        "D"
+      ],
+      "research_state": "in_progress",
+      "sources": [
+        "https://www.cnbctv18.com/sports/mary-kom-turns-40-here-is-a-look-at-her-net-worth-brand-value-and-what-is-she-up-to-15247041.htm"
+      ],
+      "evidence": "PRELIMINARY LEAD, not yet re-verified against the full source and question: A 2022 report lists Mary Kom’s Olympic bronze, Arjuna Award and Padma Shri, so all three listed achievements applied at the sitting."
+    },
+    {
+      "question_id": "MPPSC-2012-045",
+      "question_number": 45,
+      "status": "unresolved",
+      "answer": null,
+      "candidate_options": [],
+      "research_state": "in_progress",
+      "sources": [
+        "https://www.iasbook.com/miscellaneous-mppsc-prelim-questions/",
+        "https://www.studyadda.com/solved-papers/mppsc-preliminary-solved-papers-2012-shift-i_q86/1067/506166"
+      ],
+      "evidence": "Question compilations conflict on the chairman; the contemporaneous identity of the council chair has not been independently established."
+    },
+    {
+      "question_id": "MPPSC-2012-046",
+      "question_number": 46,
+      "status": "unresolved",
+      "answer": null,
+      "candidate_options": [],
+      "research_state": "in_progress",
+      "sources": [
+        "https://www.olympics.com/en/news/kho-kho-history-rules-how-to-play"
+      ],
+      "evidence": "Nine is the Kho-Kho chasing side, whereas only three defenders enter at once; the stem asks how many are on the ground from one team without specifying a role."
+    },
+    {
+      "question_id": "MPPSC-2012-047",
+      "question_number": 47,
+      "status": "unresolved",
+      "answer": null,
+      "candidate_options": [],
+      "research_state": "in_progress",
+      "sources": [
+        "https://www.iasbook.com/honour-award-mppsc-prelim-questions/",
+        "https://www.news18.com/news/sports/used-to-wash-clothes-at-dhobi-ghat-ujjian-mallakhamb-coach-now-gets-dronacharya-award-2809911.html"
+      ],
+      "evidence": "The evidence identifies Vishwamitra as a Madhya Pradesh coaching award in 2012, but it does not appear among the bank options. Other transcriptions differ; no listed answer established."
+    },
+    {
+      "question_id": "MPPSC-2012-048",
+      "question_number": 48,
+      "status": "verified",
+      "answer": "D",
+      "candidate_options": [],
+      "research_state": "researched",
+      "sources": [
+        "https://www.indiatvnews.com/sports/hockey/know-the-forgotten-heroes-of-indian-sports-hockey-goalkeeper-475.html"
+      ],
+      "evidence": "The report identifies Shankar Laxman as goalkeeper at the 1956 and 1964 Olympics."
+    },
+    {
+      "question_id": "MPPSC-2012-049",
+      "question_number": 49,
+      "status": "unresolved",
+      "answer": null,
+      "candidate_options": [
+        "A"
+      ],
+      "research_state": "in_progress",
+      "sources": [
+        "https://www.cricinfo.com/story/sunil-gavaskar-wins-bcci-s-lifetime-achievement-award-588117"
+      ],
+      "evidence": "PRELIMINARY LEAD, not yet re-verified against the full source and question: A contemporary 2012 report states Sunil Gavaskar was awarded the BCCI C. K. Nayudu Lifetime Achievement Award. The question is undated; this is evaluated at the 2013 sitting."
+    },
+    {
+      "question_id": "MPPSC-2012-050",
+      "question_number": 50,
+      "status": "disputed",
+      "answer": null,
+      "candidate_options": [
+        "B",
+        "D"
+      ],
+      "research_state": "researched",
+      "sources": [
+        "https://www.ibsf.info/index.php?option=com_k2&view=item&id=71%3Apast-champions&Itemid=367"
+      ],
+      "evidence": "The federation lists Rupesh Shah as 2012 points champion and Pankaj Advani as 2012 timed champion. The question does not specify the format."
+    },
+    {
+      "question_id": "MPPSC-2012-051",
+      "question_number": 51,
+      "status": "verified",
+      "answer": "C",
+      "candidate_options": [],
+      "research_state": "researched",
+      "sources": [
+        "https://www.hindustantimes.com/photos/india/nov-25-day-in-pics/photo-uYCcw1cNjjK1rRgqYeEkqK.html"
+      ],
+      "evidence": "A contemporary photo caption reports the presentation to Anupam Kher in November 2012."
+    },
+    {
+      "question_id": "MPPSC-2012-052",
+      "question_number": 52,
+      "status": "unresolved",
+      "answer": null,
+      "candidate_options": [
+        "A"
+      ],
+      "research_state": "in_progress",
+      "sources": [
+        "https://www.researchgate.net/publication/345363861_Constraints_faced_by_soybean_growers_of_Mandsaur_district_in_Malwa_plateau_of_Madhya_Pradesh",
+        "https://www.iasbook.com/agriculture-economy-mppsc-prelim-questions/"
+      ],
+      "evidence": "PRELIMINARY LEAD, not yet re-verified against the full source and question: A 2012–13 agricultural study places major soybean growing in the Malwa plateau; a regional comparison remains supported by https://www.iasbook.com/agriculture-economy-mppsc-prelim-questions/."
+    },
+    {
+      "question_id": "MPPSC-2012-053",
+      "question_number": 53,
+      "status": "disputed",
+      "answer": null,
+      "candidate_options": [
+        "D"
+      ],
+      "research_state": "researched",
+      "sources": [
+        "https://www.mppcb.mp.gov.in/proc/Tech/DEP%20SHEOPUR.pdf",
+        "https://www.iasbook.com/geography-mppsc-prelim-questions/"
+      ],
+      "evidence": "The state environment plan says Sheopur borders Uttar Pradesh, whereas the secondary source says it does not. The conflict needs a definitive boundary source."
+    },
+    {
+      "question_id": "MPPSC-2012-054",
+      "question_number": 54,
+      "status": "unresolved",
+      "answer": null,
+      "candidate_options": [
+        "D"
+      ],
+      "research_state": "in_progress",
+      "sources": [
+        "https://www.indiacensus.net/district/raisen"
+      ],
+      "evidence": "PRELIMINARY LEAD, not yet re-verified against the full source and question: A census-based district comparison gives Harda 570,465, Sheopur 687,861, and Raisen 1,331,597 in 2011; Harda is the least populous district on the list."
+    },
+    {
+      "question_id": "MPPSC-2012-055",
+      "question_number": 55,
+      "status": "verified",
+      "answer": "A",
+      "candidate_options": [],
+      "research_state": "researched",
+      "sources": [
+        "https://mpvidhansabha.nic.in/cm-ravishankar.htm"
+      ],
+      "evidence": "The MP legislature names Ravishankar Shukla the first chief minister of reorganised Madhya Pradesh from 1 November 1956."
+    },
+    {
+      "question_id": "MPPSC-2012-056",
+      "question_number": 56,
+      "status": "unresolved",
+      "answer": null,
+      "candidate_options": [
+        "B"
+      ],
+      "research_state": "in_progress",
+      "sources": [
+        "https://www.mptourism.com/Holiday-Calendar-2023.html"
+      ],
+      "evidence": "PRELIMINARY LEAD, not yet re-verified against the full source and question: Madhya Pradesh Tourism identifies two Jyotirlingas in the state: Ujjain and Omkareshwar."
+    },
+    {
+      "question_id": "MPPSC-2012-057",
+      "question_number": 57,
+      "status": "unresolved",
+      "answer": null,
+      "candidate_options": [
+        "B"
+      ],
+      "research_state": "in_progress",
+      "sources": [
+        "https://www.nma.gov.in/showfile.php?lang=1&level=1&ls_id=965&lid=1276"
+      ],
+      "evidence": "PRELIMINARY LEAD, not yet re-verified against the full source and question: The National Monuments Authority lists Roopmati Pavilion at Mandu, Dhar."
+    },
+    {
+      "question_id": "MPPSC-2012-058",
+      "question_number": 58,
+      "status": "unresolved",
+      "answer": null,
+      "candidate_options": [
+        "B"
+      ],
+      "research_state": "in_progress",
+      "sources": [
+        "https://www.academia.edu/9733821/An_overview_of_tribal_population_in_India_Bisai_S_Saha_KB_Sharma_RK_Muniyandi_M_Singh_N_Tribal_Health_Bulletin_2014_20_Special_issue_1_126"
+      ],
+      "evidence": "PRELIMINARY LEAD, not yet re-verified against the full source and question: A tribal-health review cites Census 2001 showing Bhil first by population in MP, ahead of Gond and Kol; Bhil is the applicable listed option."
+    },
+    {
+      "question_id": "MPPSC-2012-059",
+      "question_number": 59,
+      "status": "unresolved",
+      "answer": null,
+      "candidate_options": [
+        "C"
+      ],
+      "research_state": "in_progress",
+      "sources": [
+        "https://dhar.nic.in/en/tourism/phadke-art-studio/"
+      ],
+      "evidence": "PRELIMINARY LEAD, not yet re-verified against the full source and question: Dhar district administration locates Phadke Art Studio in Dhar and dates its establishment to 1933."
+    },
+    {
+      "question_id": "MPPSC-2012-060",
+      "question_number": 60,
+      "status": "unresolved",
+      "answer": null,
+      "candidate_options": [
+        "B"
+      ],
+      "research_state": "in_progress",
+      "sources": [
+        "https://www.mptourism.com/50th-khajuraho-dance-festival.html"
+      ],
+      "evidence": "PRELIMINARY LEAD, not yet re-verified against the full source and question: MP Tourism says the Khajuraho classical dance festival began in 1975."
+    },
+    {
+      "question_id": "MPPSC-2012-061",
+      "question_number": 61,
+      "status": "unresolved",
+      "answer": null,
+      "candidate_options": [
+        "B"
+      ],
+      "research_state": "in_progress",
+      "sources": [
+        "https://news.un.org/en/story/2011/11/396552"
+      ],
+      "evidence": "PRELIMINARY LEAD, not yet re-verified against the full source and question: UN News reports that Nepal extended its Constituent Assembly by six months in November 2011."
+    },
+    {
+      "question_id": "MPPSC-2012-062",
+      "question_number": 62,
+      "status": "unresolved",
+      "answer": null,
+      "candidate_options": [
+        "A"
+      ],
+      "research_state": "in_progress",
+      "sources": [
+        "https://obamawhitehouse.archives.gov/blog/2011/06/22/president-obama-way-forward-afghanistan"
+      ],
+      "evidence": "PRELIMINARY LEAD, not yet re-verified against the full source and question: The White House announced in June 2011 that 33,000 surge troops would be withdrawn by the following summer, 2012."
+    },
+    {
+      "question_id": "MPPSC-2012-063",
+      "question_number": 63,
+      "status": "unresolved",
+      "answer": null,
+      "candidate_options": [],
+      "research_state": "in_progress",
+      "sources": [
+        "https://ispr.gov.pk/press-release-archive.php?cat=army&p=370"
+      ],
+      "evidence": "Pakistan’s military places the 2011 exercise near Jhelum, but does not say it was along the river rather than near the city."
+    },
+    {
+      "question_id": "MPPSC-2012-064",
+      "question_number": 64,
+      "status": "unresolved",
+      "answer": null,
+      "candidate_options": [
+        "D"
+      ],
+      "research_state": "in_progress",
+      "sources": [
+        "https://www.cnn.com/2012/02/23/world/meast/syria-unrest/index.html?_s=PM%3AMIDDLEEAST"
+      ],
+      "evidence": "PRELIMINARY LEAD, not yet re-verified against the full source and question: A contemporaneous report says China and Russia would not attend the February 2012 Friends of Syria conference in Tunisia; the stem omits the conference name."
+    },
+    {
+      "question_id": "MPPSC-2012-065",
+      "question_number": 65,
+      "status": "unresolved",
+      "answer": null,
+      "candidate_options": [
+        "D"
+      ],
+      "research_state": "in_progress",
+      "sources": [
+        "https://www.c-span.org/program/international-telecasts/aung-san-suu-kyi-speech/280192"
+      ],
+      "evidence": "PRELIMINARY LEAD, not yet re-verified against the full source and question: A 2012 recording identifies Aung San Suu Kyi as the first woman apart from the Queen to address both houses of British Parliament."
+    },
+    {
+      "question_id": "MPPSC-2012-066",
+      "question_number": 66,
+      "status": "unresolved",
+      "answer": null,
+      "candidate_options": [
+        "A"
+      ],
+      "research_state": "in_progress",
+      "sources": [
+        "https://mea.gov.in/bilateral-documents.htm?dtl%2F7528%2FJoint+Statement+IndiaPakistan+meeting+on+Joint+Survey+of+the+Boundary+Pillars+in+the+Horizontal+Segment+in+the+Sir+Creek+Area="
+      ],
+      "evidence": "PRELIMINARY LEAD, not yet re-verified against the full source and question: India and Pakistan issued a 2004 joint statement about a boundary survey in the Sir Creek area."
+    },
+    {
+      "question_id": "MPPSC-2012-067",
+      "question_number": 67,
+      "status": "unresolved",
+      "answer": null,
+      "candidate_options": [],
+      "research_state": "in_progress",
+      "sources": [
+        "https://www.ndtv.com/india-news/anna-hazare-makes-it-to-time-magazines-top-10-list-570556"
+      ],
+      "evidence": "TIME placed the anti-corruption movement among top stories, but a photo essay of people who mattered does not establish a numerical ranking of individuals."
+    },
+    {
+      "question_id": "MPPSC-2012-068",
+      "question_number": 68,
+      "status": "verified",
+      "answer": "C",
+      "candidate_options": [],
+      "research_state": "researched",
+      "sources": [
+        "https://www.eci.gov.in/voicenet/Article_nvd2021.htm"
+      ],
+      "evidence": "The Election Commission identifies 25 January as National Voters’ Day."
+    },
+    {
+      "question_id": "MPPSC-2012-069",
+      "question_number": 69,
+      "status": "verified",
+      "answer": "D",
+      "candidate_options": [],
+      "research_state": "researched",
+      "sources": [
+        "https://www.issf-sports.org/competitions/results?view=comp&compId=1184&y=2012"
+      ],
+      "evidence": "The shooting federation lists the 2012 Asian Championships at Doha."
+    },
+    {
+      "question_id": "MPPSC-2012-070",
+      "question_number": 70,
+      "status": "unresolved",
+      "answer": null,
+      "candidate_options": [
+        "B"
+      ],
+      "research_state": "in_progress",
+      "sources": [
+        "https://www.bbc.com/news/uk-england-birmingham-19966357"
+      ],
+      "evidence": "PRELIMINARY LEAD, not yet re-verified against the full source and question: A contemporary October 2012 report states Malala Yousafzai was receiving treatment at Queen Elizabeth Hospital, Birmingham, UK."
+    },
+    {
+      "question_id": "MPPSC-2012-071",
+      "question_number": 71,
+      "status": "unresolved",
+      "answer": null,
+      "candidate_options": [
+        "C"
+      ],
+      "research_state": "in_progress",
+      "sources": [
+        "https://deshgujarat.com/2012/03/14/full-text-of-railway-minister-of-india-dinesh-trivedi-s-railway-budget-speech-2012-13/"
+      ],
+      "evidence": "PRELIMINARY LEAD, not yet re-verified against the full source and question: The 2012–13 railway budget speech proposed a traction-alternator plant at Vidisha, MP."
+    },
+    {
+      "question_id": "MPPSC-2012-072",
+      "question_number": 72,
+      "status": "verified",
+      "answer": "D",
+      "candidate_options": [],
+      "research_state": "researched",
+      "sources": [
+        "https://dcmsme.gov.in/publications/traderep/raisen.htm"
+      ],
+      "evidence": "The government industrial survey places Mandideep Industrial Growth Centre in Raisen district."
+    },
+    {
+      "question_id": "MPPSC-2012-073",
+      "question_number": 73,
+      "status": "unresolved",
+      "answer": null,
+      "candidate_options": [],
+      "research_state": "in_progress",
+      "sources": [
+        "https://www.embibe.com/questions/In-Madhya-Pradesh-Railway-Sleeper-Factory-was-established-in:/EM4784792",
+        "https://www.railtrack.in/company-profile/"
+      ],
+      "evidence": "Secondary sources point to Sehore and a manufacturer reports another factory in Vidisha; an independent historic source is needed to establish the intended factory."
+    },
+    {
+      "question_id": "MPPSC-2012-074",
+      "question_number": 74,
+      "status": "verified",
+      "answer": "D",
+      "candidate_options": [],
+      "research_state": "researched",
+      "sources": [
+        "https://mpvidhansabha.nic.in/cm-umabharti.htm",
+        "https://mpvidhansabha.nic.in/loh_.htm"
+      ],
+      "evidence": "The legislature records Uma Bharti’s term as MP chief minister from December 2003 to August 2004."
+    },
+    {
+      "question_id": "MPPSC-2012-075",
+      "question_number": 75,
+      "status": "unresolved",
+      "answer": null,
+      "candidate_options": [],
+      "research_state": "in_progress",
+      "sources": [
+        "https://www.iasbook.com/reviewplan-project-mppsc-prelim-questions/"
+      ],
+      "evidence": "A solved-question source identifies Indira Sagar, but no independent evidence for the scheme’s initial reservoir has yet been established."
+    },
+    {
+      "question_id": "MPPSC-2012-076",
+      "question_number": 76,
+      "status": "verified",
+      "answer": "A",
+      "candidate_options": [],
+      "research_state": "researched",
+      "sources": [
+        "https://mpvidhansabha.nic.in/po_.htm"
+      ],
+      "evidence": "The MP legislature lists Ishwardas Rohani as speaker from 2009 to 5 November 2013."
+    },
+    {
+      "question_id": "MPPSC-2012-077",
+      "question_number": 77,
+      "status": "verified",
+      "answer": "B",
+      "candidate_options": [],
+      "research_state": "researched",
+      "sources": [
+        "https://mpvidhansabha.nic.in/loh_.htm"
+      ],
+      "evidence": "The MP legislature lists Digvijay Singh as house leader from 1 December 1998 to 7 December 2003."
+    },
+    {
+      "question_id": "MPPSC-2012-078",
+      "question_number": 78,
+      "status": "unresolved",
+      "answer": null,
+      "candidate_options": [
+        "A"
+      ],
+      "research_state": "in_progress",
+      "sources": [
+        "https://www.businesstoday.in/amp/magazine/features/story/coal-bed-methane-industry-india-policy-30917-2012-05-07"
+      ],
+      "evidence": "PRELIMINARY LEAD, not yet re-verified against the full source and question: A 2012 report describes Reliance’s coal-bed methane discovery in its Sohagpur, Madhya Pradesh blocks."
+    },
+    {
+      "question_id": "MPPSC-2012-079",
+      "question_number": 79,
+      "status": "unresolved",
+      "answer": null,
+      "candidate_options": [],
+      "research_state": "in_progress",
+      "sources": [
+        "https://www.dailypioneer.com/2019/state-editions/poetry-meet-held-in-memorial-museum.html"
+      ],
+      "evidence": "A 2019 Bhopal report places the manuscript museum in Bhopal; a source establishing its location at the exam date remains needed."
+    },
+    {
+      "question_id": "MPPSC-2012-080",
+      "question_number": 80,
+      "status": "verified",
+      "answer": "D",
+      "candidate_options": [],
+      "research_state": "researched",
+      "sources": [
+        "https://whc.unesco.org/en/list/524/"
+      ],
+      "evidence": "UNESCO attributes Sanchi’s inception and the original brick stupa to Mauryan emperor Ashoka."
+    },
+    {
+      "question_id": "MPPSC-2012-081",
+      "question_number": 81,
+      "status": "verified",
+      "answer": "A",
+      "candidate_options": [],
+      "research_state": "researched",
+      "sources": [
+        "https://developer.mozilla.org/en-US/docs/Glossary/World_Wide_Web?retiredLocale=vi"
+      ],
+      "evidence": "HTTP governs data transfer between web server and client."
+    },
+    {
+      "question_id": "MPPSC-2012-082",
+      "question_number": 82,
+      "status": "unresolved",
+      "answer": null,
+      "candidate_options": [],
+      "research_state": "in_progress",
+      "sources": [
+        "https://www.iana.org/reports/2001/name-report-16aug01.html"
+      ],
+      "evidence": "IANA lists .com, .gov and .net; Hindi asks about valid domains, while English prints “val”. The wording defect warrants an explicit decision."
+    },
+    {
+      "question_id": "MPPSC-2012-083",
+      "question_number": 83,
+      "status": "verified",
+      "answer": "C",
+      "candidate_options": [],
+      "research_state": "researched",
+      "sources": [
+        "https://developer.mozilla.org/en-US/docs/Glossary/World_Wide_Web?retiredLocale=vi"
+      ],
+      "evidence": "URL stands for uniform resource locator."
+    },
+    {
+      "question_id": "MPPSC-2012-084",
+      "question_number": 84,
+      "status": "unresolved",
+      "answer": null,
+      "candidate_options": [
+        "B"
+      ],
+      "research_state": "in_progress",
+      "sources": [
+        "https://kids.britannica.com/students/article/e-mail/322314"
+      ],
+      "evidence": "PRELIMINARY LEAD, not yet re-verified against the full source and question: Britannica expands e-mail as electronic mail."
+    },
+    {
+      "question_id": "MPPSC-2012-085",
+      "question_number": 85,
+      "status": "unresolved",
+      "answer": null,
+      "candidate_options": [],
+      "research_state": "in_progress",
+      "sources": [
+        "https://www.webdevelopersnotes.com/rediffmail-1gb"
+      ],
+      "evidence": "A source describes Rediffmail’s free service and names Hotmail and Yahoo as contemporaries, but does not independently confirm that all three were free at the exam date."
+    },
+    {
+      "question_id": "MPPSC-2012-086",
+      "question_number": 86,
+      "status": "verified",
+      "answer": "B",
+      "candidate_options": [],
+      "research_state": "researched",
+      "sources": [
+        "https://developer.mozilla.org/en-US/docs/Glossary/World_Wide_Web?retiredLocale=vi"
+      ],
+      "evidence": "HTML stands for hypertext markup language."
+    },
+    {
+      "question_id": "MPPSC-2012-087",
+      "question_number": 87,
+      "status": "unresolved",
+      "answer": null,
+      "candidate_options": [
+        "A"
+      ],
+      "research_state": "in_progress",
+      "sources": [
+        "https://csrc.nist.gov/files/pubs/conference/1999/10/21/proceedings-of-the-22nd-nissc-1999/final/docs/papers/p12.pdf"
+      ],
+      "evidence": "PRELIMINARY LEAD, not yet re-verified against the full source and question: The 1999 paper defines a computer virus as a program able to replicate by attaching to other programs."
+    },
+    {
+      "question_id": "MPPSC-2012-088",
+      "question_number": 88,
+      "status": "unresolved",
+      "answer": null,
+      "candidate_options": [],
+      "research_state": "in_progress",
+      "sources": [
+        "https://www.cisa.gov/news-events/news/what-cybersecurity"
+      ],
+      "evidence": "CISA explains hackers may have benign intentions; option B describes a narrower malicious hacker, so its presentation as a complete definition needs care."
+    },
+    {
+      "question_id": "MPPSC-2012-089",
+      "question_number": 89,
+      "status": "unresolved",
+      "answer": null,
+      "candidate_options": [
+        "A"
+      ],
+      "research_state": "in_progress",
+      "sources": [
+        "https://www.britannica.com/technology/videoconferencing"
+      ],
+      "evidence": "PRELIMINARY LEAD, not yet re-verified against the full source and question: Britannica describes transmitting audio and video between physically separate locations."
+    },
+    {
+      "question_id": "MPPSC-2012-090",
+      "question_number": 90,
+      "status": "unresolved",
+      "answer": null,
+      "candidate_options": [],
+      "research_state": "in_progress",
+      "sources": [
+        "https://www.unodc.org/documents/organized-crime/Guidance_Note_on_Cybercrime_5_January_2010.pdf"
+      ],
+      "evidence": "UNODC lists illegal hacking, cyber-stalking and denial-of-service attacks as cybercrime examples, but the options omit the cyber qualifier on stalking and illegality on hacking."
+    },
+    {
+      "question_id": "MPPSC-2012-091",
+      "question_number": 91,
+      "status": "verified",
+      "answer": "D",
+      "candidate_options": [],
+      "research_state": "researched",
+      "sources": [
+        "https://www.grammy.com/news/sitarist-ravi-shankar-dies/",
+        "https://www.indiatoday.in/world/americas/story/pandit-ravi-shankar-to-receive-grammy-award-for-lifetime-achievement-sitar-maestro-124170-2012-12-12"
+      ],
+      "evidence": "The Recording Academy reported Ravi Shankar would receive the lifetime award in February 2013; it was announced after his December 2012 death."
+    },
+    {
+      "question_id": "MPPSC-2012-092",
+      "question_number": 92,
+      "status": "disputed",
+      "answer": null,
+      "candidate_options": [
+        "A",
+        "B"
+      ],
+      "research_state": "researched",
+      "sources": [
+        "https://cag.gov.in/uploads/media/Manual-of-Office-Procedure-IInd-edition-2013-english-20200627105908.pdf"
+      ],
+      "evidence": "The CAG manual identifies MP Accountant General audit offices in Bhopal and Gwalior after the 2012 restructuring; the question does not distinguish the offices."
+    },
+    {
+      "question_id": "MPPSC-2012-093",
+      "question_number": 93,
+      "status": "verified",
+      "answer": "D",
+      "candidate_options": [],
+      "research_state": "researched",
+      "sources": [
+        "https://academy.mp.gov.in/home.aspx"
+      ],
+      "evidence": "The academy’s history gives its name and location as Bhopal."
+    },
+    {
+      "question_id": "MPPSC-2012-094",
+      "question_number": 94,
+      "status": "unresolved",
+      "answer": null,
+      "candidate_options": [],
+      "research_state": "in_progress",
+      "sources": [
+        "https://ijsw.tiss.edu/collect/ijsw/import/vol.43/no.1/77-82.pdf"
+      ],
+      "evidence": "The actual option B says cognizable and non-compoundable. Historical legal commentary notes uncertainty in application; statutory and case-law review remains needed."
+    },
+    {
+      "question_id": "MPPSC-2012-095",
+      "question_number": 95,
+      "status": "unresolved",
+      "answer": null,
+      "candidate_options": [],
+      "research_state": "in_progress",
+      "sources": [
+        "https://indiankanoon.org/doc/337685/"
+      ],
+      "evidence": "The 1957 judgment construes untouchability in terms of birth-based disability, but this does not establish that all same-group acts cannot be offences or distinguish the vaguely worded option C."
+    },
+    {
+      "question_id": "MPPSC-2012-096",
+      "question_number": 96,
+      "status": "verified",
+      "answer": "A",
+      "candidate_options": [],
+      "research_state": "researched",
+      "sources": [
+        "https://www.legitquest.com/act/protection-of-civil-rights-act-1955-amended-upto-1976/2806"
+      ],
+      "evidence": "The 1955 Act as amended to 1976 section 1(2) extends it to the whole of India."
+    },
+    {
+      "question_id": "MPPSC-2012-097",
+      "question_number": 97,
+      "status": "verified",
+      "answer": "B",
+      "candidate_options": [],
+      "research_state": "researched",
+      "sources": [
+        "https://www.indiacode.nic.in/handle/123456789/1920?locale=en"
+      ],
+      "evidence": "India Code records commencement on 30 January 1990."
+    },
+    {
+      "question_id": "MPPSC-2012-098",
+      "question_number": 98,
+      "status": "unresolved",
+      "answer": null,
+      "candidate_options": [
+        "C"
+      ],
+      "research_state": "in_progress",
+      "sources": [
+        "https://utkaluniversity.ac.in/wp-content/uploads/2022/08/Protective-Discrimination.pdf"
+      ],
+      "evidence": "PRELIMINARY LEAD, not yet re-verified against the full source and question: The university module places the SC/ST Prevention of Atrocities Act among protections under the heading protective discrimination."
+    },
+    {
+      "question_id": "MPPSC-2012-099",
+      "question_number": 99,
+      "status": "unresolved",
+      "answer": null,
+      "candidate_options": [],
+      "research_state": "in_progress",
+      "sources": [
+        "https://www.indiacode.nic.in/bitstream/123456789/16874/1/sc_st_(preventionofatrocities)_act_1989.pdf"
+      ],
+      "evidence": "The original statutory sections 7, 9, 10 and 12 need close comparison of court orders, delegated police powers and measurements; do not equate later amendments with the exam-date law."
+    },
+    {
+      "question_id": "MPPSC-2012-100",
+      "question_number": 100,
+      "status": "verified",
+      "answer": "A",
+      "candidate_options": [],
+      "research_state": "researched",
+      "sources": [
+        "https://www.indiacode.nic.in/bitstream/123456789/16874/1/sc_st_(preventionofatrocities)_act_1989.pdf"
+      ],
+      "evidence": "Original section 14 specifies Special Courts for speedy trial; the recovered key conflicts."
+    }
+  ],
+  "reconstruction_notice": "Work in progress. The 46 historical verified labels have not all been independently re-verified; newly researched leads are provisional. None of these records has been integrated into the live bank."
+}

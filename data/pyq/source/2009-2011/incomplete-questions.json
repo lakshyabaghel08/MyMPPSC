@@ -1,0 +1,153 @@
+{
+  "note": "Source wording and damaged data only; excluded from bank. No answer or explanation.",
+  "questions": [
+    {
+      "id": "MPPSC-2009-075",
+      "language_variants": {
+        "en": {
+          "question_text": "Which diagram best represents the relationship of Doctors, Engineers and Professors ?",
+          "options": []
+        }
+      },
+      "reason": "diagrams missing from PDF"
+    },
+    {
+      "id": "MPPSC-2009-076",
+      "language_variants": {
+        "en": {
+          "question_text": "Which subject has the highest pass percentage ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "History"
+            },
+            {
+              "key": "B",
+              "text": "Geography"
+            },
+            {
+              "key": "C",
+              "text": "Economics"
+            },
+            {
+              "key": "D",
+              "text": "All are equal"
+            }
+          ],
+          "instructions": "Directions—(Q. 76 to 78): Consider the following data about marks obtained (out of 100) :\nMarks Subjects\nHistory Geography Economic\n10–19\n20–29\n30–39\n40–49\n50–59\n60–69\n70–79\n80–89\n90–100 1\n1\n1\n10\n27\n48\n9\n3\n0 2\n3\n2\n12\n20\n42\n17\n2\n0 1\n4\n1\n9\n16\n48\n17\n4\n0\nPass marks is 40.\nFirst division marks is 60."
+        }
+      },
+      "reason": "shared table layout broken in PDF"
+    },
+    {
+      "id": "MPPSC-2009-077",
+      "language_variants": {
+        "en": {
+          "question_text": "Which subject has most first divisioners ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "History"
+            },
+            {
+              "key": "B",
+              "text": "Geography"
+            },
+            {
+              "key": "C",
+              "text": "Economics"
+            },
+            {
+              "key": "D",
+              "text": "All are equal"
+            }
+          ],
+          "instructions": "Directions—(Q. 76 to 78): Consider the following data about marks obtained (out of 100) :\nMarks Subjects\nHistory Geography Economic\n10–19\n20–29\n30–39\n40–49\n50–59\n60–69\n70–79\n80–89\n90–100 1\n1\n1\n10\n27\n48\n9\n3\n0 2\n3\n2\n12\n20\n42\n17\n2\n0 1\n4\n1\n9\n16\n48\n17\n4\n0\nPass marks is 40.\nFirst division marks is 60."
+        }
+      },
+      "reason": "shared table layout broken in PDF"
+    },
+    {
+      "id": "MPPSC-2009-078",
+      "language_variants": {
+        "en": {
+          "question_text": "In which subject is the average of marks scored maximum ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "History"
+            },
+            {
+              "key": "B",
+              "text": "Geography"
+            },
+            {
+              "key": "C",
+              "text": "Economics"
+            },
+            {
+              "key": "D",
+              "text": "All are equal"
+            }
+          ],
+          "instructions": "Directions—(Q. 76 to 78): Consider the following data about marks obtained (out of 100) :\nMarks Subjects\nHistory Geography Economic\n10–19\n20–29\n30–39\n40–49\n50–59\n60–69\n70–79\n80–89\n90–100 1\n1\n1\n10\n27\n48\n9\n3\n0 2\n3\n2\n12\n20\n42\n17\n2\n0 1\n4\n1\n9\n16\n48\n17\n4\n0\nPass marks is 40.\nFirst division marks is 60."
+        }
+      },
+      "reason": "shared table layout broken in PDF"
+    },
+    {
+      "id": "MPPSC-2011-007",
+      "language_variants": {
+        "en": {
+          "question_text": "In which region of the world are nights the winters ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "Tundra region"
+            },
+            {
+              "key": "B",
+              "text": "Mediterranean region"
+            },
+            {
+              "key": "C",
+              "text": "Tropical desert region"
+            },
+            {
+              "key": "D",
+              "text": "Equatorial region"
+            }
+          ]
+        }
+      },
+      "reason": "garbled question wording"
+    },
+    {
+      "id": "MPPSC-2011-038",
+      "language_variants": {
+        "en": {
+          "question_text": "What is National Water Grid Plan ?",
+          "options": [
+            {
+              "key": "A",
+              "text": "To link the Himalayan rivers with peninsular rivers"
+            },
+            {
+              "key": "B",
+              "text": "To link east and west flowing rivers of the peninsular"
+            },
+            {
+              "key": "C",
+              "text": "To link the rivers of India with the rivers of Pakistan"
+            },
+            {
+              "key": "D",
+              "text": "None of the above"
+            }
+          ]
+        }
+      },
+      "reason": "option B ends abruptly"
+    }
+  ]
+}

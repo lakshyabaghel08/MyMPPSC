@@ -1,0 +1,606 @@
+{
+  "status": "provisional subject-level staging; manual review required",
+  "note": "Lower levels intentionally left unset rather than guessed; source identity remains uncertain.",
+  "labels": {
+    "MPPSC-2010-001": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-002": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-003": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-004": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-005": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-006": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-007": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-008": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-009": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-010": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-011": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-012": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-013": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-014": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-015": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-016": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-017": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-018": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-019": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-020": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-021": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-022": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-023": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-024": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-025": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-026": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-027": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-028": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-029": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-030": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-031": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-032": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-033": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-034": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-035": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-036": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-037": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-038": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-039": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-040": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-041": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-042": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-043": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-044": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-045": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-046": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-047": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-048": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-049": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-050": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-051": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-052": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-053": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-054": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-055": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-056": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-057": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-058": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-059": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-060": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-061": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-062": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-063": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-064": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-065": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-066": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-067": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-068": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-069": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-070": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-071": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-072": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-073": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-074": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-075": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-076": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-077": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-078": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-079": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-080": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-081": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-082": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-083": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-084": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-085": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-086": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-087": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-088": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-089": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-090": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-091": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-092": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-093": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-094": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-095": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-096": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-097": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-098": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-099": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-100": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-101": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-102": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-103": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-104": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-105": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-106": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-107": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-108": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-109": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-110": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-111": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-112": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-113": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-114": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-115": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-116": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-117": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-118": {
+      "subject": "History",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-119": {
+      "subject": "Current Affairs",
+      "topic": null,
+      "subtopic": null
+    },
+    "MPPSC-2010-120": {
+      "subject": "Polity",
+      "topic": null,
+      "subtopic": null
+    }
+  }
+}

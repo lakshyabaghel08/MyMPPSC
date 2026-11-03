@@ -409,13 +409,40 @@ if (builtinPath) {
   check(shellPaths.includes(`./${builtinPath}`), `sw.js: the bundled bank ${builtinPath} is not precached, so it would need the network`);
   const bundled = JSON.parse(await readFile(path.join(root, builtinPath), 'utf8'));
   check(bundled.is_demonstration !== true, 'the bundled bank is real previous-year material, not the demonstration fixture');
-  check(bundled.questions.length === 1200, `the expanded bundled bank must contain 1,200 questions, found ${bundled.questions.length}`);
-  check(bundled.papers.length === 12, `the expanded bundled bank must contain 12 papers, found ${bundled.papers.length}`);
+  check(bundled.questions.length === 1684, `the expanded bundled bank must contain 1,684 questions, found ${bundled.questions.length}`);
+  check(bundled.papers.length === 16, `the expanded bundled bank must contain 16 papers, found ${bundled.papers.length}`);
   const bundledYears = [...new Set(bundled.papers.map((paper) => Number(paper.year)))].sort((a, b) => a - b);
-  check(bundledYears.length === 12 && bundledYears.every((year, index) => year === 2013 + index), 'the bundled papers must cover every year from 2013 through 2024');
-  check(new Set(bundled.questions.map((question) => question.id)).size === 1200, 'the expanded bank must have 1,200 unique stable question ids');
-  check(bundled.questions.every((question) => question.supplied_answer?.answer?.length && question.supplied_answer.status === 'supplied'), 'every bundled question must carry a supplied key');
-  check(bundled.questions.every((question) => !question.verified_answer?.answer?.length), 'the bundled bank must not imply that any key was independently verified');
+  check(bundledYears.length === 16 && bundledYears.every((year, index) => year === 2009 + index), 'the bundled papers must cover every year from 2009 through 2024');
+  check(new Set(bundled.questions.map((question) => question.id)).size === 1684, 'the expanded bank must have 1,684 unique stable question ids');
+  check(bundled.questions.every((q) => (q.year === 2011 || q.year === 2010) ? (!q.supplied_answer?.answer?.length || q.supplied_answer.status === 'unofficial') : q.year <= 2012 ? !q.supplied_answer?.answer?.length : q.supplied_answer?.answer?.length && q.supplied_answer.status === 'supplied'), '2010–2011 supplied keys must be unofficial; 2009 and 2012 have no supplied keys and 2013–2024 retain theirs');
+  check(bundled.questions.filter((q) => q.year !== 2012).every((q) => !q.verified_answer?.answer?.length), 'independent reassessment applies only to 2012');
+  const review2012 = JSON.parse(await readFile(path.join(root, 'data/pyq/source/2012-recovery/answer-reassessment-2012.json'), 'utf8'));
+  const questions2012 = bundled.questions.filter((q) => q.year === 2012);
+  const reviewedById = new Map(review2012.records.map((r) => [r.question_id, r]));
+  check(reviewedById.size === 100 && questions2012.length === 100 && questions2012.every((q) => {
+    const r = reviewedById.get(q.id);
+    if (!r) return false;
+    if (r.status === 'verified') return q.verified_answer?.answer?.length === 1 && q.verified_answer.answer[0] === r.proposed_answer && q.explanation?.correct_reasoning === r.reasoning && q.verified_answer.verified_by?.includes('not an official MPPSC key');
+    return ['disputed', 'unresolved'].includes(r.status) && !q.verified_answer?.answer?.length && !q.explanation && q.dispute?.status === 'unresolved' && q.dispute.is_disputed === (r.status === 'disputed');
+  }), '2012 bank records must match the independent reassessment and preserve unresolved flags');
+  const review2011 = JSON.parse(await readFile(path.join(root, 'data/pyq/source/2009-2011/answer-review-2011.json'), 'utf8'));
+  const q2011 = bundled.questions.filter(q => q.year === 2011);
+  const by2011 = new Map(review2011.records.map(r => [r.question_id, r]));
+  check(q2011.length === 118 && by2011.size === 118 && bundled.papers.find(p => p.year === 2011)?.paper_name.includes('identity disputed') && q2011.every(q => {
+    const r = by2011.get(q.id);
+    if (!r) return false;
+    if (r.status === 'supported') return q.supplied_answer?.status === 'unofficial' && q.supplied_answer.answer?.length === 1 && q.supplied_answer.answer[0] === r.answer && q.explanation?.correct_reasoning === r.reasoning;
+    return ['disputed', 'unresolved'].includes(r.status) && !q.supplied_answer?.answer && !q.explanation && q.dispute?.status === 'unresolved' && q.dispute.is_disputed === (r.status === 'disputed');
+  }), '2011 must preserve the reviewed unofficial answers, unresolved flags and identity warning');
+  const review2010 = JSON.parse(await readFile(path.join(root, 'data/pyq/source/2009-2011/answer-review-2010.json'), 'utf8'));
+  const q2010 = bundled.questions.filter(q => q.year === 2010);
+  const by2010 = new Map(review2010.records.map(r => [r.question_id, r]));
+  check(q2010.length === 120 && by2010.size === 120 && bundled.papers.find(p => p.year === 2010)?.paper_name.includes('identity unconfirmed') && q2010.every(q => {
+    const r = by2010.get(q.id);
+    if (!r) return false;
+    if (r.status === 'supported') return q.supplied_answer?.status === 'unofficial' && q.supplied_answer.answer?.length === 1 && q.supplied_answer.answer[0] === r.answer && q.explanation?.correct_reasoning === r.reasoning;
+    return ['disputed', 'unresolved'].includes(r.status) && !q.supplied_answer?.answer && !q.explanation && q.dispute?.status === 'unresolved' && q.dispute.is_disputed === (r.status === 'disputed');
+  }), '2010 must preserve reviewed unofficial answers, unresolved flags and source warning');
   check(!('provenance' in bundled), 'the bundled bank must carry no source provenance (docs/PYQ_AUDIT.md keeps the audit detail)');
   // Only the technical fields are scanned: the words may legitimately appear
   // inside a question (an option about a coaching scheme, for instance), but a
@@ -439,7 +466,8 @@ if (builtinPath) {
       metadata: q.metadata,
     })),
   };
-  check(!/unofficial|coaching|solved-book|printed key/i.test(JSON.stringify(technical)), 'the bundled bank must not name a source or label a key official/unofficial');
+  const non2011Technical = { ...technical, questions: technical.questions.filter(q => !q.id.startsWith('MPPSC-2011-') && !q.id.startsWith('MPPSC-2010-')) };
+  check(!/unofficial|coaching|solved-book|printed key/i.test(JSON.stringify(non2011Technical)), 'other years must not acquire 2011 source labels');
   check(!bundled.questions.some((q) => q.source_reference), 'no bundled question may carry a source reference');
   // The bank is study material, not a pipeline worklog: how a label or an explanation was arrived at
   // belongs in the review report under data/pyq/, never in the file the app loads.
@@ -458,11 +486,11 @@ if (builtinPath) {
     'stored explanations must not carry review or generation metadata',
   );
   check(
-    bundled.papers.every((paper) => paper.scoring?.rules_known === true && paper.scoring.scheme_id === 'mppsc-sse-prelims-latest-practice' && paper.scoring.marks_per_correct === 3 && paper.scoring.negative_marks_per_incorrect === 1 && paper.scoring.negative_marking_enabled === true && paper.scoring.marks_for_unanswered === 0),
-    'all bundled years must use the latest +3/−1/0 practice scheme, not imply historical proof',
+    bundled.papers.filter((paper) => paper.year >= 2013).every((paper) => paper.scoring?.rules_known === true && paper.scoring.scheme_id === 'mppsc-sse-prelims-latest-practice' && paper.scoring.marks_per_correct === 3 && paper.scoring.negative_marks_per_incorrect === 1 && paper.scoring.negative_marking_enabled === true && paper.scoring.marks_for_unanswered === 0),
+    '2013–2024 papers must use the latest +3/−1/0 practice scheme, not imply historical proof',
   );
   for (const paper of bundled.papers) {
-    check(paper.scoring?.rules_known === true, `${paper.paper_id}: the bundled bank must carry its automatic practice scheme`);
+    check(paper.year <= 2012 ? paper.scoring?.rules_known === false : paper.scoring?.rules_known === true, `${paper.paper_id}: scoring must be known only where supported`);
   }
   note(`bundled bank: ${bundled.questions.length} questions, ${bundled.papers.length} papers — ${builtinPath}`);
 }

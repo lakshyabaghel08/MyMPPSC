@@ -331,7 +331,7 @@ export default {
           wide: true,
           body: `
             ${scoringUnknownNotice(paper)}
-            <p class="small">${paper.question_order.length} questions, scored +3 / −1 / 0. Starting the paper from the table uses all of them, in the paper's order, with its own duration; change anything here if you want a shorter or reshuffled run.</p>
+            <p class="small">${paper.question_order.length} available questions${paper.original_question_count && paper.question_order.length < paper.original_question_count ? ` of ${paper.original_question_count}; this paper is incomplete` : ''}. ${paper.scoring?.rules_known ? 'The paper uses its configured scoring rules.' : 'Historical scoring is unknown; configure scoring for practice.'} Starting from the table uses the available questions in order; change anything here for a shorter or reshuffled run.</p>
             ${configFields({ paper, defaultCount: paper.question_order.length, allowCustomScoring: true, allowRepeatOverride: false, maxCount: paper.question_order.length })}
             <label class="check"><input type="checkbox" id="simulationStrict" checked /><span>Keep the exact original order (recommended for a faithful simulation)</span></label>`,
           onMount: () => {

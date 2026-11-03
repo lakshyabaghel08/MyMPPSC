@@ -57,6 +57,9 @@ export function buildTest({
       warnings.push('The original question order for this paper was reconstructed at import time; verify it against the source paper before relying on numbering.');
     }
     if (paper.placeholder) warnings.push('Paper metadata was not present in the imported bank (placeholder paper). Duration, marks and rules are unknown.');
+    if (Number.isFinite(paper.original_question_count) && paper.question_order?.length < paper.original_question_count) {
+      warnings.push(`This paper is incomplete: ${paper.question_order.length} of ${paper.original_question_count} original questions are available. This is not a full-paper simulation.`);
+    }
     const disputed = questionIds.filter((id) => meta.get(id)?.disputed).length;
     const missingKeys = questionIds.filter((id) => {
       const m = meta.get(id);
@@ -145,7 +148,7 @@ export function buildTest({
       seed: seedValue,
       warnings,
       selection_notes: selectionNotes,
-      is_authentic_paper: Boolean(paper && !paper.placeholder && kind === 'pyq_full'),
+      is_authentic_paper: Boolean(paper && !paper.placeholder && kind === 'pyq_full' && (!Number.isFinite(paper.original_question_count) || (paper.question_order?.length || 0) >= paper.original_question_count)),
     },
     timer: {
       running: false,
