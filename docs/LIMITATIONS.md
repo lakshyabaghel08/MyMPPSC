@@ -7,8 +7,10 @@ three English-only solved sources have unconfirmed paper identities; 2009 and
 2011 are incomplete. The 2009 records carry 94 unofficial PDF-derived answers, with 12 disputed and 40 unresolved unkeyed. The 2010 records carry 80 unofficial PDF-derived answers, with 14 disputed and 26 unresolved unkeyed; their paper identity is unconfirmed. The 2011 records carry 88 unofficial PDF-derived answers and explanations, with 12 disputed and 18 unresolved unkeyed. The 2011 paper identity is disputed; see [identity warning](../data/pyq/source/2009-2011/2011-paper-identity-warning.md). Historical scoring remains unconfigured. See [PDF review](../data/pyq/source/2009-2011/PDF_REVIEW.md).
 
 **2012 update:** The 2012 integration added 100 records. The
-100 added 2012 questions have no supplied keys or explanations, and their
-scoring is unconfigured. The supplied Markdown transcription contains several
+100 added 2012 questions have no supplied keys. An independent reassessment
+provides 79 supported answers and explanations; seven disputed and fourteen
+unresolved questions remain unkeyed. The source is not an authenticated
+official answer key, and scoring is unconfigured. The supplied Markdown transcription contains several
 language differences and a potentially truncated word; see
 [`TRANSCRIPTION_PROGRESS.md`](../data/pyq/source/2012-recovery/TRANSCRIPTION_PROGRESS.md).
 Figures below describing 2013–2024 are historical and exclude this paper.

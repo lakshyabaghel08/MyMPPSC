@@ -65,7 +65,7 @@ Then run `python3 tools/transcribe-2009-2010-pdf.py --check`,
 `python3 tools/transcribe-2011-pdf.py --check`, and
 `python3 tools/classify-pdf-staging.py --check`. Source text files include the
 solved PDFs' printed answers because they are extraction evidence; the staging
-records do not contain keys. No answer verification or explanations were done.
+records do not contain keys. These checks cover transcription and staging, not the subsequent answer reviews described below.
 
 ## Final integration
 
@@ -76,7 +76,8 @@ records do not contain keys. No answer verification or explanations were done.
 | 2011 | 120 (118 complete, 2 incomplete) | 118 / 114 / 68 | 118 |
 
 These labels are taxonomy-valid and lower levels are omitted where unsupported.
-All new records are keyless and have no explanations; historical scoring remains
+At the initial integration all new records were keyless and had no explanations;
+subsequent answer reviews are described below. Historical scoring remains
 unknown. 2009 and 2011 paper names and simulation warnings mark the partial
 transcriptions. Original question order is retained among available questions.
 The earlier 2012 records and all 2013–2024 records were left unchanged.
