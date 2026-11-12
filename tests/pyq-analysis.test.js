@@ -191,7 +191,7 @@ test('the screen adds no inline styles, no scripts and no remote calls', async (
   assert.equal(html.includes('class="prov-chip'), false, 'provenance chips no longer clutter the panel; the framing text carries it');
 });
 
-test('the horizontal subject chart renders all 1,684 bank questions across 2009–2024', async () => {
+test('the horizontal subject chart renders all 1,300 bank questions across 2012–2024', async () => {
   const m = await bootApp();
   const builtin = await import('../js/services/builtin-bank.js');
   const bankText = await readText('pyq/mymppsc-pyq-bank.json');
@@ -205,14 +205,14 @@ test('the horizontal subject chart renders all 1,684 bank questions across 2009�
 
   const metas = [...m.appState.questionIndex.values()];
   const summary = summariseBank(metas, [...m.appState.papers.values()]);
-  assert.equal(summary.total, 1684);
-  assert.equal(summary.papers, 16);
-  assert.equal(summary.yearSpan, '2009–2024');
-  assert.equal(summary.withKey, 1551);
-  assert.match(html, /1551\/1684/);
+  assert.equal(summary.total, 1300);
+  assert.equal(summary.papers, 13);
+  assert.equal(summary.yearSpan, '2012–2024');
+  assert.equal(summary.withKey, 1289);
+  assert.match(html, /1289\/1300/);
   assert.doesNotMatch(html, /verified key/i, 'answer-key coverage is measured, not represented as independent verification');
-  assert.match(html, /16<\/strong>\s*paper\(s\)|16 paper\(s\)/);
-  assert.match(html, /2009–2024/);
+  assert.match(html, /13<\/strong>\s*paper\(s\)|13 paper\(s\)/);
+  assert.match(html, /2012–2024/);
 
   // Subject labels are data-driven. The audited bank now has no unplaced
   // subjects; taxonomy-supported topic/subtopic gaps remain separately tracked.

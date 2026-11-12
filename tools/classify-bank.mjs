@@ -44,7 +44,6 @@ import { RULES, classifyWithRules, validateRules, CLASSIFICATION_SOURCE_RULES } 
 import { adaptIntake, normaliseSourceReview } from './classify/intake-adapter.mjs';
 import { loadCombinedHistoricalIntake } from './classify/historical-sources.mjs';
 import { append2012 } from './classify/append-2012.mjs';
-import { append2009to2011 } from './classify/append-2009-2011.mjs';
 import { buildAiQueue, renderAiQueueJsonl, renderAiTaxonomy, parseLabels, applyAiLabels } from './classify/ai-queue.mjs';
 import { sanitiseBank, APP_BANK_ID } from './classify/sanitise-bank.mjs';
 import { repairIntake } from './classify/repair.mjs';
@@ -408,11 +407,6 @@ export async function runPipeline(source, opts = {}) {
     for (const q of bank.questions.slice(-count)) rows.push({ id: q.id, paperId: q.paper_id, year: q.year, subject: q.subject, topic: q.topic, subtopic: q.subtopic, confidence: null, source: 'source', flags: q.verified_answer ? [] : ['missing_answer_key'], reason: '2012 taxonomy, answer reassessment and final explanations', candidates: [], mpSpecific: q.subject === 'Madhya Pradesh Special', excerpt: excerpt(q) });
     pipelineNotes.push(`2012 source transcription, independent reassessment and ${count} four-part explanations: ${count} bilingual questions appended.`);
   }
-  if (opts.papers2009to2011) {
-    const count = append2009to2011(bank, opts.papers2009to2011, taxonomy);
-    for (const q of bank.questions.slice(-count)) rows.push({ id: q.id, paperId: q.paper_id, year: q.year, subject: q.subject, topic: q.topic, subtopic: q.subtopic, confidence: null, source: 'source', flags: q.supplied_answer?.answer ? [] : ['missing_answer_key'], reason: 'English transcription and review', candidates: [], mpSpecific: q.subject === 'Madhya Pradesh Special', excerpt: excerpt(q) });
-    pipelineNotes.push(`2009–2011 source transcriptions: ${count} complete English questions appended; 2009–2011 third-party answer reviews applied, incomplete questions excluded.`);
-  }
   const validation = validateBank(bank, {});
 
   // Suspected duplicates are reported, never merged. The pairs are attached to
@@ -572,7 +566,6 @@ Options:
   --reviewed-disputes <f>      override the reviewed dispute-block file
   --include-2012       append the 2012 transcription, taxonomy, required independent reassessment
                        and the required 100 four-part reviewed explanations
-  --include-2009-2011  append English PDF-derived questions; apply required unofficial 2009–2011 answer reviews
   --include-model-questions [f]  append the app-authored model questions that fill the numbers
                        the 2019–2024 extraction never printed. Default: data/pyq/model-questions.json
   --source-review <f>  the source parser's own review file; its findings (records it
@@ -697,15 +690,9 @@ async function main() {
     labels: JSON.parse(await readFile(resolve('data/pyq/source/2012-recovery/taxonomy-2012.json'), 'utf8')),
     reassessment: JSON.parse(await readFile(resolve('data/pyq/source/2012-recovery/answer-reassessment-2012.json'), 'utf8')),
   } : null;
-  const papers2009to2011 = parsed.flags.has('include-2009-2011') ? Object.fromEntries(await Promise.all([2009, 2010, 2011].map(async (year) => [year, {
-    source: JSON.parse(await readFile(resolve(`data/pyq/source/2009-2011/pdf-transcription-${year}.json`), 'utf8')),
-    labels: JSON.parse(await readFile(resolve(`data/pyq/source/2009-2011/final-taxonomy-${year}.json`), 'utf8')),
-    review: JSON.parse(await readFile(resolve(`data/pyq/source/2009-2011/answer-review-${year}.json`), 'utf8')),
-  }]))) : null;
   const result = await runPipeline(source, {
     paper2012,
     corrections2012,
-    papers2009to2011,
     sourceAudit,
     historicalSourceAudit,
     bankId: parsed.values['bank-id'],

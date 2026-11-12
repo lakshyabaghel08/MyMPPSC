@@ -464,12 +464,12 @@ if (builtinPath) {
   check(shellPaths.includes(`./${builtinPath}`), `sw.js: the bundled bank ${builtinPath} is not precached, so it would need the network`);
   const bundled = JSON.parse(await readFile(path.join(root, builtinPath), 'utf8'));
   check(bundled.is_demonstration !== true, 'the bundled bank is real previous-year material, not the demonstration fixture');
-  check(bundled.questions.length === 1684, `the expanded bundled bank must contain 1,684 questions, found ${bundled.questions.length}`);
-  check(bundled.papers.length === 16, `the expanded bundled bank must contain 16 papers, found ${bundled.papers.length}`);
+  check(bundled.questions.length === 1300, `the active bundled bank must contain 1,300 questions, found ${bundled.questions.length}`);
+  check(bundled.papers.length === 13, `the active bundled bank must contain 13 papers, found ${bundled.papers.length}`);
   const bundledYears = [...new Set(bundled.papers.map((paper) => Number(paper.year)))].sort((a, b) => a - b);
-  check(bundledYears.length === 16 && bundledYears.every((year, index) => year === 2009 + index), 'the bundled papers must cover every year from 2009 through 2024');
-  check(new Set(bundled.questions.map((question) => question.id)).size === 1684, 'the expanded bank must have 1,684 unique stable question ids');
-  check(bundled.questions.every((q) => (q.year === 2011 || q.year === 2010 || q.year === 2009) ? (!q.supplied_answer?.answer?.length || q.supplied_answer.status === 'unofficial') : q.year <= 2012 ? !q.supplied_answer?.answer?.length : q.supplied_answer?.answer?.length && q.supplied_answer.status === 'supplied'), '2009–2011 supplied keys must be unofficial; 2012 has no supplied keys and 2013–2024 retain theirs');
+  check(bundledYears.length === 13 && bundledYears.every((year, index) => year === 2012 + index), 'the bundled papers must cover every year from 2012 through 2024, with no retired years');
+  check(new Set(bundled.questions.map((question) => question.id)).size === 1300, 'the active bank must have 1,300 unique stable question ids');
+  check(bundled.questions.every((q) => q.year === 2012 ? !q.supplied_answer?.answer?.length : q.supplied_answer?.answer?.length && q.supplied_answer.status === 'supplied'), '2012 has no supplied keys; 2013–2024 retain their 1,200 supplied keys');
   check(bundled.questions.filter((q) => q.year !== 2012).every((q) => !q.verified_answer?.answer?.length), 'independent reassessment applies only to 2012');
   const review2012 = JSON.parse(await readFile(path.join(root, 'data/pyq/source/2012-recovery/answer-reassessment-2012.json'), 'utf8'));
   const reviewedExplanations2012 = JSON.parse(await readFile(path.join(root, 'data/pyq/reviewed-explanations-2012.json'), 'utf8'));
@@ -486,33 +486,6 @@ if (builtinPath) {
     if (r.status === 'verified') return q.verified_answer?.answer?.length === 1 && q.verified_answer.answer[0] === r.proposed_answer && flagged.length === 1 && flagged[0] === r.proposed_answer && q.verified_answer.verified_by?.includes('not an official MPPSC key') && JSON.stringify(q.verified_answer.evidence.map((e) => e.url)) === JSON.stringify(r.sources);
     return ['disputed', 'unresolved'].includes(r.status) && !q.verified_answer?.answer?.length && flagged.length === 0 && q.explanation.option_explanations.every((o) => o.is_correct === null) && q.dispute?.status === 'unresolved' && q.dispute.is_disputed === (r.status === 'disputed') && JSON.stringify(q.verification_evidence.map((e) => e.url)) === JSON.stringify(r.sources);
   }), '2012 bank records must match the independent reassessment, the full four-part explanations and the unresolved flags');
-  const review2011 = JSON.parse(await readFile(path.join(root, 'data/pyq/source/2009-2011/answer-review-2011.json'), 'utf8'));
-  const q2011 = bundled.questions.filter(q => q.year === 2011);
-  const by2011 = new Map(review2011.records.map(r => [r.question_id, r]));
-  check(q2011.length === 118 && by2011.size === 118 && bundled.papers.find(p => p.year === 2011)?.paper_name.includes('identity disputed') && q2011.every(q => {
-    const r = by2011.get(q.id);
-    if (!r) return false;
-    if (r.status === 'supported') return q.supplied_answer?.status === 'unofficial' && q.supplied_answer.answer?.length === 1 && q.supplied_answer.answer[0] === r.answer && q.explanation?.correct_reasoning === r.reasoning;
-    return ['disputed', 'unresolved'].includes(r.status) && !q.supplied_answer?.answer && !q.explanation && q.dispute?.status === 'unresolved' && q.dispute.is_disputed === (r.status === 'disputed');
-  }), '2011 must preserve the reviewed unofficial answers, unresolved flags and identity warning');
-  const review2010 = JSON.parse(await readFile(path.join(root, 'data/pyq/source/2009-2011/answer-review-2010.json'), 'utf8'));
-  const q2010 = bundled.questions.filter(q => q.year === 2010);
-  const by2010 = new Map(review2010.records.map(r => [r.question_id, r]));
-  check(q2010.length === 120 && by2010.size === 120 && bundled.papers.find(p => p.year === 2010)?.paper_name.includes('identity unconfirmed') && q2010.every(q => {
-    const r = by2010.get(q.id);
-    if (!r) return false;
-    if (r.status === 'supported') return q.supplied_answer?.status === 'unofficial' && q.supplied_answer.answer?.length === 1 && q.supplied_answer.answer[0] === r.answer && q.explanation?.correct_reasoning === r.reasoning;
-    return ['disputed', 'unresolved'].includes(r.status) && !q.supplied_answer?.answer && !q.explanation && q.dispute?.status === 'unresolved' && q.dispute.is_disputed === (r.status === 'disputed');
-  }), '2010 must preserve reviewed unofficial answers, unresolved flags and source warning');
-  const review2009 = JSON.parse(await readFile(path.join(root, 'data/pyq/source/2009-2011/answer-review-2009.json'), 'utf8'));
-  const q2009 = bundled.questions.filter(q => q.year === 2009);
-  const by2009 = new Map(review2009.records.map(r => [r.question_id, r]));
-  check(q2009.length === 146 && by2009.size === 146 && bundled.papers.find(p => p.year === 2009)?.paper_name.includes('identity unconfirmed') && q2009.every(q => {
-    const r = by2009.get(q.id);
-    if (!r) return false;
-    if (r.status === 'supported') return q.supplied_answer?.status === 'unofficial' && q.supplied_answer.answer?.length === 1 && q.supplied_answer.answer[0] === r.answer && q.explanation?.correct_reasoning === r.reasoning;
-    return ['disputed', 'unresolved'].includes(r.status) && !q.supplied_answer?.answer && !q.explanation && q.dispute?.status === 'unresolved' && q.dispute.is_disputed === (r.status === 'disputed');
-  }), '2009 must preserve reviewed unofficial answers, unresolved flags and source warning');
   check(!('provenance' in bundled), 'the bundled bank must carry no source provenance (docs/PYQ_AUDIT.md keeps the audit detail)');
   // Only the technical fields are scanned: the words may legitimately appear
   // inside a question (an option about a coaching scheme, for instance), but a
@@ -536,8 +509,7 @@ if (builtinPath) {
       metadata: q.metadata,
     })),
   };
-  const non2011Technical = { ...technical, questions: technical.questions.filter(q => !q.id.startsWith('MPPSC-2011-') && !q.id.startsWith('MPPSC-2010-') && !q.id.startsWith('MPPSC-2009-')) };
-  check(!/unofficial|coaching|solved-book|printed key/i.test(JSON.stringify(non2011Technical)), 'other years must not acquire 2011 source labels');
+  check(!/unofficial|coaching|solved-book|printed key/i.test(JSON.stringify(technical)), 'the active bank must not acquire retired source labels');
   check(!bundled.questions.some((q) => q.source_reference), 'no bundled question may carry a source reference');
   // The bank is study material, not a pipeline worklog: how a label or an explanation was arrived at
   // belongs in the review report under data/pyq/, never in the file the app loads.

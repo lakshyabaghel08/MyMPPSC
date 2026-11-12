@@ -1,3 +1,10 @@
+> **Retired scope (2026-11-12):** this is a historical provenance note, not an
+> active build instruction. The 2009–2011 papers were removed from the practice
+> bank; the helper scripts and `--include-2009-2011` pipeline step named below no
+> longer exist. The preserved records are in
+> `data/pyq/archive/mppsc-2009-2011-papers.json`. Do not reintroduce them into the
+> active bank from this note.
+
 # 2011 question classification review
 
 **Date:** 2026-11-03  

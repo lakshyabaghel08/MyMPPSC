@@ -10,7 +10,7 @@ That separation is deliberate and enforced:
 
 * the app's `js/` tree contains no question text (checked by `npm run check`);
 * the bundled demonstration bank is flagged synthetic and badged in the UI;
-* the bundled MPPSC 2013–2024 bank carries **no** source provenance (no book or
+* the bundled MPPSC 2012–2024 bank carries **no** source provenance (no book or
   provider names, no page references, no "official"/"unofficial" key labels) —
   it is fetched from the repository at boot and its audit detail lives in
   `docs/PYQ_AUDIT.md`;
@@ -117,7 +117,7 @@ node tools/classify-bank.mjs --in data/pyq/source/MPPSC_PYQ_intake.json \
     --out data/pyq/mymppsc-pyq-bank.json --reports data/pyq
 ```
 
-The production 2013–2024 bank uses a strict `--include-2013-2018` adapter and
+The production 2012–2024 bank uses a strict `--include-2013-2018` adapter and
 requires both committed review files when rebuilding from the raw intake. Use
 the exact combined-bank command in [`docs/PYQ_PIPELINE.md`](PYQ_PIPELINE.md); it
 checks all six historical source schemas, READMEs and review reports, then writes

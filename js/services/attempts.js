@@ -192,6 +192,7 @@ export async function updateMistakes({ test, result, questions, createdAt = nowI
 
 export async function listMistakes({ status = 'open', type = null, subject = null, topic = null, year = null, paperId = null } = {}) {
   let rows = await db.getAll(STORES.MISTAKES);
+  rows = rows.filter((m) => state.questionIndex.has(m.question_id));
   rows = rows.filter((m) => (status === 'all' ? true : m.status === status));
   if (type && type !== 'all') {
     if (type === 'repeated') rows = rows.filter((m) => m.occurrences >= 2);
@@ -206,7 +207,7 @@ export async function listMistakes({ status = 'open', type = null, subject = nul
 }
 
 export async function mistakeCounts() {
-  const rows = await db.getAll(STORES.MISTAKES);
+  const rows = (await db.getAll(STORES.MISTAKES)).filter((m) => state.questionIndex.has(m.question_id));
   const open = rows.filter((m) => m.status === 'open');
   const byType = {};
   for (const m of open) byType[m.type] = (byType[m.type] || 0) + 1;

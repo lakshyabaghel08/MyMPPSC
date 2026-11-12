@@ -4,10 +4,11 @@
 
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { bootApp } from './helpers.mjs';
+import { bootApp, importDemoBank } from './helpers.mjs';
 import { DEFAULT_SETTINGS } from '../js/core/constants.js';
 
 const m = await bootApp();
+await importDemoBank();
 const settings = structuredClone(DEFAULT_SETTINGS);
 
 const daysFromNow = (dateKey) => Math.round((new Date(`${dateKey}T00:00:00`) - new Date(new Date().toDateString())) / 86400000);

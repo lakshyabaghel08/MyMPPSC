@@ -46,12 +46,18 @@ export function buildAnalytics({ metas, attempts, revisionRecords = [], mistakes
   const metaById = new Map(Array.from(metas).map((m) => [m.id, m]));
   const available = metaById.size;
   const attemptedIds = new Set(attempts.map((a) => a.question_id));
+  const attemptedInBank = new Set(attempts.map((a) => a.question_id).filter((id) => metaById.has(id)));
+  // Queues are actionable only for stored questions; attempt history itself is
+  // still counted below, including attempts on papers later removed.
+  revisionRecords = revisionRecords.filter((r) => metaById.has(r.question_id));
+  mistakes = mistakes.filter((m) => metaById.has(m.question_id));
   const scoredAttempts = attempts.filter((a) => a.outcome === 'correct' || a.outcome === 'incorrect');
   const firstAttempts = attempts.filter((a) => a.is_first_attempt);
 
   const counts = {
     availableQuestions: available,
     attemptedUnique: attemptedIds.size,
+    attemptedInBank: attemptedInBank.size,
     totalAttempts: attempts.length,
     repeatAttempts: attempts.length - attemptedIds.size > 0 ? attempts.length - attemptedIds.size : 0,
     attemptedAnswers: attempts.filter((a) => a.outcome !== 'unanswered').length,
@@ -62,7 +68,7 @@ export function buildAnalytics({ metas, attempts, revisionRecords = [], mistakes
     flagged: attempts.filter((a) => a.flagged).length,
     distinctPapers: new Set(attempts.map((a) => a.paper_id).filter(Boolean)).size,
   };
-  counts.coverage = safeDiv(counts.attemptedUnique, available) || 0;
+  counts.coverage = safeDiv(counts.attemptedInBank, available) || 0;
 
   const accuracy = {
     all: counts.correct + counts.incorrect ? counts.correct / (counts.correct + counts.incorrect) : NaN,

@@ -11,6 +11,10 @@ whole set is produced with:
 
 ```bash
 node tools/classify-bank.mjs \
+  --include-2013-2018 \
+  --include-2012 \
+  --include-model-questions \
+  --apply-corrections \
   --in data/pyq/source/MPPSC_PYQ_intake.json \
   --out data/pyq/mymppsc-pyq-bank.json \
   --reports data/pyq \
@@ -31,8 +35,9 @@ tell you about immediately.
 
 | Path | What belongs here |
 | --- | --- |
-| `source/` | The **input**: the extraction the pipeline is run against, plus the alignment bundle it came with (`MPPSC_PYQ_intake.json`, `MPPSC_PYQ_AppBank.json`, `MPPSC_PYQ_Review.json`, `MPPSC_PYQ_BuildReport.json`, `README_ALIGNMENT.txt`, `VALIDATION.txt`, `align_mppsc_book.py`). Committed so a build is reproducible and a question can be traced back to where it came from. Nothing in here is modified by the pipeline. |
-| `mymppsc-pyq-bank.json` | The **output**: the classified bank you import into the app. Currently 1,684 questions across 16 papers (2009–2024, including 29 model questions). The 2012 paper carries 89 independently verified answers, 11 unkeyed defective/ambiguous items and 100 four-part explanations; no MPPSC key is called official. |
+| `archive/mppsc-2009-2011-papers.json` | Provenance-only archive of the 384 removed 2009–2011 records. Not fetched, precached, imported or rebuilt by the app. |
+| `source/` | The **input**: the extraction the pipeline is run against, plus the alignment bundle it came with (`MPPSC_PYQ_intake.json`, `MPPSC_PYQ_AppBank.json`, `MPPSC_PYQ_Review.json`, `MPPSC_PYQ_BuildReport.json`, `README_ALIGNMENT.txt`, `VALIDATION.txt`, `align_mppsc_book.py`). Committed so a build is reproducible and a question can be traced back to where it came from. Nothing in here is modified by the pipeline. `source/2009-2011/` is historical provenance only, not an active build input. |
+| `mymppsc-pyq-bank.json` | The **output**: the classified bank you import into the app. Currently 1,300 questions across 13 papers (2012–2024, including 29 model questions). The 2009–2011 papers are retired from the active bank. The 2012 paper carries 89 independently verified answers, 11 unkeyed defective/ambiguous items and 100 four-part explanations; no MPPSC key is called official. |
 | `classification-report.md` / `.json` | Coverage by subject, topic and subtopic, with counts and percentages. |
 | `review-report.md` / `.json` | Everything still needing a human: missing keys, suspected duplicates, ambiguous and low-confidence classifications, integrity checks. |
 | `reviewed-labels.jsonl` | The **human review decisions**: one JSONL line per question the rule engine could not settle, with the label, the confidence and the reason. Committed, so every human decision is reproducible; merged with `--apply-review`. |

@@ -364,7 +364,7 @@ export default {
     document.getElementById('removeBuiltinBank')?.addEventListener('click', async () => {
       const ok = await confirmDialog({
         label: 'Remove the bundled MPPSC bank from this device?',
-        message: 'The 2009–2024 questions and papers stored from the repository bank are removed from this browser. Your own imported questions, tests, attempts, bookmarks and revision history are untouched; the bank is loaded again the next time you start the app.',
+        message: 'The 2012–2024 questions and papers stored from the repository bank are removed from this browser. Your own imported questions, tests, attempts, bookmarks and revision history are untouched; the bank is loaded again the next time you start the app.',
         confirmLabel: 'Remove from this device',
         danger: true,
       });

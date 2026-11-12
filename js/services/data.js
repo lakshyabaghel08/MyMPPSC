@@ -227,6 +227,13 @@ export async function restoreBackup(validation, { mode = 'merge', includeQuestio
     await import('../core/state.js').then(({ saveSettings }) => saveSettings(merged));
   }
 
+  // A pre-removal backup can contain the old bundled papers. Apply the same
+  // ownership-limited cleanup after either restore mode; never fetch a bank here
+  // or erase the attempts and revision history restored alongside those records.
+  const { removeRetiredBuiltinPapers } = await import('./builtin-bank.js');
+  stats.retiredBundled = await removeRetiredBuiltinPapers();
+  if (stats.retiredBundled.removedQuestions) stats.questions = await db.count(STORES.QUESTIONS);
+  if (stats.retiredBundled.removedPapers) stats.papers = await db.count(STORES.PAPERS);
   await refreshQuestionIndex({ silent: true });
   emit('bank:changed', { questions: state.questionIndex.size, papers: state.papers.size });
   await db.setMeta('last_restore', { at: nowIso(), mode, stats });
