@@ -19,13 +19,32 @@
    ========================================================================= */
 
 /* --------------------------------------------------------------------------
-   0. Night tokens
+   0. Theme tokens
 
-   The Night atmosphere is the app's dark surface set, scoped to the timer
-   workspace. Its literals live here, in a token block, for the same reason the
-   theme tokens do: component rules may only ever reference tokens, so a colour
-   cannot drift into a rule by accident. These are the only literals in this
-   file.
+   The flip clock has three faces besides the app's own, ported whole from the
+   reference workspace:
+
+     Classic   the bold face the reference showed in fullscreen focus: pale
+               evergreen cards with deep green digits under Woodland, pale sky
+               cards with deep blue digits under Rain, and the dark card under
+               Night. It is the clock's own choice of face, not the app's, so
+               it looks the same in either app theme — as it did in the
+               reference.
+     Woodland  the app's own card, on the workspace's evergreen tint. This is
+               the default, and what `auto` shows in the Woodland atmosphere.
+     Rain      the app's card edged and split with the sky tone the Rain
+               atmosphere already uses.
+     Night     the app's dark surface set scoped to the workspace, with the
+               sheen pulled down to 10% so a glowing card does not shout.
+
+   `auto` follows the atmosphere (Woodland, Rain or Night's face) and the
+   reader can pin any of the four. Fullscreen opens on Classic unless Night or
+   a pinned face says otherwise; see the fullscreen block below.
+
+   Every literal lives here, in one token block, for the same reason the theme
+   tokens in app.css do: component rules may only ever reference tokens, so a
+   colour cannot drift into a rule by accident. These are the only literals in
+   this file.
    -------------------------------------------------------------------------- */
 
 :root {
@@ -61,6 +80,33 @@
   /* Mask stop: an opaque stop is any fully opaque colour; using the theme's
      text token keeps the literal count in this file to one block. */
   --focus-mask-opaque: #000000;
+
+  /* Classic — the reference workspace's own clock face, in its two palettes:
+     the pale evergreen cards (the default) and the pale sky cards the
+     reference showed for its rainfall atmosphere. */
+  --focus-classic-bg-top: #f0fdf4;
+  --focus-classic-bg-bottom: #ecfdf5;
+  --focus-classic-text: #065f46;
+  --focus-classic-split: rgba(6, 78, 59, 0.15);
+  --focus-classic-border: rgba(16, 185, 129, 0.25);
+  --focus-classic-shadow: 0 10px 25px -5px rgba(6, 78, 59, 0.15);
+  --focus-classic-sheen: rgba(255, 255, 255, 0.45);
+  --focus-classic-rain-bg-top: #f0f9ff;
+  --focus-classic-rain-bg-bottom: #e0f2fe;
+  --focus-classic-rain-text: #075985;
+  --focus-classic-rain-split: rgba(12, 74, 110, 0.15);
+  --focus-classic-rain-border: rgba(14, 165, 233, 0.3);
+  --focus-classic-rain-shadow: 0 10px 25px -5px rgba(12, 74, 110, 0.2);
+  --focus-classic-rain-sheen: rgba(255, 255, 255, 0.45);
+  /* Classic under the Night atmosphere. The reference's bold faces took their
+     text from the app theme, so in night mode the pale card became the dark
+     card; these are that card's surfaces. */
+  --focus-classic-night-bg-top: #18213f;
+  --focus-classic-night-bg-bottom: #121a33;
+  --focus-classic-night-text: #e8ecf8;
+  --focus-classic-night-split: #47588a;
+  --focus-classic-night-border: #6b7db3;
+  --focus-classic-night-shadow: 0 10px 25px -5px rgba(3, 8, 28, 0.55);
 }
 
 /* --------------------------------------------------------------------------
@@ -81,20 +127,59 @@
   --focus-glow: radial-gradient(circle 520px at 24% 32%, var(--ok-soft), transparent 72%),
     radial-gradient(circle 460px at 78% 36%, var(--accent-soft), transparent 72%);
   --focus-veil: linear-gradient(180deg, var(--ok-soft), transparent 60%);
-  --fc-bg-top: var(--bg-elevated);
-  --fc-bg-bottom: var(--bg-sunken);
-  /* The fullscreen room: the same surface the stage card sits on, extended to
-     the edges of the screen. */
-  --fc-room: linear-gradient(160deg, var(--fc-bg-top), var(--fc-bg-bottom));
-  --fc-text: var(--text);
-  --fc-split: var(--border-strong);
-  --fc-border: var(--border-strong);
-  --fc-shadow: var(--shadow);
-  --fc-sheen: transparent;
+  /* The fullscreen room is the clock's own face, extended to the edges of the
+     screen, so a room with no chrome still reads as that theme. */
+  --fc-room: linear-gradient(160deg, var(--fc-theme-bg-top), var(--fc-theme-bg-bottom));
   --leaf-a: var(--ok);
   --leaf-b: var(--accent);
   --leaf-c: var(--info);
   --rain-colour: var(--info);
+  /* One flap takes this long; the reference's timing, unchanged. */
+  --fc-flip-duration: 300ms;
+  --fc-flip-ease: cubic-bezier(0.37, 0, 0.63, 1);
+  /* The clock's four faces (see the `.theme-*` rules below). Each face has a
+     full surface set, so switching face never leaves a half-themed digit. */
+  --fc-woodland-bg-top: var(--bg-elevated);
+  --fc-woodland-bg-bottom: var(--bg-sunken);
+  --fc-woodland-text: var(--text);
+  --fc-woodland-split: var(--border-strong);
+  --fc-woodland-border: var(--border-strong);
+  --fc-woodland-shadow: var(--shadow);
+  --fc-woodland-sheen: transparent;
+  --fc-classic-bg-top: var(--focus-classic-bg-top);
+  --fc-classic-bg-bottom: var(--focus-classic-bg-bottom);
+  --fc-classic-text: var(--focus-classic-text);
+  --fc-classic-split: var(--focus-classic-split);
+  --fc-classic-border: var(--focus-classic-border);
+  --fc-classic-shadow: var(--focus-classic-shadow);
+  --fc-classic-sheen: var(--focus-classic-sheen);
+  --fc-night-bg-top: var(--focus-night-top);
+  --fc-night-bg-bottom: var(--focus-night-surface);
+  --fc-night-text: var(--focus-night-text);
+  --fc-night-split: var(--focus-night-line);
+  --fc-night-border: var(--focus-night-line-strong);
+  --fc-night-shadow: var(--focus-night-shadow);
+  --fc-night-sheen: var(--focus-night-sheen);
+  /* Rain's own face: the app's card, tinted and edged with the sky the Rain
+     atmosphere already uses. Defined here rather than in
+     `.environment-rain` because a reader can pin the Rain face while the room
+     is Woodland or Night; the atmosphere block below only re-tints it. */
+  --fc-rain-bg-top: var(--bg-elevated);
+  --fc-rain-bg-bottom: var(--bg-sunken);
+  --fc-rain-text: var(--text);
+  --fc-rain-split: color-mix(in srgb, var(--info) 32%, var(--border-strong));
+  --fc-rain-border: color-mix(in srgb, var(--info) 46%, var(--border-strong));
+  --fc-rain-shadow: var(--shadow);
+  --fc-rain-sheen: transparent;
+  /* Woodland is the default face, so the clock works before any theme class
+     is applied (a skeleton, a print view, a test). */
+  --fc-theme-bg-top: var(--fc-woodland-bg-top);
+  --fc-theme-bg-bottom: var(--fc-woodland-bg-bottom);
+  --fc-theme-text: var(--fc-woodland-text);
+  --fc-theme-split: var(--fc-woodland-split);
+  --fc-theme-border: var(--fc-woodland-border);
+  --fc-theme-shadow: var(--fc-woodland-shadow);
+  --fc-theme-sheen: var(--fc-woodland-sheen);
 }
 
 .focus-workspace.environment-woodland {
@@ -107,6 +192,15 @@
     radial-gradient(circle 420px at 34% 14%, var(--info-soft), transparent 72%);
   --focus-veil: linear-gradient(180deg, var(--info-soft), transparent 58%);
   background: linear-gradient(180deg, var(--info-soft), var(--bg-elevated) 44%);
+  /* Rain's Classic palette, which the reference reserved for the rainfall
+     atmosphere: pale sky cards with deep blue digits. */
+  --fc-classic-bg-top: var(--focus-classic-rain-bg-top);
+  --fc-classic-bg-bottom: var(--focus-classic-rain-bg-bottom);
+  --fc-classic-text: var(--focus-classic-rain-text);
+  --fc-classic-split: var(--focus-classic-rain-split);
+  --fc-classic-border: var(--focus-classic-rain-border);
+  --fc-classic-shadow: var(--focus-classic-rain-shadow);
+  --fc-classic-sheen: var(--focus-classic-rain-sheen);
 }
 
 /*
@@ -143,18 +237,93 @@
   --focus-glow: radial-gradient(circle 540px at 50% 15%, var(--focus-night-glow-accent), transparent 72%),
     radial-gradient(circle 430px at 34% 20%, var(--focus-night-glow-info), transparent 72%);
   --focus-veil: linear-gradient(180deg, var(--focus-night-veil), transparent 62%);
-  --fc-bg-top: var(--focus-night-top);
-  --fc-bg-bottom: var(--focus-night-surface);
-  --fc-text: var(--text);
-  --fc-split: var(--focus-night-line);
-  --fc-border: var(--focus-night-line-strong);
-  --fc-shadow: var(--focus-night-shadow);
-  --fc-sheen: var(--focus-night-sheen);
   --leaf-a: var(--focus-night-ok);
   --leaf-b: var(--focus-night-ok);
   --leaf-c: var(--focus-night-info);
   --rain-colour: var(--focus-night-info);
+  /* Night's own face is the dark card the reference used; its Classic face is
+     the same card with the bright night text and sheen. */
+  --fc-night-bg-top: var(--focus-night-top);
+  --fc-night-bg-bottom: var(--focus-night-surface);
+  --fc-night-text: var(--text);
+  --fc-night-split: var(--focus-night-line);
+  --fc-night-border: var(--focus-night-line-strong);
+  --fc-night-shadow: var(--focus-night-shadow);
+  --fc-night-sheen: var(--focus-night-sheen);
+  --fc-classic-bg-top: var(--focus-classic-night-bg-top);
+  --fc-classic-bg-bottom: var(--focus-classic-night-bg-bottom);
+  --fc-classic-text: var(--focus-classic-night-text);
+  --fc-classic-split: var(--focus-classic-night-split);
+  --fc-classic-border: var(--focus-classic-night-border);
+  --fc-classic-shadow: var(--focus-classic-night-shadow);
+  --fc-classic-sheen: var(--focus-night-sheen);
   background: linear-gradient(180deg, var(--focus-night-stage-top), var(--bg) 46%, var(--bg));
+}
+
+/* Which of the three faces the clock is showing.
+   `theme-auto` is the default and follows the atmosphere: Woodland evergreen,
+   Rain sky, Night's dark card. The four explicit classes pin a face whatever
+   the atmosphere is doing. Exactly one of the five is ever on the workspace,
+   so the rules below never compete; the fullscreen override further down is
+   more specific and wins where it applies. */
+.focus-workspace.theme-auto.environment-rain {
+  --fc-theme-bg-top: var(--fc-rain-bg-top);
+  --fc-theme-bg-bottom: var(--fc-rain-bg-bottom);
+  --fc-theme-text: var(--fc-rain-text);
+  --fc-theme-split: var(--fc-rain-split);
+  --fc-theme-border: var(--fc-rain-border);
+  --fc-theme-shadow: var(--fc-rain-shadow);
+  --fc-theme-sheen: var(--fc-rain-sheen);
+}
+
+.focus-workspace.theme-auto.environment-night {
+  --fc-theme-bg-top: var(--fc-night-bg-top);
+  --fc-theme-bg-bottom: var(--fc-night-bg-bottom);
+  --fc-theme-text: var(--fc-night-text);
+  --fc-theme-split: var(--fc-night-split);
+  --fc-theme-border: var(--fc-night-border);
+  --fc-theme-shadow: var(--fc-night-shadow);
+  --fc-theme-sheen: var(--fc-night-sheen);
+}
+
+.focus-workspace.theme-classic {
+  --fc-theme-bg-top: var(--fc-classic-bg-top);
+  --fc-theme-bg-bottom: var(--fc-classic-bg-bottom);
+  --fc-theme-text: var(--fc-classic-text);
+  --fc-theme-split: var(--fc-classic-split);
+  --fc-theme-border: var(--fc-classic-border);
+  --fc-theme-shadow: var(--fc-classic-shadow);
+  --fc-theme-sheen: var(--fc-classic-sheen);
+}
+
+.focus-workspace.theme-woodland {
+  --fc-theme-bg-top: var(--fc-woodland-bg-top);
+  --fc-theme-bg-bottom: var(--fc-woodland-bg-bottom);
+  --fc-theme-text: var(--fc-woodland-text);
+  --fc-theme-split: var(--fc-woodland-split);
+  --fc-theme-border: var(--fc-woodland-border);
+  --fc-theme-shadow: var(--fc-woodland-shadow);
+  --fc-theme-sheen: var(--fc-woodland-sheen);
+}
+
+.focus-workspace.theme-rain {
+  --fc-theme-bg-top: var(--fc-rain-bg-top);
+  --fc-theme-bg-bottom: var(--fc-rain-bg-bottom);
+  --fc-theme-text: var(--fc-rain-text);
+  --fc-theme-split: var(--fc-rain-split);
+  --fc-theme-border: var(--fc-rain-border);
+  --fc-theme-shadow: var(--fc-rain-shadow);
+  --fc-theme-sheen: var(--fc-rain-sheen);
+}
+
+.focus-workspace.theme-night {
+  --fc-theme-bg-top: var(--fc-night-bg-top);
+  --fc-theme-bg-bottom: var(--fc-night-bg-bottom);
+  --fc-theme-text: var(--fc-night-text);
+  --fc-theme-split: var(--fc-night-split);
+  --fc-theme-border: var(--fc-night-border);
+  --fc-theme-shadow: var(--fc-night-shadow);
+  --fc-theme-sheen: var(--fc-night-sheen);
 }
 
 /* The stage card sits on the tint, not over it. */
@@ -298,7 +467,10 @@
   align-items: center;
   gap: var(--space-3);
   padding: var(--space-6) var(--space-5) var(--space-5);
-  background: linear-gradient(160deg, var(--fc-bg-top), var(--fc-bg-bottom));
+  /* The panel is the app's surface. The clock's face is the clock's: a reader
+     who picks Classic wants pale cards with green digits, not a re-skinned
+     workspace. In fullscreen the room takes the face instead (see below). */
+  background: linear-gradient(160deg, var(--bg-elevated), var(--bg-sunken));
 }
 
 .focus-stage-top {
@@ -356,7 +528,7 @@
 }
 
 .flip-colon {
-  color: var(--fc-text);
+  color: var(--fc-theme-text);
   font-size: clamp(28px, 4.4vw, 44px);
   line-height: 1;
   opacity: 0.8;
@@ -368,12 +540,12 @@
   width: clamp(52px, 8.4vw, 88px);
   height: clamp(78px, 12.6vw, 132px);
   border-radius: var(--radius-sm);
-  background: var(--fc-bg-bottom);
-  color: var(--fc-text);
+  background: var(--fc-theme-bg-bottom);
+  color: var(--fc-theme-text);
   font-size: clamp(52px, 8.4vw, 88px);
   text-align: center;
   perspective: 1200px;
-  box-shadow: inset 0 0 0 1px var(--fc-border), var(--fc-shadow);
+  box-shadow: inset 0 0 0 1px var(--fc-theme-border), var(--fc-theme-shadow);
 }
 
 .flip-half {
@@ -383,7 +555,7 @@
   height: 50%;
   overflow: hidden;
   border-radius: var(--radius-sm);
-  color: var(--fc-text);
+  color: var(--fc-theme-text);
   backface-visibility: hidden;
   transform-style: preserve-3d;
 }
@@ -393,8 +565,13 @@
   transform-origin: bottom;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
-  border-bottom: 1px solid var(--fc-split);
-  background: var(--fc-bg-top);
+  border-bottom: 1px solid var(--fc-theme-split);
+  background: var(--fc-theme-bg-top);
+  /* The reference's inset sheen: a bright hairline along the top edge of the
+     upper card, and a soft inner shadow under the split. */
+  box-shadow:
+    inset 0 1px 0 var(--fc-theme-sheen),
+    inset 0 -2px 10px color-mix(in srgb, var(--focus-mask-opaque) 4%, transparent);
 }
 
 .flip-half.bottom {
@@ -402,7 +579,8 @@
   transform-origin: top;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
-  background: var(--fc-bg-bottom);
+  background: var(--fc-theme-bg-bottom);
+  box-shadow: inset 0 2px 10px color-mix(in srgb, var(--focus-mask-opaque) 4%, transparent);
 }
 
 .flip-half .val {
@@ -423,6 +601,13 @@
 
 .flip-flap {
   z-index: 2;
+}
+
+/* The resting geometry of a flap. The bottom one starts flat-away (rotateX
+   90deg) so it is edge-on until its half of the animation begins; without
+   this the reduced-motion face would show a doubled digit. */
+.flip-flap.bottom {
+  transform: rotateX(90deg);
 }
 
 /* --- caption and progress ------------------------------------------------ */
@@ -553,6 +738,24 @@ html.focus-fs-lock .focus-workspace.is-fullscreen {
   z-index: 80;
 }
 
+/* The reference made its bold Classic faces the fullscreen faces, and the
+   fullscreen room is what this copies: under `auto` (the default), Woodland
+   and Rain show Classic while the room is open. Night keeps its dark card
+   rather than turning a pale face into a lamp in a dark room, and a face the
+   reader picked by hand is never overridden — their choice wins in the room
+   too. These selectors are more specific than the `.theme-*` rules above, so
+   they win by specificity, not by source order. */
+.focus-workspace.is-fullscreen.theme-auto:not(.environment-night),
+.focus-workspace.is-fullscreen.theme-classic {
+  --fc-theme-bg-top: var(--fc-classic-bg-top);
+  --fc-theme-bg-bottom: var(--fc-classic-bg-bottom);
+  --fc-theme-text: var(--fc-classic-text);
+  --fc-theme-split: var(--fc-classic-split);
+  --fc-theme-border: var(--fc-classic-border);
+  --fc-theme-shadow: var(--fc-classic-shadow);
+  --fc-theme-sheen: var(--fc-classic-sheen);
+}
+
 .focus-workspace.is-fullscreen {
   display: grid;
   place-items: center;
@@ -563,8 +766,9 @@ html.focus-fs-lock .focus-workspace.is-fullscreen {
   border-radius: 0;
   /* The stage card must not paint a surface, but the *room* must: a real
      fullscreen element defaults to a black backdrop, which would leave the
-     flip clock as white holes in a void. */
-  background: var(--fc-bg-top);
+     flip clock as white holes in a void. The room is the clock's own face,
+     extended edge to edge, so a Classic face sits on Classic paper. */
+  background: var(--fc-room);
   box-shadow: none;
 }
 
@@ -645,9 +849,27 @@ html.focus-fs-lock .focus-workspace.is-fullscreen {
   color: var(--focus-accent);
 }
 
+/* In the room the clock itself is the start/pause control, as in the
+   reference: there is nothing else on the screen to aim at. A focus ring marks
+   it as interactive without adding chrome to the room. */
 .focus-workspace.is-fullscreen .focus-clock-holder {
   margin: 0;
   cursor: pointer;
+  border-radius: var(--radius-lg);
+}
+
+.focus-workspace.is-fullscreen .focus-clock-holder:focus-visible {
+  outline: 2px solid var(--focus-accent);
+  outline-offset: 18px;
+}
+
+.focus-workspace.is-fullscreen .flip-clock {
+  margin: 0;
+  gap: 14px;
+}
+
+.focus-workspace.is-fullscreen .flip-group {
+  gap: 7px;
 }
 
 .focus-workspace.is-fullscreen .flip-digit {
@@ -830,6 +1052,67 @@ html.focus-fs-lock .focus-workspace.is-fullscreen {
   font-weight: 700;
 }
 
+/* The clock-theme picker. Each choice previews the face it selects with a
+   miniature split card painted from that face's own surface tokens, so the
+   control cannot drift from the clock it controls. */
+.clock-theme-picker {
+  flex: 1 1 100%;
+  gap: var(--space-2);
+}
+
+.clock-theme-picker .seg {
+  flex: 1 1 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(84px, 1fr));
+}
+
+.clock-theme-picker .seg button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 6px 8px;
+}
+
+.clock-swatch {
+  display: inline-block;
+  width: 14px;
+  height: 18px;
+  border-radius: 3px;
+  background: linear-gradient(180deg, var(--swatch-top) 0 50%, var(--swatch-bottom) 50% 100%);
+  box-shadow: inset 0 0 0 1px var(--swatch-line);
+}
+
+.clock-swatch.theme-swatch-auto {
+  --swatch-top: var(--fc-woodland-bg-top);
+  --swatch-bottom: var(--fc-woodland-bg-bottom);
+  --swatch-line: var(--fc-woodland-border);
+}
+
+.clock-swatch.theme-swatch-classic {
+  --swatch-top: var(--fc-classic-bg-top);
+  --swatch-bottom: var(--fc-classic-bg-bottom);
+  --swatch-line: var(--fc-classic-border);
+}
+
+.clock-swatch.theme-swatch-woodland {
+  --swatch-top: var(--fc-woodland-bg-top);
+  --swatch-bottom: var(--fc-woodland-bg-bottom);
+  --swatch-line: var(--fc-woodland-border);
+}
+
+.clock-swatch.theme-swatch-rain {
+  --swatch-top: var(--fc-rain-bg-top);
+  --swatch-bottom: var(--fc-rain-bg-bottom);
+  --swatch-line: var(--fc-rain-border);
+}
+
+.clock-swatch.theme-swatch-night {
+  --swatch-top: var(--fc-night-bg-top);
+  --swatch-bottom: var(--fc-night-bg-bottom);
+  --swatch-line: var(--fc-night-border);
+}
+
 .setting-switch {
   display: flex;
   align-items: center;
@@ -950,14 +1233,15 @@ html.focus-fs-lock .focus-workspace.is-fullscreen {
     50% { opacity: 0.4; }
   }
 
-  /* 300 ms per flap, staged: the top falls, then the bottom rises. */
+  /* One flap: the top card falls to the horizontal, then the bottom card
+     rises to meet it. The reference's 300 ms + 300 ms staged rotateX, with
+     the same ease and the same brightness shading at the seam. */
   .flip-flap.top {
-    animation: flipTop 300ms cubic-bezier(0.37, 0, 0.63, 1) forwards;
+    animation: flipTop var(--fc-flip-duration) var(--fc-flip-ease) forwards;
   }
 
   .flip-flap.bottom {
-    transform: rotateX(90deg);
-    animation: flipBottom 300ms cubic-bezier(0.37, 0, 0.63, 1) 300ms forwards;
+    animation: flipBottom var(--fc-flip-duration) var(--fc-flip-ease) var(--fc-flip-duration) forwards;
   }
 
   @keyframes flipTop {
@@ -1040,10 +1324,15 @@ html.focus-fs-lock .focus-workspace.is-fullscreen {
 @media (prefers-reduced-motion: reduce) {
   /* The global reduce block already removes animation and transition; these
      rules only make sure nothing is left waiting on a keyframe that will never
-     run (the flap halves must sit at their final angle, not mid-flip). */
-  .flip-flap.top,
+     run. A flap snaps straight to its final angle instead of falling: the top
+     card lies flat (hidden behind the static bottom half) and the bottom card
+     arrives upright, so the digit reads correctly with no motion at all. */
+  .flip-flap.top {
+    transform: rotateX(-90deg);
+  }
+
   .flip-flap.bottom {
-    display: none;
+    transform: rotateX(0deg);
   }
 
   .flip-colon,

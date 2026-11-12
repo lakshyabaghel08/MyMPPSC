@@ -377,6 +377,88 @@ for (const entry of shellPaths) {
   }
 }
 
+/* --------------------------------------------- the flip clock and its faces -- */
+
+// The Study Timer's flip clock has three faces (Classic, Woodland, Rain) plus
+// Night, and its ambience is five recorded files. Both are easy to break
+// silently — a face with one token missing renders a half-themed digit, and a
+// renamed MP3 is a 404 in a control nobody clicks during a test — so they are
+// checked here, against the vocabulary the app actually ships.
+{
+  const { CLOCK_THEMES } = await import(path.join(root, 'js', 'core', 'constants.js'));
+  const focusCss = await readFile(path.join(root, 'css', 'focus-timer.css'), 'utf8');
+
+  const faceTokens = ['bg-top', 'bg-bottom', 'text', 'split', 'border', 'shadow', 'sheen'];
+  for (const face of ['woodland', 'rain', 'night', 'classic']) {
+    for (const token of faceTokens) {
+      check(
+        new RegExp(`--fc-${face}-${token}\\s*:`).test(focusCss),
+        `css/focus-timer.css: the ${face} clock face does not define --fc-${face}-${token}`,
+      );
+    }
+  }
+  // Classic has two palettes — the evergreen default and the sky-blue Rain
+  // variant the reference showed for its rainfall atmosphere — so its literal
+  // values live in the token block, not beside the other two faces.
+  for (const token of faceTokens) {
+    check(
+      new RegExp(`--focus-classic-${token}\\s*:`).test(focusCss),
+      `css/focus-timer.css: the Classic face has no literal --focus-classic-${token}`,
+    );
+    check(
+      new RegExp(`--focus-classic-rain-${token}\\s*:`).test(focusCss),
+      `css/focus-timer.css: the Classic face has no Rain variant --focus-classic-rain-${token}`,
+    );
+  }
+
+  for (const theme of CLOCK_THEMES) {
+    check(
+      new RegExp(`\\.focus-workspace\\.theme-${theme}\\b`).test(focusCss),
+      `css/focus-timer.css: the clock theme "${theme}" is offered in code but has no rule`,
+    );
+  }
+  // Night and Rain resolve through their own environment, so `auto` needs both;
+  // Woodland is the workspace default and needs no extra rule.
+  check(/\.focus-workspace\.theme-auto\.[\w-]+\s*\{/.test(focusCss), 'css/focus-timer.css: theme-auto follows the atmosphere and needs a rule');
+  for (const environment of ['rain', 'night']) {
+    check(
+      new RegExp(`\\.focus-workspace\\.theme-auto\\.environment-${environment}\\b`).test(focusCss),
+      `css/focus-timer.css: theme-auto has no face for the ${environment} atmosphere`,
+    );
+  }
+  // Every face must be defined for every atmosphere: a face pinned while the
+  // room is Woodland (the default) but only defined inside `.environment-rain`
+  // would render as blank cards.
+  for (const face of ['woodland', 'rain', 'night', 'classic']) {
+    check(
+      new RegExp(`--fc-${face}-bg-top:`).test(focusCss),
+      `css/focus-timer.css: the ${face} face has no default surface`,
+    );
+  }
+  check(
+    /--fc-flip-duration:\s*300ms/.test(focusCss),
+    'css/focus-timer.css: the flip flap must keep the reference’s 300 ms timing (--fc-flip-duration: 300ms)',
+  );
+
+  const audioSource = await readFile(path.join(root, 'js', 'ui', 'focus-audio.js'), 'utf8');
+  for (const file of ['woodland.mp3', 'night.mp3', 'rain.mp3', 'time-up.mp3', 'mindfulness-bell.mp3']) {
+    check(audioSource.includes(file), `js/ui/focus-audio.js: ${file} is not played by the timer`);
+    await readFile(path.join(root, 'sounds', file)).then(
+      () => check(true, ''),
+      () => check(false, `sounds/${file} is referenced by the timer but does not exist`),
+    );
+  }
+  check(
+    audioSource.includes("const SOUND_DIR = 'sounds'") && !/['\"`]\/sounds\//.test(audioSource),
+    'js/ui/focus-audio.js: sound paths must be relative (the app is served from a project subpath)',
+  );
+  // The two bells are needed the first time a block ends; the beds are tens of
+  // megabytes and are cached on first play instead.
+  for (const bell of ['time-up.mp3', 'mindfulness-bell.mp3']) {
+    check(shellPaths.includes(`./sounds/${bell}`), `sw.js: the bell sounds/${bell} must be precached for offline use`);
+  }
+}
+
 /* ---------------------------------------------------------- data assets -- */
 
 for (const file of ['data/demo/demo-bank.json', 'data/examples/example-bank.json', 'data/examples/invalid-records-fixture.json', 'data/schema/question-bank.schema.json']) {

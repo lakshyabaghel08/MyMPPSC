@@ -247,6 +247,12 @@ export const DEFAULT_TIMER_SETTINGS = Object.freeze({
   breaksEnabled: true,
   /** Visual atmosphere for the focus workspace. */
   environment: 'woodland',
+  /**
+   * Which face the flip clock wears: `auto` follows the atmosphere, and
+   * `classic` / `woodland` / `rain` / `night` pin one face. Fullscreen opens on
+   * Classic under `auto`, as the reference did.
+   */
+  clockTheme: 'auto',
   /** Ambient soundscape; deliberately independent of the visual atmosphere. */
   soundscape: 'woodland',
   soundEnabled: false,
@@ -256,6 +262,12 @@ export const DEFAULT_TIMER_SETTINGS = Object.freeze({
 });
 
 export const FOCUS_ENVIRONMENTS = ['woodland', 'night', 'rain'];
+/**
+ * The flip clock's faces. `auto` follows the atmosphere; the rest pin one face.
+ * The stylesheet resolves these (`css/focus-timer.css`), so this list is the
+ * single vocabulary shared by the setting, the control and the CSS.
+ */
+export const CLOCK_THEMES = ['auto', 'classic', 'woodland', 'rain', 'night'];
 /** Focus durations offered as one-tap presets, in minutes. */
 export const FOCUS_PRESETS = [25, 30, 45, 50, 90];
 export const MINDFULNESS_INTERVALS = [5, 10, 15, 20, 30];

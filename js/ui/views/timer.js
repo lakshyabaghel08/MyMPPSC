@@ -22,7 +22,7 @@
  * the clock's own animation.
  */
 
-import { FOCUS_ENVIRONMENTS, FOCUS_PRESETS, MINDFULNESS_INTERVALS } from '../../core/constants.js';
+import { CLOCK_THEMES, FOCUS_ENVIRONMENTS, FOCUS_PRESETS, MINDFULNESS_INTERVALS } from '../../core/constants.js';
 import { applicationDayKey, fmtClock, weekdayLabel } from '../../core/util.js';
 import {
   esc,
@@ -34,7 +34,7 @@ import {
   progressBar,
   icon,
 } from '../components.js';
-import { FlipClock, flipClockSkeleton } from '../flipclock.js';
+import { FlipClock, flipClockSkeleton, applyClockTheme, clockThemeLabel } from '../flipclock.js';
 import { renderAtmosphere, spawnMeteors } from '../focus-atmosphere.js';
 import * as audio from '../focus-audio.js';
 import * as timer from '../../services/study-timer.js';
@@ -50,7 +50,8 @@ function duration(minutes) {
 }
 
 const environmentLabel = (key) => ({ woodland: 'Woodland', night: 'Night', rain: 'Rain' })[key] || key;
-const soundscapeLabel = (key) => ({ woodland: 'Woodland wind', night: 'Night fire', rain: 'Rainfall' })[key] || key;
+/** The soundscape names are the recorded files' names (see focus-audio.js). */
+const soundscapeLabel = (key) => audio.soundscapeLabel(key);
 
 /**
  * A history row is only useful if it says *what* and *how long*. Breaks and
@@ -142,7 +143,7 @@ export default {
         secondary: `<a class="btn btn-sm" href="#/hours">Study hours <span aria-hidden="true">→</span></a>`,
       })}
 
-      <section class="focus-workspace environment-${esc(timerSettings.environment)}" id="focusWorkspace" data-environment="${esc(timerSettings.environment)}" data-phase="${esc(snapshot.timer.phase)}">
+      <section class="focus-workspace environment-${esc(timerSettings.environment)} theme-${esc(timerSettings.clockTheme)}" id="focusWorkspace" data-environment="${esc(timerSettings.environment)}" data-clock-theme="${esc(timerSettings.clockTheme)}" data-phase="${esc(snapshot.timer.phase)}">
         ${card({
           className: 'focus-stage',
           body: `
@@ -268,12 +269,27 @@ export default {
             <label class="field" for="setVolume"><span class="label-text">Volume · ${timerSettings.volume}%</span>
               <input type="range" id="setVolume" min="0" max="100" step="5" value="${timerSettings.volume}" />
             </label>
+            <div class="timer-setting">
+              <span class="setting-label">Bells</span>
+              <div class="seg" role="group" aria-label="Test the bells">
+                <button type="button" data-action="test-bell" data-value="time-up">${icon('sound', { size: 13 })} Block finished</button>
+                <button type="button" data-action="test-bell" data-value="mindfulness">${icon('sound', { size: 13 })} Mindfulness</button>
+              </div>
+            </div>
             <label class="setting-switch"><input type="checkbox" id="setMindfulness" ${timerSettings.mindfulnessEnabled ? 'checked' : ''} /><span>Mindfulness bell</span></label>
             <label class="field"><span class="label-text">Bell interval</span>
               <select id="setBellInterval"${timerSettings.mindfulnessEnabled ? '' : ' disabled'}>
                 ${MINDFULNESS_INTERVALS.map((minutes) => `<option value="${minutes}"${timerSettings.mindfulnessInterval === minutes ? ' selected' : ''}>Every ${minutes} minutes</option>`).join('')}
               </select>
             </label>
+            <div class="timer-setting clock-theme-picker">
+              <span class="setting-label">Clock theme</span>
+              <div class="seg" role="group" aria-label="Flip clock theme">
+                ${CLOCK_THEMES.map(
+                  (theme) => `<button type="button" data-action="set-clock-theme" data-value="${theme}" aria-pressed="${timerSettings.clockTheme === theme}" title="${esc(clockThemeLabel(theme, timerSettings.environment))}"><span class="clock-swatch theme-swatch-${theme}" aria-hidden="true"></span>${esc(theme === 'auto' ? 'Auto' : clockThemeLabel(theme))}</button>`,
+                ).join('')}
+              </div>
+            </div>
           `,
         })}
 
@@ -325,6 +341,21 @@ export default {
       clock.setTime(timer.getSnapshot().displaySeconds, false);
     }
 
+    /**
+     * The clock's face. One `theme-*` class on the workspace is the whole
+     * switch: the stylesheet resolves it to a full surface set, so the digits,
+     * the split, the border, the shadow and the fullscreen room all move
+     * together and none of them is ever half-themed.
+     */
+    const paintClockTheme = (theme) => {
+      const applied = applyClockTheme(workspace, theme);
+      const picker = root.querySelector('.clock-theme-picker .seg');
+      picker?.querySelectorAll('[data-action="set-clock-theme"]').forEach((button) => {
+        button.setAttribute('aria-pressed', String(button.dataset.value === applied));
+      });
+      if (clock?.root) clock.root.dataset.clockTheme = applied;
+    };
+
     /* ------------------------------------------------------------ atmosphere -- */
 
     const paintAtmosphere = (environment) => {
@@ -338,6 +369,8 @@ export default {
       workspace.className = workspace.className.replace(/environment-\w+/g, `environment-${environment}`);
       workspace.insertBefore(renderAtmosphere(environment), workspace.firstChild);
       if (environment === 'night') loopMeteors();
+      // `auto` follows the atmosphere, so the face may have just changed.
+      paintClockTheme(timer.getSettings().clockTheme);
     };
 
     /** Meteors arrive every 8–16 s, in bursts of 1–5, never on a paused screen. */
@@ -366,6 +399,13 @@ export default {
      */
     const paintLive = (snapshot) => {
       if (clock) clock.setTime(snapshot.displaySeconds, snapshot.timer.running);
+      // In the room the clock is the play/pause control, so its own name says
+      // what pressing it will do. Repainted here rather than per click: the
+      // block can also start or pause from the engine (a phase change, the
+      // keyboard shortcut), and the name must not go stale.
+      if (holder?.getAttribute('role') === 'button') {
+        holder.setAttribute('aria-label', snapshot.timer.running ? 'Pause the block' : 'Start the block');
+      }
       const parts = live();
       if (parts.fill) {
         const width = snapshot.timer.mode === 'pomodoro' ? Math.round(snapshot.progress * 100) : 0;
@@ -430,6 +470,20 @@ export default {
         ctx.refresh();
         return;
       }
+      // The clock's face and its ambient bed are painted in place: a reader who
+      // changes either mid-block keeps their fullscreen room and their place in
+      // the task field.
+      if (reason === 'cosmetic') {
+        const settings = timer.getSettings();
+        paintClockTheme(settings.clockTheme);
+        const state = root.querySelector('.focus-sound-state');
+        if (state) {
+          state.innerHTML = settings.soundEnabled
+            ? `${icon('sound', { size: 14 })} ${esc(audio.soundscapeLabel(settings.soundscape))}`
+            : 'Sound off';
+        }
+        return;
+      }
       if (reason === 'reset' || reason === 'skip') {
         ctx.refresh();
         return;
@@ -440,6 +494,7 @@ export default {
       lastPhaseKey = phaseKey;
     };
 
+    paintClockTheme(timer.getSettings().clockTheme);
     lastPhaseKey = `${timer.getSnapshot().timer.mode}:${timer.getSnapshot().timer.phase}:${timer.getSnapshot().timer.running}`;
     // Restore the immersive room if a repaint (a settings change, a phase
     // change) rebuilt the screen while it was open.
@@ -483,6 +538,21 @@ export default {
       else if (!result) toast('Nothing to log yet — a block needs at least 12 seconds.', 'warn');
     });
     on('timer-mode', (button) => timer.setMode(button.dataset.value));
+    // The face is a preference, not a structural change: repaint the theme in
+    // place rather than refreshing the screen, which would drop fullscreen and
+    // restart the clock.
+    on('set-clock-theme', (button) => {
+      const theme = button.dataset.value;
+      timer.setSettings({ clockTheme: theme });
+      paintClockTheme(theme);
+      // A face change is silent by design; the pressed state is the feedback.
+    });
+    // Bells are rarely heard at the moment their setting is saved, so each one
+    // is auditionable from the card that configures it.
+    on('test-bell', (button) => {
+      const played = audio.playBell(button.dataset.value, timer.getSettings().volume);
+      toast(played ? 'Bell played' : 'This browser would not play the bell', played ? 'ok' : 'warn');
+    });
 
     const setFullscreenState = (on) => {
       wantFullscreen = Boolean(on);
@@ -490,6 +560,22 @@ export default {
       // A class-only fallback (iOS Safari has no Element Fullscreen API) still
       // needs the page behind it to stop scrolling.
       document.documentElement.classList.toggle('focus-fs-lock', Boolean(on));
+      // In the room the clock is the start/pause control, so it has to be a
+      // real control: focusable, named, and reachable by keyboard. Outside the
+      // room the same element is decoration and must not be in the tab order.
+      if (holder) {
+        if (on) {
+          holder.setAttribute('role', 'button');
+          holder.setAttribute('tabindex', '0');
+          holder.setAttribute('aria-label', timer.isRunning() ? 'Pause the block' : 'Start the block');
+        } else {
+          holder.removeAttribute('role');
+          holder.removeAttribute('tabindex');
+          holder.removeAttribute('aria-label');
+        }
+      }
+      const button = root.querySelector('[data-action="timer-fullscreen"]');
+      if (button) button.setAttribute('aria-pressed', String(Boolean(on)));
     };
 
     on('timer-fullscreen', async () => {
@@ -519,9 +605,10 @@ export default {
     // nothing else on the screen. This is registered once for the life of the
     // screen rather than `{ once: true }` per fullscreen entry — a one-shot
     // listener left the user able to pause but never resume.
-    const onClockClick = () => {
+    const onClockToggle = () => {
       if (!workspace?.classList.contains('is-fullscreen')) return;
       timer.isRunning() ? timer.pause() : timer.start();
+      holder?.setAttribute('aria-label', timer.isRunning() ? 'Pause the block' : 'Start the block');
     };
     // `clock` is the FlipClock instance; the click target is the node it owns.
     // Bound to `workspace` rather than the holder because the holder is
@@ -529,7 +616,16 @@ export default {
     workspace?.addEventListener('click', (event) => {
       if (!workspace.classList.contains('is-fullscreen')) return;
       if (!event.target.closest?.('#focusClockHolder')) return;
-      onClockClick();
+      onClockToggle();
+    });
+    // Space and Enter are what a button promises, and the clock now looks and
+    // sounds like one in the room.
+    workspace?.addEventListener('keydown', (event) => {
+      if (event.key !== 'Enter' && event.key !== ' ') return;
+      if (!workspace.classList.contains('is-fullscreen')) return;
+      if (event.target !== holder) return;
+      event.preventDefault();
+      onClockToggle();
     });
 
     const onFullscreenChange = () => {

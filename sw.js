@@ -10,7 +10,7 @@
 
 // Bump this whenever any precached file changes: the old caches are deleted on
 // activate, so a fixed build cannot keep serving a stale shell.
-const VERSION = 'v1.10.0-study-timer';
+const VERSION = 'v1.11.0-flip-clock-sounds';
 const SHELL_CACHE = `mymppsc-shell-${VERSION}`;
 const RUNTIME_CACHE = `mymppsc-runtime-${VERSION}`;
 
@@ -77,6 +77,11 @@ const SHELL_FILES = [
   './fonts/noto-sans-devanagari-variable.woff2',
   './icons/icon-192.png',
   './icons/icon-512.png',
+  // The two bells are tiny and are needed offline the first time a block
+  // ends, so they ship with the shell. The three ambient beds are tens of
+  // megabytes each and are cached on first play instead (see `isSoundscape`).
+  './sounds/time-up.mp3',
+  './sounds/mindfulness-bell.mp3',
   './data/demo/demo-bank.json',
   './data/pyq/mymppsc-pyq-bank.json',
   './data/schema/question-bank.schema.json',
@@ -130,6 +135,13 @@ function isCacheable(request) {
   return true;
 }
 
+/**
+ * A soundscape bed. These are the big files (4–24 MB), so they are deliberately
+ * left out of the precache list — but once a reader has chosen one, it must
+ * keep working offline, so every audio response is cached on first play.
+ */
+const isSoundscape = (url) => url.pathname.endsWith('.mp3') || url.pathname.endsWith('.m4a') || url.pathname.endsWith('.ogg');
+
 self.addEventListener('fetch', (event) => {
   const { request } = event;
   if (!isCacheable(request)) return;
@@ -170,7 +182,7 @@ self.addEventListener('fetch', (event) => {
         return cached;
       }
       const fresh = await fetch(request);
-      if (fresh && fresh.ok && url.pathname.startsWith('/css/')) {
+      if (fresh && fresh.ok && (url.pathname.startsWith('/css/') || isSoundscape(url))) {
         const cache = await caches.open(SHELL_CACHE);
         cache.put(request, fresh.clone());
       }

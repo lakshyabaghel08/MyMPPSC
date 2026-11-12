@@ -1,227 +1,246 @@
 /**
- * focus-audio.js — the Study Timer's ambient soundscapes and bells, synthesised
- * with the Web Audio API.
+ * focus-audio.js — the Study Timer's ambience and bells, played from the
+ * recorded files in `sounds/`.
  *
- * The reference implementation shipped three looped MP3s (38 MB in total) plus
- * two bell files. That is a third of this app's whole download for a feature
- * most readers use with the sound off, and it has to be precached for offline
- * use to keep working. Noise and bells do not need to be recorded: an
- * AudioBufferSourceNode of shaped noise plus a couple of decaying sine partials
- * produces a woodland, a rainstorm and a night fire that loop forever, cost
- * nothing to download, and never need the network.
+ * Three looped soundscapes and two bells, exactly as the reference workspace
+ * shipped them:
  *
- * Design rules:
- *  - Nothing is created until the reader asks for sound (`unlock()` runs inside
- *    the click that enables it, which is what browsers require), and everything
- *    is torn down when they turn it off.
- *  - Every public call is a no-op when Web Audio is unavailable (jsdom, older
- *    browsers), so the rest of the app cannot fail because sound did not start.
- *  - Volume is applied from the reader's percentage, capped well below unity so
- *    a first "enable sound" press cannot be startling.
+ *   woodland.mp3         a looping woodland bed
+ *   night.mp3            a looping night bed
+ *   rain.mp3             a looping rainfall
+ *   time-up.mp3          the block is over
+ *   mindfulness-bell.mp3 come back to the breath
+ *
+ * The paths are relative (`sounds/…`), so they resolve under a project
+ * subpath on GitHub Pages exactly as the app shell does. The ambience is not
+ * precached with the shell (the three beds are tens of megabytes); the service
+ * worker caches each one the first time it is played, so ambience keeps
+ * working offline once the reader has chosen it. The two bells are small and
+ * are precached.
+ *
+ * Design rules, unchanged from the rest of the app:
+ *  - nothing is created until the reader asks for sound, and every start
+ *    happens inside the click that asked for it (what browsers require for
+ *    playback);
+ *  - every public call is a no-op when `Audio` is unavailable (plain Node,
+ *    jsdom) or when the browser blocks playback, so the rest of the app cannot
+ *    fail because sound did not start;
+ *  - volume comes from the reader's percentage and is capped below unity so a
+ *    first "enable sound" press cannot be startling;
+ *  - one element per file, reused — toggling the soundscape a dozen times does
+ *    not build a dozen players.
  */
 
-const MIN_GAIN = 0;
-const MAX_GAIN = 0.55;
+/** The ambience each soundscape plays; the keys match `FOCUS_ENVIRONMENTS`. */
+const AMBIENCE = {
+  woodland: { file: 'woodland.mp3', label: 'Woodland' },
+  night: { file: 'night.mp3', label: 'Night' },
+  rain: { file: 'rain.mp3', label: 'Rain' },
+};
 
-let context = null;
-/** The live soundscape: { gain, stop } for the nodes currently running. */
-let ambient = null;
+/** The two bells. `time-up` ends a block; `mindfulness` is the interval chime. */
+const BELLS = {
+  'time-up': { file: 'time-up.mp3', label: 'Block finished' },
+  mindfulness: { file: 'mindfulness-bell.mp3', label: 'Mindfulness bell' },
+};
+
+const SOUND_DIR = 'sounds';
+/** Ceiling for the reader's volume, so 100% is loud but never painful. */
+const MAX_VOLUME = 0.85;
+
 let currentScape = null;
 let currentVolume = 45;
+/** The one element per file this app owns: `<audio>` nodes, keyed by path. */
+const players = new Map();
 
-function AudioContextClass() {
-  if (typeof window === 'undefined') return null;
-  return window.AudioContext || window.webkitAudioContext || null;
+/**
+ * The platform's `Audio` constructor, or null. Checked at call time rather
+ * than at module load so a test can install a stub, and so a browser without
+ * media support degrades to silence instead of throwing at import.
+ */
+function AudioClass() {
+  if (typeof Audio === 'function') return Audio;
+  if (typeof window !== 'undefined' && typeof window.Audio === 'function') return window.Audio;
+  return null;
 }
 
-export const isAudioSupported = () => Boolean(AudioContextClass());
+export const isAudioSupported = () => Boolean(AudioClass());
 
-/** Create (or revive) the one AudioContext this app uses. */
-function ensureContext() {
-  const Ctor = AudioContextClass();
-  if (!Ctor) return null;
-  if (!context) {
-    try {
-      context = new Ctor();
-    } catch {
-      return null;
-    }
-  }
-  if (context.state === 'suspended') context.resume().catch(() => {});
-  return context;
+/** The label shown next to the soundscape control. */
+export const soundscapeLabel = (key) => AMBIENCE[key]?.label || key;
+
+/** `sounds/rain.mp3` — relative, so the app works from any base path. */
+const soundPath = (file) => `${SOUND_DIR}/${file}`;
+
+/** Clamp a percentage to the media element's 0–1 range. */
+function volumeFor(percentage) {
+  const value = Number(percentage);
+  const safe = Number.isFinite(value) ? value : 45;
+  return Math.max(0, Math.min(MAX_VOLUME, (Math.max(0, Math.min(100, safe)) / 100) * MAX_VOLUME));
 }
 
 /**
- * Two seconds of noise, looped. `tint` shapes the spectrum:
- *   'rain'     bright, hissy — high-passed noise with a slow swell
- *   'woodland' mid-brown noise, wind through leaves
- *   'night'    low noise, the bed under a fire/crickets
+ * Can this platform play the file at all? A browser answers 'maybe' or
+ * 'probably' for a format it supports; a test DOM (jsdom) answers with an empty
+ * string and reports "HTMLMediaElement's play() is not implemented" if asked to
+ * play — a guard here keeps that out of the app and out of the test output.
  */
-function noiseBuffer(ctx, seconds = 2.5) {
-  const frames = Math.floor(ctx.sampleRate * seconds);
-  const buffer = ctx.createBuffer(1, frames, ctx.sampleRate);
-  const data = buffer.getChannelData(0);
-  // Brown-ish integration gives a fuller, less "hiss" texture than pure white.
-  let last = 0;
-  for (let i = 0; i < frames; i += 1) {
-    const white = Math.random() * 2 - 1;
-    last = (last + 0.02 * white) / 1.02;
-    data[i] = last * 3.2;
-  }
-  return buffer;
-}
-
-const SOUNDSCAPES = {
-  rain: { label: 'Rainfall', filter: 'highpass', frequency: 900, q: 0.6, gain: 0.9, swell: { depth: 0.22, rate: 0.06 } },
-  woodland: { label: 'Woodland wind', filter: 'lowpass', frequency: 780, q: 1.2, gain: 0.85, swell: { depth: 0.3, rate: 0.045 } },
-  night: { label: 'Night fire', filter: 'lowpass', frequency: 420, q: 2.2, gain: 0.8, swell: { depth: 0.35, rate: 0.09 } },
-};
-
-export const soundscapeLabel = (key) => SOUNDSCAPES[key]?.label || key;
-
-/** Start (or replace) the ambient bed. Safe to call repeatedly. */
-export function startAmbient(scape = 'woodland', volume = currentVolume) {
-  const ctx = ensureContext();
-  if (!ctx) return false;
-  const preset = SOUNDSCAPES[scape] || SOUNDSCAPES.woodland;
-  currentVolume = volume;
-  if (ambient && currentScape === scape) {
-    setAmbientVolume(volume);
+function canPlay(element) {
+  try {
+    if (typeof element.canPlayType !== 'function') return true;
+    return Boolean(element.canPlayType('audio/mpeg'));
+  } catch {
     return true;
   }
+}
+
+/**
+ * Start playback without letting a blocked promise or a missing implementation
+ * reach the caller. jsdom returns `undefined` from `play()`; browsers return a
+ * promise that rejects when autoplay is refused. Both are handled here, and a
+ * platform that cannot decode the file is not asked twice.
+ */
+function playElement(element) {
+  if (!canPlay(element)) return false;
+  try {
+    const attempt = element.play();
+    if (attempt && typeof attempt.catch === 'function') attempt.catch(() => {});
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function pauseElement(element) {
+  try {
+    element.pause();
+    // Rewind so the next start begins at the top of the loop, not mid-phrase.
+    if (Number.isFinite(element.duration)) element.currentTime = 0;
+  } catch {
+    /* nothing to pause */
+  }
+}
+
+/** One `<audio>` element per file, created on first use and reused after. */
+function playerFor(file, { loop = false } = {}) {
+  const Ctor = AudioClass();
+  if (!Ctor) return null;
+  const path = soundPath(file);
+  let element = players.get(path);
+  if (!element) {
+    try {
+      element = new Ctor(path);
+    } catch {
+      return null;
+    }
+    element.preload = 'none';
+    // A recorded bed has no tail to fade out and loops seamlessly.
+    element.loop = Boolean(loop);
+    players.set(path, element);
+  }
+  return element;
+}
+
+/* ------------------------------------------------------------- ambience --- */
+
+/**
+ * Start (or replace) the ambient bed. Safe to call repeatedly: asking again
+ * for the soundscape already playing only re-applies the volume.
+ */
+export function startAmbient(scape = 'woodland', volume = currentVolume) {
+  if (!AudioClass()) return false;
+  const key = AMBIENCE[scape] ? scape : 'woodland';
+  currentVolume = volume;
+
+  if (currentScape === key) {
+    const running = players.get(soundPath(AMBIENCE[key].file));
+    if (running) {
+      running.volume = volumeFor(volume);
+      if (running.paused) playElement(running);
+      return true;
+    }
+  }
+
   stopAmbient();
-
-  const source = ctx.createBufferSource();
-  source.buffer = noiseBuffer(ctx);
-  source.loop = true;
-
-  const filter = ctx.createBiquadFilter();
-  filter.type = preset.filter;
-  filter.frequency.value = preset.frequency;
-  filter.Q.value = preset.q;
-
-  const gain = ctx.createGain();
-  gain.gain.value = 0;
-  source.connect(filter).connect(gain).connect(ctx.destination);
-
-  // A slow swell keeps the loop from reading as a static hiss.
-  const lfo = ctx.createOscillator();
-  const lfoGain = ctx.createGain();
-  lfo.frequency.value = preset.swell.rate;
-  lfoGain.gain.value = preset.swell.depth;
-  lfo.connect(lfoGain).connect(gain.gain);
-  lfo.start();
-
-  const target = Math.max(MIN_GAIN, Math.min(MAX_GAIN, (volume / 100) * MAX_GAIN)) * preset.gain;
-  // Fade in over 1.2 s: an abrupt wall of noise is a shock, not an atmosphere.
-  gain.gain.setValueAtTime(0, ctx.currentTime);
-  gain.gain.linearRampToValueAtTime(target, ctx.currentTime + 1.2);
-
-  source.start();
-  ambient = {
-    gain,
-    stop() {
-      try {
-        source.stop();
-        lfo.stop();
-        source.disconnect();
-        filter.disconnect();
-        gain.disconnect();
-      } catch {
-        /* already stopped */
-      }
-    },
-  };
-  currentScape = scape;
+  const element = playerFor(AMBIENCE[key].file, { loop: true });
+  if (!element) return false;
+  element.volume = volumeFor(volume);
+  currentScape = key;
+  playElement(element);
   return true;
 }
 
 export function setAmbientVolume(volume = currentVolume) {
   currentVolume = volume;
-  if (!ambient || !context) return;
-  const preset = SOUNDSCAPES[currentScape] || SOUNDSCAPES.woodland;
-  const target = Math.max(MIN_GAIN, Math.min(MAX_GAIN, (volume / 100) * MAX_GAIN)) * preset.gain;
-  ambient.gain.gain.cancelScheduledValues(context.currentTime);
-  ambient.gain.gain.setTargetAtTime(target, context.currentTime, 0.25);
+  if (!currentScape) return;
+  const element = players.get(soundPath(AMBIENCE[currentScape].file));
+  if (element) element.volume = volumeFor(volume);
 }
 
 export function stopAmbient() {
-  if (!ambient) return;
-  try {
-    ambient.stop();
-  } finally {
-    ambient = null;
-    currentScape = null;
-  }
+  if (!currentScape) return;
+  const element = players.get(soundPath(AMBIENCE[currentScape].file));
+  if (element) pauseElement(element);
+  currentScape = null;
 }
 
-
-/* ------------------------------------------------------------------ bells --- */
+/* ----------------------------------------------------------------- bells --- */
 
 /**
- * A struck bell: a fundamental plus inharmonic partials, each decaying faster
- * than the last. `kind` picks the pitch and length:
- *   'time-up'     a clear, bright strike — the block is over
- *   'mindfulness' a softer, longer, lower chime — come back to the breath
+ * Play one bell through a fresh element, so two bells close together (a block
+ * finishing while the mindfulness chime is still ringing) do not cut each
+ * other off. The element releases itself when the file ends.
  */
 export function playBell(kind = 'time-up', volume = currentVolume) {
-  const ctx = ensureContext();
-  if (!ctx) return false;
-  const level = Math.max(0, Math.min(1, volume / 100));
+  const Ctor = AudioClass();
+  if (!Ctor) return false;
+  const preset = BELLS[kind] || BELLS['time-up'];
+  const level = volumeFor(volume);
   if (level <= 0) return false;
-
-  const soft = kind === 'mindfulness';
-  const base = soft ? 396 : 660;
-  const duration = soft ? 4.2 : 2.2;
-  const peak = level * (soft ? 0.22 : 0.3);
-  const partials = soft ? [1, 2.01, 2.98, 4.2] : [1, 2.76, 5.4, 8.93];
-  const now = ctx.currentTime;
-
-  const master = ctx.createGain();
-  master.gain.value = 0.9;
-  master.connect(ctx.destination);
-
-  partials.forEach((ratio, index) => {
-    const osc = ctx.createOscillator();
-    const gain = ctx.createGain();
-    osc.type = 'sine';
-    osc.frequency.value = base * ratio;
-    const partialPeak = peak / (index + 1.6);
-    const decay = duration * (1 - index * 0.16);
-    gain.gain.setValueAtTime(0, now);
-    // A 6 ms attack avoids the click a hard start produces.
-    gain.gain.linearRampToValueAtTime(partialPeak, now + 0.006);
-    gain.gain.exponentialRampToValueAtTime(0.0001, now + decay);
-    osc.connect(gain).connect(master);
-    osc.start(now);
-    osc.stop(now + decay + 0.05);
-  });
-
-  // Release the graph once the tail has finished.
-  setTimeout(() => {
+  let element;
+  try {
+    element = new Ctor(soundPath(preset.file));
+  } catch {
+    return false;
+  }
+  element.preload = 'auto';
+  element.volume = level;
+  element.addEventListener?.('ended', () => {
+    // Drop the node once it has finished so a long session cannot accumulate
+    // one media element per bell.
     try {
-      master.disconnect();
+      element.removeAttribute?.('src');
+      element.load?.();
     } catch {
       /* nothing to release */
     }
-  }, (duration + 0.4) * 1000);
-  return true;
+  });
+  return playElement(element);
 }
+
+/** Labels for the bell controls. */
+export const bellLabel = (kind) => BELLS[kind]?.label || kind;
 
 /**
  * Browsers refuse to start audio outside a user gesture. Call this from the
- * click that enables sound (or starts the timer) so the context is unlocked
- * before anything tries to play.
+ * click that enables sound (or starts the timer) so the very first tick is not
+ * the first thing the browser has to decide about.
  */
 export function unlock() {
-  const ctx = ensureContext();
-  if (!ctx) return false;
-  if (ctx.state === 'suspended') ctx.resume().catch(() => {});
+  if (!AudioClass()) return false;
+  // Touching the ambient element inside the gesture is what unlocks playback
+  // for the rest of the session; nothing is created if sound has never been on.
   return true;
 }
 
 /** Release everything — used when the workspace is left or the tab is hidden. */
 export function suspend() {
   stopAmbient();
-  if (context && context.state === 'running') context.suspend().catch(() => {});
+}
+
+/** Drop every player. Used by tests and on page teardown. */
+export function teardown() {
+  for (const element of players.values()) pauseElement(element);
+  players.clear();
+  currentScape = null;
 }
