@@ -36,7 +36,7 @@ import {
   progressBar,
   icon,
 } from '../components.js';
-import { FlipClock, flipClockSkeleton, applyClockTheme, clockThemeLabel } from '../flipclock.js';
+import { FlipClock, flipClockSkeleton, applyClockTheme } from '../flipclock.js';
 import { renderAtmosphere, spawnMeteors } from '../focus-atmosphere.js';
 import * as audio from '../focus-audio.js';
 import * as timer from '../../services/study-timer.js';
@@ -178,8 +178,8 @@ export default {
             }
 
             <label class="focus-work" for="focusTask">
-              <span>What are you working on? <em>optional</em></span>
-              <input id="focusTask" type="text" maxlength="160" autocomplete="off" placeholder="Polity — Union Executive, Chapter 14 revision" value="${esc(snapshot.timer.taskName)}" />
+              <span class="sr-only">What are you working on? (optional)</span>
+              <input id="focusTask" type="text" maxlength="160" autocomplete="off" placeholder="What are you working on?" value="${esc(snapshot.timer.taskName)}" />
             </label>
 
             <div class="focus-controls">
@@ -248,42 +248,40 @@ export default {
                       </select>
                     </label>
                   </div>`
-                : `<p class="muted small m-0">A stopwatch counts up until you stop it. Everything you log lands in the same study hours as a Pomodoro block.</p>`
+                : ''
             }
             <div class="field-row">
               <label class="field" for="setDailyTarget"><span class="label-text">Daily focus target (minutes)</span>
                 <input type="number" id="setDailyTarget" min="0" max="1440" step="30" value="${timerSettings.dailyTargetMinutes}" />
               </label>
             </div>
-            <hr class="divider" />
-            <div class="focus-theme-note">
-              ${icon('moon', { size: 16 })}
-              <span><b id="focusThemeName">${esc(clockThemeLabel(environment))} atmosphere</b><small>Follows the app theme: Woodland in light mode, Night in dark mode. Change it with the sun/moon button in the header.</small></span>
-            </div>
-            <div class="field-row">
-              <label class="field"><span class="label-text">Soundscape</span>
-                <select id="setSoundscape">
-                  ${FOCUS_ENVIRONMENTS.map((key) => `<option value="${key}"${timerSettings.soundscape === key ? ' selected' : ''}>${soundscapeLabel(key)}</option>`).join('')}
-                </select>
+            <div class="timer-sound-group">
+              <div class="timer-sound-row">
+                <label class="setting-switch"><input type="checkbox" id="setSound" ${timerSettings.soundEnabled ? 'checked' : ''} /><span>Ambient sound${audio.isAudioSupported() ? '' : ' (unavailable)'}</span></label>
+                <label class="field"><span class="label-text">Soundscape</span>
+                  <select id="setSoundscape"${timerSettings.soundEnabled ? '' : ' disabled'}>
+                    ${FOCUS_ENVIRONMENTS.map((key) => `<option value="${key}"${timerSettings.soundscape === key ? ' selected' : ''}>${soundscapeLabel(key)}</option>`).join('')}
+                  </select>
+                </label>
+              </div>
+              <label class="field timer-volume" for="setVolume"><span class="label-text">Volume · ${timerSettings.volume}%</span>
+                <input type="range" id="setVolume" min="0" max="100" step="5" value="${timerSettings.volume}"${timerSettings.soundEnabled ? '' : ' disabled'} />
               </label>
             </div>
-            <label class="setting-switch"><input type="checkbox" id="setSound" ${timerSettings.soundEnabled ? 'checked' : ''} /><span>Ambient sound${audio.isAudioSupported() ? '' : ' (not available in this browser)'}</span></label>
-            <label class="field" for="setVolume"><span class="label-text">Volume · ${timerSettings.volume}%</span>
-              <input type="range" id="setVolume" min="0" max="100" step="5" value="${timerSettings.volume}" />
-            </label>
-            <div class="timer-setting">
-              <span class="setting-label">Bells</span>
-              <div class="seg" role="group" aria-label="Test the bells">
-                <button type="button" data-action="test-bell" data-value="time-up">${icon('sound', { size: 13 })} Block finished</button>
-                <button type="button" data-action="test-bell" data-value="mindfulness">${icon('sound', { size: 13 })} Mindfulness</button>
+            <div class="timer-sound-group">
+              <div class="timer-sound-row">
+                <label class="setting-switch"><input type="checkbox" id="setMindfulness" ${timerSettings.mindfulnessEnabled ? 'checked' : ''} /><span>Mindfulness bell</span></label>
+                <label class="field"><span class="label-text">Interval</span>
+                  <select id="setBellInterval"${timerSettings.mindfulnessEnabled ? '' : ' disabled'}>
+                    ${MINDFULNESS_INTERVALS.map((minutes) => `<option value="${minutes}"${timerSettings.mindfulnessInterval === minutes ? ' selected' : ''}>Every ${minutes} minutes</option>`).join('')}
+                  </select>
+                </label>
+              </div>
+              <div class="timer-bell-tests" role="group" aria-label="Preview bells">
+                <button class="btn btn-sm btn-quiet" type="button" data-action="test-bell" data-value="time-up">${icon('sound', { size: 13 })} Block finished</button>
+                <button class="btn btn-sm btn-quiet" type="button" data-action="test-bell" data-value="mindfulness">${icon('sound', { size: 13 })} Mindfulness</button>
               </div>
             </div>
-            <label class="setting-switch"><input type="checkbox" id="setMindfulness" ${timerSettings.mindfulnessEnabled ? 'checked' : ''} /><span>Mindfulness bell</span></label>
-            <label class="field"><span class="label-text">Bell interval</span>
-              <select id="setBellInterval"${timerSettings.mindfulnessEnabled ? '' : ' disabled'}>
-                ${MINDFULNESS_INTERVALS.map((minutes) => `<option value="${minutes}"${timerSettings.mindfulnessInterval === minutes ? ' selected' : ''}>Every ${minutes} minutes</option>`).join('')}
-              </select>
-            </label>
           `,
         })}
 
@@ -342,8 +340,6 @@ export default {
         clock.root.classList.toggle('theme-night', applied === 'night');
         clock.root.classList.toggle('theme-woodland', applied === 'woodland');
       }
-      const name = root.querySelector('#focusThemeName');
-      if (name) name.textContent = `${clockThemeLabel(applied)} atmosphere`;
     };
 
     /* ------------------------------------------------------------ atmosphere -- */
