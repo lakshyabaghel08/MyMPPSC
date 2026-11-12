@@ -77,9 +77,9 @@ Question stems and options use `--text-md` (17px) with `--lh-reading` (1.65) and
 ### 1.5 Navigation architecture
 
 - **Header (56px):** menu toggle (≤860px), wordmark, command trigger (`#commandBtn`, `⌘K`/`Ctrl K`), Quick practice, theme toggle, Help, and the resume strip when a session is unfinished.
-- **Sidebar (desktop):** four groups — **Study** (Today, Papers, Practice, Smart), **Review** (Mistakes, Revision), **Plan** (Syllabus, Insights), **Manage** (Bank, Settings, Help). Phase 3 shortened every label to the word a reader uses; the full name stays as each screen's `<h1>`. Group labels are small caps, not boxes. Destructive/rare destinations sit at the bottom with storage and offline state.
+- **Sidebar (desktop):** four groups — **Study** (Today, Study Timer, Study hours, Papers, Practice, Smart), **Review** (Mistakes, Revision), **Plan** (Syllabus, Insights), **Manage** (Bank, Settings, Help). The Study Timer and Study hours sit beside Today because a sitting starts there and the record of it belongs next to it. Phase 3 shortened every label to the word a reader uses; the full name stays as each screen's `<h1>`. Group labels are small caps, not boxes. Destructive/rare destinations sit at the bottom with storage and offline state.
 - **Collapsible rail:** `#navCollapse` hides labels and shrinks the sidebar to 64px; the choice persists in `localStorage['mymppsc.navCollapsed']` and the nav buttons keep `aria-label`/`title`.
-- **Mobile:** the same list becomes an off-canvas drawer with a scrim (`#navToggle`, `#appNav`, `#navScrim`, inert `#main`, focus restore); ≤560px a five-item tab bar plus **More** keeps the frequent destinations one thumb away.
+- **Mobile:** the same list becomes an off-canvas drawer with a scrim (`#navToggle`, `#appNav`, `#navScrim`, inert `#main`, focus restore); ≤560px a five-item tab bar (Today, Study Timer, Papers, Smart, Mistakes) plus **More** keeps the frequent destinations one thumb away.
 - **Nested pages:** the test runner and a test report carry a one-line breadcrumb back to Test Centre. Everything else is one level deep.
 - **Command palette:** screens (Go), actions (Do), and questions/topics (Find) in one overlay; it never replaces the sidebar.
 
@@ -290,9 +290,37 @@ limit and open disclosures the reader set. Confidence, answer-key policy and unr
 are the frozen rules in `FIXED_TEST_RULES`, stated in one line (`FIXED_RULES_NOTE`), never offered as
 controls.
 
+## 6d-bis. The Study Timer workspace
+
+The Study Timer is the one screen with a moving part, so it is written to rules the other screens
+do not need:
+
+- **The engine owns the clock, the screen borrows it.** `js/services/study-timer.js` keeps the
+  state, the 250 ms tick, the phase transitions and the audio; a block keeps running while the
+  reader marks a syllabus line or sits a mock. The view subscribes on `mount()` and releases the
+  subscription through `ctx.signal`, so leaving the screen cannot leave a second tick behind.
+- **Only the moving parts repaint.** A tick repaints the flip digits, the caption, the progress bar
+  and `document.title`; a *structural* change (a phase completed, the mode changed, a setting was
+  saved) calls `ctx.refresh()`. Re-rendering the whole screen four times a second would restart the
+  clock's animation and drop focus out of the task field.
+- **Time is anchored, never accumulated.** `anchorElapsed` + `anchorAt` means a throttled background
+  tab, a locked phone or a closed laptop cannot make the clock drift, and a block that ran out while
+  the app was shut is closed out once on the next boot (`restore()`), not silently dropped.
+- **Ambience is synthesised** (`js/ui/focus-audio.js`): shaped noise through a filter plus a slow
+  LFO, and bells built from decaying partials. The reference workspace shipped 38 MB of MP3s for the
+  same effect; this ships none, so offline use and the no-network guard stay intact.
+- **Ambience is separate from atmosphere**, as in the reference: the visual theme and the soundscape
+  are two settings.
+- **Study days start at 4 AM** (`applicationDayKey()` in `js/core/util.js`). Only focus sessions and
+  manual logs are classified that way — `todayKey()` still says what calendar day it is, because a
+  paper's date must not move at 4 AM.
+- **A logged block is logged once.** Blocks carry an id, and the ids the engine has already written
+  live in localStorage; a duplicate tick or a second tab that notices the same finished phase finds
+  the id and does nothing.
+
 ## 6e. Screen anatomy, card anatomy and the density budget
 
-Every one of the eleven destinations is built to the same three-part contract, and it is machine-checked rather than remembered:
+Every one of the thirteen destinations is built to the same three-part contract, and it is machine-checked rather than remembered:
 
 | Part | Built by | Rule |
 | :--- | :--- | :--- |
@@ -300,7 +328,7 @@ Every one of the eleven destinations is built to the same three-part contract, a
 | `.screen-tabs` | `screenTabs()` | Optional, sticky under the header. Screens with tabs (Insights, Question Bank, Settings) put their tab list here. |
 | `.card` | `card()` | `.card-head` = one heading (`<h2>`), optional `countChip()`, at most one `cardInfo()` ⓘ, at most one action. Body, then an optional footer. |
 
-**Density budget.** `js/ui/budget.js` is the single definition of the limits; `tools/check.mjs` enforces them on the *rendered* screens (it boots the app in jsdom once and measures all eleven), and `tests/screen-anatomy.test.js` re-asserts them.
+**Density budget.** `js/ui/budget.js` is the single definition of the limits; `tools/check.mjs` enforces them on the *rendered* screens (it boots the app in jsdom once and measures all thirteen), and `tests/screen-anatomy.test.js` re-asserts them.
 
 | Limit | Value | Why |
 | :--- | :--- | :--- |
@@ -358,12 +386,12 @@ pressed, and every one creates a real test rather than a link to a screen that c
 - **WCAG 2.1 contrast audit**: Parses both Light and Dark token maps from `css/app.css` (resolving `var(--token)` aliases such as `--track`) and computes relative luminance contrast ratios across **40 text/surface token pairs** (requiring `≥ 4.5:1`) and **14 non-text pairs** — borders and focus ring against every surface, and every data colour against `--track` — (requiring `≥ 3.0:1`) per theme (108 contrast assertions in total).
 - **Motion guard**: Every `animation:` declaration must sit inside `@media (prefers-reduced-motion: no-preference)` (except `animation: none`), and no literal transition may exceed `150ms`.
 - **Zero inline style guard**: Scans every file in `js/**` and fails if any `style="..."` attribute is present.
-- **Density-budget guard**: Imports `js/ui/budget.js`, asserts the five limits are unchanged (raising one requires editing this file and the pull request), then boots the real app in jsdom with a demonstration bank and a little recorded activity and measures all eleven screens: cards, longest card's words, disclosures, ⓘ toggles, controls outside a table, exactly one `<h1>`, and no skipped heading levels. A breach fails `npm run check`.
+- **Density-budget guard**: Imports `js/ui/budget.js`, asserts the five limits are unchanged (raising one requires editing this file and the pull request), then boots the real app in jsdom with a demonstration bank and a little recorded activity and measures all thirteen screens: cards, longest card's words, disclosures, ⓘ toggles, controls outside a table, exactly one `<h1>`, and no skipped heading levels. A breach fails `npm run check`.
 - **Theme & media query guards**: Verifies `html[data-theme="light"]`, `html[data-theme="dark"]`, `@media (prefers-reduced-motion: reduce)`, `@media (forced-colors: active)`, `@media print`, and the pre-paint theme bootstrap script in `index.html`.
 
 ### Runtime / JSDOM Guards (`tests/ui.test.js` / `npm test`)
-- `tests/screen-anatomy.test.js`: the anatomy contract on all eleven screens (one `<h1>` inside `.screen-head`, a purpose line, an action, one title row per card, no skipped levels), the density budget on the rendered screens, the token-driven card/spacing rules, compact density, the ≤560px tab bar and labelled card rows, and that the runner keeps its desktop tools.
-- `tests/practice-flow.test.js`: the practice sheet from all three entry points (dashboard, header, `#/practise`), a real session with the frozen rules applied rather than offered, form memory across openings, the resume strip on every screen but the runner, and ⌘K's Go (11 destinations), Do (actions resolve) and Find (subjects, topics, syllabus lines, questions) with the keyboard alone.
+- `tests/screen-anatomy.test.js`: the anatomy contract on all thirteen screens (one `<h1>` inside `.screen-head`, a purpose line, an action, one title row per card, no skipped levels), the density budget on the rendered screens, the token-driven card/spacing rules, compact density, the ≤560px tab bar and labelled card rows, and that the runner keeps its desktop tools.
+- `tests/practice-flow.test.js`: the practice sheet from all three entry points (dashboard, header, `#/practise`), a real session with the frozen rules applied rather than offered, form memory across openings, the resume strip on every screen but the runner, and ⌘K's Go (13 destinations), Do (actions resolve) and Find (subjects, topics, syllabus lines, questions) with the keyboard alone.
 - Verifies every route renders with **exactly one `<h1>`**, **no skipped heading levels**, and updates `document.title` (`<Screen> · MyMPPSC`).
 - Verifies `openModal` moves focus inside the dialog, marks `#main` `inert`, wraps `Tab` and `Shift+Tab` at focus boundaries, closes on `Escape`, and restores focus to the trigger element.
 - Verifies the off-canvas navigation drawer is `inert`, `aria-hidden="true"`, and `tabindex="-1"` when closed at mobile widths, opens on `#navToggle`, and closes on `#navScrim` click while restoring focus.

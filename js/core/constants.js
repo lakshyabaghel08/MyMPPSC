@@ -52,6 +52,15 @@ export const LS_KEYS = {
   LAST_BACKUP: 'mymppsc.lastBackupAt',
   IMPORT_HISTORY: 'mymppsc.importHistory',
   ACTIVE_SESSION: 'mymppsc.activeSessionId',
+  /**
+   * Study Timer runtime state, its preferences and the ids of focus blocks it
+   * has already logged. The session records themselves live in the `sessions`
+   * store (IndexedDB); these three keys are what survives a reload mid-block and
+   * what stops a block being counted twice.
+   */
+  TIMER: 'mymppsc.studyTimer',
+  TIMER_SETTINGS: 'mymppsc.studyTimer.settings',
+  TIMER_LOGGED: 'mymppsc.studyTimer.logged',
 };
 
 export const LANGUAGE_LABELS = { en: 'English', hi: 'हिन्दी' };
@@ -219,6 +228,39 @@ export const DEFAULT_SETTINGS = Object.freeze({
   theme: 'system',
   density: 'comfortable',
 });
+
+/* ------------------------------------------------------------ study timer --- */
+
+/**
+ * Study Timer preferences. Stored locally (see `LS_KEYS.TIMER_SETTINGS`)
+ * rather than in `settings`, because a timer preference is a property of this
+ * device's focus workspace, not of the question bank or the exam rules — and
+ * so that a settings reset never silently discards the reader's atmosphere.
+ */
+export const DEFAULT_TIMER_SETTINGS = Object.freeze({
+  /** Daily focus target in minutes; the Study Timer measures each day against it. */
+  dailyTargetMinutes: 480,
+  focusMinutes: 25,
+  breakMinutes: 5,
+  longBreakMinutes: 15,
+  sessionsBeforeLongBreak: 4,
+  breaksEnabled: true,
+  /** Visual atmosphere for the focus workspace. */
+  environment: 'woodland',
+  /** Ambient soundscape; deliberately independent of the visual atmosphere. */
+  soundscape: 'woodland',
+  soundEnabled: false,
+  volume: 45,
+  mindfulnessEnabled: false,
+  mindfulnessInterval: 5,
+});
+
+export const FOCUS_ENVIRONMENTS = ['woodland', 'night', 'rain'];
+/** Focus durations offered as one-tap presets, in minutes. */
+export const FOCUS_PRESETS = [25, 30, 45, 50, 90];
+export const MINDFULNESS_INTERVALS = [5, 10, 15, 20, 30];
+/** A block shorter than this is a misfire, not a study session. */
+export const MIN_LOGGABLE_SECONDS = 12;
 
 /** Python-style array slicing of interval maps keeps JS simple here. */
 export const DAY_MS = 86400000;

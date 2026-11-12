@@ -16,7 +16,7 @@ import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
-export const SCREENS = ['dashboard', 'test-centre', 'topic', 'smart', 'mistakes', 'revision', 'syllabus', 'analytics', 'bank', 'settings', 'help'];
+export const SCREENS = ['dashboard', 'timer', 'hours', 'test-centre', 'topic', 'smart', 'mistakes', 'revision', 'syllabus', 'analytics', 'bank', 'settings', 'help'];
 
 /** Boot index.html in jsdom with fake-indexeddb, exactly like the UI suite. */
 export async function bootJsdom() {

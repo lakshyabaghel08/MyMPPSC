@@ -539,7 +539,7 @@ for (const file of jsFiles) {
 // The limits live in js/ui/budget.js, so the app and this check cannot drift.
 // Static reading of a template literal cannot know how many cards a screen
 // actually renders or what a card says, so this measures the real screens: it
-// boots index.html in jsdom once and renders each of the eleven destinations
+// boots index.html in jsdom once and renders each of the twelve destinations
 // with a demonstration bank and a little recorded activity. It costs a couple
 // of seconds and catches exactly the defects the density budget exists for — a
 // twelfth card, a 600-word card, a sixth disclosure, a wall of buttons.

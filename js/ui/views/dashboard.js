@@ -27,12 +27,14 @@
 
 import { state } from '../../core/state.js';
 import { esc, confirmDialog, toast, evidenceMeter, screenHead, sheet, marginNote, segmented, metaLine, icon } from '../components.js';
-import { fmtPct, fmtDate, topicPracticeHref } from '../../core/util.js';
+import { applicationDayKey, fmtPct, fmtDate, topicPracticeHref } from '../../core/util.js';
 import { loadAnalytics, studyPriorities } from '../../services/analytics.js';
 import * as testsSvc from '../../services/tests.js';
 import { loadSyllabusWorkspace } from '../../services/syllabus-hub.js';
 import { buildStartOptions, reviewOverlap, DEFAULT_SESSION_SIZE } from '../../services/nextup.js';
 import { bankSummary } from '../../services/questions.js';
+import * as studyLog from '../../services/study-log.js';
+import * as studyTimer from '../../services/study-timer.js';
 import { startOption, startTopicSession, startPool } from './shared.js';
 import { openPracticeSheet } from '../practicesheet.js';
 import { dashboardSkeleton } from '../skeletons.js';
@@ -200,7 +202,16 @@ function statCell({ label, value, sub = '', href = null, tone = '', symbol = 'ba
   return `<div class="cc-stat tone-${tone || 'accent'}">${inner}</div>`;
 }
 
-function standingStrip({ bank, analytics, curriculum, dueRevision, openMistakes }) {
+/** Minutes → "3h 45m", matching the Study Timer's own wording. */
+function fmtMinutes(minutes) {
+  const value = Math.max(0, Math.round(Number(minutes) || 0));
+  if (value < 60) return `${value}m`;
+  const hours = Math.floor(value / 60);
+  const rest = value % 60;
+  return rest ? `${hours}h ${rest}m` : `${hours}h`;
+}
+
+function standingStrip({ bank, analytics, curriculum, dueRevision, openMistakes, study }) {
   const prelims = curriculum.index.official.get('prelims');
   const mains = curriculum.index.official.get('mains');
   const sylTotal = curriculum.progress.total || 0;
@@ -237,6 +248,14 @@ function standingStrip({ bank, analytics, curriculum, dueRevision, openMistakes 
     ${statCell({ label: 'Syllabus done', value: `${esc(String(sylDone))}<small>/${esc(String(sylTotal))}</small>`, sub: sylSub, href: '#/syllabus', symbol: 'syllabus', tone: 'violet' })}
     ${statCell({ label: 'Revision due', value: esc(String(dueRevision)), sub: dueRevision ? 'scheduled review is waiting' : 'nothing due now', href: '#/revision', tone: 'warn', symbol: 'revision' })}
     ${statCell({ label: 'Open mistakes', value: esc(String(openMistakes)), sub: openMistakes ? 'in the Mistake Book' : 'nothing open', href: '#/mistakes', tone: 'bad', symbol: 'mistakes' })}
+    ${statCell({
+      label: 'Studied today',
+      value: study.minutes ? `${fmtMinutes(study.minutes)}<small>${study.target ? ` / ${fmtMinutes(study.target)}` : ''}</small>` : '—',
+      sub: study.minutes
+        ? `${study.sessions} session${study.sessions === 1 ? '' : 's'}${study.streak > 1 ? ` · ${study.streak}-day streak` : ''}`
+        : 'the Study Timer has not run today',
+      href: '#/timer', symbol: 'timer', tone: 'ok',
+    })}
   </section>`;
 }
 
@@ -297,6 +316,17 @@ export default {
     const deck = options.filter((option) => option.id !== 'weak' && option.kind !== 'resume').slice(0, 5);
     const nextUp = deck.find((option) => option.count > 0) || null;
 
+    // Today's focus, from the same study log the timer writes to.
+    const sessionRows = await studyLog.listSessions();
+    const minutesByDay = studyLog.focusMinutesByDay(sessionRows);
+    const todaySummary = studyLog.daySummary(sessionRows, applicationDayKey());
+    const study = {
+      minutes: todaySummary.minutes,
+      sessions: todaySummary.sessions,
+      target: Number(studyTimer.getSettings().dailyTargetMinutes) || 0,
+      streak: studyLog.streakSummary(minutesByDay).current,
+    };
+
     const bankInfo = bankSummary();
     const dueRevision = overlap?.due ?? 0;
     const openMistakes = overlap?.openMistakes ?? 0;
@@ -338,7 +368,7 @@ export default {
 
       <div class="cc">
         ${heroBlock(unfinished, nextUp)}
-        ${standingStrip({ bank, analytics, curriculum, dueRevision, openMistakes })}
+        ${standingStrip({ bank, analytics, curriculum, dueRevision, openMistakes, study })}
 
         <div class="cc-lower">
           <div class="cc-desk">

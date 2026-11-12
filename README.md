@@ -92,7 +92,9 @@ Every screen opens with the same anatomy — one title, one line saying what the
 | **Insights → My performance** | Available questions ≠ unique questions attempted ≠ total attempts — the section states the three once, above both tabs, and neither tab mixes them. First-attempt accuracy is reported separately from overall accuracy, small samples are labelled, and every figure comes from stored attempts. |
 | **Question Bank & Imports** | Two-phase import (analyse → confirm) with schema/version validation, a pre-import summary, duplicate detection, provenance retention, rejected-record inspection, import history and undo. User corrections (classification, verified answer, dispute flag) are appended, never overwritten. The question list supports **bulk actions**: tick rows (or the whole page), then change their subject/topic — recorded as a correction on each question and undoable from the list — or delete them; each asks first. |
 | **Settings & Backup** | Preferences, scoring defaults, revision rules, full JSON backup with SHA-256 integrity, validated restore (merge or replace), storage diagnostics and a guarded destructive zone. |
-| **Search, start and find (⌘K / Ctrl K)** | One keyboard-first front door in three groups: **Go** (all eleven screens), **Do** (start a 20-question set, resume the last test, mark a syllabus line, export a backup) and **Find** (subjects and topics from your bank, syllabus lines, and questions by their text). Every result says where it goes. |
+| **Search, start and find (⌘K / Ctrl K)** | One keyboard-first front door in three groups: **Go** (all thirteen screens), **Do** (start a 20-question set, resume the last test, mark a syllabus line, export a backup) and **Find** (subjects and topics from your bank, syllabus lines, and questions by their text). Every result says where it goes. |
+| **Study Timer** | A flip-clock focus workspace: **Pomodoro** (25/30/45/50/90-minute blocks, configurable short and long breaks) or **stopwatch**, with a task line, a live tab title, a distraction-free fullscreen stage, three atmospheres (woodland leaves, rainfall, night sky with meteors) and ambience that is **synthesised in the browser** (no audio files to download) plus an optional mindfulness bell. A finished block is logged automatically; early stops log what was actually worked. The block keeps running while you mark syllabus lines or sit a mock, survives a reload, and every log is filed under a **study day that starts at 4 AM** — a session past midnight belongs to the evening it began. Manual logs cover study that happened away from the timer. |
+| **Study hours** | What the timer added up to: current and best streak, this week against last week, average per active day, target met, a 26-week consistency heatmap and the weekly rhythm. The daily focus target lives in the timer's own preferences. |
 | **Resume strip** | While a session is in progress, the header says which one, how far it has got and offers **Resume** — on every screen except the runner itself. |
 | **Offline / PWA** | Service worker precaches the shell; the app keeps working offline. |
 
@@ -114,13 +116,18 @@ Starting a practice session is deliberately low-config. On Topic &amp; Custom Pr
 index.html                 app shell
 manifest.webmanifest       PWA manifest
 sw.js                      service worker (offline shell)
-css/app.css                the entire stylesheet
+css/app.css                the design system and every screen's styles
+css/focus-timer.css        the Study Timer's stage, flip clock, atmospheres and
+                           consistency heatmap (imported by index.html after app.css)
 js/app.js                  boot, navigation, routing table
 js/core/                   constants, db (IndexedDB), schema, validate, state, util
 js/services/               scoring, attempts, questions, tests, select, revision,
-                           analytics, importer, planner, data (backup)
+                           analytics, importer, planner, data (backup),
+                           study-timer (the focus engine), study-log (session rows)
 js/ui/                     router, components (kit), budget (density limits),
-                           practicesheet, views/ (one file per screen)
+                           practicesheet, flipclock, focus-atmosphere,
+                           focus-audio (synthesised ambience), views/ (one file
+                           per screen)
 data/schema/               versioned question-bank JSON Schema
 data/taxonomy/             canonical subject/topic/subtopic vocabulary for the pipeline
 data/demo/                 synthetic demonstration bank
