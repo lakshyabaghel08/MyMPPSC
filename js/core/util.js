@@ -226,6 +226,70 @@ export function startOfDay(date = new Date()) {
   return d;
 }
 
+/* ------------------------------------------------- application day (4 AM) --- */
+
+/**
+ * The Study Timer files its work under a *study day* that starts at 04:00
+ * local time, not at midnight: a session that runs from 23:30 to 00:20 is one
+ * sitting of the same evening, and a 1 AM revision belongs to the day the
+ * reader is still working through. `applicationDayKey()` is the only place
+ * that rule lives; calendar-key arithmetic (`addDaysKey`, `startOfWeekKey`)
+ * deliberately never applies the shift a second time.
+ *
+ * The rest of the app keeps using `todayKey()` for exam dates and deadlines —
+ * a test date is a calendar date and must not move at 4 AM. Only focus
+ * sessions and manual study logs are classified this way.
+ */
+export const APPLICATION_DAY_START_HOUR = 4;
+
+/** The study day containing this instant (04:00 → 03:59 next calendar day). */
+export function applicationDayKey(date = new Date()) {
+  const shifted = new Date(date);
+  shifted.setHours(shifted.getHours() - APPLICATION_DAY_START_HOUR);
+  return todayKey(shifted);
+}
+
+/** Local `Date` for a `yyyy-MM-dd` key, at midnight. */
+export function dateFromKey(key) {
+  const [y, m, d] = String(key).split('-').map(Number);
+  return new Date(y, (m ?? 1) - 1, d ?? 1);
+}
+
+/** Calendar-key arithmetic: `addDaysKey('2026-02-28', 1)` → `'2026-03-01'`. */
+export function addDaysKey(key, days) {
+  const d = dateFromKey(key);
+  d.setDate(d.getDate() + days);
+  return todayKey(d);
+}
+
+/** Sunday of the week containing `key` (the calendar row the heatmap and week chart use). */
+export function startOfWeekKey(key = todayKey()) {
+  const d = dateFromKey(key);
+  d.setDate(d.getDate() - d.getDay());
+  return todayKey(d);
+}
+
+/** Day-of-week label for a calendar key, e.g. `'Mon'`. */
+export function weekdayLabel(key) {
+  return ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][dateFromKey(key).getDay()];
+}
+
+/**
+ * Length of the run of consecutive study days ending at (or, if the current
+ * day is still empty, just before) `today`. `activeDays` holds `yyyy-MM-dd`
+ * keys of days with a completed session.
+ */
+export function computeStreak(activeDays, today = applicationDayKey()) {
+  let streak = 0;
+  let cursor = today;
+  if (!activeDays.has(cursor)) cursor = addDaysKey(cursor, -1);
+  while (activeDays.has(cursor)) {
+    streak += 1;
+    cursor = addDaysKey(cursor, -1);
+  }
+  return streak;
+}
+
 export function daysBetween(a, b) {
   const d1 = startOfDay(a).getTime();
   const d2 = startOfDay(b).getTime();

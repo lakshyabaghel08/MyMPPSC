@@ -10,7 +10,7 @@
 
 // Bump this whenever any precached file changes: the old caches are deleted on
 // activate, so a fixed build cannot keep serving a stale shell.
-const VERSION = 'v1.9.7-2009-review';
+const VERSION = 'v1.10.0-study-timer';
 const SHELL_CACHE = `mymppsc-shell-${VERSION}`;
 const RUNTIME_CACHE = `mymppsc-runtime-${VERSION}`;
 
@@ -19,9 +19,13 @@ const SHELL_FILES = [
   './index.html',
   './manifest.webmanifest',
   './css/app.css',
+  './css/focus-timer.css',
   './js/app.js',
   './js/ui/router.js',
   './js/ui/components.js',
+  './js/ui/flipclock.js',
+  './js/ui/focus-atmosphere.js',
+  './js/ui/focus-audio.js',
   './js/ui/skeletons.js',
   './js/ui/budget.js',
   './js/ui/practicesheet.js',
@@ -48,6 +52,8 @@ const SHELL_FILES = [
   './js/services/syllabus.js',
   './js/services/syllabus-hub.js',
   './js/services/tests.js',
+  './js/services/study-log.js',
+  './js/services/study-timer.js',
   './js/ui/views/analytics.js',
   './js/ui/views/pyq-analysis.js',
   './js/ui/views/bank.js',
@@ -63,6 +69,8 @@ const SHELL_FILES = [
   './js/ui/views/syllabus.js',
   './js/ui/views/syllabus-analysis.js',
   './js/ui/views/testcentre.js',
+  './js/ui/views/timer.js',
+  './js/ui/views/hours.js',
   './js/ui/views/topic.js',
   './fonts/inter-variable.woff2',
   './fonts/manrope-variable.woff2',

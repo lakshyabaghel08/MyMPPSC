@@ -185,7 +185,7 @@ test('⌘K is a front door: Go lists every destination, Do acts, Find resolves',
   assert.deepEqual(groups.slice(0, 2), ['Go', 'Do'], 'the list is grouped by intent');
 
   const goItems = Array.from(modal.querySelectorAll('.command-item[data-command-kind="go"]'));
-  assert.equal(goItems.length, 11, 'Go lists all eleven destinations');
+  assert.equal(goItems.length, 13, 'Go lists all thirteen destinations');
   for (const item of goItems) assert.match(item.textContent, /Goes to /, 'every item says where it goes');
 
   // Keyboard only: filter to Settings and press Enter.

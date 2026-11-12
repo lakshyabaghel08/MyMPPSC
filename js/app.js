@@ -16,6 +16,7 @@ import { buildBackup, markBackupTaken, lastBackupInfo } from './services/data.js
 import { openPracticeSheet } from './ui/practicesheet.js';
 import { buildStartOptions } from './services/nextup.js';
 import { startOption } from './ui/views/shared.js';
+import * as studyTimer from './services/study-timer.js';
 
 import dashboardView from './ui/views/dashboard.js';
 import testCentreView from './ui/views/testcentre.js';
@@ -26,6 +27,8 @@ import smartView from './ui/views/smart.js';
 import mistakesView from './ui/views/mistakes.js';
 import revisionView from './ui/views/revision.js';
 import syllabusView from './ui/views/syllabus.js';
+import timerView from './ui/views/timer.js';
+import hoursView from './ui/views/hours.js';
 import syllabusAnalysisView from './ui/views/syllabus-analysis.js';
 import insightsView from './ui/views/analytics.js';
 import pyqAnalysisView from './ui/views/pyq-analysis.js';
@@ -35,6 +38,11 @@ import helpView from './ui/views/help.js';
 
 const NAV = [
   { route: 'dashboard', label: 'Today', icon: 'dashboard', group: 'Study' },
+  // The Study Timer sits with Today rather than under a tool heading: it is
+  // where a sitting actually starts, and it keeps running while the reader is
+  // on any other screen.
+  { route: 'timer', label: 'Study Timer', icon: 'timer', group: 'Study' },
+  { route: 'hours', label: 'Study hours', icon: 'analytics', group: 'Study' },
   { route: 'test-centre', label: 'Papers', icon: 'test-centre', group: 'Study' },
   // Topic Practice and the Custom Test builder were two screens over the same
   // question bank with the same filters, the same three selection strategies
@@ -690,7 +698,7 @@ async function runCommandAction(id) {
  * sidebar already lists everything). "More" opens the full drawer, so no
  * destination is lost — the bar is a shortcut, not a second navigation model.
  */
-const TAB_BAR_ROUTES = ['dashboard', 'test-centre', 'smart', 'mistakes', 'revision'];
+const TAB_BAR_ROUTES = ['dashboard', 'timer', 'test-centre', 'smart', 'mistakes'];
 
 function renderTabBar() {
   const bar = document.getElementById('tabBar');
@@ -939,6 +947,8 @@ async function boot() {
   });
 
   router.register('dashboard', dashboardView);
+  router.register('timer', timerView);
+  router.register('hours', hoursView);
   router.register('test-centre', testCentreView);
   router.register('runner', runnerView);
   router.register('report', reportView);
@@ -968,6 +978,10 @@ async function boot() {
   wireGlobalActions();
   observeHeaderHeight();
   setOfflinePill();
+  // A block that was running when the tab closed keeps running: restore() puts
+  // the clock back on its anchor and closes out any phase that ran out while
+  // the app was not open. It must finish before the first screen renders.
+  await studyTimer.restore().catch((err) => console.warn('Could not restore the Study Timer', err));
   router.start();
   await refreshBadges();
   await refreshResumeStrip();
