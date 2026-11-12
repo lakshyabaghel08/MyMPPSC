@@ -46,9 +46,9 @@ import { resolveMppscMarkingScheme, schemeScoring } from '../../js/core/marking.
 
 /** The app-facing identity of the bundled bank. Stable — stored imports use it. */
 // Keep the established id so existing installs update in place instead of
-// creating a second bundled bank; the display name now reflects all six years.
+// creating a second bundled bank; the display name reflects the active years.
 export const APP_BANK_ID = 'mppsc-prelims-paper1-2019-2024';
-export const APP_BANK_NAME = 'MPPSC Prelims Paper I (General Studies) 2013–2024';
+export const APP_BANK_NAME = 'MPPSC Prelims Paper I (General Studies) 2012–2024';
 
 /** Metadata written by the source parser. Audit detail, not app data. */
 const PARSER_METADATA_KEYS = [

@@ -2,9 +2,14 @@
 
 This is the honest list, written to be read before trusting any screen.
 
-**2009–2011 update:** The bank has 1,684 records across 16 papers. These
-three English-only solved sources have unconfirmed paper identities; 2009 and
-2011 are incomplete. The 2009 records carry 94 unofficial PDF-derived answers, with 12 disputed and 40 unresolved unkeyed. The 2010 records carry 80 unofficial PDF-derived answers, with 14 disputed and 26 unresolved unkeyed; their paper identity is unconfirmed. The 2011 records carry 88 unofficial PDF-derived answers and explanations, with 12 disputed and 18 unresolved unkeyed. The 2011 paper identity is disputed; see [identity warning](../data/pyq/source/2009-2011/2011-paper-identity-warning.md). Historical scoring remains unconfigured. See [PDF review](../data/pyq/source/2009-2011/PDF_REVIEW.md).
+**2009–2011 removal:** The active bank has 1,300 records across 13 papers
+(2012–2024). The 2009–2011 papers are not bundled, rebuilt or offered for
+practice. Their removed records are preserved only in
+[`data/pyq/archive/mppsc-2009-2011-papers.json`](../data/pyq/archive/mppsc-2009-2011-papers.json);
+the original source/review files remain under `data/pyq/source/2009-2011/` as
+historical provenance. Upgrades and backup restores remove the retired bundled
+copies from local storage without deleting attempt history or independently
+imported papers.
 
 **2012 update:** The 2012 integration added 100 records, all with four-part
 English explanations. The 100 added 2012 questions have no supplied keys. A
@@ -22,20 +27,20 @@ Figures below describing 2013–2024 are historical and exclude this paper.
 
 ## Scope and content
 
-* **What ships is transcribed, not official.** The repository bundles a classified practice bank for 2009–2024 (1,684 questions, 16 papers), and it is loaded automatically — see the section below for exactly what it does and does not claim. The demonstration bank and the `demo/` sample intake file are synthetic filler, badged `demonstration` everywhere they appear. Anything else meaningful comes from a bank you import, and its accuracy is your responsibility.
+* **What ships is transcribed, not official.** The repository bundles a classified practice bank for 2012–2024 (1,300 questions, 13 papers), and it is loaded automatically — see the section below for exactly what it does and does not claim. The demonstration bank and the `demo/` sample intake file are synthetic filler, badged `demonstration` everywhere they appear. Anything else meaningful comes from a bank you import, and its accuracy is your responsibility.
 * **Your own plan has no syllabus of its own.** Inside the Syllabus section, the items *you* add mirror whatever structure you type or import. "Suggest from question bank" copies the subjects and topics your own data already has — it is not an official syllabus and does not claim to be. The commission's revised 2026 syllabus ships alongside it, read-only (see the section below). The two are stored separately and neither writes into the other: an item of yours is shown under an official heading, badged *your item*, but is never added to the official tree and is never counted as syllabus text.
 * **No AI or model runs inside the app.** Explanations, keys and classifications are imported data. The app displays an explanation exactly as it is stored, says so when a question has none, and never generates or "improves" one.
 * **No examination predictions.** Topic frequency, priorities and smart-practice allocation describe *your stored bank and your recorded answers*. They are study aids. Nothing here estimates a future paper's content or your result.
 * **No guarantee of retention.** The revision schedule is a transparent heuristic (outcome + confidence + answer time → interval). It cannot promise that anything is remembered.
 
-## The bundled MPPSC bank (2013–2024)
+## The bundled MPPSC bank (2012–2024)
 
 * **1,171 questions across twelve papers** (`MPPSC-2013-P1` … `MPPSC-2024-P1`). The 571 existing 2019–2024 records are preserved; six strict adapters append 600 historical questions from 2013–2018. It is loaded from the repository on first boot; no import step is needed.
 * **All 1,171 questions carry a supplied key, but none is verified against an official MPPSC key.** The 2013–2018 packages supply 600 printed keys; eight missing keys in the 2019–2024 source were resolved by the committed human review file. The app never calls a stored key official; a key *you* verify is stored separately.
 * **Two legacy question blocks of the 573 the 2019–2024 source parser detected are missing** and could not be recovered: `MPPSC-2021-081` (a two-column match-list whose item block was destroyed by the extraction) and `MPPSC-2024-039` (a district–product match whose option block was interleaved). 27 numbering gaps remain in that legacy source. No question was invented to fill any of them — `docs/PYQ_AUDIT.md` describes the limitations.
 * **Classification is honest and taxonomy-bound.** After the focused 2026-10-12 audit, all 1,171 questions have taxonomy-supported subjects; 1,162 have topics and 1,076 have subtopics. Nine stop at subject, 86 stop at topic, and one low-confidence current label (`MPPSC-2021-065`) remains in the internal review queue. The 244 legacy `human_review` labels and 322 new `agent_assisted_validation` labels are documented in `data/pyq/reviewed-labels.jsonl`; the labels are taxonomy-validated, and no unsupported lower-level node is forced. No provider-generated `pipeline-ai` labels were merged. The full before/after record, remaining gaps and rationale are in `data/pyq/quality-audit/quality-audit-final.md`; review metadata is not in student practice records.
 * **Explanations are source prose** — displayed as stored and never generated. 1,017 questions have explanation content; 154 do not (7 existing omissions, 28 historical source omissions and 119 exact generic placeholders cleared to null). The app attaches no review status to them.
-* **Latest-pattern practice scoring is applied automatically across the bundled 2013–2024 papers:** +3 correct, −1 incorrect, 0 unanswered. The 2009–2012 papers have unknown scoring and require configuration. This user-directed application to 2013–2024 is not evidence that historical papers used those rules. The underlying 2026 pattern remains `reported`, not primary-source verified; see `docs/MARKING.md`.
+* **Latest-pattern practice scoring is applied automatically across the bundled 2013–2024 papers:** +3 correct, −1 incorrect, 0 unanswered. The 2012 paper has unknown scoring and require configuration. This user-directed application to 2013–2024 is not evidence that historical papers used those rules. The underlying 2026 pattern remains `reported`, not primary-source verified; see `docs/MARKING.md`.
 * **Removing it is safe.** Question Bank & Imports → *Remove bundled bank from this device* removes those questions and papers only; your own data is untouched and it can be reloaded at any time.
 
 ## The Syllabus section (MPPSC 2026)

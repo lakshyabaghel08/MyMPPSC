@@ -8,7 +8,7 @@ The scheme lives in [`js/core/marking.js`](../js/core/marking.js). The build-tim
 
 | Scheme id | Applied to | Correct | Incorrect | Unanswered | Paper | Total | Duration |
 | --- | --- | ---: | ---: | ---: | --- | ---: | ---: |
-| `mppsc-sse-prelims-latest-practice` | MPPSC prelims from 2013 onward, including the historical archive | +3 | −1 | 0 | 100 questions | 300 marks | 120 minutes |
+| `mppsc-sse-prelims-latest-practice` | MPPSC prelims from 2013 onward, including the bundled historical papers | +3 | −1 | 0 | 100 questions | 300 marks | 120 minutes |
 
 The 2013–2018 source packages and the pre-existing 2019–2024 bank each contain six Paper I papers of 100 questions. Current paper metadata is applied uniformly for practice; it does not reconstruct the duration or marking rules that actually governed each historical sitting. Paper II/CSAT is not included in this bundled bank.
 

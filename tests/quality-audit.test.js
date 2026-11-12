@@ -27,9 +27,9 @@ test('the final quality-audit report describes the complete bank and applied sco
   assert.equal(summary.status, 'applied');
   // The audit describes the 1,171 extracted records; 29 app-written model
   // questions (metadata.model_question) sit alongside them in the bank.
-  assert.equal(bank.questions.length, 1684);
+  assert.equal(bank.questions.length, 1300);
   assert.equal(bank.questions.filter((q) => q.metadata?.model_question).length, 29);
-  assert.equal(bank.papers.length, 16);
+  assert.equal(bank.papers.length, 13);
   assert.equal(baseline.length, 1171);
   assert.equal(finalRows.length, 1171);
   assert.equal(originalQueue.length, 323);

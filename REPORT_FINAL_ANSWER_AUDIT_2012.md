@@ -1,6 +1,6 @@
 # MyMPPSC — Final Answer Audit & Explanation Generation, 2012
 
-**Scope:** every question of the 2012 Preliminary Paper‑I (`MPPSC-2012-P1`) in the bundled bank (`data/pyq/mymppsc-pyq-bank.json`). No other year was touched, and work on 2011 has not started.
+**Scope:** every question of the 2012 Preliminary Paper‑I (`MPPSC-2012-P1`) in the bundled bank (`data/pyq/mymppsc-pyq-bank.json`). No other year was touched by this audit. The 2009–2011 papers were subsequently removed from the active bank.
 
 **Question asked of every item:** what can be taught truthfully from the available evidence, and where is there not enough evidence to teach a single answer at all?
 
@@ -108,12 +108,12 @@ The explanation declarations live in `data/pyq/reviewed-corrections-2012.json` a
 |---|---|
 | `npm test` | **461 tests, 461 pass, 0 fail** |
 | `npm run check` | **1,084 checks pass** |
-| Clean rebuild (`tools/classify-bank.mjs` with all flags) | 1,684 questions / 16 papers; validator **ok**, 0 fatal, 0 errors, 0 rejected; 1,171 reviewed explanations restored for 2013–2024 and **100 four-part explanations integrated for 2012** |
+| Clean rebuild (`tools/classify-bank.mjs`, active 2012–2024 scope) | 1,300 questions / 13 papers; validator **ok**, 0 fatal, 0 errors, 0 rejected; 1,171 reviewed explanations restored for 2013–2024 and **100 four-part explanations integrated for 2012** |
 | Rebuild determinism | a second clean rebuild is byte-identical to the committed bank after stripping the two build stamps |
 | Year isolation | rebuild diff: **exactly 100 records changed, all 2012**; `papers` block byte-identical; no `supplied_answer` added |
 | 2012 verification | 100 questions, **89 independently verified**, **11 unkeyed**, **100 full explanations**, 147 distinct source URLs, 3 disputed + 8 unresolved flags preserved |
 | Unkeyed UI representation | all 44 option rows on the 11 unkeyed questions carry `is_correct: null`; `normaliseQuestion` keeps it null and the explanation table renders “unstated”, never four “not correct” badges |
-| New/updated suites | `tests/final-answer-audit-2012.test.js` (8 tests), `tests/answer-verification-2012.test.js`, `tests/transcription-2012-staging.test.js`, `tests/rebuild-corrections.test.js`, `tests/integration-2009-2011.test.js`, `tests/pyq-bank.test.js`, `tests/pyq-analysis.test.js`, `tools/check.mjs` |
+| New/updated suites | `tests/final-answer-audit-2012.test.js` (8 tests), `tests/answer-verification-2012.test.js`, `tests/transcription-2012-staging.test.js`, `tests/rebuild-corrections.test.js`, `tests/pyq-bank.test.js`, `tests/pyq-analysis.test.js`, `tools/check.mjs` |
 
 ## 7. Independently verified checkpoint
 
@@ -123,14 +123,14 @@ A snapshot of the bank and all 2012 deliverables was taken after validation at
 - `mymppsc-pyq-bank.json.gz` — timestamp-free gzip of the shipped bank;
 - copies of the final reassessment, 100 explanations, 100 declarations, the
   per-question audit and this report;
-- `SHA256SUMS` — 14 checksums covering both the live files and the backup copies;
-- `verify.mjs` — rechecks every checksum, decompresses the checkpoint bank,
-  asserts it is identical to the live bank and recomputes the 2012 counts;
+- `SHA256SUMS` — 13 checksums covering the frozen copies and still-live 2012 audit inputs;
+- `verify.mjs` — rechecks every checksum, decompresses the historical checkpoint,
+  asserts the active 2012–2024 bank preserves the 2012 paper exactly and recomputes the 2012 counts;
 - `MANIFEST.md` — verification and restore instructions.
 
-`sha256sum -c checkpoints/2012-final-answer-audit/SHA256SUMS` reports all 14
-`OK`, and `node checkpoints/2012-final-answer-audit/verify.mjs` reports
-`Verified 14 checksums plus the decompressed bank`. The pre-final reassessment
+`sha256sum -c checkpoints/2012-final-answer-audit/SHA256SUMS` reports all 13
+`OK`, and `node checkpoints/2012-final-answer-audit/verify.mjs` verifies the
+historical snapshot and the live 2012 paper. The pre-final reassessment
 is additionally preserved byte-for-byte as
 `data/pyq/source/2012-recovery/answer-reassessment-2012-pre-final-audit.json`
 (it is identical to the `main` version at `748706c`).
@@ -141,6 +141,6 @@ is additionally preserved byte-for-byte as
 
 - No authenticated MPPSC answer key for 2012 Paper I was located; all 89 keys remain **independently verified**, not official.
 - No original scan was supplied, so bilingual transcription defects (Q4, Q31, Q96, Q94) are documented rather than corrected.
-- Historical scoring for 2009–2012 remains unconfigured.
+- Historical scoring for 2012 remains unconfigured.
 - Date-dependent facts (Q21, Q45, Q76, Q96) are explained against the paper’s 2013 setting.
-- 2011 has not been started. This audit is confined to 2012 and is checkpointed before any other year is considered.
+- This audit is confined to 2012. The 2009–2011 papers are no longer part of the active bank.

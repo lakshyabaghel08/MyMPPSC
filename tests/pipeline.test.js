@@ -318,7 +318,7 @@ test('the committed bank is the sanitised one: scheme written, no provenance, no
   assert.equal(bank.bank_id, APP_BANK_ID);
   assert.equal('provenance' in bank, false);
   assert.equal(JSON.stringify(bank).includes('YOUR_BOOK'), false, 'the source file name is not in the bank');
-  assert.equal(bank.questions.filter(q => q.year !== 2011 && q.year !== 2010 && q.year !== 2009).some(q => JSON.stringify(q).includes('unofficial')), false, 'only the 2009–2011 third-party keys is labelled unofficial');
+  assert.equal(bank.questions.some(q => JSON.stringify(q).includes('unofficial')), false, 'the active bank carries no unofficial third-party keys');
   assert.equal(bank.questions.filter((q) => q.source_reference).length, 0);
   const rawEscapes = [];
   const walk = (value, where) => {
@@ -337,8 +337,8 @@ test('the committed bank is the sanitised one: scheme written, no provenance, no
   assert.equal('classification_meta' in bank, false, 'the shipped file describes the questions, not the build that produced them');
   assert.equal(bank.questions.some((q) => 'classification_source' in q || 'classification_confidence' in q), false, 'no per-record label provenance in the shipped file');
 
-  assert.equal(bank.questions.length, 1684);
-  assert.equal(bank.papers.length, 16);
+  assert.equal(bank.questions.length, 1300);
+  assert.equal(bank.papers.length, 13);
   assert.equal('generator' in bank, false);
   for (const paper of bank.papers) {
     assert.match(paper.paper_id, /^MPPSC-\d{4}-P1$/, `${paper.paper_id} should be an app-facing id`);
@@ -352,7 +352,7 @@ test('the committed bank is the sanitised one: scheme written, no provenance, no
     assert.equal(paper.original_question_count, 100, 'source paper length is retained');
   }
   const statuses = new Set(bank.questions.map((q) => q.answer_key_status));
-  assert.deepEqual([...statuses].sort(), ['disputed', 'missing', 'supplied', 'unofficial'], 'disputes and the unofficial 2011 key remain flagged');
+  assert.deepEqual([...statuses].sort(), ['disputed', 'missing', 'supplied'], 'uncertainty remains flagged without the retired third-party keys');
   // The review decision itself is a classification, and stays; the review
   // file's path and timestamp are build-time bookkeeping and do not.
   assert.equal(bank.questions.some((q) => q.metadata && 'reviewed_classification' in q.metadata), false, 'review bookkeeping is not app data');

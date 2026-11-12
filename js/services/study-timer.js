@@ -24,7 +24,6 @@
  */
 
 import {
-  CLOCK_THEMES,
   DEFAULT_TIMER_SETTINGS,
   FOCUS_ENVIRONMENTS,
   LS_KEYS,
@@ -47,8 +46,9 @@ const clean = (value, fallback, min, max) => {
 /** Fill a partial/older settings object with defaults and clamp every field. */
 export function normaliseSettings(input = {}) {
   const source = input && typeof input === 'object' ? input : {};
-  const environment = FOCUS_ENVIRONMENTS.includes(source.environment) ? source.environment : DEFAULT_TIMER_SETTINGS.environment;
-  const clockTheme = CLOCK_THEMES.includes(source.clockTheme) ? source.clockTheme : DEFAULT_TIMER_SETTINGS.clockTheme;
+  // Retired environment/clockTheme fields are deliberately not copied: the
+  // app theme is now the only visual authority. A retired soundscape becomes
+  // the default Woodland bed; Night remains an independent audio choice.
   const soundscape = FOCUS_ENVIRONMENTS.includes(source.soundscape) ? source.soundscape : DEFAULT_TIMER_SETTINGS.soundscape;
   return {
     dailyTargetMinutes: clean(source.dailyTargetMinutes, DEFAULT_TIMER_SETTINGS.dailyTargetMinutes, 0, 24 * 60),
@@ -57,8 +57,6 @@ export function normaliseSettings(input = {}) {
     longBreakMinutes: clean(source.longBreakMinutes, DEFAULT_TIMER_SETTINGS.longBreakMinutes, 1, 120),
     sessionsBeforeLongBreak: clean(source.sessionsBeforeLongBreak, DEFAULT_TIMER_SETTINGS.sessionsBeforeLongBreak, 2, 8),
     breaksEnabled: source.breaksEnabled === undefined ? DEFAULT_TIMER_SETTINGS.breaksEnabled : Boolean(source.breaksEnabled),
-    environment,
-    clockTheme,
     soundscape,
     soundEnabled: Boolean(source.soundEnabled),
     volume: clean(source.volume, DEFAULT_TIMER_SETTINGS.volume, 0, 100),
@@ -377,12 +375,11 @@ export function setSettings(patch = {}) {
     audio.setAmbientVolume(next.volume);
   }
   // Most preferences need a repaint of the screen around the clock (a new
-  // block length changes the presets and the progress bar). The clock's face
-  // and its ambient bed do not: changing either while a block runs must not
-  // rebuild the screen under the reader, so they are reported as cosmetic and
-  // the view repaints them in place.
+  // block length changes the presets and the progress bar). Sound preferences
+  // do not: changing them while a block runs must not rebuild the screen or
+  // close fullscreen, so the view repaints their label in place.
   const keys = Object.keys(patch || {});
-  const cosmetic = keys.length > 0 && keys.every((key) => key === 'clockTheme' || key === 'soundscape');
+  const cosmetic = keys.length > 0 && keys.every((key) => ['soundscape', 'soundEnabled', 'volume'].includes(key));
   notify(cosmetic ? 'cosmetic' : 'settings');
   return getSettings();
 }

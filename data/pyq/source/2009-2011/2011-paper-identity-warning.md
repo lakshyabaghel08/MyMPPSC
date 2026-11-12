@@ -1,3 +1,10 @@
+> **Retired scope (2026-11-12):** this is a historical provenance note, not an
+> active build instruction. The 2009–2011 papers were removed from the practice
+> bank; the helper scripts and `--include-2009-2011` pipeline step named below no
+> longer exist. The preserved records are in
+> `data/pyq/archive/mppsc-2009-2011-papers.json`. Do not reintroduce them into the
+> active bank from this note.
+
 # Paper identity warning: bank records labelled 2011
 
 The bank's 118 `MPPSC-2011-*` records were transcribed from the supplied third-party PDF labelled “MPPSC General Studies 2011”. This source is not an authenticated MPPSC paper. The PDF also contains an answer list on its final page; that list is a third-party key, not an official one.

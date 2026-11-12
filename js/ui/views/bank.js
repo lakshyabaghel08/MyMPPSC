@@ -502,7 +502,7 @@ export default {
     const builtinInfo = await builtinBank.builtinBankInfo();
     const builtinMeta = builtinInfo.meta;
     const builtinTab = card({
-      title: 'Bundled MPPSC bank (2009–2024)',
+      title: 'Bundled MPPSC bank (2012–2024)',
       right: builtinMeta ? badge('loaded', 'ok') : badge('not loaded', 'warn'),
       body: `
         <p class="small m-0">Loaded automatically from the repository, and used for practice only.</p>
@@ -912,7 +912,7 @@ export default {
     document.getElementById('removeBuiltin')?.addEventListener('click', async () => {
       const ok = await confirmDialog({
         title: 'Remove the bundled bank from this device?',
-        message: 'The 2009–2024 questions and papers stored from the repository bank are removed from this browser. Your own imported questions, attempts, bookmarks and revision history are untouched, and the bank can be loaded again at any time.',
+        message: 'The 2012–2024 questions and papers stored from the repository bank are removed from this browser. Your own imported questions, attempts, bookmarks and revision history are untouched, and the bank can be loaded again at any time.',
         confirmLabel: 'Remove from this device',
         danger: true,
       });

@@ -3,7 +3,7 @@
  * actions, the runner's shortcut legend, the redesigned bank panel of
  * Insights, dark-mode polish, and the bugs found on the way.
  *
- * Boots the real index.html in jsdom with the bundled 1,684-question bank, the
+ * Boots the real index.html in jsdom with the bundled 1,300-question bank, the
  * same way tests/ui.test.js does, and drives the screens like a reader.
  */
 
@@ -92,7 +92,7 @@ async function goto(route) {
 const settle = () => app.router.resolve();
 
 await waitFor(() => app.router !== null && state.dbError === null, { label: 'the app to boot', timeout: 20000 });
-await waitFor(() => state.questionIndex.size === 1684, { label: 'the bundled bank', timeout: 20000 });
+await waitFor(() => state.questionIndex.size === 1300, { label: 'the bundled bank', timeout: 20000 });
 await waitFor(() => $$('#navList .nav-link').length >= 10, { label: 'navigation' });
 
 /* ------------------------------------------------------------- skeletons -- */
@@ -223,7 +223,7 @@ test('Insights keeps the reader on the bank tab when a chip refreshes it; naviga
   panels = $$('#view .tabpanel');
   assert.equal(panels[1].hidden, false, 'the refresh kept the bank tab open (it used to snap back to My performance)');
   assert.equal(panels[0].hidden, true);
-  assert.match(panels[1].textContent, /History · 319 question\(s\) in 7 topic\(s\)/);
+  assert.match(panels[1].textContent, /History · 185 question\(s\) in 7 topic\(s\)/);
   assert.ok($('#view .pyq-topic-chart svg'), 'the subject’s topics are charted');
   assert.ok($('#view a[href="#/topic/History"]'), 'with a way to practise the whole subject');
 

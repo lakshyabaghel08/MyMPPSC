@@ -7,7 +7,7 @@
  * The animation itself lives in css/focus-timer.css (`flipTop`/`flipBottom`,
  * 300 ms + 300 ms staged rotateX); this module only builds the DOM and decides
  * *when* to animate. The face the digits wear is a `theme-*` class on the
- * workspace, resolved by the stylesheet — see `applyClockTheme()`.
+ * workspace, resolved by the stylesheet from the app's light/dark theme.
  *
  * It is deliberate about three things:
  *
@@ -22,7 +22,7 @@
  *    fresh tree simply resets the comparison.
  */
 
-import { CLOCK_THEMES } from '../core/constants.js';
+import { FOCUS_ENVIRONMENTS } from '../core/constants.js';
 
 const DIGITS = ['h1', 'h0', 'm1', 'm0', 's1', 's0'];
 /** Total flip time: 300 ms top flap + 300 ms bottom flap (see the stylesheet). */
@@ -124,11 +124,14 @@ export class FlipClock {
       const next = digits[index] ?? '0';
       const handle = this.handles.get(id);
       if (!handle) return;
-      if (structural || !animate || handle.value === '' || handle.value === next) {
+      if (structural || !animate || handle.value === '') {
         this.snap(handle, next);
-      } else {
+      } else if (handle.value !== next) {
         this.flip(handle, next);
       }
+      // A repeated tick with the same value must leave an in-flight flap alone.
+      // Snapping it here cut the 600 ms flip short at the engine's next 250 ms
+      // notification, which read as a flicker rather than a physical flip.
     });
     this.rendered = digits;
     this.root.setAttribute('aria-label', `${this.label}: ${clockParts(totalSeconds).text}`);
@@ -191,22 +194,19 @@ export class FlipClock {
 }
 
 /**
- * Apply one of `CLOCK_THEMES` to the workspace. Exactly one `theme-*` class is
- * present at a time; the stylesheet resolves it to the face's full surface set
- * (and fullscreen opens on Classic under `auto`).
+ * Apply the face belonging to the app's resolved theme. There are exactly two
+ * complete faces; no independent atmosphere or clock-face preference survives.
  */
 export function applyClockTheme(workspace, theme) {
-  if (!workspace) return 'auto';
-  const next = CLOCK_THEMES.includes(theme) ? theme : 'auto';
-  CLOCK_THEMES.forEach((name) => workspace.classList.toggle(`theme-${name}`, name === next));
+  if (!workspace) return 'woodland';
+  const next = FOCUS_ENVIRONMENTS.includes(theme) ? theme : 'woodland';
+  FOCUS_ENVIRONMENTS.forEach((name) => workspace.classList.toggle(`theme-${name}`, name === next));
   workspace.dataset.clockTheme = next;
   return next;
 }
 
-/** The face a given theme currently resolves to, for the control's caption. */
-export function clockThemeLabel(theme, environment = 'woodland') {
-  if (theme === 'auto') return environment === 'rain' ? 'Auto · Rain' : environment === 'night' ? 'Auto · Night' : 'Auto · Woodland';
-  return ({ classic: 'Classic', woodland: 'Woodland', rain: 'Rain', night: 'Night' })[theme] || 'Auto';
+export function clockThemeLabel(theme) {
+  return theme === 'night' ? 'Night' : 'Woodland';
 }
 
 /**
@@ -214,10 +214,10 @@ export function clockThemeLabel(theme, environment = 'woodland') {
  * runs. It is the same four-digit face the live clock starts with, so the stage
  * does not change size when the real clock replaces it.
  */
-export function flipClockSkeleton() {
+export function flipClockSkeleton(theme = typeof document !== 'undefined' && document.documentElement.getAttribute('data-theme') === 'dark' ? 'night' : 'woodland') {
   const digits = () =>
     '<div class="flip-digit"><div class="flip-half top"><div class="val">0</div></div><div class="flip-half bottom"><div class="val">0</div></div></div>'.repeat(2);
-  return `<div class="flip-clock is-placeholder" aria-hidden="true">
+  return `<div class="flip-clock is-placeholder theme-${theme === 'night' ? 'night' : 'woodland'}" aria-hidden="true">
     <div class="flip-group">${digits()}</div>
     <span class="flip-colon">:</span>
     <div class="flip-group">${digits()}</div>

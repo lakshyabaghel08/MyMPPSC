@@ -1,7 +1,7 @@
 /**
  * builtin-bank.js — the repository-backed question bank.
  *
- * The MPPSC 2009–2024 bank that ships with this repository
+ * The MPPSC 2012–2024 bank that ships with this repository
  * (`data/pyq/mymppsc-pyq-bank.json`) is loaded from the repository itself, so a
  * fresh installation has real previous-year questions without anyone having to
  * download and re-import a file by hand. Manual import keeps working for other
@@ -27,7 +27,7 @@
 
 import { STORES } from '../core/constants.js';
 import * as db from '../core/db.js';
-import { state, emit } from '../core/state.js';
+import { state, emit, refreshQuestionIndex } from '../core/state.js';
 import { logEvent } from '../core/util.js';
 import { analyseBankObject, executeImport, sha256Hex } from './importer.js';
 
@@ -39,6 +39,36 @@ export const BUILTIN_BANK_META = 'builtin_bank';
 export const BUILTIN_BANK_ID = 'mppsc-prelims-paper1-2019-2024';
 
 const state$ = { last: null };
+
+// These papers are no longer bundled. A merge-only import cannot remove old
+// records, so upgrades need an explicit, narrowly scoped retirement pass. Keep
+// the original bank id for ownership: matching a year alone would delete a
+// learner's independently imported paper. The archive under data/pyq/archive
+// is provenance only; it is neither fetched nor precached by the app.
+const RETIRED_PAPER_IDS = new Set(['MPPSC-2009-P1', 'MPPSC-2010-P1', 'MPPSC-2011-P1']);
+const belongsToBuiltin = (record) => record.bank_id === BUILTIN_BANK_ID ||
+  (record.bank_id == null && (record.import_history || []).some((entry) => entry.bank_id === BUILTIN_BANK_ID));
+
+/** Remove only retired bundled questions/papers; preserve the learner's history. */
+export async function removeRetiredBuiltinPapers() {
+  const [questions, papers] = await Promise.all([db.getAll(STORES.QUESTIONS), db.getAll(STORES.PAPERS)]);
+  const mine = questions.filter((q) => belongsToBuiltin(q) && RETIRED_PAPER_IDS.has(q.paper_id));
+  const ids = new Set(mine.map((q) => q.id));
+  const remainingPaperIds = new Set(questions.filter((q) => !ids.has(q.id)).map((q) => q.paper_id));
+  const retiredPapers = papers.filter((p) => belongsToBuiltin(p) && RETIRED_PAPER_IDS.has(p.paper_id) && !remainingPaperIds.has(p.paper_id));
+  if (!mine.length && !retiredPapers.length) return { removedQuestions: 0, removedPapers: 0 };
+
+  await db.removeMany(STORES.QUESTIONS, [...ids]);
+  await db.removeMany(STORES.PAPERS, retiredPapers.map((p) => p.paper_id));
+  // Attempts, mistakes, schedules and sessions are historical user data, not
+  // bundled content. Keep them; live practice selectors already filter out ids
+  // no longer present. Refresh before returning so the UI cannot show old rows.
+  await refreshQuestionIndex({ silent: true });
+  emit('bank:changed', { questions: state.questionIndex.size, papers: state.papers.size });
+  const result = { removedQuestions: mine.length, removedPapers: retiredPapers.length };
+  logEvent('builtin-bank', `Retired bundled papers removed: ${mine.length} questions, ${retiredPapers.length} papers. Study history was preserved.`);
+  return result;
+}
 
 function parseJsonSafe(text) {
   try {
@@ -78,11 +108,12 @@ export function lastBuiltinLoad() {
  * @param {string} [opts.text] bank JSON as text (test hook — skips the fetch)
  * @param {boolean} [opts.force] import even when the recorded hash matches
  * @param {boolean} [opts.silent] do not emit UI events (used at boot for logging only)
- * @returns {Promise<{status:string, message:string, meta:object|null, stats:object|null}>}
+ * @returns {Promise<{status:string, message:string, meta:object|null, stats:object|null, retirement:{removedQuestions:number, removedPapers:number}}>}
  *   status is one of: `loaded` (first load), `updated` (a new version was applied),
  *   `current` (nothing to do), `unavailable` (fetch failed), `blocked` (the file did not validate), `error`.
  */
 export async function ensureBuiltinBank(opts = {}) {
+  const retirement = await removeRetiredBuiltinPapers();
   const url = opts.url || BUILTIN_BANK_PATH;
   const previous = (await db.getMeta(BUILTIN_BANK_META)) || null;
   let text = opts.text ?? null;
@@ -100,6 +131,7 @@ export async function ensureBuiltinBank(opts = {}) {
           : `The built-in bank could not be loaded (${err.message}). Import a bank file, or open the app once with a network connection.`,
         meta: previous,
         stats: null,
+        retirement,
       };
       state$.last = result;
       logEvent('builtin-bank', result.message);
@@ -109,7 +141,7 @@ export async function ensureBuiltinBank(opts = {}) {
 
   const parsed = parseJsonSafe(text);
   if (parsed.error) {
-    const result = { status: 'error', message: `The built-in bank file is not valid JSON: ${parsed.error}`, meta: previous, stats: null };
+    const result = { status: 'error', message: `The built-in bank file is not valid JSON: ${parsed.error}`, meta: previous, stats: null, retirement };
     state$.last = result;
     return result;
   }
@@ -126,6 +158,7 @@ export async function ensureBuiltinBank(opts = {}) {
       message: `The built-in bank was not imported: ${analysis.fatalMessage || 'it did not pass validation.'}`,
       meta: previous,
       stats: null,
+      retirement,
       analysis,
     };
     state$.last = result;
@@ -137,41 +170,29 @@ export async function ensureBuiltinBank(opts = {}) {
   // the recorded hash alone: if every record is already present with identical
   // content and none has changed, there is nothing to do regardless of how the
   // app got there (first load, re-open, or a manual import of the same file).
-  // Text fingerprints deliberately omit keys and explanations. Refresh the
-  // reviewed 2009–2011 source fields even when the wording is unchanged, otherwise
-  // existing installations never receive this paper's answers or uncertainty.
-  const refreshHistorical = new Set();
-  for (const incoming of analysis.report.questions.filter((q) => (q.year === 2009 || q.year === 2010 || q.year === 2011))) {
-    const prior = await db.get(STORES.QUESTIONS, incoming.id);
-    if (!prior || prior.fingerprint !== incoming.fingerprint) continue;
-    const sourceView = (q) => ({ answer: q.supplied?.answer || null,
-      status: q.supplied?.status === 'disputed' && q.dispute?.raised_by === 'user' ? incoming.supplied?.status : q.supplied?.status,
-      explanation: q.explanation?.correct_reasoning || null,
-      dispute: q.dispute?.raised_by === 'user' ? incoming.dispute : q.dispute });
-    if (JSON.stringify(sourceView(prior)) !== JSON.stringify(sourceView(incoming))) refreshHistorical.add(incoming.id);
-  }
   const nothingToDo =
     analysis.comparison.newQuestions === 0 &&
     analysis.comparison.changedRecords === 0 &&
     analysis.comparison.changedPapers === 0 &&
-    refreshHistorical.size === 0 &&
     analysis.report.questions.length > 0;
   const fileIds = analysis.report.questions.map((q) => q.id);
   const storedCount = await countStoredForBank(analysis.report.meta.bankId, fileIds);
 
-  if (!opts.force && (nothingToDo || (previous && previous.sha256 === sha256 && storedCount && analysis.comparison.changedPapers === 0 && refreshHistorical.size === 0))) {
+  if (!opts.force && (nothingToDo || (previous && previous.sha256 === sha256 && storedCount && analysis.comparison.changedPapers === 0))) {
     // Nothing to import. If the file itself changed (a rebuild that touched only
     // text the fingerprint does not cover, such as an explanation), record the
     // new hash so the next boot does not re-download and re-validate the file.
-    if (previous && previous.sha256 !== sha256) await db.setMeta(BUILTIN_BANK_META, { ...previous, sha256, checked_at: new Date().toISOString() });
+    const currentMeta = previous ? { ...previous, sha256, questions: analysis.report.stats.questions, papers: analysis.report.stats.papers, stored_questions: storedCount, checked_at: new Date().toISOString() } : null;
+    if (currentMeta && (previous.sha256 !== sha256 || retirement.removedQuestions || previous.questions !== currentMeta.questions || previous.papers !== currentMeta.papers)) await db.setMeta(BUILTIN_BANK_META, currentMeta);
     const result = {
       status: 'current',
       message:
         previous && previous.sha256 !== sha256
-          ? `The built-in bank file was rebuilt, but every question it holds is already stored unchanged (${storedCount} stored). Nothing was written.`
+          ? `The built-in bank file was rebuilt, but every active question is already stored (${storedCount} stored).${retirement.removedQuestions ? ` Removed ${retirement.removedQuestions} retired bundled question(s).` : ' No active records were rewritten.'}`
           : `The built-in bank is already loaded (${analysis.report.stats.questions} question(s) in the file, ${storedCount} stored, version ${previous?.bank_version || previous?.generated_at || 'unstamped'}).`,
-      meta: previous ? { ...previous, sha256 } : previous,
+      meta: currentMeta,
       stats: null,
+      retirement,
     };
     state$.last = result;
     return result;
@@ -182,7 +203,6 @@ export async function ensureBuiltinBank(opts = {}) {
     // source fields; user edits, verified answers and locally authored
     // questions are kept (see importer.mergeImportedQuestion).
     conflictPolicy: 'update',
-    refreshIdenticalIds: refreshHistorical,
   });
 
   const meta = {
@@ -208,6 +228,7 @@ export async function ensureBuiltinBank(opts = {}) {
         : `Built-in bank loaded: ${analysis.report.stats.questions} questions across ${analysis.report.stats.papers} papers.`,
     meta,
     stats: result.stats,
+    retirement,
   };
   if (!opts.silent) emit('bank:changed', { questions: state.questionIndex.size, papers: state.papers.size });
   logEvent('builtin-bank', state$.last.message);
@@ -240,5 +261,7 @@ export async function removeBuiltinBank() {
     papers.filter((p) => p.bank_id === bankId).map((p) => p.paper_id),
   );
   await db.remove(STORES.META, BUILTIN_BANK_META);
-  return { removedQuestions: mine.length };
+  await refreshQuestionIndex({ silent: true });
+  emit('bank:changed', { questions: state.questionIndex.size, papers: state.papers.size });
+  return { removedQuestions: mine.length, removedPapers: papers.filter((p) => p.bank_id === bankId).length };
 }

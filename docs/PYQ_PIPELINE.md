@@ -10,18 +10,14 @@ own validator (`js/core/validate.js`) and bank builder (`tools/build-bank.mjs`)
 are reused, so the app-facing file follows the same schema and validator as
 normal imports.
 
-`--include-2009-2011` appends 384 complete English-only records from
-PDF-derived staging and taxonomy decisions; 2009 and 2011 remain incomplete.
-It requires the three `answer-review-{year}.json` files.
-The 2009 review integrates 94 unofficial answers and leaves 12 disputed and 40
-unresolved unkeyed; Q75–78 are excluded and paper identity is unconfirmed.
-The 2010 review restores 80 unofficial PDF-key answers and explanations,
-leaving 14 disputed and 26 unresolved unkeyed; its paper identity is unconfirmed.
-The 2011 review restores 88 answers and leaves 12 disputed and 18 unresolved unkeyed.
-The alleged 2011 paper identity is disputed: see
-`data/pyq/source/2009-2011/2011-paper-identity-warning.md`. Neither the
-third-party key nor the paper identity is official or independently authenticated.
-See also `data/pyq/source/2009-2011/PDF_REVIEW.md`.
+**Active scope: 2012–2024 only.** The 2009–2011 papers were removed from the
+practice bank. Their records remain in
+`data/pyq/archive/mppsc-2009-2011-papers.json` and their source/review files in
+`data/pyq/source/2009-2011/` for provenance only. There is no pipeline flag or
+append step that can add them to the active bank; the old transcription and
+classification helpers were retired with that scope. On upgrade or backup
+restore, the loader removes only those three bundled paper ids from local
+storage, while preserving attempt history and independently imported banks.
 
 `--include-2012` requires the bilingual transcription, the separate
 `answer-reassessment-2012.json`, and the reviewed explanation pair
@@ -47,7 +43,6 @@ The app-facing bank never receives source flags or preliminary historical labels
 node tools/classify-bank.mjs \
     --include-2013-2018 \
     --include-2012 \
-    --include-2009-2011 \
     --in data/pyq/source/MPPSC_PYQ_intake.json \
     --out data/pyq/mymppsc-pyq-bank.json \
     --reports data/pyq \
@@ -86,8 +81,9 @@ The 2012 transcription and known source uncertainties are documented in
 `data/pyq/source/2012-recovery/TRANSCRIPTION_PROGRESS.md`. The transcription itself contains no answers; the independent reassessment and the
 explanation bundle are required and applied separately. The final answer audit
 is `data/pyq/quality-audit/final-answer-audit-2012.json` and
-`REPORT_FINAL_ANSWER_AUDIT_2012.md`. The existing bank ID and name remain
-unchanged for compatibility; year coverage is read from the paper records.
+`REPORT_FINAL_ANSWER_AUDIT_2012.md`. The existing bank ID remains unchanged
+for compatibility; the display name is 2012–2024 and year coverage is read from
+the paper records.
 
 ## 1. What goes in
 

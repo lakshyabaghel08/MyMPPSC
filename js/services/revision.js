@@ -274,7 +274,10 @@ export async function removeFromQueue(questionId) {
 }
 
 export async function allRevisionRecords() {
-  return db.getAll(STORES.REVISION);
+  const rows = await db.getAll(STORES.REVISION);
+  // Removing/undoing a bank leaves historical rows intact, but a queue must
+  // only offer questions that can actually be opened and practised now.
+  return rows.filter((row) => state.questionIndex.has(row.question_id));
 }
 
 /** Due / overdue / upcoming buckets. */

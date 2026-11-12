@@ -235,7 +235,7 @@ export const DEFAULT_SETTINGS = Object.freeze({
  * Study Timer preferences. Stored locally (see `LS_KEYS.TIMER_SETTINGS`)
  * rather than in `settings`, because a timer preference is a property of this
  * device's focus workspace, not of the question bank or the exam rules — and
- * so that a settings reset never silently discards the reader's atmosphere.
+ * so that a settings reset never silently discards the reader's sound preferences.
  */
 export const DEFAULT_TIMER_SETTINGS = Object.freeze({
   /** Daily focus target in minutes; the Study Timer measures each day against it. */
@@ -245,15 +245,7 @@ export const DEFAULT_TIMER_SETTINGS = Object.freeze({
   longBreakMinutes: 15,
   sessionsBeforeLongBreak: 4,
   breaksEnabled: true,
-  /** Visual atmosphere for the focus workspace. */
-  environment: 'woodland',
-  /**
-   * Which face the flip clock wears: `auto` follows the atmosphere, and
-   * `classic` / `woodland` / `rain` / `night` pin one face. Fullscreen opens on
-   * Classic under `auto`, as the reference did.
-   */
-  clockTheme: 'auto',
-  /** Ambient soundscape; deliberately independent of the visual atmosphere. */
+  /** Ambient soundscape; deliberately independent of the app's colour theme. */
   soundscape: 'woodland',
   soundEnabled: false,
   volume: 45,
@@ -261,13 +253,12 @@ export const DEFAULT_TIMER_SETTINGS = Object.freeze({
   mindfulnessInterval: 5,
 });
 
-export const FOCUS_ENVIRONMENTS = ['woodland', 'night', 'rain'];
 /**
- * The flip clock's faces. `auto` follows the atmosphere; the rest pin one face.
- * The stylesheet resolves these (`css/focus-timer.css`), so this list is the
- * single vocabulary shared by the setting, the control and the CSS.
+ * The timer's complete visual vocabulary: Woodland follows the app's light
+ * theme, Night follows dark. There is no separate atmosphere or clock-face
+ * preference. The same two names identify the recorded ambient beds.
  */
-export const CLOCK_THEMES = ['auto', 'classic', 'woodland', 'rain', 'night'];
+export const FOCUS_ENVIRONMENTS = Object.freeze(['woodland', 'night']);
 /** Focus durations offered as one-tap presets, in minutes. */
 export const FOCUS_PRESETS = [25, 30, 45, 50, 90];
 export const MINDFULNESS_INTERVALS = [5, 10, 15, 20, 30];
