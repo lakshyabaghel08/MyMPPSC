@@ -306,9 +306,31 @@ do not need:
 - **Time is anchored, never accumulated.** `anchorElapsed` + `anchorAt` means a throttled background
   tab, a locked phone or a closed laptop cannot make the clock drift, and a block that ran out while
   the app was shut is closed out once on the next boot (`restore()`), not silently dropped.
-- **Ambience is synthesised** (`js/ui/focus-audio.js`): shaped noise through a filter plus a slow
-  LFO, and bells built from decaying partials. The reference workspace shipped 38 MB of MP3s for the
-  same effect; this ships none, so offline use and the no-network guard stay intact.
+- **The flip clock wears the reference's faces** (`css/focus-timer.css`, `js/ui/flipclock.js`).
+  Each face is a complete surface set — top card, bottom card, digit colour, split, border, shadow,
+  sheen — resolved from one `theme-*` class on the workspace, so a face can never be half-applied.
+  `auto` (the default) follows the atmosphere: Woodland evergreen, Rain sky, Night's dark card.
+  `classic` is the reference's bold face, twice over: pale evergreen cards with deep green digits
+  under Woodland and pale sky cards with deep blue digits under Rain, and the dark card under Night.
+  `woodland`, `rain` and `night` pin the other three, and fullscreen opens on Classic under `auto`
+  while never overriding a face the reader pinned by hand. The fullscreen room paints the active
+  face edge to edge, so a Classic face sits on Classic paper rather than on a card in a dark void.
+- **The flip is the reference's, unchanged**: two static halves plus two transient `.flip-flap`
+  halves, a 300 ms falling top card and a 300 ms rising bottom card, staged by `animation-delay`,
+  easing on `cubic-bezier(0.37, 0, 0.63, 1)` and shading to 60 % brightness at the seam. Everything
+  is driven by CSS keyframes (so it composites) and the reduce-motion block snaps each flap to its
+  final angle instead of animating it, which leaves the digit correct with no motion.
+- **In fullscreen the clock is the control.** The room hides the page furniture by design, so the
+  clock itself starts and pauses the block — pointer, Enter or Space — and is a real
+  `role="button"` with a focus ring while the room is open. Outside the room it is decoration again
+  and leaves the tab order. Native Fullscreen where available, the class-only immersive overlay where
+  it is not (iOS Safari), Escape to leave, and the controls stay on screen at 45 % opacity.
+- **Ambience and bells are the recorded files in `sounds/`** (`js/ui/focus-audio.js`): three looping
+  beds (woodland, night, rainfall) and two bells (block finished, mindfulness). One media element per
+  file is reused, so switching soundscapes a dozen times does not stack players; every start happens
+  inside the click that asked for it; and the two small bells are precached while the beds are cached
+  on first play, so ambience keeps working offline once chosen. Bells are auditionable from the card
+  that configures them, because a bell is rarely heard at the moment its setting is saved.
 - **Ambience is separate from atmosphere**, as in the reference: the visual theme and the soundscape
   are two settings.
 - **Study days start at 4 AM** (`applicationDayKey()` in `js/core/util.js`). Only focus sessions and

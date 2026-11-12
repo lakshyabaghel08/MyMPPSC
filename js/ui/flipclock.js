@@ -4,9 +4,10 @@
  * Two digits per unit, each a pair of static halves (`.flip-half.top` and
  * `.flip-half.bottom`) holding the current value, plus two transient
  * `.flip-flap` halves that perform the physical flip when the value changes.
- * The animation itself lives in css/app.css (`flipTop`/`flipBottom`, 300 ms +
- * 300 ms staged rotateX); this module only builds the DOM and decides *when*
- * to animate.
+ * The animation itself lives in css/focus-timer.css (`flipTop`/`flipBottom`,
+ * 300 ms + 300 ms staged rotateX); this module only builds the DOM and decides
+ * *when* to animate. The face the digits wear is a `theme-*` class on the
+ * workspace, resolved by the stylesheet — see `applyClockTheme()`.
  *
  * It is deliberate about three things:
  *
@@ -21,8 +22,10 @@
  *    fresh tree simply resets the comparison.
  */
 
+import { CLOCK_THEMES } from '../core/constants.js';
+
 const DIGITS = ['h1', 'h0', 'm1', 'm0', 's1', 's0'];
-/** Total flip time: 300 ms top flap + 300 ms bottom flap (see css/app.css). */
+/** Total flip time: 300 ms top flap + 300 ms bottom flap (see the stylesheet). */
 const FLAP_MS = 600;
 
 /** Split a duration into the two-digit groups the clock shows. */
@@ -185,6 +188,25 @@ export class FlipClock {
     this.handles.clear();
     this.root = null;
   }
+}
+
+/**
+ * Apply one of `CLOCK_THEMES` to the workspace. Exactly one `theme-*` class is
+ * present at a time; the stylesheet resolves it to the face's full surface set
+ * (and fullscreen opens on Classic under `auto`).
+ */
+export function applyClockTheme(workspace, theme) {
+  if (!workspace) return 'auto';
+  const next = CLOCK_THEMES.includes(theme) ? theme : 'auto';
+  CLOCK_THEMES.forEach((name) => workspace.classList.toggle(`theme-${name}`, name === next));
+  workspace.dataset.clockTheme = next;
+  return next;
+}
+
+/** The face a given theme currently resolves to, for the control's caption. */
+export function clockThemeLabel(theme, environment = 'woodland') {
+  if (theme === 'auto') return environment === 'rain' ? 'Auto · Rain' : environment === 'night' ? 'Auto · Night' : 'Auto · Woodland';
+  return ({ classic: 'Classic', woodland: 'Woodland', rain: 'Rain', night: 'Night' })[theme] || 'Auto';
 }
 
 /**

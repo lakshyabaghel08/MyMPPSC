@@ -28,6 +28,11 @@ const TYPES = {
   '.json': 'application/json; charset=utf-8',
   '.webmanifest': 'application/manifest+json; charset=utf-8',
   '.png': 'image/png',
+  '.mp3': 'audio/mpeg',
+  '.m4a': 'audio/mp4',
+  '.ogg': 'audio/ogg',
+  '.wav': 'audio/wav',
+  '.webp': 'image/webp',
   '.woff2': 'font/woff2',
   '.svg': 'image/svg+xml',
   '.ico': 'image/x-icon',
@@ -95,6 +100,32 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
+  // Byte ranges, for the audio. The timer's soundscapes are whole MP3s of up
+  // to 24 MB, and a browser asks for a range before it will stream or seek in
+  // one; answering 200 with the whole file makes the first tick of ambience
+  // wait for a full download. GitHub Pages answers ranges, so this only makes
+  // local development behave like production.
+  const info = await stat(file);
+  headers['accept-ranges'] = 'bytes';
+  const match = /^bytes=(\d*)-(\d*)$/.exec(req.headers.range || '');
+  if (match && (match[1] || match[2])) {
+    const size = info.size;
+    let start = match[1] ? Number(match[1]) : size - Number(match[2] || 0);
+    let end = match[1] ? (match[2] ? Number(match[2]) : size - 1) : size - 1;
+    start = Math.max(0, Math.min(start, size - 1));
+    end = Math.max(start, Math.min(end, size - 1));
+    res.writeHead(206, {
+      ...headers,
+      'content-range': `bytes ${start}-${end}/${size}`,
+      'content-length': String(end - start + 1),
+    });
+    createReadStream(file, { start, end })
+      .on('error', () => res.destroy())
+      .pipe(res);
+    return;
+  }
+
+  headers['content-length'] = String(info.size);
   res.writeHead(200, headers);
   createReadStream(file)
     .on('error', () => {

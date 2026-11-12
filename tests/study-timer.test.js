@@ -16,7 +16,7 @@
 
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFile } from 'node:fs/promises';
+import { readFile, stat } from 'node:fs/promises';
 import path from 'node:path';
 import { bootJsdom, SCREENS } from '../tools/density.mjs';
 import { repoRoot } from './helpers.mjs';
@@ -496,6 +496,132 @@ test('the primary control keeps working after the screen repaints it in place', 
   engine.reset();
 });
 
+/* ------------------------------------------------- the clock's three faces -- */
+
+test('the clock wears one of its three faces at a time, and auto follows the atmosphere', async () => {
+  engine.setSettings({ environment: 'woodland', clockTheme: 'auto' });
+  await goto('timer');
+  const workspace = await waitFor(() => $('#focusWorkspace'), { label: 'the workspace' });
+
+  const faces = () => ['auto', 'classic', 'woodland', 'rain', 'night'].filter((name) => workspace.classList.contains(`theme-${name}`));
+  assert.deepEqual(faces(), ['auto'], 'one theme class, and it is the saved one');
+  assert.equal(workspace.dataset.clockTheme, 'auto');
+
+  // A pinned face is a preference: it does not follow the atmosphere.
+  click($('[data-action="set-clock-theme"][data-value="classic"]'));
+  await waitFor(() => workspace.classList.contains('theme-classic'), { label: 'the Classic face' });
+  assert.deepEqual(faces(), ['classic'], 'the picker swaps the face rather than adding one');
+  assert.equal($('[data-action="set-clock-theme"][data-value="classic"]').getAttribute('aria-pressed'), 'true', 'and says which one is on');
+  assert.equal(engine.getSettings().clockTheme, 'classic', 'the choice is saved with the timer settings');
+
+  engine.setSettings({ environment: 'rain' });
+  await goto('timer');
+  const after = await waitFor(() => $('#focusWorkspace'), { label: 'the workspace after a repaint' });
+  assert.ok(after.classList.contains('theme-classic'), 'a pinned face survives a repaint and ignores the atmosphere');
+  assert.ok(!after.classList.contains('theme-rain'));
+
+  engine.setSettings({ clockTheme: 'auto', environment: 'woodland' });
+});
+
+test('changing the clock face never rebuilds the clock under a running block', async () => {
+  engine.reset();
+  engine.setMode('pomodoro');
+  engine.setSettings({ clockTheme: 'auto' });
+  await goto('timer');
+  const workspace = await waitFor(() => $('#focusWorkspace'), { label: 'the workspace' });
+  // Let the screen finish settling before comparing nodes.
+  await new Promise((resolve) => setTimeout(resolve, 250));
+  const settled = $('#focusWorkspace');
+  const holder = $('#focusClockHolder');
+  assert.equal(settled, workspace);
+
+  // A face change is cosmetic: the same nodes must survive, because a rebuilt
+  // clock loses the value it compares against and its flap mid-animation, and a
+  // rebuilt screen would close the reader's fullscreen room.
+  engine.setSettings({ clockTheme: 'classic' });
+  await waitFor(() => $('#focusWorkspace')?.classList.contains('theme-classic'), { label: 'the new face' });
+  assert.equal($('#focusWorkspace'), settled, 'the workspace is repainted in place');
+  assert.equal($('#focusClockHolder'), holder, 'and so is the clock');
+  assert.equal($('#focusClockHolder .flip-clock')?.isConnected, true, 'the live clock is still on screen');
+
+  // A structural preference still re-renders (the presets and progress bar
+  // around the clock change) but the face the reader picked is kept.
+  engine.setSettings({ focusMinutes: 45 });
+  await waitFor(() => $('#focusWorkspace')?.classList.contains('theme-classic'), { label: 'the face after a re-render' });
+  assert.equal(engine.getSettings().clockTheme, 'classic', 'the choice survives the re-render');
+  engine.setSettings({ clockTheme: 'auto', focusMinutes: 25 });
+  engine.reset();
+});
+
+test('the three ambient beds and two bells are recorded files that are actually shipped', async () => {
+  const audio = await import('../js/ui/focus-audio.js');
+  const names = ['woodland', 'night', 'rain'];
+  for (const key of names) {
+    const file = `sounds/${key}.mp3`;
+    const info = await stat(path.join(repoRoot, file)).catch(() => null);
+    assert.ok(info?.size > 1000, `${file} exists and has audio in it`);
+    assert.notEqual(audio.soundscapeLabel(key), key, `${key} has a readable label`);
+  }
+
+  // The player asks for the file by a relative path, so the app keeps working
+  // from a project-site subpath and offline.
+  const created = [];
+  const original = window.Audio;
+  window.Audio = class {
+    constructor(src) {
+      this.src = src;
+      this.paused = true;
+      this.volume = 1;
+      created.push(this);
+    }
+    play() {
+      this.paused = false;
+      return Promise.resolve();
+    }
+    pause() {
+      this.paused = true;
+    }
+    addEventListener() {}
+    removeAttribute() {}
+    load() {}
+  };
+  try {
+    assert.equal(audio.startAmbient('rain', 50), true);
+    assert.equal(created[0].src, 'sounds/rain.mp3');
+    assert.equal(created[0].loop, true, 'the bed loops');
+    assert.equal(created[0].paused, false, 'and is playing');
+    // Asking for the bed that is already playing must not stack players.
+    audio.startAmbient('rain', 90);
+    assert.equal(created.length, 1, 'one element per file, reused');
+    assert.ok(Math.abs(created[0].volume - 0.765) < 0.001, 'volume follows the slider, capped below unity');
+
+    audio.startAmbient('night', 90);
+    assert.equal(created.length, 2);
+    assert.equal(created[0].paused, true, 'the old bed stops when the soundscape changes');
+
+    audio.stopAmbient();
+    assert.ok(created.every((element) => element.paused), 'stopping silences every bed');
+
+    assert.equal(audio.playBell('time-up', 100), true);
+    const bell = created.at(-1);
+    assert.equal(bell.src, 'sounds/time-up.mp3');
+    assert.equal(audio.playBell('mindfulness', 100), true);
+    assert.equal(created.at(-1).src, 'sounds/mindfulness-bell.mp3');
+    assert.equal(audio.soundscapeLabel('woodland'), 'Woodland');
+  } finally {
+    window.Audio = original;
+    audio.teardown();
+  }
+});
+
+test('the soundscape setting offers the recorded beds, and the bells can be auditioned', async () => {
+  await goto('timer');
+  await waitFor(() => $('#setSoundscape'), { label: 'the soundscape control' });
+  const options = $$('#setSoundscape option').map((option) => option.textContent.trim());
+  assert.deepEqual(options, ['Woodland', 'Night', 'Rain']);
+  assert.equal($$('[data-action="test-bell"]').length, 2, 'both bells are auditionable from the settings card');
+});
+
 test('the fullscreen room keeps the clock and its controls', async () => {
   await goto('timer');
   const workspace = await waitFor(() => $('#focusWorkspace'), { label: 'the workspace' });
@@ -518,4 +644,38 @@ test('the fullscreen room keeps the clock and its controls', async () => {
   } finally {
     workspace.classList.remove('is-fullscreen');
   }
+});
+
+test('in the room the clock itself is the play/pause control', async () => {
+  engine.reset();
+  engine.setMode('pomodoro');
+  await goto('timer');
+  await waitFor(() => $('[data-action="timer-fullscreen"]'), { label: 'the fullscreen button' });
+  const workspace = $('#focusWorkspace');
+  const holder = $('#focusClockHolder');
+
+  // jsdom has no Fullscreen API, so the button takes the class-only immersive
+  // path — the same one iOS Safari gets.
+  click($('[data-action="timer-fullscreen"]'));
+  await waitFor(() => workspace.classList.contains('is-fullscreen'), { label: 'the immersive room' });
+  assert.equal(holder.getAttribute('role'), 'button', 'the clock is a real control in the room');
+  assert.equal(holder.getAttribute('tabindex'), '0', 'and is reachable by keyboard');
+
+  click($('#focusClockHolder .flip-clock'));
+  await waitFor(() => engine.isRunning(), { label: 'the clock to start the block' });
+  click($('#focusClockHolder .flip-clock'));
+  await waitFor(() => !engine.isRunning(), { label: 'the clock to pause the block' });
+
+  // Enter and Space are what a button promises.
+  holder.dispatchEvent(new window.KeyboardEvent('keydown', { key: ' ', bubbles: true, cancelable: true }));
+  await waitFor(() => engine.isRunning(), { label: 'the keyboard to start the block' });
+  holder.dispatchEvent(new window.KeyboardEvent('keydown', { key: 'Enter', bubbles: true, cancelable: true }));
+  await waitFor(() => !engine.isRunning(), { label: 'the keyboard to pause the block' });
+
+  // Leaving the room puts the timer back to being decoration.
+  click($('[data-action="timer-fullscreen"]'));
+  await waitFor(() => !workspace.classList.contains('is-fullscreen'), { label: 'the room to close' });
+  assert.equal(holder.hasAttribute('role'), false);
+  assert.equal(holder.hasAttribute('tabindex'), false, 'the clock is not a tab stop outside the room');
+  engine.reset();
 });
