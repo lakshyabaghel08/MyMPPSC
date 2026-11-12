@@ -573,7 +573,6 @@ test('the header theme toggle repaints Woodland/Night without rebuilding a runni
   assert.equal($('#focusWorkspace'), workspace, 'the workspace is repainted in place');
   assert.equal($('#focusClockHolder'), holder);
   assert.equal($('#focusClockHolder .flip-clock'), clock, 'the live clock and its flap state survive');
-  assert.match($('#focusThemeName').textContent, /Night/);
 
   // A structural timer preference still rebuilds the screen, but cannot pin a
   // face against the app theme.
@@ -666,6 +665,9 @@ test('the two ambient beds and two bells are recorded files that are actually sh
 test('the soundscape setting offers the recorded beds, and the bells can be auditioned', async () => {
   await goto('timer');
   await waitFor(() => $('#setSoundscape'), { label: 'the soundscape control' });
+  assert.equal($('#focusTask').placeholder, 'What are you working on?');
+  assert.equal($('.focus-theme-note'), null, 'theme instructions do not clutter settings');
+  assert.equal($('#setSoundscape').disabled, !$('#setSound').checked);
   const options = $$('#setSoundscape option').map((option) => option.textContent.trim());
   assert.deepEqual(options, ['Woodland', 'Night']);
   assert.equal($$('[data-action="test-bell"]').length, 2, 'both bells are auditionable from the settings card');

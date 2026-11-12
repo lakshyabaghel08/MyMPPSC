@@ -142,36 +142,6 @@
   --fc-theme-sheen: var(--focus-night-sheen);
 }
 
-.focus-theme-note {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--space-2);
-  margin-bottom: var(--space-3);
-  padding: var(--space-3);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius);
-  background: var(--bg-sunken);
-  color: var(--text-muted);
-  font-size: var(--text-xs);
-}
-
-.focus-theme-note .icon {
-  flex: 0 0 auto;
-  color: var(--accent);
-}
-
-.focus-theme-note b {
-  display: block;
-  margin-bottom: 2px;
-  color: var(--text);
-}
-
-.focus-theme-note small {
-  display: block;
-  font-size: var(--text-2xs);
-  line-height: 1.5;
-}
-
 /* --------------------------------------------------------------------------
    2. Atmosphere — above the panel paint, below the clock and controls
    -------------------------------------------------------------------------- */
@@ -1080,4 +1050,24 @@ html.focus-fs-lock .focus-workspace.is-fullscreen {
   .hm-grid {
     min-width: 520px;
   }
+}
+
+/* Keep related sound controls together without stacking full-width fields. */
+.timer-sound-group {
+  padding: var(--space-3) 0;
+  border-top: 1px solid var(--border-subtle);
+}
+.timer-sound-row {
+  display: grid;
+  grid-template-columns: minmax(130px, 1fr) minmax(150px, 1fr);
+  align-items: center;
+  gap: var(--space-3);
+}
+.timer-sound-row .field,
+.timer-sound-row .setting-switch { margin: 0; }
+.timer-volume { margin: var(--space-2) 0 0; }
+.timer-volume input { width: 100%; max-width: 240px; display: block; }
+.timer-bell-tests { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-2); }
+@media (max-width: 480px) {
+  .timer-sound-row { grid-template-columns: 1fr; gap: var(--space-2); }
 }
