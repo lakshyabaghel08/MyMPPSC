@@ -2,18 +2,17 @@
  * focus-audio.js — the Study Timer's ambience and bells, played from the
  * recorded files in `sounds/`.
  *
- * Three looped soundscapes and two bells, exactly as the reference workspace
+ * Two looped soundscapes and two bells, exactly as the reference workspace
  * shipped them:
  *
  *   woodland.mp3         a looping woodland bed
  *   night.mp3            a looping night bed
- *   rain.mp3             a looping rainfall
  *   time-up.mp3          the block is over
  *   mindfulness-bell.mp3 come back to the breath
  *
  * The paths are relative (`sounds/…`), so they resolve under a project
  * subpath on GitHub Pages exactly as the app shell does. The ambience is not
- * precached with the shell (the three beds are tens of megabytes); the service
+ * precached with the shell (the two beds are several megabytes); the service
  * worker caches each one the first time it is played, so ambience keeps
  * working offline once the reader has chosen it. The two bells are small and
  * are precached.
@@ -35,7 +34,6 @@
 const AMBIENCE = {
   woodland: { file: 'woodland.mp3', label: 'Woodland' },
   night: { file: 'night.mp3', label: 'Night' },
-  rain: { file: 'rain.mp3', label: 'Rain' },
 };
 
 /** The two bells. `time-up` ends a block; `mindfulness` is the interval chime. */
@@ -69,7 +67,7 @@ export const isAudioSupported = () => Boolean(AudioClass());
 /** The label shown next to the soundscape control. */
 export const soundscapeLabel = (key) => AMBIENCE[key]?.label || key;
 
-/** `sounds/rain.mp3` — relative, so the app works from any base path. */
+/** `sounds/woodland.mp3` — relative, so the app works from any base path. */
 const soundPath = (file) => `${SOUND_DIR}/${file}`;
 
 /** Clamp a percentage to the media element's 0–1 range. */

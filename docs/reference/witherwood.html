@@ -1,0 +1,2166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Witherwood</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=JetBrains+Mono:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+body { font-family: 'Inter', sans-serif; }
+
+/* Refined Subtle View Transitions */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+/* 1. Forest Transition: Gentle Organic Meadow Bloom */
+[data-transition-to="forest"]::view-transition-old(root) {
+  animation: fadeOutSoft 0.85s ease forwards;
+}
+[data-transition-to="forest"]::view-transition-new(root) {
+  animation: forestSproutSubtle 0.95s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+@keyframes forestSproutSubtle {
+  0% { clip-path: circle(20% at 50% 50%); opacity: 0; filter: saturate(1.05); }
+  40% { opacity: 0.8; }
+  100% { clip-path: circle(150% at 50% 50%); opacity: 1; filter: saturate(1); }
+}
+
+/* 2. Rain Transition: Soft Mist Downpour Veil */
+[data-transition-to="rain"]::view-transition-old(root) {
+  animation: fadeOutSoft 0.85s ease forwards;
+}
+[data-transition-to="rain"]::view-transition-new(root) {
+  animation: rainCascadeSubtle 0.95s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+@keyframes rainCascadeSubtle {
+  0% { clip-path: inset(0 0 70% 0); opacity: 0; filter: blur(3px); }
+  50% { opacity: 0.85; }
+  100% { clip-path: inset(0 0 0% 0); opacity: 1; filter: blur(0px); }
+}
+
+/* 3. Night Transition: Velvet Twilight Dissolve */
+[data-transition-to="night"]::view-transition-old(root) {
+  animation: fadeOutSoft 0.85s ease forwards;
+}
+[data-transition-to="night"]::view-transition-new(root) {
+  animation: nightEclipseSubtle 0.95s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+@keyframes nightEclipseSubtle {
+  0% { opacity: 0; filter: brightness(0.85); }
+  100% { opacity: 1; filter: brightness(1); }
+}
+
+@keyframes fadeOutSoft {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* Base Fallback Component Transitions */
+body, #appRoot, .page-section, .btn-interactive, .flip-digit, .flip-half, .brand-title {
+  transition: background-color 0.85s cubic-bezier(0.4, 0, 0.2, 1),
+              background 0.85s cubic-bezier(0.4, 0, 0.2, 1),
+              color 0.85s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.85s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.85s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+@keyframes rainfall {
+  from { transform: translate3d(0, -120vh, 0) rotate(12deg); }
+  to { transform: translate3d(-120px, 120vh, 0) rotate(12deg); }
+}
+.rain-overlay {
+  position: fixed; inset: 0; width: 100vw; height: 100vh;
+  pointer-events: none; z-index: 2147483645;
+  transition: opacity 0.85s ease;
+}
+.rain-drop {
+  position: absolute; top: -20%; width: 4.5px; border-radius: 9999px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(220,238,255,0.95));
+  box-shadow: 0 0 7px rgba(180,220,255,0.4);
+  animation: rainfall linear infinite; will-change: transform;
+}
+
+@keyframes shootingStar {
+  0% { transform: translate3d(0, 0, 0) rotate(var(--star-angle)); opacity: 0; }
+  8% { opacity: var(--star-opacity); }
+  65% { opacity: var(--star-opacity); }
+  100% { transform: translate3d(var(--star-travel-x), var(--star-travel-y), 0) rotate(var(--star-angle)); opacity: 0; }
+}
+
+.shooting-star {
+  position: absolute; height: 3px; border-radius: 9999px; width: var(--star-width, 140px);
+  background: linear-gradient(to right, rgba(var(--star-color),0), rgba(var(--star-color),calc(var(--star-opacity) * 0.1)) 20%, rgba(var(--star-color),calc(var(--star-opacity) * 0.4)) 55%, rgba(var(--star-color),var(--star-opacity)) 100%);
+  box-shadow: 0 0 calc(var(--star-glow) * 0.5) rgba(var(--star-color),calc(var(--star-opacity) * 0.5)), 0 0 var(--star-glow) rgba(var(--star-color),calc(var(--star-opacity) * 0.8)), 0 0 calc(var(--star-glow) * 1.5) rgba(196,181,253,calc(var(--star-opacity) * 0.45));
+  animation: shootingStar var(--star-duration, 2.4s) ease-out forwards;
+}
+
+.shooting-star::after {
+  content: ''; position: absolute; right: -1px; top: 50%;
+  width: calc(var(--star-glow) * 0.6); height: calc(var(--star-glow) * 0.6);
+  min-width: 4px; min-height: 4px; border-radius: 9999px; transform: translateY(-50%);
+  background: radial-gradient(circle, rgba(var(--star-color),1) 0%, rgba(var(--star-color),var(--star-opacity)) 45%, rgba(var(--star-color),0) 100%);
+  box-shadow: 0 0 var(--star-glow) rgba(var(--star-color),var(--star-opacity)), 0 0 calc(var(--star-glow) * 2) rgba(196,181,253,calc(var(--star-opacity) * 0.7));
+}
+
+.brand-title {
+  font-family: 'Cinzel', serif; letter-spacing: 0.06em; font-weight: 700;
+  text-shadow: 0 2px 8px rgba(16, 24, 40, 0.08), 0 0 20px rgba(16, 185, 129, 0.08);
+}
+.brand-title-night { text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45), 0 0 24px rgba(167, 139, 250, 0.22); }
+.brand-title-rain { text-shadow: 0 2px 10px rgba(15, 23, 42, 0.12), 0 0 24px rgba(14, 165, 233, 0.16); }
+
+#themeParticles { position: fixed; inset: 0; pointer-events: none; z-index: 2147483646; overflow: hidden; transition: opacity 0.85s ease; }
+.particle-leaf {
+  position: absolute; background: #8bc34a; width: 5px; height: 5px;
+  border-radius: 50% 0 50% 0; animation: floatLeaf var(--dur) linear infinite;
+}
+@keyframes floatLeaf {
+  0% { transform: translate3d(var(--sx), -10vh, 0) rotate(0deg); opacity: 0; }
+  10% { opacity: var(--op); }
+  90% { opacity: var(--op); }
+  100% { transform: translate3d(var(--ex), 110vh, 0) rotate(var(--rot)); opacity: 0; }
+}
+
+.page-section { opacity: 1; transform: translateY(0); }
+.page-hidden { opacity: 0; transform: translateY(10px); pointer-events: none; position: absolute; visibility: hidden; }
+
+body.fullscreen-active { overflow: hidden; }
+#appRoot.fullscreen-active {
+  min-height: 100vh !important; height: 100vh !important; max-width: 100% !important;
+  margin: 0 !important; border-radius: 0 !important; display: flex; flex-direction: column;
+  justify-content: flex-start !important; align-items: center; padding: 3rem 1rem 2rem 1rem !important; 
+  overflow-y: auto !important; overflow-x: hidden !important;
+}
+
+body.fullscreen-active::-webkit-scrollbar,
+#appRoot.fullscreen-active::-webkit-scrollbar {
+  display: none;
+}
+body.fullscreen-active,
+#appRoot.fullscreen-active {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Dedicated Flip Clock Fullscreen Rules */
+body.fc-fullscreen-active #appRoot {
+  padding: 0 !important;
+  justify-content: center !important;
+  align-items: center !important;
+  height: 100vh !important;
+  min-height: 100vh !important;
+  max-height: 100vh !important;
+  overflow: hidden !important;
+}
+
+body.fc-fullscreen-active #appRoot > div {
+  height: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0 !important;
+}
+
+body.fc-fullscreen-active #appRoot > div > div.w-full {
+  height: 100% !important;
+  margin: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+body.fc-fullscreen-active #nav,
+body.fc-fullscreen-active header,
+body.fc-fullscreen-active #pipBtn,
+body.fc-fullscreen-active #fcFullscreenBtn,
+body.fc-fullscreen-active #focusControls,
+body.fc-fullscreen-active #saplings,
+body.fc-fullscreen-active #startPauseBtn,
+body.fc-fullscreen-active #witherBtn,
+body.fc-fullscreen-active #resetBtn,
+body.fc-fullscreen-active #message,
+body.fc-fullscreen-active #phaseLabel,
+body.fc-fullscreen-active #flipProgressLabel {
+  display: none !important;
+}
+
+body.fc-fullscreen-active #focusPage {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  max-width: 100% !important;
+  width: 100% !important;
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+body.fc-fullscreen-active #focusPage > div {
+  max-width: 100% !important;
+  width: 100% !important;
+  margin: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+body.fc-fullscreen-active #focusPage > div > div.mt-4 {
+  margin: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+body.fc-fullscreen-active #flipClockContainer {
+  margin: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+body.fc-fullscreen-active .flip-clock { 
+  gap: 12px; 
+  cursor: pointer; 
+}
+
+body.fc-fullscreen-active .flip-digit {
+  width: clamp(4.5rem, min(18vw, 40vh), 12rem);
+  height: clamp(6.5rem, min(27vw, 60vh), 18rem);
+  font-size: clamp(4.5rem, min(18vw, 40vh), 12rem);
+  border-radius: 16px;
+}
+body.fc-fullscreen-active .flip-half { border-radius: 16px; }
+body.fc-fullscreen-active .flip-half.top { border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
+body.fc-fullscreen-active .flip-half.bottom { border-top-left-radius: 0; border-top-right-radius: 0; }
+body.fc-fullscreen-active .flip-half .val {
+  height: clamp(6.5rem, min(27vw, 60vh), 18rem);
+  line-height: clamp(6.5rem, min(27vw, 60vh), 18rem);
+}
+body.fc-fullscreen-active .flip-colon { 
+  font-size: clamp(4rem, min(15vw, 35vh), 10rem); 
+}
+
+.btn-interactive:not(label):hover { transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
+.btn-interactive:not(label):active { transform: translateY(0) scale(0.95); box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); }
+
+#toastContainer { position: fixed; top: 1.5rem; right: 1.5rem; z-index: 2147483647; display: flex; flex-direction: column; gap: 0.75rem; pointer-events: none; }
+.toast-msg {
+  padding: 0.875rem 1.5rem; border-radius: 1rem; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.2);
+  font-weight: 500; transform: translateY(-20px) scale(0.95); opacity: 0;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); backdrop-filter: blur(8px);
+}
+.toast-msg.toast-show { transform: translateY(0) scale(1); opacity: 1; }
+
+.custom-range { -webkit-appearance: none; appearance: none; background: transparent; outline: none; height: 24px; }
+.custom-range::-webkit-slider-runnable-track {
+  width: 100%; height: 6px; border-radius: 9999px;
+  background: var(--range-track, rgba(16, 185, 129, 0.15)); transition: background 0.5s ease;
+}
+.custom-range::-webkit-slider-thumb {
+  -webkit-appearance: none; height: 18px; width: 18px; border-radius: 50%; margin-top: -6px; cursor: pointer;
+  background: var(--range-thumb, #10b981); box-shadow: var(--range-glow, 0 0 12px rgba(16, 185, 129, 0.4));
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+}
+.custom-range::-webkit-slider-thumb:hover { transform: scale(1.15); }
+.custom-range:focus-visible::-webkit-slider-thumb { box-shadow: var(--range-glow, 0 0 12px rgba(16, 185, 129, 0.4)), 0 0 0 4px var(--range-ring, rgba(16, 185, 129, 0.25)); }
+
+.custom-range::-moz-range-track {
+  width: 100%; height: 6px; border-radius: 9999px;
+  background: var(--range-track, rgba(16, 185, 129, 0.15)); transition: background 0.5s ease;
+}
+.custom-range::-moz-range-thumb {
+  height: 18px; width: 18px; border: none; border-radius: 50%; cursor: pointer;
+  background: var(--range-thumb, #10b981); box-shadow: var(--range-glow, 0 0 12px rgba(16, 185, 129, 0.4));
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+}
+.custom-range::-moz-range-thumb:hover { transform: scale(1.15); }
+.custom-range:focus-visible::-moz-range-thumb { box-shadow: var(--range-glow, 0 0 12px rgba(16, 185, 129, 0.4)), 0 0 0 4px var(--range-ring, rgba(16, 185, 129, 0.25)); }
+
+input[type="checkbox"] { transform: translateZ(0); backface-visibility: hidden; -webkit-font-smoothing: subpixel-antialiased; }
+
+/* Flip Clock Styles with Specular Highlights & Depth */
+.flip-clock {
+  display: flex; gap: 8px; font-family: 'JetBrains Mono', monospace; font-weight: 700;
+  align-items: center; justify-content: center; user-select: none;
+}
+.flip-group { display: flex; gap: 4px; }
+.flip-colon {
+  font-size: clamp(3rem, 10vw, 4.5rem); 
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 0.12em; 
+  opacity: 0.8;
+  color: var(--fc-text, #065f46);
+  animation: pulseColon 2s infinite ease-in-out;
+}
+@keyframes pulseColon { 0%, 100% { opacity: 0.9; } 50% { opacity: 0.4; } }
+
+.flip-digit {
+  position: relative; width: clamp(3.2rem, 11vw, 5rem); height: clamp(4.8rem, 16.5vw, 7.5rem);
+  background: var(--fc-bg-bottom, #ffffff); color: var(--fc-text, #065f46);
+  border-radius: 8px; font-size: clamp(3.2rem, 11vw, 5rem);
+  text-align: center; perspective: 1200px;
+  box-shadow: var(--fc-shadow), inset 0 0 0 1px var(--fc-border);
+}
+
+.flip-half {
+  position: absolute; left: 0; right: 0; height: 50%; overflow: hidden;
+  color: var(--fc-text, #065f46);
+  border-radius: 8px; backface-visibility: hidden; transform-style: preserve-3d;
+}
+
+.flip-half.top {
+  top: 0; transform-origin: bottom; background: var(--fc-bg-top);
+  border-bottom-left-radius: 0; border-bottom-right-radius: 0;
+  border-bottom: 1px solid var(--fc-split);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.45), inset 0 -2px 10px rgba(0,0,0,0.04);
+}
+
+.flip-half.bottom {
+  bottom: 0; transform-origin: top; background: var(--fc-bg-bottom);
+  border-top-left-radius: 0; border-top-right-radius: 0;
+  box-shadow: inset 0 2px 10px rgba(0,0,0,0.04);
+}
+
+.flip-half .val {
+  position: absolute; left: 0; width: 100%;
+  height: clamp(4.8rem, 16.5vw, 7.5rem); 
+  line-height: clamp(4.8rem, 16.5vw, 7.5rem);
+}
+
+.flip-half.top .val { top: 0; }
+.flip-half.bottom .val { bottom: 0; }
+
+.flip-flap.top { 
+  z-index: 2; 
+  animation: flipTop 300ms cubic-bezier(0.37, 0, 0.63, 1) forwards; 
+}
+
+.flip-flap.bottom { 
+  z-index: 2; 
+  transform: rotateX(90deg); 
+  animation: flipBottom 300ms cubic-bezier(0.37, 0, 0.63, 1) 300ms forwards; 
+}
+
+@keyframes flipTop {
+  0% { transform: rotateX(0deg); filter: brightness(1); }
+  100% { transform: rotateX(-90deg); filter: brightness(0.6); }
+}
+@keyframes flipBottom {
+  0% { transform: rotateX(90deg); filter: brightness(0.6); }
+  100% { transform: rotateX(0deg); filter: brightness(1); }
+}
+
+/* Tiered Canopy Atmospheric Fog */
+.canopy-layer-fog {
+  position: absolute; inset: -4px -16px;
+  background: radial-gradient(ellipse at center, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 75%);
+  pointer-events: none; z-index: 1; filter: blur(6px);
+}
+.canopy-layer-fog-night {
+  background: radial-gradient(ellipse at center, rgba(139,92,246,0.15) 0%, rgba(15,23,42,0) 75%);
+}
+.canopy-layer-fog-rain {
+  background: radial-gradient(ellipse at center, rgba(186,230,253,0.3) 0%, rgba(224,242,254,0) 75%);
+}
+</style>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#f7f4ea">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+</head>
+<body class="min-h-screen bg-gradient-to-b from-emerald-50 via-lime-50 to-teal-100 text-slate-800">
+
+<div id="rainOverlay" class="rain-overlay hidden"></div>
+<div id="nightOverlay" class="rain-overlay hidden"></div>
+<div id="themeParticles"></div>
+<div id="toastContainer"></div>
+
+<div id="soundscapeLoader" class="fixed top-[88px] right-6 z-[2000] px-5 py-3 rounded-2xl backdrop-blur-xl shadow-2xl border flex items-center gap-3 transition-all duration-300 pointer-events-none opacity-0 translate-x-8">
+  <svg class="animate-spin h-4 w-4 text-current opacity-70" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+  </svg>
+  <span id="soundscapeLoaderSubtitle" class="text-[14px] font-medium tracking-wide pr-1">Gathering the rain...</span>
+</div>
+
+<div id="confirmModal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-[9999] hidden flex items-center justify-center opacity-0 transition-opacity duration-200">
+  <div class="bg-white rounded-3xl p-6 max-w-sm mx-4 shadow-2xl transform scale-95 transition-transform duration-200">
+    <h3 class="text-xl font-bold mb-2 text-slate-800">Reset All Data?</h3>
+    <p class="text-slate-600 mb-6">This will permanently remove your forest and all statistics.</p>
+    <div class="flex justify-end gap-3">
+      <button id="confirmCancel" class="btn-interactive px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium">Cancel</button>
+      <button id="confirmYes" class="btn-interactive px-4 py-2 rounded-xl bg-rose-500 hover:bg-rose-600 text-white font-medium">Reset</button>
+    </div>
+  </div>
+</div>
+
+<div class="min-h-screen p-4 md:p-8 pb-10 md:pb-16 flex flex-col items-center">
+  <div id="appRoot" class="w-full max-w-5xl min-h-[calc(100vh-2rem)] rounded-3xl bg-gradient-to-b from-emerald-50 via-lime-50 to-teal-100 p-6 md:p-10 relative overflow-hidden flex flex-col items-center">
+    
+    <button id="pipBtn" class="fixed top-6 left-6 z-[2000] backdrop-blur-md btn-interactive w-11 h-11 flex items-center justify-center rounded-2xl border text-xl" title="Mini Player" aria-label="Mini Player">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="6" width="18" height="12" rx="2" ry="2"></rect>
+        <rect x="12" y="11" width="7" height="5" rx="1" ry="1"></rect>
+      </svg>
+    </button>
+    
+    <button id="fullscreenBtn" class="fixed top-6 right-6 z-[2000] backdrop-blur-md btn-interactive w-11 h-11 flex items-center justify-center rounded-2xl border text-xl" title="Toggle Fullscreen" aria-label="Toggle Fullscreen">⛶</button>
+    
+    <!-- Dedicated Flip Clock Fullscreen Button -->
+    <button id="fcFullscreenBtn" class="fixed top-[76px] right-[28px] z-[2000] backdrop-blur-md btn-interactive w-9 h-9 flex items-center justify-center rounded-xl border text-lg hidden" title="Fullscreen Flip Clock" aria-label="Fullscreen Flip Clock">◫</button>
+
+    <div class="w-full max-w-4xl space-y-8 relative z-10 flex flex-col items-center">
+      
+      <header class="flex flex-col items-center text-center gap-4 w-full relative">
+        <div>
+          <h1 id="brandTitle" class="brand-title text-4xl md:text-6xl">🌲 Witherwood</h1>
+          <p class="text-slate-600 mt-2">Every 10 minutes of focus plants a tree.</p>
+        </div>
+      </header>
+
+      <nav id="nav" class="flex flex-wrap justify-center gap-3 w-full"></nav>
+
+      <div class="w-full relative flex justify-center">
+        
+        <section id="focusPage" class="page-section w-full rounded-3xl bg-white/85 border shadow-lg p-6 max-w-3xl mb-8 md:mb-12 lg:mb-16">
+          <div class="max-w-lg mx-auto text-center">
+            <div id="phaseLabel" class="text-sm uppercase tracking-wide text-emerald-700 font-semibold">Focus Session</div>
+
+            <div class="mt-4 flex flex-col items-center justify-center w-full">
+              <!-- Circular Timer -->
+              <div id="circularTimerContainer" class="relative w-64 h-64 md:w-72 md:h-72 flex justify-center">
+                <svg class="w-full h-full -rotate-90 overflow-visible" viewBox="0 0 160 160">
+                  <circle id="progressRingBg" cx="80" cy="80" r="60" fill="none" stroke-width="8" />
+                  <circle id="progressRing" cx="80" cy="80" r="60" fill="none" stroke="#10b981" stroke-width="8" stroke-linecap="round" stroke-dasharray="376.99" stroke-dashoffset="0" class="transition-all duration-300 ease-in-out" />
+                </svg>
+
+                <div class="absolute inset-0 flex flex-col items-center justify-center">
+                  <div id="timer" class="text-5xl md:text-6xl font-mono font-bold">25:00</div>
+                  <div id="progressLabel" class="mt-2 text-sm text-slate-500"></div>
+                </div>
+              </div>
+
+              <!-- Flip Clock Timer -->
+              <div id="flipClockContainer" class="hidden flex-col items-center justify-center my-6 w-full">
+                <div id="flipClockRenderer"></div>
+                <div id="flipProgressLabel" class="mt-8 text-sm text-slate-500 text-center"></div>
+              </div>
+            </div>
+
+            <div id="focusControls" class="mt-6 flex items-center justify-center gap-3">
+              <label>Focus (min)</label>
+              <input id="focusMinutesInput" type="number" min="1" max="180" value="25" class="w-24 rounded-xl border px-3 py-2 text-center" />
+            </div>
+
+            <div id="saplings" class="mt-5 text-lg font-medium"></div>
+
+            <div class="flex flex-wrap justify-center gap-4 mt-6">
+              <button id="startPauseBtn" class="btn-interactive px-6 py-3 rounded-2xl bg-emerald-500 text-white font-semibold">Start</button>
+              <button id="witherBtn" class="btn-interactive px-6 py-3 rounded-2xl bg-amber-500 text-white font-semibold">🍂 Wither Tree</button>
+              <button id="resetBtn" class="btn-interactive px-6 py-3 rounded-2xl border bg-white font-medium">Reset</button>
+            </div>
+
+            <p id="message" class="mt-6 italic text-slate-500">“A calm mind nurtures strong roots.”</p>
+          </div>
+        </section>
+
+        <section id="forestPage" class="page-section page-hidden w-full rounded-3xl bg-white/85 border shadow-lg p-6 max-w-3xl">
+          <h2 class="text-2xl font-semibold mb-6">Your Forest</h2>
+          <div id="forestGrid" class="flex flex-wrap text-xl justify-center w-full"></div>
+        </section>
+
+        <section id="dashboardPage" class="page-section page-hidden w-full max-w-4xl">
+          <div id="dashboardGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        </section>
+
+        <section id="settingsPage" class="page-section page-hidden w-full rounded-3xl bg-white/85 border shadow-lg p-6 max-w-xl space-y-5">
+          <h2 class="text-2xl font-semibold mb-2">Settings</h2>
+
+          <label class="flex items-center gap-3 cursor-pointer">
+            <input id="breaksEnabledToggle" type="checkbox" class="w-5 h-5 text-emerald-500 rounded border-slate-300 focus:ring-emerald-500" />
+            <span class="font-medium settings-label">Enable Break Sessions</span>
+          </label>
+
+          <label class="block cursor-pointer">
+            <span class="font-medium settings-label">Break Minutes</span>
+            <input id="breakMinutesInput" type="number" min="1" max="60" value="5" class="w-full mt-2 rounded-xl border px-3 py-3" />
+          </label>
+
+          <div class="pt-4 border-t border-slate-200/60">
+            <label class="flex items-center gap-3 cursor-pointer mb-4">
+              <input id="mindfulnessEnabledToggle" type="checkbox" class="w-5 h-5 text-emerald-500 rounded border-slate-300 focus:ring-emerald-500" />
+              <span class="font-medium settings-label">Enable Mindfulness Bell</span>
+            </label>
+            <label class="block cursor-pointer">
+              <span class="font-medium settings-label">Bell Interval (minutes)</span>
+              <input id="mindfulnessIntervalInput" type="number" min="1" max="60" value="5" class="w-full mt-2 rounded-xl border px-3 py-3" />
+            </label>
+          </div>
+
+          <div class="pt-4 border-t border-slate-200/60">
+            <label class="flex items-center gap-3 cursor-pointer mb-4">
+              <input id="ambientSoundToggle" type="checkbox" class="w-5 h-5 text-emerald-500 rounded border-slate-300 focus:ring-emerald-500" />
+              <span class="font-medium settings-label">Enable Ambient Sound</span>
+            </label>
+
+            <label class="block">
+              <div class="flex items-center justify-between mb-2">
+                <span class="font-medium settings-label">Ambient Volume</span>
+                <span id="ambientVolumeLabel" class="text-sm font-medium">50%</span>
+              </div>
+              <input id="ambientVolumeInput" type="range" min="0" max="100" step="1" value="50" class="custom-range w-full cursor-pointer" />
+            </label>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-5 pt-4 border-t border-slate-200/60">
+            <label class="block cursor-pointer">
+              <span class="font-medium settings-label">Visual Theme</span>
+              <select id="themeSelect" class="w-full mt-2 rounded-xl border px-3 py-3 cursor-pointer">
+                <option value="forest">🌲 Forest</option>
+                <option value="night">🌙 Night</option>
+                <option value="rain">🌧️ Rain</option>
+              </select>
+            </label>
+            <label class="block cursor-pointer">
+              <span class="font-medium settings-label">Soundscape</span>
+              <select id="soundscapeSelect" class="w-full mt-2 rounded-xl border px-3 py-3 cursor-pointer">
+                <option value="woodland">🍃 Woodland</option>
+                <option value="fireside">🔥 Fireside</option>
+                <option value="rainfall">🌧️ Rainfall</option>
+                <option value="ocean">🌊 Ocean</option>
+                <option value="lotr">🧝 LOTR Ambience</option>
+              </select>
+            </label>
+            <label class="block cursor-pointer">
+              <span class="font-medium settings-label">Timer Display</span>
+              <select id="timerDisplaySelect" class="w-full mt-2 rounded-xl border px-3 py-3 cursor-pointer">
+                <option value="circular">⏱️ Circular</option>
+                <option value="flip">📟 Flip Clock</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="pt-6 border-t border-slate-200/60 space-y-4">
+            <div>
+              <h3 class="font-semibold settings-label mb-2">Data Management</h3>
+              <div class="flex flex-wrap gap-3">
+                <button id="exportDataBtn" class="btn-interactive px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-medium">📤 Export Backup</button>
+                <button id="importDataBtn" class="btn-interactive px-5 py-2.5 rounded-xl bg-sky-500 hover:bg-sky-600 text-white font-medium">📥 Import Backup</button>
+                <input id="importFileInput" type="file" accept=".json" style="display:none" />
+              </div>
+            </div>
+            <div class="pt-4 border-t border-slate-200/60">
+              <h3 class="font-semibold settings-label text-rose-500 mb-2">Danger Zone</h3>
+              <p class="text-sm text-slate-500 mb-3">Permanently clears your forest and all saved statistics.</p>
+              <button id="resetAllBtn" class="btn-interactive px-5 py-2.5 rounded-xl bg-rose-500 text-white hover:bg-rose-600 font-medium">Reset All Data</button>
+            </div>
+          </div>
+        </section>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+const STORAGE_KEY = 'witherwood-data';
+const DEFAULTS = {
+  focusMinutes: 25, breakMinutes: 5, theme: 'forest', soundscape: 'woodland',
+  ambientSoundEnabled: false, ambientVolume: 50, livingTrees: 0, deadTrees: 0,
+  totalFocusMinutes: 0, todayFocusMinutes: 0, streakDays: 0, bestDayMinutes: 0,
+  lastFocusDate: '', breaksEnabled: true, mindfulnessEnabled: false, mindfulnessInterval: 5,
+  timerDisplay: 'circular'
+};
+
+let data;
+try {
+  data = { ...DEFAULTS, ...(JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null') || {}) };
+  if (!data.soundscape) data.soundscape = 'woodland';
+  if (!data.timerDisplay) data.timerDisplay = 'circular';
+} catch { data = { ...DEFAULTS }; }
+
+let page = 'focus';
+let phase = 'focus';
+let isRunning = false;
+let intervalId = null;
+let audioUnlocked = false;
+let secondsLeft = data.focusMinutes * 60;
+let healthyTrees = Math.max(1, Math.ceil(data.focusMinutes / 10));
+
+let pipWindow = null;
+let pipElements = {};
+let flipClock = null;
+let isFcFullscreen = false;
+
+const pages = ['focus', 'forest', 'dashboard', 'settings'];
+const labels = { focus: '⏱ Focus', forest: '🌲 Forest', dashboard: '📊 Dashboard', settings: '⚙️ Settings' };
+
+const themes = {
+  forest: ['from-emerald-50', 'via-lime-50', 'to-teal-100'],
+  night: ['from-[#0a0f1c]', 'via-[#0f1429]', 'to-[#151b36]'],
+  rain: ['from-sky-100', 'via-slate-200', 'to-blue-300'],
+};
+
+const AUDIO_CONFIG = {
+  woodland: {
+    ambience: ['sounds/AMBIENCE/forest_01.mp3', 'sounds/AMBIENCE/forest_02.mp3'],
+    common: ['sounds/WOODLAND/robin.mp3', 'sounds/WOODLAND/sparrow.mp3', 'sounds/WOODLAND/cuckoo.mp3', 'sounds/WOODLAND/bird_flying.mp3', 'sounds/WOODLAND/WIND CHIME.mp3'],
+    medium: ['sounds/WOODLAND/woodpecker.mp3', 'sounds/WOODLAND/squirrel.mp3', 'sounds/WOODLAND/gust_wind.mp3'],
+    rare: ['sounds/WOODLAND/owl_01.mp3', 'sounds/WOODLAND/owl_02.mp3', 'sounds/WOODLAND/owl_03.mp3']
+  },
+  fireside: {
+    ambience: ['sounds/AMBIENCE/fireplace_01.mp3', 'sounds/AMBIENCE/fireplace_02.mp3'],
+    woosh: ['sounds/FIRE/fire_woosh_01.mp3', 'sounds/FIRE/fire_woosh_02.mp3'],
+    owl: ['sounds/FIRE/owl_01.mp3', 'sounds/FIRE/owl_02.mp3', 'sounds/FIRE/owl_03.mp3']
+  },
+  rainfall: {
+    ambience: ['sounds/AMBIENCE/rain_01.mp3'],
+    thunder: ['sounds/RAIN/thunder_01.mp3', 'sounds/RAIN/thunder_02.mp3', 'sounds/RAIN/thunder_03.mp3'],
+    wind: ['sounds/WOODLAND/gust_wind.mp3']
+  },
+  ocean: {
+    ambience: ['sounds/AMBIENCE/ocean_01.mp3'],
+    events: ['sounds/OCEAN/ocean_dolphin_01.mp3', 'sounds/OCEAN/ocean_seagull_01.mp3', 'sounds/OCEAN/ocean_seagull_02.mp3']
+  },
+  lotr: {
+    ambience: ['sounds/AMBIENCE/lotr_01.mp3']
+  }
+};
+
+class SoundscapeEngine {
+  constructor() {
+    this.ctx = null; this.masterGain = null; this.activeAmbience = new Set();
+    this.activeEvents = new Set(); this.timeouts = new Set(); this.baseVolume = 0.5;
+    this.enabled = false; this.currentSoundscape = null; this.ambienceMonitor = null;
+    this.buffers = new Map(); this.loading = false;
+    this.state = { common: 0, medium: 0, lastPlayed: {} };
+  }
+
+  init() {
+    if(!this.ctx) {
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      this.ctx = new AudioContext();
+      this.masterGain = this.ctx.createGain();
+      this.masterGain.connect(this.ctx.destination);
+      this.masterGain.gain.value = this.baseVolume;
+    }
+  }
+
+  setVolume(vol) {
+    this.baseVolume = Math.max(0, Math.min(1, vol));
+    if (this.masterGain && this.ctx) {
+      this.masterGain.gain.setTargetAtTime(this.baseVolume, this.ctx.currentTime, 0.1);
+    }
+  }
+
+  async loadSoundscape(type) {
+    const config = AUDIO_CONFIG[type];
+    if (!config) return;
+
+    const allSrcs = [
+      ...(config.ambience || []), ...(config.common || []), ...(config.medium || []),
+      ...(config.rare || []), ...(config.woosh || []), ...(config.owl || []),
+      ...(config.thunder || []), ...(config.wind || []), ...(config.events || [])
+    ];
+
+    let toLoad = allSrcs.filter(src => !this.buffers.has(src));
+    if (toLoad.length > 0) {
+      showSoundscapeLoader(type);
+      this.loading = true;
+      await Promise.all(toLoad.map(async (src) => {
+        try {
+          const response = await fetch(src);
+          if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+          const arrayBuffer = await response.arrayBuffer();
+          const audioBuffer = await this.ctx.decodeAudioData(arrayBuffer);
+          this.buffers.set(src, audioBuffer);
+        } catch (e) { 
+          console.warn('Failed to load audio:', src, e); 
+        }
+      }));
+      this.loading = false;
+      hideSoundscapeLoader();
+      if (this.currentSoundscape === type && this.enabled) showToast('Soundscape ready.', 'success');
+    }
+  }
+
+  async apply(soundscape, enabled) {
+    this.init();
+    if(this.ctx.state === 'suspended') this.ctx.resume();
+    
+    const isSwitching = this.currentSoundscape !== soundscape && this.enabled && enabled;
+    const isTurningOff = !enabled && this.enabled;
+
+    this.enabled = enabled;
+    this.currentSoundscape = soundscape;
+
+    if (isTurningOff) { this.detachAndFadeOutAll(2); return; }
+
+    if(enabled) {
+      await this.loadSoundscape(soundscape);
+      if (!this.enabled || this.currentSoundscape !== soundscape) return;
+      if (isSwitching) this.detachAndFadeOutAll(6);
+      if (this.activeAmbience.size === 0 || isSwitching) {
+        this.startAmbience(soundscape);
+        this.startEvents(soundscape);
+      }
+    }
+  }
+
+  detachAndFadeOutAll(duration = 6) {
+    if (!this.ctx) return;
+    this.timeouts.forEach(clearTimeout); this.timeouts.clear();
+    if(this.ambienceMonitor) { clearInterval(this.ambienceMonitor); this.ambienceMonitor = null; }
+
+    const now = this.ctx.currentTime;
+    const fadeItems = [...this.activeAmbience, ...this.activeEvents];
+    
+    this.activeAmbience.clear(); this.activeEvents.clear();
+    this.state = { common: 0, medium: 0, lastPlayed: {} };
+
+    fadeItems.forEach(w => {
+      w.gainNode.gain.cancelScheduledValues(now);
+      w.gainNode.gain.setValueAtTime(w.gainNode.gain.value, now);
+      w.gainNode.gain.linearRampToValueAtTime(0, now + duration);
+      try { w.source.stop(now + duration); } catch(e){}
+    });
+  }
+
+  playAudio(src, isAmbience = false, onEnd = null) {
+    const buffer = this.buffers.get(src);
+    if (!buffer) { if (onEnd) onEnd(); return null; }
+
+    const source = this.ctx.createBufferSource();
+    source.buffer = buffer;
+
+    const gainNode = this.ctx.createGain();
+    const targetVol = isAmbience ? 1 : (0.7 + Math.random() * 0.3);
+    
+    let panner = null;
+    if (!isAmbience) {
+      if (this.ctx.createStereoPanner) {
+        panner = this.ctx.createStereoPanner();
+        panner.pan.value = (Math.random() * 1.0) - 0.5;
+      } else if (this.ctx.createPanner) {
+        panner = this.ctx.createPanner();
+        panner.panningModel = 'equalpower';
+        const panX = (Math.random() * 1.0) - 0.5;
+        panner.setPosition(panX, 0, 1 - Math.abs(panX));
+      }
+      source.playbackRate.value = 0.97 + Math.random() * 0.06;
+    }
+
+    gainNode.gain.value = 0;
+    
+    if (panner) { source.connect(panner); panner.connect(gainNode); } 
+    else { source.connect(gainNode); }
+    
+    gainNode.connect(this.masterGain);
+
+    const now = this.ctx.currentTime;
+    const fadeDuration = isAmbience ? 8 : 1.5;
+    gainNode.gain.linearRampToValueAtTime(targetVol, now + fadeDuration);
+
+    const wrapper = { source, gainNode, targetVol, duration: buffer.duration, startTime: now };
+    
+    if(isAmbience) this.activeAmbience.add(wrapper);
+    else this.activeEvents.add(wrapper);
+
+    source.onended = () => {
+      if(isAmbience) this.activeAmbience.delete(wrapper);
+      else this.activeEvents.delete(wrapper);
+      if(onEnd) onEnd();
+    };
+
+    source.start(now);
+    return wrapper;
+  }
+
+  startAmbience(type) {
+    const tracks = AUDIO_CONFIG[type]?.ambience;
+    if (!tracks || tracks.length === 0) return;
+    let currentIndex = Math.floor(Math.random() * tracks.length);
+    
+    const playNext = () => {
+      if(!this.enabled || this.currentSoundscape !== type) return;
+      const track = tracks[currentIndex];
+      const wrapper = this.playAudio(track, true);
+      if (!wrapper) return;
+
+      const crossfadeDuration = Math.min(8, wrapper.duration / 2);
+      const crossfadeTime = wrapper.duration - crossfadeDuration;
+      
+      const checkCrossfade = setInterval(() => {
+        if(!this.enabled || this.currentSoundscape !== type) { clearInterval(checkCrossfade); return; }
+        const elapsed = this.ctx.currentTime - wrapper.startTime;
+        if(elapsed >= crossfadeTime) {
+          clearInterval(checkCrossfade);
+          currentIndex = (currentIndex + 1) % tracks.length;
+          playNext();
+          
+          const now = this.ctx.currentTime;
+          wrapper.gainNode.gain.cancelScheduledValues(now);
+          wrapper.gainNode.gain.setValueAtTime(wrapper.gainNode.gain.value, now);
+          wrapper.gainNode.gain.linearRampToValueAtTime(0, now + crossfadeDuration);
+        }
+      }, 500);
+      this.ambienceMonitor = checkCrossfade;
+    };
+    playNext();
+  }
+
+  schedule(fn, minMs, maxMs) {
+    const delay = minMs + Math.random() * (maxMs - minMs);
+    const id = setTimeout(() => {
+      this.timeouts.delete(id);
+      if(this.enabled) fn();
+    }, delay);
+    this.timeouts.add(id);
+  }
+
+  getRandomTrack(pool, tierStr) {
+    if (!pool || pool.length === 0) return null;
+    const lastTrack = this.state.lastPlayed[tierStr];
+    let available = pool.filter(t => t !== lastTrack);
+    if(available.length === 0) available = pool;
+    const chosen = available[Math.floor(Math.random() * available.length)];
+    this.state.lastPlayed[tierStr] = chosen;
+    return chosen;
+  }
+
+  triggerEvent(src, nextScheduleFn) {
+    if(!src) { if(nextScheduleFn) nextScheduleFn(); return; }
+    if(this.activeEvents.size > 0) { this.schedule(() => this.triggerEvent(src, nextScheduleFn), 10000, 30000); return; }
+    this.playAudio(src, false, nextScheduleFn);
+  }
+
+  startEvents(type) {
+    if(type === 'woodland') this.scheduleWoodland();
+    else if (type === 'fireside') { this.scheduleFiresideWoosh(); this.scheduleFiresideOwl(); }
+    else if (type === 'rainfall') { this.scheduleRainThunder(); }
+    else if (type === 'ocean') { this.scheduleOceanEvents(); }
+  }
+
+  scheduleWoodland() {
+    this.schedule(() => {
+      let pool = AUDIO_CONFIG.woodland.common; let tier = 'common';
+      if(this.state.common >= (2 + Math.floor(Math.random()*2))) {
+        pool = AUDIO_CONFIG.woodland.medium; tier = 'medium';
+        this.state.common = 0; this.state.medium++;
+        if(this.state.medium >= (2 + Math.floor(Math.random()*2))) {
+          pool = AUDIO_CONFIG.woodland.rare; tier = 'rare'; this.state.medium = 0;
+        }
+      } else { this.state.common++; }
+      const track = this.getRandomTrack(pool, tier);
+      this.triggerEvent(track, () => this.scheduleWoodland());
+    }, 120000, 360000); 
+  }
+
+  scheduleFiresideWoosh() {
+    this.schedule(() => {
+      const track = this.getRandomTrack(AUDIO_CONFIG.fireside.woosh, 'woosh');
+      this.triggerEvent(track, () => this.scheduleFiresideWoosh());
+    }, 240000, 480000); 
+  }
+
+  scheduleFiresideOwl() {
+    this.schedule(() => {
+      const track = this.getRandomTrack(AUDIO_CONFIG.fireside.owl, 'owl');
+      this.triggerEvent(track, () => this.scheduleFiresideOwl());
+    }, 1200000, 2100000); 
+  }
+
+  scheduleRainThunder() {
+    this.schedule(() => {
+      const track = this.getRandomTrack(AUDIO_CONFIG.rainfall.thunder, 'thunder');
+      this.triggerEvent(track, () => this.scheduleRainThunder());
+    }, 420000, 600000); 
+  }
+
+  scheduleOceanEvents() {
+    this.schedule(() => {
+      const track = this.getRandomTrack(AUDIO_CONFIG.ocean.events, 'ocean_events');
+      this.triggerEvent(track, () => this.scheduleOceanEvents());
+    }, 120000, 300000); 
+  }
+
+  async preloadBells() {
+    if (!this.ctx) this.init();
+    const files = ['sounds/time%20up.mp3', 'sounds/mindfullness%20bell.mp3'];
+    for (const src of files) {
+      if (!this.buffers.has(src)) {
+        try {
+          const response = await fetch(src);
+          const arrayBuffer = await response.arrayBuffer();
+          const audioBuffer = await this.ctx.decodeAudioData(arrayBuffer);
+          this.buffers.set(src, audioBuffer);
+        } catch(e) { }
+      }
+    }
+  }
+
+  async playBell(type) {
+    if (!this.ctx) this.init();
+    if(this.ctx.state === 'suspended') this.ctx.resume();
+    
+    const src = type === 'timeup' ? 'sounds/time%20up.mp3' : 'sounds/mindfullness%20bell.mp3';
+    if (!this.buffers.has(src)) {
+      await this.preloadBells();
+    }
+
+    const buffer = this.buffers.get(src);
+    if (!buffer) return;
+
+    const source = this.ctx.createBufferSource();
+    source.buffer = buffer;
+    const gainNode = this.ctx.createGain();
+    gainNode.gain.value = 0.8;
+    
+    source.connect(gainNode);
+    gainNode.connect(this.ctx.destination);
+    
+    source.start(this.ctx.currentTime);
+  }
+}
+const soundEngine = new SoundscapeEngine();
+
+// Haptic Micro-Feedback Handler
+function triggerHaptic(type = 'light') {
+  if (!('vibrate' in navigator)) return;
+  try {
+    if (type === 'light') navigator.vibrate(12);
+    else if (type === 'medium') navigator.vibrate(25);
+    else if (type === 'heavy') navigator.vibrate([35, 40, 35]);
+    else if (type === 'success') navigator.vibrate([15, 60, 25, 60, 40]);
+  } catch (e) {}
+}
+
+class FlipClock {
+  constructor(containerId) {
+    this.container = document.getElementById(containerId);
+    this.digits = {};
+    this.renderedTime = "";
+    this.initDOM();
+  }
+  
+  initDOM() {
+    this.container.innerHTML = `
+      <div class="flip-clock" role="timer" aria-live="off" aria-label="Timer">
+        <div class="flip-group" id="fc-min">
+          ${this.createDigitDOM('m1')}
+          ${this.createDigitDOM('m0')}
+        </div>
+        <div class="flip-colon">:</div>
+        <div class="flip-group" id="fc-sec">
+          ${this.createDigitDOM('s1')}
+          ${this.createDigitDOM('s0')}
+        </div>
+      </div>
+    `;
+    ['m1','m0','s1','s0'].forEach(id => {
+      this.digits[id] = { el: document.getElementById(`digit-${id}`), val: '0', timeoutId: null };
+    });
+  }
+  
+  createDigitDOM(id) {
+    return `
+      <div class="flip-digit" id="digit-${id}" aria-hidden="true">
+        <div class="flip-half top"><div class="val">0</div></div>
+        <div class="flip-half bottom"><div class="val">0</div></div>
+      </div>`;
+  }
+  
+  update(secondsLeft) {
+    const m = String(Math.floor(secondsLeft / 60)).padStart(2, '0');
+    const s = String(secondsLeft % 60).padStart(2, '0');
+    const newTime = m + s;
+    
+    if (this.renderedTime === newTime) return;
+
+    const ids = ['m1','m0','s1','s0'];
+    for(let i=0; i<4; i++) {
+      if (this.renderedTime === "") {
+        this.digits[ids[i]].val = newTime[i];
+        this.digits[ids[i]].el.querySelectorAll('.val').forEach(v => v.textContent = newTime[i]);
+      } else if (this.renderedTime[i] !== newTime[i]) {
+        this.flipDigit(ids[i], newTime[i]);
+      }
+    }
+    this.renderedTime = newTime;
+  }
+  
+  flipDigit(id, newVal) {
+    const digit = this.digits[id];
+    const el = digit.el;
+    const oldVal = digit.val;
+    if(oldVal === newVal) return;
+    digit.val = newVal;
+
+    if (digit.timeoutId) {
+      clearTimeout(digit.timeoutId);
+      digit.timeoutId = null;
+    }
+
+    el.querySelectorAll('.flip-flap').forEach(n => n.remove());
+
+    const topStatic = el.querySelector('.top:not(.flip-flap) .val');
+    const bottomStatic = el.querySelector('.bottom:not(.flip-flap) .val');
+    
+    topStatic.textContent = newVal;
+    bottomStatic.textContent = oldVal;
+
+    const flapTop = document.createElement('div');
+    flapTop.className = 'flip-half top flip-flap';
+    flapTop.innerHTML = `<div class="val">${oldVal}</div>`;
+
+    const flapBottom = document.createElement('div');
+    flapBottom.className = 'flip-half bottom flip-flap';
+    flapBottom.innerHTML = `<div class="val">${newVal}</div>`;
+
+    el.appendChild(flapTop);
+    el.appendChild(flapBottom);
+
+    digit.timeoutId = setTimeout(() => {
+      bottomStatic.textContent = newVal;
+      if (flapTop.parentNode) flapTop.remove();
+      if (flapBottom.parentNode) flapBottom.remove();
+      digit.timeoutId = null;
+    }, 600);
+  }
+}
+
+function el(id) { return document.getElementById(id); }
+
+function ensureClass(node, className, add) {
+  if (!node) return;
+  if (add && !node.classList.contains(className)) node.classList.add(className);
+  else if (!add && node.classList.contains(className)) node.classList.remove(className);
+}
+
+function updateTextContentSafe(id, text) {
+  const node = el(id);
+  if (node && node.textContent !== text) {
+    node.textContent = text;
+  }
+}
+
+function showToast(message, type = 'info') {
+  const container = el('toastContainer');
+  if(!container) return;
+  const toast = document.createElement('div');
+  const colors = type === 'error' ? 'bg-rose-500 text-white' : 
+                 type === 'success' ? 'bg-emerald-500 text-white' : 
+                 'bg-slate-800 text-white/90 border border-slate-700';
+  toast.className = `toast-msg ${colors}`;
+  toast.textContent = message;
+  container.appendChild(toast);
+  
+  requestAnimationFrame(() => { requestAnimationFrame(() => toast.classList.add('toast-show')); });
+  setTimeout(() => { toast.classList.remove('toast-show'); setTimeout(() => toast.remove(), 400); }, 4000);
+}
+
+function showSoundscapeLoader(type) {
+  const loader = el('soundscapeLoader');
+  if (!loader) return;
+  const titles = {
+    woodland: '🌲 Listening to the forest...',
+    rainfall: '🌧️ Gathering the rain...',
+    fireside: '🔥 Lighting the fire...',
+    ocean: '🌊 Listening to the waves...',
+    lotr: '🧝 Entering Middle-earth...'
+  };
+  el('soundscapeLoaderSubtitle').textContent = titles[type] || '⏳ Preparing audio...';
+  loader.classList.remove('opacity-0', 'translate-x-8');
+  loader.classList.add('opacity-100', 'translate-x-0');
+}
+
+function hideSoundscapeLoader() {
+  const loader = el('soundscapeLoader');
+  if (!loader) return;
+  loader.classList.remove('opacity-100', 'translate-x-0');
+  loader.classList.add('opacity-0', 'translate-x-8');
+}
+
+function showConfirmModal(title, text, onConfirm) {
+  const modal = el('confirmModal');
+  const yesBtn = el('confirmYes');
+  const cancelBtn = el('confirmCancel');
+  
+  modal.querySelector('h3').textContent = title;
+  modal.querySelector('p').textContent = text;
+  
+  modal.classList.remove('hidden');
+  requestAnimationFrame(() => { modal.classList.remove('opacity-0'); modal.firstElementChild.classList.remove('scale-95'); });
+  
+  const close = () => {
+    modal.classList.add('opacity-0'); modal.firstElementChild.classList.add('scale-95');
+    setTimeout(() => modal.classList.add('hidden'), 200);
+    yesBtn.onclick = null; cancelBtn.onclick = null;
+  };
+  
+  yesBtn.onclick = () => { onConfirm(); close(); };
+  cancelBtn.onclick = close;
+}
+
+function playCompletionSound() {
+  if (!audioUnlocked) return;
+  soundEngine.playBell('timeup');
+}
+
+function playMindfulnessSound() {
+  if (!audioUnlocked) return;
+  soundEngine.playBell('mindfulness');
+}
+
+function save() { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); }
+
+function exportBackup() {
+  const backup = { version: 1, exportedAt: new Date().toISOString(), data };
+  const blob = new Blob([JSON.stringify(backup, null, 2)], {type:'application/json'});
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+  a.download = `Witherwood_Backup_${new Date().toISOString().split('T')[0]}.json`;
+  a.click(); URL.revokeObjectURL(a.href);
+}
+
+function importBackup(file) {
+  const reader = new FileReader();
+  reader.onload = () => {
+    try {
+      const backup = JSON.parse(reader.result);
+      if (!backup.data) throw new Error('Invalid backup');
+      data = { ...DEFAULTS, ...backup.data };
+      if (!data.soundscape) data.soundscape = 'woodland';
+      if (!data.timerDisplay) data.timerDisplay = 'circular';
+      save();
+      resetTimer();
+      render();
+      showToast('Backup restored successfully!', 'success');
+    } catch (e) {
+      showToast('Invalid backup file.', 'error');
+    }
+  };
+  reader.readAsText(file);
+}
+
+function fmt(seconds) {
+  return String(Math.floor(seconds / 60)).padStart(2, '0') + ':' + String(seconds % 60).padStart(2, '0');
+}
+
+function getIcons() {
+  if (data.theme === 'rain') return { sapling: '💧', mature: '🌧️', ancient: '⛈️', mythic: '🌊', dead: '☁️' };
+  if (data.theme === 'night') return { sapling: '✨', mature: '🌟', ancient: '🌌', mythic: '👑', dead: '🌑' };
+  return { sapling: '🌱', mature: '🌲', ancient: '🌳', mythic: '🏛️', dead: '🪵' };
+}
+
+function setMessage(text) {
+  updateTextContentSafe('message', `“${text}”`);
+}
+
+function witherTree() {
+  if (!isRunning || phase !== 'focus') return;
+  triggerHaptic('heavy');
+  healthyTrees = Math.max(0, healthyTrees - 1);
+  data.deadTrees += 1;
+  save();
+  showToast('A gust passed through your forest.', 'info');
+  setMessage('A gust passed through your forest.');
+  render();
+}
+
+async function switchPage(newPage) {
+  if (page === newPage) return;
+  triggerHaptic('light');
+  const oldEl = el(page + 'Page'); const newEl = el(newPage + 'Page');
+  if(oldEl) oldEl.classList.add('page-hidden');
+  
+  await new Promise(r => setTimeout(r, 200));
+  
+  if(oldEl) oldEl.classList.add('hidden');
+  if(newEl) { newEl.classList.remove('hidden'); void newEl.offsetWidth; newEl.classList.remove('page-hidden'); }
+  
+  page = newPage; renderNav();
+}
+
+function renderNav() {
+  const nav = el('nav');
+  if (!nav) return;
+
+  nav.innerHTML = '';
+  const isNight = data.theme === 'night';
+  
+  for (const p of pages) {
+    const button = document.createElement('button');
+    const isActive = page === p;
+    
+    if (isNight) {
+      button.className = isActive
+        ? 'btn-interactive px-5 py-2.5 rounded-2xl border border-indigo-400/30 bg-gradient-to-r from-indigo-600 to-violet-600 text-white shadow-[0_0_12px_rgba(139,92,246,0.4)] font-medium'
+        : 'btn-interactive px-5 py-2.5 rounded-2xl border border-slate-700/50 bg-slate-800/80 text-slate-300 shadow-sm hover:bg-slate-700/90 hover:text-white hover:shadow-lg hover:shadow-indigo-900/20';
+    } else {
+      button.className = isActive
+        ? 'btn-interactive px-5 py-2.5 rounded-2xl border shadow-sm bg-emerald-500 text-white font-medium'
+        : 'btn-interactive px-5 py-2.5 rounded-2xl border shadow-sm bg-white/85 text-slate-700 hover:bg-white';
+    }
+
+    button.textContent = labels[p];
+    button.onclick = () => switchPage(p);
+    nav.appendChild(button);
+  }
+}
+
+async function togglePiP() {
+  if (pipWindow) { pipWindow.close(); return; }
+  if ('documentPictureInPicture' in window) {
+    try {
+      pipWindow = await documentPictureInPicture.requestWindow({ width: 320, height: 400 });
+      setupPiP(pipWindow);
+      pipWindow.addEventListener('pagehide', () => { pipWindow = null; });
+    } catch (e) { fallbackPiP(); }
+  } else { fallbackPiP(); }
+}
+
+function fallbackPiP() {
+  pipWindow = window.open('', 'Witherwood Mini Player', 'width=320,height=400');
+  if (pipWindow) {
+    setupPiP(pipWindow);
+    pipWindow.addEventListener('beforeunload', () => { pipWindow = null; });
+  } else { showToast('Popup blocked. Please allow popups for the Mini Player.', 'error'); }
+}
+
+function setupPiP(win) {
+  const isNight = data.theme === 'night';
+  const isRain = data.theme === 'rain';
+  
+  const bgColor = isNight ? '#070a14' : isRain ? '#e0f2fe' : '#ecfdf5';
+  const textColor = isNight ? '#f1f5f9' : '#0f172a';
+  const phaseColor = isNight ? '#c084fc' : isRain ? '#0284c7' : '#047857';
+  const subColor = isNight ? '#94a3b8' : '#64748b';
+  const accentGlow = isNight ? 'rgba(192, 132, 252, 0.35)' : isRain ? 'rgba(14, 165, 233, 0.35)' : 'rgba(16, 185, 129, 0.35)';
+  const ringBgColor = isNight ? 'rgba(255, 255, 255, 0.07)' : isRain ? 'rgba(14, 165, 233, 0.12)' : 'rgba(16, 185, 129, 0.12)';
+  
+  const gradStart = isNight ? '#c084fc' : isRain ? '#38bdf8' : '#34d399';
+  const gradEnd = isNight ? '#6366f1' : isRain ? '#0284c7' : '#059669';
+
+  const style = win.document.createElement('style');
+  style.textContent = `
+    * { box-sizing: border-box; }
+    body { 
+      font-family: 'Inter', system-ui, -apple-system, sans-serif; 
+      display: flex; flex-direction: column; align-items: center; justify-content: center; 
+      width: 100vw; height: 100vh; margin: 0; padding: 3vmin; background: ${bgColor}; color: ${textColor}; 
+      text-align: center; overflow: hidden; user-select: none;
+      transition: background 0.5s ease;
+    }
+    .container {
+      position: relative;
+      width: 100%; height: 100%;
+      background: ${isNight ? 'linear-gradient(145deg, rgba(30, 41, 59, 0.5), rgba(15, 23, 42, 0.7))' : isRain ? 'linear-gradient(145deg, rgba(255, 255, 255, 0.7), rgba(224, 242, 254, 0.5))' : 'linear-gradient(145deg, rgba(255, 255, 255, 0.7), rgba(236, 253, 245, 0.5))'};
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border: 1px solid ${isNight ? 'rgba(255, 255, 255, 0.12)' : 'rgba(255, 255, 255, 0.6)'};
+      border-radius: min(28px, 6vmin); padding: 2vmin;
+      box-shadow: 0 20px 40px -15px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.2);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .container:hover {
+      transform: scale(0.985);
+      box-shadow: 0 25px 50px -12px ${accentGlow};
+    }
+    .circle-box {
+      position: relative; width: min(80vmin, 85vw); height: min(80vmin, 85vw);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .ambient-glow {
+      position: absolute; inset: 10%; border-radius: 50%;
+      background: ${accentGlow}; filter: blur(25px); opacity: 0.6;
+      animation: pulseGlow 4s ease-in-out infinite alternate;
+    }
+    @keyframes pulseGlow {
+      0% { transform: scale(0.92); opacity: 0.4; }
+      100% { transform: scale(1.08); opacity: 0.7; }
+    }
+    .pip-ring-svg {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      transform: rotate(-90deg); overflow: visible; z-index: 1;
+      filter: drop-shadow(0 0 10px ${accentGlow});
+    }
+    .content-box {
+      position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    }
+    .phase-badge { 
+      font-size: max(10px, 3.2vmin); text-transform: uppercase; letter-spacing: 0.2em; 
+      color: ${phaseColor}; font-weight: 700; margin-bottom: 0.5vmin;
+      text-shadow: 0 0 8px ${accentGlow};
+    }
+    .timer { 
+      font-size: max(22px, 12vmin); font-family: 'JetBrains Mono', monospace; font-weight: 800; 
+      line-height: 1; letter-spacing: -1.5px; color: ${textColor};
+      text-shadow: 0 2px 10px rgba(0,0,0,0.15), 0 0 20px ${accentGlow};
+    }
+    .sub-label {
+      font-size: max(9px, 2.8vmin); font-weight: 600; color: ${subColor}; margin-top: 1vmin;
+      opacity: 0.9;
+    }
+  `;
+  win.document.head.appendChild(style);
+  win.document.title = "Witherwood";
+  win.document.body.innerHTML = `
+    <div class="container" id="pipContainer" title="Click anywhere to Play / Pause">
+      <div class="circle-box">
+        <div class="ambient-glow"></div>
+        <svg class="pip-ring-svg" viewBox="0 0 160 160">
+          <defs>
+            <linearGradient id="pipGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="${gradStart}" />
+              <stop offset="100%" stop-color="${gradEnd}" />
+            </linearGradient>
+          </defs>
+          <circle id="pipRingBg" cx="80" cy="80" r="60" fill="none" stroke="${ringBgColor}" stroke-width="8" />
+          <circle id="pipRing" cx="80" cy="80" r="60" fill="none" stroke="url(#pipGradient)" stroke-width="8" stroke-linecap="round" stroke-dasharray="376.99" stroke-dashoffset="0" />
+        </svg>
+        <div class="content-box">
+          <div class="phase-badge" id="pipPhase">FOCUS</div>
+          <div class="timer" id="pipTimer">25:00</div>
+          <div class="sub-label" id="pipSub">🌱 0 saplings</div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  pipElements = {
+    container: win.document.getElementById('pipContainer'),
+    phase: win.document.getElementById('pipPhase'),
+    timer: win.document.getElementById('pipTimer'),
+    sub: win.document.getElementById('pipSub'),
+    ring: win.document.getElementById('pipRing'),
+    ringBg: win.document.getElementById('pipRingBg')
+  };
+
+  pipElements.container.onclick = () => { isRunning ? pauseTimer() : startTimer(); };
+
+  renderFocus();
+}
+
+function renderFocus() {
+  const icons = getIcons();
+  const timeStr = fmt(secondsLeft);
+  const phaseStr = phase === 'focus' ? 'Focus Session' : 'Break Time';
+  const startStr = isRunning ? 'Pause' : 'Start';
+
+  updateTextContentSafe('phaseLabel', phaseStr);
+  updateTextContentSafe('saplings', `${icons.sapling} ${healthyTrees} saplings`);
+  updateTextContentSafe('startPauseBtn', startStr);
+
+  const total = (phase === 'focus' ? data.focusMinutes : data.breakMinutes) * 60;
+  const circumference = 376.99;
+  const dashOffset = circumference * (1 - secondsLeft / Math.max(1, total));
+  const dashOffsetStr = String(dashOffset);
+
+  const circContainer = el('circularTimerContainer');
+  const flipContainer = el('flipClockContainer');
+  const fcFsBtn = el('fcFullscreenBtn');
+
+  if (data.timerDisplay === 'flip') {
+    ensureClass(circContainer, 'hidden', true);
+    ensureClass(flipContainer, 'hidden', false);
+    ensureClass(flipContainer, 'flex', true);
+    if (!isFcFullscreen) ensureClass(fcFsBtn, 'hidden', false);
+    
+    if (!flipClock) flipClock = new FlipClock('flipClockRenderer');
+    flipClock.update(secondsLeft);
+    
+    updateTextContentSafe('flipProgressLabel', `${icons.sapling} ${healthyTrees} saplings to protect`);
+    
+    const renderer = el('flipClockRenderer');
+    if (renderer) {
+      const mins = Math.floor(secondsLeft / 60);
+      const secs = secondsLeft % 60;
+      const newAria = `${mins} minutes ${secs} seconds`;
+      if (renderer.getAttribute('aria-label') !== newAria) {
+        renderer.setAttribute('aria-label', newAria);
+      }
+    }
+  } else {
+    ensureClass(circContainer, 'hidden', false);
+    ensureClass(flipContainer, 'hidden', true);
+    ensureClass(flipContainer, 'flex', false);
+    ensureClass(fcFsBtn, 'hidden', true);
+
+    updateTextContentSafe('timer', timeStr);
+    updateTextContentSafe('progressLabel', `${icons.sapling} ${healthyTrees} saplings to protect`);
+    
+    const ring = el('progressRing');
+    if (ring && ring.style.strokeDashoffset !== dashOffsetStr) {
+      ring.style.strokeDashoffset = dashOffsetStr;
+    }
+  }
+
+  if (pipWindow && pipElements.timer) {
+    if (pipElements.timer.textContent !== timeStr) pipElements.timer.textContent = timeStr;
+    const pipPhaseStr = phase === 'focus' ? 'FOCUS' : 'BREAK';
+    if (pipElements.phase && pipElements.phase.textContent !== pipPhaseStr) pipElements.phase.textContent = pipPhaseStr;
+    const pipSubStr = `${icons.sapling} ${healthyTrees} saplings`;
+    if (pipElements.sub && pipElements.sub.textContent !== pipSubStr) pipElements.sub.textContent = pipSubStr;
+    if (pipElements.ring && pipElements.ring.style.strokeDashoffset !== dashOffsetStr) {
+      pipElements.ring.style.strokeDashoffset = dashOffsetStr;
+    }
+  }
+}
+
+const FOREST_TIERS = [
+  { maxHours: 1, icon: '🌱', name: 'Sapling Grove', title: 'The First Bloom' },
+  { maxHours: 2.5, icon: '🌿', name: 'Young Woodland', title: 'The Second Root' },
+  { maxHours: 4, icon: '🌳', name: 'Flourishing Forest', title: 'The Third Canopy' },
+  { maxHours: 5.5, icon: '🌲', name: 'Ancient Forest', title: 'The Fourth Grove' },
+  { maxHours: 7, icon: '🍄', name: 'Enchanted Forest', title: 'The Fifth Awakening' },
+  { maxHours: 8.5, icon: '👑', name: 'Mythic Witherwood', title: 'The Sixth Ascension' },
+  { maxHours: 10, icon: '✨', name: 'Elderheart Forest', title: 'The Seventh Covenant' },
+  { maxHours: Infinity, icon: '☀️', name: 'Zenith of Stillness', title: 'The Final Zenith' }
+];
+
+function getForestTier() {
+  const hours = data.todayFocusMinutes / 60;
+  return FOREST_TIERS.find(tier => hours < tier.maxHours) || FOREST_TIERS[FOREST_TIERS.length - 1];
+}
+
+// 4:00 AM Centralized Logical Study-Day Calculation
+function getLogicalStudyDate(date = new Date()) {
+  const shifted = new Date(date.getTime() - (4 * 60 * 60 * 1000));
+  const year = shifted.getFullYear();
+  const month = String(shifted.getMonth() + 1).padStart(2, '0');
+  const day = String(shifted.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+}
+
+function updateDailyStats(minutes) {
+  const logicalToday = getLogicalStudyDate();
+  if (data.lastFocusDate !== logicalToday) {
+    if (!data.lastFocusDate) {
+      data.streakDays = 1;
+    } else {
+      const prev = new Date(data.lastFocusDate + 'T00:00:00');
+      const curr = new Date(logicalToday + 'T00:00:00');
+      const diffDays = Math.round((curr - prev) / 86400000);
+      data.streakDays = diffDays === 1 ? Math.max(1, data.streakDays + 1) : 1;
+    }
+    data.todayFocusMinutes = 0;
+    data.lastFocusDate = logicalToday;
+  }
+  data.todayFocusMinutes += minutes;
+  data.bestDayMinutes = Math.max(data.bestDayMinutes, data.todayFocusMinutes);
+}
+
+// Tiered Forest Canopy with atmospheric depth & 5 distinct tiers
+function renderForest() {
+  const icons = getIcons();
+  
+  const grid = el('forestGrid');
+  if (!grid) return;
+  grid.innerHTML = '';
+  grid.className = 'w-full'; 
+  
+  const mythicCount = Math.floor(data.livingTrees / 1000);
+  const ancientCount = Math.floor((data.livingTrees % 1000) / 100);
+  const matureCount = Math.floor((data.livingTrees % 100) / 10);
+  const saplingCount = data.livingTrees % 10;
+  const deadCount = data.deadTrees;
+
+  const landscapeContainer = document.createElement('div');
+  landscapeContainer.className = 'w-full flex flex-col items-center justify-center py-6 gap-6 md:gap-8 relative overflow-hidden';
+
+  const isNight = data.theme === 'night';
+  const isRain = data.theme === 'rain';
+  const fogClass = isNight ? 'canopy-layer-fog canopy-layer-fog-night' : isRain ? 'canopy-layer-fog canopy-layer-fog-rain' : 'canopy-layer-fog';
+
+  function createCanopyLayer(count, iconStr, tierName, fontSizeClass, scale, opacity, blurPx, zIndex) {
+    if (count <= 0) return null;
+    const wrapper = document.createElement('div');
+    wrapper.className = 'w-full relative flex flex-col items-center';
+    wrapper.style.zIndex = zIndex;
+
+    const fog = document.createElement('div');
+    fog.className = fogClass;
+    wrapper.appendChild(fog);
+
+    const label = document.createElement('div');
+    label.className = 'text-[11px] uppercase tracking-widest opacity-40 font-semibold mb-2 pointer-events-none';
+    label.textContent = `${tierName} (${count})`;
+    wrapper.appendChild(label);
+
+    const zone = document.createElement('div');
+    zone.className = `w-full flex flex-wrap justify-center items-center gap-3 sm:gap-6 relative ${fontSizeClass}`;
+    zone.style.opacity = opacity;
+    zone.style.transform = `scale(${scale})`;
+    if (blurPx > 0) zone.style.filter = `blur(${blurPx}px)`;
+    zone.style.transition = 'all 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
+
+    for (let i = 0; i < count; i++) {
+      const span = document.createElement('span');
+      span.textContent = iconStr;
+      span.className = 'inline-block transition-transform duration-300 hover:scale-125 hover:-translate-y-2 cursor-default select-none drop-shadow-md';
+      span.onmouseenter = () => triggerHaptic('light');
+      zone.appendChild(span);
+    }
+    wrapper.appendChild(zone);
+    return wrapper;
+  }
+
+  // Layer 0: Zenith Mythic Spire (Every 1000 trees / Deepest background)
+  const mythicZone = createCanopyLayer(mythicCount, icons.mythic, 'Celestial Spire', 'text-6xl md:text-7xl', 0.8, 0.6, 1.2, 5);
+  if (mythicZone) landscapeContainer.appendChild(mythicZone);
+
+  // Layer 1: Distant Ancient Canopy (Every 100 trees, 1-9)
+  const ancientZone = createCanopyLayer(ancientCount, icons.ancient, 'Elder Canopy', 'text-5xl md:text-6xl', 0.85, 0.7, 0.6, 10);
+  if (ancientZone) landscapeContainer.appendChild(ancientZone);
+  
+  // Layer 2: Mid-range Mature Grove (Every 10 trees, 1-9)
+  const matureZone = createCanopyLayer(matureCount, icons.mature, 'Mature Grove', 'text-4xl md:text-5xl', 0.95, 0.88, 0, 20);
+  if (matureZone) landscapeContainer.appendChild(matureZone);
+  
+  // Layer 3: Foreground Saplings (Every 1 tree, 1-9)
+  const saplingZone = createCanopyLayer(saplingCount, icons.sapling, 'Young Flora', 'text-3xl md:text-4xl', 1.05, 1, 0, 30);
+  if (saplingZone) landscapeContainer.appendChild(saplingZone);
+
+  // Layer 4: Forest Floor (Withering remains)
+  if (deadCount > 0) {
+    const deadZone = createCanopyLayer(Math.min(deadCount, 50), icons.dead, 'Fallen Roots', 'text-2xl md:text-3xl grayscale', 0.9, 0.55, 0, 2);
+    if (deadZone) {
+      deadZone.classList.add('mt-2', 'pt-4', 'border-t', 'border-current', 'border-opacity-10');
+      landscapeContainer.appendChild(deadZone);
+    }
+  }
+
+  if (data.livingTrees === 0 && deadCount === 0) {
+    const emptyMsg = document.createElement('div');
+    emptyMsg.className = 'text-slate-400 italic my-auto py-8';
+    emptyMsg.textContent = 'Your forest awaits its first seed.';
+    landscapeContainer.appendChild(emptyMsg);
+  }
+
+  grid.appendChild(landscapeContainer);
+}
+
+function renderDashboard() {
+  const grid = el('dashboardGrid');
+  if (!grid) return;
+  
+  const tier = getForestTier();
+  
+  grid.innerHTML = `
+    <div class="rounded-3xl bg-white/85 border shadow-lg p-5 flex flex-col justify-center">
+      <div class="text-sm uppercase opacity-80 mb-2">Forest Level</div>
+      <div class="text-2xl font-bold leading-tight truncate">${tier.icon} ${tier.name}</div>
+      <div class="text-sm font-medium opacity-70 mt-1 truncate">${tier.title}</div>
+    </div>
+    <div class="rounded-3xl bg-white/85 border shadow-lg p-5 flex flex-col justify-center">
+      <div class="text-sm uppercase opacity-80 mb-2">Today's Focus</div>
+      <div class="text-3xl font-bold">${(data.todayFocusMinutes / 60).toFixed(1)}h</div>
+    </div>
+    <div class="rounded-3xl bg-white/85 border shadow-lg p-5 flex flex-col justify-center">
+      <div class="text-sm uppercase opacity-80 mb-2">Day Streak</div>
+      <div class="text-3xl font-bold">${data.streakDays}</div>
+    </div>
+    <div class="rounded-3xl bg-white/85 border shadow-lg p-5 flex flex-col justify-center">
+      <div class="text-sm uppercase opacity-80 mb-2">Living Trees</div>
+      <div class="text-3xl font-bold">${data.livingTrees}</div>
+    </div>
+    <div class="rounded-3xl bg-white/85 border shadow-lg p-5 flex flex-col justify-center">
+      <div class="text-sm uppercase opacity-80 mb-2">Total Withered</div>
+      <div class="text-3xl font-bold">${data.deadTrees}</div>
+    </div>
+    <div class="rounded-3xl bg-white/85 border shadow-lg p-5 flex flex-col justify-center">
+      <div class="text-sm uppercase opacity-80 mb-2">Total Focus</div>
+      <div class="text-3xl font-bold">${(data.totalFocusMinutes / 60).toFixed(1)}h</div>
+    </div>
+  `;
+}
+
+function updateThemeParticles() {
+  const container = el('themeParticles');
+  if (!container) return;
+  const desiredParent = document.fullscreenElement || document.body;
+  if (container.parentElement !== desiredParent) desiredParent.appendChild(container);
+  
+  if (container.dataset.theme === data.theme) return;
+  
+  container.innerHTML = '';
+  container.dataset.theme = data.theme;
+
+  if (data.theme === 'forest') {
+    for (let i = 0; i < 12; i++) {
+      const p = document.createElement('div'); p.className = 'particle-leaf';
+      p.style.setProperty('--sx', (Math.random() * 100) + 'vw');
+      p.style.setProperty('--ex', ((Math.random() - 0.5) * 100) + 'vw');
+      p.style.setProperty('--dur', (20 + Math.random() * 25) + 's');
+      p.style.setProperty('--op', (0.2 + Math.random() * 0.4));
+      p.style.setProperty('--rot', (360 + Math.random() * 720) + 'deg');
+      p.style.animationDelay = (Math.random() * -30) + 's';
+      container.appendChild(p);
+    }
+  }
+}
+
+function updateNightSky() {
+  const overlay = el('nightOverlay');
+  if (!overlay) return;
+  const desiredParent = document.fullscreenElement || document.body;
+  if (overlay.parentElement !== desiredParent) desiredParent.appendChild(overlay);
+
+  if (data.theme !== 'night') {
+    overlay.classList.add('hidden'); overlay.innerHTML = '';
+    if (overlay.dataset.timeoutId) { clearTimeout(Number(overlay.dataset.timeoutId)); overlay.dataset.timeoutId = ''; }
+    overlay.dataset.running = ''; return;
+  }
+  overlay.classList.remove('hidden');
+
+  if (!overlay.dataset.running) {
+    overlay.dataset.running = 'true';
+    const createStar = () => {
+      if (data.theme !== 'night') { overlay.dataset.running = ''; return; }
+      const star = document.createElement('div'); star.className = 'shooting-star';
+      const r = Math.random();
+      let width, duration, glow, opacity, color;
+      if (r < 0.65) { width = 30 + Math.random() * 40; duration = 0.4 + Math.random() * 0.4; glow = 1 + Math.random() * 2; opacity = 0.1 + Math.random() * 0.15; color = '255, 255, 255'; }
+      else if (r < 0.95) { width = 80 + Math.random() * 60; duration = 0.8 + Math.random() * 0.6; glow = 4 + Math.random() * 4; opacity = 0.3 + Math.random() * 0.25; color = '220, 230, 255'; }
+      else { width = 180 + Math.random() * 150; duration = 1.6 + Math.random() * 1.4; glow = 15 + Math.random() * 10; opacity = 0.8 + Math.random() * 0.2; color = '255, 230, 200'; }
+      
+      const angle = 10 + Math.random() * 35; const distance = 800 + Math.random() * 400; 
+      star.style.setProperty('--star-width', `${width}px`); star.style.setProperty('--star-duration', `${duration}s`);
+      star.style.setProperty('--star-glow', `${glow}px`); star.style.setProperty('--star-opacity', opacity);
+      star.style.setProperty('--star-angle', `${angle}deg`);
+      star.style.setProperty('--star-travel-x', `${distance * Math.cos(angle * Math.PI/180)}px`);
+      star.style.setProperty('--star-travel-y', `${distance * Math.sin(angle * Math.PI/180)}px`);
+      star.style.setProperty('--star-color', color);
+      star.style.left = (Math.random() * 90 - 10) + '%'; star.style.top = (Math.random() * 50 - 10) + '%';
+
+      overlay.appendChild(star);
+      setTimeout(() => { if(star.parentNode) star.remove(); }, duration * 1000 + 200);
+      const nextDelay = 15000 + Math.random() * 10000;
+      overlay.dataset.timeoutId = setTimeout(createStar, nextDelay);
+    };
+    const initialDelay = 1000 + Math.random() * 2000;
+    overlay.dataset.timeoutId = setTimeout(createStar, initialDelay);
+  }
+}
+
+function updateRain() {
+  const overlay = el('rainOverlay');
+  if (!overlay) return;
+  const desiredParent = document.fullscreenElement || document.body;
+  if (overlay.parentElement !== desiredParent) desiredParent.appendChild(overlay);
+
+  if (data.theme !== 'rain') { overlay.classList.add('hidden'); overlay.innerHTML = ''; return; }
+  
+  if (overlay.children.length === 0) {
+    for (let i = 0; i < 140; i++) {
+      const drop = document.createElement('div'); drop.className = 'rain-drop';
+      drop.style.left = Math.random() * 100 + '%'; drop.style.height = 28 + Math.random() * 36 + 'px';
+      drop.style.animationDuration = 1.8 + Math.random() * 1.8 + 's';
+      drop.style.animationDelay = '-' + Math.random() * 4 + 's';
+      drop.style.opacity = 0.22 + Math.random() * 0.24;
+      overlay.appendChild(drop);
+    }
+  }
+  overlay.classList.remove('hidden');
+}
+
+function applyTheme() {
+  const root = el('appRoot');
+  if (!root) return;
+
+  const gradient = themes[data.theme] || themes.forest;
+  const isNight = data.theme === 'night';
+  const isRain = data.theme === 'rain';
+
+  document.body.className = `min-h-screen bg-gradient-to-b ${gradient.join(' ')} ${isNight ? 'text-slate-100' : 'text-slate-800'} ${document.fullscreenElement ? 'overflow-hidden' : ''}`;
+  root.className = `w-full max-w-5xl min-h-[calc(100vh-2rem)] rounded-3xl bg-gradient-to-b ${gradient.join(' ')} p-6 md:p-10 relative overflow-hidden flex flex-col items-center ${document.fullscreenElement ? 'fullscreen-active' : ''}`;
+
+  const cardClass = isNight
+    ? 'bg-gradient-to-br from-slate-900/92 via-slate-900/88 to-indigo-950/90 border border-indigo-300/20 shadow-2xl backdrop-blur-xl'
+    : 'bg-white/85 border shadow-lg';
+
+  ['focusPage', 'forestPage', 'settingsPage'].forEach((id) => {
+    const section = el(id);
+    if (!section) return;
+    const baseClasses = Array.from(section.classList).filter((cls) =>
+      ['page-section', 'page-hidden', 'hidden', 'w-full', 'rounded-3xl', 'p-6', 'max-w-3xl', 'max-w-xl', 'mx-auto', 'space-y-4', 'mb-8', 'md:mb-12', 'lg:mb-16', 'space-y-5'].includes(cls)
+    );
+    section.className = [...baseClasses, cardClass].join(' ');
+  });
+
+  const dashboardCards = document.querySelectorAll('#dashboardGrid > div');
+  dashboardCards.forEach((card) => {
+    if (isNight) {
+      card.className = 'rounded-3xl bg-gradient-to-br from-slate-900/92 via-slate-900/88 to-indigo-950/90 border border-indigo-300/20 shadow-2xl backdrop-blur-xl p-5 flex flex-col justify-center';
+    } else {
+      card.className = 'rounded-3xl bg-white/85 border shadow-lg p-5 flex flex-col justify-center';
+    }
+  });
+
+  const timer = el('timer');
+  if (timer) timer.className = 'text-5xl md:text-6xl font-mono font-bold ' + (isNight ? 'text-violet-50 drop-shadow-[0_0_18px_rgba(167,139,250,0.45)]' : 'text-slate-800');
+
+  const progressRingBg = el('progressRingBg');
+  if (progressRingBg) {
+    progressRingBg.setAttribute('stroke', isNight ? 'rgba(255,255,255,0.05)' : isRain ? '#dbeafe' : '#d1fae5');
+  }
+
+  const ring = el('progressRing');
+  if (ring) {
+    ring.setAttribute('stroke', isNight ? '#a78bfa' : isRain ? '#0ea5e9' : '#10b981');
+    ring.style.filter = isNight ? 'drop-shadow(0 0 10px rgba(167,139,250,0.55))' : 'none';
+  }
+
+  const startPauseBtn = el('startPauseBtn');
+  if (startPauseBtn) {
+    startPauseBtn.className = 'btn-interactive px-6 py-3 rounded-2xl text-white font-semibold ' + (
+      isNight ? 'bg-gradient-to-r from-indigo-500 via-violet-500 to-fuchsia-500 shadow-xl shadow-violet-900/40 hover:brightness-110' :
+      isRain ? 'bg-sky-500 hover:bg-sky-600' : 'bg-emerald-500 hover:bg-emerald-600');
+  }
+
+  const phaseLabel = el('phaseLabel');
+  if (phaseLabel) phaseLabel.className = 'text-sm uppercase tracking-[0.18em] font-semibold ' + (isNight ? 'text-violet-200' : 'text-emerald-700');
+
+  const progressLabel = el('progressLabel');
+  if (progressLabel) progressLabel.className = 'mt-2 text-sm ' + (isNight ? 'text-slate-300' : 'text-slate-500');
+
+  const flipProgressLabel = el('flipProgressLabel');
+  if (flipProgressLabel) flipProgressLabel.className = 'mt-6 text-sm text-center ' + (isNight ? 'text-slate-300' : 'text-slate-500');
+
+  const brandTitle = el('brandTitle');
+  if (brandTitle) {
+    brandTitle.className = 'brand-title text-4xl md:text-6xl ';
+    if (isNight) brandTitle.className += 'brand-title-night text-violet-50';
+    else if (isRain) brandTitle.className += 'brand-title-rain text-slate-800';
+    else brandTitle.className += 'text-emerald-900';
+  }
+
+  const subtitle = document.querySelector('header p');
+  if (subtitle) subtitle.className = 'mt-2 ' + (isNight ? 'text-slate-300' : 'text-slate-600');
+
+  const message = el('message');
+  if (message) message.className = 'mt-6 italic ' + (isNight ? 'text-[#c4b5fd]/70' : 'text-slate-500');
+
+  const ambientVolumeLabel = el('ambientVolumeLabel');
+  if (ambientVolumeLabel) ambientVolumeLabel.className = 'text-sm font-medium ' + (isNight ? 'text-[#c4b5fd]/80' : 'text-slate-500');
+
+  const fullscreenBtn = el('fullscreenBtn');
+  if (fullscreenBtn) {
+    fullscreenBtn.className = 'fixed top-6 right-6 z-[2000] backdrop-blur-md btn-interactive w-11 h-11 flex items-center justify-center rounded-2xl border text-xl ' + (
+      isNight ? 'border-indigo-300/20 bg-slate-900/70 text-slate-100 shadow-lg hover:bg-slate-800/80' : 'border-slate-200 bg-white/85 text-slate-800 hover:bg-white');
+  }
+  
+  const fcFullscreenBtn = el('fcFullscreenBtn');
+  if (fcFullscreenBtn) {
+    const isHidden = fcFullscreenBtn.classList.contains('hidden');
+    fcFullscreenBtn.className = 'fixed top-[76px] right-[28px] z-[2000] backdrop-blur-md btn-interactive w-9 h-9 flex items-center justify-center rounded-xl border text-lg ' + (
+      isNight ? 'border-indigo-300/20 bg-slate-900/70 text-slate-100 shadow-lg hover:bg-slate-800/80' : 'border-slate-200 bg-white/85 text-slate-800 hover:bg-white');
+    if (isHidden) fcFullscreenBtn.classList.add('hidden');
+  }
+
+  const pipBtn = el('pipBtn');
+  if (pipBtn) {
+    pipBtn.className = 'fixed top-6 left-6 z-[2000] backdrop-blur-md btn-interactive w-11 h-11 flex items-center justify-center rounded-2xl border text-xl ' + (
+      isNight ? 'border-indigo-300/20 bg-slate-900/70 text-slate-100 shadow-lg hover:bg-slate-800/80' : 'border-slate-200 bg-white/85 text-slate-800 hover:bg-white');
+  }
+
+  const witherBtn = el('witherBtn');
+  if (witherBtn) {
+    witherBtn.className = 'btn-interactive px-6 py-3 rounded-2xl text-white font-semibold ' + (
+      isNight ? 'bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 shadow-xl shadow-orange-900/35 hover:brightness-110' :
+      isRain ? 'bg-gradient-to-r from-slate-500 to-slate-600 shadow-lg hover:brightness-110' : 'bg-amber-500 hover:bg-amber-600');
+  }
+
+  const resetBtn = el('resetBtn');
+  if (resetBtn) {
+    resetBtn.className = 'btn-interactive px-6 py-3 rounded-2xl border font-medium ' + (
+      isNight ? 'border-indigo-300/20 bg-slate-900/70 text-slate-100 shadow-lg hover:bg-slate-800/80' :
+      isRain ? 'border-sky-200 bg-white/90 text-slate-700 hover:bg-sky-50' : 'bg-white hover:bg-emerald-50');
+  }
+
+  const focusLabel = document.querySelector('#focusControls label');
+  if (focusLabel) focusLabel.className = 'font-medium ' + (isNight ? 'text-slate-300' : 'text-slate-600');
+
+  const settingsLabels = document.querySelectorAll('#settingsPage span.settings-label');
+  settingsLabels.forEach((label) => {
+    label.className = 'font-medium settings-label ' + (isNight ? 'text-slate-300' : 'text-slate-700');
+  });
+
+  const inputs = ['focusMinutesInput', 'breakMinutesInput', 'mindfulnessIntervalInput', 'themeSelect', 'soundscapeSelect', 'timerDisplaySelect'];
+  inputs.forEach(id => {
+    const input = el(id);
+    if(input) {
+      input.className = 'w-full mt-2 rounded-xl border px-3 py-3 focus:outline-none focus:ring-2 cursor-pointer ' + (
+        isNight ? 'border-indigo-300/20 bg-slate-900/70 text-slate-100 shadow-inner focus:ring-indigo-500/50' :
+        isRain ? 'border-sky-200 bg-white/90 text-slate-800 focus:ring-sky-400/50' : 'border-emerald-200 bg-white text-slate-800 focus:ring-emerald-400/50');
+      if(id === 'focusMinutesInput') input.classList.replace('w-full', 'w-24');
+      if(id === 'focusMinutesInput') input.classList.add('text-center');
+    }
+  });
+
+  const loader = el('soundscapeLoader');
+  if (loader) {
+    const isVisible = loader.classList.contains('opacity-100');
+    loader.className = 'fixed top-[88px] right-6 z-[2000] px-5 py-3 rounded-2xl backdrop-blur-xl shadow-2xl border flex items-center gap-3 transition-all duration-300 pointer-events-none ' +
+      (isVisible ? 'opacity-100 translate-x-0 ' : 'opacity-0 translate-x-8 ') +
+      (isNight ? 'bg-slate-900/80 border-indigo-500/20 text-slate-100 shadow-indigo-900/30' : 
+       isRain ? 'bg-white/85 border-sky-200 shadow-sky-900/10 text-slate-800' : 'bg-white/85 border-emerald-200 shadow-emerald-900/10 text-slate-800');
+  }
+
+  // Set CSS Custom Properties for theme UI & Break Phase Tinting
+  const isBreak = phase === 'break';
+
+  if (isNight) {
+    document.documentElement.style.setProperty('--range-track', 'rgba(255, 255, 255, 0.08)');
+    document.documentElement.style.setProperty('--range-thumb', '#a78bfa');
+    document.documentElement.style.setProperty('--range-glow', '0 0 12px rgba(167, 139, 250, 0.5)');
+    document.documentElement.style.setProperty('--range-ring', 'rgba(167, 139, 250, 0.25)');
+    
+    document.documentElement.style.setProperty('--fc-bg-top', isBreak ? '#2d244a' : '#1e293b');
+    document.documentElement.style.setProperty('--fc-bg-bottom', isBreak ? '#1b1435' : '#0f172a');
+    document.documentElement.style.setProperty('--fc-text', isBreak ? '#fbcfe8' : '#e2e8f0');
+    document.documentElement.style.setProperty('--fc-split', '#020617');
+    document.documentElement.style.setProperty('--fc-border', isBreak ? 'rgba(244,114,182,0.3)' : 'rgba(139,92,246,0.3)');
+    document.documentElement.style.setProperty('--fc-shadow', '0 10px 25px -5px rgba(0,0,0,0.6)');
+  } else if (isRain) {
+    document.documentElement.style.setProperty('--range-track', 'rgba(14, 165, 233, 0.15)');
+    document.documentElement.style.setProperty('--range-thumb', '#0ea5e9');
+    document.documentElement.style.setProperty('--range-glow', '0 0 12px rgba(14, 165, 233, 0.4)');
+    document.documentElement.style.setProperty('--range-ring', 'rgba(14, 165, 233, 0.25)');
+
+    document.documentElement.style.setProperty('--fc-bg-top', isBreak ? '#fffbeb' : '#f0f9ff');
+    document.documentElement.style.setProperty('--fc-bg-bottom', isBreak ? '#fef3c7' : '#e0f2fe');
+    document.documentElement.style.setProperty('--fc-text', isBreak ? '#b45309' : '#075985');
+    document.documentElement.style.setProperty('--fc-split', isBreak ? 'rgba(180,83,9,0.15)' : 'rgba(12,74,110,0.15)');
+    document.documentElement.style.setProperty('--fc-border', isBreak ? 'rgba(245,158,11,0.3)' : 'rgba(14,165,233,0.3)');
+    document.documentElement.style.setProperty('--fc-shadow', '0 10px 25px -5px rgba(12,74,110,0.2)');
+  } else {
+    document.documentElement.style.setProperty('--range-track', 'rgba(16, 185, 129, 0.15)');
+    document.documentElement.style.setProperty('--range-thumb', '#10b981');
+    document.documentElement.style.setProperty('--range-glow', '0 0 12px rgba(16, 185, 129, 0.4)');
+    document.documentElement.style.setProperty('--range-ring', 'rgba(16, 185, 129, 0.25)');
+
+    document.documentElement.style.setProperty('--fc-bg-top', isBreak ? '#fffbeb' : '#f0fdf4');
+    document.documentElement.style.setProperty('--fc-bg-bottom', isBreak ? '#fef3c7' : '#ecfdf5');
+    document.documentElement.style.setProperty('--fc-text', isBreak ? '#b45309' : '#065f46');
+    document.documentElement.style.setProperty('--fc-split', isBreak ? 'rgba(180,83,9,0.15)' : 'rgba(6,78,59,0.15)');
+    document.documentElement.style.setProperty('--fc-border', isBreak ? 'rgba(245,158,11,0.3)' : 'rgba(16,185,129,0.25)');
+    document.documentElement.style.setProperty('--fc-shadow', '0 10px 25px -5px rgba(6,78,59,0.15)');
+  }
+
+  updateRain();
+  updateNightSky();
+  updateThemeParticles();
+  soundEngine.setVolume(data.ambientVolume / 100);
+}
+
+function switchThemeWithSignature(newTheme) {
+  if (data.theme === newTheme) return;
+  triggerHaptic('light');
+  
+  document.documentElement.setAttribute('data-transition-to', newTheme);
+
+  const applyUpdate = () => {
+    data.theme = newTheme;
+    save();
+    applyTheme();
+    render();
+  };
+
+  if (document.startViewTransition) {
+    const transition = document.startViewTransition(applyUpdate);
+    transition.finished.finally(() => {
+      document.documentElement.removeAttribute('data-transition-to');
+    });
+  } else {
+    applyUpdate();
+    setTimeout(() => {
+      document.documentElement.removeAttribute('data-transition-to');
+    }, 950);
+  }
+}
+
+function render() {
+  renderNav(); renderFocus(); renderForest(); renderDashboard();
+
+  if (el('focusMinutesInput')) el('focusMinutesInput').value = data.focusMinutes;
+  if (el('breakMinutesInput')) el('breakMinutesInput').value = data.breakMinutes;
+  if (el('breaksEnabledToggle')) el('breaksEnabledToggle').checked = data.breaksEnabled;
+  if (el('mindfulnessEnabledToggle')) el('mindfulnessEnabledToggle').checked = data.mindfulnessEnabled;
+  if (el('mindfulnessIntervalInput')) el('mindfulnessIntervalInput').value = data.mindfulnessInterval;
+  if (el('themeSelect')) el('themeSelect').value = data.theme;
+  if (el('soundscapeSelect')) el('soundscapeSelect').value = data.soundscape;
+  if (el('timerDisplaySelect')) el('timerDisplaySelect').value = data.timerDisplay;
+  if (el('ambientSoundToggle')) el('ambientSoundToggle').checked = data.ambientSoundEnabled;
+  if (el('ambientVolumeInput')) el('ambientVolumeInput').value = data.ambientVolume ?? 50;
+  if (el('ambientVolumeLabel')) el('ambientVolumeLabel').textContent = `${data.ambientVolume ?? 50}%`;
+  
+  if (el('fullscreenBtn')) {
+    el('fullscreenBtn').textContent = '⛶';
+    el('fullscreenBtn').title = document.fullscreenElement ? 'Exit Fullscreen' : 'Enter Fullscreen';
+    el('fullscreenBtn').setAttribute('aria-label', document.fullscreenElement ? 'Exit Fullscreen' : 'Enter Fullscreen');
+  }
+
+  applyTheme();
+}
+
+function startTimer() {
+  if (isRunning) return;
+  triggerHaptic('medium');
+  isRunning = true;
+  const endTimestamp = Date.now() + secondsLeft * 1000;
+  let previousSeconds = secondsLeft;
+
+  intervalId = setInterval(() => {
+    secondsLeft = Math.max(0, Math.round((endTimestamp - Date.now()) / 1000));
+    
+    // Mindfulness Bell Logic
+    if (phase === 'focus' && data.mindfulnessEnabled && isRunning && secondsLeft > 0 && secondsLeft !== previousSeconds) {
+        const elapsed = (data.focusMinutes * 60) - secondsLeft;
+        const intervalSecs = data.mindfulnessInterval * 60;
+        if (elapsed > 0 && elapsed % intervalSecs === 0) {
+            playMindfulnessSound();
+            triggerHaptic('light');
+        }
+    }
+    previousSeconds = secondsLeft;
+
+    if (secondsLeft <= 0) {
+      clearInterval(intervalId); intervalId = null; isRunning = false;
+      playCompletionSound();
+      triggerHaptic('success');
+
+      if (phase === 'focus') {
+        data.livingTrees += healthyTrees; data.totalFocusMinutes += data.focusMinutes;
+        updateDailyStats(data.focusMinutes); save(); 
+
+        if (data.breaksEnabled) {
+          phase = 'break'; secondsLeft = data.breakMinutes * 60;
+          showToast('Focus session complete. Enjoy your break!', 'success');
+          setMessage('Your forest grew peacefully today.');
+        } else {
+          phase = 'focus'; healthyTrees = Math.max(1, Math.ceil(data.focusMinutes / 10)); secondsLeft = data.focusMinutes * 60;
+          showToast('Focus session complete. Great job!', 'success');
+          setMessage('New saplings are ready to grow.');
+        }
+      } else {
+        phase = 'focus'; healthyTrees = Math.max(1, Math.ceil(data.focusMinutes / 10)); secondsLeft = data.focusMinutes * 60;
+        showToast('Break time is over. Ready to focus?', 'info');
+        setMessage('New saplings are ready to grow.');
+      }
+      applyTheme();
+    }
+    renderFocus(); 
+  }, 250);
+  renderFocus();
+}
+
+function pauseTimer() {
+  triggerHaptic('light');
+  isRunning = false; clearInterval(intervalId); renderFocus();
+}
+
+function resetAllData() {
+  showConfirmModal('Reset ALL saved data?', 'This will permanently remove your forest and all statistics.', () => {
+    triggerHaptic('heavy');
+    const { theme, soundscape, ambientSoundEnabled, ambientVolume, focusMinutes, breakMinutes, breaksEnabled, timerDisplay } = data;
+    data = { ...DEFAULTS, theme, soundscape, ambientSoundEnabled, ambientVolume, focusMinutes, breakMinutes, breaksEnabled, timerDisplay };
+    save(); resetTimer(); switchPage('focus');
+    showToast('A new forest begins.', 'info');
+    setMessage('A new forest begins.'); render();
+  });
+}
+
+function resetTimer() {
+  triggerHaptic('light');
+  pauseTimer(); phase = 'focus';
+  healthyTrees = Math.max(1, Math.ceil(data.focusMinutes / 10));
+  secondsLeft = data.focusMinutes * 60;
+  setMessage('A calm mind nurtures strong roots.'); 
+  applyTheme();
+  render();
+}
+
+function bindEvents() {
+  el('startPauseBtn')?.addEventListener('click', () => { isRunning ? pauseTimer() : startTimer(); });
+  el('witherBtn')?.addEventListener('click', witherTree);
+  el('resetBtn')?.addEventListener('click', resetTimer);
+  el('resetAllBtn')?.addEventListener('click', resetAllData);
+  el('pipBtn')?.addEventListener('click', togglePiP);
+
+  el('flipClockContainer')?.addEventListener('click', () => {
+    if (isFcFullscreen) {
+      isRunning ? pauseTimer() : startTimer();
+    }
+  });
+
+  el('fcFullscreenBtn')?.addEventListener('click', async () => {
+    isFcFullscreen = true;
+    triggerHaptic('light');
+    const root = el('appRoot'); 
+    if (!document.fullscreenElement) {
+      await root.requestFullscreen().catch(() => {});
+    } else {
+      document.body.classList.add('fc-fullscreen-active');
+      renderFocus();
+    }
+  });
+
+  el('focusMinutesInput')?.addEventListener('input', (e) => {
+    const value = e.target.value.trim(); if (value === '') return;
+    const parsed = Number(value); if (!Number.isFinite(parsed)) return;
+    data.focusMinutes = Math.max(1, Math.min(180, parsed));
+    healthyTrees = Math.max(1, Math.ceil(data.focusMinutes / 10));
+    if (!isRunning && phase === 'focus') secondsLeft = data.focusMinutes * 60;
+    save(); render();
+  });
+
+  el('focusMinutesInput')?.addEventListener('blur', (e) => { if (e.target.value.trim() === '') e.target.value = data.focusMinutes; });
+  
+  el('breakMinutesInput')?.addEventListener('input', (e) => {
+    const value = e.target.value.trim(); if (value === '') return;
+    const parsed = Number(value); if (!Number.isFinite(parsed)) return;
+    data.breakMinutes = Math.max(1, Math.min(60, parsed));
+    save(); render();
+  });
+
+  el('breakMinutesInput')?.addEventListener('blur', (e) => { if (e.target.value.trim() === '') e.target.value = data.breakMinutes; });
+
+  el('breaksEnabledToggle')?.addEventListener('change', (e) => { data.breaksEnabled = e.target.checked; save(); render(); });
+  
+  el('mindfulnessEnabledToggle')?.addEventListener('change', (e) => { data.mindfulnessEnabled = e.target.checked; save(); render(); });
+  
+  el('mindfulnessIntervalInput')?.addEventListener('input', (e) => {
+    const value = e.target.value.trim(); if (value === '') return;
+    const parsed = Number(value); if (!Number.isFinite(parsed)) return;
+    data.mindfulnessInterval = Math.max(1, Math.min(60, parsed));
+    save(); render();
+  });
+
+  el('mindfulnessIntervalInput')?.addEventListener('blur', (e) => { if (e.target.value.trim() === '') e.target.value = data.mindfulnessInterval; });
+
+  el('themeSelect')?.addEventListener('change', (e) => { 
+    switchThemeWithSignature(e.target.value);
+  });
+  
+  el('soundscapeSelect')?.addEventListener('change', (e) => {
+    data.soundscape = e.target.value; 
+    save(); 
+    triggerHaptic('light');
+    soundEngine.apply(data.soundscape, data.ambientSoundEnabled); 
+    render();
+  });
+
+  el('timerDisplaySelect')?.addEventListener('change', (e) => {
+    data.timerDisplay = e.target.value; 
+    save(); 
+    triggerHaptic('light');
+    renderFocus(); 
+  });
+
+  el('ambientSoundToggle')?.addEventListener('change', (e) => {
+    data.ambientSoundEnabled = e.target.checked; save(); soundEngine.apply(data.soundscape, data.ambientSoundEnabled); render();
+  });
+
+  el('ambientVolumeInput')?.addEventListener('input', (e) => {
+    data.ambientVolume = Math.max(0, Math.min(100, Number(e.target.value) || 0));
+    save(); soundEngine.setVolume(data.ambientVolume / 100); render();
+  });
+
+  el('fullscreenBtn')?.addEventListener('click', async () => {
+    isFcFullscreen = false;
+    triggerHaptic('light');
+    const root = el('appRoot'); if (!root) return;
+    if (!document.fullscreenElement) { await root.requestFullscreen().catch(() => {}); } 
+    else { await document.exitFullscreen().catch(() => {}); }
+  });
+
+  // Re-mapped Hotkeys with Input Guard
+  window.addEventListener('keydown', (e) => {
+    const activeTag = document.activeElement?.tagName;
+    if (['INPUT', 'SELECT', 'TEXTAREA', 'BUTTON'].includes(activeTag)) return;
+
+    if (e.code === 'Space') {
+      e.preventDefault();
+      if (e.shiftKey) {
+        if (isRunning && phase === 'focus') witherTree();
+      } else {
+        isRunning ? pauseTimer() : startTimer();
+      }
+    }
+  });
+
+  const unlockAudio = () => {
+    audioUnlocked = true; 
+    soundEngine.apply(data.soundscape, data.ambientSoundEnabled);
+    soundEngine.setVolume(data.ambientVolume / 100); 
+    soundEngine.preloadBells();
+    document.removeEventListener('click', unlockAudio);
+  };
+  document.addEventListener('click', unlockAudio);
+
+  el('exportDataBtn')?.addEventListener('click', exportBackup);
+  el('importDataBtn')?.addEventListener('click', () => { el('importFileInput')?.click(); });
+  el('importFileInput')?.addEventListener('change', (e) => { const file = e.target.files?.[0]; if (file) importBackup(file); });
+
+  document.addEventListener('fullscreenchange', () => {
+    const isFs = !!document.fullscreenElement; 
+    document.body.classList.toggle('fullscreen-active', isFs);
+    el('appRoot').classList.toggle('fullscreen-active', isFs); 
+
+    if (isFs && isFcFullscreen) {
+      document.body.classList.add('fc-fullscreen-active');
+    } else if (!isFs) {
+      document.body.classList.remove('fc-fullscreen-active');
+      isFcFullscreen = false;
+    }
+    renderFocus();
+  });
+}
+
+document.addEventListener('visibilitychange', () => {
+  if (!document.hidden && audioUnlocked) {
+    if(soundEngine.ctx && soundEngine.ctx.state === 'suspended') soundEngine.ctx.resume();
+    renderFocus();
+  }
+});
+
+bindEvents();
+render();
+
+pages.forEach(p => {
+  const section = el(p + 'Page');
+  if (section && p !== page) section.classList.add('page-hidden');
+});
+</script>
+
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', async () => {
+    try {
+      const registration = await navigator.serviceWorker.register('./service-worker.js');
+      registration.update();
+      navigator.serviceWorker.addEventListener('controllerchange', () => { window.location.reload(); });
+      setInterval(() => { registration.update(); }, 60000);
+    } catch (err) { console.warn('Service worker registration failed:', err); }
+  });
+}
+</script>
+</body>
+</html>

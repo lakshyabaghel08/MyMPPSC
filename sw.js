@@ -10,7 +10,7 @@
 
 // Bump this whenever any precached file changes: the old caches are deleted on
 // activate, so a fixed build cannot keep serving a stale shell.
-const VERSION = 'v1.11.0-flip-clock-sounds';
+const VERSION = 'v1.12.0-woodland-night';
 const SHELL_CACHE = `mymppsc-shell-${VERSION}`;
 const RUNTIME_CACHE = `mymppsc-runtime-${VERSION}`;
 
@@ -78,7 +78,7 @@ const SHELL_FILES = [
   './icons/icon-192.png',
   './icons/icon-512.png',
   // The two bells are tiny and are needed offline the first time a block
-  // ends, so they ship with the shell. The three ambient beds are tens of
+  // ends, so they ship with the shell. The two ambient beds are several
   // megabytes each and are cached on first play instead (see `isSoundscape`).
   './sounds/time-up.mp3',
   './sounds/mindfulness-bell.mp3',
@@ -136,7 +136,7 @@ function isCacheable(request) {
 }
 
 /**
- * A soundscape bed. These are the big files (4–24 MB), so they are deliberately
+ * A soundscape bed. These are the big files (4–9 MB), so they are deliberately
  * left out of the precache list — but once a reader has chosen one, it must
  * keep working offline, so every audio response is cached on first play.
  */

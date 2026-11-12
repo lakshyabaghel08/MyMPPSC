@@ -9,7 +9,8 @@
  *   2. **Today** — minutes against the daily target, sessions, longest block,
  *      and the current streak.
  *   3. **This week** — a seven-column bar chart of study hours per day.
- *   4. **Settings** — durations, atmosphere, sound, mindfulness bell.
+ *   4. **Settings** — durations, sound, mindfulness bell. The visual theme
+ *      follows the app: Woodland in light mode, Night in dark mode.
  *   5. **Recent sessions** — what was actually logged, including incomplete
  *      blocks and breaks; manual logs can be added from here.
  *
@@ -22,7 +23,8 @@
  * the clock's own animation.
  */
 
-import { CLOCK_THEMES, FOCUS_ENVIRONMENTS, FOCUS_PRESETS, MINDFULNESS_INTERVALS } from '../../core/constants.js';
+import { FOCUS_ENVIRONMENTS, FOCUS_PRESETS, MINDFULNESS_INTERVALS } from '../../core/constants.js';
+import { resolveEffectiveTheme } from '../../core/state.js';
 import { applicationDayKey, fmtClock, weekdayLabel } from '../../core/util.js';
 import {
   esc,
@@ -49,7 +51,7 @@ function duration(minutes) {
   return rest ? `${hours}h ${rest}m` : `${hours}h`;
 }
 
-const environmentLabel = (key) => ({ woodland: 'Woodland', night: 'Night', rain: 'Rain' })[key] || key;
+const focusTheme = () => (resolveEffectiveTheme() === 'dark' ? 'night' : 'woodland');
 /** The soundscape names are the recorded files' names (see focus-audio.js). */
 const soundscapeLabel = (key) => audio.soundscapeLabel(key);
 
@@ -112,6 +114,7 @@ export default {
     const weekMax = Math.max(1, ...summary.week.map((day) => day.minutes));
     const weekTotal = summary.week.filter((day) => !day.isFuture).reduce((sum, day) => sum + day.minutes, 0);
     const isPomodoro = snapshot.timer.mode === 'pomodoro';
+    const environment = focusTheme();
 
     const phaseWord =
       snapshot.timer.mode === 'stopwatch'
@@ -143,7 +146,7 @@ export default {
         secondary: `<a class="btn btn-sm" href="#/hours">Study hours <span aria-hidden="true">→</span></a>`,
       })}
 
-      <section class="focus-workspace environment-${esc(timerSettings.environment)} theme-${esc(timerSettings.clockTheme)}" id="focusWorkspace" data-environment="${esc(timerSettings.environment)}" data-clock-theme="${esc(timerSettings.clockTheme)}" data-phase="${esc(snapshot.timer.phase)}">
+      <section class="focus-workspace theme-${environment}" id="focusWorkspace" data-environment="${environment}" data-clock-theme="${environment}" data-phase="${esc(snapshot.timer.phase)}">
         ${card({
           className: 'focus-stage',
           body: `
@@ -216,7 +219,7 @@ export default {
 
       <div class="grid cols-2 timer-support">
         ${card({
-          title: 'Timer & atmosphere',
+          title: 'Timer & sound',
           body: `
             ${
               isPomodoro
@@ -253,12 +256,11 @@ export default {
               </label>
             </div>
             <hr class="divider" />
+            <div class="focus-theme-note">
+              ${icon('moon', { size: 16 })}
+              <span><b id="focusThemeName">${esc(clockThemeLabel(environment))} atmosphere</b><small>Follows the app theme: Woodland in light mode, Night in dark mode. Change it with the sun/moon button in the header.</small></span>
+            </div>
             <div class="field-row">
-              <label class="field"><span class="label-text">Atmosphere</span>
-                <select id="setEnvironment">
-                  ${FOCUS_ENVIRONMENTS.map((key) => `<option value="${key}"${timerSettings.environment === key ? ' selected' : ''}>${environmentLabel(key)}</option>`).join('')}
-                </select>
-              </label>
               <label class="field"><span class="label-text">Soundscape</span>
                 <select id="setSoundscape">
                   ${FOCUS_ENVIRONMENTS.map((key) => `<option value="${key}"${timerSettings.soundscape === key ? ' selected' : ''}>${soundscapeLabel(key)}</option>`).join('')}
@@ -282,14 +284,6 @@ export default {
                 ${MINDFULNESS_INTERVALS.map((minutes) => `<option value="${minutes}"${timerSettings.mindfulnessInterval === minutes ? ' selected' : ''}>Every ${minutes} minutes</option>`).join('')}
               </select>
             </label>
-            <div class="timer-setting clock-theme-picker">
-              <span class="setting-label">Clock theme</span>
-              <div class="seg" role="group" aria-label="Flip clock theme">
-                ${CLOCK_THEMES.map(
-                  (theme) => `<button type="button" data-action="set-clock-theme" data-value="${theme}" aria-pressed="${timerSettings.clockTheme === theme}" title="${esc(clockThemeLabel(theme, timerSettings.environment))}"><span class="clock-swatch theme-swatch-${theme}" aria-hidden="true"></span>${esc(theme === 'auto' ? 'Auto' : clockThemeLabel(theme))}</button>`,
-                ).join('')}
-              </div>
-            </div>
           `,
         })}
 
@@ -315,14 +309,14 @@ export default {
     const holder = root.querySelector('#focusClockHolder');
     let clock = null;
     let unsubscribe = null;
-    // The fullscreen element is the *stage*, not the workspace. The workspace
-    // also holds Today's focus, the week chart and the session list; putting it
-    // fullscreen would carry all of that into the focus room. The stage is the
-    // card that contains the clock, so it is the one thing that travels.
-    const stage = workspace?.querySelector('.focus-stage');
     // Remembered across a repaint: `ctx.refresh()` builds a new workspace, so
     // the immersive class has to be re-applied by the next mount.
-    let wantFullscreen = false;
+    if (!ctx.isRefresh) ctx.setState({ timerFullscreen: false });
+    let wantFullscreen = Boolean(ctx.isRefresh && ctx.state.timerFullscreen);
+    // Removing the old fullscreen node during a refresh queues a native
+    // `fullscreenchange` exit. That exit belongs to the disconnected node, not
+    // to the room this mount is restoring, so it must not close the new room.
+    let staleFullscreenNode = ctx.isRefresh ? ctx.state.timerFullscreenNode : null;
     let meteorTimer = null;
     let lastPhaseKey = '';
 
@@ -341,48 +335,62 @@ export default {
       clock.setTime(timer.getSnapshot().displaySeconds, false);
     }
 
-    /**
-     * The clock's face. One `theme-*` class on the workspace is the whole
-     * switch: the stylesheet resolves it to a full surface set, so the digits,
-     * the split, the border, the shadow and the fullscreen room all move
-     * together and none of them is ever half-themed.
-     */
     const paintClockTheme = (theme) => {
       const applied = applyClockTheme(workspace, theme);
-      const picker = root.querySelector('.clock-theme-picker .seg');
-      picker?.querySelectorAll('[data-action="set-clock-theme"]').forEach((button) => {
-        button.setAttribute('aria-pressed', String(button.dataset.value === applied));
-      });
-      if (clock?.root) clock.root.dataset.clockTheme = applied;
+      if (clock?.root) {
+        clock.root.dataset.clockTheme = applied;
+        clock.root.classList.toggle('theme-night', applied === 'night');
+        clock.root.classList.toggle('theme-woodland', applied === 'woodland');
+      }
+      const name = root.querySelector('#focusThemeName');
+      if (name) name.textContent = `${clockThemeLabel(applied)} atmosphere`;
     };
 
     /* ------------------------------------------------------------ atmosphere -- */
 
-    const paintAtmosphere = (environment) => {
-      if (!workspace) return;
-      workspace.querySelector('.focus-atmosphere-layer')?.remove();
-      if (meteorTimer) {
-        clearTimeout(meteorTimer);
-        meteorTimer = null;
-      }
-      workspace.dataset.environment = environment;
-      workspace.className = workspace.className.replace(/environment-\w+/g, `environment-${environment}`);
-      workspace.insertBefore(renderAtmosphere(environment), workspace.firstChild);
-      if (environment === 'night') loopMeteors();
-      // `auto` follows the atmosphere, so the face may have just changed.
-      paintClockTheme(timer.getSettings().clockTheme);
+    let paintedEnvironment = null;
+    let clearMeteors = () => {};
+    const stopMeteors = () => {
+      if (meteorTimer) clearTimeout(meteorTimer);
+      meteorTimer = null;
+      clearMeteors();
+      clearMeteors = () => {};
     };
 
-    /** Meteors arrive every 8–16 s, in bursts of 1–5, never on a paused screen. */
+    const paintAtmosphere = (environment) => {
+      if (!workspace || environment === paintedEnvironment) return;
+      paintedEnvironment = environment;
+      stopMeteors();
+      workspace.querySelector('.focus-atmosphere-layer')?.remove();
+      workspace.dataset.environment = environment;
+      paintClockTheme(environment);
+      // Inside the stage paint, below its content. Putting it behind the card
+      // hid every particle; putting it above the clock obscured the digits.
+      const host = workspace.querySelector('.focus-stage > .card-body') || workspace;
+      host.insertBefore(renderAtmosphere(environment), host.firstChild);
+      if (environment === 'night') {
+        meteorTimer = setTimeout(loopMeteors, 1000 + Math.random() * 2000);
+      }
+    };
+
+    /** Witherwood's quiet cadence: one meteor, then a 15–25 second pause. */
     const loopMeteors = () => {
       const sky = workspace?.querySelector('.night-sky');
-      if (!sky) return;
-      const shower = Math.random() < 0.5 ? 2 + Math.floor(Math.random() * 4) : 1;
-      spawnMeteors(sky, shower);
-      meteorTimer = setTimeout(loopMeteors, 9000 + Math.random() * 7000);
+      if (!sky || paintedEnvironment !== 'night') return;
+      if (typeof window.matchMedia === 'function' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      clearMeteors();
+      clearMeteors = spawnMeteors(sky, 1);
+      meteorTimer = setTimeout(loopMeteors, 15000 + Math.random() * 10000);
     };
 
-    paintAtmosphere(timer.getSettings().environment);
+    paintAtmosphere(focusTheme());
+    // observe the resolved app attribute, so the header, Settings screen and
+    // OS "system" changes all take the same path without rebuilding the clock.
+    const Observer = document.defaultView?.MutationObserver || globalThis.MutationObserver;
+    const themeObserver = typeof Observer === 'function'
+      ? new Observer(() => paintAtmosphere(focusTheme()))
+      : null;
+    themeObserver?.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 
     /* ----------------------------------------------------------------- live --- */
 
@@ -475,7 +483,8 @@ export default {
       // the task field.
       if (reason === 'cosmetic') {
         const settings = timer.getSettings();
-        paintClockTheme(settings.clockTheme);
+        const volumeLabel = root.querySelector('label[for="setVolume"] .label-text');
+        if (volumeLabel) volumeLabel.textContent = `Volume · ${settings.volume}%`;
         const state = root.querySelector('.focus-sound-state');
         if (state) {
           state.innerHTML = settings.soundEnabled
@@ -494,13 +503,11 @@ export default {
       lastPhaseKey = phaseKey;
     };
 
-    paintClockTheme(timer.getSettings().clockTheme);
     lastPhaseKey = `${timer.getSnapshot().timer.mode}:${timer.getSnapshot().timer.phase}:${timer.getSnapshot().timer.running}`;
-    // Restore the immersive room if a repaint (a settings change, a phase
-    // change) rebuilt the screen while it was open.
-    if (wantFullscreen || document.fullscreenElement === (stage || workspace)) {
-      setFullscreenState(true);
-    }
+    // Restore the immersive room after a structural repaint. Native fullscreen
+    // may have been exited when the old element was removed; the CSS room keeps
+    // the reader immersed either way.
+    if (wantFullscreen) setFullscreenState(true);
     unsubscribe = timer.subscribe(onEngine);
     paintLive(timer.getSnapshot());
 
@@ -538,15 +545,6 @@ export default {
       else if (!result) toast('Nothing to log yet — a block needs at least 12 seconds.', 'warn');
     });
     on('timer-mode', (button) => timer.setMode(button.dataset.value));
-    // The face is a preference, not a structural change: repaint the theme in
-    // place rather than refreshing the screen, which would drop fullscreen and
-    // restart the clock.
-    on('set-clock-theme', (button) => {
-      const theme = button.dataset.value;
-      timer.setSettings({ clockTheme: theme });
-      paintClockTheme(theme);
-      // A face change is silent by design; the pressed state is the feedback.
-    });
     // Bells are rarely heard at the moment their setting is saved, so each one
     // is auditionable from the card that configures it.
     on('test-bell', (button) => {
@@ -554,8 +552,9 @@ export default {
       toast(played ? 'Bell played' : 'This browser would not play the bell', played ? 'ok' : 'warn');
     });
 
-    const setFullscreenState = (on) => {
+    function setFullscreenState(on) {
       wantFullscreen = Boolean(on);
+      ctx.setState({ timerFullscreen: Boolean(on), timerFullscreenNode: on ? workspace : null });
       workspace?.classList.toggle('is-fullscreen', Boolean(on));
       // A class-only fallback (iOS Safari has no Element Fullscreen API) still
       // needs the page behind it to stop scrolling.
@@ -575,16 +574,24 @@ export default {
         }
       }
       const button = root.querySelector('[data-action="timer-fullscreen"]');
-      if (button) button.setAttribute('aria-pressed', String(Boolean(on)));
-    };
+      if (button) {
+        button.setAttribute('aria-pressed', String(Boolean(on)));
+        button.setAttribute('aria-label', on ? 'Exit fullscreen' : 'Enter distraction-free fullscreen');
+        button.title = on ? 'Exit fullscreen' : 'Distraction-free fullscreen';
+        button.innerHTML = `${icon('expand', { size: 15 })} ${on ? 'Exit fullscreen' : 'Fullscreen'}`;
+      }
+    }
 
     on('timer-fullscreen', async () => {
-      const target = stage || workspace;
+      const target = workspace;
       if (!target) return;
       const already = workspace?.classList.contains('is-fullscreen');
       try {
-        if (document.fullscreenElement) {
-          await document.exitFullscreen();
+        if (already) {
+          // A structural repaint can leave the CSS room open after native
+          // fullscreen has ended. Exit must still close that room, not ask
+          // the browser to enter fullscreen again.
+          if (document.fullscreenElement) await document.exitFullscreen();
           setFullscreenState(false);
         } else if (target.requestFullscreen) {
           await target.requestFullscreen();
@@ -593,11 +600,11 @@ export default {
           setFullscreenState(document.fullscreenElement === target);
         } else {
           // No API: use the same layout immutably, so the button still works.
-          setFullscreenState(!already);
+          setFullscreenState(true);
         }
       } catch {
         setFullscreenState(!already);
-        toast('Your browser blocked real fullscreen, so this is the immersive view. Press Escape to leave.', 'warn');
+        if (!already) toast('Your browser blocked real fullscreen, so this is the immersive view. Press Escape to leave.', 'warn');
       }
     });
 
@@ -629,8 +636,12 @@ export default {
     });
 
     const onFullscreenChange = () => {
-      const target = stage || workspace;
+      const target = workspace;
       const isFull = Boolean(document.fullscreenElement) && document.fullscreenElement === target;
+      if (!isFull && staleFullscreenNode && !staleFullscreenNode.isConnected) {
+        staleFullscreenNode = null;
+        return;
+      }
       setFullscreenState(isFull);
     };
     document.addEventListener('fullscreenchange', onFullscreenChange);
@@ -683,10 +694,6 @@ export default {
     bindNumber('setBreakMinutes', (value) => patch({ breakMinutes: Math.max(1, Math.min(60, value || 1)) }));
     bindNumber('setLongBreak', (value) => patch({ longBreakMinutes: Math.max(1, Math.min(120, value || 1)) }));
     bindSelect('setLongEvery', (value) => patch({ sessionsBeforeLongBreak: Number(value) }));
-    bindSelect('setEnvironment', (value) => {
-      patch({ environment: value });
-      paintAtmosphere(value);
-    });
     bindSelect('setSoundscape', (value) => patch({ soundscape: value }));
     bindCheck('setSound', (checked) => {
       if (checked) audio.unlock();
@@ -717,7 +724,8 @@ export default {
         unsubscribe = null;
         clock?.destroy();
         clock = null;
-        if (meteorTimer) clearTimeout(meteorTimer);
+        stopMeteors();
+        themeObserver?.disconnect();
         document.removeEventListener('fullscreenchange', onFullscreenChange);
         document.removeEventListener('keydown', onKeydown);
         // Leaving the screen must not leave the page scroll-locked or the

@@ -212,14 +212,16 @@ test('a running block is anchored to the wall clock, so a throttled tab cannot d
 test('settings are clamped, so a typed 0 cannot break the clock', () => {
   const settings = engine.__internals.normaliseSettings({
     focusMinutes: 0, breakMinutes: -4, longBreakMinutes: 999, sessionsBeforeLongBreak: 99,
-    volume: 400, environment: 'volcano', mindfulnessInterval: 7,
+    volume: 400, environment: 'volcano', clockTheme: 'classic', soundscape: 'rain', mindfulnessInterval: 7,
   });
   assert.equal(settings.focusMinutes, 1, 'a focus block is at least a minute');
   assert.equal(settings.breakMinutes, 1);
   assert.equal(settings.longBreakMinutes, 120);
   assert.equal(settings.sessionsBeforeLongBreak, 8);
   assert.equal(settings.volume, 100);
-  assert.equal(settings.environment, 'woodland', 'an unknown atmosphere falls back');
+  assert.equal(settings.soundscape, 'woodland', 'a retired soundscape falls back');
+  assert.equal(settings.environment, undefined, 'the app theme owns the atmosphere');
+  assert.equal(settings.clockTheme, undefined, 'the app theme owns the clock face');
   assert.equal(settings.mindfulnessInterval, 5, 'only an offered interval is kept');
 });
 
@@ -281,6 +283,50 @@ test('a saved timer is restored with its anchor intact', () => {
   assert.equal(broken.mode, 'pomodoro');
   assert.equal(broken.elapsed, 0);
   assert.equal(broken.running, true, 'a stored truthy running flag is a running block');
+});
+
+/* ------------------------------------------------------- the flip clock --- */
+
+test('a repeated tick does not cut an in-flight flip short', async () => {
+  const { FlipClock } = await import('../js/ui/flipclock.js');
+  const clock = new FlipClock({ label: 'Test' });
+  document.body.appendChild(clock.render());
+  try {
+    clock.setTime(60, false);
+    clock.setTime(59, true);
+    const digit = clock.root.querySelector('[data-digit="s0"]');
+    assert.equal(digit.querySelectorAll('.flip-flap').length, 2, 'the changed digit grows two flaps');
+    assert.equal(digit.querySelector('.flip-half.top:not(.flip-flap) .val').textContent, '9');
+    assert.equal(digit.querySelector('.flip-half.bottom:not(.flip-flap) .val').textContent, '0');
+    clock.setTime(59, true);
+    clock.setTime(59, true);
+    assert.equal(digit.querySelectorAll('.flip-flap').length, 2, 'repeated ticks leave the flap in flight');
+    await new Promise((resolve) => setTimeout(resolve, 650));
+    assert.equal(digit.querySelectorAll('.flip-flap').length, 0, 'the flap cleans itself up after the animation');
+    assert.equal(digit.querySelector('.flip-half.bottom:not(.flip-flap) .val').textContent, '9');
+  } finally {
+    const node = clock.root;
+    clock.destroy();
+    node?.remove();
+  }
+});
+
+test('only changed digits flip, and a paused clock snaps', async () => {
+  const { FlipClock } = await import('../js/ui/flipclock.js');
+  const clock = new FlipClock({ label: 'Test' });
+  document.body.appendChild(clock.render());
+  try {
+    clock.setTime(125, false); // 02:05
+    clock.setTime(124, true);  // 02:04 — only the last second digit changes
+    assert.equal(clock.root.querySelectorAll('.flip-flap').length, 2);
+    assert.equal(clock.root.querySelector('[data-digit="s1"]').querySelectorAll('.flip-flap').length, 0);
+    clock.setTime(123, false); // paused: no motion
+    assert.equal(clock.root.querySelectorAll('.flip-flap').length, 0);
+  } finally {
+    const node = clock.root;
+    clock.destroy();
+    node?.remove();
+  }
 });
 
 /* ============================================================== the screen === */
@@ -375,15 +421,25 @@ test('switching to the stopwatch resets the block and counts up', async () => {
   engine.setMode('pomodoro');
 });
 
-test('the atmosphere layer belongs to the chosen environment', async () => {
-  engine.setSettings({ environment: 'rain' });
+test('the atmosphere follows the app theme and has no independent picker', async () => {
+  const { saveSettings } = await import('../js/core/state.js');
+  await saveSettings({ theme: 'light' }, { persist: false });
   await goto('timer');
   await waitFor(() => $('.focus-atmosphere-layer'), { label: 'the atmosphere' });
-  assert.equal($('.focus-atmosphere-layer').dataset.environment, 'rain');
-  assert.equal($('#focusWorkspace').dataset.environment, 'rain');
-  assert.ok($$('.rain-drop').length > 0, 'raindrops are rendered');
-  assert.equal($$('.particle-leaf').length, 0, 'and no leaves');
-  engine.setSettings({ environment: 'woodland' });
+  assert.equal($('.focus-atmosphere-layer').dataset.environment, 'woodland');
+  assert.equal($('#focusWorkspace').dataset.environment, 'woodland');
+  assert.ok($$('.particle-leaf').length > 0, 'leaves are rendered');
+  assert.equal($('.particle-leaf').closest('.card-body') !== null, true, 'particles sit above the stage paint, below its content');
+  assert.equal($('#setEnvironment'), null);
+  assert.equal($('[data-action="set-clock-theme"]'), null);
+
+  await saveSettings({ theme: 'dark' }, { persist: false });
+  await waitFor(() => $('#focusWorkspace')?.dataset.environment === 'night', { label: 'Night to follow the app theme' });
+  assert.ok($$('.star-dot').length > 0, 'stars are rendered');
+  assert.equal($$('.particle-leaf').length, 0);
+  assert.equal($('.rain-drop'), null, 'the retired atmosphere is gone');
+  await saveSettings({ theme: 'light' }, { persist: false });
+  await waitFor(() => $('#focusWorkspace')?.dataset.environment === 'woodland', { label: 'Woodland to return' });
 });
 
 test('a finished block appears in the recent list as logged study', async () => {
@@ -496,66 +552,59 @@ test('the primary control keeps working after the screen repaints it in place', 
   engine.reset();
 });
 
-/* ------------------------------------------------- the clock's three faces -- */
+/* ------------------------------------------------- the app-owned theme -- */
 
-test('the clock wears one of its three faces at a time, and auto follows the atmosphere', async () => {
-  engine.setSettings({ environment: 'woodland', clockTheme: 'auto' });
-  await goto('timer');
-  const workspace = await waitFor(() => $('#focusWorkspace'), { label: 'the workspace' });
-
-  const faces = () => ['auto', 'classic', 'woodland', 'rain', 'night'].filter((name) => workspace.classList.contains(`theme-${name}`));
-  assert.deepEqual(faces(), ['auto'], 'one theme class, and it is the saved one');
-  assert.equal(workspace.dataset.clockTheme, 'auto');
-
-  // A pinned face is a preference: it does not follow the atmosphere.
-  click($('[data-action="set-clock-theme"][data-value="classic"]'));
-  await waitFor(() => workspace.classList.contains('theme-classic'), { label: 'the Classic face' });
-  assert.deepEqual(faces(), ['classic'], 'the picker swaps the face rather than adding one');
-  assert.equal($('[data-action="set-clock-theme"][data-value="classic"]').getAttribute('aria-pressed'), 'true', 'and says which one is on');
-  assert.equal(engine.getSettings().clockTheme, 'classic', 'the choice is saved with the timer settings');
-
-  engine.setSettings({ environment: 'rain' });
-  await goto('timer');
-  const after = await waitFor(() => $('#focusWorkspace'), { label: 'the workspace after a repaint' });
-  assert.ok(after.classList.contains('theme-classic'), 'a pinned face survives a repaint and ignores the atmosphere');
-  assert.ok(!after.classList.contains('theme-rain'));
-
-  engine.setSettings({ clockTheme: 'auto', environment: 'woodland' });
-});
-
-test('changing the clock face never rebuilds the clock under a running block', async () => {
+test('the header theme toggle repaints Woodland/Night without rebuilding a running clock', async () => {
+  const { saveSettings } = await import('../js/core/state.js');
   engine.reset();
   engine.setMode('pomodoro');
-  engine.setSettings({ clockTheme: 'auto' });
+  await saveSettings({ theme: 'light' }, { persist: false });
   await goto('timer');
-  const workspace = await waitFor(() => $('#focusWorkspace'), { label: 'the workspace' });
-  // Let the screen finish settling before comparing nodes.
-  await new Promise((resolve) => setTimeout(resolve, 250));
-  const settled = $('#focusWorkspace');
+  await waitFor(() => $('#focusWorkspace'), { label: 'the workspace' });
+  await new Promise((resolve) => setTimeout(resolve, 200));
+  const workspace = $('#focusWorkspace');
   const holder = $('#focusClockHolder');
-  assert.equal(settled, workspace);
+  const clock = $('#focusClockHolder .flip-clock');
+  assert.equal(workspace.dataset.clockTheme, 'woodland');
+  assert.deepEqual(['woodland', 'night'].filter((name) => workspace.classList.contains(`theme-${name}`)), ['woodland']);
 
-  // A face change is cosmetic: the same nodes must survive, because a rebuilt
-  // clock loses the value it compares against and its flap mid-animation, and a
-  // rebuilt screen would close the reader's fullscreen room.
-  engine.setSettings({ clockTheme: 'classic' });
-  await waitFor(() => $('#focusWorkspace')?.classList.contains('theme-classic'), { label: 'the new face' });
-  assert.equal($('#focusWorkspace'), settled, 'the workspace is repainted in place');
-  assert.equal($('#focusClockHolder'), holder, 'and so is the clock');
-  assert.equal($('#focusClockHolder .flip-clock')?.isConnected, true, 'the live clock is still on screen');
+  click($('#themeToggle'));
+  await waitFor(() => $('#focusWorkspace')?.dataset.clockTheme === 'night', { label: 'the Night face' });
+  assert.equal($('#focusWorkspace'), workspace, 'the workspace is repainted in place');
+  assert.equal($('#focusClockHolder'), holder);
+  assert.equal($('#focusClockHolder .flip-clock'), clock, 'the live clock and its flap state survive');
+  assert.match($('#focusThemeName').textContent, /Night/);
 
-  // A structural preference still re-renders (the presets and progress bar
-  // around the clock change) but the face the reader picked is kept.
+  // A structural timer preference still rebuilds the screen, but cannot pin a
+  // face against the app theme.
   engine.setSettings({ focusMinutes: 45 });
-  await waitFor(() => $('#focusWorkspace')?.classList.contains('theme-classic'), { label: 'the face after a re-render' });
-  assert.equal(engine.getSettings().clockTheme, 'classic', 'the choice survives the re-render');
-  engine.setSettings({ clockTheme: 'auto', focusMinutes: 25 });
+  await waitFor(() => $('#focusWorkspace') && $('#focusWorkspace') !== workspace, { label: 'a structural repaint' });
+  assert.equal($('#focusWorkspace').dataset.clockTheme, 'night');
+  engine.setSettings({ focusMinutes: 25 });
+  await saveSettings({ theme: 'light' }, { persist: false });
+  await waitFor(() => $('#focusWorkspace')?.dataset.clockTheme === 'woodland', { label: 'Woodland after the repaint' });
   engine.reset();
 });
 
-test('the three ambient beds and two bells are recorded files that are actually shipped', async () => {
+test('retired visual preferences cannot override the app theme after a restore', async () => {
+  const { state, saveSettings } = await import('../js/core/state.js');
+  const { LS_KEYS } = await import('../js/core/constants.js');
+  localStorage.setItem(LS_KEYS.TIMER_SETTINGS, JSON.stringify({ environment: 'rain', clockTheme: 'classic', soundscape: 'rain', focusMinutes: 30 }));
+  await engine.restore();
+  assert.equal(engine.getSettings().environment, undefined);
+  assert.equal(engine.getSettings().clockTheme, undefined);
+  assert.equal(engine.getSettings().soundscape, 'woodland');
+  assert.equal(engine.getSettings().focusMinutes, 30, 'unrelated timer preferences survive');
+  await saveSettings({ theme: 'dark' }, { persist: false });
+  await goto('timer');
+  assert.equal($('#focusWorkspace').dataset.clockTheme, 'night');
+  await saveSettings({ theme: state.settings.theme === 'dark' ? 'light' : 'light' }, { persist: false });
+  engine.setSettings({ focusMinutes: 25 });
+});
+
+test('the two ambient beds and two bells are recorded files that are actually shipped', async () => {
   const audio = await import('../js/ui/focus-audio.js');
-  const names = ['woodland', 'night', 'rain'];
+  const names = ['woodland', 'night'];
   for (const key of names) {
     const file = `sounds/${key}.mp3`;
     const info = await stat(path.join(repoRoot, file)).catch(() => null);
@@ -586,12 +635,12 @@ test('the three ambient beds and two bells are recorded files that are actually 
     load() {}
   };
   try {
-    assert.equal(audio.startAmbient('rain', 50), true);
-    assert.equal(created[0].src, 'sounds/rain.mp3');
+    assert.equal(audio.startAmbient('woodland', 50), true);
+    assert.equal(created[0].src, 'sounds/woodland.mp3');
     assert.equal(created[0].loop, true, 'the bed loops');
     assert.equal(created[0].paused, false, 'and is playing');
     // Asking for the bed that is already playing must not stack players.
-    audio.startAmbient('rain', 90);
+    audio.startAmbient('woodland', 90);
     assert.equal(created.length, 1, 'one element per file, reused');
     assert.ok(Math.abs(created[0].volume - 0.765) < 0.001, 'volume follows the slider, capped below unity');
 
@@ -618,8 +667,34 @@ test('the soundscape setting offers the recorded beds, and the bells can be audi
   await goto('timer');
   await waitFor(() => $('#setSoundscape'), { label: 'the soundscape control' });
   const options = $$('#setSoundscape option').map((option) => option.textContent.trim());
-  assert.deepEqual(options, ['Woodland', 'Night', 'Rain']);
+  assert.deepEqual(options, ['Woodland', 'Night']);
   assert.equal($$('[data-action="test-bell"]').length, 2, 'both bells are auditionable from the settings card');
+});
+
+test('a structural repaint keeps the immersive room and ignores the old node’s fullscreen exit', async () => {
+  engine.reset();
+  await goto('timer');
+  await waitFor(() => $('[data-action="timer-fullscreen"]'), { label: 'the fullscreen button' });
+  click($('[data-action="timer-fullscreen"]'));
+  const oldWorkspace = await waitFor(() => $('.focus-workspace.is-fullscreen'), { label: 'the immersive room' });
+  engine.setSettings({ focusMinutes: 45 });
+  await waitFor(() => $('.focus-workspace.is-fullscreen') && $('.focus-workspace') !== oldWorkspace, { label: 'the restored room' });
+  assert.equal(document.documentElement.classList.contains('focus-fs-lock'), true);
+  // jsdom has no nativeFullscreen; simulate the queued exit from the detached
+  // node by dispatching the event the browser sends after removal.
+  document.dispatchEvent(new window.Event('fullscreenchange'));
+  await new Promise((resolve) => setTimeout(resolve, 30));
+  assert.equal($('.focus-workspace').classList.contains('is-fullscreen'), true, 'the stale exit does not close the new room');
+  // Native fullscreen is now gone, but the restored CSS room is still open.
+  // Its Exit button must close it rather than request native fullscreen again.
+  let requested = 0;
+  $('.focus-workspace').requestFullscreen = async () => { requested += 1; };
+  click($('[data-action="timer-fullscreen"]'));
+  await waitFor(() => !$('.focus-workspace').classList.contains('is-fullscreen'), { label: 'the room to close' });
+  assert.equal(requested, 0, 'Exit does not re-enter fullscreen');
+  assert.equal(document.documentElement.classList.contains('focus-fs-lock'), false, 'and releases the page lock');
+  engine.setSettings({ focusMinutes: 25 });
+  engine.reset();
 });
 
 test('the fullscreen room keeps the clock and its controls', async () => {

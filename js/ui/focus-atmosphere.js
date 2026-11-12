@@ -1,31 +1,14 @@
 /**
- * focus-atmosphere.js — the Study Timer's visual layer.
+ * focus-atmosphere.js — the Study Timer's two visual atmospheres.
  *
- * Each atmosphere is a tint (in css/focus-timer.css, derived from the app's own
- * design tokens so both themes follow) plus one signature motion:
+ * Woodland follows the app's light theme; Night follows dark. The palette and
+ * motion are ported from the supplied Witherwood reference: slow drifting
+ * leaves, a quiet starfield and occasional glowing meteors. There is no
+ * independent atmosphere or clock-face selector.
  *
- *   woodland  drifting leaves in three token tones, on three depth layers —
- *             far ones smaller, dimmer and slower, with a sway mid-fall
- *   rain      two parallax drop layers (thin far drops, heavier near ones) and
- *             a slow mist drift along the ground
- *   night     a quiet twinkling starfield with the occasional shooting star —
- *             a lone streak or a short meteor shower
- *
- * Everything is generated once per mount from a seeded PRNG, so a re-render does
- * not reshuffle the sky. The particles are animated by CSS keyframes rather than
- * by a timer: the browser composites them, and they stop dead when the reader
- * prefers reduced motion (the stylesheet switches the animations off).
- *
- * Each particle needs its own numbers (where it starts, how long it takes), and
- * those cannot go in the markup: this app keeps every visual rule in the
- * stylesheet and forbids inline `style` attributes (tools/check.mjs). So the
- * numbers are handed to the CSSOM after the element is parsed —
- * `el.style.setProperty(...)` produces a real style rule, not an attribute in
- * the source — which keeps the source free of presentational markup while still
- * letting fifty raindrops fall at fifty different speeds.
- *
- * Nothing here touches layout: the layer is absolutely positioned inside the
- * workspace, `aria-hidden`, and click-through.
+ * Particles are seeded once per mount, animated by CSS, aria-hidden and
+ * click-through. Their individual numbers are written through the CSSOM after
+ * parsing (never as inline style attributes in the source).
  */
 
 /** Mulberry32 — small, fast, and reproducible so the sky is stable. */
@@ -39,7 +22,7 @@ function seeded(seed) {
   };
 }
 
-export function makeLeaves(count = 22, seed = 7717) {
+export function makeLeaves(count = 18, seed = 7717) {
   const rand = seeded(seed);
   return Array.from({ length: count }, () => {
     const depth = Math.floor(rand() * 3); // 0 far → 2 near
@@ -47,10 +30,10 @@ export function makeLeaves(count = 22, seed = 7717) {
     return {
       left: rand() * 100,
       size: (4 + rand() * 3) * scale,
-      duration: (1.9 + rand() * 1.9) * (depth === 0 ? 1.3 : depth === 2 ? 0.85 : 1),
+      duration: (20 + rand() * 25) * (depth === 0 ? 1.2 : depth === 2 ? 0.85 : 1),
       delay: -rand() * 4,
-      opacity: (0.2 + rand() * 0.24) * (depth === 0 ? 0.65 : 1),
-      drift: (rand() - 0.5) * 120,
+      opacity: (0.25 + rand() * 0.35) * (depth === 0 ? 0.65 : 1),
+      drift: (rand() - 0.5) * 160,
       rotation: 360 + rand() * 720,
       sway: 8 + rand() * 14,
       tone: Math.floor(rand() * 3),
@@ -59,24 +42,11 @@ export function makeLeaves(count = 22, seed = 7717) {
   });
 }
 
-export function makeRaindrops(seed = 20260521) {
-  const rand = seeded(seed);
-  const drop = (far) => ({
-    left: rand() * 100,
-    height: far ? 16 + rand() * 14 : 30 + rand() * 30,
-    duration: far ? 2.8 + rand() * 1.8 : 1.9 + rand() * 1.2,
-    delay: -rand() * 4,
-    opacity: far ? 0.12 + rand() * 0.1 : 0.2 + rand() * 0.22,
-    far,
-  });
-  return [...Array.from({ length: 55 }, () => drop(true)), ...Array.from({ length: 35 }, () => drop(false))];
-}
-
 export function makeStarfield(count = 46, seed = 5150) {
   const rand = seeded(seed);
   return Array.from({ length: count }, () => ({
     left: rand() * 100,
-    top: rand() * 68,
+    top: rand() * 100,
     size: 1 + rand() * 1.4,
     opacity: 0.12 + rand() * 0.38,
     twinkle: 3 + rand() * 4,
@@ -93,10 +63,10 @@ export function makeStar(rand = Math.random) {
   const roll = rand();
   const profile =
     roll < 0.65
-      ? { width: 30 + rand() * 40, duration: 0.5 + rand() * 0.4, glow: 1 + rand() * 2, opacity: 0.12 + rand() * 0.14, color: '255, 255, 255' }
+      ? { width: 30 + rand() * 40, duration: 0.5 + rand() * 0.4, glow: 1 + rand() * 2, opacity: 0.12 + rand() * 0.14, tone: 'white' }
       : roll < 0.95
-        ? { width: 80 + rand() * 60, duration: 0.9 + rand() * 0.6, glow: 4 + rand() * 4, opacity: 0.3 + rand() * 0.22, color: '220, 230, 255' }
-        : { width: 170 + rand() * 140, duration: 1.6 + rand() * 1.3, glow: 14 + rand() * 10, opacity: 0.62 + rand() * 0.18, color: '255, 230, 200' };
+        ? { width: 80 + rand() * 60, duration: 0.9 + rand() * 0.6, glow: 4 + rand() * 4, opacity: 0.3 + rand() * 0.22, tone: 'blue' }
+        : { width: 170 + rand() * 140, duration: 1.6 + rand() * 1.3, glow: 14 + rand() * 10, opacity: 0.62 + rand() * 0.18, tone: 'warm' };
   const angle = 10 + rand() * 35;
   const distance = 760 + rand() * 380;
   return {
@@ -134,6 +104,7 @@ function span(className, vars) {
  * screen has none.
  */
 export function renderAtmosphere(environment = 'woodland') {
+  if (environment !== 'night') environment = 'woodland';
   const layer = document.createElement('div');
   layer.className = 'focus-atmosphere-layer';
   layer.dataset.environment = environment;
@@ -144,42 +115,21 @@ export function renderAtmosphere(environment = 'woodland') {
   glow.innerHTML = '<div class="focus-glow-inner"></div>';
   layer.appendChild(glow);
 
-  if (environment === 'rain') {
-    const veil = document.createElement('div');
-    veil.className = 'rain-veil';
-    for (const drop of makeRaindrops()) {
-      veil.appendChild(
-        span(`rain-drop${drop.far ? ' layer-far' : ''}`, [
-          ['left', `${drop.left}%`],
-          ['height', `${drop.height}px`],
-          ['--dur', `${drop.duration}s`],
-          ['--delay', `${drop.delay}s`],
-          ['opacity', drop.opacity],
-        ]),
-      );
-    }
-    const mist = document.createElement('div');
-    mist.className = 'rain-mist';
-    mist.innerHTML = '<span class="mist-band"></span><span class="mist-band b"></span>';
-    veil.appendChild(mist);
-    layer.appendChild(veil);
-  }
-
   if (environment === 'woodland') {
     const veil = document.createElement('div');
     veil.className = 'leaf-veil';
     for (const leaf of makeLeaves()) {
       veil.appendChild(
         span(`particle-leaf tone-${'abc'[leaf.tone]} depth-${leaf.depth}`, [
-          ['--sx', `${leaf.left}vw`],
-          ['--ex', `${leaf.drift}vw`],
+          ['--left', `${leaf.left}%`],
+          ['--drift', `${leaf.drift}px`],
           ['--sway', `${leaf.sway}px`],
-          ['--dur', `${leaf.duration * 11}s`],
+          ['--dur', `${leaf.duration}s`],
           ['--op', String(leaf.opacity)],
           ['--rot', `${leaf.rotation}deg`],
           ['width', `${leaf.size}px`],
           ['height', `${leaf.size}px`],
-          ['--delay', `${-leaf.duration * 9}s`],
+          ['--delay', `${leaf.delay * 7}s`],
         ]),
       );
     }
@@ -224,7 +174,7 @@ export function spawnMeteors(sky, count = 1, rand = Math.random) {
       star.delayMs = index * (90 + rand() * 220);
     }
     longest = Math.max(longest, star.delayMs + star.duration * 1000);
-    const node = span('shooting-star', [
+    const node = span(`shooting-star star-${star.tone}`, [
       ['left', `${star.left}%`],
       ['top', `${star.top}%`],
       ['animation-delay', `${star.delayMs}ms`],

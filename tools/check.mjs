@@ -379,81 +379,54 @@ for (const entry of shellPaths) {
 
 /* --------------------------------------------- the flip clock and its faces -- */
 
-// The Study Timer's flip clock has three faces (Classic, Woodland, Rain) plus
-// Night, and its ambience is five recorded files. Both are easy to break
-// silently — a face with one token missing renders a half-themed digit, and a
-// renamed MP3 is a 404 in a control nobody clicks during a test — so they are
-// checked here, against the vocabulary the app actually ships.
+// The timer has exactly two complete faces, resolved from the app theme, and
+// four recorded audio files. A missing surface token makes a half-themed digit;
+// a renamed MP3 is a silent 404. Check both against the shipped vocabulary.
 {
-  const { CLOCK_THEMES } = await import(path.join(root, 'js', 'core', 'constants.js'));
+  const { FOCUS_ENVIRONMENTS } = await import(path.join(root, 'js/core/constants.js'));
   const focusCss = await readFile(path.join(root, 'css', 'focus-timer.css'), 'utf8');
+  check(JSON.stringify(FOCUS_ENVIRONMENTS) === JSON.stringify(['woodland', 'night']),
+    'the Study Timer must offer exactly Woodland and Night, resolved from the app theme');
 
-  const faceTokens = ['bg-top', 'bg-bottom', 'text', 'split', 'border', 'shadow', 'sheen'];
-  for (const face of ['woodland', 'rain', 'night', 'classic']) {
+  const faceTokens = ['top', 'bottom', 'text', 'split', 'border', 'shadow', 'sheen'];
+  for (const face of FOCUS_ENVIRONMENTS) {
     for (const token of faceTokens) {
-      check(
-        new RegExp(`--fc-${face}-${token}\\s*:`).test(focusCss),
-        `css/focus-timer.css: the ${face} clock face does not define --fc-${face}-${token}`,
-      );
+      check(new RegExp(`--focus-${face}-${token}\s*:`).test(focusCss),
+        `css/focus-timer.css: the ${face} face does not define --focus-${face}-${token}`);
     }
   }
-  // Classic has two palettes — the evergreen default and the sky-blue Rain
-  // variant the reference showed for its rainfall atmosphere — so its literal
-  // values live in the token block, not beside the other two faces.
-  for (const token of faceTokens) {
-    check(
-      new RegExp(`--focus-classic-${token}\\s*:`).test(focusCss),
-      `css/focus-timer.css: the Classic face has no literal --focus-classic-${token}`,
-    );
-    check(
-      new RegExp(`--focus-classic-rain-${token}\\s*:`).test(focusCss),
-      `css/focus-timer.css: the Classic face has no Rain variant --focus-classic-rain-${token}`,
-    );
-  }
+  check(/\.focus-workspace\.theme-night\s*,\s*\.flip-clock\.theme-night/.test(focusCss),
+    'css/focus-timer.css: Night must theme both the workspace and the pre-mount skeleton');
+  check(/\.flip-digit\s*\{[^}]*border:\s*1px solid var\(--fc-theme-border\)/.test(focusCss),
+    'css/focus-timer.css: the flip card needs a real border outside its opaque halves');
+  check(/--fc-flip-duration:\s*300ms/.test(focusCss),
+    'css/focus-timer.css: the flip flap must keep the reference’s 300 ms timing');
+  check(/grid-template-rows:\s*minmax\(0, 1fr\) auto minmax\(0, 1fr\)/.test(focusCss),
+    'css/focus-timer.css: fullscreen must centre the clock between equal flexible rows');
+  check(!/\.rain-|theme-rain|theme-classic|theme-auto/.test(focusCss),
+    'css/focus-timer.css: retired atmosphere/face rules must not ship');
 
-  for (const theme of CLOCK_THEMES) {
-    check(
-      new RegExp(`\\.focus-workspace\\.theme-${theme}\\b`).test(focusCss),
-      `css/focus-timer.css: the clock theme "${theme}" is offered in code but has no rule`,
-    );
-  }
-  // Night and Rain resolve through their own environment, so `auto` needs both;
-  // Woodland is the workspace default and needs no extra rule.
-  check(/\.focus-workspace\.theme-auto\.[\w-]+\s*\{/.test(focusCss), 'css/focus-timer.css: theme-auto follows the atmosphere and needs a rule');
-  for (const environment of ['rain', 'night']) {
-    check(
-      new RegExp(`\\.focus-workspace\\.theme-auto\\.environment-${environment}\\b`).test(focusCss),
-      `css/focus-timer.css: theme-auto has no face for the ${environment} atmosphere`,
-    );
-  }
-  // Every face must be defined for every atmosphere: a face pinned while the
-  // room is Woodland (the default) but only defined inside `.environment-rain`
-  // would render as blank cards.
-  for (const face of ['woodland', 'rain', 'night', 'classic']) {
-    check(
-      new RegExp(`--fc-${face}-bg-top:`).test(focusCss),
-      `css/focus-timer.css: the ${face} face has no default surface`,
-    );
-  }
-  check(
-    /--fc-flip-duration:\s*300ms/.test(focusCss),
-    'css/focus-timer.css: the flip flap must keep the reference’s 300 ms timing (--fc-flip-duration: 300ms)',
-  );
+  const timerView = await readFile(path.join(root, 'js', 'ui', 'views', 'timer.js'), 'utf8');
+  check(/resolveEffectiveTheme\(\) === 'dark' \? 'night' : 'woodland'/.test(timerView),
+    'timer.js: the visual atmosphere must resolve from the app theme');
+  check(/attributeFilter:\s*\['data-theme'\]/.test(timerView),
+    'timer.js: watch the resolved app theme so header/Settings/system changes repaint in place');
+  check(!/id="setEnvironment"|data-action="set-clock-theme"/.test(timerView),
+    'timer.js: independent atmosphere and clock-face pickers have been retired');
 
   const audioSource = await readFile(path.join(root, 'js', 'ui', 'focus-audio.js'), 'utf8');
-  for (const file of ['woodland.mp3', 'night.mp3', 'rain.mp3', 'time-up.mp3', 'mindfulness-bell.mp3']) {
+  for (const file of ['woodland.mp3', 'night.mp3', 'time-up.mp3', 'mindfulness-bell.mp3']) {
     check(audioSource.includes(file), `js/ui/focus-audio.js: ${file} is not played by the timer`);
     await readFile(path.join(root, 'sounds', file)).then(
       () => check(true, ''),
       () => check(false, `sounds/${file} is referenced by the timer but does not exist`),
     );
   }
+  check(!audioSource.includes('rain.mp3'), 'js/ui/focus-audio.js: the retired rainfall bed must not ship');
   check(
     audioSource.includes("const SOUND_DIR = 'sounds'") && !/['\"`]\/sounds\//.test(audioSource),
     'js/ui/focus-audio.js: sound paths must be relative (the app is served from a project subpath)',
   );
-  // The two bells are needed the first time a block ends; the beds are tens of
-  // megabytes and are cached on first play instead.
   for (const bell of ['time-up.mp3', 'mindfulness-bell.mp3']) {
     check(shellPaths.includes(`./sounds/${bell}`), `sw.js: the bell sounds/${bell} must be precached for offline use`);
   }
