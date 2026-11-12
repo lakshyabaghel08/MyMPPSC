@@ -83,6 +83,9 @@
   --focus-veil: linear-gradient(180deg, var(--ok-soft), transparent 60%);
   --fc-bg-top: var(--bg-elevated);
   --fc-bg-bottom: var(--bg-sunken);
+  /* The fullscreen room: the same surface the stage card sits on, extended to
+     the edges of the screen. */
+  --fc-room: linear-gradient(160deg, var(--fc-bg-top), var(--fc-bg-bottom));
   --fc-text: var(--text);
   --fc-split: var(--border-strong);
   --fc-border: var(--border-strong);
@@ -533,6 +536,23 @@
 
 /* --- fullscreen: the clock alone ---------------------------------------- */
 
+/*
+ * The class-only immersive mode (used when the Fullscreen API is missing or
+ * refused) overlays the app instead of expanding within it. The scroll lock
+ * lives on <html> because the page behind must not move under the stage.
+ */
+html.focus-fs-lock {
+  overflow: hidden;
+}
+
+/* The class-only mode has no native fullscreen box, so the workspace is
+   promoted to one: a fixed overlay that covers the shell it sits inside. */
+html.focus-fs-lock .focus-workspace.is-fullscreen {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+}
+
 .focus-workspace.is-fullscreen {
   display: grid;
   place-items: center;
@@ -541,9 +561,17 @@
   margin: 0;
   border: 0;
   border-radius: 0;
+  /* The stage card must not paint a surface, but the *room* must: a real
+     fullscreen element defaults to a black backdrop, which would leave the
+     flip clock as white holes in a void. */
+  background: var(--fc-bg-top);
+  box-shadow: none;
 }
 
-.focus-workspace.is-fullscreen .card,
+/* The stage card stays, but every other card — Today, the week, sessions —
+   and the chrome around the clock go. `.card` alone would also catch the stage
+   itself (it is a card), so the stage is exempted by name. */
+.focus-workspace.is-fullscreen .card:not(.focus-stage),
 .focus-workspace.is-fullscreen .card-head,
 .focus-workspace.is-fullscreen .focus-caption,
 .focus-workspace.is-fullscreen .focus-work,
@@ -551,18 +579,70 @@
   display: none;
 }
 
-.focus-workspace.is-fullscreen .card-body,
-.focus-workspace.is-fullscreen .focus-stage-top {
+.focus-workspace.is-fullscreen .focus-stage {
+  display: grid;
+  place-items: center;
   width: 100%;
+  height: 100%;
+  margin: 0;
+  /* No white island and no black void: the stage paints the *room* — the same
+     atmosphere surface as the card it replaces — edge to edge. In native
+     fullscreen only the fullscreen element is rendered, so this is the one
+     surface the user can actually see. */
+  border: 0;
+  border-radius: 0;
+  background: var(--fc-room);
+  box-shadow: none;
+}
+
+.focus-workspace.is-fullscreen .focus-stage > .card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-5);
+  width: 100%;
+  height: 100%;
+  padding: clamp(16px, 4vh, 48px) var(--space-4);
   border: 0;
   background: transparent;
 }
 
-.focus-workspace.is-fullscreen .focus-stage {
-  display: grid;
-  place-items: center;
-  height: 100%;
-  margin: 0;
+/*
+ * The controls stay on screen in fullscreen. The whole point of the mode is to
+ * remove distractions, not to remove Pause — a stage whose only control is a
+ * click on the clock leaves no visible way to stop or leave.
+ */
+.focus-workspace.is-fullscreen .focus-controls {
+  opacity: 0.45;
+  transition: opacity var(--dur-base) var(--ease-out);
+}
+
+.focus-workspace.is-fullscreen .focus-controls:hover,
+.focus-workspace.is-fullscreen .focus-controls:focus-within {
+  opacity: 1;
+}
+
+.focus-workspace.is-fullscreen .focus-stage-top {
+  position: absolute;
+  top: var(--space-4);
+  left: var(--space-4);
+  right: var(--space-4);
+  width: auto;
+  opacity: 0.45;
+  transition: opacity var(--dur-base) var(--ease-out);
+}
+
+.focus-workspace.is-fullscreen .focus-stage-top:hover,
+.focus-workspace.is-fullscreen .focus-stage-top:focus-within {
+  opacity: 1;
+}
+
+
+/* The Fullscreen button reads as pressed while the room is immersive. */
+.focus-workspace.is-fullscreen [data-action="timer-fullscreen"] {
+  border-color: var(--focus-accent);
+  color: var(--focus-accent);
 }
 
 .focus-workspace.is-fullscreen .focus-clock-holder {

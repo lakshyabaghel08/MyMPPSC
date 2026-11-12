@@ -473,3 +473,49 @@ test('a block that ran out while the app was closed is closed out once, at its f
   await engine.restore();
   assert.equal((await studyLog.listSessions()).length, 1);
 });
+
+test('the primary control keeps working after the screen repaints it in place', async () => {
+  engine.reset();
+  await goto('timer');
+  await waitFor(() => $('[data-action="timer-start"]'), { label: 'the start control' });
+  click($('[data-action="timer-start"]'));
+  await waitFor(() => engine.isRunning(), { label: 'the engine to start' });
+
+  // `paintLive` flips the same button to `timer-pause` without a re-render.
+  // A listener bound to the button's original action would keep calling
+  // start(), so the second click did nothing: pause is the regression.
+  const pause = await waitFor(() => $('[data-action="timer-pause"]'), { label: 'the pause control' });
+  click(pause);
+  await waitFor(() => !engine.isRunning(), { label: 'the engine to pause' });
+
+  const resume = await waitFor(() => $('[data-action="timer-start"]'), { label: 'the resume control' });
+  click(resume);
+  await waitFor(() => engine.isRunning(), { label: 'the engine to resume' });
+  click($('[data-action="timer-pause"]'));
+  await waitFor(() => !engine.isRunning(), { label: 'the engine to pause again' });
+  engine.reset();
+});
+
+test('the fullscreen room keeps the clock and its controls', async () => {
+  await goto('timer');
+  const workspace = await waitFor(() => $('#focusWorkspace'), { label: 'the workspace' });
+  const stage = workspace.querySelector('.focus-stage');
+
+  // The stage is a `.card` too, so the fullscreen rules must exempt it by
+  // name; a bare `.card { display: none }` hides the clock and leaves an empty
+  // room. jsdom does not resolve stylesheets, so this asserts the structure the
+  // CSS keys off rather than the painted result.
+  assert.ok(stage, 'the stage card exists inside the workspace');
+  assert.ok(stage.classList.contains('focus-stage'), 'and is identified as the stage');
+  assert.ok($('#focusClockHolder'), 'the clock survives');
+
+  workspace.classList.add('is-fullscreen');
+  try {
+    assert.ok(document.documentElement.classList.contains('focus-fs-lock') === false,
+      'the page lock is the view\'s job, not a bare class toggle');
+    assert.ok($('.focus-controls'), 'Pause stays reachable — the room has no other control');
+    assert.ok($('[data-action="timer-fullscreen"]'), 'and the way out stays on screen');
+  } finally {
+    workspace.classList.remove('is-fullscreen');
+  }
+});
