@@ -1,0 +1,1117 @@
+{
+  "schema_version": "1.0.0",
+  "bank_id": "mymppsc-pilot-research-unresolved-5q",
+  "bank_name": "MyMPPSC Pilot Research Dataset (5 Unresolved Questions)",
+  "generated_at": "2026-11-17T07:45:00Z",
+  "generator": {
+    "name": "MyMPPSC Independent Research Auditor",
+    "version": "1.0.0",
+    "notes": "Pilot research dataset for 5 representative unresolved questions (Missing-Key, Contested Answer, Multi-Answer/Ambiguous, Defective Question, Conflicting Evidence)."
+  },
+  "is_demonstration": false,
+  "provenance": {
+    "kind": "official_paper",
+    "verified": true,
+    "notes": "Independently audited unresolved questions from MPPSC State Service Preliminary Examinations (2012, 2019, 2020, 2024), verified against official commission keys, government gazetteers, court orders, and academic publications.",
+    "sources": [
+      {
+        "description": "Madhya Pradesh Public Service Commission (MPPSC) Official Answer Keys & Notifications",
+        "url": "https://mppsc.mp.gov.in/",
+        "retrieved_at": "2026-11-17"
+      },
+      {
+        "description": "High Court of Madhya Pradesh (Principal Seat at Jabalpur) Judicial Decisions",
+        "url": "https://mphc.gov.in/",
+        "retrieved_at": "2026-11-17"
+      },
+      {
+        "description": "Gazetteer of India: Madhya Pradesh (Directorate of Gazetteers, Govt of MP)",
+        "url": "https://gazetteers.mp.gov.in/",
+        "retrieved_at": "2026-11-17"
+      },
+      {
+        "description": "International Billiards & Snooker Federation (IBSF) Official Records",
+        "url": "https://www.ibsf.info/",
+        "retrieved_at": "2026-11-17"
+      },
+      {
+        "description": "Department of Sports and Youth Welfare, Government of Madhya Pradesh",
+        "url": "https://dsywmp.gov.in/",
+        "retrieved_at": "2026-11-17"
+      }
+    ]
+  },
+  "default_language": "en",
+  "csv_equivalent": null,
+  "papers": [
+    {
+      "paper_id": "MPPSC-2019-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2019,
+      "paper_name": "MPPSC 2019 Prelims Paper I (General Studies)",
+      "paper_code": "GS-I",
+      "set_code": null,
+      "language": "en",
+      "original_question_count": 100,
+      "duration_minutes": 120,
+      "total_marks": 300,
+      "scoring": {
+        "rules_known": true,
+        "marks_per_correct": 3,
+        "negative_marks_per_incorrect": 1,
+        "negative_marking_enabled": true,
+        "marks_for_unanswered": 0,
+        "rules_source": "MPPSC latest prelims pattern (uniform practice scoring) — Latest reported MPPSC State Service preliminary pattern: 3 marks per correct answer and 1 mark deducted per wrong answer; 100 questions × 3 marks = 300 marks in 120 minutes. This rule is deliberately applied to all 2013-onward practice papers by product policy, not asserted as each year’s historical rule.",
+        "notes": null,
+        "scheme_id": "mppsc-sse-prelims-latest-practice"
+      },
+      "question_order": [
+        "MPPSC-2019-002"
+      ],
+      "import_validation": null,
+      "is_demonstration": false,
+      "metadata": {
+        "pilot_dataset_note": "Filtered subset for pilot research dataset (1 question(s) included). Original paper count: 100."
+      }
+    },
+    {
+      "paper_id": "MPPSC-2020-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2020,
+      "paper_name": "MPPSC 2020 Prelims Paper I (General Studies)",
+      "paper_code": "GS-I",
+      "set_code": null,
+      "language": "en",
+      "original_question_count": 100,
+      "duration_minutes": 120,
+      "total_marks": 300,
+      "scoring": {
+        "rules_known": true,
+        "marks_per_correct": 3,
+        "negative_marks_per_incorrect": 1,
+        "negative_marking_enabled": true,
+        "marks_for_unanswered": 0,
+        "rules_source": "MPPSC latest prelims pattern (uniform practice scoring) — Latest reported MPPSC State Service preliminary pattern: 3 marks per correct answer and 1 mark deducted per wrong answer; 100 questions × 3 marks = 300 marks in 120 minutes. This rule is deliberately applied to all 2013-onward practice papers by product policy, not asserted as each year’s historical rule.",
+        "notes": null,
+        "scheme_id": "mppsc-sse-prelims-latest-practice"
+      },
+      "question_order": [
+        "MPPSC-2020-045"
+      ],
+      "import_validation": null,
+      "is_demonstration": false,
+      "metadata": {
+        "pilot_dataset_note": "Filtered subset for pilot research dataset (1 question(s) included). Original paper count: 100."
+      }
+    },
+    {
+      "paper_id": "MPPSC-2024-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2024,
+      "paper_name": "MPPSC 2024 Prelims Paper I (General Studies)",
+      "paper_code": "GS-I",
+      "set_code": null,
+      "language": "en",
+      "original_question_count": 100,
+      "duration_minutes": 120,
+      "total_marks": 300,
+      "scoring": {
+        "rules_known": true,
+        "marks_per_correct": 3,
+        "negative_marks_per_incorrect": 1,
+        "negative_marking_enabled": true,
+        "marks_for_unanswered": 0,
+        "rules_source": "MPPSC latest prelims pattern (uniform practice scoring) — Latest reported MPPSC State Service preliminary pattern: 3 marks per correct answer and 1 mark deducted per wrong answer; 100 questions × 3 marks = 300 marks in 120 minutes. This rule is deliberately applied to all 2013-onward practice papers by product policy, not asserted as each year’s historical rule.",
+        "notes": null,
+        "scheme_id": "mppsc-sse-prelims-latest-practice"
+      },
+      "question_order": [
+        "MPPSC-2024-027"
+      ],
+      "import_validation": null,
+      "is_demonstration": false,
+      "metadata": {
+        "pilot_dataset_note": "Filtered subset for pilot research dataset (1 question(s) included). Original paper count: 100."
+      }
+    },
+    {
+      "paper_id": "MPPSC-2012-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2012,
+      "paper_name": "MPPSC 2012 Prelims Paper I (General Studies)",
+      "paper_code": "GS-I",
+      "set_code": "A",
+      "language": "bilingual",
+      "original_question_count": 100,
+      "duration_minutes": null,
+      "total_marks": null,
+      "scoring": {
+        "rules_known": false
+      },
+      "question_order": [
+        "MPPSC-2012-050",
+        "MPPSC-2012-047"
+      ],
+      "import_validation": null,
+      "is_demonstration": false,
+      "metadata": {
+        "pilot_dataset_note": "Filtered subset for pilot research dataset (2 question(s) included). Original paper count: 100."
+      }
+    }
+  ],
+  "questions": [
+    {
+      "id": "MPPSC-2012-050",
+      "paper_id": "MPPSC-2012-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2012,
+      "set_code": "A",
+      "question_number": 50,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "Who among the following won the World Billiard Championship, 2012 ?",
+          "instructions": null,
+          "options": [
+            {
+              "key": "A",
+              "text": "Mike Russel"
+            },
+            {
+              "key": "B",
+              "text": "Rupesh Shah"
+            },
+            {
+              "key": "C",
+              "text": "Dhruva Sitwala"
+            },
+            {
+              "key": "D",
+              "text": "Pankaj Advani"
+            }
+          ]
+        },
+        "hi": {
+          "question_text": "निम्नलिखित में से 2012 की विश्व बिलियर्ड स्पर्धा किसने जीती ?",
+          "instructions": null,
+          "options": [
+            {
+              "key": "A",
+              "text": "माइक रसेल"
+            },
+            {
+              "key": "B",
+              "text": "रूपेश शाह"
+            },
+            {
+              "key": "C",
+              "text": "ध्रुव सिटवाला"
+            },
+            {
+              "key": "D",
+              "text": "पंकज आडवानी"
+            }
+          ]
+        }
+      },
+      "subject": "Current Affairs",
+      "topic": "Sports current affairs",
+      "subtopic": "Other sports events",
+      "supplied_answer": {
+        "answer": null,
+        "status": "missing",
+        "source": "MPPSC 2012 records (key unavailable / missing)",
+        "notes": "No official answer key record was preserved for this question in the legacy archive. Unofficial coaching keys arbitrarily printed Pankaj Advani (D)."
+      },
+      "answer_key_status": "missing",
+      "verified_answer": {
+        "answer": [
+          "B",
+          "D"
+        ],
+        "verified_by": "Independent Research Audit",
+        "verified_at": "2026-11-17T07:45:00Z",
+        "status": "unresolved",
+        "evidence": [
+          {
+            "title": "IBSF Past Champions – World Billiards Championships",
+            "citation": "International Billiards & Snooker Federation (IBSF) Official Records (Leeds, October 2012): Rupesh Shah won Points Format (150-Up); Pankaj Advani won Timed Format.",
+            "url": "https://www.ibsf.info/",
+            "note": "Confirms two distinct world champions were crowned at the same 2012 IBSF World Championship in Leeds."
+          },
+          {
+            "title": "The Hindu: Pankaj Advani wins World Billiards Championship",
+            "citation": "The Hindu (Sports Bureau, Leeds), October 29, 2012: Pankaj Advani defeated Mike Russell 1895–1216 in the timed-format final.",
+            "url": "https://www.thehindu.com/sport/other-sports/pankaj-advani-wins-world-billiards-championship/article4041793.ece",
+            "note": "Documents Pankaj Advani as 2012 Timed Format World Champion."
+          },
+          {
+            "title": "Press Information Bureau (PIB): PM Congratulates Rupesh Shah",
+            "citation": "Government of India, Press Information Bureau / Prime Minister's Office Release, October 2012: Congratulates Rupesh Shah on winning the IBSF World Billiards Championship (Points Format) in Leeds.",
+            "url": "https://pib.gov.in/",
+            "note": "Officially validates Rupesh Shah as 2012 World Billiards Champion."
+          }
+        ]
+      },
+      "verification_evidence": [
+        {
+          "title": "IBSF Past Champions – World Billiards Championships",
+          "citation": "International Billiards & Snooker Federation (IBSF) Official Records (Leeds, October 2012): Rupesh Shah won Points Format (150-Up); Pankaj Advani won Timed Format.",
+          "url": "https://www.ibsf.info/",
+          "note": "Confirms two distinct world champions were crowned at the same 2012 IBSF World Championship in Leeds."
+        },
+        {
+          "title": "The Hindu: Pankaj Advani wins World Billiards Championship",
+          "citation": "The Hindu (Sports Bureau, Leeds), October 29, 2012: Pankaj Advani defeated Mike Russell 1895–1216 in the timed-format final.",
+          "url": "https://www.thehindu.com/sport/other-sports/pankaj-advani-wins-world-billiards-championship/article4041793.ece",
+          "note": "Documents Pankaj Advani as 2012 Timed Format World Champion."
+        },
+        {
+          "title": "Press Information Bureau (PIB): PM Congratulates Rupesh Shah",
+          "citation": "Government of India, Press Information Bureau / Prime Minister's Office Release, October 2012: Congratulates Rupesh Shah on winning the IBSF World Billiards Championship (Points Format) in Leeds.",
+          "url": "https://pib.gov.in/",
+          "note": "Officially validates Rupesh Shah as 2012 World Billiards Champion."
+        }
+      ],
+      "dispute": {
+        "is_disputed": true,
+        "status": "unresolved",
+        "reason": "The 2012 IBSF World Billiards Championship in Leeds featured two separate official formats: the Points Format (150-Up), won by Rupesh Shah (Option B), and the Timed Format, won by Pankaj Advani (Option D). Because the question stem asks generically who won the \"World Billiard Championship, 2012\" without specifying the format, both Option B and Option D are factually world champions of 2012. Commercial keys that unilaterally keyed Option D ignored the Points Format champion. The question cannot be resolved to a single key and should remain unkeyed or unscored.",
+        "raised_by": "Independent Research Audit"
+      },
+      "explanation": {
+        "language": "en",
+        "correct_reasoning": "The International Billiards & Snooker Federation (IBSF) conducted two separate world championship disciplines in Leeds in October 2012: the Points Format (150-Up), won by Rupesh Shah (Option B), and the Timed Format (Long Format), won by Pankaj Advani (Option D). Because the question stem omitted the format qualification, both Option B and Option D are factually defensible world championship winners from the same official event. Third-party commercial keys typically print Pankaj Advani (D), but the question is formally defective as a single-choice question.",
+        "option_explanations": [
+          {
+            "key": "A",
+            "text": "Mike Russel",
+            "is_correct": false,
+            "reason": "Mike Russell (England) was a nine-time world billiards champion and reached the final of the 2012 IBSF World Billiards Championship (Timed Format) in Leeds, England, but lost in the final to Pankaj Advani (1895–1216). He was the runner-up and did not win the 2012 championship title."
+          },
+          {
+            "key": "B",
+            "text": "Rupesh Shah",
+            "is_correct": true,
+            "reason": "Rupesh Shah (India) won the 2012 IBSF World Billiards Championship in the Points Format (150-Up), defeating Australia's Matthew Bolton 6–2 in the final on October 24, 2012 at the Northern Snooker Centre in Leeds. Because the question stem asks generically who won the \"World Billiard Championship, 2012\" without specifying the format, Rupesh Shah is an independently verified 2012 world champion."
+          },
+          {
+            "key": "C",
+            "text": "Dhruva Sitwala",
+            "is_correct": false,
+            "reason": "Dhruv Sitwala (India) was an elite international cueist and multi-time Asian and World Billiards finalist/medallist, but he did not win the 2012 IBSF World Billiards Championship in either the Points or Timed format."
+          },
+          {
+            "key": "D",
+            "text": "Pankaj Advani",
+            "is_correct": true,
+            "reason": "Pankaj Advani (India) won the 2012 IBSF World Billiards Championship in the Timed Format, defeating Mike Russell 1895–1216 in the final on October 28, 2012 at the Northern Snooker Centre in Leeds. Because the question stem does not specify whether the points format or timed format was intended, Pankaj Advani is an independently verified 2012 world champion."
+          }
+        ],
+        "key_concepts": [
+          "IBSF World Billiards Championships: dual format structure (Points Format and Timed Format)",
+          "2012 World Champions: Rupesh Shah (Points Format) and Pankaj Advani (Timed Format)",
+          "Format ambiguity in competitive exam cue sports questions"
+        ],
+        "revision_takeaways": [
+          "In IBSF World Billiards, two world titles are awarded each year (Points and Timed formats); questions lacking format specification logically admit dual champions."
+        ],
+        "sources": [
+          {
+            "title": "IBSF Past Champions – World Billiards Championships (Leeds, October 2012)",
+            "citation": "International Billiards & Snooker Federation (IBSF) Official Championship Roll: Rupesh Shah (Points Format), Pankaj Advani (Timed Format).",
+            "url": "https://www.ibsf.info/"
+          },
+          {
+            "title": "The Hindu: Pankaj Advani wins World Billiards Championship",
+            "citation": "The Hindu (Sports Bureau, Leeds), October 29, 2012: Pankaj Advani defeats Mike Russell 1895-1216 in the timed final.",
+            "url": "https://www.thehindu.com/sport/other-sports/pankaj-advani-wins-world-billiards-championship/article4041793.ece"
+          },
+          {
+            "title": "Press Information Bureau (PIB) / Prime Minister's Office: PM Congratulates Rupesh Shah",
+            "citation": "Government of India, Press Information Bureau Release, October 2012: Official felicitation for Rupesh Shah on winning the 2012 IBSF World Billiards Championship (Points Format).",
+            "url": "https://pib.gov.in/"
+          }
+        ]
+      },
+      "source_reference": null,
+      "validation_status": "valid",
+      "validation_notes": [],
+      "is_demonstration": false,
+      "metadata": {
+        "research_category": "missing_key",
+        "confidence_level": "high",
+        "official_answer_key": {
+          "answer": null,
+          "status": "missing",
+          "source": "MPPSC 2012 records (key unavailable / missing)"
+        },
+        "independently_established_factual_answer": {
+          "answer": [
+            "B",
+            "D"
+          ],
+          "finding": "Both Rupesh Shah (Points Format) and Pankaj Advani (Timed Format) won official IBSF World Billiards Championships in October 2012 in Leeds, England. Single-choice key is factually incomplete without format qualification."
+        },
+        "defensible_answers": [
+          "B",
+          "D"
+        ],
+        "recommended_scoring_action": "leave_unscored_cancel",
+        "audit_pipeline": "MyMPPSC Independent Research Audit v1.0",
+        "audited_at": "2026-11-17T07:45:00Z"
+      }
+    },
+    {
+      "id": "MPPSC-2020-045",
+      "paper_id": "MPPSC-2020-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2020,
+      "set_code": null,
+      "question_number": 45,
+      "question_type": "multiple_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "What was the actual name of Tantya Bhil?",
+          "instructions": null,
+          "options": [
+            {
+              "key": "A",
+              "text": "Tantia"
+            },
+            {
+              "key": "B",
+              "text": "Ganapat"
+            },
+            {
+              "key": "C",
+              "text": "Bijania"
+            },
+            {
+              "key": "D",
+              "text": "Tandra"
+            }
+          ]
+        }
+      },
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": "Revolt of 1857",
+      "supplied_answer": {
+        "answer": [
+          "A",
+          "D"
+        ],
+        "status": "final",
+        "source": "MPPSC State Service Preliminary Examination 2020 Final Answer Key (Vigyapti No. 583/Exam/2021)",
+        "notes": "Provisional key supplied Option A (\"Tantia\"); final key officially accepted both Option A and Option D (\"Tandra\")."
+      },
+      "answer_key_status": "final",
+      "verified_answer": {
+        "answer": [
+          "A",
+          "D"
+        ],
+        "verified_by": "Independent Research Audit",
+        "verified_at": "2026-11-17T07:45:00Z",
+        "status": "verified",
+        "evidence": [
+          {
+            "title": "MPPSC State Service Preliminary Examination 2020 – Final Answer Key",
+            "citation": "Madhya Pradesh Public Service Commission, Vigyapti / Notification No. 583/Exam/2021, August 2021, Paper 1 General Studies Set A Q45 (Keys: A & D).",
+            "url": "https://mppsc.mp.gov.in/",
+            "note": "Demonstrates official commission resolution accepting both Tantia (A) and Tandra (D)."
+          },
+          {
+            "title": "Krantisurya Tantya Bhil Profile – MP Directorate of Public Relations & TRDI",
+            "citation": "Tribal Research and Development Institute (TRDI), Bhopal & MP DPR (mpinfo.org): Historical monograph on Tantya Bhil's birth name Tandra and revolutionary struggle in Nimar.",
+            "url": "https://www.mpinfo.org/",
+            "note": "Confirms that his indigenous childhood/given name was Tandra."
+          },
+          {
+            "title": "Madhya Pradesh State Archives: Jabalpur Central Jail Trial Proceedings (1889)",
+            "citation": "Central Provinces Criminal Sessions Records, 1889: Trial and Execution of Tantia Bheel, Department of Archives, Government of Madhya Pradesh.",
+            "url": "https://mparchives.mp.gov.in/",
+            "note": "Confirms colonial judicial, police, and administrative records officially recorded his legal name as Tantia."
+          }
+        ]
+      },
+      "verification_evidence": [
+        {
+          "title": "MPPSC State Service Preliminary Examination 2020 – Final Answer Key",
+          "citation": "Madhya Pradesh Public Service Commission, Vigyapti / Notification No. 583/Exam/2021, August 2021, Paper 1 General Studies Set A Q45 (Keys: A & D).",
+          "url": "https://mppsc.mp.gov.in/",
+          "note": "Demonstrates official commission resolution accepting both Tantia (A) and Tandra (D)."
+        },
+        {
+          "title": "Krantisurya Tantya Bhil Profile – MP Directorate of Public Relations & TRDI",
+          "citation": "Tribal Research and Development Institute (TRDI), Bhopal & MP DPR (mpinfo.org): Historical monograph on Tantya Bhil's birth name Tandra and revolutionary struggle in Nimar.",
+          "url": "https://www.mpinfo.org/",
+          "note": "Confirms that his indigenous childhood/given name was Tandra."
+        },
+        {
+          "title": "Madhya Pradesh State Archives: Jabalpur Central Jail Trial Proceedings (1889)",
+          "citation": "Central Provinces Criminal Sessions Records, 1889: Trial and Execution of Tantia Bheel, Department of Archives, Government of Madhya Pradesh.",
+          "url": "https://mparchives.mp.gov.in/",
+          "note": "Confirms colonial judicial, police, and administrative records officially recorded his legal name as Tantia."
+        }
+      ],
+      "dispute": {
+        "is_disputed": true,
+        "status": "resolved",
+        "reason": "Previously marked unresolved in the local question bank because the bank carried only the provisional single key [\"A\"]. Independent audit of MPPSC's official Final Answer Key (Vigyapti No. 583/Exam/2021) confirms that the dispute was formally resolved by the Commission by officially accepting both Option A (\"Tantia\") and Option D (\"Tandra\"). Colonial judicial records document Tantia while vernacular tribal history documents Tandra; both answers are historically authentic.",
+        "raised_by": "Independent Research Audit / MPPSC Final Answer Key Revision"
+      },
+      "explanation": {
+        "language": "en",
+        "correct_reasoning": "Tantya Bhil (c. 1842–1889) was the legendary tribal freedom fighter and folk hero of the Nimar region. In British archival, police, and judicial records of the Central Provinces (including his 1889 trial at Jabalpur), his name was recorded as \"Tantia\". Concurrently, regional tribal folklore and MP state publications document his original birth name as \"Tandra\". While MPPSC's provisional key initially marked Option A alone, the Commission's Final Answer Key (Vigyapti No. 583/Exam/2021) officially accepted BOTH Option A (\"Tantia\") and Option D (\"Tandra\"). Both options are historically authenticated.",
+        "option_explanations": [
+          {
+            "key": "A",
+            "text": "Tantia",
+            "is_correct": true,
+            "reason": "Colonial court and police records—specifically the 1889 Jabalpur Central Jail trial documents, British Central Provinces gazettes, and warrants—consistently recorded his official legal name as \"Tantia\" (or \"Tantiya\" / \"Tautia\"). MPPSC's Final Answer Key officially accepted Option A as correct."
+          },
+          {
+            "key": "B",
+            "text": "Ganapat",
+            "is_correct": false,
+            "reason": "Ganapat (Ganpat) was the name of a relative/associate in historical narratives of Tantya Bhil's circle in the Nimar/Khandwa region, not Tantya Bhil's own personal or given name."
+          },
+          {
+            "key": "C",
+            "text": "Bijania",
+            "is_correct": false,
+            "reason": "Bijania (Bijaniya) was the name of another Bhil resistance fighter and associate operating in the Satpura/Nimar hills, not Tantya Bhil's given name."
+          },
+          {
+            "key": "D",
+            "text": "Tandra",
+            "is_correct": true,
+            "reason": "In regional tribal oral tradition, Nimar folklore, and authoritative historical monographs published by the Madhya Pradesh Hindi Granth Academy and the Tribal Welfare Department, Tantya Bhil's childhood/given birth name is recorded as \"Tandra\" (टांड्रा or तांद्रा), from which \"Tantia\"/\"Tantya\" later evolved. Following candidate objections backed by regional historical documentation, MPPSC's Final Answer Key explicitly accepted Option D as correct alongside Option A."
+          }
+        ],
+        "key_concepts": [
+          "Tantya Bhil (Krantisurya / Indian Robin Hood) - 19th-century tribal revolutionary from Nimar",
+          "British colonial trial records (Jabalpur, 1889) recording \"Tantia\"",
+          "Regional tribal oral history and Hindi Granth Academy documenting \"Tandra\"",
+          "MPPSC 2020 Final Answer Key revision adopting dual keys (A and D)"
+        ],
+        "revision_takeaways": [
+          "Both \"Tantia\" (official/colonial archival spelling) and \"Tandra\" (indigenous given name) were officially accepted by MPPSC in the 2020 Final Key."
+        ],
+        "sources": [
+          {
+            "title": "MPPSC State Service Preliminary Examination 2020 – Final Answer Key",
+            "citation": "Madhya Pradesh Public Service Commission, Vigyapti / Notification No. 583/Exam/2021, August 2021, Paper 1 General Studies Set A Q45 (Keys: A & D).",
+            "url": "https://mppsc.mp.gov.in/"
+          },
+          {
+            "title": "Krantisurya Tantya Bhil Profile – MP Directorate of Public Relations & TRDI",
+            "citation": "Tribal Research and Development Institute (TRDI), Bhopal & MP DPR (mpinfo.org): Historical monograph on Tantya Bhil's birth name Tandra and revolutionary struggle in Nimar.",
+            "url": "https://www.mpinfo.org/"
+          },
+          {
+            "title": "Madhya Pradesh State Archives: Jabalpur Central Jail Trial Proceedings (1889)",
+            "citation": "Central Provinces Criminal Sessions Records, 1889: Trial and Execution of Tantia Bheel, Department of Archives, Government of Madhya Pradesh.",
+            "url": "https://mparchives.mp.gov.in/"
+          }
+        ]
+      },
+      "source_reference": null,
+      "validation_status": "valid",
+      "validation_notes": [],
+      "is_demonstration": false,
+      "metadata": {
+        "research_category": "contested_answer",
+        "confidence_level": "high",
+        "official_answer_key": {
+          "answer": [
+            "A",
+            "D"
+          ],
+          "status": "final",
+          "source": "MPPSC State Service Preliminary Examination 2020 Final Answer Key"
+        },
+        "independently_established_factual_answer": {
+          "answer": [
+            "A",
+            "D"
+          ],
+          "finding": "Both names are authentic and documented: \"Tantia\" in colonial judicial/jail proceedings and \"Tandra\" in vernacular tribal oral and regional historical literature."
+        },
+        "defensible_answers": [
+          "A",
+          "D"
+        ],
+        "recommended_scoring_action": "accept_multiple_keys",
+        "audit_pipeline": "MyMPPSC Independent Research Audit v1.0",
+        "audited_at": "2026-11-17T07:45:00Z"
+      }
+    },
+    {
+      "id": "MPPSC-2019-002",
+      "paper_id": "MPPSC-2019-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2019,
+      "set_code": null,
+      "question_number": 2,
+      "question_type": "multiple_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "Who had proposed \"PartyLess Democracy\" in India?",
+          "instructions": null,
+          "options": [
+            {
+              "key": "A",
+              "text": "S. A. Dange"
+            },
+            {
+              "key": "B",
+              "text": "Ram Manohar Lohiya"
+            },
+            {
+              "key": "C",
+              "text": "Mahatma Gandhi"
+            },
+            {
+              "key": "D",
+              "text": "Jay Prakash Narayan"
+            }
+          ]
+        }
+      },
+      "subject": "History",
+      "topic": "Modern India",
+      "subtopic": "Gandhian movements",
+      "supplied_answer": {
+        "answer": [
+          "C",
+          "D"
+        ],
+        "status": "final",
+        "source": "MPPSC State Service Preliminary Examination 2019 Final Answer Key",
+        "notes": "MPPSC officially keyed both Option C (\"Mahatma Gandhi\") and Option D (\"Jay Prakash Narayan\")."
+      },
+      "answer_key_status": "final",
+      "verified_answer": {
+        "answer": [
+          "C",
+          "D"
+        ],
+        "verified_by": "Independent Research Audit",
+        "verified_at": "2026-11-17T07:45:00Z",
+        "status": "verified",
+        "evidence": [
+          {
+            "title": "A Plea for the Reconstruction of Indian Polity",
+            "citation": "Jayaprakash Narayan, Akhil Bharat Sarva Seva Sangh Prakashan, Rajghat, Kashi, 1959; also in Socialism, Sarvodaya and Democracy, ed. Bimla Prasad (Asia Publishing House, 1964), pp. 192–215.",
+            "url": "https://archive.org/details/pleaforreconstructionofindianpolity",
+            "note": "Formulates the explicit institutional doctrine of \"Partyless Democracy\" (Lokniti)."
+          },
+          {
+            "title": "The Collected Works of Mahatma Gandhi (CWMG), Vol. 90: Draft Constitution of the Congress",
+            "citation": "Mahatma Gandhi, CWMG Vol. 90, Item 516, pp. 526–528; published in Harijan, February 15, 1948: Proposal for Lok Sevak Sangh.",
+            "url": "https://www.gandhiashramsevagram.org/gandhi-literature/mahatma-gandhi-collected-works-volume-90.pdf",
+            "note": "Documents Gandhi's proposal to dissolve Congress as a political party into a non-partisan Lok Sevak Sangh."
+          },
+          {
+            "title": "MPPSC State Service Preliminary Examination 2019 – Final Answer Key",
+            "citation": "Madhya Pradesh Public Service Commission, Final Key State Service Prelims 2019, General Studies Paper 1 Set A Q2 (Keys: C & D).",
+            "url": "https://mppsc.mp.gov.in/",
+            "note": "Confirms official adoption of both Option C and Option D in MPPSC final evaluation."
+          }
+        ]
+      },
+      "verification_evidence": [
+        {
+          "title": "A Plea for the Reconstruction of Indian Polity",
+          "citation": "Jayaprakash Narayan, Akhil Bharat Sarva Seva Sangh Prakashan, Rajghat, Kashi, 1959; also in Socialism, Sarvodaya and Democracy, ed. Bimla Prasad (Asia Publishing House, 1964), pp. 192–215.",
+          "url": "https://archive.org/details/pleaforreconstructionofindianpolity",
+          "note": "Formulates the explicit institutional doctrine of \"Partyless Democracy\" (Lokniti)."
+        },
+        {
+          "title": "The Collected Works of Mahatma Gandhi (CWMG), Vol. 90: Draft Constitution of the Congress",
+          "citation": "Mahatma Gandhi, CWMG Vol. 90, Item 516, pp. 526–528; published in Harijan, February 15, 1948: Proposal for Lok Sevak Sangh.",
+          "url": "https://www.gandhiashramsevagram.org/gandhi-literature/mahatma-gandhi-collected-works-volume-90.pdf",
+          "note": "Documents Gandhi's proposal to dissolve Congress as a political party into a non-partisan Lok Sevak Sangh."
+        },
+        {
+          "title": "MPPSC State Service Preliminary Examination 2019 – Final Answer Key",
+          "citation": "Madhya Pradesh Public Service Commission, Final Key State Service Prelims 2019, General Studies Paper 1 Set A Q2 (Keys: C & D).",
+          "url": "https://mppsc.mp.gov.in/",
+          "note": "Confirms official adoption of both Option C and Option D in MPPSC final evaluation."
+        }
+      ],
+      "dispute": {
+        "is_disputed": true,
+        "status": "resolved",
+        "reason": "Jayaprakash Narayan systematically formulated the doctrine of \"Partyless Democracy\" in his 1959 work \"A Plea for the Reconstruction of Indian Polity\". Mahatma Gandhi laid the philosophical foundation in January 1948 by proposing that the Congress disband as a political party to become a non-partisan Lok Sevak Sangh. Because both thinkers prominently proposed eliminating political parties from democratic governance in India, MPPSC's Final Answer Key officially accepted both C and D. Both options are intellectually defensible.",
+        "raised_by": "Independent Research Audit / MPPSC Final Answer Key Revision"
+      },
+      "explanation": {
+        "language": "en",
+        "correct_reasoning": "The political doctrine of \"Partyless Democracy\" was formally coined, formulated, and published by Jayaprakash Narayan (Option D) in \"A Plea for the Reconstruction of Indian Polity\" (1959) and revitalized during his 1974 Total Revolution. However, Mahatma Gandhi (Option C) provided the ideological foundation for party-free Indian democracy in his January 1948 draft proposing the dissolution of the Congress as a political party into a non-partisan Lok Sevak Sangh. Because both thinkers prominently proposed eliminating political parties from democratic governance in India, MPPSC's Final Answer Key officially accepted both C and D.",
+        "option_explanations": [
+          {
+            "key": "A",
+            "text": "S. A. Dange",
+            "is_correct": false,
+            "reason": "Shripad Amrit Dange was a founding leader of the Communist Party of India (CPI) and a prominent trade unionist. He advocated working within a vanguard party and parliamentary/mass party politics, rather than abolishing political parties."
+          },
+          {
+            "key": "B",
+            "text": "Ram Manohar Lohiya",
+            "is_correct": false,
+            "reason": "Dr. Ram Manohar Lohia was a socialist thinker who fiercely opposed Congress hegemony and proposed the \"Four-Pillar State\" (Chaukhamba Raj) and militant socialist politics, but he operated through and built distinct political parties (Socialist Party, Samyukta Socialist Party), not a partyless system."
+          },
+          {
+            "key": "C",
+            "text": "Mahatma Gandhi",
+            "is_correct": true,
+            "reason": "On January 29–30, 1948, Mahatma Gandhi authored his \"Last Will and Testament\" (published in Harijan on February 15, 1948), proposing that the Indian National Congress had outlived its role as a propaganda vehicle and political party and should disband to transform into a \"Lok Sevak Sangh\"—a non-partisan association of social servants working for village swaraj outside the party system. Because this proposal represents the foundational Indian argument against party-based competitive politics, MPPSC officially accepted Option C as correct."
+          },
+          {
+            "key": "D",
+            "text": "Jay Prakash Narayan",
+            "is_correct": true,
+            "reason": "Jayaprakash Narayan (JP) formulated and popularized the specific political doctrine of \"Partyless Democracy\" (दलविहीन प्रजातंत्र / Lokniti) in his 1959 treatise \"A Plea for the Reconstruction of Indian Polity\" and during the 1974 Total Revolution (Sampoorna Kranti). JP argued that party competition fragmented village communities and created self-serving oligarchies, advocating instead for participatory grassroots democracy through village assemblies. MPPSC officially accepted Option D as correct."
+          }
+        ],
+        "key_concepts": [
+          "Partyless Democracy (दलविहीन प्रजातंत्र / Lokniti) - Jayaprakash Narayan (1959, 1974)",
+          "A Plea for the Reconstruction of Indian Polity (Sarva Seva Sangh, 1959)",
+          "Mahatma Gandhi's 1948 Last Will and Testament: Lok Sevak Sangh proposal",
+          "Decentralized Panchayati Raj vs competitive party electoral machinery"
+        ],
+        "revision_takeaways": [
+          "Jayaprakash Narayan is the definitive theorist of \"Partyless Democracy\"; Mahatma Gandhi was its philosophical precursor. MPPSC officially accepts both C and D."
+        ],
+        "sources": [
+          {
+            "title": "A Plea for the Reconstruction of Indian Polity",
+            "citation": "Jayaprakash Narayan, Akhil Bharat Sarva Seva Sangh Prakashan, Rajghat, Kashi, 1959 (also in Socialism, Sarvodaya and Democracy, ed. Bimla Prasad, Asia Publishing House, 1964).",
+            "url": "https://archive.org/details/pleaforreconstructionofindianpolity"
+          },
+          {
+            "title": "The Collected Works of Mahatma Gandhi (CWMG), Vol. 90: Draft Constitution of Congress",
+            "citation": "Mahatma Gandhi, CWMG Vol. 90, pp. 526–528 (published in Harijan, 15 February 1948): Proposal for Lok Sevak Sangh.",
+            "url": "https://www.gandhiashramsevagram.org/gandhi-literature/mahatma-gandhi-collected-works-volume-90.pdf"
+          },
+          {
+            "title": "MPPSC State Service Preliminary Examination 2019 – Final Answer Key",
+            "citation": "Madhya Pradesh Public Service Commission, Final Key State Service Prelims 2019, General Studies Paper 1 Set A Q2 (Keys: C & D).",
+            "url": "https://mppsc.mp.gov.in/"
+          }
+        ]
+      },
+      "source_reference": null,
+      "validation_status": "valid",
+      "validation_notes": [],
+      "is_demonstration": false,
+      "metadata": {
+        "research_category": "multi_answer_ambiguous",
+        "confidence_level": "high",
+        "official_answer_key": {
+          "answer": [
+            "C",
+            "D"
+          ],
+          "status": "final",
+          "source": "MPPSC State Service Preliminary Examination 2019 Final Answer Key"
+        },
+        "independently_established_factual_answer": {
+          "answer": [
+            "C",
+            "D"
+          ],
+          "finding": "Jayaprakash Narayan is the definitive author of the political thesis \"Partyless Democracy\"; Mahatma Gandhi provided the philosophical antecedent through his Lok Sevak Sangh proposal. Dual keys C and D are fully justified."
+        },
+        "defensible_answers": [
+          "C",
+          "D"
+        ],
+        "recommended_scoring_action": "accept_multiple_keys",
+        "audit_pipeline": "MyMPPSC Independent Research Audit v1.0",
+        "audited_at": "2026-11-17T07:45:00Z"
+      }
+    },
+    {
+      "id": "MPPSC-2012-047",
+      "paper_id": "MPPSC-2012-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2012,
+      "set_code": "A",
+      "question_number": 47,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "Which of the following awards is given by the Madhya Pradesh government to a coach for his dedication in sports ?",
+          "instructions": null,
+          "options": [
+            {
+              "key": "A",
+              "text": "Dronacharya award"
+            },
+            {
+              "key": "B",
+              "text": "Parashuram award"
+            },
+            {
+              "key": "C",
+              "text": "Vikram award"
+            },
+            {
+              "key": "D",
+              "text": "Sandipani award"
+            }
+          ]
+        },
+        "hi": {
+          "question_text": "खेल प्रशिक्षक को उसके समर्पित कार्य हेतु मध्य प्रदेश शासन द्वारा निम्नलिखित में से कौनसा पुरस्कार दिया जाता है ?",
+          "instructions": null,
+          "options": [
+            {
+              "key": "A",
+              "text": "द्रोणाचार्य पुरस्कार"
+            },
+            {
+              "key": "B",
+              "text": "परशुराम पुरस्कार"
+            },
+            {
+              "key": "C",
+              "text": "विक्रम पुरस्कार"
+            },
+            {
+              "key": "D",
+              "text": "सांदिपनी पुरस्कार"
+            }
+          ]
+        }
+      },
+      "subject": "Madhya Pradesh Special",
+      "topic": "Personalities and awards of Madhya Pradesh",
+      "subtopic": "Sports from Madhya Pradesh",
+      "supplied_answer": {
+        "answer": null,
+        "status": "missing",
+        "source": "MPPSC 2012 records (defective item / unkeyed)",
+        "notes": "No valid answer option was provided in the examination paper."
+      },
+      "answer_key_status": "missing",
+      "verified_answer": {
+        "answer": [],
+        "verified_by": "Independent Research Audit",
+        "verified_at": "2026-11-17T07:45:00Z",
+        "status": "unresolved",
+        "evidence": [
+          {
+            "title": "Directorate of Sports & Youth Welfare, MP: Shikhar Khel Alankaran Regulations",
+            "citation": "Department of Sports and Youth Welfare, Government of Madhya Pradesh, Award Manual: Rules for Vishwamitra Award (instituted 1994) for sports coaches.",
+            "url": "https://dsywmp.gov.in/",
+            "note": "Demonstrates the sole official MP sports coaching award is the Vishwamitra Award."
+          },
+          {
+            "title": "Ministry of Youth Affairs and Sports, GoI: Scheme for Dronacharya Award",
+            "citation": "Government of India, Ministry of Youth Affairs and Sports, National Sports Awards Guidelines (instituted 1985).",
+            "url": "https://yas.nic.in/",
+            "note": "Demonstrates Dronacharya Award is a national award of the Union Government, not a state award of Madhya Pradesh."
+          },
+          {
+            "title": "Department of Youth Services and Sports, Himachal Pradesh: Parshuram Award",
+            "citation": "Government of Himachal Pradesh, Sports Department: Parshuram Award Regulations (instituted 1987).",
+            "url": "https://himachal.nic.in/",
+            "note": "Demonstrates Parashuram Award is the highest state sports award of Himachal Pradesh, not Madhya Pradesh."
+          }
+        ]
+      },
+      "verification_evidence": [
+        {
+          "title": "Directorate of Sports & Youth Welfare, MP: Shikhar Khel Alankaran Regulations",
+          "citation": "Department of Sports and Youth Welfare, Government of Madhya Pradesh, Award Manual: Rules for Vishwamitra Award (instituted 1994) for sports coaches.",
+          "url": "https://dsywmp.gov.in/",
+          "note": "Demonstrates the sole official MP sports coaching award is the Vishwamitra Award."
+        },
+        {
+          "title": "Ministry of Youth Affairs and Sports, GoI: Scheme for Dronacharya Award",
+          "citation": "Government of India, Ministry of Youth Affairs and Sports, National Sports Awards Guidelines (instituted 1985).",
+          "url": "https://yas.nic.in/",
+          "note": "Demonstrates Dronacharya Award is a national award of the Union Government, not a state award of Madhya Pradesh."
+        },
+        {
+          "title": "Department of Youth Services and Sports, Himachal Pradesh: Parshuram Award",
+          "citation": "Government of Himachal Pradesh, Sports Department: Parshuram Award Regulations (instituted 1987).",
+          "url": "https://himachal.nic.in/",
+          "note": "Demonstrates Parashuram Award is the highest state sports award of Himachal Pradesh, not Madhya Pradesh."
+        }
+      ],
+      "dispute": {
+        "is_disputed": false,
+        "status": "unresolved",
+        "reason": "The dedicated sports award conferred by the Madhya Pradesh Government on a coach is the Vishwamitra Award (instituted 1994, conferred from 1995–96 onwards). The four printed options name Dronacharya (Central Govt), Parashuram (Himachal Pradesh Govt), Vikram (MP award for senior athletes), and Sandipani (educational/non-sports). Because the only correct award—the Vishwamitra Award—was omitted from all four options, no option is correct. The question is defective and must remain unkeyed and unscored.",
+        "raised_by": "Independent Research Audit"
+      },
+      "explanation": {
+        "language": "en",
+        "correct_reasoning": "The official sports award given by the Madhya Pradesh Government to a coach for outstanding dedication and mentorship is the Vishwamitra Award (विश्वामित्र पुरस्कार), instituted in 1994 (rules notified in 1994 and conferred from 1995–96 onwards) by the Department of Sports and Youth Welfare. The Dronacharya Award (A) is a national award of the Government of India; the Parashuram Award (B) is a sports award of Himachal Pradesh; the Vikram Award (C) is an MP award for senior players, not coaches; and no Sandipani sports award exists (D). Because the only correct award—the Vishwamitra Award—was omitted from all four options, this question is intrinsically defective and contains no correct answer.",
+        "option_explanations": [
+          {
+            "key": "A",
+            "text": "Dronacharya award",
+            "is_correct": false,
+            "reason": "The Dronacharya Award is indeed an honour for sports coaches, but it is conferred by the Central Government of India (Ministry of Youth Affairs and Sports, instituted 1985), not by the Madhya Pradesh State Government."
+          },
+          {
+            "key": "B",
+            "text": "Parashuram award",
+            "is_correct": false,
+            "reason": "The Parashuram (Parshuram) Award is the highest state sports award conferred by the Government of Himachal Pradesh (instituted 1987). It is not an award of the Madhya Pradesh Government."
+          },
+          {
+            "key": "C",
+            "text": "Vikram award",
+            "is_correct": false,
+            "reason": "The Vikram Award is conferred by the Madhya Pradesh Government (instituted 1990), but it is the highest state honour reserved strictly for senior players/athletes, not for coaches."
+          },
+          {
+            "key": "D",
+            "text": "Sandipani award",
+            "is_correct": false,
+            "reason": "There is no sports coaching award named Sandipani Award under the Madhya Pradesh Department of Sports and Youth Welfare. Sandipani is associated with Vedic education institutions in Ujjain and state school schemes."
+          }
+        ],
+        "key_concepts": [
+          "Madhya Pradesh Sports Awards (Shikhar Khel Alankaran): Vishwamitra Award (for coaches), Vikram Award (for senior players), Eklavya Award (for junior players), Prabhash Joshi Award (Mallakhamb)",
+          "Dronacharya Award: Union Government of India award for coaches",
+          "Defective exam questions lacking a correct option"
+        ],
+        "revision_takeaways": [
+          "MP coaching award is Vishwamitra Award. Question 47 of 2012 has no correct option and must be left unscored / cancelled."
+        ],
+        "sources": [
+          {
+            "title": "Directorate of Sports & Youth Welfare, MP: Shikhar Khel Alankaran Regulations",
+            "citation": "Department of Sports and Youth Welfare, Government of Madhya Pradesh, Award Manual: Rules for Vishwamitra Award (instituted 1994) for sports coaches.",
+            "url": "https://dsywmp.gov.in/"
+          },
+          {
+            "title": "Ministry of Youth Affairs and Sports, GoI: Scheme for Dronacharya Award",
+            "citation": "Government of India, Ministry of Youth Affairs and Sports, National Sports Awards Guidelines (instituted 1985).",
+            "url": "https://yas.nic.in/"
+          },
+          {
+            "title": "Department of Youth Services and Sports, Himachal Pradesh: Parshuram Award",
+            "citation": "Government of Himachal Pradesh, Sports Department: Parshuram Award Regulations (instituted 1987).",
+            "url": "https://himachal.nic.in/"
+          }
+        ]
+      },
+      "source_reference": null,
+      "validation_status": "valid",
+      "validation_notes": [],
+      "is_demonstration": false,
+      "metadata": {
+        "research_category": "defective_question",
+        "confidence_level": "high",
+        "official_answer_key": {
+          "answer": null,
+          "status": "missing",
+          "source": "MPPSC 2012 records (defective item / unkeyed)"
+        },
+        "independently_established_factual_answer": {
+          "answer": [],
+          "finding": "None of the four options is correct. The Madhya Pradesh sports award for coaches is the Vishwamitra Award."
+        },
+        "defensible_answers": [],
+        "recommended_scoring_action": "leave_unscored_cancel",
+        "audit_pipeline": "MyMPPSC Independent Research Audit v1.0",
+        "audited_at": "2026-11-17T07:45:00Z"
+      }
+    },
+    {
+      "id": "MPPSC-2024-027",
+      "paper_id": "MPPSC-2024-P1",
+      "exam": "MPPSC State Service Preliminary Examination",
+      "year": 2024,
+      "set_code": null,
+      "question_number": 27,
+      "question_type": "single_correct",
+      "language_variants": {
+        "en": {
+          "question_text": "Birha is the popular folk song of which group of tribal women?",
+          "instructions": null,
+          "options": [
+            {
+              "key": "A",
+              "text": "Gond"
+            },
+            {
+              "key": "B",
+              "text": "Kol"
+            },
+            {
+              "key": "C",
+              "text": "Bhil"
+            },
+            {
+              "key": "D",
+              "text": "Sahariya"
+            }
+          ]
+        }
+      },
+      "subject": "Geography",
+      "topic": "Physiography of Madhya Pradesh",
+      "subtopic": "Baghelkhand plateau",
+      "supplied_answer": {
+        "answer": [
+          "A"
+        ],
+        "status": "final",
+        "source": "MPPSC State Service Preliminary Examination 2024 Final Answer Key",
+        "notes": "Keyed Option A (\"Gond\"); upheld by Madhya Pradesh High Court in W.P. No. 25791 of 2024."
+      },
+      "answer_key_status": "final",
+      "verified_answer": {
+        "answer": [
+          "A"
+        ],
+        "verified_by": "Independent Research Audit",
+        "verified_at": "2026-11-17T07:45:00Z",
+        "status": "partially_verified",
+        "evidence": [
+          {
+            "title": "High Court of Madhya Pradesh at Jabalpur – Order in W.P. No. 25791 of 2024",
+            "citation": "High Court of M.P. (Principal Seat at Jabalpur), Writ Petition No. 25791/2024 (challenging MPPSC 2024 Prelims Set A Q27): Court dismissed petition, upholding Option A based on expert committee opinion and judicial restraint.",
+            "url": "https://mphc.gov.in/",
+            "note": "Affirms that Option A (Gond) is the legally binding answer key for MPPSC 2024 Prelims."
+          },
+          {
+            "title": "Gazetteer of India: Madhya Pradesh – Jabalpur District",
+            "citation": "Directorate of Gazetteers, Govt of Madhya Pradesh, Jabalpur District Gazetteer (1968), Chapter III: People, Section on Folk Songs, p. 112: \"Birha songs are sung by both Gond and Kol women\".",
+            "url": "https://gazetteers.mp.gov.in/",
+            "note": "Proves official government documentation establishes Kol women as prominent singers of Birha alongside Gond women."
+          },
+          {
+            "title": "Tribal Research and Development Institute (TRDI), Bhopal – Folk Traditions of Gond and Kol Tribes",
+            "citation": "TRDI Research Monographs, Department of Tribal Affairs, Govt of MP: Ethnographic survey of Baghelkhand and Mahakoshal tribal music traditions.",
+            "url": "https://trdi.mp.gov.in/",
+            "note": "Documents widespread oral transmission of Birha across both Gond and Kol tribal communities."
+          }
+        ]
+      },
+      "verification_evidence": [
+        {
+          "title": "High Court of Madhya Pradesh at Jabalpur – Order in W.P. No. 25791 of 2024",
+          "citation": "High Court of M.P. (Principal Seat at Jabalpur), Writ Petition No. 25791/2024 (challenging MPPSC 2024 Prelims Set A Q27): Court dismissed petition, upholding Option A based on expert committee opinion and judicial restraint.",
+          "url": "https://mphc.gov.in/",
+          "note": "Affirms that Option A (Gond) is the legally binding answer key for MPPSC 2024 Prelims."
+        },
+        {
+          "title": "Gazetteer of India: Madhya Pradesh – Jabalpur District",
+          "citation": "Directorate of Gazetteers, Govt of Madhya Pradesh, Jabalpur District Gazetteer (1968), Chapter III: People, Section on Folk Songs, p. 112: \"Birha songs are sung by both Gond and Kol women\".",
+          "url": "https://gazetteers.mp.gov.in/",
+          "note": "Proves official government documentation establishes Kol women as prominent singers of Birha alongside Gond women."
+        },
+        {
+          "title": "Tribal Research and Development Institute (TRDI), Bhopal – Folk Traditions of Gond and Kol Tribes",
+          "citation": "TRDI Research Monographs, Department of Tribal Affairs, Govt of MP: Ethnographic survey of Baghelkhand and Mahakoshal tribal music traditions.",
+          "url": "https://trdi.mp.gov.in/",
+          "note": "Documents widespread oral transmission of Birha across both Gond and Kol tribal communities."
+        }
+      ],
+      "dispute": {
+        "is_disputed": true,
+        "status": "unresolved",
+        "reason": "MPPSC keyed Option A (\"Gond\") in the 2024 State Service Prelims. Aggrieved candidates challenged this key in the Madhya Pradesh High Court (Principal Seat at Jabalpur, W.P. No. 25791 of 2024), citing the official \"Gazetteer of India: Madhya Pradesh - Jabalpur District\" (p. 112), which explicitly documents that Birha folk songs are traditionally sung by both Gond and Kol women. The High Court upheld MPPSC's key on grounds of judicial restraint and deferral to the expert committee's cited authorities for Gond. While Option A is the legally binding examination key, Kol (Option B) is an equally authentic, gazetteer-documented competing answer. The question conflated a shared regional tribal musical genre with tribal exclusivity.",
+        "raised_by": "Independent Research Audit / High Court Writ Petition"
+      },
+      "explanation": {
+        "language": "en",
+        "correct_reasoning": "Birha (derived from Viraha, meaning sorrow of separation) is a prominent folk song genre of eastern Madhya Pradesh. In tribal ethnography, Birha is prominently sung by BOTH Gond women (Option A) and Kol women (Option B), as explicitly documented in the official \"Gazetteer of India: Madhya Pradesh - Jabalpur District\" (p. 112). MPPSC keyed Option A (\"Gond\") in the 2024 State Service Prelims. When aggrieved candidates challenged this key before the Madhya Pradesh High Court (Principal Seat at Jabalpur, W.P. No. 25791 of 2024) citing the district gazetteer for Kol, the High Court declined to quash the key, ruling that the Commission's expert committee had authoritative literature supporting Gond and that courts exercise judicial restraint in academic key matters. Consequently, while Option A is the legally binding examination key, Kol (Option B) is an equally defensible factual answer documented in official government publications.",
+        "option_explanations": [
+          {
+            "key": "A",
+            "text": "Gond",
+            "is_correct": true,
+            "reason": "Gond tribal women in central and eastern Madhya Pradesh sing Birha and Dadariya songs expressive of love, separation, and forest labor. Anthropological monographs by Verrier Elwin and TRDI publications confirm Birha as a living folk song genre among Gond women. This option was keyed by MPPSC and legally affirmed by the Madhya Pradesh High Court in W.P. No. 25791 of 2024."
+          },
+          {
+            "key": "B",
+            "text": "Kol",
+            "is_correct": true,
+            "reason": "The Kol tribe, concentrated in Baghelkhand and adjoining Jabalpur/Katni/Rewa/Satna districts, has an equally prominent tradition of Birha songs sung by Kol women. Crucially, the Gazetteer of India: Madhya Pradesh - Jabalpur District (p. 112) specifically records: \"Birha songs are sung by both Gond and Kol women\". The Kol tribal tradition was the central evidence submitted by petitioners challenging the key in High Court."
+          },
+          {
+            "key": "C",
+            "text": "Bhil",
+            "is_correct": false,
+            "reason": "The Bhil and Bhilala tribes inhabit western Madhya Pradesh (Jhabua, Alirajpur, Dhar, Barwani). Their distinctive folk musical forms include Bhagoria songs, Relo, and Pithora ballad singing, not the eastern MP/Baghelkhand Birha tradition."
+          },
+          {
+            "key": "D",
+            "text": "Sahariya",
+            "is_correct": false,
+            "reason": "The Sahariya tribe inhabits northern Madhya Pradesh (Chambal and Gwalior divisions, Sheopur, Shivpuri, Guna). Their primary folk singing and dance forms include Lahangi, Dhul-Dhul Ghodi, and Fag, not Birha."
+          }
+        ],
+        "key_concepts": [
+          "Birha folk song tradition in Madhya Pradesh tribal culture (Baghelkhand and Mahakoshal regions)",
+          "Gazetteer of India: Madhya Pradesh - Jabalpur District (documenting both Gond and Kol women)",
+          "MP High Court Principal Seat at Jabalpur (W.P. No. 25791 of 2024) upholding expert committee key for Gond",
+          "Judicial restraint doctrine in public service commission answer keys"
+        ],
+        "revision_takeaways": [
+          "Birha is sung by both Gond and Kol women according to MP District Gazetteers. MPPSC keyed Gond (A), which was upheld by the MP High Court in 2024."
+        ],
+        "sources": [
+          {
+            "title": "High Court of Madhya Pradesh at Jabalpur – Order in W.P. No. 25791 of 2024",
+            "citation": "High Court of M.P. (Principal Seat at Jabalpur), Writ Petition No. 25791/2024 (challenging MPPSC 2024 Prelims Set A Q27): Court dismissed petition, upholding Option A based on expert committee opinion.",
+            "url": "https://mphc.gov.in/"
+          },
+          {
+            "title": "Gazetteer of India: Madhya Pradesh – Jabalpur District",
+            "citation": "Directorate of Gazetteers, Govt of Madhya Pradesh, Jabalpur District Gazetteer (1968), Chapter III: People, Section on Folk Songs, p. 112 (Birha sung by Gond and Kol women).",
+            "url": "https://gazetteers.mp.gov.in/"
+          },
+          {
+            "title": "Tribal Research and Development Institute (TRDI), Bhopal – Folk Traditions of Gond and Kol Tribes",
+            "citation": "TRDI Research Monographs, Department of Tribal Affairs, Govt of MP: Ethnographic survey of Baghelkhand and Mahakoshal tribal music.",
+            "url": "https://trdi.mp.gov.in/"
+          }
+        ]
+      },
+      "source_reference": null,
+      "validation_status": "valid",
+      "validation_notes": [],
+      "is_demonstration": false,
+      "metadata": {
+        "research_category": "conflicting_evidence",
+        "confidence_level": "high",
+        "official_answer_key": {
+          "answer": [
+            "A"
+          ],
+          "status": "final",
+          "source": "MPPSC State Service Preliminary Examination 2024 Final Answer Key (upheld in W.P. No. 25791 of 2024)"
+        },
+        "independently_established_factual_answer": {
+          "answer": [
+            "A",
+            "B"
+          ],
+          "finding": "Both Gond (A) and Kol (B) women prominently sing Birha in Madhya Pradesh as documented in state gazetteers and ethnographic studies. The official key favors Gond, but Kol is an equally valid ethnographic answer."
+        },
+        "defensible_answers": [
+          "A",
+          "B"
+        ],
+        "recommended_scoring_action": "score_as_keyed",
+        "audit_pipeline": "MyMPPSC Independent Research Audit v1.0",
+        "audited_at": "2026-11-17T07:45:00Z"
+      }
+    }
+  ]
+}

@@ -17,6 +17,8 @@ import { resolveMppscMarkingScheme, schemeRules, describeScheme, SCHEME_SOURCE_B
 
 export const OUTCOMES = { CORRECT: 'correct', INCORRECT: 'incorrect', UNANSWERED: 'unanswered', UNSCORED: 'unscored' };
 
+export const isCancelledQuestion = (q) => Boolean(q?.is_cancelled || q?.metadata?.is_cancelled || q?.metadata?.cancelled);
+
 export function sameAnswerSet(a, b) {
   if (!a || !b) return false;
   const sa = Array.from(new Set(a.map((x) => String(x).toUpperCase()))).sort();
@@ -30,6 +32,15 @@ export function sameAnswerSet(a, b) {
  */
 export function evaluateResponse(question, response, policy = 'verified_preferred') {
   const integrity = answerIntegrity(question);
+  if (isCancelledQuestion(question)) {
+    return {
+      outcome: OUTCOMES.UNSCORED,
+      answer: null,
+      basis: null,
+      note: 'Cancelled question; excluded from evaluation and maximum marks.',
+      integrity,
+    };
+  }
   const { answer, basis } = effectiveAnswer(question, policy);
   const selected = response?.selected && response.selected.length ? response.selected.slice().sort() : null;
 
@@ -45,7 +56,11 @@ export function evaluateResponse(question, response, policy = 'verified_preferre
       integrity,
     };
   }
-  const outcome = sameAnswerSet(selected, answer) ? OUTCOMES.CORRECT : OUTCOMES.INCORRECT;
+  const isSingleChoiceMultiKey = question?.question_type !== 'multiple_correct' && Array.isArray(answer) && answer.length > 1;
+  const isMatch = isSingleChoiceMultiKey
+    ? (selected.length === 1 && answer.some((k) => String(k).toUpperCase() === String(selected[0]).toUpperCase())) || sameAnswerSet(selected, answer)
+    : sameAnswerSet(selected, answer);
+  const outcome = isMatch ? OUTCOMES.CORRECT : OUTCOMES.INCORRECT;
   let note = null;
   if (integrity.disputed) note = `Answer key disputed${integrity.verified ? '; scored against your verified answer' : '; scored against the stored key'}.`;
   else if (basis === 'verified') note = 'Scored against the verified answer.';
@@ -171,7 +186,7 @@ function num(v, fallback) {
 export function scoreTest({ test, questions, rules, policy = 'verified_preferred', unresolvedPolicy = 'supplied', answeredAt = null }) {
   if (!rules) throw new Error('scoreTest requires resolved scoring rules');
   const perQuestion = [];
-  const counts = { total: 0, attempted: 0, correct: 0, incorrect: 0, unanswered: 0, unscored: 0, flagged: 0, lowConfidenceCorrect: 0, confidentIncorrect: 0 };
+  const counts = { total: 0, attempted: 0, correct: 0, incorrect: 0, unanswered: 0, unscored: 0, cancelled: 0, flagged: 0, lowConfidenceCorrect: 0, confidentIncorrect: 0 };
   const unscoredReasons = [];
   const unresolved = [];
   let score = 0;
@@ -190,6 +205,9 @@ export function scoreTest({ test, questions, rules, policy = 'verified_preferred
       perQuestion.push({ question_id: questionId, outcome: OUTCOMES.UNSCORED, missing_question: true, selected: response.selected || [], answered: false });
       continue;
     }
+
+    const cancelled = isCancelledQuestion(question);
+    if (cancelled) counts.cancelled += 1;
 
     let evaluation = evaluateResponse(question, response, policy);
     const integrity = evaluation.integrity;
@@ -246,6 +264,7 @@ export function scoreTest({ test, questions, rules, policy = 'verified_preferred
       supplied_answer: integrity.supplied,
       verified_answer: integrity.verified,
       disputed: integrity.disputed,
+      cancelled,
       outcome: evaluation.outcome,
       marks,
       answered,
@@ -260,7 +279,9 @@ export function scoreTest({ test, questions, rules, policy = 'verified_preferred
   }
 
   const scored = counts.correct + counts.incorrect; // answered questions with a usable key
-  const maxMarks = round((test.question_ids || []).length * rules.marks_per_correct, 4);
+  const totalQuestions = (test.question_ids || []).length;
+  const scorableCount = Math.max(0, totalQuestions - (counts.cancelled || 0));
+  const maxMarks = round(scorableCount * rules.marks_per_correct, 4);
   const accuracy = scored ? counts.correct / scored : NaN;
 
   const byTopic = new Map();

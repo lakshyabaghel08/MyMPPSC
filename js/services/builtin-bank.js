@@ -166,6 +166,34 @@ export async function ensureBuiltinBank(opts = {}) {
     return result;
   }
 
+  // Check for records that have key, verification, dispute or cancellation updates
+  // even if their text and options (fingerprint) are identical.
+  const explicitRefreshIds = new Set([
+    ...(Array.isArray(raw.refresh_question_ids) ? raw.refresh_question_ids : []),
+    ...(opts.refreshIdenticalIds ? Array.from(opts.refreshIdenticalIds) : []),
+  ]);
+  const refreshIdenticalIds = new Set(explicitRefreshIds);
+  if (!previous || previous.sha256 !== sha256 || opts.force || explicitRefreshIds.size > 0) {
+    const storedQuestions = await db.getAll(STORES.QUESTIONS);
+    const storedMap = new Map(storedQuestions.map((q) => [q.id, q]));
+    for (const q of analysis.report.questions) {
+      if (explicitRefreshIds.has(q.id)) continue;
+      const prior = storedMap.get(q.id);
+      if (!prior) continue;
+      const keyOrStatusChanged =
+        JSON.stringify(prior.supplied?.answer) !== JSON.stringify(q.supplied?.answer) ||
+        prior.supplied?.status !== q.supplied?.status ||
+        JSON.stringify(prior.verified?.answer) !== JSON.stringify(q.verified?.answer) ||
+        prior.verified?.status !== q.verified?.status ||
+        Boolean(prior.is_cancelled || prior.metadata?.is_cancelled) !== Boolean(q.is_cancelled || q.metadata?.is_cancelled) ||
+        Boolean(prior.dispute?.is_disputed) !== Boolean(q.dispute?.is_disputed) ||
+        prior.dispute?.status !== q.dispute?.status;
+      if (keyOrStatusChanged) {
+        refreshIdenticalIds.add(q.id);
+      }
+    }
+  }
+
   // Idempotence is decided by comparing the file with what is stored, not by
   // the recorded hash alone: if every record is already present with identical
   // content and none has changed, there is nothing to do regardless of how the
@@ -174,6 +202,7 @@ export async function ensureBuiltinBank(opts = {}) {
     analysis.comparison.newQuestions === 0 &&
     analysis.comparison.changedRecords === 0 &&
     analysis.comparison.changedPapers === 0 &&
+    refreshIdenticalIds.size === 0 &&
     analysis.report.questions.length > 0;
   const fileIds = analysis.report.questions.map((q) => q.id);
   const storedCount = await countStoredForBank(analysis.report.meta.bankId, fileIds);
@@ -203,6 +232,7 @@ export async function ensureBuiltinBank(opts = {}) {
     // source fields; user edits, verified answers and locally authored
     // questions are kept (see importer.mergeImportedQuestion).
     conflictPolicy: 'update',
+    refreshIdenticalIds,
   });
 
   const meta = {
