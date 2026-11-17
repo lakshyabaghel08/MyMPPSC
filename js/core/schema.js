@@ -259,6 +259,7 @@ export function normaliseQuestion(raw, ctx = {}) {
     validation_status: validationStatus,
     validation_notes: asArray(raw.validation_notes).map(asString).filter(Boolean),
     is_demonstration: raw.is_demonstration === true || ctx.demoFlag === true,
+    is_cancelled: Boolean(raw.is_cancelled || raw?.metadata?.is_cancelled),
     metadata: raw.metadata && typeof raw.metadata === 'object' ? raw.metadata : {},
     bank_id: ctx.bankId || null,
     imported_at: new Date().toISOString(),

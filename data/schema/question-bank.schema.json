@@ -253,7 +253,13 @@
         "validation_status": { "enum": ["valid", "valid_with_warnings", "invalid", "unknown", null] },
         "validation_notes": { "type": "array", "items": { "type": "string" } },
         "is_demonstration": { "type": "boolean", "default": false },
-        "metadata": { "type": "object" }
+        "is_cancelled": { "type": "boolean", "description": "True if the question was officially cancelled or deleted by the examination authority, excluding it from maximum marks and scoring." },
+        "metadata": {
+          "type": "object",
+          "properties": {
+            "is_cancelled": { "type": "boolean", "description": "True if the question was officially cancelled or deleted by the examination authority." }
+          }
+        }
       }
     },
     "evidence": {

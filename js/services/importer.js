@@ -136,7 +136,18 @@ export async function executeImport(analysis, options = {}) {
       continue;
     }
     const identical = prior.fingerprint === question.fingerprint;
-    if (identical && !options.refreshIdenticalIds?.has(question.id)) {
+    const shouldRefresh = options.refreshIdenticalIds?.has(question.id) || (
+      options.refreshIdenticalIds == null && conflictPolicy === 'update' && (
+        JSON.stringify(prior.supplied?.answer) !== JSON.stringify(question.supplied?.answer) ||
+        prior.supplied?.status !== question.supplied?.status ||
+        JSON.stringify(prior.verified?.answer) !== JSON.stringify(question.verified?.answer) ||
+        prior.verified?.status !== question.verified?.status ||
+        Boolean(prior.is_cancelled || prior.metadata?.is_cancelled) !== Boolean(question.is_cancelled || question.metadata?.is_cancelled) ||
+        Boolean(prior.dispute?.is_disputed) !== Boolean(question.dispute?.is_disputed) ||
+        prior.dispute?.status !== question.dispute?.status
+      )
+    );
+    if (identical && !shouldRefresh) {
       stats.questionsSkipped += 1;
       skipped.push({ id: question.id, reason: 'Already stored with identical text and options.' });
       continue;
