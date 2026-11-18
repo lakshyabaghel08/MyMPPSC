@@ -12,7 +12,7 @@
 
 import { readFile, readdir, stat } from 'node:fs/promises';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const problems = [];
@@ -383,7 +383,7 @@ for (const entry of shellPaths) {
 // four recorded audio files. A missing surface token makes a half-themed digit;
 // a renamed MP3 is a silent 404. Check both against the shipped vocabulary.
 {
-  const { FOCUS_ENVIRONMENTS } = await import(path.join(root, 'js/core/constants.js'));
+  const { FOCUS_ENVIRONMENTS } = await import(pathToFileURL(path.join(root, 'js/core/constants.js')).href);
   const focusCss = await readFile(path.join(root, 'css', 'focus-timer.css'), 'utf8');
   check(JSON.stringify(FOCUS_ENVIRONMENTS) === JSON.stringify(['woodland', 'night']),
     'the Study Timer must offer exactly Woodland and Night, resolved from the app theme');
@@ -570,7 +570,7 @@ for (const file of jsFiles) {
 // with a demonstration bank and a little recorded activity. It costs a couple
 // of seconds and catches exactly the defects the density budget exists for — a
 // twelfth card, a 600-word card, a sixth disclosure, a wall of buttons.
-const { DENSITY_BUDGET } = await import(path.join(root, 'js', 'ui', 'budget.js'));
+const { DENSITY_BUDGET } = await import(pathToFileURL(path.join(root, 'js', 'ui', 'budget.js')).href);
 check(DENSITY_BUDGET.cardsPerScreen === 8, 'js/ui/budget.js: the cards-per-screen budget changed; restructure the screen, or raise it with a comment and list it in the pull request');
 check(DENSITY_BUDGET.wordsPerCard === 250, 'js/ui/budget.js: the words-per-card budget changed; restructure the card, or raise it with a comment');
 check(DENSITY_BUDGET.disclosuresPerScreen === 3, 'js/ui/budget.js: the disclosures-per-screen budget changed');
