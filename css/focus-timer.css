@@ -28,34 +28,34 @@
   --focus-leaf-b: #4d9b70;
   --focus-leaf-c: #c5a24d;
 
-  /* Witherwood's night clock and indigo room. */
-  --focus-night-top: #1e293b;
-  --focus-night-bottom: #0f172a;
-  --focus-night-text: #e2e8f0;
-  --focus-night-split: #020617;
-  --focus-night-border: #786fa5;
+  /* Deep slate-teal night clock and nocturnal room (matches app dark theme). */
+  --focus-night-top: #1a2b35;
+  --focus-night-bottom: #101c24;
+  --focus-night-text: #edf4f5;
+  --focus-night-split: #070e13;
+  --focus-night-border: #405c6a;
   --focus-night-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6);
-  --focus-night-sheen: rgba(255, 255, 255, 0.12);
-  --focus-night-room: linear-gradient(180deg, #0a0f1c 0%, #0f1429 52%, #151b36 100%);
-  --focus-night-panel: linear-gradient(145deg, rgba(15, 23, 42, 0.94), rgba(15, 23, 42, 0.9) 55%, rgba(30, 27, 75, 0.92));
-  --focus-night-panel-line: rgba(165, 180, 252, 0.3);
-  --focus-night-glow: radial-gradient(ellipse 65% 75% at 50% 20%, rgba(139, 92, 246, 0.15), transparent 78%);
-  --focus-night-surface: #121a33;
-  --focus-night-sunken: #0e142a;
-  --focus-night-hover: #1f2a4d;
-  --focus-night-line: #47588a;
-  --focus-night-line-subtle: #303c63;
-  --focus-night-muted: #c3cbe4;
-  --focus-night-soft: #aab4d4;
-  --focus-night-accent: #a78bfa;
-  --focus-night-accent-soft: #29254d;
-  --focus-night-ink: #a78bfa;
-  --focus-night-ink-hover: #bca6ff;
-  --focus-night-on-ink: #0f172a;
+  --focus-night-sheen: rgba(255, 255, 255, 0.08);
+  --focus-night-room: linear-gradient(180deg, #091218 0%, #0e1921 52%, #13222c 100%);
+  --focus-night-panel: linear-gradient(145deg, rgba(20, 34, 43, 0.94), rgba(25, 41, 51, 0.92) 55%, rgba(23, 60, 54, 0.90));
+  --focus-night-panel-line: rgba(113, 139, 153, 0.28);
+  --focus-night-glow: radial-gradient(ellipse 65% 75% at 50% 20%, rgba(117, 216, 196, 0.12), transparent 78%);
+  --focus-night-surface: #192933;
+  --focus-night-sunken: #0e1921;
+  --focus-night-hover: #223640;
+  --focus-night-line: #405c6a;
+  --focus-night-line-subtle: #314651;
+  --focus-night-muted: #b4c6cf;
+  --focus-night-soft: #96adb9;
+  --focus-night-accent: #75d8c4;
+  --focus-night-accent-soft: #173c36;
+  --focus-night-ink: #75d8c4;
+  --focus-night-ink-hover: #a4eadb;
+  --focus-night-on-ink: #082b25;
   --focus-star-white: 255, 255, 255;
-  --focus-star-blue: 220, 230, 255;
+  --focus-star-blue: 175, 220, 240;
   --focus-star-warm: 255, 230, 200;
-  --focus-star-halo: 196, 181, 253;
+  --focus-star-halo: 117, 216, 196;
   --focus-mask-opaque: #000000;
 }
 
